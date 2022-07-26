@@ -11354,6 +11354,19 @@ var AuthenticatedGithubClient = class extends GithubClient {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/dry-run.js
+function addDryRunFlag(args) {
+  return args.option("dry-run", {
+    type: "boolean",
+    default: false,
+    description: "Whether to do a dry run",
+    coerce: (dryRun) => {
+      if (dryRun) {
+        process.env["DRY_RUN"] = "1";
+      }
+      return dryRun;
+    }
+  });
+}
 function isDryRun() {
   return process.env["DRY_RUN"] !== void 0;
 }
@@ -13102,6 +13115,7 @@ async function assertPassingReleasePrechecks(config, newVersion, builtPackagesWi
 
 export {
   require_dist,
+  addDryRunFlag,
   require_tr46,
   require_safer,
   require_encoding,
@@ -13160,4 +13174,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-6KCSWOM5.mjs.map
+//# sourceMappingURL=chunk-USETKMJE.mjs.map

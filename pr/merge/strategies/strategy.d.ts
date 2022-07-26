@@ -33,12 +33,21 @@ export declare abstract class MergeStrategy {
      *   pull request.
      */
     abstract merge(pullRequest: PullRequest): Promise<void>;
+    /**
+     * Checks to confirm that a pull request in its current state is able to merge as expected to
+     * the targeted branches. This method notably does not commit any attempted cherry-picks during
+     * its check, but instead leaves this to the merging action.
+     *
+     * @throws {GitCommandError} An unknown Git command error occurred that is not
+     *   specific to the pull request merge.
+     * @throws {UnsatisfiedBaseShaFatalError} A fatal error if a specific is required to be present
+     *   in the pull requests branch and is not present in that branch.
+     * @throws {MismatchedTargetBranchFatalError} A fatal error if the pull request does not target
+     *   a branch via the Github UI that is managed by merge tooling.
+     */
+    check(pullRequest: PullRequest): Promise<void>;
     /** Cleans up the pull request merge. e.g. deleting temporary local branches. */
     cleanup(pullRequest: PullRequest): Promise<void>;
-    /** Gets the revision range for all commits in the given pull request. */
-    protected getPullRequestRevisionRange(pullRequest: PullRequest): string;
-    /** Gets the base revision of a pull request. i.e. the commit the PR is based on. */
-    protected getPullRequestBaseRevision(pullRequest: PullRequest): string;
     /** Gets a deterministic local branch name for a given branch. */
     protected getLocalTargetBranchName(targetBranch: string): string;
     /**
@@ -56,4 +65,6 @@ export declare abstract class MergeStrategy {
     protected fetchTargetBranches(names: string[], ...extraRefspecs: string[]): void;
     /** Pushes the given target branches upstream. */
     protected pushTargetBranchesUpstream(names: string[]): void;
+    /** Asserts that given pull request could be merged into the given target branches. */
+    protected _assertMergeableOrThrow({ revisionRange }: PullRequest, targetBranches: string[]): Promise<void>;
 }

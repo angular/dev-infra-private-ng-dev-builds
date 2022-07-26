@@ -19,6 +19,14 @@ import { MergeStrategy } from './strategy.js';
 export declare class GithubApiMergeStrategy extends MergeStrategy {
     private _config;
     constructor(git: AuthenticatedGitClient, _config: GithubApiMergeStrategyConfig);
+    /**
+     * Merges the specified pull request via the Github API, cherry-picks the change into the other
+     * target branhces and pushes the branches upstream.
+     *
+     * @throws {GitCommandError} An unknown Git command error occurred that is not
+     *   specific to the pull request merge.
+     * @throws {FatalMergeToolError} A fatal error if the merge could not be performed.
+     */
     merge(pullRequest: PullRequest): Promise<void>;
     /**
      * Prompts the user for the commit message changes. Unlike as in the autosquash merge
@@ -34,10 +42,6 @@ export declare class GithubApiMergeStrategy extends MergeStrategy {
     private _getDefaultSquashCommitMessage;
     /** Gets all commit messages of commits in the pull request. */
     private _getPullRequestCommitMessages;
-    /**
-     * Asserts that given pull request could be merged into its target branches.
-     */
-    private _assertMergeableOrThrow;
     /** Determines the merge action from the given pull request. */
     private _getMergeActionFromPullRequest;
 }

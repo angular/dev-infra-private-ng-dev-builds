@@ -12,6 +12,7 @@ export interface MergeCommandOptions {
     pr: number;
     branchPrompt: boolean;
     forceManualBranches: boolean;
+    dryRun: boolean;
 }
 /** yargs command module describing the command. */
 export declare const MergeCommandModule: CommandModule<{}, MergeCommandOptions>;

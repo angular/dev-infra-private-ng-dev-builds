@@ -12,6 +12,7 @@ import { PullRequestValidationConfig } from '../common/validation/validation-con
 export interface PullRequestMergeFlags {
     branchPrompt: boolean;
     forceManualBranches: boolean;
+    dryRun: boolean;
 }
 /**
  * Class that accepts a merge script configuration and Github token. It provides

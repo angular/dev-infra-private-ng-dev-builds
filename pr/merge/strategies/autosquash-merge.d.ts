@@ -20,6 +20,7 @@ export declare class AutosquashMergeStrategy extends MergeStrategy {
      * branches upstream. This method requires the temporary target branches to be fetched
      * already as we don't want to fetch the target branches per pull request merge. This
      * would causes unnecessary multiple fetch requests when multiple PRs are merged.
+     *
      * @throws {GitCommandError} An unknown Git command error occurred that is not
      *   specific to the pull request merge.
      * @throws {FatalMergeToolError} A fatal error if the merge could not be performed.

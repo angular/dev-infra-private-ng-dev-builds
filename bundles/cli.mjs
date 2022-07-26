@@ -12,6 +12,7 @@ import {
   GitCommandError,
   ReleaseNotesLevel,
   ScopeRequirement,
+  addDryRunFlag,
   addTokenToGitHttpsUrl,
   assertPassingReleasePrechecks,
   assertValidCaretakerConfig,
@@ -40,7 +41,7 @@ import {
   require_semver,
   require_tr46,
   require_wrappy
-} from "./chunk-6KCSWOM5.mjs";
+} from "./chunk-USETKMJE.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -5489,17 +5490,17 @@ var require_compose_node = __commonJS({
       return node;
     }
     function composeAlias({ options }, { offset, source, end }, onError) {
-      const alias2 = new Alias.Alias(source.substring(1));
-      if (alias2.source === "")
+      const alias3 = new Alias.Alias(source.substring(1));
+      if (alias3.source === "")
         onError(offset, "BAD_ALIAS", "Alias cannot be an empty string");
-      if (alias2.source.endsWith(":"))
+      if (alias3.source.endsWith(":"))
         onError(offset + source.length - 1, "BAD_ALIAS", "Alias ending in : is ambiguous", true);
       const valueEnd = offset + source.length;
       const re = resolveEnd.resolveEnd(end, valueEnd, options.strict, onError);
-      alias2.range = [offset, valueEnd, re.offset];
+      alias3.range = [offset, valueEnd, re.offset];
       if (re.comment)
-        alias2.comment = re.comment;
-      return alias2;
+        alias3.comment = re.comment;
+      return alias3;
     }
     exports2.composeEmptyNode = composeEmptyNode;
     exports2.composeNode = composeNode;
@@ -63591,8 +63592,8 @@ var YargsParser = class {
     }
     extendAliases(opts.key, aliases, opts.default, flags.arrays);
     Object.keys(defaults).forEach(function(key) {
-      (flags.aliases[key] || []).forEach(function(alias2) {
-        defaults[alias2] = defaults[key];
+      (flags.aliases[key] || []).forEach(function(alias3) {
+        defaults[alias3] = defaults[key];
       });
     });
     let error = null;
@@ -63760,11 +63761,11 @@ var YargsParser = class {
     }
     if (configuration["strip-aliased"]) {
       ;
-      [].concat(...Object.keys(aliases).map((k) => aliases[k])).forEach((alias2) => {
-        if (configuration["camel-case-expansion"] && alias2.includes("-")) {
-          delete argv[alias2.split(".").map((prop) => camelCase(prop)).join(".")];
+      [].concat(...Object.keys(aliases).map((k) => aliases[k])).forEach((alias3) => {
+        if (configuration["camel-case-expansion"] && alias3.includes("-")) {
+          delete argv[alias3.split(".").map((prop) => camelCase(prop)).join(".")];
         }
-        delete argv[alias2];
+        delete argv[alias3];
       });
     }
     function pushPositional(arg) {
@@ -63843,10 +63844,10 @@ var YargsParser = class {
     }
     function setArg(key, val, shouldStripQuotes = inputIsString) {
       if (/-/.test(key) && configuration["camel-case-expansion"]) {
-        const alias2 = key.split(".").map(function(prop) {
+        const alias3 = key.split(".").map(function(prop) {
           return camelCase(prop);
         }).join(".");
-        addNewAlias(key, alias2);
+        addNewAlias(key, alias3);
       }
       const value = processValue(key, val, shouldStripQuotes);
       const splitKey = key.split(".");
@@ -63884,13 +63885,13 @@ var YargsParser = class {
         });
       }
     }
-    function addNewAlias(key, alias2) {
+    function addNewAlias(key, alias3) {
       if (!(flags.aliases[key] && flags.aliases[key].length)) {
-        flags.aliases[key] = [alias2];
-        newAliases[alias2] = true;
+        flags.aliases[key] = [alias3];
+        newAliases[alias3] = true;
       }
-      if (!(flags.aliases[alias2] && flags.aliases[alias2].length)) {
-        addNewAlias(alias2, key);
+      if (!(flags.aliases[alias3] && flags.aliases[alias3].length)) {
+        addNewAlias(alias3, key);
       }
     }
     function processValue(key, val, shouldStripQuotes) {
@@ -64882,7 +64883,7 @@ var CommandInstance = class {
     }
     if (typeof cmd === "string") {
       const parsedCommand = parseCommand(cmd);
-      aliases = aliases.map((alias2) => parseCommand(alias2).cmd);
+      aliases = aliases.map((alias3) => parseCommand(alias3).cmd);
       let isDefault = false;
       const parsedAliases = [parsedCommand.cmd].concat(aliases).filter((c) => {
         if (DEFAULT_MARKER.test(c)) {
@@ -64898,8 +64899,8 @@ var CommandInstance = class {
         aliases = parsedAliases.slice(1);
         cmd = cmd.replace(DEFAULT_MARKER, parsedCommand.cmd);
       }
-      aliases.forEach((alias2) => {
-        this.aliasMap[alias2] = parsedCommand.cmd;
+      aliases.forEach((alias3) => {
+        this.aliasMap[alias3] = parsedCommand.cmd;
       });
       if (description !== false) {
         this.usage.command(cmd, description, isDefault, aliases, deprecated);
@@ -65461,7 +65462,7 @@ function usage(yargs, shim3) {
       ui2.div();
     }
     const aliasKeys = (Object.keys(options.alias) || []).concat(Object.keys(yargs.parsed.newAliases) || []);
-    keys = keys.filter((key) => !yargs.parsed.newAliases[key] && aliasKeys.every((alias2) => (options.alias[alias2] || []).indexOf(key) === -1));
+    keys = keys.filter((key) => !yargs.parsed.newAliases[key] && aliasKeys.every((alias3) => (options.alias[alias3] || []).indexOf(key) === -1));
     const defaultGroup = __("Options:");
     if (!groups[defaultGroup])
       groups[defaultGroup] = [];
@@ -65587,22 +65588,22 @@ function usage(yargs, shim3) {
     const demandedOptions = yargs.getDemandedOptions();
     const options = yargs.getOptions();
     (Object.keys(options.alias) || []).forEach((key) => {
-      options.alias[key].forEach((alias2) => {
-        if (descriptions[alias2])
-          self2.describe(key, descriptions[alias2]);
-        if (alias2 in demandedOptions)
-          yargs.demandOption(key, demandedOptions[alias2]);
-        if (options.boolean.includes(alias2))
+      options.alias[key].forEach((alias3) => {
+        if (descriptions[alias3])
+          self2.describe(key, descriptions[alias3]);
+        if (alias3 in demandedOptions)
+          yargs.demandOption(key, demandedOptions[alias3]);
+        if (options.boolean.includes(alias3))
           yargs.boolean(key);
-        if (options.count.includes(alias2))
+        if (options.count.includes(alias3))
           yargs.count(key);
-        if (options.string.includes(alias2))
+        if (options.string.includes(alias3))
           yargs.string(key);
-        if (options.normalize.includes(alias2))
+        if (options.normalize.includes(alias3))
           yargs.normalize(key);
-        if (options.array.includes(alias2))
+        if (options.array.includes(alias3))
           yargs.array(key);
-        if (options.number.includes(alias2))
+        if (options.number.includes(alias3))
           yargs.number(key);
       });
     });
@@ -65939,8 +65940,8 @@ var Completion = class {
     if (negable && argsContains(`no-${key}`))
       return true;
     if (this.aliases) {
-      for (const alias2 of this.aliases[key]) {
-        if (argsContains(alias2))
+      for (const alias3 of this.aliases[key]) {
+        if (argsContains(alias3))
           return true;
       }
     }
@@ -66625,8 +66626,8 @@ var YargsInstance = class {
         argv[keys] = result;
         const stripAliased = yargs.getInternalMethods().getParserConfiguration()["strip-aliased"];
         if (aliases[keys] && stripAliased !== true) {
-          for (const alias2 of aliases[keys]) {
-            argv[alias2] = result;
+          for (const alias3 of aliases[keys]) {
+            argv[alias3] = result;
           }
         }
         return argv;
@@ -70002,6 +70003,7 @@ var PR_SCHEMA2 = {
   number: import_typed_graphqlify4.types.number,
   mergeable: import_typed_graphqlify4.types.custom(),
   updatedAt: import_typed_graphqlify4.types.string,
+  [(0, import_typed_graphqlify4.alias)("baseCommitInfo", "commits")]: (0, import_typed_graphqlify4.params)({ first: 1 }, { nodes: [{ commit: { parents: (0, import_typed_graphqlify4.params)({ first: 1 }, { nodes: [{ oid: import_typed_graphqlify4.types.string }] }) } }] }),
   commits: (0, import_typed_graphqlify4.params)({ last: 100 }, {
     totalCount: import_typed_graphqlify4.types.number,
     nodes: [
@@ -70237,12 +70239,13 @@ function getCaretakerNotePromptMessage(pullRequest) {
 Quick link to PR: ${pullRequest.url}
 Do you want to proceed merging?`;
 }
-function getTargetedBranchesConfirmationPromptMessage(pullRequest) {
-  const targetBranchListAsString = pullRequest.targetBranches.map((b) => ` - ${b}
-`).join("");
+function getTargetedBranchesConfirmationPromptMessage() {
+  return `Do you want to proceed merging?`;
+}
+function getTargetedBranchesMessage(pullRequest) {
+  const targetBranchListAsString = pullRequest.targetBranches.map((b) => `  - ${bold(b)}`).join("\n");
   return `Pull request #${pullRequest.prNumber} will merge into:
-${targetBranchListAsString}
-Do you want to proceed merging?`;
+${targetBranchListAsString}`;
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/failures.js
@@ -70463,49 +70466,6 @@ async function assertValidPullRequest(pullRequest, validationConfig, ngDevConfig
   await passingCiValidation.run(validationConfig, (v) => v.assert(pullRequest));
 }
 
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/pull-request.js
-async function loadAndValidatePullRequest({ git, config }, prNumber, validationConfig) {
-  const prData = await fetchPullRequestFromGithub(git, prNumber);
-  if (prData === null) {
-    throw new FatalMergeToolError("Pull request could not be found.");
-  }
-  const labels = prData.labels.nodes.map((l) => l.name);
-  const githubTargetBranch = prData.baseRefName;
-  const { mainBranchName, name: name5, owner } = config.github;
-  let activeReleaseTrains = null;
-  let target = null;
-  if (config.pullRequest.__noTargetLabeling) {
-    target = { branches: [config.github.mainBranchName], labelName: TargetLabelName.MAJOR };
-  } else {
-    activeReleaseTrains = await ActiveReleaseTrains.fetch({
-      name: name5,
-      nextBranchName: mainBranchName,
-      owner,
-      api: git.github
-    });
-    target = await getTargetBranchesAndLabelForPullRequest(activeReleaseTrains, git.github, config, labels, githubTargetBranch);
-  }
-  await assertValidPullRequest(prData, validationConfig, config, activeReleaseTrains, target);
-  const requiredBaseSha = config.pullRequest.requiredBaseCommits && config.pullRequest.requiredBaseCommits[githubTargetBranch];
-  const needsCommitMessageFixup = !!config.pullRequest.commitMessageFixupLabel && labels.includes(config.pullRequest.commitMessageFixupLabel);
-  const hasCaretakerNote = !!config.pullRequest.caretakerNoteLabel && labels.includes(config.pullRequest.caretakerNoteLabel);
-  return {
-    url: prData.url,
-    prNumber,
-    labels,
-    requiredBaseSha,
-    githubTargetBranch,
-    needsCommitMessageFixup,
-    hasCaretakerNote,
-    targetBranches: target.branches,
-    title: prData.title,
-    commitCount: prData.commits.totalCount
-  };
-}
-
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/api-merge.js
-var import_inquirer3 = __toESM(require_inquirer());
-
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/strategy.js
 var TEMP_PR_HEAD_BRANCH = "merge_pr_head";
 var MergeStrategy = class {
@@ -70515,15 +70475,19 @@ var MergeStrategy = class {
   async prepare(pullRequest) {
     this.fetchTargetBranches(pullRequest.targetBranches, `pull/${pullRequest.prNumber}/head:${TEMP_PR_HEAD_BRANCH}`);
   }
+  async check(pullRequest) {
+    const { githubTargetBranch, targetBranches, requiredBaseSha } = pullRequest;
+    if (targetBranches.every((t) => t !== githubTargetBranch)) {
+      throw new MismatchedTargetBranchFatalError(targetBranches);
+    }
+    if (requiredBaseSha && !this.git.hasCommit(TEMP_PR_HEAD_BRANCH, requiredBaseSha)) {
+      throw new UnsatisfiedBaseShaFatalError();
+    }
+    await this._assertMergeableOrThrow(pullRequest, targetBranches);
+  }
   async cleanup(pullRequest) {
     pullRequest.targetBranches.forEach((branchName) => this.git.run(["branch", "-D", this.getLocalTargetBranchName(branchName)]));
     this.git.run(["branch", "-D", TEMP_PR_HEAD_BRANCH]);
-  }
-  getPullRequestRevisionRange(pullRequest) {
-    return `${this.getPullRequestBaseRevision(pullRequest)}..${TEMP_PR_HEAD_BRANCH}`;
-  }
-  getPullRequestBaseRevision(pullRequest) {
-    return `${TEMP_PR_HEAD_BRANCH}~${pullRequest.commitCount}`;
   }
   getLocalTargetBranchName(targetBranch) {
     return `merge_pr_target_${targetBranch.replace(/\//g, "_")}`;
@@ -70571,9 +70535,62 @@ var MergeStrategy = class {
     });
     this.git.run(["push", this.git.getRepoGitUrl(), ...pushRefspecs]);
   }
+  async _assertMergeableOrThrow({ revisionRange }, targetBranches) {
+    const failedBranches = this.cherryPickIntoTargetBranches(revisionRange, targetBranches, {
+      dryRun: true
+    });
+    if (failedBranches.length) {
+      throw new MergeConflictsFatalError(failedBranches);
+    }
+  }
 };
 
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/pull-request.js
+async function loadAndValidatePullRequest({ git, config }, prNumber, validationConfig) {
+  const prData = await fetchPullRequestFromGithub(git, prNumber);
+  if (prData === null) {
+    throw new FatalMergeToolError("Pull request could not be found.");
+  }
+  const labels = prData.labels.nodes.map((l) => l.name);
+  const githubTargetBranch = prData.baseRefName;
+  const { mainBranchName, name: name5, owner } = config.github;
+  let activeReleaseTrains = null;
+  let target = null;
+  if (config.pullRequest.__noTargetLabeling) {
+    target = { branches: [config.github.mainBranchName], labelName: TargetLabelName.MAJOR };
+  } else {
+    activeReleaseTrains = await ActiveReleaseTrains.fetch({
+      name: name5,
+      nextBranchName: mainBranchName,
+      owner,
+      api: git.github
+    });
+    target = await getTargetBranchesAndLabelForPullRequest(activeReleaseTrains, git.github, config, labels, githubTargetBranch);
+  }
+  await assertValidPullRequest(prData, validationConfig, config, activeReleaseTrains, target);
+  const requiredBaseSha = config.pullRequest.requiredBaseCommits && config.pullRequest.requiredBaseCommits[githubTargetBranch];
+  const needsCommitMessageFixup = !!config.pullRequest.commitMessageFixupLabel && labels.includes(config.pullRequest.commitMessageFixupLabel);
+  const hasCaretakerNote = !!config.pullRequest.caretakerNoteLabel && labels.includes(config.pullRequest.caretakerNoteLabel);
+  const baseSha = prData.baseCommitInfo.nodes[0].commit.parents.nodes[0].oid;
+  const revisionRange = `${baseSha}..${TEMP_PR_HEAD_BRANCH}`;
+  return {
+    url: prData.url,
+    prNumber,
+    labels,
+    requiredBaseSha,
+    githubTargetBranch,
+    needsCommitMessageFixup,
+    baseSha,
+    revisionRange,
+    hasCaretakerNote,
+    targetBranches: target.branches,
+    title: prData.title,
+    commitCount: prData.commits.totalCount
+  };
+}
+
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/api-merge.js
+var import_inquirer3 = __toESM(require_inquirer());
 var COMMIT_HEADER_SEPARATOR = "\n\n";
 var GithubApiMergeStrategy = class extends MergeStrategy {
   constructor(git, _config) {
@@ -70581,16 +70598,9 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
     this._config = _config;
   }
   async merge(pullRequest) {
-    const { githubTargetBranch, prNumber, targetBranches, requiredBaseSha, needsCommitMessageFixup } = pullRequest;
-    if (targetBranches.every((t) => t !== githubTargetBranch)) {
-      throw new MismatchedTargetBranchFatalError(targetBranches);
-    }
-    if (requiredBaseSha && !this.git.hasCommit(TEMP_PR_HEAD_BRANCH, requiredBaseSha)) {
-      throw new UnsatisfiedBaseShaFatalError();
-    }
+    const { githubTargetBranch, prNumber, needsCommitMessageFixup, targetBranches } = pullRequest;
     const method = this._getMergeActionFromPullRequest(pullRequest);
     const cherryPickTargetBranches = targetBranches.filter((b) => b !== githubTargetBranch);
-    await this._assertMergeableOrThrow(pullRequest, cherryPickTargetBranches);
     const mergeOptions = {
       pull_number: prNumber,
       merge_method: method,
@@ -70666,16 +70676,6 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
     });
     return allCommits.map(({ commit }) => commit.message);
   }
-  async _assertMergeableOrThrow(pullRequest, targetBranches) {
-    const revisionRange = this.getPullRequestRevisionRange(pullRequest);
-    const failedBranches = this.cherryPickIntoTargetBranches(revisionRange, targetBranches, {
-      dryRun: true
-    });
-    if (failedBranches.length) {
-      throw new MergeConflictsFatalError(failedBranches);
-    }
-    return null;
-  }
   _getMergeActionFromPullRequest({ labels }) {
     if (this._config.labels) {
       const matchingLabel = this._config.labels.find(({ pattern }) => labels.includes(pattern));
@@ -70692,12 +70692,7 @@ import { dirname as dirname4, join as join9 } from "path";
 import { fileURLToPath as fileURLToPath3 } from "url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
   async merge(pullRequest) {
-    const { prNumber, targetBranches, requiredBaseSha, needsCommitMessageFixup, githubTargetBranch } = pullRequest;
-    if (requiredBaseSha && !this.git.hasCommit(TEMP_PR_HEAD_BRANCH, requiredBaseSha)) {
-      throw new UnsatisfiedBaseShaFatalError();
-    }
-    const baseSha = this.git.run(["rev-parse", this.getPullRequestBaseRevision(pullRequest)]).stdout.trim();
-    const revisionRange = `${baseSha}..${TEMP_PR_HEAD_BRANCH}`;
+    const { githubTargetBranch, targetBranches, revisionRange, needsCommitMessageFixup, baseSha, prNumber } = pullRequest;
     const branchOrRevisionBeforeRebase = this.git.getCurrentBranchOrRevision();
     const rebaseEnv = needsCommitMessageFixup ? void 0 : { ...process.env, GIT_SEQUENCE_EDITOR: "true" };
     this.git.run(["rebase", "--interactive", "--autosquash", baseSha, TEMP_PR_HEAD_BRANCH], {
@@ -70712,10 +70707,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
       `${getCommitMessageFilterScriptPath()} ${prNumber}`,
       revisionRange
     ]);
-    const failedBranches = this.cherryPickIntoTargetBranches(revisionRange, targetBranches);
-    if (failedBranches.length) {
-      throw new MergeConflictsFatalError(failedBranches);
-    }
+    this.cherryPickIntoTargetBranches(revisionRange, targetBranches);
     this.pushTargetBranchesUpstream(targetBranches);
     const localBranch = this.getLocalTargetBranchName(githubTargetBranch);
     const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
@@ -70741,7 +70733,8 @@ function getCommitMessageFilterScriptPath() {
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/merge-tool.js
 var defaultPullRequestMergeFlags = {
   branchPrompt: true,
-  forceManualBranches: false
+  forceManualBranches: false,
+  dryRun: false
 };
 var MergeTool = class {
   constructor(config, git, flags) {
@@ -70777,9 +70770,6 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
     if (this.flags.forceManualBranches) {
       await this.updatePullRequestTargetedBranchesFromPrompt(pullRequest);
     }
-    if (!this.flags.forceManualBranches && this.flags.branchPrompt && !await Prompt.confirm(getTargetedBranchesConfirmationPromptMessage(pullRequest))) {
-      throw new UserAbortedMergeToolError();
-    }
     if (pullRequest.hasCaretakerNote && !await Prompt.confirm(getCaretakerNotePromptMessage(pullRequest))) {
       throw new UserAbortedMergeToolError();
     }
@@ -70787,7 +70777,21 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
     const previousBranchOrRevision = this.git.getCurrentBranchOrRevision();
     try {
       await strategy.prepare(pullRequest);
+      Log.info();
+      Log.info(getTargetedBranchesMessage(pullRequest));
+      await strategy.check(pullRequest);
+      Log.info("");
+      Log.info(green(`  \u2713  Pull request can be merged into all target branches.`));
+      Log.info();
+      if (this.flags.dryRun) {
+        Log.info(green(`  \u2713  Exiting due to dry run mode.`));
+        return;
+      }
+      if (!this.flags.forceManualBranches && this.flags.branchPrompt && !await Prompt.confirm(getTargetedBranchesConfirmationPromptMessage())) {
+        throw new UserAbortedMergeToolError();
+      }
       await strategy.merge(pullRequest);
+      Log.info(green(`  \u2713  Successfully merged the pull request: #${prNumber}`));
     } finally {
       this.git.run(["checkout", "-f", previousBranchOrRevision]);
       await strategy.cleanup(pullRequest);
@@ -70862,7 +70866,6 @@ async function mergePullRequest(prNumber, flags) {
   async function performMerge(validationConfig = new PullRequestValidationConfig()) {
     try {
       await tool.merge(prNumber, validationConfig);
-      Log.info(green(`Successfully merged the pull request: #${prNumber}`));
       return true;
     } catch (e) {
       if (e instanceof import_request_error.RequestError && e.status === 401) {
@@ -70912,7 +70915,7 @@ async function createPullRequestMergeTool(flags) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/cli.js
 function builder12(argv) {
-  return addGithubTokenOption(argv).help().strict().positional("pr", {
+  return addDryRunFlag(addGithubTokenOption(argv)).help().strict().positional("pr", {
     demandOption: true,
     type: "number",
     description: "The PR to be merged."
@@ -70926,8 +70929,8 @@ function builder12(argv) {
     description: "Whether to manually select the branches you wish to merge the PR into."
   });
 }
-async function handler13({ pr, branchPrompt, forceManualBranches }) {
-  await mergePullRequest(pr, { branchPrompt, forceManualBranches });
+async function handler13({ pr, branchPrompt, forceManualBranches, dryRun }) {
+  await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun });
 }
 var MergeCommandModule = {
   handler: handler13,
@@ -72949,7 +72952,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a, _b, _c;
-  const localVersion = `0.0.0-eb41b28536df98ad4ba359dcfd201dcdf513e24c`;
+  const localVersion = `0.0.0-418ef131adfa37f2fced5df9d042d3e497073f75`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

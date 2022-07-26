@@ -21,6 +21,17 @@ export declare const PR_SCHEMA: {
     number: number;
     mergeable: MergeableState;
     updatedAt: string;
+    baseCommitInfo: {
+        nodes: {
+            commit: {
+                parents: {
+                    nodes: {
+                        oid: string;
+                    }[];
+                };
+            };
+        }[];
+    };
     commits: {
         totalCount: number;
         nodes: {
