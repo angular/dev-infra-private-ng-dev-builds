@@ -1,0 +1,23 @@
+{
+  "name": "@angular/ng-dev",
+  "version": "0.0.0-eb41b28536df98ad4ba359dcfd201dcdf513e24c",
+  "type": "module",
+  "private": true,
+  "bin": {
+    "ng-dev": "./bundles/cli.mjs"
+  },
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "default": "./bundles/index.mjs"
+    },
+    "./*": {
+      "types": "./*.d.ts",
+      "default": "./bundles/*.mjs"
+    }
+  },
+  "dependencies": {
+    "@yarnpkg/lockfile": "^1.1.0",
+    "typescript": "~4.7.3"
+  }
+}
