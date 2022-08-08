@@ -10,12 +10,15 @@ import { GitClient } from './git-client.js';
 import { AuthenticatedGithubClient, GithubRepo } from './github.js';
 /** Describes a function that can be used to test for given Github OAuth scopes. */
 export declare type OAuthScopeTestFunction = (scopes: string[], missing: string[]) => void;
+/** The possible types of users which could be used for authentication. */
+declare type UserType = 'bot' | 'user';
 /**
  * Extension of the `GitClient` with additional utilities which are useful for
  * authenticated Git client instances.
  */
 export declare class AuthenticatedGitClient extends GitClient {
     readonly githubToken: string;
+    readonly userType: UserType;
     /**
      * Regular expression that matches the provided Github token. Used for
      * sanitizing the token from Git child process output.
@@ -27,7 +30,7 @@ export declare class AuthenticatedGitClient extends GitClient {
     private _cachedForkRepositories;
     /** Instance of an authenticated github client. */
     readonly github: AuthenticatedGithubClient;
-    protected constructor(githubToken: string, config: {
+    protected constructor(githubToken: string, userType: UserType, config: {
         github: GithubConfig;
     }, baseDir?: string);
     /** Sanitizes a given message by omitting the provided Github token if present. */
@@ -56,11 +59,14 @@ export declare class AuthenticatedGitClient extends GitClient {
     private static _token;
     /** The singleton instance of the `AuthenticatedGitClient`. */
     private static _authenticatedInstance;
+    /** The previously configured user type. */
+    private static _userType;
     /**
      * Static method to get the singleton instance of the `AuthenticatedGitClient`,
      * creating it if it has not yet been created.
      */
     static get(): Promise<AuthenticatedGitClient>;
     /** Configures an authenticated git client. */
-    static configure(token: string): void;
+    static configure(token: string, userType?: UserType): void;
 }
+export {};

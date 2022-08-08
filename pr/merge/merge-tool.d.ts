@@ -42,4 +42,5 @@ export declare class MergeTool {
      * selection from the available active branches.
      */
     private updatePullRequestTargetedBranchesFromPrompt;
+    confirmMergeAccess(): Promise<void>;
 }

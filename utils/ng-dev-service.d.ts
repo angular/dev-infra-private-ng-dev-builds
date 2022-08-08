@@ -8,6 +8,13 @@
 import { Argv } from 'yargs';
 /**
  * Sets up middleware to ensure that configuration and setup is completed for commands which
- *  utilize the ng-dev service
+ *  require the ng-dev service
  */
-export declare function requiresNgDevService(argv: Argv): Argv;
+export declare function canUseNgDevService<T extends {}>(argv: Argv<T>, isAuthCommand: true): Argv<T & {
+    useAuthService: boolean;
+}>;
+export declare function canUseNgDevService<T extends {
+    githubToken: string | null;
+}>(argv: Argv<T>): Argv<T & {
+    useAuthService: boolean;
+}>;
