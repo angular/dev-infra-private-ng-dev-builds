@@ -7,10 +7,4 @@
  */
 import { Argv } from 'yargs';
 /** Build the parser for the format commands. */
-export declare function buildFormatParser(localYargs: Argv): Argv<{
-    check: boolean;
-} & {
-    shaOrRef: string | undefined;
-} & {
-    files: string[] | undefined;
-}>;
+export declare function buildFormatParser(localYargs: Argv): Argv<import("./files.js").Options>;
