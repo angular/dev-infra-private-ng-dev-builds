@@ -8,7 +8,6 @@
 import { CommandModule } from 'yargs';
 /** The options available to the merge command via CLI. */
 export interface MergeCommandOptions {
-    githubToken: string;
     pr: number;
     branchPrompt: boolean;
     forceManualBranches: boolean;

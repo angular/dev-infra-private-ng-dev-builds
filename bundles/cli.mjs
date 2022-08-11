@@ -41,7 +41,7 @@ import {
   require_semver,
   require_tr46,
   require_wrappy
-} from "./chunk-GKUW7XKQ.mjs";
+} from "./chunk-7SZKBJGG.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -58,7 +58,7 @@ import {
   red,
   supports_color_exports,
   yellow
-} from "./chunk-MPPZZ436.mjs";
+} from "./chunk-VVP2HL3F.mjs";
 import "./chunk-NJ3YJSDS.mjs";
 import {
   __commonJS,
@@ -70956,6 +70956,8 @@ import { info } from "console";
 function addGithubTokenOption(argv) {
   return argv.option("github-token", {
     type: "string",
+    default: "",
+    defaultDescription: "<LOCAL_TOKEN>",
     description: "Github token. If not set, token is retrieved from the environment variables.",
     coerce: (token) => {
       if (token === null) {
@@ -70971,7 +70973,7 @@ function addGithubTokenOption(argv) {
       AuthenticatedGitClient.configure(githubToken);
       return githubToken;
     }
-  }).default("github-token", "", "<LOCAL TOKEN>");
+  });
 }
 function findGithubTokenInEnvironment() {
   return process.env.GITHUB_TOKEN ?? process.env.TOKEN;
@@ -77409,14 +77411,21 @@ var firebaseConfig = {
   messagingSenderId: "823469418460",
   appId: "1:823469418460:web:009b51c93132b218761119"
 };
-function canUseNgDevService(argv, isAuthCommand = false) {
-  return argv.option("use-auth-service", {
+async function useNgDevService(argv, isAuthCommand = false) {
+  const { github } = await getConfig([assertValidGithubConfig]);
+  if (github.useNgDevAuthService !== true) {
+    return argv;
+  }
+  return addGithubTokenOption(argv).option("github-escape-hatch", {
     type: "boolean",
-    default: false
-  }).hide("use-auth-service").middleware(async (args) => {
+    default: false,
+    hidden: true
+  }).middleware(async (args) => {
     initializeApp(firebaseConfig);
     await restoreNgTokenFromDiskIfValid();
-    if (args.useAuthService === false) {
+    if (args.githubEscapeHatch === true) {
+      Log.warn("This escape hatch should only be used if the service is erroring. Please");
+      Log.warn("inform #dev-infra of the need to use this escape hatch so it can be triaged.");
       return;
     }
     args.githubToken = null;
@@ -77432,7 +77441,7 @@ function canUseNgDevService(argv, isAuthCommand = false) {
     Log.error("  \u2718  You must be logged in to run this command\n");
     Log.log("Log in by running the following command:");
     Log.log("  yarn ng-dev auth login");
-    argv.exit(1, new Error("The user is not logged in"));
+    throw new Error("The user is not logged in");
   });
 }
 
@@ -78128,8 +78137,8 @@ async function createPullRequestMergeTool(flags) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/cli.js
-function builder16(argv) {
-  return canUseNgDevService(addGithubTokenOption(addDryRunFlag(argv))).help().strict().positional("pr", {
+async function builder16(argv) {
+  return (await useNgDevService(addDryRunFlag(argv))).help().strict().positional("pr", {
     demandOption: true,
     type: "number",
     description: "The PR to be merged."
@@ -80170,7 +80179,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a, _b, _c;
-  const localVersion = `0.0.0-c2cdc26b7db0eba2647ece8718b883a6dd0590bb`;
+  const localVersion = `0.0.0-5c9772cc33681c939c733e805dc7a5459982ce9a`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -80986,8 +80995,8 @@ async function loginToFirebase() {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/login/cli.js
-function builder24(yargs) {
-  return canUseNgDevService(yargs, true);
+async function builder24(yargs) {
+  return await useNgDevService(yargs, true);
 }
 async function handler26() {
   const user = await getCurrentUser();
@@ -81012,8 +81021,8 @@ var LoginModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/logout/cli.js
-function builder25(yargs) {
-  return canUseNgDevService(yargs, true);
+async function builder25(yargs) {
+  return await useNgDevService(yargs, true);
 }
 async function handler27() {
   const user = await getCurrentUser();

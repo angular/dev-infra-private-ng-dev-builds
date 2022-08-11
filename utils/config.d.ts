@@ -31,6 +31,8 @@ export interface GithubConfig {
     useSsh?: boolean;
     /** Whether the specified repository is private. */
     private?: boolean;
+    /** Whether to default to use NgDevService for authentication. */
+    useNgDevAuthService?: boolean;
 }
 /**
  * Set the cached configuration object to be loaded later. Only to be used on

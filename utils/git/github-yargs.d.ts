@@ -7,9 +7,7 @@
  */
 import { Argv } from 'yargs';
 /** Sets up the `github-token` command option for the given Yargs instance. */
-export declare function addGithubTokenOption<T>(argv: Argv<T>): Argv<import("yargs").Omit<T & {
-    githubToken: string | undefined;
-}, "githubToken"> & {
+export declare function addGithubTokenOption<T>(argv: Argv<T>): Argv<T & {
     githubToken: string;
 }>;
 /**
