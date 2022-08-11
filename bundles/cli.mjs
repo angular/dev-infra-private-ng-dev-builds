@@ -71199,10 +71199,12 @@ var GithubQueriesModule = class extends BaseModule {
     const results = Object.values(queryResult);
     const { owner, name: repo } = this.git.remoteConfig;
     return results.map((result, i) => {
+      const query = queries[i];
+      const queryURLParam = encodeURIComponent(query.query);
       return {
-        queryName: queries[i].name,
+        queryName: query.name,
         count: result.issueCount,
-        queryUrl: encodeURI(`https://github.com/${owner}/${repo}/issues?q=${queries[i].query}`),
+        queryUrl: `https://github.com/${owner}/${repo}/issues?q=${queryURLParam}`,
         matchedUrls: result.nodes.map((node) => node.url)
       };
     });
@@ -80164,7 +80166,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a, _b, _c;
-  const localVersion = `0.0.0-bc61791808f6f445058eecf7649b97c7a4d50d28`;
+  const localVersion = `0.0.0-1c22264e2b24f792a02ca397fa587bff03111a13`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
