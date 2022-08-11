@@ -41,7 +41,7 @@ import {
   require_semver,
   require_tr46,
   require_wrappy
-} from "./chunk-7SZKBJGG.mjs";
+} from "./chunk-MCZ2J5SE.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -58,7 +58,7 @@ import {
   red,
   supports_color_exports,
   yellow
-} from "./chunk-VVP2HL3F.mjs";
+} from "./chunk-O6D2CIP4.mjs";
 import "./chunk-NJ3YJSDS.mjs";
 import {
   __commonJS,
@@ -70949,6 +70949,27 @@ function isYargsInstance(y) {
 var Yargs = YargsFactory(esm_default);
 var yargs_default = Yargs;
 
+// bazel-out/k8-fastbuild/bin/ng-dev/utils/yargs.js
+var completedFunctions = [];
+function registerCompletedFunction(fn) {
+  completedFunctions.push(fn);
+}
+async function runParserWithCompletedFunctions(applyConfiguration) {
+  let err = null;
+  try {
+    await applyConfiguration(yargs_default(process.argv.slice(2))).exitProcess(false).parse();
+  } catch (e) {
+    err = e;
+    if ([void 0, 0].includes(process.exitCode)) {
+      process.exitCode = 1;
+    }
+  } finally {
+    for (const completedFunc of completedFunctions) {
+      await completedFunc(err);
+    }
+  }
+}
+
 // bazel-out/k8-fastbuild/bin/ng-dev/caretaker/cli.js
 import { info } from "console";
 
@@ -77387,6 +77408,7 @@ function configureAuthorizedGitClientWithTemporaryToken() {
           ng_repo_owner: owner
         }
       });
+      registerCompletedFunction(() => socket.close());
       socket.on("message", (msg) => {
         AuthenticatedGitClient.configure(msg.toString("utf8"), "bot");
         resolve13();
@@ -77411,6 +77433,7 @@ var firebaseConfig = {
   messagingSenderId: "823469418460",
   appId: "1:823469418460:web:009b51c93132b218761119"
 };
+var ngDevServiceMiddlewareHasRun = false;
 async function useNgDevService(argv, isAuthCommand = false) {
   const { github } = await getConfig([assertValidGithubConfig]);
   if (github.useNgDevAuthService !== true) {
@@ -77421,6 +77444,10 @@ async function useNgDevService(argv, isAuthCommand = false) {
     default: false,
     hidden: true
   }).middleware(async (args) => {
+    if (ngDevServiceMiddlewareHasRun) {
+      return;
+    }
+    ngDevServiceMiddlewareHasRun = true;
     initializeApp(firebaseConfig);
     await restoreNgTokenFromDiskIfValid();
     if (args.githubEscapeHatch === true) {
@@ -77442,7 +77469,7 @@ async function useNgDevService(argv, isAuthCommand = false) {
     Log.log("Log in by running the following command:");
     Log.log("  yarn ng-dev auth login");
     throw new Error("The user is not logged in");
-  });
+  }, true);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/merge-tool.js
@@ -80179,7 +80206,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a, _b, _c;
-  const localVersion = `0.0.0-5c9772cc33681c939c733e805dc7a5459982ce9a`;
+  const localVersion = `0.0.0-55daf7df431dd8a4c38628df746e9d7658e58a1f`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -81046,7 +81073,9 @@ function buildAuthParser(yargs) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/cli.js
-yargs_default(process.argv.slice(2)).scriptName("ng-dev").middleware(captureLogOutputForCommand).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("ci <command>", false, buildCiParser).wrap(120).strict().parse();
+runParserWithCompletedFunctions((yargs) => {
+  return yargs.scriptName("ng-dev").middleware(captureLogOutputForCommand, true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("ci <command>", false, buildCiParser).wrap(120).strict();
+});
 /*!
  * Tmp
  *
