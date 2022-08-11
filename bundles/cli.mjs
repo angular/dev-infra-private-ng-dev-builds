@@ -77348,7 +77348,11 @@ async function saveTokenToFileSystem(data) {
   await writeFile2(tokenPath, encrypt(JSON.stringify(data)));
 }
 async function retrieveTokenFromFileSystem() {
-  if (!await stat(tokenPath)) {
+  try {
+    if (!await stat(tokenPath)) {
+      return null;
+    }
+  } catch {
     return null;
   }
   const rawToken = Buffer.from(await readFile(tokenPath)).toString();
@@ -80166,7 +80170,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a, _b, _c;
-  const localVersion = `0.0.0-1c22264e2b24f792a02ca397fa587bff03111a13`;
+  const localVersion = `0.0.0-c2cdc26b7db0eba2647ece8718b883a6dd0590bb`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
