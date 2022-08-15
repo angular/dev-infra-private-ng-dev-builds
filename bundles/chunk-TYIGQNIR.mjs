@@ -7558,9 +7558,9 @@ var require_dist_node9 = __commonJS({
   }
 });
 
-// node_modules/@octokit/plugin-paginate-rest/dist-node/index.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-paginate-rest/dist-node/index.js
 var require_dist_node10 = __commonJS({
-  "node_modules/@octokit/plugin-paginate-rest/dist-node/index.js"(exports) {
+  "node_modules/@octokit/rest/node_modules/@octokit/plugin-paginate-rest/dist-node/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var VERSION = "3.0.0";
@@ -13214,4 +13214,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-MCZ2J5SE.mjs.map
+//# sourceMappingURL=chunk-TYIGQNIR.mjs.map
