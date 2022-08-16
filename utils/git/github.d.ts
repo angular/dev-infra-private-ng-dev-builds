@@ -771,11 +771,11 @@ export declare class GithubClient {
                 pull_number: number;
             } & {
                 body: string;
-                commit_id?: string | undefined;
-                path?: string | undefined;
+                commit_id: string;
+                path: string;
                 position?: number | undefined;
                 side?: "LEFT" | "RIGHT" | undefined;
-                line?: number | undefined;
+                line: number;
                 start_line?: number | undefined;
                 start_side?: "LEFT" | "RIGHT" | "side" | undefined;
                 in_reply_to?: number | undefined;
@@ -931,7 +931,7 @@ export declare class GithubClient {
                 review_id: number;
             } & {
                 message: string;
-                event?: string | undefined;
+                event?: "DISMISS" | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 node_id: string;
@@ -2763,9 +2763,6 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
                 pull_number: number;
-            } & {
-                per_page?: number | undefined;
-                page?: number | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 users: {
                     name?: string | null | undefined;
@@ -5646,7 +5643,7 @@ export declare class GithubClient {
                 repo: string;
                 username: string;
             } & {
-                permission?: "push" | "pull" | "admin" | "maintain" | "triage" | undefined;
+                permission?: string | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 repository: {
@@ -6081,7 +6078,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | null;
-                permissions: "admin" | "maintain" | "triage" | "read" | "write";
+                permissions: "read" | "write" | "admin" | "triage" | "maintain";
                 created_at: string;
                 expired?: boolean | undefined;
                 url: string;
@@ -7014,8 +7011,8 @@ export declare class GithubClient {
                 sha: string;
             } & {
                 state: "error" | "success" | "failure" | "pending";
-                target_url?: string | undefined;
-                description?: string | undefined;
+                target_url?: string | null | undefined;
+                description?: string | null | undefined;
                 context?: string | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 url: string;
@@ -7023,8 +7020,8 @@ export declare class GithubClient {
                 id: number;
                 node_id: string;
                 state: string;
-                description: string;
-                target_url: string;
+                description: string | null;
+                target_url: string | null;
                 context: string;
                 created_at: string;
                 updated_at: string;
@@ -7073,6 +7070,8 @@ export declare class GithubClient {
                 verified: boolean;
                 created_at: string;
                 read_only: boolean;
+                added_by?: string | null | undefined;
+                last_used?: string | null | undefined;
             }, 201>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -7189,6 +7188,23 @@ export declare class GithubClient {
             }, 201> | import("@octokit/types").OctokitResponse<{
                 message?: string | undefined;
             }, 202>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        createDeploymentBranchPolicy: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                environment_name: string;
+            } & {
+                name: string;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id?: number | undefined;
+                node_id?: string | undefined;
+                name?: string | undefined;
+            }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -9076,11 +9092,31 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        createPagesDeployment: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+            } & {
+                artifact_url: string;
+                environment?: string | undefined;
+                pages_build_version: string;
+                oidc_token: string;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                status_url: string;
+                page_url: string;
+                preview_url?: string | undefined;
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         createPagesSite: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
                 repo: string;
             } & {
+                build_type?: "legacy" | "workflow" | undefined;
                 source?: {
                     branch: string;
                     path?: "/" | "/docs" | undefined;
@@ -9689,6 +9725,18 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
                 deployment_id: number;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        deleteDeploymentBranchPolicy: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                environment_name: string;
+                branch_policy_id: number;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -12141,7 +12189,7 @@ export declare class GithubClient {
                     node_id: string;
                     state: string;
                     context: string;
-                    target_url: string;
+                    target_url: string | null;
                     required?: boolean | null | undefined;
                     avatar_url: string | null;
                     url: string;
@@ -12807,7 +12855,7 @@ export declare class GithubClient {
             } & {
                 ref?: string | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                type: string;
+                type: "dir" | "file" | "submodule" | "symlink";
                 size: number;
                 name: string;
                 path: string;
@@ -12823,7 +12871,7 @@ export declare class GithubClient {
                     self: string;
                 };
             }[] | {
-                type: string;
+                type: "file";
                 encoding: string;
                 size: number;
                 name: string;
@@ -12842,7 +12890,7 @@ export declare class GithubClient {
                 target?: string | undefined;
                 submodule_git_url?: string | undefined;
             } | {
-                type: string;
+                type: "symlink";
                 target: string;
                 size: number;
                 name: string;
@@ -12858,7 +12906,7 @@ export declare class GithubClient {
                     self: string;
                 };
             } | {
-                type: string;
+                type: "submodule";
                 submodule_git_url: string;
                 size: number;
                 name: string;
@@ -12935,6 +12983,8 @@ export declare class GithubClient {
                 verified: boolean;
                 created_at: string;
                 read_only: boolean;
+                added_by?: string | null | undefined;
+                last_used?: string | null | undefined;
             }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -13037,6 +13087,22 @@ export declare class GithubClient {
                     webhook_secret?: string | null | undefined;
                     pem?: string | undefined;
                 } | null | undefined;
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        getDeploymentBranchPolicy: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                environment_name: string;
+                branch_policy_id: number;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id?: number | undefined;
+                node_id?: string | undefined;
+                name?: string | undefined;
             }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -13796,7 +13862,7 @@ export declare class GithubClient {
             } & {
                 ref?: string | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                type: string;
+                type: "file";
                 encoding: string;
                 size: number;
                 name: string;
@@ -13828,7 +13894,7 @@ export declare class GithubClient {
             } & {
                 ref?: string | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                type: string;
+                type: "file";
                 encoding: string;
                 size: number;
                 name: string;
@@ -14933,8 +14999,8 @@ export declare class GithubClient {
                 id: number;
                 node_id: string;
                 state: string;
-                description: string;
-                target_url: string;
+                description: string | null;
+                target_url: string | null;
                 context: string;
                 created_at: string;
                 updated_at: string;
@@ -15136,7 +15202,30 @@ export declare class GithubClient {
                 verified: boolean;
                 created_at: string;
                 read_only: boolean;
+                added_by?: string | null | undefined;
+                last_used?: string | null | undefined;
             }[], 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        listDeploymentBranchPolicies: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                environment_name: string;
+            } & {
+                per_page?: number | undefined;
+                page?: number | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                total_count: number;
+                branch_policies: {
+                    id?: number | undefined;
+                    node_id?: string | undefined;
+                    name?: string | undefined;
+                }[];
+            }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -17266,7 +17355,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | null;
-                permissions: "admin" | "maintain" | "triage" | "read" | "write";
+                permissions: "read" | "write" | "admin" | "triage" | "maintain";
                 created_at: string;
                 expired?: boolean | undefined;
                 url: string;
@@ -17716,7 +17805,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | null;
-                permissions: "admin" | "maintain" | "triage" | "read" | "write";
+                permissions: "read" | "write" | "admin" | "triage" | "maintain";
                 created_at: string;
                 expired?: boolean | undefined;
                 url: string;
@@ -22179,6 +22268,24 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        updateDeploymentBranchPolicy: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                environment_name: string;
+                branch_policy_id: number;
+            } & {
+                name: string;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id?: number | undefined;
+                node_id?: string | undefined;
+                name?: string | undefined;
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         updateInformationAboutPagesSite: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -22187,6 +22294,7 @@ export declare class GithubClient {
                 cname?: string | null | undefined;
                 https_enforced?: boolean | undefined;
                 public?: boolean | undefined;
+                build_type?: "legacy" | "workflow" | undefined;
                 source?: (Partial<"gh-pages" | "master" | "master /docs"> & Partial<{
                     branch: string;
                     path: "/" | "/docs";
@@ -22203,7 +22311,7 @@ export declare class GithubClient {
                 repo: string;
                 invitation_id: number;
             } & {
-                permissions?: "admin" | "maintain" | "triage" | "read" | "write" | undefined;
+                permissions?: "read" | "write" | "admin" | "triage" | "maintain" | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 repository: {
@@ -22638,7 +22746,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | null;
-                permissions: "admin" | "maintain" | "triage" | "read" | "write";
+                permissions: "read" | "write" | "admin" | "triage" | "maintain";
                 created_at: string;
                 expired?: boolean | undefined;
                 url: string;
@@ -34660,9 +34768,6 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
                 ref: string;
-            } & {
-                per_page?: number | undefined;
-                page?: number | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 ref: string;
                 node_id: string;
@@ -34798,7 +34903,7 @@ export declare class GithubClient {
                 team_slug: string;
                 project_id: number;
             } & {
-                permission?: "admin" | "read" | "write" | undefined;
+                permission?: "read" | "write" | "admin" | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -34812,7 +34917,7 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
             } & {
-                permission?: "push" | "pull" | "admin" | "maintain" | "triage" | undefined;
+                permission?: string | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -36786,7 +36891,7 @@ export declare class GithubClient {
                 name?: string | undefined;
                 description?: string | undefined;
                 privacy?: "closed" | "secret" | undefined;
-                permission?: "push" | "pull" | "admin" | undefined;
+                permission?: "push" | "admin" | "pull" | undefined;
                 parent_team_id?: number | null | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
