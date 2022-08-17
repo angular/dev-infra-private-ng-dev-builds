@@ -71458,7 +71458,7 @@ async function getGroupMembers(group) {
   return (await git.github.teams.listMembersInOrg({
     org: git.remoteConfig.owner,
     team_slug: group
-  })).data.filter((member) => !!member).map((member) => member.login);
+  })).data.filter((_) => !!_).map((member) => member.login);
 }
 async function setCaretakerGroup(group, members) {
   const git = await AuthenticatedGitClient.get();
@@ -80261,7 +80261,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-ba8f786d2770cb476882b4c6fea54cca2b3c62c4`;
+  const localVersion = `0.0.0-b313041db5e38ec8892bfe6c5102476ce2c45fb9`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
