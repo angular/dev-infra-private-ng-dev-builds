@@ -74105,7 +74105,13 @@ function configureAuthorizedGitClientWithTemporaryToken() {
           ng_repo_owner: owner
         }
       });
-      registerCompletedFunction(() => socket.close());
+      registerCompletedFunction(async () => {
+        socket.close();
+        const git = await AuthenticatedGitClient.get();
+        git.runGraceful(["credential", "reject"], { input: `url=${git.getRepoGitUrl()}
+
+` });
+      });
       socket.on("message", (msg) => {
         AuthenticatedGitClient.configure(msg.toString("utf8"), "bot");
         resolve13();
@@ -76896,7 +76902,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-51eae77402f1537c62b478f1b958657d30e65615`;
+  const localVersion = `0.0.0-f502be36cab7e314e9c85ff04d7a63862fbda75c`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
