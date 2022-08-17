@@ -71152,7 +71152,7 @@ function isVersionServiceProvider(provider) {
   return (component === null || component === void 0 ? void 0 : component.type) === "VERSION";
 }
 var name$o = "@firebase/app";
-var version$1 = "0.7.28";
+var version$1 = "0.7.30";
 var logger = new Logger("@firebase/app");
 var name$n = "@firebase/app-compat";
 var name$m = "@firebase/analytics-compat";
@@ -71178,7 +71178,7 @@ var name$3 = "@firebase/storage-compat";
 var name$2 = "@firebase/firestore";
 var name$1 = "@firebase/firestore-compat";
 var name = "firebase";
-var version = "9.9.0";
+var version = "9.9.2";
 var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
 var PLATFORM_LOG_STRING = {
   [name$o]: "fire-core",
@@ -71243,10 +71243,10 @@ var ERRORS = {
   ["app-deleted"]: "Firebase App named '{$appName}' already deleted",
   ["invalid-app-argument"]: "firebase.{$appName}() takes either no argument or a Firebase App instance.",
   ["invalid-log-argument"]: "First argument to `onLog` must be null or a function.",
-  ["storage-open"]: "Error thrown when opening storage. Original error: {$originalErrorMessage}.",
-  ["storage-get"]: "Error thrown when reading from storage. Original error: {$originalErrorMessage}.",
-  ["storage-set"]: "Error thrown when writing to storage. Original error: {$originalErrorMessage}.",
-  ["storage-delete"]: "Error thrown when deleting from storage. Original error: {$originalErrorMessage}."
+  ["idb-open"]: "Error thrown when opening IndexedDB. Original error: {$originalErrorMessage}.",
+  ["idb-get"]: "Error thrown when reading from IndexedDB. Original error: {$originalErrorMessage}.",
+  ["idb-set"]: "Error thrown when writing to IndexedDB. Original error: {$originalErrorMessage}.",
+  ["idb-delete"]: "Error thrown when deleting from IndexedDB. Original error: {$originalErrorMessage}."
 };
 var ERROR_FACTORY = new ErrorFactory("app", "Firebase", ERRORS);
 var FirebaseAppImpl = class {
@@ -71370,7 +71370,7 @@ function getDbPromise() {
         }
       }
     }).catch((e) => {
-      throw ERROR_FACTORY.create("storage-open", {
+      throw ERROR_FACTORY.create("idb-open", {
         originalErrorMessage: e.message
       });
     });
@@ -71383,9 +71383,14 @@ async function readHeartbeatsFromIndexedDB(app) {
     const db = await getDbPromise();
     return db.transaction(STORE_NAME).objectStore(STORE_NAME).get(computeKey(app));
   } catch (e) {
-    throw ERROR_FACTORY.create("storage-get", {
-      originalErrorMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message
-    });
+    if (e instanceof FirebaseError) {
+      logger.warn(e.message);
+    } else {
+      const idbGetError = ERROR_FACTORY.create("idb-get", {
+        originalErrorMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message
+      });
+      logger.warn(idbGetError.message);
+    }
   }
 }
 async function writeHeartbeatsToIndexedDB(app, heartbeatObject) {
@@ -71397,9 +71402,14 @@ async function writeHeartbeatsToIndexedDB(app, heartbeatObject) {
     await objectStore.put(heartbeatObject, computeKey(app));
     return tx.done;
   } catch (e) {
-    throw ERROR_FACTORY.create("storage-set", {
-      originalErrorMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message
-    });
+    if (e instanceof FirebaseError) {
+      logger.warn(e.message);
+    } else {
+      const idbGetError = ERROR_FACTORY.create("idb-set", {
+        originalErrorMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message
+      });
+      logger.warn(idbGetError.message);
+    }
   }
 }
 function computeKey(app) {
@@ -71557,7 +71567,7 @@ registerCoreComponents("");
 
 // node_modules/firebase/app/dist/index.mjs
 var name2 = "firebase";
-var version2 = "9.9.0";
+var version2 = "9.9.2";
 registerVersion(name2, version2, "app");
 
 // node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
@@ -76886,7 +76896,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-5aed8de1f8bb4c8d755f7fd7ba9452a1f9481f72`;
+  const localVersion = `0.0.0-d7a9d717d17a1093fdcc9f6f8d644ab0847283e3`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
