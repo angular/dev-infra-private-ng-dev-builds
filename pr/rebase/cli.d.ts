@@ -8,7 +8,6 @@
 import { CommandModule } from 'yargs';
 /** The options available to the rebase command via CLI. */
 export interface RebaseOptions {
-    githubToken: string;
     pr: number;
 }
 /** yargs command module for rebasing a PR  */

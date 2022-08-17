@@ -8,7 +8,6 @@
 import { CommandModule } from 'yargs';
 /** Command line options for publishing a release. */
 export interface ReleasePublishOptions {
-    githubToken: string;
 }
 /** CLI command module for publishing a release. */
 export declare const ReleasePublishCommandModule: CommandModule<{}, ReleasePublishOptions>;

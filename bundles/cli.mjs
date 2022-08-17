@@ -71038,24 +71038,18 @@ function addGithubTokenOption(argv) {
     default: "",
     defaultDescription: "<LOCAL_TOKEN>",
     description: "Github token. If not set, token is retrieved from the environment variables.",
-    coerce: (token) => {
-      if (token === null) {
-        return "";
-      }
-      const githubToken = token || findGithubTokenInEnvironment();
-      if (!githubToken) {
-        Log.error("No Github token set. Please set the `GITHUB_TOKEN` environment variable.");
-        Log.error("Alternatively, pass the `--github-token` command line flag.");
-        Log.warn(`You can generate a token here: ${GITHUB_TOKEN_GENERATE_URL}`);
-        process.exit(1);
-      }
-      AuthenticatedGitClient.configure(githubToken);
-      return githubToken;
-    }
+    coerce: configureGitClientWithTokenOrFromEnvironment
   });
 }
-function findGithubTokenInEnvironment() {
-  return process.env.GITHUB_TOKEN ?? process.env.TOKEN;
+function configureGitClientWithTokenOrFromEnvironment(token) {
+  const githubToken = token || (process.env.GITHUB_TOKEN ?? process.env.TOKEN);
+  if (!githubToken) {
+    Log.error("No Github token set. Please set the `GITHUB_TOKEN` environment variable.");
+    Log.error("Alternatively, pass the `--github-token` command line flag.");
+    Log.warn(`You can generate a token here: ${GITHUB_TOKEN_GENERATE_URL}`);
+    throw Error("Unable to determine the Github token.");
+  }
+  AuthenticatedGitClient.configure(githubToken);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/caretaker/check/base.js
@@ -71464,7 +71458,7 @@ async function getGroupMembers(group) {
   return (await git.github.teams.listMembersInOrg({
     org: git.remoteConfig.owner,
     team_slug: group
-  })).data.filter((_) => !!_).map((member) => member.login);
+  })).data.filter((member) => !!member).map((member) => member.login);
 }
 async function setCaretakerGroup(group, members) {
   const git = await AuthenticatedGitClient.get();
@@ -73165,7 +73159,7 @@ var PullRequestNotFoundError = class extends Error {
 };
 var MaintainerModifyAccessError = class extends Error {
 };
-async function checkOutPullRequestLocally(prNumber, githubToken, opts = {}) {
+async function checkOutPullRequestLocally(prNumber, opts = {}) {
   const git = await AuthenticatedGitClient.get();
   if (git.hasUncommittedChanges()) {
     throw new UnexpectedLocalChangesError("Unable to checkout PR due to uncommitted changes.");
@@ -73177,7 +73171,7 @@ async function checkOutPullRequestLocally(prNumber, githubToken, opts = {}) {
   }
   const headRefName = pr.headRef.name;
   const fullHeadRef = `${pr.headRef.repository.nameWithOwner}:${headRefName}`;
-  const headRefUrl = addTokenToGitHttpsUrl(pr.headRef.repository.url, githubToken);
+  const headRefUrl = addTokenToGitHttpsUrl(pr.headRef.repository.url, git.githubToken);
   const forceWithLeaseFlag = `--force-with-lease=${headRefName}:${pr.headRefOid}`;
   if (!pr.maintainerCanModify && !pr.viewerDidAuthor && !opts.allowIfMaintainerCannotModify) {
     throw new MaintainerModifyAccessError("PR is not set to allow maintainers to modify the PR");
@@ -73207,9 +73201,9 @@ async function checkOutPullRequestLocally(prNumber, githubToken, opts = {}) {
 function builder14(yargs) {
   return addGithubTokenOption(yargs).positional("pr", { type: "number", demandOption: true });
 }
-async function handler15({ pr, githubToken }) {
+async function handler15({ pr }) {
   const options = { allowIfMaintainerCannotModify: true, branchName: `pr-${pr}` };
-  const { pushToUpstreamCommand } = await checkOutPullRequestLocally(pr, githubToken, options);
+  const { pushToUpstreamCommand } = await checkOutPullRequestLocally(pr, options);
   Log.info(`Checked out the remote branch for pull request #${pr}
 `);
   Log.info("To push the checked out branch back to its PR, run the following command:");
@@ -77497,9 +77491,12 @@ async function useNgDevService(argv, isAuthCommand = false) {
   if (github.useNgDevAuthService !== true) {
     return argv;
   }
-  return addGithubTokenOption(argv).option("github-escape-hatch", {
+  return argv.option("github-escape-hatch", {
     type: "boolean",
-    default: false,
+    hidden: true
+  }).option("github-token", {
+    type: "string",
+    implies: "github-escape-hatch",
     hidden: true
   }).middleware(async (args) => {
     if (ngDevServiceMiddlewareHasRun) {
@@ -77508,14 +77505,14 @@ async function useNgDevService(argv, isAuthCommand = false) {
     ngDevServiceMiddlewareHasRun = true;
     initializeApp(firebaseConfig);
     await restoreNgTokenFromDiskIfValid();
-    if (args.githubEscapeHatch === true) {
-      Log.warn("This escape hatch should only be used if the service is erroring. Please");
-      Log.warn("inform #dev-infra of the need to use this escape hatch so it can be triaged.");
-      return;
-    }
-    args.githubToken = null;
     if (isAuthCommand) {
       Log.debug("Skipping ng-dev token request as this is an auth command");
+      return;
+    }
+    if (args.githubEscapeHatch === true) {
+      configureGitClientWithTokenOrFromEnvironment(args.githubToken);
+      Log.warn("This escape hatch should only be used if the service is erroring. Please");
+      Log.warn("inform #dev-infra of using this escape hatch so it can be triaged.");
       return;
     }
     if (await getCurrentUser()) {
@@ -78248,7 +78245,7 @@ var MergeCommandModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/rebase/index.js
-async function rebasePr(prNumber, githubToken) {
+async function rebasePr(prNumber) {
   const git = await AuthenticatedGitClient.get();
   if (git.hasUncommittedChanges()) {
     Log.error("Cannot perform rebase of PR with local changes.");
@@ -78264,8 +78261,8 @@ async function rebasePr(prNumber, githubToken) {
   const baseRefName = pr.baseRef.name;
   const fullHeadRef = `${pr.headRef.repository.nameWithOwner}:${headRefName}`;
   const fullBaseRef = `${pr.baseRef.repository.nameWithOwner}:${baseRefName}`;
-  const headRefUrl = addTokenToGitHttpsUrl(pr.headRef.repository.url, githubToken);
-  const baseRefUrl = addTokenToGitHttpsUrl(pr.baseRef.repository.url, githubToken);
+  const headRefUrl = addTokenToGitHttpsUrl(pr.headRef.repository.url, git.githubToken);
+  const baseRefUrl = addTokenToGitHttpsUrl(pr.baseRef.repository.url, git.githubToken);
   const forceWithLeaseFlag = `--force-with-lease=${headRefName}:${pr.headRefOid}`;
   if (!pr.maintainerCanModify && !pr.viewerDidAuthor) {
     Log.error(`Cannot rebase as you did not author the PR and the PR does not allow maintainersto modify the PR`);
@@ -78317,8 +78314,8 @@ async function rebasePr(prNumber, githubToken) {
 function builder17(argv) {
   return addGithubTokenOption(argv).positional("pr", { type: "number", demandOption: true });
 }
-async function handler18({ pr, githubToken }) {
-  process.exitCode = await rebasePr(pr, githubToken);
+async function handler18({ pr }) {
+  process.exitCode = await rebasePr(pr);
 }
 var RebaseCommandModule = {
   handler: handler18,
@@ -80264,7 +80261,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-9323859dd14fab851865ca6725d60f207c3545a7`;
+  const localVersion = `0.0.0-ba8f786d2770cb476882b4c6fea54cca2b3c62c4`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

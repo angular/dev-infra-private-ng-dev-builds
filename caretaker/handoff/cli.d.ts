@@ -7,7 +7,6 @@
  */
 import { CommandModule } from 'yargs';
 export interface CaretakerHandoffOptions {
-    githubToken: string;
 }
 /** yargs command module for assisting in handing off caretaker.  */
 export declare const HandoffModule: CommandModule<{}, CaretakerHandoffOptions>;

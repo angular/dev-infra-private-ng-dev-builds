@@ -30,7 +30,7 @@ export interface PullRequestCheckoutOptions {
  * @throws {MaintainerModifyAccessError} If the pull request does not allow maintainers
  *   to modify a pull request. Skipped if `allowIfMaintainerCannotModify` is set.
  */
-export declare function checkOutPullRequestLocally(prNumber: number, githubToken: string, opts?: PullRequestCheckoutOptions): Promise<{
+export declare function checkOutPullRequestLocally(prNumber: number, opts?: PullRequestCheckoutOptions): Promise<{
     /**
      * Pushes the current local branch to the PR on the upstream repository.
      *

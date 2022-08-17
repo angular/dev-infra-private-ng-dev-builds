@@ -8,7 +8,6 @@
 import { CommandModule } from 'yargs';
 export interface CheckoutOptions {
     pr: number;
-    githubToken: string;
 }
 /** yargs command module for checking out a PR  */
 export declare const CheckoutCommandModule: CommandModule<{}, CheckoutOptions>;

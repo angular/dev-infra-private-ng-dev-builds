@@ -7,7 +7,6 @@
  */
 import { CommandModule } from 'yargs';
 export interface CaretakerCheckOptions {
-    githubToken: string;
 }
 /** yargs command module for checking status information for the repository  */
 export declare const CheckModule: CommandModule<{}, CaretakerCheckOptions>;
