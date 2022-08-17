@@ -74140,7 +74140,7 @@ var ngDevServiceMiddlewareHasRun = false;
 async function useNgDevService(argv, isAuthCommand = false) {
   const { github } = await getConfig([assertValidGithubConfig]);
   if (github.useNgDevAuthService !== true) {
-    return argv;
+    return addGithubTokenOption(argv);
   }
   return argv.option("github-escape-hatch", {
     type: "boolean",
@@ -76902,7 +76902,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-682adb7d0089f7cfaf568a482f40e460b6705b31`;
+  const localVersion = `0.0.0-5d0da987d6fd7637ee65542d99138a8bda1d2542`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
