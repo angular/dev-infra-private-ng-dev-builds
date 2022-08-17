@@ -6,8 +6,13 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { ModuleResolver } from './analyzer.js';
+/** Options used at runtime by the parser.  */
+export interface CircularDependenciesParserOptions {
+    /** Whether to ignore type only imports in circular dependency checks. */
+    ignoreTypeOnlyChecks?: true;
+}
 /** Configuration for a circular dependencies test. */
-export interface CircularDependenciesTestConfig {
+export interface CircularDependenciesTestConfig extends CircularDependenciesParserOptions {
     /** Base directory used for shortening paths in the golden file. */
     baseDir: string;
     /** Path to the golden file that is used for checking and approving. */

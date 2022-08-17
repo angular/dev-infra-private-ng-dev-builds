@@ -76902,7 +76902,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-f502be36cab7e314e9c85ff04d7a63862fbda75c`;
+  const localVersion = `0.0.0-682adb7d0089f7cfaf568a482f40e460b6705b31`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -77294,11 +77294,17 @@ function convertPathToForwardSlash(path3) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/parser.js
 import ts from "typescript";
-function getModuleReferences(initialNode) {
+function getModuleReferences(initialNode, ignoreTypeOnlyChecks) {
   const references = [];
   const visitNode = (node) => {
-    if ((ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) && node.moduleSpecifier !== void 0 && ts.isStringLiteral(node.moduleSpecifier)) {
-      references.push(node.moduleSpecifier.text);
+    var _a2;
+    if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
+      if (ignoreTypeOnlyChecks && (ts.isImportDeclaration(node) && ((_a2 = node.importClause) == null ? void 0 : _a2.isTypeOnly) || ts.isExportDeclaration(node) && node.isTypeOnly)) {
+        return;
+      }
+      if (node.moduleSpecifier !== void 0 && ts.isStringLiteral(node.moduleSpecifier)) {
+        references.push(node.moduleSpecifier.text);
+      }
     }
     ts.forEachChild(node, visitNode);
   };
@@ -77309,12 +77315,13 @@ function getModuleReferences(initialNode) {
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
 var DEFAULT_EXTENSIONS = ["ts", "js", "d.ts"];
 var Analyzer = class {
-  constructor(resolveModuleFn, extensions = DEFAULT_EXTENSIONS) {
+  constructor(resolveModuleFn, ignoreTypeOnlyChecks = false, extensions = DEFAULT_EXTENSIONS) {
     this.resolveModuleFn = resolveModuleFn;
     this.extensions = extensions;
     this._sourceFileCache = /* @__PURE__ */ new Map();
     this.unresolvedModules = /* @__PURE__ */ new Set();
     this.unresolvedFiles = /* @__PURE__ */ new Map();
+    this._ignoreTypeOnlyChecks = !!ignoreTypeOnlyChecks;
   }
   findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path3 = []) {
     const previousIndex = path3.indexOf(sf);
@@ -77327,7 +77334,7 @@ var Analyzer = class {
     path3.push(sf);
     visited.add(sf);
     const result = [];
-    for (const ref of getModuleReferences(sf)) {
+    for (const ref of getModuleReferences(sf, this._ignoreTypeOnlyChecks)) {
       const targetFile = this._resolveImport(ref, sf.fileName);
       if (targetFile !== null) {
         result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path3.slice()));
@@ -77495,8 +77502,8 @@ function tsCircularDependenciesBuilder(localYargs) {
   });
 }
 function main2(approve, config, printWarnings) {
-  const { baseDir, goldenFile, glob: globPattern, resolveModule, approveCommand } = config;
-  const analyzer = new Analyzer(resolveModule);
+  const { baseDir, goldenFile, glob: globPattern, resolveModule, approveCommand, ignoreTypeOnlyChecks } = config;
+  const analyzer = new Analyzer(resolveModule, ignoreTypeOnlyChecks);
   const cycles = [];
   const checkedNodes = /* @__PURE__ */ new WeakSet();
   import_glob.default.sync(globPattern, { absolute: true, ignore: ["**/node_modules/**"] }).forEach((filePath) => {

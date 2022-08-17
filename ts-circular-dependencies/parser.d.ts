@@ -11,4 +11,4 @@ import ts from 'typescript';
  * @param node Source file which should be parsed.
  * @returns List of import specifiers in the source file.
  */
-export declare function getModuleReferences(initialNode: ts.SourceFile): string[];
+export declare function getModuleReferences(initialNode: ts.SourceFile, ignoreTypeOnlyChecks: boolean): string[];

@@ -21,9 +21,10 @@ export declare class Analyzer {
     resolveModuleFn?: ModuleResolver | undefined;
     extensions: string[];
     private _sourceFileCache;
+    private _ignoreTypeOnlyChecks;
     unresolvedModules: Set<string>;
     unresolvedFiles: Map<string, string[]>;
-    constructor(resolveModuleFn?: ModuleResolver | undefined, extensions?: string[]);
+    constructor(resolveModuleFn?: ModuleResolver | undefined, ignoreTypeOnlyChecks?: boolean, extensions?: string[]);
     /** Finds all cycles in the specified source file. */
     findCycles(sf: ts.SourceFile, visited?: WeakSet<ts.SourceFile>, path?: ReferenceChain): ReferenceChain[];
     /** Gets the TypeScript source file of the specified path. */
