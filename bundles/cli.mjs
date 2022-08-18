@@ -71152,7 +71152,7 @@ function isVersionServiceProvider(provider) {
   return (component === null || component === void 0 ? void 0 : component.type) === "VERSION";
 }
 var name$o = "@firebase/app";
-var version$1 = "0.7.30";
+var version$1 = "0.7.31";
 var logger = new Logger("@firebase/app");
 var name$n = "@firebase/app-compat";
 var name$m = "@firebase/analytics-compat";
@@ -71178,7 +71178,7 @@ var name$3 = "@firebase/storage-compat";
 var name$2 = "@firebase/firestore";
 var name$1 = "@firebase/firestore-compat";
 var name = "firebase";
-var version = "9.9.2";
+var version = "9.9.3";
 var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
 var PLATFORM_LOG_STRING = {
   [name$o]: "fire-core",
@@ -71567,7 +71567,7 @@ registerCoreComponents("");
 
 // node_modules/firebase/app/dist/index.mjs
 var name2 = "firebase";
-var version2 = "9.9.2";
+var version2 = "9.9.3";
 registerVersion(name2, version2, "app");
 
 // node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
@@ -76902,7 +76902,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-ba2538d7813ab61d71b9df6a1ee9787a6cc58bd5`;
+  const localVersion = `0.0.0-e55383161a166550b0398126509caaf40de06c06`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
