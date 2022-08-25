@@ -12,4 +12,4 @@ import { Prettier } from './prettier.js';
  * Get all defined formatters which are active based on the current loaded config.
  */
 export declare function getActiveFormatters(): Promise<(Buildifier | ClangFormat | Prettier)[]>;
-export { Formatter, FormatterAction } from './base-formatter.js';
+export { Formatter, type FormatterAction } from './base-formatter.js';
