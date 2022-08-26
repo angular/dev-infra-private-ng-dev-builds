@@ -24,4 +24,6 @@ export declare function getCurrentUser(): Promise<NgDevUser | null>;
  * of the command running.
  */
 export declare function configureAuthorizedGitClientWithTemporaryToken(): Promise<void>;
+/** Whether there is already a file at the location used for login credentials. */
+export declare function hasTokenStoreFile(): Promise<boolean>;
 export {};

@@ -89288,15 +89288,11 @@ async function saveTokenToFileSystem(data) {
   await writeFile2(tokenPath, encrypt(JSON.stringify(data)));
 }
 async function retrieveTokenFromFileSystem() {
-  try {
-    if (!await stat(tokenPath)) {
-      return null;
-    }
-  } catch {
-    return null;
+  if (await hasTokenStoreFile()) {
+    const rawToken = Buffer.from(await readFile(tokenPath)).toString();
+    return JSON.parse(decrypt(rawToken));
   }
-  const rawToken = Buffer.from(await readFile(tokenPath)).toString();
-  return JSON.parse(decrypt(rawToken));
+  return null;
 }
 function encrypt(text) {
   const iv = randomBytes(16);
@@ -89340,6 +89336,13 @@ function configureAuthorizedGitClientWithTemporaryToken() {
       reject(e);
     }
   });
+}
+async function hasTokenStoreFile() {
+  try {
+    return !!await stat(tokenPath);
+  } catch {
+    return false;
+  }
 }
 function assertLoggedIn(token) {
   if (token == null) {
@@ -92122,7 +92125,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-62546cf50c0725a44a132a10ab6ad113e658e21e`;
+  const localVersion = `0.0.0-88c198ae1a3462223cb5c1e83338e4b94b435283`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -92836,26 +92839,33 @@ async function deviceCodeOAuthDance({ oob: { client_id, client_secret }, authCon
   if (isAuthorizationError(response) && (response.error === "invalid_client" || response.error === "unsupported_grant_type" || response.error === "invalid_grant" || response.error === "invalid_request")) {
     throw new OAuthDanceError(new import_appauth.AuthorizationError(response).errorDescription || "Unknown Error");
   }
-  Log.info(`Please visit: ${response.verification_uri || response.verification_url}`);
-  Log.info(`Enter your one time ID code: ${response.user_code}`);
+  Log.info(`  Please visit: ${response.verification_uri || response.verification_url}`);
+  Log.info(`  Enter your one time ID code: ${response.user_code}`);
+  Log.info("");
+  const pollingSpinner = new Spinner("Polling auth server for login confirmation");
   let pollingBackoff = 2500;
   const oauthDanceTimeout = Date.now() + response.expires_in * 1e3;
-  while (true) {
-    if (Date.now() > oauthDanceTimeout) {
-      throw new OAuthDanceError("Failed to completed OAuth authentication before the user code expired.");
+  try {
+    while (true) {
+      if (Date.now() > oauthDanceTimeout) {
+        throw new OAuthDanceError("Failed to completed OAuth authentication before the user code expired.");
+      }
+      await new Promise((resolve13) => setTimeout(resolve13, response.interval * 1e3 + pollingBackoff));
+      const result = await checkStatusOfAuthServer(authConfig.tokenEndpoint, response.device_code, client_id, client_secret);
+      if (!isAuthorizationError(result)) {
+        return new import_appauth.TokenResponse(result);
+      }
+      if (result.error === "access_denied") {
+        throw new OAuthDanceError("Unable to authorize, as access was denied during the OAuth flow.");
+      }
+      if (result.error === "slow_down") {
+        Log.debug('"slow_down" response from server, backing off polling interval by 5 seconds');
+        pollingBackoff += 5e3;
+      }
     }
-    await new Promise((resolve13) => setTimeout(resolve13, response.interval * 1e3 + pollingBackoff));
-    const result = await checkStatusOfAuthServer(authConfig.tokenEndpoint, response.device_code, client_id, client_secret);
-    if (!isAuthorizationError(result)) {
-      return new import_appauth.TokenResponse(result);
-    }
-    if (result.error === "access_denied") {
-      throw new OAuthDanceError("Unable to authorize, as access was denied during the OAuth flow.");
-    }
-    if (result.error === "slow_down") {
-      Log.debug('"slow_down" response from server, backing off polling interval by 5 seconds');
-      pollingBackoff += 5e3;
-    }
+  } finally {
+    pollingSpinner.update("");
+    pollingSpinner.complete();
   }
 }
 async function checkStatusOfAuthServer(serverUrl, deviceCode, clientId, clientSecret) {
@@ -92925,12 +92935,31 @@ function isAuthorizationError(result) {
 async function loginToFirebase() {
   const oAuthDance = process.env.DISPLAY ? authorizationCodeOAuthDance : deviceCodeOAuthDance;
   try {
+    if (!await hasTokenStoreFile()) {
+      Log.warn(Array(80).fill("#").join(""));
+      Log.warn("The ng-dev auth service uses Google OAuth credentials to log in and create a");
+      Log.warn("short lived credential used for authenticating with the ng-dev service.");
+      Log.warn("");
+      Log.warn("In addition to logging in using Google credentials, upon first login you will be");
+      Log.warn("prompted to associate your Github account to your login, allowing the service to");
+      Log.warn("perform requests on your your behalf.");
+      Log.warn(Array(80).fill("#").join(""));
+      if (!await Prompt2.confirm("Continue to login?", true)) {
+        return false;
+      }
+    }
+    Log.log(`Please log in using the instructions below with your google.com credentials:`);
     const { idToken, accessToken } = await oAuthDance(GoogleOAuthDanceConfig);
     const googleCredential = GoogleAuthProvider.credential(idToken, accessToken);
     const { user } = await signInWithCredential(getAuth(), googleCredential);
     if (user.providerData.find((provider) => provider.providerId === "github.com")) {
+      Log.debug("Skipping Github linking as the users account is already linked.");
       return true;
     }
+    Log.log("");
+    Log.log(`There is no Github account currently linked to ${bold(user.email)} in the service,`);
+    Log.log("please login using the instructions below to link your Github account.");
+    Log.log("");
     const { accessToken: githubAccessToken } = await oAuthDance(GithubOAuthDanceConfig);
     await linkWithCredential(user, GithubAuthProvider.credential(githubAccessToken));
     return true;
