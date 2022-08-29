@@ -82658,6 +82658,12 @@ var blaze = $root.blaze = (() => {
       if (object.result != null)
         message.result = String(object.result);
       switch (object.type) {
+        default:
+          if (typeof object.type === "number") {
+            message.type = object.type;
+            break;
+          }
+          break;
         case "TEST_CASE":
         case 0:
           message.type = 0;
@@ -82676,6 +82682,12 @@ var blaze = $root.blaze = (() => {
           break;
       }
       switch (object.status) {
+        default:
+          if (typeof object.status === "number") {
+            message.status = object.status;
+            break;
+          }
+          break;
         case "PASSED":
         case 0:
           message.status = 0;
@@ -82729,9 +82741,9 @@ var blaze = $root.blaze = (() => {
       if (message.result != null && message.hasOwnProperty("result"))
         object.result = message.result;
       if (message.type != null && message.hasOwnProperty("type"))
-        object.type = options.enums === String ? $root.blaze.TestCase.Type[message.type] : message.type;
+        object.type = options.enums === String ? $root.blaze.TestCase.Type[message.type] === void 0 ? message.type : $root.blaze.TestCase.Type[message.type] : message.type;
       if (message.status != null && message.hasOwnProperty("status"))
-        object.status = options.enums === String ? $root.blaze.TestCase.Status[message.status] : message.status;
+        object.status = options.enums === String ? $root.blaze.TestCase.Status[message.status] === void 0 ? message.status : $root.blaze.TestCase.Status[message.status] : message.status;
       if (message.run != null && message.hasOwnProperty("run"))
         object.run = message.run;
       return object;
@@ -83046,6 +83058,12 @@ var blaze = $root.blaze = (() => {
       if (object.testPassed != null)
         message.testPassed = Boolean(object.testPassed);
       switch (object.status) {
+        default:
+          if (typeof object.status === "number") {
+            message.status = object.status;
+            break;
+          }
+          break;
         case "NO_STATUS":
         case 0:
           message.status = 0;
@@ -83161,6 +83179,12 @@ var blaze = $root.blaze = (() => {
         message.testCase = $root.blaze.TestCase.fromObject(object.testCase);
       }
       switch (object.failedStatus) {
+        default:
+          if (typeof object.failedStatus === "number") {
+            message.failedStatus = object.failedStatus;
+            break;
+          }
+          break;
         case "FULL":
         case 1:
           message.failedStatus = 1;
@@ -83217,7 +83241,7 @@ var blaze = $root.blaze = (() => {
       if (message.testPassed != null && message.hasOwnProperty("testPassed"))
         object.testPassed = message.testPassed;
       if (message.status != null && message.hasOwnProperty("status"))
-        object.status = options.enums === String ? $root.blaze.BlazeTestStatus[message.status] : message.status;
+        object.status = options.enums === String ? $root.blaze.BlazeTestStatus[message.status] === void 0 ? message.status : $root.blaze.BlazeTestStatus[message.status] : message.status;
       if (message.failedLogs && message.failedLogs.length) {
         object.failedLogs = [];
         for (let j = 0; j < message.failedLogs.length; ++j)
@@ -83260,7 +83284,7 @@ var blaze = $root.blaze = (() => {
       if (message.testCase != null && message.hasOwnProperty("testCase"))
         object.testCase = $root.blaze.TestCase.toObject(message.testCase, options);
       if (message.failedStatus != null && message.hasOwnProperty("failedStatus"))
-        object.failedStatus = options.enums === String ? $root.blaze.FailedTestCasesStatus[message.failedStatus] : message.failedStatus;
+        object.failedStatus = options.enums === String ? $root.blaze.FailedTestCasesStatus[message.failedStatus] === void 0 ? message.failedStatus : $root.blaze.FailedTestCasesStatus[message.failedStatus] : message.failedStatus;
       if (message.startTimeMillisEpoch != null && message.hasOwnProperty("startTimeMillisEpoch"))
         if (typeof message.startTimeMillisEpoch === "number")
           object.startTimeMillisEpoch = options.longs === String ? String(message.startTimeMillisEpoch) : message.startTimeMillisEpoch;
@@ -92125,7 +92149,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d8d1835a6277b9ad76593bc447680b70162da048`;
+  const localVersion = `0.0.0-457a350ebc50ec803abecb07c8995c1ec0f111ff`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
