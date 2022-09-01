@@ -79764,7 +79764,7 @@ var mainSymbols = {
   tick: "\u2714",
   info: "\u2139",
   warning: "\u26A0",
-  cross: "\u2716",
+  cross: "\u2718",
   squareSmall: "\u25FB",
   squareSmallFilled: "\u25FC",
   circle: "\u25EF",
@@ -92149,7 +92149,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-9fa0615a9622702d25095633187a4da93ee89965`;
+  const localVersion = `0.0.0-9af3c72afba3d3721d6f20c91c8b5bdbc0d53711`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
