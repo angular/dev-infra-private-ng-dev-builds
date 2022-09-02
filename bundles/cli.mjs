@@ -86396,7 +86396,7 @@ function isVersionServiceProvider(provider) {
   return (component === null || component === void 0 ? void 0 : component.type) === "VERSION";
 }
 var name$o = "@firebase/app";
-var version$1 = "0.7.31";
+var version$1 = "0.7.32";
 var logger = new Logger("@firebase/app");
 var name$n = "@firebase/app-compat";
 var name$m = "@firebase/analytics-compat";
@@ -86422,7 +86422,7 @@ var name$3 = "@firebase/storage-compat";
 var name$2 = "@firebase/firestore";
 var name$1 = "@firebase/firestore-compat";
 var name = "firebase";
-var version = "9.9.3";
+var version = "9.9.4";
 var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
 var PLATFORM_LOG_STRING = {
   [name$o]: "fire-core",
@@ -86811,7 +86811,7 @@ registerCoreComponents("");
 
 // node_modules/firebase/app/dist/index.mjs
 var name2 = "firebase";
-var version2 = "9.9.3";
+var version2 = "9.9.4";
 registerVersion(name2, version2, "app");
 
 // node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
@@ -87216,7 +87216,7 @@ var {
   __classPrivateFieldIn
 } = import_tslib.default;
 
-// node_modules/@firebase/auth/dist/node-esm/index-f3c5e390.js
+// node_modules/@firebase/auth/dist/node-esm/index-f3a96a92.js
 var fetchImpl = __toESM(require_lib6(), 1);
 function _prodErrorMap() {
   return {
@@ -88263,7 +88263,9 @@ var AuthMiddlewareQueue = class {
         } catch (_4) {
         }
       }
-      throw this.auth._errorFactory.create("login-blocked", { originalMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message });
+      throw this.auth._errorFactory.create("login-blocked", {
+        originalMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message
+      });
     }
   }
 };
@@ -88546,9 +88548,9 @@ var AuthImpl = class {
   async directlySetCurrentUser(user) {
     if (this.currentUser && this.currentUser !== user) {
       this._currentUser._stopProactiveRefresh();
-      if (user && this.isProactiveRefreshEnabled) {
-        user._startProactiveRefresh();
-      }
+    }
+    if (user && this.isProactiveRefreshEnabled) {
+      user._startProactiveRefresh();
     }
     this.currentUser = user;
     if (user) {
@@ -89137,7 +89139,7 @@ async function linkWithCredential(user, credential) {
   return _link(userInternal, credential);
 }
 var name4 = "@firebase/auth";
-var version4 = "0.20.5";
+var version4 = "0.20.6";
 var AuthInterop = class {
   constructor(auth) {
     this.auth = auth;
@@ -92149,7 +92151,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-9af3c72afba3d3721d6f20c91c8b5bdbc0d53711`;
+  const localVersion = `0.0.0-1c648b45459fa32ffd7de8a8fc07bde6bdbef923`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
