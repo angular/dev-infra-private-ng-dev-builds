@@ -91591,6 +91591,10 @@ var ReleaseAction = class {
       workspaceRelativePackageJsonPath,
       workspaceRelativeChangelogPath
     ]);
+    if (this.git.hasUncommittedChanges()) {
+      Log.error("  \u2718   Unrelated changes have been made as part of the changelog editing.");
+      throw new FatalReleaseActionError();
+    }
     Log.info(green(`  \u2713   Created release commit for: "${newVersion}".`));
   }
   async _getForkOfAuthenticatedUser() {
@@ -92151,7 +92155,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d3a94058a85eef82af12a98fb8d8a9a1f2fb70cb`;
+  const localVersion = `0.0.0-5b747aa0f3198901823476ace4e0ffc4ba2dd61f`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
