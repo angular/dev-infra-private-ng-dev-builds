@@ -28,7 +28,8 @@ export declare enum TargetLabelName {
     MINOR = "target: minor",
     PATCH = "target: patch",
     RELEASE_CANDIDATE = "target: rc",
-    LONG_TERM_SUPPORT = "target: lts"
+    LONG_TERM_SUPPORT = "target: lts",
+    FEATURE_BRANCH = "target: feature"
 }
 /**
  * Describes a label that can be applied to a pull request to mark into

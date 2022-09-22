@@ -84815,6 +84815,15 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
         }
         return [nextBranchName, releaseCandidate.branchName];
       }
+    },
+    {
+      name: TargetLabelName.FEATURE_BRANCH,
+      branches: (githubTargetBranch) => {
+        if (isVersionBranch(githubTargetBranch) || githubTargetBranch === nextBranchName) {
+          throw new InvalidTargetBranchError('"target: feature" pull requests cannot target a releasable branch');
+        }
+        return [githubTargetBranch];
+      }
     }
   ];
   try {
@@ -84855,6 +84864,7 @@ var TargetLabelName;
   TargetLabelName2["PATCH"] = "target: patch";
   TargetLabelName2["RELEASE_CANDIDATE"] = "target: rc";
   TargetLabelName2["LONG_TERM_SUPPORT"] = "target: lts";
+  TargetLabelName2["FEATURE_BRANCH"] = "target: feature";
 })(TargetLabelName || (TargetLabelName = {}));
 var InvalidTargetBranchError = class {
   constructor(failureMessage) {
@@ -92155,7 +92165,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-bdeffd76f60d7a8c1d64d6551848f1a82f26176d`;
+  const localVersion = `0.0.0-953a36a776ed09f7030afbf338c08f3f46e4a1a7`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
