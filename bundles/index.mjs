@@ -19,9 +19,7 @@ import {
   assertValidCommitMessageConfig,
   assertValidFormatConfig,
   assertValidPullRequestConfig,
-  breakingChangeLabel,
   computeLtsEndDateOfMajor,
-  deprecationLabel,
   fetchLongTermSupportBranchesFromNpm,
   fetchProjectNpmPackageInfo,
   getBranchesForMajorVersions,
@@ -33,7 +31,7 @@ import {
   isLtsDistTag,
   isVersionBranch,
   isVersionPublishedToNpm
-} from "./chunk-D5ZVZKU2.mjs";
+} from "./chunk-UOVN3IBR.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -81,10 +79,8 @@ export {
   assertValidReleaseConfig,
   blue,
   bold,
-  breakingChangeLabel,
   captureLogOutputForCommand,
   computeLtsEndDateOfMajor,
-  deprecationLabel,
   fetchLongTermSupportBranchesFromNpm,
   fetchProjectNpmPackageInfo,
   getBranchesForMajorVersions,

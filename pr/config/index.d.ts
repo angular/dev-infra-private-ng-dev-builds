@@ -72,7 +72,3 @@ export declare function assertValidPullRequestConfig<T extends NgDevConfig>(conf
 }>): asserts config is T & {
     pullRequest: PullRequestConfig;
 };
-/** Label for pull requests containing a breaking change. */
-export declare const breakingChangeLabel = "flag: breaking change";
-/** Label for pull requests containing a deprecation. */
-export declare const deprecationLabel = "flag: deprecation";

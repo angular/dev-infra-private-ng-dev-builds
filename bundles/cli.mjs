@@ -19,7 +19,6 @@ import {
   assertValidCommitMessageConfig,
   assertValidFormatConfig,
   assertValidPullRequestConfig,
-  breakingChangeLabel,
   computeLtsEndDateOfMajor,
   fetch as fetch2,
   fetchLongTermSupportBranchesFromNpm,
@@ -41,7 +40,7 @@ import {
   require_semver,
   require_tr46,
   require_wrappy
-} from "./chunk-D5ZVZKU2.mjs";
+} from "./chunk-UOVN3IBR.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -89578,11 +89577,31 @@ var Validation = class extends PullRequestValidation {
   }
 };
 
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels.js
+var ToolingPullRequestLabels = {
+  BREAKING_CHANGE: {
+    label: "flag: breaking change",
+    commitCheck: (c) => c.breakingChanges.length !== 0
+  },
+  DEPRECATION: {
+    label: "flag: deprecation",
+    commitCheck: (c) => c.deprecations.length !== 0
+  },
+  FEATURE: {
+    label: "feature",
+    commitCheck: (c) => c.type === "feat"
+  },
+  DOCS_CHANGE: {
+    label: "comp: docs",
+    commitCheck: (c) => c.type === "docs"
+  }
+};
+
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-breaking-change-info.js
 var breakingChangeInfoValidation = createPullRequestValidation({ name: "assertPending", canBeForceIgnored: false }, () => Validation2);
 var Validation2 = class extends PullRequestValidation {
   assert(commits, labels) {
-    const hasLabel = labels.includes(breakingChangeLabel);
+    const hasLabel = labels.includes(ToolingPullRequestLabels.BREAKING_CHANGE.label);
     const hasCommit = commits.some((commit) => commit.breakingChanges.length !== 0);
     if (!hasLabel && hasCommit) {
       throw this._createMissingBreakingChangeLabelError();
@@ -89592,7 +89611,7 @@ var Validation2 = class extends PullRequestValidation {
     }
   }
   _createMissingBreakingChangeLabelError() {
-    const message = `Pull Request has at least one commit containing a breaking change note, but does not have a breaking change label. Make sure to apply the following label: ${breakingChangeLabel}`;
+    const message = `Pull Request has at least one commit containing a breaking change note, but does not have a breaking change label. Make sure to apply the following label: ${ToolingPullRequestLabels.BREAKING_CHANGE.label}`;
     return this._createError(message);
   }
   _createMissingBreakingChangeCommitError() {
@@ -92165,7 +92184,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-6ca5640c3347698e3ed39ab7a99cd234e304bf62`;
+  const localVersion = `0.0.0-90464961677388802a9b36cb4bf44c9184b94972`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
