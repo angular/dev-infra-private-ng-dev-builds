@@ -89661,7 +89661,10 @@ var Validation5 = class extends PullRequestValidation {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-signed-cla.js
-var signedClaValidation = createPullRequestValidation({ name: "assertSignedCla", canBeForceIgnored: false }, () => Validation6);
+var signedClaValidation = createPullRequestValidation(
+  { name: "assertSignedCla", canBeForceIgnored: true },
+  () => Validation6
+);
 var Validation6 = class extends PullRequestValidation {
   assert(pullRequest) {
     const passing = getStatusesForPullRequest(pullRequest).statuses.some(({ name: name5, status }) => {
@@ -92184,7 +92187,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-379fc9e19c7736acca4ae806e8c2d1fa311826e9`;
+  const localVersion = `0.0.0-c9b2ff083a50d0eac742da1e69e0cbdb98bf53dd`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
