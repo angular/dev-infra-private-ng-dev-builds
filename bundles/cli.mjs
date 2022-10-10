@@ -40,7 +40,7 @@ import {
   require_semver,
   require_tr46,
   require_wrappy
-} from "./chunk-UOVN3IBR.mjs";
+} from "./chunk-5LAENPWY.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -59,8 +59,8 @@ import {
   source_default,
   supports_color_exports,
   yellow
-} from "./chunk-Y3TOZYDQ.mjs";
-import "./chunk-KNPTXEJC.mjs";
+} from "./chunk-N5IEFSCP.mjs";
+import "./chunk-TIHNPQMD.mjs";
 import {
   __commonJS,
   __privateAdd,
@@ -71,7 +71,7 @@ import {
   __require,
   __toCommonJS,
   __toESM
-} from "./chunk-YXBCDQEW.mjs";
+} from "./chunk-QMLAZXI4.mjs";
 
 // node_modules/concat-map/index.js
 var require_concat_map = __commonJS({
@@ -92187,7 +92187,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-db59d4951f9ec1ea6736a55fc99228340083ad19`;
+  const localVersion = `0.0.0-b06143328222856c1cb4bb37e27435327a07b274`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
