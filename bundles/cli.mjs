@@ -84771,7 +84771,7 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
     nextBranchName,
     api
   };
-  const targetLabels = [
+  const targetLabels2 = [
     {
       name: TargetLabelName.MAJOR,
       branches: () => {
@@ -84827,7 +84827,7 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
   ];
   try {
     assertValidReleaseConfig(config);
-    targetLabels.push({
+    targetLabels2.push({
       name: TargetLabelName.LONG_TERM_SUPPORT,
       branches: async (githubTargetBranch) => {
         if (!isVersionBranch(githubTargetBranch)) {
@@ -84852,7 +84852,7 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
       throw err;
     }
   }
-  return targetLabels;
+  return targetLabels2;
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/targeting/target-label.js
@@ -84892,8 +84892,8 @@ async function getMatchingTargetLabelForPullRequest(labelsOnPullRequest, allTarg
   throw new InvalidTargetLabelError("Unable to determine target for the PR as it has multiple target labels.");
 }
 async function getTargetBranchesAndLabelForPullRequest(activeReleaseTrains, github, config, labelsOnPullRequest, githubTargetBranch) {
-  const targetLabels = await getTargetLabelsForActiveReleaseTrains(activeReleaseTrains, github, config);
-  const matchingLabel = await getMatchingTargetLabelForPullRequest(labelsOnPullRequest, targetLabels);
+  const targetLabels2 = await getTargetLabelsForActiveReleaseTrains(activeReleaseTrains, github, config);
+  const matchingLabel = await getMatchingTargetLabelForPullRequest(labelsOnPullRequest, targetLabels2);
   return {
     branches: await getBranchesFromTargetLabel(matchingLabel, githubTargetBranch),
     labelName: matchingLabel.name
@@ -89577,31 +89577,164 @@ var Validation = class extends PullRequestValidation {
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels.js
-var ToolingPullRequestLabels = {
-  BREAKING_CHANGE: {
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/base.js
+var createTypedObject = () => (v) => v;
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/managed.js
+var managedLabels = createTypedObject()({
+  DETECTED_BREAKING_CHANGE: {
+    description: "PR contains a commit with a breaking change",
     label: "flag: breaking change",
     commitCheck: (c) => c.breakingChanges.length !== 0
   },
-  DEPRECATION: {
+  DETECTED_DEPRECATION: {
+    description: "PR contains a commit with a deprecation",
     label: "flag: deprecation",
     commitCheck: (c) => c.deprecations.length !== 0
   },
-  FEATURE: {
+  DETECTED_FEATURE: {
+    description: "PR contains a feature commit",
     label: "feature",
     commitCheck: (c) => c.type === "feat"
   },
-  DOCS_CHANGE: {
+  DETECTED_DOCS_CHANGE: {
+    description: "Related to the documentation",
     label: "comp: docs",
     commitCheck: (c) => c.type === "docs"
   }
+});
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/action.js
+var actionLabels = createTypedObject()({
+  ACTION_MERGE: {
+    description: "The PR is ready for merge by the caretaker",
+    label: "action: merge"
+  },
+  ACTION_CLEANUP: {
+    description: "The PR is in need of cleanup, either due to needing a rebase or in response to comments from a review",
+    label: "action: cleanup"
+  },
+  ACTION_PRESUBMIT: {
+    description: "The PR is in need of a google3 presubmit",
+    label: "action: presubmit"
+  },
+  ACTION_REVIEW: {
+    description: "The PR is still awaiting reviews from at least one requested reviewer",
+    label: "action: review"
+  }
+});
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/merge.js
+var mergeLabels = createTypedObject()({
+  MERGE_PRESERVE_COMMITS: {
+    description: "When the PR is merged, a rebase and merge should be performed",
+    label: "merge: preserve commits"
+  },
+  MERGE_SQUASH_COMMITS: {
+    description: "When the PR is merged, a squash and merge should be performed",
+    label: "merge: squash commits"
+  },
+  MERGE_FIX_COMMIT_MESSAGE: {
+    description: "When the PR is merged, rewrites/fixups of the commit messages are needed",
+    label: "merge: fix commit message"
+  },
+  MERGE_CARETAKER_NOTE: {
+    description: "Alert the caretaker performing the merge to check the PR for an out of normal action needed or note",
+    label: "merge: caretaker note"
+  }
+});
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/target.js
+var targetLabels = createTypedObject()({
+  TARGET_FEATURE: {
+    description: "This PR is targeted for a feature branch (outside of main and semver branches)",
+    label: "target: feature"
+  },
+  TARGET_LTS: {
+    description: "This PR is targeting a version currently in long-term support",
+    label: "target: lts"
+  },
+  TARGET_MAJOR: {
+    description: "This PR is targeted for the next major release",
+    label: "target: major"
+  },
+  TARGET_MINOR: {
+    description: "This PR is targeted for the next minor release",
+    label: "target: minor"
+  },
+  TARGET_PATCH: {
+    description: "This PR is targeted for the next patch release",
+    label: "target: patch"
+  },
+  TARGET_RC: {
+    description: "This PR is targeted for the next release-candidate",
+    label: "target: rc"
+  }
+});
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/priority.js
+var priorityLabels = createTypedObject()({
+  P0: {
+    label: "P0",
+    description: "An issue that causes a full outage, breakage, or major function unavailability for everyone, without any known workaround. The issue must be fixed immediately, taking precedence over all other work. Should receive updates at least once per day"
+  },
+  P1: {
+    label: "P1",
+    description: "An issue that significantly impacts a large percentage of users; if there is a workaround it is partial or overly painful. The issue should be resolved before the next release"
+  },
+  P2: {
+    label: "P2",
+    description: "The issue is important to a large percentage of users, with a workaround. Issues that are significantly ugly or painful (especially first-use or install-time issues). Issues with workarounds that would otherwise be P0 or P1"
+  },
+  P3: {
+    label: "P3",
+    description: "An issue that is relevant to core functions, but does not impede progress. Important, but not urgent"
+  },
+  P4: {
+    label: "P4",
+    description: "A relatively minor issue that is not relevant to core functions, or relates only to the attractiveness or pleasantness of use of the system. Good to have but not necessary changes/fixes"
+  },
+  P5: {
+    label: "P5",
+    description: "The team acknowledges the request but (due to any number of reasons) does not plan to work on or accept contributions for this request. The issue remains open for discussion"
+  }
+});
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/feature.js
+var featureLabels = createTypedObject()({
+  FEATURE_IN_BACKLOG: {
+    label: "feature: in backlog",
+    description: "Feature request for which voting has completed and is now in the backlog"
+  },
+  FEATURE_VOTES_REQUIRED: {
+    label: "feature: votes required",
+    description: "Feature request which is currently still in the voting phase"
+  },
+  FEATURE_UNDER_CONSIDERATION: {
+    label: "feature: under consideration",
+    description: "Feature request for which voting has completed and the request is now under consideration"
+  },
+  FEATURE_INSUFFICIENT_VOTES: {
+    label: "feature: insufficient votes",
+    description: "Label to add when the not a sufficient number of votes or comments from unique authors"
+  }
+});
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels.js
+var allLabels = {
+  ...managedLabels,
+  ...actionLabels,
+  ...mergeLabels,
+  ...targetLabels,
+  ...priorityLabels,
+  ...featureLabels
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-breaking-change-info.js
 var breakingChangeInfoValidation = createPullRequestValidation({ name: "assertPending", canBeForceIgnored: false }, () => Validation2);
 var Validation2 = class extends PullRequestValidation {
   assert(commits, labels) {
-    const hasLabel = labels.includes(ToolingPullRequestLabels.BREAKING_CHANGE.label);
+    const hasLabel = labels.includes(managedLabels.DETECTED_BREAKING_CHANGE.label);
     const hasCommit = commits.some((commit) => commit.breakingChanges.length !== 0);
     if (!hasLabel && hasCommit) {
       throw this._createMissingBreakingChangeLabelError();
@@ -89611,7 +89744,7 @@ var Validation2 = class extends PullRequestValidation {
     }
   }
   _createMissingBreakingChangeLabelError() {
-    const message = `Pull Request has at least one commit containing a breaking change note, but does not have a breaking change label. Make sure to apply the following label: ${ToolingPullRequestLabels.BREAKING_CHANGE.label}`;
+    const message = `Pull Request has at least one commit containing a breaking change note, but does not have a breaking change label. Make sure to apply the following label: ${managedLabels.DETECTED_BREAKING_CHANGE.label}`;
     return this._createError(message);
   }
   _createMissingBreakingChangeCommitError() {
@@ -92187,7 +92320,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-b06143328222856c1cb4bb37e27435327a07b274`;
+  const localVersion = `0.0.0-02089f73ff4779878577868ba32bb3a59bca4bab`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
