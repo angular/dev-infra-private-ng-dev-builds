@@ -32,12 +32,6 @@ export interface PullRequestConfig {
     requiredBaseCommits?: {
         [branchName: string]: string;
     };
-    /** Pattern that matches labels which imply a merge ready pull request. */
-    mergeReadyLabel: string;
-    /** Label that is applied when special attention from the caretaker is required. */
-    caretakerNoteLabel?: string;
-    /** Label which can be applied to fixup commit messages in the merge script. */
-    commitMessageFixupLabel: string;
     /**
      * Whether pull requests should be merged using the Github API. This can be enabled
      * if projects want to have their pull requests show up as `Merged` in the Github UI.

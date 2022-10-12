@@ -40,7 +40,7 @@ import {
   require_semver,
   require_tr46,
   require_wrappy
-} from "./chunk-2CK5VOEJ.mjs";
+} from "./chunk-TKIIS6E7.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -89475,108 +89475,6 @@ var MergeConflictsFatalError = class extends FatalMergeToolError {
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/validation-failure.js
-var PullRequestValidationFailure = class {
-  constructor(message, validationName) {
-    this.message = message;
-    this.validationName = validationName;
-  }
-};
-
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/validation-config.js
-var PullRequestValidationConfig = class {
-  constructor() {
-    this.assertPending = true;
-    this.assertMergeReady = true;
-    this.assertSignedCla = true;
-    this.assertChangesAllowForTargetLabel = true;
-    this.assertPassingCi = true;
-  }
-};
-var PullRequestValidation = class {
-  constructor(name5, _createError2) {
-    this.name = name5;
-    this._createError = _createError2;
-  }
-};
-function createPullRequestValidation({ name: name5, canBeForceIgnored }, getValidationCtor) {
-  return {
-    async run(validationConfig, fn) {
-      if (validationConfig[name5]) {
-        const validation2 = new (getValidationCtor())(name5, (message) => new PullRequestValidationFailure(message, name5));
-        try {
-          fn(validation2);
-        } catch (e) {
-          if (e instanceof PullRequestValidationFailure && canBeForceIgnored) {
-            Log.error(`Pull request did not pass validation check. Error:`);
-            Log.error(` -> ${bold(e.message)}`);
-            Log.info();
-            Log.info(yellow(`This validation is non-fatal and can be forcibly ignored.`));
-            if (await Prompt2.confirm("Do you want to forcibly ignore this validation?")) {
-              return;
-            }
-          }
-          throw e;
-        }
-      }
-    }
-  };
-}
-
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-allowed-target-label.js
-var changesAllowForTargetLabelValidation = createPullRequestValidation({ name: "assertChangesAllowForTargetLabel", canBeForceIgnored: true }, () => Validation);
-var Validation = class extends PullRequestValidation {
-  assert(commits, labelName, config, releaseTrains, labelsOnPullRequest) {
-    if (!!config.commitMessageFixupLabel && labelsOnPullRequest.includes(config.commitMessageFixupLabel)) {
-      Log.debug("Skipping commit message target label validation because the commit message fixup label is applied.");
-      return;
-    }
-    const exemptedScopes = config.targetLabelExemptScopes || [];
-    commits = commits.filter((commit) => !exemptedScopes.includes(commit.scope));
-    const hasBreakingChanges = commits.some((commit) => commit.breakingChanges.length !== 0);
-    const hasDeprecations = commits.some((commit) => commit.deprecations.length !== 0);
-    const hasFeatureCommits = commits.some((commit) => commit.type === "feat");
-    switch (labelName) {
-      case TargetLabelName.MAJOR:
-        break;
-      case TargetLabelName.MINOR:
-        if (hasBreakingChanges) {
-          throw this._createHasBreakingChangesError(labelName);
-        }
-        break;
-      case TargetLabelName.RELEASE_CANDIDATE:
-      case TargetLabelName.LONG_TERM_SUPPORT:
-      case TargetLabelName.PATCH:
-        if (hasBreakingChanges) {
-          throw this._createHasBreakingChangesError(labelName);
-        }
-        if (hasFeatureCommits) {
-          throw this._createHasFeatureCommitsError(labelName);
-        }
-        if (hasDeprecations && !releaseTrains.isFeatureFreeze()) {
-          throw this._createHasDeprecationsError(labelName);
-        }
-        break;
-      default:
-        Log.warn(red("WARNING: Unable to confirm all commits in the pull request are"));
-        Log.warn(red(`eligible to be merged into the target branches for: ${labelName}`));
-        break;
-    }
-  }
-  _createHasBreakingChangesError(labelName) {
-    const message = `Cannot merge into branch for "${labelName}" as the pull request has breaking changes. Breaking changes can only be merged with the "target: major" label.`;
-    return this._createError(message);
-  }
-  _createHasDeprecationsError(labelName) {
-    const message = `Cannot merge into branch for "${labelName}" as the pull request contains deprecations. Deprecations can only be merged with the "target: minor" or "target: major" label.`;
-    return this._createError(message);
-  }
-  _createHasFeatureCommitsError(labelName) {
-    const message = `Cannot merge into branch for "${labelName}" as the pull request has commits with the "feat" type. New features can only be merged with the "target: minor" or "target: major" label.`;
-    return this._createError(message);
-  }
-};
-
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/base.js
 var createTypedObject = () => (v) => v;
 
@@ -89584,22 +89482,22 @@ var createTypedObject = () => (v) => v;
 var managedLabels = createTypedObject()({
   DETECTED_BREAKING_CHANGE: {
     description: "PR contains a commit with a breaking change",
-    label: "flag: breaking change",
+    label: "detected: breaking change",
     commitCheck: (c) => c.breakingChanges.length !== 0
   },
   DETECTED_DEPRECATION: {
     description: "PR contains a commit with a deprecation",
-    label: "flag: deprecation",
+    label: "detected: deprecation",
     commitCheck: (c) => c.deprecations.length !== 0
   },
   DETECTED_FEATURE: {
     description: "PR contains a feature commit",
-    label: "feature",
+    label: "detected: feature",
     commitCheck: (c) => c.type === "feat"
   },
   DETECTED_DOCS_CHANGE: {
     description: "Related to the documentation",
-    label: "comp: docs",
+    label: "area: docs",
     commitCheck: (c) => c.type === "docs"
   }
 });
@@ -89730,6 +89628,108 @@ var allLabels = {
   ...featureLabels
 };
 
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/validation-failure.js
+var PullRequestValidationFailure = class {
+  constructor(message, validationName) {
+    this.message = message;
+    this.validationName = validationName;
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/validation-config.js
+var PullRequestValidationConfig = class {
+  constructor() {
+    this.assertPending = true;
+    this.assertMergeReady = true;
+    this.assertSignedCla = true;
+    this.assertChangesAllowForTargetLabel = true;
+    this.assertPassingCi = true;
+  }
+};
+var PullRequestValidation = class {
+  constructor(name5, _createError2) {
+    this.name = name5;
+    this._createError = _createError2;
+  }
+};
+function createPullRequestValidation({ name: name5, canBeForceIgnored }, getValidationCtor) {
+  return {
+    async run(validationConfig, fn) {
+      if (validationConfig[name5]) {
+        const validation2 = new (getValidationCtor())(name5, (message) => new PullRequestValidationFailure(message, name5));
+        try {
+          fn(validation2);
+        } catch (e) {
+          if (e instanceof PullRequestValidationFailure && canBeForceIgnored) {
+            Log.error(`Pull request did not pass validation check. Error:`);
+            Log.error(` -> ${bold(e.message)}`);
+            Log.info();
+            Log.info(yellow(`This validation is non-fatal and can be forcibly ignored.`));
+            if (await Prompt2.confirm("Do you want to forcibly ignore this validation?")) {
+              return;
+            }
+          }
+          throw e;
+        }
+      }
+    }
+  };
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-allowed-target-label.js
+var changesAllowForTargetLabelValidation = createPullRequestValidation({ name: "assertChangesAllowForTargetLabel", canBeForceIgnored: true }, () => Validation);
+var Validation = class extends PullRequestValidation {
+  assert(commits, labelName, config, releaseTrains, labelsOnPullRequest) {
+    if (labelsOnPullRequest.includes(mergeLabels.MERGE_FIX_COMMIT_MESSAGE.label)) {
+      Log.debug("Skipping commit message target label validation because the commit message fixup label is applied.");
+      return;
+    }
+    const exemptedScopes = config.targetLabelExemptScopes || [];
+    commits = commits.filter((commit) => !exemptedScopes.includes(commit.scope));
+    const hasBreakingChanges = commits.some((commit) => commit.breakingChanges.length !== 0);
+    const hasDeprecations = commits.some((commit) => commit.deprecations.length !== 0);
+    const hasFeatureCommits = commits.some((commit) => commit.type === "feat");
+    switch (labelName) {
+      case TargetLabelName.MAJOR:
+        break;
+      case TargetLabelName.MINOR:
+        if (hasBreakingChanges) {
+          throw this._createHasBreakingChangesError(labelName);
+        }
+        break;
+      case TargetLabelName.RELEASE_CANDIDATE:
+      case TargetLabelName.LONG_TERM_SUPPORT:
+      case TargetLabelName.PATCH:
+        if (hasBreakingChanges) {
+          throw this._createHasBreakingChangesError(labelName);
+        }
+        if (hasFeatureCommits) {
+          throw this._createHasFeatureCommitsError(labelName);
+        }
+        if (hasDeprecations && !releaseTrains.isFeatureFreeze()) {
+          throw this._createHasDeprecationsError(labelName);
+        }
+        break;
+      default:
+        Log.warn(red("WARNING: Unable to confirm all commits in the pull request are"));
+        Log.warn(red(`eligible to be merged into the target branches for: ${labelName}`));
+        break;
+    }
+  }
+  _createHasBreakingChangesError(labelName) {
+    const message = `Cannot merge into branch for "${labelName}" as the pull request has breaking changes. Breaking changes can only be merged with the "target: major" label.`;
+    return this._createError(message);
+  }
+  _createHasDeprecationsError(labelName) {
+    const message = `Cannot merge into branch for "${labelName}" as the pull request contains deprecations. Deprecations can only be merged with the "target: minor" or "target: major" label.`;
+    return this._createError(message);
+  }
+  _createHasFeatureCommitsError(labelName) {
+    const message = `Cannot merge into branch for "${labelName}" as the pull request has commits with the "feat" type. New features can only be merged with the "target: minor" or "target: major" label.`;
+    return this._createError(message);
+  }
+};
+
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-breaking-change-info.js
 var breakingChangeInfoValidation = createPullRequestValidation({ name: "assertPending", canBeForceIgnored: false }, () => Validation2);
 var Validation2 = class extends PullRequestValidation {
@@ -89756,8 +89756,8 @@ var Validation2 = class extends PullRequestValidation {
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-merge-ready.js
 var mergeReadyValidation = createPullRequestValidation({ name: "assertMergeReady", canBeForceIgnored: false }, () => Validation3);
 var Validation3 = class extends PullRequestValidation {
-  assert(pullRequest, pullRequestConfig) {
-    if (!pullRequest.labels.nodes.some(({ name: name5 }) => name5 === pullRequestConfig.mergeReadyLabel)) {
+  assert(pullRequest) {
+    if (!pullRequest.labels.nodes.some(({ name: name5 }) => name5 === actionLabels.ACTION_MERGE.label)) {
       throw this._createError("Pull request is not marked as merge ready.");
     }
   }
@@ -89815,7 +89815,7 @@ async function assertValidPullRequest(pullRequest, validationConfig, ngDevConfig
   const commitsInPr = pullRequest.commits.nodes.map((n) => {
     return parseCommitMessage(n.commit.message);
   });
-  await mergeReadyValidation.run(validationConfig, (v) => v.assert(pullRequest, ngDevConfig.pullRequest));
+  await mergeReadyValidation.run(validationConfig, (v) => v.assert(pullRequest));
   await signedClaValidation.run(validationConfig, (v) => v.assert(pullRequest));
   await pendingStateValidation.run(validationConfig, (v) => v.assert(pullRequest));
   if (activeReleaseTrains !== null) {
@@ -89928,8 +89928,8 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
   }
   await assertValidPullRequest(prData, validationConfig, config, activeReleaseTrains, target);
   const requiredBaseSha = config.pullRequest.requiredBaseCommits && config.pullRequest.requiredBaseCommits[githubTargetBranch];
-  const needsCommitMessageFixup = !!config.pullRequest.commitMessageFixupLabel && labels.includes(config.pullRequest.commitMessageFixupLabel);
-  const hasCaretakerNote = !!config.pullRequest.caretakerNoteLabel && labels.includes(config.pullRequest.caretakerNoteLabel);
+  const needsCommitMessageFixup = labels.includes(mergeLabels.MERGE_FIX_COMMIT_MESSAGE.label);
+  const hasCaretakerNote = labels.includes(mergeLabels.MERGE_CARETAKER_NOTE.label);
   const baseSha = prData.baseCommitInfo.nodes[0].commit.parents.nodes[0].oid;
   const revisionRange = `${baseSha}..${TEMP_PR_HEAD_BRANCH}`;
   return {
@@ -92320,7 +92320,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-a64f3515ea822a8b228ebaab1c52e76e557a580c`;
+  const localVersion = `0.0.0-604d67220ea3a92d23e603873b2a9d3d217973f5`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
