@@ -1,14 +1,14 @@
 export declare const miscLabels: {
     FEATURE: {
-        label: string;
+        name: string;
         description: string;
     };
     GOOD_FIRST_ISSUE: {
-        label: string;
+        name: string;
         description: string;
     };
     HELP_WANTED: {
-        label: string;
+        name: string;
         description: string;
     };
 };

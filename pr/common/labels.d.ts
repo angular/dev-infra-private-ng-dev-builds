@@ -5,119 +5,119 @@ import { targetLabels } from './labels/target.js';
 import { priorityLabels } from './labels/priority.js';
 export declare const allLabels: {
     FEATURE_IN_BACKLOG: {
-        label: string;
+        name: string;
         description: string;
     };
     FEATURE_VOTES_REQUIRED: {
-        label: string;
+        name: string;
         description: string;
     };
     FEATURE_UNDER_CONSIDERATION: {
-        label: string;
+        name: string;
         description: string;
     };
     FEATURE_INSUFFICIENT_VOTES: {
-        label: string;
+        name: string;
         description: string;
     };
     P0: {
-        label: string;
+        name: string;
         description: string;
     };
     P1: {
-        label: string;
+        name: string;
         description: string;
     };
     P2: {
-        label: string;
+        name: string;
         description: string;
     };
     P3: {
-        label: string;
+        name: string;
         description: string;
     };
     P4: {
-        label: string;
+        name: string;
         description: string;
     };
     P5: {
-        label: string;
+        name: string;
         description: string;
     };
     TARGET_FEATURE: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_LTS: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_MAJOR: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_MINOR: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_PATCH: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_RC: {
         description: string;
-        label: string;
+        name: string;
     };
     MERGE_PRESERVE_COMMITS: {
         description: string;
-        label: string;
+        name: string;
     };
     MERGE_SQUASH_COMMITS: {
         description: string;
-        label: string;
+        name: string;
     };
     MERGE_FIX_COMMIT_MESSAGE: {
         description: string;
-        label: string;
+        name: string;
     };
     MERGE_CARETAKER_NOTE: {
         description: string;
-        label: string;
+        name: string;
     };
     ACTION_MERGE: {
         description: string;
-        label: string;
+        name: string;
     };
     ACTION_CLEANUP: {
         description: string;
-        label: string;
+        name: string;
     };
     ACTION_PRESUBMIT: {
         description: string;
-        label: string;
+        name: string;
     };
     ACTION_REVIEW: {
         description: string;
-        label: string;
+        name: string;
     };
     DETECTED_BREAKING_CHANGE: {
         description: string;
-        label: string;
+        name: string;
         commitCheck: (c: import("../../commit-message/parse.js").Commit) => boolean;
     };
     DETECTED_DEPRECATION: {
         description: string;
-        label: string;
+        name: string;
         commitCheck: (c: import("../../commit-message/parse.js").Commit) => boolean;
     };
     DETECTED_FEATURE: {
         description: string;
-        label: string;
+        name: string;
         commitCheck: (c: import("../../commit-message/parse.js").Commit) => boolean;
     };
     DETECTED_DOCS_CHANGE: {
         description: string;
-        label: string;
+        name: string;
         commitCheck: (c: import("../../commit-message/parse.js").Commit) => boolean;
     };
 };

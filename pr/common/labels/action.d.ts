@@ -1,18 +1,18 @@
 export declare const actionLabels: {
     ACTION_MERGE: {
         description: string;
-        label: string;
+        name: string;
     };
     ACTION_CLEANUP: {
         description: string;
-        label: string;
+        name: string;
     };
     ACTION_PRESUBMIT: {
         description: string;
-        label: string;
+        name: string;
     };
     ACTION_REVIEW: {
         description: string;
-        label: string;
+        name: string;
     };
 };

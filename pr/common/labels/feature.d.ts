@@ -1,18 +1,18 @@
 export declare const featureLabels: {
     FEATURE_IN_BACKLOG: {
-        label: string;
+        name: string;
         description: string;
     };
     FEATURE_VOTES_REQUIRED: {
-        label: string;
+        name: string;
         description: string;
     };
     FEATURE_UNDER_CONSIDERATION: {
-        label: string;
+        name: string;
         description: string;
     };
     FEATURE_INSUFFICIENT_VOTES: {
-        label: string;
+        name: string;
         description: string;
     };
 };

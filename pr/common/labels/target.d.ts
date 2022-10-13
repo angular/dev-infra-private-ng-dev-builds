@@ -1,26 +1,26 @@
 export declare const targetLabels: {
     TARGET_FEATURE: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_LTS: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_MAJOR: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_MINOR: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_PATCH: {
         description: string;
-        label: string;
+        name: string;
     };
     TARGET_RC: {
         description: string;
-        label: string;
+        name: string;
     };
 };

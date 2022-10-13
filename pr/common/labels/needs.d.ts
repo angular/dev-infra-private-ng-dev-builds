@@ -1,14 +1,14 @@
 export declare const needsLabels: {
     NEEDS_CLARIFICATION: {
-        label: string;
+        name: string;
         description: string;
     };
     NEEDS_VERIFICATION: {
-        label: string;
+        name: string;
         description: string;
     };
     NEEDS_DISCUSSION: {
-        label: string;
+        name: string;
         description: string;
     };
 };

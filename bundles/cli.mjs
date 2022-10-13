@@ -89482,22 +89482,22 @@ var createTypedObject = () => (v) => v;
 var managedLabels = createTypedObject()({
   DETECTED_BREAKING_CHANGE: {
     description: "PR contains a commit with a breaking change",
-    label: "detected: breaking change",
+    name: "detected: breaking change",
     commitCheck: (c) => c.breakingChanges.length !== 0
   },
   DETECTED_DEPRECATION: {
     description: "PR contains a commit with a deprecation",
-    label: "detected: deprecation",
+    name: "detected: deprecation",
     commitCheck: (c) => c.deprecations.length !== 0
   },
   DETECTED_FEATURE: {
     description: "PR contains a feature commit",
-    label: "detected: feature",
+    name: "detected: feature",
     commitCheck: (c) => c.type === "feat"
   },
   DETECTED_DOCS_CHANGE: {
     description: "Related to the documentation",
-    label: "area: docs",
+    name: "area: docs",
     commitCheck: (c) => c.type === "docs"
   }
 });
@@ -89506,19 +89506,19 @@ var managedLabels = createTypedObject()({
 var actionLabels = createTypedObject()({
   ACTION_MERGE: {
     description: "The PR is ready for merge by the caretaker",
-    label: "action: merge"
+    name: "action: merge"
   },
   ACTION_CLEANUP: {
     description: "The PR is in need of cleanup, either due to needing a rebase or in response to comments from reviews",
-    label: "action: cleanup"
+    name: "action: cleanup"
   },
   ACTION_PRESUBMIT: {
     description: "The PR is in need of a google3 presubmit",
-    label: "action: presubmit"
+    name: "action: presubmit"
   },
   ACTION_REVIEW: {
     description: "The PR is still awaiting reviews from at least one requested reviewer",
-    label: "action: review"
+    name: "action: review"
   }
 });
 
@@ -89526,19 +89526,19 @@ var actionLabels = createTypedObject()({
 var mergeLabels = createTypedObject()({
   MERGE_PRESERVE_COMMITS: {
     description: "When the PR is merged, a rebase and merge should be performed",
-    label: "merge: preserve commits"
+    name: "merge: preserve commits"
   },
   MERGE_SQUASH_COMMITS: {
     description: "When the PR is merged, a squash and merge should be performed",
-    label: "merge: squash commits"
+    name: "merge: squash commits"
   },
   MERGE_FIX_COMMIT_MESSAGE: {
     description: "When the PR is merged, rewrites/fixups of the commit messages are needed",
-    label: "merge: fix commit message"
+    name: "merge: fix commit message"
   },
   MERGE_CARETAKER_NOTE: {
     description: "Alert the caretaker performing the merge to check the PR for an out of normal action needed or note",
-    label: "merge: caretaker note"
+    name: "merge: caretaker note"
   }
 });
 
@@ -89546,54 +89546,54 @@ var mergeLabels = createTypedObject()({
 var targetLabels = createTypedObject()({
   TARGET_FEATURE: {
     description: "This PR is targeted for a feature branch (outside of main and semver branches)",
-    label: "target: feature"
+    name: "target: feature"
   },
   TARGET_LTS: {
     description: "This PR is targeting a version currently in long-term support",
-    label: "target: lts"
+    name: "target: lts"
   },
   TARGET_MAJOR: {
     description: "This PR is targeted for the next major release",
-    label: "target: major"
+    name: "target: major"
   },
   TARGET_MINOR: {
     description: "This PR is targeted for the next minor release",
-    label: "target: minor"
+    name: "target: minor"
   },
   TARGET_PATCH: {
     description: "This PR is targeted for the next patch release",
-    label: "target: patch"
+    name: "target: patch"
   },
   TARGET_RC: {
     description: "This PR is targeted for the next release-candidate",
-    label: "target: rc"
+    name: "target: rc"
   }
 });
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/priority.js
 var priorityLabels = createTypedObject()({
   P0: {
-    label: "P0",
+    name: "P0",
     description: "Issue that causes an outage, breakage, or major function to be unusable, with no known workarounds"
   },
   P1: {
-    label: "P1",
+    name: "P1",
     description: "Impacts a large percentage of users; if a workaround exists it is partial or overly painful"
   },
   P2: {
-    label: "P2",
+    name: "P2",
     description: "The issue is important to a large percentage of users, with a workaround"
   },
   P3: {
-    label: "P3",
+    name: "P3",
     description: "An issue that is relevant to core functions, but does not impede progress. Important, but not urgent"
   },
   P4: {
-    label: "P4",
+    name: "P4",
     description: "A relatively minor issue that is not relevant to core functions"
   },
   P5: {
-    label: "P5",
+    name: "P5",
     description: "The team acknowledges the request but does not plan to address it, it remains open for discussion"
   }
 });
@@ -89601,19 +89601,19 @@ var priorityLabels = createTypedObject()({
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/labels/feature.js
 var featureLabels = createTypedObject()({
   FEATURE_IN_BACKLOG: {
-    label: "feature: in backlog",
+    name: "feature: in backlog",
     description: "Feature request for which voting has completed and is now in the backlog"
   },
   FEATURE_VOTES_REQUIRED: {
-    label: "feature: votes required",
+    name: "feature: votes required",
     description: "Feature request which is currently still in the voting phase"
   },
   FEATURE_UNDER_CONSIDERATION: {
-    label: "feature: under consideration",
+    name: "feature: under consideration",
     description: "Feature request for which voting has completed and the request is now under consideration"
   },
   FEATURE_INSUFFICIENT_VOTES: {
-    label: "feature: insufficient votes",
+    name: "feature: insufficient votes",
     description: "Label to add when the not a sufficient number of votes or comments from unique authors"
   }
 });
@@ -89680,7 +89680,7 @@ function createPullRequestValidation({ name: name5, canBeForceIgnored }, getVali
 var changesAllowForTargetLabelValidation = createPullRequestValidation({ name: "assertChangesAllowForTargetLabel", canBeForceIgnored: true }, () => Validation);
 var Validation = class extends PullRequestValidation {
   assert(commits, labelName, config, releaseTrains, labelsOnPullRequest) {
-    if (labelsOnPullRequest.includes(mergeLabels.MERGE_FIX_COMMIT_MESSAGE.label)) {
+    if (labelsOnPullRequest.includes(mergeLabels.MERGE_FIX_COMMIT_MESSAGE.name)) {
       Log.debug("Skipping commit message target label validation because the commit message fixup label is applied.");
       return;
     }
@@ -89734,7 +89734,7 @@ var Validation = class extends PullRequestValidation {
 var breakingChangeInfoValidation = createPullRequestValidation({ name: "assertPending", canBeForceIgnored: false }, () => Validation2);
 var Validation2 = class extends PullRequestValidation {
   assert(commits, labels) {
-    const hasLabel = labels.includes(managedLabels.DETECTED_BREAKING_CHANGE.label);
+    const hasLabel = labels.includes(managedLabels.DETECTED_BREAKING_CHANGE.name);
     const hasCommit = commits.some((commit) => commit.breakingChanges.length !== 0);
     if (!hasLabel && hasCommit) {
       throw this._createMissingBreakingChangeLabelError();
@@ -89744,7 +89744,7 @@ var Validation2 = class extends PullRequestValidation {
     }
   }
   _createMissingBreakingChangeLabelError() {
-    const message = `Pull Request has at least one commit containing a breaking change note, but does not have a breaking change label. Make sure to apply the following label: ${managedLabels.DETECTED_BREAKING_CHANGE.label}`;
+    const message = `Pull Request has at least one commit containing a breaking change note, but does not have a breaking change label. Make sure to apply the following label: ${managedLabels.DETECTED_BREAKING_CHANGE.name}`;
     return this._createError(message);
   }
   _createMissingBreakingChangeCommitError() {
@@ -89757,7 +89757,7 @@ var Validation2 = class extends PullRequestValidation {
 var mergeReadyValidation = createPullRequestValidation({ name: "assertMergeReady", canBeForceIgnored: false }, () => Validation3);
 var Validation3 = class extends PullRequestValidation {
   assert(pullRequest) {
-    if (!pullRequest.labels.nodes.some(({ name: name5 }) => name5 === actionLabels.ACTION_MERGE.label)) {
+    if (!pullRequest.labels.nodes.some(({ name: name5 }) => name5 === actionLabels.ACTION_MERGE.name)) {
       throw this._createError("Pull request is not marked as merge ready.");
     }
   }
@@ -89928,8 +89928,8 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
   }
   await assertValidPullRequest(prData, validationConfig, config, activeReleaseTrains, target);
   const requiredBaseSha = config.pullRequest.requiredBaseCommits && config.pullRequest.requiredBaseCommits[githubTargetBranch];
-  const needsCommitMessageFixup = labels.includes(mergeLabels.MERGE_FIX_COMMIT_MESSAGE.label);
-  const hasCaretakerNote = labels.includes(mergeLabels.MERGE_CARETAKER_NOTE.label);
+  const needsCommitMessageFixup = labels.includes(mergeLabels.MERGE_FIX_COMMIT_MESSAGE.name);
+  const hasCaretakerNote = labels.includes(mergeLabels.MERGE_CARETAKER_NOTE.name);
   const baseSha = prData.baseCommitInfo.nodes[0].commit.parents.nodes[0].oid;
   const revisionRange = `${baseSha}..${TEMP_PR_HEAD_BRANCH}`;
   return {
@@ -92320,7 +92320,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-8ca1276619afeeb314911a4f9a094aaae880d541`;
+  const localVersion = `0.0.0-d143b82c7785abd581730943c2dca37bfaffe8b4`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
