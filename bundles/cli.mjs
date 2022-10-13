@@ -89509,7 +89509,7 @@ var actionLabels = createTypedObject()({
     label: "action: merge"
   },
   ACTION_CLEANUP: {
-    description: "The PR is in need of cleanup, either due to needing a rebase or in response to comments from a review",
+    description: "The PR is in need of cleanup, either due to needing a rebase or in response to comments from reviews",
     label: "action: cleanup"
   },
   ACTION_PRESUBMIT: {
@@ -89574,15 +89574,15 @@ var targetLabels = createTypedObject()({
 var priorityLabels = createTypedObject()({
   P0: {
     label: "P0",
-    description: "An issue that causes a full outage, breakage, or major function unavailability for everyone, without any known workaround. The issue must be fixed immediately, taking precedence over all other work. Should receive updates at least once per day"
+    description: "Issue that causes an outage, breakage, or major function to be unusable, with no known workarounds"
   },
   P1: {
     label: "P1",
-    description: "An issue that significantly impacts a large percentage of users; if there is a workaround it is partial or overly painful. The issue should be resolved before the next release"
+    description: "Impacts a large percentage of users; if a workaround exists it is partial or overly painful"
   },
   P2: {
     label: "P2",
-    description: "The issue is important to a large percentage of users, with a workaround. Issues that are significantly ugly or painful (especially first-use or install-time issues). Issues with workarounds that would otherwise be P0 or P1"
+    description: "The issue is important to a large percentage of users, with a workaround"
   },
   P3: {
     label: "P3",
@@ -89590,11 +89590,11 @@ var priorityLabels = createTypedObject()({
   },
   P4: {
     label: "P4",
-    description: "A relatively minor issue that is not relevant to core functions, or relates only to the attractiveness or pleasantness of use of the system. Good to have but not necessary changes/fixes"
+    description: "A relatively minor issue that is not relevant to core functions"
   },
   P5: {
     label: "P5",
-    description: "The team acknowledges the request but (due to any number of reasons) does not plan to work on or accept contributions for this request. The issue remains open for discussion"
+    description: "The team acknowledges the request but does not plan to address it, it remains open for discussion"
   }
 });
 
@@ -92320,7 +92320,7 @@ import * as fs3 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-b2eb62ff3498f0a1cd999982e39888bc408c3920`;
+  const localVersion = `0.0.0-8ca1276619afeeb314911a4f9a094aaae880d541`;
   const workspacePackageJsonFile = path2.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path2.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
