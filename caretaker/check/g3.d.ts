@@ -28,8 +28,6 @@ export declare class G3Module extends BaseModule<G3StatsData | void> {
      * files.
      */
     private getDiffStats;
-    /** Determine whether the file name passes both include and exclude checks. */
-    private checkMatchAgainstIncludeAndExclude;
-    private getG3FileIncludeAndExcludeLists;
+    private getG3SyncFileMatchFn;
     private getLatestShas;
 }

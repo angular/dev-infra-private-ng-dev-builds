@@ -21,7 +21,7 @@ export declare abstract class BaseModule<Data> {
         caretaker: CaretakerConfig;
         github: GithubConfig;
     });
-    /** Asyncronously retrieve data for the module. */
+    /** Asynchronously retrieve data for the module. */
     protected abstract retrieveData(): Promise<Data>;
     /** Print the information discovered for the module to the terminal. */
     abstract printToTerminal(): Promise<void>;
