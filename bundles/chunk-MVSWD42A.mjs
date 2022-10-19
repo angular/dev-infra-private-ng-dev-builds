@@ -9767,7 +9767,7 @@ function requestLog(octokit) {
 }
 requestLog.VERSION = VERSION5;
 
-// node_modules/@octokit/plugin-paginate-rest/dist-web/index.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-paginate-rest/dist-web/index.js
 var VERSION6 = "4.0.0";
 function normalizePaginatedListResponse(response) {
   if (!response.data) {
@@ -13757,4 +13757,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-SL3S47EP.mjs.map
+//# sourceMappingURL=chunk-MVSWD42A.mjs.map

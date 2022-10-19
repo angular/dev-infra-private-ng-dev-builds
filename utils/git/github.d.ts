@@ -350,6 +350,7 @@ export declare class GithubClient {
                         updated_at: string;
                         allow_forking?: boolean | undefined;
                         is_template?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                     } | null;
                     sha: string;
                     user: {
@@ -492,6 +493,7 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -1283,6 +1285,7 @@ export declare class GithubClient {
                         updated_at: string;
                         allow_forking?: boolean | undefined;
                         is_template?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                     } | null;
                     sha: string;
                     user: {
@@ -1425,6 +1428,7 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -2137,6 +2141,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -2147,14 +2155,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -2425,6 +2439,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -2435,14 +2453,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -3532,6 +3556,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -3542,14 +3570,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -3820,6 +3854,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -3830,14 +3868,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -4377,6 +4421,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -4387,14 +4435,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -4665,6 +4719,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -4675,14 +4733,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -5137,6 +5201,7 @@ export declare class GithubClient {
                         updated_at: string;
                         allow_forking?: boolean | undefined;
                         is_template?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                     } | null;
                     sha: string;
                     user: {
@@ -5279,6 +5344,7 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -5990,6 +6056,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -6000,14 +6070,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     } | null | undefined;
                     temp_clone_token?: string | undefined;
                     delete_branch_on_merge?: boolean | undefined;
@@ -6031,6 +6107,7 @@ export declare class GithubClient {
                     open_issues?: number | undefined;
                     watchers?: number | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                 };
                 invitee: {
                     name?: string | null | undefined;
@@ -6915,11 +6992,12 @@ export declare class GithubClient {
             } & {
                 key_prefix: string;
                 url_template: string;
+                is_alphanumeric?: boolean | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 key_prefix: string;
                 url_template: string;
-                is_alphanumeric?: boolean | undefined;
+                is_alphanumeric: boolean;
             }, 201>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -7348,6 +7426,10 @@ export declare class GithubClient {
                 allow_rebase_merge?: boolean | undefined;
                 allow_auto_merge?: boolean | undefined;
                 delete_branch_on_merge?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 has_downloads?: boolean | undefined;
                 is_template?: boolean | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
@@ -7591,6 +7673,10 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
@@ -7601,14 +7687,20 @@ export declare class GithubClient {
                 delete_branch_on_merge?: boolean | undefined;
                 allow_update_branch?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 allow_merge_commit?: boolean | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
                 subscribers_count?: number | undefined;
                 network_count?: number | undefined;
                 open_issues: number;
                 watchers: number;
                 master_branch?: string | undefined;
                 starred_at?: string | undefined;
+                anonymous_access_enabled?: boolean | undefined;
             }, 201>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -7622,6 +7714,7 @@ export declare class GithubClient {
             } & {
                 organization?: string | undefined;
                 name?: string | undefined;
+                default_branch_only?: boolean | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 node_id: string;
@@ -7966,6 +8059,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -7976,14 +8073,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | null | undefined;
                 allow_squash_merge?: boolean | undefined;
@@ -7992,7 +8095,12 @@ export declare class GithubClient {
                 allow_merge_commit?: boolean | undefined;
                 allow_update_branch?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
                 subscribers_count: number;
                 network_count: number;
                 license: {
@@ -8267,6 +8375,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -8277,14 +8389,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 source?: {
                     id: number;
@@ -8527,6 +8645,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -8537,14 +8659,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 forks: number;
                 master_branch?: string | undefined;
@@ -8597,6 +8725,10 @@ export declare class GithubClient {
                 allow_auto_merge?: boolean | undefined;
                 delete_branch_on_merge?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 node_id: string;
@@ -8838,6 +8970,10 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
@@ -8848,14 +8984,20 @@ export declare class GithubClient {
                 delete_branch_on_merge?: boolean | undefined;
                 allow_update_branch?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 allow_merge_commit?: boolean | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
                 subscribers_count?: number | undefined;
                 network_count?: number | undefined;
                 open_issues: number;
                 watchers: number;
                 master_branch?: string | undefined;
                 starred_at?: string | undefined;
+                anonymous_access_enabled?: boolean | undefined;
             }, 201>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -9529,6 +9671,10 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
@@ -9539,14 +9685,20 @@ export declare class GithubClient {
                 delete_branch_on_merge?: boolean | undefined;
                 allow_update_branch?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 allow_merge_commit?: boolean | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
                 subscribers_count?: number | undefined;
                 network_count?: number | undefined;
                 open_issues: number;
                 watchers: number;
                 master_branch?: string | undefined;
                 starred_at?: string | undefined;
+                anonymous_access_enabled?: boolean | undefined;
             }, 201>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -10352,6 +10504,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -10362,14 +10518,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | null | undefined;
                 allow_squash_merge?: boolean | undefined;
@@ -10378,7 +10540,12 @@ export declare class GithubClient {
                 allow_merge_commit?: boolean | undefined;
                 allow_update_branch?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
                 subscribers_count: number;
                 network_count: number;
                 license: {
@@ -10653,6 +10820,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -10663,14 +10834,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 source?: {
                     id: number;
@@ -10913,6 +11090,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -10923,14 +11104,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 forks: number;
                 master_branch?: string | undefined;
@@ -11262,7 +11449,7 @@ export declare class GithubClient {
                 id: number;
                 key_prefix: string;
                 url_template: string;
-                is_alphanumeric?: boolean | undefined;
+                is_alphanumeric: boolean;
             }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -12542,6 +12729,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -12552,14 +12743,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     } | null | undefined;
                     temp_clone_token?: string | undefined;
                     delete_branch_on_merge?: boolean | undefined;
@@ -12583,6 +12780,7 @@ export declare class GithubClient {
                     open_issues?: number | undefined;
                     watchers?: number | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                 };
                 commit_url: string;
                 url: string;
@@ -14424,7 +14622,7 @@ export declare class GithubClient {
                 id: number;
                 key_prefix: string;
                 url_template: string;
-                is_alphanumeric?: boolean | undefined;
+                is_alphanumeric: boolean;
             }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -14825,6 +15023,7 @@ export declare class GithubClient {
                 repo: string;
             } & {
                 affiliation?: "all" | "outside" | "direct" | undefined;
+                permission?: "push" | "admin" | "triage" | "maintain" | "pull" | undefined;
                 per_page?: number | undefined;
                 page?: number | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
@@ -15691,6 +15890,10 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
@@ -15701,14 +15904,20 @@ export declare class GithubClient {
                 delete_branch_on_merge?: boolean | undefined;
                 allow_update_branch?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 allow_merge_commit?: boolean | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
                 subscribers_count?: number | undefined;
                 network_count?: number | undefined;
                 open_issues: number;
                 watchers: number;
                 master_branch?: string | undefined;
                 starred_at?: string | undefined;
+                anonymous_access_enabled?: boolean | undefined;
             }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -16068,6 +16277,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -16078,14 +16291,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | undefined;
                 delete_branch_on_merge?: boolean | undefined;
@@ -16109,6 +16328,7 @@ export declare class GithubClient {
                 open_issues?: number | undefined;
                 watchers?: number | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
             }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -16468,6 +16688,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -16478,14 +16702,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | undefined;
                 delete_branch_on_merge?: boolean | undefined;
@@ -16509,6 +16739,7 @@ export declare class GithubClient {
                 open_issues?: number | undefined;
                 watchers?: number | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
             }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -16867,6 +17098,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -16877,14 +17112,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | undefined;
                 delete_branch_on_merge?: boolean | undefined;
@@ -16908,6 +17149,7 @@ export declare class GithubClient {
                 open_issues?: number | undefined;
                 watchers?: number | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
             }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -17267,6 +17509,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -17277,14 +17523,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     } | null | undefined;
                     temp_clone_token?: string | undefined;
                     delete_branch_on_merge?: boolean | undefined;
@@ -17308,6 +17560,7 @@ export declare class GithubClient {
                     open_issues?: number | undefined;
                     watchers?: number | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                 };
                 invitee: {
                     name?: string | null | undefined;
@@ -17717,6 +17970,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -17727,14 +17984,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     } | null | undefined;
                     temp_clone_token?: string | undefined;
                     delete_branch_on_merge?: boolean | undefined;
@@ -17758,6 +18021,7 @@ export declare class GithubClient {
                     open_issues?: number | undefined;
                     watchers?: number | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                 };
                 invitee: {
                     name?: string | null | undefined;
@@ -18222,6 +18486,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -18232,14 +18500,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | undefined;
                 delete_branch_on_merge?: boolean | undefined;
@@ -18263,6 +18537,7 @@ export declare class GithubClient {
                 open_issues?: number | undefined;
                 watchers?: number | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
             }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -18720,6 +18995,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -18730,14 +19009,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -19008,6 +19293,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -19018,14 +19307,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     };
                     sha: string;
                     user: {
@@ -20784,6 +21079,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -20794,14 +21093,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | undefined;
                 delete_branch_on_merge?: boolean | undefined;
@@ -20825,6 +21130,7 @@ export declare class GithubClient {
                 open_issues?: number | undefined;
                 watchers?: number | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
             }, 202>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -20864,8 +21170,13 @@ export declare class GithubClient {
                 delete_branch_on_merge?: boolean | undefined;
                 allow_update_branch?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 archived?: boolean | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 node_id: string;
@@ -21210,6 +21521,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -21220,14 +21535,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | null | undefined;
                 allow_squash_merge?: boolean | undefined;
@@ -21236,7 +21557,12 @@ export declare class GithubClient {
                 allow_merge_commit?: boolean | undefined;
                 allow_update_branch?: boolean | undefined;
                 use_squash_pr_title_as_default?: boolean | undefined;
+                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
                 subscribers_count: number;
                 network_count: number;
                 license: {
@@ -21511,6 +21837,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -21521,14 +21851,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 source?: {
                     id: number;
@@ -21771,6 +22107,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -21781,14 +22121,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 forks: number;
                 master_branch?: string | undefined;
@@ -22658,6 +23004,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -22668,14 +23018,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     } | null | undefined;
                     temp_clone_token?: string | undefined;
                     delete_branch_on_merge?: boolean | undefined;
@@ -22699,6 +23055,7 @@ export declare class GithubClient {
                     open_issues?: number | undefined;
                     watchers?: number | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                 };
                 invitee: {
                     name?: string | null | undefined;
@@ -23370,7 +23727,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -23772,6 +24129,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -23782,14 +24143,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -23922,7 +24289,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -24324,6 +24691,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -24334,14 +24705,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -24645,7 +25022,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -25047,6 +25424,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -25057,14 +25438,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -25288,7 +25675,7 @@ export declare class GithubClient {
                     html_url: string;
                     number: number;
                     state: string;
-                    state_reason?: string | null | undefined;
+                    state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                     title: string;
                     body?: string | null | undefined;
                     user: {
@@ -25690,6 +26077,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -25700,14 +26091,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     } | undefined;
                     performed_via_github_app?: {
                         id: number;
@@ -26074,7 +26471,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -26476,6 +26873,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -26486,14 +26887,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -28393,7 +28800,7 @@ export declare class GithubClient {
                     html_url: string;
                     number: number;
                     state: string;
-                    state_reason?: string | null | undefined;
+                    state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                     title: string;
                     body?: string | null | undefined;
                     user: {
@@ -28795,6 +29202,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -28805,14 +29216,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     } | undefined;
                     performed_via_github_app?: {
                         id: number;
@@ -30510,7 +30927,7 @@ export declare class GithubClient {
                         html_url: string;
                         number: number;
                         state: string;
-                        state_reason?: string | null | undefined;
+                        state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                         title: string;
                         body?: string | null | undefined;
                         user: {
@@ -30912,6 +31329,10 @@ export declare class GithubClient {
                                 delete_branch_on_merge?: boolean | undefined;
                                 allow_update_branch?: boolean | undefined;
                                 use_squash_pr_title_as_default?: boolean | undefined;
+                                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                                 allow_merge_commit?: boolean | undefined;
                                 subscribers_count?: number | undefined;
                                 network_count?: number | undefined;
@@ -30922,14 +31343,20 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             allow_forking?: boolean | undefined;
+                            web_commit_signoff_required?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
                             open_issues: number;
                             watchers: number;
                             master_branch?: string | undefined;
                             starred_at?: string | undefined;
+                            anonymous_access_enabled?: boolean | undefined;
                         } | undefined;
                         performed_via_github_app?: {
                             id: number;
@@ -31514,7 +31941,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -31916,6 +32343,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -31926,14 +32357,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -32026,7 +32463,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -32428,6 +32865,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -32438,14 +32879,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -32542,7 +32989,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -32944,6 +33391,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -32954,14 +33405,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -33169,7 +33626,7 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
                 issue_number: number;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<unknown, 301>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -33193,7 +33650,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -33595,6 +34052,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -33605,14 +34066,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -33748,6 +34215,7 @@ export declare class GithubClient {
                 body?: string | null | undefined;
                 assignee?: string | null | undefined;
                 state?: "open" | "closed" | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 milestone?: string | number | null | undefined;
                 labels?: (string | {
                     id?: number | undefined;
@@ -33767,7 +34235,7 @@ export declare class GithubClient {
                 html_url: string;
                 number: number;
                 state: string;
-                state_reason?: string | null | undefined;
+                state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
                 title: string;
                 body?: string | null | undefined;
                 user: {
@@ -34169,6 +34637,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -34179,14 +34651,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | undefined;
                 performed_via_github_app?: {
                     id: number;
@@ -35338,6 +35816,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -35348,14 +35830,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | undefined;
                 allow_squash_merge?: boolean | undefined;
@@ -35363,6 +35851,7 @@ export declare class GithubClient {
                 delete_branch_on_merge?: boolean | undefined;
                 allow_merge_commit?: boolean | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
                 subscribers_count?: number | undefined;
                 network_count?: number | undefined;
                 open_issues: number;
@@ -35468,6 +35957,7 @@ export declare class GithubClient {
                     members_can_create_public_pages?: boolean | undefined;
                     members_can_create_private_pages?: boolean | undefined;
                     members_can_fork_private_repositories?: boolean | null | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     updated_at: string;
                 };
                 ldap_dn?: string | undefined;
@@ -35723,6 +36213,7 @@ export declare class GithubClient {
                     members_can_create_public_pages?: boolean | undefined;
                     members_can_create_private_pages?: boolean | undefined;
                     members_can_fork_private_repositories?: boolean | null | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     updated_at: string;
                 };
                 ldap_dn?: string | undefined;
@@ -36176,6 +36667,7 @@ export declare class GithubClient {
                     members_can_create_public_pages?: boolean | undefined;
                     members_can_create_private_pages?: boolean | undefined;
                     members_can_fork_private_repositories?: boolean | null | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     updated_at: string;
                 };
                 ldap_dn?: string | undefined;
@@ -36675,6 +37167,10 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
@@ -36685,14 +37181,20 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_update_branch?: boolean | undefined;
                     use_squash_pr_title_as_default?: boolean | undefined;
+                    squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                    squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                    merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                    merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                     allow_merge_commit?: boolean | undefined;
                     allow_forking?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     subscribers_count?: number | undefined;
                     network_count?: number | undefined;
                     open_issues: number;
                     watchers: number;
                     master_branch?: string | undefined;
                     starred_at?: string | undefined;
+                    anonymous_access_enabled?: boolean | undefined;
                 } | null | undefined;
                 temp_clone_token?: string | undefined;
                 delete_branch_on_merge?: boolean | undefined;
@@ -36716,6 +37218,7 @@ export declare class GithubClient {
                 open_issues?: number | undefined;
                 watchers?: number | undefined;
                 allow_forking?: boolean | undefined;
+                web_commit_signoff_required?: boolean | undefined;
             }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -36976,10 +37479,98 @@ export declare class GithubClient {
                     members_can_create_public_pages?: boolean | undefined;
                     members_can_create_private_pages?: boolean | undefined;
                     members_can_fork_private_repositories?: boolean | null | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                     updated_at: string;
                 };
                 ldap_dn?: string | undefined;
-            }, 201>>;
+            }, 201> | import("@octokit/types").OctokitResponse<{
+                id: number;
+                node_id: string;
+                url: string;
+                html_url: string;
+                name: string;
+                slug: string;
+                description: string | null;
+                privacy?: "closed" | "secret" | undefined;
+                permission: string;
+                members_url: string;
+                repositories_url: string;
+                parent?: {
+                    id: number;
+                    node_id: string;
+                    url: string;
+                    members_url: string;
+                    name: string;
+                    description: string | null;
+                    permission: string;
+                    privacy?: string | undefined;
+                    html_url: string;
+                    repositories_url: string;
+                    slug: string;
+                    ldap_dn?: string | undefined;
+                } | null | undefined;
+                members_count: number;
+                repos_count: number;
+                created_at: string;
+                updated_at: string;
+                organization: {
+                    login: string;
+                    id: number;
+                    node_id: string;
+                    url: string;
+                    repos_url: string;
+                    events_url: string;
+                    hooks_url: string;
+                    issues_url: string;
+                    members_url: string;
+                    public_members_url: string;
+                    avatar_url: string;
+                    description: string | null;
+                    name?: string | undefined;
+                    company?: string | undefined;
+                    blog?: string | undefined;
+                    location?: string | undefined;
+                    email?: string | undefined;
+                    twitter_username?: string | null | undefined;
+                    is_verified?: boolean | undefined;
+                    has_organization_projects: boolean;
+                    has_repository_projects: boolean;
+                    public_repos: number;
+                    public_gists: number;
+                    followers: number;
+                    following: number;
+                    html_url: string;
+                    created_at: string;
+                    type: string;
+                    total_private_repos?: number | undefined;
+                    owned_private_repos?: number | undefined;
+                    private_gists?: number | null | undefined;
+                    disk_usage?: number | null | undefined;
+                    collaborators?: number | null | undefined;
+                    billing_email?: string | null | undefined;
+                    plan?: {
+                        name: string;
+                        space: number;
+                        private_repos: number;
+                        filled_seats?: number | undefined;
+                        seats?: number | undefined;
+                    } | undefined;
+                    default_repository_permission?: string | null | undefined;
+                    members_can_create_repositories?: boolean | null | undefined;
+                    two_factor_requirement_enabled?: boolean | null | undefined;
+                    members_allowed_repository_creation_type?: string | undefined;
+                    members_can_create_public_repositories?: boolean | undefined;
+                    members_can_create_private_repositories?: boolean | undefined;
+                    members_can_create_internal_repositories?: boolean | undefined;
+                    members_can_create_pages?: boolean | undefined;
+                    members_can_create_public_pages?: boolean | undefined;
+                    members_can_create_private_pages?: boolean | undefined;
+                    members_can_fork_private_repositories?: boolean | null | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
+                    updated_at: string;
+                };
+                ldap_dn?: string | undefined;
+            }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -37348,6 +37939,10 @@ export declare class GithubClient {
                                 delete_branch_on_merge?: boolean | undefined;
                                 allow_update_branch?: boolean | undefined;
                                 use_squash_pr_title_as_default?: boolean | undefined;
+                                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                                 allow_merge_commit?: boolean | undefined;
                                 subscribers_count?: number | undefined;
                                 network_count?: number | undefined;
@@ -37358,14 +37953,20 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             allow_forking?: boolean | undefined;
+                            web_commit_signoff_required?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
                             open_issues: number;
                             watchers: number;
                             master_branch?: string | undefined;
                             starred_at?: string | undefined;
+                            anonymous_access_enabled?: boolean | undefined;
                         } | null | undefined;
                         temp_clone_token?: string | undefined;
                         delete_branch_on_merge?: boolean | undefined;
@@ -37389,6 +37990,7 @@ export declare class GithubClient {
                         open_issues?: number | undefined;
                         watchers?: number | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                     };
                     score: number;
                     file_size?: number | undefined;
@@ -37829,6 +38431,10 @@ export declare class GithubClient {
                                 delete_branch_on_merge?: boolean | undefined;
                                 allow_update_branch?: boolean | undefined;
                                 use_squash_pr_title_as_default?: boolean | undefined;
+                                squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                                squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                                merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                                merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                                 allow_merge_commit?: boolean | undefined;
                                 subscribers_count?: number | undefined;
                                 network_count?: number | undefined;
@@ -37839,14 +38445,20 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             allow_forking?: boolean | undefined;
+                            web_commit_signoff_required?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
                             open_issues: number;
                             watchers: number;
                             master_branch?: string | undefined;
                             starred_at?: string | undefined;
+                            anonymous_access_enabled?: boolean | undefined;
                         } | null | undefined;
                         temp_clone_token?: string | undefined;
                         delete_branch_on_merge?: boolean | undefined;
@@ -37870,6 +38482,7 @@ export declare class GithubClient {
                         open_issues?: number | undefined;
                         watchers?: number | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                     };
                     score: number;
                     node_id: string;
@@ -38299,6 +38912,10 @@ export declare class GithubClient {
                             delete_branch_on_merge?: boolean | undefined;
                             allow_update_branch?: boolean | undefined;
                             use_squash_pr_title_as_default?: boolean | undefined;
+                            squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                            squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                            merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                            merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                             allow_merge_commit?: boolean | undefined;
                             subscribers_count?: number | undefined;
                             network_count?: number | undefined;
@@ -38309,14 +38926,20 @@ export declare class GithubClient {
                         delete_branch_on_merge?: boolean | undefined;
                         allow_update_branch?: boolean | undefined;
                         use_squash_pr_title_as_default?: boolean | undefined;
+                        squash_merge_commit_title?: "PR_TITLE" | "COMMIT_OR_PR_TITLE" | undefined;
+                        squash_merge_commit_message?: "PR_BODY" | "COMMIT_MESSAGES" | "BLANK" | undefined;
+                        merge_commit_title?: "PR_TITLE" | "MERGE_MESSAGE" | undefined;
+                        merge_commit_message?: "PR_TITLE" | "PR_BODY" | "BLANK" | undefined;
                         allow_merge_commit?: boolean | undefined;
                         allow_forking?: boolean | undefined;
+                        web_commit_signoff_required?: boolean | undefined;
                         subscribers_count?: number | undefined;
                         network_count?: number | undefined;
                         open_issues: number;
                         watchers: number;
                         master_branch?: string | undefined;
                         starred_at?: string | undefined;
+                        anonymous_access_enabled?: boolean | undefined;
                     } | undefined;
                     body_html?: string | undefined;
                     body_text?: string | undefined;
@@ -38568,6 +39191,7 @@ export declare class GithubClient {
                     delete_branch_on_merge?: boolean | undefined;
                     allow_forking?: boolean | undefined;
                     is_template?: boolean | undefined;
+                    web_commit_signoff_required?: boolean | undefined;
                 }[];
             }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
