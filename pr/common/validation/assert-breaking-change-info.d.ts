@@ -6,14 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { Commit } from '../../../commit-message/parse.js';
-import { PullRequestValidation } from './validation-config.js';
 /** Assert the pull request is properly denoted if it contains breaking changes. */
 export declare const breakingChangeInfoValidation: {
-    run(validationConfig: import("./validation-config.js").PullRequestValidationConfig, fn: (v: Validation) => void): Promise<void>;
+    run(validationConfig: import("./validation-config.js").PullRequestValidationConfig, commits: Commit[], labels: string[]): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
-declare class Validation extends PullRequestValidation {
-    assert(commits: Commit[], labels: string[]): void;
-    private _createMissingBreakingChangeLabelError;
-    private _createMissingBreakingChangeCommitError;
-}
-export {};

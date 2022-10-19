@@ -9,12 +9,16 @@ import { PullRequestValidationConfig } from './validation-config.js';
 /** Class that can be used to describe pull request validation failures. */
 export declare class PullRequestValidationFailure {
     /** Human-readable message for the failure */
-    message: string;
+    readonly message: string;
     /** Validation config name for the failure. */
-    validationName: keyof PullRequestValidationConfig;
+    readonly validationName: keyof PullRequestValidationConfig;
+    /** Validation config name for the failure. */
+    readonly canBeForceIgnored: boolean;
     constructor(
     /** Human-readable message for the failure */
     message: string, 
     /** Validation config name for the failure. */
-    validationName: keyof PullRequestValidationConfig);
+    validationName: keyof PullRequestValidationConfig, 
+    /** Validation config name for the failure. */
+    canBeForceIgnored: boolean);
 }

@@ -27,11 +27,13 @@ export declare abstract class PullRequestValidation {
     protected name: keyof PullRequestValidationConfig;
     protected _createError: PullRequestValidationErrorCreateFn;
     constructor(name: keyof PullRequestValidationConfig, _createError: PullRequestValidationErrorCreateFn);
+    /** Assertion function to be defined for the specific validator. */
+    abstract assert(...parameters: unknown[]): void;
 }
 /** Creates a pull request validation from a configuration and implementation class. */
 export declare function createPullRequestValidation<T extends PullRequestValidation>({ name, canBeForceIgnored }: {
     name: keyof PullRequestValidationConfig;
     canBeForceIgnored: boolean;
 }, getValidationCtor: () => new (...args: ConstructorParameters<typeof PullRequestValidation>) => T): {
-    run(validationConfig: PullRequestValidationConfig, fn: (v: T) => void): Promise<void>;
+    run(validationConfig: PullRequestValidationConfig, ...args: Parameters<T['assert']>): Promise<PullRequestValidationFailure | null>;
 };

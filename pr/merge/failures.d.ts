@@ -9,8 +9,8 @@
 export declare class FatalMergeToolError extends Error {
     constructor(message: string);
 }
-/** Error class that can be thrown when the user aborted the merge manually. */
-export declare class UserAbortedMergeToolError extends Error {
+export declare class UserAbortedMergeToolError extends FatalMergeToolError {
+    constructor();
 }
 export declare class MismatchedTargetBranchFatalError extends FatalMergeToolError {
     constructor(allowedBranches: string[]);
@@ -20,4 +20,7 @@ export declare class UnsatisfiedBaseShaFatalError extends FatalMergeToolError {
 }
 export declare class MergeConflictsFatalError extends FatalMergeToolError {
     constructor(failedBranches: string[]);
+}
+export declare class PullRequestValidationError extends FatalMergeToolError {
+    constructor();
 }

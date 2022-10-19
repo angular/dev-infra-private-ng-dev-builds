@@ -90220,7 +90220,10 @@ var FatalMergeToolError = class extends Error {
     super(message);
   }
 };
-var UserAbortedMergeToolError = class extends Error {
+var UserAbortedMergeToolError = class extends FatalMergeToolError {
+  constructor() {
+    super("Tool exited due to user aborting merge attempt.");
+  }
 };
 var MismatchedTargetBranchFatalError = class extends FatalMergeToolError {
   constructor(allowedBranches) {
@@ -90235,6 +90238,11 @@ var UnsatisfiedBaseShaFatalError = class extends FatalMergeToolError {
 var MergeConflictsFatalError = class extends FatalMergeToolError {
   constructor(failedBranches) {
     super(`Could not merge pull request into the following branches due to merge conflicts: ${failedBranches.join(", ")}. Please rebase the PR or update the target label.`);
+  }
+};
+var PullRequestValidationError = class extends FatalMergeToolError {
+  constructor() {
+    super("Tool exited as at least one pull request validation error was discovered.");
   }
 };
 
@@ -90393,9 +90401,10 @@ var allLabels = {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/validation-failure.js
 var PullRequestValidationFailure = class {
-  constructor(message, validationName) {
+  constructor(message, validationName, canBeForceIgnored) {
     this.message = message;
     this.validationName = validationName;
+    this.canBeForceIgnored = canBeForceIgnored;
   }
 };
 
@@ -90417,24 +90426,19 @@ var PullRequestValidation = class {
 };
 function createPullRequestValidation({ name: name5, canBeForceIgnored }, getValidationCtor) {
   return {
-    async run(validationConfig, fn) {
+    async run(validationConfig, ...args) {
       if (validationConfig[name5]) {
-        const validation2 = new (getValidationCtor())(name5, (message) => new PullRequestValidationFailure(message, name5));
+        const validation2 = new (getValidationCtor())(name5, (message) => new PullRequestValidationFailure(message, name5, canBeForceIgnored));
         try {
-          fn(validation2);
+          validation2.assert(...args);
         } catch (e) {
-          if (e instanceof PullRequestValidationFailure && canBeForceIgnored) {
-            Log.error(`Pull request did not pass validation check. Error:`);
-            Log.error(` -> ${bold(e.message)}`);
-            Log.info();
-            Log.info(yellow(`This validation is non-fatal and can be forcibly ignored.`));
-            if (await Prompt2.confirm("Do you want to forcibly ignore this validation?")) {
-              return;
-            }
+          if (e instanceof PullRequestValidationFailure) {
+            return e;
           }
           throw e;
         }
       }
+      return null;
     }
   };
 }
@@ -90578,14 +90582,19 @@ async function assertValidPullRequest(pullRequest, validationConfig, ngDevConfig
   const commitsInPr = pullRequest.commits.nodes.map((n) => {
     return parseCommitMessage(n.commit.message);
   });
-  await mergeReadyValidation.run(validationConfig, (v) => v.assert(pullRequest));
-  await signedClaValidation.run(validationConfig, (v) => v.assert(pullRequest));
-  await pendingStateValidation.run(validationConfig, (v) => v.assert(pullRequest));
+  const validationResults = [
+    mergeReadyValidation.run(validationConfig, pullRequest),
+    signedClaValidation.run(validationConfig, pullRequest),
+    pendingStateValidation.run(validationConfig, pullRequest),
+    breakingChangeInfoValidation.run(validationConfig, commitsInPr, labels),
+    passingCiValidation.run(validationConfig, pullRequest)
+  ];
   if (activeReleaseTrains !== null) {
-    await changesAllowForTargetLabelValidation.run(validationConfig, (v) => v.assert(commitsInPr, target.labelName, ngDevConfig.pullRequest, activeReleaseTrains, labels));
+    validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.labelName, ngDevConfig.pullRequest, activeReleaseTrains, labels));
   }
-  await breakingChangeInfoValidation.run(validationConfig, (v) => v.assert(commitsInPr, labels));
-  await passingCiValidation.run(validationConfig, (v) => v.assert(pullRequest));
+  return Promise.all(validationResults).then((results) => {
+    return results.filter((result) => result !== null);
+  });
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/strategy.js
@@ -90689,7 +90698,7 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
     });
     target = await getTargetBranchesAndLabelForPullRequest(activeReleaseTrains, git.github, config, labels, githubTargetBranch);
   }
-  await assertValidPullRequest(prData, validationConfig, config, activeReleaseTrains, target);
+  const validationFailures = await assertValidPullRequest(prData, validationConfig, config, activeReleaseTrains, target);
   const requiredBaseSha = config.pullRequest.requiredBaseCommits && config.pullRequest.requiredBaseCommits[githubTargetBranch];
   const needsCommitMessageFixup = labels.includes(mergeLabels.MERGE_FIX_COMMIT_MESSAGE.name);
   const hasCaretakerNote = labels.includes(mergeLabels.MERGE_CARETAKER_NOTE.name);
@@ -90705,6 +90714,7 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
     baseSha,
     revisionRange,
     hasCaretakerNote,
+    validationFailures,
     targetBranches: target.branches,
     title: prData.title,
     commitCount: prData.commits.totalCount
@@ -90874,6 +90884,21 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
     }
     await this.confirmMergeAccess();
     const pullRequest = await loadAndValidatePullRequest(this, prNumber, validationConfig);
+    if (pullRequest.validationFailures.length > 0) {
+      Log.error(`Pull request did not pass one or more validation checks. Error:`);
+      for (const failure of pullRequest.validationFailures) {
+        Log.error(` -> ${bold(failure.message)}`);
+      }
+      Log.info();
+      if (pullRequest.validationFailures.some((failure) => !failure.canBeForceIgnored)) {
+        Log.debug("Discovered a fatal error, which cannot be forced");
+        throw new PullRequestValidationError();
+      }
+      Log.info(yellow(`All discovered validations are non-fatal and can be forcibly ignored.`));
+      if (!await Prompt2.confirm("Do you want to forcibly ignore these validation failures?")) {
+        throw new PullRequestValidationError();
+      }
+    }
     if (this.flags.forceManualBranches) {
       await this.updatePullRequestTargetedBranchesFromPrompt(pullRequest);
     }
@@ -91007,13 +91032,13 @@ async function mergePullRequest(prNumber, flags) {
         Log.warn("Manually aborted merging..");
         return false;
       }
-      if (e instanceof FatalMergeToolError) {
-        Log.error(`Could not merge the specified pull request. Error:`);
-        Log.error(` -> ${bold(e.message)}`);
+      if (e instanceof PullRequestValidationError) {
+        Log.error("Pull request failed at least one validation check.");
+        Log.error("See above for specific error information");
         return false;
       }
-      if (e instanceof PullRequestValidationFailure) {
-        Log.error(`Pull request did not pass validation check. Error:`);
+      if (e instanceof FatalMergeToolError) {
+        Log.error(`Could not merge the specified pull request. Error:`);
         Log.error(` -> ${bold(e.message)}`);
         return false;
       }
@@ -93083,7 +93108,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-f76c6af8ecd52630894188a4158ceecbcdc7f57d`;
+  const localVersion = `0.0.0-c8869b3075c4bab2f5accfa5e47667d80b9b2b31`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
