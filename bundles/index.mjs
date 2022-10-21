@@ -13,7 +13,6 @@ import {
   ReleaseNotesLevel,
   ReleasePrecheckError,
   ReleaseTrain,
-  RequestError,
   ScopeRequirement,
   _npmPackageInfoCache,
   assertValidCaretakerConfig,
@@ -28,10 +27,11 @@ import {
   getNextBranchName,
   getVersionForVersionBranch,
   getVersionOfBranch,
+  import_request_error,
   isLtsDistTag,
   isVersionBranch,
   isVersionPublishedToNpm
-} from "./chunk-MVSWD42A.mjs";
+} from "./chunk-5WCYTUBO.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -52,6 +52,7 @@ import {
 } from "./chunk-N5IEFSCP.mjs";
 import "./chunk-TIHNPQMD.mjs";
 import "./chunk-QMLAZXI4.mjs";
+var export_GithubApiRequestError = import_request_error.RequestError;
 export {
   ActiveReleaseTrains,
   AuthenticatedGitClient,
@@ -61,7 +62,7 @@ export {
   DEFAULT_LOG_LEVEL,
   GitClient,
   GitCommandError,
-  RequestError as GithubApiRequestError,
+  export_GithubApiRequestError as GithubApiRequestError,
   GithubClient,
   Log,
   LogLevel,
