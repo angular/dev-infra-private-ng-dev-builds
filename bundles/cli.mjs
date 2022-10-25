@@ -90987,7 +90987,7 @@ function getTargetedBranchesConfirmationPromptMessage() {
 }
 function getTargetedBranchesMessage(pullRequest) {
   const targetBranchListAsString = pullRequest.targetBranches.map((b) => `  - ${bold(b)}`).join("\n");
-  return `Pull request #${pullRequest.prNumber} will merge into:
+  return `Pull Request #${pullRequest.prNumber} will merge into:
 ${targetBranchListAsString}`;
 }
 
@@ -91690,6 +91690,7 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
       Log.info(getTargetedBranchesMessage(pullRequest));
       await strategy.check(pullRequest);
       Log.info("");
+      Log.info(green(`     PR: ${bold(pullRequest.title)}`));
       Log.info(green(`  \u2713  Pull request can be merged into all target branches.`));
       Log.info();
       if (this.flags.dryRun) {
@@ -91800,9 +91801,13 @@ async function mergePullRequest(prNumber, flags) {
       return true;
     } catch (e) {
       if (e instanceof import_request_error.RequestError && e.status === 401) {
-        Log.error("Github API request failed. " + e.message);
+        Log.error("Github API request failed: " + bold(e.message));
         Log.error("Please ensure that your provided token is valid.");
         Log.warn(`You can generate a token here: ${GITHUB_TOKEN_GENERATE_URL}`);
+        return false;
+      }
+      if (e instanceof import_request_error.RequestError) {
+        Log.error("Github API request failed: " + bold(e.message));
         return false;
       }
       if (e instanceof UserAbortedMergeToolError) {
@@ -93885,7 +93890,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-329aaf4c0225ab82d4914552e4a6ffa8db82faa3`;
+  const localVersion = `0.0.0-8d845921644134ea69ed3f1c1e26ea31911852ed`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
