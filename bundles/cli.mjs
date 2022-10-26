@@ -80970,18 +80970,22 @@ var GithubQueriesModule = class extends BaseModule {
 // bazel-out/k8-fastbuild/bin/ng-dev/caretaker/check/services.js
 var services = [
   {
+    prettyUrl: "https://status.us-west-1.saucelabs.com",
     url: "https://status.us-west-1.saucelabs.com/api/v2/status.json",
     name: "Saucelabs"
   },
   {
+    prettyUrl: "https://status.npmjs.org/",
     url: "https://status.npmjs.org/api/v2/status.json",
     name: "Npm"
   },
   {
+    prettyUrl: "https://status.circleci.com",
     url: "https://status.circleci.com/api/v2/status.json",
     name: "CircleCi"
   },
   {
+    prettyUrl: "https://www.githubstatus.com",
     url: "https://www.githubstatus.com/api/v2/status.json",
     name: "Github"
   }
@@ -81001,6 +81005,7 @@ var ServicesModule = class extends BaseModule {
       } else {
         Log.info.group(`${name5} \u274C (Updated: ${status.lastUpdated.toLocaleString()})`);
         Log.info(`  Details: ${status.description}`);
+        Log.info(`  Status URL: ${status.statusUrl}`);
         Log.info.groupEnd();
       }
     }
@@ -81012,6 +81017,7 @@ var ServicesModule = class extends BaseModule {
     const status = result.status.indicator === "none" ? "passing" : "failing";
     return {
       name: service.name,
+      statusUrl: service.prettyUrl,
       status,
       description: result.status.description,
       lastUpdated: new Date(result.page.updated_at)
@@ -93890,7 +93896,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-e7b8ac68367700f09887e722ee13844cf9189aea`;
+  const localVersion = `0.0.0-d87b1b56a970132f90301624cea6b6d70b6d9489`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

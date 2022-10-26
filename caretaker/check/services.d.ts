@@ -9,6 +9,7 @@ import { BaseModule } from './base.js';
 interface ServiceConfig {
     name: string;
     url: string;
+    prettyUrl: string;
 }
 /** The results of checking the status of a service */
 interface StatusCheckResult {
@@ -16,6 +17,7 @@ interface StatusCheckResult {
     status: 'passing' | 'failing';
     description: string;
     lastUpdated: Date;
+    statusUrl: string;
 }
 /** List of services Angular relies on. */
 export declare const services: ServiceConfig[];
