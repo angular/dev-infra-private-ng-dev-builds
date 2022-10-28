@@ -5,9 +5,11 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { MergeTool } from './merge-tool.js';
 import { PullRequestValidationConfig } from '../common/validation/validation-config.js';
 import { PullRequestValidationFailure } from '../common/validation/validation-failure.js';
+import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
+import { GithubConfig, NgDevConfig } from '../../utils/config.js';
+import { PullRequestConfig } from '../config/index.js';
 /** Interface that describes a pull request. */
 export interface PullRequest {
     /** URL to the pull request. */
@@ -36,6 +38,8 @@ export interface PullRequest {
     revisionRange: string;
     /** A list of validation failures found for the pull request, empty if no failures are discovered. */
     validationFailures: PullRequestValidationFailure[];
+    /** The SHA for the latest commit in the pull request. */
+    headSha: string;
 }
 /**
  * Loads and validates the specified pull request against the given configuration.
@@ -44,4 +48,10 @@ export interface PullRequest {
  * @throws {FatalMergeToolError} A fatal error might be thrown when e.g. the pull request
  *   does not exist upstream.
  */
-export declare function loadAndValidatePullRequest({ git, config }: MergeTool, prNumber: number, validationConfig: PullRequestValidationConfig): Promise<PullRequest>;
+export declare function loadAndValidatePullRequest({ git, config, }: {
+    git: AuthenticatedGitClient;
+    config: NgDevConfig<{
+        pullRequest: PullRequestConfig;
+        github: GithubConfig;
+    }>;
+}, prNumber: number, validationConfig: PullRequestValidationConfig): Promise<PullRequest>;

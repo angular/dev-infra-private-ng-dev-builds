@@ -91021,6 +91021,7 @@ var UnsatisfiedBaseShaFatalError = class extends FatalMergeToolError {
 var MergeConflictsFatalError = class extends FatalMergeToolError {
   constructor(failedBranches) {
     super(`Could not merge pull request into the following branches due to merge conflicts: ${failedBranches.join(", ")}. Please rebase the PR or update the target label.`);
+    this.failedBranches = failedBranches;
   }
 };
 var PullRequestValidationError = class extends FatalMergeToolError {
@@ -91500,7 +91501,8 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
     validationFailures,
     targetBranches: target.branches,
     title: prData.title,
-    commitCount: prData.commits.totalCount
+    commitCount: prData.commits.totalCount,
+    headSha: prData.headRefOid
   };
 }
 
@@ -93896,7 +93898,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d87b1b56a970132f90301624cea6b6d70b6d9489`;
+  const localVersion = `0.0.0-cdea11500841e703a84bfe141424898f9bd484b5`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

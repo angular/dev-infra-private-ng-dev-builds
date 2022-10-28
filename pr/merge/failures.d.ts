@@ -19,6 +19,7 @@ export declare class UnsatisfiedBaseShaFatalError extends FatalMergeToolError {
     constructor();
 }
 export declare class MergeConflictsFatalError extends FatalMergeToolError {
+    failedBranches: string[];
     constructor(failedBranches: string[]);
 }
 export declare class PullRequestValidationError extends FatalMergeToolError {
