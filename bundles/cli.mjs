@@ -40,7 +40,7 @@ import {
   require_semver,
   require_tr46,
   require_wrappy
-} from "./chunk-5WCYTUBO.mjs";
+} from "./chunk-TI72ZMHT.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -57718,9 +57718,9 @@ var require_json_parse_even_better_errors = __commonJS({
   }
 });
 
-// node_modules/npm-normalize-package-bin/index.js
+// node_modules/read-installed/node_modules/npm-normalize-package-bin/index.js
 var require_npm_normalize_package_bin = __commonJS({
-  "node_modules/npm-normalize-package-bin/index.js"(exports2, module2) {
+  "node_modules/read-installed/node_modules/npm-normalize-package-bin/index.js"(exports2, module2) {
     var { join: join15, basename: basename2 } = __require("path");
     var normalize2 = (pkg) => !pkg.bin ? removeBin(pkg) : typeof pkg.bin === "string" ? normalizeString(pkg) : Array.isArray(pkg.bin) ? normalizeArray(pkg) : typeof pkg.bin === "object" ? normalizeObject(pkg) : removeBin(pkg);
     var normalizeString = (pkg) => {
@@ -93898,7 +93898,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-fd74583dc773ee6e67673240b7fc1901b0ea9dd2`;
+  const localVersion = `0.0.0-b69998d76a2c784dd36daab9c20f98649506462a`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
