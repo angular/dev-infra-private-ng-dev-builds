@@ -42175,93 +42175,85 @@ var require_isexe = __commonJS({
   }
 });
 
-// node_modules/which/which.js
-var require_which = __commonJS({
-  "node_modules/which/which.js"(exports2, module2) {
-    var isWindows = process.platform === "win32" || process.env.OSTYPE === "cygwin" || process.env.OSTYPE === "msys";
-    var path4 = __require("path");
-    var COLON = isWindows ? ";" : ":";
+// node_modules/which/lib/index.js
+var require_lib2 = __commonJS({
+  "node_modules/which/lib/index.js"(exports2, module2) {
     var isexe = require_isexe();
+    var { join: join15, delimiter, sep, posix } = __require("path");
+    var isWindows = process.platform === "win32";
+    var rSlash = new RegExp(`[${posix.sep}${sep === posix.sep ? "" : sep}]`.replace(/(\\)/g, "\\$1"));
+    var rRel = new RegExp(`^\\.${rSlash.source}`);
     var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
-    var getPathInfo = (cmd, opt) => {
-      const colon = opt.colon || COLON;
-      const pathEnv = cmd.match(/\//) || isWindows && cmd.match(/\\/) ? [""] : [
+    var getPathInfo = (cmd, {
+      path: optPath = process.env.PATH,
+      pathExt: optPathExt = process.env.PATHEXT,
+      delimiter: optDelimiter = delimiter
+    }) => {
+      const pathEnv = cmd.match(rSlash) ? [""] : [
         ...isWindows ? [process.cwd()] : [],
-        ...(opt.path || process.env.PATH || "").split(colon)
+        ...(optPath || "").split(optDelimiter)
       ];
-      const pathExtExe = isWindows ? opt.pathExt || process.env.PATHEXT || ".EXE;.CMD;.BAT;.COM" : "";
-      const pathExt = isWindows ? pathExtExe.split(colon) : [""];
       if (isWindows) {
-        if (cmd.indexOf(".") !== -1 && pathExt[0] !== "")
+        const pathExtExe = optPathExt || [".EXE", ".CMD", ".BAT", ".COM"].join(optDelimiter);
+        const pathExt = pathExtExe.split(optDelimiter);
+        if (cmd.includes(".") && pathExt[0] !== "") {
           pathExt.unshift("");
+        }
+        return { pathEnv, pathExt, pathExtExe };
       }
-      return {
-        pathEnv,
-        pathExt,
-        pathExtExe
-      };
+      return { pathEnv, pathExt: [""] };
     };
-    var which2 = (cmd, opt, cb) => {
-      if (typeof opt === "function") {
-        cb = opt;
-        opt = {};
-      }
-      if (!opt)
-        opt = {};
+    var getPathPart = (raw, cmd) => {
+      const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
+      const prefix = !pathPart && rRel.test(cmd) ? cmd.slice(0, 2) : "";
+      return prefix + join15(pathPart, cmd);
+    };
+    var which2 = async (cmd, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
       const found = [];
-      const step = (i) => new Promise((resolve13, reject) => {
-        if (i === pathEnv.length)
-          return opt.all && found.length ? resolve13(found) : reject(getNotFoundError(cmd));
-        const ppRaw = pathEnv[i];
-        const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path4.join(pathPart, cmd);
-        const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
-        resolve13(subStep(p, i, 0));
-      });
-      const subStep = (p, i, ii) => new Promise((resolve13, reject) => {
-        if (ii === pathExt.length)
-          return resolve13(step(i + 1));
-        const ext = pathExt[ii];
-        isexe(p + ext, { pathExt: pathExtExe }, (er, is) => {
-          if (!er && is) {
-            if (opt.all)
-              found.push(p + ext);
-            else
-              return resolve13(p + ext);
-          }
-          return resolve13(subStep(p, i, ii + 1));
-        });
-      });
-      return cb ? step(0).then((res) => cb(null, res), cb) : step(0);
-    };
-    var whichSync = (cmd, opt) => {
-      opt = opt || {};
-      const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
-      const found = [];
-      for (let i = 0; i < pathEnv.length; i++) {
-        const ppRaw = pathEnv[i];
-        const pathPart = /^".*"$/.test(ppRaw) ? ppRaw.slice(1, -1) : ppRaw;
-        const pCmd = path4.join(pathPart, cmd);
-        const p = !pathPart && /^\.[\\\/]/.test(cmd) ? cmd.slice(0, 2) + pCmd : pCmd;
-        for (let j = 0; j < pathExt.length; j++) {
-          const cur = p + pathExt[j];
-          try {
-            const is = isexe.sync(cur, { pathExt: pathExtExe });
-            if (is) {
-              if (opt.all)
-                found.push(cur);
-              else
-                return cur;
+      for (const envPart of pathEnv) {
+        const p = getPathPart(envPart, cmd);
+        for (const ext of pathExt) {
+          const withExt = p + ext;
+          const is = await isexe(withExt, { pathExt: pathExtExe, ignoreErrors: true });
+          if (is) {
+            if (!opt.all) {
+              return withExt;
             }
-          } catch (ex) {
+            found.push(withExt);
           }
         }
       }
-      if (opt.all && found.length)
+      if (opt.all && found.length) {
         return found;
-      if (opt.nothrow)
+      }
+      if (opt.nothrow) {
         return null;
+      }
+      throw getNotFoundError(cmd);
+    };
+    var whichSync = (cmd, opt = {}) => {
+      const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
+      const found = [];
+      for (const pathEnvPart of pathEnv) {
+        const p = getPathPart(pathEnvPart, cmd);
+        for (const ext of pathExt) {
+          const withExt = p + ext;
+          const is = isexe.sync(withExt, { pathExt: pathExtExe, ignoreErrors: true });
+          if (is) {
+            if (!opt.all) {
+              return withExt;
+            }
+            found.push(withExt);
+          }
+        }
+      }
+      if (opt.all && found.length) {
+        return found;
+      }
+      if (opt.nothrow) {
+        return null;
+      }
       throw getNotFoundError(cmd);
     };
     module2.exports = which2;
@@ -61418,7 +61410,7 @@ var require_spdx_satisfies = __commonJS({
 });
 
 // node_modules/license-checker/lib/index.js
-var require_lib2 = __commonJS({
+var require_lib3 = __commonJS({
   "node_modules/license-checker/lib/index.js"(exports2) {
     var UNKNOWN = "UNKNOWN";
     var UNLICENSED = "UNLICENSED";
@@ -62029,7 +62021,7 @@ var require_spdx_satisfies2 = __commonJS({
 });
 
 // node_modules/@firebase/functions/node_modules/webidl-conversions/lib/index.js
-var require_lib3 = __commonJS({
+var require_lib4 = __commonJS({
   "node_modules/@firebase/functions/node_modules/webidl-conversions/lib/index.js"(exports2, module2) {
     "use strict";
     var conversions = {};
@@ -63437,7 +63429,7 @@ var require_URL_impl = __commonJS({
 var require_URL = __commonJS({
   "node_modules/@firebase/functions/node_modules/whatwg-url/lib/URL.js"(exports2, module2) {
     "use strict";
-    var conversions = require_lib3();
+    var conversions = require_lib4();
     var utils = require_utils();
     var Impl = require_URL_impl();
     var impl = utils.implSymbol;
@@ -63633,7 +63625,7 @@ var require_public_api2 = __commonJS({
 });
 
 // node_modules/@firebase/functions/node_modules/node-fetch/lib/index.js
-var require_lib4 = __commonJS({
+var require_lib5 = __commonJS({
   "node_modules/@firebase/functions/node_modules/node-fetch/lib/index.js"(exports2, module2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -65148,7 +65140,7 @@ var require_tslib = __commonJS({
 });
 
 // node_modules/@firebase/auth/node_modules/webidl-conversions/lib/index.js
-var require_lib5 = __commonJS({
+var require_lib6 = __commonJS({
   "node_modules/@firebase/auth/node_modules/webidl-conversions/lib/index.js"(exports2, module2) {
     "use strict";
     var conversions = {};
@@ -66556,7 +66548,7 @@ var require_URL_impl2 = __commonJS({
 var require_URL2 = __commonJS({
   "node_modules/@firebase/auth/node_modules/whatwg-url/lib/URL.js"(exports2, module2) {
     "use strict";
-    var conversions = require_lib5();
+    var conversions = require_lib6();
     var utils = require_utils2();
     var Impl = require_URL_impl2();
     var impl = utils.implSymbol;
@@ -66752,7 +66744,7 @@ var require_public_api3 = __commonJS({
 });
 
 // node_modules/@firebase/auth/node_modules/node-fetch/lib/index.js
-var require_lib6 = __commonJS({
+var require_lib7 = __commonJS({
   "node_modules/@firebase/auth/node_modules/node-fetch/lib/index.js"(exports2, module2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -85983,7 +85975,7 @@ var Spinner = class {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/resolve-yarn-bin.js
-var import_which = __toESM(require_which());
+var import_which = __toESM(require_lib2());
 import * as fs2 from "fs";
 import * as path2 from "path";
 
@@ -86151,7 +86143,7 @@ var UpdateYarnCommandModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/validate-licenses/validate.js
-var import_license_checker = __toESM(require_lib2());
+var import_license_checker = __toESM(require_lib3());
 var import_spdx_satisfies = __toESM(require_spdx_satisfies2());
 var allowedLicenses = [
   "MIT",
@@ -88370,7 +88362,7 @@ var version2 = "9.9.4";
 registerVersion(name2, version2, "app");
 
 // node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
-var import_node_fetch3 = __toESM(require_lib4(), 1);
+var import_node_fetch3 = __toESM(require_lib5(), 1);
 var LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";
 var UNSIGNED_LONG_TYPE = "type.googleapis.com/google.protobuf.UInt64Value";
 function mapValues(o, f) {
@@ -88772,7 +88764,7 @@ var {
 } = import_tslib.default;
 
 // node_modules/@firebase/auth/dist/node-esm/index-f3a96a92.js
-var fetchImpl = __toESM(require_lib6(), 1);
+var fetchImpl = __toESM(require_lib7(), 1);
 function _prodErrorMap() {
   return {
     ["dependent-sdk-initialized-before-auth"]: "Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK."
@@ -90809,7 +90801,7 @@ AuthImpl.prototype.setPersistence = async () => {
 };
 
 // node_modules/@firebase/auth/dist/node-esm/index.js
-var import_node_fetch4 = __toESM(require_lib6(), 1);
+var import_node_fetch4 = __toESM(require_lib7(), 1);
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/shared/ng-dev-token.js
 import { mkdir, readFile, stat, writeFile as writeFile2 } from "fs/promises";
@@ -93898,7 +93890,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-b69998d76a2c784dd36daab9c20f98649506462a`;
+  const localVersion = `0.0.0-2571e31890bd1fa963dac973a0027f2e88bbcda1`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
