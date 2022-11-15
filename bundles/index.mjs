@@ -15,6 +15,8 @@ import {
   ReleaseTrain,
   ScopeRequirement,
   _npmPackageInfoCache,
+  actionLabels,
+  allLabels,
   assertValidCaretakerConfig,
   assertValidCommitMessageConfig,
   assertValidFormatConfig,
@@ -30,8 +32,12 @@ import {
   import_request_error,
   isLtsDistTag,
   isVersionBranch,
-  isVersionPublishedToNpm
-} from "./chunk-TI72ZMHT.mjs";
+  isVersionPublishedToNpm,
+  managedLabels,
+  mergeLabels,
+  priorityLabels,
+  targetLabels
+} from "./chunk-M4FOMBKS.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -71,6 +77,8 @@ export {
   ReleaseTrain,
   ScopeRequirement,
   _npmPackageInfoCache,
+  actionLabels,
+  allLabels,
   assertValidCaretakerConfig,
   assertValidCommitMessageConfig,
   assertValidFormatConfig,
@@ -94,9 +102,13 @@ export {
   isLtsDistTag,
   isVersionBranch,
   isVersionPublishedToNpm,
+  managedLabels,
+  mergeLabels,
+  priorityLabels,
   red,
   reset,
   setConfig,
+  targetLabels,
   yellow
 };
 /**
