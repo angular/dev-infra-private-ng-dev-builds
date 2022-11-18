@@ -120,6 +120,11 @@ export declare const allLabels: {
         name: string;
         commitCheck: (c: import("../../commit-message/parse.js").Commit) => boolean;
     };
+    DETECTED_INFRA_CHANGE: {
+        description: string;
+        name: string;
+        commitCheck: (c: import("../../commit-message/parse.js").Commit) => boolean;
+    };
 };
 export { managedLabels, actionLabels, mergeLabels, targetLabels, priorityLabels };
 export { Label } from './labels/base.js';

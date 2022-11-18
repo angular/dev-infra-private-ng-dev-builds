@@ -20,4 +20,9 @@ export declare const managedLabels: {
         name: string;
         commitCheck: (c: Commit) => boolean;
     };
+    DETECTED_INFRA_CHANGE: {
+        description: string;
+        name: string;
+        commitCheck: (c: Commit) => boolean;
+    };
 };
