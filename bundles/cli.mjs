@@ -93740,7 +93740,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-ca1c78cb3551ddadcc0538ba0441f31f3bcad323`;
+  const localVersion = `0.0.0-fcdcc612303a4564848a9935582ba75a6316afae`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -94517,12 +94517,12 @@ var GoogleOAuthDanceConfig = {
 };
 var GithubOAuthDanceConfig = {
   loopback: {
-    client_id: "Iv1.58b338d4f1a5ba12",
-    client_secret: "4a75aa1531f5ffa2b6ff793468ad2de90cb1d8cd"
+    client_id: "Iv1.57e16107abc663d9",
+    client_secret: "c9b2b8cfbd59d6a36311607154dccabd8ce042e6"
   },
   oob: {
-    client_id: "Iv1.58b338d4f1a5ba12",
-    client_secret: "4a75aa1531f5ffa2b6ff793468ad2de90cb1d8cd"
+    client_id: "Iv1.57e16107abc663d9",
+    client_secret: "c9b2b8cfbd59d6a36311607154dccabd8ce042e6"
   },
   scope: [].join(" "),
   authConfig: new import_appauth.AuthorizationServiceConfiguration({
