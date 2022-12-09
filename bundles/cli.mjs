@@ -80965,8 +80965,8 @@ var GithubQueriesModule = class extends BaseModule {
 // bazel-out/k8-fastbuild/bin/ng-dev/caretaker/check/services.js
 var services = [
   {
-    prettyUrl: "https://status.us-west-1.saucelabs.com",
-    url: "https://status.us-west-1.saucelabs.com/api/v2/status.json",
+    prettyUrl: "https://status.saucelabs.com",
+    url: "https://status.saucelabs.com/api/v2/status.json",
     name: "Saucelabs"
   },
   {
@@ -81008,15 +81008,25 @@ var ServicesModule = class extends BaseModule {
     Log.info();
   }
   async getStatusFromStandardApi(service) {
-    const result = await fetch2(service.url).then((r) => r.json());
-    const status = result.status.indicator === "none" ? "passing" : "failing";
-    return {
-      name: service.name,
-      statusUrl: service.prettyUrl,
-      status,
-      description: result.status.description,
-      lastUpdated: new Date(result.page.updated_at)
-    };
+    try {
+      const result = await fetch2(service.url).then((r) => r.json());
+      const status = result.status.indicator === "none" ? "passing" : "failing";
+      return {
+        name: service.name,
+        statusUrl: service.prettyUrl,
+        status,
+        description: result.status.description,
+        lastUpdated: new Date(result.page.updated_at)
+      };
+    } catch {
+      return {
+        name: service.name,
+        statusUrl: service.prettyUrl,
+        status: "failing",
+        description: `Unable to retrieve status from ${service.name}`,
+        lastUpdated: new Date()
+      };
+    }
   }
 };
 
@@ -93740,7 +93750,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-0a49ed85541ecbb28a0e19eefce7a874c1eaab5e`;
+  const localVersion = `0.0.0-6d049bb52bd72e2f08b94f0a37a5603e660ac27b`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
