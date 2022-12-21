@@ -21,5 +21,5 @@ export declare class CutLongTermSupportPatchAction extends ReleaseAction {
     private _promptForTargetLtsBranch;
     /** Gets an inquirer choice for the given LTS branch. */
     private _getChoiceForLtsBranch;
-    static isActive(active: ActiveReleaseTrains): Promise<boolean>;
+    static isActive(_active: ActiveReleaseTrains): Promise<boolean>;
 }

@@ -12,7 +12,7 @@ export declare abstract class NpmCommand {
      * Runs NPM publish within a specified package directory.
      * @throws With the process log output if the publish failed.
      */
-    static publish(packagePath: string, distTag: NpmDistTag, registryUrl: string | undefined): Promise<void>;
+    static publish(packagePath: string, distTag: NpmDistTag | null, registryUrl: string | undefined): Promise<void>;
     /**
      * Sets the NPM tag to the specified version for the given package.
      * @throws With the process log output if the tagging failed.

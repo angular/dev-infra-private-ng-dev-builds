@@ -17,5 +17,5 @@ export declare class CutNewPatchAction extends ReleaseAction {
     private _newVersion;
     getDescription(): Promise<string>;
     perform(): Promise<void>;
-    static isActive(active: ActiveReleaseTrains): Promise<boolean>;
+    static isActive(_active: ActiveReleaseTrains): Promise<boolean>;
 }

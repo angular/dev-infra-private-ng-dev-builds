@@ -92795,7 +92795,10 @@ var ReleasePrecheckCommandModule = {
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/npm-command.js
 var NpmCommand = class {
   static async publish(packagePath, distTag, registryUrl) {
-    const args = ["publish", "--access", "public", "--tag", distTag];
+    const args = ["publish", "--access", "public"];
+    if (distTag !== null) {
+      args.push("--tag", distTag);
+    }
     if (registryUrl !== void 0) {
       args.push("--registry", registryUrl);
     }
@@ -93329,7 +93332,9 @@ var ReleaseAction = class {
   async promptAndWaitForPullRequestMerged(pullRequest) {
     await promptToInitiatePullRequestMerge(this.git, pullRequest);
   }
-  async _createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, isPrerelease) {
+  async _createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha) {
+    const newVersion = releaseNotes.version;
+    const isPrerelease = newVersion.prerelease.length !== 0;
     const tagName = getReleaseTagForVersion(releaseNotes.version);
     await this.git.github.git.createRef({
       ...this.git.remoteParams,
@@ -93369,7 +93374,7 @@ var ReleaseAction = class {
       throw new FatalReleaseActionError();
     }
     await assertIntegrityOfBuiltPackages(builtPackagesWithInfo);
-    await this._createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, npmDistTag === "next");
+    await this._createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha);
     for (const pkg of builtPackagesWithInfo) {
       await this._publishBuiltPackageToNpm(pkg, npmDistTag);
     }
@@ -93457,7 +93462,7 @@ var CutLongTermSupportPatchAction = class extends ReleaseAction {
   _getChoiceForLtsBranch(branch) {
     return { name: `v${branch.version.major} (from ${branch.name})`, value: branch };
   }
-  static async isActive(active) {
+  static async isActive(_active) {
     return true;
   }
 };
@@ -93483,101 +93488,111 @@ var CutNewPatchAction = class extends ReleaseAction {
     await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, "latest");
     await this.cherryPickChangelogIntoNextBranch(releaseNotes, branchName);
   }
-  static async isActive(active) {
+  static async isActive(_active) {
     return true;
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/next-prerelease-version.js
-async function getReleaseNotesCompareVersionForNext(active, config) {
-  const { version: nextVersion } = active.next;
-  const isNextPublishedToNpm = await isVersionPublishedToNpm(nextVersion, config);
-  return isNextPublishedToNpm ? nextVersion : active.latest.version;
-}
-async function computeNewPrereleaseVersionForNext(active, config) {
-  const { version: nextVersion } = active.next;
-  const isNextPublishedToNpm = await isVersionPublishedToNpm(nextVersion, config);
-  if (isNextPublishedToNpm) {
-    return semverInc(nextVersion, "prerelease");
-  } else {
-    return nextVersion;
-  }
+// bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/prerelease-version.js
+function isFirstNextPrerelease(v) {
+  return v.prerelease[0] === "next" && v.prerelease[1] === 0;
 }
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/cut-next-prerelease.js
-var CutNextPrereleaseAction = class extends ReleaseAction {
-  constructor() {
-    super(...arguments);
-    this._newVersion = this._computeNewVersion();
-  }
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/cut-prerelease.js
+var CutPrereleaseBaseAction = class extends ReleaseAction {
   async getDescription() {
-    const { branchName } = this._getActivePrereleaseTrain();
-    const newVersion = await this._newVersion;
-    return `Cut a new next pre-release for the "${branchName}" branch (v${newVersion}).`;
+    const branch = this._getBranch();
+    const newVersion = await this.getNewVersion();
+    return `Cut a new pre-release for the "${branch}" branch (v${newVersion}).`;
   }
   async perform() {
-    const releaseTrain = this._getActivePrereleaseTrain();
-    const { branchName } = releaseTrain;
-    const newVersion = await this._newVersion;
-    const compareVersionForReleaseNotes = await this._getCompareVersionForReleaseNotes();
+    const branchName = this._getBranch();
+    const newVersion = await this.getNewVersion();
+    const compareVersionForReleaseNotes = await this.releaseNotesCompareVersion;
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branchName);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, "next");
-    if (releaseTrain !== this.active.next) {
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this.npmDistTag);
+    if (this.releaseTrain !== this.active.next) {
       await this.cherryPickChangelogIntoNextBranch(releaseNotes, branchName);
     }
   }
-  _getActivePrereleaseTrain() {
-    return this.active.releaseCandidate ?? this.active.next;
-  }
-  async _computeNewVersion() {
-    const releaseTrain = this._getActivePrereleaseTrain();
-    if (releaseTrain === this.active.next) {
-      return await computeNewPrereleaseVersionForNext(this.active, this.config);
+  async getNewVersion() {
+    if (await this.shouldUseExistingVersion) {
+      return this.releaseTrain.version;
     } else {
-      return semverInc(releaseTrain.version, "prerelease");
+      return semverInc(this.releaseTrain.version, "prerelease");
     }
   }
-  async _getCompareVersionForReleaseNotes() {
-    const releaseTrain = this._getActivePrereleaseTrain();
-    if (releaseTrain === this.active.next) {
-      return await getReleaseNotesCompareVersionForNext(this.active, this.config);
-    } else {
-      return releaseTrain.version;
-    }
+  _getBranch() {
+    return this.releaseTrain.branchName;
   }
-  static async isActive() {
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/cut-npm-next-prerelease.js
+var CutNpmNextPrereleaseAction = class extends CutPrereleaseBaseAction {
+  constructor() {
+    super(...arguments);
+    this.releaseTrain = this.active.releaseCandidate ?? this.active.next;
+    this.npmDistTag = "next";
+    this.shouldUseExistingVersion = (async () => {
+      if (this.releaseTrain === this.active.next && isFirstNextPrerelease(this.active.next.version)) {
+        return !await isVersionPublishedToNpm(this.active.next.version, this.config);
+      }
+      return false;
+    })();
+    this.releaseNotesCompareVersion = (async () => {
+      if (this.releaseTrain === this.active.next && await this.shouldUseExistingVersion) {
+        return this.active.latest.version;
+      }
+      return this.releaseTrain.version;
+    })();
+  }
+  static async isActive(_active) {
     return true;
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/cut-release-candidate-for-feature-freeze.js
-var CutReleaseCandidateForFeatureFreezeAction = class extends ReleaseAction {
-  constructor() {
-    super(...arguments);
-    this._newVersion = semverInc(this.active.releaseCandidate.version, "prerelease", "rc");
-  }
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/cut-release-candidate.js
+var CutReleaseCandidateBaseAction = class extends ReleaseAction {
   async getDescription() {
-    const newVersion = this._newVersion;
-    const branchName = this.active.releaseCandidate.branchName;
-    return `Cut a first release-candidate for the "${branchName}" feature-freeze branch (v${newVersion}).`;
+    const branch = this._getBranch();
+    const newVersion = this.getNewVersion();
+    return `Cut a first release-candidate for the "${branch}" branch (v${newVersion}).`;
   }
   async perform() {
-    const { branchName } = this.active.releaseCandidate;
-    const newVersion = this._newVersion;
-    const compareVersionForReleaseNotes = this.active.releaseCandidate.version;
-    const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branchName);
+    const branch = this._getBranch();
+    const newVersion = this.getNewVersion();
+    const compareVersionForReleaseNotes = this.getReleaseNotesCompareVersion();
+    const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branch);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, "next");
-    await this.cherryPickChangelogIntoNextBranch(releaseNotes, branchName);
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branch, this.npmDistTag);
+    await this.cherryPickChangelogIntoNextBranch(releaseNotes, branch);
+  }
+  getNewVersion() {
+    return semverInc(this.releaseTrain.version, "prerelease", "rc");
+  }
+  getReleaseNotesCompareVersion() {
+    return this.releaseTrain.version;
+  }
+  _getBranch() {
+    return this.releaseTrain.branchName;
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/cut-npm-next-release-candidate.js
+var CutNpmNextReleaseCandidateAction = class extends CutReleaseCandidateBaseAction {
+  constructor() {
+    super(...arguments);
+    this.releaseTrain = this.active.releaseCandidate;
+    this.npmDistTag = "next";
   }
   static async isActive(active) {
-    return active.releaseCandidate !== null && active.releaseCandidate.version.prerelease[0] === "next";
+    return active.isFeatureFreeze();
   }
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/cut-stable.js
-var import_semver13 = __toESM(require_semver());
+var import_semver12 = __toESM(require_semver());
 var CutStableAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -93611,16 +93626,21 @@ var CutStableAction = class extends ReleaseAction {
   }
   _computeNewVersion() {
     const { version: version5 } = this.active.releaseCandidate;
-    return import_semver13.default.parse(`${version5.major}.${version5.minor}.${version5.patch}`);
+    return import_semver12.default.parse(`${version5.major}.${version5.minor}.${version5.patch}`);
   }
   static async isActive(active) {
     return active.releaseCandidate !== null && active.releaseCandidate.version.prerelease[0] === "rc";
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/branch-off-next-branch.js
-var import_semver14 = __toESM(require_semver());
-var BranchOffNextBranchBaseAction = class extends ReleaseAction {
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/branch-off-next-branch.js
+var import_semver13 = __toESM(require_semver());
+var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
+  constructor() {
+    super(...arguments);
+    this._nextPrerelease = new CutNpmNextPrereleaseAction(new ActiveReleaseTrains({ ...this.active, releaseCandidate: null }), this.git, this.config, this.projectDir);
+    this._rcPrerelease = new CutNpmNextReleaseCandidateAction(new ActiveReleaseTrains({ ...this.active, releaseCandidate: this.active.next }), this.git, this.config, this.projectDir);
+  }
   async getDescription() {
     const { branchName } = this.active.next;
     const newVersion = await this._computeNewVersion();
@@ -93628,7 +93648,7 @@ var BranchOffNextBranchBaseAction = class extends ReleaseAction {
   }
   async perform() {
     const nextBranchName = this.active.next.branchName;
-    const compareVersionForReleaseNotes = await getReleaseNotesCompareVersionForNext(this.active, this.config);
+    const compareVersionForReleaseNotes = await this._computeReleaseNoteCompareVersion();
     const newVersion = await this._computeNewVersion();
     const newBranch = `${newVersion.major}.${newVersion.minor}.x`;
     const beforeStagingSha = await this.getLatestCommitOfBranch(nextBranchName);
@@ -93642,10 +93662,13 @@ var BranchOffNextBranchBaseAction = class extends ReleaseAction {
   }
   async _computeNewVersion() {
     if (this.newPhaseName === "feature-freeze") {
-      return computeNewPrereleaseVersionForNext(this.active, this.config);
+      return this._nextPrerelease.getNewVersion();
     } else {
-      return semverInc(this.active.next.version, "prerelease", "rc");
+      return this._rcPrerelease.getNewVersion();
     }
+  }
+  async _computeReleaseNoteCompareVersion() {
+    return await this._nextPrerelease.releaseNotesCompareVersion;
   }
   async _createNewVersionBranchFromNext(newBranch) {
     const { branchName: nextBranch } = this.active.next;
@@ -93656,7 +93679,7 @@ var BranchOffNextBranchBaseAction = class extends ReleaseAction {
   }
   async _createNextBranchUpdatePullRequest(releaseNotes, newVersion) {
     const { branchName: nextBranch, version: version5 } = this.active.next;
-    const newNextVersion = import_semver14.default.parse(`${version5.major}.${version5.minor + 1}.0-next.0`);
+    const newNextVersion = import_semver13.default.parse(`${version5.major}.${version5.minor + 1}.0-next.0`);
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
@@ -93696,7 +93719,7 @@ var MoveNextIntoReleaseCandidateAction = class extends BranchOffNextBranchBaseAc
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/tag-recent-major-as-latest.js
-var import_semver16 = __toESM(require_semver());
+var import_semver14 = __toESM(require_semver());
 var TagRecentMajorAsLatest = class extends ReleaseAction {
   async getDescription() {
     return `Retag recently published major v${this.active.latest.version} as "latest" in NPM.`;
@@ -93724,7 +93747,7 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
       return false;
     }
     const packageInfo = await fetchProjectNpmPackageInfo(config);
-    const npmLatestVersion = import_semver16.default.parse(packageInfo["dist-tags"]["latest"]);
+    const npmLatestVersion = import_semver14.default.parse(packageInfo["dist-tags"]["latest"]);
     return npmLatestVersion !== null && npmLatestVersion.major === latest.version.major - 1;
   }
 };
@@ -93733,9 +93756,9 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
 var actions = [
   TagRecentMajorAsLatest,
   CutStableAction,
-  CutReleaseCandidateForFeatureFreezeAction,
+  CutNpmNextReleaseCandidateAction,
   CutNewPatchAction,
-  CutNextPrereleaseAction,
+  CutNpmNextPrereleaseAction,
   MoveNextIntoFeatureFreezeAction,
   MoveNextIntoReleaseCandidateAction,
   CutLongTermSupportPatchAction
@@ -93747,7 +93770,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-5cffacd8e5d029d1df8fede70306f5e0e587960e`;
+  const localVersion = `0.0.0-509997b72d4736a8e00954cdaf1e47c3b2fce64b`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -93939,7 +93962,7 @@ var ReleasePublishCommandModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/set-dist-tag/cli.js
-var import_semver17 = __toESM(require_semver());
+var import_semver15 = __toESM(require_semver());
 function builder23(args) {
   return args.positional("tagName", {
     type: "string",
@@ -93960,7 +93983,7 @@ async function handler25(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages, publishRegistry } = config.release;
-  const version5 = import_semver17.default.parse(rawVersion);
+  const version5 = import_semver15.default.parse(rawVersion);
   if (version5 === null) {
     Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
     process.exit(1);
@@ -94000,7 +94023,7 @@ var ReleaseSetDistTagCommand = {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
-var import_semver18 = __toESM(require_semver());
+var import_semver16 = __toESM(require_semver());
 import { join as join13 } from "path";
 async function buildEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
@@ -94084,7 +94107,7 @@ function getVersionFromWorkspacePackageJson(git) {
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver18.default.SemVer(packageJson.version);
+  return new import_semver16.default.SemVer(packageJson.version);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/cli.js

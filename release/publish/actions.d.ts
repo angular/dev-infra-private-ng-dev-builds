@@ -180,7 +180,6 @@ export declare abstract class ReleaseAction {
      * @param releaseNotes The release notes for the version being published.
      * @param versionBumpCommitSha Commit that bumped the version. The release tag
      *   will point to this commit.
-     * @param isPrerelease Whether the new version is published as a pre-release.
      */
     private _createGithubReleaseForVersion;
     /** Gets a Github URL that resolves to the release notes in the given ref. */
@@ -198,7 +197,7 @@ export declare abstract class ReleaseAction {
      * @param npmDistTag NPM dist tag where the version should be published to.
      * @param additionalOptions Additional options for building and publishing.
      */
-    protected publish(builtPackagesWithInfo: BuiltPackageWithInfo[], releaseNotes: ReleaseNotes, beforeStagingSha: string, publishBranch: string, npmDistTag: NpmDistTag): Promise<void>;
+    protected publish(builtPackagesWithInfo: BuiltPackageWithInfo[], releaseNotes: ReleaseNotes, beforeStagingSha: string, publishBranch: string, npmDistTag: NpmDistTag | null): Promise<void>;
     /** Publishes the given built package to NPM with the specified NPM dist tag. */
     private _publishBuiltPackageToNpm;
     /** Checks whether the given commit represents a staging commit for the specified version. */
