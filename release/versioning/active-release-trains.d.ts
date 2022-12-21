@@ -16,8 +16,11 @@ export declare class ActiveReleaseTrains {
     readonly next: ReleaseTrain;
     /** Release-train currently in the "latest" phase. */
     readonly latest: ReleaseTrain;
+    /** Release-train for an exceptional minor in progress. */
+    readonly exceptionalMinor: ReleaseTrain | null;
     constructor(trains: {
         releaseCandidate: ReleaseTrain | null;
+        exceptionalMinor: ReleaseTrain | null;
         next: ReleaseTrain;
         latest: ReleaseTrain;
     });

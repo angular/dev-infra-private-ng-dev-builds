@@ -26,6 +26,13 @@ export interface VersionBranch {
      */
     parsed: semver.SemVer;
 }
+/** Describes the concrete version of a version branch. */
+export interface VersionInfo {
+    version: semver.SemVer;
+    isExceptionalMinor: boolean;
+}
+/** Field in `package.json` that is used to indicate an in-progress exceptional minor. */
+export declare const exceptionalMinorPackageIndicator = "__ngDevExceptionalMinor__";
 /**
  * Gets the name of the next branch from the Github configuration.
  *
@@ -33,18 +40,10 @@ export interface VersionBranch {
  * upstream remote repository and the `next` release-train branch.
  */
 export declare function getNextBranchName(github: GithubConfig): string;
-/** Gets the version of a given branch by reading the `package.json` upstream. */
-export declare function getVersionOfBranch(repo: ReleaseRepoWithApi, branchName: string): Promise<semver.SemVer>;
+/** Gets the version info for a branch by reading the `package.json` upstream. */
+export declare function getVersionInfoForBranch(repo: ReleaseRepoWithApi, branchName: string): Promise<VersionInfo>;
 /** Whether the given branch corresponds to a version branch. */
 export declare function isVersionBranch(branchName: string): boolean;
-/**
- * Converts a given version-branch into a SemVer version that can be used with SemVer
- * utilities. e.g. to determine semantic order, extract major digit, compare.
- *
- * For example `10.0.x` will become `10.0.0` in SemVer. The patch digit is not
- * relevant but needed for parsing. SemVer does not allow `x` as patch digit.
- */
-export declare function getVersionForVersionBranch(branchName: string): semver.SemVer | null;
 /**
  * Gets the version branches for the specified major versions in descending
  * order. i.e. latest version branches first.

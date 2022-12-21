@@ -11,7 +11,7 @@ export * from './commit-message/config.js';
 export * from './format/config.js';
 export * from './pr/config/index.js';
 export * from './release/config/index.js';
-export * from './pr/common/labels.js';
+export * from './pr/common/labels/index.js';
 export * from './release/versioning/index.js';
 export { ReleasePrecheckError } from './release/precheck/index.js';
 export * from './utils/logging.js';

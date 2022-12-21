@@ -8,14 +8,15 @@
 import { ReleaseConfig } from '../../../release/config/index.js';
 import { ActiveReleaseTrains } from '../../../release/versioning/index.js';
 import { GithubConfig, NgDevConfig } from '../../../utils/config.js';
-import { TargetLabel } from './target-label.js';
+import { TargetLabelConfig } from './target-label.js';
 import { GithubClient } from '../../../utils/git/github.js';
 import { PullRequestConfig } from '../../config/index.js';
 /**
- * Gets a list of target labels which should be considered by the merge
- * tooling when a pull request is processed to be merged.
+ * Gets a list of target labels and their configs. The merge tooling will
+ * respect match to the appropriate label config and leverage it for determining
+ * into which branches a pull request should merge into.
  *
- * The target labels are implemented according to the design document which
+ * The target label configs are implemented according to the design document which
  * specifies versioning, branching and releasing for the Angular organization:
  * https://docs.google.com/document/d/197kVillDwx-RZtSVOBtPb4BBIAw0E9RT3q3v6DZkykU
  *
@@ -23,8 +24,8 @@ import { PullRequestConfig } from '../../config/index.js';
  * @param config Configuration for the Github remote and release packages. Used to fetch
  *   NPM version data when LTS version branches are validated.
  */
-export declare function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate, next }: ActiveReleaseTrains, api: GithubClient, config: NgDevConfig<{
+export declare function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCandidate, next }: ActiveReleaseTrains, api: GithubClient, config: NgDevConfig<{
     github: GithubConfig;
     pullRequest: PullRequestConfig;
     release?: ReleaseConfig;
-}>): Promise<TargetLabel[]>;
+}>): Promise<TargetLabelConfig[]>;

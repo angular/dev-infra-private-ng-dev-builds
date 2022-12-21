@@ -8,8 +8,8 @@
 import { Commit } from '../../../commit-message/parse.js';
 import { ActiveReleaseTrains } from '../../../release/versioning/active-release-trains.js';
 import { PullRequestConfig } from '../../config/index.js';
-import { TargetLabelName } from '../targeting/target-label.js';
+import { TargetLabel } from '../labels/target.js';
 /** Assert the commits provided are allowed to merge to the provided target label. */
 export declare const changesAllowForTargetLabelValidation: {
-    run(validationConfig: import("./validation-config.js").PullRequestValidationConfig, commits: Commit[], labelName: TargetLabelName, config: PullRequestConfig, releaseTrains: ActiveReleaseTrains, labelsOnPullRequest: string[]): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
+    run(validationConfig: import("./validation-config.js").PullRequestValidationConfig, commits: Commit[], targetLabel: TargetLabel, config: PullRequestConfig, releaseTrains: ActiveReleaseTrains, labelsOnPullRequest: string[]): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };

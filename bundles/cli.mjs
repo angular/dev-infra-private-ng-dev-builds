@@ -29,7 +29,7 @@ import {
   getLtsNpmDistTagOfMajor,
   getNextBranchName,
   getRepositoryGitUrl,
-  getVersionOfBranch,
+  getVersionInfoForBranch,
   import_request_error,
   isVersionBranch,
   isVersionPublishedToNpm,
@@ -42,8 +42,9 @@ import {
   require_safer,
   require_semver,
   require_tr46,
-  require_wrappy
-} from "./chunk-FJCG5APD.mjs";
+  require_wrappy,
+  targetLabels
+} from "./chunk-C7MVLHQ2.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -80732,8 +80733,8 @@ var CiModule = class extends BaseModule {
       ...this.git.remoteConfig,
       nextBranchName
     };
-    const { latest, next, releaseCandidate } = await ActiveReleaseTrains.fetch(repo);
-    const ciResultPromises = Object.entries({ releaseCandidate, latest, next }).map(async ([trainName, train]) => {
+    const { latest, next, releaseCandidate, exceptionalMinor } = await ActiveReleaseTrains.fetch(repo);
+    const ciResultPromises = Object.entries({ releaseCandidate, exceptionalMinor, latest, next }).map(async ([trainName, train]) => {
       if (train === null) {
         return {
           active: false,
@@ -86287,7 +86288,7 @@ function compareString(a, b) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/targeting/lts-branch.js
 async function assertActiveLtsBranch(repo, releaseConfig, branchName) {
-  const version5 = await getVersionOfBranch(repo, branchName);
+  const { version: version5 } = await getVersionInfoForBranch(repo, branchName);
   const { "dist-tags": distTags, time } = await fetchProjectNpmPackageInfo(releaseConfig);
   const ltsNpmTag = getLtsNpmDistTagOfMajor(version5.major);
   const ltsVersion = import_semver.default.parse(distTags[ltsNpmTag]);
@@ -86312,7 +86313,7 @@ async function assertActiveLtsBranch(repo, releaseConfig, branchName) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/targeting/labels.js
-async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate, next }, api, config) {
+async function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCandidate, next }, api, config) {
   assertValidGithubConfig(config);
   assertValidPullRequestConfig(config);
   const nextBranchName = getNextBranchName(config.github);
@@ -86322,9 +86323,9 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
     nextBranchName,
     api
   };
-  const targetLabels = [
+  const labelConfigs = [
     {
-      name: TargetLabelName.MAJOR,
+      label: targetLabels.TARGET_MAJOR,
       branches: () => {
         if (!next.isMajor) {
           throw new InvalidTargetLabelError(`Unable to merge pull request. The "${nextBranchName}" branch will be released as a minor version.`);
@@ -86333,16 +86334,13 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
       }
     },
     {
-      name: TargetLabelName.MINOR,
+      label: targetLabels.TARGET_MINOR,
       branches: () => {
-        if (config.pullRequest.__specialTreatRcAsExceptionalMinor && releaseCandidate !== null) {
-          return [nextBranchName, releaseCandidate.branchName];
-        }
         return [nextBranchName];
       }
     },
     {
-      name: TargetLabelName.PATCH,
+      label: targetLabels.TARGET_PATCH,
       branches: (githubTargetBranch) => {
         if (githubTargetBranch === latest.branchName) {
           return [latest.branchName];
@@ -86355,7 +86353,7 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
       }
     },
     {
-      name: TargetLabelName.RELEASE_CANDIDATE,
+      label: targetLabels.TARGET_RC,
       branches: (githubTargetBranch) => {
         if (releaseCandidate === null) {
           throw new InvalidTargetLabelError(`No active feature-freeze/release-candidate branch. Unable to merge pull request using "target: rc" label.`);
@@ -86367,7 +86365,7 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
       }
     },
     {
-      name: TargetLabelName.FEATURE_BRANCH,
+      label: targetLabels.TARGET_FEATURE,
       branches: (githubTargetBranch) => {
         if (isVersionBranch(githubTargetBranch) || githubTargetBranch === nextBranchName) {
           throw new InvalidTargetBranchError('"target: feature" pull requests cannot target a releasable branch');
@@ -86378,8 +86376,8 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
   ];
   try {
     assertValidReleaseConfig(config);
-    targetLabels.push({
-      name: TargetLabelName.LONG_TERM_SUPPORT,
+    labelConfigs.push({
+      label: targetLabels.TARGET_LTS,
       branches: async (githubTargetBranch) => {
         if (!isVersionBranch(githubTargetBranch)) {
           throw new InvalidTargetBranchError(`PR cannot be merged as it does not target a long-term support branch: "${githubTargetBranch}"`);
@@ -86403,19 +86401,10 @@ async function getTargetLabelsForActiveReleaseTrains({ latest, releaseCandidate,
       throw err;
     }
   }
-  return targetLabels;
+  return labelConfigs;
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/targeting/target-label.js
-var TargetLabelName;
-(function(TargetLabelName2) {
-  TargetLabelName2["MAJOR"] = "target: major";
-  TargetLabelName2["MINOR"] = "target: minor";
-  TargetLabelName2["PATCH"] = "target: patch";
-  TargetLabelName2["RELEASE_CANDIDATE"] = "target: rc";
-  TargetLabelName2["LONG_TERM_SUPPORT"] = "target: lts";
-  TargetLabelName2["FEATURE_BRANCH"] = "target: feature";
-})(TargetLabelName || (TargetLabelName = {}));
 var InvalidTargetBranchError = class {
   constructor(failureMessage) {
     this.failureMessage = failureMessage;
@@ -86426,10 +86415,10 @@ var InvalidTargetLabelError = class {
     this.failureMessage = failureMessage;
   }
 };
-async function getMatchingTargetLabelForPullRequest(labelsOnPullRequest, allTargetLabels) {
+async function getMatchingTargetLabelConfigForPullRequest(labelsOnPullRequest, labelConfigs) {
   const matches = [];
-  for (const label of labelsOnPullRequest) {
-    const match = allTargetLabels.find(({ name: name5 }) => label === name5);
+  for (const prLabelName of labelsOnPullRequest) {
+    const match = labelConfigs.find(({ label }) => label.name === prLabelName);
     if (match !== void 0) {
       matches.push(match);
     }
@@ -86443,15 +86432,15 @@ async function getMatchingTargetLabelForPullRequest(labelsOnPullRequest, allTarg
   throw new InvalidTargetLabelError("Unable to determine target for the PR as it has multiple target labels.");
 }
 async function getTargetBranchesAndLabelForPullRequest(activeReleaseTrains, github, config, labelsOnPullRequest, githubTargetBranch) {
-  const targetLabels = await getTargetLabelsForActiveReleaseTrains(activeReleaseTrains, github, config);
-  const matchingLabel = await getMatchingTargetLabelForPullRequest(labelsOnPullRequest, targetLabels);
+  const labelConfigs = await getTargetLabelConfigsForActiveReleaseTrains(activeReleaseTrains, github, config);
+  const matchingConfig = await getMatchingTargetLabelConfigForPullRequest(labelsOnPullRequest, labelConfigs);
   return {
-    branches: await getBranchesFromTargetLabel(matchingLabel, githubTargetBranch),
-    labelName: matchingLabel.name
+    branches: await getBranchesForTargetLabel(matchingConfig, githubTargetBranch),
+    label: matchingConfig.label
   };
 }
-async function getBranchesFromTargetLabel(label, githubTargetBranch) {
-  return typeof label.branches === "function" ? await label.branches(githubTargetBranch) : await label.branches;
+async function getBranchesForTargetLabel(labelConfig, githubTargetBranch) {
+  return typeof labelConfig.branches === "function" ? await labelConfig.branches(githubTargetBranch) : await labelConfig.branches;
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/check-target-branches/check-target-branches.js
@@ -86479,7 +86468,7 @@ async function printTargetBranchesForPr(prNumber) {
     return;
   }
   const target = await getTargetBranchesForPr(prNumber, config);
-  Log.info(`PR has the following target label: ${target.labelName}`);
+  Log.info(`PR has the following target label: ${target.label.name}`);
   Log.info.group(`PR #${prNumber} will merge into:`);
   target.branches.forEach((name5) => Log.info(`- ${name5}`));
   Log.info.groupEnd();
@@ -91082,7 +91071,7 @@ function createPullRequestValidation({ name: name5, canBeForceIgnored }, getVali
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-allowed-target-label.js
 var changesAllowForTargetLabelValidation = createPullRequestValidation({ name: "assertChangesAllowForTargetLabel", canBeForceIgnored: true }, () => Validation);
 var Validation = class extends PullRequestValidation {
-  assert(commits, labelName, config, releaseTrains, labelsOnPullRequest) {
+  assert(commits, targetLabel, config, releaseTrains, labelsOnPullRequest) {
     if (labelsOnPullRequest.includes(mergeLabels.MERGE_FIX_COMMIT_MESSAGE.name)) {
       Log.debug("Skipping commit message target label validation because the commit message fixup label is applied.");
       return;
@@ -91092,43 +91081,43 @@ var Validation = class extends PullRequestValidation {
     const hasBreakingChanges = commits.some((commit) => commit.breakingChanges.length !== 0);
     const hasDeprecations = commits.some((commit) => commit.deprecations.length !== 0);
     const hasFeatureCommits = commits.some((commit) => commit.type === "feat");
-    switch (labelName) {
-      case TargetLabelName.MAJOR:
+    switch (targetLabel) {
+      case targetLabels.TARGET_MAJOR:
         break;
-      case TargetLabelName.MINOR:
+      case targetLabels.TARGET_MINOR:
         if (hasBreakingChanges) {
-          throw this._createHasBreakingChangesError(labelName);
+          throw this._createHasBreakingChangesError(targetLabel);
         }
         break;
-      case TargetLabelName.RELEASE_CANDIDATE:
-      case TargetLabelName.LONG_TERM_SUPPORT:
-      case TargetLabelName.PATCH:
+      case targetLabels.TARGET_RC:
+      case targetLabels.TARGET_LTS:
+      case targetLabels.TARGET_PATCH:
         if (hasBreakingChanges) {
-          throw this._createHasBreakingChangesError(labelName);
+          throw this._createHasBreakingChangesError(targetLabel);
         }
         if (hasFeatureCommits) {
-          throw this._createHasFeatureCommitsError(labelName);
+          throw this._createHasFeatureCommitsError(targetLabel);
         }
         if (hasDeprecations && !releaseTrains.isFeatureFreeze()) {
-          throw this._createHasDeprecationsError(labelName);
+          throw this._createHasDeprecationsError(targetLabel);
         }
         break;
       default:
         Log.warn(red("WARNING: Unable to confirm all commits in the pull request are"));
-        Log.warn(red(`eligible to be merged into the target branches for: ${labelName}`));
+        Log.warn(red(`eligible to be merged into the target branches for: ${targetLabel.name}`));
         break;
     }
   }
-  _createHasBreakingChangesError(labelName) {
-    const message = `Cannot merge into branch for "${labelName}" as the pull request has breaking changes. Breaking changes can only be merged with the "target: major" label.`;
+  _createHasBreakingChangesError(label) {
+    const message = `Cannot merge into branch for "${label.name}" as the pull request has breaking changes. Breaking changes can only be merged with the "target: major" label.`;
     return this._createError(message);
   }
-  _createHasDeprecationsError(labelName) {
-    const message = `Cannot merge into branch for "${labelName}" as the pull request contains deprecations. Deprecations can only be merged with the "target: minor" or "target: major" label.`;
+  _createHasDeprecationsError(label) {
+    const message = `Cannot merge into branch for "${label.name}" as the pull request contains deprecations. Deprecations can only be merged with the "target: minor" or "target: major" label.`;
     return this._createError(message);
   }
-  _createHasFeatureCommitsError(labelName) {
-    const message = `Cannot merge into branch for "${labelName}" as the pull request has commits with the "feat" type. New features can only be merged with the "target: minor" or "target: major" label.`;
+  _createHasFeatureCommitsError(label) {
+    const message = `Cannot merge into branch for "${label.name}" as the pull request has commits with the "feat" type. New features can only be merged with the "target: minor" or "target: major" label.`;
     return this._createError(message);
   }
 };
@@ -91226,7 +91215,7 @@ async function assertValidPullRequest(pullRequest, validationConfig, ngDevConfig
     passingCiValidation.run(validationConfig, pullRequest)
   ];
   if (activeReleaseTrains !== null) {
-    validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.labelName, ngDevConfig.pullRequest, activeReleaseTrains, labels));
+    validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels));
   }
   return Promise.all(validationResults).then((results) => {
     return results.filter((result) => result !== null);
@@ -91324,7 +91313,7 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
   let activeReleaseTrains = null;
   let target = null;
   if (config.pullRequest.__noTargetLabeling) {
-    target = { branches: [config.github.mainBranchName], labelName: TargetLabelName.MAJOR };
+    target = { branches: [config.github.mainBranchName], label: targetLabels.TARGET_MAJOR };
   } else {
     activeReleaseTrains = await ActiveReleaseTrains.fetch({
       name: name5,
@@ -91673,6 +91662,14 @@ async function mergePullRequest(prNumber, flags) {
       if (e instanceof UserAbortedMergeToolError) {
         Log.warn("Manually aborted merging..");
         return false;
+      }
+      if (e instanceof InvalidTargetBranchError) {
+        Log.error(`Pull request selects an invalid GitHub destination branch:`);
+        Log.error(` -> ${bold(e.failureMessage)}`);
+      }
+      if (e instanceof InvalidTargetLabelError) {
+        Log.error(`Pull request target label could not be determined:`);
+        Log.error(` -> ${bold(e.failureMessage)}`);
       }
       if (e instanceof PullRequestValidationError) {
         Log.error("Pull request failed at least one validation check.");
@@ -93750,7 +93747,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d280147dbfbdc264411d288c2fa7a4d589e9a4bf`;
+  const localVersion = `0.0.0-5cffacd8e5d029d1df8fede70306f5e0e587960e`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
