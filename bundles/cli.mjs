@@ -21,6 +21,7 @@ import {
   assertValidFormatConfig,
   assertValidPullRequestConfig,
   computeLtsEndDateOfMajor,
+  exceptionalMinorPackageIndicator,
   fetch as fetch2,
   fetchLongTermSupportBranchesFromNpm,
   fetchProjectNpmPackageInfo,
@@ -44,7 +45,7 @@ import {
   require_tr46,
   require_wrappy,
   targetLabels
-} from "./chunk-C7MVLHQ2.mjs";
+} from "./chunk-G3KWAQUE.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -62,8 +63,9 @@ import {
   red,
   source_default,
   supports_color_exports,
+  underline,
   yellow
-} from "./chunk-N5IEFSCP.mjs";
+} from "./chunk-GQOURFTK.mjs";
 import "./chunk-H4BWSXO4.mjs";
 import {
   __commonJS,
@@ -57109,7 +57111,7 @@ var require_typos = __commonJS({
 // node_modules/normalize-package-data/lib/fixer.js
 var require_fixer = __commonJS({
   "node_modules/normalize-package-data/lib/fixer.js"(exports2, module2) {
-    var semver13 = require_semver3();
+    var semver15 = require_semver3();
     var validateLicense = require_validate_npm_package_license();
     var hostedGitInfo = require_hosted_git_info();
     var isBuiltinModule = require_resolve().isCore;
@@ -57288,10 +57290,10 @@ var require_fixer = __commonJS({
           data.version = "";
           return true;
         }
-        if (!semver13.valid(data.version, loose)) {
+        if (!semver15.valid(data.version, loose)) {
           throw new Error('Invalid version: "' + data.version + '"');
         }
-        data.version = semver13.clean(data.version, loose);
+        data.version = semver15.clean(data.version, loose);
         return true;
       },
       fixPeople: function(data) {
@@ -58474,7 +58476,7 @@ var require_read_installed = __commonJS({
     var fs6;
     var path4 = __require("path");
     var asyncMap = require_slide().asyncMap;
-    var semver13 = require_semver2();
+    var semver15 = require_semver2();
     var readJson = require_read_json();
     var url = __require("url");
     var util = __require("util");
@@ -58568,7 +58570,7 @@ var require_read_installed = __commonJS({
         if (reqver === ANY) {
           reqver = obj.version;
         }
-        if (reqver && semver13.validRange(reqver, true) && !semver13.satisfies(obj.version, reqver, true)) {
+        if (reqver && semver15.validRange(reqver, true) && !semver15.satisfies(obj.version, reqver, true)) {
           obj.invalid = true;
         }
         obj.extraneous = true;
@@ -58648,7 +58650,7 @@ var require_read_installed = __commonJS({
       }).forEach(function(d) {
         var found = findDep(obj, d);
         debug("finding dep %j", d, found && found.name || found);
-        if (typeof deps[d] === "string" && semver13.validRange(deps[d], true) && found && !semver13.satisfies(found.version, deps[d], true)) {
+        if (typeof deps[d] === "string" && semver15.validRange(deps[d], true) && found && !semver15.satisfies(found.version, deps[d], true)) {
           opts.log(
             "unmet dependency",
             obj.path + " requires " + d + "@'" + deps[d] + "' but will load\n" + found.path + ",\nwhich is version " + found.version
@@ -58676,7 +58678,7 @@ var require_read_installed = __commonJS({
         }
         if (!dependency) {
           obj.dependencies[d] = peerDeps[d];
-        } else if (!semver13.satisfies(dependency.version, peerDeps[d], true)) {
+        } else if (!semver15.satisfies(dependency.version, peerDeps[d], true)) {
           dependency.peerInvalid = true;
         }
       });
@@ -86313,7 +86315,7 @@ async function assertActiveLtsBranch(repo, releaseConfig, branchName) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/targeting/labels.js
-async function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCandidate, next }, api, config) {
+async function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCandidate, next, exceptionalMinor }, api, config) {
   assertValidGithubConfig(config);
   assertValidPullRequestConfig(config);
   const nextBranchName = getNextBranchName(config.github);
@@ -86335,7 +86337,10 @@ async function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCand
     },
     {
       label: targetLabels.TARGET_MINOR,
-      branches: () => {
+      branches: (githubTargetBranch) => {
+        if (githubTargetBranch === (exceptionalMinor == null ? void 0 : exceptionalMinor.branchName)) {
+          return [exceptionalMinor.branchName];
+        }
         return [nextBranchName];
       }
     },
@@ -86348,6 +86353,9 @@ async function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCand
         const branches = [nextBranchName, latest.branchName];
         if (releaseCandidate !== null) {
           branches.push(releaseCandidate.branchName);
+        }
+        if (exceptionalMinor !== null) {
+          branches.push(exceptionalMinor.branchName);
         }
         return branches;
       }
@@ -92139,12 +92147,24 @@ var ReleaseBuildCommandModule = {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/print-active-trains.js
 async function printActiveReleaseTrains(active, config) {
-  const { releaseCandidate, next, latest } = active;
+  const { releaseCandidate, next, latest, exceptionalMinor } = active;
   const isNextPublishedToNpm = await isVersionPublishedToNpm(next.version, config);
   const nextTrainType = next.isMajor ? "major" : "minor";
   const ltsBranches = await fetchLongTermSupportBranchesFromNpm(config);
   Log.info();
   Log.info(blue("Current version branches in the project:"));
+  if (exceptionalMinor !== null) {
+    const version5 = exceptionalMinor.version;
+    const exceptionalMinorPublished = await isVersionPublishedToNpm(version5, config);
+    const trainPhase = version5.prerelease[0] === "next" ? "next" : "release-candidate";
+    const minorLabel = underline("exceptional minor");
+    Log.info(` \u2022 ${bold(exceptionalMinor.branchName)} contains changes for an ${minorLabel} that is currently in ${bold(trainPhase)} phase.`);
+    if (exceptionalMinorPublished) {
+      Log.info(`   Most recent pre-release for this branch is "${bold(`v${version5}`)}".`);
+    } else {
+      Log.info(`   Version is set to "${bold(`v${version5}`)}", but has not been published yet.`);
+    }
+  }
   if (releaseCandidate !== null) {
     const rcVersion = releaseCandidate.version;
     const rcTrainType = releaseCandidate.isMajor ? "major" : "minor";
@@ -92795,10 +92815,7 @@ var ReleasePrecheckCommandModule = {
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/npm-command.js
 var NpmCommand = class {
   static async publish(packagePath, distTag, registryUrl) {
-    const args = ["publish", "--access", "public"];
-    if (distTag !== null) {
-      args.push("--tag", distTag);
-    }
+    const args = ["publish", "--access", "public", "--tag", distTag];
     if (registryUrl !== void 0) {
       args.push("--registry", registryUrl);
     }
@@ -92849,33 +92866,29 @@ var UserAbortedReleaseActionError = class extends Error {
 var FatalReleaseActionError = class extends Error {
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/utils/semver.js
-var import_semver6 = __toESM(require_semver());
-function semverInc(version5, release, identifier) {
-  const clone2 = new import_semver6.default.SemVer(version5.version);
-  return clone2.inc(release, identifier);
-}
-
-// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
-import { promises as fs3 } from "fs";
-import { join as join11 } from "path";
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/configure-next-as-major.js
+var import_semver7 = __toESM(require_semver());
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/constants.js
 var ngDevNpmPackageName = "@angular/ng-dev";
 var workspaceRelativePackageJsonPath = "package.json";
 var workspaceRelativeYarnLockFilePath = "yarn.lock";
 
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
+import { promises as fs3 } from "fs";
+import { join as join11 } from "path";
+
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/experimental-versions.js
-var import_semver7 = __toESM(require_semver());
+var import_semver6 = __toESM(require_semver());
 function isExperimentalSemver(version5) {
   return version5.major === 0 && version5.minor >= 100;
 }
 function createExperimentalSemver(version5) {
-  version5 = new import_semver7.default.SemVer(version5);
-  const experimentalVersion = new import_semver7.default.SemVer(version5.format());
+  version5 = new import_semver6.default.SemVer(version5);
+  const experimentalVersion = new import_semver6.default.SemVer(version5.format());
   experimentalVersion.major = 0;
   experimentalVersion.minor = version5.major * 100 + version5.minor;
-  return new import_semver7.default.SemVer(experimentalVersion.format());
+  return new import_semver6.default.SemVer(experimentalVersion.format());
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/version-tags.js
@@ -92932,6 +92945,9 @@ function getCommitMessageForRelease(newVersion) {
 }
 function getCommitMessageForExceptionalNextVersionBump(newVersion) {
   return `release: bump the next branch to v${newVersion}`;
+}
+function getCommitMessageForNextBranchMajorSwitch(newVersion) {
+  return `release: switch the next branch to v${newVersion}`;
 }
 function getReleaseNoteCherryPickCommitMessage(newVersion) {
   return `docs: release notes for the v${newVersion} release`;
@@ -93130,9 +93146,12 @@ var ReleaseAction = class {
   static isActive(_trains, _config) {
     throw Error("Not implemented.");
   }
-  async updateProjectVersion(newVersion) {
+  async updateProjectVersion(newVersion, additionalUpdateFn) {
     const pkgJsonPath = join11(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs3.readFile(pkgJsonPath, "utf8"));
+    if (additionalUpdateFn !== void 0) {
+      additionalUpdateFn(pkgJson);
+    }
     pkgJson.version = newVersion.format();
     await fs3.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
@@ -93287,7 +93306,7 @@ var ReleaseAction = class {
     const releaseInfo = await ExternalCommands.invokeReleaseInfo(this.projectDir);
     return analyzeAndExtendBuiltPackagesWithInfo(builtPackages, releaseInfo.npmPackages);
   }
-  async stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, pullRequestTargetBranch) {
+  async stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, pullRequestTargetBranch, opts) {
     const releaseNotesCompareTag = getReleaseTagForVersion(compareVersionForReleaseNotes);
     this.git.run([
       "fetch",
@@ -93296,7 +93315,7 @@ var ReleaseAction = class {
       `refs/tags/${releaseNotesCompareTag}:refs/tags/${releaseNotesCompareTag}`
     ]);
     const releaseNotes = await ReleaseNotes.forRange(this.git, newVersion, releaseNotesCompareTag, "HEAD");
-    await this.updateProjectVersion(newVersion);
+    await this.updateProjectVersion(newVersion, opts == null ? void 0 : opts.updatePkgJsonFn);
     await this.prependReleaseNotesToChangelog(releaseNotes);
     await this.waitForEditsAndCreateReleaseCommit(newVersion);
     await this.installDependenciesForCurrentBranch();
@@ -93307,11 +93326,11 @@ var ReleaseAction = class {
     Log.info(green("  \u2713   Release staging pull request has been created."));
     return { releaseNotes, pullRequest, builtPackagesWithInfo };
   }
-  async checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, stagingBranch) {
+  async checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, stagingBranch, stagingOpts) {
     const beforeStagingSha = await this.getLatestCommitOfBranch(stagingBranch);
     await this.assertPassingGithubStatus(beforeStagingSha, stagingBranch);
     await this.checkoutUpstreamBranch(stagingBranch);
-    const stagingInfo = await this.stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, stagingBranch);
+    const stagingInfo = await this.stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, stagingBranch, stagingOpts);
     return {
       ...stagingInfo,
       beforeStagingSha
@@ -93332,9 +93351,7 @@ var ReleaseAction = class {
   async promptAndWaitForPullRequestMerged(pullRequest) {
     await promptToInitiatePullRequestMerge(this.git, pullRequest);
   }
-  async _createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha) {
-    const newVersion = releaseNotes.version;
-    const isPrerelease = newVersion.prerelease.length !== 0;
+  async _createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, isPrerelease) {
     const tagName = getReleaseTagForVersion(releaseNotes.version);
     await this.git.github.git.createRef({
       ...this.git.remoteParams,
@@ -93374,7 +93391,7 @@ var ReleaseAction = class {
       throw new FatalReleaseActionError();
     }
     await assertIntegrityOfBuiltPackages(builtPackagesWithInfo);
-    await this._createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha);
+    await this._createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, npmDistTag === "next");
     for (const pkg of builtPackagesWithInfo) {
       await this._publishBuiltPackageToNpm(pkg, npmDistTag);
     }
@@ -93416,6 +93433,48 @@ var ReleaseAction = class {
     }
   }
 };
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/prerelease-version.js
+function isFirstNextPrerelease(v) {
+  return v.prerelease[0] === "next" && v.prerelease[1] === 0;
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/configure-next-as-major.js
+var ConfigureNextAsMajorAction = class extends ReleaseAction {
+  constructor() {
+    super(...arguments);
+    this._newVersion = import_semver7.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
+  }
+  async getDescription() {
+    const { branchName } = this.active.next;
+    const newVersion = this._newVersion;
+    return `Configure the "${branchName}" branch to be released as major (v${newVersion}).`;
+  }
+  async perform() {
+    const { branchName } = this.active.next;
+    const newVersion = this._newVersion;
+    const beforeStagingSha = await this.getLatestCommitOfBranch(branchName);
+    await this.assertPassingGithubStatus(beforeStagingSha, branchName);
+    await this.checkoutUpstreamBranch(branchName);
+    await this.updateProjectVersion(newVersion);
+    await this.createCommit(getCommitMessageForNextBranchMajorSwitch(newVersion), [
+      workspaceRelativePackageJsonPath
+    ]);
+    const pullRequest = await this.pushChangesToForkAndCreatePullRequest(branchName, `switch-next-to-major-${newVersion}`, `Configure next branch to receive major changes for v${newVersion}`);
+    Log.info(green("  \u2713   Next branch update pull request has been created."));
+    await this.promptAndWaitForPullRequestMerged(pullRequest);
+  }
+  static async isActive(active, config) {
+    return !active.next.isMajor && isFirstNextPrerelease(active.next.version) && !await isVersionPublishedToNpm(active.next.version, config);
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/utils/semver.js
+var import_semver8 = __toESM(require_semver());
+function semverInc(version5, release, identifier) {
+  const clone2 = new import_semver8.default.SemVer(version5.version);
+  return clone2.inc(release, identifier);
+}
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/cut-lts-patch.js
 var CutLongTermSupportPatchAction = class extends ReleaseAction {
@@ -93493,17 +93552,17 @@ var CutNewPatchAction = class extends ReleaseAction {
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/prerelease-version.js
-function isFirstNextPrerelease(v) {
-  return v.prerelease[0] === "next" && v.prerelease[1] === 0;
-}
-
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/cut-prerelease.js
 var CutPrereleaseBaseAction = class extends ReleaseAction {
   async getDescription() {
     const branch = this._getBranch();
     const newVersion = await this.getNewVersion();
     return `Cut a new pre-release for the "${branch}" branch (v${newVersion}).`;
+  }
+  async getReleaseCandidateDescription() {
+    const branch = this._getBranch();
+    const newVersion = await this.getNewVersion();
+    return `Cut a first release-candidate for the "${branch}" branch (v${newVersion}).`;
   }
   async perform() {
     const branchName = this._getBranch();
@@ -93552,39 +93611,13 @@ var CutNpmNextPrereleaseAction = class extends CutPrereleaseBaseAction {
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/cut-release-candidate.js
-var CutReleaseCandidateBaseAction = class extends ReleaseAction {
-  async getDescription() {
-    const branch = this._getBranch();
-    const newVersion = this.getNewVersion();
-    return `Cut a first release-candidate for the "${branch}" branch (v${newVersion}).`;
-  }
-  async perform() {
-    const branch = this._getBranch();
-    const newVersion = this.getNewVersion();
-    const compareVersionForReleaseNotes = this.getReleaseNotesCompareVersion();
-    const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branch);
-    await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branch, this.npmDistTag);
-    await this.cherryPickChangelogIntoNextBranch(releaseNotes, branch);
-  }
-  getNewVersion() {
-    return semverInc(this.releaseTrain.version, "prerelease", "rc");
-  }
-  getReleaseNotesCompareVersion() {
-    return this.releaseTrain.version;
-  }
-  _getBranch() {
-    return this.releaseTrain.branchName;
-  }
-};
-
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/cut-npm-next-release-candidate.js
-var CutNpmNextReleaseCandidateAction = class extends CutReleaseCandidateBaseAction {
-  constructor() {
-    super(...arguments);
-    this.releaseTrain = this.active.releaseCandidate;
-    this.npmDistTag = "next";
+var CutNpmNextReleaseCandidateAction = class extends CutNpmNextPrereleaseAction {
+  async getDescription() {
+    return await super.getReleaseCandidateDescription();
+  }
+  async getNewVersion() {
+    return semverInc(this.releaseTrain.version, "prerelease", "rc");
   }
   static async isActive(active) {
     return active.isFeatureFreeze();
@@ -93592,27 +93625,37 @@ var CutNpmNextReleaseCandidateAction = class extends CutReleaseCandidateBaseActi
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/cut-stable.js
-var import_semver12 = __toESM(require_semver());
+var import_semver13 = __toESM(require_semver());
 var CutStableAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
-    this._newVersion = this._computeNewVersion();
-    this._isNewMajor = this.active.releaseCandidate.isMajor;
+    this._train = this.active.exceptionalMinor ?? this.active.releaseCandidate;
+    this._branch = this._train.branchName;
+    this._newVersion = this._computeNewVersion(this._train);
+    this._isNewMajor = this._train.isMajor;
   }
   async getDescription() {
     if (this._isNewMajor) {
-      return `Cut a stable release for the release-candidate branch \u2014 published as \`@next\` (v${this._newVersion}).`;
+      return `Cut a stable release for the "${this._branch}" branch \u2014 published as \`@next\` (v${this._newVersion}).`;
     } else {
-      return `Cut a stable release for the release-candidate branch \u2014 published as \`@latest\` (v${this._newVersion}).`;
+      return `Cut a stable release for the "${this._branch}" branch \u2014 published as \`@latest\` (v${this._newVersion}).`;
     }
   }
   async perform() {
-    const { branchName } = this.active.releaseCandidate;
+    if (this._isNewMajor && this._train === this.active.exceptionalMinor) {
+      throw new FatalReleaseActionError("Unexpected major release of an `exceptional-minor`.");
+    }
+    const branchName = this._branch;
     const newVersion = this._newVersion;
     const compareVersionForReleaseNotes = this.active.latest.version;
-    const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branchName);
+    const stagingOpts = {
+      updatePkgJsonFn: (pkgJson) => {
+        pkgJson[exceptionalMinorPackageIndicator] = void 0;
+      }
+    };
+    const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branchName, stagingOpts);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this._isNewMajor ? "next" : "latest");
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this._getNpmDistTag());
     if (this._isNewMajor) {
       const previousPatch = this.active.latest;
       const ltsTagForPatch = getLtsNpmDistTagOfMajor(previousPatch.version.major);
@@ -93624,17 +93667,102 @@ var CutStableAction = class extends ReleaseAction {
     }
     await this.cherryPickChangelogIntoNextBranch(releaseNotes, branchName);
   }
-  _computeNewVersion() {
-    const { version: version5 } = this.active.releaseCandidate;
-    return import_semver12.default.parse(`${version5.major}.${version5.minor}.${version5.patch}`);
+  _getNpmDistTag() {
+    return this._isNewMajor ? "next" : "latest";
+  }
+  _computeNewVersion({ version: version5 }) {
+    return import_semver13.default.parse(`${version5.major}.${version5.minor}.${version5.patch}`);
   }
   static async isActive(active) {
-    return active.releaseCandidate !== null && active.releaseCandidate.version.prerelease[0] === "rc";
+    if (active.exceptionalMinor !== null) {
+      return active.exceptionalMinor.version.prerelease[0] === "rc";
+    }
+    if (active.releaseCandidate !== null) {
+      return active.releaseCandidate.version.prerelease[0] === "rc";
+    }
+    return false;
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/exceptional-minor/cut-exceptional-minor-prerelease.js
+var CutExceptionalMinorPrereleaseAction = class extends CutPrereleaseBaseAction {
+  constructor() {
+    super(...arguments);
+    this.releaseTrain = this.active.exceptionalMinor;
+    this.npmDistTag = "exceptional-minor";
+    this.shouldUseExistingVersion = (async () => {
+      return isFirstNextPrerelease(this.releaseTrain.version) && !await isVersionPublishedToNpm(this.releaseTrain.version, this.config);
+    })();
+    this.releaseNotesCompareVersion = (async () => {
+      if (await this.shouldUseExistingVersion) {
+        return this.active.latest.version;
+      }
+      return this.releaseTrain.version;
+    })();
+  }
+  async getDescription() {
+    return `Exceptional Minor: ${await super.getDescription()}`;
+  }
+  static async isActive(active) {
+    return active.exceptionalMinor !== null;
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/exceptional-minor/cut-exceptional-minor-release-candidate.js
+var CutExceptionalMinorReleaseCandidateAction = class extends CutExceptionalMinorPrereleaseAction {
+  async getDescription() {
+    return `Exceptional Minor: ${await super.getReleaseCandidateDescription()}`;
+  }
+  async getNewVersion() {
+    return semverInc(this.releaseTrain.version, "prerelease", "rc");
+  }
+  static async isActive(active) {
+    return active.exceptionalMinor !== null && active.exceptionalMinor.version.prerelease[0] === "next";
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/exceptional-minor/prepare-exceptional-minor.js
+var import_semver15 = __toESM(require_semver());
+var PrepareExceptionalMinorAction = class extends ReleaseAction {
+  constructor() {
+    super(...arguments);
+    this._patch = this.active.latest;
+    this._baseBranch = this._patch.branchName;
+    this._patchVersion = this._patch.version;
+    this._newBranch = `${this._patchVersion.major}.${this._patchVersion.minor + 1}.x`;
+    this._newVersion = import_semver15.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
+  }
+  async getDescription() {
+    return `Prepare an exceptional minor based on the existing "${this._baseBranch}" branch (${this._newBranch}).`;
+  }
+  async perform() {
+    const latestBaseBranchSha = await this.getLatestCommitOfBranch(this._baseBranch);
+    await this.assertPassingGithubStatus(latestBaseBranchSha, this._baseBranch);
+    await this.checkoutUpstreamBranch(this._baseBranch);
+    await this.createLocalBranchFromHead(this._newBranch);
+    await this.updateProjectVersion(this._newVersion, (pkgJson) => {
+      pkgJson[exceptionalMinorPackageIndicator] = true;
+    });
+    await this.createCommit(`build: prepare exceptional minor branch: ${this._newBranch}`, [
+      workspaceRelativePackageJsonPath
+    ]);
+    await this.pushHeadToRemoteBranch(this._newBranch);
+    Log.info(green(`  \u2713   Version branch "${this._newBranch}" created.`));
+    Log.info(green(`      Exceptional minor release-train is now active.`));
+  }
+  static async isActive(active) {
+    if (active.exceptionalMinor !== null) {
+      return false;
+    }
+    if (active.releaseCandidate !== null) {
+      return active.releaseCandidate.isMajor;
+    }
+    return active.next.isMajor;
   }
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/branch-off-next-branch.js
-var import_semver13 = __toESM(require_semver());
+var import_semver16 = __toESM(require_semver());
 var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   constructor() {
     super(...arguments);
@@ -93679,7 +93807,7 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   }
   async _createNextBranchUpdatePullRequest(releaseNotes, newVersion) {
     const { branchName: nextBranch, version: version5 } = this.active.next;
-    const newNextVersion = import_semver13.default.parse(`${version5.major}.${version5.minor + 1}.0-next.0`);
+    const newNextVersion = import_semver16.default.parse(`${version5.major}.${version5.minor + 1}.0-next.0`);
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
@@ -93719,7 +93847,7 @@ var MoveNextIntoReleaseCandidateAction = class extends BranchOffNextBranchBaseAc
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/tag-recent-major-as-latest.js
-var import_semver14 = __toESM(require_semver());
+var import_semver17 = __toESM(require_semver());
 var TagRecentMajorAsLatest = class extends ReleaseAction {
   async getDescription() {
     return `Retag recently published major v${this.active.latest.version} as "latest" in NPM.`;
@@ -93747,13 +93875,15 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
       return false;
     }
     const packageInfo = await fetchProjectNpmPackageInfo(config);
-    const npmLatestVersion = import_semver14.default.parse(packageInfo["dist-tags"]["latest"]);
+    const npmLatestVersion = import_semver17.default.parse(packageInfo["dist-tags"]["latest"]);
     return npmLatestVersion !== null && npmLatestVersion.major === latest.version.major - 1;
   }
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/index.js
 var actions = [
+  CutExceptionalMinorReleaseCandidateAction,
+  CutExceptionalMinorPrereleaseAction,
   TagRecentMajorAsLatest,
   CutStableAction,
   CutNpmNextReleaseCandidateAction,
@@ -93761,6 +93891,8 @@ var actions = [
   CutNpmNextPrereleaseAction,
   MoveNextIntoFeatureFreezeAction,
   MoveNextIntoReleaseCandidateAction,
+  ConfigureNextAsMajorAction,
+  PrepareExceptionalMinorAction,
   CutLongTermSupportPatchAction
 ];
 
@@ -93770,7 +93902,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-509997b72d4736a8e00954cdaf1e47c3b2fce64b`;
+  const localVersion = `0.0.0-5c7f48e171d991291ca4937d44df721e423658dc`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -93962,7 +94094,7 @@ var ReleasePublishCommandModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/set-dist-tag/cli.js
-var import_semver15 = __toESM(require_semver());
+var import_semver18 = __toESM(require_semver());
 function builder23(args) {
   return args.positional("tagName", {
     type: "string",
@@ -93983,7 +94115,7 @@ async function handler25(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages, publishRegistry } = config.release;
-  const version5 = import_semver15.default.parse(rawVersion);
+  const version5 = import_semver18.default.parse(rawVersion);
   if (version5 === null) {
     Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
     process.exit(1);
@@ -94023,7 +94155,7 @@ var ReleaseSetDistTagCommand = {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
-var import_semver16 = __toESM(require_semver());
+var import_semver19 = __toESM(require_semver());
 import { join as join13 } from "path";
 async function buildEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
@@ -94107,7 +94239,7 @@ function getVersionFromWorkspacePackageJson(git) {
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver16.default.SemVer(packageJson.version);
+  return new import_semver19.default.SemVer(packageJson.version);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/cli.js

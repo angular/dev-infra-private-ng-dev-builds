@@ -5,8 +5,9 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import semver from 'semver';
 import { ActiveReleaseTrains } from '../../versioning/active-release-trains.js';
-import { CutReleaseCandidateBaseAction } from './shared/cut-release-candidate.js';
+import { CutNpmNextPrereleaseAction } from './cut-npm-next-prerelease.js';
 /**
  * Release action that allows for the NPM `@next` first release-candidate. The
  * action is only active when there is a current feature-freeze going on.
@@ -18,8 +19,8 @@ import { CutReleaseCandidateBaseAction } from './shared/cut-release-candidate.js
  * Additional note: There is a separate action allowing in-progress minor's to
  * go directly into the RC phase from the `next` train. See `MoveNextIntoReleaseCandidate`.
  */
-export declare class CutNpmNextReleaseCandidateAction extends CutReleaseCandidateBaseAction {
-    releaseTrain: import("../../versioning/release-trains.js").ReleaseTrain;
-    npmDistTag: "next";
+export declare class CutNpmNextReleaseCandidateAction extends CutNpmNextPrereleaseAction {
+    getDescription(): Promise<string>;
+    getNewVersion(): Promise<semver.SemVer>;
     static isActive(active: ActiveReleaseTrains): Promise<boolean>;
 }

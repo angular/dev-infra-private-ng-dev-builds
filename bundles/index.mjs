@@ -38,7 +38,7 @@ import {
   mergeLabels,
   priorityLabels,
   targetLabels
-} from "./chunk-C7MVLHQ2.mjs";
+} from "./chunk-G3KWAQUE.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -55,8 +55,9 @@ import {
   red,
   reset,
   setConfig,
+  underline,
   yellow
-} from "./chunk-N5IEFSCP.mjs";
+} from "./chunk-GQOURFTK.mjs";
 import "./chunk-H4BWSXO4.mjs";
 import "./chunk-QMLAZXI4.mjs";
 var export_GithubApiRequestError = import_request_error.RequestError;
@@ -111,6 +112,7 @@ export {
   reset,
   setConfig,
   targetLabels,
+  underline,
   yellow
 };
 /**

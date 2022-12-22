@@ -8,6 +8,8 @@
 import semver from 'semver';
 import { GithubClient, GithubRepo } from '../../utils/git/github.js';
 import { GithubConfig } from '../../utils/config.js';
+/** Field in `package.json` that is used to indicate an in-progress exceptional minor. */
+export declare const exceptionalMinorPackageIndicator: "__ngDevExceptionalMinor__";
 /** Object describing a repository that can be released, together with an API client. */
 export interface ReleaseRepoWithApi extends GithubRepo {
     /** API client that can access the repository. */
@@ -31,8 +33,12 @@ export interface VersionInfo {
     version: semver.SemVer;
     isExceptionalMinor: boolean;
 }
-/** Field in `package.json` that is used to indicate an in-progress exceptional minor. */
-export declare const exceptionalMinorPackageIndicator = "__ngDevExceptionalMinor__";
+/** Type describing the parsed contents of a `package.json`. */
+export declare type PackageJson = {
+    version: string;
+    [exceptionalMinorPackageIndicator]?: boolean;
+    [otherUnknownFields: string]: unknown;
+};
 /**
  * Gets the name of the next branch from the Github configuration.
  *

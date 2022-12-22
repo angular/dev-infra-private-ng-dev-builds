@@ -28,6 +28,7 @@ export declare const green: ChalkInstance;
 export declare const yellow: ChalkInstance;
 export declare const bold: ChalkInstance;
 export declare const blue: ChalkInstance;
+export declare const underline: ChalkInstance;
 /** Class used for logging to the console and to a ng-dev log file. */
 export declare abstract class Log {
     /** Write to the console for at INFO logging level */

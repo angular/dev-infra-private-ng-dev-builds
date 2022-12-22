@@ -24,7 +24,7 @@ import { PullRequestConfig } from '../../config/index.js';
  * @param config Configuration for the Github remote and release packages. Used to fetch
  *   NPM version data when LTS version branches are validated.
  */
-export declare function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCandidate, next }: ActiveReleaseTrains, api: GithubClient, config: NgDevConfig<{
+export declare function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCandidate, next, exceptionalMinor }: ActiveReleaseTrains, api: GithubClient, config: NgDevConfig<{
     github: GithubConfig;
     pullRequest: PullRequestConfig;
     release?: ReleaseConfig;

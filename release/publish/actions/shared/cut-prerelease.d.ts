@@ -14,11 +14,12 @@ import { ReleaseAction } from '../../actions.js';
  * A minor or major can have an arbitrary amount of next pre-releases.
  *
  * This base action is used for supporting pre-releases of the `next` train,
- * or an exceptional minor train, or an in-progress FF/RC train.
+ * or an exceptional minor train, or an in-progress FF/RC train. Also used
+ * for cutting first release-candidates.
  */
 export declare abstract class CutPrereleaseBaseAction extends ReleaseAction {
     abstract releaseTrain: ReleaseTrain;
-    abstract npmDistTag: NpmDistTag | null;
+    abstract npmDistTag: NpmDistTag;
     /**
      * Whether the existing version of the release train should be used. This
      * functionality exists to allow for cases where a release-train is newly
@@ -39,8 +40,12 @@ export declare abstract class CutPrereleaseBaseAction extends ReleaseAction {
      */
     abstract releaseNotesCompareVersion: Promise<semver.SemVer>;
     getDescription(): Promise<string>;
+    getReleaseCandidateDescription(): Promise<string>;
     perform(): Promise<void>;
-    /** Gets the new version that will be published. */
+    /**
+     * Gets the new version that will be published.
+     * Note: Might be overridden by derived actions for e.g. cutting an RC.
+     */
     getNewVersion(): Promise<semver.SemVer>;
     private _getBranch;
 }

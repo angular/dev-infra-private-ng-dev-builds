@@ -9,7 +9,7 @@ import semver from 'semver';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 import { BuiltPackageWithInfo, ReleaseConfig } from '../config/index.js';
 import { ReleaseNotes } from '../notes/release-notes.js';
-import { NpmDistTag } from '../versioning/index.js';
+import { NpmDistTag, PackageJson } from '../versioning/index.js';
 import { ActiveReleaseTrains } from '../versioning/active-release-trains.js';
 /** Interface describing a Github repository. */
 export interface GithubRepo {
@@ -26,6 +26,15 @@ export interface PullRequest {
     fork: GithubRepo;
     /** Branch name in the fork that defines this pull request. */
     forkBranch: string;
+}
+/** Options that can be used to control the staging of a new version. */
+export interface StagingOptions {
+    /**
+     * As part of staging, the `package.json` can be updated before the
+     * new version is set.
+     * @see {ReleaseAction.updateProjectVersion}
+     */
+    updatePkgJsonFn?: (pkgJson: PackageJson) => void;
 }
 /** Constructor type for instantiating a release action */
 export interface ReleaseActionConstructor<T extends ReleaseAction = ReleaseAction> {
@@ -55,8 +64,14 @@ export declare abstract class ReleaseAction {
      */
     abstract perform(): Promise<void>;
     constructor(active: ActiveReleaseTrains, git: AuthenticatedGitClient, config: ReleaseConfig, projectDir: string);
-    /** Updates the version in the project top-level `package.json` file. */
-    protected updateProjectVersion(newVersion: semver.SemVer): Promise<void>;
+    /**
+     * Updates the version in the project top-level `package.json` file.
+     *
+     * @param newVersion New SemVer version to be set in the file.
+     * @param additionalUpdateFn Optional update function that runs before
+     *   the version update. Can be used to update other fields.
+     */
+    protected updateProjectVersion(newVersion: semver.SemVer, additionalUpdateFn?: (pkgJson: PackageJson) => void): Promise<void>;
     /** Gets the most recent commit of a specified branch. */
     protected getLatestCommitOfBranch(branchName: string): Promise<string>;
     /** Checks whether the given revision is ahead to the base by the specified amount. */
@@ -139,9 +154,11 @@ export declare abstract class ReleaseAction {
      * @param compareVersionForReleaseNotes Version used for comparing with the current
      *   `HEAD` in order build the release notes.
      * @param pullRequestTargetBranch Branch the pull request should target.
+     * @param opts Non-mandatory options for controlling the staging, e.g.
+     *   allowing for additional `package.json` modifications.
      * @returns an object capturing actions performed as part of staging.
      */
-    protected stageVersionForBranchAndCreatePullRequest(newVersion: semver.SemVer, compareVersionForReleaseNotes: semver.SemVer, pullRequestTargetBranch: string): Promise<{
+    protected stageVersionForBranchAndCreatePullRequest(newVersion: semver.SemVer, compareVersionForReleaseNotes: semver.SemVer, pullRequestTargetBranch: string, opts?: StagingOptions): Promise<{
         releaseNotes: ReleaseNotes;
         pullRequest: PullRequest;
         builtPackagesWithInfo: BuiltPackageWithInfo[];
@@ -154,9 +171,11 @@ export declare abstract class ReleaseAction {
      * @param compareVersionForReleaseNotes Version used for comparing with `HEAD` of
      *   the staging branch in order build the release notes.
      * @param stagingBranch Branch within the new version should be staged.
+     * @param stagingOptions Non-mandatory options for controlling the staging of
+     *   the new version. e.g. allowing for additional `package.json` modifications.
      * @returns an object capturing actions performed as part of staging.
      */
-    protected checkoutBranchAndStageVersion(newVersion: semver.SemVer, compareVersionForReleaseNotes: semver.SemVer, stagingBranch: string): Promise<{
+    protected checkoutBranchAndStageVersion(newVersion: semver.SemVer, compareVersionForReleaseNotes: semver.SemVer, stagingBranch: string, stagingOpts?: StagingOptions): Promise<{
         releaseNotes: ReleaseNotes;
         pullRequest: PullRequest;
         builtPackagesWithInfo: BuiltPackageWithInfo[];
@@ -180,6 +199,7 @@ export declare abstract class ReleaseAction {
      * @param releaseNotes The release notes for the version being published.
      * @param versionBumpCommitSha Commit that bumped the version. The release tag
      *   will point to this commit.
+     * @param isPrerelease Whether the new version is published as a pre-release.
      */
     private _createGithubReleaseForVersion;
     /** Gets a Github URL that resolves to the release notes in the given ref. */
@@ -197,7 +217,7 @@ export declare abstract class ReleaseAction {
      * @param npmDistTag NPM dist tag where the version should be published to.
      * @param additionalOptions Additional options for building and publishing.
      */
-    protected publish(builtPackagesWithInfo: BuiltPackageWithInfo[], releaseNotes: ReleaseNotes, beforeStagingSha: string, publishBranch: string, npmDistTag: NpmDistTag | null): Promise<void>;
+    protected publish(builtPackagesWithInfo: BuiltPackageWithInfo[], releaseNotes: ReleaseNotes, beforeStagingSha: string, publishBranch: string, npmDistTag: NpmDistTag): Promise<void>;
     /** Publishes the given built package to NPM with the specified NPM dist tag. */
     private _publishBuiltPackageToNpm;
     /** Checks whether the given commit represents a staging commit for the specified version. */
