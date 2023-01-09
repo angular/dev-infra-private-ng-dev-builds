@@ -23,6 +23,11 @@ export declare abstract class ExternalCommands {
         skipExperimentalPackages: boolean;
     }): Promise<void>;
     /**
+     * Invokes the `ng-dev release npm-dist-tag delete` command in order to delete the
+     * NPM dist tag for all packages in the checked-out version branch.
+     */
+    static invokeDeleteNpmDistTag(projectDir: string, npmDistTag: NpmDistTag): Promise<void>;
+    /**
      * Invokes the `ng-dev release build` command in order to build the release
      * packages for the currently checked out branch.
      */

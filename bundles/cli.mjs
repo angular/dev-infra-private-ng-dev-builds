@@ -45,7 +45,7 @@ import {
   require_tr46,
   require_wrappy,
   targetLabels
-} from "./chunk-G3KWAQUE.mjs";
+} from "./chunk-REAN5RPN.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -2999,16 +2999,16 @@ var require_timeoutProvider = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.timeoutProvider = void 0;
     exports2.timeoutProvider = {
-      setTimeout: function(handler29, timeout) {
+      setTimeout: function(handler30, timeout) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
           args[_i - 2] = arguments[_i];
         }
         var delegate = exports2.timeoutProvider.delegate;
         if (delegate === null || delegate === void 0 ? void 0 : delegate.setTimeout) {
-          return delegate.setTimeout.apply(delegate, __spreadArray2([handler29, timeout], __read2(args)));
+          return delegate.setTimeout.apply(delegate, __spreadArray2([handler30, timeout], __read2(args)));
         }
-        return setTimeout.apply(void 0, __spreadArray2([handler29, timeout], __read2(args)));
+        return setTimeout.apply(void 0, __spreadArray2([handler30, timeout], __read2(args)));
       },
       clearTimeout: function(handle) {
         var delegate = exports2.timeoutProvider.delegate;
@@ -4383,16 +4383,16 @@ var require_intervalProvider = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.intervalProvider = void 0;
     exports2.intervalProvider = {
-      setInterval: function(handler29, timeout) {
+      setInterval: function(handler30, timeout) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
           args[_i - 2] = arguments[_i];
         }
         var delegate = exports2.intervalProvider.delegate;
         if (delegate === null || delegate === void 0 ? void 0 : delegate.setInterval) {
-          return delegate.setInterval.apply(delegate, __spreadArray2([handler29, timeout], __read2(args)));
+          return delegate.setInterval.apply(delegate, __spreadArray2([handler30, timeout], __read2(args)));
         }
-        return setInterval.apply(void 0, __spreadArray2([handler29, timeout], __read2(args)));
+        return setInterval.apply(void 0, __spreadArray2([handler30, timeout], __read2(args)));
       },
       clearInterval: function(handle) {
         var delegate = exports2.intervalProvider.delegate;
@@ -7188,8 +7188,8 @@ var require_fromEvent = __commonJS({
         return fromEvent2(target, eventName, options).pipe(mapOneOrManyArgs_1.mapOneOrManyArgs(resultSelector));
       }
       var _a2 = __read2(isEventTarget(target) ? eventTargetMethods.map(function(methodName) {
-        return function(handler29) {
-          return target[methodName](eventName, handler29, options);
+        return function(handler30) {
+          return target[methodName](eventName, handler30, options);
         };
       }) : isNodeStyleEventEmitter(target) ? nodeEventEmitterMethods.map(toCommonHandlerRegistry(target, eventName)) : isJQueryStyleEventEmitter(target) ? jqueryMethods.map(toCommonHandlerRegistry(target, eventName)) : [], 2), add = _a2[0], remove = _a2[1];
       if (!add) {
@@ -7203,24 +7203,24 @@ var require_fromEvent = __commonJS({
         throw new TypeError("Invalid event target");
       }
       return new Observable_1.Observable(function(subscriber) {
-        var handler29 = function() {
+        var handler30 = function() {
           var args = [];
           for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
           }
           return subscriber.next(1 < args.length ? args : args[0]);
         };
-        add(handler29);
+        add(handler30);
         return function() {
-          return remove(handler29);
+          return remove(handler30);
         };
       });
     }
     exports2.fromEvent = fromEvent2;
     function toCommonHandlerRegistry(target, eventName) {
       return function(methodName) {
-        return function(handler29) {
-          return target[methodName](eventName, handler29);
+        return function(handler30) {
+          return target[methodName](eventName, handler30);
         };
       };
     }
@@ -7250,16 +7250,16 @@ var require_fromEventPattern = __commonJS({
         return fromEventPattern(addHandler, removeHandler).pipe(mapOneOrManyArgs_1.mapOneOrManyArgs(resultSelector));
       }
       return new Observable_1.Observable(function(subscriber) {
-        var handler29 = function() {
+        var handler30 = function() {
           var e = [];
           for (var _i = 0; _i < arguments.length; _i++) {
             e[_i] = arguments[_i];
           }
           return subscriber.next(e.length === 1 ? e[0] : e);
         };
-        var retValue = addHandler(handler29);
+        var retValue = addHandler(handler30);
         return isFunction_1.isFunction(removeHandler) ? function() {
-          return removeHandler(handler29, retValue);
+          return removeHandler(handler30, retValue);
         } : void 0;
       });
     }
@@ -30272,7 +30272,7 @@ var require_chardet = __commonJS({
         opts = void 0;
       }
       var fd;
-      var handler29 = function(err, buffer) {
+      var handler30 = function(err, buffer) {
         if (fd) {
           fs6.closeSync(fd);
         }
@@ -30283,11 +30283,11 @@ var require_chardet = __commonJS({
       if (opts && opts.sampleSize) {
         fd = fs6.openSync(filepath, "r"), sample = Buffer.allocUnsafe(opts.sampleSize);
         fs6.read(fd, sample, 0, opts.sampleSize, null, function(err) {
-          handler29(err, sample);
+          handler30(err, sample);
         });
         return;
       }
-      fs6.readFile(filepath, handler29);
+      fs6.readFile(filepath, handler30);
     };
     module2.exports.detectFileSync = function(filepath, opts) {
       if (opts && opts.sampleSize) {
@@ -60195,13 +60195,13 @@ var require_chalk = __commonJS({
     var proto = Object.defineProperties(() => {
     }, styles);
     function build(_styles, _empty, key) {
-      const builder27 = function() {
-        return applyStyle.apply(builder27, arguments);
+      const builder28 = function() {
+        return applyStyle.apply(builder28, arguments);
       };
-      builder27._styles = _styles;
-      builder27._empty = _empty;
+      builder28._styles = _styles;
+      builder28._empty = _empty;
       const self2 = this;
-      Object.defineProperty(builder27, "level", {
+      Object.defineProperty(builder28, "level", {
         enumerable: true,
         get() {
           return self2.level;
@@ -60210,7 +60210,7 @@ var require_chalk = __commonJS({
           self2.level = level;
         }
       });
-      Object.defineProperty(builder27, "enabled", {
+      Object.defineProperty(builder28, "enabled", {
         enumerable: true,
         get() {
           return self2.enabled;
@@ -60219,9 +60219,9 @@ var require_chalk = __commonJS({
           self2.enabled = enabled;
         }
       });
-      builder27.hasGrey = this.hasGrey || key === "gray" || key === "grey";
-      builder27.__proto__ = proto;
-      return builder27;
+      builder28.hasGrey = this.hasGrey || key === "gray" || key === "grey";
+      builder28.__proto__ = proto;
+      return builder28;
     }
     function applyStyle() {
       const args = arguments;
@@ -69379,9 +69379,9 @@ var require_event_target = __commonJS({
           this.on(type, wrapper);
         }
       },
-      removeEventListener(type, handler29) {
+      removeEventListener(type, handler30) {
         for (const listener of this.listeners(type)) {
-          if (listener[kListener] === handler29 && !listener[kForOnEventAttribute]) {
+          if (listener[kListener] === handler30 && !listener[kForOnEventAttribute]) {
             this.removeListener(type, listener);
             break;
           }
@@ -69899,16 +69899,16 @@ var require_websocket = __commonJS({
           }
           return null;
         },
-        set(handler29) {
+        set(handler30) {
           for (const listener of this.listeners(method)) {
             if (listener[kForOnEventAttribute]) {
               this.removeListener(method, listener);
               break;
             }
           }
-          if (typeof handler29 !== "function")
+          if (typeof handler30 !== "function")
             return;
-          this.addEventListener(method, handler29, {
+          this.addEventListener(method, handler30, {
             [kForOnEventAttribute]: true
           });
         }
@@ -77672,10 +77672,10 @@ var CommandInstance = class {
     };
     this.shim.requireDirectory({ require: req, filename: callerFile }, dir, opts);
   }
-  addHandler(cmd, description, builder27, handler29, commandMiddleware, deprecated) {
+  addHandler(cmd, description, builder28, handler30, commandMiddleware, deprecated) {
     let aliases = [];
     const middlewares = commandMiddlewareFactory(commandMiddleware);
-    handler29 = handler29 || (() => {
+    handler30 = handler30 || (() => {
     });
     if (Array.isArray(cmd)) {
       if (isCommandAndAliases(cmd)) {
@@ -77691,8 +77691,8 @@ var CommandInstance = class {
         command2 = [].concat(command2).concat(cmd.aliases);
       this.addHandler(command2, this.extractDesc(cmd), cmd.builder, cmd.handler, cmd.middlewares, cmd.deprecated);
       return;
-    } else if (isCommandBuilderDefinition(builder27)) {
-      this.addHandler([cmd].concat(aliases), description, builder27.builder, builder27.handler, builder27.middlewares, builder27.deprecated);
+    } else if (isCommandBuilderDefinition(builder28)) {
+      this.addHandler([cmd].concat(aliases), description, builder28.builder, builder28.handler, builder28.middlewares, builder28.deprecated);
       return;
     }
     if (typeof cmd === "string") {
@@ -77722,8 +77722,8 @@ var CommandInstance = class {
       this.handlers[parsedCommand.cmd] = {
         original: cmd,
         description,
-        handler: handler29,
-        builder: builder27 || {},
+        handler: handler30,
+        builder: builder28 || {},
         middlewares,
         deprecated,
         demanded: parsedCommand.demanded,
@@ -77755,20 +77755,20 @@ var CommandInstance = class {
     return isPromise(builderResult) ? builderResult.then((result) => this.applyMiddlewareAndGetResult(isDefaultCommand, commandHandler, result.innerArgv, currentContext, helpOnly, result.aliases, yargs)) : this.applyMiddlewareAndGetResult(isDefaultCommand, commandHandler, builderResult.innerArgv, currentContext, helpOnly, builderResult.aliases, yargs);
   }
   applyBuilderUpdateUsageAndParse(isDefaultCommand, commandHandler, yargs, aliases, parentCommands, commandIndex, helpOnly, helpOrVersionSet) {
-    const builder27 = commandHandler.builder;
+    const builder28 = commandHandler.builder;
     let innerYargs = yargs;
-    if (isCommandBuilderCallback(builder27)) {
-      const builderOutput = builder27(yargs.getInternalMethods().reset(aliases), helpOrVersionSet);
+    if (isCommandBuilderCallback(builder28)) {
+      const builderOutput = builder28(yargs.getInternalMethods().reset(aliases), helpOrVersionSet);
       if (isPromise(builderOutput)) {
         return builderOutput.then((output) => {
           innerYargs = isYargsInstance(output) ? output : yargs;
           return this.parseAndUpdateUsage(isDefaultCommand, commandHandler, innerYargs, parentCommands, commandIndex, helpOnly);
         });
       }
-    } else if (isCommandBuilderOptionDefinitions(builder27)) {
+    } else if (isCommandBuilderOptionDefinitions(builder28)) {
       innerYargs = yargs.getInternalMethods().reset(aliases);
       Object.keys(commandHandler.builder).forEach((key) => {
-        innerYargs.option(key, builder27[key]);
+        innerYargs.option(key, builder28[key]);
       });
     }
     return this.parseAndUpdateUsage(isDefaultCommand, commandHandler, innerYargs, parentCommands, commandIndex, helpOnly);
@@ -77959,12 +77959,12 @@ var CommandInstance = class {
       const commandString = DEFAULT_MARKER.test(this.defaultCommand.original) ? this.defaultCommand.original : this.defaultCommand.original.replace(/^[^[\]<>]*/, "$0 ");
       yargs.getInternalMethods().getUsageInstance().usage(commandString, this.defaultCommand.description);
     }
-    const builder27 = this.defaultCommand.builder;
-    if (isCommandBuilderCallback(builder27)) {
-      return builder27(yargs, true);
-    } else if (!isCommandBuilderDefinition(builder27)) {
-      Object.keys(builder27).forEach((key) => {
-        yargs.option(key, builder27[key]);
+    const builder28 = this.defaultCommand.builder;
+    if (isCommandBuilderCallback(builder28)) {
+      return builder28(yargs, true);
+    } else if (!isCommandBuilderDefinition(builder28)) {
+      Object.keys(builder28).forEach((key) => {
+        yargs.option(key, builder28[key]);
       });
     }
     return void 0;
@@ -78013,17 +78013,17 @@ var CommandInstance = class {
 function command(usage2, validation2, globalMiddleware, shim3) {
   return new CommandInstance(usage2, validation2, globalMiddleware, shim3);
 }
-function isCommandBuilderDefinition(builder27) {
-  return typeof builder27 === "object" && !!builder27.builder && typeof builder27.handler === "function";
+function isCommandBuilderDefinition(builder28) {
+  return typeof builder28 === "object" && !!builder28.builder && typeof builder28.handler === "function";
 }
 function isCommandAndAliases(cmd) {
   return cmd.every((c) => typeof c === "string");
 }
-function isCommandBuilderCallback(builder27) {
-  return typeof builder27 === "function";
+function isCommandBuilderCallback(builder28) {
+  return typeof builder28 === "function";
 }
-function isCommandBuilderOptionDefinitions(builder27) {
-  return typeof builder27 === "object";
+function isCommandBuilderOptionDefinitions(builder28) {
+  return typeof builder28 === "object";
 }
 function isCommandHandlerDefinition(cmd) {
   return typeof cmd === "object" && !Array.isArray(cmd);
@@ -78643,11 +78643,11 @@ var Completion = class {
     const handlers = this.command.getCommandHandlers();
     for (let i = 0, ii = args.length; i < ii; ++i) {
       if (handlers[args[i]] && handlers[args[i]].builder) {
-        const builder27 = handlers[args[i]].builder;
-        if (isCommandBuilderCallback(builder27)) {
+        const builder28 = handlers[args[i]].builder;
+        if (isCommandBuilderCallback(builder28)) {
           this.indexAfterLastReset = i + 1;
           const y = this.yargs.getInternalMethods().reset();
-          builder27(y, true);
+          builder28(y, true);
           return y.argv;
         }
       }
@@ -79488,13 +79488,13 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_completion, "f").registerFunction(fn);
     return this;
   }
-  command(cmd, description, builder27, handler29, middlewares, deprecated) {
-    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder27, handler29, middlewares, deprecated], arguments.length);
-    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder27, handler29, middlewares, deprecated);
+  command(cmd, description, builder28, handler30, middlewares, deprecated) {
+    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder28, handler30, middlewares, deprecated], arguments.length);
+    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder28, handler30, middlewares, deprecated);
     return this;
   }
-  commands(cmd, description, builder27, handler29, middlewares, deprecated) {
-    return this.command(cmd, description, builder27, handler29, middlewares, deprecated);
+  commands(cmd, description, builder28, handler30, middlewares, deprecated) {
+    return this.command(cmd, description, builder28, handler30, middlewares, deprecated);
   }
   commandDir(dir, opts) {
     argsert("<string> [object]", [dir, opts], arguments.length);
@@ -80093,12 +80093,12 @@ var YargsInstance = class {
     __classPrivateFieldGet(this, _YargsInstance_shim, "f").y18n.updateLocale(obj);
     return this;
   }
-  usage(msg, description, builder27, handler29) {
-    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder27, handler29], arguments.length);
+  usage(msg, description, builder28, handler30) {
+    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder28, handler30], arguments.length);
     if (description !== void 0) {
       assertNotStrictEqual(msg, null, __classPrivateFieldGet(this, _YargsInstance_shim, "f"));
       if ((msg || "").match(/^\$0( |$)/)) {
-        return this.command(msg, description, builder27, handler29);
+        return this.command(msg, description, builder28, handler30);
       } else {
         throw new YError(".usage() description must start with $0 if being used as alias for .command()");
       }
@@ -80282,24 +80282,24 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type].push(key);
     });
   }
-  [kPopulateParserHintSingleValueDictionary](builder27, type, key, value) {
-    this[kPopulateParserHintDictionary](builder27, type, key, value, (type2, key2, value2) => {
+  [kPopulateParserHintSingleValueDictionary](builder28, type, key, value) {
+    this[kPopulateParserHintDictionary](builder28, type, key, value, (type2, key2, value2) => {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] = value2;
     });
   }
-  [kPopulateParserHintArrayDictionary](builder27, type, key, value) {
-    this[kPopulateParserHintDictionary](builder27, type, key, value, (type2, key2, value2) => {
+  [kPopulateParserHintArrayDictionary](builder28, type, key, value) {
+    this[kPopulateParserHintDictionary](builder28, type, key, value, (type2, key2, value2) => {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] = (__classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] || []).concat(value2);
     });
   }
-  [kPopulateParserHintDictionary](builder27, type, key, value, singleKeyHandler) {
+  [kPopulateParserHintDictionary](builder28, type, key, value, singleKeyHandler) {
     if (Array.isArray(key)) {
       key.forEach((k) => {
-        builder27(k, value);
+        builder28(k, value);
       });
     } else if (((key2) => typeof key2 === "object")(key)) {
       for (const k of objectKeys(key)) {
-        builder27(k, key[k]);
+        builder28(k, key[k]);
       }
     } else {
       singleKeyHandler(type, this[kSanitizeKey](key), value);
@@ -92828,6 +92828,13 @@ var NpmCommand = class {
     }
     await ChildProcess.spawn("npm", args, { mode: "silent" });
   }
+  static async deleteDistTagForPackage(packageName, distTag, registryUrl) {
+    const args = ["dist-tag", "rm", packageName, distTag];
+    if (registryUrl !== void 0) {
+      args.push("--registry", registryUrl);
+    }
+    await ChildProcess.spawn("npm", args, { mode: "silent" });
+  }
   static async checkIsLoggedIn(registryUrl) {
     const args = ["whoami"];
     if (registryUrl !== void 0) {
@@ -92975,6 +92982,25 @@ var ExternalCommands = class {
     } catch (e) {
       Log.error(e);
       Log.error(`  \u2718   An error occurred while setting the NPM dist tag for "${npmDistTag}".`);
+      throw new FatalReleaseActionError();
+    }
+  }
+  static async invokeDeleteNpmDistTag(projectDir, npmDistTag) {
+    const yarnCommand = await resolveYarnScriptForProject(projectDir);
+    try {
+      await ChildProcess.spawn(yarnCommand.binary, [
+        ...yarnCommand.args,
+        "--silent",
+        "ng-dev",
+        "release",
+        "npm-dist-tag",
+        "delete",
+        npmDistTag
+      ], { cwd: projectDir });
+      Log.info(green(`  \u2713   Deleted "${npmDistTag}" NPM dist tag for all packages.`));
+    } catch (e) {
+      Log.error(e);
+      Log.error(`  \u2718   An error occurred while deleting the NPM dist tag: "${npmDistTag}".`);
       throw new FatalReleaseActionError();
     }
   }
@@ -93656,6 +93682,9 @@ var CutStableAction = class extends ReleaseAction {
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branchName, stagingOpts);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
     await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this._getNpmDistTag());
+    if (this._train === this.active.exceptionalMinor) {
+      await ExternalCommands.invokeDeleteNpmDistTag(this.projectDir, "do-not-use-exceptional-minor");
+    }
     if (this._isNewMajor) {
       const previousPatch = this.active.latest;
       const ltsTagForPatch = getLtsNpmDistTagOfMajor(previousPatch.version.major);
@@ -93689,7 +93718,7 @@ var CutExceptionalMinorPrereleaseAction = class extends CutPrereleaseBaseAction 
   constructor() {
     super(...arguments);
     this.releaseTrain = this.active.exceptionalMinor;
-    this.npmDistTag = "exceptional-minor";
+    this.npmDistTag = "do-not-use-exceptional-minor";
     this.shouldUseExistingVersion = (async () => {
       return isFirstNextPrerelease(this.releaseTrain.version) && !await isVersionPublishedToNpm(this.releaseTrain.version, this.config);
     })();
@@ -93902,7 +93931,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-ee27e18676602a29b20703051ac303ea6386e54f`;
+  const localVersion = `0.0.0-156cc268d0e823a64267baa765c133d6a41761b0`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -94093,7 +94122,7 @@ var ReleasePublishCommandModule = {
   describe: "Publish new releases and configure version branches."
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/set-dist-tag/cli.js
+// bazel-out/k8-fastbuild/bin/ng-dev/release/npm-dist-tag/set/cli.js
 var import_semver18 = __toESM(require_semver());
 function builder23(args) {
   return args.positional("tagName", {
@@ -94146,11 +94175,17 @@ async function handler25(args) {
   Log.info(green(`  \u2713   Set NPM dist tag for all release packages.`));
   Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version5}`)}.`));
 }
-var ReleaseSetDistTagCommand = {
+var ReleaseNpmDistTagSetCommand = {
   builder: builder23,
   handler: handler25,
-  command: "set-dist-tag <tag-name> <target-version>",
+  command: "set <tag-name> <target-version>",
   describe: "Sets a given NPM dist tag for all release packages."
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/set-dist-tag/cli.js
+var ReleaseSetDistTagCommand = {
+  ...ReleaseNpmDistTagSetCommand,
+  command: "set-dist-tag <tag-name> <target-version>"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
@@ -94264,9 +94299,58 @@ var BuildEnvStampCommand = {
   describe: "Build the environment stamping information"
 };
 
+// bazel-out/k8-fastbuild/bin/ng-dev/release/npm-dist-tag/delete/cli.js
+function builder25(args) {
+  return args.positional("tagName", {
+    type: "string",
+    demandOption: true,
+    description: "Name of the NPM dist tag."
+  });
+}
+async function handler27(args) {
+  const { tagName } = args;
+  const config = await getConfig();
+  assertValidReleaseConfig(config);
+  const { npmPackages, publishRegistry } = config.release;
+  Log.debug(`Deleting "${tagName}" NPM dist tag for release packages.`);
+  const spinner = new Spinner("");
+  for (const pkg of npmPackages) {
+    spinner.update(`Deleting NPM dist tag for "${pkg.name}"`);
+    try {
+      await NpmCommand.deleteDistTagForPackage(pkg.name, tagName, publishRegistry);
+      Log.debug(`Successfully deleted "${tagName}" NPM dist tag for "${pkg.name}".`);
+    } catch (e) {
+      spinner.complete();
+      Log.error(e);
+      Log.error(`  \u2718   An error occurred while deleting the NPM dist tag for "${pkg.name}".`);
+      process.exit(1);
+    }
+  }
+  spinner.complete();
+  Log.info(green(`  \u2713   Deleted "${bold(tagName)}" NPM dist tag for all packages.`));
+}
+var ReleaseNpmDistTagDeleteCommand = {
+  builder: builder25,
+  handler: handler27,
+  command: "delete <tag-name>",
+  describe: "Deletes a given NPM dist tag for all release packages."
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/npm-dist-tag/cli.js
+function subCommandsBuilder(argv) {
+  return argv.help().strict().demandCommand().command(ReleaseNpmDistTagDeleteCommand).command(ReleaseNpmDistTagSetCommand);
+}
+var ReleaseNpmDistTagCommand = {
+  describe: "Update the NPM dist tags for release packages.",
+  command: "npm-dist-tag",
+  builder: subCommandsBuilder,
+  handler: () => {
+  }
+};
+
 // bazel-out/k8-fastbuild/bin/ng-dev/release/cli.js
 function buildReleaseParser(localYargs) {
-  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleasePrecheckCommandModule).command(ReleaseSetDistTagCommand).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule);
+  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(ReleaseSetDistTagCommand).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/index.js
@@ -94751,10 +94835,10 @@ async function loginToFirebase() {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/login/cli.js
-async function builder25(yargs) {
+async function builder26(yargs) {
   return await useNgDevService(yargs, true);
 }
-async function handler27() {
+async function handler28() {
   const user = await getCurrentUser();
   if (user) {
     Log.info(`Already logged in as ${bold(user.email)}`);
@@ -94770,17 +94854,17 @@ async function handler27() {
   }
 }
 var LoginModule = {
-  handler: handler27,
-  builder: builder25,
+  handler: handler28,
+  builder: builder26,
   command: "login",
   describe: "Log into the ng-dev service"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/logout/cli.js
-async function builder26(yargs) {
+async function builder27(yargs) {
   return await useNgDevService(yargs, true);
 }
-async function handler28() {
+async function handler29() {
   const user = await getCurrentUser();
   if (user) {
     await invokeServerFunction("ngDevRevokeToken");
@@ -94790,8 +94874,8 @@ async function handler28() {
   Log.info("No user currently logged in.");
 }
 var LogoutModule = {
-  handler: handler28,
-  builder: builder26,
+  handler: handler29,
+  builder: builder27,
   command: "logout",
   describe: "Log out of the ng-dev service"
 };

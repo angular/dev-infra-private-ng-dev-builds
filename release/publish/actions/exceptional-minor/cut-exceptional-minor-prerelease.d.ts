@@ -16,7 +16,7 @@ import { CutPrereleaseBaseAction } from '../shared/cut-prerelease.js';
  */
 export declare class CutExceptionalMinorPrereleaseAction extends CutPrereleaseBaseAction {
     releaseTrain: import("../../../versioning/release-trains.js").ReleaseTrain;
-    npmDistTag: "exceptional-minor";
+    npmDistTag: "do-not-use-exceptional-minor";
     shouldUseExistingVersion: Promise<boolean>;
     releaseNotesCompareVersion: Promise<import("@types/semver/classes/semver.js")>;
     getDescription(): Promise<string>;

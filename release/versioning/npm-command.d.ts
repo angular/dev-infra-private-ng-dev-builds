@@ -19,6 +19,11 @@ export declare abstract class NpmCommand {
      */
     static setDistTagForPackage(packageName: string, distTag: string, version: semver.SemVer, registryUrl: string | undefined): Promise<void>;
     /**
+     * Deletes the specified NPM tag for the given package.
+     * @throws With the process log output if the removal failed.
+     */
+    static deleteDistTagForPackage(packageName: string, distTag: string, registryUrl: string | undefined): Promise<void>;
+    /**
      * Checks whether the user is currently logged into NPM.
      * @returns Whether the user is currently logged into NPM.
      */
