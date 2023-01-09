@@ -74320,21 +74320,21 @@ var require_authorization_request_handler = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.AuthorizationRequestHandler = exports2.BUILT_IN_PARAMETERS = exports2.AuthorizationNotifier = void 0;
     var logger_1 = require_logger();
-    var AuthorizationNotifier2 = function() {
-      function AuthorizationNotifier3() {
+    var AuthorizationNotifier = function() {
+      function AuthorizationNotifier2() {
         this.listener = null;
       }
-      AuthorizationNotifier3.prototype.setAuthorizationListener = function(listener) {
+      AuthorizationNotifier2.prototype.setAuthorizationListener = function(listener) {
         this.listener = listener;
       };
-      AuthorizationNotifier3.prototype.onAuthorizationComplete = function(request, response, error) {
+      AuthorizationNotifier2.prototype.onAuthorizationComplete = function(request, response, error) {
         if (this.listener) {
           this.listener(request, response, error);
         }
       };
-      return AuthorizationNotifier3;
+      return AuthorizationNotifier2;
     }();
-    exports2.AuthorizationNotifier = AuthorizationNotifier2;
+    exports2.AuthorizationNotifier = AuthorizationNotifier;
     exports2.BUILT_IN_PARAMETERS = ["redirect_uri", "client_id", "response_type", "state", "scope"];
     var AuthorizationRequestHandler = function() {
       function AuthorizationRequestHandler2(utils, crypto2) {
@@ -74892,8 +74892,8 @@ var require_token_request = __commonJS({
     exports2.TokenRequest = exports2.GRANT_TYPE_REFRESH_TOKEN = exports2.GRANT_TYPE_AUTHORIZATION_CODE = void 0;
     exports2.GRANT_TYPE_AUTHORIZATION_CODE = "authorization_code";
     exports2.GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
-    var TokenRequest2 = function() {
-      function TokenRequest3(request) {
+    var TokenRequest = function() {
+      function TokenRequest2(request) {
         this.clientId = request.client_id;
         this.redirectUri = request.redirect_uri;
         this.grantType = request.grant_type;
@@ -74901,7 +74901,7 @@ var require_token_request = __commonJS({
         this.refreshToken = request.refresh_token;
         this.extras = request.extras;
       }
-      TokenRequest3.prototype.toJson = function() {
+      TokenRequest2.prototype.toJson = function() {
         return {
           grant_type: this.grantType,
           code: this.code,
@@ -74911,7 +74911,7 @@ var require_token_request = __commonJS({
           extras: this.extras
         };
       };
-      TokenRequest3.prototype.toStringMap = function() {
+      TokenRequest2.prototype.toStringMap = function() {
         var map8 = {
           grant_type: this.grantType,
           client_id: this.clientId,
@@ -74932,9 +74932,9 @@ var require_token_request = __commonJS({
         }
         return map8;
       };
-      return TokenRequest3;
+      return TokenRequest2;
     }();
-    exports2.TokenRequest = TokenRequest2;
+    exports2.TokenRequest = TokenRequest;
   }
 });
 
@@ -75016,8 +75016,8 @@ var require_token_request_handler = __commonJS({
     var query_string_utils_1 = require_query_string_utils();
     var token_response_1 = require_token_response();
     var xhr_1 = require_xhr();
-    var BaseTokenRequestHandler2 = function() {
-      function BaseTokenRequestHandler3(requestor, utils) {
+    var BaseTokenRequestHandler = function() {
+      function BaseTokenRequestHandler2(requestor, utils) {
         if (requestor === void 0) {
           requestor = new xhr_1.JQueryRequestor();
         }
@@ -75027,10 +75027,10 @@ var require_token_request_handler = __commonJS({
         this.requestor = requestor;
         this.utils = utils;
       }
-      BaseTokenRequestHandler3.prototype.isTokenResponse = function(response) {
+      BaseTokenRequestHandler2.prototype.isTokenResponse = function(response) {
         return response.error === void 0;
       };
-      BaseTokenRequestHandler3.prototype.performRevokeTokenRequest = function(configuration, request) {
+      BaseTokenRequestHandler2.prototype.performRevokeTokenRequest = function(configuration, request) {
         var revokeTokenResponse = this.requestor.xhr({
           url: configuration.revocationEndpoint,
           method: "POST",
@@ -75041,7 +75041,7 @@ var require_token_request_handler = __commonJS({
           return true;
         });
       };
-      BaseTokenRequestHandler3.prototype.performTokenRequest = function(configuration, request) {
+      BaseTokenRequestHandler2.prototype.performTokenRequest = function(configuration, request) {
         var _this = this;
         var tokenResponse = this.requestor.xhr({
           url: configuration.tokenEndpoint,
@@ -75058,9 +75058,9 @@ var require_token_request_handler = __commonJS({
           }
         });
       };
-      return BaseTokenRequestHandler3;
+      return BaseTokenRequestHandler2;
     }();
-    exports2.BaseTokenRequestHandler = BaseTokenRequestHandler2;
+    exports2.BaseTokenRequestHandler = BaseTokenRequestHandler;
   }
 });
 
@@ -75110,744 +75110,6 @@ var require_built = __commonJS({
     __exportStar2(require_token_response(), exports2);
     __exportStar2(require_types3(), exports2);
     __exportStar2(require_xhr(), exports2);
-  }
-});
-
-// node_modules/follow-redirects/debug.js
-var require_debug = __commonJS({
-  "node_modules/follow-redirects/debug.js"(exports2, module2) {
-    var debug;
-    module2.exports = function() {
-      if (!debug) {
-        try {
-          debug = require_src4()("follow-redirects");
-        } catch (error) {
-        }
-        if (typeof debug !== "function") {
-          debug = function() {
-          };
-        }
-      }
-      debug.apply(null, arguments);
-    };
-  }
-});
-
-// node_modules/follow-redirects/index.js
-var require_follow_redirects = __commonJS({
-  "node_modules/follow-redirects/index.js"(exports2, module2) {
-    var url = __require("url");
-    var URL2 = url.URL;
-    var http = __require("http");
-    var https = __require("https");
-    var Writable = __require("stream").Writable;
-    var assert2 = __require("assert");
-    var debug = require_debug();
-    var events = ["abort", "aborted", "connect", "error", "socket", "timeout"];
-    var eventHandlers = /* @__PURE__ */ Object.create(null);
-    events.forEach(function(event) {
-      eventHandlers[event] = function(arg1, arg2, arg3) {
-        this._redirectable.emit(event, arg1, arg2, arg3);
-      };
-    });
-    var RedirectionError = createErrorType(
-      "ERR_FR_REDIRECTION_FAILURE",
-      "Redirected request failed"
-    );
-    var TooManyRedirectsError = createErrorType(
-      "ERR_FR_TOO_MANY_REDIRECTS",
-      "Maximum number of redirects exceeded"
-    );
-    var MaxBodyLengthExceededError = createErrorType(
-      "ERR_FR_MAX_BODY_LENGTH_EXCEEDED",
-      "Request body larger than maxBodyLength limit"
-    );
-    var WriteAfterEndError = createErrorType(
-      "ERR_STREAM_WRITE_AFTER_END",
-      "write after end"
-    );
-    function RedirectableRequest(options, responseCallback) {
-      Writable.call(this);
-      this._sanitizeOptions(options);
-      this._options = options;
-      this._ended = false;
-      this._ending = false;
-      this._redirectCount = 0;
-      this._redirects = [];
-      this._requestBodyLength = 0;
-      this._requestBodyBuffers = [];
-      if (responseCallback) {
-        this.on("response", responseCallback);
-      }
-      var self2 = this;
-      this._onNativeResponse = function(response) {
-        self2._processResponse(response);
-      };
-      this._performRequest();
-    }
-    RedirectableRequest.prototype = Object.create(Writable.prototype);
-    RedirectableRequest.prototype.abort = function() {
-      abortRequest(this._currentRequest);
-      this.emit("abort");
-    };
-    RedirectableRequest.prototype.write = function(data, encoding, callback) {
-      if (this._ending) {
-        throw new WriteAfterEndError();
-      }
-      if (!(typeof data === "string" || typeof data === "object" && "length" in data)) {
-        throw new TypeError("data should be a string, Buffer or Uint8Array");
-      }
-      if (typeof encoding === "function") {
-        callback = encoding;
-        encoding = null;
-      }
-      if (data.length === 0) {
-        if (callback) {
-          callback();
-        }
-        return;
-      }
-      if (this._requestBodyLength + data.length <= this._options.maxBodyLength) {
-        this._requestBodyLength += data.length;
-        this._requestBodyBuffers.push({ data, encoding });
-        this._currentRequest.write(data, encoding, callback);
-      } else {
-        this.emit("error", new MaxBodyLengthExceededError());
-        this.abort();
-      }
-    };
-    RedirectableRequest.prototype.end = function(data, encoding, callback) {
-      if (typeof data === "function") {
-        callback = data;
-        data = encoding = null;
-      } else if (typeof encoding === "function") {
-        callback = encoding;
-        encoding = null;
-      }
-      if (!data) {
-        this._ended = this._ending = true;
-        this._currentRequest.end(null, null, callback);
-      } else {
-        var self2 = this;
-        var currentRequest = this._currentRequest;
-        this.write(data, encoding, function() {
-          self2._ended = true;
-          currentRequest.end(null, null, callback);
-        });
-        this._ending = true;
-      }
-    };
-    RedirectableRequest.prototype.setHeader = function(name5, value) {
-      this._options.headers[name5] = value;
-      this._currentRequest.setHeader(name5, value);
-    };
-    RedirectableRequest.prototype.removeHeader = function(name5) {
-      delete this._options.headers[name5];
-      this._currentRequest.removeHeader(name5);
-    };
-    RedirectableRequest.prototype.setTimeout = function(msecs, callback) {
-      var self2 = this;
-      function destroyOnTimeout(socket) {
-        socket.setTimeout(msecs);
-        socket.removeListener("timeout", socket.destroy);
-        socket.addListener("timeout", socket.destroy);
-      }
-      function startTimer(socket) {
-        if (self2._timeout) {
-          clearTimeout(self2._timeout);
-        }
-        self2._timeout = setTimeout(function() {
-          self2.emit("timeout");
-          clearTimer();
-        }, msecs);
-        destroyOnTimeout(socket);
-      }
-      function clearTimer() {
-        if (self2._timeout) {
-          clearTimeout(self2._timeout);
-          self2._timeout = null;
-        }
-        self2.removeListener("abort", clearTimer);
-        self2.removeListener("error", clearTimer);
-        self2.removeListener("response", clearTimer);
-        if (callback) {
-          self2.removeListener("timeout", callback);
-        }
-        if (!self2.socket) {
-          self2._currentRequest.removeListener("socket", startTimer);
-        }
-      }
-      if (callback) {
-        this.on("timeout", callback);
-      }
-      if (this.socket) {
-        startTimer(this.socket);
-      } else {
-        this._currentRequest.once("socket", startTimer);
-      }
-      this.on("socket", destroyOnTimeout);
-      this.on("abort", clearTimer);
-      this.on("error", clearTimer);
-      this.on("response", clearTimer);
-      return this;
-    };
-    [
-      "flushHeaders",
-      "getHeader",
-      "setNoDelay",
-      "setSocketKeepAlive"
-    ].forEach(function(method) {
-      RedirectableRequest.prototype[method] = function(a, b) {
-        return this._currentRequest[method](a, b);
-      };
-    });
-    ["aborted", "connection", "socket"].forEach(function(property) {
-      Object.defineProperty(RedirectableRequest.prototype, property, {
-        get: function() {
-          return this._currentRequest[property];
-        }
-      });
-    });
-    RedirectableRequest.prototype._sanitizeOptions = function(options) {
-      if (!options.headers) {
-        options.headers = {};
-      }
-      if (options.host) {
-        if (!options.hostname) {
-          options.hostname = options.host;
-        }
-        delete options.host;
-      }
-      if (!options.pathname && options.path) {
-        var searchPos = options.path.indexOf("?");
-        if (searchPos < 0) {
-          options.pathname = options.path;
-        } else {
-          options.pathname = options.path.substring(0, searchPos);
-          options.search = options.path.substring(searchPos);
-        }
-      }
-    };
-    RedirectableRequest.prototype._performRequest = function() {
-      var protocol = this._options.protocol;
-      var nativeProtocol = this._options.nativeProtocols[protocol];
-      if (!nativeProtocol) {
-        this.emit("error", new TypeError("Unsupported protocol " + protocol));
-        return;
-      }
-      if (this._options.agents) {
-        var scheme = protocol.slice(0, -1);
-        this._options.agent = this._options.agents[scheme];
-      }
-      var request = this._currentRequest = nativeProtocol.request(this._options, this._onNativeResponse);
-      request._redirectable = this;
-      for (var event of events) {
-        request.on(event, eventHandlers[event]);
-      }
-      this._currentUrl = /^\//.test(this._options.path) ? url.format(this._options) : this._currentUrl = this._options.path;
-      if (this._isRedirect) {
-        var i = 0;
-        var self2 = this;
-        var buffers = this._requestBodyBuffers;
-        (function writeNext(error) {
-          if (request === self2._currentRequest) {
-            if (error) {
-              self2.emit("error", error);
-            } else if (i < buffers.length) {
-              var buffer = buffers[i++];
-              if (!request.finished) {
-                request.write(buffer.data, buffer.encoding, writeNext);
-              }
-            } else if (self2._ended) {
-              request.end();
-            }
-          }
-        })();
-      }
-    };
-    RedirectableRequest.prototype._processResponse = function(response) {
-      var statusCode = response.statusCode;
-      if (this._options.trackRedirects) {
-        this._redirects.push({
-          url: this._currentUrl,
-          headers: response.headers,
-          statusCode
-        });
-      }
-      var location = response.headers.location;
-      if (!location || this._options.followRedirects === false || statusCode < 300 || statusCode >= 400) {
-        response.responseUrl = this._currentUrl;
-        response.redirects = this._redirects;
-        this.emit("response", response);
-        this._requestBodyBuffers = [];
-        return;
-      }
-      abortRequest(this._currentRequest);
-      response.destroy();
-      if (++this._redirectCount > this._options.maxRedirects) {
-        this.emit("error", new TooManyRedirectsError());
-        return;
-      }
-      var requestHeaders;
-      var beforeRedirect = this._options.beforeRedirect;
-      if (beforeRedirect) {
-        requestHeaders = Object.assign({
-          Host: response.req.getHeader("host")
-        }, this._options.headers);
-      }
-      var method = this._options.method;
-      if ((statusCode === 301 || statusCode === 302) && this._options.method === "POST" || statusCode === 303 && !/^(?:GET|HEAD)$/.test(this._options.method)) {
-        this._options.method = "GET";
-        this._requestBodyBuffers = [];
-        removeMatchingHeaders(/^content-/i, this._options.headers);
-      }
-      var currentHostHeader = removeMatchingHeaders(/^host$/i, this._options.headers);
-      var currentUrlParts = url.parse(this._currentUrl);
-      var currentHost = currentHostHeader || currentUrlParts.host;
-      var currentUrl = /^\w+:/.test(location) ? this._currentUrl : url.format(Object.assign(currentUrlParts, { host: currentHost }));
-      var redirectUrl;
-      try {
-        redirectUrl = url.resolve(currentUrl, location);
-      } catch (cause) {
-        this.emit("error", new RedirectionError(cause));
-        return;
-      }
-      debug("redirecting to", redirectUrl);
-      this._isRedirect = true;
-      var redirectUrlParts = url.parse(redirectUrl);
-      Object.assign(this._options, redirectUrlParts);
-      if (redirectUrlParts.protocol !== currentUrlParts.protocol && redirectUrlParts.protocol !== "https:" || redirectUrlParts.host !== currentHost && !isSubdomain(redirectUrlParts.host, currentHost)) {
-        removeMatchingHeaders(/^(?:authorization|cookie)$/i, this._options.headers);
-      }
-      if (typeof beforeRedirect === "function") {
-        var responseDetails = {
-          headers: response.headers,
-          statusCode
-        };
-        var requestDetails = {
-          url: currentUrl,
-          method,
-          headers: requestHeaders
-        };
-        try {
-          beforeRedirect(this._options, responseDetails, requestDetails);
-        } catch (err) {
-          this.emit("error", err);
-          return;
-        }
-        this._sanitizeOptions(this._options);
-      }
-      try {
-        this._performRequest();
-      } catch (cause) {
-        this.emit("error", new RedirectionError(cause));
-      }
-    };
-    function wrap3(protocols) {
-      var exports3 = {
-        maxRedirects: 21,
-        maxBodyLength: 10 * 1024 * 1024
-      };
-      var nativeProtocols = {};
-      Object.keys(protocols).forEach(function(scheme) {
-        var protocol = scheme + ":";
-        var nativeProtocol = nativeProtocols[protocol] = protocols[scheme];
-        var wrappedProtocol = exports3[scheme] = Object.create(nativeProtocol);
-        function request(input, options, callback) {
-          if (typeof input === "string") {
-            var urlStr = input;
-            try {
-              input = urlToOptions(new URL2(urlStr));
-            } catch (err) {
-              input = url.parse(urlStr);
-            }
-          } else if (URL2 && input instanceof URL2) {
-            input = urlToOptions(input);
-          } else {
-            callback = options;
-            options = input;
-            input = { protocol };
-          }
-          if (typeof options === "function") {
-            callback = options;
-            options = null;
-          }
-          options = Object.assign({
-            maxRedirects: exports3.maxRedirects,
-            maxBodyLength: exports3.maxBodyLength
-          }, input, options);
-          options.nativeProtocols = nativeProtocols;
-          assert2.equal(options.protocol, protocol, "protocol mismatch");
-          debug("options", options);
-          return new RedirectableRequest(options, callback);
-        }
-        function get2(input, options, callback) {
-          var wrappedRequest = wrappedProtocol.request(input, options, callback);
-          wrappedRequest.end();
-          return wrappedRequest;
-        }
-        Object.defineProperties(wrappedProtocol, {
-          request: { value: request, configurable: true, enumerable: true, writable: true },
-          get: { value: get2, configurable: true, enumerable: true, writable: true }
-        });
-      });
-      return exports3;
-    }
-    function noop2() {
-    }
-    function urlToOptions(urlObject) {
-      var options = {
-        protocol: urlObject.protocol,
-        hostname: urlObject.hostname.startsWith("[") ? urlObject.hostname.slice(1, -1) : urlObject.hostname,
-        hash: urlObject.hash,
-        search: urlObject.search,
-        pathname: urlObject.pathname,
-        path: urlObject.pathname + urlObject.search,
-        href: urlObject.href
-      };
-      if (urlObject.port !== "") {
-        options.port = Number(urlObject.port);
-      }
-      return options;
-    }
-    function removeMatchingHeaders(regex, headers) {
-      var lastValue;
-      for (var header in headers) {
-        if (regex.test(header)) {
-          lastValue = headers[header];
-          delete headers[header];
-        }
-      }
-      return lastValue === null || typeof lastValue === "undefined" ? void 0 : String(lastValue).trim();
-    }
-    function createErrorType(code, defaultMessage) {
-      function CustomError(cause) {
-        Error.captureStackTrace(this, this.constructor);
-        if (!cause) {
-          this.message = defaultMessage;
-        } else {
-          this.message = defaultMessage + ": " + cause.message;
-          this.cause = cause;
-        }
-      }
-      CustomError.prototype = new Error();
-      CustomError.prototype.constructor = CustomError;
-      CustomError.prototype.name = "Error [" + code + "]";
-      CustomError.prototype.code = code;
-      return CustomError;
-    }
-    function abortRequest(request) {
-      for (var event of events) {
-        request.removeListener(event, eventHandlers[event]);
-      }
-      request.on("error", noop2);
-      request.abort();
-    }
-    function isSubdomain(subdomain, domain) {
-      const dot = subdomain.length - domain.length - 1;
-      return dot > 0 && subdomain[dot] === "." && subdomain.endsWith(domain);
-    }
-    module2.exports = wrap3({ http, https });
-    module2.exports.wrap = wrap3;
-  }
-});
-
-// node_modules/@openid/appauth/built/node_support/node_requestor.js
-var require_node_requestor = __commonJS({
-  "node_modules/@openid/appauth/built/node_support/node_requestor.js"(exports2) {
-    "use strict";
-    var __extends2 = exports2 && exports2.__extends || function() {
-      var extendStatics = function(d, b) {
-        extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
-          d2.__proto__ = b2;
-        } || function(d2, b2) {
-          for (var p in b2)
-            if (Object.prototype.hasOwnProperty.call(b2, p))
-              d2[p] = b2[p];
-        };
-        return extendStatics(d, b);
-      };
-      return function(d, b) {
-        if (typeof b !== "function" && b !== null)
-          throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() {
-          this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-      };
-    }();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.NodeRequestor = void 0;
-    var Url = __require("url");
-    var errors_1 = require_errors3();
-    var logger_1 = require_logger();
-    var xhr_1 = require_xhr();
-    var https = require_follow_redirects().https;
-    var http = require_follow_redirects().http;
-    var NodeRequestor2 = function(_super) {
-      __extends2(NodeRequestor3, _super);
-      function NodeRequestor3() {
-        return _super !== null && _super.apply(this, arguments) || this;
-      }
-      NodeRequestor3.prototype.xhr = function(settings) {
-        return new Promise(function(resolve13, reject) {
-          var url = Url.parse(settings.url);
-          var data = settings.data;
-          var options = {
-            hostname: url.hostname,
-            port: url.port,
-            path: url.path,
-            method: settings.method,
-            headers: settings.headers || {}
-          };
-          if (data) {
-            options.headers["Content-Length"] = String(data.toString().length);
-          }
-          var protocol = https;
-          if (url.protocol && url.protocol.toLowerCase() === "http:") {
-            protocol = http;
-          }
-          var request = protocol.request(options, function(response) {
-            if (response.statusCode !== 200) {
-              logger_1.log("Request ended with an error ", response.statusCode);
-              reject(new errors_1.AppAuthError(response.statusMessage));
-            }
-            var chunks = [];
-            response.on("data", function(chunk) {
-              chunks.push(chunk.toString());
-            });
-            response.on("end", function() {
-              var body = chunks.join("");
-              if (settings.dataType === "json") {
-                try {
-                  resolve13(JSON.parse(body));
-                } catch (err) {
-                  logger_1.log("Could not parse json response", body);
-                }
-              } else {
-                resolve13(body);
-              }
-            });
-          });
-          request.on("error", function(e) {
-            reject(new errors_1.AppAuthError(e.toString()));
-          });
-          if (data) {
-            request.write(data);
-          }
-          request.end();
-        });
-      };
-      return NodeRequestor3;
-    }(xhr_1.Requestor);
-    exports2.NodeRequestor = NodeRequestor2;
-  }
-});
-
-// node_modules/@openid/appauth/built/node_support/crypto_utils.js
-var require_crypto_utils2 = __commonJS({
-  "node_modules/@openid/appauth/built/node_support/crypto_utils.js"(exports2) {
-    "use strict";
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.NodeCrypto = void 0;
-    var crypto2 = __require("crypto");
-    var crypto_utils_1 = require_crypto_utils();
-    var NodeCrypto = function() {
-      function NodeCrypto2() {
-      }
-      NodeCrypto2.prototype.generateRandom = function(size) {
-        var bytes = crypto2.randomBytes(size);
-        return crypto_utils_1.bufferToString(new Uint8Array(bytes.buffer));
-      };
-      NodeCrypto2.prototype.deriveChallenge = function(code) {
-        var hash = crypto2.createHash("sha256").update(code).digest();
-        return Promise.resolve(crypto_utils_1.urlSafe(new Uint8Array(hash.buffer)));
-      };
-      return NodeCrypto2;
-    }();
-    exports2.NodeCrypto = NodeCrypto;
-  }
-});
-
-// node_modules/opener/lib/opener.js
-var require_opener = __commonJS({
-  "node_modules/opener/lib/opener.js"(exports2, module2) {
-    "use strict";
-    var childProcess = __require("child_process");
-    var os = __require("os");
-    module2.exports = function opener(args, options, callback) {
-      var platform2 = process.platform;
-      if (platform2 === "linux" && os.release().indexOf("Microsoft") !== -1) {
-        platform2 = "win32";
-      }
-      var command2;
-      switch (platform2) {
-        case "win32": {
-          command2 = "cmd.exe";
-          break;
-        }
-        case "darwin": {
-          command2 = "open";
-          break;
-        }
-        default: {
-          command2 = "xdg-open";
-          break;
-        }
-      }
-      if (typeof args === "string") {
-        args = [args];
-      }
-      if (typeof options === "function") {
-        callback = options;
-        options = {};
-      }
-      if (options && typeof options === "object" && options.command) {
-        if (platform2 === "win32") {
-          args = [options.command].concat(args);
-        } else {
-          command2 = options.command;
-        }
-      }
-      if (platform2 === "win32") {
-        args = args.map(function(value) {
-          return value.replace(/[&^]/g, "^$&");
-        });
-        args = ["/c", "start", '""'].concat(args);
-      }
-      return childProcess.execFile(command2, args, options, callback);
-    };
-  }
-});
-
-// node_modules/@openid/appauth/built/node_support/node_request_handler.js
-var require_node_request_handler = __commonJS({
-  "node_modules/@openid/appauth/built/node_support/node_request_handler.js"(exports2) {
-    "use strict";
-    var __extends2 = exports2 && exports2.__extends || function() {
-      var extendStatics = function(d, b) {
-        extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
-          d2.__proto__ = b2;
-        } || function(d2, b2) {
-          for (var p in b2)
-            if (Object.prototype.hasOwnProperty.call(b2, p))
-              d2[p] = b2[p];
-        };
-        return extendStatics(d, b);
-      };
-      return function(d, b) {
-        if (typeof b !== "function" && b !== null)
-          throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() {
-          this.constructor = d;
-        }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-      };
-    }();
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.NodeBasedHandler = void 0;
-    var events_1 = __require("events");
-    var Http = __require("http");
-    var Url = __require("url");
-    var authorization_request_handler_1 = require_authorization_request_handler();
-    var authorization_response_1 = require_authorization_response();
-    var logger_1 = require_logger();
-    var query_string_utils_1 = require_query_string_utils();
-    var crypto_utils_1 = require_crypto_utils2();
-    var opener = require_opener();
-    var ServerEventsEmitter = function(_super) {
-      __extends2(ServerEventsEmitter2, _super);
-      function ServerEventsEmitter2() {
-        return _super !== null && _super.apply(this, arguments) || this;
-      }
-      ServerEventsEmitter2.ON_UNABLE_TO_START = "unable_to_start";
-      ServerEventsEmitter2.ON_AUTHORIZATION_RESPONSE = "authorization_response";
-      return ServerEventsEmitter2;
-    }(events_1.EventEmitter);
-    var NodeBasedHandler2 = function(_super) {
-      __extends2(NodeBasedHandler3, _super);
-      function NodeBasedHandler3(httpServerPort, utils, crypto2) {
-        if (httpServerPort === void 0) {
-          httpServerPort = 8e3;
-        }
-        if (utils === void 0) {
-          utils = new query_string_utils_1.BasicQueryStringUtils();
-        }
-        if (crypto2 === void 0) {
-          crypto2 = new crypto_utils_1.NodeCrypto();
-        }
-        var _this = _super.call(this, utils, crypto2) || this;
-        _this.httpServerPort = httpServerPort;
-        _this.authorizationPromise = null;
-        return _this;
-      }
-      NodeBasedHandler3.prototype.performAuthorizationRequest = function(configuration, request) {
-        var _this = this;
-        var emitter = new ServerEventsEmitter();
-        var requestHandler = function(httpRequest, response) {
-          if (!httpRequest.url) {
-            return;
-          }
-          var url = Url.parse(httpRequest.url);
-          var searchParams = new Url.URLSearchParams(url.query || "");
-          var state = searchParams.get("state") || void 0;
-          var code = searchParams.get("code");
-          var error = searchParams.get("error");
-          if (!state && !code && !error) {
-            return;
-          }
-          logger_1.log("Handling Authorization Request ", searchParams, state, code, error);
-          var authorizationResponse = null;
-          var authorizationError = null;
-          if (error) {
-            logger_1.log("error");
-            var errorUri = searchParams.get("error_uri") || void 0;
-            var errorDescription = searchParams.get("error_description") || void 0;
-            authorizationError = new authorization_response_1.AuthorizationError({ error, error_description: errorDescription, error_uri: errorUri, state });
-          } else {
-            authorizationResponse = new authorization_response_1.AuthorizationResponse({ code, state });
-          }
-          var completeResponse = {
-            request,
-            response: authorizationResponse,
-            error: authorizationError
-          };
-          emitter.emit(ServerEventsEmitter.ON_AUTHORIZATION_RESPONSE, completeResponse);
-          response.end("Close your browser to continue");
-        };
-        this.authorizationPromise = new Promise(function(resolve13, reject) {
-          emitter.once(ServerEventsEmitter.ON_UNABLE_TO_START, function() {
-            reject("Unable to create HTTP server at port " + _this.httpServerPort);
-          });
-          emitter.once(ServerEventsEmitter.ON_AUTHORIZATION_RESPONSE, function(result) {
-            server.close();
-            resolve13(result);
-            _this.completeAuthorizationRequestIfPossible();
-          });
-        });
-        var server;
-        request.setupCodeVerifier().then(function() {
-          server = Http.createServer(requestHandler);
-          server.listen(_this.httpServerPort);
-          var url = _this.buildRequestUrl(configuration, request);
-          logger_1.log("Making a request to ", request, url);
-          opener(url);
-        }).catch(function(error) {
-          logger_1.log("Something bad happened ", error);
-          emitter.emit(ServerEventsEmitter.ON_UNABLE_TO_START);
-        });
-      };
-      NodeBasedHandler3.prototype.completeAuthorizationRequest = function() {
-        if (!this.authorizationPromise) {
-          return Promise.reject("No pending authorization request. Call performAuthorizationRequest() ?");
-        }
-        return this.authorizationPromise;
-      };
-      return NodeBasedHandler3;
-    }(authorization_request_handler_1.AuthorizationRequestHandler);
-    exports2.NodeBasedHandler = NodeBasedHandler2;
   }
 });
 
@@ -93931,7 +93193,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-3115c3d1eeeb4311fc67605838766c3bab7d6c5e`;
+  const localVersion = `0.0.0-5c674f284f19ce71fc717437419fd5a058b7a234`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -94652,42 +93914,6 @@ function convertReferenceChainToString(chain) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/shared/oauth.js
 var import_appauth = __toESM(require_built());
-var import_node_requestor = __toESM(require_node_requestor());
-var import_node_request_handler = __toESM(require_node_request_handler());
-async function authorizationCodeOAuthDance({ loopback: { client_id, client_secret }, authConfig, scope }) {
-  const requestor = new import_node_requestor.NodeRequestor();
-  const notifier = new import_appauth.AuthorizationNotifier();
-  const authorizationHandler = new import_node_request_handler.NodeBasedHandler();
-  authorizationHandler.setAuthorizationNotifier(notifier);
-  let request = new import_appauth.AuthorizationRequest({
-    client_id,
-    scope,
-    redirect_uri: "http://127.0.0.1:" + authorizationHandler.httpServerPort,
-    response_type: import_appauth.AuthorizationRequest.RESPONSE_TYPE_CODE,
-    extras: {
-      "access_type": "offline"
-    }
-  });
-  authorizationHandler.performAuthorizationRequest(authConfig, request);
-  await authorizationHandler.completeAuthorizationRequestIfPossible();
-  const authorization = await authorizationHandler.authorizationPromise;
-  const authorizationCode = authorization.response.code;
-  notifier.onAuthorizationComplete(authorization.request, authorization.response, authorization.error);
-  const tokenHandler = new import_appauth.BaseTokenRequestHandler(requestor);
-  const tokenRequest = new import_appauth.TokenRequest({
-    client_id,
-    redirect_uri: "http://127.0.0.1:" + authorizationHandler.httpServerPort,
-    grant_type: import_appauth.GRANT_TYPE_AUTHORIZATION_CODE,
-    code: authorizationCode,
-    extras: {
-      client_secret: client_secret || ""
-    }
-  });
-  return await tokenHandler.performTokenRequest(authConfig, tokenRequest).catch((e) => {
-    console.error(e);
-    process.exit(1);
-  });
-}
 async function deviceCodeOAuthDance({ oob: { client_id, client_secret }, authConfig, deviceAuthEndpoint, scope }) {
   const url = new URL(deviceAuthEndpoint);
   url.searchParams.append("scope", scope);
@@ -94743,10 +93969,6 @@ async function checkStatusOfAuthServer(serverUrl, deviceCode, clientId, clientSe
   }).then((x) => x.json());
 }
 var GoogleOAuthDanceConfig = {
-  loopback: {
-    client_id: "823469418460-ta0oojev0ovg2qlmv6kn46qiaebkr4gi.apps.googleusercontent.com",
-    client_secret: "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"
-  },
   oob: {
     client_id: "823469418460-puj3s53su005dp2ima1uim3gil2uggur.apps.googleusercontent.com",
     client_secret: "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"
@@ -94762,10 +93984,6 @@ var GoogleOAuthDanceConfig = {
   deviceAuthEndpoint: "https://oauth2.googleapis.com/device/code"
 };
 var GithubOAuthDanceConfig = {
-  loopback: {
-    client_id: "Iv1.57e16107abc663d9",
-    client_secret: "c9b2b8cfbd59d6a36311607154dccabd8ce042e6"
-  },
   oob: {
     client_id: "Iv1.57e16107abc663d9",
     client_secret: "c9b2b8cfbd59d6a36311607154dccabd8ce042e6"
@@ -94794,7 +94012,6 @@ function isAuthorizationError(result) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/shared/firebase.js
 async function loginToFirebase() {
-  const oAuthDance = process.env.DISPLAY ? authorizationCodeOAuthDance : deviceCodeOAuthDance;
   try {
     if (!await hasTokenStoreFile()) {
       Log.warn(Array(80).fill("#").join(""));
@@ -94810,7 +94027,7 @@ async function loginToFirebase() {
       }
     }
     Log.log(`Please log in using the instructions below with your google.com credentials:`);
-    const { idToken, accessToken } = await oAuthDance(GoogleOAuthDanceConfig);
+    const { idToken, accessToken } = await deviceCodeOAuthDance(GoogleOAuthDanceConfig);
     const googleCredential = GoogleAuthProvider.credential(idToken, accessToken);
     const { user } = await signInWithCredential(getAuth(), googleCredential);
     if (user.providerData.find((provider) => provider.providerId === "github.com")) {
@@ -94821,7 +94038,7 @@ async function loginToFirebase() {
     Log.log(`There is no Github account currently linked to ${bold(user.email)} in the service,`);
     Log.log("please login using the instructions below to link your Github account.");
     Log.log("");
-    const { accessToken: githubAccessToken } = await oAuthDance(GithubOAuthDanceConfig);
+    const { accessToken: githubAccessToken } = await deviceCodeOAuthDance(GithubOAuthDanceConfig);
     await linkWithCredential(user, GithubAuthProvider.credential(githubAccessToken));
     return true;
   } catch (e) {
