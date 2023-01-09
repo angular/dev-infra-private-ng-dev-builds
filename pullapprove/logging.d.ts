@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { PullApproveGroupResult } from './group.js';
-declare type ConditionGrouping = keyof Pick<PullApproveGroupResult, 'matchedConditions' | 'unmatchedConditions' | 'unverifiableConditions'>;
+type ConditionGrouping = keyof Pick<PullApproveGroupResult, 'matchedConditions' | 'unmatchedConditions' | 'unverifiableConditions'>;
 /** Create logs for each pullapprove group result. */
 export declare function logGroup(group: PullApproveGroupResult, conditionsToPrint: ConditionGrouping, printMessageFn?: {
     (...values: unknown[]): void;

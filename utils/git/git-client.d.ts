@@ -14,7 +14,7 @@ export declare class GitCommandError extends Error {
     constructor(client: GitClient, unsanitizedArgs: string[]);
 }
 /** The options available for the `GitClient``run` and `runGraceful` methods. */
-declare type GitCommandRunOptions = SpawnSyncOptions;
+type GitCommandRunOptions = SpawnSyncOptions;
 /** Class that can be used to perform Git interactions with a given remote. **/
 export declare class GitClient {
     /** The full path to the root of the repository base. */

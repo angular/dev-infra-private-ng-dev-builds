@@ -16,7 +16,7 @@ export { RequestError as GithubApiRequestError };
  * An object representation of a Graphql Query to be used as a response type and
  * to generate a Graphql query string.
  */
-export declare type GraphqlQueryObject = Parameters<typeof query>[1];
+export type GraphqlQueryObject = Parameters<typeof query>[1];
 /** Interface describing a Github repository. */
 export interface GithubRepo {
     /** Owner login of the repository. */

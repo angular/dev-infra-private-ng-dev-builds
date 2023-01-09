@@ -7,7 +7,7 @@
  */
 import { GitClient } from '../../utils/git/git-client.js';
 /** State of a pull request in Github. */
-export declare type PullRequestState = 'merged' | 'unknown';
+export type PullRequestState = 'merged' | 'unknown';
 /**
  * Gets whether a given pull request has been merged.
  *

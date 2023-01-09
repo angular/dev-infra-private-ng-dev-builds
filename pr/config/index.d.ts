@@ -10,7 +10,7 @@ import { GithubConfig, NgDevConfig } from '../../utils/config.js';
  * Possible merge methods supported by the Github API.
  * https://developer.github.com/v3/pulls/#merge-a-pull-request-merge-button.
  */
-export declare type GithubApiMergeMethod = 'merge' | 'squash' | 'rebase';
+export type GithubApiMergeMethod = 'merge' | 'squash' | 'rebase';
 /** Configuration for the Github API merge strategy. */
 export interface GithubApiMergeStrategyConfig {
     /** Default method used for merging pull requests */

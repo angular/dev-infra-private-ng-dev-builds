@@ -17,7 +17,7 @@ import { LtsNpmDistTag } from './long-term-support.js';
  *     the version is already ahead. The tags are expected to be deleted after the minor
  *     becomes stable.
  */
-export declare type NpmDistTag = 'latest' | 'next' | 'do-not-use-exceptional-minor' | LtsNpmDistTag;
+export type NpmDistTag = 'latest' | 'next' | 'do-not-use-exceptional-minor' | LtsNpmDistTag;
 /** Type describing an NPM package fetched from the registry. */
 export interface NpmPackageInfo {
     /** Maps of versions and their package JSON objects. */

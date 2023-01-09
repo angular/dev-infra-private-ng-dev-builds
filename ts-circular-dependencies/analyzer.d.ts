@@ -6,13 +6,13 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import ts from 'typescript';
-export declare type ModuleResolver = (specifier: string) => string | null;
+export type ModuleResolver = (specifier: string) => string | null;
 /**
  * Reference chains describe a sequence of source files which are connected through imports.
  * e.g. `file_a.ts` imports `file_b.ts`, whereas `file_b.ts` imports `file_c.ts`. The reference
  * chain data structure could be used to represent this import sequence.
  */
-export declare type ReferenceChain<T = ts.SourceFile> = T[];
+export type ReferenceChain<T = ts.SourceFile> = T[];
 /**
  * Analyzer that can be used to detect import cycles within source files. It supports
  * custom module resolution, source file caching and collects unresolved specifiers.

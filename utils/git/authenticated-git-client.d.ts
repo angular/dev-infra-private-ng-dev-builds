@@ -9,9 +9,9 @@ import { GithubConfig } from '../config.js';
 import { GitClient } from './git-client.js';
 import { AuthenticatedGithubClient, GithubRepo } from './github.js';
 /** Describes a function that can be used to test for given Github OAuth scopes. */
-export declare type OAuthScopeTestFunction = (scopes: string[], missing: string[]) => void;
+export type OAuthScopeTestFunction = (scopes: string[], missing: string[]) => void;
 /** The possible types of users which could be used for authentication. */
-declare type UserType = 'bot' | 'user';
+type UserType = 'bot' | 'user';
 /**
  * Extension of the `GitClient` with additional utilities which are useful for
  * authenticated Git client instances.

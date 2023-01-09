@@ -96,7 +96,7 @@ export interface ReleaseNotesConfig {
     groupOrder?: string[];
 }
 /** Configuration for releases in the dev-infra configuration. */
-export declare type DevInfraReleaseConfig = {
+export type DevInfraReleaseConfig = {
     release: ReleaseConfig;
 };
 /** Asserts that the given configuration is a valid `DevInfraReleaseConfig`. */

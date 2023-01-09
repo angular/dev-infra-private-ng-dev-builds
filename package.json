@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-290dc69521b978d807fc9e51c3324b66a732c263",
+  "version": "0.0.0-4f7f18b611830401b3db5c17406515350b5e1190",
   "type": "module",
   "private": true,
   "bin": {
@@ -18,6 +18,6 @@
   },
   "dependencies": {
     "@yarnpkg/lockfile": "^1.1.0",
-    "typescript": "~4.8.0"
+    "typescript": "~4.9.0"
   }
 }

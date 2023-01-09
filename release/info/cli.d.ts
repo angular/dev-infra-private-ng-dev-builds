@@ -13,7 +13,7 @@ import { NpmPackage } from '../config/index.js';
  * @important When changing this, make sure the release action
  *   invocation is updated as well.
  */
-export declare type ReleaseInfoJsonStdout = {
+export type ReleaseInfoJsonStdout = {
     npmPackages: NpmPackage[];
 };
 /** Command line options for printing release information. */

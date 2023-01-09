@@ -22,7 +22,7 @@ export interface SpawnOptions extends Omit<_SpawnOptions, 'shell' | 'stdio'> {
     input?: string;
 }
 /** Interface describing the options for spawning an interactive process. */
-export declare type SpawnInteractiveCommandOptions = Omit<_SpawnOptions, 'shell' | 'stdio'>;
+export type SpawnInteractiveCommandOptions = Omit<_SpawnOptions, 'shell' | 'stdio'>;
 /** Interface describing the result of a spawned process. */
 export interface SpawnResult {
     /** Captured stdout in string format. */

@@ -34,7 +34,7 @@ export interface VersionInfo {
     isExceptionalMinor: boolean;
 }
 /** Type describing the parsed contents of a `package.json`. */
-export declare type PackageJson = {
+export type PackageJson = {
     version: string;
     [exceptionalMinorPackageIndicator]?: boolean;
     [otherUnknownFields: string]: unknown;

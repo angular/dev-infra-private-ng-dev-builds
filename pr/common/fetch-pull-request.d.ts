@@ -85,9 +85,9 @@ export declare const PR_SCHEMA: {
         }[];
     };
 };
-export declare type PullRequestFromGithub = typeof PR_SCHEMA;
+export type PullRequestFromGithub = typeof PR_SCHEMA;
 /** Type describing the normalized and combined status of a pull request. */
-export declare type PullRequestStatusInfo = {
+export type PullRequestStatusInfo = {
     combinedStatus: PullRequestStatus;
     statuses: {
         status: PullRequestStatus;

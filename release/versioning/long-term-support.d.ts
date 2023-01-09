@@ -8,7 +8,7 @@
 import semver from 'semver';
 import { ReleaseConfig } from '../config/index.js';
 /** Type describing a NPM dist tag indicating long-term support. */
-export declare type LtsNpmDistTag = `v${number}-lts`;
+export type LtsNpmDistTag = `v${number}-lts`;
 /** Interface describing determined LTS branches. */
 export interface LtsBranches {
     /** List of active LTS version branches. */

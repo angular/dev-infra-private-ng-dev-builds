@@ -6,8 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { ReferenceChain } from './analyzer.js';
-export declare type CircularDependency = ReferenceChain<string>;
-export declare type Golden = CircularDependency[];
+export type CircularDependency = ReferenceChain<string>;
+export type Golden = CircularDependency[];
 /**
  * Converts a list of reference chains to a JSON-compatible golden object. Reference chains
  * by default use TypeScript source file objects. In order to make those chains printable,

@@ -7,9 +7,9 @@
  */
 import { BaseModule } from './base.js';
 /** The result of checking a branch on CI. */
-declare type CiBranchStatus = 'success' | 'failed' | 'not found';
+type CiBranchStatus = 'success' | 'failed' | 'not found';
 /** A list of results for checking CI branches. */
-declare type CiData = {
+type CiData = {
     active: boolean;
     name: string;
     label: string;

@@ -1,5 +1,5 @@
 import { Argv } from 'yargs';
-declare type CompletedFn = (err: Error | null) => Promise<void> | void;
+type CompletedFn = (err: Error | null) => Promise<void> | void;
 /** Register a function to be called when the command completes. */
 export declare function registerCompletedFunction(fn: CompletedFn): void;
 /**

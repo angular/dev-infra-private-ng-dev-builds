@@ -8,8 +8,8 @@
 /// <reference types="node" />
 import { GitClient } from '../../utils/git/git-client.js';
 import { FormatConfig } from '../config.js';
-export declare type CallbackFunc = (file: string, code: number | NodeJS.Signals, stdout: string, stderr: string) => boolean;
-export declare type FormatterAction = 'check' | 'format';
+export type CallbackFunc = (file: string, code: number | NodeJS.Signals, stdout: string, stderr: string) => boolean;
+export type FormatterAction = 'check' | 'format';
 interface FormatterActionMetadata {
     commandFlags: string;
     callback: CallbackFunc;

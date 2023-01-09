@@ -53,7 +53,7 @@ declare const commitFields: {
     author: string;
 };
 /** The additional fields to be included in commit log entries for parsing. */
-export declare type CommitFields = typeof commitFields;
+export type CommitFields = typeof commitFields;
 /** The commit fields described as git log format entries for parsing. */
 export declare const commitFieldsAsFormat: (fields: CommitFields) => string;
 /**

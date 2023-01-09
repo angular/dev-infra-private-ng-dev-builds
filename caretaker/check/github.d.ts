@@ -7,7 +7,7 @@
  */
 import { BaseModule } from './base.js';
 /** A list of generated results for a github query. */
-declare type GithubQueryResults = {
+type GithubQueryResults = {
     queryName: string;
     count: number;
     queryUrl: string;

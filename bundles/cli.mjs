@@ -45,7 +45,7 @@ import {
   require_tr46,
   require_wrappy,
   targetLabels
-} from "./chunk-REAN5RPN.mjs";
+} from "./chunk-DJEHVUWU.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -61,11 +61,10 @@ import {
   green,
   init_supports_color,
   red,
-  source_default,
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-GQOURFTK.mjs";
+} from "./chunk-SHSWZ6HI.mjs";
 import "./chunk-H4BWSXO4.mjs";
 import {
   __commonJS,
@@ -2455,11 +2454,11 @@ var require_signals = __commonJS({
 // node_modules/signal-exit/index.js
 var require_signal_exit = __commonJS({
   "node_modules/signal-exit/index.js"(exports2, module2) {
-    var process8 = global.process;
-    var processOk = function(process9) {
-      return process9 && typeof process9 === "object" && typeof process9.removeListener === "function" && typeof process9.emit === "function" && typeof process9.reallyExit === "function" && typeof process9.listeners === "function" && typeof process9.kill === "function" && typeof process9.pid === "number" && typeof process9.on === "function";
+    var process12 = global.process;
+    var processOk = function(process13) {
+      return process13 && typeof process13 === "object" && typeof process13.removeListener === "function" && typeof process13.emit === "function" && typeof process13.reallyExit === "function" && typeof process13.listeners === "function" && typeof process13.kill === "function" && typeof process13.pid === "number" && typeof process13.on === "function";
     };
-    if (!processOk(process8)) {
+    if (!processOk(process12)) {
       module2.exports = function() {
         return function() {
         };
@@ -2467,15 +2466,15 @@ var require_signal_exit = __commonJS({
     } else {
       assert2 = __require("assert");
       signals = require_signals();
-      isWin = /^win/i.test(process8.platform);
+      isWin = /^win/i.test(process12.platform);
       EE = __require("events");
       if (typeof EE !== "function") {
         EE = EE.EventEmitter;
       }
-      if (process8.__signal_exit_emitter__) {
-        emitter = process8.__signal_exit_emitter__;
+      if (process12.__signal_exit_emitter__) {
+        emitter = process12.__signal_exit_emitter__;
       } else {
-        emitter = process8.__signal_exit_emitter__ = new EE();
+        emitter = process12.__signal_exit_emitter__ = new EE();
         emitter.count = 0;
         emitter.emitted = {};
       }
@@ -2512,12 +2511,12 @@ var require_signal_exit = __commonJS({
         loaded = false;
         signals.forEach(function(sig) {
           try {
-            process8.removeListener(sig, sigListeners[sig]);
+            process12.removeListener(sig, sigListeners[sig]);
           } catch (er) {
           }
         });
-        process8.emit = originalProcessEmit;
-        process8.reallyExit = originalProcessReallyExit;
+        process12.emit = originalProcessEmit;
+        process12.reallyExit = originalProcessReallyExit;
         emitter.count -= 1;
       };
       module2.exports.unload = unload;
@@ -2534,7 +2533,7 @@ var require_signal_exit = __commonJS({
           if (!processOk(global.process)) {
             return;
           }
-          var listeners = process8.listeners(sig);
+          var listeners = process12.listeners(sig);
           if (listeners.length === emitter.count) {
             unload();
             emit("exit", null, sig);
@@ -2542,7 +2541,7 @@ var require_signal_exit = __commonJS({
             if (isWin && sig === "SIGHUP") {
               sig = "SIGINT";
             }
-            process8.kill(process8.pid, sig);
+            process12.kill(process12.pid, sig);
           }
         };
       });
@@ -2558,35 +2557,35 @@ var require_signal_exit = __commonJS({
         emitter.count += 1;
         signals = signals.filter(function(sig) {
           try {
-            process8.on(sig, sigListeners[sig]);
+            process12.on(sig, sigListeners[sig]);
             return true;
           } catch (er) {
             return false;
           }
         });
-        process8.emit = processEmit;
-        process8.reallyExit = processReallyExit;
+        process12.emit = processEmit;
+        process12.reallyExit = processReallyExit;
       };
       module2.exports.load = load;
-      originalProcessReallyExit = process8.reallyExit;
+      originalProcessReallyExit = process12.reallyExit;
       processReallyExit = function processReallyExit2(code) {
         if (!processOk(global.process)) {
           return;
         }
-        process8.exitCode = code || 0;
-        emit("exit", process8.exitCode, null);
-        emit("afterexit", process8.exitCode, null);
-        originalProcessReallyExit.call(process8, process8.exitCode);
+        process12.exitCode = code || 0;
+        emit("exit", process12.exitCode, null);
+        emit("afterexit", process12.exitCode, null);
+        originalProcessReallyExit.call(process12, process12.exitCode);
       };
-      originalProcessEmit = process8.emit;
+      originalProcessEmit = process12.emit;
       processEmit = function processEmit2(ev, arg) {
         if (ev === "exit" && processOk(global.process)) {
           if (arg !== void 0) {
-            process8.exitCode = arg;
+            process12.exitCode = arg;
           }
           var ret = originalProcessEmit.apply(this, arguments);
-          emit("exit", process8.exitCode, null);
-          emit("afterexit", process8.exitCode, null);
+          emit("exit", process12.exitCode, null);
+          emit("afterexit", process12.exitCode, null);
           return ret;
         } else {
           return originalProcessEmit.apply(this, arguments);
@@ -2692,9 +2691,9 @@ var require_run_async = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isFunction.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isFunction.js
 var require_isFunction = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isFunction.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isFunction.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isFunction = void 0;
@@ -2705,9 +2704,9 @@ var require_isFunction = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/createErrorClass.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/createErrorClass.js
 var require_createErrorClass = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/createErrorClass.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/createErrorClass.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.createErrorClass = void 0;
@@ -2725,9 +2724,9 @@ var require_createErrorClass = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/UnsubscriptionError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/UnsubscriptionError.js
 var require_UnsubscriptionError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/UnsubscriptionError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/UnsubscriptionError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.UnsubscriptionError = void 0;
@@ -2745,9 +2744,9 @@ var require_UnsubscriptionError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/arrRemove.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/arrRemove.js
 var require_arrRemove = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/arrRemove.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/arrRemove.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.arrRemove = void 0;
@@ -2761,9 +2760,9 @@ var require_arrRemove = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/Subscription.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Subscription.js
 var require_Subscription = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/Subscription.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Subscription.js"(exports2) {
     "use strict";
     var __values2 = exports2 && exports2.__values || function(o) {
       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -2950,9 +2949,9 @@ var require_Subscription = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/config.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/config.js
 var require_config = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/config.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/config.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.config = void 0;
@@ -2966,9 +2965,9 @@ var require_config = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/timeoutProvider.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/timeoutProvider.js
 var require_timeoutProvider = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/timeoutProvider.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/timeoutProvider.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -3019,9 +3018,9 @@ var require_timeoutProvider = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/reportUnhandledError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/reportUnhandledError.js
 var require_reportUnhandledError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/reportUnhandledError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/reportUnhandledError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.reportUnhandledError = void 0;
@@ -3041,9 +3040,9 @@ var require_reportUnhandledError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/noop.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/noop.js
 var require_noop = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/noop.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/noop.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.noop = void 0;
@@ -3053,9 +3052,9 @@ var require_noop = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/NotificationFactories.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/NotificationFactories.js
 var require_NotificationFactories = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/NotificationFactories.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/NotificationFactories.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.createNotification = exports2.nextNotification = exports2.errorNotification = exports2.COMPLETE_NOTIFICATION = void 0;
@@ -3081,9 +3080,9 @@ var require_NotificationFactories = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/errorContext.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/errorContext.js
 var require_errorContext = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/errorContext.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/errorContext.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.captureError = exports2.errorContext = void 0;
@@ -3118,9 +3117,9 @@ var require_errorContext = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/Subscriber.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Subscriber.js
 var require_Subscriber = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/Subscriber.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Subscriber.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -3321,9 +3320,9 @@ var require_Subscriber = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/symbol/observable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/symbol/observable.js
 var require_observable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/symbol/observable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/symbol/observable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.observable = void 0;
@@ -3333,9 +3332,9 @@ var require_observable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/identity.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/identity.js
 var require_identity = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/identity.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/identity.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.identity = void 0;
@@ -3346,9 +3345,9 @@ var require_identity = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/pipe.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/pipe.js
 var require_pipe = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/pipe.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/pipe.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.pipeFromArray = exports2.pipe = void 0;
@@ -3378,9 +3377,9 @@ var require_pipe = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/Observable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Observable.js
 var require_Observable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/Observable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Observable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Observable = void 0;
@@ -3485,9 +3484,9 @@ var require_Observable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/lift.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/lift.js
 var require_lift = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/lift.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/lift.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.operate = exports2.hasLift = void 0;
@@ -3514,9 +3513,9 @@ var require_lift = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/OperatorSubscriber.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/OperatorSubscriber.js
 var require_OperatorSubscriber = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/OperatorSubscriber.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/OperatorSubscriber.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -3593,9 +3592,9 @@ var require_OperatorSubscriber = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/refCount.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/refCount.js
 var require_refCount = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/refCount.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/refCount.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.refCount = void 0;
@@ -3628,9 +3627,9 @@ var require_refCount = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/ConnectableObservable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/ConnectableObservable.js
 var require_ConnectableObservable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/ConnectableObservable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/ConnectableObservable.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -3721,9 +3720,9 @@ var require_ConnectableObservable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/performanceTimestampProvider.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/performanceTimestampProvider.js
 var require_performanceTimestampProvider = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/performanceTimestampProvider.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/performanceTimestampProvider.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.performanceTimestampProvider = void 0;
@@ -3736,9 +3735,9 @@ var require_performanceTimestampProvider = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/animationFrameProvider.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/animationFrameProvider.js
 var require_animationFrameProvider = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/animationFrameProvider.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/animationFrameProvider.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -3807,14 +3806,13 @@ var require_animationFrameProvider = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/dom/animationFrames.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/dom/animationFrames.js
 var require_animationFrames = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/dom/animationFrames.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/dom/animationFrames.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.animationFrames = void 0;
     var Observable_1 = require_Observable();
-    var Subscription_1 = require_Subscription();
     var performanceTimestampProvider_1 = require_performanceTimestampProvider();
     var animationFrameProvider_1 = require_animationFrameProvider();
     function animationFrames(timestampProvider) {
@@ -3822,32 +3820,38 @@ var require_animationFrames = __commonJS({
     }
     exports2.animationFrames = animationFrames;
     function animationFramesFactory(timestampProvider) {
-      var schedule = animationFrameProvider_1.animationFrameProvider.schedule;
       return new Observable_1.Observable(function(subscriber) {
-        var subscription = new Subscription_1.Subscription();
         var provider = timestampProvider || performanceTimestampProvider_1.performanceTimestampProvider;
         var start = provider.now();
-        var run = function(timestamp) {
-          var now = provider.now();
-          subscriber.next({
-            timestamp: timestampProvider ? now : timestamp,
-            elapsed: now - start
-          });
+        var id = 0;
+        var run = function() {
           if (!subscriber.closed) {
-            subscription.add(schedule(run));
+            id = animationFrameProvider_1.animationFrameProvider.requestAnimationFrame(function(timestamp) {
+              id = 0;
+              var now = provider.now();
+              subscriber.next({
+                timestamp: timestampProvider ? now : timestamp,
+                elapsed: now - start
+              });
+              run();
+            });
           }
         };
-        subscription.add(schedule(run));
-        return subscription;
+        run();
+        return function() {
+          if (id) {
+            animationFrameProvider_1.animationFrameProvider.cancelAnimationFrame(id);
+          }
+        };
       });
     }
     var DEFAULT_ANIMATION_FRAMES = animationFramesFactory();
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/ObjectUnsubscribedError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/ObjectUnsubscribedError.js
 var require_ObjectUnsubscribedError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/ObjectUnsubscribedError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/ObjectUnsubscribedError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ObjectUnsubscribedError = void 0;
@@ -3862,9 +3866,9 @@ var require_ObjectUnsubscribedError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/Subject.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Subject.js
 var require_Subject = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/Subject.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Subject.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4068,9 +4072,9 @@ var require_Subject = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/BehaviorSubject.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/BehaviorSubject.js
 var require_BehaviorSubject = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/BehaviorSubject.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/BehaviorSubject.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4132,9 +4136,9 @@ var require_BehaviorSubject = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/dateTimestampProvider.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/dateTimestampProvider.js
 var require_dateTimestampProvider = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/dateTimestampProvider.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/dateTimestampProvider.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.dateTimestampProvider = void 0;
@@ -4147,9 +4151,9 @@ var require_dateTimestampProvider = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/ReplaySubject.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/ReplaySubject.js
 var require_ReplaySubject = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/ReplaySubject.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/ReplaySubject.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4239,9 +4243,9 @@ var require_ReplaySubject = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/AsyncSubject.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/AsyncSubject.js
 var require_AsyncSubject = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/AsyncSubject.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/AsyncSubject.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4305,9 +4309,9 @@ var require_AsyncSubject = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/Action.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/Action.js
 var require_Action = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/Action.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/Action.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4350,9 +4354,9 @@ var require_Action = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/intervalProvider.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/intervalProvider.js
 var require_intervalProvider = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/intervalProvider.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/intervalProvider.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -4403,9 +4407,9 @@ var require_intervalProvider = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/AsyncAction.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AsyncAction.js
 var require_AsyncAction = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/AsyncAction.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AsyncAction.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4443,6 +4447,7 @@ var require_AsyncAction = __commonJS({
         return _this;
       }
       AsyncAction2.prototype.schedule = function(state, delay) {
+        var _a2;
         if (delay === void 0) {
           delay = 0;
         }
@@ -4457,7 +4462,7 @@ var require_AsyncAction = __commonJS({
         }
         this.pending = true;
         this.delay = delay;
-        this.id = this.id || this.requestAsyncId(scheduler, this.id, delay);
+        this.id = (_a2 = this.id) !== null && _a2 !== void 0 ? _a2 : this.requestAsyncId(scheduler, this.id, delay);
         return this;
       };
       AsyncAction2.prototype.requestAsyncId = function(scheduler, _id2, delay) {
@@ -4473,7 +4478,9 @@ var require_AsyncAction = __commonJS({
         if (delay != null && this.delay === delay && this.pending === false) {
           return id;
         }
-        intervalProvider_1.intervalProvider.clearInterval(id);
+        if (id != null) {
+          intervalProvider_1.intervalProvider.clearInterval(id);
+        }
         return void 0;
       };
       AsyncAction2.prototype.execute = function(state, delay) {
@@ -4522,9 +4529,9 @@ var require_AsyncAction = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/Immediate.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/Immediate.js
 var require_Immediate = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/Immediate.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/Immediate.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.TestTools = exports2.Immediate = void 0;
@@ -4562,9 +4569,9 @@ var require_Immediate = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/immediateProvider.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/immediateProvider.js
 var require_immediateProvider = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/immediateProvider.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/immediateProvider.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -4615,9 +4622,9 @@ var require_immediateProvider = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/AsapAction.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AsapAction.js
 var require_AsapAction = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/AsapAction.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AsapAction.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4663,15 +4670,15 @@ var require_AsapAction = __commonJS({
         return scheduler._scheduled || (scheduler._scheduled = immediateProvider_1.immediateProvider.setImmediate(scheduler.flush.bind(scheduler, void 0)));
       };
       AsapAction2.prototype.recycleAsyncId = function(scheduler, id, delay) {
+        var _a2;
         if (delay === void 0) {
           delay = 0;
         }
-        if (delay != null && delay > 0 || delay == null && this.delay > 0) {
+        if (delay != null ? delay > 0 : this.delay > 0) {
           return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);
         }
-        if (!scheduler.actions.some(function(action) {
-          return action.id === id;
-        })) {
+        var actions2 = scheduler.actions;
+        if (id != null && ((_a2 = actions2[actions2.length - 1]) === null || _a2 === void 0 ? void 0 : _a2.id) !== id) {
           immediateProvider_1.immediateProvider.clearImmediate(id);
           scheduler._scheduled = void 0;
         }
@@ -4683,9 +4690,9 @@ var require_AsapAction = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/Scheduler.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Scheduler.js
 var require_Scheduler = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/Scheduler.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Scheduler.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Scheduler = void 0;
@@ -4711,9 +4718,9 @@ var require_Scheduler = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/AsyncScheduler.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AsyncScheduler.js
 var require_AsyncScheduler = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/AsyncScheduler.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AsyncScheduler.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4748,7 +4755,6 @@ var require_AsyncScheduler = __commonJS({
         var _this = _super.call(this, SchedulerAction, now) || this;
         _this.actions = [];
         _this._active = false;
-        _this._scheduled = void 0;
         return _this;
       }
       AsyncScheduler2.prototype.flush = function(action) {
@@ -4778,9 +4784,9 @@ var require_AsyncScheduler = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/AsapScheduler.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AsapScheduler.js
 var require_AsapScheduler = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/AsapScheduler.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AsapScheduler.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4837,9 +4843,9 @@ var require_AsapScheduler = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/asap.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/asap.js
 var require_asap = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/asap.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/asap.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.asap = exports2.asapScheduler = void 0;
@@ -4850,9 +4856,9 @@ var require_asap = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/async.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/async.js
 var require_async = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/async.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/async.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.async = exports2.asyncScheduler = void 0;
@@ -4863,9 +4869,9 @@ var require_async = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/QueueAction.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/QueueAction.js
 var require_QueueAction = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/QueueAction.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/QueueAction.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4921,7 +4927,8 @@ var require_QueueAction = __commonJS({
         if (delay != null && delay > 0 || delay == null && this.delay > 0) {
           return _super.prototype.requestAsyncId.call(this, scheduler, id, delay);
         }
-        return scheduler.flush(this);
+        scheduler.flush(this);
+        return 0;
       };
       return QueueAction2;
     }(AsyncAction_1.AsyncAction);
@@ -4929,9 +4936,9 @@ var require_QueueAction = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/QueueScheduler.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/QueueScheduler.js
 var require_QueueScheduler = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/QueueScheduler.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/QueueScheduler.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -4968,9 +4975,9 @@ var require_QueueScheduler = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/queue.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/queue.js
 var require_queue = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/queue.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/queue.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.queue = exports2.queueScheduler = void 0;
@@ -4981,9 +4988,9 @@ var require_queue = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/AnimationFrameAction.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AnimationFrameAction.js
 var require_AnimationFrameAction = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/AnimationFrameAction.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AnimationFrameAction.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -5031,15 +5038,15 @@ var require_AnimationFrameAction = __commonJS({
         }));
       };
       AnimationFrameAction2.prototype.recycleAsyncId = function(scheduler, id, delay) {
+        var _a2;
         if (delay === void 0) {
           delay = 0;
         }
-        if (delay != null && delay > 0 || delay == null && this.delay > 0) {
+        if (delay != null ? delay > 0 : this.delay > 0) {
           return _super.prototype.recycleAsyncId.call(this, scheduler, id, delay);
         }
-        if (!scheduler.actions.some(function(action) {
-          return action.id === id;
-        })) {
+        var actions2 = scheduler.actions;
+        if (id != null && ((_a2 = actions2[actions2.length - 1]) === null || _a2 === void 0 ? void 0 : _a2.id) !== id) {
           animationFrameProvider_1.animationFrameProvider.cancelAnimationFrame(id);
           scheduler._scheduled = void 0;
         }
@@ -5051,9 +5058,9 @@ var require_AnimationFrameAction = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/AnimationFrameScheduler.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AnimationFrameScheduler.js
 var require_AnimationFrameScheduler = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/AnimationFrameScheduler.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/AnimationFrameScheduler.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -5110,9 +5117,9 @@ var require_AnimationFrameScheduler = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/animationFrame.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/animationFrame.js
 var require_animationFrame = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/animationFrame.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/animationFrame.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.animationFrame = exports2.animationFrameScheduler = void 0;
@@ -5123,9 +5130,9 @@ var require_animationFrame = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduler/VirtualTimeScheduler.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/VirtualTimeScheduler.js
 var require_VirtualTimeScheduler = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduler/VirtualTimeScheduler.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduler/VirtualTimeScheduler.js"(exports2) {
     "use strict";
     var __extends2 = exports2 && exports2.__extends || function() {
       var extendStatics = function(d, b) {
@@ -5230,7 +5237,7 @@ var require_VirtualTimeScheduler = __commonJS({
         var actions2 = scheduler.actions;
         actions2.push(this);
         actions2.sort(VirtualAction2.sortActions);
-        return true;
+        return 1;
       };
       VirtualAction2.prototype.recycleAsyncId = function(scheduler, id, delay) {
         if (delay === void 0) {
@@ -5264,9 +5271,9 @@ var require_VirtualTimeScheduler = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/empty.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/empty.js
 var require_empty = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/empty.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/empty.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.empty = exports2.EMPTY = void 0;
@@ -5288,9 +5295,9 @@ var require_empty = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isScheduler.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isScheduler.js
 var require_isScheduler = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isScheduler.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isScheduler.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isScheduler = void 0;
@@ -5302,9 +5309,9 @@ var require_isScheduler = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/args.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/args.js
 var require_args = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/args.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/args.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.popNumber = exports2.popScheduler = exports2.popResultSelector = void 0;
@@ -5328,9 +5335,9 @@ var require_args = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isArrayLike.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isArrayLike.js
 var require_isArrayLike = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isArrayLike.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isArrayLike.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isArrayLike = void 0;
@@ -5340,9 +5347,9 @@ var require_isArrayLike = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isPromise.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isPromise.js
 var require_isPromise = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isPromise.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isPromise.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isPromise = void 0;
@@ -5354,9 +5361,9 @@ var require_isPromise = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isInteropObservable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isInteropObservable.js
 var require_isInteropObservable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isInteropObservable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isInteropObservable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isInteropObservable = void 0;
@@ -5369,9 +5376,9 @@ var require_isInteropObservable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isAsyncIterable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isAsyncIterable.js
 var require_isAsyncIterable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isAsyncIterable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isAsyncIterable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isAsyncIterable = void 0;
@@ -5383,9 +5390,9 @@ var require_isAsyncIterable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/throwUnobservableError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/throwUnobservableError.js
 var require_throwUnobservableError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/throwUnobservableError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/throwUnobservableError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.createInvalidObservableTypeError = void 0;
@@ -5396,9 +5403,9 @@ var require_throwUnobservableError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/symbol/iterator.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/symbol/iterator.js
 var require_iterator = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/symbol/iterator.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/symbol/iterator.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.iterator = exports2.getSymbolIterator = void 0;
@@ -5413,9 +5420,9 @@ var require_iterator = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isIterable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isIterable.js
 var require_isIterable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isIterable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isIterable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isIterable = void 0;
@@ -5428,9 +5435,9 @@ var require_isIterable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isReadableStreamLike.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isReadableStreamLike.js
 var require_isReadableStreamLike = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isReadableStreamLike.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isReadableStreamLike.js"(exports2) {
     "use strict";
     var __generator2 = exports2 && exports2.__generator || function(thisArg, body) {
       var _4 = { label: 0, sent: function() {
@@ -5598,9 +5605,9 @@ var require_isReadableStreamLike = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/innerFrom.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/innerFrom.js
 var require_innerFrom = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/innerFrom.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/innerFrom.js"(exports2) {
     "use strict";
     var __awaiter2 = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
       function adopt(value) {
@@ -5839,7 +5846,7 @@ var require_innerFrom = __commonJS({
     exports2.fromIterable = fromIterable;
     function fromAsyncIterable(asyncIterable) {
       return new Observable_1.Observable(function(subscriber) {
-        process8(asyncIterable, subscriber).catch(function(err) {
+        process12(asyncIterable, subscriber).catch(function(err) {
           return subscriber.error(err);
         });
       });
@@ -5849,7 +5856,7 @@ var require_innerFrom = __commonJS({
       return fromAsyncIterable(isReadableStreamLike_1.readableStreamLikeToAsyncGenerator(readableStream));
     }
     exports2.fromReadableStreamLike = fromReadableStreamLike;
-    function process8(asyncIterable, subscriber) {
+    function process12(asyncIterable, subscriber) {
       var asyncIterable_1, asyncIterable_1_1;
       var e_2, _a2;
       return __awaiter2(this, void 0, void 0, function() {
@@ -5905,9 +5912,9 @@ var require_innerFrom = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/executeSchedule.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/executeSchedule.js
 var require_executeSchedule = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/executeSchedule.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/executeSchedule.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.executeSchedule = void 0;
@@ -5935,9 +5942,9 @@ var require_executeSchedule = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/observeOn.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/observeOn.js
 var require_observeOn = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/observeOn.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/observeOn.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.observeOn = void 0;
@@ -5968,9 +5975,9 @@ var require_observeOn = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/subscribeOn.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/subscribeOn.js
 var require_subscribeOn = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/subscribeOn.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/subscribeOn.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.subscribeOn = void 0;
@@ -5989,9 +5996,9 @@ var require_subscribeOn = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduled/scheduleObservable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleObservable.js
 var require_scheduleObservable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduled/scheduleObservable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleObservable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.scheduleObservable = void 0;
@@ -6005,9 +6012,9 @@ var require_scheduleObservable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduled/schedulePromise.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/schedulePromise.js
 var require_schedulePromise = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduled/schedulePromise.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/schedulePromise.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.schedulePromise = void 0;
@@ -6021,9 +6028,9 @@ var require_schedulePromise = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduled/scheduleArray.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleArray.js
 var require_scheduleArray = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduled/scheduleArray.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleArray.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.scheduleArray = void 0;
@@ -6047,9 +6054,9 @@ var require_scheduleArray = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduled/scheduleIterable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleIterable.js
 var require_scheduleIterable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduled/scheduleIterable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleIterable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.scheduleIterable = void 0;
@@ -6088,9 +6095,9 @@ var require_scheduleIterable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduled/scheduleAsyncIterable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleAsyncIterable.js
 var require_scheduleAsyncIterable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduled/scheduleAsyncIterable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleAsyncIterable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.scheduleAsyncIterable = void 0;
@@ -6119,9 +6126,9 @@ var require_scheduleAsyncIterable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduled/scheduleReadableStreamLike.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleReadableStreamLike.js
 var require_scheduleReadableStreamLike = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduled/scheduleReadableStreamLike.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduleReadableStreamLike.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.scheduleReadableStreamLike = void 0;
@@ -6134,9 +6141,9 @@ var require_scheduleReadableStreamLike = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/scheduled/scheduled.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduled.js
 var require_scheduled = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/scheduled/scheduled.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/scheduled/scheduled.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.scheduled = void 0;
@@ -6180,9 +6187,9 @@ var require_scheduled = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/from.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/from.js
 var require_from = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/from.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/from.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.from = void 0;
@@ -6195,9 +6202,9 @@ var require_from = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/of.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/of.js
 var require_of = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/of.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/of.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.of = void 0;
@@ -6215,9 +6222,9 @@ var require_of = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/throwError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/throwError.js
 var require_throwError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/throwError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/throwError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.throwError = void 0;
@@ -6238,9 +6245,9 @@ var require_throwError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/Notification.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Notification.js
 var require_Notification = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/Notification.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/Notification.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.observeNotification = exports2.Notification = exports2.NotificationKind = void 0;
@@ -6307,9 +6314,9 @@ var require_Notification = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isObservable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isObservable.js
 var require_isObservable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isObservable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isObservable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isObservable = void 0;
@@ -6322,9 +6329,9 @@ var require_isObservable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/EmptyError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/EmptyError.js
 var require_EmptyError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/EmptyError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/EmptyError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.EmptyError = void 0;
@@ -6339,9 +6346,9 @@ var require_EmptyError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/lastValueFrom.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/lastValueFrom.js
 var require_lastValueFrom = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/lastValueFrom.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/lastValueFrom.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.lastValueFrom = void 0;
@@ -6373,9 +6380,9 @@ var require_lastValueFrom = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/firstValueFrom.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/firstValueFrom.js
 var require_firstValueFrom = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/firstValueFrom.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/firstValueFrom.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.firstValueFrom = void 0;
@@ -6405,9 +6412,9 @@ var require_firstValueFrom = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/ArgumentOutOfRangeError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/ArgumentOutOfRangeError.js
 var require_ArgumentOutOfRangeError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/ArgumentOutOfRangeError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/ArgumentOutOfRangeError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ArgumentOutOfRangeError = void 0;
@@ -6422,9 +6429,9 @@ var require_ArgumentOutOfRangeError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/NotFoundError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/NotFoundError.js
 var require_NotFoundError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/NotFoundError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/NotFoundError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.NotFoundError = void 0;
@@ -6439,9 +6446,9 @@ var require_NotFoundError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/SequenceError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/SequenceError.js
 var require_SequenceError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/SequenceError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/SequenceError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.SequenceError = void 0;
@@ -6456,9 +6463,9 @@ var require_SequenceError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/isDate.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isDate.js
 var require_isDate = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/isDate.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/isDate.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isValidDate = void 0;
@@ -6469,9 +6476,9 @@ var require_isDate = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/timeout.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/timeout.js
 var require_timeout = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/timeout.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/timeout.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.timeout = exports2.TimeoutError = void 0;
@@ -6538,9 +6545,9 @@ var require_timeout = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/map.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/map.js
 var require_map = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/map.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/map.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.map = void 0;
@@ -6558,9 +6565,9 @@ var require_map = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/mapOneOrManyArgs.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/mapOneOrManyArgs.js
 var require_mapOneOrManyArgs = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/mapOneOrManyArgs.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/mapOneOrManyArgs.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -6604,9 +6611,9 @@ var require_mapOneOrManyArgs = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/bindCallbackInternals.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/bindCallbackInternals.js
 var require_bindCallbackInternals = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/bindCallbackInternals.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/bindCallbackInternals.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -6712,9 +6719,9 @@ var require_bindCallbackInternals = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/bindCallback.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/bindCallback.js
 var require_bindCallback = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/bindCallback.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/bindCallback.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.bindCallback = void 0;
@@ -6726,9 +6733,9 @@ var require_bindCallback = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/bindNodeCallback.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/bindNodeCallback.js
 var require_bindNodeCallback = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/bindNodeCallback.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/bindNodeCallback.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.bindNodeCallback = void 0;
@@ -6740,9 +6747,9 @@ var require_bindNodeCallback = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/argsArgArrayOrObject.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/argsArgArrayOrObject.js
 var require_argsArgArrayOrObject = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/argsArgArrayOrObject.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/argsArgArrayOrObject.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.argsArgArrayOrObject = void 0;
@@ -6775,9 +6782,9 @@ var require_argsArgArrayOrObject = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/createObject.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/createObject.js
 var require_createObject = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/createObject.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/createObject.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.createObject = void 0;
@@ -6790,9 +6797,9 @@ var require_createObject = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/combineLatest.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/combineLatest.js
 var require_combineLatest = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/combineLatest.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/combineLatest.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.combineLatestInit = exports2.combineLatest = void 0;
@@ -6869,9 +6876,9 @@ var require_combineLatest = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/mergeInternals.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeInternals.js
 var require_mergeInternals = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/mergeInternals.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeInternals.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.mergeInternals = void 0;
@@ -6940,9 +6947,9 @@ var require_mergeInternals = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/mergeMap.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeMap.js
 var require_mergeMap = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/mergeMap.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeMap.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.mergeMap = void 0;
@@ -6972,9 +6979,9 @@ var require_mergeMap = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/mergeAll.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeAll.js
 var require_mergeAll = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/mergeAll.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeAll.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.mergeAll = void 0;
@@ -6990,9 +6997,9 @@ var require_mergeAll = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/concatAll.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concatAll.js
 var require_concatAll = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/concatAll.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concatAll.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.concatAll = void 0;
@@ -7004,9 +7011,9 @@ var require_concatAll = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/concat.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/concat.js
 var require_concat = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/concat.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/concat.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.concat = void 0;
@@ -7024,9 +7031,9 @@ var require_concat = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/defer.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/defer.js
 var require_defer = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/defer.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/defer.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.defer = void 0;
@@ -7041,9 +7048,9 @@ var require_defer = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/connectable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/connectable.js
 var require_connectable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/connectable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/connectable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.connectable = void 0;
@@ -7085,9 +7092,9 @@ var require_connectable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/forkJoin.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/forkJoin.js
 var require_forkJoin = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/forkJoin.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/forkJoin.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.forkJoin = void 0;
@@ -7143,9 +7150,9 @@ var require_forkJoin = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/fromEvent.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/fromEvent.js
 var require_fromEvent = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/fromEvent.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/fromEvent.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -7236,9 +7243,9 @@ var require_fromEvent = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/fromEventPattern.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/fromEventPattern.js
 var require_fromEventPattern = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/fromEventPattern.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/fromEventPattern.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.fromEventPattern = void 0;
@@ -7267,9 +7274,9 @@ var require_fromEventPattern = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/generate.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/generate.js
 var require_generate = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/generate.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/generate.js"(exports2) {
     "use strict";
     var __generator2 = exports2 && exports2.__generator || function(thisArg, body) {
       var _4 = { label: 0, sent: function() {
@@ -7398,9 +7405,9 @@ var require_generate = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/iif.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/iif.js
 var require_iif = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/iif.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/iif.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.iif = void 0;
@@ -7414,9 +7421,9 @@ var require_iif = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/timer.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/timer.js
 var require_timer = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/timer.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/timer.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.timer = void 0;
@@ -7461,9 +7468,9 @@ var require_timer = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/interval.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/interval.js
 var require_interval = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/interval.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/interval.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.interval = void 0;
@@ -7485,9 +7492,9 @@ var require_interval = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/merge.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/merge.js
 var require_merge = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/merge.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/merge.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.merge = void 0;
@@ -7510,9 +7517,9 @@ var require_merge = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/never.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/never.js
 var require_never = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/never.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/never.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.never = exports2.NEVER = void 0;
@@ -7526,9 +7533,9 @@ var require_never = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/argsOrArgArray.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/argsOrArgArray.js
 var require_argsOrArgArray = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/argsOrArgArray.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/argsOrArgArray.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.argsOrArgArray = void 0;
@@ -7540,67 +7547,39 @@ var require_argsOrArgArray = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/onErrorResumeNext.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/onErrorResumeNext.js
 var require_onErrorResumeNext = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/onErrorResumeNext.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/onErrorResumeNext.js"(exports2) {
     "use strict";
-    var __read2 = exports2 && exports2.__read || function(o, n) {
-      var m = typeof Symbol === "function" && o[Symbol.iterator];
-      if (!m)
-        return o;
-      var i = m.call(o), r, ar = [], e;
-      try {
-        while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
-          ar.push(r.value);
-      } catch (error) {
-        e = { error };
-      } finally {
-        try {
-          if (r && !r.done && (m = i["return"]))
-            m.call(i);
-        } finally {
-          if (e)
-            throw e.error;
-        }
-      }
-      return ar;
-    };
-    var __spreadArray2 = exports2 && exports2.__spreadArray || function(to, from3) {
-      for (var i = 0, il = from3.length, j = to.length; i < il; i++, j++)
-        to[j] = from3[i];
-      return to;
-    };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.onErrorResumeNext = void 0;
-    var lift_1 = require_lift();
-    var innerFrom_1 = require_innerFrom();
+    var Observable_1 = require_Observable();
     var argsOrArgArray_1 = require_argsOrArgArray();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     var noop_1 = require_noop();
+    var innerFrom_1 = require_innerFrom();
     function onErrorResumeNext() {
       var sources = [];
       for (var _i = 0; _i < arguments.length; _i++) {
         sources[_i] = arguments[_i];
       }
       var nextSources = argsOrArgArray_1.argsOrArgArray(sources);
-      return lift_1.operate(function(source, subscriber) {
-        var remaining = __spreadArray2([source], __read2(nextSources));
+      return new Observable_1.Observable(function(subscriber) {
+        var sourceIndex = 0;
         var subscribeNext = function() {
-          if (!subscriber.closed) {
-            if (remaining.length > 0) {
-              var nextSource = void 0;
-              try {
-                nextSource = innerFrom_1.innerFrom(remaining.shift());
-              } catch (err) {
-                subscribeNext();
-                return;
-              }
-              var innerSub = OperatorSubscriber_1.createOperatorSubscriber(subscriber, void 0, noop_1.noop, noop_1.noop);
-              nextSource.subscribe(innerSub);
-              innerSub.add(subscribeNext);
-            } else {
-              subscriber.complete();
+          if (sourceIndex < nextSources.length) {
+            var nextSource = void 0;
+            try {
+              nextSource = innerFrom_1.innerFrom(nextSources[sourceIndex++]);
+            } catch (err) {
+              subscribeNext();
+              return;
             }
+            var innerSubscriber = new OperatorSubscriber_1.OperatorSubscriber(subscriber, void 0, noop_1.noop, noop_1.noop);
+            nextSource.subscribe(innerSubscriber);
+            innerSubscriber.add(subscribeNext);
+          } else {
+            subscriber.complete();
           }
         };
         subscribeNext();
@@ -7610,29 +7589,9 @@ var require_onErrorResumeNext = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/onErrorResumeNext.js
-var require_onErrorResumeNext2 = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/onErrorResumeNext.js"(exports2) {
-    "use strict";
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.onErrorResumeNext = void 0;
-    var empty_1 = require_empty();
-    var onErrorResumeNext_1 = require_onErrorResumeNext();
-    var argsOrArgArray_1 = require_argsOrArgArray();
-    function onErrorResumeNext() {
-      var sources = [];
-      for (var _i = 0; _i < arguments.length; _i++) {
-        sources[_i] = arguments[_i];
-      }
-      return onErrorResumeNext_1.onErrorResumeNext(argsOrArgArray_1.argsOrArgArray(sources))(empty_1.EMPTY);
-    }
-    exports2.onErrorResumeNext = onErrorResumeNext;
-  }
-});
-
-// node_modules/rxjs/dist/cjs/internal/observable/pairs.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/pairs.js
 var require_pairs = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/pairs.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/pairs.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.pairs = void 0;
@@ -7644,9 +7603,9 @@ var require_pairs = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/util/not.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/not.js
 var require_not = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/util/not.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/util/not.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.not = void 0;
@@ -7659,9 +7618,9 @@ var require_not = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/filter.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/filter.js
 var require_filter = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/filter.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/filter.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.filter = void 0;
@@ -7679,9 +7638,9 @@ var require_filter = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/partition.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/partition.js
 var require_partition = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/partition.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/partition.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.partition = void 0;
@@ -7695,9 +7654,9 @@ var require_partition = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/race.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/race.js
 var require_race = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/race.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/race.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.raceInit = exports2.race = void 0;
@@ -7737,9 +7696,9 @@ var require_race = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/range.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/range.js
 var require_range = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/range.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/range.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.range = void 0;
@@ -7776,9 +7735,9 @@ var require_range = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/using.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/using.js
 var require_using = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/using.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/using.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.using = void 0;
@@ -7802,9 +7761,9 @@ var require_using = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/zip.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/zip.js
 var require_zip = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/zip.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/zip.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -7890,17 +7849,17 @@ var require_zip = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/types.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/types.js
 var require_types = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/types.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/types.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/audit.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/audit.js
 var require_audit = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/audit.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/audit.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.audit = void 0;
@@ -7944,9 +7903,9 @@ var require_audit = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/auditTime.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/auditTime.js
 var require_auditTime = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/auditTime.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/auditTime.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.auditTime = void 0;
@@ -7965,15 +7924,16 @@ var require_auditTime = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/buffer.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/buffer.js
 var require_buffer = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/buffer.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/buffer.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.buffer = void 0;
     var lift_1 = require_lift();
     var noop_1 = require_noop();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
+    var innerFrom_1 = require_innerFrom();
     function buffer(closingNotifier) {
       return lift_1.operate(function(source, subscriber) {
         var currentBuffer = [];
@@ -7983,7 +7943,7 @@ var require_buffer = __commonJS({
           subscriber.next(currentBuffer);
           subscriber.complete();
         }));
-        closingNotifier.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
+        innerFrom_1.innerFrom(closingNotifier).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
           var b = currentBuffer;
           currentBuffer = [];
           subscriber.next(b);
@@ -7997,9 +7957,9 @@ var require_buffer = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/bufferCount.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/bufferCount.js
 var require_bufferCount = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/bufferCount.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/bufferCount.js"(exports2) {
     "use strict";
     var __values2 = exports2 && exports2.__values || function(o) {
       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -8101,9 +8061,9 @@ var require_bufferCount = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/bufferTime.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/bufferTime.js
 var require_bufferTime = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/bufferTime.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/bufferTime.js"(exports2) {
     "use strict";
     var __values2 = exports2 && exports2.__values || function(o) {
       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -8206,9 +8166,9 @@ var require_bufferTime = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/bufferToggle.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/bufferToggle.js
 var require_bufferToggle = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/bufferToggle.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/bufferToggle.js"(exports2) {
     "use strict";
     var __values2 = exports2 && exports2.__values || function(o) {
       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -8276,9 +8236,9 @@ var require_bufferToggle = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/bufferWhen.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/bufferWhen.js
 var require_bufferWhen = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/bufferWhen.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/bufferWhen.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.bufferWhen = void 0;
@@ -8312,9 +8272,9 @@ var require_bufferWhen = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/catchError.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/catchError.js
 var require_catchError = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/catchError.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/catchError.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.catchError = void 0;
@@ -8347,9 +8307,9 @@ var require_catchError = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/scanInternals.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/scanInternals.js
 var require_scanInternals = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/scanInternals.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/scanInternals.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.scanInternals = void 0;
@@ -8373,9 +8333,9 @@ var require_scanInternals = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/reduce.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/reduce.js
 var require_reduce = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/reduce.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/reduce.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.reduce = void 0;
@@ -8388,9 +8348,9 @@ var require_reduce = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/toArray.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/toArray.js
 var require_toArray = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/toArray.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/toArray.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.toArray = void 0;
@@ -8408,9 +8368,9 @@ var require_toArray = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/joinAllInternals.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/joinAllInternals.js
 var require_joinAllInternals = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/joinAllInternals.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/joinAllInternals.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.joinAllInternals = void 0;
@@ -8428,9 +8388,9 @@ var require_joinAllInternals = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/combineLatestAll.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/combineLatestAll.js
 var require_combineLatestAll = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/combineLatestAll.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/combineLatestAll.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.combineLatestAll = void 0;
@@ -8443,9 +8403,9 @@ var require_combineLatestAll = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/combineAll.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/combineAll.js
 var require_combineAll = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/combineAll.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/combineAll.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.combineAll = void 0;
@@ -8454,9 +8414,9 @@ var require_combineAll = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/combineLatest.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/combineLatest.js
 var require_combineLatest2 = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/combineLatest.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/combineLatest.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -8506,9 +8466,9 @@ var require_combineLatest2 = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/combineLatestWith.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/combineLatestWith.js
 var require_combineLatestWith = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/combineLatestWith.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/combineLatestWith.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -8550,9 +8510,9 @@ var require_combineLatestWith = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/concatMap.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concatMap.js
 var require_concatMap = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/concatMap.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concatMap.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.concatMap = void 0;
@@ -8565,9 +8525,9 @@ var require_concatMap = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/concatMapTo.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concatMapTo.js
 var require_concatMapTo = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/concatMapTo.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concatMapTo.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.concatMapTo = void 0;
@@ -8584,9 +8544,9 @@ var require_concatMapTo = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/concat.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concat.js
 var require_concat2 = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/concat.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concat.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -8634,9 +8594,9 @@ var require_concat2 = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/concatWith.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concatWith.js
 var require_concatWith = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/concatWith.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/concatWith.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -8678,9 +8638,9 @@ var require_concatWith = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/observable/fromSubscribable.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/fromSubscribable.js
 var require_fromSubscribable = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/observable/fromSubscribable.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/observable/fromSubscribable.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.fromSubscribable = void 0;
@@ -8694,9 +8654,9 @@ var require_fromSubscribable = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/connect.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/connect.js
 var require_connect = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/connect.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/connect.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.connect = void 0;
@@ -8724,9 +8684,9 @@ var require_connect = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/count.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/count.js
 var require_count = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/count.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/count.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.count = void 0;
@@ -8740,9 +8700,9 @@ var require_count = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/debounce.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/debounce.js
 var require_debounce = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/debounce.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/debounce.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.debounce = void 0;
@@ -8783,9 +8743,9 @@ var require_debounce = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/debounceTime.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/debounceTime.js
 var require_debounceTime = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/debounceTime.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/debounceTime.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.debounceTime = void 0;
@@ -8838,9 +8798,9 @@ var require_debounceTime = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/defaultIfEmpty.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/defaultIfEmpty.js
 var require_defaultIfEmpty = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/defaultIfEmpty.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/defaultIfEmpty.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.defaultIfEmpty = void 0;
@@ -8864,9 +8824,9 @@ var require_defaultIfEmpty = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/take.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/take.js
 var require_take = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/take.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/take.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.take = void 0;
@@ -8892,9 +8852,9 @@ var require_take = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/ignoreElements.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/ignoreElements.js
 var require_ignoreElements = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/ignoreElements.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/ignoreElements.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ignoreElements = void 0;
@@ -8910,9 +8870,9 @@ var require_ignoreElements = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/mapTo.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mapTo.js
 var require_mapTo = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/mapTo.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mapTo.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.mapTo = void 0;
@@ -8926,9 +8886,9 @@ var require_mapTo = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/delayWhen.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/delayWhen.js
 var require_delayWhen = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/delayWhen.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/delayWhen.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.delayWhen = void 0;
@@ -8937,6 +8897,7 @@ var require_delayWhen = __commonJS({
     var ignoreElements_1 = require_ignoreElements();
     var mapTo_1 = require_mapTo();
     var mergeMap_1 = require_mergeMap();
+    var innerFrom_1 = require_innerFrom();
     function delayWhen(delayDurationSelector, subscriptionDelay) {
       if (subscriptionDelay) {
         return function(source) {
@@ -8944,16 +8905,16 @@ var require_delayWhen = __commonJS({
         };
       }
       return mergeMap_1.mergeMap(function(value, index) {
-        return delayDurationSelector(value, index).pipe(take_1.take(1), mapTo_1.mapTo(value));
+        return innerFrom_1.innerFrom(delayDurationSelector(value, index)).pipe(take_1.take(1), mapTo_1.mapTo(value));
       });
     }
     exports2.delayWhen = delayWhen;
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/delay.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/delay.js
 var require_delay = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/delay.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/delay.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.delay = void 0;
@@ -8973,9 +8934,9 @@ var require_delay = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/dematerialize.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/dematerialize.js
 var require_dematerialize = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/dematerialize.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/dematerialize.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.dematerialize = void 0;
@@ -8993,15 +8954,16 @@ var require_dematerialize = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/distinct.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/distinct.js
 var require_distinct = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/distinct.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/distinct.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.distinct = void 0;
     var lift_1 = require_lift();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     var noop_1 = require_noop();
+    var innerFrom_1 = require_innerFrom();
     function distinct(keySelector, flushes) {
       return lift_1.operate(function(source, subscriber) {
         var distinctKeys = /* @__PURE__ */ new Set();
@@ -9012,7 +8974,7 @@ var require_distinct = __commonJS({
             subscriber.next(value);
           }
         }));
-        flushes === null || flushes === void 0 ? void 0 : flushes.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
+        flushes && innerFrom_1.innerFrom(flushes).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
           return distinctKeys.clear();
         }, noop_1.noop));
       });
@@ -9021,9 +8983,9 @@ var require_distinct = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/distinctUntilChanged.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/distinctUntilChanged.js
 var require_distinctUntilChanged = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/distinctUntilChanged.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/distinctUntilChanged.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.distinctUntilChanged = void 0;
@@ -9055,9 +9017,9 @@ var require_distinctUntilChanged = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/distinctUntilKeyChanged.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/distinctUntilKeyChanged.js
 var require_distinctUntilKeyChanged = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/distinctUntilKeyChanged.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/distinctUntilKeyChanged.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.distinctUntilKeyChanged = void 0;
@@ -9071,9 +9033,9 @@ var require_distinctUntilKeyChanged = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/throwIfEmpty.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/throwIfEmpty.js
 var require_throwIfEmpty = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/throwIfEmpty.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/throwIfEmpty.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.throwIfEmpty = void 0;
@@ -9101,9 +9063,9 @@ var require_throwIfEmpty = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/elementAt.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/elementAt.js
 var require_elementAt = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/elementAt.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/elementAt.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.elementAt = void 0;
@@ -9129,9 +9091,9 @@ var require_elementAt = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/endWith.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/endWith.js
 var require_endWith = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/endWith.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/endWith.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -9176,9 +9138,9 @@ var require_endWith = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/every.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/every.js
 var require_every = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/every.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/every.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.every = void 0;
@@ -9202,9 +9164,9 @@ var require_every = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/exhaustMap.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/exhaustMap.js
 var require_exhaustMap = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/exhaustMap.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/exhaustMap.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.exhaustMap = void 0;
@@ -9244,9 +9206,9 @@ var require_exhaustMap = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/exhaustAll.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/exhaustAll.js
 var require_exhaustAll = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/exhaustAll.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/exhaustAll.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.exhaustAll = void 0;
@@ -9259,9 +9221,9 @@ var require_exhaustAll = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/exhaust.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/exhaust.js
 var require_exhaust = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/exhaust.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/exhaust.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.exhaust = void 0;
@@ -9270,9 +9232,9 @@ var require_exhaust = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/expand.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/expand.js
 var require_expand = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/expand.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/expand.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.expand = void 0;
@@ -9291,9 +9253,9 @@ var require_expand = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/finalize.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/finalize.js
 var require_finalize = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/finalize.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/finalize.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.finalize = void 0;
@@ -9311,9 +9273,9 @@ var require_finalize = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/find.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/find.js
 var require_find = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/find.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/find.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.createFind = exports2.find = void 0;
@@ -9343,9 +9305,9 @@ var require_find = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/findIndex.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/findIndex.js
 var require_findIndex = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/findIndex.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/findIndex.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.findIndex = void 0;
@@ -9358,9 +9320,9 @@ var require_findIndex = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/first.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/first.js
 var require_first = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/first.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/first.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.first = void 0;
@@ -9384,9 +9346,9 @@ var require_first = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/groupBy.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/groupBy.js
 var require_groupBy = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/groupBy.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/groupBy.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.groupBy = void 0;
@@ -9466,9 +9428,9 @@ var require_groupBy = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/isEmpty.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/isEmpty.js
 var require_isEmpty = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/isEmpty.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/isEmpty.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isEmpty = void 0;
@@ -9489,9 +9451,9 @@ var require_isEmpty = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/takeLast.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/takeLast.js
 var require_takeLast = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/takeLast.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/takeLast.js"(exports2) {
     "use strict";
     var __values2 = exports2 && exports2.__values || function(o) {
       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -9548,9 +9510,9 @@ var require_takeLast = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/last.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/last.js
 var require_last = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/last.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/last.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.last = void 0;
@@ -9574,9 +9536,9 @@ var require_last = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/materialize.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/materialize.js
 var require_materialize = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/materialize.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/materialize.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.materialize = void 0;
@@ -9600,9 +9562,9 @@ var require_materialize = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/max.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/max.js
 var require_max = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/max.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/max.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.max = void 0;
@@ -9619,9 +9581,9 @@ var require_max = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/flatMap.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/flatMap.js
 var require_flatMap = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/flatMap.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/flatMap.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.flatMap = void 0;
@@ -9630,9 +9592,9 @@ var require_flatMap = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/mergeMapTo.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeMapTo.js
 var require_mergeMapTo = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/mergeMapTo.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeMapTo.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.mergeMapTo = void 0;
@@ -9658,9 +9620,9 @@ var require_mergeMapTo = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/mergeScan.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeScan.js
 var require_mergeScan = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/mergeScan.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeScan.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.mergeScan = void 0;
@@ -9685,9 +9647,9 @@ var require_mergeScan = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/merge.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/merge.js
 var require_merge2 = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/merge.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/merge.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -9738,9 +9700,9 @@ var require_merge2 = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/mergeWith.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeWith.js
 var require_mergeWith = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/mergeWith.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/mergeWith.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -9782,9 +9744,9 @@ var require_mergeWith = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/min.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/min.js
 var require_min = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/min.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/min.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.min = void 0;
@@ -9801,9 +9763,9 @@ var require_min = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/multicast.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/multicast.js
 var require_multicast = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/multicast.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/multicast.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.multicast = void 0;
@@ -9827,9 +9789,58 @@ var require_multicast = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/pairwise.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/onErrorResumeNextWith.js
+var require_onErrorResumeNextWith = __commonJS({
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/onErrorResumeNextWith.js"(exports2) {
+    "use strict";
+    var __read2 = exports2 && exports2.__read || function(o, n) {
+      var m = typeof Symbol === "function" && o[Symbol.iterator];
+      if (!m)
+        return o;
+      var i = m.call(o), r, ar = [], e;
+      try {
+        while ((n === void 0 || n-- > 0) && !(r = i.next()).done)
+          ar.push(r.value);
+      } catch (error) {
+        e = { error };
+      } finally {
+        try {
+          if (r && !r.done && (m = i["return"]))
+            m.call(i);
+        } finally {
+          if (e)
+            throw e.error;
+        }
+      }
+      return ar;
+    };
+    var __spreadArray2 = exports2 && exports2.__spreadArray || function(to, from3) {
+      for (var i = 0, il = from3.length, j = to.length; i < il; i++, j++)
+        to[j] = from3[i];
+      return to;
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.onErrorResumeNext = exports2.onErrorResumeNextWith = void 0;
+    var argsOrArgArray_1 = require_argsOrArgArray();
+    var onErrorResumeNext_1 = require_onErrorResumeNext();
+    function onErrorResumeNextWith() {
+      var sources = [];
+      for (var _i = 0; _i < arguments.length; _i++) {
+        sources[_i] = arguments[_i];
+      }
+      var nextSources = argsOrArgArray_1.argsOrArgArray(sources);
+      return function(source) {
+        return onErrorResumeNext_1.onErrorResumeNext.apply(void 0, __spreadArray2([source], __read2(nextSources)));
+      };
+    }
+    exports2.onErrorResumeNextWith = onErrorResumeNextWith;
+    exports2.onErrorResumeNext = onErrorResumeNextWith;
+  }
+});
+
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/pairwise.js
 var require_pairwise = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/pairwise.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/pairwise.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.pairwise = void 0;
@@ -9851,9 +9862,9 @@ var require_pairwise = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/pluck.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/pluck.js
 var require_pluck = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/pluck.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/pluck.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.pluck = void 0;
@@ -9884,9 +9895,9 @@ var require_pluck = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/publish.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/publish.js
 var require_publish = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/publish.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/publish.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.publish = void 0;
@@ -9904,9 +9915,9 @@ var require_publish = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/publishBehavior.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/publishBehavior.js
 var require_publishBehavior = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/publishBehavior.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/publishBehavior.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.publishBehavior = void 0;
@@ -9924,9 +9935,9 @@ var require_publishBehavior = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/publishLast.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/publishLast.js
 var require_publishLast = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/publishLast.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/publishLast.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.publishLast = void 0;
@@ -9944,9 +9955,9 @@ var require_publishLast = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/publishReplay.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/publishReplay.js
 var require_publishReplay = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/publishReplay.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/publishReplay.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.publishReplay = void 0;
@@ -9966,9 +9977,9 @@ var require_publishReplay = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/raceWith.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/raceWith.js
 var require_raceWith = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/raceWith.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/raceWith.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -10014,9 +10025,9 @@ var require_raceWith = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/repeat.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/repeat.js
 var require_repeat = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/repeat.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/repeat.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.repeat = void 0;
@@ -10079,12 +10090,13 @@ var require_repeat = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/repeatWhen.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/repeatWhen.js
 var require_repeatWhen = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/repeatWhen.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/repeatWhen.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.repeatWhen = void 0;
+    var innerFrom_1 = require_innerFrom();
     var Subject_1 = require_Subject();
     var lift_1 = require_lift();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
@@ -10101,7 +10113,7 @@ var require_repeatWhen = __commonJS({
         var getCompletionSubject = function() {
           if (!completions$) {
             completions$ = new Subject_1.Subject();
-            notifier(completions$).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
+            innerFrom_1.innerFrom(notifier(completions$)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
               if (innerSub) {
                 subscribeForRepeatWhen();
               } else {
@@ -10134,9 +10146,9 @@ var require_repeatWhen = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/retry.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/retry.js
 var require_retry = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/retry.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/retry.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.retry = void 0;
@@ -10208,12 +10220,13 @@ var require_retry = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/retryWhen.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/retryWhen.js
 var require_retryWhen = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/retryWhen.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/retryWhen.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.retryWhen = void 0;
+    var innerFrom_1 = require_innerFrom();
     var Subject_1 = require_Subject();
     var lift_1 = require_lift();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
@@ -10226,7 +10239,7 @@ var require_retryWhen = __commonJS({
           innerSub = source.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, void 0, void 0, function(err) {
             if (!errors$) {
               errors$ = new Subject_1.Subject();
-              notifier(errors$).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
+              innerFrom_1.innerFrom(notifier(errors$)).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
                 return innerSub ? subscribeForRetryWhen() : syncResub = true;
               }));
             }
@@ -10248,12 +10261,13 @@ var require_retryWhen = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/sample.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/sample.js
 var require_sample = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/sample.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/sample.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.sample = void 0;
+    var innerFrom_1 = require_innerFrom();
     var lift_1 = require_lift();
     var noop_1 = require_noop();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
@@ -10265,7 +10279,7 @@ var require_sample = __commonJS({
           hasValue = true;
           lastValue = value;
         }));
-        notifier.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
+        innerFrom_1.innerFrom(notifier).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
           if (hasValue) {
             hasValue = false;
             var value = lastValue;
@@ -10279,9 +10293,9 @@ var require_sample = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/sampleTime.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/sampleTime.js
 var require_sampleTime = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/sampleTime.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/sampleTime.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.sampleTime = void 0;
@@ -10298,9 +10312,9 @@ var require_sampleTime = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/scan.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/scan.js
 var require_scan = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/scan.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/scan.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.scan = void 0;
@@ -10313,14 +10327,15 @@ var require_scan = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/sequenceEqual.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/sequenceEqual.js
 var require_sequenceEqual = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/sequenceEqual.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/sequenceEqual.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.sequenceEqual = void 0;
     var lift_1 = require_lift();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
+    var innerFrom_1 = require_innerFrom();
     function sequenceEqual(compareTo, comparator) {
       if (comparator === void 0) {
         comparator = function(a, b) {
@@ -10351,7 +10366,7 @@ var require_sequenceEqual = __commonJS({
           return sequenceEqualSubscriber;
         };
         source.subscribe(createSubscriber(aState, bState));
-        compareTo.subscribe(createSubscriber(bState, aState));
+        innerFrom_1.innerFrom(compareTo).subscribe(createSubscriber(bState, aState));
       });
     }
     exports2.sequenceEqual = sequenceEqual;
@@ -10364,9 +10379,9 @@ var require_sequenceEqual = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/share.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/share.js
 var require_share = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/share.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/share.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -10483,14 +10498,14 @@ var require_share = __commonJS({
           reset();
         }
       });
-      return on.apply(void 0, __spreadArray2([], __read2(args))).subscribe(onSubscriber);
+      return innerFrom_1.innerFrom(on.apply(void 0, __spreadArray2([], __read2(args)))).subscribe(onSubscriber);
     }
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/shareReplay.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/shareReplay.js
 var require_shareReplay = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/shareReplay.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/shareReplay.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.shareReplay = void 0;
@@ -10518,9 +10533,9 @@ var require_shareReplay = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/single.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/single.js
 var require_single = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/single.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/single.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.single = void 0;
@@ -10556,9 +10571,9 @@ var require_single = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/skip.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/skip.js
 var require_skip = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/skip.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/skip.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.skip = void 0;
@@ -10572,9 +10587,9 @@ var require_skip = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/skipLast.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/skipLast.js
 var require_skipLast = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/skipLast.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/skipLast.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.skipLast = void 0;
@@ -10605,9 +10620,9 @@ var require_skipLast = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/skipUntil.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/skipUntil.js
 var require_skipUntil = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/skipUntil.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/skipUntil.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.skipUntil = void 0;
@@ -10632,9 +10647,9 @@ var require_skipUntil = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/skipWhile.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/skipWhile.js
 var require_skipWhile = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/skipWhile.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/skipWhile.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.skipWhile = void 0;
@@ -10653,9 +10668,9 @@ var require_skipWhile = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/startWith.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/startWith.js
 var require_startWith = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/startWith.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/startWith.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.startWith = void 0;
@@ -10676,9 +10691,9 @@ var require_startWith = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/switchMap.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/switchMap.js
 var require_switchMap = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/switchMap.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/switchMap.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.switchMap = void 0;
@@ -10713,9 +10728,9 @@ var require_switchMap = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/switchAll.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/switchAll.js
 var require_switchAll = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/switchAll.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/switchAll.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.switchAll = void 0;
@@ -10728,9 +10743,9 @@ var require_switchAll = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/switchMapTo.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/switchMapTo.js
 var require_switchMapTo = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/switchMapTo.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/switchMapTo.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.switchMapTo = void 0;
@@ -10747,9 +10762,9 @@ var require_switchMapTo = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/switchScan.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/switchScan.js
 var require_switchScan = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/switchScan.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/switchScan.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.switchScan = void 0;
@@ -10772,9 +10787,9 @@ var require_switchScan = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/takeUntil.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/takeUntil.js
 var require_takeUntil = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/takeUntil.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/takeUntil.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.takeUntil = void 0;
@@ -10794,9 +10809,9 @@ var require_takeUntil = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/takeWhile.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/takeWhile.js
 var require_takeWhile = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/takeWhile.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/takeWhile.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.takeWhile = void 0;
@@ -10819,9 +10834,9 @@ var require_takeWhile = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/tap.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/tap.js
 var require_tap = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/tap.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/tap.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.tap = void 0;
@@ -10862,9 +10877,9 @@ var require_tap = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/throttle.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/throttle.js
 var require_throttle = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/throttle.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/throttle.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.throttle = exports2.defaultThrottleConfig = void 0;
@@ -10923,9 +10938,9 @@ var require_throttle = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/throttleTime.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/throttleTime.js
 var require_throttleTime = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/throttleTime.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/throttleTime.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.throttleTime = void 0;
@@ -10948,9 +10963,9 @@ var require_throttleTime = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/timeInterval.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/timeInterval.js
 var require_timeInterval = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/timeInterval.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/timeInterval.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.TimeInterval = exports2.timeInterval = void 0;
@@ -10983,9 +10998,9 @@ var require_timeInterval = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/timeoutWith.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/timeoutWith.js
 var require_timeoutWith = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/timeoutWith.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/timeoutWith.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.timeoutWith = void 0;
@@ -11023,9 +11038,9 @@ var require_timeoutWith = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/timestamp.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/timestamp.js
 var require_timestamp = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/timestamp.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/timestamp.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.timestamp = void 0;
@@ -11043,9 +11058,9 @@ var require_timestamp = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/window.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/window.js
 var require_window = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/window.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/window.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.window = void 0;
@@ -11053,6 +11068,7 @@ var require_window = __commonJS({
     var lift_1 = require_lift();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     var noop_1 = require_noop();
+    var innerFrom_1 = require_innerFrom();
     function window2(windowBoundaries) {
       return lift_1.operate(function(source, subscriber) {
         var windowSubject = new Subject_1.Subject();
@@ -11067,7 +11083,7 @@ var require_window = __commonJS({
           windowSubject.complete();
           subscriber.complete();
         }, errorHandler));
-        windowBoundaries.subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
+        innerFrom_1.innerFrom(windowBoundaries).subscribe(OperatorSubscriber_1.createOperatorSubscriber(subscriber, function() {
           windowSubject.complete();
           subscriber.next(windowSubject = new Subject_1.Subject());
         }, noop_1.noop, errorHandler));
@@ -11081,9 +11097,9 @@ var require_window = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/windowCount.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/windowCount.js
 var require_windowCount = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/windowCount.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/windowCount.js"(exports2) {
     "use strict";
     var __values2 = exports2 && exports2.__values || function(o) {
       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -11161,9 +11177,9 @@ var require_windowCount = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/windowTime.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/windowTime.js
 var require_windowTime = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/windowTime.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/windowTime.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.windowTime = void 0;
@@ -11251,9 +11267,9 @@ var require_windowTime = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/windowToggle.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/windowToggle.js
 var require_windowToggle = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/windowToggle.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/windowToggle.js"(exports2) {
     "use strict";
     var __values2 = exports2 && exports2.__values || function(o) {
       var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
@@ -11341,9 +11357,9 @@ var require_windowToggle = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/windowWhen.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/windowWhen.js
 var require_windowWhen = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/windowWhen.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/windowWhen.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.windowWhen = void 0;
@@ -11389,9 +11405,9 @@ var require_windowWhen = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/withLatestFrom.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/withLatestFrom.js
 var require_withLatestFrom = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/withLatestFrom.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/withLatestFrom.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -11464,9 +11480,9 @@ var require_withLatestFrom = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/zipAll.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/zipAll.js
 var require_zipAll = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/zipAll.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/zipAll.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.zipAll = void 0;
@@ -11479,9 +11495,9 @@ var require_zipAll = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/zip.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/zip.js
 var require_zip2 = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/zip.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/zip.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -11526,9 +11542,9 @@ var require_zip2 = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/internal/operators/zipWith.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/zipWith.js
 var require_zipWith = __commonJS({
-  "node_modules/rxjs/dist/cjs/internal/operators/zipWith.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/internal/operators/zipWith.js"(exports2) {
     "use strict";
     var __read2 = exports2 && exports2.__read || function(o, n) {
       var m = typeof Symbol === "function" && o[Symbol.iterator];
@@ -11570,9 +11586,9 @@ var require_zipWith = __commonJS({
   }
 });
 
-// node_modules/rxjs/dist/cjs/index.js
+// node_modules/inquirer/node_modules/rxjs/dist/cjs/index.js
 var require_cjs = __commonJS({
-  "node_modules/rxjs/dist/cjs/index.js"(exports2) {
+  "node_modules/inquirer/node_modules/rxjs/dist/cjs/index.js"(exports2) {
     "use strict";
     var __createBinding2 = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -11593,8 +11609,8 @@ var require_cjs = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.interval = exports2.iif = exports2.generate = exports2.fromEventPattern = exports2.fromEvent = exports2.from = exports2.forkJoin = exports2.empty = exports2.defer = exports2.connectable = exports2.concat = exports2.combineLatest = exports2.bindNodeCallback = exports2.bindCallback = exports2.UnsubscriptionError = exports2.TimeoutError = exports2.SequenceError = exports2.ObjectUnsubscribedError = exports2.NotFoundError = exports2.EmptyError = exports2.ArgumentOutOfRangeError = exports2.firstValueFrom = exports2.lastValueFrom = exports2.isObservable = exports2.identity = exports2.noop = exports2.pipe = exports2.NotificationKind = exports2.Notification = exports2.Subscriber = exports2.Subscription = exports2.Scheduler = exports2.VirtualAction = exports2.VirtualTimeScheduler = exports2.animationFrameScheduler = exports2.animationFrame = exports2.queueScheduler = exports2.queue = exports2.asyncScheduler = exports2.async = exports2.asapScheduler = exports2.asap = exports2.AsyncSubject = exports2.ReplaySubject = exports2.BehaviorSubject = exports2.Subject = exports2.animationFrames = exports2.observable = exports2.ConnectableObservable = exports2.Observable = void 0;
     exports2.filter = exports2.expand = exports2.exhaustMap = exports2.exhaustAll = exports2.exhaust = exports2.every = exports2.endWith = exports2.elementAt = exports2.distinctUntilKeyChanged = exports2.distinctUntilChanged = exports2.distinct = exports2.dematerialize = exports2.delayWhen = exports2.delay = exports2.defaultIfEmpty = exports2.debounceTime = exports2.debounce = exports2.count = exports2.connect = exports2.concatWith = exports2.concatMapTo = exports2.concatMap = exports2.concatAll = exports2.combineLatestWith = exports2.combineLatestAll = exports2.combineAll = exports2.catchError = exports2.bufferWhen = exports2.bufferToggle = exports2.bufferTime = exports2.bufferCount = exports2.buffer = exports2.auditTime = exports2.audit = exports2.config = exports2.NEVER = exports2.EMPTY = exports2.scheduled = exports2.zip = exports2.using = exports2.timer = exports2.throwError = exports2.range = exports2.race = exports2.partition = exports2.pairs = exports2.onErrorResumeNext = exports2.of = exports2.never = exports2.merge = void 0;
-    exports2.switchMapTo = exports2.switchMap = exports2.switchAll = exports2.subscribeOn = exports2.startWith = exports2.skipWhile = exports2.skipUntil = exports2.skipLast = exports2.skip = exports2.single = exports2.shareReplay = exports2.share = exports2.sequenceEqual = exports2.scan = exports2.sampleTime = exports2.sample = exports2.refCount = exports2.retryWhen = exports2.retry = exports2.repeatWhen = exports2.repeat = exports2.reduce = exports2.raceWith = exports2.publishReplay = exports2.publishLast = exports2.publishBehavior = exports2.publish = exports2.pluck = exports2.pairwise = exports2.observeOn = exports2.multicast = exports2.min = exports2.mergeWith = exports2.mergeScan = exports2.mergeMapTo = exports2.mergeMap = exports2.flatMap = exports2.mergeAll = exports2.max = exports2.materialize = exports2.mapTo = exports2.map = exports2.last = exports2.isEmpty = exports2.ignoreElements = exports2.groupBy = exports2.first = exports2.findIndex = exports2.find = exports2.finalize = void 0;
-    exports2.zipWith = exports2.zipAll = exports2.withLatestFrom = exports2.windowWhen = exports2.windowToggle = exports2.windowTime = exports2.windowCount = exports2.window = exports2.toArray = exports2.timestamp = exports2.timeoutWith = exports2.timeout = exports2.timeInterval = exports2.throwIfEmpty = exports2.throttleTime = exports2.throttle = exports2.tap = exports2.takeWhile = exports2.takeUntil = exports2.takeLast = exports2.take = exports2.switchScan = void 0;
+    exports2.switchMap = exports2.switchAll = exports2.subscribeOn = exports2.startWith = exports2.skipWhile = exports2.skipUntil = exports2.skipLast = exports2.skip = exports2.single = exports2.shareReplay = exports2.share = exports2.sequenceEqual = exports2.scan = exports2.sampleTime = exports2.sample = exports2.refCount = exports2.retryWhen = exports2.retry = exports2.repeatWhen = exports2.repeat = exports2.reduce = exports2.raceWith = exports2.publishReplay = exports2.publishLast = exports2.publishBehavior = exports2.publish = exports2.pluck = exports2.pairwise = exports2.onErrorResumeNextWith = exports2.observeOn = exports2.multicast = exports2.min = exports2.mergeWith = exports2.mergeScan = exports2.mergeMapTo = exports2.mergeMap = exports2.flatMap = exports2.mergeAll = exports2.max = exports2.materialize = exports2.mapTo = exports2.map = exports2.last = exports2.isEmpty = exports2.ignoreElements = exports2.groupBy = exports2.first = exports2.findIndex = exports2.find = exports2.finalize = void 0;
+    exports2.zipWith = exports2.zipAll = exports2.withLatestFrom = exports2.windowWhen = exports2.windowToggle = exports2.windowTime = exports2.windowCount = exports2.window = exports2.toArray = exports2.timestamp = exports2.timeoutWith = exports2.timeout = exports2.timeInterval = exports2.throwIfEmpty = exports2.throttleTime = exports2.throttle = exports2.tap = exports2.takeWhile = exports2.takeUntil = exports2.takeLast = exports2.take = exports2.switchScan = exports2.switchMapTo = void 0;
     var Observable_1 = require_Observable();
     Object.defineProperty(exports2, "Observable", { enumerable: true, get: function() {
       return Observable_1.Observable;
@@ -11801,7 +11817,7 @@ var require_cjs = __commonJS({
     Object.defineProperty(exports2, "of", { enumerable: true, get: function() {
       return of_1.of;
     } });
-    var onErrorResumeNext_1 = require_onErrorResumeNext2();
+    var onErrorResumeNext_1 = require_onErrorResumeNext();
     Object.defineProperty(exports2, "onErrorResumeNext", { enumerable: true, get: function() {
       return onErrorResumeNext_1.onErrorResumeNext;
     } });
@@ -12073,6 +12089,10 @@ var require_cjs = __commonJS({
     var observeOn_1 = require_observeOn();
     Object.defineProperty(exports2, "observeOn", { enumerable: true, get: function() {
       return observeOn_1.observeOn;
+    } });
+    var onErrorResumeNextWith_1 = require_onErrorResumeNextWith();
+    Object.defineProperty(exports2, "onErrorResumeNextWith", { enumerable: true, get: function() {
+      return onErrorResumeNextWith_1.onErrorResumeNextWith;
     } });
     var pairwise_1 = require_pairwise();
     Object.defineProperty(exports2, "pairwise", { enumerable: true, get: function() {
@@ -12438,11 +12458,11 @@ var require_baseGetTag = __commonJS({
 // node_modules/lodash/isObject.js
 var require_isObject = __commonJS({
   "node_modules/lodash/isObject.js"(exports2, module2) {
-    function isObject2(value) {
+    function isObject3(value) {
       var type = typeof value;
       return value != null && (type == "object" || type == "function");
     }
-    module2.exports = isObject2;
+    module2.exports = isObject3;
   }
 });
 
@@ -12450,13 +12470,13 @@ var require_isObject = __commonJS({
 var require_isFunction2 = __commonJS({
   "node_modules/lodash/isFunction.js"(exports2, module2) {
     var baseGetTag = require_baseGetTag();
-    var isObject2 = require_isObject();
+    var isObject3 = require_isObject();
     var asyncTag = "[object AsyncFunction]";
     var funcTag = "[object Function]";
     var genTag = "[object GeneratorFunction]";
     var proxyTag = "[object Proxy]";
     function isFunction2(value) {
-      if (!isObject2(value)) {
+      if (!isObject3(value)) {
         return false;
       }
       var tag = baseGetTag(value);
@@ -12517,7 +12537,7 @@ var require_baseIsNative = __commonJS({
   "node_modules/lodash/_baseIsNative.js"(exports2, module2) {
     var isFunction2 = require_isFunction2();
     var isMasked = require_isMasked();
-    var isObject2 = require_isObject();
+    var isObject3 = require_isObject();
     var toSource = require_toSource();
     var reRegExpChar = /[\\^$.*+?()[\]{}|]/g;
     var reIsHostCtor = /^\[object .+?Constructor\]$/;
@@ -12529,7 +12549,7 @@ var require_baseIsNative = __commonJS({
       "^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$"
     );
     function baseIsNative(value) {
-      if (!isObject2(value) || isMasked(value)) {
+      if (!isObject3(value) || isMasked(value)) {
         return false;
       }
       var pattern = isFunction2(value) ? reIsNative : reIsHostCtor;
@@ -12697,9 +12717,9 @@ var require_isIterateeCall = __commonJS({
     var eq = require_eq();
     var isArrayLike = require_isArrayLike2();
     var isIndex = require_isIndex();
-    var isObject2 = require_isObject();
+    var isObject3 = require_isObject();
     function isIterateeCall(value, index, object) {
-      if (!isObject2(object)) {
+      if (!isObject3(object)) {
         return false;
       }
       var type = typeof index;
@@ -12914,8 +12934,8 @@ var require_isPrototype = __commonJS({
   "node_modules/lodash/_isPrototype.js"(exports2, module2) {
     var objectProto = Object.prototype;
     function isPrototype(value) {
-      var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
-      return value === proto;
+      var Ctor = value && value.constructor, proto4 = typeof Ctor == "function" && Ctor.prototype || objectProto;
+      return value === proto4;
     }
     module2.exports = isPrototype;
   }
@@ -12940,13 +12960,13 @@ var require_nativeKeysIn = __commonJS({
 // node_modules/lodash/_baseKeysIn.js
 var require_baseKeysIn = __commonJS({
   "node_modules/lodash/_baseKeysIn.js"(exports2, module2) {
-    var isObject2 = require_isObject();
+    var isObject3 = require_isObject();
     var isPrototype = require_isPrototype();
     var nativeKeysIn = require_nativeKeysIn();
     var objectProto = Object.prototype;
     var hasOwnProperty = objectProto.hasOwnProperty;
     function baseKeysIn(object) {
-      if (!isObject2(object)) {
+      if (!isObject3(object)) {
         return nativeKeysIn(object);
       }
       var isProto = isPrototype(object), result = [];
@@ -14044,19 +14064,19 @@ var require_initCloneByTag = __commonJS({
 // node_modules/lodash/_baseCreate.js
 var require_baseCreate = __commonJS({
   "node_modules/lodash/_baseCreate.js"(exports2, module2) {
-    var isObject2 = require_isObject();
+    var isObject3 = require_isObject();
     var objectCreate = Object.create;
     var baseCreate = function() {
       function object() {
       }
-      return function(proto) {
-        if (!isObject2(proto)) {
+      return function(proto4) {
+        if (!isObject3(proto4)) {
           return {};
         }
         if (objectCreate) {
-          return objectCreate(proto);
+          return objectCreate(proto4);
         }
-        object.prototype = proto;
+        object.prototype = proto4;
         var result = new object();
         object.prototype = void 0;
         return result;
@@ -14150,7 +14170,7 @@ var require_baseClone = __commonJS({
     var isArray = require_isArray();
     var isBuffer = require_isBuffer();
     var isMap = require_isMap();
-    var isObject2 = require_isObject();
+    var isObject3 = require_isObject();
     var isSet = require_isSet();
     var keys = require_keys();
     var keysIn = require_keysIn();
@@ -14194,7 +14214,7 @@ var require_baseClone = __commonJS({
       if (result !== void 0) {
         return result;
       }
-      if (!isObject2(value)) {
+      if (!isObject3(value)) {
         return value;
       }
       var isArr = isArray(value);
@@ -14997,14 +15017,14 @@ var require_lodash = __commonJS({
         var baseCreate = function() {
           function object() {
           }
-          return function(proto) {
-            if (!isObject2(proto)) {
+          return function(proto4) {
+            if (!isObject3(proto4)) {
               return {};
             }
             if (objectCreate) {
-              return objectCreate(proto);
+              return objectCreate(proto4);
             }
-            object.prototype = proto;
+            object.prototype = proto4;
             var result2 = new object();
             object.prototype = undefined2;
             return result2;
@@ -15360,7 +15380,7 @@ var require_lodash = __commonJS({
           if (result2 !== undefined2) {
             return result2;
           }
-          if (!isObject2(value)) {
+          if (!isObject3(value)) {
             return value;
           }
           var isArr = isArray(value);
@@ -15707,7 +15727,7 @@ var require_lodash = __commonJS({
           return true;
         }
         function baseIsNative(value) {
-          if (!isObject2(value) || isMasked(value)) {
+          if (!isObject3(value) || isMasked(value)) {
             return false;
           }
           var pattern = isFunction2(value) ? reIsNative : reIsHostCtor;
@@ -15747,7 +15767,7 @@ var require_lodash = __commonJS({
           return result2;
         }
         function baseKeysIn(object) {
-          if (!isObject2(object)) {
+          if (!isObject3(object)) {
             return nativeKeysIn(object);
           }
           var isProto = isPrototype(object), result2 = [];
@@ -15792,7 +15812,7 @@ var require_lodash = __commonJS({
           }
           baseFor(source, function(srcValue, key) {
             stack || (stack = new Stack());
-            if (isObject2(srcValue)) {
+            if (isObject3(srcValue)) {
               baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
             } else {
               var newValue = customizer ? customizer(safeGet(object, key), srcValue, key + "", object, source, stack) : undefined2;
@@ -15832,7 +15852,7 @@ var require_lodash = __commonJS({
               newValue = objValue;
               if (isArguments(objValue)) {
                 newValue = toPlainObject(objValue);
-              } else if (!isObject2(objValue) || isFunction2(objValue)) {
+              } else if (!isObject3(objValue) || isFunction2(objValue)) {
                 newValue = initCloneObject(srcValue);
               }
             } else {
@@ -15971,7 +15991,7 @@ var require_lodash = __commonJS({
           return shuffleSelf(array, baseClamp(n, 0, array.length));
         }
         function baseSet(object, path4, value, customizer) {
-          if (!isObject2(object)) {
+          if (!isObject3(object)) {
             return object;
           }
           path4 = castPath(path4, object);
@@ -15985,7 +16005,7 @@ var require_lodash = __commonJS({
               var objValue = nested[key];
               newValue = customizer ? customizer(objValue, key, nested) : undefined2;
               if (newValue === undefined2) {
-                newValue = isObject2(objValue) ? objValue : isIndex(path4[index + 1]) ? [] : {};
+                newValue = isObject3(objValue) ? objValue : isIndex(path4[index + 1]) ? [] : {};
               }
             }
             assignValue(nested, key, newValue);
@@ -16435,7 +16455,7 @@ var require_lodash = __commonJS({
                 return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
             }
             var thisBinding = baseCreate(Ctor.prototype), result2 = Ctor.apply(thisBinding, args);
-            return isObject2(result2) ? result2 : thisBinding;
+            return isObject3(result2) ? result2 : thisBinding;
           };
         }
         function createCurry(func, bitmask, arity) {
@@ -16771,7 +16791,7 @@ var require_lodash = __commonJS({
           return objValue;
         }
         function customDefaultsMerge(objValue, srcValue, key, object, source, stack) {
-          if (isObject2(objValue) && isObject2(srcValue)) {
+          if (isObject3(objValue) && isObject3(srcValue)) {
             stack.set(srcValue, objValue);
             baseMerge(objValue, srcValue, undefined2, customDefaultsMerge, stack);
             stack["delete"](srcValue);
@@ -17119,7 +17139,7 @@ var require_lodash = __commonJS({
           return !!length && (type == "number" || type != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
         }
         function isIterateeCall(value, index, object) {
-          if (!isObject2(object)) {
+          if (!isObject3(object)) {
             return false;
           }
           var type = typeof index;
@@ -17158,11 +17178,11 @@ var require_lodash = __commonJS({
         }
         var isMaskable = coreJsData ? isFunction2 : stubFalse;
         function isPrototype(value) {
-          var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
-          return value === proto;
+          var Ctor = value && value.constructor, proto4 = typeof Ctor == "function" && Ctor.prototype || objectProto;
+          return value === proto4;
         }
         function isStrictComparable(value) {
-          return value === value && !isObject2(value);
+          return value === value && !isObject3(value);
         }
         function matchesStrictComparable(key, srcValue) {
           return function(object) {
@@ -18044,7 +18064,7 @@ var require_lodash = __commonJS({
             throw new TypeError2(FUNC_ERROR_TEXT);
           }
           wait = toNumber(wait) || 0;
-          if (isObject2(options)) {
+          if (isObject3(options)) {
             leading = !!options.leading;
             maxing = "maxWait" in options;
             maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
@@ -18214,7 +18234,7 @@ var require_lodash = __commonJS({
           if (typeof func != "function") {
             throw new TypeError2(FUNC_ERROR_TEXT);
           }
-          if (isObject2(options)) {
+          if (isObject3(options)) {
             leading = "leading" in options ? !!options.leading : leading;
             trailing = "trailing" in options ? !!options.trailing : trailing;
           }
@@ -18322,7 +18342,7 @@ var require_lodash = __commonJS({
           return typeof value == "number" && nativeIsFinite(value);
         }
         function isFunction2(value) {
-          if (!isObject2(value)) {
+          if (!isObject3(value)) {
             return false;
           }
           var tag = baseGetTag(value);
@@ -18334,7 +18354,7 @@ var require_lodash = __commonJS({
         function isLength(value) {
           return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
         }
-        function isObject2(value) {
+        function isObject3(value) {
           var type = typeof value;
           return value != null && (type == "object" || type == "function");
         }
@@ -18371,11 +18391,11 @@ var require_lodash = __commonJS({
           if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
             return false;
           }
-          var proto = getPrototype(value);
-          if (proto === null) {
+          var proto4 = getPrototype(value);
+          if (proto4 === null) {
             return true;
           }
-          var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
+          var Ctor = hasOwnProperty.call(proto4, "constructor") && proto4.constructor;
           return typeof Ctor == "function" && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
         }
         var isRegExp = nodeIsRegExp ? baseUnary(nodeIsRegExp) : baseIsRegExp;
@@ -18441,9 +18461,9 @@ var require_lodash = __commonJS({
           if (isSymbol(value)) {
             return NAN;
           }
-          if (isObject2(value)) {
+          if (isObject3(value)) {
             var other = typeof value.valueOf == "function" ? value.valueOf() : value;
-            value = isObject2(other) ? other + "" : other;
+            value = isObject3(other) ? other + "" : other;
           }
           if (typeof value != "string") {
             return value === 0 ? value : +value;
@@ -18664,7 +18684,7 @@ var require_lodash = __commonJS({
             var Ctor = object && object.constructor;
             if (isArrLike) {
               accumulator = isArr ? new Ctor() : [];
-            } else if (isObject2(object)) {
+            } else if (isObject3(object)) {
               accumulator = isFunction2(Ctor) ? baseCreate(getPrototype(object)) : {};
             } else {
               accumulator = {};
@@ -18949,7 +18969,7 @@ var require_lodash = __commonJS({
         }
         function truncate(string, options) {
           var length = DEFAULT_TRUNC_LENGTH, omission = DEFAULT_TRUNC_OMISSION;
-          if (isObject2(options)) {
+          if (isObject3(options)) {
             var separator = "separator" in options ? options.separator : separator;
             length = "length" in options ? toInteger(options.length) : length;
             omission = "omission" in options ? baseToString(options.omission) : omission;
@@ -19079,13 +19099,13 @@ var require_lodash = __commonJS({
         });
         function mixin3(object, source, options) {
           var props = keys(source), methodNames = baseFunctions(source, props);
-          if (options == null && !(isObject2(source) && (methodNames.length || !props.length))) {
+          if (options == null && !(isObject3(source) && (methodNames.length || !props.length))) {
             options = source;
             source = object;
             object = this;
             methodNames = baseFunctions(source, keys(source));
           }
-          var chain2 = !(isObject2(options) && "chain" in options) || !!options.chain, isFunc = isFunction2(object);
+          var chain2 = !(isObject3(options) && "chain" in options) || !!options.chain, isFunc = isFunction2(object);
           arrayEach(methodNames, function(methodName) {
             var func = source[methodName];
             object[methodName] = func;
@@ -19431,7 +19451,7 @@ var require_lodash = __commonJS({
         lodash.isNil = isNil;
         lodash.isNull = isNull;
         lodash.isNumber = isNumber;
-        lodash.isObject = isObject2;
+        lodash.isObject = isObject3;
         lodash.isObjectLike = isObjectLike;
         lodash.isPlainObject = isPlainObject2;
         lodash.isRegExp = isRegExp;
@@ -21355,7 +21375,7 @@ var require_clone2 = __commonJS({
           if (depth2 == 0)
             return parent2;
           var child;
-          var proto;
+          var proto4;
           if (typeof parent2 != "object") {
             return parent2;
           }
@@ -21377,11 +21397,11 @@ var require_clone2 = __commonJS({
             return child;
           } else {
             if (typeof prototype == "undefined") {
-              proto = Object.getPrototypeOf(parent2);
-              child = Object.create(proto);
+              proto4 = Object.getPrototypeOf(parent2);
+              child = Object.create(proto4);
             } else {
               child = Object.create(prototype);
-              proto = prototype;
+              proto4 = prototype;
             }
           }
           if (circular) {
@@ -21394,8 +21414,8 @@ var require_clone2 = __commonJS({
           }
           for (var i in parent2) {
             var attrs;
-            if (proto) {
-              attrs = Object.getOwnPropertyDescriptor(proto, i);
+            if (proto4) {
+              attrs = Object.getOwnPropertyDescriptor(proto4, i);
             }
             if (attrs && attrs.set == null) {
               continue;
@@ -33959,9 +33979,9 @@ var require_CreateFileError = __commonJS({
         var _newTarget = this.constructor;
         var _this = _super.call(this, "Failed to create temporary file for editor") || this;
         _this.originalError = originalError;
-        var proto = _newTarget.prototype;
+        var proto4 = _newTarget.prototype;
         if (Object.setPrototypeOf) {
-          Object.setPrototypeOf(_this, proto);
+          Object.setPrototypeOf(_this, proto4);
         } else {
           _this.__proto__ = _newTarget.prototype;
         }
@@ -34003,9 +34023,9 @@ var require_LaunchEditorError = __commonJS({
         var _newTarget = this.constructor;
         var _this = _super.call(this, "Failed launch editor") || this;
         _this.originalError = originalError;
-        var proto = _newTarget.prototype;
+        var proto4 = _newTarget.prototype;
         if (Object.setPrototypeOf) {
-          Object.setPrototypeOf(_this, proto);
+          Object.setPrototypeOf(_this, proto4);
         } else {
           _this.__proto__ = _newTarget.prototype;
         }
@@ -34047,9 +34067,9 @@ var require_ReadFileError = __commonJS({
         var _newTarget = this.constructor;
         var _this = _super.call(this, "Failed to read temporary file") || this;
         _this.originalError = originalError;
-        var proto = _newTarget.prototype;
+        var proto4 = _newTarget.prototype;
         if (Object.setPrototypeOf) {
-          Object.setPrototypeOf(_this, proto);
+          Object.setPrototypeOf(_this, proto4);
         } else {
           _this.__proto__ = _newTarget.prototype;
         }
@@ -34091,9 +34111,9 @@ var require_RemoveFileError = __commonJS({
         var _newTarget = this.constructor;
         var _this = _super.call(this, "Failed to cleanup temporary file") || this;
         _this.originalError = originalError;
-        var proto = _newTarget.prototype;
+        var proto4 = _newTarget.prototype;
         if (Object.setPrototypeOf) {
-          Object.setPrototypeOf(_this, proto);
+          Object.setPrototypeOf(_this, proto4);
         } else {
           _this.__proto__ = _newTarget.prototype;
         }
@@ -34529,11 +34549,11 @@ var require_isPlainObject = __commonJS({
       if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
         return false;
       }
-      var proto = getPrototype(value);
-      if (proto === null) {
+      var proto4 = getPrototype(value);
+      if (proto4 === null) {
         return true;
       }
-      var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
+      var Ctor = hasOwnProperty.call(proto4, "constructor") && proto4.constructor;
       return typeof Ctor == "function" && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
     }
     module2.exports = isPlainObject2;
@@ -34759,10 +34779,10 @@ var require_baseSet = __commonJS({
     var assignValue = require_assignValue();
     var castPath = require_castPath();
     var isIndex = require_isIndex();
-    var isObject2 = require_isObject();
+    var isObject3 = require_isObject();
     var toKey = require_toKey();
     function baseSet(object, path4, value, customizer) {
-      if (!isObject2(object)) {
+      if (!isObject3(object)) {
         return object;
       }
       path4 = castPath(path4, object);
@@ -34776,7 +34796,7 @@ var require_baseSet = __commonJS({
           var objValue = nested[key];
           newValue = customizer ? customizer(objValue, key, nested) : void 0;
           if (newValue === void 0) {
-            newValue = isObject2(objValue) ? objValue : isIndex(path4[index + 1]) ? [] : {};
+            newValue = isObject3(objValue) ? objValue : isIndex(path4[index + 1]) ? [] : {};
           }
         }
         assignValue(nested, key, newValue);
@@ -34839,8 +34859,8 @@ var require_aspromise = __commonJS({
 var require_base64 = __commonJS({
   "node_modules/@protobufjs/base64/index.js"(exports2) {
     "use strict";
-    var base642 = exports2;
-    base642.length = function length(string) {
+    var base644 = exports2;
+    base644.length = function length(string) {
       var p = string.length;
       if (!p)
         return 0;
@@ -34854,7 +34874,7 @@ var require_base64 = __commonJS({
     for (i = 0; i < 64; )
       s64[b64[i] = i < 26 ? i + 65 : i < 52 ? i + 71 : i < 62 ? i - 4 : i - 59 | 43] = i++;
     var i;
-    base642.encode = function encode2(buffer, start, end) {
+    base644.encode = function encode2(buffer, start, end) {
       var parts = null, chunk = [];
       var i2 = 0, j = 0, t;
       while (start < end) {
@@ -34895,7 +34915,7 @@ var require_base64 = __commonJS({
       return String.fromCharCode.apply(String, chunk.slice(0, i2));
     };
     var invalidEncoding = "invalid encoding";
-    base642.decode = function decode2(string, buffer, offset) {
+    base644.decode = function decode2(string, buffer, offset) {
       var start = offset;
       var j = 0, t;
       for (var i2 = 0; i2 < string.length; ) {
@@ -34929,7 +34949,7 @@ var require_base64 = __commonJS({
         throw Error(invalidEncoding);
       return offset - start;
     };
-    base642.test = function test(string) {
+    base644.test = function test(string) {
       return /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/.test(string);
     };
   }
@@ -35412,7 +35432,7 @@ var require_minimal = __commonJS({
     util.isString = function isString(value) {
       return typeof value === "string" || value instanceof String;
     };
-    util.isObject = function isObject2(value) {
+    util.isObject = function isObject3(value) {
       return value && typeof value === "object";
     };
     util.isset = util.isSet = function isSet(obj, prop) {
@@ -35547,7 +35567,7 @@ var require_writer = __commonJS({
     var util = require_minimal();
     var BufferWriter;
     var LongBits = util.LongBits;
-    var base642 = util.base64;
+    var base644 = util.base64;
     var utf8 = util.utf8;
     function Op(fn, len, val) {
       this.fn = fn;
@@ -35675,8 +35695,8 @@ var require_writer = __commonJS({
       if (!len)
         return this._push(writeByte, 1, 0);
       if (util.isString(value)) {
-        var buf = Writer.alloc(len = base642.length(value));
-        base642.decode(value, buf, 0);
+        var buf = Writer.alloc(len = base644.length(value));
+        base644.decode(value, buf, 0);
         value = buf;
       }
       return this.uint32(len)._push(writeBytes, len, value);
@@ -37848,7 +37868,7 @@ var require_root2 = __commonJS({
         }
         return null;
       }
-      function process8(filename2, source) {
+      function process12(filename2, source) {
         try {
           if (util.isString(source) && source.charAt(0) === "{")
             source = JSON.parse(source);
@@ -37880,12 +37900,12 @@ var require_root2 = __commonJS({
         self2.files.push(filename2);
         if (filename2 in common2) {
           if (sync)
-            process8(filename2, common2[filename2]);
+            process12(filename2, common2[filename2]);
           else {
             ++queued;
             setTimeout(function() {
               --queued;
-              process8(filename2, common2[filename2]);
+              process12(filename2, common2[filename2]);
             });
           }
           return;
@@ -37899,7 +37919,7 @@ var require_root2 = __commonJS({
               finish(err);
             return;
           }
-          process8(filename2, source);
+          process12(filename2, source);
         } else {
           ++queued;
           self2.fetch(filename2, function(err, source2) {
@@ -37913,7 +37933,7 @@ var require_root2 = __commonJS({
                 finish(null, self2);
               return;
             }
-            process8(filename2, source2);
+            process12(filename2, source2);
           });
         }
       }
@@ -55779,8 +55799,8 @@ var require_hosted_git_info = __commonJS({
 var require_homedir = __commonJS({
   "node_modules/resolve/lib/homedir.js"(exports2, module2) {
     "use strict";
-    var os = __require("os");
-    module2.exports = os.homedir || function homedir2() {
+    var os4 = __require("os");
+    module2.exports = os4.homedir || function homedir2() {
       var home = process.env.HOME;
       var user = process.env.LOGNAME || process.env.USER || process.env.LNAME || process.env.USERNAME;
       if (process.platform === "win32") {
@@ -59746,21 +59766,21 @@ var require_ansi_styles = __commonJS({
   "node_modules/license-checker/node_modules/ansi-styles/index.js"(exports2, module2) {
     "use strict";
     var colorConvert = require_color_convert();
-    var wrapAnsi162 = (fn, offset) => function() {
+    var wrapAnsi165 = (fn, offset) => function() {
       const code = fn.apply(colorConvert, arguments);
       return `\x1B[${code + offset}m`;
     };
-    var wrapAnsi2562 = (fn, offset) => function() {
+    var wrapAnsi2565 = (fn, offset) => function() {
       const code = fn.apply(colorConvert, arguments);
       return `\x1B[${38 + offset};5;${code}m`;
     };
-    var wrapAnsi16m2 = (fn, offset) => function() {
+    var wrapAnsi16m5 = (fn, offset) => function() {
       const rgb = fn.apply(colorConvert, arguments);
       return `\x1B[${38 + offset};2;${rgb[0]};${rgb[1]};${rgb[2]}m`;
     };
-    function assembleStyles2() {
+    function assembleStyles5() {
       const codes = /* @__PURE__ */ new Map();
-      const styles = {
+      const styles5 = {
         modifier: {
           reset: [0, 0],
           bold: [1, 22],
@@ -59808,48 +59828,48 @@ var require_ansi_styles = __commonJS({
           bgWhiteBright: [107, 49]
         }
       };
-      styles.color.grey = styles.color.gray;
-      for (const groupName of Object.keys(styles)) {
-        const group = styles[groupName];
+      styles5.color.grey = styles5.color.gray;
+      for (const groupName of Object.keys(styles5)) {
+        const group = styles5[groupName];
         for (const styleName of Object.keys(group)) {
           const style = group[styleName];
-          styles[styleName] = {
+          styles5[styleName] = {
             open: `\x1B[${style[0]}m`,
             close: `\x1B[${style[1]}m`
           };
-          group[styleName] = styles[styleName];
+          group[styleName] = styles5[styleName];
           codes.set(style[0], style[1]);
         }
-        Object.defineProperty(styles, groupName, {
+        Object.defineProperty(styles5, groupName, {
           value: group,
           enumerable: false
         });
-        Object.defineProperty(styles, "codes", {
+        Object.defineProperty(styles5, "codes", {
           value: codes,
           enumerable: false
         });
       }
       const ansi2ansi = (n) => n;
       const rgb2rgb = (r, g, b) => [r, g, b];
-      styles.color.close = "\x1B[39m";
-      styles.bgColor.close = "\x1B[49m";
-      styles.color.ansi = {
-        ansi: wrapAnsi162(ansi2ansi, 0)
+      styles5.color.close = "\x1B[39m";
+      styles5.bgColor.close = "\x1B[49m";
+      styles5.color.ansi = {
+        ansi: wrapAnsi165(ansi2ansi, 0)
       };
-      styles.color.ansi256 = {
-        ansi256: wrapAnsi2562(ansi2ansi, 0)
+      styles5.color.ansi256 = {
+        ansi256: wrapAnsi2565(ansi2ansi, 0)
       };
-      styles.color.ansi16m = {
-        rgb: wrapAnsi16m2(rgb2rgb, 0)
+      styles5.color.ansi16m = {
+        rgb: wrapAnsi16m5(rgb2rgb, 0)
       };
-      styles.bgColor.ansi = {
-        ansi: wrapAnsi162(ansi2ansi, 10)
+      styles5.bgColor.ansi = {
+        ansi: wrapAnsi165(ansi2ansi, 10)
       };
-      styles.bgColor.ansi256 = {
-        ansi256: wrapAnsi2562(ansi2ansi, 10)
+      styles5.bgColor.ansi256 = {
+        ansi256: wrapAnsi2565(ansi2ansi, 10)
       };
-      styles.bgColor.ansi16m = {
-        rgb: wrapAnsi16m2(rgb2rgb, 10)
+      styles5.bgColor.ansi16m = {
+        rgb: wrapAnsi16m5(rgb2rgb, 10)
       };
       for (let key of Object.keys(colorConvert)) {
         if (typeof colorConvert[key] !== "object") {
@@ -59860,23 +59880,23 @@ var require_ansi_styles = __commonJS({
           key = "ansi";
         }
         if ("ansi16" in suite) {
-          styles.color.ansi[key] = wrapAnsi162(suite.ansi16, 0);
-          styles.bgColor.ansi[key] = wrapAnsi162(suite.ansi16, 10);
+          styles5.color.ansi[key] = wrapAnsi165(suite.ansi16, 0);
+          styles5.bgColor.ansi[key] = wrapAnsi165(suite.ansi16, 10);
         }
         if ("ansi256" in suite) {
-          styles.color.ansi256[key] = wrapAnsi2562(suite.ansi256, 0);
-          styles.bgColor.ansi256[key] = wrapAnsi2562(suite.ansi256, 10);
+          styles5.color.ansi256[key] = wrapAnsi2565(suite.ansi256, 0);
+          styles5.bgColor.ansi256[key] = wrapAnsi2565(suite.ansi256, 10);
         }
         if ("rgb" in suite) {
-          styles.color.ansi16m[key] = wrapAnsi16m2(suite.rgb, 0);
-          styles.bgColor.ansi16m[key] = wrapAnsi16m2(suite.rgb, 10);
+          styles5.color.ansi16m[key] = wrapAnsi16m5(suite.rgb, 0);
+          styles5.bgColor.ansi16m[key] = wrapAnsi16m5(suite.rgb, 10);
         }
       }
-      return styles;
+      return styles5;
     }
     Object.defineProperty(module2, "exports", {
       enumerable: true,
-      get: assembleStyles2
+      get: assembleStyles5
     });
   }
 });
@@ -59899,19 +59919,19 @@ var require_has_flag = __commonJS({
 var require_supports_color = __commonJS({
   "node_modules/license-checker/node_modules/supports-color/index.js"(exports2, module2) {
     "use strict";
-    var os = __require("os");
-    var hasFlag = require_has_flag();
-    var env2 = process.env;
+    var os4 = __require("os");
+    var hasFlag4 = require_has_flag();
+    var env5 = process.env;
     var forceColor;
-    if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false")) {
+    if (hasFlag4("no-color") || hasFlag4("no-colors") || hasFlag4("color=false")) {
       forceColor = false;
-    } else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
+    } else if (hasFlag4("color") || hasFlag4("colors") || hasFlag4("color=true") || hasFlag4("color=always")) {
       forceColor = true;
     }
-    if ("FORCE_COLOR" in env2) {
-      forceColor = env2.FORCE_COLOR.length === 0 || parseInt(env2.FORCE_COLOR, 10) !== 0;
+    if ("FORCE_COLOR" in env5) {
+      forceColor = env5.FORCE_COLOR.length === 0 || parseInt(env5.FORCE_COLOR, 10) !== 0;
     }
-    function translateLevel(level) {
+    function translateLevel4(level) {
       if (level === 0) {
         return false;
       }
@@ -59922,14 +59942,14 @@ var require_supports_color = __commonJS({
         has16m: level >= 3
       };
     }
-    function supportsColor(stream) {
+    function supportsColor4(stream) {
       if (forceColor === false) {
         return 0;
       }
-      if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) {
+      if (hasFlag4("color=16m") || hasFlag4("color=full") || hasFlag4("color=truecolor")) {
         return 3;
       }
-      if (hasFlag("color=256")) {
+      if (hasFlag4("color=256")) {
         return 2;
       }
       if (stream && !stream.isTTY && forceColor !== true) {
@@ -59937,50 +59957,50 @@ var require_supports_color = __commonJS({
       }
       const min = forceColor ? 1 : 0;
       if (process.platform === "win32") {
-        const osRelease = os.release().split(".");
+        const osRelease = os4.release().split(".");
         if (Number(process.versions.node.split(".")[0]) >= 8 && Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
           return Number(osRelease[2]) >= 14931 ? 3 : 2;
         }
         return 1;
       }
-      if ("CI" in env2) {
-        if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI"].some((sign) => sign in env2) || env2.CI_NAME === "codeship") {
+      if ("CI" in env5) {
+        if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI"].some((sign) => sign in env5) || env5.CI_NAME === "codeship") {
           return 1;
         }
         return min;
       }
-      if ("TEAMCITY_VERSION" in env2) {
-        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env2.TEAMCITY_VERSION) ? 1 : 0;
+      if ("TEAMCITY_VERSION" in env5) {
+        return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env5.TEAMCITY_VERSION) ? 1 : 0;
       }
-      if (env2.COLORTERM === "truecolor") {
+      if (env5.COLORTERM === "truecolor") {
         return 3;
       }
-      if ("TERM_PROGRAM" in env2) {
-        const version5 = parseInt((env2.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
-        switch (env2.TERM_PROGRAM) {
+      if ("TERM_PROGRAM" in env5) {
+        const version5 = parseInt((env5.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+        switch (env5.TERM_PROGRAM) {
           case "iTerm.app":
             return version5 >= 3 ? 3 : 2;
           case "Apple_Terminal":
             return 2;
         }
       }
-      if (/-256(color)?$/i.test(env2.TERM)) {
+      if (/-256(color)?$/i.test(env5.TERM)) {
         return 2;
       }
-      if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env2.TERM)) {
+      if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env5.TERM)) {
         return 1;
       }
-      if ("COLORTERM" in env2) {
+      if ("COLORTERM" in env5) {
         return 1;
       }
-      if (env2.TERM === "dumb") {
+      if (env5.TERM === "dumb") {
         return min;
       }
       return min;
     }
     function getSupportLevel(stream) {
-      const level = supportsColor(stream);
-      return translateLevel(level);
+      const level = supportsColor4(stream);
+      return translateLevel4(level);
     }
     module2.exports = {
       supportsColor: getSupportLevel,
@@ -60046,14 +60066,14 @@ var require_templates = __commonJS({
       }
       return results;
     }
-    function buildStyle(chalk, styles) {
+    function buildStyle(chalk4, styles5) {
       const enabled = {};
-      for (const layer of styles) {
+      for (const layer of styles5) {
         for (const style of layer.styles) {
           enabled[style[0]] = layer.inverse ? null : style.slice(1);
         }
       }
-      let current = chalk;
+      let current = chalk4;
       for (const styleName of Object.keys(enabled)) {
         if (Array.isArray(enabled[styleName])) {
           if (!(styleName in current)) {
@@ -60068,8 +60088,8 @@ var require_templates = __commonJS({
       }
       return current;
     }
-    module2.exports = (chalk, tmp) => {
-      const styles = [];
+    module2.exports = (chalk4, tmp) => {
+      const styles5 = [];
       const chunks = [];
       let chunk = [];
       tmp.replace(TEMPLATE_REGEX, (m, escapeChar, inverse, style, close, chr) => {
@@ -60078,22 +60098,22 @@ var require_templates = __commonJS({
         } else if (style) {
           const str = chunk.join("");
           chunk = [];
-          chunks.push(styles.length === 0 ? str : buildStyle(chalk, styles)(str));
-          styles.push({ inverse, styles: parseStyle(style) });
+          chunks.push(styles5.length === 0 ? str : buildStyle(chalk4, styles5)(str));
+          styles5.push({ inverse, styles: parseStyle(style) });
         } else if (close) {
-          if (styles.length === 0) {
+          if (styles5.length === 0) {
             throw new Error("Found extraneous } in Chalk template literal");
           }
-          chunks.push(buildStyle(chalk, styles)(chunk.join("")));
+          chunks.push(buildStyle(chalk4, styles5)(chunk.join("")));
           chunk = [];
-          styles.pop();
+          styles5.pop();
         } else {
           chunk.push(chr);
         }
       });
       chunks.push(chunk.join(""));
-      if (styles.length > 0) {
-        const errMsg = `Chalk template literal is missing ${styles.length} closing bracket${styles.length === 1 ? "" : "s"} (\`}\`)`;
+      if (styles5.length > 0) {
+        const errMsg = `Chalk template literal is missing ${styles5.length} closing bracket${styles5.length === 1 ? "" : "s"} (\`}\`)`;
         throw new Error(errMsg);
       }
       return chunks.join("");
@@ -60106,97 +60126,97 @@ var require_chalk = __commonJS({
   "node_modules/license-checker/node_modules/chalk/index.js"(exports2, module2) {
     "use strict";
     var escapeStringRegexp2 = require_escape_string_regexp();
-    var ansiStyles2 = require_ansi_styles();
-    var stdoutColor = require_supports_color().stdout;
+    var ansiStyles5 = require_ansi_styles();
+    var stdoutColor4 = require_supports_color().stdout;
     var template = require_templates();
     var isSimpleWindowsTerm = process.platform === "win32" && !(process.env.TERM || "").toLowerCase().startsWith("xterm");
-    var levelMapping = ["ansi", "ansi", "ansi256", "ansi16m"];
+    var levelMapping4 = ["ansi", "ansi", "ansi256", "ansi16m"];
     var skipModels = /* @__PURE__ */ new Set(["gray"]);
-    var styles = /* @__PURE__ */ Object.create(null);
-    function applyOptions(obj, options) {
+    var styles5 = /* @__PURE__ */ Object.create(null);
+    function applyOptions4(obj, options) {
       options = options || {};
-      const scLevel = stdoutColor ? stdoutColor.level : 0;
+      const scLevel = stdoutColor4 ? stdoutColor4.level : 0;
       obj.level = options.level === void 0 ? scLevel : options.level;
       obj.enabled = "enabled" in options ? options.enabled : obj.level > 0;
     }
     function Chalk(options) {
       if (!this || !(this instanceof Chalk) || this.template) {
-        const chalk = {};
-        applyOptions(chalk, options);
-        chalk.template = function() {
+        const chalk4 = {};
+        applyOptions4(chalk4, options);
+        chalk4.template = function() {
           const args = [].slice.call(arguments);
-          return chalkTag.apply(null, [chalk.template].concat(args));
+          return chalkTag.apply(null, [chalk4.template].concat(args));
         };
-        Object.setPrototypeOf(chalk, Chalk.prototype);
-        Object.setPrototypeOf(chalk.template, chalk);
-        chalk.template.constructor = Chalk;
-        return chalk.template;
+        Object.setPrototypeOf(chalk4, Chalk.prototype);
+        Object.setPrototypeOf(chalk4.template, chalk4);
+        chalk4.template.constructor = Chalk;
+        return chalk4.template;
       }
-      applyOptions(this, options);
+      applyOptions4(this, options);
     }
     if (isSimpleWindowsTerm) {
-      ansiStyles2.blue.open = "\x1B[94m";
+      ansiStyles5.blue.open = "\x1B[94m";
     }
-    for (const key of Object.keys(ansiStyles2)) {
-      ansiStyles2[key].closeRe = new RegExp(escapeStringRegexp2(ansiStyles2[key].close), "g");
-      styles[key] = {
+    for (const key of Object.keys(ansiStyles5)) {
+      ansiStyles5[key].closeRe = new RegExp(escapeStringRegexp2(ansiStyles5[key].close), "g");
+      styles5[key] = {
         get() {
-          const codes = ansiStyles2[key];
+          const codes = ansiStyles5[key];
           return build.call(this, this._styles ? this._styles.concat(codes) : [codes], this._empty, key);
         }
       };
     }
-    styles.visible = {
+    styles5.visible = {
       get() {
         return build.call(this, this._styles || [], true, "visible");
       }
     };
-    ansiStyles2.color.closeRe = new RegExp(escapeStringRegexp2(ansiStyles2.color.close), "g");
-    for (const model of Object.keys(ansiStyles2.color.ansi)) {
+    ansiStyles5.color.closeRe = new RegExp(escapeStringRegexp2(ansiStyles5.color.close), "g");
+    for (const model of Object.keys(ansiStyles5.color.ansi)) {
       if (skipModels.has(model)) {
         continue;
       }
-      styles[model] = {
+      styles5[model] = {
         get() {
           const level = this.level;
           return function() {
-            const open = ansiStyles2.color[levelMapping[level]][model].apply(null, arguments);
+            const open = ansiStyles5.color[levelMapping4[level]][model].apply(null, arguments);
             const codes = {
               open,
-              close: ansiStyles2.color.close,
-              closeRe: ansiStyles2.color.closeRe
+              close: ansiStyles5.color.close,
+              closeRe: ansiStyles5.color.closeRe
             };
             return build.call(this, this._styles ? this._styles.concat(codes) : [codes], this._empty, model);
           };
         }
       };
     }
-    ansiStyles2.bgColor.closeRe = new RegExp(escapeStringRegexp2(ansiStyles2.bgColor.close), "g");
-    for (const model of Object.keys(ansiStyles2.bgColor.ansi)) {
+    ansiStyles5.bgColor.closeRe = new RegExp(escapeStringRegexp2(ansiStyles5.bgColor.close), "g");
+    for (const model of Object.keys(ansiStyles5.bgColor.ansi)) {
       if (skipModels.has(model)) {
         continue;
       }
       const bgModel = "bg" + model[0].toUpperCase() + model.slice(1);
-      styles[bgModel] = {
+      styles5[bgModel] = {
         get() {
           const level = this.level;
           return function() {
-            const open = ansiStyles2.bgColor[levelMapping[level]][model].apply(null, arguments);
+            const open = ansiStyles5.bgColor[levelMapping4[level]][model].apply(null, arguments);
             const codes = {
               open,
-              close: ansiStyles2.bgColor.close,
-              closeRe: ansiStyles2.bgColor.closeRe
+              close: ansiStyles5.bgColor.close,
+              closeRe: ansiStyles5.bgColor.closeRe
             };
             return build.call(this, this._styles ? this._styles.concat(codes) : [codes], this._empty, model);
           };
         }
       };
     }
-    var proto = Object.defineProperties(() => {
-    }, styles);
+    var proto4 = Object.defineProperties(() => {
+    }, styles5);
     function build(_styles, _empty, key) {
       const builder28 = function() {
-        return applyStyle.apply(builder28, arguments);
+        return applyStyle4.apply(builder28, arguments);
       };
       builder28._styles = _styles;
       builder28._empty = _empty;
@@ -60220,10 +60240,10 @@ var require_chalk = __commonJS({
         }
       });
       builder28.hasGrey = this.hasGrey || key === "gray" || key === "grey";
-      builder28.__proto__ = proto;
+      builder28.__proto__ = proto4;
       return builder28;
     }
-    function applyStyle() {
+    function applyStyle4() {
       const args = arguments;
       const argsLen = args.length;
       let str = String(arguments[0]);
@@ -60238,18 +60258,18 @@ var require_chalk = __commonJS({
       if (!this.enabled || this.level <= 0 || !str) {
         return this._empty ? "" : str;
       }
-      const originalDim = ansiStyles2.dim.open;
+      const originalDim = ansiStyles5.dim.open;
       if (isSimpleWindowsTerm && this.hasGrey) {
-        ansiStyles2.dim.open = "";
+        ansiStyles5.dim.open = "";
       }
       for (const code of this._styles.slice().reverse()) {
         str = code.open + str.replace(code.closeRe, code.open) + code.close;
         str = str.replace(/\r?\n/g, `${code.close}$&${code.open}`);
       }
-      ansiStyles2.dim.open = originalDim;
+      ansiStyles5.dim.open = originalDim;
       return str;
     }
-    function chalkTag(chalk, strings) {
+    function chalkTag(chalk4, strings) {
       if (!Array.isArray(strings)) {
         return [].slice.call(arguments, 1).join(" ");
       }
@@ -60259,11 +60279,11 @@ var require_chalk = __commonJS({
         parts.push(String(args[i - 1]).replace(/[{}\\]/g, "\\$&"));
         parts.push(String(strings.raw[i]));
       }
-      return template(chalk, parts.join(""));
+      return template(chalk4, parts.join(""));
     }
-    Object.defineProperties(Chalk.prototype, styles);
+    Object.defineProperties(Chalk.prototype, styles5);
     module2.exports = Chalk();
-    module2.exports.supportsColor = stdoutColor;
+    module2.exports.supportsColor = stdoutColor4;
     module2.exports.default = module2.exports;
   }
 });
@@ -60577,7 +60597,7 @@ var require_ms = __commonJS({
 var require_common3 = __commonJS({
   "node_modules/license-checker/node_modules/debug/src/common.js"(exports2, module2) {
     "use strict";
-    function setup(env2) {
+    function setup(env5) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
       createDebug.coerce = coerce;
@@ -60585,8 +60605,8 @@ var require_common3 = __commonJS({
       createDebug.enable = enable;
       createDebug.enabled = enabled;
       createDebug.humanize = require_ms();
-      Object.keys(env2).forEach(function(key) {
-        createDebug[key] = env2[key];
+      Object.keys(env5).forEach(function(key) {
+        createDebug[key] = env5[key];
       });
       createDebug.instances = [];
       createDebug.names = [];
@@ -60819,7 +60839,7 @@ var require_browser = __commonJS({
 var require_node2 = __commonJS({
   "node_modules/license-checker/node_modules/debug/src/node.js"(exports2, module2) {
     "use strict";
-    var tty = __require("tty");
+    var tty4 = __require("tty");
     var util = __require("util");
     exports2.init = init;
     exports2.log = log;
@@ -60829,13 +60849,13 @@ var require_node2 = __commonJS({
     exports2.useColors = useColors;
     exports2.colors = [6, 2, 3, 4, 5, 1];
     try {
-      supportsColor = require_supports_color();
-      if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
+      supportsColor4 = require_supports_color();
+      if (supportsColor4 && (supportsColor4.stderr || supportsColor4).level >= 2) {
         exports2.colors = [20, 21, 26, 27, 32, 33, 38, 39, 40, 41, 42, 43, 44, 45, 56, 57, 62, 63, 68, 69, 74, 75, 76, 77, 78, 79, 80, 81, 92, 93, 98, 99, 112, 113, 128, 129, 134, 135, 148, 149, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 178, 179, 184, 185, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 214, 215, 220, 221];
       }
     } catch (error) {
     }
-    var supportsColor;
+    var supportsColor4;
     exports2.inspectOpts = Object.keys(process.env).filter(function(key) {
       return /^debug_/i.test(key);
     }).reduce(function(obj, key) {
@@ -60856,7 +60876,7 @@ var require_node2 = __commonJS({
       return obj;
     }, {});
     function useColors() {
-      return "colors" in exports2.inspectOpts ? Boolean(exports2.inspectOpts.colors) : tty.isatty(process.stderr.fd);
+      return "colors" in exports2.inspectOpts ? Boolean(exports2.inspectOpts.colors) : tty4.isatty(process.stderr.fd);
     }
     function formatArgs(args) {
       var name5 = this.namespace, useColors2 = this.useColors;
@@ -61423,7 +61443,7 @@ var require_lib3 = __commonJS({
     var fs6 = __require("fs");
     var path4 = __require("path");
     var read = require_read_installed();
-    var chalk = require_chalk();
+    var chalk4 = require_chalk();
     var treeify = require_treeify();
     var license = require_license();
     var licenseFiles = require_license_files();
@@ -61647,7 +61667,7 @@ var require_lib3 = __commonJS({
           return license2.replace(/\\,/g, ",").replace(/^\s+|\s+$/g, "");
         }), inputError = null;
         var colorizeString = function(string) {
-          return colorize ? chalk.bold.red(string) : string;
+          return colorize ? chalk4.bold.red(string) : string;
         };
         Object.keys(data).sort().forEach(function(item) {
           if (data[item].private) {
@@ -62927,7 +62947,7 @@ var require_url_state_machine = __commonJS({
       }
       return true;
     };
-    URLStateMachine.prototype["parse port"] = function parsePort(c, cStr) {
+    URLStateMachine.prototype["parse port"] = function parsePort2(c, cStr) {
       if (isASCIIDigit(c)) {
         this.buffer += cStr;
       } else if (isNaN(c) || c === 47 || c === 63 || c === 35 || isSpecial(this.url) && c === 92 || this.stateOverride) {
@@ -63858,11 +63878,11 @@ var require_lib5 = __commonJS({
       json: { enumerable: true },
       text: { enumerable: true }
     });
-    Body.mixIn = function(proto) {
+    Body.mixIn = function(proto4) {
       for (const name5 of Object.getOwnPropertyNames(Body.prototype)) {
-        if (!(name5 in proto)) {
+        if (!(name5 in proto4)) {
           const desc = Object.getOwnPropertyDescriptor(Body.prototype, name5);
-          Object.defineProperty(proto, name5, desc);
+          Object.defineProperty(proto4, name5, desc);
         }
       }
     };
@@ -64365,8 +64385,8 @@ var require_lib5 = __commonJS({
       return typeof input === "object" && typeof input[INTERNALS$2] === "object";
     }
     function isAbortSignal(signal) {
-      const proto = signal && typeof signal === "object" && Object.getPrototypeOf(signal);
-      return !!(proto && proto.constructor.name === "AbortSignal");
+      const proto4 = signal && typeof signal === "object" && Object.getPrototypeOf(signal);
+      return !!(proto4 && proto4.constructor.name === "AbortSignal");
     }
     var Request = class {
       constructor(input) {
@@ -66046,7 +66066,7 @@ var require_url_state_machine2 = __commonJS({
       }
       return true;
     };
-    URLStateMachine.prototype["parse port"] = function parsePort(c, cStr) {
+    URLStateMachine.prototype["parse port"] = function parsePort2(c, cStr) {
       if (isASCIIDigit(c)) {
         this.buffer += cStr;
       } else if (isNaN(c) || c === 47 || c === 63 || c === 35 || isSpecial(this.url) && c === 92 || this.stateOverride) {
@@ -66977,11 +66997,11 @@ var require_lib7 = __commonJS({
       json: { enumerable: true },
       text: { enumerable: true }
     });
-    Body.mixIn = function(proto) {
+    Body.mixIn = function(proto4) {
       for (const name5 of Object.getOwnPropertyNames(Body.prototype)) {
-        if (!(name5 in proto)) {
+        if (!(name5 in proto4)) {
           const desc = Object.getOwnPropertyDescriptor(Body.prototype, name5);
-          Object.defineProperty(proto, name5, desc);
+          Object.defineProperty(proto4, name5, desc);
         }
       }
     };
@@ -67484,8 +67504,8 @@ var require_lib7 = __commonJS({
       return typeof input === "object" && typeof input[INTERNALS$2] === "object";
     }
     function isAbortSignal(signal) {
-      const proto = signal && typeof signal === "object" && Object.getPrototypeOf(signal);
-      return !!(proto && proto.constructor.name === "AbortSignal");
+      const proto4 = signal && typeof signal === "object" && Object.getPrototypeOf(signal);
+      return !!(proto4 && proto4.constructor.name === "AbortSignal");
     }
     var Request = class {
       constructor(input) {
@@ -71495,7 +71515,7 @@ var require_ms2 = __commonJS({
 // node_modules/debug/src/common.js
 var require_common4 = __commonJS({
   "node_modules/debug/src/common.js"(exports2, module2) {
-    function setup(env2) {
+    function setup(env5) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
       createDebug.coerce = coerce;
@@ -71504,8 +71524,8 @@ var require_common4 = __commonJS({
       createDebug.enabled = enabled;
       createDebug.humanize = require_ms2();
       createDebug.destroy = destroy;
-      Object.keys(env2).forEach((key) => {
-        createDebug[key] = env2[key];
+      Object.keys(env5).forEach((key) => {
+        createDebug[key] = env5[key];
       });
       createDebug.names = [];
       createDebug.skips = [];
@@ -71823,7 +71843,7 @@ var require_browser2 = __commonJS({
 // node_modules/debug/src/node.js
 var require_node3 = __commonJS({
   "node_modules/debug/src/node.js"(exports2, module2) {
-    var tty = __require("tty");
+    var tty4 = __require("tty");
     var util = __require("util");
     exports2.init = init;
     exports2.log = log;
@@ -71838,8 +71858,8 @@ var require_node3 = __commonJS({
     );
     exports2.colors = [6, 2, 3, 4, 5, 1];
     try {
-      const supportsColor = (init_supports_color(), __toCommonJS(supports_color_exports));
-      if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
+      const supportsColor4 = (init_supports_color(), __toCommonJS(supports_color_exports));
+      if (supportsColor4 && (supportsColor4.stderr || supportsColor4).level >= 2) {
         exports2.colors = [
           20,
           21,
@@ -71941,7 +71961,7 @@ var require_node3 = __commonJS({
       return obj;
     }, {});
     function useColors() {
-      return "colors" in exports2.inspectOpts ? Boolean(exports2.inspectOpts.colors) : tty.isatty(process.stderr.fd);
+      return "colors" in exports2.inspectOpts ? Boolean(exports2.inspectOpts.colors) : tty4.isatty(process.stderr.fd);
     }
     function formatArgs(args) {
       const { namespace: name5, useColors: useColors2 } = this;
@@ -72780,7 +72800,7 @@ var require_folder_hash = __commonJS({
         basename2 = path4.basename(basename2);
         options_ = args[1];
       }
-      if (!isObject2(options_))
+      if (!isObject3(options_))
         options_ = {};
       const options = {
         algo: options_.algo || defaultOptions.algo,
@@ -72843,7 +72863,7 @@ ${padding}]`;
     function isString(str) {
       return typeof str === "string" || str instanceof String;
     }
-    function isObject2(obj) {
+    function isObject3(obj) {
       return obj !== null && typeof obj === "object";
     }
     function notUndefined(obj) {
@@ -74099,7 +74119,7 @@ var require_crypto_utils = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.DefaultCrypto = exports2.textEncodeLite = exports2.urlSafe = exports2.bufferToString = void 0;
-    var base642 = require_base64_js();
+    var base644 = require_base64_js();
     var errors_1 = require_errors3();
     var HAS_CRYPTO = typeof window !== "undefined" && !!window.crypto;
     var HAS_SUBTLE_CRYPTO = HAS_CRYPTO && !!window.crypto.subtle;
@@ -74114,7 +74134,7 @@ var require_crypto_utils = __commonJS({
     }
     exports2.bufferToString = bufferToString;
     function urlSafe(buffer) {
-      var encoded = base642.fromByteArray(new Uint8Array(buffer));
+      var encoded = base644.fromByteArray(new Uint8Array(buffer));
       return encoded.replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
     }
     exports2.urlSafe = urlSafe;
@@ -76058,8 +76078,8 @@ var YargsParser = class {
       if (typeof envPrefix === "undefined")
         return;
       const prefix = typeof envPrefix === "string" ? envPrefix : "";
-      const env2 = mixin2.env();
-      Object.keys(env2).forEach(function(envVar) {
+      const env5 = mixin2.env();
+      Object.keys(env5).forEach(function(envVar) {
         if (prefix === "" || envVar.lastIndexOf(prefix, 0) === 0) {
           const keys = envVar.split("__").map(function(key, i) {
             if (i === 0) {
@@ -76068,7 +76088,7 @@ var YargsParser = class {
             return camelCase(key);
           });
           if ((configOnly && flags.configs[keys.join(".")] || !configOnly) && !hasKey(argv2, keys)) {
-            setArg(keys.join("."), env2[envVar]);
+            setArg(keys.join("."), env5[envVar]);
           }
         }
       });
@@ -78432,12 +78452,12 @@ function getPathToDefaultConfig(cwd, pathToExtend) {
 }
 function mergeDeep(config1, config2) {
   const target = {};
-  function isObject2(obj) {
+  function isObject3(obj) {
     return obj && typeof obj === "object" && !Array.isArray(obj);
   }
   Object.assign(target, config1);
   for (const key of Object.keys(config2)) {
-    if (isObject2(config2[key]) && isObject2(target[key])) {
+    if (isObject3(config2[key]) && isObject3(target[key])) {
       target[key] = mergeDeep(config1[key], config2[key]);
     } else {
       target[key] = config2[key];
@@ -80323,20 +80343,500 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
+// node_modules/inquirer/node_modules/chalk/source/vendor/ansi-styles/index.js
+var ANSI_BACKGROUND_OFFSET = 10;
+var wrapAnsi16 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
+var wrapAnsi256 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
+var wrapAnsi16m = (offset = 0) => (red2, green2, blue2) => `\x1B[${38 + offset};2;${red2};${green2};${blue2}m`;
+var styles = {
+  modifier: {
+    reset: [0, 0],
+    bold: [1, 22],
+    dim: [2, 22],
+    italic: [3, 23],
+    underline: [4, 24],
+    overline: [53, 55],
+    inverse: [7, 27],
+    hidden: [8, 28],
+    strikethrough: [9, 29]
+  },
+  color: {
+    black: [30, 39],
+    red: [31, 39],
+    green: [32, 39],
+    yellow: [33, 39],
+    blue: [34, 39],
+    magenta: [35, 39],
+    cyan: [36, 39],
+    white: [37, 39],
+    blackBright: [90, 39],
+    gray: [90, 39],
+    grey: [90, 39],
+    redBright: [91, 39],
+    greenBright: [92, 39],
+    yellowBright: [93, 39],
+    blueBright: [94, 39],
+    magentaBright: [95, 39],
+    cyanBright: [96, 39],
+    whiteBright: [97, 39]
+  },
+  bgColor: {
+    bgBlack: [40, 49],
+    bgRed: [41, 49],
+    bgGreen: [42, 49],
+    bgYellow: [43, 49],
+    bgBlue: [44, 49],
+    bgMagenta: [45, 49],
+    bgCyan: [46, 49],
+    bgWhite: [47, 49],
+    bgBlackBright: [100, 49],
+    bgGray: [100, 49],
+    bgGrey: [100, 49],
+    bgRedBright: [101, 49],
+    bgGreenBright: [102, 49],
+    bgYellowBright: [103, 49],
+    bgBlueBright: [104, 49],
+    bgMagentaBright: [105, 49],
+    bgCyanBright: [106, 49],
+    bgWhiteBright: [107, 49]
+  }
+};
+var modifierNames = Object.keys(styles.modifier);
+var foregroundColorNames = Object.keys(styles.color);
+var backgroundColorNames = Object.keys(styles.bgColor);
+var colorNames = [...foregroundColorNames, ...backgroundColorNames];
+function assembleStyles() {
+  const codes = /* @__PURE__ */ new Map();
+  for (const [groupName, group] of Object.entries(styles)) {
+    for (const [styleName, style] of Object.entries(group)) {
+      styles[styleName] = {
+        open: `\x1B[${style[0]}m`,
+        close: `\x1B[${style[1]}m`
+      };
+      group[styleName] = styles[styleName];
+      codes.set(style[0], style[1]);
+    }
+    Object.defineProperty(styles, groupName, {
+      value: group,
+      enumerable: false
+    });
+  }
+  Object.defineProperty(styles, "codes", {
+    value: codes,
+    enumerable: false
+  });
+  styles.color.close = "\x1B[39m";
+  styles.bgColor.close = "\x1B[49m";
+  styles.color.ansi = wrapAnsi16();
+  styles.color.ansi256 = wrapAnsi256();
+  styles.color.ansi16m = wrapAnsi16m();
+  styles.bgColor.ansi = wrapAnsi16(ANSI_BACKGROUND_OFFSET);
+  styles.bgColor.ansi256 = wrapAnsi256(ANSI_BACKGROUND_OFFSET);
+  styles.bgColor.ansi16m = wrapAnsi16m(ANSI_BACKGROUND_OFFSET);
+  Object.defineProperties(styles, {
+    rgbToAnsi256: {
+      value(red2, green2, blue2) {
+        if (red2 === green2 && green2 === blue2) {
+          if (red2 < 8) {
+            return 16;
+          }
+          if (red2 > 248) {
+            return 231;
+          }
+          return Math.round((red2 - 8) / 247 * 24) + 232;
+        }
+        return 16 + 36 * Math.round(red2 / 255 * 5) + 6 * Math.round(green2 / 255 * 5) + Math.round(blue2 / 255 * 5);
+      },
+      enumerable: false
+    },
+    hexToRgb: {
+      value(hex) {
+        const matches = /[a-f\d]{6}|[a-f\d]{3}/i.exec(hex.toString(16));
+        if (!matches) {
+          return [0, 0, 0];
+        }
+        let [colorString] = matches;
+        if (colorString.length === 3) {
+          colorString = [...colorString].map((character) => character + character).join("");
+        }
+        const integer = Number.parseInt(colorString, 16);
+        return [
+          integer >> 16 & 255,
+          integer >> 8 & 255,
+          integer & 255
+        ];
+      },
+      enumerable: false
+    },
+    hexToAnsi256: {
+      value: (hex) => styles.rgbToAnsi256(...styles.hexToRgb(hex)),
+      enumerable: false
+    },
+    ansi256ToAnsi: {
+      value(code) {
+        if (code < 8) {
+          return 30 + code;
+        }
+        if (code < 16) {
+          return 90 + (code - 8);
+        }
+        let red2;
+        let green2;
+        let blue2;
+        if (code >= 232) {
+          red2 = ((code - 232) * 10 + 8) / 255;
+          green2 = red2;
+          blue2 = red2;
+        } else {
+          code -= 16;
+          const remainder = code % 36;
+          red2 = Math.floor(code / 36) / 5;
+          green2 = Math.floor(remainder / 6) / 5;
+          blue2 = remainder % 6 / 5;
+        }
+        const value = Math.max(red2, green2, blue2) * 2;
+        if (value === 0) {
+          return 30;
+        }
+        let result = 30 + (Math.round(blue2) << 2 | Math.round(green2) << 1 | Math.round(red2));
+        if (value === 2) {
+          result += 60;
+        }
+        return result;
+      },
+      enumerable: false
+    },
+    rgbToAnsi: {
+      value: (red2, green2, blue2) => styles.ansi256ToAnsi(styles.rgbToAnsi256(red2, green2, blue2)),
+      enumerable: false
+    },
+    hexToAnsi: {
+      value: (hex) => styles.ansi256ToAnsi(styles.hexToAnsi256(hex)),
+      enumerable: false
+    }
+  });
+  return styles;
+}
+var ansiStyles = assembleStyles();
+var ansi_styles_default = ansiStyles;
+
+// node_modules/inquirer/node_modules/chalk/source/vendor/supports-color/index.js
+import process2 from "process";
+import os from "os";
+import tty from "tty";
+function hasFlag(flag, argv = globalThis.Deno ? globalThis.Deno.args : process2.argv) {
+  const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
+  const position = argv.indexOf(prefix + flag);
+  const terminatorPosition = argv.indexOf("--");
+  return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
+}
+var { env: env2 } = process2;
+var flagForceColor;
+if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
+  flagForceColor = 0;
+} else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
+  flagForceColor = 1;
+}
+function envForceColor() {
+  if ("FORCE_COLOR" in env2) {
+    if (env2.FORCE_COLOR === "true") {
+      return 1;
+    }
+    if (env2.FORCE_COLOR === "false") {
+      return 0;
+    }
+    return env2.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt(env2.FORCE_COLOR, 10), 3);
+  }
+}
+function translateLevel(level) {
+  if (level === 0) {
+    return false;
+  }
+  return {
+    level,
+    hasBasic: true,
+    has256: level >= 2,
+    has16m: level >= 3
+  };
+}
+function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
+  const noFlagForceColor = envForceColor();
+  if (noFlagForceColor !== void 0) {
+    flagForceColor = noFlagForceColor;
+  }
+  const forceColor = sniffFlags ? flagForceColor : noFlagForceColor;
+  if (forceColor === 0) {
+    return 0;
+  }
+  if (sniffFlags) {
+    if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) {
+      return 3;
+    }
+    if (hasFlag("color=256")) {
+      return 2;
+    }
+  }
+  if ("TF_BUILD" in env2 && "AGENT_NAME" in env2) {
+    return 1;
+  }
+  if (haveStream && !streamIsTTY && forceColor === void 0) {
+    return 0;
+  }
+  const min = forceColor || 0;
+  if (env2.TERM === "dumb") {
+    return min;
+  }
+  if (process2.platform === "win32") {
+    const osRelease = os.release().split(".");
+    if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
+      return Number(osRelease[2]) >= 14931 ? 3 : 2;
+    }
+    return 1;
+  }
+  if ("CI" in env2) {
+    if ("GITHUB_ACTIONS" in env2) {
+      return 3;
+    }
+    if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "BUILDKITE", "DRONE"].some((sign) => sign in env2) || env2.CI_NAME === "codeship") {
+      return 1;
+    }
+    return min;
+  }
+  if ("TEAMCITY_VERSION" in env2) {
+    return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env2.TEAMCITY_VERSION) ? 1 : 0;
+  }
+  if (env2.COLORTERM === "truecolor") {
+    return 3;
+  }
+  if (env2.TERM === "xterm-kitty") {
+    return 3;
+  }
+  if ("TERM_PROGRAM" in env2) {
+    const version5 = Number.parseInt((env2.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+    switch (env2.TERM_PROGRAM) {
+      case "iTerm.app": {
+        return version5 >= 3 ? 3 : 2;
+      }
+      case "Apple_Terminal": {
+        return 2;
+      }
+    }
+  }
+  if (/-256(color)?$/i.test(env2.TERM)) {
+    return 2;
+  }
+  if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env2.TERM)) {
+    return 1;
+  }
+  if ("COLORTERM" in env2) {
+    return 1;
+  }
+  return min;
+}
+function createSupportsColor(stream, options = {}) {
+  const level = _supportsColor(stream, {
+    streamIsTTY: stream && stream.isTTY,
+    ...options
+  });
+  return translateLevel(level);
+}
+var supportsColor = {
+  stdout: createSupportsColor({ isTTY: tty.isatty(1) }),
+  stderr: createSupportsColor({ isTTY: tty.isatty(2) })
+};
+var supports_color_default = supportsColor;
+
+// node_modules/inquirer/node_modules/chalk/source/utilities.js
+function stringReplaceAll(string, substring, replacer) {
+  let index = string.indexOf(substring);
+  if (index === -1) {
+    return string;
+  }
+  const substringLength = substring.length;
+  let endIndex = 0;
+  let returnValue = "";
+  do {
+    returnValue += string.slice(endIndex, index) + substring + replacer;
+    endIndex = index + substringLength;
+    index = string.indexOf(substring, endIndex);
+  } while (index !== -1);
+  returnValue += string.slice(endIndex);
+  return returnValue;
+}
+function stringEncaseCRLFWithFirstIndex(string, prefix, postfix, index) {
+  let endIndex = 0;
+  let returnValue = "";
+  do {
+    const gotCR = string[index - 1] === "\r";
+    returnValue += string.slice(endIndex, gotCR ? index - 1 : index) + prefix + (gotCR ? "\r\n" : "\n") + postfix;
+    endIndex = index + 1;
+    index = string.indexOf("\n", endIndex);
+  } while (index !== -1);
+  returnValue += string.slice(endIndex);
+  return returnValue;
+}
+
+// node_modules/inquirer/node_modules/chalk/source/index.js
+var { stdout: stdoutColor, stderr: stderrColor } = supports_color_default;
+var GENERATOR = Symbol("GENERATOR");
+var STYLER = Symbol("STYLER");
+var IS_EMPTY = Symbol("IS_EMPTY");
+var levelMapping = [
+  "ansi",
+  "ansi",
+  "ansi256",
+  "ansi16m"
+];
+var styles2 = /* @__PURE__ */ Object.create(null);
+var applyOptions = (object, options = {}) => {
+  if (options.level && !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)) {
+    throw new Error("The `level` option should be an integer from 0 to 3");
+  }
+  const colorLevel = stdoutColor ? stdoutColor.level : 0;
+  object.level = options.level === void 0 ? colorLevel : options.level;
+};
+var chalkFactory = (options) => {
+  const chalk4 = (...strings) => strings.join(" ");
+  applyOptions(chalk4, options);
+  Object.setPrototypeOf(chalk4, createChalk.prototype);
+  return chalk4;
+};
+function createChalk(options) {
+  return chalkFactory(options);
+}
+Object.setPrototypeOf(createChalk.prototype, Function.prototype);
+for (const [styleName, style] of Object.entries(ansi_styles_default)) {
+  styles2[styleName] = {
+    get() {
+      const builder28 = createBuilder(this, createStyler(style.open, style.close, this[STYLER]), this[IS_EMPTY]);
+      Object.defineProperty(this, styleName, { value: builder28 });
+      return builder28;
+    }
+  };
+}
+styles2.visible = {
+  get() {
+    const builder28 = createBuilder(this, this[STYLER], true);
+    Object.defineProperty(this, "visible", { value: builder28 });
+    return builder28;
+  }
+};
+var getModelAnsi = (model, level, type, ...arguments_) => {
+  if (model === "rgb") {
+    if (level === "ansi16m") {
+      return ansi_styles_default[type].ansi16m(...arguments_);
+    }
+    if (level === "ansi256") {
+      return ansi_styles_default[type].ansi256(ansi_styles_default.rgbToAnsi256(...arguments_));
+    }
+    return ansi_styles_default[type].ansi(ansi_styles_default.rgbToAnsi(...arguments_));
+  }
+  if (model === "hex") {
+    return getModelAnsi("rgb", level, type, ...ansi_styles_default.hexToRgb(...arguments_));
+  }
+  return ansi_styles_default[type][model](...arguments_);
+};
+var usedModels = ["rgb", "hex", "ansi256"];
+for (const model of usedModels) {
+  styles2[model] = {
+    get() {
+      const { level } = this;
+      return function(...arguments_) {
+        const styler = createStyler(getModelAnsi(model, levelMapping[level], "color", ...arguments_), ansi_styles_default.color.close, this[STYLER]);
+        return createBuilder(this, styler, this[IS_EMPTY]);
+      };
+    }
+  };
+  const bgModel = "bg" + model[0].toUpperCase() + model.slice(1);
+  styles2[bgModel] = {
+    get() {
+      const { level } = this;
+      return function(...arguments_) {
+        const styler = createStyler(getModelAnsi(model, levelMapping[level], "bgColor", ...arguments_), ansi_styles_default.bgColor.close, this[STYLER]);
+        return createBuilder(this, styler, this[IS_EMPTY]);
+      };
+    }
+  };
+}
+var proto = Object.defineProperties(() => {
+}, {
+  ...styles2,
+  level: {
+    enumerable: true,
+    get() {
+      return this[GENERATOR].level;
+    },
+    set(level) {
+      this[GENERATOR].level = level;
+    }
+  }
+});
+var createStyler = (open, close, parent) => {
+  let openAll;
+  let closeAll;
+  if (parent === void 0) {
+    openAll = open;
+    closeAll = close;
+  } else {
+    openAll = parent.openAll + open;
+    closeAll = close + parent.closeAll;
+  }
+  return {
+    open,
+    close,
+    openAll,
+    closeAll,
+    parent
+  };
+};
+var createBuilder = (self2, _styler, _isEmpty) => {
+  const builder28 = (...arguments_) => applyStyle(builder28, arguments_.length === 1 ? "" + arguments_[0] : arguments_.join(" "));
+  Object.setPrototypeOf(builder28, proto);
+  builder28[GENERATOR] = self2;
+  builder28[STYLER] = _styler;
+  builder28[IS_EMPTY] = _isEmpty;
+  return builder28;
+};
+var applyStyle = (self2, string) => {
+  if (self2.level <= 0 || !string) {
+    return self2[IS_EMPTY] ? "" : string;
+  }
+  let styler = self2[STYLER];
+  if (styler === void 0) {
+    return string;
+  }
+  const { openAll, closeAll } = styler;
+  if (string.includes("\x1B")) {
+    while (styler !== void 0) {
+      string = stringReplaceAll(string, styler.close, styler.open);
+      styler = styler.parent;
+    }
+  }
+  const lfIndex = string.indexOf("\n");
+  if (lfIndex !== -1) {
+    string = stringEncaseCRLFWithFirstIndex(string, closeAll, openAll, lfIndex);
+  }
+  return openAll + string + closeAll;
+};
+Object.defineProperties(createChalk.prototype, styles2);
+var chalk = createChalk();
+var chalkStderr = createChalk({ level: stderrColor ? stderrColor.level : 0 });
+var source_default = chalk;
+
 // node_modules/inquirer/node_modules/figures/index.js
-import process3 from "process";
+import process4 from "process";
 
 // node_modules/is-unicode-supported/index.js
-import process2 from "process";
+import process3 from "process";
 function isUnicodeSupported() {
-  if (process2.platform !== "win32") {
-    return process2.env.TERM !== "linux";
+  if (process3.platform !== "win32") {
+    return process3.env.TERM !== "linux";
   }
-  return Boolean(process2.env.CI) || Boolean(process2.env.WT_SESSION) || process2.env.ConEmuTask === "{cmd::Cmder}" || process2.env.TERM_PROGRAM === "vscode" || process2.env.TERM === "xterm-256color" || process2.env.TERM === "alacritty" || process2.env.TERMINAL_EMULATOR === "JetBrains-JediTerm";
+  return Boolean(process3.env.CI) || Boolean(process3.env.WT_SESSION) || process3.env.ConEmuTask === "{cmd::Cmder}" || process3.env.TERM_PROGRAM === "vscode" || process3.env.TERM === "xterm-256color" || process3.env.TERM === "alacritty" || process3.env.TERMINAL_EMULATOR === "JetBrains-JediTerm";
 }
 
 // node_modules/inquirer/node_modules/figures/index.js
-var { platform } = process3;
+var { platform } = process4;
 var common = {
   square: "\u2588",
   squareDarkShade: "\u2593",
@@ -80619,15 +81119,15 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var figures_default = figures;
 
 // node_modules/inquirer/node_modules/cli-cursor/index.js
-import process5 from "process";
+import process6 from "process";
 
 // node_modules/inquirer/node_modules/restore-cursor/index.js
 var import_onetime = __toESM(require_onetime(), 1);
 var import_signal_exit = __toESM(require_signal_exit(), 1);
-import process4 from "process";
+import process5 from "process";
 var restoreCursor = (0, import_onetime.default)(() => {
   (0, import_signal_exit.default)(() => {
-    process4.stderr.write("\x1B[?25h");
+    process5.stderr.write("\x1B[?25h");
   }, { alwaysLast: true });
 });
 var restore_cursor_default = restoreCursor;
@@ -80635,14 +81135,14 @@ var restore_cursor_default = restoreCursor;
 // node_modules/inquirer/node_modules/cli-cursor/index.js
 var isHidden = false;
 var cliCursor = {};
-cliCursor.show = (writableStream = process5.stderr) => {
+cliCursor.show = (writableStream = process6.stderr) => {
   if (!writableStream.isTTY) {
     return;
   }
   isHidden = false;
   writableStream.write("\x1B[?25h");
 };
-cliCursor.hide = (writableStream = process5.stderr) => {
+cliCursor.hide = (writableStream = process6.stderr) => {
   if (!writableStream.isTTY) {
     return;
   }
@@ -80783,11 +81283,12 @@ var Choices = class {
 };
 
 // node_modules/inquirer/node_modules/ansi-escapes/index.js
+import process7 from "process";
 var ESC = "\x1B[";
 var OSC = "\x1B]";
 var BEL = "\x07";
 var SEP = ";";
-var isTerminalApp = process.env.TERM_PROGRAM === "Apple_Terminal";
+var isTerminalApp = process7.env.TERM_PROGRAM === "Apple_Terminal";
 var ansiEscapes = {};
 ansiEscapes.cursorTo = (x, y) => {
   if (typeof x !== "number") {
@@ -80796,7 +81297,7 @@ ansiEscapes.cursorTo = (x, y) => {
   if (typeof y !== "number") {
     return ESC + (x + 1) + "G";
   }
-  return ESC + (y + 1) + ";" + (x + 1) + "H";
+  return ESC + (y + 1) + SEP + (x + 1) + "H";
 };
 ansiEscapes.cursorMove = (x, y) => {
   if (typeof x !== "number") {
@@ -80846,24 +81347,22 @@ ansiEscapes.eraseScreen = ESC + "2J";
 ansiEscapes.scrollUp = ESC + "S";
 ansiEscapes.scrollDown = ESC + "T";
 ansiEscapes.clearScreen = "\x1Bc";
-ansiEscapes.clearTerminal = process.platform === "win32" ? `${ansiEscapes.eraseScreen}${ESC}0f` : `${ansiEscapes.eraseScreen}${ESC}3J${ESC}H`;
+ansiEscapes.clearTerminal = process7.platform === "win32" ? `${ansiEscapes.eraseScreen}${ESC}0f` : `${ansiEscapes.eraseScreen}${ESC}3J${ESC}H`;
 ansiEscapes.beep = BEL;
-ansiEscapes.link = (text, url) => {
-  return [
-    OSC,
-    "8",
-    SEP,
-    SEP,
-    url,
-    BEL,
-    text,
-    OSC,
-    "8",
-    SEP,
-    SEP,
-    BEL
-  ].join("");
-};
+ansiEscapes.link = (text, url) => [
+  OSC,
+  "8",
+  SEP,
+  SEP,
+  url,
+  BEL,
+  text,
+  OSC,
+  "8",
+  SEP,
+  SEP,
+  BEL
+].join("");
 ansiEscapes.image = (buffer, options = {}) => {
   let returnValue = `${OSC}1337;File=inline=1`;
   if (options.width) {
@@ -80878,8 +81377,8 @@ ansiEscapes.image = (buffer, options = {}) => {
   return returnValue + ":" + buffer.toString("base64") + BEL;
 };
 ansiEscapes.iTerm = {
-  setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
-  annotation: (message, options = {}) => {
+  setCwd: (cwd = process7.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
+  annotation(message, options = {}) {
     let returnValue = `${OSC}1337;`;
     const hasX = typeof options.x !== "undefined";
     const hasY = typeof options.y !== "undefined";
@@ -80978,13 +81477,13 @@ function stringWidth(string, options = {}) {
 }
 
 // node_modules/inquirer/node_modules/ansi-styles/index.js
-var ANSI_BACKGROUND_OFFSET = 10;
-var wrapAnsi16 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
-var wrapAnsi256 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
-var wrapAnsi16m = (offset = 0) => (red2, green2, blue2) => `\x1B[${38 + offset};2;${red2};${green2};${blue2}m`;
-function assembleStyles() {
+var ANSI_BACKGROUND_OFFSET2 = 10;
+var wrapAnsi162 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
+var wrapAnsi2562 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
+var wrapAnsi16m2 = (offset = 0) => (red2, green2, blue2) => `\x1B[${38 + offset};2;${red2};${green2};${blue2}m`;
+function assembleStyles2() {
   const codes = /* @__PURE__ */ new Map();
-  const styles = {
+  const styles5 = {
     modifier: {
       reset: [0, 0],
       bold: [1, 22],
@@ -81033,37 +81532,37 @@ function assembleStyles() {
       bgWhiteBright: [107, 49]
     }
   };
-  styles.color.gray = styles.color.blackBright;
-  styles.bgColor.bgGray = styles.bgColor.bgBlackBright;
-  styles.color.grey = styles.color.blackBright;
-  styles.bgColor.bgGrey = styles.bgColor.bgBlackBright;
-  for (const [groupName, group] of Object.entries(styles)) {
+  styles5.color.gray = styles5.color.blackBright;
+  styles5.bgColor.bgGray = styles5.bgColor.bgBlackBright;
+  styles5.color.grey = styles5.color.blackBright;
+  styles5.bgColor.bgGrey = styles5.bgColor.bgBlackBright;
+  for (const [groupName, group] of Object.entries(styles5)) {
     for (const [styleName, style] of Object.entries(group)) {
-      styles[styleName] = {
+      styles5[styleName] = {
         open: `\x1B[${style[0]}m`,
         close: `\x1B[${style[1]}m`
       };
-      group[styleName] = styles[styleName];
+      group[styleName] = styles5[styleName];
       codes.set(style[0], style[1]);
     }
-    Object.defineProperty(styles, groupName, {
+    Object.defineProperty(styles5, groupName, {
       value: group,
       enumerable: false
     });
   }
-  Object.defineProperty(styles, "codes", {
+  Object.defineProperty(styles5, "codes", {
     value: codes,
     enumerable: false
   });
-  styles.color.close = "\x1B[39m";
-  styles.bgColor.close = "\x1B[49m";
-  styles.color.ansi = wrapAnsi16();
-  styles.color.ansi256 = wrapAnsi256();
-  styles.color.ansi16m = wrapAnsi16m();
-  styles.bgColor.ansi = wrapAnsi16(ANSI_BACKGROUND_OFFSET);
-  styles.bgColor.ansi256 = wrapAnsi256(ANSI_BACKGROUND_OFFSET);
-  styles.bgColor.ansi16m = wrapAnsi16m(ANSI_BACKGROUND_OFFSET);
-  Object.defineProperties(styles, {
+  styles5.color.close = "\x1B[39m";
+  styles5.bgColor.close = "\x1B[49m";
+  styles5.color.ansi = wrapAnsi162();
+  styles5.color.ansi256 = wrapAnsi2562();
+  styles5.color.ansi16m = wrapAnsi16m2();
+  styles5.bgColor.ansi = wrapAnsi162(ANSI_BACKGROUND_OFFSET2);
+  styles5.bgColor.ansi256 = wrapAnsi2562(ANSI_BACKGROUND_OFFSET2);
+  styles5.bgColor.ansi16m = wrapAnsi16m2(ANSI_BACKGROUND_OFFSET2);
+  Object.defineProperties(styles5, {
     rgbToAnsi256: {
       value: (red2, green2, blue2) => {
         if (red2 === green2 && green2 === blue2) {
@@ -81099,7 +81598,7 @@ function assembleStyles() {
       enumerable: false
     },
     hexToAnsi256: {
-      value: (hex) => styles.rgbToAnsi256(...styles.hexToRgb(hex)),
+      value: (hex) => styles5.rgbToAnsi256(...styles5.hexToRgb(hex)),
       enumerable: false
     },
     ansi256ToAnsi: {
@@ -81137,18 +81636,18 @@ function assembleStyles() {
       enumerable: false
     },
     rgbToAnsi: {
-      value: (red2, green2, blue2) => styles.ansi256ToAnsi(styles.rgbToAnsi256(red2, green2, blue2)),
+      value: (red2, green2, blue2) => styles5.ansi256ToAnsi(styles5.rgbToAnsi256(red2, green2, blue2)),
       enumerable: false
     },
     hexToAnsi: {
-      value: (hex) => styles.ansi256ToAnsi(styles.hexToAnsi256(hex)),
+      value: (hex) => styles5.ansi256ToAnsi(styles5.hexToAnsi256(hex)),
       enumerable: false
     }
   });
-  return styles;
+  return styles5;
 }
-var ansiStyles = assembleStyles();
-var ansi_styles_default = ansiStyles;
+var ansiStyles2 = assembleStyles2();
+var ansi_styles_default2 = ansiStyles2;
 
 // node_modules/inquirer/node_modules/wrap-ansi/index.js
 var ESCAPES = /* @__PURE__ */ new Set([
@@ -81278,7 +81777,7 @@ var exec = (string, columns, options = {}) => {
         escapeUrl = groups.uri.length === 0 ? void 0 : groups.uri;
       }
     }
-    const code = ansi_styles_default.codes.get(Number(escapeCode));
+    const code = ansi_styles_default2.codes.get(Number(escapeCode));
     if (pre[index + 1] === "\n") {
       if (escapeUrl) {
         returnValue += wrapAnsiHyperlink("");
@@ -81302,21 +81801,959 @@ function wrapAnsi(string, columns, options) {
 }
 
 // node_modules/inquirer/node_modules/ora/index.js
-import process7 from "process";
+import process11 from "process";
+
+// node_modules/inquirer/node_modules/ora/node_modules/chalk/source/vendor/ansi-styles/index.js
+var ANSI_BACKGROUND_OFFSET3 = 10;
+var wrapAnsi163 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
+var wrapAnsi2563 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
+var wrapAnsi16m3 = (offset = 0) => (red2, green2, blue2) => `\x1B[${38 + offset};2;${red2};${green2};${blue2}m`;
+function assembleStyles3() {
+  const codes = /* @__PURE__ */ new Map();
+  const styles5 = {
+    modifier: {
+      reset: [0, 0],
+      bold: [1, 22],
+      dim: [2, 22],
+      italic: [3, 23],
+      underline: [4, 24],
+      overline: [53, 55],
+      inverse: [7, 27],
+      hidden: [8, 28],
+      strikethrough: [9, 29]
+    },
+    color: {
+      black: [30, 39],
+      red: [31, 39],
+      green: [32, 39],
+      yellow: [33, 39],
+      blue: [34, 39],
+      magenta: [35, 39],
+      cyan: [36, 39],
+      white: [37, 39],
+      blackBright: [90, 39],
+      redBright: [91, 39],
+      greenBright: [92, 39],
+      yellowBright: [93, 39],
+      blueBright: [94, 39],
+      magentaBright: [95, 39],
+      cyanBright: [96, 39],
+      whiteBright: [97, 39]
+    },
+    bgColor: {
+      bgBlack: [40, 49],
+      bgRed: [41, 49],
+      bgGreen: [42, 49],
+      bgYellow: [43, 49],
+      bgBlue: [44, 49],
+      bgMagenta: [45, 49],
+      bgCyan: [46, 49],
+      bgWhite: [47, 49],
+      bgBlackBright: [100, 49],
+      bgRedBright: [101, 49],
+      bgGreenBright: [102, 49],
+      bgYellowBright: [103, 49],
+      bgBlueBright: [104, 49],
+      bgMagentaBright: [105, 49],
+      bgCyanBright: [106, 49],
+      bgWhiteBright: [107, 49]
+    }
+  };
+  styles5.color.gray = styles5.color.blackBright;
+  styles5.bgColor.bgGray = styles5.bgColor.bgBlackBright;
+  styles5.color.grey = styles5.color.blackBright;
+  styles5.bgColor.bgGrey = styles5.bgColor.bgBlackBright;
+  for (const [groupName, group] of Object.entries(styles5)) {
+    for (const [styleName, style] of Object.entries(group)) {
+      styles5[styleName] = {
+        open: `\x1B[${style[0]}m`,
+        close: `\x1B[${style[1]}m`
+      };
+      group[styleName] = styles5[styleName];
+      codes.set(style[0], style[1]);
+    }
+    Object.defineProperty(styles5, groupName, {
+      value: group,
+      enumerable: false
+    });
+  }
+  Object.defineProperty(styles5, "codes", {
+    value: codes,
+    enumerable: false
+  });
+  styles5.color.close = "\x1B[39m";
+  styles5.bgColor.close = "\x1B[49m";
+  styles5.color.ansi = wrapAnsi163();
+  styles5.color.ansi256 = wrapAnsi2563();
+  styles5.color.ansi16m = wrapAnsi16m3();
+  styles5.bgColor.ansi = wrapAnsi163(ANSI_BACKGROUND_OFFSET3);
+  styles5.bgColor.ansi256 = wrapAnsi2563(ANSI_BACKGROUND_OFFSET3);
+  styles5.bgColor.ansi16m = wrapAnsi16m3(ANSI_BACKGROUND_OFFSET3);
+  Object.defineProperties(styles5, {
+    rgbToAnsi256: {
+      value: (red2, green2, blue2) => {
+        if (red2 === green2 && green2 === blue2) {
+          if (red2 < 8) {
+            return 16;
+          }
+          if (red2 > 248) {
+            return 231;
+          }
+          return Math.round((red2 - 8) / 247 * 24) + 232;
+        }
+        return 16 + 36 * Math.round(red2 / 255 * 5) + 6 * Math.round(green2 / 255 * 5) + Math.round(blue2 / 255 * 5);
+      },
+      enumerable: false
+    },
+    hexToRgb: {
+      value: (hex) => {
+        const matches = /(?<colorString>[a-f\d]{6}|[a-f\d]{3})/i.exec(hex.toString(16));
+        if (!matches) {
+          return [0, 0, 0];
+        }
+        let { colorString } = matches.groups;
+        if (colorString.length === 3) {
+          colorString = [...colorString].map((character) => character + character).join("");
+        }
+        const integer = Number.parseInt(colorString, 16);
+        return [
+          integer >> 16 & 255,
+          integer >> 8 & 255,
+          integer & 255
+        ];
+      },
+      enumerable: false
+    },
+    hexToAnsi256: {
+      value: (hex) => styles5.rgbToAnsi256(...styles5.hexToRgb(hex)),
+      enumerable: false
+    },
+    ansi256ToAnsi: {
+      value: (code) => {
+        if (code < 8) {
+          return 30 + code;
+        }
+        if (code < 16) {
+          return 90 + (code - 8);
+        }
+        let red2;
+        let green2;
+        let blue2;
+        if (code >= 232) {
+          red2 = ((code - 232) * 10 + 8) / 255;
+          green2 = red2;
+          blue2 = red2;
+        } else {
+          code -= 16;
+          const remainder = code % 36;
+          red2 = Math.floor(code / 36) / 5;
+          green2 = Math.floor(remainder / 6) / 5;
+          blue2 = remainder % 6 / 5;
+        }
+        const value = Math.max(red2, green2, blue2) * 2;
+        if (value === 0) {
+          return 30;
+        }
+        let result = 30 + (Math.round(blue2) << 2 | Math.round(green2) << 1 | Math.round(red2));
+        if (value === 2) {
+          result += 60;
+        }
+        return result;
+      },
+      enumerable: false
+    },
+    rgbToAnsi: {
+      value: (red2, green2, blue2) => styles5.ansi256ToAnsi(styles5.rgbToAnsi256(red2, green2, blue2)),
+      enumerable: false
+    },
+    hexToAnsi: {
+      value: (hex) => styles5.ansi256ToAnsi(styles5.hexToAnsi256(hex)),
+      enumerable: false
+    }
+  });
+  return styles5;
+}
+var ansiStyles3 = assembleStyles3();
+var ansi_styles_default3 = ansiStyles3;
+
+// node_modules/inquirer/node_modules/ora/node_modules/chalk/source/vendor/supports-color/index.js
+import process8 from "process";
+import os2 from "os";
+import tty2 from "tty";
+function hasFlag2(flag, argv = process8.argv) {
+  const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
+  const position = argv.indexOf(prefix + flag);
+  const terminatorPosition = argv.indexOf("--");
+  return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
+}
+var { env: env3 } = process8;
+var flagForceColor2;
+if (hasFlag2("no-color") || hasFlag2("no-colors") || hasFlag2("color=false") || hasFlag2("color=never")) {
+  flagForceColor2 = 0;
+} else if (hasFlag2("color") || hasFlag2("colors") || hasFlag2("color=true") || hasFlag2("color=always")) {
+  flagForceColor2 = 1;
+}
+function envForceColor2() {
+  if ("FORCE_COLOR" in env3) {
+    if (env3.FORCE_COLOR === "true") {
+      return 1;
+    }
+    if (env3.FORCE_COLOR === "false") {
+      return 0;
+    }
+    return env3.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt(env3.FORCE_COLOR, 10), 3);
+  }
+}
+function translateLevel2(level) {
+  if (level === 0) {
+    return false;
+  }
+  return {
+    level,
+    hasBasic: true,
+    has256: level >= 2,
+    has16m: level >= 3
+  };
+}
+function _supportsColor2(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
+  const noFlagForceColor = envForceColor2();
+  if (noFlagForceColor !== void 0) {
+    flagForceColor2 = noFlagForceColor;
+  }
+  const forceColor = sniffFlags ? flagForceColor2 : noFlagForceColor;
+  if (forceColor === 0) {
+    return 0;
+  }
+  if (sniffFlags) {
+    if (hasFlag2("color=16m") || hasFlag2("color=full") || hasFlag2("color=truecolor")) {
+      return 3;
+    }
+    if (hasFlag2("color=256")) {
+      return 2;
+    }
+  }
+  if (haveStream && !streamIsTTY && forceColor === void 0) {
+    return 0;
+  }
+  const min = forceColor || 0;
+  if (env3.TERM === "dumb") {
+    return min;
+  }
+  if (process8.platform === "win32") {
+    const osRelease = os2.release().split(".");
+    if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
+      return Number(osRelease[2]) >= 14931 ? 3 : 2;
+    }
+    return 1;
+  }
+  if ("CI" in env3) {
+    if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE", "DRONE"].some((sign) => sign in env3) || env3.CI_NAME === "codeship") {
+      return 1;
+    }
+    return min;
+  }
+  if ("TEAMCITY_VERSION" in env3) {
+    return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env3.TEAMCITY_VERSION) ? 1 : 0;
+  }
+  if ("TF_BUILD" in env3 && "AGENT_NAME" in env3) {
+    return 1;
+  }
+  if (env3.COLORTERM === "truecolor") {
+    return 3;
+  }
+  if ("TERM_PROGRAM" in env3) {
+    const version5 = Number.parseInt((env3.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+    switch (env3.TERM_PROGRAM) {
+      case "iTerm.app":
+        return version5 >= 3 ? 3 : 2;
+      case "Apple_Terminal":
+        return 2;
+    }
+  }
+  if (/-256(color)?$/i.test(env3.TERM)) {
+    return 2;
+  }
+  if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env3.TERM)) {
+    return 1;
+  }
+  if ("COLORTERM" in env3) {
+    return 1;
+  }
+  return min;
+}
+function createSupportsColor2(stream, options = {}) {
+  const level = _supportsColor2(stream, {
+    streamIsTTY: stream && stream.isTTY,
+    ...options
+  });
+  return translateLevel2(level);
+}
+var supportsColor2 = {
+  stdout: createSupportsColor2({ isTTY: tty2.isatty(1) }),
+  stderr: createSupportsColor2({ isTTY: tty2.isatty(2) })
+};
+var supports_color_default2 = supportsColor2;
+
+// node_modules/inquirer/node_modules/ora/node_modules/chalk/source/utilities.js
+function stringReplaceAll2(string, substring, replacer) {
+  let index = string.indexOf(substring);
+  if (index === -1) {
+    return string;
+  }
+  const substringLength = substring.length;
+  let endIndex = 0;
+  let returnValue = "";
+  do {
+    returnValue += string.substr(endIndex, index - endIndex) + substring + replacer;
+    endIndex = index + substringLength;
+    index = string.indexOf(substring, endIndex);
+  } while (index !== -1);
+  returnValue += string.slice(endIndex);
+  return returnValue;
+}
+function stringEncaseCRLFWithFirstIndex2(string, prefix, postfix, index) {
+  let endIndex = 0;
+  let returnValue = "";
+  do {
+    const gotCR = string[index - 1] === "\r";
+    returnValue += string.substr(endIndex, (gotCR ? index - 1 : index) - endIndex) + prefix + (gotCR ? "\r\n" : "\n") + postfix;
+    endIndex = index + 1;
+    index = string.indexOf("\n", endIndex);
+  } while (index !== -1);
+  returnValue += string.slice(endIndex);
+  return returnValue;
+}
+
+// node_modules/inquirer/node_modules/ora/node_modules/chalk/source/index.js
+var { stdout: stdoutColor2, stderr: stderrColor2 } = supports_color_default2;
+var GENERATOR2 = Symbol("GENERATOR");
+var STYLER2 = Symbol("STYLER");
+var IS_EMPTY2 = Symbol("IS_EMPTY");
+var levelMapping2 = [
+  "ansi",
+  "ansi",
+  "ansi256",
+  "ansi16m"
+];
+var styles3 = /* @__PURE__ */ Object.create(null);
+var applyOptions2 = (object, options = {}) => {
+  if (options.level && !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)) {
+    throw new Error("The `level` option should be an integer from 0 to 3");
+  }
+  const colorLevel = stdoutColor2 ? stdoutColor2.level : 0;
+  object.level = options.level === void 0 ? colorLevel : options.level;
+};
+var chalkFactory2 = (options) => {
+  const chalk4 = (...strings) => strings.join(" ");
+  applyOptions2(chalk4, options);
+  Object.setPrototypeOf(chalk4, createChalk2.prototype);
+  return chalk4;
+};
+function createChalk2(options) {
+  return chalkFactory2(options);
+}
+Object.setPrototypeOf(createChalk2.prototype, Function.prototype);
+for (const [styleName, style] of Object.entries(ansi_styles_default3)) {
+  styles3[styleName] = {
+    get() {
+      const builder28 = createBuilder2(this, createStyler2(style.open, style.close, this[STYLER2]), this[IS_EMPTY2]);
+      Object.defineProperty(this, styleName, { value: builder28 });
+      return builder28;
+    }
+  };
+}
+styles3.visible = {
+  get() {
+    const builder28 = createBuilder2(this, this[STYLER2], true);
+    Object.defineProperty(this, "visible", { value: builder28 });
+    return builder28;
+  }
+};
+var getModelAnsi2 = (model, level, type, ...arguments_) => {
+  if (model === "rgb") {
+    if (level === "ansi16m") {
+      return ansi_styles_default3[type].ansi16m(...arguments_);
+    }
+    if (level === "ansi256") {
+      return ansi_styles_default3[type].ansi256(ansi_styles_default3.rgbToAnsi256(...arguments_));
+    }
+    return ansi_styles_default3[type].ansi(ansi_styles_default3.rgbToAnsi(...arguments_));
+  }
+  if (model === "hex") {
+    return getModelAnsi2("rgb", level, type, ...ansi_styles_default3.hexToRgb(...arguments_));
+  }
+  return ansi_styles_default3[type][model](...arguments_);
+};
+var usedModels2 = ["rgb", "hex", "ansi256"];
+for (const model of usedModels2) {
+  styles3[model] = {
+    get() {
+      const { level } = this;
+      return function(...arguments_) {
+        const styler = createStyler2(getModelAnsi2(model, levelMapping2[level], "color", ...arguments_), ansi_styles_default3.color.close, this[STYLER2]);
+        return createBuilder2(this, styler, this[IS_EMPTY2]);
+      };
+    }
+  };
+  const bgModel = "bg" + model[0].toUpperCase() + model.slice(1);
+  styles3[bgModel] = {
+    get() {
+      const { level } = this;
+      return function(...arguments_) {
+        const styler = createStyler2(getModelAnsi2(model, levelMapping2[level], "bgColor", ...arguments_), ansi_styles_default3.bgColor.close, this[STYLER2]);
+        return createBuilder2(this, styler, this[IS_EMPTY2]);
+      };
+    }
+  };
+}
+var proto2 = Object.defineProperties(() => {
+}, {
+  ...styles3,
+  level: {
+    enumerable: true,
+    get() {
+      return this[GENERATOR2].level;
+    },
+    set(level) {
+      this[GENERATOR2].level = level;
+    }
+  }
+});
+var createStyler2 = (open, close, parent) => {
+  let openAll;
+  let closeAll;
+  if (parent === void 0) {
+    openAll = open;
+    closeAll = close;
+  } else {
+    openAll = parent.openAll + open;
+    closeAll = close + parent.closeAll;
+  }
+  return {
+    open,
+    close,
+    openAll,
+    closeAll,
+    parent
+  };
+};
+var createBuilder2 = (self2, _styler, _isEmpty) => {
+  const builder28 = (...arguments_) => applyStyle2(builder28, arguments_.length === 1 ? "" + arguments_[0] : arguments_.join(" "));
+  Object.setPrototypeOf(builder28, proto2);
+  builder28[GENERATOR2] = self2;
+  builder28[STYLER2] = _styler;
+  builder28[IS_EMPTY2] = _isEmpty;
+  return builder28;
+};
+var applyStyle2 = (self2, string) => {
+  if (self2.level <= 0 || !string) {
+    return self2[IS_EMPTY2] ? "" : string;
+  }
+  let styler = self2[STYLER2];
+  if (styler === void 0) {
+    return string;
+  }
+  const { openAll, closeAll } = styler;
+  if (string.includes("\x1B")) {
+    while (styler !== void 0) {
+      string = stringReplaceAll2(string, styler.close, styler.open);
+      styler = styler.parent;
+    }
+  }
+  const lfIndex = string.indexOf("\n");
+  if (lfIndex !== -1) {
+    string = stringEncaseCRLFWithFirstIndex2(string, closeAll, openAll, lfIndex);
+  }
+  return openAll + string + closeAll;
+};
+Object.defineProperties(createChalk2.prototype, styles3);
+var chalk2 = createChalk2();
+var chalkStderr2 = createChalk2({ level: stderrColor2 ? stderrColor2.level : 0 });
+var source_default2 = chalk2;
+
+// node_modules/inquirer/node_modules/ora/index.js
 var import_cli_spinners = __toESM(require_cli_spinners(), 1);
+
+// node_modules/inquirer/node_modules/log-symbols/node_modules/chalk/source/vendor/ansi-styles/index.js
+var ANSI_BACKGROUND_OFFSET4 = 10;
+var wrapAnsi164 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
+var wrapAnsi2564 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
+var wrapAnsi16m4 = (offset = 0) => (red2, green2, blue2) => `\x1B[${38 + offset};2;${red2};${green2};${blue2}m`;
+function assembleStyles4() {
+  const codes = /* @__PURE__ */ new Map();
+  const styles5 = {
+    modifier: {
+      reset: [0, 0],
+      bold: [1, 22],
+      dim: [2, 22],
+      italic: [3, 23],
+      underline: [4, 24],
+      overline: [53, 55],
+      inverse: [7, 27],
+      hidden: [8, 28],
+      strikethrough: [9, 29]
+    },
+    color: {
+      black: [30, 39],
+      red: [31, 39],
+      green: [32, 39],
+      yellow: [33, 39],
+      blue: [34, 39],
+      magenta: [35, 39],
+      cyan: [36, 39],
+      white: [37, 39],
+      blackBright: [90, 39],
+      redBright: [91, 39],
+      greenBright: [92, 39],
+      yellowBright: [93, 39],
+      blueBright: [94, 39],
+      magentaBright: [95, 39],
+      cyanBright: [96, 39],
+      whiteBright: [97, 39]
+    },
+    bgColor: {
+      bgBlack: [40, 49],
+      bgRed: [41, 49],
+      bgGreen: [42, 49],
+      bgYellow: [43, 49],
+      bgBlue: [44, 49],
+      bgMagenta: [45, 49],
+      bgCyan: [46, 49],
+      bgWhite: [47, 49],
+      bgBlackBright: [100, 49],
+      bgRedBright: [101, 49],
+      bgGreenBright: [102, 49],
+      bgYellowBright: [103, 49],
+      bgBlueBright: [104, 49],
+      bgMagentaBright: [105, 49],
+      bgCyanBright: [106, 49],
+      bgWhiteBright: [107, 49]
+    }
+  };
+  styles5.color.gray = styles5.color.blackBright;
+  styles5.bgColor.bgGray = styles5.bgColor.bgBlackBright;
+  styles5.color.grey = styles5.color.blackBright;
+  styles5.bgColor.bgGrey = styles5.bgColor.bgBlackBright;
+  for (const [groupName, group] of Object.entries(styles5)) {
+    for (const [styleName, style] of Object.entries(group)) {
+      styles5[styleName] = {
+        open: `\x1B[${style[0]}m`,
+        close: `\x1B[${style[1]}m`
+      };
+      group[styleName] = styles5[styleName];
+      codes.set(style[0], style[1]);
+    }
+    Object.defineProperty(styles5, groupName, {
+      value: group,
+      enumerable: false
+    });
+  }
+  Object.defineProperty(styles5, "codes", {
+    value: codes,
+    enumerable: false
+  });
+  styles5.color.close = "\x1B[39m";
+  styles5.bgColor.close = "\x1B[49m";
+  styles5.color.ansi = wrapAnsi164();
+  styles5.color.ansi256 = wrapAnsi2564();
+  styles5.color.ansi16m = wrapAnsi16m4();
+  styles5.bgColor.ansi = wrapAnsi164(ANSI_BACKGROUND_OFFSET4);
+  styles5.bgColor.ansi256 = wrapAnsi2564(ANSI_BACKGROUND_OFFSET4);
+  styles5.bgColor.ansi16m = wrapAnsi16m4(ANSI_BACKGROUND_OFFSET4);
+  Object.defineProperties(styles5, {
+    rgbToAnsi256: {
+      value: (red2, green2, blue2) => {
+        if (red2 === green2 && green2 === blue2) {
+          if (red2 < 8) {
+            return 16;
+          }
+          if (red2 > 248) {
+            return 231;
+          }
+          return Math.round((red2 - 8) / 247 * 24) + 232;
+        }
+        return 16 + 36 * Math.round(red2 / 255 * 5) + 6 * Math.round(green2 / 255 * 5) + Math.round(blue2 / 255 * 5);
+      },
+      enumerable: false
+    },
+    hexToRgb: {
+      value: (hex) => {
+        const matches = /(?<colorString>[a-f\d]{6}|[a-f\d]{3})/i.exec(hex.toString(16));
+        if (!matches) {
+          return [0, 0, 0];
+        }
+        let { colorString } = matches.groups;
+        if (colorString.length === 3) {
+          colorString = [...colorString].map((character) => character + character).join("");
+        }
+        const integer = Number.parseInt(colorString, 16);
+        return [
+          integer >> 16 & 255,
+          integer >> 8 & 255,
+          integer & 255
+        ];
+      },
+      enumerable: false
+    },
+    hexToAnsi256: {
+      value: (hex) => styles5.rgbToAnsi256(...styles5.hexToRgb(hex)),
+      enumerable: false
+    },
+    ansi256ToAnsi: {
+      value: (code) => {
+        if (code < 8) {
+          return 30 + code;
+        }
+        if (code < 16) {
+          return 90 + (code - 8);
+        }
+        let red2;
+        let green2;
+        let blue2;
+        if (code >= 232) {
+          red2 = ((code - 232) * 10 + 8) / 255;
+          green2 = red2;
+          blue2 = red2;
+        } else {
+          code -= 16;
+          const remainder = code % 36;
+          red2 = Math.floor(code / 36) / 5;
+          green2 = Math.floor(remainder / 6) / 5;
+          blue2 = remainder % 6 / 5;
+        }
+        const value = Math.max(red2, green2, blue2) * 2;
+        if (value === 0) {
+          return 30;
+        }
+        let result = 30 + (Math.round(blue2) << 2 | Math.round(green2) << 1 | Math.round(red2));
+        if (value === 2) {
+          result += 60;
+        }
+        return result;
+      },
+      enumerable: false
+    },
+    rgbToAnsi: {
+      value: (red2, green2, blue2) => styles5.ansi256ToAnsi(styles5.rgbToAnsi256(red2, green2, blue2)),
+      enumerable: false
+    },
+    hexToAnsi: {
+      value: (hex) => styles5.ansi256ToAnsi(styles5.hexToAnsi256(hex)),
+      enumerable: false
+    }
+  });
+  return styles5;
+}
+var ansiStyles4 = assembleStyles4();
+var ansi_styles_default4 = ansiStyles4;
+
+// node_modules/inquirer/node_modules/log-symbols/node_modules/chalk/source/vendor/supports-color/index.js
+import process9 from "process";
+import os3 from "os";
+import tty3 from "tty";
+function hasFlag3(flag, argv = process9.argv) {
+  const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
+  const position = argv.indexOf(prefix + flag);
+  const terminatorPosition = argv.indexOf("--");
+  return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
+}
+var { env: env4 } = process9;
+var flagForceColor3;
+if (hasFlag3("no-color") || hasFlag3("no-colors") || hasFlag3("color=false") || hasFlag3("color=never")) {
+  flagForceColor3 = 0;
+} else if (hasFlag3("color") || hasFlag3("colors") || hasFlag3("color=true") || hasFlag3("color=always")) {
+  flagForceColor3 = 1;
+}
+function envForceColor3() {
+  if ("FORCE_COLOR" in env4) {
+    if (env4.FORCE_COLOR === "true") {
+      return 1;
+    }
+    if (env4.FORCE_COLOR === "false") {
+      return 0;
+    }
+    return env4.FORCE_COLOR.length === 0 ? 1 : Math.min(Number.parseInt(env4.FORCE_COLOR, 10), 3);
+  }
+}
+function translateLevel3(level) {
+  if (level === 0) {
+    return false;
+  }
+  return {
+    level,
+    hasBasic: true,
+    has256: level >= 2,
+    has16m: level >= 3
+  };
+}
+function _supportsColor3(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
+  const noFlagForceColor = envForceColor3();
+  if (noFlagForceColor !== void 0) {
+    flagForceColor3 = noFlagForceColor;
+  }
+  const forceColor = sniffFlags ? flagForceColor3 : noFlagForceColor;
+  if (forceColor === 0) {
+    return 0;
+  }
+  if (sniffFlags) {
+    if (hasFlag3("color=16m") || hasFlag3("color=full") || hasFlag3("color=truecolor")) {
+      return 3;
+    }
+    if (hasFlag3("color=256")) {
+      return 2;
+    }
+  }
+  if (haveStream && !streamIsTTY && forceColor === void 0) {
+    return 0;
+  }
+  const min = forceColor || 0;
+  if (env4.TERM === "dumb") {
+    return min;
+  }
+  if (process9.platform === "win32") {
+    const osRelease = os3.release().split(".");
+    if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
+      return Number(osRelease[2]) >= 14931 ? 3 : 2;
+    }
+    return 1;
+  }
+  if ("CI" in env4) {
+    if (["TRAVIS", "CIRCLECI", "APPVEYOR", "GITLAB_CI", "GITHUB_ACTIONS", "BUILDKITE", "DRONE"].some((sign) => sign in env4) || env4.CI_NAME === "codeship") {
+      return 1;
+    }
+    return min;
+  }
+  if ("TEAMCITY_VERSION" in env4) {
+    return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env4.TEAMCITY_VERSION) ? 1 : 0;
+  }
+  if ("TF_BUILD" in env4 && "AGENT_NAME" in env4) {
+    return 1;
+  }
+  if (env4.COLORTERM === "truecolor") {
+    return 3;
+  }
+  if ("TERM_PROGRAM" in env4) {
+    const version5 = Number.parseInt((env4.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+    switch (env4.TERM_PROGRAM) {
+      case "iTerm.app":
+        return version5 >= 3 ? 3 : 2;
+      case "Apple_Terminal":
+        return 2;
+    }
+  }
+  if (/-256(color)?$/i.test(env4.TERM)) {
+    return 2;
+  }
+  if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env4.TERM)) {
+    return 1;
+  }
+  if ("COLORTERM" in env4) {
+    return 1;
+  }
+  return min;
+}
+function createSupportsColor3(stream, options = {}) {
+  const level = _supportsColor3(stream, {
+    streamIsTTY: stream && stream.isTTY,
+    ...options
+  });
+  return translateLevel3(level);
+}
+var supportsColor3 = {
+  stdout: createSupportsColor3({ isTTY: tty3.isatty(1) }),
+  stderr: createSupportsColor3({ isTTY: tty3.isatty(2) })
+};
+var supports_color_default3 = supportsColor3;
+
+// node_modules/inquirer/node_modules/log-symbols/node_modules/chalk/source/utilities.js
+function stringReplaceAll3(string, substring, replacer) {
+  let index = string.indexOf(substring);
+  if (index === -1) {
+    return string;
+  }
+  const substringLength = substring.length;
+  let endIndex = 0;
+  let returnValue = "";
+  do {
+    returnValue += string.substr(endIndex, index - endIndex) + substring + replacer;
+    endIndex = index + substringLength;
+    index = string.indexOf(substring, endIndex);
+  } while (index !== -1);
+  returnValue += string.slice(endIndex);
+  return returnValue;
+}
+function stringEncaseCRLFWithFirstIndex3(string, prefix, postfix, index) {
+  let endIndex = 0;
+  let returnValue = "";
+  do {
+    const gotCR = string[index - 1] === "\r";
+    returnValue += string.substr(endIndex, (gotCR ? index - 1 : index) - endIndex) + prefix + (gotCR ? "\r\n" : "\n") + postfix;
+    endIndex = index + 1;
+    index = string.indexOf("\n", endIndex);
+  } while (index !== -1);
+  returnValue += string.slice(endIndex);
+  return returnValue;
+}
+
+// node_modules/inquirer/node_modules/log-symbols/node_modules/chalk/source/index.js
+var { stdout: stdoutColor3, stderr: stderrColor3 } = supports_color_default3;
+var GENERATOR3 = Symbol("GENERATOR");
+var STYLER3 = Symbol("STYLER");
+var IS_EMPTY3 = Symbol("IS_EMPTY");
+var levelMapping3 = [
+  "ansi",
+  "ansi",
+  "ansi256",
+  "ansi16m"
+];
+var styles4 = /* @__PURE__ */ Object.create(null);
+var applyOptions3 = (object, options = {}) => {
+  if (options.level && !(Number.isInteger(options.level) && options.level >= 0 && options.level <= 3)) {
+    throw new Error("The `level` option should be an integer from 0 to 3");
+  }
+  const colorLevel = stdoutColor3 ? stdoutColor3.level : 0;
+  object.level = options.level === void 0 ? colorLevel : options.level;
+};
+var chalkFactory3 = (options) => {
+  const chalk4 = (...strings) => strings.join(" ");
+  applyOptions3(chalk4, options);
+  Object.setPrototypeOf(chalk4, createChalk3.prototype);
+  return chalk4;
+};
+function createChalk3(options) {
+  return chalkFactory3(options);
+}
+Object.setPrototypeOf(createChalk3.prototype, Function.prototype);
+for (const [styleName, style] of Object.entries(ansi_styles_default4)) {
+  styles4[styleName] = {
+    get() {
+      const builder28 = createBuilder3(this, createStyler3(style.open, style.close, this[STYLER3]), this[IS_EMPTY3]);
+      Object.defineProperty(this, styleName, { value: builder28 });
+      return builder28;
+    }
+  };
+}
+styles4.visible = {
+  get() {
+    const builder28 = createBuilder3(this, this[STYLER3], true);
+    Object.defineProperty(this, "visible", { value: builder28 });
+    return builder28;
+  }
+};
+var getModelAnsi3 = (model, level, type, ...arguments_) => {
+  if (model === "rgb") {
+    if (level === "ansi16m") {
+      return ansi_styles_default4[type].ansi16m(...arguments_);
+    }
+    if (level === "ansi256") {
+      return ansi_styles_default4[type].ansi256(ansi_styles_default4.rgbToAnsi256(...arguments_));
+    }
+    return ansi_styles_default4[type].ansi(ansi_styles_default4.rgbToAnsi(...arguments_));
+  }
+  if (model === "hex") {
+    return getModelAnsi3("rgb", level, type, ...ansi_styles_default4.hexToRgb(...arguments_));
+  }
+  return ansi_styles_default4[type][model](...arguments_);
+};
+var usedModels3 = ["rgb", "hex", "ansi256"];
+for (const model of usedModels3) {
+  styles4[model] = {
+    get() {
+      const { level } = this;
+      return function(...arguments_) {
+        const styler = createStyler3(getModelAnsi3(model, levelMapping3[level], "color", ...arguments_), ansi_styles_default4.color.close, this[STYLER3]);
+        return createBuilder3(this, styler, this[IS_EMPTY3]);
+      };
+    }
+  };
+  const bgModel = "bg" + model[0].toUpperCase() + model.slice(1);
+  styles4[bgModel] = {
+    get() {
+      const { level } = this;
+      return function(...arguments_) {
+        const styler = createStyler3(getModelAnsi3(model, levelMapping3[level], "bgColor", ...arguments_), ansi_styles_default4.bgColor.close, this[STYLER3]);
+        return createBuilder3(this, styler, this[IS_EMPTY3]);
+      };
+    }
+  };
+}
+var proto3 = Object.defineProperties(() => {
+}, {
+  ...styles4,
+  level: {
+    enumerable: true,
+    get() {
+      return this[GENERATOR3].level;
+    },
+    set(level) {
+      this[GENERATOR3].level = level;
+    }
+  }
+});
+var createStyler3 = (open, close, parent) => {
+  let openAll;
+  let closeAll;
+  if (parent === void 0) {
+    openAll = open;
+    closeAll = close;
+  } else {
+    openAll = parent.openAll + open;
+    closeAll = close + parent.closeAll;
+  }
+  return {
+    open,
+    close,
+    openAll,
+    closeAll,
+    parent
+  };
+};
+var createBuilder3 = (self2, _styler, _isEmpty) => {
+  const builder28 = (...arguments_) => applyStyle3(builder28, arguments_.length === 1 ? "" + arguments_[0] : arguments_.join(" "));
+  Object.setPrototypeOf(builder28, proto3);
+  builder28[GENERATOR3] = self2;
+  builder28[STYLER3] = _styler;
+  builder28[IS_EMPTY3] = _isEmpty;
+  return builder28;
+};
+var applyStyle3 = (self2, string) => {
+  if (self2.level <= 0 || !string) {
+    return self2[IS_EMPTY3] ? "" : string;
+  }
+  let styler = self2[STYLER3];
+  if (styler === void 0) {
+    return string;
+  }
+  const { openAll, closeAll } = styler;
+  if (string.includes("\x1B")) {
+    while (styler !== void 0) {
+      string = stringReplaceAll3(string, styler.close, styler.open);
+      styler = styler.parent;
+    }
+  }
+  const lfIndex = string.indexOf("\n");
+  if (lfIndex !== -1) {
+    string = stringEncaseCRLFWithFirstIndex3(string, closeAll, openAll, lfIndex);
+  }
+  return openAll + string + closeAll;
+};
+Object.defineProperties(createChalk3.prototype, styles4);
+var chalk3 = createChalk3();
+var chalkStderr3 = createChalk3({ level: stderrColor3 ? stderrColor3.level : 0 });
+var source_default3 = chalk3;
 
 // node_modules/inquirer/node_modules/log-symbols/index.js
 var main = {
-  info: source_default.blue("\u2139"),
-  success: source_default.green("\u2714"),
-  warning: source_default.yellow("\u26A0"),
-  error: source_default.red("\u2716")
+  info: source_default3.blue("\u2139"),
+  success: source_default3.green("\u2714"),
+  warning: source_default3.yellow("\u26A0"),
+  error: source_default3.red("\u2716")
 };
 var fallback = {
-  info: source_default.blue("i"),
-  success: source_default.green("\u221A"),
-  warning: source_default.yellow("\u203C"),
-  error: source_default.red("\xD7")
+  info: source_default3.blue("i"),
+  success: source_default3.green("\u221A"),
+  warning: source_default3.yellow("\u203C"),
+  error: source_default3.red("\xD7")
 };
 var logSymbols = isUnicodeSupported() ? main : fallback;
 var log_symbols_default = logSymbols;
@@ -81333,7 +82770,7 @@ function isInteractive({ stream = process.stdout } = {}) {
 
 // node_modules/inquirer/node_modules/ora/utilities.js
 var import_bl = __toESM(require_bl(), 1);
-import process6 from "process";
+import process10 from "process";
 import readline from "readline";
 var ASCII_ETX_CODE = 3;
 var _requests, _mutedStream, _ourEmit, _rl;
@@ -81343,20 +82780,20 @@ var StdinDiscarder = class {
     __privateAdd(this, _mutedStream, new import_bl.BufferListStream());
     __privateAdd(this, _ourEmit, void 0);
     __privateAdd(this, _rl, void 0);
-    __privateGet(this, _mutedStream).pipe(process6.stdout);
+    __privateGet(this, _mutedStream).pipe(process10.stdout);
     const self2 = this;
     __privateSet(this, _ourEmit, function(event, data, ...args) {
-      const { stdin } = process6;
+      const { stdin } = process10;
       if (__privateGet(self2, _requests) > 0 || stdin.emit === __privateGet(self2, _ourEmit)) {
         if (event === "keypress") {
           return;
         }
         if (event === "data" && data.includes(ASCII_ETX_CODE)) {
-          process6.emit("SIGINT");
+          process10.emit("SIGINT");
         }
         Reflect.apply(__privateGet(self2, _ourEmit), this, [event, data, ...args]);
       } else {
-        Reflect.apply(process6.stdin.emit, this, [event, data, ...args]);
+        Reflect.apply(process10.stdin.emit, this, [event, data, ...args]);
       }
     });
   }
@@ -81376,24 +82813,24 @@ var StdinDiscarder = class {
     }
   }
   _realStart() {
-    if (process6.platform === "win32") {
+    if (process10.platform === "win32") {
       return;
     }
     __privateSet(this, _rl, readline.createInterface({
-      input: process6.stdin,
+      input: process10.stdin,
       output: __privateGet(this, _mutedStream)
     }));
     __privateGet(this, _rl).on("SIGINT", () => {
-      if (process6.listenerCount("SIGINT") === 0) {
-        process6.emit("SIGINT");
+      if (process10.listenerCount("SIGINT") === 0) {
+        process10.emit("SIGINT");
       } else {
         __privateGet(this, _rl).close();
-        process6.kill(process6.pid, "SIGINT");
+        process10.kill(process10.pid, "SIGINT");
       }
     });
   }
   _realStop() {
-    if (process6.platform === "win32") {
+    if (process10.platform === "win32") {
       return;
     }
     __privateGet(this, _rl).close();
@@ -81435,7 +82872,7 @@ var Ora = class {
     }
     __privateSet(this, _options, {
       color: "cyan",
-      stream: process7.stderr,
+      stream: process11.stderr,
       discardStdin: true,
       hideCursor: true,
       ...options
@@ -81449,7 +82886,7 @@ var Ora = class {
     this.text = __privateGet(this, _options).text;
     this.prefixText = __privateGet(this, _options).prefixText;
     this.indent = __privateGet(this, _options).indent;
-    if (process7.env.NODE_ENV === "test") {
+    if (process11.env.NODE_ENV === "test") {
       this._stream = __privateGet(this, _stream);
       this._isEnabled = __privateGet(this, _isEnabled);
       Object.defineProperty(this, "_linesToClear", {
@@ -81562,7 +82999,7 @@ var Ora = class {
     const { frames } = __privateGet(this, _spinner);
     let frame = frames[__privateGet(this, _frameIndex)];
     if (this.color) {
-      frame = source_default[this.color](frame);
+      frame = source_default2[this.color](frame);
     }
     __privateSet(this, _frameIndex, ++__privateWrapper(this, _frameIndex)._ % frames.length);
     const fullPrefixText = typeof __privateGet(this, _prefixText) === "string" && __privateGet(this, _prefixText) !== "" ? __privateGet(this, _prefixText) + " " : "";
@@ -81616,7 +83053,7 @@ var Ora = class {
     if (__privateGet(this, _options).hideCursor) {
       cli_cursor_default.hide(__privateGet(this, _stream));
     }
-    if (__privateGet(this, _options).discardStdin && process7.stdin.isTTY) {
+    if (__privateGet(this, _options).discardStdin && process11.stdin.isTTY) {
       __privateSet(this, _isDiscardingStdin, true);
       stdinDiscarder.start();
     }
@@ -81635,7 +83072,7 @@ var Ora = class {
     if (__privateGet(this, _options).hideCursor) {
       cli_cursor_default.show(__privateGet(this, _stream));
     }
-    if (__privateGet(this, _options).discardStdin && process7.stdin.isTTY && __privateGet(this, _isDiscardingStdin)) {
+    if (__privateGet(this, _options).discardStdin && process11.stdin.isTTY && __privateGet(this, _isDiscardingStdin)) {
       stdinDiscarder.stop();
       __privateSet(this, _isDiscardingStdin, false);
     }
@@ -82173,7 +83610,7 @@ var InputPrompt = class extends Prompt {
     this.render(isValid);
   }
   onKeypress() {
-    this.state = "touched";
+    this.status = "touched";
     this.render();
   }
 };
@@ -84604,12 +86041,12 @@ function multimatch(list, patterns, options = {}) {
   let result = [];
   for (const item of list) {
     for (let pattern of patterns) {
-      let process8 = array_union_default;
+      let process12 = array_union_default;
       if (pattern[0] === "!") {
         pattern = pattern.slice(1);
-        process8 = arrayDiffer;
+        process12 = arrayDiffer;
       }
-      result = process8(result, import_minimatch2.default.match([item], pattern, options));
+      result = process12(result, import_minimatch2.default.match([item], pattern, options));
     }
   }
   return result;
@@ -86159,7 +87596,7 @@ var DiscoverNewConflictsCommandModule = {
   describe: "Check if a pending PR causes new conflicts for other pending PRs"
 };
 
-// node_modules/@firebase/util/dist/node-esm/index.node.esm.js
+// node_modules/@firebase/app/node_modules/@firebase/util/dist/node-esm/index.node.esm.js
 var CONSTANTS = {
   NODE_CLIENT: false,
   NODE_ADMIN: false,
@@ -86331,6 +87768,85 @@ var base64Decode = function(str) {
   }
   return null;
 };
+function isIndexedDBAvailable() {
+  try {
+    return typeof indexedDB === "object";
+  } catch (e) {
+    return false;
+  }
+}
+function validateIndexedDBOpenable() {
+  return new Promise((resolve13, reject) => {
+    try {
+      let preExist = true;
+      const DB_CHECK_NAME = "validate-browser-context-for-indexeddb-analytics-module";
+      const request = self.indexedDB.open(DB_CHECK_NAME);
+      request.onsuccess = () => {
+        request.result.close();
+        if (!preExist) {
+          self.indexedDB.deleteDatabase(DB_CHECK_NAME);
+        }
+        resolve13(true);
+      };
+      request.onupgradeneeded = () => {
+        preExist = false;
+      };
+      request.onerror = () => {
+        var _a2;
+        reject(((_a2 = request.error) === null || _a2 === void 0 ? void 0 : _a2.message) || "");
+      };
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
+function getGlobal() {
+  if (typeof self !== "undefined") {
+    return self;
+  }
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  throw new Error("Unable to locate global object.");
+}
+var getDefaultsFromGlobal = () => getGlobal().__FIREBASE_DEFAULTS__;
+var getDefaultsFromEnvVariable = () => {
+  if (typeof process === "undefined" || typeof process.env === "undefined") {
+    return;
+  }
+  const defaultsJsonString = process.env.__FIREBASE_DEFAULTS__;
+  if (defaultsJsonString) {
+    return JSON.parse(defaultsJsonString);
+  }
+};
+var getDefaultsFromCookie = () => {
+  if (typeof document === "undefined") {
+    return;
+  }
+  let match;
+  try {
+    match = document.cookie.match(/__FIREBASE_DEFAULTS__=([^;]+)/);
+  } catch (e) {
+    return;
+  }
+  const decoded = match && base64Decode(match[1]);
+  return decoded && JSON.parse(decoded);
+};
+var getDefaults = () => {
+  try {
+    return getDefaultsFromGlobal() || getDefaultsFromEnvVariable() || getDefaultsFromCookie();
+  } catch (e) {
+    console.info(`Unable to get __FIREBASE_DEFAULTS__ due to: ${e}`);
+    return;
+  }
+};
+var getDefaultAppConfig = () => {
+  var _a2;
+  return (_a2 = getDefaults()) === null || _a2 === void 0 ? void 0 : _a2.config;
+};
 var Deferred = class {
   constructor() {
     this.reject = () => {
@@ -86361,51 +87877,6 @@ var Deferred = class {
     };
   }
 };
-function getUA() {
-  if (typeof navigator !== "undefined" && typeof navigator["userAgent"] === "string") {
-    return navigator["userAgent"];
-  } else {
-    return "";
-  }
-}
-function isMobileCordova() {
-  return typeof window !== "undefined" && !!(window["cordova"] || window["phonegap"] || window["PhoneGap"]) && /ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(getUA());
-}
-function isBrowserExtension() {
-  const runtime = typeof chrome === "object" ? chrome.runtime : typeof browser === "object" ? browser.runtime : void 0;
-  return typeof runtime === "object" && runtime.id !== void 0;
-}
-function isReactNative() {
-  return typeof navigator === "object" && navigator["product"] === "ReactNative";
-}
-function isIndexedDBAvailable() {
-  return typeof indexedDB === "object";
-}
-function validateIndexedDBOpenable() {
-  return new Promise((resolve13, reject) => {
-    try {
-      let preExist = true;
-      const DB_CHECK_NAME = "validate-browser-context-for-indexeddb-analytics-module";
-      const request = self.indexedDB.open(DB_CHECK_NAME);
-      request.onsuccess = () => {
-        request.result.close();
-        if (!preExist) {
-          self.indexedDB.deleteDatabase(DB_CHECK_NAME);
-        }
-        resolve13(true);
-      };
-      request.onupgradeneeded = () => {
-        preExist = false;
-      };
-      request.onerror = () => {
-        var _a2;
-        reject(((_a2 = request.error) === null || _a2 === void 0 ? void 0 : _a2.message) || "");
-      };
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
 var ERROR_NAME = "FirebaseError";
 var FirebaseError = class extends Error {
   constructor(code, message, customData) {
@@ -86472,186 +87943,10 @@ function deepEqual(a, b) {
 function isObject(thing) {
   return thing !== null && typeof thing === "object";
 }
-function querystring(querystringParams) {
-  const params4 = [];
-  for (const [key, value] of Object.entries(querystringParams)) {
-    if (Array.isArray(value)) {
-      value.forEach((arrayVal) => {
-        params4.push(encodeURIComponent(key) + "=" + encodeURIComponent(arrayVal));
-      });
-    } else {
-      params4.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
-    }
-  }
-  return params4.length ? "&" + params4.join("&") : "";
-}
-function querystringDecode(querystring2) {
-  const obj = {};
-  const tokens = querystring2.replace(/^\?/, "").split("&");
-  tokens.forEach((token) => {
-    if (token) {
-      const [key, value] = token.split("=");
-      obj[decodeURIComponent(key)] = decodeURIComponent(value);
-    }
-  });
-  return obj;
-}
-function extractQuerystring(url) {
-  const queryStart = url.indexOf("?");
-  if (!queryStart) {
-    return "";
-  }
-  const fragmentStart = url.indexOf("#", queryStart);
-  return url.substring(queryStart, fragmentStart > 0 ? fragmentStart : void 0);
-}
-function createSubscribe(executor, onNoObservers) {
-  const proxy = new ObserverProxy(executor, onNoObservers);
-  return proxy.subscribe.bind(proxy);
-}
-var ObserverProxy = class {
-  constructor(executor, onNoObservers) {
-    this.observers = [];
-    this.unsubscribes = [];
-    this.observerCount = 0;
-    this.task = Promise.resolve();
-    this.finalized = false;
-    this.onNoObservers = onNoObservers;
-    this.task.then(() => {
-      executor(this);
-    }).catch((e) => {
-      this.error(e);
-    });
-  }
-  next(value) {
-    this.forEachObserver((observer) => {
-      observer.next(value);
-    });
-  }
-  error(error) {
-    this.forEachObserver((observer) => {
-      observer.error(error);
-    });
-    this.close(error);
-  }
-  complete() {
-    this.forEachObserver((observer) => {
-      observer.complete();
-    });
-    this.close();
-  }
-  subscribe(nextOrObserver, error, complete) {
-    let observer;
-    if (nextOrObserver === void 0 && error === void 0 && complete === void 0) {
-      throw new Error("Missing Observer.");
-    }
-    if (implementsAnyMethods(nextOrObserver, [
-      "next",
-      "error",
-      "complete"
-    ])) {
-      observer = nextOrObserver;
-    } else {
-      observer = {
-        next: nextOrObserver,
-        error,
-        complete
-      };
-    }
-    if (observer.next === void 0) {
-      observer.next = noop;
-    }
-    if (observer.error === void 0) {
-      observer.error = noop;
-    }
-    if (observer.complete === void 0) {
-      observer.complete = noop;
-    }
-    const unsub = this.unsubscribeOne.bind(this, this.observers.length);
-    if (this.finalized) {
-      this.task.then(() => {
-        try {
-          if (this.finalError) {
-            observer.error(this.finalError);
-          } else {
-            observer.complete();
-          }
-        } catch (e) {
-        }
-        return;
-      });
-    }
-    this.observers.push(observer);
-    return unsub;
-  }
-  unsubscribeOne(i) {
-    if (this.observers === void 0 || this.observers[i] === void 0) {
-      return;
-    }
-    delete this.observers[i];
-    this.observerCount -= 1;
-    if (this.observerCount === 0 && this.onNoObservers !== void 0) {
-      this.onNoObservers(this);
-    }
-  }
-  forEachObserver(fn) {
-    if (this.finalized) {
-      return;
-    }
-    for (let i = 0; i < this.observers.length; i++) {
-      this.sendOne(i, fn);
-    }
-  }
-  sendOne(i, fn) {
-    this.task.then(() => {
-      if (this.observers !== void 0 && this.observers[i] !== void 0) {
-        try {
-          fn(this.observers[i]);
-        } catch (e) {
-          if (typeof console !== "undefined" && console.error) {
-            console.error(e);
-          }
-        }
-      }
-    });
-  }
-  close(err) {
-    if (this.finalized) {
-      return;
-    }
-    this.finalized = true;
-    if (err !== void 0) {
-      this.finalError = err;
-    }
-    this.task.then(() => {
-      this.observers = void 0;
-      this.onNoObservers = void 0;
-    });
-  }
-};
-function implementsAnyMethods(obj, methods) {
-  if (typeof obj !== "object" || obj === null) {
-    return false;
-  }
-  for (const method of methods) {
-    if (method in obj && typeof obj[method] === "function") {
-      return true;
-    }
-  }
-  return false;
-}
-function noop() {
-}
 var MAX_VALUE_MILLIS = 4 * 60 * 60 * 1e3;
-function getModularInstance(service) {
-  if (service && service._delegate) {
-    return service._delegate;
-  } else {
-    return service;
-  }
-}
 CONSTANTS.NODE_CLIENT = true;
 
-// node_modules/@firebase/component/dist/esm/index.esm2017.js
+// node_modules/@firebase/app/node_modules/@firebase/component/dist/esm/index.esm2017.js
 var Component = class {
   constructor(name5, instanceFactory, type) {
     this.name = name5;
@@ -86900,16 +88195,16 @@ var ComponentContainer = class {
   }
 };
 
-// node_modules/@firebase/logger/dist/esm/index.esm2017.js
+// node_modules/@firebase/app/node_modules/@firebase/logger/dist/esm/index.esm2017.js
 var instances = [];
 var LogLevel;
-(function(LogLevel2) {
-  LogLevel2[LogLevel2["DEBUG"] = 0] = "DEBUG";
-  LogLevel2[LogLevel2["VERBOSE"] = 1] = "VERBOSE";
-  LogLevel2[LogLevel2["INFO"] = 2] = "INFO";
-  LogLevel2[LogLevel2["WARN"] = 3] = "WARN";
-  LogLevel2[LogLevel2["ERROR"] = 4] = "ERROR";
-  LogLevel2[LogLevel2["SILENT"] = 5] = "SILENT";
+(function(LogLevel3) {
+  LogLevel3[LogLevel3["DEBUG"] = 0] = "DEBUG";
+  LogLevel3[LogLevel3["VERBOSE"] = 1] = "VERBOSE";
+  LogLevel3[LogLevel3["INFO"] = 2] = "INFO";
+  LogLevel3[LogLevel3["WARN"] = 3] = "WARN";
+  LogLevel3[LogLevel3["ERROR"] = 4] = "ERROR";
+  LogLevel3[LogLevel3["SILENT"] = 5] = "SILENT";
 })(LogLevel || (LogLevel = {}));
 var levelStringToEnum = {
   "debug": LogLevel.DEBUG,
@@ -87215,7 +88510,7 @@ function isVersionServiceProvider(provider) {
   return (component === null || component === void 0 ? void 0 : component.type) === "VERSION";
 }
 var name$o = "@firebase/app";
-var version$1 = "0.7.32";
+var version$1 = "0.9.0";
 var logger = new Logger("@firebase/app");
 var name$n = "@firebase/app-compat";
 var name$m = "@firebase/analytics-compat";
@@ -87241,7 +88536,7 @@ var name$3 = "@firebase/storage-compat";
 var name$2 = "@firebase/firestore";
 var name$1 = "@firebase/firestore-compat";
 var name = "firebase";
-var version = "9.9.4";
+var version = "9.15.0";
 var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
 var PLATFORM_LOG_STRING = {
   [name$o]: "fire-core",
@@ -87304,6 +88599,7 @@ var ERRORS = {
   ["bad-app-name"]: "Illegal App name: '{$appName}",
   ["duplicate-app"]: "Firebase App named '{$appName}' already exists with different options or config",
   ["app-deleted"]: "Firebase App named '{$appName}' already deleted",
+  ["no-options"]: "Need to provide options, when not being deployed to hosting via source.",
   ["invalid-app-argument"]: "firebase.{$appName}() takes either no argument or a Firebase App instance.",
   ["invalid-log-argument"]: "First argument to `onLog` must be null or a function.",
   ["idb-open"]: "Error thrown when opening IndexedDB. Original error: {$originalErrorMessage}.",
@@ -87358,7 +88654,8 @@ var FirebaseAppImpl = class {
   }
 };
 var SDK_VERSION = version;
-function initializeApp(options, rawConfig = {}) {
+function initializeApp(_options2, rawConfig = {}) {
+  let options = _options2;
   if (typeof rawConfig !== "object") {
     const name6 = rawConfig;
     rawConfig = { name: name6 };
@@ -87369,6 +88666,10 @@ function initializeApp(options, rawConfig = {}) {
     throw ERROR_FACTORY.create("bad-app-name", {
       appName: String(name5)
     });
+  }
+  options || (options = getDefaultAppConfig());
+  if (!options) {
+    throw ERROR_FACTORY.create("no-options");
   }
   const existingApp = _apps.get(name5);
   if (existingApp) {
@@ -87388,6 +88689,9 @@ function initializeApp(options, rawConfig = {}) {
 }
 function getApp(name5 = DEFAULT_ENTRY_NAME2) {
   const app = _apps.get(name5);
+  if (!app && name5 === DEFAULT_ENTRY_NAME2) {
+    return initializeApp();
+  }
   if (!app) {
     throw ERROR_FACTORY.create("no-app", { appName: name5 });
   }
@@ -87441,7 +88745,6 @@ function getDbPromise() {
   return dbPromise;
 }
 async function readHeartbeatsFromIndexedDB(app) {
-  var _a2;
   try {
     const db = await getDbPromise();
     return db.transaction(STORE_NAME).objectStore(STORE_NAME).get(computeKey(app));
@@ -87450,14 +88753,13 @@ async function readHeartbeatsFromIndexedDB(app) {
       logger.warn(e.message);
     } else {
       const idbGetError = ERROR_FACTORY.create("idb-get", {
-        originalErrorMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message
+        originalErrorMessage: e === null || e === void 0 ? void 0 : e.message
       });
       logger.warn(idbGetError.message);
     }
   }
 }
 async function writeHeartbeatsToIndexedDB(app, heartbeatObject) {
-  var _a2;
   try {
     const db = await getDbPromise();
     const tx = db.transaction(STORE_NAME, "readwrite");
@@ -87469,7 +88771,7 @@ async function writeHeartbeatsToIndexedDB(app, heartbeatObject) {
       logger.warn(e.message);
     } else {
       const idbGetError = ERROR_FACTORY.create("idb-set", {
-        originalErrorMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message
+        originalErrorMessage: e === null || e === void 0 ? void 0 : e.message
       });
       logger.warn(idbGetError.message);
     }
@@ -87630,8 +88932,311 @@ registerCoreComponents("");
 
 // node_modules/firebase/app/dist/index.mjs
 var name2 = "firebase";
-var version2 = "9.9.4";
+var version2 = "9.15.0";
 registerVersion(name2, version2, "app");
+
+// node_modules/@firebase/functions/node_modules/@firebase/util/dist/node-esm/index.node.esm.js
+var CONSTANTS2 = {
+  NODE_CLIENT: false,
+  NODE_ADMIN: false,
+  SDK_VERSION: "${JSCORE_VERSION}"
+};
+var stringToByteArray$12 = function(str) {
+  const out = [];
+  let p = 0;
+  for (let i = 0; i < str.length; i++) {
+    let c = str.charCodeAt(i);
+    if (c < 128) {
+      out[p++] = c;
+    } else if (c < 2048) {
+      out[p++] = c >> 6 | 192;
+      out[p++] = c & 63 | 128;
+    } else if ((c & 64512) === 55296 && i + 1 < str.length && (str.charCodeAt(i + 1) & 64512) === 56320) {
+      c = 65536 + ((c & 1023) << 10) + (str.charCodeAt(++i) & 1023);
+      out[p++] = c >> 18 | 240;
+      out[p++] = c >> 12 & 63 | 128;
+      out[p++] = c >> 6 & 63 | 128;
+      out[p++] = c & 63 | 128;
+    } else {
+      out[p++] = c >> 12 | 224;
+      out[p++] = c >> 6 & 63 | 128;
+      out[p++] = c & 63 | 128;
+    }
+  }
+  return out;
+};
+var byteArrayToString2 = function(bytes) {
+  const out = [];
+  let pos = 0, c = 0;
+  while (pos < bytes.length) {
+    const c1 = bytes[pos++];
+    if (c1 < 128) {
+      out[c++] = String.fromCharCode(c1);
+    } else if (c1 > 191 && c1 < 224) {
+      const c2 = bytes[pos++];
+      out[c++] = String.fromCharCode((c1 & 31) << 6 | c2 & 63);
+    } else if (c1 > 239 && c1 < 365) {
+      const c2 = bytes[pos++];
+      const c3 = bytes[pos++];
+      const c4 = bytes[pos++];
+      const u = ((c1 & 7) << 18 | (c2 & 63) << 12 | (c3 & 63) << 6 | c4 & 63) - 65536;
+      out[c++] = String.fromCharCode(55296 + (u >> 10));
+      out[c++] = String.fromCharCode(56320 + (u & 1023));
+    } else {
+      const c2 = bytes[pos++];
+      const c3 = bytes[pos++];
+      out[c++] = String.fromCharCode((c1 & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+    }
+  }
+  return out.join("");
+};
+var base642 = {
+  byteToCharMap_: null,
+  charToByteMap_: null,
+  byteToCharMapWebSafe_: null,
+  charToByteMapWebSafe_: null,
+  ENCODED_VALS_BASE: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+  get ENCODED_VALS() {
+    return this.ENCODED_VALS_BASE + "+/=";
+  },
+  get ENCODED_VALS_WEBSAFE() {
+    return this.ENCODED_VALS_BASE + "-_.";
+  },
+  HAS_NATIVE_SUPPORT: typeof atob === "function",
+  encodeByteArray(input, webSafe) {
+    if (!Array.isArray(input)) {
+      throw Error("encodeByteArray takes an array as a parameter");
+    }
+    this.init_();
+    const byteToCharMap = webSafe ? this.byteToCharMapWebSafe_ : this.byteToCharMap_;
+    const output = [];
+    for (let i = 0; i < input.length; i += 3) {
+      const byte1 = input[i];
+      const haveByte2 = i + 1 < input.length;
+      const byte2 = haveByte2 ? input[i + 1] : 0;
+      const haveByte3 = i + 2 < input.length;
+      const byte3 = haveByte3 ? input[i + 2] : 0;
+      const outByte1 = byte1 >> 2;
+      const outByte2 = (byte1 & 3) << 4 | byte2 >> 4;
+      let outByte3 = (byte2 & 15) << 2 | byte3 >> 6;
+      let outByte4 = byte3 & 63;
+      if (!haveByte3) {
+        outByte4 = 64;
+        if (!haveByte2) {
+          outByte3 = 64;
+        }
+      }
+      output.push(byteToCharMap[outByte1], byteToCharMap[outByte2], byteToCharMap[outByte3], byteToCharMap[outByte4]);
+    }
+    return output.join("");
+  },
+  encodeString(input, webSafe) {
+    if (this.HAS_NATIVE_SUPPORT && !webSafe) {
+      return btoa(input);
+    }
+    return this.encodeByteArray(stringToByteArray$12(input), webSafe);
+  },
+  decodeString(input, webSafe) {
+    if (this.HAS_NATIVE_SUPPORT && !webSafe) {
+      return atob(input);
+    }
+    return byteArrayToString2(this.decodeStringToByteArray(input, webSafe));
+  },
+  decodeStringToByteArray(input, webSafe) {
+    this.init_();
+    const charToByteMap = webSafe ? this.charToByteMapWebSafe_ : this.charToByteMap_;
+    const output = [];
+    for (let i = 0; i < input.length; ) {
+      const byte1 = charToByteMap[input.charAt(i++)];
+      const haveByte2 = i < input.length;
+      const byte2 = haveByte2 ? charToByteMap[input.charAt(i)] : 0;
+      ++i;
+      const haveByte3 = i < input.length;
+      const byte3 = haveByte3 ? charToByteMap[input.charAt(i)] : 64;
+      ++i;
+      const haveByte4 = i < input.length;
+      const byte4 = haveByte4 ? charToByteMap[input.charAt(i)] : 64;
+      ++i;
+      if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
+        throw Error();
+      }
+      const outByte1 = byte1 << 2 | byte2 >> 4;
+      output.push(outByte1);
+      if (byte3 !== 64) {
+        const outByte2 = byte2 << 4 & 240 | byte3 >> 2;
+        output.push(outByte2);
+        if (byte4 !== 64) {
+          const outByte3 = byte3 << 6 & 192 | byte4;
+          output.push(outByte3);
+        }
+      }
+    }
+    return output;
+  },
+  init_() {
+    if (!this.byteToCharMap_) {
+      this.byteToCharMap_ = {};
+      this.charToByteMap_ = {};
+      this.byteToCharMapWebSafe_ = {};
+      this.charToByteMapWebSafe_ = {};
+      for (let i = 0; i < this.ENCODED_VALS.length; i++) {
+        this.byteToCharMap_[i] = this.ENCODED_VALS.charAt(i);
+        this.charToByteMap_[this.byteToCharMap_[i]] = i;
+        this.byteToCharMapWebSafe_[i] = this.ENCODED_VALS_WEBSAFE.charAt(i);
+        this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[i]] = i;
+        if (i >= this.ENCODED_VALS_BASE.length) {
+          this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(i)] = i;
+          this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(i)] = i;
+        }
+      }
+    }
+  }
+};
+var base64Decode2 = function(str) {
+  try {
+    return base642.decodeString(str, true);
+  } catch (e) {
+    console.error("base64Decode failed: ", e);
+  }
+  return null;
+};
+function getGlobal2() {
+  if (typeof self !== "undefined") {
+    return self;
+  }
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  throw new Error("Unable to locate global object.");
+}
+var getDefaultsFromGlobal2 = () => getGlobal2().__FIREBASE_DEFAULTS__;
+var getDefaultsFromEnvVariable2 = () => {
+  if (typeof process === "undefined" || typeof process.env === "undefined") {
+    return;
+  }
+  const defaultsJsonString = process.env.__FIREBASE_DEFAULTS__;
+  if (defaultsJsonString) {
+    return JSON.parse(defaultsJsonString);
+  }
+};
+var getDefaultsFromCookie2 = () => {
+  if (typeof document === "undefined") {
+    return;
+  }
+  let match;
+  try {
+    match = document.cookie.match(/__FIREBASE_DEFAULTS__=([^;]+)/);
+  } catch (e) {
+    return;
+  }
+  const decoded = match && base64Decode2(match[1]);
+  return decoded && JSON.parse(decoded);
+};
+var getDefaults2 = () => {
+  try {
+    return getDefaultsFromGlobal2() || getDefaultsFromEnvVariable2() || getDefaultsFromCookie2();
+  } catch (e) {
+    console.info(`Unable to get __FIREBASE_DEFAULTS__ due to: ${e}`);
+    return;
+  }
+};
+var getDefaultEmulatorHost = (productName) => {
+  var _a2, _b2;
+  return (_b2 = (_a2 = getDefaults2()) === null || _a2 === void 0 ? void 0 : _a2.emulatorHosts) === null || _b2 === void 0 ? void 0 : _b2[productName];
+};
+var getDefaultEmulatorHostnameAndPort = (productName) => {
+  const host = getDefaultEmulatorHost(productName);
+  if (!host) {
+    return void 0;
+  }
+  const separatorIndex = host.lastIndexOf(":");
+  if (separatorIndex <= 0 || separatorIndex + 1 === host.length) {
+    throw new Error(`Invalid host ${host} with no separate hostname and port!`);
+  }
+  const port = parseInt(host.substring(separatorIndex + 1), 10);
+  if (host[0] === "[") {
+    return [host.substring(1, separatorIndex - 1), port];
+  } else {
+    return [host.substring(0, separatorIndex), port];
+  }
+};
+var ERROR_NAME2 = "FirebaseError";
+var FirebaseError2 = class extends Error {
+  constructor(code, message, customData) {
+    super(message);
+    this.code = code;
+    this.customData = customData;
+    this.name = ERROR_NAME2;
+    Object.setPrototypeOf(this, FirebaseError2.prototype);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ErrorFactory2.prototype.create);
+    }
+  }
+};
+var ErrorFactory2 = class {
+  constructor(service, serviceName, errors) {
+    this.service = service;
+    this.serviceName = serviceName;
+    this.errors = errors;
+  }
+  create(code, ...data) {
+    const customData = data[0] || {};
+    const fullCode = `${this.service}/${code}`;
+    const template = this.errors[code];
+    const message = template ? replaceTemplate2(template, customData) : "Error";
+    const fullMessage = `${this.serviceName}: ${message} (${fullCode}).`;
+    const error = new FirebaseError2(fullCode, fullMessage, customData);
+    return error;
+  }
+};
+function replaceTemplate2(template, data) {
+  return template.replace(PATTERN2, (_4, key) => {
+    const value = data[key];
+    return value != null ? String(value) : `<${key}?>`;
+  });
+}
+var PATTERN2 = /\{\$([^}]+)}/g;
+var MAX_VALUE_MILLIS2 = 4 * 60 * 60 * 1e3;
+function getModularInstance(service) {
+  if (service && service._delegate) {
+    return service._delegate;
+  } else {
+    return service;
+  }
+}
+CONSTANTS2.NODE_CLIENT = true;
+
+// node_modules/@firebase/functions/node_modules/@firebase/component/dist/esm/index.esm2017.js
+var Component2 = class {
+  constructor(name5, instanceFactory, type) {
+    this.name = name5;
+    this.instanceFactory = instanceFactory;
+    this.type = type;
+    this.multipleInstances = false;
+    this.serviceProps = {};
+    this.instantiationMode = "LAZY";
+    this.onInstanceCreated = null;
+  }
+  setInstantiationMode(mode) {
+    this.instantiationMode = mode;
+    return this;
+  }
+  setMultipleInstances(multipleInstances) {
+    this.multipleInstances = multipleInstances;
+    return this;
+  }
+  setServiceProps(props) {
+    this.serviceProps = props;
+    return this;
+  }
+  setInstanceCreatedCallback(callback) {
+    this.onInstanceCreated = callback;
+    return this;
+  }
+};
 
 // node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
 var import_node_fetch3 = __toESM(require_lib5(), 1);
@@ -87720,7 +89325,7 @@ var errorCodeMap = {
   UNAVAILABLE: "unavailable",
   DATA_LOSS: "data-loss"
 };
-var FunctionsError = class extends FirebaseError {
+var FunctionsError = class extends FirebaseError2 {
   constructor(code, message, details) {
     super(`${FUNCTIONS_TYPE}/${code}`, message || "");
     this.details = details;
@@ -87900,6 +89505,9 @@ var FunctionsService = class {
     return `https://${this.region}-${projectId}.cloudfunctions.net/${name5}`;
   }
 };
+function connectFunctionsEmulator$1(functionsInstance, host, port) {
+  functionsInstance.emulatorOrigin = `http://${host}:${port}`;
+}
 function httpsCallable$1(functionsInstance, name5, options) {
   return (data) => {
     return call(functionsInstance, name5, data, options || {});
@@ -87977,7 +89585,7 @@ async function callAtURL(functionsInstance, url, data, options) {
   return { data: decodedData };
 }
 var name3 = "@firebase/functions";
-var version3 = "0.8.4";
+var version3 = "0.9.0";
 var AUTH_INTERNAL_NAME = "auth-internal";
 var APP_CHECK_INTERNAL_NAME = "app-check-internal";
 var MESSAGING_INTERNAL_NAME = "messaging-internal";
@@ -87989,7 +89597,7 @@ function registerFunctions(fetchImpl2, variant) {
     const appCheckProvider = container.getProvider(APP_CHECK_INTERNAL_NAME);
     return new FunctionsService(app, authProvider, messagingProvider, appCheckProvider, regionOrCustomDomain, fetchImpl2);
   };
-  _registerComponent(new Component(FUNCTIONS_TYPE, factory, "PUBLIC").setMultipleInstances(true));
+  _registerComponent(new Component2(FUNCTIONS_TYPE, factory, "PUBLIC").setMultipleInstances(true));
   registerVersion(name3, version3, variant);
   registerVersion(name3, version3, "esm2017");
 }
@@ -87998,12 +89606,493 @@ function getFunctions(app = getApp(), regionOrCustomDomain = DEFAULT_REGION) {
   const functionsInstance = functionsProvider.getImmediate({
     identifier: regionOrCustomDomain
   });
+  const emulator = getDefaultEmulatorHostnameAndPort("functions");
+  if (emulator) {
+    connectFunctionsEmulator(functionsInstance, ...emulator);
+  }
   return functionsInstance;
+}
+function connectFunctionsEmulator(functionsInstance, host, port) {
+  connectFunctionsEmulator$1(getModularInstance(functionsInstance), host, port);
 }
 function httpsCallable(functionsInstance, name5, options) {
   return httpsCallable$1(getModularInstance(functionsInstance), name5, options);
 }
 registerFunctions(import_node_fetch3.default, "node");
+
+// node_modules/@firebase/auth/node_modules/@firebase/util/dist/node-esm/index.node.esm.js
+var CONSTANTS3 = {
+  NODE_CLIENT: false,
+  NODE_ADMIN: false,
+  SDK_VERSION: "${JSCORE_VERSION}"
+};
+var stringToByteArray$13 = function(str) {
+  const out = [];
+  let p = 0;
+  for (let i = 0; i < str.length; i++) {
+    let c = str.charCodeAt(i);
+    if (c < 128) {
+      out[p++] = c;
+    } else if (c < 2048) {
+      out[p++] = c >> 6 | 192;
+      out[p++] = c & 63 | 128;
+    } else if ((c & 64512) === 55296 && i + 1 < str.length && (str.charCodeAt(i + 1) & 64512) === 56320) {
+      c = 65536 + ((c & 1023) << 10) + (str.charCodeAt(++i) & 1023);
+      out[p++] = c >> 18 | 240;
+      out[p++] = c >> 12 & 63 | 128;
+      out[p++] = c >> 6 & 63 | 128;
+      out[p++] = c & 63 | 128;
+    } else {
+      out[p++] = c >> 12 | 224;
+      out[p++] = c >> 6 & 63 | 128;
+      out[p++] = c & 63 | 128;
+    }
+  }
+  return out;
+};
+var byteArrayToString3 = function(bytes) {
+  const out = [];
+  let pos = 0, c = 0;
+  while (pos < bytes.length) {
+    const c1 = bytes[pos++];
+    if (c1 < 128) {
+      out[c++] = String.fromCharCode(c1);
+    } else if (c1 > 191 && c1 < 224) {
+      const c2 = bytes[pos++];
+      out[c++] = String.fromCharCode((c1 & 31) << 6 | c2 & 63);
+    } else if (c1 > 239 && c1 < 365) {
+      const c2 = bytes[pos++];
+      const c3 = bytes[pos++];
+      const c4 = bytes[pos++];
+      const u = ((c1 & 7) << 18 | (c2 & 63) << 12 | (c3 & 63) << 6 | c4 & 63) - 65536;
+      out[c++] = String.fromCharCode(55296 + (u >> 10));
+      out[c++] = String.fromCharCode(56320 + (u & 1023));
+    } else {
+      const c2 = bytes[pos++];
+      const c3 = bytes[pos++];
+      out[c++] = String.fromCharCode((c1 & 15) << 12 | (c2 & 63) << 6 | c3 & 63);
+    }
+  }
+  return out.join("");
+};
+var base643 = {
+  byteToCharMap_: null,
+  charToByteMap_: null,
+  byteToCharMapWebSafe_: null,
+  charToByteMapWebSafe_: null,
+  ENCODED_VALS_BASE: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789",
+  get ENCODED_VALS() {
+    return this.ENCODED_VALS_BASE + "+/=";
+  },
+  get ENCODED_VALS_WEBSAFE() {
+    return this.ENCODED_VALS_BASE + "-_.";
+  },
+  HAS_NATIVE_SUPPORT: typeof atob === "function",
+  encodeByteArray(input, webSafe) {
+    if (!Array.isArray(input)) {
+      throw Error("encodeByteArray takes an array as a parameter");
+    }
+    this.init_();
+    const byteToCharMap = webSafe ? this.byteToCharMapWebSafe_ : this.byteToCharMap_;
+    const output = [];
+    for (let i = 0; i < input.length; i += 3) {
+      const byte1 = input[i];
+      const haveByte2 = i + 1 < input.length;
+      const byte2 = haveByte2 ? input[i + 1] : 0;
+      const haveByte3 = i + 2 < input.length;
+      const byte3 = haveByte3 ? input[i + 2] : 0;
+      const outByte1 = byte1 >> 2;
+      const outByte2 = (byte1 & 3) << 4 | byte2 >> 4;
+      let outByte3 = (byte2 & 15) << 2 | byte3 >> 6;
+      let outByte4 = byte3 & 63;
+      if (!haveByte3) {
+        outByte4 = 64;
+        if (!haveByte2) {
+          outByte3 = 64;
+        }
+      }
+      output.push(byteToCharMap[outByte1], byteToCharMap[outByte2], byteToCharMap[outByte3], byteToCharMap[outByte4]);
+    }
+    return output.join("");
+  },
+  encodeString(input, webSafe) {
+    if (this.HAS_NATIVE_SUPPORT && !webSafe) {
+      return btoa(input);
+    }
+    return this.encodeByteArray(stringToByteArray$13(input), webSafe);
+  },
+  decodeString(input, webSafe) {
+    if (this.HAS_NATIVE_SUPPORT && !webSafe) {
+      return atob(input);
+    }
+    return byteArrayToString3(this.decodeStringToByteArray(input, webSafe));
+  },
+  decodeStringToByteArray(input, webSafe) {
+    this.init_();
+    const charToByteMap = webSafe ? this.charToByteMapWebSafe_ : this.charToByteMap_;
+    const output = [];
+    for (let i = 0; i < input.length; ) {
+      const byte1 = charToByteMap[input.charAt(i++)];
+      const haveByte2 = i < input.length;
+      const byte2 = haveByte2 ? charToByteMap[input.charAt(i)] : 0;
+      ++i;
+      const haveByte3 = i < input.length;
+      const byte3 = haveByte3 ? charToByteMap[input.charAt(i)] : 64;
+      ++i;
+      const haveByte4 = i < input.length;
+      const byte4 = haveByte4 ? charToByteMap[input.charAt(i)] : 64;
+      ++i;
+      if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
+        throw Error();
+      }
+      const outByte1 = byte1 << 2 | byte2 >> 4;
+      output.push(outByte1);
+      if (byte3 !== 64) {
+        const outByte2 = byte2 << 4 & 240 | byte3 >> 2;
+        output.push(outByte2);
+        if (byte4 !== 64) {
+          const outByte3 = byte3 << 6 & 192 | byte4;
+          output.push(outByte3);
+        }
+      }
+    }
+    return output;
+  },
+  init_() {
+    if (!this.byteToCharMap_) {
+      this.byteToCharMap_ = {};
+      this.charToByteMap_ = {};
+      this.byteToCharMapWebSafe_ = {};
+      this.charToByteMapWebSafe_ = {};
+      for (let i = 0; i < this.ENCODED_VALS.length; i++) {
+        this.byteToCharMap_[i] = this.ENCODED_VALS.charAt(i);
+        this.charToByteMap_[this.byteToCharMap_[i]] = i;
+        this.byteToCharMapWebSafe_[i] = this.ENCODED_VALS_WEBSAFE.charAt(i);
+        this.charToByteMapWebSafe_[this.byteToCharMapWebSafe_[i]] = i;
+        if (i >= this.ENCODED_VALS_BASE.length) {
+          this.charToByteMap_[this.ENCODED_VALS_WEBSAFE.charAt(i)] = i;
+          this.charToByteMapWebSafe_[this.ENCODED_VALS.charAt(i)] = i;
+        }
+      }
+    }
+  }
+};
+var base64Decode3 = function(str) {
+  try {
+    return base643.decodeString(str, true);
+  } catch (e) {
+    console.error("base64Decode failed: ", e);
+  }
+  return null;
+};
+function getUA() {
+  if (typeof navigator !== "undefined" && typeof navigator["userAgent"] === "string") {
+    return navigator["userAgent"];
+  } else {
+    return "";
+  }
+}
+function isMobileCordova() {
+  return typeof window !== "undefined" && !!(window["cordova"] || window["phonegap"] || window["PhoneGap"]) && /ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(getUA());
+}
+function isBrowserExtension() {
+  const runtime = typeof chrome === "object" ? chrome.runtime : typeof browser === "object" ? browser.runtime : void 0;
+  return typeof runtime === "object" && runtime.id !== void 0;
+}
+function isReactNative() {
+  return typeof navigator === "object" && navigator["product"] === "ReactNative";
+}
+function getGlobal3() {
+  if (typeof self !== "undefined") {
+    return self;
+  }
+  if (typeof window !== "undefined") {
+    return window;
+  }
+  if (typeof global !== "undefined") {
+    return global;
+  }
+  throw new Error("Unable to locate global object.");
+}
+var getDefaultsFromGlobal3 = () => getGlobal3().__FIREBASE_DEFAULTS__;
+var getDefaultsFromEnvVariable3 = () => {
+  if (typeof process === "undefined" || typeof process.env === "undefined") {
+    return;
+  }
+  const defaultsJsonString = process.env.__FIREBASE_DEFAULTS__;
+  if (defaultsJsonString) {
+    return JSON.parse(defaultsJsonString);
+  }
+};
+var getDefaultsFromCookie3 = () => {
+  if (typeof document === "undefined") {
+    return;
+  }
+  let match;
+  try {
+    match = document.cookie.match(/__FIREBASE_DEFAULTS__=([^;]+)/);
+  } catch (e) {
+    return;
+  }
+  const decoded = match && base64Decode3(match[1]);
+  return decoded && JSON.parse(decoded);
+};
+var getDefaults3 = () => {
+  try {
+    return getDefaultsFromGlobal3() || getDefaultsFromEnvVariable3() || getDefaultsFromCookie3();
+  } catch (e) {
+    console.info(`Unable to get __FIREBASE_DEFAULTS__ due to: ${e}`);
+    return;
+  }
+};
+var getDefaultEmulatorHost2 = (productName) => {
+  var _a2, _b2;
+  return (_b2 = (_a2 = getDefaults3()) === null || _a2 === void 0 ? void 0 : _a2.emulatorHosts) === null || _b2 === void 0 ? void 0 : _b2[productName];
+};
+var ERROR_NAME3 = "FirebaseError";
+var FirebaseError3 = class extends Error {
+  constructor(code, message, customData) {
+    super(message);
+    this.code = code;
+    this.customData = customData;
+    this.name = ERROR_NAME3;
+    Object.setPrototypeOf(this, FirebaseError3.prototype);
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, ErrorFactory3.prototype.create);
+    }
+  }
+};
+var ErrorFactory3 = class {
+  constructor(service, serviceName, errors) {
+    this.service = service;
+    this.serviceName = serviceName;
+    this.errors = errors;
+  }
+  create(code, ...data) {
+    const customData = data[0] || {};
+    const fullCode = `${this.service}/${code}`;
+    const template = this.errors[code];
+    const message = template ? replaceTemplate3(template, customData) : "Error";
+    const fullMessage = `${this.serviceName}: ${message} (${fullCode}).`;
+    const error = new FirebaseError3(fullCode, fullMessage, customData);
+    return error;
+  }
+};
+function replaceTemplate3(template, data) {
+  return template.replace(PATTERN3, (_4, key) => {
+    const value = data[key];
+    return value != null ? String(value) : `<${key}?>`;
+  });
+}
+var PATTERN3 = /\{\$([^}]+)}/g;
+function deepEqual2(a, b) {
+  if (a === b) {
+    return true;
+  }
+  const aKeys = Object.keys(a);
+  const bKeys = Object.keys(b);
+  for (const k of aKeys) {
+    if (!bKeys.includes(k)) {
+      return false;
+    }
+    const aProp = a[k];
+    const bProp = b[k];
+    if (isObject2(aProp) && isObject2(bProp)) {
+      if (!deepEqual2(aProp, bProp)) {
+        return false;
+      }
+    } else if (aProp !== bProp) {
+      return false;
+    }
+  }
+  for (const k of bKeys) {
+    if (!aKeys.includes(k)) {
+      return false;
+    }
+  }
+  return true;
+}
+function isObject2(thing) {
+  return thing !== null && typeof thing === "object";
+}
+function querystring(querystringParams) {
+  const params4 = [];
+  for (const [key, value] of Object.entries(querystringParams)) {
+    if (Array.isArray(value)) {
+      value.forEach((arrayVal) => {
+        params4.push(encodeURIComponent(key) + "=" + encodeURIComponent(arrayVal));
+      });
+    } else {
+      params4.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
+    }
+  }
+  return params4.length ? "&" + params4.join("&") : "";
+}
+function querystringDecode(querystring2) {
+  const obj = {};
+  const tokens = querystring2.replace(/^\?/, "").split("&");
+  tokens.forEach((token) => {
+    if (token) {
+      const [key, value] = token.split("=");
+      obj[decodeURIComponent(key)] = decodeURIComponent(value);
+    }
+  });
+  return obj;
+}
+function extractQuerystring(url) {
+  const queryStart = url.indexOf("?");
+  if (!queryStart) {
+    return "";
+  }
+  const fragmentStart = url.indexOf("#", queryStart);
+  return url.substring(queryStart, fragmentStart > 0 ? fragmentStart : void 0);
+}
+function createSubscribe(executor, onNoObservers) {
+  const proxy = new ObserverProxy(executor, onNoObservers);
+  return proxy.subscribe.bind(proxy);
+}
+var ObserverProxy = class {
+  constructor(executor, onNoObservers) {
+    this.observers = [];
+    this.unsubscribes = [];
+    this.observerCount = 0;
+    this.task = Promise.resolve();
+    this.finalized = false;
+    this.onNoObservers = onNoObservers;
+    this.task.then(() => {
+      executor(this);
+    }).catch((e) => {
+      this.error(e);
+    });
+  }
+  next(value) {
+    this.forEachObserver((observer) => {
+      observer.next(value);
+    });
+  }
+  error(error) {
+    this.forEachObserver((observer) => {
+      observer.error(error);
+    });
+    this.close(error);
+  }
+  complete() {
+    this.forEachObserver((observer) => {
+      observer.complete();
+    });
+    this.close();
+  }
+  subscribe(nextOrObserver, error, complete) {
+    let observer;
+    if (nextOrObserver === void 0 && error === void 0 && complete === void 0) {
+      throw new Error("Missing Observer.");
+    }
+    if (implementsAnyMethods(nextOrObserver, [
+      "next",
+      "error",
+      "complete"
+    ])) {
+      observer = nextOrObserver;
+    } else {
+      observer = {
+        next: nextOrObserver,
+        error,
+        complete
+      };
+    }
+    if (observer.next === void 0) {
+      observer.next = noop;
+    }
+    if (observer.error === void 0) {
+      observer.error = noop;
+    }
+    if (observer.complete === void 0) {
+      observer.complete = noop;
+    }
+    const unsub = this.unsubscribeOne.bind(this, this.observers.length);
+    if (this.finalized) {
+      this.task.then(() => {
+        try {
+          if (this.finalError) {
+            observer.error(this.finalError);
+          } else {
+            observer.complete();
+          }
+        } catch (e) {
+        }
+        return;
+      });
+    }
+    this.observers.push(observer);
+    return unsub;
+  }
+  unsubscribeOne(i) {
+    if (this.observers === void 0 || this.observers[i] === void 0) {
+      return;
+    }
+    delete this.observers[i];
+    this.observerCount -= 1;
+    if (this.observerCount === 0 && this.onNoObservers !== void 0) {
+      this.onNoObservers(this);
+    }
+  }
+  forEachObserver(fn) {
+    if (this.finalized) {
+      return;
+    }
+    for (let i = 0; i < this.observers.length; i++) {
+      this.sendOne(i, fn);
+    }
+  }
+  sendOne(i, fn) {
+    this.task.then(() => {
+      if (this.observers !== void 0 && this.observers[i] !== void 0) {
+        try {
+          fn(this.observers[i]);
+        } catch (e) {
+          if (typeof console !== "undefined" && console.error) {
+            console.error(e);
+          }
+        }
+      }
+    });
+  }
+  close(err) {
+    if (this.finalized) {
+      return;
+    }
+    this.finalized = true;
+    if (err !== void 0) {
+      this.finalError = err;
+    }
+    this.task.then(() => {
+      this.observers = void 0;
+      this.onNoObservers = void 0;
+    });
+  }
+};
+function implementsAnyMethods(obj, methods) {
+  if (typeof obj !== "object" || obj === null) {
+    return false;
+  }
+  for (const method of methods) {
+    if (method in obj && typeof obj[method] === "function") {
+      return true;
+    }
+  }
+  return false;
+}
+function noop() {
+}
+var MAX_VALUE_MILLIS3 = 4 * 60 * 60 * 1e3;
+function getModularInstance2(service) {
+  if (service && service._delegate) {
+    return service._delegate;
+  } else {
+    return service;
+  }
+}
+CONSTANTS3.NODE_CLIENT = true;
 
 // node_modules/tslib/modules/index.js
 var import_tslib = __toESM(require_tslib(), 1);
@@ -88035,7 +90124,132 @@ var {
   __classPrivateFieldIn
 } = import_tslib.default;
 
-// node_modules/@firebase/auth/dist/node-esm/index-f3a96a92.js
+// node_modules/@firebase/auth/node_modules/@firebase/logger/dist/esm/index.esm2017.js
+var instances2 = [];
+var LogLevel2;
+(function(LogLevel3) {
+  LogLevel3[LogLevel3["DEBUG"] = 0] = "DEBUG";
+  LogLevel3[LogLevel3["VERBOSE"] = 1] = "VERBOSE";
+  LogLevel3[LogLevel3["INFO"] = 2] = "INFO";
+  LogLevel3[LogLevel3["WARN"] = 3] = "WARN";
+  LogLevel3[LogLevel3["ERROR"] = 4] = "ERROR";
+  LogLevel3[LogLevel3["SILENT"] = 5] = "SILENT";
+})(LogLevel2 || (LogLevel2 = {}));
+var levelStringToEnum2 = {
+  "debug": LogLevel2.DEBUG,
+  "verbose": LogLevel2.VERBOSE,
+  "info": LogLevel2.INFO,
+  "warn": LogLevel2.WARN,
+  "error": LogLevel2.ERROR,
+  "silent": LogLevel2.SILENT
+};
+var defaultLogLevel2 = LogLevel2.INFO;
+var ConsoleMethod2 = {
+  [LogLevel2.DEBUG]: "log",
+  [LogLevel2.VERBOSE]: "log",
+  [LogLevel2.INFO]: "info",
+  [LogLevel2.WARN]: "warn",
+  [LogLevel2.ERROR]: "error"
+};
+var defaultLogHandler2 = (instance, logType, ...args) => {
+  if (logType < instance.logLevel) {
+    return;
+  }
+  const now = new Date().toISOString();
+  const method = ConsoleMethod2[logType];
+  if (method) {
+    console[method](`[${now}]  ${instance.name}:`, ...args);
+  } else {
+    throw new Error(`Attempted to log a message with an invalid logType (value: ${logType})`);
+  }
+};
+var Logger2 = class {
+  constructor(name5) {
+    this.name = name5;
+    this._logLevel = defaultLogLevel2;
+    this._logHandler = defaultLogHandler2;
+    this._userLogHandler = null;
+    instances2.push(this);
+  }
+  get logLevel() {
+    return this._logLevel;
+  }
+  set logLevel(val) {
+    if (!(val in LogLevel2)) {
+      throw new TypeError(`Invalid value "${val}" assigned to \`logLevel\``);
+    }
+    this._logLevel = val;
+  }
+  setLogLevel(val) {
+    this._logLevel = typeof val === "string" ? levelStringToEnum2[val] : val;
+  }
+  get logHandler() {
+    return this._logHandler;
+  }
+  set logHandler(val) {
+    if (typeof val !== "function") {
+      throw new TypeError("Value assigned to `logHandler` must be a function");
+    }
+    this._logHandler = val;
+  }
+  get userLogHandler() {
+    return this._userLogHandler;
+  }
+  set userLogHandler(val) {
+    this._userLogHandler = val;
+  }
+  debug(...args) {
+    this._userLogHandler && this._userLogHandler(this, LogLevel2.DEBUG, ...args);
+    this._logHandler(this, LogLevel2.DEBUG, ...args);
+  }
+  log(...args) {
+    this._userLogHandler && this._userLogHandler(this, LogLevel2.VERBOSE, ...args);
+    this._logHandler(this, LogLevel2.VERBOSE, ...args);
+  }
+  info(...args) {
+    this._userLogHandler && this._userLogHandler(this, LogLevel2.INFO, ...args);
+    this._logHandler(this, LogLevel2.INFO, ...args);
+  }
+  warn(...args) {
+    this._userLogHandler && this._userLogHandler(this, LogLevel2.WARN, ...args);
+    this._logHandler(this, LogLevel2.WARN, ...args);
+  }
+  error(...args) {
+    this._userLogHandler && this._userLogHandler(this, LogLevel2.ERROR, ...args);
+    this._logHandler(this, LogLevel2.ERROR, ...args);
+  }
+};
+
+// node_modules/@firebase/auth/node_modules/@firebase/component/dist/esm/index.esm2017.js
+var Component3 = class {
+  constructor(name5, instanceFactory, type) {
+    this.name = name5;
+    this.instanceFactory = instanceFactory;
+    this.type = type;
+    this.multipleInstances = false;
+    this.serviceProps = {};
+    this.instantiationMode = "LAZY";
+    this.onInstanceCreated = null;
+  }
+  setInstantiationMode(mode) {
+    this.instantiationMode = mode;
+    return this;
+  }
+  setMultipleInstances(multipleInstances) {
+    this.multipleInstances = multipleInstances;
+    return this;
+  }
+  setServiceProps(props) {
+    this.serviceProps = props;
+    return this;
+  }
+  setInstanceCreatedCallback(callback) {
+    this.onInstanceCreated = callback;
+    return this;
+  }
+};
+
+// node_modules/@firebase/auth/dist/node-esm/index-e0bc98c8.js
 var fetchImpl = __toESM(require_lib7(), 1);
 function _prodErrorMap() {
   return {
@@ -88043,10 +90257,10 @@ function _prodErrorMap() {
   };
 }
 var prodErrorMap = _prodErrorMap;
-var _DEFAULT_AUTH_ERROR_FACTORY = new ErrorFactory("auth", "Firebase", _prodErrorMap());
-var logClient = new Logger("@firebase/auth");
+var _DEFAULT_AUTH_ERROR_FACTORY = new ErrorFactory3("auth", "Firebase", _prodErrorMap());
+var logClient = new Logger2("@firebase/auth");
 function _logError(msg, ...args) {
-  if (logClient.logLevel <= LogLevel.ERROR) {
+  if (logClient.logLevel <= LogLevel2.ERROR) {
     logClient.error(`Auth (${SDK_VERSION}): ${msg}`, ...args);
   }
 }
@@ -88058,7 +90272,7 @@ function _createError(authOrCode, ...rest) {
 }
 function _errorWithCustomMessage(auth, code, message) {
   const errorMap = Object.assign(Object.assign({}, prodErrorMap()), { [code]: message });
-  const factory = new ErrorFactory("auth", "Firebase", errorMap);
+  const factory = new ErrorFactory3("auth", "Firebase", errorMap);
   return factory.create(code, {
     appName: auth.name
   });
@@ -88106,7 +90320,7 @@ function initializeAuth(app, deps) {
   if (provider.isInitialized()) {
     const auth2 = provider.getImmediate();
     const initialOptions = provider.getOptions();
-    if (deepEqual(initialOptions, deps !== null && deps !== void 0 ? deps : {})) {
+    if (deepEqual2(initialOptions, deps !== null && deps !== void 0 ? deps : {})) {
       return auth2;
     } else {
       _fail(auth2, "already-initialized");
@@ -88310,7 +90524,7 @@ async function _performFetchWithErrorHandling(auth, customErrorMap, fetchFn) {
       }
     }
   } catch (e) {
-    if (e instanceof FirebaseError) {
+    if (e instanceof FirebaseError3) {
       throw e;
     }
     _fail(auth, "network-request-failed");
@@ -88380,7 +90594,7 @@ function utcTimestampToDateString(utcTimestamp) {
   return void 0;
 }
 async function getIdTokenResult(user, forceRefresh = false) {
-  const userInternal = getModularInstance(user);
+  const userInternal = getModularInstance2(user);
   const token = await userInternal.getIdToken(forceRefresh);
   const claims = _parseToken(token);
   _assert(claims && claims.exp && claims.auth_time && claims.iat, userInternal.auth, "internal-error");
@@ -88400,21 +90614,20 @@ function secondsStringToMilliseconds(seconds) {
   return Number(seconds) * 1e3;
 }
 function _parseToken(token) {
-  var _a2;
   const [algorithm2, payload, signature] = token.split(".");
   if (algorithm2 === void 0 || payload === void 0 || signature === void 0) {
     _logError("JWT malformed, contained fewer than 3 sections");
     return null;
   }
   try {
-    const decoded = base64Decode(payload);
+    const decoded = base64Decode3(payload);
     if (!decoded) {
       _logError("Failed to decode base64 JWT payload");
       return null;
     }
     return JSON.parse(decoded);
   } catch (e) {
-    _logError("Caught error parsing JWT payload as JSON", (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.toString());
+    _logError("Caught error parsing JWT payload as JSON", e === null || e === void 0 ? void 0 : e.toString());
     return null;
   }
 }
@@ -88432,7 +90645,7 @@ async function _logoutIfInvalidated(user, promise, bypassAuthState = false) {
   try {
     return await promise;
   } catch (e) {
-    if (e instanceof FirebaseError && isUserInvalidated(e)) {
+    if (e instanceof FirebaseError3 && isUserInvalidated(e)) {
       if (user.auth.currentUser === user) {
         await user.auth.signOut();
       }
@@ -88489,11 +90702,10 @@ var ProactiveRefresh = class {
     }, interval);
   }
   async iteration() {
-    var _a2;
     try {
       await this.user.getIdToken(true);
     } catch (e) {
-      if (((_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.code) === `auth/${"network-request-failed"}`) {
+      if ((e === null || e === void 0 ? void 0 : e.code) === `auth/${"network-request-failed"}`) {
         this.schedule(true);
       }
       return;
@@ -88551,7 +90763,7 @@ async function _reloadWithoutSaving(user) {
   Object.assign(user, updates);
 }
 async function reload(user) {
-  const userInternal = getModularInstance(user);
+  const userInternal = getModularInstance2(user);
   await _reloadWithoutSaving(userInternal);
   await userInternal.auth._persistUserIfCurrent(userInternal);
   userInternal.auth._notifyListenersIfCurrent(userInternal);
@@ -89062,7 +91274,6 @@ var AuthMiddlewareQueue = class {
     };
   }
   async runMiddleware(nextUser) {
-    var _a2;
     if (this.auth.currentUser === nextUser) {
       return;
     }
@@ -89083,7 +91294,7 @@ var AuthMiddlewareQueue = class {
         }
       }
       throw this.auth._errorFactory.create("login-blocked", {
-        originalMessage: (_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.message
+        originalMessage: e === null || e === void 0 ? void 0 : e.message
       });
     }
   }
@@ -89208,11 +91419,10 @@ var AuthImpl = class {
     return result;
   }
   async reloadAndSetCurrentUserOrClear(user) {
-    var _a2;
     try {
       await _reloadWithoutSaving(user);
     } catch (e) {
-      if (((_a2 = e) === null || _a2 === void 0 ? void 0 : _a2.code) !== `auth/${"network-request-failed"}`) {
+      if ((e === null || e === void 0 ? void 0 : e.code) !== `auth/${"network-request-failed"}`) {
         return this.directlySetCurrentUser(null);
       }
     }
@@ -89225,7 +91435,7 @@ var AuthImpl = class {
     this._deleted = true;
   }
   async updateCurrentUser(userExtern) {
-    const user = userExtern ? getModularInstance(userExtern) : null;
+    const user = userExtern ? getModularInstance2(userExtern) : null;
     if (user) {
       _assert(user.auth.config.apiKey === this.config.apiKey, this, "invalid-user-token");
     }
@@ -89262,7 +91472,7 @@ var AuthImpl = class {
     return this.assertedPersistence.persistence.type;
   }
   _updateErrorMap(errorMap) {
-    this._errorFactory = new ErrorFactory("auth", "Firebase", errorMap());
+    this._errorFactory = new ErrorFactory3("auth", "Firebase", errorMap());
   }
   onAuthStateChanged(nextOrObserver, error, completed) {
     return this.registerStateListener(this.authStateSubscription, nextOrObserver, error, completed);
@@ -89415,7 +91625,7 @@ var AuthImpl = class {
   }
 };
 function _castAuth(auth) {
-  return getModularInstance(auth);
+  return getModularInstance2(auth);
 }
 var Subscription = class {
   constructor(auth) {
@@ -89428,6 +91638,85 @@ var Subscription = class {
     return this.observer.next.bind(this.observer);
   }
 };
+function connectAuthEmulator(auth, url, options) {
+  const authInternal = _castAuth(auth);
+  _assert(authInternal._canInitEmulator, authInternal, "emulator-config-failed");
+  _assert(/^https?:\/\//.test(url), authInternal, "invalid-emulator-scheme");
+  const disableWarnings = !!(options === null || options === void 0 ? void 0 : options.disableWarnings);
+  const protocol = extractProtocol(url);
+  const { host, port } = extractHostAndPort(url);
+  const portStr = port === null ? "" : `:${port}`;
+  authInternal.config.emulator = { url: `${protocol}//${host}${portStr}/` };
+  authInternal.settings.appVerificationDisabledForTesting = true;
+  authInternal.emulatorConfig = Object.freeze({
+    host,
+    port,
+    protocol: protocol.replace(":", ""),
+    options: Object.freeze({ disableWarnings })
+  });
+  if (!disableWarnings) {
+    emitEmulatorWarning();
+  }
+}
+function extractProtocol(url) {
+  const protocolEnd = url.indexOf(":");
+  return protocolEnd < 0 ? "" : url.substr(0, protocolEnd + 1);
+}
+function extractHostAndPort(url) {
+  const protocol = extractProtocol(url);
+  const authority = /(\/\/)?([^?#/]+)/.exec(url.substr(protocol.length));
+  if (!authority) {
+    return { host: "", port: null };
+  }
+  const hostAndPort = authority[2].split("@").pop() || "";
+  const bracketedIPv6 = /^(\[[^\]]+\])(:|$)/.exec(hostAndPort);
+  if (bracketedIPv6) {
+    const host = bracketedIPv6[1];
+    return { host, port: parsePort(hostAndPort.substr(host.length + 1)) };
+  } else {
+    const [host, port] = hostAndPort.split(":");
+    return { host, port: parsePort(port) };
+  }
+}
+function parsePort(portStr) {
+  if (!portStr) {
+    return null;
+  }
+  const port = Number(portStr);
+  if (isNaN(port)) {
+    return null;
+  }
+  return port;
+}
+function emitEmulatorWarning() {
+  function attachBanner() {
+    const el = document.createElement("p");
+    const sty = el.style;
+    el.innerText = "Running in emulator mode. Do not use with production credentials.";
+    sty.position = "fixed";
+    sty.width = "100%";
+    sty.backgroundColor = "#ffffff";
+    sty.border = ".1em solid #000000";
+    sty.color = "#b50000";
+    sty.bottom = "0px";
+    sty.left = "0px";
+    sty.margin = "0px";
+    sty.zIndex = "10000";
+    sty.textAlign = "center";
+    el.classList.add("firebase-emulator-warning");
+    document.body.appendChild(el);
+  }
+  if (typeof console !== "undefined" && typeof console.info === "function") {
+    console.info("WARNING: You are using the Auth Emulator, which is intended for local testing only.  Do not use with production credentials.");
+  }
+  if (typeof window !== "undefined" && typeof document !== "undefined") {
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", attachBanner);
+    } else {
+      attachBanner();
+    }
+  }
+}
 var AuthCredential = class {
   constructor(providerId, signInMethod) {
     this.providerId = providerId;
@@ -89900,7 +92189,7 @@ function providerIdForResponse(response) {
   }
   return null;
 }
-var MultiFactorError = class extends FirebaseError {
+var MultiFactorError = class extends FirebaseError3 {
   constructor(auth, error, operationType, user) {
     var _a2;
     super(error.code, error.message);
@@ -89953,12 +92242,12 @@ async function signInWithCredential(auth, credential) {
   return _signInWithCredential(_castAuth(auth), credential);
 }
 async function linkWithCredential(user, credential) {
-  const userInternal = getModularInstance(user);
+  const userInternal = getModularInstance2(user);
   await _assertLinkedStatus(false, userInternal, credential.providerId);
   return _link(userInternal, credential);
 }
 var name4 = "@firebase/auth";
-var version4 = "0.20.6";
+var version4 = "0.21.0";
 var AuthInterop = class {
   constructor(auth) {
     this.auth = auth;
@@ -89984,8 +92273,7 @@ var AuthInterop = class {
       return;
     }
     const unsubscribe = this.auth.onIdTokenChanged((user) => {
-      var _a2;
-      listener(((_a2 = user) === null || _a2 === void 0 ? void 0 : _a2.stsTokenManager.accessToken) || null);
+      listener((user === null || user === void 0 ? void 0 : user.stsTokenManager.accessToken) || null);
     });
     this.internalListeners.set(listener, unsubscribe);
     this.updateProactiveRefresh();
@@ -90026,7 +92314,7 @@ function getVersionForPlatform(clientPlatform) {
   }
 }
 function registerAuth(clientPlatform) {
-  _registerComponent(new Component("auth", (container, { options: deps }) => {
+  _registerComponent(new Component3("auth", (container, { options: deps }) => {
     const app = container.getProvider("app").getImmediate();
     const heartbeatServiceProvider = container.getProvider("heartbeat");
     const { apiKey, authDomain } = app.options;
@@ -90052,7 +92340,7 @@ function registerAuth(clientPlatform) {
     const authInternalProvider = container.getProvider("auth-internal");
     authInternalProvider.initialize();
   }));
-  _registerComponent(new Component("auth-internal", (container) => {
+  _registerComponent(new Component3("auth-internal", (container) => {
     const auth = _castAuth(container.getProvider("auth").getImmediate());
     return ((auth2) => new AuthInterop(auth2))(auth);
   }, "PRIVATE").setInstantiationMode("EXPLICIT"));
@@ -90065,7 +92353,12 @@ function getAuth(app = getApp()) {
   if (provider.isInitialized()) {
     return provider.getImmediate();
   }
-  return initializeAuth(app);
+  const auth = initializeAuth(app);
+  const authEmulatorHost = getDefaultEmulatorHost2("auth");
+  if (authEmulatorHost) {
+    connectAuthEmulator(auth, `http://${authEmulatorHost}`);
+  }
+  return auth;
 }
 registerAuth("Node");
 var NOT_AVAILABLE_ERROR = _createError("operation-not-supported-in-this-environment");
@@ -91036,8 +93329,8 @@ async function rebasePr(prNumber) {
     const commits = await getCommitsInRange(commonAncestorSha, "HEAD");
     let squashFixups = process.env["CI"] !== void 0 || commits.filter((commit) => commit.isFixup).length === 0 ? false : await Prompt2.confirm(`PR #${prNumber} contains fixup commits, would you like to squash them during rebase?`, true);
     Log.info(`Attempting to rebase PR #${prNumber} on ${fullBaseRef}`);
-    const [flags, env2] = squashFixups ? [["--interactive", "--autosquash"], { ...process.env, GIT_SEQUENCE_EDITOR: "true" }] : [[], void 0];
-    const rebaseResult = git.runGraceful(["rebase", ...flags, "FETCH_HEAD"], { env: env2 });
+    const [flags, env5] = squashFixups ? [["--interactive", "--autosquash"], { ...process.env, GIT_SEQUENCE_EDITOR: "true" }] : [[], void 0];
+    const rebaseResult = git.runGraceful(["rebase", ...flags, "FETCH_HEAD"], { env: env5 });
     if (rebaseResult.status === 0) {
       Log.info(`Rebase was able to complete automatically without conflicts`);
       Log.info(`Pushing rebased PR #${prNumber} to ${fullHeadRef}`);
@@ -91831,13 +94124,6 @@ ${splitMarker}
 `;
 var versionAnchorMatcher = new RegExp(`<a name="(.*)"></a>`);
 var Changelog = class {
-  constructor(git) {
-    this.git = git;
-    this.filePath = join10(this.git.baseDir, changelogPath);
-    this.archiveFilePath = join10(this.git.baseDir, changelogArchivePath);
-    this._entries = void 0;
-    this._archiveEntries = void 0;
-  }
   static prependEntryToChangelogFile(git, entry) {
     const changelog = new this(git);
     changelog.prependEntryToChangelogFile(entry);
@@ -91864,6 +94150,13 @@ var Changelog = class {
       return this._archiveEntries = this.getEntriesFor(this.archiveFilePath);
     }
     return this._archiveEntries;
+  }
+  constructor(git) {
+    this.git = git;
+    this.filePath = join10(this.git.baseDir, changelogPath);
+    this.archiveFilePath = join10(this.git.baseDir, changelogArchivePath);
+    this._entries = void 0;
+    this._archiveEntries = void 0;
   }
   prependEntryToChangelogFile(entry) {
     this.entries.unshift(parseChangelogEntry(entry));
@@ -91920,16 +94213,16 @@ function parseChangelogEntry(content) {
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/release-notes.js
 var workspaceRelativeChangelogPath = "CHANGELOG.md";
 var ReleaseNotes = class {
+  static async forRange(git, version5, baseRef, headRef) {
+    const config = await getConfig([assertValidReleaseConfig]);
+    const commits = getCommitsForRangeWithDeduping(git, baseRef, headRef);
+    return new ReleaseNotes(config, version5, commits, git);
+  }
   constructor(config, version5, commits, git) {
     this.config = config;
     this.version = version5;
     this.commits = commits;
     this.git = git;
-  }
-  static async forRange(git, version5, baseRef, headRef) {
-    const config = await getConfig([assertValidReleaseConfig]);
-    const commits = getCommitsForRangeWithDeduping(git, baseRef, headRef);
-    return new ReleaseNotes(config, version5, commits, git);
   }
   async getGithubReleaseEntry() {
     return (0, import_ejs.render)(github_release_default, await this.generateRenderContext(), {
@@ -92425,14 +94718,14 @@ async function gracefulCheckIfPullRequestIsMerged(git, id) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
 var ReleaseAction = class {
+  static isActive(_trains, _config) {
+    throw Error("Not implemented.");
+  }
   constructor(active, git, config, projectDir) {
     this.active = active;
     this.git = git;
     this.config = config;
     this.projectDir = projectDir;
-  }
-  static isActive(_trains, _config) {
-    throw Error("Not implemented.");
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
     const pkgJsonPath = join11(this.projectDir, workspaceRelativePackageJsonPath);
@@ -93193,7 +95486,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-290dc69521b978d807fc9e51c3324b66a732c263`;
+  const localVersion = `0.0.0-4f7f18b611830401b3db5c17406515350b5e1190`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

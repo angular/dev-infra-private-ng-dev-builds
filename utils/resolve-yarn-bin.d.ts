@@ -11,7 +11,7 @@ export interface YarnConfiguration {
     'yarn-path': string | undefined;
 }
 /** Type describing a configuration with its corresponding parsing mechanism. */
-export declare type ConfigWithParser = {
+export type ConfigWithParser = {
     fileName: string;
     parse: (c: string) => YarnConfiguration;
 };

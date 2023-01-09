@@ -19,7 +19,7 @@ export interface GoogleSyncConfig {
     alwaysExternalFilePatterns: string[];
 }
 /** Describes a function for testing if a file is synced. */
-export declare type SyncFileMatchFn = (projectRelativePath: string) => boolean;
+export type SyncFileMatchFn = (projectRelativePath: string) => boolean;
 /** Error class used when the Google Sync configuration is invalid. */
 export declare class InvalidGoogleSyncConfigError extends Error {
 }

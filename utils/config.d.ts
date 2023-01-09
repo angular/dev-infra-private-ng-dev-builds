@@ -13,7 +13,7 @@ import { setCachedConfig } from './config-cache.js';
  * This is a branded type to ensure that we can safely assert an object
  * being a config object instead of it being e.g. a `Promise` object.
  */
-export declare type NgDevConfig<T = {}> = T & {
+export type NgDevConfig<T = {}> = T & {
     __isNgDevConfigObject: boolean;
 };
 /**

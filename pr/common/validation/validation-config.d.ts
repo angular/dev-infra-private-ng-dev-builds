@@ -18,7 +18,7 @@ export declare class PullRequestValidationConfig {
     assertPassingCi: boolean;
 }
 /** Type describing a helper function for validations to create a validation failure. */
-export declare type PullRequestValidationErrorCreateFn = (message: string) => PullRequestValidationFailure;
+export type PullRequestValidationErrorCreateFn = (message: string) => PullRequestValidationFailure;
 /**
  * Base class for pull request validations, providing helpers for the validation errors,
  * and a consistent interface for checking the activation state of validations

@@ -7,7 +7,7 @@
  */
 import { GitClient } from '../../utils/git/git-client.js';
 /** Type describing extracted remotes, mapping remote name to its URL. */
-export declare type Remotes = Map<string, string>;
+export type Remotes = Map<string, string>;
 /**
  * Gets all remotes for the repository associated with the given Git client.
  *

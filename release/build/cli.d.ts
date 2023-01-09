@@ -13,7 +13,7 @@ import { BuiltPackage } from '../config/index.js';
  * @important When changing this, make sure the release action
  *   invocation is updated as well.
  */
-export declare type ReleaseBuildJsonStdout = BuiltPackage[];
+export type ReleaseBuildJsonStdout = BuiltPackage[];
 /** Command line options for building a release. */
 export interface ReleaseBuildOptions {
     json: boolean;
