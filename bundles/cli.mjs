@@ -93786,7 +93786,13 @@ var import_semver3 = __toESM(require_semver());
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/context.js
 var typesToIncludeInReleaseNotes = Object.values(COMMIT_TYPES).filter((type) => type.releaseNotesLevel === ReleaseNotesLevel.Visible).map((type) => type.name);
-var botsAuthorNames = ["dependabot[bot]", "Renovate Bot", "angular-robot", "Angular Robot"];
+var botsAuthorNames = [
+  "dependabot[bot]",
+  "Renovate Bot",
+  "angular-robot",
+  "angular-robot[bot]",
+  "Angular Robot"
+];
 var RenderContext = class {
   constructor(data) {
     this.data = data;
@@ -95486,7 +95492,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-4f7f18b611830401b3db5c17406515350b5e1190`;
+  const localVersion = `0.0.0-2aee1b570eb5aef6d8c0b8d192ba88916a20e57d`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
