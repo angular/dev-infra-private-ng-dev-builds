@@ -95492,7 +95492,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-668a07a6f07d0a75f530728f77da8e3c78f0374a`;
+  const localVersion = `0.0.0-10e6f1bf1532550063043cf0d8b519e269b61e3b`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -95768,8 +95768,8 @@ async function printEnvStamp(mode, includeVersion) {
   console.info(`BUILD_SCM_USER ${getCurrentGitUser(git)}`);
   if (includeVersion === true) {
     const { version: version5, experimentalVersion } = getSCMVersions(git, mode);
-    console.info(`BUILD_SCM_VERSION ${version5}`);
-    console.info(`BUILD_SCM_EXPERIMENTAL_VERSION ${experimentalVersion}`);
+    console.info(`STABLE_PROJECT_VERSION ${version5}`);
+    console.info(`STABLE_PROJECT_EXPERIMENTAL_VERSION ${experimentalVersion}`);
   }
 }
 function hasLocalChanges(git) {
