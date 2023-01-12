@@ -23,6 +23,7 @@ import {
   assertValidFormatConfig,
   assertValidPullRequestConfig,
   computeLtsEndDateOfMajor,
+  convertVersionBranchToSemVer,
   exceptionalMinorPackageIndicator,
   fetchLongTermSupportBranchesFromNpm,
   fetchProjectNpmPackageInfo,
@@ -38,7 +39,7 @@ import {
   mergeLabels,
   priorityLabels,
   targetLabels
-} from "./chunk-DJEHVUWU.mjs";
+} from "./chunk-EMO5AVOD.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -92,6 +93,7 @@ export {
   bold,
   captureLogOutputForCommand,
   computeLtsEndDateOfMajor,
+  convertVersionBranchToSemVer,
   exceptionalMinorPackageIndicator,
   fetchLongTermSupportBranchesFromNpm,
   fetchProjectNpmPackageInfo,

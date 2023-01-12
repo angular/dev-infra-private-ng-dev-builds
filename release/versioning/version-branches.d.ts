@@ -55,3 +55,11 @@ export declare function isVersionBranch(branchName: string): boolean;
  * order. i.e. latest version branches first.
  */
 export declare function getBranchesForMajorVersions(repo: ReleaseRepoWithApi, majorVersions: number[]): Promise<VersionBranch[]>;
+/**
+ * Converts a given version-branch into a SemVer version that can be used with SemVer
+ * utilities. e.g. to determine semantic order, extract major digit, compare.
+ *
+ * For example `10.0.x` will become `10.0.0` in SemVer. The patch digit is not
+ * relevant but needed for parsing. SemVer does not allow `x` as patch digit.
+ */
+export declare function convertVersionBranchToSemVer(branchName: string): semver.SemVer | null;
