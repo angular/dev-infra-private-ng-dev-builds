@@ -7,4 +7,4 @@
  */
 export type EnvStampMode = 'snapshot' | 'release';
 /** Log the environment variables expected by Bazel for stamping. */
-export declare function buildEnvStamp(mode: EnvStampMode, includeVersion: boolean): Promise<void>;
+export declare function printEnvStamp(mode: EnvStampMode, includeVersion: boolean): Promise<void>;

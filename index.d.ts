@@ -14,6 +14,8 @@ export * from './release/config/index.js';
 export * from './pr/common/labels/index.js';
 export * from './release/versioning/index.js';
 export { ReleasePrecheckError } from './release/precheck/index.js';
+export { EnvStampMode } from './release/stamping/env-stamp.js';
+export { EnvStampCustomPrintFn } from './release/stamping/cli.js';
 export * from './utils/logging.js';
 export * from './utils/git/authenticated-git-client.js';
 export * from './utils/git/git-client.js';
