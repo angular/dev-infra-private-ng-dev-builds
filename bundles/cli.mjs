@@ -45,7 +45,7 @@ import {
   require_tr46,
   require_wrappy,
   targetLabels
-} from "./chunk-EMO5AVOD.mjs";
+} from "./chunk-23XRSEF5.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -86824,12 +86824,19 @@ async function handler13() {
 
 ${body}`;
     const branchName = `yarn-update-v${newYarnVersion}`;
-    const { owner: localOwner } = await git.getForkOfAuthenticatedUser();
+    const userFork = await git.getForkOfAuthenticatedUser();
+    const { owner: localOwner } = userFork;
     spinner.update("Staging yarn vendoring files and creating commit");
     git.run(["add", ".yarn/releases/**", ".yarnrc"]);
     git.run(["commit", "-q", "--no-verify", "-m", commitMessage], { env: skipHuskyEnv });
     spinner.update("Pushing commit changes to github.");
-    git.run(["push", "-q", "origin", "--force-with-lease", `HEAD:refs/heads/${branchName}`]);
+    git.run([
+      "push",
+      "-q",
+      getRepositoryGitUrl(userFork, git.githubToken),
+      "--force-with-lease",
+      `HEAD:refs/heads/${branchName}`
+    ]);
     spinner.update("Creating a PR for the changes.");
     const { number } = (await git.github.pulls.create({
       ...git.remoteParams,
@@ -92459,13 +92466,7 @@ function configureAuthorizedGitClientWithTemporaryToken() {
           ng_repo_owner: owner
         }
       });
-      registerCompletedFunction(async () => {
-        socket.close();
-        const git = await AuthenticatedGitClient.get();
-        git.runGraceful(["credential", "reject"], { input: `url=${git.getRepoGitUrl()}
-
-` });
-      });
+      registerCompletedFunction(() => socket.close());
       socket.on("message", (msg) => {
         AuthenticatedGitClient.configure(msg.toString("utf8"), "bot");
         resolve13();
@@ -95492,7 +95493,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-ae37b4259c7f2aeaa194843c129c544bc078c149`;
+  const localVersion = `0.0.0-511c2b31c65d9a8d23c481e12c125086d87d51d8`;
   const workspacePackageJsonFile = path3.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path3.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
