@@ -5,9 +5,9 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import Minimatch from 'minimatch';
+import { Minimatch } from 'minimatch';
 /**
  * Gets a glob for the given pattern. The cached glob will be returned
  * if available. Otherwise a new glob will be created and cached.
  */
-export declare function getOrCreateGlob(pattern: string): Minimatch.IMinimatch;
+export declare function getOrCreateGlob(pattern: string): Minimatch;
