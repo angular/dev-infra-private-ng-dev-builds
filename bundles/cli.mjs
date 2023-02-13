@@ -72941,6 +72941,10 @@ var require_common5 = __commonJS({
         }
         pattern = "**/" + pattern;
       }
+      self2.windowsPathsNoEscape = !!options.windowsPathsNoEscape || options.allowWindowsEscape === false;
+      if (self2.windowsPathsNoEscape) {
+        pattern = pattern.replace(/\\/g, "/");
+      }
       self2.silent = !!options.silent;
       self2.pattern = pattern;
       self2.strict = options.strict !== false;
@@ -72985,7 +72989,6 @@ var require_common5 = __commonJS({
       }
       options.nonegate = true;
       options.nocomment = true;
-      options.allowWindowsEscape = true;
       self2.minimatch = new Minimatch2(pattern, options);
       self2.options = self2.minimatch.options;
     }
@@ -88339,38 +88342,6 @@ var base64Decode = function(str) {
   }
   return null;
 };
-function isIndexedDBAvailable() {
-  try {
-    return typeof indexedDB === "object";
-  } catch (e) {
-    return false;
-  }
-}
-function validateIndexedDBOpenable() {
-  return new Promise((resolve13, reject) => {
-    try {
-      let preExist = true;
-      const DB_CHECK_NAME = "validate-browser-context-for-indexeddb-analytics-module";
-      const request = self.indexedDB.open(DB_CHECK_NAME);
-      request.onsuccess = () => {
-        request.result.close();
-        if (!preExist) {
-          self.indexedDB.deleteDatabase(DB_CHECK_NAME);
-        }
-        resolve13(true);
-      };
-      request.onupgradeneeded = () => {
-        preExist = false;
-      };
-      request.onerror = () => {
-        var _a2;
-        reject(((_a2 = request.error) === null || _a2 === void 0 ? void 0 : _a2.message) || "");
-      };
-    } catch (error) {
-      reject(error);
-    }
-  });
-}
 function getGlobal() {
   if (typeof self !== "undefined") {
     return self;
@@ -88448,6 +88419,38 @@ var Deferred = class {
     };
   }
 };
+function isIndexedDBAvailable() {
+  try {
+    return typeof indexedDB === "object";
+  } catch (e) {
+    return false;
+  }
+}
+function validateIndexedDBOpenable() {
+  return new Promise((resolve13, reject) => {
+    try {
+      let preExist = true;
+      const DB_CHECK_NAME = "validate-browser-context-for-indexeddb-analytics-module";
+      const request = self.indexedDB.open(DB_CHECK_NAME);
+      request.onsuccess = () => {
+        request.result.close();
+        if (!preExist) {
+          self.indexedDB.deleteDatabase(DB_CHECK_NAME);
+        }
+        resolve13(true);
+      };
+      request.onupgradeneeded = () => {
+        preExist = false;
+      };
+      request.onerror = () => {
+        var _a2;
+        reject(((_a2 = request.error) === null || _a2 === void 0 ? void 0 : _a2.message) || "");
+      };
+    } catch (error) {
+      reject(error);
+    }
+  });
+}
 var ERROR_NAME = "FirebaseError";
 var FirebaseError = class extends Error {
   constructor(code, message, customData) {
@@ -89081,7 +89084,7 @@ function isVersionServiceProvider(provider) {
   return (component === null || component === void 0 ? void 0 : component.type) === "VERSION";
 }
 var name$o = "@firebase/app";
-var version$1 = "0.9.0";
+var version$1 = "0.9.3";
 var logger = new Logger("@firebase/app");
 var name$n = "@firebase/app-compat";
 var name$m = "@firebase/analytics-compat";
@@ -89107,7 +89110,7 @@ var name$3 = "@firebase/storage-compat";
 var name$2 = "@firebase/firestore";
 var name$1 = "@firebase/firestore-compat";
 var name = "firebase";
-var version = "9.15.0";
+var version = "9.17.1";
 var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
 var PLATFORM_LOG_STRING = {
   [name$o]: "fire-core",
@@ -89503,7 +89506,7 @@ registerCoreComponents("");
 
 // node_modules/firebase/app/dist/index.mjs
 var name2 = "firebase";
-var version2 = "9.15.0";
+var version2 = "9.17.1";
 registerVersion(name2, version2, "app");
 
 // node_modules/@firebase/functions/node_modules/@firebase/util/dist/node-esm/index.node.esm.js
@@ -90156,7 +90159,7 @@ async function callAtURL(functionsInstance, url2, data, options) {
   return { data: decodedData };
 }
 var name3 = "@firebase/functions";
-var version3 = "0.9.0";
+var version3 = "0.9.3";
 var AUTH_INTERNAL_NAME = "auth-internal";
 var APP_CHECK_INTERNAL_NAME = "app-check-internal";
 var MESSAGING_INTERNAL_NAME = "messaging-internal";
@@ -90356,23 +90359,6 @@ var base64Decode3 = function(str) {
   }
   return null;
 };
-function getUA() {
-  if (typeof navigator !== "undefined" && typeof navigator["userAgent"] === "string") {
-    return navigator["userAgent"];
-  } else {
-    return "";
-  }
-}
-function isMobileCordova() {
-  return typeof window !== "undefined" && !!(window["cordova"] || window["phonegap"] || window["PhoneGap"]) && /ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(getUA());
-}
-function isBrowserExtension() {
-  const runtime = typeof chrome === "object" ? chrome.runtime : typeof browser === "object" ? browser.runtime : void 0;
-  return typeof runtime === "object" && runtime.id !== void 0;
-}
-function isReactNative() {
-  return typeof navigator === "object" && navigator["product"] === "ReactNative";
-}
 function getGlobal3() {
   if (typeof self !== "undefined") {
     return self;
@@ -90420,6 +90406,23 @@ var getDefaultEmulatorHost2 = (productName) => {
   var _a2, _b2;
   return (_b2 = (_a2 = getDefaults3()) === null || _a2 === void 0 ? void 0 : _a2.emulatorHosts) === null || _b2 === void 0 ? void 0 : _b2[productName];
 };
+function getUA() {
+  if (typeof navigator !== "undefined" && typeof navigator["userAgent"] === "string") {
+    return navigator["userAgent"];
+  } else {
+    return "";
+  }
+}
+function isMobileCordova() {
+  return typeof window !== "undefined" && !!(window["cordova"] || window["phonegap"] || window["PhoneGap"]) && /ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(getUA());
+}
+function isBrowserExtension() {
+  const runtime = typeof chrome === "object" ? chrome.runtime : typeof browser === "object" ? browser.runtime : void 0;
+  return typeof runtime === "object" && runtime.id !== void 0;
+}
+function isReactNative() {
+  return typeof navigator === "object" && navigator["product"] === "ReactNative";
+}
 var ERROR_NAME3 = "FirebaseError";
 var FirebaseError3 = class extends Error {
   constructor(code, message, customData) {
@@ -90820,7 +90823,7 @@ var Component3 = class {
   }
 };
 
-// node_modules/@firebase/auth/dist/node-esm/index-e0bc98c8.js
+// node_modules/@firebase/auth/dist/node-esm/index-0e3513a7.js
 var fetchImpl = __toESM(require_lib7(), 1);
 function _prodErrorMap() {
   return {
@@ -92818,7 +92821,7 @@ async function linkWithCredential(user, credential) {
   return _link(userInternal, credential);
 }
 var name4 = "@firebase/auth";
-var version4 = "0.21.0";
+var version4 = "0.21.3";
 var AuthInterop = class {
   constructor(auth) {
     this.auth = auth;
@@ -96056,7 +96059,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-c36f43984bf1d9e01d113253b9a85c1c24c65b95`;
+  const localVersion = `0.0.0-7ed99e1d1b65cfc98021691d1c2ac92f44076190`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
