@@ -92622,7 +92622,7 @@ var MergeStrategy = class {
       const localTargetBranch = this.getLocalTargetBranchName(targetBranch);
       return `${localTargetBranch}:refs/heads/${targetBranch}`;
     });
-    this.git.run(["push", this.git.getRepoGitUrl(), ...pushRefspecs]);
+    this.git.run(["push", "--atomic", this.git.getRepoGitUrl(), ...pushRefspecs]);
   }
   async _assertMergeableOrThrow({ revisionRange }, targetBranches) {
     const failedBranches = this.cherryPickIntoTargetBranches(revisionRange, targetBranches, {
@@ -92801,6 +92801,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
     this.pushTargetBranchesUpstream(targetBranches);
     const localBranch = this.getLocalTargetBranchName(githubTargetBranch);
     const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
+    await new Promise((resolve13) => setTimeout(resolve13, parseInt(process.env["AUTOSQUASH_TIMEOUT"] || "0")));
     await this.git.github.issues.createComment({
       ...this.git.remoteParams,
       issue_number: pullRequest.prNumber,
@@ -95261,7 +95262,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-145da9e20bbdea9bfdc5e30aa583547e928f4706`;
+  const localVersion = `0.0.0-133811578faa6cca589fadb2dd11a9b7218000a9`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
