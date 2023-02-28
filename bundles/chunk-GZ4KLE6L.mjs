@@ -69,6 +69,10 @@ var __privateWrapper = (obj, member, setter, getter) => ({
     return __privateGet(obj, member, getter);
   }
 });
+var __privateMethod = (obj, member, method) => {
+  __accessCheck(obj, member, "access private method");
+  return method;
+};
 
 export {
   __require,
@@ -81,6 +85,7 @@ export {
   __privateGet,
   __privateAdd,
   __privateSet,
-  __privateWrapper
+  __privateWrapper,
+  __privateMethod
 };
-//# sourceMappingURL=chunk-QMLAZXI4.mjs.map
+//# sourceMappingURL=chunk-GZ4KLE6L.mjs.map
