@@ -18244,7 +18244,7 @@ var require_lodash = __commonJS({
           position -= target.length;
           return position >= 0 && string.slice(position, end) == target;
         }
-        function escape(string) {
+        function escape2(string) {
           string = toString(string);
           return string && reHasUnescapedHtml.test(string) ? string.replace(reUnescapedHtml, escapeHtmlChar) : string;
         }
@@ -18465,7 +18465,7 @@ var require_lodash = __commonJS({
           }
           return result2 + omission;
         }
-        function unescape(string) {
+        function unescape2(string) {
           string = toString(string);
           return string && reHasEscapedHtml.test(string) ? string.replace(reEscapedHtml, unescapeHtmlChar) : string;
         }
@@ -18850,7 +18850,7 @@ var require_lodash = __commonJS({
         lodash.divide = divide;
         lodash.endsWith = endsWith;
         lodash.eq = eq;
-        lodash.escape = escape;
+        lodash.escape = escape2;
         lodash.escapeRegExp = escapeRegExp;
         lodash.every = every;
         lodash.find = find;
@@ -18979,7 +18979,7 @@ var require_lodash = __commonJS({
         lodash.trimEnd = trimEnd;
         lodash.trimStart = trimStart;
         lodash.truncate = truncate;
-        lodash.unescape = unescape;
+        lodash.unescape = unescape2;
         lodash.uniqueId = uniqueId;
         lodash.upperCase = upperCase;
         lodash.upperFirst = upperFirst;
@@ -37907,7 +37907,7 @@ var require_tokenize = __commonJS({
       "n": "\n",
       "t": "	"
     };
-    function unescape(str) {
+    function unescape2(str) {
       return str.replace(unescapeRe, function($0, $1) {
         switch ($1) {
           case "\\":
@@ -37918,7 +37918,7 @@ var require_tokenize = __commonJS({
         }
       });
     }
-    tokenize.unescape = unescape;
+    tokenize.unescape = unescape2;
     function tokenize(source, alternateCommentMode) {
       source = source.toString();
       var offset = 0, length = source.length, line = 1, lastCommentLine = 0, comments = {};
@@ -37936,7 +37936,7 @@ var require_tokenize = __commonJS({
         offset = re.lastIndex;
         push(stringDelim);
         stringDelim = null;
-        return unescape(match3[1]);
+        return unescape2(match3[1]);
       }
       function charAt(pos) {
         return source.charAt(pos);
@@ -39777,11 +39777,11 @@ var require_escape = __commonJS({
     var toString = require_toString();
     var reUnescapedHtml = /[&<>"']/g;
     var reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
-    function escape(string) {
+    function escape2(string) {
       string = toString(string);
       return string && reHasUnescapedHtml.test(string) ? string.replace(reUnescapedHtml, escapeHtmlChar) : string;
     }
-    module2.exports = escape;
+    module2.exports = escape2;
   }
 });
 
@@ -39804,7 +39804,7 @@ var require_reEvaluate = __commonJS({
 // node_modules/lodash/templateSettings.js
 var require_templateSettings = __commonJS({
   "node_modules/lodash/templateSettings.js"(exports2, module2) {
-    var escape = require_escape();
+    var escape2 = require_escape();
     var reEscape = require_reEscape();
     var reEvaluate = require_reEvaluate();
     var reInterpolate = require_reInterpolate();
@@ -39814,7 +39814,7 @@ var require_templateSettings = __commonJS({
       "interpolate": reInterpolate,
       "variable": "",
       "imports": {
-        "_": { "escape": escape }
+        "_": { "escape": escape2 }
       }
     };
     module2.exports = templateSettings;
@@ -41381,7 +41381,7 @@ var require_minimatch = __commonJS({
       var flags = options.nocase ? "i" : "";
       var re = set2.map(function(pattern) {
         return pattern.map(function(p) {
-          return p === GLOBSTAR3 ? twoStar : typeof p === "string" ? regExpEscape4(p) : p._src;
+          return p === GLOBSTAR3 ? twoStar : typeof p === "string" ? regExpEscape3(p) : p._src;
         }).join("\\/");
       }).join("|");
       re = "^(?:" + re + ")$";
@@ -41518,7 +41518,7 @@ var require_minimatch = __commonJS({
     function globUnescape3(s) {
       return s.replace(/\\(.)/g, "$1");
     }
-    function regExpEscape4(s) {
+    function regExpEscape3(s) {
       return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     }
   }
@@ -51414,7 +51414,7 @@ var require_minimatch2 = __commonJS({
       var flags = options.nocase ? "i" : "";
       var re = set2.map(function(pattern) {
         return pattern.map(function(p) {
-          return p === GLOBSTAR3 ? twoStar : typeof p === "string" ? regExpEscape4(p) : p._src;
+          return p === GLOBSTAR3 ? twoStar : typeof p === "string" ? regExpEscape3(p) : p._src;
         }).join("\\/");
       }).join("|");
       re = "^(?:" + re + ")$";
@@ -51551,7 +51551,7 @@ var require_minimatch2 = __commonJS({
     function globUnescape3(s) {
       return s.replace(/\\(.)/g, "$1");
     }
-    function regExpEscape4(s) {
+    function regExpEscape3(s) {
       return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     }
   }
@@ -58432,7 +58432,7 @@ var require_templates = __commonJS({
       ["e", "\x1B"],
       ["a", "\x07"]
     ]);
-    function unescape(c) {
+    function unescape2(c) {
       if (c[0] === "u" && c.length === 5 || c[0] === "x" && c.length === 3) {
         return String.fromCharCode(parseInt(c.slice(1), 16));
       }
@@ -58446,7 +58446,7 @@ var require_templates = __commonJS({
         if (!isNaN(chunk)) {
           results.push(Number(chunk));
         } else if (matches = chunk.match(STRING_REGEX)) {
-          results.push(matches[2].replace(ESCAPE_REGEX, (m, escape, chr) => escape ? unescape(escape) : chr));
+          results.push(matches[2].replace(ESCAPE_REGEX, (m, escape2, chr) => escape2 ? unescape2(escape2) : chr));
         } else {
           throw new Error(`Invalid Chalk template style argument: ${chunk} (in style '${name5}')`);
         }
@@ -58496,7 +58496,7 @@ var require_templates = __commonJS({
       let chunk = [];
       tmp.replace(TEMPLATE_REGEX, (m, escapeChar, inverse, style, close, chr) => {
         if (escapeChar) {
-          chunk.push(unescape(escapeChar));
+          chunk.push(unescape2(escapeChar));
         } else if (style) {
           const str = chunk.join("");
           chunk = [];
@@ -70523,7 +70523,7 @@ var require_minimatch3 = __commonJS({
       return list;
     };
     var globUnescape3 = (s) => s.replace(/\\(.)/g, "$1");
-    var regExpEscape4 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+    var regExpEscape3 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     var Minimatch3 = class {
       constructor(pattern, options) {
         assertValidPattern3(pattern);
@@ -70890,7 +70890,7 @@ var require_minimatch3 = __commonJS({
         const flags = options.nocase ? "i" : "";
         let re = set2.map((pattern) => {
           pattern = pattern.map(
-            (p) => typeof p === "string" ? regExpEscape4(p) : p === GLOBSTAR3 ? GLOBSTAR3 : p._src
+            (p) => typeof p === "string" ? regExpEscape3(p) : p === GLOBSTAR3 ? GLOBSTAR3 : p._src
           ).reduce((set3, p) => {
             if (!(set3[set3.length - 1] === GLOBSTAR3 && p === GLOBSTAR3)) {
               set3.push(p);
@@ -93608,7 +93608,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-0964b22324054d42af368701cd22849895880f11`;
+  const localVersion = `0.0.0-be8740e7694c0a6467b569687627b42fe32010d5`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -94065,10 +94065,9 @@ var posixClasses = {
   "[:word:]": ["\\p{L}\\p{Nl}\\p{Nd}\\p{Pc}", true],
   "[:xdigit:]": ["A-Fa-f0-9", false]
 };
-var regExpEscape2 = (s) => s.replace(/[[\]\\-]/g, "\\$&");
-var rangesToString = (ranges) => {
-  return ranges.join("");
-};
+var braceEscape = (s) => s.replace(/[[\]\\-]/g, "\\$&");
+var regexpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+var rangesToString = (ranges) => ranges.join("");
 var parseClass = (glob2, position) => {
   const pos = position;
   if (glob2.charAt(pos) !== "[") {
@@ -94107,7 +94106,7 @@ var parseClass = (glob2, position) => {
         for (const [cls, [unip, u, neg]] of Object.entries(posixClasses)) {
           if (glob2.startsWith(cls, i)) {
             if (rangeStart) {
-              return ["$.", false, glob2.length - pos];
+              return ["$.", false, glob2.length - pos, true];
             }
             i += cls.length;
             if (neg)
@@ -94122,16 +94121,16 @@ var parseClass = (glob2, position) => {
       escaping = false;
       if (rangeStart) {
         if (c > rangeStart) {
-          ranges.push(regExpEscape2(rangeStart) + "-" + regExpEscape2(c));
+          ranges.push(braceEscape(rangeStart) + "-" + braceEscape(c));
         } else if (c === rangeStart) {
-          ranges.push(regExpEscape2(c));
+          ranges.push(braceEscape(c));
         }
         rangeStart = "";
         i++;
         continue;
       }
       if (glob2.startsWith("-]", i + 1)) {
-        ranges.push(regExpEscape2(c + "-"));
+        ranges.push(braceEscape(c + "-"));
         i += 2;
         continue;
       }
@@ -94140,19 +94139,33 @@ var parseClass = (glob2, position) => {
         i += 2;
         continue;
       }
-      ranges.push(regExpEscape2(c));
+      ranges.push(braceEscape(c));
       i++;
     }
   if (endPos < i) {
-    return ["", false, 0];
+    return ["", false, 0, false];
   }
   if (!ranges.length && !negs.length) {
-    return ["$.", false, glob2.length - pos];
+    return ["$.", false, glob2.length - pos, true];
+  }
+  if (negs.length === 0 && ranges.length === 1 && /^\\?.$/.test(ranges[0]) && !negate) {
+    const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
+    return [regexpEscape(r), false, endPos - pos, false];
   }
   const sranges = "[" + (negate ? "^" : "") + rangesToString(ranges) + "]";
   const snegs = "[" + (negate ? "" : "^") + rangesToString(negs) + "]";
   const comb = ranges.length && negs.length ? "(" + sranges + "|" + snegs + ")" : ranges.length ? sranges : snegs;
-  return [comb, uflag, endPos - pos];
+  return [comb, uflag, endPos - pos, true];
+};
+
+// node_modules/glob/node_modules/minimatch/dist/mjs/escape.js
+var escape = (s, { windowsPathsNoEscape = false } = {}) => {
+  return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
+};
+
+// node_modules/glob/node_modules/minimatch/dist/mjs/unescape.js
+var unescape = (s, { windowsPathsNoEscape = false } = {}) => {
+  return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
 };
 
 // node_modules/glob/node_modules/minimatch/dist/mjs/index.js
@@ -94257,6 +94270,8 @@ var defaults3 = (def) => {
         return orig.defaults(ext2(def, options)).Minimatch;
       }
     },
+    unescape: (s, options = {}) => orig.unescape(s, ext2(def, options)),
+    escape: (s, options = {}) => orig.escape(s, ext2(def, options)),
     filter: (pattern, options = {}) => orig.filter(pattern, ext2(def, options)),
     defaults: (options) => orig.defaults(ext2(def, options)),
     makeRe: (pattern, options = {}) => orig.makeRe(pattern, ext2(def, options)),
@@ -94297,7 +94312,7 @@ var match2 = (list, pattern, options = {}) => {
 minimatch3.match = match2;
 var globUnescape2 = (s) => s.replace(/\\(.)/g, "$1");
 var globMagic = /[?*]|[+@!]\(.*?\)|\[|\]/;
-var regExpEscape3 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+var regExpEscape2 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 var Minimatch2 = class {
   options;
   set;
@@ -94340,6 +94355,18 @@ var Minimatch2 = class {
     this.globParts = [];
     this.set = [];
     this.make();
+  }
+  hasMagic() {
+    if (this.options.magicalBraces && this.set.length > 1) {
+      return true;
+    }
+    for (const pattern of this.set) {
+      for (const part of pattern) {
+        if (typeof part !== "string")
+          return true;
+      }
+    }
+    return false;
   }
   debug(..._4) {
   }
@@ -94839,12 +94866,12 @@ var Minimatch2 = class {
         }
         case "[":
           clearStateChar();
-          const [src, needUflag, consumed] = parseClass(pattern, i);
+          const [src, needUflag, consumed, magic] = parseClass(pattern, i);
           if (consumed) {
             re += src;
             uflag = uflag || needUflag;
             i += consumed - 1;
-            hasMagic2 = true;
+            hasMagic2 = hasMagic2 || magic;
           } else {
             re += "\\[";
           }
@@ -94854,7 +94881,7 @@ var Minimatch2 = class {
           continue;
         default:
           clearStateChar();
-          re += regExpEscape3(c);
+          re += regExpEscape2(c);
           break;
       }
     }
@@ -94904,7 +94931,7 @@ var Minimatch2 = class {
       hasMagic2 = pattern.toUpperCase() !== pattern.toLowerCase();
     }
     if (!hasMagic2) {
-      return globUnescape2(pattern);
+      return globUnescape2(re);
     }
     const flags = (options.nocase ? "i" : "") + (uflag ? "u" : "");
     try {
@@ -94934,7 +94961,7 @@ var Minimatch2 = class {
     const twoStar = options.noglobstar ? star2 : options.dot ? twoStarDot2 : twoStarNoDot2;
     const flags = options.nocase ? "i" : "";
     let re = set2.map((pattern) => {
-      const pp = pattern.map((p) => typeof p === "string" ? regExpEscape3(p) : p === GLOBSTAR2 ? GLOBSTAR2 : p._src);
+      const pp = pattern.map((p) => typeof p === "string" ? regExpEscape2(p) : p === GLOBSTAR2 ? GLOBSTAR2 : p._src);
       pp.forEach((p, i) => {
         const next = pp[i + 1];
         const prev = pp[i - 1];
@@ -95024,6 +95051,8 @@ var Minimatch2 = class {
   }
 };
 minimatch3.Minimatch = Minimatch2;
+minimatch3.escape = escape;
+minimatch3.unescape = unescape;
 
 // node_modules/path-scurry/node_modules/lru-cache/index.mjs
 var perf = typeof performance === "object" && performance && typeof performance.now === "function" ? performance : Date;
@@ -97711,14 +97740,6 @@ var _Pattern = class {
     const p = __privateGet(this, _patternList)[0];
     return typeof p === "string" && this.isAbsolute() && __privateGet(this, _index) === 0 ? p : "";
   }
-  hasMagic() {
-    for (let i = 0; i < this.length; i++) {
-      if (typeof __privateGet(this, _patternList)[i] !== "string") {
-        return true;
-      }
-    }
-    return false;
-  }
   checkFollowGlobstar() {
     return !(__privateGet(this, _index) === 0 || !this.isGlobstar() || !__privateGet(this, _followGlobstar));
   }
@@ -98485,9 +98506,9 @@ var Processor = class {
     for (let [t, pattern] of processingSet) {
       this.hasWalkedCache.storeWalked(t, pattern);
       const root = pattern.root();
-      const absolute = pattern.isAbsolute();
+      const absolute = pattern.isAbsolute() && this.opts.absolute !== false;
       if (root) {
-        t = t.resolve(root);
+        t = t.resolve(root === "/" && this.opts.root !== void 0 ? this.opts.root : root);
         const rest2 = pattern.rest();
         if (!rest2) {
           this.matches.add(t, true, false);
@@ -98706,15 +98727,17 @@ var GlobUtil = class {
   matchFinish(e, absolute) {
     if (__privateMethod(this, _ignored, ignored_fn).call(this, e))
       return;
+    const abs = this.opts.absolute === void 0 ? absolute : this.opts.absolute;
     this.seen.add(e);
     const mark = this.opts.mark && e.isDirectory() ? __privateGet(this, _sep) : "";
     if (this.opts.withFileTypes) {
       this.matchEmit(e);
-    } else if (this.opts.absolute || absolute) {
+    } else if (abs) {
       this.matchEmit(e.fullpath() + mark);
     } else {
       const rel = e.relative();
-      this.matchEmit(!rel && mark ? "./" : rel + mark);
+      const pre = this.opts.dotRelative && !rel.startsWith(".." + __privateGet(this, _sep)) ? "." + __privateGet(this, _sep) : "";
+      this.matchEmit(!rel && mark ? "." + mark : pre + rel + mark);
     }
   }
   async match(e, absolute, ifDir) {
@@ -98941,9 +98964,12 @@ var defaultPlatform3 = typeof process === "object" && process && typeof process.
 var Glob = class {
   absolute;
   cwd;
+  root;
   dot;
+  dotRelative;
   follow;
   ignore;
+  magicalBraces;
   mark;
   matchBase;
   nobrace;
@@ -98965,6 +98991,7 @@ var Glob = class {
     this.signal = opts.signal;
     this.follow = !!opts.follow;
     this.dot = !!opts.dot;
+    this.dotRelative = !!opts.dotRelative;
     this.nodir = !!opts.nodir;
     this.mark = !!opts.mark;
     if (!opts.cwd) {
@@ -98973,14 +99000,16 @@ var Glob = class {
       opts.cwd = fileURLToPath5(opts.cwd);
     }
     this.cwd = opts.cwd || "";
+    this.root = opts.root;
+    this.magicalBraces = !!opts.magicalBraces;
     this.nobrace = !!opts.nobrace;
     this.noext = !!opts.noext;
     this.realpath = !!opts.realpath;
-    this.absolute = !!opts.absolute;
+    this.absolute = opts.absolute;
     this.noglobstar = !!opts.noglobstar;
     this.matchBase = !!opts.matchBase;
-    if (this.withFileTypes && this.absolute) {
-      throw new Error("cannot set absolute:true and withFileTypes:true");
+    if (this.withFileTypes && this.absolute !== void 0) {
+      throw new Error("cannot set absolute and withFileTypes:true");
     }
     if (typeof pattern === "string") {
       pattern = [pattern];
@@ -99083,8 +99112,11 @@ var hasMagic = (pattern, options = {}) => {
   if (!Array.isArray(pattern)) {
     pattern = [pattern];
   }
-  const g = new Glob(pattern, options);
-  return g.patterns.length === 0 ? false : g.patterns.some((p) => p.hasMagic());
+  for (const p of pattern) {
+    if (new Minimatch2(p, options).hasMagic())
+      return true;
+  }
+  return false;
 };
 
 // node_modules/glob/dist/mjs/index.js
@@ -99114,7 +99146,9 @@ var mjs_default2 = Object.assign(glob, {
   globIterate,
   globIterateSync,
   Glob,
-  hasMagic
+  hasMagic,
+  escape,
+  unescape
 });
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
