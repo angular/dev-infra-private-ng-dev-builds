@@ -85841,7 +85841,7 @@ var base64 = {
       const byte4 = haveByte4 ? charToByteMap[input.charAt(i)] : 64;
       ++i;
       if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
-        throw Error();
+        throw new DecodeBase64StringError();
       }
       const outByte1 = byte1 << 2 | byte2 >> 4;
       output.push(outByte1);
@@ -85873,6 +85873,12 @@ var base64 = {
         }
       }
     }
+  }
+};
+var DecodeBase64StringError = class extends Error {
+  constructor() {
+    super(...arguments);
+    this.name = "DecodeBase64StringError";
   }
 };
 var base64Encode = function(str) {
@@ -86632,7 +86638,7 @@ function isVersionServiceProvider(provider) {
   return (component === null || component === void 0 ? void 0 : component.type) === "VERSION";
 }
 var name$o = "@firebase/app";
-var version$1 = "0.9.3";
+var version$1 = "0.9.4";
 var logger = new Logger("@firebase/app");
 var name$n = "@firebase/app-compat";
 var name$m = "@firebase/analytics-compat";
@@ -86658,7 +86664,7 @@ var name$3 = "@firebase/storage-compat";
 var name$2 = "@firebase/firestore";
 var name$1 = "@firebase/firestore-compat";
 var name = "firebase";
-var version = "9.17.1";
+var version = "9.17.2";
 var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
 var PLATFORM_LOG_STRING = {
   [name$o]: "fire-core",
@@ -87054,7 +87060,7 @@ registerCoreComponents("");
 
 // node_modules/firebase/app/dist/index.mjs
 var name2 = "firebase";
-var version2 = "9.17.1";
+var version2 = "9.17.2";
 registerVersion(name2, version2, "app");
 
 // node_modules/@firebase/functions/node_modules/@firebase/util/dist/node-esm/index.node.esm.js
@@ -87180,7 +87186,7 @@ var base642 = {
       const byte4 = haveByte4 ? charToByteMap[input.charAt(i)] : 64;
       ++i;
       if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
-        throw Error();
+        throw new DecodeBase64StringError2();
       }
       const outByte1 = byte1 << 2 | byte2 >> 4;
       output.push(outByte1);
@@ -87212,6 +87218,12 @@ var base642 = {
         }
       }
     }
+  }
+};
+var DecodeBase64StringError2 = class extends Error {
+  constructor() {
+    super(...arguments);
+    this.name = "DecodeBase64StringError";
   }
 };
 var base64Decode2 = function(str) {
@@ -87707,7 +87719,7 @@ async function callAtURL(functionsInstance, url2, data, options) {
   return { data: decodedData };
 }
 var name3 = "@firebase/functions";
-var version3 = "0.9.3";
+var version3 = "0.9.4";
 var AUTH_INTERNAL_NAME = "auth-internal";
 var APP_CHECK_INTERNAL_NAME = "app-check-internal";
 var MESSAGING_INTERNAL_NAME = "messaging-internal";
@@ -87865,7 +87877,7 @@ var base643 = {
       const byte4 = haveByte4 ? charToByteMap[input.charAt(i)] : 64;
       ++i;
       if (byte1 == null || byte2 == null || byte3 == null || byte4 == null) {
-        throw Error();
+        throw new DecodeBase64StringError3();
       }
       const outByte1 = byte1 << 2 | byte2 >> 4;
       output.push(outByte1);
@@ -87897,6 +87909,12 @@ var base643 = {
         }
       }
     }
+  }
+};
+var DecodeBase64StringError3 = class extends Error {
+  constructor() {
+    super(...arguments);
+    this.name = "DecodeBase64StringError";
   }
 };
 var base64Decode3 = function(str) {
@@ -88371,7 +88389,7 @@ var Component3 = class {
   }
 };
 
-// node_modules/@firebase/auth/dist/node-esm/index-0e3513a7.js
+// node_modules/@firebase/auth/dist/node-esm/index-e01c0b19.js
 var fetchImpl = __toESM(require_lib7(), 1);
 function _prodErrorMap() {
   return {
@@ -88649,7 +88667,7 @@ async function _performFetchWithErrorHandling(auth, customErrorMap, fetchFn) {
     if (e instanceof FirebaseError3) {
       throw e;
     }
-    _fail(auth, "network-request-failed");
+    _fail(auth, "internal-error", { "message": String(e) });
   }
 }
 async function _performSignInRequest(auth, method, path7, request, customErrorMap = {}) {
@@ -90369,7 +90387,7 @@ async function linkWithCredential(user, credential) {
   return _link(userInternal, credential);
 }
 var name4 = "@firebase/auth";
-var version4 = "0.21.3";
+var version4 = "0.21.4";
 var AuthInterop = class {
   constructor(auth) {
     this.auth = auth;
@@ -93608,7 +93626,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-5cdb6468c5c2aa4be235efe0bcdd84d7854175db`;
+  const localVersion = `0.0.0-fc4d34a1a8d30c197533a51c9af1bb52c9356094`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -95390,7 +95408,7 @@ var LRUCache = class {
   }
   removeItemSize(_index2) {
   }
-  addItemSize(_index2, _size) {
+  addItemSize(_index2, _size2) {
   }
   requireSize(_k, _v, size, sizeCalculation) {
     if (size || sizeCalculation) {
@@ -95952,6 +95970,7 @@ var lru_cache_default = LRUCache;
 // node_modules/path-scurry/dist/mjs/index.js
 import { posix, win32 } from "path";
 import { fileURLToPath as fileURLToPath4 } from "url";
+import * as actualFS from "fs";
 import { lstatSync as lstatSync2, readdir as readdirCB, readdirSync as readdirSync4, readlinkSync, realpathSync as rps } from "fs";
 import { lstat, readdir, readlink, realpath } from "fs/promises";
 
@@ -96543,6 +96562,27 @@ var minipass_default = Minipass;
 
 // node_modules/path-scurry/dist/mjs/index.js
 var realpathSync = rps.native;
+var defaultFS = {
+  lstatSync: lstatSync2,
+  readdir: readdirCB,
+  readdirSync: readdirSync4,
+  readlinkSync,
+  realpathSync,
+  promises: {
+    lstat,
+    readdir,
+    readlink,
+    realpath
+  }
+};
+var fsFromOption = (fsOption) => !fsOption || fsOption === defaultFS || fsOption === actualFS ? defaultFS : {
+  ...defaultFS,
+  ...fsOption,
+  promises: {
+    ...defaultFS.promises,
+    ...fsOption.promises || {}
+  }
+};
 var uncDriveRegexp = /^\\\\\?\\([a-z]:)\\?$/i;
 var uncToDrive = (rootPath) => rootPath.replace(/\//g, "\\").replace(uncDriveRegexp, "$1\\");
 var eitherSep = /[\\\/]/;
@@ -96596,7 +96636,7 @@ var ChildrenCache = class extends lru_cache_default {
     });
   }
 };
-var _matchName, _fullpath, _relative, _type, _children, _linkTarget, _realpath, _resolveParts, resolveParts_fn, _readdirSuccess, readdirSuccess_fn, _markENOENT, markENOENT_fn, _markChildrenENOENT, markChildrenENOENT_fn, _markENOREALPATH, markENOREALPATH_fn, _markENOTDIR, markENOTDIR_fn, _readdirFail, readdirFail_fn, _lstatFail, lstatFail_fn, _readlinkFail, readlinkFail_fn, _readdirAddChild, readdirAddChild_fn, _readdirAddNewChild, readdirAddNewChild_fn, _readdirMaybePromoteChild, readdirMaybePromoteChild_fn, _readdirPromoteChild, readdirPromoteChild_fn, _onReaddirCB, _readdirCBInFlight, _callOnReaddirCB, callOnReaddirCB_fn, _asyncReaddirInFlight;
+var _fs, _dev, _mode, _nlink, _uid, _gid, _rdev, _blksize, _ino, _size, _blocks, _atimeMs, _mtimeMs, _ctimeMs, _birthtimeMs, _atime, _mtime, _ctime, _birthtime, _matchName, _depth, _fullpath, _relative, _type, _children, _linkTarget, _realpath, _resolveParts, resolveParts_fn, _readdirSuccess, readdirSuccess_fn, _markENOENT, markENOENT_fn, _markChildrenENOENT, markChildrenENOENT_fn, _markENOREALPATH, markENOREALPATH_fn, _markENOTDIR, markENOTDIR_fn, _readdirFail, readdirFail_fn, _lstatFail, lstatFail_fn, _readlinkFail, readlinkFail_fn, _readdirAddChild, readdirAddChild_fn, _readdirAddNewChild, readdirAddNewChild_fn, _readdirMaybePromoteChild, readdirMaybePromoteChild_fn, _readdirPromoteChild, readdirPromoteChild_fn, _applyStat, applyStat_fn, _onReaddirCB, _readdirCBInFlight, _callOnReaddirCB, callOnReaddirCB_fn, _asyncReaddirInFlight;
 var PathBase = class {
   constructor(name5, type = UNKNOWN, root, roots, nocase, children, opts) {
     __privateAdd(this, _resolveParts);
@@ -96612,13 +96652,34 @@ var PathBase = class {
     __privateAdd(this, _readdirAddNewChild);
     __privateAdd(this, _readdirMaybePromoteChild);
     __privateAdd(this, _readdirPromoteChild);
+    __privateAdd(this, _applyStat);
     __privateAdd(this, _callOnReaddirCB);
     __publicField(this, "name");
     __publicField(this, "root");
     __publicField(this, "roots");
     __publicField(this, "parent");
     __publicField(this, "nocase");
+    __privateAdd(this, _fs, void 0);
+    __privateAdd(this, _dev, void 0);
+    __privateAdd(this, _mode, void 0);
+    __privateAdd(this, _nlink, void 0);
+    __privateAdd(this, _uid, void 0);
+    __privateAdd(this, _gid, void 0);
+    __privateAdd(this, _rdev, void 0);
+    __privateAdd(this, _blksize, void 0);
+    __privateAdd(this, _ino, void 0);
+    __privateAdd(this, _size, void 0);
+    __privateAdd(this, _blocks, void 0);
+    __privateAdd(this, _atimeMs, void 0);
+    __privateAdd(this, _mtimeMs, void 0);
+    __privateAdd(this, _ctimeMs, void 0);
+    __privateAdd(this, _birthtimeMs, void 0);
+    __privateAdd(this, _atime, void 0);
+    __privateAdd(this, _mtime, void 0);
+    __privateAdd(this, _ctime, void 0);
+    __privateAdd(this, _birthtime, void 0);
     __privateAdd(this, _matchName, void 0);
+    __privateAdd(this, _depth, void 0);
     __privateAdd(this, _fullpath, void 0);
     __privateAdd(this, _relative, void 0);
     __privateAdd(this, _type, void 0);
@@ -96638,6 +96699,72 @@ var PathBase = class {
     __privateSet(this, _fullpath, opts.fullpath);
     __privateSet(this, _relative, opts.relative);
     this.parent = opts.parent;
+    if (this.parent) {
+      __privateSet(this, _fs, __privateGet(this.parent, _fs));
+    } else {
+      __privateSet(this, _fs, fsFromOption(opts.fs));
+    }
+  }
+  get dev() {
+    return __privateGet(this, _dev);
+  }
+  get mode() {
+    return __privateGet(this, _mode);
+  }
+  get nlink() {
+    return __privateGet(this, _nlink);
+  }
+  get uid() {
+    return __privateGet(this, _uid);
+  }
+  get gid() {
+    return __privateGet(this, _gid);
+  }
+  get rdev() {
+    return __privateGet(this, _rdev);
+  }
+  get blksize() {
+    return __privateGet(this, _blksize);
+  }
+  get ino() {
+    return __privateGet(this, _ino);
+  }
+  get size() {
+    return __privateGet(this, _size);
+  }
+  get blocks() {
+    return __privateGet(this, _blocks);
+  }
+  get atimeMs() {
+    return __privateGet(this, _atimeMs);
+  }
+  get mtimeMs() {
+    return __privateGet(this, _mtimeMs);
+  }
+  get ctimeMs() {
+    return __privateGet(this, _ctimeMs);
+  }
+  get birthtimeMs() {
+    return __privateGet(this, _birthtimeMs);
+  }
+  get atime() {
+    return __privateGet(this, _atime);
+  }
+  get mtime() {
+    return __privateGet(this, _mtime);
+  }
+  get ctime() {
+    return __privateGet(this, _ctime);
+  }
+  get birthtime() {
+    return __privateGet(this, _birthtime);
+  }
+  depth() {
+    if (__privateGet(this, _depth) !== void 0)
+      return __privateGet(this, _depth);
+    if (!this.parent)
+      return __privateSet(this, _depth, 0);
+    return __privateSet(this, _depth, this.parent.depth() + 1);
   }
   childrenCache() {
     return __privateGet(this, _children);
@@ -96679,9 +96806,11 @@ var PathBase = class {
     }
     const s = this.parent ? this.sep : "";
     const fullpath = __privateGet(this, _fullpath) ? __privateGet(this, _fullpath) + s + pathPart : void 0;
-    const pchild = this.newChild(pathPart, UNKNOWN, opts);
-    pchild.parent = this;
-    __privateSet(pchild, _fullpath, fullpath);
+    const pchild = this.newChild(pathPart, UNKNOWN, {
+      ...opts,
+      parent: this,
+      fullpath
+    });
     if (!this.canReaddir()) {
       __privateSet(pchild, _type, __privateGet(pchild, _type) | ENOENT);
     }
@@ -96780,7 +96909,7 @@ var PathBase = class {
       return void 0;
     }
     try {
-      const read = await readlink(this.fullpath());
+      const read = await __privateGet(this, _fs).promises.readlink(this.fullpath());
       const linkTarget = this.parent.resolve(read);
       if (linkTarget) {
         return __privateSet(this, _linkTarget, linkTarget);
@@ -96802,7 +96931,7 @@ var PathBase = class {
       return void 0;
     }
     try {
-      const read = readlinkSync(this.fullpath());
+      const read = __privateGet(this, _fs).readlinkSync(this.fullpath());
       const linkTarget = this.parent.resolve(read);
       if (linkTarget) {
         return __privateSet(this, _linkTarget, linkTarget);
@@ -96815,11 +96944,7 @@ var PathBase = class {
   async lstat() {
     if ((__privateGet(this, _type) & ENOENT) === 0) {
       try {
-        const ifmt = entToType(await lstat(this.fullpath()));
-        __privateSet(this, _type, __privateGet(this, _type) & IFMT_UNKNOWN | ifmt | LSTAT_CALLED);
-        if (ifmt !== UNKNOWN && ifmt !== IFDIR && ifmt !== IFLNK) {
-          __privateSet(this, _type, __privateGet(this, _type) | ENOTDIR);
-        }
+        __privateMethod(this, _applyStat, applyStat_fn).call(this, await __privateGet(this, _fs).promises.lstat(this.fullpath()));
         return this;
       } catch (er) {
         __privateMethod(this, _lstatFail, lstatFail_fn).call(this, er.code);
@@ -96829,11 +96954,7 @@ var PathBase = class {
   lstatSync() {
     if ((__privateGet(this, _type) & ENOENT) === 0) {
       try {
-        const ifmt = entToType(lstatSync2(this.fullpath()));
-        __privateSet(this, _type, __privateGet(this, _type) & IFMT_UNKNOWN | ifmt | LSTAT_CALLED);
-        if (ifmt !== UNKNOWN && ifmt !== IFDIR && ifmt !== IFLNK) {
-          __privateSet(this, _type, __privateGet(this, _type) | ENOTDIR);
-        }
+        __privateMethod(this, _applyStat, applyStat_fn).call(this, __privateGet(this, _fs).lstatSync(this.fullpath()));
         return this;
       } catch (er) {
         __privateMethod(this, _lstatFail, lstatFail_fn).call(this, er.code);
@@ -96863,7 +96984,7 @@ var PathBase = class {
     }
     __privateSet(this, _readdirCBInFlight, true);
     const fullpath = this.fullpath();
-    readdirCB(fullpath, { withFileTypes: true }, (er, entries) => {
+    __privateGet(this, _fs).readdir(fullpath, { withFileTypes: true }, (er, entries) => {
       if (er) {
         __privateMethod(this, _readdirFail, readdirFail_fn).call(this, er.code);
         children.provisional = 0;
@@ -96893,7 +97014,9 @@ var PathBase = class {
       };
       __privateSet(this, _asyncReaddirInFlight, new Promise((res) => resolve13 = res));
       try {
-        for (const e of await readdir(fullpath, { withFileTypes: true })) {
+        for (const e of await __privateGet(this, _fs).promises.readdir(fullpath, {
+          withFileTypes: true
+        })) {
           __privateMethod(this, _readdirAddChild, readdirAddChild_fn).call(this, e, children);
         }
         __privateMethod(this, _readdirSuccess, readdirSuccess_fn).call(this, children);
@@ -96916,7 +97039,9 @@ var PathBase = class {
     }
     const fullpath = this.fullpath();
     try {
-      for (const e of readdirSync4(fullpath, { withFileTypes: true })) {
+      for (const e of __privateGet(this, _fs).readdirSync(fullpath, {
+        withFileTypes: true
+      })) {
         __privateMethod(this, _readdirAddChild, readdirAddChild_fn).call(this, e, children);
       }
       __privateMethod(this, _readdirSuccess, readdirSuccess_fn).call(this, children);
@@ -96944,7 +97069,7 @@ var PathBase = class {
     if ((ENOREALPATH | ENOREADLINK | ENOENT) & __privateGet(this, _type))
       return void 0;
     try {
-      const rp = await realpath(this.fullpath());
+      const rp = await __privateGet(this, _fs).promises.realpath(this.fullpath());
       return __privateSet(this, _realpath, this.resolve(rp));
     } catch (_4) {
       __privateMethod(this, _markENOREALPATH, markENOREALPATH_fn).call(this);
@@ -96956,14 +97081,34 @@ var PathBase = class {
     if ((ENOREALPATH | ENOREADLINK | ENOENT) & __privateGet(this, _type))
       return void 0;
     try {
-      const rp = realpathSync(this.fullpath());
+      const rp = __privateGet(this, _fs).realpathSync(this.fullpath());
       return __privateSet(this, _realpath, this.resolve(rp));
     } catch (_4) {
       __privateMethod(this, _markENOREALPATH, markENOREALPATH_fn).call(this);
     }
   }
 };
+_fs = new WeakMap();
+_dev = new WeakMap();
+_mode = new WeakMap();
+_nlink = new WeakMap();
+_uid = new WeakMap();
+_gid = new WeakMap();
+_rdev = new WeakMap();
+_blksize = new WeakMap();
+_ino = new WeakMap();
+_size = new WeakMap();
+_blocks = new WeakMap();
+_atimeMs = new WeakMap();
+_mtimeMs = new WeakMap();
+_ctimeMs = new WeakMap();
+_birthtimeMs = new WeakMap();
+_atime = new WeakMap();
+_mtime = new WeakMap();
+_ctime = new WeakMap();
+_birthtime = new WeakMap();
 _matchName = new WeakMap();
+_depth = new WeakMap();
 _fullpath = new WeakMap();
 _relative = new WeakMap();
 _type = new WeakMap();
@@ -97095,6 +97240,33 @@ readdirPromoteChild_fn = function(e, p, index, c) {
   c.provisional++;
   return p;
 };
+_applyStat = new WeakSet();
+applyStat_fn = function(st) {
+  const { atime, atimeMs, birthtime, birthtimeMs, blksize, blocks, ctime, ctimeMs, dev, gid, ino, mode, mtime, mtimeMs, nlink, rdev, size, uid } = st;
+  __privateSet(this, _atime, atime);
+  __privateSet(this, _atimeMs, atimeMs);
+  __privateSet(this, _birthtime, birthtime);
+  __privateSet(this, _birthtimeMs, birthtimeMs);
+  __privateSet(this, _blksize, blksize);
+  __privateSet(this, _blocks, blocks);
+  __privateSet(this, _ctime, ctime);
+  __privateSet(this, _ctimeMs, ctimeMs);
+  __privateSet(this, _dev, dev);
+  __privateSet(this, _gid, gid);
+  __privateSet(this, _ino, ino);
+  __privateSet(this, _mode, mode);
+  __privateSet(this, _mtime, mtime);
+  __privateSet(this, _mtimeMs, mtimeMs);
+  __privateSet(this, _nlink, nlink);
+  __privateSet(this, _rdev, rdev);
+  __privateSet(this, _size, size);
+  __privateSet(this, _uid, uid);
+  const ifmt = entToType(st);
+  __privateSet(this, _type, __privateGet(this, _type) & IFMT_UNKNOWN | ifmt | LSTAT_CALLED);
+  if (ifmt !== UNKNOWN && ifmt !== IFDIR && ifmt !== IFLNK) {
+    __privateSet(this, _type, __privateGet(this, _type) | ENOTDIR);
+  }
+};
 _onReaddirCB = new WeakMap();
 _readdirCBInFlight = new WeakMap();
 _callOnReaddirCB = new WeakSet();
@@ -97150,9 +97322,9 @@ var PathPosix = class extends PathBase {
     return new PathPosix(name5, type, this.root, this.roots, this.nocase, this.childrenCache(), opts);
   }
 };
-var _resolveCache, _children2;
+var _resolveCache, _children2, _fs2;
 var PathScurryBase = class {
-  constructor(cwd = process.cwd(), pathImpl, sep3, { nocase, childrenCacheSize = 16 * 1024 } = {}) {
+  constructor(cwd = process.cwd(), pathImpl, sep3, { nocase, childrenCacheSize = 16 * 1024, fs: fs6 = defaultFS } = {}) {
     __publicField(this, "root");
     __publicField(this, "rootPath");
     __publicField(this, "roots");
@@ -97160,6 +97332,8 @@ var PathScurryBase = class {
     __privateAdd(this, _resolveCache, void 0);
     __privateAdd(this, _children2, void 0);
     __publicField(this, "nocase");
+    __privateAdd(this, _fs2, void 0);
+    __privateSet(this, _fs2, fsFromOption(fs6));
     if (cwd instanceof URL || cwd.startsWith("file://")) {
       cwd = fileURLToPath4(cwd);
     }
@@ -97176,7 +97350,7 @@ var PathScurryBase = class {
       throw new TypeError("must provide nocase setting to PathScurryBase ctor");
     }
     this.nocase = nocase;
-    this.root = this.newRoot();
+    this.root = this.newRoot(__privateGet(this, _fs2));
     this.roots[this.rootPath] = this.root;
     let prev = this.root;
     let len = split.length - 1;
@@ -97191,6 +97365,12 @@ var PathScurryBase = class {
       sawFirst = true;
     }
     this.cwd = prev;
+  }
+  depth(path7 = this.cwd) {
+    if (typeof path7 === "string") {
+      path7 = this.cwd.resolve(path7);
+    }
+    return path7.depth();
   }
   childrenCache() {
     return __privateGet(this, _children2);
@@ -97584,6 +97764,7 @@ var PathScurryBase = class {
 };
 _resolveCache = new WeakMap();
 _children2 = new WeakMap();
+_fs2 = new WeakMap();
 var PathScurryWin32 = class extends PathScurryBase {
   sep = "\\";
   constructor(cwd = process.cwd(), opts = {}) {
@@ -97597,8 +97778,8 @@ var PathScurryWin32 = class extends PathScurryBase {
   parseRootPath(dir) {
     return win32.parse(dir).root.toUpperCase();
   }
-  newRoot() {
-    return new PathWin32(this.rootPath, IFDIR, void 0, this.roots, this.nocase, this.childrenCache(), {});
+  newRoot(fs6) {
+    return new PathWin32(this.rootPath, IFDIR, void 0, this.roots, this.nocase, this.childrenCache(), { fs: fs6 });
   }
   isAbsolute(p) {
     return p.startsWith("/") || p.startsWith("\\") || /^[a-z]:(\/|\\)/i.test(p);
@@ -97614,8 +97795,8 @@ var PathScurryPosix = class extends PathScurryBase {
   parseRootPath(_dir) {
     return "/";
   }
-  newRoot() {
-    return new PathPosix(this.rootPath, IFDIR, void 0, this.roots, this.nocase, this.childrenCache(), {});
+  newRoot(fs6) {
+    return new PathPosix(this.rootPath, IFDIR, void 0, this.roots, this.nocase, this.childrenCache(), { fs: fs6 });
   }
   isAbsolute(p) {
     return p.startsWith("/");
@@ -98367,7 +98548,9 @@ var Ignore = class {
       noext,
       noglobstar,
       optimizationLevel: 2,
-      platform: platform3
+      platform: platform3,
+      nocomment: true,
+      nonegate: true
     };
     for (const ign of ignored) {
       const mm = new Minimatch2(ign, mmopts);
@@ -98658,6 +98841,7 @@ var GlobUtil = class {
     __privateAdd(this, _ignore, void 0);
     __privateAdd(this, _sep, void 0);
     __publicField(this, "signal");
+    __publicField(this, "maxDepth");
     this.patterns = patterns;
     this.path = path7;
     this.opts = opts;
@@ -98665,6 +98849,7 @@ var GlobUtil = class {
     if (opts.ignore) {
       __privateSet(this, _ignore, makeIgnore(opts.ignore, opts));
     }
+    this.maxDepth = opts.maxDepth || Infinity;
     if (opts.signal) {
       this.signal = opts.signal;
       this.signal.addEventListener("abort", () => {
@@ -98705,11 +98890,11 @@ var GlobUtil = class {
         return void 0;
       e = rpc;
     }
-    const needStat = e.isUnknown();
+    const needStat = e.isUnknown() || this.opts.stat;
     return this.matchCheckTest(needStat ? await e.lstat() : e, ifDir);
   }
   matchCheckTest(e, ifDir) {
-    return e && !__privateMethod(this, _ignored, ignored_fn).call(this, e) && (!ifDir || e.canReaddir()) && (!this.opts.nodir || !e.isDirectory()) ? e : void 0;
+    return e && (this.maxDepth === Infinity || e.depth() <= this.maxDepth) && (!ifDir || e.canReaddir()) && (!this.opts.nodir || !e.isDirectory()) && !__privateMethod(this, _ignored, ignored_fn).call(this, e) ? e : void 0;
   }
   matchCheckSync(e, ifDir) {
     if (ifDir && this.opts.nodir)
@@ -98721,7 +98906,7 @@ var GlobUtil = class {
         return void 0;
       e = rpc;
     }
-    const needStat = e.isUnknown();
+    const needStat = e.isUnknown() || this.opts.stat;
     return this.matchCheckTest(needStat ? e.lstatSync() : e, ifDir);
   }
   matchFinish(e, absolute) {
@@ -98779,6 +98964,9 @@ var GlobUtil = class {
       this.match(m, absolute, ifDir).then(() => next());
     }
     for (const t of processor.subwalkTargets()) {
+      if (this.maxDepth !== Infinity && t.depth() >= this.maxDepth) {
+        continue;
+      }
       tasks++;
       const childrenCached = t.readdirCached();
       if (t.calledReaddir())
@@ -98836,6 +99024,9 @@ var GlobUtil = class {
       this.matchSync(m, absolute, ifDir);
     }
     for (const t of processor.subwalkTargets()) {
+      if (this.maxDepth !== Infinity && t.depth() >= this.maxDepth) {
+        continue;
+      }
       tasks++;
       const children = t.readdirSync();
       this.walkCB3Sync(t, children, processor, next);
@@ -98866,13 +99057,13 @@ _ignore = new WeakMap();
 _sep = new WeakMap();
 _ignored = new WeakSet();
 ignored_fn = function(path7) {
-  var _a2;
-  return this.seen.has(path7) || !!((_a2 = __privateGet(this, _ignore)) == null ? void 0 : _a2.ignored(path7));
+  var _a2, _b2;
+  return this.seen.has(path7) || !!((_b2 = (_a2 = __privateGet(this, _ignore)) == null ? void 0 : _a2.ignored) == null ? void 0 : _b2.call(_a2, path7));
 };
 _childrenIgnored = new WeakSet();
 childrenIgnored_fn = function(path7) {
-  var _a2;
-  return !!((_a2 = __privateGet(this, _ignore)) == null ? void 0 : _a2.childrenIgnored(path7));
+  var _a2, _b2;
+  return !!((_b2 = (_a2 = __privateGet(this, _ignore)) == null ? void 0 : _a2.childrenIgnored) == null ? void 0 : _b2.call(_a2, path7));
 };
 var GlobWalker = class extends GlobUtil {
   matches;
@@ -98972,6 +99163,7 @@ var Glob = class {
   magicalBraces;
   mark;
   matchBase;
+  maxDepth;
   nobrace;
   nocase;
   nodir;
@@ -98981,6 +99173,7 @@ var Glob = class {
   platform;
   realpath;
   scurry;
+  stat;
   signal;
   windowsPathsNoEscape;
   withFileTypes;
@@ -99008,6 +99201,9 @@ var Glob = class {
     this.absolute = opts.absolute;
     this.noglobstar = !!opts.noglobstar;
     this.matchBase = !!opts.matchBase;
+    this.maxDepth = typeof opts.maxDepth === "number" ? opts.maxDepth : Infinity;
+    this.stat = !!opts.stat;
+    this.ignore = opts.ignore;
     if (this.withFileTypes && this.absolute !== void 0) {
       throw new Error("cannot set absolute and withFileTypes:true");
     }
@@ -99034,7 +99230,10 @@ var Glob = class {
       }
     } else {
       const Scurry = opts.platform === "win32" ? PathScurryWin32 : opts.platform === "darwin" ? PathScurryDarwin : opts.platform ? PathScurryPosix : PathScurry;
-      this.scurry = new Scurry(this.cwd, { nocase: opts.nocase });
+      this.scurry = new Scurry(this.cwd, {
+        nocase: opts.nocase,
+        fs: opts.fs
+      });
     }
     this.nocase = this.scurry.nocase;
     const mmo = {
@@ -99065,6 +99264,7 @@ var Glob = class {
     return [
       ...await new GlobWalker(this.patterns, this.scurry.cwd, {
         ...this.opts,
+        maxDepth: this.maxDepth !== Infinity ? this.maxDepth + this.scurry.cwd.depth() : Infinity,
         platform: this.platform,
         nocase: this.nocase
       }).walk()
@@ -99074,6 +99274,7 @@ var Glob = class {
     return [
       ...new GlobWalker(this.patterns, this.scurry.cwd, {
         ...this.opts,
+        maxDepth: this.maxDepth !== Infinity ? this.maxDepth + this.scurry.cwd.depth() : Infinity,
         platform: this.platform,
         nocase: this.nocase
       }).walkSync()
@@ -99082,6 +99283,7 @@ var Glob = class {
   stream() {
     return new GlobStream(this.patterns, this.scurry.cwd, {
       ...this.opts,
+      maxDepth: this.maxDepth !== Infinity ? this.maxDepth + this.scurry.cwd.depth() : Infinity,
       platform: this.platform,
       nocase: this.nocase
     }).stream();
@@ -99089,6 +99291,7 @@ var Glob = class {
   streamSync() {
     return new GlobStream(this.patterns, this.scurry.cwd, {
       ...this.opts,
+      maxDepth: this.maxDepth !== Infinity ? this.maxDepth + this.scurry.cwd.depth() : Infinity,
       platform: this.platform,
       nocase: this.nocase
     }).streamSync();
