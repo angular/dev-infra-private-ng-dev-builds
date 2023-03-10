@@ -21,6 +21,7 @@ import {
   assertValidFormatConfig,
   assertValidPullRequestConfig,
   computeLtsEndDateOfMajor,
+  convertVersionBranchToSemVer,
   exceptionalMinorPackageIndicator,
   fetch as fetch2,
   fetchLongTermSupportBranchesFromNpm,
@@ -55533,7 +55534,7 @@ var require_typos = __commonJS({
 // node_modules/read-installed/node_modules/normalize-package-data/lib/fixer.js
 var require_fixer = __commonJS({
   "node_modules/read-installed/node_modules/normalize-package-data/lib/fixer.js"(exports2, module2) {
-    var semver15 = require_semver2();
+    var semver16 = require_semver2();
     var validateLicense = require_validate_npm_package_license();
     var hostedGitInfo = require_hosted_git_info();
     var isBuiltinModule = require_resolve().isCore;
@@ -55712,10 +55713,10 @@ var require_fixer = __commonJS({
           data.version = "";
           return true;
         }
-        if (!semver15.valid(data.version, loose)) {
+        if (!semver16.valid(data.version, loose)) {
           throw new Error('Invalid version: "' + data.version + '"');
         }
-        data.version = semver15.clean(data.version, loose);
+        data.version = semver16.clean(data.version, loose);
         return true;
       },
       fixPeople: function(data) {
@@ -56898,7 +56899,7 @@ var require_read_installed = __commonJS({
     var fs6;
     var path7 = __require("path");
     var asyncMap = require_slide().asyncMap;
-    var semver15 = require_semver2();
+    var semver16 = require_semver2();
     var readJson = require_read_json();
     var url2 = __require("url");
     var util = __require("util");
@@ -56992,7 +56993,7 @@ var require_read_installed = __commonJS({
         if (reqver === ANY) {
           reqver = obj.version;
         }
-        if (reqver && semver15.validRange(reqver, true) && !semver15.satisfies(obj.version, reqver, true)) {
+        if (reqver && semver16.validRange(reqver, true) && !semver16.satisfies(obj.version, reqver, true)) {
           obj.invalid = true;
         }
         obj.extraneous = true;
@@ -57072,7 +57073,7 @@ var require_read_installed = __commonJS({
       }).forEach(function(d) {
         var found = findDep(obj, d);
         debug("finding dep %j", d, found && found.name || found);
-        if (typeof deps[d] === "string" && semver15.validRange(deps[d], true) && found && !semver15.satisfies(found.version, deps[d], true)) {
+        if (typeof deps[d] === "string" && semver16.validRange(deps[d], true) && found && !semver16.satisfies(found.version, deps[d], true)) {
           opts.log(
             "unmet dependency",
             obj.path + " requires " + d + "@'" + deps[d] + "' but will load\n" + found.path + ",\nwhich is version " + found.version
@@ -57100,7 +57101,7 @@ var require_read_installed = __commonJS({
         }
         if (!dependency) {
           obj.dependencies[d] = peerDeps[d];
-        } else if (!semver15.satisfies(dependency.version, peerDeps[d], true)) {
+        } else if (!semver16.satisfies(dependency.version, peerDeps[d], true)) {
           dependency.peerInvalid = true;
         }
       });
@@ -93570,8 +93571,41 @@ var MoveNextIntoReleaseCandidateAction = class extends BranchOffNextBranchBaseAc
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/tag-recent-major-as-latest.js
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/special/cut-lts-minor.js
 var import_semver17 = __toESM(require_semver());
+var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
+  async getDescription() {
+    return `SPECIAL: Cut a new release for an LTS minor.`;
+  }
+  async perform() {
+    const ltsBranch = await this._askForVersionBranch("Please specify the target LTS branch:");
+    const compareVersionForReleaseNotes = import_semver17.default.parse(await Prompt2.input("Compare version for release"));
+    const newVersion = import_semver17.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
+    const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, ltsBranch.branch);
+    await this.promptAndWaitForPullRequestMerged(pullRequest);
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.branch, getLtsNpmDistTagOfMajor(newVersion.major));
+    await this.cherryPickChangelogIntoNextBranch(releaseNotes, ltsBranch.branch);
+  }
+  async _askForVersionBranch(message) {
+    const branch = await Prompt2.input(message);
+    if (!isVersionBranch(branch)) {
+      Log.error("Invalid release branch specified.");
+      throw new FatalReleaseActionError();
+    }
+    const branchVersion = convertVersionBranchToSemVer(branch);
+    if (branchVersion === null) {
+      Log.error("Could not parse version branch.");
+      throw new FatalReleaseActionError();
+    }
+    return { branch, branchVersion };
+  }
+  static async isActive(_active) {
+    return process.env["NG_DEV_SPECIAL_RELEASE_ACTIONS"] === "1";
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/tag-recent-major-as-latest.js
+var import_semver18 = __toESM(require_semver());
 var TagRecentMajorAsLatest = class extends ReleaseAction {
   async getDescription() {
     return `Retag recently published major v${this.active.latest.version} as "latest" in NPM.`;
@@ -93599,7 +93633,7 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
       return false;
     }
     const packageInfo = await fetchProjectNpmPackageInfo(config);
-    const npmLatestVersion = import_semver17.default.parse(packageInfo["dist-tags"]["latest"]);
+    const npmLatestVersion = import_semver18.default.parse(packageInfo["dist-tags"]["latest"]);
     return npmLatestVersion !== null && npmLatestVersion.major === latest.version.major - 1;
   }
 };
@@ -93617,7 +93651,8 @@ var actions = [
   MoveNextIntoReleaseCandidateAction,
   ConfigureNextAsMajorAction,
   PrepareExceptionalMinorAction,
-  CutLongTermSupportPatchAction
+  CutLongTermSupportPatchAction,
+  SpecialCutLongTermSupportMinorAction
 ];
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/version-check.js
@@ -93626,7 +93661,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-5af3c8c995575f9586d44d04b80d755fda2550e7`;
+  const localVersion = `0.0.0-a9312d38d24c94636b7e135b58828c5732eb5212`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -93818,7 +93853,7 @@ var ReleasePublishCommandModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/npm-dist-tag/set/cli.js
-var import_semver18 = __toESM(require_semver());
+var import_semver19 = __toESM(require_semver());
 function builder23(args) {
   return args.positional("tagName", {
     type: "string",
@@ -93839,7 +93874,7 @@ async function handler25(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages, publishRegistry } = config.release;
-  const version5 = import_semver18.default.parse(rawVersion);
+  const version5 = import_semver19.default.parse(rawVersion);
   if (version5 === null) {
     Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
     process.exit(1);
@@ -93889,7 +93924,7 @@ import url from "url";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
-var import_semver19 = __toESM(require_semver());
+var import_semver20 = __toESM(require_semver());
 import { join as join13 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
@@ -93972,7 +94007,7 @@ function getVersionFromWorkspacePackageJson(git) {
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver19.default.SemVer(packageJson.version);
+  return new import_semver20.default.SemVer(packageJson.version);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/cli.js
