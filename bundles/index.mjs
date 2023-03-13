@@ -31,7 +31,7 @@ import {
   getLtsNpmDistTagOfMajor,
   getNextBranchName,
   getVersionInfoForBranch,
-  import_request_error,
+  isGithubApiError,
   isLtsDistTag,
   isVersionBranch,
   isVersionPublishedToNpm,
@@ -39,7 +39,7 @@ import {
   mergeLabels,
   priorityLabels,
   targetLabels
-} from "./chunk-KQDBZY5Z.mjs";
+} from "./chunk-H5YZ3UTY.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -61,7 +61,6 @@ import {
 } from "./chunk-WABVFAAA.mjs";
 import "./chunk-QS3TPNNO.mjs";
 import "./chunk-GZ4KLE6L.mjs";
-var export_GithubApiRequestError = import_request_error.RequestError;
 export {
   ActiveReleaseTrains,
   AuthenticatedGitClient,
@@ -71,7 +70,6 @@ export {
   DEFAULT_LOG_LEVEL,
   GitClient,
   GitCommandError,
-  export_GithubApiRequestError as GithubApiRequestError,
   GithubClient,
   Label,
   Log,
@@ -104,6 +102,7 @@ export {
   getUserConfig,
   getVersionInfoForBranch,
   green,
+  isGithubApiError,
   isLtsDistTag,
   isVersionBranch,
   isVersionPublishedToNpm,

@@ -32,7 +32,7 @@ import {
   getNextBranchName,
   getRepositoryGitUrl,
   getVersionInfoForBranch,
-  import_request_error,
+  isGithubApiError,
   isVersionBranch,
   isVersionPublishedToNpm,
   managedLabels,
@@ -46,7 +46,7 @@ import {
   require_tr46,
   require_wrappy,
   targetLabels
-} from "./chunk-KQDBZY5Z.mjs";
+} from "./chunk-H5YZ3UTY.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -90848,7 +90848,7 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
       mergeResponseMessage = result.data.message;
       targetSha = result.data.sha;
     } catch (e) {
-      if (e instanceof import_request_error.RequestError && (e.status === 403 || e.status === 404)) {
+      if (isGithubApiError(e) && (e.status === 403 || e.status === 404)) {
         throw new FatalMergeToolError("Insufficient Github API permissions to merge pull request.");
       }
       throw e;
@@ -91120,13 +91120,13 @@ async function mergePullRequest(prNumber, flags) {
       await tool.merge(prNumber, validationConfig);
       return true;
     } catch (e) {
-      if (e instanceof import_request_error.RequestError && e.status === 401) {
+      if (isGithubApiError(e) && e.status === 401) {
         Log.error("Github API request failed: " + bold(e.message));
         Log.error("Please ensure that your provided token is valid.");
         Log.warn(`You can generate a token here: ${GITHUB_TOKEN_GENERATE_URL}`);
         return false;
       }
-      if (e instanceof import_request_error.RequestError) {
+      if (isGithubApiError(e)) {
         Log.error("Github API request failed: " + bold(e.message));
         return false;
       }
@@ -92606,7 +92606,7 @@ async function promptToInitiatePullRequestMerge(git, { id, url: url2 }) {
       Log.error(`      ${data.message} (${status})`);
       Log.debug(data, status, headers);
     } catch (e) {
-      if (!(e instanceof import_request_error.RequestError)) {
+      if (!isGithubApiError(e)) {
         throw e;
       }
       Log.error(`  \u2718   Pull request #${id} could not be merged.`);
@@ -92620,7 +92620,7 @@ async function gracefulCheckIfPullRequestIsMerged(git, id) {
   try {
     return await isPullRequestMerged(git, id);
   } catch (e) {
-    if (e instanceof import_request_error.RequestError) {
+    if (isGithubApiError(e)) {
       Log.debug(`Unable to determine if pull request #${id} has been merged.`);
       Log.debug(e);
       return false;
@@ -92720,7 +92720,7 @@ var ReleaseAction = class {
       await this.git.github.repos.getBranch({ owner: repo.owner, repo: repo.name, branch: name5 });
       return true;
     } catch (e) {
-      if (e instanceof import_request_error.RequestError && e.status === 404) {
+      if (isGithubApiError(e) && e.status === 404) {
         return false;
       }
       throw e;
@@ -92845,7 +92845,7 @@ var ReleaseAction = class {
   async promptAndWaitForPullRequestMerged(pullRequest) {
     await promptToInitiatePullRequestMerge(this.git, pullRequest);
   }
-  async _createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, isPrerelease) {
+  async _createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, isPrerelease, showAsLatestOnGitHub) {
     const tagName = getReleaseTagForVersion(releaseNotes.version);
     await this.git.github.git.createRef({
       ...this.git.remoteParams,
@@ -92863,6 +92863,7 @@ var ReleaseAction = class {
       name: `v${releaseNotes.version}`,
       tag_name: tagName,
       prerelease: isPrerelease,
+      make_latest: showAsLatestOnGitHub ? "true" : "false",
       body: releaseBody
     });
     Log.info(green(`  \u2713   Created v${releaseNotes.version} release in Github.`));
@@ -92872,7 +92873,7 @@ var ReleaseAction = class {
     const urlFragment = await releaseNotes.getUrlFragmentForRelease();
     return `${baseUrl}#${urlFragment}`;
   }
-  async publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, publishBranch, npmDistTag) {
+  async publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, publishBranch, npmDistTag, additionalOptions) {
     const versionBumpCommitSha = await this.getLatestCommitOfBranch(publishBranch);
     if (!await this._isCommitForVersionStaging(releaseNotes.version, versionBumpCommitSha)) {
       Log.error(`  \u2718   Latest commit in "${publishBranch}" branch is not a staging commit.`);
@@ -92885,7 +92886,7 @@ var ReleaseAction = class {
       throw new FatalReleaseActionError();
     }
     await assertIntegrityOfBuiltPackages(builtPackagesWithInfo);
-    await this._createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, npmDistTag === "next");
+    await this._createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, npmDistTag === "next", additionalOptions.showAsLatestOnGitHub);
     for (const pkg of builtPackagesWithInfo) {
       await this._publishBuiltPackageToNpm(pkg, npmDistTag);
     }
@@ -92986,7 +92987,7 @@ var CutLongTermSupportPatchAction = class extends ReleaseAction {
     const compareVersionForReleaseNotes = ltsBranch.version;
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, ltsBranch.name);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.name, ltsBranch.npmDistTag);
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.name, ltsBranch.npmDistTag, { showAsLatestOnGitHub: false });
     await this.cherryPickChangelogIntoNextBranch(releaseNotes, ltsBranch.name);
   }
   async _promptForTargetLtsBranch() {
@@ -93038,7 +93039,7 @@ var CutNewPatchAction = class extends ReleaseAction {
     const compareVersionForReleaseNotes = this._previousVersion;
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branchName);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, "latest");
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, "latest", { showAsLatestOnGitHub: true });
     await this.cherryPickChangelogIntoNextBranch(releaseNotes, branchName);
   }
   static async isActive(_active) {
@@ -93064,7 +93065,7 @@ var CutPrereleaseBaseAction = class extends ReleaseAction {
     const compareVersionForReleaseNotes = await this.releaseNotesCompareVersion;
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branchName);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this.npmDistTag);
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this.npmDistTag, { showAsLatestOnGitHub: false });
     if (this.releaseTrain !== this.active.next) {
       await this.cherryPickChangelogIntoNextBranch(releaseNotes, branchName);
     }
@@ -93149,7 +93150,7 @@ var CutStableAction = class extends ReleaseAction {
     };
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, branchName, stagingOpts);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this._getNpmDistTag());
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this._getNpmDistTag(), { showAsLatestOnGitHub: true });
     if (this._train === this.active.exceptionalMinor) {
       await ExternalCommands.invokeDeleteNpmDistTag(this.projectDir, "do-not-use-exceptional-minor");
     }
@@ -93281,7 +93282,9 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
     await this._createNewVersionBranchFromNext(newBranch);
     const { pullRequest, releaseNotes, builtPackagesWithInfo } = await this.stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, newBranch);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, newBranch, "next");
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, newBranch, "next", {
+      showAsLatestOnGitHub: false
+    });
     const branchOffPullRequest = await this._createNextBranchUpdatePullRequest(releaseNotes, newVersion);
     await this.promptAndWaitForPullRequestMerged(branchOffPullRequest);
   }
@@ -93355,7 +93358,7 @@ var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
     const newVersion = import_semver17.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, ltsBranch.branch);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
-    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.branch, getLtsNpmDistTagOfMajor(newVersion.major));
+    await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.branch, getLtsNpmDistTagOfMajor(newVersion.major), { showAsLatestOnGitHub: false });
     await this.cherryPickChangelogIntoNextBranch(releaseNotes, ltsBranch.branch);
   }
   async _askForVersionBranch(message) {
@@ -93433,7 +93436,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-e1a1b7c62fd42e3e106f2588b2cd0b376984ad88`;
+  const localVersion = `0.0.0-1cad96e4af8a2003eb1e847f5edf3cbf90a39b0e`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

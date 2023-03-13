@@ -9,7 +9,6 @@ import type { OctokitOptions } from '@octokit/core/dist-types/types.js';
 import { RequestParameters } from '@octokit/types';
 import { RequestError } from '@octokit/request-error';
 import { query } from 'typed-graphqlify';
-export { RequestError as GithubApiRequestError };
 /**
  * An object representation of a Graphql Query to be used as a response type and
  * to generate a Graphql query string.
@@ -36080,3 +36079,5 @@ export declare class AuthenticatedGithubClient extends GithubClient {
     /** Perform a query using Github's Graphql API. */
     graphql<T extends GraphqlQueryObject>(queryObject: T, params?: RequestParameters): Promise<T>;
 }
+/** Whether the given object corresponds to an Octokit API request error.  */
+export declare function isGithubApiError(obj: unknown): obj is RequestError;
