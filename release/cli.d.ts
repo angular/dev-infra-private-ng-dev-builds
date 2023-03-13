@@ -7,4 +7,4 @@
  */
 import { Argv } from 'yargs';
 /** Build the parser for the release commands. */
-export declare function buildReleaseParser(localYargs: Argv): Argv<import("./notes/cli.js").Options>;
+export declare function buildReleaseParser(localYargs: Argv): Argv<{}>;

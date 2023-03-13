@@ -7,4 +7,4 @@
  */
 import { Argv } from 'yargs';
 /** Build the parser for the commit-message commands. */
-export declare function buildCommitMessageParser(localYargs: Argv): Argv<import("./validate-range/cli.js").ValidateRangeOptions>;
+export declare function buildCommitMessageParser(localYargs: Argv): Argv<{}>;

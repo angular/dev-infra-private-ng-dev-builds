@@ -7,4 +7,4 @@
  */
 import { Argv } from 'yargs';
 /** Build the parser for pull request commands. */
-export declare function buildPrParser(localYargs: Argv): Argv<import("./check-target-branches/cli.js").CheckTargetBranchesOptions>;
+export declare function buildPrParser(localYargs: Argv): Argv<{}>;

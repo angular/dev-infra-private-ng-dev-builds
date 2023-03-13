@@ -7,4 +7,4 @@
  */
 import { Argv } from 'yargs';
 /** CLI command module. */
-export declare function buildAuthParser(yargs: Argv): Argv<import("./logout/cli.js").Options>;
+export declare function buildAuthParser(yargs: Argv): Argv<{}>;

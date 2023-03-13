@@ -7,4 +7,4 @@
  */
 import { Argv } from 'yargs';
 /** Build the parser for the misc commands. */
-export declare function buildMiscParser(localYargs: Argv): Argv<import("./validate-licenses/cli.js").Options>;
+export declare function buildMiscParser(localYargs: Argv): Argv<{}>;

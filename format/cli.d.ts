@@ -7,4 +7,4 @@
  */
 import { Argv } from 'yargs';
 /** Build the parser for the format commands. */
-export declare function buildFormatParser(localYargs: Argv): Argv<import("./files.js").Options>;
+export declare function buildFormatParser(localYargs: Argv): Argv<{}>;
