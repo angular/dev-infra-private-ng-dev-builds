@@ -39,7 +39,7 @@ import {
   mergeLabels,
   priorityLabels,
   targetLabels
-} from "./chunk-H5YZ3UTY.mjs";
+} from "./chunk-2OJ4DW76.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -58,7 +58,7 @@ import {
   setConfig,
   underline,
   yellow
-} from "./chunk-WABVFAAA.mjs";
+} from "./chunk-32T4EYRM.mjs";
 import "./chunk-QS3TPNNO.mjs";
 import "./chunk-GZ4KLE6L.mjs";
 export {
@@ -118,7 +118,7 @@ export {
 };
 /**
  * @license
- * Copyright Google LLC All Rights Reserved.
+ * Copyright Google LLC
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license

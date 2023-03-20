@@ -46,7 +46,7 @@ import {
   require_tr46,
   require_wrappy,
   targetLabels
-} from "./chunk-H5YZ3UTY.mjs";
+} from "./chunk-2OJ4DW76.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -66,7 +66,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-WABVFAAA.mjs";
+} from "./chunk-32T4EYRM.mjs";
 import "./chunk-QS3TPNNO.mjs";
 import {
   __commonJS,
@@ -93436,7 +93436,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-5de6ccb3878f1274a532c3039f633ca22a7c2ee3`;
+  const localVersion = `0.0.0-462f716ef571b2b41fff90aaa5bb10897693efcc`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -98766,7 +98766,7 @@ runParserWithCompletedFunctions((yargs) => {
  */
 /**
  * @license
- * Copyright Google LLC All Rights Reserved.
+ * Copyright Google LLC
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license

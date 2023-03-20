@@ -5,7 +5,7 @@ const require = __cjsCompatRequire(import.meta.url);
 import {
   assertValidReleaseConfig,
   getConfig
-} from "../../chunk-WABVFAAA.mjs";
+} from "../../chunk-32T4EYRM.mjs";
 import "../../chunk-GZ4KLE6L.mjs";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/build/build-worker.js
@@ -24,7 +24,7 @@ async function main() {
 }
 /**
  * @license
- * Copyright Google LLC All Rights Reserved.
+ * Copyright Google LLC
  *
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
