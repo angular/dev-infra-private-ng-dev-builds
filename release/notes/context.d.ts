@@ -97,10 +97,6 @@ export declare class RenderContext {
      */
     bulletizeText(text: string): string;
     /**
-     * Returns unique, sorted and filtered commit authors.
-     */
-    commitAuthors(commits: CategorizedCommit[]): string[];
-    /**
      * Convert a commit object to a Markdown linked badged.
      */
     commitToBadge(commit: CategorizedCommit): string;
