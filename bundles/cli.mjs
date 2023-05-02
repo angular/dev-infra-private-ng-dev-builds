@@ -4133,7 +4133,9 @@ var require_AsapAction = __commonJS({
         var actions2 = scheduler.actions;
         if (id != null && ((_a2 = actions2[actions2.length - 1]) === null || _a2 === void 0 ? void 0 : _a2.id) !== id) {
           immediateProvider_1.immediateProvider.clearImmediate(id);
-          scheduler._scheduled = void 0;
+          if (scheduler._scheduled === id) {
+            scheduler._scheduled = void 0;
+          }
         }
         return void 0;
       };
@@ -10335,20 +10337,13 @@ var require_throttle = __commonJS({
   "node_modules/rxjs/dist/cjs/internal/operators/throttle.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.throttle = exports2.defaultThrottleConfig = void 0;
+    exports2.throttle = void 0;
     var lift_1 = require_lift();
     var OperatorSubscriber_1 = require_OperatorSubscriber();
     var innerFrom_1 = require_innerFrom();
-    exports2.defaultThrottleConfig = {
-      leading: true,
-      trailing: false
-    };
     function throttle(durationSelector, config) {
-      if (config === void 0) {
-        config = exports2.defaultThrottleConfig;
-      }
       return lift_1.operate(function(source, subscriber) {
-        var leading = config.leading, trailing = config.trailing;
+        var _a2 = config !== null && config !== void 0 ? config : {}, _b2 = _a2.leading, leading = _b2 === void 0 ? true : _b2, _c2 = _a2.trailing, trailing = _c2 === void 0 ? false : _c2;
         var hasValue = false;
         var sendValue = null;
         var throttled = null;
@@ -10403,9 +10398,6 @@ var require_throttleTime = __commonJS({
     function throttleTime(duration, scheduler, config) {
       if (scheduler === void 0) {
         scheduler = async_1.asyncScheduler;
-      }
-      if (config === void 0) {
-        config = throttle_1.defaultThrottleConfig;
       }
       var duration$ = timer_1.timer(duration, scheduler);
       return throttle_1.throttle(function() {
@@ -41722,7 +41714,11 @@ var require_lib3 = __commonJS({
       ];
       if (isWindows) {
         const pathExtExe = optPathExt || [".EXE", ".CMD", ".BAT", ".COM"].join(optDelimiter);
-        const pathExt = pathExtExe.split(optDelimiter);
+        const pathExt = pathExtExe.split(optDelimiter).reduce((acc, item) => {
+          acc.push(item);
+          acc.push(item.toLowerCase());
+          return acc;
+        }, []);
         if (cmd.includes(".") && pathExt[0] !== "") {
           pathExt.unshift("");
         }
@@ -93932,7 +93928,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-5a0500f80ed58d6cc494bc96786f4d0a6b63bbaf`;
+  const localVersion = `0.0.0-9704c5bd5204513c1be0b76e75bcb67d72216c96`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
