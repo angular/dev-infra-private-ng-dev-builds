@@ -39,7 +39,7 @@ import {
   mergeLabels,
   priorityLabels,
   targetLabels
-} from "./chunk-2OJ4DW76.mjs";
+} from "./chunk-4ZEPUWZP.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,

@@ -46,7 +46,7 @@ import {
   require_tr46,
   require_wrappy,
   targetLabels
-} from "./chunk-2OJ4DW76.mjs";
+} from "./chunk-4ZEPUWZP.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -33857,132 +33857,131 @@ var require_through = __commonJS({
   }
 });
 
-// node_modules/mute-stream/mute.js
-var require_mute = __commonJS({
-  "node_modules/mute-stream/mute.js"(exports2, module2) {
+// node_modules/inquirer/node_modules/mute-stream/lib/index.js
+var require_lib2 = __commonJS({
+  "node_modules/inquirer/node_modules/mute-stream/lib/index.js"(exports2, module2) {
     var Stream3 = __require("stream");
-    module2.exports = MuteStream2;
-    function MuteStream2(opts) {
-      Stream3.apply(this);
-      opts = opts || {};
-      this.writable = this.readable = true;
-      this.muted = false;
-      this.on("pipe", this._onpipe);
-      this.replace = opts.replace;
-      this._prompt = opts.prompt || null;
-      this._hadControl = false;
-    }
-    MuteStream2.prototype = Object.create(Stream3.prototype);
-    Object.defineProperty(MuteStream2.prototype, "constructor", {
-      value: MuteStream2,
-      enumerable: false
-    });
-    MuteStream2.prototype.mute = function() {
-      this.muted = true;
-    };
-    MuteStream2.prototype.unmute = function() {
-      this.muted = false;
-    };
-    Object.defineProperty(MuteStream2.prototype, "_onpipe", {
-      value: onPipe,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    });
-    function onPipe(src) {
-      this._src = src;
-    }
-    Object.defineProperty(MuteStream2.prototype, "isTTY", {
-      get: getIsTTY,
-      set: setIsTTY,
-      enumerable: true,
-      configurable: true
-    });
-    function getIsTTY() {
-      return this._dest ? this._dest.isTTY : this._src ? this._src.isTTY : false;
-    }
-    function setIsTTY(isTTY) {
-      Object.defineProperty(this, "isTTY", {
-        value: isTTY,
-        enumerable: true,
-        writable: true,
-        configurable: true
-      });
-    }
-    Object.defineProperty(MuteStream2.prototype, "rows", {
-      get: function() {
-        return this._dest ? this._dest.rows : this._src ? this._src.rows : void 0;
-      },
-      enumerable: true,
-      configurable: true
-    });
-    Object.defineProperty(MuteStream2.prototype, "columns", {
-      get: function() {
-        return this._dest ? this._dest.columns : this._src ? this._src.columns : void 0;
-      },
-      enumerable: true,
-      configurable: true
-    });
-    MuteStream2.prototype.pipe = function(dest, options) {
-      this._dest = dest;
-      return Stream3.prototype.pipe.call(this, dest, options);
-    };
-    MuteStream2.prototype.pause = function() {
-      if (this._src)
-        return this._src.pause();
-    };
-    MuteStream2.prototype.resume = function() {
-      if (this._src)
-        return this._src.resume();
-    };
-    MuteStream2.prototype.write = function(c) {
-      if (this.muted) {
-        if (!this.replace)
-          return true;
-        if (c.match(/^\u001b/)) {
-          if (c.indexOf(this._prompt) === 0) {
-            c = c.substr(this._prompt.length);
-            c = c.replace(/./g, this.replace);
-            c = this._prompt + c;
-          }
-          this._hadControl = true;
-          return this.emit("data", c);
-        } else {
-          if (this._prompt && this._hadControl && c.indexOf(this._prompt) === 0) {
-            this._hadControl = false;
-            this.emit("data", this._prompt);
-            c = c.substr(this._prompt.length);
-          }
-          c = c.toString().replace(/./g, this.replace);
+    var _isTTY, _destSrc, destSrc_fn, _proxy, proxy_fn;
+    var MuteStream2 = class extends Stream3 {
+      constructor(opts = {}) {
+        super(opts);
+        __privateAdd(this, _destSrc);
+        __privateAdd(this, _proxy);
+        __privateAdd(this, _isTTY, null);
+        this.writable = this.readable = true;
+        this.muted = false;
+        this.on("pipe", this._onpipe);
+        this.replace = opts.replace;
+        this._prompt = opts.prompt || null;
+        this._hadControl = false;
+      }
+      get isTTY() {
+        if (__privateGet(this, _isTTY) !== null) {
+          return __privateGet(this, _isTTY);
+        }
+        return __privateMethod(this, _destSrc, destSrc_fn).call(this, "isTTY", false);
+      }
+      set isTTY(val) {
+        __privateSet(this, _isTTY, val);
+      }
+      get rows() {
+        return __privateMethod(this, _destSrc, destSrc_fn).call(this, "rows");
+      }
+      get columns() {
+        return __privateMethod(this, _destSrc, destSrc_fn).call(this, "columns");
+      }
+      mute() {
+        this.muted = true;
+      }
+      unmute() {
+        this.muted = false;
+      }
+      _onpipe(src) {
+        this._src = src;
+      }
+      pipe(dest, options) {
+        this._dest = dest;
+        return super.pipe(dest, options);
+      }
+      pause() {
+        if (this._src) {
+          return this._src.pause();
         }
       }
-      this.emit("data", c);
-    };
-    MuteStream2.prototype.end = function(c) {
-      if (this.muted) {
-        if (c && this.replace) {
-          c = c.toString().replace(/./g, this.replace);
-        } else {
-          c = null;
+      resume() {
+        if (this._src) {
+          return this._src.resume();
         }
       }
-      if (c)
+      write(c) {
+        if (this.muted) {
+          if (!this.replace) {
+            return true;
+          }
+          if (c.match(/^\u001b/)) {
+            if (c.indexOf(this._prompt) === 0) {
+              c = c.slice(this._prompt.length);
+              c = c.replace(/./g, this.replace);
+              c = this._prompt + c;
+            }
+            this._hadControl = true;
+            return this.emit("data", c);
+          } else {
+            if (this._prompt && this._hadControl && c.indexOf(this._prompt) === 0) {
+              this._hadControl = false;
+              this.emit("data", this._prompt);
+              c = c.slice(this._prompt.length);
+            }
+            c = c.toString().replace(/./g, this.replace);
+          }
+        }
         this.emit("data", c);
-      this.emit("end");
+      }
+      end(c) {
+        if (this.muted) {
+          if (c && this.replace) {
+            c = c.toString().replace(/./g, this.replace);
+          } else {
+            c = null;
+          }
+        }
+        if (c) {
+          this.emit("data", c);
+        }
+        this.emit("end");
+      }
+      destroy(...args) {
+        return __privateMethod(this, _proxy, proxy_fn).call(this, "destroy", ...args);
+      }
+      destroySoon(...args) {
+        return __privateMethod(this, _proxy, proxy_fn).call(this, "destroySoon", ...args);
+      }
+      close(...args) {
+        return __privateMethod(this, _proxy, proxy_fn).call(this, "close", ...args);
+      }
     };
-    function proxy(fn) {
-      return function() {
-        var d = this._dest;
-        var s = this._src;
-        if (d && d[fn])
-          d[fn].apply(d, arguments);
-        if (s && s[fn])
-          s[fn].apply(s, arguments);
-      };
-    }
-    MuteStream2.prototype.destroy = proxy("destroy");
-    MuteStream2.prototype.destroySoon = proxy("destroySoon");
-    MuteStream2.prototype.close = proxy("close");
+    _isTTY = new WeakMap();
+    _destSrc = new WeakSet();
+    destSrc_fn = function(key, def) {
+      if (this._dest) {
+        return this._dest[key];
+      }
+      if (this._src) {
+        return this._src[key];
+      }
+      return def;
+    };
+    _proxy = new WeakSet();
+    proxy_fn = function(method, ...args) {
+      var _a2, _b2;
+      if (typeof ((_a2 = this._dest) == null ? void 0 : _a2[method]) === "function") {
+        this._dest[method](...args);
+      }
+      if (typeof ((_b2 = this._src) == null ? void 0 : _b2[method]) === "function") {
+        this._src[method](...args);
+      }
+    };
+    module2.exports = MuteStream2;
   }
 });
 
@@ -38420,6 +38419,9 @@ var require_parse = __commonJS({
           parseGroup(parent, rule);
           return;
         }
+        while (type.endsWith(".") || peek().startsWith(".")) {
+          type += next();
+        }
         if (!typeRefRe.test(type))
           throw illegal(type, "type");
         var name5 = next();
@@ -41701,7 +41703,7 @@ var require_isexe = __commonJS({
 });
 
 // node_modules/which/lib/index.js
-var require_lib2 = __commonJS({
+var require_lib3 = __commonJS({
   "node_modules/which/lib/index.js"(exports2, module2) {
     var isexe = require_isexe();
     var { join: join15, delimiter, sep: sep2, posix: posix2 } = __require("path");
@@ -59920,7 +59922,7 @@ var require_spdx_satisfies = __commonJS({
 });
 
 // node_modules/license-checker/lib/index.js
-var require_lib3 = __commonJS({
+var require_lib4 = __commonJS({
   "node_modules/license-checker/lib/index.js"(exports2) {
     var UNKNOWN2 = "UNKNOWN";
     var UNLICENSED = "UNLICENSED";
@@ -60531,7 +60533,7 @@ var require_spdx_satisfies2 = __commonJS({
 });
 
 // node_modules/@firebase/functions/node_modules/webidl-conversions/lib/index.js
-var require_lib4 = __commonJS({
+var require_lib5 = __commonJS({
   "node_modules/@firebase/functions/node_modules/webidl-conversions/lib/index.js"(exports2, module2) {
     "use strict";
     var conversions = {};
@@ -61939,7 +61941,7 @@ var require_URL_impl = __commonJS({
 var require_URL = __commonJS({
   "node_modules/@firebase/functions/node_modules/whatwg-url/lib/URL.js"(exports2, module2) {
     "use strict";
-    var conversions = require_lib4();
+    var conversions = require_lib5();
     var utils = require_utils();
     var Impl = require_URL_impl();
     var impl = utils.implSymbol;
@@ -62135,7 +62137,7 @@ var require_public_api2 = __commonJS({
 });
 
 // node_modules/@firebase/functions/node_modules/node-fetch/lib/index.js
-var require_lib5 = __commonJS({
+var require_lib6 = __commonJS({
   "node_modules/@firebase/functions/node_modules/node-fetch/lib/index.js"(exports2, module2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -63650,7 +63652,7 @@ var require_tslib = __commonJS({
 });
 
 // node_modules/@firebase/auth/node_modules/webidl-conversions/lib/index.js
-var require_lib6 = __commonJS({
+var require_lib7 = __commonJS({
   "node_modules/@firebase/auth/node_modules/webidl-conversions/lib/index.js"(exports2, module2) {
     "use strict";
     var conversions = {};
@@ -65058,7 +65060,7 @@ var require_URL_impl2 = __commonJS({
 var require_URL2 = __commonJS({
   "node_modules/@firebase/auth/node_modules/whatwg-url/lib/URL.js"(exports2, module2) {
     "use strict";
-    var conversions = require_lib6();
+    var conversions = require_lib7();
     var utils = require_utils2();
     var Impl = require_URL_impl2();
     var impl = utils.implSymbol;
@@ -65254,7 +65256,7 @@ var require_public_api3 = __commonJS({
 });
 
 // node_modules/@firebase/auth/node_modules/node-fetch/lib/index.js
-var require_lib7 = __commonJS({
+var require_lib8 = __commonJS({
   "node_modules/@firebase/auth/node_modules/node-fetch/lib/index.js"(exports2, module2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -75448,9 +75450,7 @@ var Completion = class {
         const negable = !!options.configuration["boolean-negation"] && options.boolean.includes(key);
         const isPositionalKey = positionalKeys.includes(key);
         if (!isPositionalKey && !options.hiddenOptions.includes(key) && !this.argsContainKey(args, key, negable)) {
-          this.completeOptionKey(key, completions, current);
-          if (negable && !!options.default[key])
-            this.completeOptionKey(`no-${key}`, completions, current);
+          this.completeOptionKey(key, completions, current, negable && !!options.default[key]);
         }
       });
     }
@@ -75526,22 +75526,25 @@ var Completion = class {
     }
     return false;
   }
-  completeOptionKey(key, completions, current) {
-    var _a2, _b2, _c2;
-    const descs = this.usage.getDescriptions();
-    const startsByTwoDashes = (s) => /^--/.test(s);
-    const isShortOption = (s) => /^[^0-9]$/.test(s);
-    const dashes = !startsByTwoDashes(current) && isShortOption(key) ? "-" : "--";
-    if (!this.zshShell) {
-      completions.push(dashes + key);
-    } else {
-      const aliasKey = (_a2 = this === null || this === void 0 ? void 0 : this.aliases) === null || _a2 === void 0 ? void 0 : _a2[key].find((alias3) => {
+  completeOptionKey(key, completions, current, negable) {
+    var _a2, _b2, _c2, _d;
+    let keyWithDesc = key;
+    if (this.zshShell) {
+      const descs = this.usage.getDescriptions();
+      const aliasKey = (_b2 = (_a2 = this === null || this === void 0 ? void 0 : this.aliases) === null || _a2 === void 0 ? void 0 : _a2[key]) === null || _b2 === void 0 ? void 0 : _b2.find((alias3) => {
         const desc2 = descs[alias3];
         return typeof desc2 === "string" && desc2.length > 0;
       });
       const descFromAlias = aliasKey ? descs[aliasKey] : void 0;
-      const desc = (_c2 = (_b2 = descs[key]) !== null && _b2 !== void 0 ? _b2 : descFromAlias) !== null && _c2 !== void 0 ? _c2 : "";
-      completions.push(dashes + `${key.replace(/:/g, "\\:")}:${desc.replace("__yargsString__:", "").replace(/(\r\n|\n|\r)/gm, " ")}`);
+      const desc = (_d = (_c2 = descs[key]) !== null && _c2 !== void 0 ? _c2 : descFromAlias) !== null && _d !== void 0 ? _d : "";
+      keyWithDesc = `${key.replace(/:/g, "\\:")}:${desc.replace("__yargsString__:", "").replace(/(\r\n|\n|\r)/gm, " ")}`;
+    }
+    const startsByTwoDashes = (s) => /^--/.test(s);
+    const isShortOption = (s) => /^[^0-9]$/.test(s);
+    const dashes = !startsByTwoDashes(current) && isShortOption(key) ? "-" : "--";
+    completions.push(dashes + keyWithDesc);
+    if (negable) {
+      completions.push(dashes + "no-" + keyWithDesc);
     }
   }
   customCompletion(args, argv, current, done) {
@@ -81488,7 +81491,8 @@ var Prompt = class {
       filteringText: "",
       when: () => true,
       suffix: "",
-      prefix: source_default.green("?")
+      prefix: source_default.green("?"),
+      transformer: (val) => val
     });
     if (!this.opt.name) {
       this.throwParamError("name");
@@ -81906,6 +81910,8 @@ var ConfirmPrompt = class extends Prompt {
     let message = this.getQuestion();
     if (typeof answer === "boolean") {
       message += source_default.cyan(answer ? "Yes" : "No");
+    } else if (answer) {
+      message += answer;
     } else {
       message += this.rl.line;
     }
@@ -81914,7 +81920,10 @@ var ConfirmPrompt = class extends Prompt {
   }
   onEnd(input) {
     this.status = "answered";
-    const output = this.opt.filter(input);
+    let output = this.opt.filter(input);
+    if (this.opt.transformer) {
+      output = this.opt.transformer(output);
+    }
     this.render(output);
     this.screen.done();
     this.done(output);
@@ -82519,7 +82528,7 @@ var EditorPrompt = class extends Prompt {
 var import_through = __toESM(require_through(), 1);
 
 // node_modules/inquirer/lib/ui/baseUI.js
-var import_mute_stream = __toESM(require_mute(), 1);
+var import_mute_stream = __toESM(require_lib2(), 1);
 import readline2 from "readline";
 var UI2 = class {
   constructor(opt) {
@@ -84935,7 +84944,7 @@ var Spinner = class {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/resolve-yarn-bin.js
-var import_which = __toESM(require_lib2());
+var import_which = __toESM(require_lib3());
 import * as fs2 from "fs";
 import * as path3 from "path";
 
@@ -85110,7 +85119,7 @@ var UpdateYarnCommandModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/validate-licenses/validate.js
-var import_license_checker = __toESM(require_lib3());
+var import_license_checker = __toESM(require_lib4());
 var import_spdx_satisfies = __toESM(require_spdx_satisfies2());
 var allowedLicenses = [
   "MIT",
@@ -86558,7 +86567,7 @@ function isObject(thing) {
 var MAX_VALUE_MILLIS2 = 4 * 60 * 60 * 1e3;
 CONSTANTS2.NODE_CLIENT = true;
 
-// node_modules/idb/build/wrap-idb-value.js
+// node_modules/@firebase/app/node_modules/idb/build/wrap-idb-value.js
 var instanceOfAny = (object, constructors) => constructors.some((c) => object instanceof c);
 var idbProxyableTypes;
 var cursorAdvanceMethods;
@@ -86701,22 +86710,28 @@ function wrap2(value) {
 }
 var unwrap = (value) => reverseTransformCache.get(value);
 
-// node_modules/idb/build/index.js
+// node_modules/@firebase/app/node_modules/idb/build/index.js
 function openDB(name5, version5, { blocked, upgrade, blocking, terminated } = {}) {
   const request = indexedDB.open(name5, version5);
   const openPromise = wrap2(request);
   if (upgrade) {
     request.addEventListener("upgradeneeded", (event) => {
-      upgrade(wrap2(request.result), event.oldVersion, event.newVersion, wrap2(request.transaction));
+      upgrade(wrap2(request.result), event.oldVersion, event.newVersion, wrap2(request.transaction), event);
     });
   }
-  if (blocked)
-    request.addEventListener("blocked", () => blocked());
+  if (blocked) {
+    request.addEventListener("blocked", (event) => blocked(
+      event.oldVersion,
+      event.newVersion,
+      event
+    ));
+  }
   openPromise.then((db) => {
     if (terminated)
       db.addEventListener("close", () => terminated());
-    if (blocking)
-      db.addEventListener("versionchange", () => blocking());
+    if (blocking) {
+      db.addEventListener("versionchange", (event) => blocking(event.oldVersion, event.newVersion, event));
+    }
   }).catch(() => {
   });
   return openPromise;
@@ -86777,7 +86792,7 @@ function isVersionServiceProvider(provider) {
   return (component === null || component === void 0 ? void 0 : component.type) === "VERSION";
 }
 var name$o = "@firebase/app";
-var version$1 = "0.9.4";
+var version$1 = "0.9.9";
 var logger = new Logger("@firebase/app");
 var name$n = "@firebase/app-compat";
 var name$m = "@firebase/analytics-compat";
@@ -86803,7 +86818,7 @@ var name$3 = "@firebase/storage-compat";
 var name$2 = "@firebase/firestore";
 var name$1 = "@firebase/firestore-compat";
 var name = "firebase";
-var version = "9.17.2";
+var version = "9.21.0";
 var DEFAULT_ENTRY_NAME2 = "[DEFAULT]";
 var PLATFORM_LOG_STRING = {
   [name$o]: "fire-core",
@@ -87199,7 +87214,7 @@ registerCoreComponents("");
 
 // node_modules/firebase/app/dist/index.mjs
 var name2 = "firebase";
-var version2 = "9.17.2";
+var version2 = "9.21.0";
 registerVersion(name2, version2, "app");
 
 // node_modules/@firebase/functions/node_modules/@firebase/util/dist/node-esm/index.node.esm.js
@@ -87483,7 +87498,7 @@ function getModularInstance(service) {
 CONSTANTS3.NODE_CLIENT = true;
 
 // node_modules/@firebase/functions/dist/esm-node/index.node.esm.js
-var import_node_fetch3 = __toESM(require_lib5(), 1);
+var import_node_fetch3 = __toESM(require_lib6(), 1);
 var LONG_TYPE = "type.googleapis.com/google.protobuf.Int64Value";
 var UNSIGNED_LONG_TYPE = "type.googleapis.com/google.protobuf.UInt64Value";
 function mapValues(o, f) {
@@ -88374,8 +88389,8 @@ var {
   __classPrivateFieldIn
 } = import_tslib.default;
 
-// node_modules/@firebase/auth/dist/node-esm/index-e01c0b19.js
-var fetchImpl = __toESM(require_lib7(), 1);
+// node_modules/@firebase/auth/dist/node-esm/totp-035c6eef.js
+var fetchImpl = __toESM(require_lib8(), 1);
 function _prodErrorMap() {
   return {
     ["dependent-sdk-initialized-before-auth"]: "Another Firebase SDK was initialized and is trying to use Auth before Auth is initialized. Please be sure to call `initializeAuth` or `getAuth` before starting any other Firebase SDK."
@@ -88384,6 +88399,11 @@ function _prodErrorMap() {
 var prodErrorMap = _prodErrorMap;
 var _DEFAULT_AUTH_ERROR_FACTORY = new ErrorFactory3("auth", "Firebase", _prodErrorMap());
 var logClient = new Logger("@firebase/auth");
+function _logWarn(msg, ...args) {
+  if (logClient.logLevel <= LogLevel.WARN) {
+    logClient.warn(`Auth (${SDK_VERSION}): ${msg}`, ...args);
+  }
+}
 function _logError(msg, ...args) {
   if (logClient.logLevel <= LogLevel.ERROR) {
     logClient.error(`Auth (${SDK_VERSION}): ${msg}`, ...args);
@@ -88427,40 +88447,6 @@ function debugAssert(assertion, message) {
   if (!assertion) {
     debugFail(message);
   }
-}
-var instanceCache = /* @__PURE__ */ new Map();
-function _getInstance(cls) {
-  debugAssert(cls instanceof Function, "Expected a class definition");
-  let instance = instanceCache.get(cls);
-  if (instance) {
-    debugAssert(instance instanceof cls, "Instance stored in cache mismatched with class");
-    return instance;
-  }
-  instance = new cls();
-  instanceCache.set(cls, instance);
-  return instance;
-}
-function initializeAuth(app, deps) {
-  const provider = _getProvider(app, "auth");
-  if (provider.isInitialized()) {
-    const auth2 = provider.getImmediate();
-    const initialOptions = provider.getOptions();
-    if (deepEqual2(initialOptions, deps !== null && deps !== void 0 ? deps : {})) {
-      return auth2;
-    } else {
-      _fail(auth2, "already-initialized");
-    }
-  }
-  const auth = provider.initialize({ options: deps });
-  return auth;
-}
-function _initializeAuthInstance(auth, deps) {
-  const persistence = (deps === null || deps === void 0 ? void 0 : deps.persistence) || [];
-  const hierarchy = (Array.isArray(persistence) ? persistence : [persistence]).map(_getInstance);
-  if (deps === null || deps === void 0 ? void 0 : deps.errorMap) {
-    auth._updateErrorMap(deps.errorMap);
-  }
-  auth._initializeWithPersistence(hierarchy, deps === null || deps === void 0 ? void 0 : deps.popupRedirectResolver);
 }
 function _isHttpOrHttps() {
   return _getCurrentScheme() === "http:" || _getCurrentScheme() === "https:";
@@ -88548,7 +88534,7 @@ var SERVER_ERROR_MAP = {
   ["INVALID_IDENTIFIER"]: "invalid-email",
   ["MISSING_CONTINUE_URI"]: "internal-error",
   ["INVALID_PASSWORD"]: "wrong-password",
-  ["MISSING_PASSWORD"]: "internal-error",
+  ["MISSING_PASSWORD"]: "missing-password",
   ["EMAIL_EXISTS"]: "email-already-in-use",
   ["PASSWORD_LOGIN_DISABLED"]: "operation-not-allowed",
   ["INVALID_IDP_RESPONSE"]: "invalid-credential",
@@ -88580,7 +88566,15 @@ var SERVER_ERROR_MAP = {
   ["MISSING_MFA_PENDING_CREDENTIAL"]: "missing-multi-factor-session",
   ["SECOND_FACTOR_EXISTS"]: "second-factor-already-in-use",
   ["SECOND_FACTOR_LIMIT_EXCEEDED"]: "maximum-second-factor-count-exceeded",
-  ["BLOCKING_FUNCTION_ERROR_RESPONSE"]: "internal-error"
+  ["BLOCKING_FUNCTION_ERROR_RESPONSE"]: "internal-error",
+  ["RECAPTCHA_NOT_ENABLED"]: "recaptcha-not-enabled",
+  ["MISSING_RECAPTCHA_TOKEN"]: "missing-recaptcha-token",
+  ["INVALID_RECAPTCHA_TOKEN"]: "invalid-recaptcha-token",
+  ["INVALID_RECAPTCHA_ACTION"]: "invalid-recaptcha-action",
+  ["MISSING_CLIENT_TYPE"]: "missing-client-type",
+  ["MISSING_RECAPTCHA_VERSION"]: "missing-recaptcha-version",
+  ["INVALID_RECAPTCHA_VERSION"]: "invalid-recaptcha-version",
+  ["INVALID_REQ_TYPE"]: "invalid-req-type"
 };
 var DEFAULT_API_TIMEOUT_MS = new Delay(3e4, 6e4);
 function _addTidIfNecessary(auth, request) {
@@ -88652,7 +88646,7 @@ async function _performFetchWithErrorHandling(auth, customErrorMap, fetchFn) {
     if (e instanceof FirebaseError3) {
       throw e;
     }
-    _fail(auth, "internal-error", { "message": String(e) });
+    _fail(auth, "network-request-failed", { "message": String(e) });
   }
 }
 async function _performSignInRequest(auth, method, path6, request, customErrorMap = {}) {
@@ -89070,7 +89064,9 @@ var UserImpl = class {
     this.stsTokenManager._assign(user.stsTokenManager);
   }
   _clone(auth) {
-    return new UserImpl(Object.assign(Object.assign({}, this), { auth, stsTokenManager: this.stsTokenManager._clone() }));
+    const newUser = new UserImpl(Object.assign(Object.assign({}, this), { auth, stsTokenManager: this.stsTokenManager._clone() }));
+    newUser.metadata._copy(this.metadata);
+    return newUser;
   }
   _onReload(callback) {
     _assert(!this.reloadListener, this.auth, "internal-error");
@@ -89193,6 +89189,18 @@ var UserImpl = class {
     return user;
   }
 };
+var instanceCache = /* @__PURE__ */ new Map();
+function _getInstance(cls) {
+  debugAssert(cls instanceof Function, "Expected a class definition");
+  let instance = instanceCache.get(cls);
+  if (instance) {
+    debugAssert(instance instanceof cls, "Instance stored in cache mismatched with class");
+    return instance;
+  }
+  instance = new cls();
+  instanceCache.set(cls, instance);
+  return instance;
+}
 var InMemoryPersistence = class {
   constructor() {
     this.type = "NONE";
@@ -89377,6 +89385,136 @@ function _getClientVersion(clientPlatform, frameworks = []) {
   const reportedFrameworks = frameworks.length ? frameworks.join(",") : "FirebaseCore-web";
   return `${reportedPlatform}/${"JsCore"}/${SDK_VERSION}/${reportedFrameworks}`;
 }
+async function getRecaptchaConfig(auth, request) {
+  return _performApiRequest(auth, "GET", "/v2/recaptchaConfig", _addTidIfNecessary(auth, request));
+}
+function isEnterprise(grecaptcha) {
+  return grecaptcha !== void 0 && grecaptcha.enterprise !== void 0;
+}
+var RecaptchaConfig = class {
+  constructor(response) {
+    this.siteKey = "";
+    this.emailPasswordEnabled = false;
+    if (response.recaptchaKey === void 0) {
+      throw new Error("recaptchaKey undefined");
+    }
+    this.siteKey = response.recaptchaKey.split("/")[3];
+    this.emailPasswordEnabled = response.recaptchaEnforcementState.some((enforcementState) => enforcementState.provider === "EMAIL_PASSWORD_PROVIDER" && enforcementState.enforcementState !== "OFF");
+  }
+};
+function getScriptParentElement() {
+  var _a2, _b2;
+  return (_b2 = (_a2 = document.getElementsByTagName("head")) === null || _a2 === void 0 ? void 0 : _a2[0]) !== null && _b2 !== void 0 ? _b2 : document;
+}
+function _loadJS(url2) {
+  return new Promise((resolve13, reject) => {
+    const el = document.createElement("script");
+    el.setAttribute("src", url2);
+    el.onload = resolve13;
+    el.onerror = (e) => {
+      const error = _createError("internal-error");
+      error.customData = e;
+      reject(error);
+    };
+    el.type = "text/javascript";
+    el.charset = "UTF-8";
+    getScriptParentElement().appendChild(el);
+  });
+}
+var RECAPTCHA_ENTERPRISE_URL = "https://www.google.com/recaptcha/enterprise.js?render=";
+var RECAPTCHA_ENTERPRISE_VERIFIER_TYPE = "recaptcha-enterprise";
+var FAKE_TOKEN = "NO_RECAPTCHA";
+var RecaptchaEnterpriseVerifier = class {
+  constructor(authExtern) {
+    this.type = RECAPTCHA_ENTERPRISE_VERIFIER_TYPE;
+    this.auth = _castAuth(authExtern);
+  }
+  async verify(action = "verify", forceRefresh = false) {
+    async function retrieveSiteKey(auth) {
+      if (!forceRefresh) {
+        if (auth.tenantId == null && auth._agentRecaptchaConfig != null) {
+          return auth._agentRecaptchaConfig.siteKey;
+        }
+        if (auth.tenantId != null && auth._tenantRecaptchaConfigs[auth.tenantId] !== void 0) {
+          return auth._tenantRecaptchaConfigs[auth.tenantId].siteKey;
+        }
+      }
+      return new Promise(async (resolve13, reject) => {
+        getRecaptchaConfig(auth, {
+          clientType: "CLIENT_TYPE_WEB",
+          version: "RECAPTCHA_ENTERPRISE"
+        }).then((response) => {
+          if (response.recaptchaKey === void 0) {
+            reject(new Error("recaptcha Enterprise site key undefined"));
+          } else {
+            const config = new RecaptchaConfig(response);
+            if (auth.tenantId == null) {
+              auth._agentRecaptchaConfig = config;
+            } else {
+              auth._tenantRecaptchaConfigs[auth.tenantId] = config;
+            }
+            return resolve13(config.siteKey);
+          }
+        }).catch((error) => {
+          reject(error);
+        });
+      });
+    }
+    function retrieveRecaptchaToken(siteKey, resolve13, reject) {
+      const grecaptcha = window.grecaptcha;
+      if (isEnterprise(grecaptcha)) {
+        grecaptcha.enterprise.ready(() => {
+          grecaptcha.enterprise.execute(siteKey, { action }).then((token) => {
+            resolve13(token);
+          }).catch(() => {
+            resolve13(FAKE_TOKEN);
+          });
+        });
+      } else {
+        reject(Error("No reCAPTCHA enterprise script loaded."));
+      }
+    }
+    return new Promise((resolve13, reject) => {
+      retrieveSiteKey(this.auth).then((siteKey) => {
+        if (!forceRefresh && isEnterprise(window.grecaptcha)) {
+          retrieveRecaptchaToken(siteKey, resolve13, reject);
+        } else {
+          if (typeof window === "undefined") {
+            reject(new Error("RecaptchaVerifier is only supported in browser"));
+            return;
+          }
+          _loadJS(RECAPTCHA_ENTERPRISE_URL + siteKey).then(() => {
+            retrieveRecaptchaToken(siteKey, resolve13, reject);
+          }).catch((error) => {
+            reject(error);
+          });
+        }
+      }).catch((error) => {
+        reject(error);
+      });
+    });
+  }
+};
+async function injectRecaptchaFields(auth, request, action, captchaResp = false) {
+  const verifier = new RecaptchaEnterpriseVerifier(auth);
+  let captchaResponse;
+  try {
+    captchaResponse = await verifier.verify(action);
+  } catch (error) {
+    captchaResponse = await verifier.verify(action, true);
+  }
+  const newRequest = Object.assign({}, request);
+  if (!captchaResp) {
+    Object.assign(newRequest, { captchaResponse });
+  } else {
+    Object.assign(newRequest, { "captchaResp": captchaResponse });
+  }
+  Object.assign(newRequest, { "clientType": "CLIENT_TYPE_WEB" });
+  Object.assign(newRequest, {
+    "recaptchaVersion": "RECAPTCHA_ENTERPRISE"
+  });
+  return newRequest;
+}
 var AuthMiddlewareQueue = class {
   constructor(auth) {
     this.auth = auth;
@@ -89425,9 +89563,10 @@ var AuthMiddlewareQueue = class {
   }
 };
 var AuthImpl = class {
-  constructor(app, heartbeatServiceProvider, config) {
+  constructor(app, heartbeatServiceProvider, appCheckServiceProvider, config) {
     this.app = app;
     this.heartbeatServiceProvider = heartbeatServiceProvider;
+    this.appCheckServiceProvider = appCheckServiceProvider;
     this.config = config;
     this.currentUser = null;
     this.emulatorConfig = null;
@@ -89443,6 +89582,8 @@ var AuthImpl = class {
     this._initializationPromise = null;
     this._popupRedirectResolver = null;
     this._errorFactory = _DEFAULT_AUTH_ERROR_FACTORY;
+    this._agentRecaptchaConfig = null;
+    this._tenantRecaptchaConfigs = {};
     this.lastNotifiedUid = void 0;
     this.languageCode = null;
     this.tenantId = null;
@@ -89592,6 +89733,29 @@ var AuthImpl = class {
     return this.queue(async () => {
       await this.assertedPersistence.setPersistence(_getInstance(persistence));
     });
+  }
+  async initializeRecaptchaConfig() {
+    const response = await getRecaptchaConfig(this, {
+      clientType: "CLIENT_TYPE_WEB",
+      version: "RECAPTCHA_ENTERPRISE"
+    });
+    const config = new RecaptchaConfig(response);
+    if (this.tenantId == null) {
+      this._agentRecaptchaConfig = config;
+    } else {
+      this._tenantRecaptchaConfigs[this.tenantId] = config;
+    }
+    if (config.emailPasswordEnabled) {
+      const verifier = new RecaptchaEnterpriseVerifier(this);
+      void verifier.verify();
+    }
+  }
+  _getRecaptchaConfig() {
+    if (this.tenantId == null) {
+      return this._agentRecaptchaConfig;
+    } else {
+      return this._tenantRecaptchaConfigs[this.tenantId];
+    }
   }
   _getPersistence() {
     return this.assertedPersistence.persistence.type;
@@ -89746,7 +89910,19 @@ var AuthImpl = class {
     if (heartbeatsHeader) {
       headers["X-Firebase-Client"] = heartbeatsHeader;
     }
+    const appCheckToken = await this._getAppCheckToken();
+    if (appCheckToken) {
+      headers["X-Firebase-AppCheck"] = appCheckToken;
+    }
     return headers;
+  }
+  async _getAppCheckToken() {
+    var _a2;
+    const appCheckTokenResult = await ((_a2 = this.appCheckServiceProvider.getImmediate({ optional: true })) === null || _a2 === void 0 ? void 0 : _a2.getToken());
+    if (appCheckTokenResult === null || appCheckTokenResult === void 0 ? void 0 : appCheckTokenResult.error) {
+      _logWarn(`Error while retrieving App Check token: ${appCheckTokenResult.error}`);
+    }
+    return appCheckTokenResult === null || appCheckTokenResult === void 0 ? void 0 : appCheckTokenResult.token;
   }
 };
 function _castAuth(auth) {
@@ -89763,6 +89939,28 @@ var Subscription = class {
     return this.observer.next.bind(this.observer);
   }
 };
+function initializeAuth(app, deps) {
+  const provider = _getProvider(app, "auth");
+  if (provider.isInitialized()) {
+    const auth2 = provider.getImmediate();
+    const initialOptions = provider.getOptions();
+    if (deepEqual2(initialOptions, deps !== null && deps !== void 0 ? deps : {})) {
+      return auth2;
+    } else {
+      _fail(auth2, "already-initialized");
+    }
+  }
+  const auth = provider.initialize({ options: deps });
+  return auth;
+}
+function _initializeAuthInstance(auth, deps) {
+  const persistence = (deps === null || deps === void 0 ? void 0 : deps.persistence) || [];
+  const hierarchy = (Array.isArray(persistence) ? persistence : [persistence]).map(_getInstance);
+  if (deps === null || deps === void 0 ? void 0 : deps.errorMap) {
+    auth._updateErrorMap(deps.errorMap);
+  }
+  auth._initializeWithPersistence(hierarchy, deps === null || deps === void 0 ? void 0 : deps.popupRedirectResolver);
+}
 function connectAuthEmulator(auth, url2, options) {
   const authInternal = _castAuth(auth);
   _assert(authInternal._canInitEmulator, authInternal, "emulator-config-failed");
@@ -89905,13 +90103,29 @@ var EmailAuthCredential = class extends AuthCredential {
     return null;
   }
   async _getIdTokenResponse(auth) {
+    var _a2;
     switch (this.signInMethod) {
       case "password":
-        return signInWithPassword(auth, {
+        const request = {
           returnSecureToken: true,
           email: this._email,
-          password: this._password
-        });
+          password: this._password,
+          clientType: "CLIENT_TYPE_WEB"
+        };
+        if ((_a2 = auth._getRecaptchaConfig()) === null || _a2 === void 0 ? void 0 : _a2.emailPasswordEnabled) {
+          const requestWithRecaptcha = await injectRecaptchaFields(auth, request, "signInWithPassword");
+          return signInWithPassword(auth, requestWithRecaptcha);
+        } else {
+          return signInWithPassword(auth, request).catch(async (error) => {
+            if (error.code === `auth/${"missing-recaptcha-token"}`) {
+              console.log("Sign-in with email address and password is protected by reCAPTCHA for this project. Automatically triggering the reCAPTCHA flow and restarting the sign-in flow.");
+              const requestWithRecaptcha = await injectRecaptchaFields(auth, request, "signInWithPassword");
+              return signInWithPassword(auth, requestWithRecaptcha);
+            } else {
+              return Promise.reject(error);
+            }
+          });
+        }
       case "emailLink":
         return signInWithEmailLink$1(auth, {
           email: this._email,
@@ -90371,8 +90585,14 @@ async function linkWithCredential(user, credential) {
   await _assertLinkedStatus(false, userInternal, credential.providerId);
   return _link(userInternal, credential);
 }
+function startEnrollTotpMfa(auth, request) {
+  return _performApiRequest(auth, "POST", "/v2/accounts/mfaEnrollment:start", _addTidIfNecessary(auth, request));
+}
+function finalizeEnrollTotpMfa(auth, request) {
+  return _performApiRequest(auth, "POST", "/v2/accounts/mfaEnrollment:finalize", _addTidIfNecessary(auth, request));
+}
 var name4 = "@firebase/auth";
-var version4 = "0.21.4";
+var version4 = "0.23.1";
 var AuthInterop = class {
   constructor(auth) {
     this.auth = auth;
@@ -90442,25 +90662,24 @@ function registerAuth(clientPlatform) {
   _registerComponent(new Component("auth", (container, { options: deps }) => {
     const app = container.getProvider("app").getImmediate();
     const heartbeatServiceProvider = container.getProvider("heartbeat");
+    const appCheckServiceProvider = container.getProvider("app-check-internal");
     const { apiKey, authDomain } = app.options;
-    return ((app2, heartbeatServiceProvider2) => {
-      _assert(apiKey && !apiKey.includes(":"), "invalid-api-key", { appName: app2.name });
-      _assert(!(authDomain === null || authDomain === void 0 ? void 0 : authDomain.includes(":")), "argument-error", {
-        appName: app2.name
-      });
-      const config = {
-        apiKey,
-        authDomain,
-        clientPlatform,
-        apiHost: "identitytoolkit.googleapis.com",
-        tokenApiHost: "securetoken.googleapis.com",
-        apiScheme: "https",
-        sdkClientVersion: _getClientVersion(clientPlatform)
-      };
-      const authInstance = new AuthImpl(app2, heartbeatServiceProvider2, config);
-      _initializeAuthInstance(authInstance, deps);
-      return authInstance;
-    })(app, heartbeatServiceProvider);
+    _assert(apiKey && !apiKey.includes(":"), "invalid-api-key", { appName: app.name });
+    _assert(!(authDomain === null || authDomain === void 0 ? void 0 : authDomain.includes(":")), "argument-error", {
+      appName: app.name
+    });
+    const config = {
+      apiKey,
+      authDomain,
+      clientPlatform,
+      apiHost: "identitytoolkit.googleapis.com",
+      tokenApiHost: "securetoken.googleapis.com",
+      apiScheme: "https",
+      sdkClientVersion: _getClientVersion(clientPlatform)
+    };
+    const authInstance = new AuthImpl(app, heartbeatServiceProvider, appCheckServiceProvider, config);
+    _initializeAuthInstance(authInstance, deps);
+    return authInstance;
   }, "PUBLIC").setInstantiationMode("EXPLICIT").setInstanceCreatedCallback((container, _instanceIdentifier, _instance) => {
     const authInternalProvider = container.getProvider("auth-internal");
     authInternalProvider.initialize();
@@ -90489,9 +90708,112 @@ registerAuth("Node");
 var NOT_AVAILABLE_ERROR = _createError("operation-not-supported-in-this-environment");
 AuthImpl.prototype.setPersistence = async () => {
 };
+function finalizeSignInTotpMfa(auth, request) {
+  return _performApiRequest(auth, "POST", "/v2/accounts/mfaSignIn:finalize", _addTidIfNecessary(auth, request));
+}
+var MultiFactorAssertionImpl = class {
+  constructor(factorId) {
+    this.factorId = factorId;
+  }
+  _process(auth, session, displayName) {
+    switch (session.type) {
+      case "enroll":
+        return this._finalizeEnroll(auth, session.credential, displayName);
+      case "signin":
+        return this._finalizeSignIn(auth, session.credential);
+      default:
+        return debugFail("unexpected MultiFactorSessionType");
+    }
+  }
+};
+var TotpMultiFactorGenerator = class {
+  static assertionForEnrollment(secret, oneTimePassword) {
+    return TotpMultiFactorAssertionImpl._fromSecret(secret, oneTimePassword);
+  }
+  static assertionForSignIn(enrollmentId, oneTimePassword) {
+    return TotpMultiFactorAssertionImpl._fromEnrollmentId(enrollmentId, oneTimePassword);
+  }
+  static async generateSecret(session) {
+    const mfaSession = session;
+    _assert(typeof mfaSession.auth !== "undefined", "internal-error");
+    const response = await startEnrollTotpMfa(mfaSession.auth, {
+      idToken: mfaSession.credential,
+      totpEnrollmentInfo: {}
+    });
+    return TotpSecret._fromStartTotpMfaEnrollmentResponse(response, mfaSession.auth);
+  }
+};
+TotpMultiFactorGenerator.FACTOR_ID = "totp";
+var TotpMultiFactorAssertionImpl = class extends MultiFactorAssertionImpl {
+  constructor(otp, enrollmentId, secret) {
+    super("totp");
+    this.otp = otp;
+    this.enrollmentId = enrollmentId;
+    this.secret = secret;
+  }
+  static _fromSecret(secret, otp) {
+    return new TotpMultiFactorAssertionImpl(otp, void 0, secret);
+  }
+  static _fromEnrollmentId(enrollmentId, otp) {
+    return new TotpMultiFactorAssertionImpl(otp, enrollmentId);
+  }
+  async _finalizeEnroll(auth, idToken, displayName) {
+    _assert(typeof this.secret !== "undefined", auth, "argument-error");
+    return finalizeEnrollTotpMfa(auth, {
+      idToken,
+      displayName,
+      totpVerificationInfo: this.secret._makeTotpVerificationInfo(this.otp)
+    });
+  }
+  async _finalizeSignIn(auth, mfaPendingCredential) {
+    _assert(this.enrollmentId !== void 0 && this.otp !== void 0, auth, "argument-error");
+    const totpVerificationInfo = { verificationCode: this.otp };
+    return finalizeSignInTotpMfa(auth, {
+      mfaPendingCredential,
+      mfaEnrollmentId: this.enrollmentId,
+      totpVerificationInfo
+    });
+  }
+};
+var TotpSecret = class {
+  constructor(secretKey, hashingAlgorithm, codeLength, codeIntervalSeconds, enrollmentCompletionDeadline, sessionInfo, auth) {
+    this.sessionInfo = sessionInfo;
+    this.auth = auth;
+    this.secretKey = secretKey;
+    this.hashingAlgorithm = hashingAlgorithm;
+    this.codeLength = codeLength;
+    this.codeIntervalSeconds = codeIntervalSeconds;
+    this.enrollmentCompletionDeadline = enrollmentCompletionDeadline;
+  }
+  static _fromStartTotpMfaEnrollmentResponse(response, auth) {
+    return new TotpSecret(response.totpSessionInfo.sharedSecretKey, response.totpSessionInfo.hashingAlgorithm, response.totpSessionInfo.verificationCodeLength, response.totpSessionInfo.periodSec, new Date(response.totpSessionInfo.finalizeEnrollmentTime).toUTCString(), response.totpSessionInfo.sessionInfo, auth);
+  }
+  _makeTotpVerificationInfo(otp) {
+    return { sessionInfo: this.sessionInfo, verificationCode: otp };
+  }
+  generateQrCodeUrl(accountName, issuer) {
+    var _a2;
+    let useDefaults = false;
+    if (_isEmptyString(accountName) || _isEmptyString(issuer)) {
+      useDefaults = true;
+    }
+    if (useDefaults) {
+      if (_isEmptyString(accountName)) {
+        accountName = ((_a2 = this.auth.currentUser) === null || _a2 === void 0 ? void 0 : _a2.email) || "unknownuser";
+      }
+      if (_isEmptyString(issuer)) {
+        issuer = this.auth.name;
+      }
+    }
+    return `otpauth://totp/${issuer}:${accountName}?secret=${this.secretKey}&issuer=${issuer}&algorithm=${this.hashingAlgorithm}&digits=${this.codeLength}`;
+  }
+};
+function _isEmptyString(input) {
+  return typeof input === "undefined" || (input === null || input === void 0 ? void 0 : input.length) === 0;
+}
 
 // node_modules/@firebase/auth/dist/node-esm/index.js
-var import_node_fetch4 = __toESM(require_lib7(), 1);
+var import_node_fetch4 = __toESM(require_lib8(), 1);
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/shared/ng-dev-token.js
 import { mkdir, readFile, stat, writeFile as writeFile2 } from "fs/promises";
@@ -92248,7 +92570,10 @@ var Changelog = class {
   }
   removePrereleaseEntriesForVersion(version5) {
     this._entries = this.entries.filter((entry) => {
-      return import_semver2.default.diff(entry.version, version5) !== "prerelease";
+      if (entry.version.prerelease.length !== 0) {
+        return version5.major !== entry.version.major || version5.minor !== entry.version.minor || version5.patch !== entry.version.patch;
+      }
+      return true;
     });
     this.writeToChangelogFile();
   }
@@ -93607,7 +93932,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-863fb8e15c90a41b3772c510d9a10fcd02de60bf`;
+  const localVersion = `0.0.0-5a0500f80ed58d6cc494bc96786f4d0a6b63bbaf`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -95783,7 +96108,7 @@ var ChildrenCache = class extends LRUCache {
     });
   }
 };
-var _fs, _dev, _mode, _nlink, _uid, _gid, _rdev, _blksize, _ino, _size2, _blocks, _atimeMs, _mtimeMs, _ctimeMs, _birthtimeMs, _atime, _mtime, _ctime, _birthtime, _matchName, _depth, _fullpath, _relative, _type, _children, _linkTarget, _realpath, _resolveParts, resolveParts_fn, _readdirSuccess, readdirSuccess_fn, _markENOENT, markENOENT_fn, _markChildrenENOENT, markChildrenENOENT_fn, _markENOREALPATH, markENOREALPATH_fn, _markENOTDIR, markENOTDIR_fn, _readdirFail, readdirFail_fn, _lstatFail, lstatFail_fn, _readlinkFail, readlinkFail_fn, _readdirAddChild, readdirAddChild_fn, _readdirAddNewChild, readdirAddNewChild_fn, _readdirMaybePromoteChild, readdirMaybePromoteChild_fn, _readdirPromoteChild, readdirPromoteChild_fn, _applyStat, applyStat_fn, _onReaddirCB, _readdirCBInFlight, _callOnReaddirCB, callOnReaddirCB_fn, _asyncReaddirInFlight;
+var _fs, _dev, _mode, _nlink, _uid, _gid, _rdev, _blksize, _ino, _size2, _blocks, _atimeMs, _mtimeMs, _ctimeMs, _birthtimeMs, _atime, _mtime, _ctime, _birthtime, _matchName, _depth, _fullpath, _fullpathPosix, _relative, _relativePosix, _type, _children, _linkTarget, _realpath, _resolveParts, resolveParts_fn, _readdirSuccess, readdirSuccess_fn, _markENOENT, markENOENT_fn, _markChildrenENOENT, markChildrenENOENT_fn, _markENOREALPATH, markENOREALPATH_fn, _markENOTDIR, markENOTDIR_fn, _readdirFail, readdirFail_fn, _lstatFail, lstatFail_fn, _readlinkFail, readlinkFail_fn, _readdirAddChild, readdirAddChild_fn, _readdirAddNewChild, readdirAddNewChild_fn, _readdirMaybePromoteChild, readdirMaybePromoteChild_fn, _readdirPromoteChild, readdirPromoteChild_fn, _applyStat, applyStat_fn, _onReaddirCB, _readdirCBInFlight, _callOnReaddirCB, callOnReaddirCB_fn, _asyncReaddirInFlight;
 var PathBase = class {
   constructor(name5, type = UNKNOWN, root, roots, nocase, children, opts) {
     __privateAdd(this, _resolveParts);
@@ -95828,7 +96153,9 @@ var PathBase = class {
     __privateAdd(this, _matchName, void 0);
     __privateAdd(this, _depth, void 0);
     __privateAdd(this, _fullpath, void 0);
+    __privateAdd(this, _fullpathPosix, void 0);
     __privateAdd(this, _relative, void 0);
+    __privateAdd(this, _relativePosix, void 0);
     __privateAdd(this, _type, void 0);
     __privateAdd(this, _children, void 0);
     __privateAdd(this, _linkTarget, void 0);
@@ -95845,6 +96172,7 @@ var PathBase = class {
     __privateSet(this, _children, children);
     __privateSet(this, _fullpath, opts.fullpath);
     __privateSet(this, _relative, opts.relative);
+    __privateSet(this, _relativePosix, opts.relativePosix);
     this.parent = opts.parent;
     if (this.parent) {
       __privateSet(this, _fs, __privateGet(this.parent, _fs));
@@ -95977,6 +96305,20 @@ var PathBase = class {
     const rp = pv + (!pv || !p.parent ? "" : this.sep) + name5;
     return __privateSet(this, _relative, rp);
   }
+  relativePosix() {
+    if (this.sep === "/")
+      return this.relative();
+    if (__privateGet(this, _relativePosix) !== void 0)
+      return __privateGet(this, _relativePosix);
+    const name5 = this.name;
+    const p = this.parent;
+    if (!p) {
+      return __privateSet(this, _relativePosix, this.fullpathPosix());
+    }
+    const pv = p.relativePosix();
+    const rp = pv + (!pv || !p.parent ? "" : "/") + name5;
+    return __privateSet(this, _relativePosix, rp);
+  }
   fullpath() {
     if (__privateGet(this, _fullpath) !== void 0) {
       return __privateGet(this, _fullpath);
@@ -95989,6 +96331,24 @@ var PathBase = class {
     const pv = p.fullpath();
     const fp = pv + (!p.parent ? "" : this.sep) + name5;
     return __privateSet(this, _fullpath, fp);
+  }
+  fullpathPosix() {
+    if (__privateGet(this, _fullpathPosix) !== void 0)
+      return __privateGet(this, _fullpathPosix);
+    if (this.sep === "/")
+      return __privateSet(this, _fullpathPosix, this.fullpath());
+    if (!this.parent) {
+      const p2 = this.fullpath().replace(/\\/g, "/");
+      if (/^[a-z]:\//i.test(p2)) {
+        return __privateSet(this, _fullpathPosix, `//?/${p2}`);
+      } else {
+        return __privateSet(this, _fullpathPosix, p2);
+      }
+    }
+    const p = this.parent;
+    const pfpp = p.fullpathPosix();
+    const fpp = pfpp + (!pfpp || !p.parent ? "" : "/") + this.name;
+    return __privateSet(this, _fullpathPosix, fpp);
   }
   isUnknown() {
     return (__privateGet(this, _type) & IFMT) === UNKNOWN;
@@ -96257,7 +96617,9 @@ _birthtime = new WeakMap();
 _matchName = new WeakMap();
 _depth = new WeakMap();
 _fullpath = new WeakMap();
+_fullpathPosix = new WeakMap();
 _relative = new WeakMap();
+_relativePosix = new WeakMap();
 _type = new WeakMap();
 _children = new WeakMap();
 _linkTarget = new WeakMap();
@@ -96469,7 +96831,7 @@ var PathPosix = class extends PathBase {
     return new PathPosix(name5, type, this.root, this.roots, this.nocase, this.childrenCache(), opts);
   }
 };
-var _resolveCache, _children2, _fs2;
+var _resolveCache, _resolvePosixCache, _children2, _fs2;
 var PathScurryBase = class {
   constructor(cwd = process.cwd(), pathImpl, sep2, { nocase, childrenCacheSize = 16 * 1024, fs: fs6 = defaultFS } = {}) {
     __publicField(this, "root");
@@ -96477,6 +96839,7 @@ var PathScurryBase = class {
     __publicField(this, "roots");
     __publicField(this, "cwd");
     __privateAdd(this, _resolveCache, void 0);
+    __privateAdd(this, _resolvePosixCache, void 0);
     __privateAdd(this, _children2, void 0);
     __publicField(this, "nocase");
     __privateAdd(this, _fs2, void 0);
@@ -96488,6 +96851,7 @@ var PathScurryBase = class {
     this.roots = /* @__PURE__ */ Object.create(null);
     this.rootPath = this.parseRootPath(cwdPath);
     __privateSet(this, _resolveCache, new ResolveCache());
+    __privateSet(this, _resolvePosixCache, new ResolveCache());
     __privateSet(this, _children2, new ChildrenCache(childrenCacheSize));
     const split = cwdPath.substring(this.rootPath.length).split(sep2);
     if (split.length === 1 && !split[0]) {
@@ -96505,8 +96869,10 @@ var PathScurryBase = class {
     let abs = this.rootPath;
     let sawFirst = false;
     for (const part of split) {
+      const l = len--;
       prev = prev.child(part, {
-        relative: new Array(len--).fill("..").join(joinSep),
+        relative: new Array(l).fill("..").join(joinSep),
+        relativePosix: new Array(l).fill("..").join("/"),
         fullpath: abs += (sawFirst ? "" : joinSep) + part
       });
       sawFirst = true;
@@ -96541,11 +96907,36 @@ var PathScurryBase = class {
     __privateGet(this, _resolveCache).set(r, result);
     return result;
   }
+  resolvePosix(...paths) {
+    let r = "";
+    for (let i = paths.length - 1; i >= 0; i--) {
+      const p = paths[i];
+      if (!p || p === ".")
+        continue;
+      r = r ? `${p}/${r}` : p;
+      if (this.isAbsolute(p)) {
+        break;
+      }
+    }
+    const cached = __privateGet(this, _resolvePosixCache).get(r);
+    if (cached !== void 0) {
+      return cached;
+    }
+    const result = this.cwd.resolve(r).fullpathPosix();
+    __privateGet(this, _resolvePosixCache).set(r, result);
+    return result;
+  }
   relative(entry = this.cwd) {
     if (typeof entry === "string") {
       entry = this.cwd.resolve(entry);
     }
     return entry.relative();
+  }
+  relativePosix(entry = this.cwd) {
+    if (typeof entry === "string") {
+      entry = this.cwd.resolve(entry);
+    }
+    return entry.relativePosix();
   }
   basename(entry = this.cwd) {
     if (typeof entry === "string") {
@@ -96910,6 +97301,7 @@ var PathScurryBase = class {
   }
 };
 _resolveCache = new WeakMap();
+_resolvePosixCache = new WeakMap();
 _children2 = new WeakMap();
 _fs2 = new WeakMap();
 var PathScurryWin32 = class extends PathScurryBase {
@@ -97998,7 +98390,7 @@ var GlobUtil = class {
     this.patterns = patterns;
     this.path = path6;
     this.opts = opts;
-    __privateSet(this, _sep, opts.platform === "win32" ? "\\" : "/");
+    __privateSet(this, _sep, !opts.posix && opts.platform === "win32" ? "\\" : "/");
     if (opts.ignore) {
       __privateSet(this, _ignore, makeIgnore(opts.ignore, opts));
     }
@@ -98071,11 +98463,12 @@ var GlobUtil = class {
     if (this.opts.withFileTypes) {
       this.matchEmit(e);
     } else if (abs) {
-      this.matchEmit(e.fullpath() + mark);
+      const abs2 = this.opts.posix ? e.fullpathPosix() : e.fullpath();
+      this.matchEmit(abs2 + mark);
     } else {
-      const rel = e.relative();
+      const rel = this.opts.posix ? e.relativePosix() : e.relative();
       const pre = this.opts.dotRelative && !rel.startsWith(".." + __privateGet(this, _sep)) ? "." + __privateGet(this, _sep) : "";
-      this.matchEmit(!rel && mark ? "." + mark : pre + rel + mark);
+      this.matchEmit(!rel ? "." + mark : pre + rel + mark);
     }
   }
   async match(e, absolute, ifDir) {
