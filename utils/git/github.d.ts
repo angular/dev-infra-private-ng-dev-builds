@@ -45,6 +45,7 @@ export declare class GithubClient {
             } & {
                 title?: string | undefined;
                 head: string;
+                head_repo?: string | undefined;
                 base: string;
                 body?: string | undefined;
                 maintainer_can_modify?: boolean | undefined;
@@ -89,7 +90,7 @@ export declare class GithubClient {
                     type: string;
                     site_admin: boolean;
                     starred_at?: string | undefined;
-                } | null;
+                };
                 body: string | null;
                 labels: {
                     id: number;
@@ -224,6 +225,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -627,8 +629,8 @@ export declare class GithubClient {
                 node_id: string;
                 diff_hunk: string;
                 path: string;
-                position: number;
-                original_position: number;
+                position?: number | undefined;
+                original_position?: number | undefined;
                 commit_id: string;
                 original_commit_id: string;
                 in_reply_to_id?: number | undefined;
@@ -678,6 +680,7 @@ export declare class GithubClient {
                 line?: number | undefined;
                 original_line?: number | undefined;
                 side?: "LEFT" | "RIGHT" | undefined;
+                subject_type?: "line" | "file" | undefined;
                 reactions?: {
                     url: string;
                     total_count: number;
@@ -780,6 +783,7 @@ export declare class GithubClient {
                 start_line?: number | undefined;
                 start_side?: "LEFT" | "RIGHT" | "side" | undefined;
                 in_reply_to?: number | undefined;
+                subject_type?: "LINE" | "FILE" | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 url: string;
                 pull_request_review_id: number | null;
@@ -787,8 +791,8 @@ export declare class GithubClient {
                 node_id: string;
                 diff_hunk: string;
                 path: string;
-                position: number;
-                original_position: number;
+                position?: number | undefined;
+                original_position?: number | undefined;
                 commit_id: string;
                 original_commit_id: string;
                 in_reply_to_id?: number | undefined;
@@ -838,6 +842,7 @@ export declare class GithubClient {
                 line?: number | undefined;
                 original_line?: number | undefined;
                 side?: "LEFT" | "RIGHT" | undefined;
+                subject_type?: "line" | "file" | undefined;
                 reactions?: {
                     url: string;
                     total_count: number;
@@ -1026,7 +1031,7 @@ export declare class GithubClient {
                     type: string;
                     site_admin: boolean;
                     starred_at?: string | undefined;
-                } | null;
+                };
                 body: string | null;
                 labels: {
                     id: number;
@@ -1161,6 +1166,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -1616,8 +1622,8 @@ export declare class GithubClient {
                 node_id: string;
                 diff_hunk: string;
                 path: string;
-                position: number;
-                original_position: number;
+                position?: number | undefined;
+                original_position?: number | undefined;
                 commit_id: string;
                 original_commit_id: string;
                 in_reply_to_id?: number | undefined;
@@ -1667,6 +1673,7 @@ export declare class GithubClient {
                 line?: number | undefined;
                 original_line?: number | undefined;
                 side?: "LEFT" | "RIGHT" | undefined;
+                subject_type?: "line" | "file" | undefined;
                 reactions?: {
                     url: string;
                     total_count: number;
@@ -1871,6 +1878,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -1892,6 +1900,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -2821,6 +2830,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -2842,6 +2852,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -2872,8 +2883,8 @@ export declare class GithubClient {
                 node_id: string;
                 diff_hunk: string;
                 path: string;
-                position: number;
-                original_position: number;
+                position?: number | undefined;
+                original_position?: number | undefined;
                 commit_id: string;
                 original_commit_id: string;
                 in_reply_to_id?: number | undefined;
@@ -2923,6 +2934,7 @@ export declare class GithubClient {
                 line?: number | undefined;
                 original_line?: number | undefined;
                 side?: "LEFT" | "RIGHT" | undefined;
+                subject_type?: "line" | "file" | undefined;
                 reactions?: {
                     url: string;
                     total_count: number;
@@ -2960,8 +2972,8 @@ export declare class GithubClient {
                 node_id: string;
                 diff_hunk: string;
                 path: string;
-                position: number;
-                original_position: number;
+                position?: number | undefined;
+                original_position?: number | undefined;
                 commit_id: string;
                 original_commit_id: string;
                 in_reply_to_id?: number | undefined;
@@ -3011,6 +3023,7 @@ export declare class GithubClient {
                 line?: number | undefined;
                 original_line?: number | undefined;
                 side?: "LEFT" | "RIGHT" | undefined;
+                subject_type?: "line" | "file" | undefined;
                 reactions?: {
                     url: string;
                     total_count: number;
@@ -3288,6 +3301,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -3309,6 +3323,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -3983,7 +3998,7 @@ export declare class GithubClient {
             } & {
                 reviewers?: string[] | undefined;
                 team_reviewers?: string[] | undefined;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+            } & Record<string, never>, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 url: string;
                 id: number;
                 node_id: string;
@@ -4155,6 +4170,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -4176,6 +4192,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -4950,7 +4967,7 @@ export declare class GithubClient {
                     type: string;
                     site_admin: boolean;
                     starred_at?: string | undefined;
-                } | null;
+                };
                 body: string | null;
                 labels: {
                     id: number;
@@ -5085,6 +5102,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -5560,8 +5578,8 @@ export declare class GithubClient {
                 node_id: string;
                 diff_hunk: string;
                 path: string;
-                position: number;
-                original_position: number;
+                position?: number | undefined;
+                original_position?: number | undefined;
                 commit_id: string;
                 original_commit_id: string;
                 in_reply_to_id?: number | undefined;
@@ -5611,6 +5629,7 @@ export declare class GithubClient {
                 line?: number | undefined;
                 original_line?: number | undefined;
                 side?: "LEFT" | "RIGHT" | undefined;
+                subject_type?: "line" | "file" | undefined;
                 reactions?: {
                     url: string;
                     total_count: number;
@@ -5692,13 +5711,12 @@ export declare class GithubClient {
                 created_at: string;
                 updated_at: string;
                 permissions: {
+                    [key: string]: string | undefined;
                     issues?: string | undefined;
                     checks?: string | undefined;
                     metadata?: string | undefined;
                     contents?: string | undefined;
                     deployments?: string | undefined;
-                } & {
-                    [key: string]: string;
                 };
                 events: string[];
                 installations_count?: number | undefined;
@@ -5945,6 +5963,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: string | undefined;
+                notification_setting?: string | undefined;
                 permission: string;
                 permissions?: {
                     pull: boolean;
@@ -5966,6 +5985,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -6999,13 +7019,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -7123,13 +7142,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -8786,18 +8804,18 @@ export declare class GithubClient {
                 html_url: string;
                 created_at: string;
                 updated_at: string;
-                protection_rules?: (Partial<{
+                protection_rules?: ({
                     id: number;
                     node_id: string;
                     type: string;
                     wait_timer?: number | undefined;
-                }> & Partial<{
+                } | {
                     id: number;
                     node_id: string;
                     type: string;
                     reviewers?: {
                         type?: "User" | "Team" | undefined;
-                        reviewer?: (Partial<{
+                        reviewer?: {
                             name?: string | null | undefined;
                             email?: string | null | undefined;
                             login: string;
@@ -8819,13 +8837,14 @@ export declare class GithubClient {
                             type: string;
                             site_admin: boolean;
                             starred_at?: string | undefined;
-                        }> & Partial<{
+                        } | {
                             id: number;
                             node_id: string;
                             name: string;
                             slug: string;
                             description: string | null;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission: string;
                             permissions?: {
                                 pull: boolean;
@@ -8847,18 +8866,19 @@ export declare class GithubClient {
                                 description: string | null;
                                 permission: string;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 html_url: string;
                                 repositories_url: string;
                                 slug: string;
                                 ldap_dn?: string | undefined;
                             } | null;
-                        }>) | undefined;
+                        } | undefined;
                     }[] | undefined;
-                }> & Partial<{
+                } | {
                     id: number;
                     node_id: string;
                     type: string;
-                }>)[] | undefined;
+                })[] | undefined;
                 deployment_branch_policy?: {
                     protected_branches: boolean;
                     custom_branch_policies: boolean;
@@ -9022,7 +9042,7 @@ export declare class GithubClient {
                     branch: string;
                     path?: "/" | "/docs" | undefined;
                 } | undefined;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+            } & Record<string, never>, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 url: string;
                 status: "built" | "building" | "errored" | null;
                 cname: string | null;
@@ -9881,9 +9901,7 @@ export declare class GithubClient {
             (params?: (RequestParameters & Omit<{
                 owner: string;
                 repo: string;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                [key: string]: unknown;
-            }, 202>>;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<Record<string, never>, 202>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -10951,6 +10969,7 @@ export declare class GithubClient {
                     slug?: string | undefined;
                     description?: string | null | undefined;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission?: string | undefined;
                     members_url?: string | undefined;
                     repositories_url?: string | undefined;
@@ -11036,18 +11055,18 @@ export declare class GithubClient {
                     html_url: string;
                     created_at: string;
                     updated_at: string;
-                    protection_rules?: (Partial<{
+                    protection_rules?: ({
                         id: number;
                         node_id: string;
                         type: string;
                         wait_timer?: number | undefined;
-                    }> & Partial<{
+                    } | {
                         id: number;
                         node_id: string;
                         type: string;
                         reviewers?: {
                             type?: "User" | "Team" | undefined;
-                            reviewer?: (Partial<{
+                            reviewer?: {
                                 name?: string | null | undefined;
                                 email?: string | null | undefined;
                                 login: string;
@@ -11069,13 +11088,14 @@ export declare class GithubClient {
                                 type: string;
                                 site_admin: boolean;
                                 starred_at?: string | undefined;
-                            }> & Partial<{
+                            } | {
                                 id: number;
                                 node_id: string;
                                 name: string;
                                 slug: string;
                                 description: string | null;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 permission: string;
                                 permissions?: {
                                     pull: boolean;
@@ -11097,18 +11117,19 @@ export declare class GithubClient {
                                     description: string | null;
                                     permission: string;
                                     privacy?: string | undefined;
+                                    notification_setting?: string | undefined;
                                     html_url: string;
                                     repositories_url: string;
                                     slug: string;
                                     ldap_dn?: string | undefined;
                                 } | null;
-                            }>) | undefined;
+                            } | undefined;
                         }[] | undefined;
-                    }> & Partial<{
+                    } | {
                         id: number;
                         node_id: string;
                         type: string;
-                    }>)[] | undefined;
+                    })[] | undefined;
                     deployment_branch_policy?: {
                         protected_branches: boolean;
                         custom_branch_policies: boolean;
@@ -11185,13 +11206,12 @@ export declare class GithubClient {
                 created_at: string;
                 updated_at: string;
                 permissions: {
+                    [key: string]: string | undefined;
                     issues?: string | undefined;
                     checks?: string | undefined;
                     metadata?: string | undefined;
                     contents?: string | undefined;
                     deployments?: string | undefined;
-                } & {
-                    [key: string]: string;
                 };
                 events: string[];
                 installations_count?: number | undefined;
@@ -11385,6 +11405,7 @@ export declare class GithubClient {
                                 slug: string;
                                 description: string | null;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 permission: string;
                                 permissions?: {
                                     pull: boolean;
@@ -11406,6 +11427,7 @@ export declare class GithubClient {
                                     description: string | null;
                                     permission: string;
                                     privacy?: string | undefined;
+                                    notification_setting?: string | undefined;
                                     html_url: string;
                                     repositories_url: string;
                                     slug: string;
@@ -11446,13 +11468,12 @@ export declare class GithubClient {
                                 created_at: string;
                                 updated_at: string;
                                 permissions: {
+                                    [key: string]: string | undefined;
                                     issues?: string | undefined;
                                     checks?: string | undefined;
                                     metadata?: string | undefined;
                                     contents?: string | undefined;
                                     deployments?: string | undefined;
-                                } & {
-                                    [key: string]: string;
                                 };
                                 events: string[];
                                 installations_count?: number | undefined;
@@ -11496,6 +11517,7 @@ export declare class GithubClient {
                                 slug: string;
                                 description: string | null;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 permission: string;
                                 permissions?: {
                                     pull: boolean;
@@ -11517,6 +11539,7 @@ export declare class GithubClient {
                                     description: string | null;
                                     permission: string;
                                     privacy?: string | undefined;
+                                    notification_setting?: string | undefined;
                                     html_url: string;
                                     repositories_url: string;
                                     slug: string;
@@ -11557,13 +11580,12 @@ export declare class GithubClient {
                                 created_at: string;
                                 updated_at: string;
                                 permissions: {
+                                    [key: string]: string | undefined;
                                     issues?: string | undefined;
                                     checks?: string | undefined;
                                     metadata?: string | undefined;
                                     contents?: string | undefined;
                                     deployments?: string | undefined;
-                                } & {
-                                    [key: string]: string;
                                 };
                                 events: string[];
                                 installations_count?: number | undefined;
@@ -11612,6 +11634,7 @@ export declare class GithubClient {
                             slug?: string | undefined;
                             description?: string | null | undefined;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission?: string | undefined;
                             members_url?: string | undefined;
                             repositories_url?: string | undefined;
@@ -11754,6 +11777,7 @@ export declare class GithubClient {
                             slug: string;
                             description: string | null;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission: string;
                             permissions?: {
                                 pull: boolean;
@@ -11775,6 +11799,7 @@ export declare class GithubClient {
                                 description: string | null;
                                 permission: string;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 html_url: string;
                                 repositories_url: string;
                                 slug: string;
@@ -11815,13 +11840,12 @@ export declare class GithubClient {
                             created_at: string;
                             updated_at: string;
                             permissions: {
+                                [key: string]: string | undefined;
                                 issues?: string | undefined;
                                 checks?: string | undefined;
                                 metadata?: string | undefined;
                                 contents?: string | undefined;
                                 deployments?: string | undefined;
-                            } & {
-                                [key: string]: string;
                             };
                             events: string[];
                             installations_count?: number | undefined;
@@ -11865,6 +11889,7 @@ export declare class GithubClient {
                             slug: string;
                             description: string | null;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission: string;
                             permissions?: {
                                 pull: boolean;
@@ -11886,6 +11911,7 @@ export declare class GithubClient {
                                 description: string | null;
                                 permission: string;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 html_url: string;
                                 repositories_url: string;
                                 slug: string;
@@ -11926,13 +11952,12 @@ export declare class GithubClient {
                             created_at: string;
                             updated_at: string;
                             permissions: {
+                                [key: string]: string | undefined;
                                 issues?: string | undefined;
                                 checks?: string | undefined;
                                 metadata?: string | undefined;
                                 contents?: string | undefined;
                                 deployments?: string | undefined;
-                            } & {
-                                [key: string]: string;
                             };
                             events: string[];
                             installations_count?: number | undefined;
@@ -11981,6 +12006,7 @@ export declare class GithubClient {
                         slug?: string | undefined;
                         description?: string | null | undefined;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         permission?: string | undefined;
                         members_url?: string | undefined;
                         repositories_url?: string | undefined;
@@ -12068,7 +12094,7 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
             } & {
-                per?: "" | "day" | "week" | undefined;
+                per?: "day" | "week" | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 count: number;
                 uniques: number;
@@ -12087,9 +12113,7 @@ export declare class GithubClient {
             (params?: (RequestParameters & Omit<{
                 owner: string;
                 repo: string;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                [key: string]: unknown;
-            }, 202> | import("@octokit/types").OctokitResponse<number[][], 200>>;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<Record<string, never>, 202> | import("@octokit/types").OctokitResponse<number[][], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -12429,9 +12453,7 @@ export declare class GithubClient {
             (params?: (RequestParameters & Omit<{
                 owner: string;
                 repo: string;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                [key: string]: unknown;
-            }, 202> | import("@octokit/types").OctokitResponse<{
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<Record<string, never>, 202> | import("@octokit/types").OctokitResponse<{
                 days: number[];
                 total: number;
                 week: number;
@@ -12574,7 +12596,7 @@ export declare class GithubClient {
             } & {
                 ref?: string | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                type: "dir" | "file" | "submodule" | "symlink";
+                type: "file" | "dir" | "submodule" | "symlink";
                 size: number;
                 name: string;
                 path: string;
@@ -12650,9 +12672,7 @@ export declare class GithubClient {
             (params?: (RequestParameters & Omit<{
                 owner: string;
                 repo: string;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                [key: string]: unknown;
-            }, 202> | import("@octokit/types").OctokitResponse<{
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<Record<string, never>, 202> | import("@octokit/types").OctokitResponse<{
                 author: {
                     name?: string | null | undefined;
                     email?: string | null | undefined;
@@ -12791,13 +12811,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -12905,13 +12924,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -12939,18 +12957,18 @@ export declare class GithubClient {
                 html_url: string;
                 created_at: string;
                 updated_at: string;
-                protection_rules?: (Partial<{
+                protection_rules?: ({
                     id: number;
                     node_id: string;
                     type: string;
                     wait_timer?: number | undefined;
-                }> & Partial<{
+                } | {
                     id: number;
                     node_id: string;
                     type: string;
                     reviewers?: {
                         type?: "User" | "Team" | undefined;
-                        reviewer?: (Partial<{
+                        reviewer?: {
                             name?: string | null | undefined;
                             email?: string | null | undefined;
                             login: string;
@@ -12972,13 +12990,14 @@ export declare class GithubClient {
                             type: string;
                             site_admin: boolean;
                             starred_at?: string | undefined;
-                        }> & Partial<{
+                        } | {
                             id: number;
                             node_id: string;
                             name: string;
                             slug: string;
                             description: string | null;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission: string;
                             permissions?: {
                                 pull: boolean;
@@ -13000,18 +13019,19 @@ export declare class GithubClient {
                                 description: string | null;
                                 permission: string;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 html_url: string;
                                 repositories_url: string;
                                 slug: string;
                                 ldap_dn?: string | undefined;
                             } | null;
-                        }>) | undefined;
+                        } | undefined;
                     }[] | undefined;
-                }> & Partial<{
+                } | {
                     id: number;
                     node_id: string;
                     type: string;
-                }>)[] | undefined;
+                })[] | undefined;
                 deployment_branch_policy?: {
                     protected_branches: boolean;
                     custom_branch_policies: boolean;
@@ -13247,7 +13267,7 @@ export declare class GithubClient {
             (params?: (RequestParameters & Omit<{
                 owner: string;
                 repo: string;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<Record<string, never>, 202> | import("@octokit/types").OctokitResponse<{
                 domain?: {
                     host?: string | undefined;
                     uri?: string | undefined;
@@ -13308,9 +13328,7 @@ export declare class GithubClient {
                     is_https_eligible?: boolean | null | undefined;
                     caa_error?: string | null | undefined;
                 } | null | undefined;
-            }, 200> | import("@octokit/types").OctokitResponse<{
-                [key: string]: unknown;
-            }, 202>>;
+            }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -13367,6 +13385,7 @@ export declare class GithubClient {
                         slug: string;
                         description: string | null;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         permission: string;
                         permissions?: {
                             pull: boolean;
@@ -13388,6 +13407,7 @@ export declare class GithubClient {
                             description: string | null;
                             permission: string;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             html_url: string;
                             repositories_url: string;
                             slug: string;
@@ -13428,13 +13448,12 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         permissions: {
+                            [key: string]: string | undefined;
                             issues?: string | undefined;
                             checks?: string | undefined;
                             metadata?: string | undefined;
                             contents?: string | undefined;
                             deployments?: string | undefined;
-                        } & {
-                            [key: string]: string;
                         };
                         events: string[];
                         installations_count?: number | undefined;
@@ -13478,6 +13497,7 @@ export declare class GithubClient {
                         slug: string;
                         description: string | null;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         permission: string;
                         permissions?: {
                             pull: boolean;
@@ -13499,6 +13519,7 @@ export declare class GithubClient {
                             description: string | null;
                             permission: string;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             html_url: string;
                             repositories_url: string;
                             slug: string;
@@ -13539,13 +13560,12 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         permissions: {
+                            [key: string]: string | undefined;
                             issues?: string | undefined;
                             checks?: string | undefined;
                             metadata?: string | undefined;
                             contents?: string | undefined;
                             deployments?: string | undefined;
-                        } & {
-                            [key: string]: string;
                         };
                         events: string[];
                         installations_count?: number | undefined;
@@ -13925,6 +13945,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: string | undefined;
+                notification_setting?: string | undefined;
                 permission: string;
                 permissions?: {
                     pull: boolean;
@@ -13946,6 +13967,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -14024,7 +14046,7 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
             } & {
-                per?: "" | "day" | "week" | undefined;
+                per?: "day" | "week" | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 count: number;
                 uniques: number;
@@ -14217,6 +14239,7 @@ export declare class GithubClient {
                                 slug: string;
                                 description: string | null;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 permission: string;
                                 permissions?: {
                                     pull: boolean;
@@ -14238,6 +14261,7 @@ export declare class GithubClient {
                                     description: string | null;
                                     permission: string;
                                     privacy?: string | undefined;
+                                    notification_setting?: string | undefined;
                                     html_url: string;
                                     repositories_url: string;
                                     slug: string;
@@ -14278,13 +14302,12 @@ export declare class GithubClient {
                                 created_at: string;
                                 updated_at: string;
                                 permissions: {
+                                    [key: string]: string | undefined;
                                     issues?: string | undefined;
                                     checks?: string | undefined;
                                     metadata?: string | undefined;
                                     contents?: string | undefined;
                                     deployments?: string | undefined;
-                                } & {
-                                    [key: string]: string;
                                 };
                                 events: string[];
                                 installations_count?: number | undefined;
@@ -14328,6 +14351,7 @@ export declare class GithubClient {
                                 slug: string;
                                 description: string | null;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 permission: string;
                                 permissions?: {
                                     pull: boolean;
@@ -14349,6 +14373,7 @@ export declare class GithubClient {
                                     description: string | null;
                                     permission: string;
                                     privacy?: string | undefined;
+                                    notification_setting?: string | undefined;
                                     html_url: string;
                                     repositories_url: string;
                                     slug: string;
@@ -14389,13 +14414,12 @@ export declare class GithubClient {
                                 created_at: string;
                                 updated_at: string;
                                 permissions: {
+                                    [key: string]: string | undefined;
                                     issues?: string | undefined;
                                     checks?: string | undefined;
                                     metadata?: string | undefined;
                                     contents?: string | undefined;
                                     deployments?: string | undefined;
-                                } & {
-                                    [key: string]: string;
                                 };
                                 events: string[];
                                 installations_count?: number | undefined;
@@ -14444,6 +14468,7 @@ export declare class GithubClient {
                             slug?: string | undefined;
                             description?: string | null | undefined;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission?: string | undefined;
                             members_url?: string | undefined;
                             repositories_url?: string | undefined;
@@ -14769,6 +14794,7 @@ export declare class GithubClient {
                 sha?: string | undefined;
                 path?: string | undefined;
                 author?: string | undefined;
+                committer?: string | undefined;
                 since?: string | undefined;
                 until?: string | undefined;
                 per_page?: number | undefined;
@@ -15038,13 +15064,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -15146,13 +15171,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -16326,7 +16350,7 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                [key: string]: number;
+                [key: string]: number | undefined;
             }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -16706,6 +16730,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -16727,6 +16752,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -17601,6 +17627,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: string | undefined;
+                notification_setting?: string | undefined;
                 permission: string;
                 permissions?: {
                     pull: boolean;
@@ -17622,6 +17649,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -17849,9 +17877,7 @@ export declare class GithubClient {
                 repo: string;
                 hook_id: number;
                 delivery_id: number;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
-                [key: string]: unknown;
-            }, 202>>;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<Record<string, never>, 202>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -17898,13 +17924,12 @@ export declare class GithubClient {
                 created_at: string;
                 updated_at: string;
                 permissions: {
+                    [key: string]: string | undefined;
                     issues?: string | undefined;
                     checks?: string | undefined;
                     metadata?: string | undefined;
                     contents?: string | undefined;
                     deployments?: string | undefined;
-                } & {
-                    [key: string]: string;
                 };
                 events: string[];
                 installations_count?: number | undefined;
@@ -17967,6 +17992,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: string | undefined;
+                notification_setting?: string | undefined;
                 permission: string;
                 permissions?: {
                     pull: boolean;
@@ -17988,6 +18014,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -18200,6 +18227,7 @@ export declare class GithubClient {
                                 slug: string;
                                 description: string | null;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 permission: string;
                                 permissions?: {
                                     pull: boolean;
@@ -18221,6 +18249,7 @@ export declare class GithubClient {
                                     description: string | null;
                                     permission: string;
                                     privacy?: string | undefined;
+                                    notification_setting?: string | undefined;
                                     html_url: string;
                                     repositories_url: string;
                                     slug: string;
@@ -18261,13 +18290,12 @@ export declare class GithubClient {
                                 created_at: string;
                                 updated_at: string;
                                 permissions: {
+                                    [key: string]: string | undefined;
                                     issues?: string | undefined;
                                     checks?: string | undefined;
                                     metadata?: string | undefined;
                                     contents?: string | undefined;
                                     deployments?: string | undefined;
-                                } & {
-                                    [key: string]: string;
                                 };
                                 events: string[];
                                 installations_count?: number | undefined;
@@ -18311,6 +18339,7 @@ export declare class GithubClient {
                                 slug: string;
                                 description: string | null;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 permission: string;
                                 permissions?: {
                                     pull: boolean;
@@ -18332,6 +18361,7 @@ export declare class GithubClient {
                                     description: string | null;
                                     permission: string;
                                     privacy?: string | undefined;
+                                    notification_setting?: string | undefined;
                                     html_url: string;
                                     repositories_url: string;
                                     slug: string;
@@ -18372,13 +18402,12 @@ export declare class GithubClient {
                                 created_at: string;
                                 updated_at: string;
                                 permissions: {
+                                    [key: string]: string | undefined;
                                     issues?: string | undefined;
                                     checks?: string | undefined;
                                     metadata?: string | undefined;
                                     contents?: string | undefined;
                                     deployments?: string | undefined;
-                                } & {
-                                    [key: string]: string;
                                 };
                                 events: string[];
                                 installations_count?: number | undefined;
@@ -18427,6 +18456,7 @@ export declare class GithubClient {
                             slug?: string | undefined;
                             description?: string | null | undefined;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission?: string | undefined;
                             members_url?: string | undefined;
                             repositories_url?: string | undefined;
@@ -18595,13 +18625,12 @@ export declare class GithubClient {
                 created_at: string;
                 updated_at: string;
                 permissions: {
+                    [key: string]: string | undefined;
                     issues?: string | undefined;
                     checks?: string | undefined;
                     metadata?: string | undefined;
                     contents?: string | undefined;
                     deployments?: string | undefined;
-                } & {
-                    [key: string]: string;
                 };
                 events: string[];
                 installations_count?: number | undefined;
@@ -18642,6 +18671,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: string | undefined;
+                notification_setting?: string | undefined;
                 permission: string;
                 permissions?: {
                     pull: boolean;
@@ -18663,6 +18693,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -19998,6 +20029,7 @@ export declare class GithubClient {
                             slug: string;
                             description: string | null;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission: string;
                             permissions?: {
                                 pull: boolean;
@@ -20019,6 +20051,7 @@ export declare class GithubClient {
                                 description: string | null;
                                 permission: string;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 html_url: string;
                                 repositories_url: string;
                                 slug: string;
@@ -20059,13 +20092,12 @@ export declare class GithubClient {
                             created_at: string;
                             updated_at: string;
                             permissions: {
+                                [key: string]: string | undefined;
                                 issues?: string | undefined;
                                 checks?: string | undefined;
                                 metadata?: string | undefined;
                                 contents?: string | undefined;
                                 deployments?: string | undefined;
-                            } & {
-                                [key: string]: string;
                             };
                             events: string[];
                             installations_count?: number | undefined;
@@ -20106,6 +20138,7 @@ export declare class GithubClient {
                             slug: string;
                             description: string | null;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             permission: string;
                             permissions?: {
                                 pull: boolean;
@@ -20127,6 +20160,7 @@ export declare class GithubClient {
                                 description: string | null;
                                 permission: string;
                                 privacy?: string | undefined;
+                                notification_setting?: string | undefined;
                                 html_url: string;
                                 repositories_url: string;
                                 slug: string;
@@ -20167,13 +20201,12 @@ export declare class GithubClient {
                             created_at: string;
                             updated_at: string;
                             permissions: {
+                                [key: string]: string | undefined;
                                 issues?: string | undefined;
                                 checks?: string | undefined;
                                 metadata?: string | undefined;
                                 contents?: string | undefined;
                                 deployments?: string | undefined;
-                            } & {
-                                [key: string]: string;
                             };
                             events: string[];
                             installations_count?: number | undefined;
@@ -20235,6 +20268,7 @@ export declare class GithubClient {
                         slug?: string | undefined;
                         description?: string | null | undefined;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         permission?: string | undefined;
                         members_url?: string | undefined;
                         repositories_url?: string | undefined;
@@ -20389,11 +20423,11 @@ export declare class GithubClient {
                 cname?: string | null | undefined;
                 https_enforced?: boolean | undefined;
                 build_type?: "legacy" | "workflow" | undefined;
-                source?: (Partial<"gh-pages" | "master" | "master /docs"> & Partial<{
+                source?: "gh-pages" | "master" | "master /docs" | {
                     branch: string;
                     path: "/" | "/docs";
-                }>) | undefined;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
+                } | undefined;
+            } & Record<string, never>, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -20658,6 +20692,7 @@ export declare class GithubClient {
                         slug: string;
                         description: string | null;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         permission: string;
                         permissions?: {
                             pull: boolean;
@@ -20679,6 +20714,7 @@ export declare class GithubClient {
                             description: string | null;
                             permission: string;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             html_url: string;
                             repositories_url: string;
                             slug: string;
@@ -20719,13 +20755,12 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         permissions: {
+                            [key: string]: string | undefined;
                             issues?: string | undefined;
                             checks?: string | undefined;
                             metadata?: string | undefined;
                             contents?: string | undefined;
                             deployments?: string | undefined;
-                        } & {
-                            [key: string]: string;
                         };
                         events: string[];
                         installations_count?: number | undefined;
@@ -20769,6 +20804,7 @@ export declare class GithubClient {
                         slug: string;
                         description: string | null;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         permission: string;
                         permissions?: {
                             pull: boolean;
@@ -20790,6 +20826,7 @@ export declare class GithubClient {
                             description: string | null;
                             permission: string;
                             privacy?: string | undefined;
+                            notification_setting?: string | undefined;
                             html_url: string;
                             repositories_url: string;
                             slug: string;
@@ -20830,13 +20867,12 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         permissions: {
+                            [key: string]: string | undefined;
                             issues?: string | undefined;
                             checks?: string | undefined;
                             metadata?: string | undefined;
                             contents?: string | undefined;
                             deployments?: string | undefined;
-                        } & {
-                            [key: string]: string;
                         };
                         events: string[];
                         installations_count?: number | undefined;
@@ -21686,13 +21722,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -21725,13 +21760,25 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
                 issue_number: number;
-            } & ({
+            } & ((import("@octokit/openapi-types/types").Without<{
                 labels?: string[] | undefined;
-            } | {
+            }, {
                 labels?: {
                     name: string;
                 }[] | undefined;
-            }), "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+            }> & {
+                labels?: {
+                    name: string;
+                }[] | undefined;
+            }) | (import("@octokit/openapi-types/types").Without<{
+                labels?: {
+                    name: string;
+                }[] | undefined;
+            }, {
+                labels?: string[] | undefined;
+            }> & {
+                labels?: string[] | undefined;
+            })), "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 node_id: string;
                 url: string;
@@ -21776,7 +21823,7 @@ export declare class GithubClient {
                 title: string | number;
                 body?: string | undefined;
                 assignee?: string | null | undefined;
-                milestone?: string | number | null | undefined;
+                milestone?: string | number | undefined;
                 labels?: (string | {
                     id?: number | undefined;
                     name?: string | undefined;
@@ -22261,13 +22308,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -22371,13 +22417,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -22995,13 +23040,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -23103,13 +23147,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -23649,13 +23692,12 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         permissions: {
+                            [key: string]: string | undefined;
                             issues?: string | undefined;
                             checks?: string | undefined;
                             metadata?: string | undefined;
                             contents?: string | undefined;
                             deployments?: string | undefined;
-                        } & {
-                            [key: string]: string;
                         };
                         events: string[];
                         installations_count?: number | undefined;
@@ -23781,6 +23823,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -23802,6 +23845,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -23865,13 +23909,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -24446,13 +24489,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -24593,13 +24635,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -24705,13 +24746,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -24746,7 +24786,7 @@ export declare class GithubClient {
             } & {
                 per_page?: number | undefined;
                 page?: number | undefined;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<(Partial<{
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<({
                 id: number;
                 node_id: string;
                 url: string;
@@ -24811,13 +24851,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -24830,7 +24869,7 @@ export declare class GithubClient {
                     name: string;
                     color: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -24895,13 +24934,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -24914,7 +24952,7 @@ export declare class GithubClient {
                     name: string;
                     color: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -24979,13 +25017,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25040,7 +25077,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25105,13 +25142,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25166,7 +25202,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25231,13 +25267,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25249,7 +25284,7 @@ export declare class GithubClient {
                 milestone: {
                     title: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25314,13 +25349,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25332,7 +25366,7 @@ export declare class GithubClient {
                 milestone: {
                     title: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25397,13 +25431,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25416,7 +25449,7 @@ export declare class GithubClient {
                     from: string;
                     to: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25481,13 +25514,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25526,6 +25558,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -25547,6 +25580,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -25576,7 +25610,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25641,13 +25675,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25686,6 +25719,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -25707,6 +25741,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -25736,7 +25771,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25801,13 +25836,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25822,7 +25856,7 @@ export declare class GithubClient {
                     dismissal_message: string | null;
                     dismissal_commit_id?: string | undefined;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25887,13 +25921,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25903,7 +25936,7 @@ export declare class GithubClient {
                     pem?: string | undefined;
                 } | null;
                 lock_reason: string | null;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -25968,13 +26001,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -25991,7 +26023,7 @@ export declare class GithubClient {
                     column_name: string;
                     previous_column_name?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -26056,13 +26088,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -26079,7 +26110,7 @@ export declare class GithubClient {
                     column_name: string;
                     previous_column_name?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -26144,13 +26175,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -26167,7 +26197,7 @@ export declare class GithubClient {
                     column_name: string;
                     previous_column_name?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -26232,13 +26262,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -26255,7 +26284,7 @@ export declare class GithubClient {
                     column_name: string;
                     previous_column_name?: string | undefined;
                 } | undefined;
-            }>)[], 200>>;
+            })[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -26776,13 +26805,12 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         permissions: {
+                            [key: string]: string | undefined;
                             issues?: string | undefined;
                             checks?: string | undefined;
                             metadata?: string | undefined;
                             contents?: string | undefined;
                             deployments?: string | undefined;
-                        } & {
-                            [key: string]: string;
                         };
                         events: string[];
                         installations_count?: number | undefined;
@@ -26908,6 +26936,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -26929,6 +26958,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -26992,13 +27022,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27021,7 +27050,7 @@ export declare class GithubClient {
             } & {
                 per_page?: number | undefined;
                 page?: number | undefined;
-            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<(Partial<{
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<({
                 id: number;
                 node_id: string;
                 url: string;
@@ -27086,13 +27115,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27105,7 +27133,7 @@ export declare class GithubClient {
                     name: string;
                     color: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27170,13 +27198,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27189,7 +27216,7 @@ export declare class GithubClient {
                     name: string;
                     color: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27254,13 +27281,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27272,7 +27298,7 @@ export declare class GithubClient {
                 milestone: {
                     title: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27337,13 +27363,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27355,7 +27380,7 @@ export declare class GithubClient {
                 milestone: {
                     title: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27420,13 +27445,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27439,7 +27463,7 @@ export declare class GithubClient {
                     from: string;
                     to: string;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27504,13 +27528,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27549,6 +27572,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -27570,6 +27594,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -27599,7 +27624,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27664,13 +27689,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27709,6 +27733,7 @@ export declare class GithubClient {
                     slug: string;
                     description: string | null;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     permission: string;
                     permissions?: {
                         pull: boolean;
@@ -27730,6 +27755,7 @@ export declare class GithubClient {
                         description: string | null;
                         permission: string;
                         privacy?: string | undefined;
+                        notification_setting?: string | undefined;
                         html_url: string;
                         repositories_url: string;
                         slug: string;
@@ -27759,7 +27785,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27824,13 +27850,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27845,7 +27870,7 @@ export declare class GithubClient {
                     dismissal_message: string | null;
                     dismissal_commit_id?: string | undefined;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27910,13 +27935,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -27926,7 +27950,7 @@ export declare class GithubClient {
                     pem?: string | undefined;
                 } | null;
                 lock_reason: string | null;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -27991,13 +28015,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -28014,7 +28037,7 @@ export declare class GithubClient {
                     column_name: string;
                     previous_column_name?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -28079,13 +28102,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -28102,7 +28124,7 @@ export declare class GithubClient {
                     column_name: string;
                     previous_column_name?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -28167,13 +28189,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -28190,7 +28211,7 @@ export declare class GithubClient {
                     column_name: string;
                     previous_column_name?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -28255,13 +28276,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -28278,7 +28298,7 @@ export declare class GithubClient {
                     column_name: string;
                     previous_column_name?: string | undefined;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 event: string;
                 actor: {
                     name?: string | null | undefined;
@@ -28371,13 +28391,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -28398,7 +28417,7 @@ export declare class GithubClient {
                     eyes: number;
                     rocket: number;
                 } | undefined;
-            }> & Partial<{
+            } | {
                 event: string;
                 actor?: {
                     name?: string | null | undefined;
@@ -28904,13 +28923,12 @@ export declare class GithubClient {
                             created_at: string;
                             updated_at: string;
                             permissions: {
+                                [key: string]: string | undefined;
                                 issues?: string | undefined;
                                 checks?: string | undefined;
                                 metadata?: string | undefined;
                                 contents?: string | undefined;
                                 deployments?: string | undefined;
-                            } & {
-                                [key: string]: string;
                             };
                             events: string[];
                             installations_count?: number | undefined;
@@ -28934,7 +28952,7 @@ export declare class GithubClient {
                         } | undefined;
                     } | undefined;
                 };
-            }> & Partial<{
+            } | {
                 event?: string | undefined;
                 sha: string;
                 node_id: string;
@@ -28966,7 +28984,7 @@ export declare class GithubClient {
                     payload: string | null;
                 };
                 html_url: string;
-            }> & Partial<{
+            } | {
                 event: string;
                 id: number;
                 node_id: string;
@@ -29010,7 +29028,7 @@ export declare class GithubClient {
                 body_html?: string | undefined;
                 body_text?: string | undefined;
                 author_association: "OWNER" | "COLLABORATOR" | "CONTRIBUTOR" | "FIRST_TIMER" | "FIRST_TIME_CONTRIBUTOR" | "MANNEQUIN" | "MEMBER" | "NONE";
-            }> & Partial<{
+            } | {
                 event?: string | undefined;
                 node_id?: string | undefined;
                 comments?: {
@@ -29020,8 +29038,8 @@ export declare class GithubClient {
                     node_id: string;
                     diff_hunk: string;
                     path: string;
-                    position: number;
-                    original_position: number;
+                    position?: number | undefined;
+                    original_position?: number | undefined;
                     commit_id: string;
                     original_commit_id: string;
                     in_reply_to_id?: number | undefined;
@@ -29071,6 +29089,7 @@ export declare class GithubClient {
                     line?: number | undefined;
                     original_line?: number | undefined;
                     side?: "LEFT" | "RIGHT" | undefined;
+                    subject_type?: "line" | "file" | undefined;
                     reactions?: {
                         url: string;
                         total_count: number;
@@ -29086,7 +29105,7 @@ export declare class GithubClient {
                     body_html?: string | undefined;
                     body_text?: string | undefined;
                 }[] | undefined;
-            }> & Partial<{
+            } | {
                 event?: string | undefined;
                 node_id?: string | undefined;
                 commit_id?: string | undefined;
@@ -29139,7 +29158,7 @@ export declare class GithubClient {
                         rocket: number;
                     } | undefined;
                 }[] | undefined;
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -29204,13 +29223,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -29242,7 +29260,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -29307,13 +29325,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -29345,7 +29362,7 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 };
-            }> & Partial<{
+            } | {
                 id: number;
                 node_id: string;
                 url: string;
@@ -29410,13 +29427,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -29426,7 +29442,7 @@ export declare class GithubClient {
                     pem?: string | undefined;
                 } | null;
                 state_reason?: string | null | undefined;
-            }>)[], 200>>;
+            })[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -29919,13 +29935,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -30442,13 +30457,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -30969,13 +30983,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -31631,13 +31644,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -31690,13 +31702,25 @@ export declare class GithubClient {
                 owner: string;
                 repo: string;
                 issue_number: number;
-            } & ({
+            } & ((import("@octokit/openapi-types/types").Without<{
                 labels?: string[] | undefined;
-            } | {
+            }, {
                 labels?: {
                     name: string;
                 }[] | undefined;
-            }), "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+            }> & {
+                labels?: {
+                    name: string;
+                }[] | undefined;
+            }) | (import("@octokit/openapi-types/types").Without<{
+                labels?: {
+                    name: string;
+                }[] | undefined;
+            }, {
+                labels?: string[] | undefined;
+            }> & {
+                labels?: string[] | undefined;
+            })), "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 id: number;
                 node_id: string;
                 url: string;
@@ -31727,12 +31751,12 @@ export declare class GithubClient {
                 repo: string;
                 issue_number: number;
             } & {
-                title?: string | number | null | undefined;
+                title?: string | number | undefined;
                 body?: string | null | undefined;
                 assignee?: string | null | undefined;
                 state?: "open" | "closed" | undefined;
                 state_reason?: "completed" | "reopened" | "not_planned" | null | undefined;
-                milestone?: string | number | null | undefined;
+                milestone?: string | number | undefined;
                 labels?: (string | {
                     id?: number | undefined;
                     name?: string | undefined;
@@ -32217,13 +32241,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -32327,13 +32350,12 @@ export declare class GithubClient {
                     created_at: string;
                     updated_at: string;
                     permissions: {
+                        [key: string]: string | undefined;
                         issues?: string | undefined;
                         checks?: string | undefined;
                         metadata?: string | undefined;
                         contents?: string | undefined;
                         deployments?: string | undefined;
-                    } & {
-                        [key: string]: string;
                     };
                     events: string[];
                     installations_count?: number | undefined;
@@ -33390,6 +33412,7 @@ export declare class GithubClient {
                 maintainers?: string[] | undefined;
                 repo_names?: string[] | undefined;
                 privacy?: "closed" | "secret" | undefined;
+                notification_setting?: "notifications_enabled" | "notifications_disabled" | undefined;
                 permission?: "push" | "pull" | undefined;
                 parent_team_id?: number | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
@@ -33401,6 +33424,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: "closed" | "secret" | undefined;
+                notification_setting?: "notifications_enabled" | "notifications_disabled" | undefined;
                 permission: string;
                 members_url: string;
                 repositories_url: string;
@@ -33413,6 +33437,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -33657,6 +33682,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: "closed" | "secret" | undefined;
+                notification_setting?: "notifications_enabled" | "notifications_disabled" | undefined;
                 permission: string;
                 members_url: string;
                 repositories_url: string;
@@ -33669,6 +33695,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -33891,6 +33918,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: string | undefined;
+                notification_setting?: string | undefined;
                 permission: string;
                 permissions?: {
                     pull: boolean;
@@ -33912,6 +33940,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -33937,6 +33966,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: string | undefined;
+                notification_setting?: string | undefined;
                 permission: string;
                 permissions?: {
                     pull: boolean;
@@ -33958,6 +33988,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -34111,6 +34142,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: "closed" | "secret" | undefined;
+                notification_setting?: "notifications_enabled" | "notifications_disabled" | undefined;
                 permission: string;
                 members_url: string;
                 repositories_url: string;
@@ -34123,6 +34155,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -34655,6 +34688,7 @@ export declare class GithubClient {
                 name?: string | undefined;
                 description?: string | undefined;
                 privacy?: "closed" | "secret" | undefined;
+                notification_setting?: "notifications_enabled" | "notifications_disabled" | undefined;
                 permission?: "push" | "admin" | "pull" | undefined;
                 parent_team_id?: number | null | undefined;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
@@ -34666,6 +34700,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: "closed" | "secret" | undefined;
+                notification_setting?: "notifications_enabled" | "notifications_disabled" | undefined;
                 permission: string;
                 members_url: string;
                 repositories_url: string;
@@ -34678,6 +34713,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -34753,6 +34789,7 @@ export declare class GithubClient {
                 slug: string;
                 description: string | null;
                 privacy?: "closed" | "secret" | undefined;
+                notification_setting?: "notifications_enabled" | "notifications_disabled" | undefined;
                 permission: string;
                 members_url: string;
                 repositories_url: string;
@@ -34765,6 +34802,7 @@ export declare class GithubClient {
                     description: string | null;
                     permission: string;
                     privacy?: string | undefined;
+                    notification_setting?: string | undefined;
                     html_url: string;
                     repositories_url: string;
                     slug: string;
@@ -35724,13 +35762,12 @@ export declare class GithubClient {
                         created_at: string;
                         updated_at: string;
                         permissions: {
+                            [key: string]: string | undefined;
                             issues?: string | undefined;
                             checks?: string | undefined;
                             metadata?: string | undefined;
                             contents?: string | undefined;
                             deployments?: string | undefined;
-                        } & {
-                            [key: string]: string;
                         };
                         events: string[];
                         installations_count?: number | undefined;
