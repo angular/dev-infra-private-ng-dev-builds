@@ -3998,7 +3998,7 @@ export declare class GithubClient {
             } & {
                 reviewers?: string[] | undefined;
                 team_reviewers?: string[] | undefined;
-            } & Record<string, never>, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 url: string;
                 id: number;
                 node_id: string;
@@ -9042,7 +9042,7 @@ export declare class GithubClient {
                     branch: string;
                     path?: "/" | "/docs" | undefined;
                 } | undefined;
-            } & Record<string, never>, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 url: string;
                 status: "built" | "building" | "errored" | null;
                 cname: string | null;
@@ -20427,7 +20427,7 @@ export declare class GithubClient {
                     branch: string;
                     path: "/" | "/docs";
                 } | undefined;
-            } & Record<string, never>, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
