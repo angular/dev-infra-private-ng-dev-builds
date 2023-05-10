@@ -13618,9 +13618,7 @@ async function assertPassingReleasePrechecks(config, newVersion, builtPackagesWi
 export {
   require_dist,
   addDryRunFlag,
-  require_tr46,
   require_safer,
-  require_encoding,
   require_wrappy,
   require_once,
   require_dist_node6 as require_dist_node,
@@ -13682,4 +13680,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-4ZEPUWZP.mjs.map
+//# sourceMappingURL=chunk-QS2L3ISY.mjs.map
