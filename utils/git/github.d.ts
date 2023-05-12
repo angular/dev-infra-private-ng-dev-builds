@@ -7058,6 +7058,29 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        createDeploymentProtectionRule: {
+            (params?: (RequestParameters & Omit<{
+                environment_name: string;
+                repo: string;
+                owner: string;
+            } & {
+                integration_id?: number | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                node_id: string;
+                enabled: boolean;
+                app: {
+                    id: number;
+                    slug: string;
+                    integration_url: string;
+                    node_id: string;
+                };
+            }, 201>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         createDeploymentStatus: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -9013,6 +9036,228 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        createOrgRuleset: {
+            (params?: (RequestParameters & Omit<{
+                org: string;
+            } & {
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                conditions?: ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                source_type?: "Repository" | "Organization" | undefined;
+                source: string;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                node_id?: string | undefined;
+                _links?: {
+                    self?: {
+                        href?: string | undefined;
+                    } | undefined;
+                } | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }, 201>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         createPagesDeployment: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -9176,6 +9421,224 @@ export declare class GithubClient {
                     eyes: number;
                     rocket: number;
                 } | undefined;
+            }, 201>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        createRepoRuleset: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+            } & {
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                source_type?: "Repository" | "Organization" | undefined;
+                source: string;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                node_id?: string | undefined;
+                _links?: {
+                    self?: {
+                        href?: string | undefined;
+                    } | undefined;
+                } | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
             }, 201>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -9759,6 +10222,16 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        deleteOrgRuleset: {
+            (params?: (RequestParameters & Omit<{
+                org: string;
+                ruleset_id: number;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         deletePagesSite: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -9802,6 +10275,17 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        deleteRepoRuleset: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                ruleset_id: number;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         deleteTagProtection: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -9828,6 +10312,18 @@ export declare class GithubClient {
             (params?: (RequestParameters & Omit<{
                 owner: string;
                 repo: string;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        disableDeploymentProtectionRule: {
+            (params?: (RequestParameters & Omit<{
+                environment_name: string;
+                repo: string;
+                owner: string;
+                protection_rule_id: number;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<never, 204>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
@@ -11038,6 +11534,30 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        getAllDeploymentProtectionRules: {
+            (params?: (RequestParameters & Omit<{
+                environment_name: string;
+                repo: string;
+                owner: string;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                total_count?: number | undefined;
+                custom_deployment_protection_rules?: {
+                    id: number;
+                    node_id: string;
+                    enabled: boolean;
+                    app: {
+                        id: number;
+                        slug: string;
+                        integration_url: string;
+                        node_id: string;
+                    };
+                }[] | undefined;
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         getAllEnvironments: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -12089,6 +12609,95 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        getBranchRules: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                branch: string;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<({
+                type: "creation";
+            } | {
+                type: "update";
+                parameters?: {
+                    update_allows_fetch_and_merge: boolean;
+                } | undefined;
+            } | {
+                type: "deletion";
+            } | {
+                type: "required_linear_history";
+            } | {
+                type: "required_deployments";
+                parameters?: {
+                    required_deployment_environments: string[];
+                } | undefined;
+            } | {
+                type: "required_signatures";
+            } | {
+                type: "pull_request";
+                parameters?: {
+                    dismiss_stale_reviews_on_push: boolean;
+                    require_code_owner_review: boolean;
+                    require_last_push_approval: boolean;
+                    required_approving_review_count: number;
+                    required_review_thread_resolution: boolean;
+                } | undefined;
+            } | {
+                type: "required_status_checks";
+                parameters?: {
+                    required_status_checks: {
+                        context: string;
+                        integration_id?: number | undefined;
+                    }[];
+                    strict_required_status_checks_policy: boolean;
+                } | undefined;
+            } | {
+                type: "non_fast_forward";
+            } | {
+                type: "commit_message_pattern";
+                parameters?: {
+                    name?: string | undefined;
+                    negate?: boolean | undefined;
+                    operator: "starts_with" | "ends_with" | "contains" | "regex";
+                    pattern: string;
+                } | undefined;
+            } | {
+                type: "commit_author_email_pattern";
+                parameters?: {
+                    name?: string | undefined;
+                    negate?: boolean | undefined;
+                    operator: "starts_with" | "ends_with" | "contains" | "regex";
+                    pattern: string;
+                } | undefined;
+            } | {
+                type: "committer_email_pattern";
+                parameters?: {
+                    name?: string | undefined;
+                    negate?: boolean | undefined;
+                    operator: "starts_with" | "ends_with" | "contains" | "regex";
+                    pattern: string;
+                } | undefined;
+            } | {
+                type: "branch_name_pattern";
+                parameters?: {
+                    name?: string | undefined;
+                    negate?: boolean | undefined;
+                    operator: "starts_with" | "ends_with" | "contains" | "regex";
+                    pattern: string;
+                } | undefined;
+            } | {
+                type: "tag_name_pattern";
+                parameters?: {
+                    name?: string | undefined;
+                    negate?: boolean | undefined;
+                    operator: "starts_with" | "ends_with" | "contains" | "regex";
+                    pattern: string;
+                } | undefined;
+            })[], 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         getClones: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -12709,6 +13318,28 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        getCustomDeploymentProtectionRule: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                environment_name: string;
+                protection_rule_id: number;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                node_id: string;
+                enabled: boolean;
+                app: {
+                    id: number;
+                    slug: string;
+                    integration_url: string;
+                    node_id: string;
+                };
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         getDeployKey: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -13183,6 +13814,253 @@ export declare class GithubClient {
                     rocket: number;
                 } | undefined;
             }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        getOrgRuleset: {
+            (params?: (RequestParameters & Omit<{
+                org: string;
+                ruleset_id: number;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                source_type?: "Repository" | "Organization" | undefined;
+                source: string;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                node_id?: string | undefined;
+                _links?: {
+                    self?: {
+                        href?: string | undefined;
+                    } | undefined;
+                } | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        getOrgRulesets: {
+            (params?: (RequestParameters & Omit<{
+                org: string;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                source_type?: "Repository" | "Organization" | undefined;
+                source: string;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                node_id?: string | undefined;
+                _links?: {
+                    self?: {
+                        href?: string | undefined;
+                    } | undefined;
+                } | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -13908,6 +14786,259 @@ export declare class GithubClient {
                     rocket: number;
                 } | undefined;
             }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        getRepoRuleset: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                ruleset_id: number;
+            } & {
+                includes_parents?: boolean | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                source_type?: "Repository" | "Organization" | undefined;
+                source: string;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                node_id?: string | undefined;
+                _links?: {
+                    self?: {
+                        href?: string | undefined;
+                    } | undefined;
+                } | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        getRepoRulesets: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+            } & {
+                includes_parents?: boolean | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                source_type?: "Repository" | "Organization" | undefined;
+                source: string;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                node_id?: string | undefined;
+                _links?: {
+                    self?: {
+                        href?: string | undefined;
+                    } | undefined;
+                } | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }[], 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -14936,6 +16067,28 @@ export declare class GithubClient {
                 email?: string | undefined;
                 name?: string | undefined;
             }[], 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        listCustomDeploymentRuleIntegrations: {
+            (params?: (RequestParameters & Omit<{
+                environment_name: string;
+                repo: string;
+                owner: string;
+            } & {
+                page?: number | undefined;
+                per_page?: number | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                total_count?: number | undefined;
+                available_custom_deployment_protection_rule_integrations?: {
+                    id: number;
+                    slug: string;
+                    integration_url: string;
+                    node_id: string;
+                }[] | undefined;
+            }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
                 url: string;
@@ -17852,7 +19005,7 @@ export declare class GithubClient {
                 branch: string;
             }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
                 message?: string | undefined;
-                merge_type?: "merge" | "fast-forward" | "none" | undefined;
+                merge_type?: "merge" | "none" | "fast-forward" | undefined;
                 base_branch?: string | undefined;
             }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
@@ -20639,6 +21792,229 @@ export declare class GithubClient {
                 url: string;
             }>;
         };
+        updateOrgRuleset: {
+            (params?: (RequestParameters & Omit<{
+                org: string;
+                ruleset_id: number;
+            } & {
+                name?: string | undefined;
+                target?: "branch" | "tag" | undefined;
+                enforcement?: "disabled" | "active" | "evaluate" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                conditions?: ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                source_type?: "Repository" | "Organization" | undefined;
+                source: string;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                node_id?: string | undefined;
+                _links?: {
+                    self?: {
+                        href?: string | undefined;
+                    } | undefined;
+                } | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
         updatePullRequestReviewProtection: {
             (params?: (RequestParameters & Omit<{
                 owner: string;
@@ -21050,6 +22426,225 @@ export declare class GithubClient {
                     site_admin: boolean;
                     starred_at?: string | undefined;
                 } | null;
+            }, 200>>;
+            defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
+            endpoint: import("@octokit/types").EndpointInterface<{
+                url: string;
+            }>;
+        };
+        updateRepoRuleset: {
+            (params?: (RequestParameters & Omit<{
+                owner: string;
+                repo: string;
+                ruleset_id: number;
+            } & {
+                name?: string | undefined;
+                target?: "branch" | "tag" | undefined;
+                enforcement?: "disabled" | "active" | "evaluate" | undefined;
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
+            }, "headers" | "baseUrl" | "mediaType">) | undefined): Promise<import("@octokit/types").OctokitResponse<{
+                id: number;
+                name: string;
+                target?: "branch" | "tag" | undefined;
+                source_type?: "Repository" | "Organization" | undefined;
+                source: string;
+                enforcement: "disabled" | "active" | "evaluate";
+                bypass_mode?: "repository" | "organization" | "none" | undefined;
+                bypass_actors?: {
+                    actor_id?: number | undefined;
+                    actor_type?: "Team" | "Integration" | undefined;
+                }[] | undefined;
+                node_id?: string | undefined;
+                _links?: {
+                    self?: {
+                        href?: string | undefined;
+                    } | undefined;
+                } | undefined;
+                conditions?: {
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } | ({
+                    ref_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                    } | undefined;
+                } & {
+                    repository_name?: {
+                        include?: string[] | undefined;
+                        exclude?: string[] | undefined;
+                        protected?: boolean | undefined;
+                    } | undefined;
+                }) | undefined;
+                rules?: ({
+                    type: "creation";
+                } | {
+                    type: "update";
+                    parameters?: {
+                        update_allows_fetch_and_merge: boolean;
+                    } | undefined;
+                } | {
+                    type: "deletion";
+                } | {
+                    type: "required_linear_history";
+                } | {
+                    type: "required_deployments";
+                    parameters?: {
+                        required_deployment_environments: string[];
+                    } | undefined;
+                } | {
+                    type: "required_signatures";
+                } | {
+                    type: "pull_request";
+                    parameters?: {
+                        dismiss_stale_reviews_on_push: boolean;
+                        require_code_owner_review: boolean;
+                        require_last_push_approval: boolean;
+                        required_approving_review_count: number;
+                        required_review_thread_resolution: boolean;
+                    } | undefined;
+                } | {
+                    type: "required_status_checks";
+                    parameters?: {
+                        required_status_checks: {
+                            context: string;
+                            integration_id?: number | undefined;
+                        }[];
+                        strict_required_status_checks_policy: boolean;
+                    } | undefined;
+                } | {
+                    type: "non_fast_forward";
+                } | {
+                    type: "commit_message_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "commit_author_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "committer_email_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "branch_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                } | {
+                    type: "tag_name_pattern";
+                    parameters?: {
+                        name?: string | undefined;
+                        negate?: boolean | undefined;
+                        operator: "starts_with" | "ends_with" | "contains" | "regex";
+                        pattern: string;
+                    } | undefined;
+                })[] | undefined;
             }, 200>>;
             defaults: <O extends RequestParameters = RequestParameters>(newDefaults: O) => import("@octokit/types").RequestInterface<object & O>;
             endpoint: import("@octokit/types").EndpointInterface<{
