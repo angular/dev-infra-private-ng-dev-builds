@@ -44,7 +44,7 @@ import {
   require_semver,
   require_wrappy,
   targetLabels
-} from "./chunk-S6T22YKR.mjs";
+} from "./chunk-LH5VGR3X.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -2108,18 +2108,23 @@ var require_cli_cursor = __commonJS({
   }
 });
 
-// node_modules/run-async/index.js
+// node_modules/inquirer/node_modules/run-async/index.js
 var require_run_async = __commonJS({
-  "node_modules/run-async/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/run-async/index.js"(exports2, module2) {
     "use strict";
     function isPromise2(obj) {
       return !!obj && (typeof obj === "object" || typeof obj === "function") && typeof obj.then === "function";
     }
-    var runAsync5 = module2.exports = function(func, cb) {
+    var runAsync5 = module2.exports = function(func, cb, proxyProperty = "async") {
+      if (typeof cb === "string") {
+        proxyProperty = cb;
+        cb = void 0;
+      }
       cb = cb || function() {
       };
       return function() {
         var args = arguments;
+        var originalThis = this;
         var promise = new Promise(function(resolve13, reject) {
           var resolved = false;
           const wrappedResolve = function(value) {
@@ -2140,26 +2145,41 @@ var require_run_async = __commonJS({
           var usingCallback = false;
           var callbackConflict = false;
           var contextEnded = false;
-          var answer = func.apply({
-            async: function() {
-              if (contextEnded) {
-                console.warn("Run-async async() called outside a valid run-async context, callback will be ignored.");
-                return function() {
-                };
-              }
-              if (callbackConflict) {
-                console.warn("Run-async wrapped function (async) returned a promise.\nCalls to async() callback can have unexpected results.");
-              }
-              usingCallback = true;
-              return function(err, value) {
-                if (err) {
-                  wrappedReject(err);
-                } else {
-                  wrappedResolve(value);
-                }
+          var doneFactory = function() {
+            if (contextEnded) {
+              console.warn("Run-async async() called outside a valid run-async context, callback will be ignored.");
+              return function() {
               };
             }
-          }, Array.prototype.slice.call(args));
+            if (callbackConflict) {
+              console.warn("Run-async wrapped function (async) returned a promise.\nCalls to async() callback can have unexpected results.");
+            }
+            usingCallback = true;
+            return function(err, value) {
+              if (err) {
+                wrappedReject(err);
+              } else {
+                wrappedResolve(value);
+              }
+            };
+          };
+          var _this;
+          if (originalThis && proxyProperty && Proxy) {
+            _this = new Proxy(originalThis, {
+              get(_target, prop) {
+                if (prop === proxyProperty) {
+                  if (prop in _target) {
+                    console.warn(`${proxyProperty} property is been shadowed by run-sync`);
+                  }
+                  return doneFactory;
+                }
+                return Reflect.get(...arguments);
+              }
+            });
+          } else {
+            _this = { [proxyProperty]: doneFactory };
+          }
+          var answer = func.apply(_this, Array.prototype.slice.call(args));
           if (usingCallback) {
             if (isPromise2(answer)) {
               console.warn("Run-async wrapped function (sync) returned a promise but async() callback must be executed to resolve.");
@@ -19393,8 +19413,8 @@ var require_ansi_regex = __commonJS({
 var require_strip_ansi = __commonJS({
   "node_modules/strip-ansi/index.js"(exports2, module2) {
     "use strict";
-    var ansiRegex2 = require_ansi_regex();
-    module2.exports = (string) => typeof string === "string" ? string.replace(ansiRegex2(), "") : string;
+    var ansiRegex = require_ansi_regex();
+    module2.exports = (string) => typeof string === "string" ? string.replace(ansiRegex(), "") : string;
   }
 });
 
@@ -19460,29 +19480,6 @@ var require_string_width = __commonJS({
     };
     module2.exports = stringWidth2;
     module2.exports.default = stringWidth2;
-  }
-});
-
-// node_modules/inquirer/node_modules/wrap-ansi/node_modules/ansi-regex/index.js
-var require_ansi_regex2 = __commonJS({
-  "node_modules/inquirer/node_modules/wrap-ansi/node_modules/ansi-regex/index.js"(exports2, module2) {
-    "use strict";
-    module2.exports = ({ onlyFirst = false } = {}) => {
-      const pattern = [
-        "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)",
-        "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))"
-      ].join("|");
-      return new RegExp(pattern, onlyFirst ? void 0 : "g");
-    };
-  }
-});
-
-// node_modules/inquirer/node_modules/wrap-ansi/node_modules/strip-ansi/index.js
-var require_strip_ansi2 = __commonJS({
-  "node_modules/inquirer/node_modules/wrap-ansi/node_modules/strip-ansi/index.js"(exports2, module2) {
-    "use strict";
-    var ansiRegex2 = require_ansi_regex2();
-    module2.exports = (string) => typeof string === "string" ? string.replace(ansiRegex2(), "") : string;
   }
 });
 
@@ -20587,7 +20584,7 @@ var require_wrap_ansi = __commonJS({
   "node_modules/inquirer/node_modules/wrap-ansi/index.js"(exports2, module2) {
     "use strict";
     var stringWidth2 = require_string_width();
-    var stripAnsi3 = require_strip_ansi2();
+    var stripAnsi3 = require_strip_ansi();
     var ansiStyles = require_ansi_styles();
     var ESCAPES = /* @__PURE__ */ new Set([
       "\x1B",
@@ -72265,25 +72262,7 @@ var clearLine = function(rl, len) {
 // node_modules/inquirer/lib/utils/screen-manager.js
 var import_cli_width = __toESM(require_cli_width(), 1);
 var import_wrap_ansi = __toESM(require_wrap_ansi(), 1);
-
-// node_modules/inquirer/node_modules/ansi-regex/index.js
-function ansiRegex({ onlyFirst = false } = {}) {
-  const pattern = [
-    "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)",
-    "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))"
-  ].join("|");
-  return new RegExp(pattern, onlyFirst ? void 0 : "g");
-}
-
-// node_modules/inquirer/node_modules/strip-ansi/index.js
-function stripAnsi2(string) {
-  if (typeof string !== "string") {
-    throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
-  }
-  return string.replace(ansiRegex(), "");
-}
-
-// node_modules/inquirer/lib/utils/screen-manager.js
+var import_strip_ansi = __toESM(require_strip_ansi(), 1);
 var import_string_width = __toESM(require_string_width(), 1);
 var import_ora = __toESM(require_ora(), 1);
 function height(content) {
@@ -72326,7 +72305,7 @@ var ScreenManager = class {
     this.rl.output.unmute();
     this.clean(this.extraLinesUnderPrompt);
     const promptLine = lastLine(content);
-    const rawPromptLine = stripAnsi2(promptLine);
+    const rawPromptLine = (0, import_strip_ansi.default)(promptLine);
     let prompt2 = rawPromptLine;
     if (this.rl.line.length) {
       prompt2 = prompt2.slice(0, -this.rl.line.length);
@@ -79726,7 +79705,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-c06ec9414ddf07c14ade76d8a9068598a74790a2`;
+  const localVersion = `0.0.0-3a3e8ee5d36638d6f55b79c53945bb032a8fdca7`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
