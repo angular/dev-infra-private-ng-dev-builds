@@ -7781,9 +7781,9 @@ var require_dist_node11 = __commonJS({
   }
 });
 
-// node_modules/@octokit/plugin-rest-endpoint-methods/dist-node/index.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-rest-endpoint-methods/dist-node/index.js
 var require_dist_node12 = __commonJS({
-  "node_modules/@octokit/plugin-rest-endpoint-methods/dist-node/index.js"(exports) {
+  "node_modules/@octokit/rest/node_modules/@octokit/plugin-rest-endpoint-methods/dist-node/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Endpoints = {
@@ -13720,4 +13720,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-SLZZ6CQL.mjs.map
+//# sourceMappingURL=chunk-6Z472MZJ.mjs.map
