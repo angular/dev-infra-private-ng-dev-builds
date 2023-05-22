@@ -71319,26 +71319,21 @@ var Minimatch = class {
   matchOne(file, pattern, partial = false) {
     const options = this.options;
     if (this.isWindows) {
-      const fileUNC = file[0] === "" && file[1] === "" && file[2] === "?" && typeof file[3] === "string" && /^[a-z]:$/i.test(file[3]);
-      const patternUNC = pattern[0] === "" && pattern[1] === "" && pattern[2] === "?" && typeof pattern[3] === "string" && /^[a-z]:$/i.test(pattern[3]);
-      if (fileUNC && patternUNC) {
-        const fd = file[3];
-        const pd = pattern[3];
+      const fileDrive = typeof file[0] === "string" && /^[a-z]:$/i.test(file[0]);
+      const fileUNC = !fileDrive && file[0] === "" && file[1] === "" && file[2] === "?" && /^[a-z]:$/i.test(file[3]);
+      const patternDrive = typeof pattern[0] === "string" && /^[a-z]:$/i.test(pattern[0]);
+      const patternUNC = !patternDrive && pattern[0] === "" && pattern[1] === "" && pattern[2] === "?" && typeof pattern[3] === "string" && /^[a-z]:$/i.test(pattern[3]);
+      const fdi = fileUNC ? 3 : fileDrive ? 0 : void 0;
+      const pdi = patternUNC ? 3 : patternDrive ? 0 : void 0;
+      if (typeof fdi === "number" && typeof pdi === "number") {
+        const [fd, pd] = [file[fdi], pattern[pdi]];
         if (fd.toLowerCase() === pd.toLowerCase()) {
-          file[3] = pd;
-        }
-      } else if (patternUNC && typeof file[0] === "string") {
-        const pd = pattern[3];
-        const fd = file[0];
-        if (pd.toLowerCase() === fd.toLowerCase()) {
-          pattern[3] = fd;
-          pattern = pattern.slice(3);
-        }
-      } else if (fileUNC && typeof pattern[0] === "string") {
-        const fd = file[3];
-        if (fd.toLowerCase() === pattern[0].toLowerCase()) {
-          pattern[0] = fd;
-          file = file.slice(3);
+          pattern[pdi] = fd;
+          if (pdi > fdi) {
+            pattern = pattern.slice(pdi);
+          } else if (fdi > pdi) {
+            file = file.slice(fdi);
+          }
         }
       }
     }
@@ -73396,7 +73391,9 @@ var EditorPrompt = class extends Prompt {
   }
   startExternalEditor() {
     this.rl.pause();
-    (0, import_external_editor.editAsync)(this.currentText, this.endExternalEditor.bind(this));
+    (0, import_external_editor.editAsync)(this.currentText, this.endExternalEditor.bind(this), {
+      postfix: this.opt.postfix ?? ".txt"
+    });
   }
   endExternalEditor(error, result) {
     this.rl.resume();
@@ -79705,7 +79702,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-5b4834e24a2d68871045350c67aec0bd4e6fb20c`;
+  const localVersion = `0.0.0-347b7d784c841abf7c830b6a102a2dd3c76fc25e`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
