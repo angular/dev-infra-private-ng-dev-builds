@@ -2517,16 +2517,16 @@ var require_timeoutProvider = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.timeoutProvider = void 0;
     exports2.timeoutProvider = {
-      setTimeout: function(handler30, timeout) {
+      setTimeout: function(handler29, timeout) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
           args[_i - 2] = arguments[_i];
         }
         var delegate = exports2.timeoutProvider.delegate;
         if (delegate === null || delegate === void 0 ? void 0 : delegate.setTimeout) {
-          return delegate.setTimeout.apply(delegate, __spreadArray([handler30, timeout], __read(args)));
+          return delegate.setTimeout.apply(delegate, __spreadArray([handler29, timeout], __read(args)));
         }
-        return setTimeout.apply(void 0, __spreadArray([handler30, timeout], __read(args)));
+        return setTimeout.apply(void 0, __spreadArray([handler29, timeout], __read(args)));
       },
       clearTimeout: function(handle) {
         var delegate = exports2.timeoutProvider.delegate;
@@ -3906,16 +3906,16 @@ var require_intervalProvider = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.intervalProvider = void 0;
     exports2.intervalProvider = {
-      setInterval: function(handler30, timeout) {
+      setInterval: function(handler29, timeout) {
         var args = [];
         for (var _i = 2; _i < arguments.length; _i++) {
           args[_i - 2] = arguments[_i];
         }
         var delegate = exports2.intervalProvider.delegate;
         if (delegate === null || delegate === void 0 ? void 0 : delegate.setInterval) {
-          return delegate.setInterval.apply(delegate, __spreadArray([handler30, timeout], __read(args)));
+          return delegate.setInterval.apply(delegate, __spreadArray([handler29, timeout], __read(args)));
         }
-        return setInterval.apply(void 0, __spreadArray([handler30, timeout], __read(args)));
+        return setInterval.apply(void 0, __spreadArray([handler29, timeout], __read(args)));
       },
       clearInterval: function(handle) {
         var delegate = exports2.intervalProvider.delegate;
@@ -6716,8 +6716,8 @@ var require_fromEvent = __commonJS({
         return fromEvent2(target, eventName, options).pipe(mapOneOrManyArgs_1.mapOneOrManyArgs(resultSelector));
       }
       var _a2 = __read(isEventTarget(target) ? eventTargetMethods.map(function(methodName) {
-        return function(handler30) {
-          return target[methodName](eventName, handler30, options);
+        return function(handler29) {
+          return target[methodName](eventName, handler29, options);
         };
       }) : isNodeStyleEventEmitter(target) ? nodeEventEmitterMethods.map(toCommonHandlerRegistry(target, eventName)) : isJQueryStyleEventEmitter(target) ? jqueryMethods.map(toCommonHandlerRegistry(target, eventName)) : [], 2), add = _a2[0], remove = _a2[1];
       if (!add) {
@@ -6731,24 +6731,24 @@ var require_fromEvent = __commonJS({
         throw new TypeError("Invalid event target");
       }
       return new Observable_1.Observable(function(subscriber) {
-        var handler30 = function() {
+        var handler29 = function() {
           var args = [];
           for (var _i = 0; _i < arguments.length; _i++) {
             args[_i] = arguments[_i];
           }
           return subscriber.next(1 < args.length ? args : args[0]);
         };
-        add(handler30);
+        add(handler29);
         return function() {
-          return remove(handler30);
+          return remove(handler29);
         };
       });
     }
     exports2.fromEvent = fromEvent2;
     function toCommonHandlerRegistry(target, eventName) {
       return function(methodName) {
-        return function(handler30) {
-          return target[methodName](eventName, handler30);
+        return function(handler29) {
+          return target[methodName](eventName, handler29);
         };
       };
     }
@@ -6778,16 +6778,16 @@ var require_fromEventPattern = __commonJS({
         return fromEventPattern(addHandler, removeHandler).pipe(mapOneOrManyArgs_1.mapOneOrManyArgs(resultSelector));
       }
       return new Observable_1.Observable(function(subscriber) {
-        var handler30 = function() {
+        var handler29 = function() {
           var e = [];
           for (var _i = 0; _i < arguments.length; _i++) {
             e[_i] = arguments[_i];
           }
           return subscriber.next(e.length === 1 ? e[0] : e);
         };
-        var retValue = addHandler(handler30);
+        var retValue = addHandler(handler29);
         return isFunction_1.isFunction(removeHandler) ? function() {
-          return removeHandler(handler30, retValue);
+          return removeHandler(handler29, retValue);
         } : void 0;
       });
     }
@@ -32397,7 +32397,7 @@ var require_chardet = __commonJS({
         opts = void 0;
       }
       var fd;
-      var handler30 = function(err, buffer) {
+      var handler29 = function(err, buffer) {
         if (fd) {
           fs6.closeSync(fd);
         }
@@ -32408,11 +32408,11 @@ var require_chardet = __commonJS({
       if (opts && opts.sampleSize) {
         fd = fs6.openSync(filepath, "r"), sample = Buffer.allocUnsafe(opts.sampleSize);
         fs6.read(fd, sample, 0, opts.sampleSize, null, function(err) {
-          handler30(err, sample);
+          handler29(err, sample);
         });
         return;
       }
-      fs6.readFile(filepath, handler30);
+      fs6.readFile(filepath, handler29);
     };
     module2.exports.detectFileSync = function(filepath, opts) {
       if (opts && opts.sampleSize) {
@@ -67190,10 +67190,10 @@ var CommandInstance = class {
     };
     this.shim.requireDirectory({ require: req, filename: callerFile }, dir, opts);
   }
-  addHandler(cmd, description, builder28, handler30, commandMiddleware, deprecated) {
+  addHandler(cmd, description, builder28, handler29, commandMiddleware, deprecated) {
     let aliases = [];
     const middlewares = commandMiddlewareFactory(commandMiddleware);
-    handler30 = handler30 || (() => {
+    handler29 = handler29 || (() => {
     });
     if (Array.isArray(cmd)) {
       if (isCommandAndAliases(cmd)) {
@@ -67240,7 +67240,7 @@ var CommandInstance = class {
       this.handlers[parsedCommand.cmd] = {
         original: cmd,
         description,
-        handler: handler30,
+        handler: handler29,
         builder: builder28 || {},
         middlewares,
         deprecated,
@@ -69022,13 +69022,13 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_completion, "f").registerFunction(fn);
     return this;
   }
-  command(cmd, description, builder28, handler30, middlewares, deprecated) {
-    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder28, handler30, middlewares, deprecated], arguments.length);
-    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder28, handler30, middlewares, deprecated);
+  command(cmd, description, builder28, handler29, middlewares, deprecated) {
+    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder28, handler29, middlewares, deprecated], arguments.length);
+    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder28, handler29, middlewares, deprecated);
     return this;
   }
-  commands(cmd, description, builder28, handler30, middlewares, deprecated) {
-    return this.command(cmd, description, builder28, handler30, middlewares, deprecated);
+  commands(cmd, description, builder28, handler29, middlewares, deprecated) {
+    return this.command(cmd, description, builder28, handler29, middlewares, deprecated);
   }
   commandDir(dir, opts) {
     argsert("<string> [object]", [dir, opts], arguments.length);
@@ -69630,12 +69630,12 @@ var YargsInstance = class {
     __classPrivateFieldGet(this, _YargsInstance_shim, "f").y18n.updateLocale(obj);
     return this;
   }
-  usage(msg, description, builder28, handler30) {
-    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder28, handler30], arguments.length);
+  usage(msg, description, builder28, handler29) {
+    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder28, handler29], arguments.length);
     if (description !== void 0) {
       assertNotStrictEqual(msg, null, __classPrivateFieldGet(this, _YargsInstance_shim, "f"));
       if ((msg || "").match(/^\$0( |$)/)) {
-        return this.command(msg, description, builder28, handler30);
+        return this.command(msg, description, builder28, handler29);
       } else {
         throw new YError(".usage() description must start with $0 if being used as alias for .command()");
       }
@@ -75624,182 +75624,6 @@ var BuildAndLinkCommandModule = {
   describe: "Builds the release output, registers the outputs as linked, and links via yarn to the provided project"
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/misc/new-main-branch/local-branch.js
-function findAvailableLocalBranchName(git, baseName) {
-  let currentName = baseName;
-  let suffixNum = 0;
-  while (hasLocalBranch(git, currentName)) {
-    suffixNum++;
-    currentName = `${baseName}_${suffixNum}`;
-  }
-  return currentName;
-}
-function hasLocalBranch(git, branchName) {
-  return git.runGraceful(["rev-parse", `refs/heads/${branchName}`], { stdio: "ignore" }).status === 0;
-}
-function getCurrentBranch(git) {
-  return git.run(["rev-parse", "--abbrev-ref", "HEAD"]).stdout.trim();
-}
-
-// bazel-out/k8-fastbuild/bin/ng-dev/misc/new-main-branch/remote-fork-update.js
-async function promptForRemoteForkUpdate() {
-  if (!await Prompt2.confirm("Do you also want to update your fork(s) on Github to `main`? (recommended)")) {
-    return;
-  }
-  Log.info("");
-  Log.info(yellow("In order to be able to update your fork automatically, the script needs"));
-  Log.info(yellow("authenticated access to your GitHub account. For this, you need to enter a"));
-  Log.info(yellow("GitHub access token that is temporarily stored in memory until the script exits."));
-  Log.info("");
-  if (!await Prompt2.confirm("Do you want to proceed updating your forks automatically?")) {
-    return;
-  }
-  Log.info("");
-  Log.info(yellow("You can create an access token by visiting the following GitHub URL:"));
-  Log.info(yellow("https://github.com/settings/tokens/new?scopes=public_repo&description=ForkBranchRename"));
-  const accessToken = await Prompt2.input("Please enter a Github access token (`public_repo` scope is required)");
-  AuthenticatedGitClient.configure(accessToken);
-  const git = await AuthenticatedGitClient.get();
-  const forks = (await git.getAllForksOfAuthenticatedUser()).map((fork2) => ({
-    ...fork2,
-    description: getDescriptionForRepo(fork2)
-  }));
-  const failedForks = [];
-  if (forks.length === 0) {
-    Log.warn("Could not find any forks associated with the provided access token.");
-    Log.warn("You will need to manually rename the `master` branch to `main` for your fork.");
-    return;
-  }
-  for (const fork2 of forks) {
-    const forkApiParams = { owner: fork2.owner, repo: fork2.name };
-    Log.debug(`Updating fork: ${fork2.description}`);
-    try {
-      await git.github.repos.renameBranch({ ...forkApiParams, branch: "master", new_name: "main" });
-      await git.github.repos.update({ ...forkApiParams, default_branch: "main" });
-      Log.debug(`Successfully updated the fork: ${fork2.description}`);
-    } catch (e) {
-      Log.debug(`An error occurred while renaming the default branch for fork: ${fork2.description}`);
-      failedForks.push(fork2.description);
-    }
-  }
-  if (failedForks.length > 0) {
-    Log.warn("Could not update the following forks automatically:", failedForks.join(", "));
-    Log.warn("You will need to manually rename the `master` branch to `main` in the UI.");
-    return;
-  }
-  Log.info("");
-  Log.info(green("---------------------------------------------------------"));
-  Log.info(green("Successfully updated your fork(s) from `master` to `main`."));
-  forks.forEach((fork2) => Log.info(green(`\u2192 ${fork2.description}`)));
-  Log.info(green("---------------------------------------------------------"));
-}
-function getDescriptionForRepo(repo) {
-  return `${repo.owner}/${repo.name}`;
-}
-
-// bazel-out/k8-fastbuild/bin/ng-dev/misc/new-main-branch/remotes.js
-var remoteVerboseInfoRegex = /^([^\s]+)\s+([^\s]+)\s+\((fetch|push)\)$/;
-var angularOrganizationRemoteUrl = /github.com[:/]angular\//;
-function getRemotesForRepo(git) {
-  const remotesVerboseInfo = git.run(["remote", "--verbose"]);
-  const remotes = /* @__PURE__ */ new Map();
-  for (const line of remotesVerboseInfo.stdout.trim().split(/\r?\n/)) {
-    const matches = line.match(remoteVerboseInfoRegex);
-    if (matches === null) {
-      Log.debug("Could not parse remote info line:", line);
-      continue;
-    }
-    remotes.set(matches[1], matches[2]);
-  }
-  return remotes;
-}
-function isAngularOwnedRemote(url2) {
-  return angularOrganizationRemoteUrl.test(url2);
-}
-
-// bazel-out/k8-fastbuild/bin/ng-dev/misc/new-main-branch/cli.js
-async function handler12() {
-  const git = await GitClient.get();
-  if (git.hasUncommittedChanges()) {
-    Log.error("There are uncommitted changes. Unable to switch to new main branch. Aborting..");
-    return;
-  }
-  const config = await getConfig([assertValidGithubConfig]);
-  const repoSlug = `${config.github.owner}/${config.github.name}`;
-  if (!hasLocalBranch(git, "master")) {
-    Log.error("Local repository does not have a local branch named `master`. Aborting..");
-    return;
-  }
-  if (hasLocalBranch(git, "main")) {
-    Log.warn("The new `main` branch is already fetched locally. In order to run");
-    Log.warn("this tool, the `main` branch needs to be non-existent locally.");
-    Log.warn("");
-    Log.warn("The tool will re-fetch the `main` branch and configure it properly.");
-    if (!await Prompt2.confirm("Do you want to proceed and delete the local `main` branch?")) {
-      Log.error("Aborting..");
-      return;
-    }
-    if (getCurrentBranch(git) === "main") {
-      git.run(["checkout", "master"]);
-    }
-    git.run(["branch", "-D", "main"]);
-  }
-  const remotes = getRemotesForRepo(git);
-  const angularRemotes = Array.from(remotes.entries()).filter((r) => isAngularOwnedRemote(r[1]));
-  const angularRemoteNames = angularRemotes.map(([name]) => name);
-  const primaryRemoteName = angularRemoteNames[0];
-  if (angularRemoteNames.length === 0) {
-    Log.warn(`Found no remote in repository that points to the \`${repoSlug}\` repository.`);
-  }
-  Log.info("The following steps will be performed:");
-  if (angularRemoteNames.length) {
-    Log.info(`  \u2192 Remotes (${angularRemoteNames.join(`, `)}) are refreshed.`);
-  }
-  Log.info(`  \u2192 The \`main\` branch is fetched from \`${repoSlug}\`.`);
-  Log.info("  \u2192 The new `main` branch is checked out.");
-  if (primaryRemoteName) {
-    Log.info(`  \u2192 The new \`main\` branch is linked to the \`${primaryRemoteName}\` remote.`);
-  }
-  Log.info("  \u2192 The old `master` branch is deleted or renamed (you will be prompted).");
-  Log.info("  \u2192 Remote references to `master` branches in the index are removed.");
-  Log.info("");
-  if (!await Prompt2.confirm("Do you want to continue?")) {
-    return;
-  }
-  for (const remoteName of angularRemoteNames) {
-    git.run(["fetch", remoteName]);
-    git.run(["remote", "set-head", remoteName, "-a"]);
-  }
-  git.run(["fetch", git.getRepoGitUrl(), "main:main"]);
-  git.run(["checkout", "main"]);
-  if (primaryRemoteName !== void 0) {
-    git.run(["branch", "--set-upstream-to", primaryRemoteName, "main"]);
-  }
-  if (await Prompt2.confirm("Are there changes in your local `master` branch that you want to keep?")) {
-    const tmpBranch = findAvailableLocalBranchName(git, "old-master");
-    git.run(["branch", "-m", "master", tmpBranch]);
-    Log.info("");
-    Log.info(yellow(`Renamed local \`master\` branch to \`${tmpBranch}\`, preserving your changes.`));
-  } else {
-    git.run(["branch", "-D", "master"]);
-  }
-  for (const [remoteName] of remotes) {
-    git.runGraceful(["update-ref", "-d", `refs/remotes/${remoteName}/master`]);
-  }
-  Log.info("");
-  Log.info(green("---------------------------------------------------------"));
-  Log.info(green("Successfully updated the local repository to use `main`."));
-  Log.info(green("---------------------------------------------------------"));
-  Log.info("");
-  Log.info("");
-  await promptForRemoteForkUpdate();
-}
-var NewMainBranchCommandModule = {
-  handler: handler12,
-  command: "new-main-branch",
-  describe: "Updates the local repository to account for the new GitHub main branch."
-};
-
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/update-yarn/cli.js
 import { readdirSync as readdirSync3, unlinkSync as unlinkSync2 } from "fs";
 import { join as join7 } from "path";
@@ -75935,7 +75759,7 @@ var skipHuskyEnv = {
   ...process.env,
   HUSKY: "0"
 };
-async function handler13() {
+async function handler12() {
   const yarnGlobalBin = await getYarnPathFromNpmGlobalBinaries() ?? "yarn";
   const git = await AuthenticatedGitClient.get();
   const mainBranchName = git.mainBranchName;
@@ -76006,7 +75830,7 @@ ${body}`;
 }
 var UpdateYarnCommandModule = {
   builder: builder12,
-  handler: handler13,
+  handler: handler12,
   command: "update-yarn",
   describe: "Automatically update the vendored yarn version in the repository and create a PR"
 };
@@ -76078,7 +75902,7 @@ function assertAllowedLicense(license) {
 function builder13(argv) {
   return argv;
 }
-async function handler14({}) {
+async function handler13({}) {
   try {
     const { valid, maxPkgNameLength, packages } = await checkAllLicenses(determineRepoBaseDirFromCwd());
     if (valid) {
@@ -76099,14 +75923,14 @@ async function handler14({}) {
 }
 var ValidateLicensesModule = {
   builder: builder13,
-  handler: handler14,
+  handler: handler13,
   command: "validate-licenses",
   describe: "Validate the licenses for all dependencies in the project"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/cli.js
 function buildMiscParser(localYargs) {
-  return localYargs.help().strict().command(BuildAndLinkCommandModule).command(NewMainBranchCommandModule).command(UpdateYarnCommandModule).command(ValidateLicensesModule);
+  return localYargs.help().strict().command(BuildAndLinkCommandModule).command(UpdateYarnCommandModule).command(ValidateLicensesModule);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ngbot/verify.js
@@ -76343,11 +76167,11 @@ function builder14(argv) {
     demandOption: true
   });
 }
-async function handler15({ pr }) {
+async function handler14({ pr }) {
   await printTargetBranchesForPr(pr);
 }
 var CheckTargetBranchesModule = {
-  handler: handler15,
+  handler: handler14,
   builder: builder14,
   command: "check-target-branches <pr>",
   describe: "Check a PR to determine what branches it is currently targeting"
@@ -76490,7 +76314,7 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
 function builder15(yargs) {
   return addGithubTokenOption(yargs).positional("pr", { type: "number", demandOption: true });
 }
-async function handler16({ pr }) {
+async function handler15({ pr }) {
   const options = { allowIfMaintainerCannotModify: true, branchName: `pr-${pr}` };
   const { pushToUpstreamCommand } = await checkOutPullRequestLocally(pr, options);
   Log.info(`Checked out the remote branch for pull request #${pr}
@@ -76499,7 +76323,7 @@ async function handler16({ pr }) {
   Log.info(`  $ ${pushToUpstreamCommand}`);
 }
 var CheckoutCommandModule = {
-  handler: handler16,
+  handler: handler15,
   builder: builder15,
   command: "checkout <pr>",
   describe: "Checkout a PR from the upstream repo"
@@ -76730,7 +76554,7 @@ function builder16(argv) {
     default: getThirtyDaysAgoDate()
   }).positional("pr", { demandOption: true, type: "number" });
 }
-async function handler17({ pr, date }) {
+async function handler16({ pr, date }) {
   if (isNaN(date)) {
     Log.error("Unable to parse the value provided via --date flag");
     process.exit(1);
@@ -76744,7 +76568,7 @@ function getThirtyDaysAgoDate() {
   return date.getTime();
 }
 var DiscoverNewConflictsCommandModule = {
-  handler: handler17,
+  handler: handler16,
   builder: builder16,
   command: "discover-new-conflicts <pr>",
   describe: "Check if a pending PR causes new conflicts for other pending PRs"
@@ -77497,11 +77321,11 @@ async function builder17(argv) {
     description: "Whether to manually select the branches you wish to merge the PR into."
   });
 }
-async function handler18({ pr, branchPrompt, forceManualBranches, dryRun }) {
+async function handler17({ pr, branchPrompt, forceManualBranches, dryRun }) {
   await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun });
 }
 var MergeCommandModule = {
-  handler: handler18,
+  handler: handler17,
   builder: builder17,
   command: "merge <pr>",
   describe: "Merge a PR into its targeted branches."
@@ -77577,11 +77401,11 @@ async function rebasePr(prNumber) {
 function builder18(argv) {
   return addGithubTokenOption(argv).positional("pr", { type: "number", demandOption: true });
 }
-async function handler19({ pr }) {
+async function handler18({ pr }) {
   process.exitCode = await rebasePr(pr);
 }
 var RebaseCommandModule = {
-  handler: handler19,
+  handler: handler18,
   builder: builder18,
   command: "rebase <pr>",
   describe: "Rebase a pending PR and push the rebased commits back to Github"
@@ -77877,7 +77701,7 @@ function builder19(argv) {
     default: false
   });
 }
-async function handler20(args) {
+async function handler19(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages } = config.release;
@@ -77906,7 +77730,7 @@ async function handler20(args) {
 }
 var ReleaseBuildCommandModule = {
   builder: builder19,
-  handler: handler20,
+  handler: handler19,
   command: "build",
   describe: "Builds the release output for the current branch."
 };
@@ -77968,7 +77792,7 @@ function builder20(argv) {
     default: false
   });
 }
-async function handler21(argv) {
+async function handler20(argv) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   if (argv.json) {
@@ -77983,7 +77807,7 @@ async function handler21(argv) {
 }
 var ReleaseInfoCommandModule = {
   builder: builder20,
-  handler: handler21,
+  handler: handler20,
   command: "info",
   describe: "Prints information for the current release state."
 };
@@ -78485,7 +78309,7 @@ function builder21(argv) {
     description: "Whether to update the changelog with the newly created entry"
   });
 }
-async function handler22({ releaseVersion, from: from3, to, prependToChangelog, type }) {
+async function handler21({ releaseVersion, from: from3, to, prependToChangelog, type }) {
   const git = await GitClient.get();
   const releaseNotes = await ReleaseNotes.forRange(git, releaseVersion, from3, to);
   if (prependToChangelog) {
@@ -78498,7 +78322,7 @@ async function handler22({ releaseVersion, from: from3, to, prependToChangelog, 
 }
 var ReleaseNotesCommandModule = {
   builder: builder21,
-  handler: handler22,
+  handler: handler21,
   command: "notes",
   describe: "Generate release notes"
 };
@@ -78520,7 +78344,7 @@ function readBufferFromStdinUntilClosed(input = process.stdin) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/precheck/cli.js
-async function handler23() {
+async function handler22() {
   const stdin = await readBufferFromStdinUntilClosed();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -78541,7 +78365,7 @@ async function handler23() {
   }
 }
 var ReleasePrecheckCommandModule = {
-  handler: handler23,
+  handler: handler22,
   command: "precheck",
   describe: false
 };
@@ -79702,7 +79526,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-4bc0a5b561cd30cd9840f42c6804c45a4f511244`;
+  const localVersion = `0.0.0-38f4866ffceee21e9461cec929301079b27d7f57`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -79865,7 +79689,7 @@ var ReleaseTool = class {
 function builder22(argv) {
   return addGithubTokenOption(argv);
 }
-async function handler24() {
+async function handler23() {
   const git = await AuthenticatedGitClient.get();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -79888,7 +79712,7 @@ async function handler24() {
 }
 var ReleasePublishCommandModule = {
   builder: builder22,
-  handler: handler24,
+  handler: handler23,
   command: "publish",
   describe: "Publish new releases and configure version branches."
 };
@@ -79910,7 +79734,7 @@ function builder23(args) {
     default: false
   });
 }
-async function handler25(args) {
+async function handler24(args) {
   const { targetVersion: rawVersion, tagName, skipExperimentalPackages } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -79948,7 +79772,7 @@ async function handler25(args) {
 }
 var ReleaseNpmDistTagSetCommand = {
   builder: builder23,
-  handler: handler25,
+  handler: handler24,
   command: "set <tag-name> <target-version>",
   describe: "Sets a given NPM dist tag for all release packages."
 };
@@ -79969,7 +79793,7 @@ var import_semver20 = __toESM(require_semver());
 import { join as join12 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
-  console.info(`BUILD_SCM_BRANCH ${getCurrentBranch2(git)}`);
+  console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
   console.info(`BUILD_SCM_COMMIT_SHA ${getCurrentSha(git)}`);
   console.info(`BUILD_SCM_HASH ${getCurrentSha(git)}`);
   console.info(`BUILD_SCM_ABBREV_HASH ${getCurrentAbbrevSha(git)}`);
@@ -80026,7 +79850,7 @@ function getCurrentBranchOrRevision(git) {
     return "";
   }
 }
-function getCurrentBranch2(git) {
+function getCurrentBranch(git) {
   try {
     return git.run(["symbolic-ref", "--short", "HEAD"]).stdout.trim();
   } catch {
@@ -80066,7 +79890,7 @@ function builder24(args) {
     description: "Working-dir relative or absolute path to an ESM script which can print additional stamping variables"
   });
 }
-async function handler26({ mode, includeVersion, additionalStampingScript }) {
+async function handler25({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
     const scriptURL = url.pathToFileURL(path5.resolve(additionalStampingScript));
@@ -80076,7 +79900,7 @@ async function handler26({ mode, includeVersion, additionalStampingScript }) {
 }
 var BuildEnvStampCommand = {
   builder: builder24,
-  handler: handler26,
+  handler: handler25,
   command: "build-env-stamp",
   describe: "Build the environment stamping information"
 };
@@ -80089,7 +79913,7 @@ function builder25(args) {
     description: "Name of the NPM dist tag."
   });
 }
-async function handler27(args) {
+async function handler26(args) {
   const { tagName } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -80113,7 +79937,7 @@ async function handler27(args) {
 }
 var ReleaseNpmDistTagDeleteCommand = {
   builder: builder25,
-  handler: handler27,
+  handler: handler26,
   command: "delete <tag-name>",
   describe: "Deletes a given NPM dist tag for all release packages."
 };
@@ -84978,12 +84802,12 @@ function convertReferenceChainToString(chain) {
 async function builder26(yargs) {
   return yargs;
 }
-async function handler28() {
+async function handler27() {
   Log.warn("ng-dev auth login has been deprecated. Authentication will be done");
   Log.warn("using TOKEN from the local environment.");
 }
 var LoginModule = {
-  handler: handler28,
+  handler: handler27,
   builder: builder26,
   command: "login",
   describe: "Log into the ng-dev service"
@@ -84993,12 +84817,12 @@ var LoginModule = {
 async function builder27(yargs) {
   return yargs;
 }
-async function handler29() {
+async function handler28() {
   Log.warn("ng-dev auth logout has been deprecated. Authentication will be done");
   Log.warn("using local environment.");
 }
 var LogoutModule = {
-  handler: handler29,
+  handler: handler28,
   builder: builder27,
   command: "logout",
   describe: "Log out of the ng-dev service"
