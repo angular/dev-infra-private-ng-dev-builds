@@ -5,6 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { SemVer } from 'semver';
 import { ActiveReleaseTrains } from '../../../versioning/active-release-trains.js';
 import { CutPrereleaseBaseAction } from '../shared/cut-prerelease.js';
 /**
@@ -18,7 +19,7 @@ export declare class CutExceptionalMinorPrereleaseAction extends CutPrereleaseBa
     releaseTrain: import("../../../versioning/release-trains.js").ReleaseTrain;
     npmDistTag: "do-not-use-exceptional-minor";
     shouldUseExistingVersion: Promise<boolean>;
-    releaseNotesCompareVersion: Promise<import("@types/semver/classes/semver.js")>;
+    releaseNotesCompareVersion: Promise<SemVer>;
     getDescription(): Promise<string>;
     static isActive(active: ActiveReleaseTrains): Promise<boolean>;
 }
