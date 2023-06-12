@@ -42243,356 +42243,6 @@ var require_split2 = __commonJS({
   }
 });
 
-// node_modules/lodash/_createAssigner.js
-var require_createAssigner = __commonJS({
-  "node_modules/lodash/_createAssigner.js"(exports2, module2) {
-    var baseRest = require_baseRest();
-    var isIterateeCall = require_isIterateeCall();
-    function createAssigner(assigner) {
-      return baseRest(function(object, sources) {
-        var index = -1, length = sources.length, customizer = length > 1 ? sources[length - 1] : void 0, guard = length > 2 ? sources[2] : void 0;
-        customizer = assigner.length > 3 && typeof customizer == "function" ? (length--, customizer) : void 0;
-        if (guard && isIterateeCall(sources[0], sources[1], guard)) {
-          customizer = length < 3 ? void 0 : customizer;
-          length = 1;
-        }
-        object = Object(object);
-        while (++index < length) {
-          var source = sources[index];
-          if (source) {
-            assigner(object, source, index, customizer);
-          }
-        }
-        return object;
-      });
-    }
-    module2.exports = createAssigner;
-  }
-});
-
-// node_modules/lodash/assignInWith.js
-var require_assignInWith = __commonJS({
-  "node_modules/lodash/assignInWith.js"(exports2, module2) {
-    var copyObject = require_copyObject();
-    var createAssigner = require_createAssigner();
-    var keysIn = require_keysIn();
-    var assignInWith = createAssigner(function(object, source, srcIndex, customizer) {
-      copyObject(source, keysIn(source), object, customizer);
-    });
-    module2.exports = assignInWith;
-  }
-});
-
-// node_modules/lodash/isError.js
-var require_isError = __commonJS({
-  "node_modules/lodash/isError.js"(exports2, module2) {
-    var baseGetTag = require_baseGetTag();
-    var isObjectLike = require_isObjectLike();
-    var isPlainObject2 = require_isPlainObject();
-    var domExcTag = "[object DOMException]";
-    var errorTag = "[object Error]";
-    function isError(value) {
-      if (!isObjectLike(value)) {
-        return false;
-      }
-      var tag = baseGetTag(value);
-      return tag == errorTag || tag == domExcTag || typeof value.message == "string" && typeof value.name == "string" && !isPlainObject2(value);
-    }
-    module2.exports = isError;
-  }
-});
-
-// node_modules/lodash/attempt.js
-var require_attempt = __commonJS({
-  "node_modules/lodash/attempt.js"(exports2, module2) {
-    var apply = require_apply();
-    var baseRest = require_baseRest();
-    var isError = require_isError();
-    var attempt = baseRest(function(func, args) {
-      try {
-        return apply(func, void 0, args);
-      } catch (e) {
-        return isError(e) ? e : new Error(e);
-      }
-    });
-    module2.exports = attempt;
-  }
-});
-
-// node_modules/lodash/_baseValues.js
-var require_baseValues = __commonJS({
-  "node_modules/lodash/_baseValues.js"(exports2, module2) {
-    var arrayMap = require_arrayMap();
-    function baseValues(object, props) {
-      return arrayMap(props, function(key) {
-        return object[key];
-      });
-    }
-    module2.exports = baseValues;
-  }
-});
-
-// node_modules/lodash/_customDefaultsAssignIn.js
-var require_customDefaultsAssignIn = __commonJS({
-  "node_modules/lodash/_customDefaultsAssignIn.js"(exports2, module2) {
-    var eq = require_eq();
-    var objectProto = Object.prototype;
-    var hasOwnProperty = objectProto.hasOwnProperty;
-    function customDefaultsAssignIn(objValue, srcValue, key, object) {
-      if (objValue === void 0 || eq(objValue, objectProto[key]) && !hasOwnProperty.call(object, key)) {
-        return srcValue;
-      }
-      return objValue;
-    }
-    module2.exports = customDefaultsAssignIn;
-  }
-});
-
-// node_modules/lodash/_escapeStringChar.js
-var require_escapeStringChar = __commonJS({
-  "node_modules/lodash/_escapeStringChar.js"(exports2, module2) {
-    var stringEscapes = {
-      "\\": "\\",
-      "'": "'",
-      "\n": "n",
-      "\r": "r",
-      "\u2028": "u2028",
-      "\u2029": "u2029"
-    };
-    function escapeStringChar(chr) {
-      return "\\" + stringEscapes[chr];
-    }
-    module2.exports = escapeStringChar;
-  }
-});
-
-// node_modules/lodash/_reInterpolate.js
-var require_reInterpolate = __commonJS({
-  "node_modules/lodash/_reInterpolate.js"(exports2, module2) {
-    var reInterpolate = /<%=([\s\S]+?)%>/g;
-    module2.exports = reInterpolate;
-  }
-});
-
-// node_modules/lodash/_basePropertyOf.js
-var require_basePropertyOf = __commonJS({
-  "node_modules/lodash/_basePropertyOf.js"(exports2, module2) {
-    function basePropertyOf(object) {
-      return function(key) {
-        return object == null ? void 0 : object[key];
-      };
-    }
-    module2.exports = basePropertyOf;
-  }
-});
-
-// node_modules/lodash/_escapeHtmlChar.js
-var require_escapeHtmlChar = __commonJS({
-  "node_modules/lodash/_escapeHtmlChar.js"(exports2, module2) {
-    var basePropertyOf = require_basePropertyOf();
-    var htmlEscapes = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#39;"
-    };
-    var escapeHtmlChar = basePropertyOf(htmlEscapes);
-    module2.exports = escapeHtmlChar;
-  }
-});
-
-// node_modules/lodash/escape.js
-var require_escape = __commonJS({
-  "node_modules/lodash/escape.js"(exports2, module2) {
-    var escapeHtmlChar = require_escapeHtmlChar();
-    var toString = require_toString();
-    var reUnescapedHtml = /[&<>"']/g;
-    var reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
-    function escape2(string) {
-      string = toString(string);
-      return string && reHasUnescapedHtml.test(string) ? string.replace(reUnescapedHtml, escapeHtmlChar) : string;
-    }
-    module2.exports = escape2;
-  }
-});
-
-// node_modules/lodash/_reEscape.js
-var require_reEscape = __commonJS({
-  "node_modules/lodash/_reEscape.js"(exports2, module2) {
-    var reEscape = /<%-([\s\S]+?)%>/g;
-    module2.exports = reEscape;
-  }
-});
-
-// node_modules/lodash/_reEvaluate.js
-var require_reEvaluate = __commonJS({
-  "node_modules/lodash/_reEvaluate.js"(exports2, module2) {
-    var reEvaluate = /<%([\s\S]+?)%>/g;
-    module2.exports = reEvaluate;
-  }
-});
-
-// node_modules/lodash/templateSettings.js
-var require_templateSettings = __commonJS({
-  "node_modules/lodash/templateSettings.js"(exports2, module2) {
-    var escape2 = require_escape();
-    var reEscape = require_reEscape();
-    var reEvaluate = require_reEvaluate();
-    var reInterpolate = require_reInterpolate();
-    var templateSettings = {
-      "escape": reEscape,
-      "evaluate": reEvaluate,
-      "interpolate": reInterpolate,
-      "variable": "",
-      "imports": {
-        "_": { "escape": escape2 }
-      }
-    };
-    module2.exports = templateSettings;
-  }
-});
-
-// node_modules/lodash/template.js
-var require_template = __commonJS({
-  "node_modules/lodash/template.js"(exports2, module2) {
-    var assignInWith = require_assignInWith();
-    var attempt = require_attempt();
-    var baseValues = require_baseValues();
-    var customDefaultsAssignIn = require_customDefaultsAssignIn();
-    var escapeStringChar = require_escapeStringChar();
-    var isError = require_isError();
-    var isIterateeCall = require_isIterateeCall();
-    var keys = require_keys();
-    var reInterpolate = require_reInterpolate();
-    var templateSettings = require_templateSettings();
-    var toString = require_toString();
-    var INVALID_TEMPL_VAR_ERROR_TEXT = "Invalid `variable` option passed into `_.template`";
-    var reEmptyStringLeading = /\b__p \+= '';/g;
-    var reEmptyStringMiddle = /\b(__p \+=) '' \+/g;
-    var reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
-    var reForbiddenIdentifierChars = /[()=,{}\[\]\/\s]/;
-    var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
-    var reNoMatch = /($^)/;
-    var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
-    var objectProto = Object.prototype;
-    var hasOwnProperty = objectProto.hasOwnProperty;
-    function template(string, options, guard) {
-      var settings = templateSettings.imports._.templateSettings || templateSettings;
-      if (guard && isIterateeCall(string, options, guard)) {
-        options = void 0;
-      }
-      string = toString(string);
-      options = assignInWith({}, options, settings, customDefaultsAssignIn);
-      var imports = assignInWith({}, options.imports, settings.imports, customDefaultsAssignIn), importsKeys = keys(imports), importsValues = baseValues(imports, importsKeys);
-      var isEscaping, isEvaluating, index = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
-      var reDelimiters = RegExp(
-        (options.escape || reNoMatch).source + "|" + interpolate.source + "|" + (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + "|" + (options.evaluate || reNoMatch).source + "|$",
-        "g"
-      );
-      var sourceURL = hasOwnProperty.call(options, "sourceURL") ? "//# sourceURL=" + (options.sourceURL + "").replace(/\s/g, " ") + "\n" : "";
-      string.replace(reDelimiters, function(match2, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
-        interpolateValue || (interpolateValue = esTemplateValue);
-        source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
-        if (escapeValue) {
-          isEscaping = true;
-          source += "' +\n__e(" + escapeValue + ") +\n'";
-        }
-        if (evaluateValue) {
-          isEvaluating = true;
-          source += "';\n" + evaluateValue + ";\n__p += '";
-        }
-        if (interpolateValue) {
-          source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
-        }
-        index = offset + match2.length;
-        return match2;
-      });
-      source += "';\n";
-      var variable = hasOwnProperty.call(options, "variable") && options.variable;
-      if (!variable) {
-        source = "with (obj) {\n" + source + "\n}\n";
-      } else if (reForbiddenIdentifierChars.test(variable)) {
-        throw new Error(INVALID_TEMPL_VAR_ERROR_TEXT);
-      }
-      source = (isEvaluating ? source.replace(reEmptyStringLeading, "") : source).replace(reEmptyStringMiddle, "$1").replace(reEmptyStringTrailing, "$1;");
-      source = "function(" + (variable || "obj") + ") {\n" + (variable ? "" : "obj || (obj = {});\n") + "var __t, __p = ''" + (isEscaping ? ", __e = _.escape" : "") + (isEvaluating ? ", __j = Array.prototype.join;\nfunction print() { __p += __j.call(arguments, '') }\n" : ";\n") + source + "return __p\n}";
-      var result = attempt(function() {
-        return Function(importsKeys, sourceURL + "return " + source).apply(void 0, importsValues);
-      });
-      result.source = source;
-      if (isError(result)) {
-        throw result;
-      }
-      return result;
-    }
-    module2.exports = template;
-  }
-});
-
-// node_modules/through2/through2.js
-var require_through2 = __commonJS({
-  "node_modules/through2/through2.js"(exports2, module2) {
-    var { Transform } = require_readable();
-    function inherits(fn, sup) {
-      fn.super_ = sup;
-      fn.prototype = Object.create(sup.prototype, {
-        constructor: { value: fn, enumerable: false, writable: true, configurable: true }
-      });
-    }
-    function through2(construct) {
-      return (options, transform, flush) => {
-        if (typeof options === "function") {
-          flush = transform;
-          transform = options;
-          options = {};
-        }
-        if (typeof transform !== "function") {
-          transform = (chunk, enc, cb) => cb(null, chunk);
-        }
-        if (typeof flush !== "function") {
-          flush = null;
-        }
-        return construct(options, transform, flush);
-      };
-    }
-    var make = through2((options, transform, flush) => {
-      const t2 = new Transform(options);
-      t2._transform = transform;
-      if (flush) {
-        t2._flush = flush;
-      }
-      return t2;
-    });
-    var ctor = through2((options, transform, flush) => {
-      function Through2(override) {
-        if (!(this instanceof Through2)) {
-          return new Through2(override);
-        }
-        this.options = Object.assign({}, options, override);
-        Transform.call(this, this.options);
-        this._transform = transform;
-        if (flush) {
-          this._flush = flush;
-        }
-      }
-      inherits(Through2, Transform);
-      return Through2;
-    });
-    var obj = through2(function(options, transform, flush) {
-      const t2 = new Transform(Object.assign({ objectMode: true, highWaterMark: 16 }, options));
-      t2._transform = transform;
-      if (flush) {
-        t2._flush = flush;
-      }
-      return t2;
-    });
-    module2.exports = make;
-    module2.exports.ctor = ctor;
-    module2.exports.obj = obj;
-  }
-});
-
 // node_modules/git-raw-commits/index.js
 var require_git_raw_commits = __commonJS({
   "node_modules/git-raw-commits/index.js"(exports2, module2) {
@@ -42600,9 +42250,7 @@ var require_git_raw_commits = __commonJS({
     var dargs = require_dargs();
     var execFile = __require("child_process").execFile;
     var split = require_split2();
-    var stream2 = __require("stream");
-    var template = require_template();
-    var through2 = require_through2();
+    var { Readable, Transform } = __require("stream");
     var DELIMITER = "------------------------ >8 ------------------------";
     function normalizeExecOpts(execOpts) {
       execOpts = execOpts || {};
@@ -42617,7 +42265,7 @@ var require_git_raw_commits = __commonJS({
       return gitOpts;
     }
     function getGitArgs(gitOpts) {
-      const gitFormat = template("--format=<%= format %>%n" + DELIMITER)(gitOpts);
+      const gitFormat = `--format=${gitOpts.format || ""}%n${DELIMITER}`;
       const gitFromTo = [gitOpts.from, gitOpts.to].filter(Boolean).join("..");
       const gitArgs = ["log", gitFormat, gitFromTo].concat(dargs(gitOpts, {
         excludes: ["debug", "from", "to", "format", "path"]
@@ -42628,7 +42276,7 @@ var require_git_raw_commits = __commonJS({
       return gitArgs;
     }
     function gitRawCommits(rawGitOpts, rawExecOpts) {
-      const readable = new stream2.Readable();
+      const readable = new Readable();
       readable._read = function() {
       };
       const gitOpts = normalizeGitOpts(rawGitOpts);
@@ -42642,24 +42290,35 @@ var require_git_raw_commits = __commonJS({
         cwd: execOpts.cwd,
         maxBuffer: Infinity
       });
-      child.stdout.pipe(split(DELIMITER + "\n")).pipe(through2(function(chunk, enc, cb) {
-        readable.push(chunk);
-        isError = false;
-        cb();
-      }, function(cb) {
-        setImmediate(function() {
-          if (!isError) {
-            readable.push(null);
+      child.stdout.pipe(split(DELIMITER + "\n")).pipe(
+        new Transform({
+          transform(chunk, enc, cb) {
+            readable.push(chunk);
+            isError = false;
+            cb();
+          },
+          flush(cb) {
+            setImmediate(function() {
+              if (!isError) {
+                readable.push(null);
+                readable.emit("close");
+              }
+              cb();
+            });
+          }
+        })
+      );
+      child.stderr.pipe(
+        new Transform({
+          objectMode: true,
+          highWaterMark: 16,
+          transform(chunk) {
+            isError = true;
+            readable.emit("error", new Error(chunk));
             readable.emit("close");
           }
-          cb();
-        });
-      }));
-      child.stderr.pipe(through2.obj(function(chunk) {
-        isError = true;
-        readable.emit("error", new Error(chunk));
-        readable.emit("close");
-      }));
+        })
+      );
       return readable;
     }
     module2.exports = gitRawCommits;
@@ -79570,7 +79229,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-9922534b3286dea40489ee5820361d64e416e7c7`;
+  const localVersion = `0.0.0-c0024a8ffe98677f649393a3462779205333fd15`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
