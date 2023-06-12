@@ -41653,7 +41653,6 @@ var require_protobufjs = __commonJS({
 var require_parser = __commonJS({
   "node_modules/conventional-commits-parser/lib/parser.js"(exports2, module2) {
     "use strict";
-    var _4 = require_lodash();
     var CATCH_ALL = /()(.+)/gi;
     var SCISSOR = "# ------------------------ >8 ------------------------";
     function trimOffNewlines(input) {
@@ -41721,13 +41720,14 @@ var require_parser = __commonJS({
       return true;
     }
     function parser2(raw, options, regex) {
+      var _a2, _b2, _c2;
       if (!raw || !raw.trim()) {
         throw new TypeError("Expected a raw commit");
       }
-      if (_4.isEmpty(options)) {
+      if (!options || typeof options === "object" && !Object.keys(options).length) {
         throw new TypeError("Expected options");
       }
-      if (_4.isEmpty(regex)) {
+      if (!regex) {
         throw new TypeError("Expected regex");
       }
       let currentProcessedField;
@@ -41739,15 +41739,15 @@ var require_parser = __commonJS({
       const lines = truncateToScissor(rawLines).filter(commentFilter).filter(gpgFilter);
       let continueNote = false;
       let isBody = true;
-      const headerCorrespondence2 = _4.map(options.headerCorrespondence, function(part) {
+      const headerCorrespondence2 = ((_a2 = options.headerCorrespondence) == null ? void 0 : _a2.map(function(part) {
         return part.trim();
-      });
-      const revertCorrespondence = _4.map(options.revertCorrespondence, function(field) {
+      })) || [];
+      const revertCorrespondence = ((_b2 = options.revertCorrespondence) == null ? void 0 : _b2.map(function(field) {
         return field.trim();
-      });
-      const mergeCorrespondence = _4.map(options.mergeCorrespondence, function(field) {
+      })) || [];
+      const mergeCorrespondence = ((_c2 = options.mergeCorrespondence) == null ? void 0 : _c2.map(function(field) {
         return field.trim();
-      });
+      })) || [];
       let body = null;
       let footer = null;
       let header = null;
@@ -41786,33 +41786,33 @@ var require_parser = __commonJS({
         if (!header) {
           header = "";
         }
-        _4.forEach(mergeCorrespondence, function(partName, index) {
+        mergeCorrespondence.forEach(function(partName, index) {
           const partValue = mergeMatch[index + 1] || null;
           mergeParts[partName] = partValue;
         });
       } else {
         header = merge;
         merge = null;
-        _4.forEach(mergeCorrespondence, function(partName) {
+        mergeCorrespondence.forEach(function(partName) {
           mergeParts[partName] = null;
         });
       }
       const headerMatch = header.match(options.headerPattern);
       if (headerMatch) {
-        _4.forEach(headerCorrespondence2, function(partName, index) {
+        headerCorrespondence2.forEach(function(partName, index) {
           const partValue = headerMatch[index + 1] || null;
           headerParts[partName] = partValue;
         });
       } else {
-        _4.forEach(headerCorrespondence2, function(partName) {
+        headerCorrespondence2.forEach(function(partName) {
           headerParts[partName] = null;
         });
       }
-      Array.prototype.push.apply(references, getReferences(header, {
+      references.push(...getReferences(header, {
         references: regex.references,
         referenceParts: regex.referenceParts
       }));
-      _4.forEach(lines, function(line) {
+      lines.forEach(function(line) {
         if (options.fieldPattern) {
           const fieldMatch = options.fieldPattern.exec(line);
           if (fieldMatch) {
@@ -41878,18 +41878,19 @@ var require_parser = __commonJS({
       const revertMatch = raw.match(options.revertPattern);
       if (revertMatch) {
         revert = {};
-        _4.forEach(revertCorrespondence, function(partName, index) {
+        revertCorrespondence.forEach(function(partName, index) {
           const partValue = revertMatch[index + 1] || null;
           revert[partName] = partValue;
         });
       } else {
         revert = null;
       }
-      _4.map(notes, function(note) {
+      notes.forEach(function(note) {
         note.text = trimOffNewlines(note.text);
-        return note;
       });
-      const msg = _4.merge(headerParts, mergeParts, {
+      const msg = {
+        ...headerParts,
+        ...mergeParts,
         merge,
         header,
         body: body ? trimOffNewlines(body) : null,
@@ -41897,8 +41898,9 @@ var require_parser = __commonJS({
         notes,
         references,
         mentions,
-        revert
-      }, otherFields);
+        revert,
+        ...otherFields
+      };
       return msg;
     }
     module2.exports = parser2;
@@ -41956,79 +41958,15 @@ var require_regex = __commonJS({
   }
 });
 
-// node_modules/through2/through2.js
-var require_through2 = __commonJS({
-  "node_modules/through2/through2.js"(exports2, module2) {
-    var { Transform } = require_readable();
-    function inherits(fn, sup) {
-      fn.super_ = sup;
-      fn.prototype = Object.create(sup.prototype, {
-        constructor: { value: fn, enumerable: false, writable: true, configurable: true }
-      });
-    }
-    function through2(construct) {
-      return (options, transform, flush) => {
-        if (typeof options === "function") {
-          flush = transform;
-          transform = options;
-          options = {};
-        }
-        if (typeof transform !== "function") {
-          transform = (chunk, enc, cb) => cb(null, chunk);
-        }
-        if (typeof flush !== "function") {
-          flush = null;
-        }
-        return construct(options, transform, flush);
-      };
-    }
-    var make = through2((options, transform, flush) => {
-      const t2 = new Transform(options);
-      t2._transform = transform;
-      if (flush) {
-        t2._flush = flush;
-      }
-      return t2;
-    });
-    var ctor = through2((options, transform, flush) => {
-      function Through2(override) {
-        if (!(this instanceof Through2)) {
-          return new Through2(override);
-        }
-        this.options = Object.assign({}, options, override);
-        Transform.call(this, this.options);
-        this._transform = transform;
-        if (flush) {
-          this._flush = flush;
-        }
-      }
-      inherits(Through2, Transform);
-      return Through2;
-    });
-    var obj = through2(function(options, transform, flush) {
-      const t2 = new Transform(Object.assign({ objectMode: true, highWaterMark: 16 }, options));
-      t2._transform = transform;
-      if (flush) {
-        t2._flush = flush;
-      }
-      return t2;
-    });
-    module2.exports = make;
-    module2.exports.ctor = ctor;
-    module2.exports.obj = obj;
-  }
-});
-
 // node_modules/conventional-commits-parser/index.js
 var require_conventional_commits_parser = __commonJS({
   "node_modules/conventional-commits-parser/index.js"(exports2, module2) {
     "use strict";
+    var { Transform } = __require("stream");
     var parser2 = require_parser();
     var regex = require_regex();
-    var through2 = require_through2();
-    var _4 = require_lodash();
     function assignOpts(options) {
-      options = _4.extend({
+      options = {
         headerPattern: /^(\w*)(?:\(([\w$.\-*/ ]*)\))?: (.*)$/,
         headerCorrespondence: ["type", "scope", "subject"],
         referenceActions: [
@@ -42050,8 +41988,9 @@ var require_conventional_commits_parser = __commonJS({
         warn: function() {
         },
         mergePattern: null,
-        mergeCorrespondence: null
-      }, options);
+        mergeCorrespondence: null,
+        ...options
+      };
       if (typeof options.headerPattern === "string") {
         options.headerPattern = new RegExp(options.headerPattern);
       }
@@ -42084,17 +42023,21 @@ var require_conventional_commits_parser = __commonJS({
     function conventionalCommitsParser(options) {
       options = assignOpts(options);
       const reg = regex(options);
-      return through2.obj(function(data, enc, cb) {
-        let commit;
-        try {
-          commit = parser2(data.toString(), options, reg);
-          cb(null, commit);
-        } catch (err) {
-          if (options.warn === true) {
-            cb(err);
-          } else {
-            options.warn(err.toString());
-            cb(null, "");
+      return new Transform({
+        objectMode: true,
+        highWaterMark: 16,
+        transform(data, enc, cb) {
+          let commit;
+          try {
+            commit = parser2(data.toString(), options, reg);
+            cb(null, commit);
+          } catch (err) {
+            if (options.warn === true) {
+              cb(err);
+            } else {
+              options.warn(err.toString());
+              cb(null, "");
+            }
           }
         }
       });
@@ -42584,6 +42527,69 @@ var require_template = __commonJS({
       return result;
     }
     module2.exports = template;
+  }
+});
+
+// node_modules/through2/through2.js
+var require_through2 = __commonJS({
+  "node_modules/through2/through2.js"(exports2, module2) {
+    var { Transform } = require_readable();
+    function inherits(fn, sup) {
+      fn.super_ = sup;
+      fn.prototype = Object.create(sup.prototype, {
+        constructor: { value: fn, enumerable: false, writable: true, configurable: true }
+      });
+    }
+    function through2(construct) {
+      return (options, transform, flush) => {
+        if (typeof options === "function") {
+          flush = transform;
+          transform = options;
+          options = {};
+        }
+        if (typeof transform !== "function") {
+          transform = (chunk, enc, cb) => cb(null, chunk);
+        }
+        if (typeof flush !== "function") {
+          flush = null;
+        }
+        return construct(options, transform, flush);
+      };
+    }
+    var make = through2((options, transform, flush) => {
+      const t2 = new Transform(options);
+      t2._transform = transform;
+      if (flush) {
+        t2._flush = flush;
+      }
+      return t2;
+    });
+    var ctor = through2((options, transform, flush) => {
+      function Through2(override) {
+        if (!(this instanceof Through2)) {
+          return new Through2(override);
+        }
+        this.options = Object.assign({}, options, override);
+        Transform.call(this, this.options);
+        this._transform = transform;
+        if (flush) {
+          this._flush = flush;
+        }
+      }
+      inherits(Through2, Transform);
+      return Through2;
+    });
+    var obj = through2(function(options, transform, flush) {
+      const t2 = new Transform(Object.assign({ objectMode: true, highWaterMark: 16 }, options));
+      t2._transform = transform;
+      if (flush) {
+        t2._flush = flush;
+      }
+      return t2;
+    });
+    module2.exports = make;
+    module2.exports.ctor = ctor;
+    module2.exports.obj = obj;
   }
 });
 
@@ -79564,7 +79570,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-2ec31a92100367a52100fca54d5e8c7c78cb149c`;
+  const localVersion = `0.0.0-e0ce5da2207388485d66a6b82355f01ff8ebe40a`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
