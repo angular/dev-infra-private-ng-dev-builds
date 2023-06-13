@@ -72542,11 +72542,13 @@ var ConfirmPrompt = class extends Prompt {
     let rawDefault = true;
     Object.assign(this.opt, {
       filter(input) {
-        let value = rawDefault;
         if (input != null && input !== "") {
-          value = /^y(es)?/i.test(input);
+          if (/^y(es)?/i.test(input))
+            return true;
+          if (/^n(o)?/i.test(input))
+            return false;
         }
-        return value;
+        return rawDefault;
       }
     });
     if (this.opt.default != null) {
@@ -79292,7 +79294,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-381b3d3d3935a1c4213de8d75e1effae9728828f`;
+  const localVersion = `0.0.0-76b6f49c0b15b1a2a2a0fe564169209f6f8be427`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
