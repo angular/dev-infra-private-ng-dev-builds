@@ -40408,7 +40408,7 @@ var require_util3 = __commonJS({
     util.setProperty = function setProperty(dst, path6, value) {
       function setProp(dst2, path7, value2) {
         var part = path7.shift();
-        if (part === "__proto__") {
+        if (part === "__proto__" || part === "prototype") {
           return dst2;
         }
         if (path7.length > 0) {
@@ -79294,7 +79294,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-3b6e4362f4df96019bdb0193133fcbd42b6adcf4`;
+  const localVersion = `0.0.0-75f310e5beaf10fc6698ce32334aafdb96b91829`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
