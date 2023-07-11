@@ -44,7 +44,7 @@ import {
   require_semver,
   require_wrappy,
   targetLabels
-} from "./chunk-BXXMJFO7.mjs";
+} from "./chunk-P7IYUOJR.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -64,7 +64,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-O6767U3N.mjs";
+} from "./chunk-K6WKGSNA.mjs";
 import "./chunk-QS3TPNNO.mjs";
 import {
   __commonJS,
@@ -1918,14 +1918,14 @@ var require_signal_exit = __commonJS({
       assert2 = __require("assert");
       signals = require_signals();
       isWin = /^win/i.test(process4.platform);
-      EE3 = __require("events");
-      if (typeof EE3 !== "function") {
-        EE3 = EE3.EventEmitter;
+      EE = __require("events");
+      if (typeof EE !== "function") {
+        EE = EE.EventEmitter;
       }
       if (process4.__signal_exit_emitter__) {
         emitter = process4.__signal_exit_emitter__;
       } else {
-        emitter = process4.__signal_exit_emitter__ = new EE3();
+        emitter = process4.__signal_exit_emitter__ = new EE();
         emitter.count = 0;
         emitter.emitted = {};
       }
@@ -2046,7 +2046,7 @@ var require_signal_exit = __commonJS({
     var assert2;
     var signals;
     var isWin;
-    var EE3;
+    var EE;
     var emitter;
     var unload;
     var emit;
@@ -6560,12 +6560,12 @@ var require_defer = __commonJS({
     exports2.defer = void 0;
     var Observable_1 = require_Observable();
     var innerFrom_1 = require_innerFrom();
-    function defer4(observableFactory) {
+    function defer3(observableFactory) {
       return new Observable_1.Observable(function(subscriber) {
         innerFrom_1.innerFrom(observableFactory()).subscribe(subscriber);
       });
     }
-    exports2.defer = defer4;
+    exports2.defer = defer3;
   }
 });
 
@@ -17650,7 +17650,7 @@ var require_lodash = __commonJS({
           debounced.flush = flush;
           return debounced;
         }
-        var defer4 = baseRest(function(func, args) {
+        var defer3 = baseRest(function(func, args) {
           return baseDelay(func, 1, args);
         });
         var delay = baseRest(function(func, wait, args) {
@@ -17798,7 +17798,7 @@ var require_lodash = __commonJS({
           return isObjectLike(value) && hasOwnProperty.call(value, "callee") && !propertyIsEnumerable.call(value, "callee");
         };
         var isArray = Array2.isArray;
-        var isArrayBuffer3 = nodeIsArrayBuffer ? baseUnary(nodeIsArrayBuffer) : baseIsArrayBuffer;
+        var isArrayBuffer = nodeIsArrayBuffer ? baseUnary(nodeIsArrayBuffer) : baseIsArrayBuffer;
         function isArrayLike(value) {
           return value != null && isLength(value.length) && !isFunction2(value);
         }
@@ -18766,7 +18766,7 @@ var require_lodash = __commonJS({
         lodash.debounce = debounce;
         lodash.defaults = defaults3;
         lodash.defaultsDeep = defaultsDeep;
-        lodash.defer = defer4;
+        lodash.defer = defer3;
         lodash.delay = delay;
         lodash.difference = difference;
         lodash.differenceBy = differenceBy;
@@ -18939,7 +18939,7 @@ var require_lodash = __commonJS({
         lodash.invoke = invoke;
         lodash.isArguments = isArguments;
         lodash.isArray = isArray;
-        lodash.isArrayBuffer = isArrayBuffer3;
+        lodash.isArrayBuffer = isArrayBuffer;
         lodash.isArrayLike = isArrayLike;
         lodash.isArrayLikeObject = isArrayLikeObject;
         lodash.isBoolean = isBoolean2;
@@ -24186,7 +24186,7 @@ var require_stream_writable = __commonJS({
     var internalUtil = {
       deprecate: require_node()
     };
-    var Stream3 = require_stream();
+    var Stream2 = require_stream();
     var Buffer2 = __require("buffer").Buffer;
     var OurUint8Array = (typeof global !== "undefined" ? global : typeof window !== "undefined" ? window : typeof self !== "undefined" ? self : {}).Uint8Array || function() {
     };
@@ -24209,7 +24209,7 @@ var require_stream_writable = __commonJS({
     var ERR_STREAM_WRITE_AFTER_END = _require$codes.ERR_STREAM_WRITE_AFTER_END;
     var ERR_UNKNOWN_ENCODING = _require$codes.ERR_UNKNOWN_ENCODING;
     var errorOrDestroy = destroyImpl.errorOrDestroy;
-    require_inherits()(Writable, Stream3);
+    require_inherits()(Writable, Stream2);
     function nop() {
     }
     function WritableState(options, stream2, isDuplex) {
@@ -24303,7 +24303,7 @@ var require_stream_writable = __commonJS({
         if (typeof options.final === "function")
           this._final = options.final;
       }
-      Stream3.call(this);
+      Stream2.call(this);
     }
     Writable.prototype.pipe = function() {
       errorOrDestroy(this, new ERR_STREAM_CANNOT_PIPE());
@@ -24860,8 +24860,8 @@ var require_string_decoder = __commonJS({
         throw new Error("Unknown encoding: " + enc);
       return nenc || enc;
     }
-    exports2.StringDecoder = StringDecoder;
-    function StringDecoder(encoding) {
+    exports2.StringDecoder = StringDecoder2;
+    function StringDecoder2(encoding) {
       this.encoding = normalizeEncoding(encoding);
       var nb;
       switch (this.encoding) {
@@ -24888,7 +24888,7 @@ var require_string_decoder = __commonJS({
       this.lastTotal = 0;
       this.lastChar = Buffer2.allocUnsafe(nb);
     }
-    StringDecoder.prototype.write = function(buf) {
+    StringDecoder2.prototype.write = function(buf) {
       if (buf.length === 0)
         return "";
       var r;
@@ -24906,9 +24906,9 @@ var require_string_decoder = __commonJS({
         return r ? r + this.text(buf, i) : this.text(buf, i);
       return r || "";
     };
-    StringDecoder.prototype.end = utf8End;
-    StringDecoder.prototype.text = utf8Text;
-    StringDecoder.prototype.fillLast = function(buf) {
+    StringDecoder2.prototype.end = utf8End;
+    StringDecoder2.prototype.text = utf8Text;
+    StringDecoder2.prototype.fillLast = function(buf) {
       if (this.lastNeed <= buf.length) {
         buf.copy(this.lastChar, this.lastTotal - this.lastNeed, 0, this.lastNeed);
         return this.lastChar.toString(this.encoding, 0, this.lastTotal);
@@ -25480,11 +25480,11 @@ var require_stream_readable = __commonJS({
     module2.exports = Readable;
     var Duplex;
     Readable.ReadableState = ReadableState;
-    var EE3 = __require("events").EventEmitter;
+    var EE = __require("events").EventEmitter;
     var EElistenerCount = function EElistenerCount2(emitter, type) {
       return emitter.listeners(type).length;
     };
-    var Stream3 = require_stream();
+    var Stream2 = require_stream();
     var Buffer2 = __require("buffer").Buffer;
     var OurUint8Array = (typeof global !== "undefined" ? global : typeof window !== "undefined" ? window : typeof self !== "undefined" ? self : {}).Uint8Array || function() {
     };
@@ -25511,10 +25511,10 @@ var require_stream_readable = __commonJS({
     var ERR_STREAM_PUSH_AFTER_EOF = _require$codes.ERR_STREAM_PUSH_AFTER_EOF;
     var ERR_METHOD_NOT_IMPLEMENTED = _require$codes.ERR_METHOD_NOT_IMPLEMENTED;
     var ERR_STREAM_UNSHIFT_AFTER_END_EVENT = _require$codes.ERR_STREAM_UNSHIFT_AFTER_END_EVENT;
-    var StringDecoder;
+    var StringDecoder2;
     var createReadableStreamAsyncIterator;
     var from3;
-    require_inherits()(Readable, Stream3);
+    require_inherits()(Readable, Stream2);
     var errorOrDestroy = destroyImpl.errorOrDestroy;
     var kProxyEvents = ["error", "close", "destroy", "pause", "resume"];
     function prependListener(emitter, event, fn) {
@@ -25559,9 +25559,9 @@ var require_stream_readable = __commonJS({
       this.decoder = null;
       this.encoding = null;
       if (options.encoding) {
-        if (!StringDecoder)
-          StringDecoder = require_string_decoder().StringDecoder;
-        this.decoder = new StringDecoder(options.encoding);
+        if (!StringDecoder2)
+          StringDecoder2 = require_string_decoder().StringDecoder;
+        this.decoder = new StringDecoder2(options.encoding);
         this.encoding = options.encoding;
       }
     }
@@ -25578,7 +25578,7 @@ var require_stream_readable = __commonJS({
         if (typeof options.destroy === "function")
           this._destroy = options.destroy;
       }
-      Stream3.call(this);
+      Stream2.call(this);
     }
     Object.defineProperty(Readable.prototype, "destroyed", {
       enumerable: false,
@@ -25690,9 +25690,9 @@ var require_stream_readable = __commonJS({
       return this._readableState.flowing === false;
     };
     Readable.prototype.setEncoding = function(enc) {
-      if (!StringDecoder)
-        StringDecoder = require_string_decoder().StringDecoder;
-      var decoder = new StringDecoder(enc);
+      if (!StringDecoder2)
+        StringDecoder2 = require_string_decoder().StringDecoder;
+      var decoder = new StringDecoder2(enc);
       this._readableState.decoder = decoder;
       this._readableState.encoding = this._readableState.decoder.encoding;
       var p = this._readableState.buffer.head;
@@ -26017,7 +26017,7 @@ var require_stream_readable = __commonJS({
       return this;
     };
     Readable.prototype.on = function(ev, fn) {
-      var res = Stream3.prototype.on.call(this, ev, fn);
+      var res = Stream2.prototype.on.call(this, ev, fn);
       var state = this._readableState;
       if (ev === "data") {
         state.readableListening = this.listenerCount("readable") > 0;
@@ -26040,14 +26040,14 @@ var require_stream_readable = __commonJS({
     };
     Readable.prototype.addListener = Readable.prototype.on;
     Readable.prototype.removeListener = function(ev, fn) {
-      var res = Stream3.prototype.removeListener.call(this, ev, fn);
+      var res = Stream2.prototype.removeListener.call(this, ev, fn);
       if (ev === "readable") {
         process.nextTick(updateReadableListening, this);
       }
       return res;
     };
     Readable.prototype.removeAllListeners = function(ev) {
-      var res = Stream3.prototype.removeAllListeners.apply(this, arguments);
+      var res = Stream2.prototype.removeAllListeners.apply(this, arguments);
       if (ev === "readable" || ev === void 0) {
         process.nextTick(updateReadableListening, this);
       }
@@ -26482,14 +26482,14 @@ var require_pipeline = __commonJS({
 // node_modules/readable-stream/readable.js
 var require_readable = __commonJS({
   "node_modules/readable-stream/readable.js"(exports2, module2) {
-    var Stream3 = __require("stream");
-    if (process.env.READABLE_STREAM === "disable" && Stream3) {
-      module2.exports = Stream3.Readable;
-      Object.assign(module2.exports, Stream3);
-      module2.exports.Stream = Stream3;
+    var Stream2 = __require("stream");
+    if (process.env.READABLE_STREAM === "disable" && Stream2) {
+      module2.exports = Stream2.Readable;
+      Object.assign(module2.exports, Stream2);
+      module2.exports.Stream = Stream2;
     } else {
       exports2 = module2.exports = require_stream_readable();
-      exports2.Stream = Stream3 || exports2;
+      exports2.Stream = Stream2 || exports2;
       exports2.Readable = exports2;
       exports2.Writable = require_stream_writable();
       exports2.Duplex = require_stream_duplex();
@@ -32712,14 +32712,14 @@ var require_internal = __commonJS({
     }
     InternalCodec.prototype.encoder = InternalEncoder;
     InternalCodec.prototype.decoder = InternalDecoder;
-    var StringDecoder = __require("string_decoder").StringDecoder;
-    if (!StringDecoder.prototype.end)
-      StringDecoder.prototype.end = function() {
+    var StringDecoder2 = __require("string_decoder").StringDecoder;
+    if (!StringDecoder2.prototype.end)
+      StringDecoder2.prototype.end = function() {
       };
     function InternalDecoder(options, codec) {
-      StringDecoder.call(this, codec.enc);
+      StringDecoder2.call(this, codec.enc);
     }
-    InternalDecoder.prototype = StringDecoder.prototype;
+    InternalDecoder.prototype = StringDecoder2.prototype;
     function InternalEncoder(options, codec) {
       this.enc = codec.enc;
     }
@@ -36604,7 +36604,7 @@ var require_main = __commonJS({
 // node_modules/through/index.js
 var require_through = __commonJS({
   "node_modules/through/index.js"(exports2, module2) {
-    var Stream3 = __require("stream");
+    var Stream2 = __require("stream");
     exports2 = module2.exports = through2;
     through2.through = through2;
     function through2(write, end, opts) {
@@ -36615,7 +36615,7 @@ var require_through = __commonJS({
         this.queue(null);
       };
       var ended = false, destroyed = false, buffer = [], _ended = false;
-      var stream2 = new Stream3();
+      var stream2 = new Stream2();
       stream2.readable = stream2.writable = true;
       stream2.paused = false;
       stream2.autoDestroy = !(opts && opts.autoDestroy === false);
@@ -36697,9 +36697,9 @@ var require_through = __commonJS({
 // node_modules/inquirer/node_modules/mute-stream/lib/index.js
 var require_lib2 = __commonJS({
   "node_modules/inquirer/node_modules/mute-stream/lib/index.js"(exports2, module2) {
-    var Stream3 = __require("stream");
+    var Stream2 = __require("stream");
     var _isTTY, _destSrc, destSrc_fn, _proxy, proxy_fn;
-    var MuteStream2 = class extends Stream3 {
+    var MuteStream2 = class extends Stream2 {
       constructor(opts = {}) {
         super(opts);
         __privateAdd(this, _destSrc);
@@ -37248,18 +37248,18 @@ var require_base64 = __commonJS({
 var require_eventemitter = __commonJS({
   "node_modules/@protobufjs/eventemitter/index.js"(exports2, module2) {
     "use strict";
-    module2.exports = EventEmitter;
-    function EventEmitter() {
+    module2.exports = EventEmitter2;
+    function EventEmitter2() {
       this._listeners = {};
     }
-    EventEmitter.prototype.on = function on(evt, fn, ctx) {
+    EventEmitter2.prototype.on = function on(evt, fn, ctx) {
       (this._listeners[evt] || (this._listeners[evt] = [])).push({
         fn,
         ctx: ctx || this
       });
       return this;
     };
-    EventEmitter.prototype.off = function off(evt, fn) {
+    EventEmitter2.prototype.off = function off(evt, fn) {
       if (evt === void 0)
         this._listeners = {};
       else {
@@ -37276,7 +37276,7 @@ var require_eventemitter = __commonJS({
       }
       return this;
     };
-    EventEmitter.prototype.emit = function emit(evt) {
+    EventEmitter2.prototype.emit = function emit(evt) {
       var listeners = this._listeners[evt];
       if (listeners) {
         var args = [], i = 1;
@@ -42338,7 +42338,7 @@ var require_split2 = __commonJS({
   "node_modules/split2/index.js"(exports2, module2) {
     "use strict";
     var { Transform } = require_readable();
-    var { StringDecoder } = __require("string_decoder");
+    var { StringDecoder: StringDecoder2 } = __require("string_decoder");
     var kLast = Symbol("last");
     var kDecoder = Symbol("decoder");
     function transform(chunk, enc, cb) {
@@ -42416,7 +42416,7 @@ var require_split2 = __commonJS({
       options.readableObjectMode = true;
       const stream2 = new Transform(options);
       stream2[kLast] = "";
-      stream2[kDecoder] = new StringDecoder("utf8");
+      stream2[kDecoder] = new StringDecoder2("utf8");
       stream2.matcher = matcher;
       stream2.mapper = mapper;
       stream2.maxLength = options.maxLength;
@@ -51442,7 +51442,7 @@ var require_polyfills = __commonJS({
 // node_modules/graceful-fs/legacy-streams.js
 var require_legacy_streams = __commonJS({
   "node_modules/graceful-fs/legacy-streams.js"(exports2, module2) {
-    var Stream3 = __require("stream").Stream;
+    var Stream2 = __require("stream").Stream;
     module2.exports = legacy;
     function legacy(fs6) {
       return {
@@ -51452,7 +51452,7 @@ var require_legacy_streams = __commonJS({
       function ReadStream(path6, options) {
         if (!(this instanceof ReadStream))
           return new ReadStream(path6, options);
-        Stream3.call(this);
+        Stream2.call(this);
         var self2 = this;
         this.path = path6;
         this.fd = null;
@@ -51503,7 +51503,7 @@ var require_legacy_streams = __commonJS({
       function WriteStream(path6, options) {
         if (!(this instanceof WriteStream))
           return new WriteStream(path6, options);
-        Stream3.call(this);
+        Stream2.call(this);
         this.path = path6;
         this.fd = null;
         this.writable = true;
@@ -54718,7 +54718,7 @@ var require_glob = __commonJS({
     var minimatch3 = require_minimatch2();
     var Minimatch2 = minimatch3.Minimatch;
     var inherits = require_inherits();
-    var EE3 = __require("events").EventEmitter;
+    var EE = __require("events").EventEmitter;
     var path6 = __require("path");
     var assert2 = __require("assert");
     var isAbsolute3 = require_path_is_absolute();
@@ -54773,7 +54773,7 @@ var require_glob = __commonJS({
       return false;
     };
     glob2.Glob = Glob2;
-    inherits(Glob2, EE3);
+    inherits(Glob2, EE);
     function Glob2(pattern, options, cb) {
       if (typeof options === "function") {
         cb = options;
@@ -70227,7 +70227,7 @@ var unescape = (s, { windowsPathsNoEscape = false } = {}) => {
 // node_modules/minimatch/dist/mjs/ast.js
 var types = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
 var isExtglobType = (c) => types.has(c);
-var startNoTraversal = "(?!\\.\\.?(?:$|/))";
+var startNoTraversal = "(?!(?:^|/)\\.\\.?(?:$|/))";
 var startNoDot = "(?!\\.)";
 var addPatternStart = /* @__PURE__ */ new Set(["[", "."]);
 var justDots = /* @__PURE__ */ new Set(["..", "."]);
@@ -70236,10 +70236,11 @@ var regExpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 var qmark = "[^/]";
 var star = qmark + "*?";
 var starNoEmpty = qmark + "+?";
-var _root, _hasMagic, _uflag, _parts, _parent, _parentIndex, _negs, _filledNegs, _options, _toString, _emptyExt, _fillNegs, fillNegs_fn, _parseAST, parseAST_fn, _parseGlob, parseGlob_fn;
+var _root, _hasMagic, _uflag, _parts, _parent, _parentIndex, _negs, _filledNegs, _options, _toString, _emptyExt, _fillNegs, fillNegs_fn, _parseAST, parseAST_fn, _partsToRegExp, partsToRegExp_fn, _parseGlob, parseGlob_fn;
 var _AST = class {
   constructor(type, parent, options = {}) {
     __privateAdd(this, _fillNegs);
+    __privateAdd(this, _partsToRegExp);
     __publicField(this, "type");
     __privateAdd(this, _root, void 0);
     __privateAdd(this, _hasMagic, void 0);
@@ -70367,15 +70368,16 @@ var _AST = class {
       _glob: glob2
     });
   }
-  toRegExpSource() {
+  toRegExpSource(allowDot) {
     var _a3;
+    const dot = allowDot ?? !!__privateGet(this, _options).dot;
     if (__privateGet(this, _root) === this)
       __privateMethod(this, _fillNegs, fillNegs_fn).call(this);
     if (!this.type) {
       const noEmpty = this.isStart() && this.isEnd();
       const src = __privateGet(this, _parts).map((p) => {
         var _a4;
-        const [re, _4, hasMagic2, uflag] = typeof p === "string" ? __privateMethod(_a4 = _AST, _parseGlob, parseGlob_fn).call(_a4, p, __privateGet(this, _hasMagic), noEmpty) : p.toRegExpSource();
+        const [re, _4, hasMagic2, uflag] = typeof p === "string" ? __privateMethod(_a4 = _AST, _parseGlob, parseGlob_fn).call(_a4, p, __privateGet(this, _hasMagic), noEmpty) : p.toRegExpSource(allowDot);
         __privateSet(this, _hasMagic, __privateGet(this, _hasMagic) || hasMagic2);
         __privateSet(this, _uflag, __privateGet(this, _uflag) || uflag);
         return re;
@@ -70386,8 +70388,8 @@ var _AST = class {
           const dotTravAllowed = __privateGet(this, _parts).length === 1 && justDots.has(__privateGet(this, _parts)[0]);
           if (!dotTravAllowed) {
             const aps = addPatternStart;
-            const needNoTrav = __privateGet(this, _options).dot && aps.has(src.charAt(0)) || src.startsWith("\\.") && aps.has(src.charAt(2)) || src.startsWith("\\.\\.") && aps.has(src.charAt(4));
-            const needNoDot = !__privateGet(this, _options).dot && aps.has(src.charAt(0));
+            const needNoTrav = dot && aps.has(src.charAt(0)) || src.startsWith("\\.") && aps.has(src.charAt(2)) || src.startsWith("\\.\\.") && aps.has(src.charAt(4));
+            const needNoDot = !dot && !allowDot && aps.has(src.charAt(0));
             start2 = needNoTrav ? startNoTraversal : needNoDot ? startNoDot : "";
           }
         }
@@ -70404,15 +70406,9 @@ var _AST = class {
         __privateGet(this, _uflag)
       ];
     }
+    const repeated = this.type === "*" || this.type === "+";
     const start = this.type === "!" ? "(?:(?!(?:" : "(?:";
-    const body = __privateGet(this, _parts).map((p) => {
-      if (typeof p === "string") {
-        throw new Error("string type in extglob ast??");
-      }
-      const [re, _4, _hasMagic2, uflag] = p.toRegExpSource();
-      __privateSet(this, _uflag, __privateGet(this, _uflag) || uflag);
-      return re;
-    }).filter((p) => !(this.isStart() && this.isEnd()) || !!p).join("|");
+    let body = __privateMethod(this, _partsToRegExp, partsToRegExp_fn).call(this, dot);
     if (this.isStart() && this.isEnd() && !body && this.type !== "!") {
       const s = this.toString();
       __privateSet(this, _parts, [s]);
@@ -70420,11 +70416,18 @@ var _AST = class {
       __privateSet(this, _hasMagic, void 0);
       return [s, unescape(this.toString()), false, false];
     }
+    let bodyDotAllowed = !repeated || allowDot || dot || !startNoDot ? "" : __privateMethod(this, _partsToRegExp, partsToRegExp_fn).call(this, true);
+    if (bodyDotAllowed === body) {
+      bodyDotAllowed = "";
+    }
+    if (bodyDotAllowed) {
+      body = `(?:${body})(?:${bodyDotAllowed})*?`;
+    }
     let final = "";
     if (this.type === "!" && __privateGet(this, _emptyExt)) {
-      final = (this.isStart() && !__privateGet(this, _options).dot ? startNoDot : "") + starNoEmpty;
+      final = (this.isStart() && !dot ? startNoDot : "") + starNoEmpty;
     } else {
-      const close = this.type === "!" ? "))" + (this.isStart() && !__privateGet(this, _options).dot ? startNoDot : "") + star + ")" : this.type === "@" ? ")" : `)${this.type}`;
+      const close = this.type === "!" ? "))" + (this.isStart() && !dot && !allowDot ? startNoDot : "") + star + ")" : this.type === "@" ? ")" : this.type === "?" ? ")?" : this.type === "+" && bodyDotAllowed ? ")" : this.type === "*" && bodyDotAllowed ? `)?` : `)${this.type}`;
       final = start + body + close;
     }
     return [
@@ -70581,6 +70584,17 @@ parseAST_fn = function(str, ast, pos, opt) {
   __privateSet(ast, _hasMagic, void 0);
   __privateSet(ast, _parts, [str.substring(pos - 1)]);
   return i;
+};
+_partsToRegExp = new WeakSet();
+partsToRegExp_fn = function(dot) {
+  return __privateGet(this, _parts).map((p) => {
+    if (typeof p === "string") {
+      throw new Error("string type in extglob ast??");
+    }
+    const [re, _4, _hasMagic2, uflag] = p.toRegExpSource(dot);
+    __privateSet(this, _uflag, __privateGet(this, _uflag) || uflag);
+    return re;
+  }).filter((p) => !(this.isStart() && this.isEnd()) || !!p).join("|");
 };
 _parseGlob = new WeakSet();
 parseGlob_fn = function(glob2, hasMagic2, noEmpty = false) {
@@ -79294,7 +79308,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-e3bcbf1c55cb853fafd43afde3a7ba96025ae389`;
+  const localVersion = `0.0.0-8fd6ed3c24380a23e018fef4f7e6ca54e728016c`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -79731,7 +79745,7 @@ function buildReleaseParser(localYargs) {
 import { existsSync as existsSync3, readFileSync as readFileSync13, writeFileSync as writeFileSync5 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative3, resolve as resolve12 } from "path";
 
-// node_modules/path-scurry/node_modules/lru-cache/dist/mjs/index.js
+// node_modules/glob/node_modules/lru-cache/dist/mjs/index.js
 var perf = typeof performance === "object" && performance && typeof performance.now === "function" ? performance : Date;
 var warned = /* @__PURE__ */ new Set();
 var PROCESS = typeof process === "object" && !!process ? process : {};
@@ -80795,11 +80809,11 @@ backgroundFetch_fn = function(k, index, options, context) {
     var _a3;
     const fmp = (_a3 = __privateGet(this, _fetchMethod)) == null ? void 0 : _a3.call(this, k, v, fetchOpts);
     if (fmp && fmp instanceof Promise) {
-      fmp.then((v2) => res(v2), rej);
+      fmp.then((v2) => res(v2 === void 0 ? void 0 : v2), rej);
     }
     ac.signal.addEventListener("abort", () => {
       if (!options.ignoreFetchAbort || options.allowStaleOnFetchAbort) {
-        res();
+        res(void 0);
         if (options.allowStaleOnFetchAbort) {
           res = (v2) => cb(v2, true);
         }
@@ -80847,22 +80861,24 @@ moveToTail_fn = function(index) {
   }
 };
 
-// node_modules/path-scurry/dist/mjs/index.js
+// node_modules/glob/node_modules/path-scurry/dist/mjs/index.js
 import { posix, win32 } from "path";
 import { fileURLToPath as fileURLToPath4 } from "url";
 import * as actualFS from "fs";
 import { lstatSync as lstatSync2, readdir as readdirCB, readdirSync as readdirSync4, readlinkSync, realpathSync as rps } from "fs";
 import { lstat, readdir, readlink, realpath } from "fs/promises";
 
-// node_modules/path-scurry/node_modules/minipass/index.mjs
-import EE from "events";
+// node_modules/glob/node_modules/minipass/dist/mjs/index.js
+import { EventEmitter } from "events";
 import Stream from "stream";
-import stringdecoder from "string_decoder";
+import { StringDecoder } from "string_decoder";
 var proc = typeof process === "object" && process ? process : {
   stdout: null,
   stderr: null
 };
-var SD = stringdecoder.StringDecoder;
+var isStream = (s) => !!s && typeof s === "object" && (s instanceof Minipass || s instanceof Stream || isReadable(s) || isWritable(s));
+var isReadable = (s) => !!s && typeof s === "object" && s instanceof EventEmitter && typeof s.pipe === "function" && s.pipe !== Stream.Writable.prototype.pipe;
+var isWritable = (s) => !!s && typeof s === "object" && s instanceof EventEmitter && typeof s.write === "function" && typeof s.end === "function";
 var EOF = Symbol("EOF");
 var MAYBE_EMIT_END = Symbol("maybeEmitEnd");
 var EMITTED_END = Symbol("emittedEnd");
@@ -80892,25 +80908,29 @@ var ASYNC = Symbol("async");
 var ABORT = Symbol("abort");
 var ABORTED = Symbol("aborted");
 var SIGNAL = Symbol("signal");
+var DATALISTENERS = Symbol("dataListeners");
+var DISCARDED = Symbol("discarded");
 var defer2 = (fn) => Promise.resolve().then(fn);
-var doIter = global._MP_NO_ITERATOR_SYMBOLS_ !== "1";
-var ASYNCITERATOR = doIter && Symbol.asyncIterator || Symbol("asyncIterator not implemented");
-var ITERATOR = doIter && Symbol.iterator || Symbol("iterator not implemented");
+var nodefer = (fn) => fn();
 var isEndish = (ev) => ev === "end" || ev === "finish" || ev === "prefinish";
-var isArrayBuffer = (b) => b instanceof ArrayBuffer || typeof b === "object" && b.constructor && b.constructor.name === "ArrayBuffer" && b.byteLength >= 0;
+var isArrayBufferLike = (b) => b instanceof ArrayBuffer || !!b && typeof b === "object" && b.constructor && b.constructor.name === "ArrayBuffer" && b.byteLength >= 0;
 var isArrayBufferView = (b) => !Buffer.isBuffer(b) && ArrayBuffer.isView(b);
 var Pipe = class {
+  src;
+  dest;
+  opts;
+  ondrain;
   constructor(src, dest, opts) {
     this.src = src;
     this.dest = dest;
     this.opts = opts;
     this.ondrain = () => src[RESUME]();
-    dest.on("drain", this.ondrain);
+    this.dest.on("drain", this.ondrain);
   }
   unpipe() {
     this.dest.removeListener("drain", this.ondrain);
   }
-  proxyErrors() {
+  proxyErrors(_er) {
   }
   end() {
     this.unpipe();
@@ -80929,43 +80949,61 @@ var PipeProxyErrors = class extends Pipe {
     src.on("error", this.proxyErrors);
   }
 };
-var Minipass = class extends Stream {
-  constructor(options) {
+var isObjectModeOptions = (o) => !!o.objectMode;
+var isEncodingOptions = (o) => !o.objectMode && !!o.encoding && o.encoding !== "buffer";
+var Minipass = class extends EventEmitter {
+  [FLOWING] = false;
+  [PAUSED] = false;
+  [PIPES] = [];
+  [BUFFER] = [];
+  [OBJECTMODE];
+  [ENCODING];
+  [ASYNC];
+  [DECODER];
+  [EOF] = false;
+  [EMITTED_END] = false;
+  [EMITTING_END] = false;
+  [CLOSED] = false;
+  [EMITTED_ERROR] = null;
+  [BUFFERLENGTH] = 0;
+  [DESTROYED] = false;
+  [SIGNAL];
+  [ABORTED] = false;
+  [DATALISTENERS] = 0;
+  [DISCARDED] = false;
+  writable = true;
+  readable = true;
+  constructor(...args) {
+    const options = args[0] || {};
     super();
-    this[FLOWING] = false;
-    this[PAUSED] = false;
-    this[PIPES] = [];
-    this[BUFFER] = [];
-    this[OBJECTMODE] = options && options.objectMode || false;
-    if (this[OBJECTMODE])
+    if (options.objectMode && typeof options.encoding === "string") {
+      throw new TypeError("Encoding and objectMode may not be used together");
+    }
+    if (isObjectModeOptions(options)) {
+      this[OBJECTMODE] = true;
       this[ENCODING] = null;
-    else
-      this[ENCODING] = options && options.encoding || null;
-    if (this[ENCODING] === "buffer")
+    } else if (isEncodingOptions(options)) {
+      this[ENCODING] = options.encoding;
+      this[OBJECTMODE] = false;
+    } else {
+      this[OBJECTMODE] = false;
       this[ENCODING] = null;
-    this[ASYNC] = options && !!options.async || false;
-    this[DECODER] = this[ENCODING] ? new SD(this[ENCODING]) : null;
-    this[EOF] = false;
-    this[EMITTED_END] = false;
-    this[EMITTING_END] = false;
-    this[CLOSED] = false;
-    this[EMITTED_ERROR] = null;
-    this.writable = true;
-    this.readable = true;
-    this[BUFFERLENGTH] = 0;
-    this[DESTROYED] = false;
+    }
+    this[ASYNC] = !!options.async;
+    this[DECODER] = this[ENCODING] ? new StringDecoder(this[ENCODING]) : null;
     if (options && options.debugExposeBuffer === true) {
       Object.defineProperty(this, "buffer", { get: () => this[BUFFER] });
     }
     if (options && options.debugExposePipes === true) {
       Object.defineProperty(this, "pipes", { get: () => this[PIPES] });
     }
-    this[SIGNAL] = options && options.signal;
-    this[ABORTED] = false;
-    if (this[SIGNAL]) {
-      this[SIGNAL].addEventListener("abort", () => this[ABORT]());
-      if (this[SIGNAL].aborted) {
+    const { signal } = options;
+    if (signal) {
+      this[SIGNAL] = signal;
+      if (signal.aborted) {
         this[ABORT]();
+      } else {
+        signal.addEventListener("abort", () => this[ABORT]());
       }
     }
   }
@@ -80975,26 +81013,17 @@ var Minipass = class extends Stream {
   get encoding() {
     return this[ENCODING];
   }
-  set encoding(enc) {
-    if (this[OBJECTMODE])
-      throw new Error("cannot set encoding in objectMode");
-    if (this[ENCODING] && enc !== this[ENCODING] && (this[DECODER] && this[DECODER].lastNeed || this[BUFFERLENGTH]))
-      throw new Error("cannot change encoding");
-    if (this[ENCODING] !== enc) {
-      this[DECODER] = enc ? new SD(enc) : null;
-      if (this[BUFFER].length)
-        this[BUFFER] = this[BUFFER].map((chunk) => this[DECODER].write(chunk));
-    }
-    this[ENCODING] = enc;
+  set encoding(_enc) {
+    throw new Error("Encoding must be set at instantiation time");
   }
-  setEncoding(enc) {
-    this.encoding = enc;
+  setEncoding(_enc) {
+    throw new Error("Encoding must be set at instantiation time");
   }
   get objectMode() {
     return this[OBJECTMODE];
   }
-  set objectMode(om) {
-    this[OBJECTMODE] = this[OBJECTMODE] || !!om;
+  set objectMode(_om) {
+    throw new Error("objectMode must be set at instantiation time");
   }
   get ["async"]() {
     return this[ASYNC];
@@ -81003,9 +81032,10 @@ var Minipass = class extends Stream {
     this[ASYNC] = this[ASYNC] || !!a;
   }
   [ABORT]() {
+    var _a3, _b2;
     this[ABORTED] = true;
-    this.emit("abort", this[SIGNAL].reason);
-    this.destroy(this[SIGNAL].reason);
+    this.emit("abort", (_a3 = this[SIGNAL]) == null ? void 0 : _a3.reason);
+    this.destroy((_b2 = this[SIGNAL]) == null ? void 0 : _b2.reason);
   }
   get aborted() {
     return this[ABORTED];
@@ -81013,37 +81043,35 @@ var Minipass = class extends Stream {
   set aborted(_4) {
   }
   write(chunk, encoding, cb) {
+    var _a3;
     if (this[ABORTED])
       return false;
     if (this[EOF])
       throw new Error("write after end");
     if (this[DESTROYED]) {
-      this.emit(
-        "error",
-        Object.assign(
-          new Error("Cannot call write after a stream was destroyed"),
-          { code: "ERR_STREAM_DESTROYED" }
-        )
-      );
+      this.emit("error", Object.assign(new Error("Cannot call write after a stream was destroyed"), { code: "ERR_STREAM_DESTROYED" }));
       return true;
     }
-    if (typeof encoding === "function")
-      cb = encoding, encoding = "utf8";
+    if (typeof encoding === "function") {
+      cb = encoding;
+      encoding = "utf8";
+    }
     if (!encoding)
       encoding = "utf8";
-    const fn = this[ASYNC] ? defer2 : (f) => f();
+    const fn = this[ASYNC] ? defer2 : nodefer;
     if (!this[OBJECTMODE] && !Buffer.isBuffer(chunk)) {
-      if (isArrayBufferView(chunk))
+      if (isArrayBufferView(chunk)) {
         chunk = Buffer.from(chunk.buffer, chunk.byteOffset, chunk.byteLength);
-      else if (isArrayBuffer(chunk))
+      } else if (isArrayBufferLike(chunk)) {
         chunk = Buffer.from(chunk);
-      else if (typeof chunk !== "string")
-        this.objectMode = true;
+      } else if (typeof chunk !== "string") {
+        throw new Error("Non-contiguous data written to non-objectMode stream");
+      }
     }
     if (this[OBJECTMODE]) {
-      if (this.flowing && this[BUFFERLENGTH] !== 0)
+      if (this[FLOWING] && this[BUFFERLENGTH] !== 0)
         this[FLUSH](true);
-      if (this.flowing)
+      if (this[FLOWING])
         this.emit("data", chunk);
       else
         this[BUFFERPUSH](chunk);
@@ -81051,23 +81079,24 @@ var Minipass = class extends Stream {
         this.emit("readable");
       if (cb)
         fn(cb);
-      return this.flowing;
+      return this[FLOWING];
     }
     if (!chunk.length) {
       if (this[BUFFERLENGTH] !== 0)
         this.emit("readable");
       if (cb)
         fn(cb);
-      return this.flowing;
+      return this[FLOWING];
     }
-    if (typeof chunk === "string" && !(encoding === this[ENCODING] && !this[DECODER].lastNeed)) {
+    if (typeof chunk === "string" && !(encoding === this[ENCODING] && !((_a3 = this[DECODER]) == null ? void 0 : _a3.lastNeed))) {
       chunk = Buffer.from(chunk, encoding);
     }
-    if (Buffer.isBuffer(chunk) && this[ENCODING])
+    if (Buffer.isBuffer(chunk) && this[ENCODING]) {
       chunk = this[DECODER].write(chunk);
-    if (this.flowing && this[BUFFERLENGTH] !== 0)
+    }
+    if (this[FLOWING] && this[BUFFERLENGTH] !== 0)
       this[FLUSH](true);
-    if (this.flowing)
+    if (this[FLOWING])
       this.emit("data", chunk);
     else
       this[BUFFERPUSH](chunk);
@@ -81075,34 +81104,43 @@ var Minipass = class extends Stream {
       this.emit("readable");
     if (cb)
       fn(cb);
-    return this.flowing;
+    return this[FLOWING];
   }
   read(n) {
     if (this[DESTROYED])
       return null;
-    if (this[BUFFERLENGTH] === 0 || n === 0 || n > this[BUFFERLENGTH]) {
+    this[DISCARDED] = false;
+    if (this[BUFFERLENGTH] === 0 || n === 0 || n && n > this[BUFFERLENGTH]) {
       this[MAYBE_EMIT_END]();
       return null;
     }
     if (this[OBJECTMODE])
       n = null;
     if (this[BUFFER].length > 1 && !this[OBJECTMODE]) {
-      if (this.encoding)
-        this[BUFFER] = [this[BUFFER].join("")];
-      else
-        this[BUFFER] = [Buffer.concat(this[BUFFER], this[BUFFERLENGTH])];
+      this[BUFFER] = [
+        this[ENCODING] ? this[BUFFER].join("") : Buffer.concat(this[BUFFER], this[BUFFERLENGTH])
+      ];
     }
     const ret = this[READ](n || null, this[BUFFER][0]);
     this[MAYBE_EMIT_END]();
     return ret;
   }
   [READ](n, chunk) {
-    if (n === chunk.length || n === null)
+    if (this[OBJECTMODE])
       this[BUFFERSHIFT]();
     else {
-      this[BUFFER][0] = chunk.slice(n);
-      chunk = chunk.slice(0, n);
-      this[BUFFERLENGTH] -= n;
+      const c = chunk;
+      if (n === c.length || n === null)
+        this[BUFFERSHIFT]();
+      else if (typeof c === "string") {
+        this[BUFFER][0] = c.slice(n);
+        chunk = c.slice(0, n);
+        this[BUFFERLENGTH] -= n;
+      } else {
+        this[BUFFER][0] = c.subarray(n);
+        chunk = c.subarray(0, n);
+        this[BUFFERLENGTH] -= n;
+      }
     }
     this.emit("data", chunk);
     if (!this[BUFFER].length && !this[EOF])
@@ -81110,23 +81148,30 @@ var Minipass = class extends Stream {
     return chunk;
   }
   end(chunk, encoding, cb) {
-    if (typeof chunk === "function")
-      cb = chunk, chunk = null;
-    if (typeof encoding === "function")
-      cb = encoding, encoding = "utf8";
-    if (chunk)
+    if (typeof chunk === "function") {
+      cb = chunk;
+      chunk = void 0;
+    }
+    if (typeof encoding === "function") {
+      cb = encoding;
+      encoding = "utf8";
+    }
+    if (chunk !== void 0)
       this.write(chunk, encoding);
     if (cb)
       this.once("end", cb);
     this[EOF] = true;
     this.writable = false;
-    if (this.flowing || !this[PAUSED])
+    if (this[FLOWING] || !this[PAUSED])
       this[MAYBE_EMIT_END]();
     return this;
   }
   [RESUME]() {
     if (this[DESTROYED])
       return;
+    if (!this[DATALISTENERS] && !this[PIPES].length) {
+      this[DISCARDED] = true;
+    }
     this[PAUSED] = false;
     this[FLOWING] = true;
     this.emit("resume");
@@ -81143,6 +81188,7 @@ var Minipass = class extends Stream {
   pause() {
     this[FLOWING] = false;
     this[PAUSED] = true;
+    this[DISCARDED] = false;
   }
   get destroyed() {
     return this[DESTROYED];
@@ -81167,7 +81213,7 @@ var Minipass = class extends Stream {
       this[BUFFERLENGTH] -= this[BUFFER][0].length;
     return this[BUFFER].shift();
   }
-  [FLUSH](noDrain) {
+  [FLUSH](noDrain = false) {
     do {
     } while (this[FLUSHCHUNK](this[BUFFERSHIFT]()) && this[BUFFER].length);
     if (!noDrain && !this[BUFFER].length && !this[EOF])
@@ -81175,11 +81221,12 @@ var Minipass = class extends Stream {
   }
   [FLUSHCHUNK](chunk) {
     this.emit("data", chunk);
-    return this.flowing;
+    return this[FLOWING];
   }
   pipe(dest, opts) {
     if (this[DESTROYED])
-      return;
+      return dest;
+    this[DISCARDED] = false;
     const ended = this[EMITTED_END];
     opts = opts || {};
     if (dest === proc.stdout || dest === proc.stderr)
@@ -81191,9 +81238,7 @@ var Minipass = class extends Stream {
       if (opts.end)
         dest.end();
     } else {
-      this[PIPES].push(
-        !opts.proxyErrors ? new Pipe(this, dest, opts) : new PipeProxyErrors(this, dest, opts)
-      );
+      this[PIPES].push(!opts.proxyErrors ? new Pipe(this, dest, opts) : new PipeProxyErrors(this, dest, opts));
       if (this[ASYNC])
         defer2(() => this[RESUME]());
       else
@@ -81204,27 +81249,61 @@ var Minipass = class extends Stream {
   unpipe(dest) {
     const p = this[PIPES].find((p2) => p2.dest === dest);
     if (p) {
-      this[PIPES].splice(this[PIPES].indexOf(p), 1);
+      if (this[PIPES].length === 1) {
+        if (this[FLOWING] && this[DATALISTENERS] === 0) {
+          this[FLOWING] = false;
+        }
+        this[PIPES] = [];
+      } else
+        this[PIPES].splice(this[PIPES].indexOf(p), 1);
       p.unpipe();
     }
   }
-  addListener(ev, fn) {
-    return this.on(ev, fn);
+  addListener(ev, handler29) {
+    return this.on(ev, handler29);
   }
-  on(ev, fn) {
-    const ret = super.on(ev, fn);
-    if (ev === "data" && !this[PIPES].length && !this.flowing)
-      this[RESUME]();
-    else if (ev === "readable" && this[BUFFERLENGTH] !== 0)
+  on(ev, handler29) {
+    const ret = super.on(ev, handler29);
+    if (ev === "data") {
+      this[DISCARDED] = false;
+      this[DATALISTENERS]++;
+      if (!this[PIPES].length && !this[FLOWING]) {
+        this[RESUME]();
+      }
+    } else if (ev === "readable" && this[BUFFERLENGTH] !== 0) {
       super.emit("readable");
-    else if (isEndish(ev) && this[EMITTED_END]) {
+    } else if (isEndish(ev) && this[EMITTED_END]) {
       super.emit(ev);
       this.removeAllListeners(ev);
     } else if (ev === "error" && this[EMITTED_ERROR]) {
+      const h = handler29;
       if (this[ASYNC])
-        defer2(() => fn.call(this, this[EMITTED_ERROR]));
+        defer2(() => h.call(this, this[EMITTED_ERROR]));
       else
-        fn.call(this, this[EMITTED_ERROR]);
+        h.call(this, this[EMITTED_ERROR]);
+    }
+    return ret;
+  }
+  removeListener(ev, handler29) {
+    return this.off(ev, handler29);
+  }
+  off(ev, handler29) {
+    const ret = super.off(ev, handler29);
+    if (ev === "data") {
+      this[DATALISTENERS] = this.listeners("data").length;
+      if (this[DATALISTENERS] === 0 && !this[DISCARDED] && !this[PIPES].length) {
+        this[FLOWING] = false;
+      }
+    }
+    return ret;
+  }
+  removeAllListeners(ev) {
+    const ret = super.removeAllListeners(ev);
+    if (ev === "data" || ev === void 0) {
+      this[DATALISTENERS] = 0;
+      if (!this[DISCARDED] && !this[PIPES].length) {
+        this[FLOWING] = false;
+      }
     }
     return ret;
   }
@@ -81242,17 +81321,18 @@ var Minipass = class extends Stream {
       this[EMITTING_END] = false;
     }
   }
-  emit(ev, data, ...extra) {
-    if (ev !== "error" && ev !== "close" && ev !== DESTROYED && this[DESTROYED])
-      return;
-    else if (ev === "data") {
-      return !this[OBJECTMODE] && !data ? false : this[ASYNC] ? defer2(() => this[EMITDATA](data)) : this[EMITDATA](data);
+  emit(ev, ...args) {
+    const data = args[0];
+    if (ev !== "error" && ev !== "close" && ev !== DESTROYED && this[DESTROYED]) {
+      return false;
+    } else if (ev === "data") {
+      return !this[OBJECTMODE] && !data ? false : this[ASYNC] ? (defer2(() => this[EMITDATA](data)), true) : this[EMITDATA](data);
     } else if (ev === "end") {
       return this[EMITEND]();
     } else if (ev === "close") {
       this[CLOSED] = true;
       if (!this[EMITTED_END] && !this[DESTROYED])
-        return;
+        return false;
       const ret2 = super.emit("close");
       this.removeAllListeners("close");
       return ret2;
@@ -81271,7 +81351,7 @@ var Minipass = class extends Stream {
       this.removeAllListeners(ev);
       return ret2;
     }
-    const ret = super.emit(ev, data, ...extra);
+    const ret = super.emit(ev, ...args);
     this[MAYBE_EMIT_END]();
     return ret;
   }
@@ -81280,19 +81360,16 @@ var Minipass = class extends Stream {
       if (p.dest.write(data) === false)
         this.pause();
     }
-    const ret = super.emit("data", data);
+    const ret = this[DISCARDED] ? false : super.emit("data", data);
     this[MAYBE_EMIT_END]();
     return ret;
   }
   [EMITEND]() {
     if (this[EMITTED_END])
-      return;
+      return false;
     this[EMITTED_END] = true;
     this.readable = false;
-    if (this[ASYNC])
-      defer2(() => this[EMITEND2]());
-    else
-      this[EMITEND2]();
+    return this[ASYNC] ? (defer2(() => this[EMITEND2]()), true) : this[EMITEND2]();
   }
   [EMITEND2]() {
     if (this[DECODER]) {
@@ -81301,7 +81378,8 @@ var Minipass = class extends Stream {
         for (const p of this[PIPES]) {
           p.dest.write(data);
         }
-        super.emit("data", data);
+        if (!this[DISCARDED])
+          super.emit("data", data);
       }
     }
     for (const p of this[PIPES]) {
@@ -81311,8 +81389,10 @@ var Minipass = class extends Stream {
     this.removeAllListeners("end");
     return ret;
   }
-  collect() {
-    const buf = [];
+  async collect() {
+    const buf = Object.assign([], {
+      dataLength: 0
+    });
     if (!this[OBJECTMODE])
       buf.dataLength = 0;
     const p = this.promise();
@@ -81321,26 +81401,30 @@ var Minipass = class extends Stream {
       if (!this[OBJECTMODE])
         buf.dataLength += c.length;
     });
-    return p.then(() => buf);
+    await p;
+    return buf;
   }
-  concat() {
-    return this[OBJECTMODE] ? Promise.reject(new Error("cannot concat in objectMode")) : this.collect().then(
-      (buf) => this[OBJECTMODE] ? Promise.reject(new Error("cannot concat in objectMode")) : this[ENCODING] ? buf.join("") : Buffer.concat(buf, buf.dataLength)
-    );
+  async concat() {
+    if (this[OBJECTMODE]) {
+      throw new Error("cannot concat in objectMode");
+    }
+    const buf = await this.collect();
+    return this[ENCODING] ? buf.join("") : Buffer.concat(buf, buf.dataLength);
   }
-  promise() {
+  async promise() {
     return new Promise((resolve13, reject) => {
       this.on(DESTROYED, () => reject(new Error("stream destroyed")));
       this.on("error", (er) => reject(er));
       this.on("end", () => resolve13());
     });
   }
-  [ASYNCITERATOR]() {
+  [Symbol.asyncIterator]() {
+    this[DISCARDED] = false;
     let stopped = false;
-    const stop = () => {
+    const stop = async () => {
       this.pause();
       stopped = true;
-      return Promise.resolve({ done: true });
+      return { value: void 0, done: true };
     };
     const next = () => {
       if (stopped)
@@ -81350,28 +81434,28 @@ var Minipass = class extends Stream {
         return Promise.resolve({ done: false, value: res });
       if (this[EOF])
         return stop();
-      let resolve13 = null;
-      let reject = null;
+      let resolve13;
+      let reject;
       const onerr = (er) => {
-        this.removeListener("data", ondata);
-        this.removeListener("end", onend);
-        this.removeListener(DESTROYED, ondestroy);
+        this.off("data", ondata);
+        this.off("end", onend);
+        this.off(DESTROYED, ondestroy);
         stop();
         reject(er);
       };
       const ondata = (value) => {
-        this.removeListener("error", onerr);
-        this.removeListener("end", onend);
-        this.removeListener(DESTROYED, ondestroy);
+        this.off("error", onerr);
+        this.off("end", onend);
+        this.off(DESTROYED, ondestroy);
         this.pause();
         resolve13({ value, done: !!this[EOF] });
       };
       const onend = () => {
-        this.removeListener("error", onerr);
-        this.removeListener("data", ondata);
-        this.removeListener(DESTROYED, ondestroy);
+        this.off("error", onerr);
+        this.off("data", ondata);
+        this.off(DESTROYED, ondestroy);
         stop();
-        resolve13({ done: true });
+        resolve13({ done: true, value: void 0 });
       };
       const ondestroy = () => onerr(new Error("stream destroyed"));
       return new Promise((res2, rej) => {
@@ -81387,26 +81471,27 @@ var Minipass = class extends Stream {
       next,
       throw: stop,
       return: stop,
-      [ASYNCITERATOR]() {
+      [Symbol.asyncIterator]() {
         return this;
       }
     };
   }
-  [ITERATOR]() {
+  [Symbol.iterator]() {
+    this[DISCARDED] = false;
     let stopped = false;
     const stop = () => {
       this.pause();
-      this.removeListener(ERROR, stop);
-      this.removeListener(DESTROYED, stop);
-      this.removeListener("end", stop);
+      this.off(ERROR, stop);
+      this.off(DESTROYED, stop);
+      this.off("end", stop);
       stopped = true;
-      return { done: true };
+      return { done: true, value: void 0 };
     };
     const next = () => {
       if (stopped)
         return stop();
       const value = this.read();
-      return value === null ? stop() : { value };
+      return value === null ? stop() : { done: false, value };
     };
     this.once("end", stop);
     this.once(ERROR, stop);
@@ -81415,7 +81500,7 @@ var Minipass = class extends Stream {
       next,
       throw: stop,
       return: stop,
-      [ITERATOR]() {
+      [Symbol.iterator]() {
         return this;
       }
     };
@@ -81429,22 +81514,24 @@ var Minipass = class extends Stream {
       return this;
     }
     this[DESTROYED] = true;
+    this[DISCARDED] = true;
     this[BUFFER].length = 0;
     this[BUFFERLENGTH] = 0;
-    if (typeof this.close === "function" && !this[CLOSED])
-      this.close();
+    const wc = this;
+    if (typeof wc.close === "function" && !this[CLOSED])
+      wc.close();
     if (er)
       this.emit("error", er);
     else
       this.emit(DESTROYED);
     return this;
   }
-  static isStream(s) {
-    return !!s && (s instanceof Minipass || s instanceof Stream || s instanceof EE && (typeof s.pipe === "function" || typeof s.write === "function" && typeof s.end === "function"));
+  static get isStream() {
+    return isStream;
   }
 };
 
-// node_modules/path-scurry/dist/mjs/index.js
+// node_modules/glob/node_modules/path-scurry/dist/mjs/index.js
 var realpathSync = rps.native;
 var defaultFS = {
   lstatSync: lstatSync2,
@@ -81766,6 +81853,12 @@ var PathBase = class {
   }
   isUnknown() {
     return (__privateGet(this, _type) & IFMT) === UNKNOWN;
+  }
+  isType(type) {
+    return this[`is${type}`]();
+  }
+  getType() {
+    return this.isUnknown() ? "Unknown" : this.isDirectory() ? "Directory" : this.isFile() ? "File" : this.isSymbolicLink() ? "SymbolicLink" : this.isFIFO() ? "FIFO" : this.isCharacterDevice() ? "CharacterDevice" : this.isBlockDevice() ? "BlockDevice" : this.isSocket() ? "Socket" : "Unknown";
   }
   isFile() {
     return (__privateGet(this, _type) & IFMT) === IFREG;
@@ -82921,596 +83014,6 @@ _isUNC = new WeakMap();
 _isAbsolute = new WeakMap();
 _followGlobstar = new WeakMap();
 
-// node_modules/glob/node_modules/minipass/index.mjs
-import EE2 from "events";
-import Stream2 from "stream";
-import stringdecoder2 from "string_decoder";
-var proc2 = typeof process === "object" && process ? process : {
-  stdout: null,
-  stderr: null
-};
-var SD2 = stringdecoder2.StringDecoder;
-var EOF2 = Symbol("EOF");
-var MAYBE_EMIT_END2 = Symbol("maybeEmitEnd");
-var EMITTED_END2 = Symbol("emittedEnd");
-var EMITTING_END2 = Symbol("emittingEnd");
-var EMITTED_ERROR2 = Symbol("emittedError");
-var CLOSED2 = Symbol("closed");
-var READ2 = Symbol("read");
-var FLUSH2 = Symbol("flush");
-var FLUSHCHUNK2 = Symbol("flushChunk");
-var ENCODING2 = Symbol("encoding");
-var DECODER2 = Symbol("decoder");
-var FLOWING2 = Symbol("flowing");
-var PAUSED2 = Symbol("paused");
-var RESUME2 = Symbol("resume");
-var BUFFER2 = Symbol("buffer");
-var PIPES2 = Symbol("pipes");
-var BUFFERLENGTH2 = Symbol("bufferLength");
-var BUFFERPUSH2 = Symbol("bufferPush");
-var BUFFERSHIFT2 = Symbol("bufferShift");
-var OBJECTMODE2 = Symbol("objectMode");
-var DESTROYED2 = Symbol("destroyed");
-var ERROR2 = Symbol("error");
-var EMITDATA2 = Symbol("emitData");
-var EMITEND3 = Symbol("emitEnd");
-var EMITEND22 = Symbol("emitEnd2");
-var ASYNC2 = Symbol("async");
-var ABORT2 = Symbol("abort");
-var ABORTED2 = Symbol("aborted");
-var SIGNAL2 = Symbol("signal");
-var defer3 = (fn) => Promise.resolve().then(fn);
-var doIter2 = global._MP_NO_ITERATOR_SYMBOLS_ !== "1";
-var ASYNCITERATOR2 = doIter2 && Symbol.asyncIterator || Symbol("asyncIterator not implemented");
-var ITERATOR2 = doIter2 && Symbol.iterator || Symbol("iterator not implemented");
-var isEndish2 = (ev) => ev === "end" || ev === "finish" || ev === "prefinish";
-var isArrayBuffer2 = (b) => b instanceof ArrayBuffer || typeof b === "object" && b.constructor && b.constructor.name === "ArrayBuffer" && b.byteLength >= 0;
-var isArrayBufferView2 = (b) => !Buffer.isBuffer(b) && ArrayBuffer.isView(b);
-var Pipe2 = class {
-  constructor(src, dest, opts) {
-    this.src = src;
-    this.dest = dest;
-    this.opts = opts;
-    this.ondrain = () => src[RESUME2]();
-    dest.on("drain", this.ondrain);
-  }
-  unpipe() {
-    this.dest.removeListener("drain", this.ondrain);
-  }
-  proxyErrors() {
-  }
-  end() {
-    this.unpipe();
-    if (this.opts.end)
-      this.dest.end();
-  }
-};
-var PipeProxyErrors2 = class extends Pipe2 {
-  unpipe() {
-    this.src.removeListener("error", this.proxyErrors);
-    super.unpipe();
-  }
-  constructor(src, dest, opts) {
-    super(src, dest, opts);
-    this.proxyErrors = (er) => dest.emit("error", er);
-    src.on("error", this.proxyErrors);
-  }
-};
-var Minipass2 = class extends Stream2 {
-  constructor(options) {
-    super();
-    this[FLOWING2] = false;
-    this[PAUSED2] = false;
-    this[PIPES2] = [];
-    this[BUFFER2] = [];
-    this[OBJECTMODE2] = options && options.objectMode || false;
-    if (this[OBJECTMODE2])
-      this[ENCODING2] = null;
-    else
-      this[ENCODING2] = options && options.encoding || null;
-    if (this[ENCODING2] === "buffer")
-      this[ENCODING2] = null;
-    this[ASYNC2] = options && !!options.async || false;
-    this[DECODER2] = this[ENCODING2] ? new SD2(this[ENCODING2]) : null;
-    this[EOF2] = false;
-    this[EMITTED_END2] = false;
-    this[EMITTING_END2] = false;
-    this[CLOSED2] = false;
-    this[EMITTED_ERROR2] = null;
-    this.writable = true;
-    this.readable = true;
-    this[BUFFERLENGTH2] = 0;
-    this[DESTROYED2] = false;
-    if (options && options.debugExposeBuffer === true) {
-      Object.defineProperty(this, "buffer", { get: () => this[BUFFER2] });
-    }
-    if (options && options.debugExposePipes === true) {
-      Object.defineProperty(this, "pipes", { get: () => this[PIPES2] });
-    }
-    this[SIGNAL2] = options && options.signal;
-    this[ABORTED2] = false;
-    if (this[SIGNAL2]) {
-      this[SIGNAL2].addEventListener("abort", () => this[ABORT2]());
-      if (this[SIGNAL2].aborted) {
-        this[ABORT2]();
-      }
-    }
-  }
-  get bufferLength() {
-    return this[BUFFERLENGTH2];
-  }
-  get encoding() {
-    return this[ENCODING2];
-  }
-  set encoding(enc) {
-    if (this[OBJECTMODE2])
-      throw new Error("cannot set encoding in objectMode");
-    if (this[ENCODING2] && enc !== this[ENCODING2] && (this[DECODER2] && this[DECODER2].lastNeed || this[BUFFERLENGTH2]))
-      throw new Error("cannot change encoding");
-    if (this[ENCODING2] !== enc) {
-      this[DECODER2] = enc ? new SD2(enc) : null;
-      if (this[BUFFER2].length)
-        this[BUFFER2] = this[BUFFER2].map((chunk) => this[DECODER2].write(chunk));
-    }
-    this[ENCODING2] = enc;
-  }
-  setEncoding(enc) {
-    this.encoding = enc;
-  }
-  get objectMode() {
-    return this[OBJECTMODE2];
-  }
-  set objectMode(om) {
-    this[OBJECTMODE2] = this[OBJECTMODE2] || !!om;
-  }
-  get ["async"]() {
-    return this[ASYNC2];
-  }
-  set ["async"](a) {
-    this[ASYNC2] = this[ASYNC2] || !!a;
-  }
-  [ABORT2]() {
-    this[ABORTED2] = true;
-    this.emit("abort", this[SIGNAL2].reason);
-    this.destroy(this[SIGNAL2].reason);
-  }
-  get aborted() {
-    return this[ABORTED2];
-  }
-  set aborted(_4) {
-  }
-  write(chunk, encoding, cb) {
-    if (this[ABORTED2])
-      return false;
-    if (this[EOF2])
-      throw new Error("write after end");
-    if (this[DESTROYED2]) {
-      this.emit(
-        "error",
-        Object.assign(
-          new Error("Cannot call write after a stream was destroyed"),
-          { code: "ERR_STREAM_DESTROYED" }
-        )
-      );
-      return true;
-    }
-    if (typeof encoding === "function")
-      cb = encoding, encoding = "utf8";
-    if (!encoding)
-      encoding = "utf8";
-    const fn = this[ASYNC2] ? defer3 : (f) => f();
-    if (!this[OBJECTMODE2] && !Buffer.isBuffer(chunk)) {
-      if (isArrayBufferView2(chunk))
-        chunk = Buffer.from(chunk.buffer, chunk.byteOffset, chunk.byteLength);
-      else if (isArrayBuffer2(chunk))
-        chunk = Buffer.from(chunk);
-      else if (typeof chunk !== "string")
-        this.objectMode = true;
-    }
-    if (this[OBJECTMODE2]) {
-      if (this.flowing && this[BUFFERLENGTH2] !== 0)
-        this[FLUSH2](true);
-      if (this.flowing)
-        this.emit("data", chunk);
-      else
-        this[BUFFERPUSH2](chunk);
-      if (this[BUFFERLENGTH2] !== 0)
-        this.emit("readable");
-      if (cb)
-        fn(cb);
-      return this.flowing;
-    }
-    if (!chunk.length) {
-      if (this[BUFFERLENGTH2] !== 0)
-        this.emit("readable");
-      if (cb)
-        fn(cb);
-      return this.flowing;
-    }
-    if (typeof chunk === "string" && !(encoding === this[ENCODING2] && !this[DECODER2].lastNeed)) {
-      chunk = Buffer.from(chunk, encoding);
-    }
-    if (Buffer.isBuffer(chunk) && this[ENCODING2])
-      chunk = this[DECODER2].write(chunk);
-    if (this.flowing && this[BUFFERLENGTH2] !== 0)
-      this[FLUSH2](true);
-    if (this.flowing)
-      this.emit("data", chunk);
-    else
-      this[BUFFERPUSH2](chunk);
-    if (this[BUFFERLENGTH2] !== 0)
-      this.emit("readable");
-    if (cb)
-      fn(cb);
-    return this.flowing;
-  }
-  read(n) {
-    if (this[DESTROYED2])
-      return null;
-    if (this[BUFFERLENGTH2] === 0 || n === 0 || n > this[BUFFERLENGTH2]) {
-      this[MAYBE_EMIT_END2]();
-      return null;
-    }
-    if (this[OBJECTMODE2])
-      n = null;
-    if (this[BUFFER2].length > 1 && !this[OBJECTMODE2]) {
-      if (this.encoding)
-        this[BUFFER2] = [this[BUFFER2].join("")];
-      else
-        this[BUFFER2] = [Buffer.concat(this[BUFFER2], this[BUFFERLENGTH2])];
-    }
-    const ret = this[READ2](n || null, this[BUFFER2][0]);
-    this[MAYBE_EMIT_END2]();
-    return ret;
-  }
-  [READ2](n, chunk) {
-    if (n === chunk.length || n === null)
-      this[BUFFERSHIFT2]();
-    else {
-      this[BUFFER2][0] = chunk.slice(n);
-      chunk = chunk.slice(0, n);
-      this[BUFFERLENGTH2] -= n;
-    }
-    this.emit("data", chunk);
-    if (!this[BUFFER2].length && !this[EOF2])
-      this.emit("drain");
-    return chunk;
-  }
-  end(chunk, encoding, cb) {
-    if (typeof chunk === "function")
-      cb = chunk, chunk = null;
-    if (typeof encoding === "function")
-      cb = encoding, encoding = "utf8";
-    if (chunk)
-      this.write(chunk, encoding);
-    if (cb)
-      this.once("end", cb);
-    this[EOF2] = true;
-    this.writable = false;
-    if (this.flowing || !this[PAUSED2])
-      this[MAYBE_EMIT_END2]();
-    return this;
-  }
-  [RESUME2]() {
-    if (this[DESTROYED2])
-      return;
-    this[PAUSED2] = false;
-    this[FLOWING2] = true;
-    this.emit("resume");
-    if (this[BUFFER2].length)
-      this[FLUSH2]();
-    else if (this[EOF2])
-      this[MAYBE_EMIT_END2]();
-    else
-      this.emit("drain");
-  }
-  resume() {
-    return this[RESUME2]();
-  }
-  pause() {
-    this[FLOWING2] = false;
-    this[PAUSED2] = true;
-  }
-  get destroyed() {
-    return this[DESTROYED2];
-  }
-  get flowing() {
-    return this[FLOWING2];
-  }
-  get paused() {
-    return this[PAUSED2];
-  }
-  [BUFFERPUSH2](chunk) {
-    if (this[OBJECTMODE2])
-      this[BUFFERLENGTH2] += 1;
-    else
-      this[BUFFERLENGTH2] += chunk.length;
-    this[BUFFER2].push(chunk);
-  }
-  [BUFFERSHIFT2]() {
-    if (this[OBJECTMODE2])
-      this[BUFFERLENGTH2] -= 1;
-    else
-      this[BUFFERLENGTH2] -= this[BUFFER2][0].length;
-    return this[BUFFER2].shift();
-  }
-  [FLUSH2](noDrain) {
-    do {
-    } while (this[FLUSHCHUNK2](this[BUFFERSHIFT2]()) && this[BUFFER2].length);
-    if (!noDrain && !this[BUFFER2].length && !this[EOF2])
-      this.emit("drain");
-  }
-  [FLUSHCHUNK2](chunk) {
-    this.emit("data", chunk);
-    return this.flowing;
-  }
-  pipe(dest, opts) {
-    if (this[DESTROYED2])
-      return;
-    const ended = this[EMITTED_END2];
-    opts = opts || {};
-    if (dest === proc2.stdout || dest === proc2.stderr)
-      opts.end = false;
-    else
-      opts.end = opts.end !== false;
-    opts.proxyErrors = !!opts.proxyErrors;
-    if (ended) {
-      if (opts.end)
-        dest.end();
-    } else {
-      this[PIPES2].push(
-        !opts.proxyErrors ? new Pipe2(this, dest, opts) : new PipeProxyErrors2(this, dest, opts)
-      );
-      if (this[ASYNC2])
-        defer3(() => this[RESUME2]());
-      else
-        this[RESUME2]();
-    }
-    return dest;
-  }
-  unpipe(dest) {
-    const p = this[PIPES2].find((p2) => p2.dest === dest);
-    if (p) {
-      this[PIPES2].splice(this[PIPES2].indexOf(p), 1);
-      p.unpipe();
-    }
-  }
-  addListener(ev, fn) {
-    return this.on(ev, fn);
-  }
-  on(ev, fn) {
-    const ret = super.on(ev, fn);
-    if (ev === "data" && !this[PIPES2].length && !this.flowing)
-      this[RESUME2]();
-    else if (ev === "readable" && this[BUFFERLENGTH2] !== 0)
-      super.emit("readable");
-    else if (isEndish2(ev) && this[EMITTED_END2]) {
-      super.emit(ev);
-      this.removeAllListeners(ev);
-    } else if (ev === "error" && this[EMITTED_ERROR2]) {
-      if (this[ASYNC2])
-        defer3(() => fn.call(this, this[EMITTED_ERROR2]));
-      else
-        fn.call(this, this[EMITTED_ERROR2]);
-    }
-    return ret;
-  }
-  get emittedEnd() {
-    return this[EMITTED_END2];
-  }
-  [MAYBE_EMIT_END2]() {
-    if (!this[EMITTING_END2] && !this[EMITTED_END2] && !this[DESTROYED2] && this[BUFFER2].length === 0 && this[EOF2]) {
-      this[EMITTING_END2] = true;
-      this.emit("end");
-      this.emit("prefinish");
-      this.emit("finish");
-      if (this[CLOSED2])
-        this.emit("close");
-      this[EMITTING_END2] = false;
-    }
-  }
-  emit(ev, data, ...extra) {
-    if (ev !== "error" && ev !== "close" && ev !== DESTROYED2 && this[DESTROYED2])
-      return;
-    else if (ev === "data") {
-      return !this[OBJECTMODE2] && !data ? false : this[ASYNC2] ? defer3(() => this[EMITDATA2](data)) : this[EMITDATA2](data);
-    } else if (ev === "end") {
-      return this[EMITEND3]();
-    } else if (ev === "close") {
-      this[CLOSED2] = true;
-      if (!this[EMITTED_END2] && !this[DESTROYED2])
-        return;
-      const ret2 = super.emit("close");
-      this.removeAllListeners("close");
-      return ret2;
-    } else if (ev === "error") {
-      this[EMITTED_ERROR2] = data;
-      super.emit(ERROR2, data);
-      const ret2 = !this[SIGNAL2] || this.listeners("error").length ? super.emit("error", data) : false;
-      this[MAYBE_EMIT_END2]();
-      return ret2;
-    } else if (ev === "resume") {
-      const ret2 = super.emit("resume");
-      this[MAYBE_EMIT_END2]();
-      return ret2;
-    } else if (ev === "finish" || ev === "prefinish") {
-      const ret2 = super.emit(ev);
-      this.removeAllListeners(ev);
-      return ret2;
-    }
-    const ret = super.emit(ev, data, ...extra);
-    this[MAYBE_EMIT_END2]();
-    return ret;
-  }
-  [EMITDATA2](data) {
-    for (const p of this[PIPES2]) {
-      if (p.dest.write(data) === false)
-        this.pause();
-    }
-    const ret = super.emit("data", data);
-    this[MAYBE_EMIT_END2]();
-    return ret;
-  }
-  [EMITEND3]() {
-    if (this[EMITTED_END2])
-      return;
-    this[EMITTED_END2] = true;
-    this.readable = false;
-    if (this[ASYNC2])
-      defer3(() => this[EMITEND22]());
-    else
-      this[EMITEND22]();
-  }
-  [EMITEND22]() {
-    if (this[DECODER2]) {
-      const data = this[DECODER2].end();
-      if (data) {
-        for (const p of this[PIPES2]) {
-          p.dest.write(data);
-        }
-        super.emit("data", data);
-      }
-    }
-    for (const p of this[PIPES2]) {
-      p.end();
-    }
-    const ret = super.emit("end");
-    this.removeAllListeners("end");
-    return ret;
-  }
-  collect() {
-    const buf = [];
-    if (!this[OBJECTMODE2])
-      buf.dataLength = 0;
-    const p = this.promise();
-    this.on("data", (c) => {
-      buf.push(c);
-      if (!this[OBJECTMODE2])
-        buf.dataLength += c.length;
-    });
-    return p.then(() => buf);
-  }
-  concat() {
-    return this[OBJECTMODE2] ? Promise.reject(new Error("cannot concat in objectMode")) : this.collect().then(
-      (buf) => this[OBJECTMODE2] ? Promise.reject(new Error("cannot concat in objectMode")) : this[ENCODING2] ? buf.join("") : Buffer.concat(buf, buf.dataLength)
-    );
-  }
-  promise() {
-    return new Promise((resolve13, reject) => {
-      this.on(DESTROYED2, () => reject(new Error("stream destroyed")));
-      this.on("error", (er) => reject(er));
-      this.on("end", () => resolve13());
-    });
-  }
-  [ASYNCITERATOR2]() {
-    let stopped = false;
-    const stop = () => {
-      this.pause();
-      stopped = true;
-      return Promise.resolve({ done: true });
-    };
-    const next = () => {
-      if (stopped)
-        return stop();
-      const res = this.read();
-      if (res !== null)
-        return Promise.resolve({ done: false, value: res });
-      if (this[EOF2])
-        return stop();
-      let resolve13 = null;
-      let reject = null;
-      const onerr = (er) => {
-        this.removeListener("data", ondata);
-        this.removeListener("end", onend);
-        this.removeListener(DESTROYED2, ondestroy);
-        stop();
-        reject(er);
-      };
-      const ondata = (value) => {
-        this.removeListener("error", onerr);
-        this.removeListener("end", onend);
-        this.removeListener(DESTROYED2, ondestroy);
-        this.pause();
-        resolve13({ value, done: !!this[EOF2] });
-      };
-      const onend = () => {
-        this.removeListener("error", onerr);
-        this.removeListener("data", ondata);
-        this.removeListener(DESTROYED2, ondestroy);
-        stop();
-        resolve13({ done: true });
-      };
-      const ondestroy = () => onerr(new Error("stream destroyed"));
-      return new Promise((res2, rej) => {
-        reject = rej;
-        resolve13 = res2;
-        this.once(DESTROYED2, ondestroy);
-        this.once("error", onerr);
-        this.once("end", onend);
-        this.once("data", ondata);
-      });
-    };
-    return {
-      next,
-      throw: stop,
-      return: stop,
-      [ASYNCITERATOR2]() {
-        return this;
-      }
-    };
-  }
-  [ITERATOR2]() {
-    let stopped = false;
-    const stop = () => {
-      this.pause();
-      this.removeListener(ERROR2, stop);
-      this.removeListener(DESTROYED2, stop);
-      this.removeListener("end", stop);
-      stopped = true;
-      return { done: true };
-    };
-    const next = () => {
-      if (stopped)
-        return stop();
-      const value = this.read();
-      return value === null ? stop() : { value };
-    };
-    this.once("end", stop);
-    this.once(ERROR2, stop);
-    this.once(DESTROYED2, stop);
-    return {
-      next,
-      throw: stop,
-      return: stop,
-      [ITERATOR2]() {
-        return this;
-      }
-    };
-  }
-  destroy(er) {
-    if (this[DESTROYED2]) {
-      if (er)
-        this.emit("error", er);
-      else
-        this.emit(DESTROYED2);
-      return this;
-    }
-    this[DESTROYED2] = true;
-    this[BUFFER2].length = 0;
-    this[BUFFERLENGTH2] = 0;
-    if (typeof this.close === "function" && !this[CLOSED2])
-      this.close();
-    if (er)
-      this.emit("error", er);
-    else
-      this.emit(DESTROYED2);
-    return this;
-  }
-  static isStream(s) {
-    return !!s && (s instanceof Minipass2 || s instanceof Stream2 || s instanceof EE2 && (typeof s.pipe === "function" || typeof s.write === "function" && typeof s.end === "function"));
-  }
-};
-
 // node_modules/glob/dist/mjs/ignore.js
 var defaultPlatform2 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Ignore = class {
@@ -84097,7 +83600,7 @@ var GlobStream = class extends GlobUtil {
   results;
   constructor(patterns, path6, opts) {
     super(patterns, path6, opts);
-    this.results = new Minipass2({
+    this.results = new Minipass({
       signal: this.signal,
       objectMode: true
     });
@@ -84159,6 +83662,8 @@ var Glob = class {
   opts;
   patterns;
   constructor(pattern, opts) {
+    if (!opts)
+      throw new TypeError("glob options required");
     this.withFileTypes = !!opts.withFileTypes;
     this.signal = opts.signal;
     this.follow = !!opts.follow;
