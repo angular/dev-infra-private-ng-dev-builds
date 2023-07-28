@@ -79379,7 +79379,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-ef022a04090aca0945862f9f69f8ff3ea5865f26`;
+  const localVersion = `0.0.0-7345dad3d4549e2beb2305f0e98581f2fe2ce329`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
