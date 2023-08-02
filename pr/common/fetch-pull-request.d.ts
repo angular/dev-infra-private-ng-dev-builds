@@ -60,6 +60,9 @@ export declare const PR_SCHEMA: {
             };
         }[];
     };
+    reviewRequests: {
+        totalCount: number;
+    };
     maintainerCanModify: boolean;
     viewerDidAuthor: boolean;
     headRefOid: string;

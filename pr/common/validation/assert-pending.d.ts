@@ -53,6 +53,9 @@ export declare const pendingStateValidation: {
                 };
             }[];
         };
+        reviewRequests: {
+            totalCount: number;
+        };
         maintainerCanModify: boolean;
         viewerDidAuthor: boolean;
         headRefOid: string;

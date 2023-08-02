@@ -53,6 +53,9 @@ export declare const mergeReadyValidation: {
                 };
             }[];
         };
+        reviewRequests: {
+            totalCount: number;
+        };
         maintainerCanModify: boolean;
         viewerDidAuthor: boolean;
         headRefOid: string;

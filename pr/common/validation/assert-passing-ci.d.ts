@@ -53,6 +53,9 @@ export declare const passingCiValidation: {
                 };
             }[];
         };
+        reviewRequests: {
+            totalCount: number;
+        };
         maintainerCanModify: boolean;
         viewerDidAuthor: boolean;
         headRefOid: string;

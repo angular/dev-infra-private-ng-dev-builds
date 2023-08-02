@@ -16,6 +16,8 @@ export declare class PullRequestValidationConfig {
     assertSignedCla: boolean;
     assertChangesAllowForTargetLabel: boolean;
     assertPassingCi: boolean;
+    assertCompletedReviews: boolean;
+    static create(config: Partial<PullRequestValidationConfig>): PullRequestValidationConfig & Partial<PullRequestValidationConfig>;
 }
 /** Type describing a helper function for validations to create a validation failure. */
 export type PullRequestValidationErrorCreateFn = (message: string) => PullRequestValidationFailure;
