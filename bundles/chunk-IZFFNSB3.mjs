@@ -5327,9 +5327,9 @@ var require_yallist = __commonJS({
   }
 });
 
-// node_modules/semver/node_modules/lru-cache/index.js
+// node_modules/lru-cache/index.js
 var require_lru_cache = __commonJS({
-  "node_modules/semver/node_modules/lru-cache/index.js"(exports, module) {
+  "node_modules/lru-cache/index.js"(exports, module) {
     "use strict";
     var Yallist = require_yallist();
     var MAX = Symbol("max");
@@ -8723,4 +8723,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-Q3ZZWX72.mjs.map
+//# sourceMappingURL=chunk-IZFFNSB3.mjs.map

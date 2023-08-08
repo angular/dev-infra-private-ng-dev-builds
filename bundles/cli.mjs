@@ -43,7 +43,7 @@ import {
   require_semver,
   require_wrappy,
   targetLabels
-} from "./chunk-Q3ZZWX72.mjs";
+} from "./chunk-IZFFNSB3.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -74706,7 +74706,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-fa19f7c011162ff539d54695c9e6bde5e9944baa`;
+  const localVersion = `0.0.0-9612a01fad9d1734668e96d06d87829505b1c38d`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
