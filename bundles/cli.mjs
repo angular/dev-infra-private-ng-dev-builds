@@ -33618,7 +33618,11 @@ var require_reader = __commonJS({
       this.pos += length;
       if (Array.isArray(this.buf))
         return this.buf.slice(start, end);
-      return start === end ? new this.buf.constructor(0) : this._slice.call(this.buf, start, end);
+      if (start === end) {
+        var nativeBuffer = util.Buffer;
+        return nativeBuffer ? nativeBuffer.alloc(0) : new this.buf.constructor(0);
+      }
+      return this._slice.call(this.buf, start, end);
     };
     Reader.prototype.string = function read_string() {
       var bytes = this.bytes();
@@ -36205,7 +36209,7 @@ var require_tokenize = __commonJS({
       function isDoubleSlashCommentLine(startOffset) {
         var endOffset = findEndOfLine(startOffset);
         var lineText = source.substring(startOffset, endOffset);
-        var isComment = /^\s*\/{1,2}/.test(lineText);
+        var isComment = /^\s*\/\//.test(lineText);
         return isComment;
       }
       function findEndOfLine(cursor) {
@@ -36255,7 +36259,7 @@ var require_tokenize = __commonJS({
               } else {
                 start = offset;
                 isDoc = false;
-                if (isDoubleSlashCommentLine(offset)) {
+                if (isDoubleSlashCommentLine(offset - 1)) {
                   isDoc = true;
                   do {
                     offset = findEndOfLine(offset);
@@ -36817,6 +36821,9 @@ var require_parse = __commonJS({
           while (!skip("}", true)) {
             if (!nameRe.test(token = next())) {
               throw illegal(token, "name");
+            }
+            if (token === null) {
+              throw illegal(token, "end of input");
             }
             var value;
             var propName = token;
@@ -74706,7 +74713,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-8f6baa263a000ed817e20798a71e79f3c7028cc8`;
+  const localVersion = `0.0.0-7458047440e23803841f93f7de34547bacbc9549`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
