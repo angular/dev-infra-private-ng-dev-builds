@@ -66861,7 +66861,7 @@ var GithubQueriesModule = class extends BaseModule {
       graphqlQuery[queryKey] = (0, import_typed_graphqlify.params)({
         type: "ISSUE",
         first: MAX_RETURNED_ISSUES,
-        query: `"${repoFilter} ${query.replace(/\"/g, '\\"')}"`
+        query: `"${repoFilter} ${query.replace(/"/g, '\\"')}"`
       }, { ...GithubQueryResultFragment });
     });
     return graphqlQuery;
@@ -74720,7 +74720,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-1f04ab9faf5a6d410de843699ac657ae8b3d1540`;
+  const localVersion = `0.0.0-becf6bcee7b2862cb9eac8aeb4b6673d5ac34ad7`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
