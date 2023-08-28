@@ -71922,6 +71922,7 @@ var Validation2 = class extends PullRequestValidation {
 var completedReviewsValidation = createPullRequestValidation({ name: "assertCompletedReviews", canBeForceIgnored: false }, () => Validation3);
 var Validation3 = class extends PullRequestValidation {
   assert(pullRequest) {
+    console.log(pullRequest.title);
     const totalCount = pullRequest.reviewRequests.totalCount;
     if (totalCount !== 0) {
       throw this._createError(`Pull request cannot be merged with pending reviews, it current has ${totalCount} pending review(s)`);
@@ -72277,8 +72278,7 @@ function getCommitMessageFilterScriptPath() {
 var defaultPullRequestMergeFlags = {
   branchPrompt: true,
   forceManualBranches: false,
-  dryRun: false,
-  ignorePendingReviews: false
+  dryRun: false
 };
 var MergeTool = class {
   constructor(config, git, flags) {
@@ -72431,9 +72431,7 @@ async function mergePullRequest(prNumber, flags) {
   if (!await performMerge()) {
     process.exit(1);
   }
-  async function performMerge(validationConfig = PullRequestValidationConfig.create({
-    assertCompletedReviews: !flags.ignorePendingReviews
-  })) {
+  async function performMerge(validationConfig = new PullRequestValidationConfig()) {
     try {
       await tool.merge(prNumber, validationConfig);
       return true;
@@ -72509,14 +72507,10 @@ async function builder17(argv) {
     type: "boolean",
     default: false,
     description: "Whether to manually select the branches you wish to merge the PR into."
-  }).option("ignore-pending-reviews", {
-    type: "boolean",
-    default: false,
-    description: "Bypass the check for pending reviews on the pull request"
   });
 }
-async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
-  await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
+async function handler17({ pr, branchPrompt, forceManualBranches, dryRun }) {
+  await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun });
 }
 var MergeCommandModule = {
   handler: handler17,
@@ -74720,7 +74714,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-d49cc5c9dd3d8f4de47bdeb0d239760db11a907f`;
+  const localVersion = `0.0.0-81facd7f79daf1f0d557412155f61ce19fba9177`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
