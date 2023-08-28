@@ -40818,7 +40818,7 @@ ${indent}${body}`;
     function plainString(item, ctx, onComment, onChompKeep) {
       const { type, value } = item;
       const { actualString, implicitKey, indent, indentStep, inFlow } = ctx;
-      if (implicitKey && /[\n[\]{},]/.test(value) || inFlow && /[[\]{},]/.test(value)) {
+      if (implicitKey && value.includes("\n") || inFlow && /[[\]{},]/.test(value)) {
         return quotedString(value, ctx);
       }
       if (!value || /^[\n\t ,[\]{}#&*!|>'"%@`]|^[?-]$|^[?-][ \t]|[\n:][ \t]|[ \t]\n|[\n\t ]#|[\n\t :]$/.test(value)) {
@@ -41234,7 +41234,7 @@ var require_addPairToJSMap = __commonJS({
         return "";
       if (typeof jsKey !== "object")
         return String(jsKey);
-      if (identity.isNode(key) && ctx && ctx.doc) {
+      if (identity.isNode(key) && (ctx == null ? void 0 : ctx.doc)) {
         const strCtx = stringify.createStringifyContext(ctx.doc, {});
         strCtx.anchors = /* @__PURE__ */ new Set();
         for (const node of ctx.anchors.keys())
@@ -41394,7 +41394,7 @@ ${indent}${line}` : "\n";
               comment2 = iv.comment;
             if (iv.commentBefore)
               reqNewline = true;
-          } else if (item.value == null && ik && ik.comment) {
+          } else if (item.value == null && (ik == null ? void 0 : ik.comment)) {
             comment2 = ik.comment;
           }
         }
@@ -42102,8 +42102,9 @@ ${cn.comment}` : item.comment;
             if (keys.length === 1) {
               key = keys[0];
               value = it[key];
-            } else
-              throw new TypeError(`Expected { key: value } tuple: ${it}`);
+            } else {
+              throw new TypeError(`Expected tuple with one key, not ${keys.length} keys`);
+            }
           } else {
             key = it;
           }
@@ -71921,7 +71922,6 @@ var Validation2 = class extends PullRequestValidation {
 var completedReviewsValidation = createPullRequestValidation({ name: "assertCompletedReviews", canBeForceIgnored: false }, () => Validation3);
 var Validation3 = class extends PullRequestValidation {
   assert(pullRequest) {
-    console.log(pullRequest.title);
     const totalCount = pullRequest.reviewRequests.totalCount;
     if (totalCount !== 0) {
       throw this._createError(`Pull request cannot be merged with pending reviews, it current has ${totalCount} pending review(s)`);
@@ -72277,7 +72277,8 @@ function getCommitMessageFilterScriptPath() {
 var defaultPullRequestMergeFlags = {
   branchPrompt: true,
   forceManualBranches: false,
-  dryRun: false
+  dryRun: false,
+  ignorePendingReviews: false
 };
 var MergeTool = class {
   constructor(config, git, flags) {
@@ -72430,7 +72431,9 @@ async function mergePullRequest(prNumber, flags) {
   if (!await performMerge()) {
     process.exit(1);
   }
-  async function performMerge(validationConfig = new PullRequestValidationConfig()) {
+  async function performMerge(validationConfig = PullRequestValidationConfig.create({
+    assertCompletedReviews: !flags.ignorePendingReviews
+  })) {
     try {
       await tool.merge(prNumber, validationConfig);
       return true;
@@ -72506,10 +72509,14 @@ async function builder17(argv) {
     type: "boolean",
     default: false,
     description: "Whether to manually select the branches you wish to merge the PR into."
+  }).option("ignore-pending-reviews", {
+    type: "boolean",
+    default: false,
+    description: "Bypass the check for pending reviews on the pull request"
   });
 }
-async function handler17({ pr, branchPrompt, forceManualBranches, dryRun }) {
-  await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun });
+async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
+  await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
 }
 var MergeCommandModule = {
   handler: handler17,
@@ -74713,7 +74720,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-b48b611a7cfc26792617bc8a22fc4e28b81576ee`;
+  const localVersion = `0.0.0-d49cc5c9dd3d8f4de47bdeb0d239760db11a907f`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
