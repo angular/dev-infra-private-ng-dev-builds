@@ -66861,7 +66861,7 @@ var GithubQueriesModule = class extends BaseModule {
       graphqlQuery[queryKey] = (0, import_typed_graphqlify.params)({
         type: "ISSUE",
         first: MAX_RETURNED_ISSUES,
-        query: `"${repoFilter} ${query.replace(/"/g, '\\"')}"`
+        query: `"${repoFilter} ${query.replace(/\"/g, '\\"')}"`
       }, { ...GithubQueryResultFragment });
     });
     return graphqlQuery;
@@ -71922,7 +71922,6 @@ var Validation2 = class extends PullRequestValidation {
 var completedReviewsValidation = createPullRequestValidation({ name: "assertCompletedReviews", canBeForceIgnored: false }, () => Validation3);
 var Validation3 = class extends PullRequestValidation {
   assert(pullRequest) {
-    console.log(pullRequest.title);
     const totalCount = pullRequest.reviewRequests.totalCount;
     if (totalCount !== 0) {
       throw this._createError(`Pull request cannot be merged with pending reviews, it current has ${totalCount} pending review(s)`);
@@ -72278,7 +72277,8 @@ function getCommitMessageFilterScriptPath() {
 var defaultPullRequestMergeFlags = {
   branchPrompt: true,
   forceManualBranches: false,
-  dryRun: false
+  dryRun: false,
+  ignorePendingReviews: false
 };
 var MergeTool = class {
   constructor(config, git, flags) {
@@ -72431,7 +72431,9 @@ async function mergePullRequest(prNumber, flags) {
   if (!await performMerge()) {
     process.exit(1);
   }
-  async function performMerge(validationConfig = new PullRequestValidationConfig()) {
+  async function performMerge(validationConfig = PullRequestValidationConfig.create({
+    assertCompletedReviews: !flags.ignorePendingReviews
+  })) {
     try {
       await tool.merge(prNumber, validationConfig);
       return true;
@@ -72507,10 +72509,14 @@ async function builder17(argv) {
     type: "boolean",
     default: false,
     description: "Whether to manually select the branches you wish to merge the PR into."
+  }).option("ignore-pending-reviews", {
+    type: "boolean",
+    default: false,
+    description: "Bypass the check for pending reviews on the pull request"
   });
 }
-async function handler17({ pr, branchPrompt, forceManualBranches, dryRun }) {
-  await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun });
+async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
+  await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
 }
 var MergeCommandModule = {
   handler: handler17,
@@ -74714,7 +74720,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-81facd7f79daf1f0d557412155f61ce19fba9177`;
+  const localVersion = `0.0.0-1f04ab9faf5a6d410de843699ac657ae8b3d1540`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

@@ -13,6 +13,7 @@ export interface PullRequestMergeFlags {
     branchPrompt: boolean;
     forceManualBranches: boolean;
     dryRun: boolean;
+    ignorePendingReviews: boolean;
 }
 /**
  * Class that accepts a merge script configuration and Github token. It provides
