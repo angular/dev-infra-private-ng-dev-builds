@@ -37717,9 +37717,9 @@ var require_dargs = __commonJS({
   }
 });
 
-// node_modules/split2/index.js
+// node_modules/git-raw-commits/node_modules/split2/index.js
 var require_split2 = __commonJS({
-  "node_modules/split2/index.js"(exports2, module2) {
+  "node_modules/git-raw-commits/node_modules/split2/index.js"(exports2, module2) {
     "use strict";
     var { Transform } = require_readable();
     var { StringDecoder: StringDecoder2 } = __require("string_decoder");
@@ -74713,7 +74713,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-decd9e66052a038cad408c19385f45ec3af18fa6`;
+  const localVersion = `0.0.0-b48b611a7cfc26792617bc8a22fc4e28b81576ee`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
