@@ -37621,114 +37621,18 @@ var require_conventional_commits_parser = __commonJS({
   }
 });
 
-// node_modules/dargs/index.js
-var require_dargs = __commonJS({
-  "node_modules/dargs/index.js"(exports2, module2) {
-    "use strict";
-    var match2 = (array, value) => array.some((x) => x instanceof RegExp ? x.test(value) : x === value);
-    var dargs = (object, options) => {
-      const arguments_ = [];
-      let extraArguments = [];
-      let separatedArguments = [];
-      options = {
-        useEquals: true,
-        shortFlag: true,
-        ...options
-      };
-      const makeArguments = (key, value) => {
-        const prefix = options.shortFlag && key.length === 1 ? "-" : "--";
-        const theKey = options.allowCamelCase ? key : key.replace(/[A-Z]/g, "-$&").toLowerCase();
-        key = prefix + theKey;
-        if (options.useEquals) {
-          arguments_.push(key + (value ? `=${value}` : ""));
-        } else {
-          arguments_.push(key);
-          if (value) {
-            arguments_.push(value);
-          }
-        }
-      };
-      const makeAliasArg = (key, value) => {
-        arguments_.push(`-${key}`);
-        if (value) {
-          arguments_.push(value);
-        }
-      };
-      for (let [key, value] of Object.entries(object)) {
-        let pushArguments = makeArguments;
-        if (Array.isArray(options.excludes) && match2(options.excludes, key)) {
-          continue;
-        }
-        if (Array.isArray(options.includes) && !match2(options.includes, key)) {
-          continue;
-        }
-        if (typeof options.aliases === "object" && options.aliases[key]) {
-          key = options.aliases[key];
-          pushArguments = makeAliasArg;
-        }
-        if (key === "--") {
-          if (!Array.isArray(value)) {
-            throw new TypeError(
-              `Expected key \`--\` to be Array, got ${typeof value}`
-            );
-          }
-          separatedArguments = value;
-          continue;
-        }
-        if (key === "_") {
-          if (!Array.isArray(value)) {
-            throw new TypeError(
-              `Expected key \`_\` to be Array, got ${typeof value}`
-            );
-          }
-          extraArguments = value;
-          continue;
-        }
-        if (value === true) {
-          pushArguments(key, "");
-        }
-        if (value === false && !options.ignoreFalse) {
-          pushArguments(`no-${key}`);
-        }
-        if (typeof value === "string") {
-          pushArguments(key, value);
-        }
-        if (typeof value === "number" && !Number.isNaN(value)) {
-          pushArguments(key, String(value));
-        }
-        if (Array.isArray(value)) {
-          for (const arrayValue of value) {
-            pushArguments(key, arrayValue);
-          }
-        }
-      }
-      for (const argument of extraArguments) {
-        arguments_.push(String(argument));
-      }
-      if (separatedArguments.length > 0) {
-        arguments_.push("--");
-      }
-      for (const argument of separatedArguments) {
-        arguments_.push(String(argument));
-      }
-      return arguments_;
-    };
-    module2.exports = dargs;
-  }
-});
-
-// node_modules/git-raw-commits/node_modules/split2/index.js
+// node_modules/split2/index.js
 var require_split2 = __commonJS({
-  "node_modules/git-raw-commits/node_modules/split2/index.js"(exports2, module2) {
+  "node_modules/split2/index.js"(exports2, module2) {
     "use strict";
-    var { Transform } = require_readable();
+    var { Transform } = __require("stream");
     var { StringDecoder: StringDecoder2 } = __require("string_decoder");
     var kLast = Symbol("last");
     var kDecoder = Symbol("decoder");
     function transform(chunk, enc, cb) {
-      var list;
+      let list;
       if (this.overflow) {
-        var buf = this[kDecoder].write(chunk);
+        const buf = this[kDecoder].write(chunk);
         list = buf.split(this.matcher);
         if (list.length === 1)
           return cb();
@@ -37739,7 +37643,7 @@ var require_split2 = __commonJS({
         list = this[kLast].split(this.matcher);
       }
       this[kLast] = list.pop();
-      for (var i = 0; i < list.length; i++) {
+      for (let i = 0; i < list.length; i++) {
         try {
           push(this, this.mapper(list[i]));
         } catch (error) {
@@ -37747,8 +37651,10 @@ var require_split2 = __commonJS({
         }
       }
       this.overflow = this[kLast].length > this.maxLength;
-      if (this.overflow && !this.skipOverflow)
-        return cb(new Error("maximum buffer reached"));
+      if (this.overflow && !this.skipOverflow) {
+        cb(new Error("maximum buffer reached"));
+        return;
+      }
       cb();
     }
     function flush(cb) {
@@ -37779,7 +37685,7 @@ var require_split2 = __commonJS({
           if (typeof matcher === "function") {
             mapper = matcher;
             matcher = /\r?\n/;
-          } else if (typeof matcher === "object" && !(matcher instanceof RegExp)) {
+          } else if (typeof matcher === "object" && !(matcher instanceof RegExp) && !matcher[Symbol.split]) {
             options = matcher;
             matcher = /\r?\n/;
           }
@@ -37795,6 +37701,7 @@ var require_split2 = __commonJS({
           }
       }
       options = Object.assign({}, options);
+      options.autoDestroy = true;
       options.transform = transform;
       options.flush = flush;
       options.readableObjectMode = true;
@@ -37804,8 +37711,12 @@ var require_split2 = __commonJS({
       stream2.matcher = matcher;
       stream2.mapper = mapper;
       stream2.maxLength = options.maxLength;
-      stream2.skipOverflow = options.skipOverflow;
+      stream2.skipOverflow = options.skipOverflow || false;
       stream2.overflow = false;
+      stream2._destroy = function(err, cb) {
+        this._writableState.errorEmitted = false;
+        cb(err);
+      };
       return stream2;
     }
     module2.exports = split;
@@ -37815,11 +37726,9 @@ var require_split2 = __commonJS({
 // node_modules/git-raw-commits/index.js
 var require_git_raw_commits = __commonJS({
   "node_modules/git-raw-commits/index.js"(exports2, module2) {
-    "use strict";
-    var dargs = require_dargs();
-    var execFile = __require("child_process").execFile;
-    var split = require_split2();
     var { Readable, Transform } = __require("stream");
+    var { execFile } = __require("child_process");
+    var split = require_split2();
     var DELIMITER = "------------------------ >8 ------------------------";
     function normalizeExecOpts(execOpts) {
       execOpts = execOpts || {};
@@ -37833,61 +37742,69 @@ var require_git_raw_commits = __commonJS({
       gitOpts.to = gitOpts.to || "HEAD";
       return gitOpts;
     }
-    function getGitArgs(gitOpts) {
+    async function getGitArgs(gitOpts) {
+      const { default: dargs } = await import("./dargs-JIRY5XPX.mjs");
       const gitFormat = `--format=${gitOpts.format || ""}%n${DELIMITER}`;
       const gitFromTo = [gitOpts.from, gitOpts.to].filter(Boolean).join("..");
       const gitArgs = ["log", gitFormat, gitFromTo].concat(dargs(gitOpts, {
-        excludes: ["debug", "from", "to", "format", "path"]
+        excludes: ["debug", "from", "to", "format", "path", "ignore"]
       }));
       if (gitOpts.path) {
-        gitArgs.push("--", gitOpts.path);
+        gitArgs.push("--", ...Array.isArray(gitOpts.path) ? gitOpts.path : [gitOpts.path]);
       }
       return gitArgs;
     }
     function gitRawCommits(rawGitOpts, rawExecOpts) {
       const readable = new Readable();
-      readable._read = function() {
+      readable._read = () => {
       };
       const gitOpts = normalizeGitOpts(rawGitOpts);
       const execOpts = normalizeExecOpts(rawExecOpts);
-      const args = getGitArgs(gitOpts);
-      if (gitOpts.debug) {
-        gitOpts.debug("Your git-log command is:\ngit " + args.join(" "));
-      }
       let isError = false;
-      const child = execFile("git", args, {
-        cwd: execOpts.cwd,
-        maxBuffer: Infinity
+      getGitArgs(gitOpts).then((args) => {
+        if (gitOpts.debug) {
+          gitOpts.debug("Your git-log command is:\ngit " + args.join(" "));
+        }
+        const ignoreRegex = typeof gitOpts.ignore === "string" ? new RegExp(gitOpts.ignore) : gitOpts.ignore;
+        const shouldNotIgnore = ignoreRegex ? (chunk) => !ignoreRegex.test(chunk.toString()) : () => true;
+        const child = execFile("git", args, {
+          cwd: execOpts.cwd,
+          maxBuffer: Infinity
+        });
+        child.stdout.pipe(split(DELIMITER + "\n")).pipe(
+          new Transform({
+            transform(chunk, enc, cb) {
+              isError = false;
+              setImmediate(() => {
+                if (shouldNotIgnore(chunk)) {
+                  readable.push(chunk);
+                }
+                cb();
+              });
+            },
+            flush(cb) {
+              setImmediate(() => {
+                if (!isError) {
+                  readable.push(null);
+                  readable.emit("close");
+                }
+                cb();
+              });
+            }
+          })
+        );
+        child.stderr.pipe(
+          new Transform({
+            objectMode: true,
+            highWaterMark: 16,
+            transform(chunk) {
+              isError = true;
+              readable.emit("error", new Error(chunk));
+              readable.emit("close");
+            }
+          })
+        );
       });
-      child.stdout.pipe(split(DELIMITER + "\n")).pipe(
-        new Transform({
-          transform(chunk, enc, cb) {
-            readable.push(chunk);
-            isError = false;
-            cb();
-          },
-          flush(cb) {
-            setImmediate(function() {
-              if (!isError) {
-                readable.push(null);
-                readable.emit("close");
-              }
-              cb();
-            });
-          }
-        })
-      );
-      child.stderr.pipe(
-        new Transform({
-          objectMode: true,
-          highWaterMark: 16,
-          transform(chunk) {
-            isError = true;
-            readable.emit("error", new Error(chunk));
-            readable.emit("close");
-          }
-        })
-      );
       return readable;
     }
     module2.exports = gitRawCommits;
@@ -74720,7 +74637,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-b895c23dc3ba4640773dfac8c2b29a752113f1ca`;
+  const localVersion = `0.0.0-3a1a40d4dfdc97eb96b2b3d3197a417532011a85`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
