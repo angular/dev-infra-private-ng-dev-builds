@@ -39289,138 +39289,178 @@ var require_minimatch = __commonJS({
   }
 });
 
-// node_modules/isexe/windows.js
-var require_windows = __commonJS({
-  "node_modules/isexe/windows.js"(exports2, module2) {
-    module2.exports = isexe;
-    isexe.sync = sync2;
-    var fs6 = __require("fs");
-    function checkPathExt(path6, options) {
-      var pathext = options.pathExt !== void 0 ? options.pathExt : process.env.PATHEXT;
-      if (!pathext) {
+// node_modules/which/node_modules/isexe/dist/cjs/posix.js
+var require_posix = __commonJS({
+  "node_modules/which/node_modules/isexe/dist/cjs/posix.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.sync = exports2.isexe = void 0;
+    var fs_1 = __require("fs");
+    var promises_1 = __require("fs/promises");
+    var isexe = async (path6, options = {}) => {
+      const { ignoreErrors = false } = options;
+      try {
+        return checkStat(await (0, promises_1.stat)(path6), options);
+      } catch (e) {
+        const er = e;
+        if (ignoreErrors || er.code === "EACCES")
+          return false;
+        throw er;
+      }
+    };
+    exports2.isexe = isexe;
+    var sync2 = (path6, options = {}) => {
+      const { ignoreErrors = false } = options;
+      try {
+        return checkStat((0, fs_1.statSync)(path6), options);
+      } catch (e) {
+        const er = e;
+        if (ignoreErrors || er.code === "EACCES")
+          return false;
+        throw er;
+      }
+    };
+    exports2.sync = sync2;
+    var checkStat = (stat, options) => stat.isFile() && checkMode(stat, options);
+    var checkMode = (stat, options) => {
+      var _a3, _b2, _c2;
+      const myUid = options.uid ?? ((_a3 = process.getuid) == null ? void 0 : _a3.call(process));
+      const myGroups = options.groups ?? ((_b2 = process.getgroups) == null ? void 0 : _b2.call(process)) ?? [];
+      const myGid = options.gid ?? ((_c2 = process.getgid) == null ? void 0 : _c2.call(process)) ?? myGroups[0];
+      if (myUid === void 0 || myGid === void 0) {
+        throw new Error("cannot get uid or gid");
+      }
+      const groups = /* @__PURE__ */ new Set([myGid, ...myGroups]);
+      const mod2 = stat.mode;
+      const uid = stat.uid;
+      const gid = stat.gid;
+      const u = parseInt("100", 8);
+      const g = parseInt("010", 8);
+      const o = parseInt("001", 8);
+      const ug = u | g;
+      return !!(mod2 & o || mod2 & g && groups.has(gid) || mod2 & u && uid === myUid || mod2 & ug && myUid === 0);
+    };
+  }
+});
+
+// node_modules/which/node_modules/isexe/dist/cjs/win32.js
+var require_win32 = __commonJS({
+  "node_modules/which/node_modules/isexe/dist/cjs/win32.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.sync = exports2.isexe = void 0;
+    var fs_1 = __require("fs");
+    var promises_1 = __require("fs/promises");
+    var isexe = async (path6, options = {}) => {
+      const { ignoreErrors = false } = options;
+      try {
+        return checkStat(await (0, promises_1.stat)(path6), path6, options);
+      } catch (e) {
+        const er = e;
+        if (ignoreErrors || er.code === "EACCES")
+          return false;
+        throw er;
+      }
+    };
+    exports2.isexe = isexe;
+    var sync2 = (path6, options = {}) => {
+      const { ignoreErrors = false } = options;
+      try {
+        return checkStat((0, fs_1.statSync)(path6), path6, options);
+      } catch (e) {
+        const er = e;
+        if (ignoreErrors || er.code === "EACCES")
+          return false;
+        throw er;
+      }
+    };
+    exports2.sync = sync2;
+    var checkPathExt = (path6, options) => {
+      const { pathExt = process.env.PATHEXT || "" } = options;
+      const peSplit = pathExt.split(";");
+      if (peSplit.indexOf("") !== -1) {
         return true;
       }
-      pathext = pathext.split(";");
-      if (pathext.indexOf("") !== -1) {
-        return true;
-      }
-      for (var i = 0; i < pathext.length; i++) {
-        var p = pathext[i].toLowerCase();
-        if (p && path6.substr(-p.length).toLowerCase() === p) {
+      for (let i = 0; i < peSplit.length; i++) {
+        const p = peSplit[i].toLowerCase();
+        const ext2 = path6.substring(path6.length - p.length).toLowerCase();
+        if (p && ext2 === p) {
           return true;
         }
       }
       return false;
-    }
-    function checkStat(stat, path6, options) {
-      if (!stat.isSymbolicLink() && !stat.isFile()) {
-        return false;
-      }
-      return checkPathExt(path6, options);
-    }
-    function isexe(path6, options, cb) {
-      fs6.stat(path6, function(er, stat) {
-        cb(er, er ? false : checkStat(stat, path6, options));
-      });
-    }
-    function sync2(path6, options) {
-      return checkStat(fs6.statSync(path6), path6, options);
-    }
+    };
+    var checkStat = (stat, path6, options) => stat.isFile() && checkPathExt(path6, options);
   }
 });
 
-// node_modules/isexe/mode.js
-var require_mode = __commonJS({
-  "node_modules/isexe/mode.js"(exports2, module2) {
-    module2.exports = isexe;
-    isexe.sync = sync2;
-    var fs6 = __require("fs");
-    function isexe(path6, options, cb) {
-      fs6.stat(path6, function(er, stat) {
-        cb(er, er ? false : checkStat(stat, options));
-      });
-    }
-    function sync2(path6, options) {
-      return checkStat(fs6.statSync(path6), options);
-    }
-    function checkStat(stat, options) {
-      return stat.isFile() && checkMode(stat, options);
-    }
-    function checkMode(stat, options) {
-      var mod2 = stat.mode;
-      var uid = stat.uid;
-      var gid = stat.gid;
-      var myUid = options.uid !== void 0 ? options.uid : process.getuid && process.getuid();
-      var myGid = options.gid !== void 0 ? options.gid : process.getgid && process.getgid();
-      var u = parseInt("100", 8);
-      var g = parseInt("010", 8);
-      var o = parseInt("001", 8);
-      var ug = u | g;
-      var ret = mod2 & o || mod2 & g && gid === myGid || mod2 & u && uid === myUid || mod2 & ug && myUid === 0;
-      return ret;
-    }
+// node_modules/which/node_modules/isexe/dist/cjs/options.js
+var require_options2 = __commonJS({
+  "node_modules/which/node_modules/isexe/dist/cjs/options.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
   }
 });
 
-// node_modules/isexe/index.js
-var require_isexe = __commonJS({
-  "node_modules/isexe/index.js"(exports2, module2) {
-    var fs6 = __require("fs");
-    var core;
-    if (process.platform === "win32" || global.TESTING_WINDOWS) {
-      core = require_windows();
-    } else {
-      core = require_mode();
-    }
-    module2.exports = isexe;
-    isexe.sync = sync2;
-    function isexe(path6, options, cb) {
-      if (typeof options === "function") {
-        cb = options;
-        options = {};
+// node_modules/which/node_modules/isexe/dist/cjs/index.js
+var require_cjs2 = __commonJS({
+  "node_modules/which/node_modules/isexe/dist/cjs/index.js"(exports2) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
       }
-      if (!cb) {
-        if (typeof Promise !== "function") {
-          throw new TypeError("callback not provided");
-        }
-        return new Promise(function(resolve13, reject) {
-          isexe(path6, options || {}, function(er, is) {
-            if (er) {
-              reject(er);
-            } else {
-              resolve13(is);
-            }
-          });
-        });
+      Object.defineProperty(o, k2, desc);
+    } : function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      o[k2] = m[k];
+    });
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
+      Object.defineProperty(o, "default", { enumerable: true, value: v });
+    } : function(o, v) {
+      o["default"] = v;
+    });
+    var __importStar = exports2 && exports2.__importStar || function(mod2) {
+      if (mod2 && mod2.__esModule)
+        return mod2;
+      var result = {};
+      if (mod2 != null) {
+        for (var k in mod2)
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k))
+            __createBinding(result, mod2, k);
       }
-      core(path6, options || {}, function(er, is) {
-        if (er) {
-          if (er.code === "EACCES" || options && options.ignoreErrors) {
-            er = null;
-            is = false;
-          }
-        }
-        cb(er, is);
-      });
-    }
-    function sync2(path6, options) {
-      try {
-        return core.sync(path6, options || {});
-      } catch (er) {
-        if (options && options.ignoreErrors || er.code === "EACCES") {
-          return false;
-        } else {
-          throw er;
-        }
-      }
-    }
+      __setModuleDefault(result, mod2);
+      return result;
+    };
+    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
+      for (var p in m)
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p))
+          __createBinding(exports3, m, p);
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.sync = exports2.isexe = exports2.posix = exports2.win32 = void 0;
+    var posix2 = __importStar(require_posix());
+    exports2.posix = posix2;
+    var win322 = __importStar(require_win32());
+    exports2.win32 = win322;
+    __exportStar(require_options2(), exports2);
+    var platform2 = process.env._ISEXE_TEST_PLATFORM_ || process.platform;
+    var impl = platform2 === "win32" ? win322 : posix2;
+    exports2.isexe = impl.isexe;
+    exports2.sync = impl.sync;
   }
 });
 
 // node_modules/which/lib/index.js
 var require_lib3 = __commonJS({
   "node_modules/which/lib/index.js"(exports2, module2) {
-    var isexe = require_isexe();
+    var { isexe, sync: isexeSync } = require_cjs2();
     var { join: join14, delimiter, sep: sep2, posix: posix2 } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix2.sep}${sep2 === posix2.sep ? "" : sep2}]`.replace(/(\\)/g, "\\$1"));
@@ -39437,11 +39477,7 @@ var require_lib3 = __commonJS({
       ];
       if (isWindows) {
         const pathExtExe = optPathExt || [".EXE", ".CMD", ".BAT", ".COM"].join(optDelimiter);
-        const pathExt = pathExtExe.split(optDelimiter).reduce((acc, item) => {
-          acc.push(item);
-          acc.push(item.toLowerCase());
-          return acc;
-        }, []);
+        const pathExt = pathExtExe.split(optDelimiter).flatMap((item) => [item, item.toLowerCase()]);
         if (cmd.includes(".") && pathExt[0] !== "") {
           pathExt.unshift("");
         }
@@ -39485,7 +39521,7 @@ var require_lib3 = __commonJS({
         const p = getPathPart(pathEnvPart, cmd);
         for (const ext2 of pathExt) {
           const withExt = p + ext2;
-          const is = isexe.sync(withExt, { pathExt: pathExtExe, ignoreErrors: true });
+          const is = isexeSync(withExt, { pathExt: pathExtExe, ignoreErrors: true });
           if (is) {
             if (!opt.all) {
               return withExt;
@@ -74637,7 +74673,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-7b8d736ec77c27d97d21842b202abdff660558ac`;
+  const localVersion = `0.0.0-c2ef4e11a0e4e7bc3e17c0b8946cbe6033c9a1ef`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
