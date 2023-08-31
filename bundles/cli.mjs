@@ -74673,7 +74673,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-ad327ca5766ef5dbf071a37056cee034bee258cd`;
+  const localVersion = `0.0.0-ea2b3189ab827df22fcb394c7b8212801ade8837`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -78557,8 +78557,6 @@ var Processor = class {
       let changed = false;
       while (typeof (p = pattern.pattern()) === "string" && (rest = pattern.rest())) {
         const c = t.resolve(p);
-        if (c.isUnknown() && p !== "..")
-          break;
         t = c;
         pattern = rest;
         changed = true;
@@ -78571,12 +78569,8 @@ var Processor = class {
         this.hasWalkedCache.storeWalked(t, pattern);
       }
       if (typeof p === "string") {
-        if (!rest) {
-          const ifDir = p === ".." || p === "" || p === ".";
-          this.matches.add(t.resolve(p), absolute, ifDir);
-        } else {
-          this.subwalks.add(t, pattern);
-        }
+        const ifDir = p === ".." || p === "" || p === ".";
+        this.matches.add(t.resolve(p), absolute, ifDir);
         continue;
       } else if (p === GLOBSTAR) {
         if (!t.isSymbolicLink() || this.follow || pattern.checkFollowGlobstar()) {
