@@ -39,11 +39,14 @@ import {
   mergeLabels,
   require_dist,
   require_dist_node,
+  require_dist_node2,
+  require_dist_node3,
+  require_is_plain_object,
   require_once,
   require_semver,
   require_wrappy,
   targetLabels
-} from "./chunk-IZFFNSB3.mjs";
+} from "./chunk-5LWNKMMX.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -58204,6 +58207,414 @@ var require_spdx_satisfies2 = __commonJS({
   }
 });
 
+// node_modules/@octokit/graphql/node_modules/@octokit/request-error/dist-node/index.js
+var require_dist_node4 = __commonJS({
+  "node_modules/@octokit/graphql/node_modules/@octokit/request-error/dist-node/index.js"(exports2, module2) {
+    "use strict";
+    var __create = Object.create;
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __getProtoOf = Object.getPrototypeOf;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from3, except, desc) => {
+      if (from3 && typeof from3 === "object" || typeof from3 === "function") {
+        for (let key of __getOwnPropNames(from3))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from3[key], enumerable: !(desc = __getOwnPropDesc(from3, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toESM2 = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__getProtoOf(mod2)) : {}, __copyProps(
+      isNodeMode || !mod2 || !mod2.__esModule ? __defProp(target, "default", { value: mod2, enumerable: true }) : target,
+      mod2
+    ));
+    var __toCommonJS2 = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
+    var dist_src_exports = {};
+    __export(dist_src_exports, {
+      RequestError: () => RequestError
+    });
+    module2.exports = __toCommonJS2(dist_src_exports);
+    var import_deprecation = require_dist_node3();
+    var import_once = __toESM2(require_once());
+    var logOnceCode = (0, import_once.default)((deprecation) => console.warn(deprecation));
+    var logOnceHeaders = (0, import_once.default)((deprecation) => console.warn(deprecation));
+    var RequestError = class extends Error {
+      constructor(message, statusCode, options) {
+        super(message);
+        if (Error.captureStackTrace) {
+          Error.captureStackTrace(this, this.constructor);
+        }
+        this.name = "HttpError";
+        this.status = statusCode;
+        let headers;
+        if ("headers" in options && typeof options.headers !== "undefined") {
+          headers = options.headers;
+        }
+        if ("response" in options) {
+          this.response = options.response;
+          headers = options.response.headers;
+        }
+        const requestCopy = Object.assign({}, options.request);
+        if (options.request.headers.authorization) {
+          requestCopy.headers = Object.assign({}, options.request.headers, {
+            authorization: options.request.headers.authorization.replace(
+              / .*$/,
+              " [REDACTED]"
+            )
+          });
+        }
+        requestCopy.url = requestCopy.url.replace(/\bclient_secret=\w+/g, "client_secret=[REDACTED]").replace(/\baccess_token=\w+/g, "access_token=[REDACTED]");
+        this.request = requestCopy;
+        Object.defineProperty(this, "code", {
+          get() {
+            logOnceCode(
+              new import_deprecation.Deprecation(
+                "[@octokit/request-error] `error.code` is deprecated, use `error.status`."
+              )
+            );
+            return statusCode;
+          }
+        });
+        Object.defineProperty(this, "headers", {
+          get() {
+            logOnceHeaders(
+              new import_deprecation.Deprecation(
+                "[@octokit/request-error] `error.headers` is deprecated, use `error.response.headers`."
+              )
+            );
+            return headers || {};
+          }
+        });
+      }
+    };
+  }
+});
+
+// node_modules/@octokit/graphql/node_modules/@octokit/request/dist-node/index.js
+var require_dist_node5 = __commonJS({
+  "node_modules/@octokit/graphql/node_modules/@octokit/request/dist-node/index.js"(exports2, module2) {
+    "use strict";
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from3, except, desc) => {
+      if (from3 && typeof from3 === "object" || typeof from3 === "function") {
+        for (let key of __getOwnPropNames(from3))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from3[key], enumerable: !(desc = __getOwnPropDesc(from3, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS2 = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
+    var dist_src_exports = {};
+    __export(dist_src_exports, {
+      request: () => request
+    });
+    module2.exports = __toCommonJS2(dist_src_exports);
+    var import_endpoint = require_dist_node2();
+    var import_universal_user_agent = require_dist_node();
+    var VERSION = "8.0.4";
+    var import_is_plain_object = require_is_plain_object();
+    var import_request_error = require_dist_node4();
+    function getBufferResponse(response) {
+      return response.arrayBuffer();
+    }
+    function fetchWrapper(requestOptions) {
+      var _a3, _b2;
+      const log = requestOptions.request && requestOptions.request.log ? requestOptions.request.log : console;
+      if ((0, import_is_plain_object.isPlainObject)(requestOptions.body) || Array.isArray(requestOptions.body)) {
+        requestOptions.body = JSON.stringify(requestOptions.body);
+      }
+      let headers = {};
+      let status;
+      let url2;
+      let { fetch: fetch2 } = globalThis;
+      if ((_a3 = requestOptions.request) == null ? void 0 : _a3.fetch) {
+        fetch2 = requestOptions.request.fetch;
+      }
+      if (!fetch2) {
+        throw new Error(
+          'Global "fetch" not found. Please provide `options.request.fetch` to octokit or upgrade to node@18 or newer.'
+        );
+      }
+      return fetch2(requestOptions.url, {
+        method: requestOptions.method,
+        body: requestOptions.body,
+        headers: requestOptions.headers,
+        signal: (_b2 = requestOptions.request) == null ? void 0 : _b2.signal,
+        ...requestOptions.body && { duplex: "half" }
+      }).then(async (response) => {
+        url2 = response.url;
+        status = response.status;
+        for (const keyAndValue of response.headers) {
+          headers[keyAndValue[0]] = keyAndValue[1];
+        }
+        if ("deprecation" in headers) {
+          const matches = headers.link && headers.link.match(/<([^>]+)>; rel="deprecation"/);
+          const deprecationLink = matches && matches.pop();
+          log.warn(
+            `[@octokit/request] "${requestOptions.method} ${requestOptions.url}" is deprecated. It is scheduled to be removed on ${headers.sunset}${deprecationLink ? `. See ${deprecationLink}` : ""}`
+          );
+        }
+        if (status === 204 || status === 205) {
+          return;
+        }
+        if (requestOptions.method === "HEAD") {
+          if (status < 400) {
+            return;
+          }
+          throw new import_request_error.RequestError(response.statusText, status, {
+            response: {
+              url: url2,
+              status,
+              headers,
+              data: void 0
+            },
+            request: requestOptions
+          });
+        }
+        if (status === 304) {
+          throw new import_request_error.RequestError("Not modified", status, {
+            response: {
+              url: url2,
+              status,
+              headers,
+              data: await getResponseData(response)
+            },
+            request: requestOptions
+          });
+        }
+        if (status >= 400) {
+          const data = await getResponseData(response);
+          const error = new import_request_error.RequestError(toErrorMessage(data), status, {
+            response: {
+              url: url2,
+              status,
+              headers,
+              data
+            },
+            request: requestOptions
+          });
+          throw error;
+        }
+        return getResponseData(response);
+      }).then((data) => {
+        return {
+          status,
+          url: url2,
+          headers,
+          data
+        };
+      }).catch((error) => {
+        if (error instanceof import_request_error.RequestError)
+          throw error;
+        else if (error.name === "AbortError")
+          throw error;
+        throw new import_request_error.RequestError(error.message, 500, {
+          request: requestOptions
+        });
+      });
+    }
+    async function getResponseData(response) {
+      const contentType = response.headers.get("content-type");
+      if (/application\/json/.test(contentType)) {
+        return response.json();
+      }
+      if (!contentType || /^text\/|charset=utf-8$/.test(contentType)) {
+        return response.text();
+      }
+      return getBufferResponse(response);
+    }
+    function toErrorMessage(data) {
+      if (typeof data === "string")
+        return data;
+      if ("message" in data) {
+        if (Array.isArray(data.errors)) {
+          return `${data.message}: ${data.errors.map(JSON.stringify).join(", ")}`;
+        }
+        return data.message;
+      }
+      return `Unknown error: ${JSON.stringify(data)}`;
+    }
+    function withDefaults(oldEndpoint, newDefaults) {
+      const endpoint2 = oldEndpoint.defaults(newDefaults);
+      const newApi = function(route, parameters) {
+        const endpointOptions = endpoint2.merge(route, parameters);
+        if (!endpointOptions.request || !endpointOptions.request.hook) {
+          return fetchWrapper(endpoint2.parse(endpointOptions));
+        }
+        const request2 = (route2, parameters2) => {
+          return fetchWrapper(
+            endpoint2.parse(endpoint2.merge(route2, parameters2))
+          );
+        };
+        Object.assign(request2, {
+          endpoint: endpoint2,
+          defaults: withDefaults.bind(null, endpoint2)
+        });
+        return endpointOptions.request.hook(request2, endpointOptions);
+      };
+      return Object.assign(newApi, {
+        endpoint: endpoint2,
+        defaults: withDefaults.bind(null, endpoint2)
+      });
+    }
+    var request = withDefaults(import_endpoint.endpoint, {
+      headers: {
+        "user-agent": `octokit-request.js/${VERSION} ${(0, import_universal_user_agent.getUserAgent)()}`
+      }
+    });
+  }
+});
+
+// node_modules/@octokit/graphql/dist-node/index.js
+var require_dist_node6 = __commonJS({
+  "node_modules/@octokit/graphql/dist-node/index.js"(exports2, module2) {
+    "use strict";
+    var __defProp = Object.defineProperty;
+    var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+    var __getOwnPropNames = Object.getOwnPropertyNames;
+    var __hasOwnProp = Object.prototype.hasOwnProperty;
+    var __export = (target, all) => {
+      for (var name in all)
+        __defProp(target, name, { get: all[name], enumerable: true });
+    };
+    var __copyProps = (to, from3, except, desc) => {
+      if (from3 && typeof from3 === "object" || typeof from3 === "function") {
+        for (let key of __getOwnPropNames(from3))
+          if (!__hasOwnProp.call(to, key) && key !== except)
+            __defProp(to, key, { get: () => from3[key], enumerable: !(desc = __getOwnPropDesc(from3, key)) || desc.enumerable });
+      }
+      return to;
+    };
+    var __toCommonJS2 = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
+    var dist_src_exports = {};
+    __export(dist_src_exports, {
+      GraphqlResponseError: () => GraphqlResponseError2,
+      graphql: () => graphql2,
+      withCustomRequest: () => withCustomRequest
+    });
+    module2.exports = __toCommonJS2(dist_src_exports);
+    var import_request3 = require_dist_node5();
+    var import_universal_user_agent = require_dist_node();
+    var VERSION = "7.0.2";
+    var import_request2 = require_dist_node5();
+    var import_request = require_dist_node5();
+    function _buildMessageForResponseErrors(data) {
+      return `Request failed due to following response errors:
+` + data.errors.map((e) => ` - ${e.message}`).join("\n");
+    }
+    var GraphqlResponseError2 = class extends Error {
+      constructor(request2, headers, response) {
+        super(_buildMessageForResponseErrors(response));
+        this.request = request2;
+        this.headers = headers;
+        this.response = response;
+        this.name = "GraphqlResponseError";
+        this.errors = response.errors;
+        this.data = response.data;
+        if (Error.captureStackTrace) {
+          Error.captureStackTrace(this, this.constructor);
+        }
+      }
+    };
+    var NON_VARIABLE_OPTIONS = [
+      "method",
+      "baseUrl",
+      "url",
+      "headers",
+      "request",
+      "query",
+      "mediaType"
+    ];
+    var FORBIDDEN_VARIABLE_OPTIONS = ["query", "method", "url"];
+    var GHES_V3_SUFFIX_REGEX = /\/api\/v3\/?$/;
+    function graphql(request2, query, options) {
+      if (options) {
+        if (typeof query === "string" && "query" in options) {
+          return Promise.reject(
+            new Error(`[@octokit/graphql] "query" cannot be used as variable name`)
+          );
+        }
+        for (const key in options) {
+          if (!FORBIDDEN_VARIABLE_OPTIONS.includes(key))
+            continue;
+          return Promise.reject(
+            new Error(
+              `[@octokit/graphql] "${key}" cannot be used as variable name`
+            )
+          );
+        }
+      }
+      const parsedOptions = typeof query === "string" ? Object.assign({ query }, options) : query;
+      const requestOptions = Object.keys(
+        parsedOptions
+      ).reduce((result, key) => {
+        if (NON_VARIABLE_OPTIONS.includes(key)) {
+          result[key] = parsedOptions[key];
+          return result;
+        }
+        if (!result.variables) {
+          result.variables = {};
+        }
+        result.variables[key] = parsedOptions[key];
+        return result;
+      }, {});
+      const baseUrl = parsedOptions.baseUrl || request2.endpoint.DEFAULTS.baseUrl;
+      if (GHES_V3_SUFFIX_REGEX.test(baseUrl)) {
+        requestOptions.url = baseUrl.replace(GHES_V3_SUFFIX_REGEX, "/api/graphql");
+      }
+      return request2(requestOptions).then((response) => {
+        if (response.data.errors) {
+          const headers = {};
+          for (const key of Object.keys(response.headers)) {
+            headers[key] = response.headers[key];
+          }
+          throw new GraphqlResponseError2(
+            requestOptions,
+            headers,
+            response.data
+          );
+        }
+        return response.data.data;
+      });
+    }
+    function withDefaults(request2, newDefaults) {
+      const newRequest = request2.defaults(newDefaults);
+      const newApi = (query, options) => {
+        return graphql(newRequest, query, options);
+      };
+      return Object.assign(newApi, {
+        defaults: withDefaults.bind(null, newRequest),
+        endpoint: newRequest.endpoint
+      });
+    }
+    var graphql2 = withDefaults(import_request3.request, {
+      headers: {
+        "user-agent": `octokit-graphql.js/${VERSION} ${(0, import_universal_user_agent.getUserAgent)()}`
+      },
+      method: "POST",
+      url: "/graphql"
+    });
+    function withCustomRequest(customRequest) {
+      return withDefaults(customRequest, {
+        method: "POST",
+        url: "/graphql"
+      });
+    }
+  }
+});
+
 // node_modules/ejs/lib/utils.js
 var require_utils = __commonJS({
   "node_modules/ejs/lib/utils.js"(exports2) {
@@ -71303,7 +71714,7 @@ var import_typed_graphqlify3 = __toESM(require_dist());
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/github.js
 var import_typed_graphqlify2 = __toESM(require_dist());
-var import_graphql = __toESM(require_dist_node());
+var import_graphql = __toESM(require_dist_node6());
 async function getPr(prSchema, prNumber, git) {
   var _a3;
   const { owner, name } = git.remoteConfig;
@@ -74673,7 +75084,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-f15fb5a2c6a56d5a70bad210fe6e16eda933d64e`;
+  const localVersion = `0.0.0-0464d2fd8f7d8f677b5fbf048213cdd56e9de414`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
