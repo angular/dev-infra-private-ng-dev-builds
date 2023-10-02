@@ -75084,7 +75084,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-76c632f6480810d48befe4743702eec9171fc763`;
+  const localVersion = `0.0.0-0f934bcec794f57cc9ca609827f52c6a0343c9f5`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -78658,10 +78658,10 @@ var PathScurryDarwin = class extends PathScurryPosix {
 var Path = process.platform === "win32" ? PathWin32 : PathPosix;
 var PathScurry = process.platform === "win32" ? PathScurryWin32 : process.platform === "darwin" ? PathScurryDarwin : PathScurryPosix;
 
-// node_modules/glob/dist/mjs/glob.js
+// node_modules/glob/dist/esm/glob.js
 import { fileURLToPath as fileURLToPath5 } from "url";
 
-// node_modules/glob/dist/mjs/pattern.js
+// node_modules/glob/dist/esm/pattern.js
 var isPatternList = (pl) => pl.length >= 1;
 var isGlobList = (gl) => gl.length >= 1;
 var _patternList, _globList, _index, _platform, _rest, _globString, _isDrive, _isUNC, _isAbsolute, _followGlobstar;
@@ -78790,7 +78790,7 @@ _isUNC = new WeakMap();
 _isAbsolute = new WeakMap();
 _followGlobstar = new WeakMap();
 
-// node_modules/glob/dist/mjs/ignore.js
+// node_modules/glob/dist/esm/ignore.js
 var defaultPlatform2 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Ignore = class {
   relative;
@@ -78818,6 +78818,9 @@ var Ignore = class {
       for (let i = 0; i < mm.set.length; i++) {
         const parsed = mm.set[i];
         const globParts = mm.globParts[i];
+        if (!parsed || !globParts) {
+          throw new Error("invalid pattern object");
+        }
         const p = new Pattern(parsed, globParts, 0, platform2);
         const m = new Minimatch(p.globString(), mmopts);
         const children = globParts[globParts.length - 1] === "**";
@@ -78865,7 +78868,7 @@ var Ignore = class {
   }
 };
 
-// node_modules/glob/dist/mjs/processor.js
+// node_modules/glob/dist/esm/processor.js
 var HasWalkedCache = class {
   store;
   constructor(store = /* @__PURE__ */ new Map()) {
@@ -79081,7 +79084,7 @@ var Processor = class {
   }
 };
 
-// node_modules/glob/dist/mjs/walker.js
+// node_modules/glob/dist/esm/walker.js
 var makeIgnore = (ignore, opts) => typeof ignore === "string" ? new Ignore([ignore], opts) : Array.isArray(ignore) ? new Ignore(ignore, opts) : ignore;
 var _onResume, _ignore, _sep, _ignored, ignored_fn, _childrenIgnored, childrenIgnored_fn;
 var GlobUtil = class {
@@ -79402,7 +79405,7 @@ var GlobStream = class extends GlobUtil {
   }
 };
 
-// node_modules/glob/dist/mjs/glob.js
+// node_modules/glob/dist/esm/glob.js
 var defaultPlatform3 = typeof process === "object" && process && typeof process.platform === "string" ? process.platform : "linux";
 var Glob = class {
   absolute;
@@ -79513,7 +79516,10 @@ var Glob = class {
       return set2;
     }, [[], []]);
     this.patterns = matchSet.map((set2, i) => {
-      return new Pattern(set2, globParts[i], 0, this.platform);
+      const g = globParts[i];
+      if (!g)
+        throw new Error("invalid pattern object");
+      return new Pattern(set2, g, 0, this.platform);
     });
   }
   async walk() {
@@ -79566,7 +79572,7 @@ var Glob = class {
   }
 };
 
-// node_modules/glob/dist/mjs/has-magic.js
+// node_modules/glob/dist/esm/has-magic.js
 var hasMagic = (pattern, options = {}) => {
   if (!Array.isArray(pattern)) {
     pattern = [pattern];
@@ -79578,7 +79584,7 @@ var hasMagic = (pattern, options = {}) => {
   return false;
 };
 
-// node_modules/glob/dist/mjs/index.js
+// node_modules/glob/dist/esm/index.js
 function globStreamSync(pattern, options = {}) {
   return new Glob(pattern, options).streamSync();
 }
