@@ -1578,9 +1578,9 @@ var require_dist_node11 = __commonJS({
   }
 });
 
-// node_modules/@octokit/plugin-paginate-rest/dist-node/index.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-paginate-rest/dist-node/index.js
 var require_dist_node12 = __commonJS({
-  "node_modules/@octokit/plugin-paginate-rest/dist-node/index.js"(exports, module) {
+  "node_modules/@octokit/rest/node_modules/@octokit/plugin-paginate-rest/dist-node/index.js"(exports, module) {
     "use strict";
     var __defProp = Object.defineProperty;
     var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -8805,4 +8805,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-Q3MMLWKW.mjs.map
+//# sourceMappingURL=chunk-SSIXAJGC.mjs.map
