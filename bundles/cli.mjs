@@ -14736,9 +14736,9 @@ var require_map2 = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/cli-width/index.js
+// node_modules/cli-width/index.js
 var require_cli_width = __commonJS({
-  "node_modules/inquirer/node_modules/cli-width/index.js"(exports2, module2) {
+  "node_modules/cli-width/index.js"(exports2, module2) {
     "use strict";
     module2.exports = cliWidth2;
     function normalizeOpts(options) {
@@ -32287,9 +32287,9 @@ var require_through = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/mute-stream/lib/index.js
+// node_modules/mute-stream/lib/index.js
 var require_lib2 = __commonJS({
-  "node_modules/inquirer/node_modules/mute-stream/lib/index.js"(exports2, module2) {
+  "node_modules/mute-stream/lib/index.js"(exports2, module2) {
     var Stream2 = __require("stream");
     var _isTTY, _destSrc, destSrc_fn, _proxy, proxy_fn;
     var MuteStream2 = class extends Stream2 {
@@ -75090,7 +75090,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-ffc736445285ffb77e94a8732cbd803a4f5f23d1`;
+  const localVersion = `0.0.0-5fe691e17fe101bfd8f07c9f37cc8c80f4f03b5e`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
