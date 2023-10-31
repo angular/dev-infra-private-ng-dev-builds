@@ -38537,761 +38537,6 @@ var require_cli_progress = __commonJS({
   }
 });
 
-// node_modules/concat-map/index.js
-var require_concat_map = __commonJS({
-  "node_modules/concat-map/index.js"(exports2, module2) {
-    module2.exports = function(xs, fn) {
-      var res = [];
-      for (var i = 0; i < xs.length; i++) {
-        var x = fn(xs[i], i);
-        if (isArray(x))
-          res.push.apply(res, x);
-        else
-          res.push(x);
-      }
-      return res;
-    };
-    var isArray = Array.isArray || function(xs) {
-      return Object.prototype.toString.call(xs) === "[object Array]";
-    };
-  }
-});
-
-// node_modules/multimatch/node_modules/brace-expansion/index.js
-var require_brace_expansion2 = __commonJS({
-  "node_modules/multimatch/node_modules/brace-expansion/index.js"(exports2, module2) {
-    var concatMap2 = require_concat_map();
-    var balanced = require_balanced_match();
-    module2.exports = expandTop;
-    var escSlash = "\0SLASH" + Math.random() + "\0";
-    var escOpen = "\0OPEN" + Math.random() + "\0";
-    var escClose = "\0CLOSE" + Math.random() + "\0";
-    var escComma = "\0COMMA" + Math.random() + "\0";
-    var escPeriod = "\0PERIOD" + Math.random() + "\0";
-    function numeric(str) {
-      return parseInt(str, 10) == str ? parseInt(str, 10) : str.charCodeAt(0);
-    }
-    function escapeBraces(str) {
-      return str.split("\\\\").join(escSlash).split("\\{").join(escOpen).split("\\}").join(escClose).split("\\,").join(escComma).split("\\.").join(escPeriod);
-    }
-    function unescapeBraces(str) {
-      return str.split(escSlash).join("\\").split(escOpen).join("{").split(escClose).join("}").split(escComma).join(",").split(escPeriod).join(".");
-    }
-    function parseCommaParts(str) {
-      if (!str)
-        return [""];
-      var parts = [];
-      var m = balanced("{", "}", str);
-      if (!m)
-        return str.split(",");
-      var pre = m.pre;
-      var body = m.body;
-      var post = m.post;
-      var p = pre.split(",");
-      p[p.length - 1] += "{" + body + "}";
-      var postParts = parseCommaParts(post);
-      if (post.length) {
-        p[p.length - 1] += postParts.shift();
-        p.push.apply(p, postParts);
-      }
-      parts.push.apply(parts, p);
-      return parts;
-    }
-    function expandTop(str) {
-      if (!str)
-        return [];
-      if (str.substr(0, 2) === "{}") {
-        str = "\\{\\}" + str.substr(2);
-      }
-      return expand2(escapeBraces(str), true).map(unescapeBraces);
-    }
-    function embrace(str) {
-      return "{" + str + "}";
-    }
-    function isPadded(el) {
-      return /^-?0\d/.test(el);
-    }
-    function lte(i, y) {
-      return i <= y;
-    }
-    function gte(i, y) {
-      return i >= y;
-    }
-    function expand2(str, isTop) {
-      var expansions = [];
-      var m = balanced("{", "}", str);
-      if (!m || /\$$/.test(m.pre))
-        return [str];
-      var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
-      var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
-      var isSequence = isNumericSequence || isAlphaSequence;
-      var isOptions = m.body.indexOf(",") >= 0;
-      if (!isSequence && !isOptions) {
-        if (m.post.match(/,.*\}/)) {
-          str = m.pre + "{" + m.body + escClose + m.post;
-          return expand2(str);
-        }
-        return [str];
-      }
-      var n;
-      if (isSequence) {
-        n = m.body.split(/\.\./);
-      } else {
-        n = parseCommaParts(m.body);
-        if (n.length === 1) {
-          n = expand2(n[0], false).map(embrace);
-          if (n.length === 1) {
-            var post = m.post.length ? expand2(m.post, false) : [""];
-            return post.map(function(p) {
-              return m.pre + n[0] + p;
-            });
-          }
-        }
-      }
-      var pre = m.pre;
-      var post = m.post.length ? expand2(m.post, false) : [""];
-      var N;
-      if (isSequence) {
-        var x = numeric(n[0]);
-        var y = numeric(n[1]);
-        var width = Math.max(n[0].length, n[1].length);
-        var incr = n.length == 3 ? Math.abs(numeric(n[2])) : 1;
-        var test = lte;
-        var reverse = y < x;
-        if (reverse) {
-          incr *= -1;
-          test = gte;
-        }
-        var pad = n.some(isPadded);
-        N = [];
-        for (var i = x; test(i, y); i += incr) {
-          var c;
-          if (isAlphaSequence) {
-            c = String.fromCharCode(i);
-            if (c === "\\")
-              c = "";
-          } else {
-            c = String(i);
-            if (pad) {
-              var need = width - c.length;
-              if (need > 0) {
-                var z = new Array(need + 1).join("0");
-                if (i < 0)
-                  c = "-" + z + c.slice(1);
-                else
-                  c = z + c;
-              }
-            }
-          }
-          N.push(c);
-        }
-      } else {
-        N = concatMap2(n, function(el) {
-          return expand2(el, false);
-        });
-      }
-      for (var j = 0; j < N.length; j++) {
-        for (var k = 0; k < post.length; k++) {
-          var expansion = pre + N[j] + post[k];
-          if (!isTop || isSequence || expansion)
-            expansions.push(expansion);
-        }
-      }
-      return expansions;
-    }
-  }
-});
-
-// node_modules/multimatch/node_modules/minimatch/minimatch.js
-var require_minimatch = __commonJS({
-  "node_modules/multimatch/node_modules/minimatch/minimatch.js"(exports2, module2) {
-    module2.exports = minimatch3;
-    minimatch3.Minimatch = Minimatch2;
-    var path6 = function() {
-      try {
-        return __require("path");
-      } catch (e) {
-      }
-    }() || {
-      sep: "/"
-    };
-    minimatch3.sep = path6.sep;
-    var GLOBSTAR2 = minimatch3.GLOBSTAR = Minimatch2.GLOBSTAR = {};
-    var expand2 = require_brace_expansion2();
-    var plTypes = {
-      "!": { open: "(?:(?!(?:", close: "))[^/]*?)" },
-      "?": { open: "(?:", close: ")?" },
-      "+": { open: "(?:", close: ")+" },
-      "*": { open: "(?:", close: ")*" },
-      "@": { open: "(?:", close: ")" }
-    };
-    var qmark3 = "[^/]";
-    var star3 = qmark3 + "*?";
-    var twoStarDot2 = "(?:(?!(?:\\/|^)(?:\\.{1,2})($|\\/)).)*?";
-    var twoStarNoDot2 = "(?:(?!(?:\\/|^)\\.).)*?";
-    var reSpecials2 = charSet("().*{}+?[]^$\\!");
-    function charSet(s) {
-      return s.split("").reduce(function(set2, c) {
-        set2[c] = true;
-        return set2;
-      }, {});
-    }
-    var slashSplit = /\/+/;
-    minimatch3.filter = filter6;
-    function filter6(pattern, options) {
-      options = options || {};
-      return function(p, i, list) {
-        return minimatch3(p, pattern, options);
-      };
-    }
-    function ext2(a, b) {
-      b = b || {};
-      var t = {};
-      Object.keys(a).forEach(function(k) {
-        t[k] = a[k];
-      });
-      Object.keys(b).forEach(function(k) {
-        t[k] = b[k];
-      });
-      return t;
-    }
-    minimatch3.defaults = function(def) {
-      if (!def || typeof def !== "object" || !Object.keys(def).length) {
-        return minimatch3;
-      }
-      var orig = minimatch3;
-      var m = function minimatch4(p, pattern, options) {
-        return orig(p, pattern, ext2(def, options));
-      };
-      m.Minimatch = function Minimatch3(pattern, options) {
-        return new orig.Minimatch(pattern, ext2(def, options));
-      };
-      m.Minimatch.defaults = function defaults3(options) {
-        return orig.defaults(ext2(def, options)).Minimatch;
-      };
-      m.filter = function filter7(pattern, options) {
-        return orig.filter(pattern, ext2(def, options));
-      };
-      m.defaults = function defaults3(options) {
-        return orig.defaults(ext2(def, options));
-      };
-      m.makeRe = function makeRe3(pattern, options) {
-        return orig.makeRe(pattern, ext2(def, options));
-      };
-      m.braceExpand = function braceExpand3(pattern, options) {
-        return orig.braceExpand(pattern, ext2(def, options));
-      };
-      m.match = function(list, pattern, options) {
-        return orig.match(list, pattern, ext2(def, options));
-      };
-      return m;
-    };
-    Minimatch2.defaults = function(def) {
-      return minimatch3.defaults(def).Minimatch;
-    };
-    function minimatch3(p, pattern, options) {
-      assertValidPattern2(pattern);
-      if (!options)
-        options = {};
-      if (!options.nocomment && pattern.charAt(0) === "#") {
-        return false;
-      }
-      return new Minimatch2(pattern, options).match(p);
-    }
-    function Minimatch2(pattern, options) {
-      if (!(this instanceof Minimatch2)) {
-        return new Minimatch2(pattern, options);
-      }
-      assertValidPattern2(pattern);
-      if (!options)
-        options = {};
-      pattern = pattern.trim();
-      if (!options.allowWindowsEscape && path6.sep !== "/") {
-        pattern = pattern.split(path6.sep).join("/");
-      }
-      this.options = options;
-      this.set = [];
-      this.pattern = pattern;
-      this.regexp = null;
-      this.negate = false;
-      this.comment = false;
-      this.empty = false;
-      this.partial = !!options.partial;
-      this.make();
-    }
-    Minimatch2.prototype.debug = function() {
-    };
-    Minimatch2.prototype.make = make;
-    function make() {
-      var pattern = this.pattern;
-      var options = this.options;
-      if (!options.nocomment && pattern.charAt(0) === "#") {
-        this.comment = true;
-        return;
-      }
-      if (!pattern) {
-        this.empty = true;
-        return;
-      }
-      this.parseNegate();
-      var set2 = this.globSet = this.braceExpand();
-      if (options.debug)
-        this.debug = function debug() {
-          console.error.apply(console, arguments);
-        };
-      this.debug(this.pattern, set2);
-      set2 = this.globParts = set2.map(function(s) {
-        return s.split(slashSplit);
-      });
-      this.debug(this.pattern, set2);
-      set2 = set2.map(function(s, si, set3) {
-        return s.map(this.parse, this);
-      }, this);
-      this.debug(this.pattern, set2);
-      set2 = set2.filter(function(s) {
-        return s.indexOf(false) === -1;
-      });
-      this.debug(this.pattern, set2);
-      this.set = set2;
-    }
-    Minimatch2.prototype.parseNegate = parseNegate;
-    function parseNegate() {
-      var pattern = this.pattern;
-      var negate = false;
-      var options = this.options;
-      var negateOffset = 0;
-      if (options.nonegate)
-        return;
-      for (var i = 0, l = pattern.length; i < l && pattern.charAt(i) === "!"; i++) {
-        negate = !negate;
-        negateOffset++;
-      }
-      if (negateOffset)
-        this.pattern = pattern.substr(negateOffset);
-      this.negate = negate;
-    }
-    minimatch3.braceExpand = function(pattern, options) {
-      return braceExpand2(pattern, options);
-    };
-    Minimatch2.prototype.braceExpand = braceExpand2;
-    function braceExpand2(pattern, options) {
-      if (!options) {
-        if (this instanceof Minimatch2) {
-          options = this.options;
-        } else {
-          options = {};
-        }
-      }
-      pattern = typeof pattern === "undefined" ? this.pattern : pattern;
-      assertValidPattern2(pattern);
-      if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
-        return [pattern];
-      }
-      return expand2(pattern);
-    }
-    var MAX_PATTERN_LENGTH2 = 1024 * 64;
-    var assertValidPattern2 = function(pattern) {
-      if (typeof pattern !== "string") {
-        throw new TypeError("invalid pattern");
-      }
-      if (pattern.length > MAX_PATTERN_LENGTH2) {
-        throw new TypeError("pattern is too long");
-      }
-    };
-    Minimatch2.prototype.parse = parse3;
-    var SUBPARSE = {};
-    function parse3(pattern, isSub) {
-      assertValidPattern2(pattern);
-      var options = this.options;
-      if (pattern === "**") {
-        if (!options.noglobstar)
-          return GLOBSTAR2;
-        else
-          pattern = "*";
-      }
-      if (pattern === "")
-        return "";
-      var re = "";
-      var hasMagic2 = !!options.nocase;
-      var escaping = false;
-      var patternListStack = [];
-      var negativeLists = [];
-      var stateChar;
-      var inClass = false;
-      var reClassStart = -1;
-      var classStart = -1;
-      var patternStart = pattern.charAt(0) === "." ? "" : options.dot ? "(?!(?:^|\\/)\\.{1,2}(?:$|\\/))" : "(?!\\.)";
-      var self2 = this;
-      function clearStateChar() {
-        if (stateChar) {
-          switch (stateChar) {
-            case "*":
-              re += star3;
-              hasMagic2 = true;
-              break;
-            case "?":
-              re += qmark3;
-              hasMagic2 = true;
-              break;
-            default:
-              re += "\\" + stateChar;
-              break;
-          }
-          self2.debug("clearStateChar %j %j", stateChar, re);
-          stateChar = false;
-        }
-      }
-      for (var i = 0, len = pattern.length, c; i < len && (c = pattern.charAt(i)); i++) {
-        this.debug("%s	%s %s %j", pattern, i, re, c);
-        if (escaping && reSpecials2[c]) {
-          re += "\\" + c;
-          escaping = false;
-          continue;
-        }
-        switch (c) {
-          case "/": {
-            return false;
-          }
-          case "\\":
-            clearStateChar();
-            escaping = true;
-            continue;
-          case "?":
-          case "*":
-          case "+":
-          case "@":
-          case "!":
-            this.debug("%s	%s %s %j <-- stateChar", pattern, i, re, c);
-            if (inClass) {
-              this.debug("  in class");
-              if (c === "!" && i === classStart + 1)
-                c = "^";
-              re += c;
-              continue;
-            }
-            self2.debug("call clearStateChar %j", stateChar);
-            clearStateChar();
-            stateChar = c;
-            if (options.noext)
-              clearStateChar();
-            continue;
-          case "(":
-            if (inClass) {
-              re += "(";
-              continue;
-            }
-            if (!stateChar) {
-              re += "\\(";
-              continue;
-            }
-            patternListStack.push({
-              type: stateChar,
-              start: i - 1,
-              reStart: re.length,
-              open: plTypes[stateChar].open,
-              close: plTypes[stateChar].close
-            });
-            re += stateChar === "!" ? "(?:(?!(?:" : "(?:";
-            this.debug("plType %j %j", stateChar, re);
-            stateChar = false;
-            continue;
-          case ")":
-            if (inClass || !patternListStack.length) {
-              re += "\\)";
-              continue;
-            }
-            clearStateChar();
-            hasMagic2 = true;
-            var pl = patternListStack.pop();
-            re += pl.close;
-            if (pl.type === "!") {
-              negativeLists.push(pl);
-            }
-            pl.reEnd = re.length;
-            continue;
-          case "|":
-            if (inClass || !patternListStack.length || escaping) {
-              re += "\\|";
-              escaping = false;
-              continue;
-            }
-            clearStateChar();
-            re += "|";
-            continue;
-          case "[":
-            clearStateChar();
-            if (inClass) {
-              re += "\\" + c;
-              continue;
-            }
-            inClass = true;
-            classStart = i;
-            reClassStart = re.length;
-            re += c;
-            continue;
-          case "]":
-            if (i === classStart + 1 || !inClass) {
-              re += "\\" + c;
-              escaping = false;
-              continue;
-            }
-            var cs = pattern.substring(classStart + 1, i);
-            try {
-              RegExp("[" + cs + "]");
-            } catch (er) {
-              var sp = this.parse(cs, SUBPARSE);
-              re = re.substr(0, reClassStart) + "\\[" + sp[0] + "\\]";
-              hasMagic2 = hasMagic2 || sp[1];
-              inClass = false;
-              continue;
-            }
-            hasMagic2 = true;
-            inClass = false;
-            re += c;
-            continue;
-          default:
-            clearStateChar();
-            if (escaping) {
-              escaping = false;
-            } else if (reSpecials2[c] && !(c === "^" && inClass)) {
-              re += "\\";
-            }
-            re += c;
-        }
-      }
-      if (inClass) {
-        cs = pattern.substr(classStart + 1);
-        sp = this.parse(cs, SUBPARSE);
-        re = re.substr(0, reClassStart) + "\\[" + sp[0];
-        hasMagic2 = hasMagic2 || sp[1];
-      }
-      for (pl = patternListStack.pop(); pl; pl = patternListStack.pop()) {
-        var tail = re.slice(pl.reStart + pl.open.length);
-        this.debug("setting tail", re, pl);
-        tail = tail.replace(/((?:\\{2}){0,64})(\\?)\|/g, function(_3, $1, $2) {
-          if (!$2) {
-            $2 = "\\";
-          }
-          return $1 + $1 + $2 + "|";
-        });
-        this.debug("tail=%j\n   %s", tail, tail, pl, re);
-        var t = pl.type === "*" ? star3 : pl.type === "?" ? qmark3 : "\\" + pl.type;
-        hasMagic2 = true;
-        re = re.slice(0, pl.reStart) + t + "\\(" + tail;
-      }
-      clearStateChar();
-      if (escaping) {
-        re += "\\\\";
-      }
-      var addPatternStart2 = false;
-      switch (re.charAt(0)) {
-        case "[":
-        case ".":
-        case "(":
-          addPatternStart2 = true;
-      }
-      for (var n = negativeLists.length - 1; n > -1; n--) {
-        var nl = negativeLists[n];
-        var nlBefore = re.slice(0, nl.reStart);
-        var nlFirst = re.slice(nl.reStart, nl.reEnd - 8);
-        var nlLast = re.slice(nl.reEnd - 8, nl.reEnd);
-        var nlAfter = re.slice(nl.reEnd);
-        nlLast += nlAfter;
-        var openParensBefore = nlBefore.split("(").length - 1;
-        var cleanAfter = nlAfter;
-        for (i = 0; i < openParensBefore; i++) {
-          cleanAfter = cleanAfter.replace(/\)[+*?]?/, "");
-        }
-        nlAfter = cleanAfter;
-        var dollar = "";
-        if (nlAfter === "" && isSub !== SUBPARSE) {
-          dollar = "$";
-        }
-        var newRe = nlBefore + nlFirst + nlAfter + dollar + nlLast;
-        re = newRe;
-      }
-      if (re !== "" && hasMagic2) {
-        re = "(?=.)" + re;
-      }
-      if (addPatternStart2) {
-        re = patternStart + re;
-      }
-      if (isSub === SUBPARSE) {
-        return [re, hasMagic2];
-      }
-      if (!hasMagic2) {
-        return globUnescape(pattern);
-      }
-      var flags = options.nocase ? "i" : "";
-      try {
-        var regExp = new RegExp("^" + re + "$", flags);
-      } catch (er) {
-        return new RegExp("$.");
-      }
-      regExp._glob = pattern;
-      regExp._src = re;
-      return regExp;
-    }
-    minimatch3.makeRe = function(pattern, options) {
-      return new Minimatch2(pattern, options || {}).makeRe();
-    };
-    Minimatch2.prototype.makeRe = makeRe2;
-    function makeRe2() {
-      if (this.regexp || this.regexp === false)
-        return this.regexp;
-      var set2 = this.set;
-      if (!set2.length) {
-        this.regexp = false;
-        return this.regexp;
-      }
-      var options = this.options;
-      var twoStar = options.noglobstar ? star3 : options.dot ? twoStarDot2 : twoStarNoDot2;
-      var flags = options.nocase ? "i" : "";
-      var re = set2.map(function(pattern) {
-        return pattern.map(function(p) {
-          return p === GLOBSTAR2 ? twoStar : typeof p === "string" ? regExpEscape3(p) : p._src;
-        }).join("\\/");
-      }).join("|");
-      re = "^(?:" + re + ")$";
-      if (this.negate)
-        re = "^(?!" + re + ").*$";
-      try {
-        this.regexp = new RegExp(re, flags);
-      } catch (ex) {
-        this.regexp = false;
-      }
-      return this.regexp;
-    }
-    minimatch3.match = function(list, pattern, options) {
-      options = options || {};
-      var mm = new Minimatch2(pattern, options);
-      list = list.filter(function(f) {
-        return mm.match(f);
-      });
-      if (mm.options.nonull && !list.length) {
-        list.push(pattern);
-      }
-      return list;
-    };
-    Minimatch2.prototype.match = function match2(f, partial) {
-      if (typeof partial === "undefined")
-        partial = this.partial;
-      this.debug("match", f, this.pattern);
-      if (this.comment)
-        return false;
-      if (this.empty)
-        return f === "";
-      if (f === "/" && partial)
-        return true;
-      var options = this.options;
-      if (path6.sep !== "/") {
-        f = f.split(path6.sep).join("/");
-      }
-      f = f.split(slashSplit);
-      this.debug(this.pattern, "split", f);
-      var set2 = this.set;
-      this.debug(this.pattern, "set", set2);
-      var filename;
-      var i;
-      for (i = f.length - 1; i >= 0; i--) {
-        filename = f[i];
-        if (filename)
-          break;
-      }
-      for (i = 0; i < set2.length; i++) {
-        var pattern = set2[i];
-        var file = f;
-        if (options.matchBase && pattern.length === 1) {
-          file = [filename];
-        }
-        var hit = this.matchOne(file, pattern, partial);
-        if (hit) {
-          if (options.flipNegate)
-            return true;
-          return !this.negate;
-        }
-      }
-      if (options.flipNegate)
-        return false;
-      return this.negate;
-    };
-    Minimatch2.prototype.matchOne = function(file, pattern, partial) {
-      var options = this.options;
-      this.debug(
-        "matchOne",
-        { "this": this, file, pattern }
-      );
-      this.debug("matchOne", file.length, pattern.length);
-      for (var fi = 0, pi = 0, fl = file.length, pl = pattern.length; fi < fl && pi < pl; fi++, pi++) {
-        this.debug("matchOne loop");
-        var p = pattern[pi];
-        var f = file[fi];
-        this.debug(pattern, p, f);
-        if (p === false)
-          return false;
-        if (p === GLOBSTAR2) {
-          this.debug("GLOBSTAR", [pattern, p, f]);
-          var fr = fi;
-          var pr = pi + 1;
-          if (pr === pl) {
-            this.debug("** at the end");
-            for (; fi < fl; fi++) {
-              if (file[fi] === "." || file[fi] === ".." || !options.dot && file[fi].charAt(0) === ".")
-                return false;
-            }
-            return true;
-          }
-          while (fr < fl) {
-            var swallowee = file[fr];
-            this.debug("\nglobstar while", file, fr, pattern, pr, swallowee);
-            if (this.matchOne(file.slice(fr), pattern.slice(pr), partial)) {
-              this.debug("globstar found match!", fr, fl, swallowee);
-              return true;
-            } else {
-              if (swallowee === "." || swallowee === ".." || !options.dot && swallowee.charAt(0) === ".") {
-                this.debug("dot detected!", file, fr, pattern, pr);
-                break;
-              }
-              this.debug("globstar swallow a segment, and continue");
-              fr++;
-            }
-          }
-          if (partial) {
-            this.debug("\n>>> no match, partial?", file, fr, pattern, pr);
-            if (fr === fl)
-              return true;
-          }
-          return false;
-        }
-        var hit;
-        if (typeof p === "string") {
-          hit = f === p;
-          this.debug("string match", p, f, hit);
-        } else {
-          hit = f.match(p);
-          this.debug("pattern match", p, f, hit);
-        }
-        if (!hit)
-          return false;
-      }
-      if (fi === fl && pi === pl) {
-        return true;
-      } else if (fi === fl) {
-        return partial;
-      } else if (pi === pl) {
-        return fi === fl - 1 && file[fi] === "";
-      }
-      throw new Error("wtf?");
-    };
-    function globUnescape(s) {
-      return s.replace(/\\(.)/g, "$1");
-    }
-    function regExpEscape3(s) {
-      return s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
-    }
-  }
-});
-
 // node_modules/which/node_modules/isexe/dist/cjs/posix.js
 var require_posix = __commonJS({
   "node_modules/which/node_modules/isexe/dist/cjs/posix.js"(exports2) {
@@ -48709,8 +47954,28 @@ var require_fs = __commonJS({
   }
 });
 
+// node_modules/concat-map/index.js
+var require_concat_map = __commonJS({
+  "node_modules/concat-map/index.js"(exports2, module2) {
+    module2.exports = function(xs, fn) {
+      var res = [];
+      for (var i = 0; i < xs.length; i++) {
+        var x = fn(xs[i], i);
+        if (isArray(x))
+          res.push.apply(res, x);
+        else
+          res.push(x);
+      }
+      return res;
+    };
+    var isArray = Array.isArray || function(xs) {
+      return Object.prototype.toString.call(xs) === "[object Array]";
+    };
+  }
+});
+
 // node_modules/read-installed/node_modules/brace-expansion/index.js
-var require_brace_expansion3 = __commonJS({
+var require_brace_expansion2 = __commonJS({
   "node_modules/read-installed/node_modules/brace-expansion/index.js"(exports2, module2) {
     var concatMap2 = require_concat_map();
     var balanced = require_balanced_match();
@@ -48855,10 +48120,10 @@ var require_brace_expansion3 = __commonJS({
 });
 
 // node_modules/read-installed/node_modules/minimatch/minimatch.js
-var require_minimatch2 = __commonJS({
+var require_minimatch = __commonJS({
   "node_modules/read-installed/node_modules/minimatch/minimatch.js"(exports2, module2) {
-    module2.exports = minimatch3;
-    minimatch3.Minimatch = Minimatch2;
+    module2.exports = minimatch2;
+    minimatch2.Minimatch = Minimatch2;
     var path6 = function() {
       try {
         return __require("path");
@@ -48867,9 +48132,9 @@ var require_minimatch2 = __commonJS({
     }() || {
       sep: "/"
     };
-    minimatch3.sep = path6.sep;
-    var GLOBSTAR2 = minimatch3.GLOBSTAR = Minimatch2.GLOBSTAR = {};
-    var expand2 = require_brace_expansion3();
+    minimatch2.sep = path6.sep;
+    var GLOBSTAR2 = minimatch2.GLOBSTAR = Minimatch2.GLOBSTAR = {};
+    var expand2 = require_brace_expansion2();
     var plTypes = {
       "!": { open: "(?:(?!(?:", close: "))[^/]*?)" },
       "?": { open: "(?:", close: ")?" },
@@ -48889,11 +48154,11 @@ var require_minimatch2 = __commonJS({
       }, {});
     }
     var slashSplit = /\/+/;
-    minimatch3.filter = filter6;
+    minimatch2.filter = filter6;
     function filter6(pattern, options) {
       options = options || {};
       return function(p, i, list) {
-        return minimatch3(p, pattern, options);
+        return minimatch2(p, pattern, options);
       };
     }
     function ext2(a, b) {
@@ -48907,12 +48172,12 @@ var require_minimatch2 = __commonJS({
       });
       return t;
     }
-    minimatch3.defaults = function(def) {
+    minimatch2.defaults = function(def) {
       if (!def || typeof def !== "object" || !Object.keys(def).length) {
-        return minimatch3;
+        return minimatch2;
       }
-      var orig = minimatch3;
-      var m = function minimatch4(p, pattern, options) {
+      var orig = minimatch2;
+      var m = function minimatch3(p, pattern, options) {
         return orig(p, pattern, ext2(def, options));
       };
       m.Minimatch = function Minimatch3(pattern, options) {
@@ -48939,9 +48204,9 @@ var require_minimatch2 = __commonJS({
       return m;
     };
     Minimatch2.defaults = function(def) {
-      return minimatch3.defaults(def).Minimatch;
+      return minimatch2.defaults(def).Minimatch;
     };
-    function minimatch3(p, pattern, options) {
+    function minimatch2(p, pattern, options) {
       assertValidPattern2(pattern);
       if (!options)
         options = {};
@@ -49022,7 +48287,7 @@ var require_minimatch2 = __commonJS({
         this.pattern = pattern.substr(negateOffset);
       this.negate = negate;
     }
-    minimatch3.braceExpand = function(pattern, options) {
+    minimatch2.braceExpand = function(pattern, options) {
       return braceExpand2(pattern, options);
     };
     Minimatch2.prototype.braceExpand = braceExpand2;
@@ -49284,7 +48549,7 @@ var require_minimatch2 = __commonJS({
       regExp._src = re;
       return regExp;
     }
-    minimatch3.makeRe = function(pattern, options) {
+    minimatch2.makeRe = function(pattern, options) {
       return new Minimatch2(pattern, options || {}).makeRe();
     };
     Minimatch2.prototype.makeRe = makeRe2;
@@ -49314,7 +48579,7 @@ var require_minimatch2 = __commonJS({
       }
       return this.regexp;
     }
-    minimatch3.match = function(list, pattern, options) {
+    minimatch2.match = function(list, pattern, options) {
       options = options || {};
       var mm = new Minimatch2(pattern, options);
       list = list.filter(function(f) {
@@ -49479,9 +48744,9 @@ var require_common2 = __commonJS({
     }
     var fs6 = __require("fs");
     var path6 = __require("path");
-    var minimatch3 = require_minimatch2();
+    var minimatch2 = require_minimatch();
     var isAbsolute3 = require_path_is_absolute();
-    var Minimatch2 = minimatch3.Minimatch;
+    var Minimatch2 = minimatch2.Minimatch;
     function alphasort(a, b) {
       return a.localeCompare(b, "en");
     }
@@ -49664,8 +48929,8 @@ var require_sync = __commonJS({
     module2.exports = globSync2;
     globSync2.GlobSync = GlobSync;
     var rp = require_fs();
-    var minimatch3 = require_minimatch2();
-    var Minimatch2 = minimatch3.Minimatch;
+    var minimatch2 = require_minimatch();
+    var Minimatch2 = minimatch2.Minimatch;
     var Glob2 = require_glob().Glob;
     var util = __require("util");
     var path6 = __require("path");
@@ -49753,7 +49018,7 @@ var require_sync = __commonJS({
       var abs = this._makeAbs(read);
       if (childrenIgnored(this, read))
         return;
-      var isGlobStar = remain[0] === minimatch3.GLOBSTAR;
+      var isGlobStar = remain[0] === minimatch2.GLOBSTAR;
       if (isGlobStar)
         this._processGlobStar(prefix, read, abs, remain, index, inGlobStar);
       else
@@ -50062,8 +49327,8 @@ var require_glob = __commonJS({
   "node_modules/read-installed/node_modules/glob/glob.js"(exports2, module2) {
     module2.exports = glob2;
     var rp = require_fs();
-    var minimatch3 = require_minimatch2();
-    var Minimatch2 = minimatch3.Minimatch;
+    var minimatch2 = require_minimatch();
+    var Minimatch2 = minimatch2.Minimatch;
     var inherits = require_inherits();
     var EE = __require("events").EventEmitter;
     var path6 = __require("path");
@@ -50301,7 +49566,7 @@ var require_glob = __commonJS({
       var abs = this._makeAbs(read);
       if (childrenIgnored(this, read))
         return cb();
-      var isGlobStar = remain[0] === minimatch3.GLOBSTAR;
+      var isGlobStar = remain[0] === minimatch2.GLOBSTAR;
       if (isGlobStar)
         this._processGlobStar(prefix, read, abs, remain, index, inGlobStar, cb);
       else
@@ -59978,20 +59243,20 @@ var require_path2 = __commonJS({
 });
 
 // node_modules/folder-hash/node_modules/minimatch/minimatch.js
-var require_minimatch3 = __commonJS({
+var require_minimatch2 = __commonJS({
   "node_modules/folder-hash/node_modules/minimatch/minimatch.js"(exports2, module2) {
-    var minimatch3 = module2.exports = (p, pattern, options = {}) => {
+    var minimatch2 = module2.exports = (p, pattern, options = {}) => {
       assertValidPattern2(pattern);
       if (!options.nocomment && pattern.charAt(0) === "#") {
         return false;
       }
       return new Minimatch2(pattern, options).match(p);
     };
-    module2.exports = minimatch3;
+    module2.exports = minimatch2;
     var path6 = require_path2();
-    minimatch3.sep = path6.sep;
+    minimatch2.sep = path6.sep;
     var GLOBSTAR2 = Symbol("globstar **");
-    minimatch3.GLOBSTAR = GLOBSTAR2;
+    minimatch2.GLOBSTAR = GLOBSTAR2;
     var expand2 = require_brace_expansion();
     var plTypes = {
       "!": { open: "(?:(?!(?:", close: "))[^/]*?)" },
@@ -60011,18 +59276,18 @@ var require_minimatch3 = __commonJS({
     var reSpecials2 = charSet("().*{}+?[]^$\\!");
     var addPatternStartSet = charSet("[.(");
     var slashSplit = /\/+/;
-    minimatch3.filter = (pattern, options = {}) => (p, i, list) => minimatch3(p, pattern, options);
+    minimatch2.filter = (pattern, options = {}) => (p, i, list) => minimatch2(p, pattern, options);
     var ext2 = (a, b = {}) => {
       const t = {};
       Object.keys(a).forEach((k) => t[k] = a[k]);
       Object.keys(b).forEach((k) => t[k] = b[k]);
       return t;
     };
-    minimatch3.defaults = (def) => {
+    minimatch2.defaults = (def) => {
       if (!def || typeof def !== "object" || !Object.keys(def).length) {
-        return minimatch3;
+        return minimatch2;
       }
-      const orig = minimatch3;
+      const orig = minimatch2;
       const m = (p, pattern, options) => orig(p, pattern, ext2(def, options));
       m.Minimatch = class Minimatch extends orig.Minimatch {
         constructor(pattern, options) {
@@ -60037,7 +59302,7 @@ var require_minimatch3 = __commonJS({
       m.match = (list, pattern, options) => orig.match(list, pattern, ext2(def, options));
       return m;
     };
-    minimatch3.braceExpand = (pattern, options) => braceExpand2(pattern, options);
+    minimatch2.braceExpand = (pattern, options) => braceExpand2(pattern, options);
     var braceExpand2 = (pattern, options = {}) => {
       assertValidPattern2(pattern);
       if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
@@ -60055,8 +59320,8 @@ var require_minimatch3 = __commonJS({
       }
     };
     var SUBPARSE = Symbol("subparse");
-    minimatch3.makeRe = (pattern, options) => new Minimatch2(pattern, options || {}).makeRe();
-    minimatch3.match = (list, pattern, options = {}) => {
+    minimatch2.makeRe = (pattern, options) => new Minimatch2(pattern, options || {}).makeRe();
+    minimatch2.match = (list, pattern, options = {}) => {
       const mm = new Minimatch2(pattern, options);
       list = list.filter((f) => mm.match(f));
       if (mm.options.nonull && !list.length) {
@@ -60536,10 +59801,10 @@ var require_minimatch3 = __commonJS({
         return this.negate;
       }
       static defaults(def) {
-        return minimatch3.defaults(def).Minimatch;
+        return minimatch2.defaults(def).Minimatch;
       }
     };
-    minimatch3.Minimatch = Minimatch2;
+    minimatch2.Minimatch = Minimatch2;
   }
 });
 
@@ -60548,7 +59813,7 @@ var require_folder_hash = __commonJS({
   "node_modules/folder-hash/index.js"(exports2, module2) {
     var crypto = __require("crypto");
     var debug = require_src4();
-    var minimatch3 = require_minimatch3();
+    var minimatch2 = require_minimatch2();
     var path6 = __require("path");
     var defaultOptions = {
       algo: "sha1",
@@ -60875,7 +60140,7 @@ ${padding}]`;
       } else {
         const regex = new RegExp(
           globs.reduce((acc, exclude) => {
-            return acc + "|" + minimatch3.makeRe(exclude).source;
+            return acc + "|" + minimatch2.makeRe(exclude).source;
           }, "").substr(1)
         );
         return (param) => regex.test(param);
@@ -70703,9 +69968,6 @@ var Prompt2 = class {
 // bazel-out/k8-fastbuild/bin/ng-dev/format/run-commands-parallel.js
 var import_cli_progress = __toESM(require_cli_progress());
 
-// node_modules/multimatch/index.js
-var import_minimatch2 = __toESM(require_minimatch(), 1);
-
 // node_modules/array-union/index.js
 var arrayUnion = (...arguments_) => [...new Set(arguments_.flat())];
 var array_union_default = arrayUnion;
@@ -70731,7 +69993,7 @@ function multimatch(list, patterns, options = {}) {
         pattern = pattern.slice(1);
         process4 = arrayDiffer;
       }
-      result = process4(result, import_minimatch2.default.match([item], pattern, options));
+      result = process4(result, minimatch.match([item], pattern, options));
     }
   }
   return result;
@@ -75090,7 +74352,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-2af5f1084ebc91654d57eaddecf9fc0136712386`;
+  const localVersion = `0.0.0-e55df1c4114e82082328afd79bdc24668d16a443`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
