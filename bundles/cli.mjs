@@ -46,7 +46,7 @@ import {
   require_semver,
   require_wrappy,
   targetLabels
-} from "./chunk-SSIXAJGC.mjs";
+} from "./chunk-MHHE3KMQ.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -71443,6 +71443,7 @@ var PullRequestValidationConfig = class {
     this.assertChangesAllowForTargetLabel = true;
     this.assertPassingCi = true;
     this.assertCompletedReviews = true;
+    this.assertEnforcedStatuses = true;
   }
   static create(config) {
     return Object.assign(new PullRequestValidationConfig(), config);
@@ -71561,9 +71562,29 @@ var Validation3 = class extends PullRequestValidation {
   }
 };
 
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-merge-ready.js
-var mergeReadyValidation = createPullRequestValidation({ name: "assertMergeReady", canBeForceIgnored: false }, () => Validation4);
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-enforced-statuses.js
+var enforcedStatusesValidation = createPullRequestValidation({ name: "assertEnforcedStatuses", canBeForceIgnored: true }, () => Validation4);
 var Validation4 = class extends PullRequestValidation {
+  assert(pullRequest, config) {
+    if (config.requiredStatuses === void 0) {
+      return;
+    }
+    const { statuses } = getStatusesForPullRequest(pullRequest);
+    const missing = [];
+    for (const enforced of config.requiredStatuses) {
+      if (!statuses.some((s) => s.name === enforced.name && s.type === enforced.name)) {
+        missing.push(enforced.name);
+      }
+    }
+    if (missing.length > 0) {
+      throw this._createError(`Required statuses are missing on the pull request (${missing.join(", ")}).`);
+    }
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-merge-ready.js
+var mergeReadyValidation = createPullRequestValidation({ name: "assertMergeReady", canBeForceIgnored: false }, () => Validation5);
+var Validation5 = class extends PullRequestValidation {
   assert(pullRequest) {
     if (!pullRequest.labels.nodes.some(({ name }) => name === actionLabels.ACTION_MERGE.name)) {
       throw this._createError("Pull request is not marked as merge ready.");
@@ -71572,8 +71593,8 @@ var Validation4 = class extends PullRequestValidation {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-passing-ci.js
-var passingCiValidation = createPullRequestValidation({ name: "assertPassingCi", canBeForceIgnored: true }, () => Validation5);
-var Validation5 = class extends PullRequestValidation {
+var passingCiValidation = createPullRequestValidation({ name: "assertPassingCi", canBeForceIgnored: true }, () => Validation6);
+var Validation6 = class extends PullRequestValidation {
   assert(pullRequest) {
     const { combinedStatus } = getStatusesForPullRequest(pullRequest);
     if (combinedStatus === PullRequestStatus.PENDING) {
@@ -71586,8 +71607,8 @@ var Validation5 = class extends PullRequestValidation {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-pending.js
-var pendingStateValidation = createPullRequestValidation({ name: "assertPending", canBeForceIgnored: false }, () => Validation6);
-var Validation6 = class extends PullRequestValidation {
+var pendingStateValidation = createPullRequestValidation({ name: "assertPending", canBeForceIgnored: false }, () => Validation7);
+var Validation7 = class extends PullRequestValidation {
   assert(pullRequest) {
     if (pullRequest.isDraft) {
       throw this._createError("Pull request is still a draft.");
@@ -71604,9 +71625,9 @@ var Validation6 = class extends PullRequestValidation {
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/validation/assert-signed-cla.js
 var signedClaValidation = createPullRequestValidation(
   { name: "assertSignedCla", canBeForceIgnored: true },
-  () => Validation7
+  () => Validation8
 );
-var Validation7 = class extends PullRequestValidation {
+var Validation8 = class extends PullRequestValidation {
   assert(pullRequest) {
     const passing = getStatusesForPullRequest(pullRequest).statuses.some(({ name, status }) => {
       return name === "cla/google" && status === PullRequestStatus.PASSING;
@@ -71629,7 +71650,8 @@ async function assertValidPullRequest(pullRequest, validationConfig, ngDevConfig
     signedClaValidation.run(validationConfig, pullRequest),
     pendingStateValidation.run(validationConfig, pullRequest),
     breakingChangeInfoValidation.run(validationConfig, commitsInPr, labels),
-    passingCiValidation.run(validationConfig, pullRequest)
+    passingCiValidation.run(validationConfig, pullRequest),
+    enforcedStatusesValidation.run(validationConfig, pullRequest, ngDevConfig.pullRequest)
   ];
   if (activeReleaseTrains !== null) {
     validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels));
@@ -74352,7 +74374,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-7264838eafd6e989a1410c273e20bd0d90af2e39`;
+  const localVersion = `0.0.0-27757a898abc138dcd554becc7e01565e5f4be54`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

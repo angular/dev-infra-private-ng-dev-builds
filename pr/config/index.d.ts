@@ -32,6 +32,11 @@ export interface PullRequestConfig {
     requiredBaseCommits?: {
         [branchName: string]: string;
     };
+    /** List of statuses that are required before a pull request can be merged. */
+    requiredStatuses?: {
+        type: 'check' | 'status';
+        name: string;
+    }[];
     /**
      * Whether pull requests should be merged using the Github API. This can be enabled
      * if projects want to have their pull requests show up as `Merged` in the Github UI.
