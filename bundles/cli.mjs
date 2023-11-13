@@ -71415,7 +71415,7 @@ var UnsatisfiedBaseShaFatalError = class extends FatalMergeToolError {
 };
 var MergeConflictsFatalError = class extends FatalMergeToolError {
   constructor(failedBranches) {
-    super(`Could not merge pull request into the following branches due to merge conflicts: ${failedBranches.join(", ")}. Please rebase the PR or update the target label.`);
+    super(`Cannot not merge pull request into the following branches due to merge conflicts: ${failedBranches.join(", ")}. Please rebase the PR or update the target label.`);
     this.failedBranches = failedBranches;
   }
 };
@@ -71690,8 +71690,10 @@ var MergeStrategy = class {
   cherryPickIntoTargetBranches(revisionRange, targetBranches, options = {}) {
     const cherryPickArgs = [revisionRange];
     const failedBranches = [];
-    if (options.dryRun) {
-      cherryPickArgs.push("--no-commit");
+    const revisionCountOutput = this.git.run(["rev-list", "--count", revisionRange]);
+    const revisionCount = Number(revisionCountOutput.stdout.trim());
+    if (isNaN(revisionCount)) {
+      throw new FatalMergeToolError("Unexpected revision range for cherry-picking. No commit count could be determined.");
     }
     if (options.linkToOriginalCommits) {
       cherryPickArgs.push("-x");
@@ -71699,12 +71701,13 @@ var MergeStrategy = class {
     for (const branchName of targetBranches) {
       const localTargetBranch = this.getLocalTargetBranchName(branchName);
       this.git.run(["checkout", localTargetBranch]);
-      if (this.git.runGraceful(["cherry-pick", ...cherryPickArgs]).status !== 0) {
+      const cherryPickResult = this.git.runGraceful(["cherry-pick", ...cherryPickArgs]);
+      if (cherryPickResult.status !== 0) {
         this.git.runGraceful(["cherry-pick", "--abort"]);
         failedBranches.push(branchName);
       }
       if (options.dryRun) {
-        this.git.run(["reset", "--hard", "HEAD"]);
+        this.git.run(["reset", "--hard", `HEAD~${revisionCount}`]);
       }
     }
     return failedBranches;
@@ -71903,7 +71906,10 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
       `${getCommitMessageFilterScriptPath()} ${prNumber}`,
       revisionRange
     ]);
-    this.cherryPickIntoTargetBranches(revisionRange, targetBranches);
+    const failedBranches = this.cherryPickIntoTargetBranches(revisionRange, targetBranches);
+    if (failedBranches.length) {
+      throw new MergeConflictsFatalError(failedBranches);
+    }
     this.pushTargetBranchesUpstream(targetBranches);
     const localBranch = this.getLocalTargetBranchName(githubTargetBranch);
     const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
@@ -74374,7 +74380,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-ea86ac0778eb6eabb9ba756fe60eaefeccd7a4a9`;
+  const localVersion = `0.0.0-166dc14581c578586aa81c4c387ea0df53ccf73f`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
