@@ -71572,7 +71572,7 @@ var Validation4 = class extends PullRequestValidation {
     const { statuses } = getStatusesForPullRequest(pullRequest);
     const missing = [];
     for (const enforced of config.requiredStatuses) {
-      if (!statuses.some((s) => s.name === enforced.name && s.type === enforced.name)) {
+      if (!statuses.some((s) => s.name === enforced.name && s.type === enforced.type)) {
         missing.push(enforced.name);
       }
     }
@@ -74380,7 +74380,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-0ed7012d97b8170dd823692b74e53b8ff175fa43`;
+  const localVersion = `0.0.0-265018f47090b571205638271566af910dcedf67`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
