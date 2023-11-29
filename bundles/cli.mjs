@@ -7,12 +7,9 @@ import {
   ActiveReleaseTrains,
   AuthenticatedGitClient,
   COMMIT_TYPES,
-  ChildProcess,
-  ConfigValidationError,
   GITHUB_TOKEN_GENERATE_URL,
   GitClient,
   GitCommandError,
-  Log,
   ReleaseNotesLevel,
   ScopeRequirement,
   actionLabels,
@@ -22,35 +19,24 @@ import {
   assertValidCaretakerConfig,
   assertValidCommitMessageConfig,
   assertValidFormatConfig,
-  assertValidGithubConfig,
   assertValidPullRequestConfig,
-  assertValidReleaseConfig,
-  blue,
-  bold,
-  captureLogOutputForCommand,
   computeLtsEndDateOfMajor,
   convertVersionBranchToSemVer,
-  determineRepoBaseDirFromCwd,
   exceptionalMinorPackageIndicator,
   fetch,
   fetchLongTermSupportBranchesFromNpm,
   fetchProjectNpmPackageInfo,
-  getConfig,
   getFileContentsUrl,
   getListCommitsInBranchUrl,
   getLtsNpmDistTagOfMajor,
   getNextBranchName,
   getRepositoryGitUrl,
-  getUserConfig,
   getVersionInfoForBranch,
-  green,
-  init_supports_color,
   isGithubApiError,
   isVersionBranch,
   isVersionPublishedToNpm,
   managedLabels,
   mergeLabels,
-  red,
   require_dist,
   require_dist_node,
   require_dist_node2,
@@ -59,12 +45,28 @@ import {
   require_once,
   require_semver,
   require_wrappy,
+  targetLabels
+} from "./chunk-2G4IRQOO.mjs";
+import {
+  ChildProcess,
+  ConfigValidationError,
+  Log,
+  assertValidGithubConfig,
+  assertValidReleaseConfig,
+  blue,
+  bold,
+  captureLogOutputForCommand,
+  determineRepoBaseDirFromCwd,
+  getConfig,
+  getUserConfig,
+  green,
+  init_supports_color,
+  red,
   source_default,
   supports_color_exports,
-  targetLabels,
   underline,
   yellow
-} from "./chunk-S53T5BJL.mjs";
+} from "./chunk-MSK4VZOL.mjs";
 import "./chunk-QS3TPNNO.mjs";
 import {
   __commonJS,
@@ -34223,7 +34225,7 @@ var require_writer = __commonJS({
       var len = utf8.length(value);
       return len ? this.uint32(len)._push(utf8.write, len, value) : this._push(writeByte, 1, 0);
     };
-    Writer.prototype.fork = function fork() {
+    Writer.prototype.fork = function fork2() {
       this.states = new State(this);
       this.head = this.tail = new Op(noop, 0, 0);
       this.len = 0;
@@ -47087,8 +47089,8 @@ var require_graceful_fs = __commonJS({
       fs7.createReadStream = createReadStream;
       fs7.createWriteStream = createWriteStream;
       var fs$readFile = fs7.readFile;
-      fs7.readFile = readFile2;
-      function readFile2(path6, options, cb) {
+      fs7.readFile = readFile;
+      function readFile(path6, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
         return go$readFile(path6, options, cb);
@@ -52837,8 +52839,8 @@ var require_async2 = __commonJS({
         cb(null, x);
       }
     };
-    var defaultReadPackage = function defaultReadPackage2(readFile2, pkgfile, cb) {
-      readFile2(pkgfile, function(readFileErr, body) {
+    var defaultReadPackage = function defaultReadPackage2(readFile, pkgfile, cb) {
+      readFile(pkgfile, function(readFileErr, body) {
         if (readFileErr)
           cb(readFileErr);
         else {
@@ -52874,7 +52876,7 @@ var require_async2 = __commonJS({
       opts = normalizeOptions(x, opts);
       var isFile = opts.isFile || defaultIsFile;
       var isDirectory = opts.isDirectory || defaultIsDir;
-      var readFile2 = opts.readFile || fs6.readFile;
+      var readFile = opts.readFile || fs6.readFile;
       var realpath2 = opts.realpath || defaultRealpath;
       var readPackage = opts.readPackage || defaultReadPackage;
       if (opts.readFile && opts.readPackage) {
@@ -53015,7 +53017,7 @@ var require_async2 = __commonJS({
           isFile(pkgfile, function(err2, ex) {
             if (!ex)
               return loadpkg(path6.dirname(dir), cb2);
-            readPackage(readFile2, pkgfile, function(err3, pkgParam) {
+            readPackage(readFile, pkgfile, function(err3, pkgParam) {
               if (err3)
                 cb2(err3);
               var pkg = pkgParam;
@@ -53043,7 +53045,7 @@ var require_async2 = __commonJS({
               return cb2(err2);
             if (!ex)
               return loadAsFile(path6.join(x2, "index"), fpkg, cb2);
-            readPackage(readFile2, pkgfile, function(err3, pkgParam) {
+            readPackage(readFile, pkgfile, function(err3, pkgParam) {
               if (err3)
                 return cb2(err3);
               var pkg = pkgParam;
@@ -58944,10 +58946,10 @@ var require_ejs = __commonJS({
     exports2.localsName = _DEFAULT_LOCALS_NAME;
     exports2.promiseImpl = new Function("return this;")().Promise;
     exports2.resolveInclude = function(name, filename, isDir) {
-      var dirname6 = path6.dirname;
+      var dirname7 = path6.dirname;
       var extname3 = path6.extname;
       var resolve13 = path6.resolve;
-      var includePath = resolve13(isDir ? filename : dirname6(filename), name);
+      var includePath = resolve13(isDir ? filename : dirname7(filename), name);
       var ext2 = extname3(name);
       if (!ext2) {
         includePath += ".ejs";
@@ -60727,26 +60729,26 @@ var require_folder_hash = __commonJS({
           }
         });
       }
-      function hashElementPromise(stats, dirname6, options, isRootElement = false) {
+      function hashElementPromise(stats, dirname7, options, isRootElement = false) {
         const name = stats.name;
         let promise = void 0;
         if (stats.isDirectory()) {
-          promise = hashFolderPromise(name, dirname6, options, isRootElement);
+          promise = hashFolderPromise(name, dirname7, options, isRootElement);
         } else if (stats.isFile()) {
-          promise = hashFilePromise(name, dirname6, options, isRootElement);
+          promise = hashFilePromise(name, dirname7, options, isRootElement);
         } else if (stats.isSymbolicLink()) {
-          promise = hashSymLinkPromise(name, dirname6, options, isRootElement);
+          promise = hashSymLinkPromise(name, dirname7, options, isRootElement);
         } else {
           log.err("hashElementPromise cannot handle ", stats);
           return Promise.resolve({ name, hash: "Error: unknown element type" });
         }
         return promise.catch((err) => {
           if (err.code && (err.code === "EMFILE" || err.code === "ENFILE")) {
-            log.queue(`queued ${dirname6}/${name} because of ${err.code}`);
+            log.queue(`queued ${dirname7}/${name} because of ${err.code}`);
             const promise2 = new Promise((resolve13, reject) => {
               queue.push(() => {
-                log.queue(`Will processs queued ${dirname6}/${name}`);
-                return hashElementPromise(stats, dirname6, options, isRootElement).then((ok) => resolve13(ok)).catch((err2) => reject(err2));
+                log.queue(`Will processs queued ${dirname7}/${name}`);
+                return hashElementPromise(stats, dirname7, options, isRootElement).then((ok) => resolve13(ok)).catch((err2) => reject(err2));
               });
             });
             if (queueTimer === void 0) {
@@ -71213,34 +71215,24 @@ import { lstatSync } from "fs";
 import { resolve as resolve6 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/build/index.js
-import { join as join5 } from "path";
-import { readFile } from "fs/promises";
-async function getReleasableTargetsList() {
-  const spawnResult = await ChildProcess.spawn("yarn", ["bazel", "query", "--output=label", `"kind('ng_package|pkg_npm', //...) intersect attr('tags', 'release-package', //...)"`], { mode: "silent" });
-  if (spawnResult.status) {
-    Log.error(spawnResult.stderr);
-    throw Error("Failed to retrieve list of releasable targets, see details above.");
+import { dirname as dirname3, join as join5 } from "path";
+import { fileURLToPath as fileURLToPath2 } from "url";
+import { fork } from "child_process";
+var BuildWorker = class {
+  static async invokeBuild() {
+    return new Promise((resolve13) => {
+      const buildProcess = fork(getBuildWorkerScriptPath(), {
+        stdio: ["inherit", 2, 2, "ipc"]
+      });
+      let builtPackages = null;
+      buildProcess.on("message", (buildResponse) => builtPackages = buildResponse);
+      buildProcess.on("exit", () => resolve13(builtPackages));
+    });
   }
-  return spawnResult.stdout.trim().split("\n").filter((_3) => !!_3);
-}
-async function getBuiltPackageForTarget(target) {
-  const outputPath = join5(determineRepoBaseDirFromCwd(), "dist/bin", target.replace("//", "").replace(":", "/"));
-  const packageJSONPath = join5(outputPath, "package.json");
-  const packageJson = JSON.parse(await readFile(packageJSONPath, { encoding: "utf-8" }));
-  return {
-    name: packageJson.name,
-    outputPath
-  };
-}
-async function buildAllTargets() {
-  const targets = await getReleasableTargetsList();
-  const stampFlags = ["--config=release"];
-  const spawnResult = await ChildProcess.spawn("yarn", ["bazel", "build", ...stampFlags, ...targets], { mode: "silent" });
-  if (spawnResult.status) {
-    Log.error(spawnResult.stderr);
-    throw Error("Failed to build all of the targest as expected, see details above.");
-  }
-  return Promise.all(targets.map(getBuiltPackageForTarget));
+};
+function getBuildWorkerScriptPath() {
+  const bundlesDir = dirname3(fileURLToPath2(import.meta.url));
+  return join5(bundlesDir, "./release/build/build-worker.mjs");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/build-and-link/cli.js
@@ -71264,7 +71256,7 @@ async function handler11({ projectRoot }) {
   }
   const config = await getConfig();
   assertValidReleaseConfig(config);
-  const builtPackages = await buildAllTargets();
+  const builtPackages = await BuildWorker.invokeBuild();
   if (builtPackages === null) {
     Log.error(`  \u2718   Could not build release output. Please check output above.`);
     process.exit(1);
@@ -72746,8 +72738,8 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/autosquash-merge.js
-import { dirname as dirname3, join as join8 } from "path";
-import { fileURLToPath as fileURLToPath2 } from "url";
+import { dirname as dirname4, join as join8 } from "path";
+import { fileURLToPath as fileURLToPath3 } from "url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
   async merge(pullRequest) {
     const { githubTargetBranch, targetBranches, revisionRange, needsCommitMessageFixup, baseSha, prNumber } = pullRequest;
@@ -72788,7 +72780,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
   }
 };
 function getCommitMessageFilterScriptPath() {
-  const bundlesDir = dirname3(fileURLToPath2(import.meta.url));
+  const bundlesDir = dirname4(fileURLToPath3(import.meta.url));
   return join8(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
 }
 
@@ -73415,7 +73407,25 @@ function builder19(argv) {
   });
 }
 async function handler19(args) {
-  const builtPackages = await buildAllTargets();
+  const config = await getConfig();
+  assertValidReleaseConfig(config);
+  const { npmPackages } = config.release;
+  let builtPackages = await BuildWorker.invokeBuild();
+  if (builtPackages === null) {
+    Log.error(`  \u2718   Could not build release output. Please check output above.`);
+    process.exit(1);
+  }
+  if (builtPackages.length === 0) {
+    Log.error(`  \u2718   No release packages have been built. Please ensure that the`);
+    Log.error(`      build script is configured correctly in ".ng-dev".`);
+    process.exit(1);
+  }
+  const missingPackages = npmPackages.filter((pkg) => !builtPackages.find((b) => b.name === pkg.name));
+  if (missingPackages.length > 0) {
+    Log.error(`  \u2718   Release output missing for the following packages:`);
+    missingPackages.forEach((pkg) => Log.error(`      - ${pkg.name}`));
+    process.exit(1);
+  }
   if (args.json) {
     process.stdout.write(JSON.stringify(builtPackages, null, 2));
   } else {
@@ -73802,7 +73812,10 @@ function fetchCommitsForRevisionRange(client, revisionRange) {
     `--format=${gitLogFormatForParsing}${splitDelimiter}`,
     revisionRange
   ]);
-  return output.stdout.split(splitDelimiter).filter((entry) => !!entry.trim()).map((entry) => parseCommitFromGitLog(Buffer.from(entry, "utf-8")));
+  return output.stdout.split(splitDelimiter).filter((entry) => !!entry.trim()).map(santizeCommitMessage).map((entry) => parseCommitFromGitLog(Buffer.from(entry, "utf-8")));
+}
+function santizeCommitMessage(content) {
+  return content.replace(/ (@[A-z0-9]+) /g, " `$1` ");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/changelog.js
@@ -74527,23 +74540,23 @@ var ReleaseAction = class {
     this.git.run(["push", "-q", this.git.getRepoGitUrl(), `HEAD:refs/heads/${branchName}`]);
   }
   async _pushHeadToFork(proposedBranchName, trackLocalBranch) {
-    const fork = await this._getForkOfAuthenticatedUser();
-    const repoGitUrl = getRepositoryGitUrl({ ...fork, useSsh: this.git.remoteConfig.useSsh }, this.git.githubToken);
-    const branchName = await this._findAvailableBranchName(fork, proposedBranchName);
+    const fork2 = await this._getForkOfAuthenticatedUser();
+    const repoGitUrl = getRepositoryGitUrl({ ...fork2, useSsh: this.git.remoteConfig.useSsh }, this.git.githubToken);
+    const branchName = await this._findAvailableBranchName(fork2, proposedBranchName);
     const pushArgs = [];
     if (trackLocalBranch) {
       await this.createLocalBranchFromHead(branchName);
       pushArgs.push("--set-upstream");
     }
     this.git.run(["push", "-q", repoGitUrl, `HEAD:refs/heads/${branchName}`, ...pushArgs]);
-    return { fork, branchName };
+    return { fork: fork2, branchName };
   }
   async pushChangesToForkAndCreatePullRequest(targetBranch, proposedForkBranchName, title, body) {
     const repoSlug = `${this.git.remoteParams.owner}/${this.git.remoteParams.repo}`;
-    const { fork, branchName } = await this._pushHeadToFork(proposedForkBranchName, true);
+    const { fork: fork2, branchName } = await this._pushHeadToFork(proposedForkBranchName, true);
     const { data } = await this.git.github.pulls.create({
       ...this.git.remoteParams,
-      head: `${fork.owner}:${branchName}`,
+      head: `${fork2.owner}:${branchName}`,
       base: targetBranch,
       body,
       title
@@ -74559,7 +74572,7 @@ var ReleaseAction = class {
     return {
       id: data.number,
       url: data.html_url,
-      fork,
+      fork: fork2,
       forkBranch: branchName
     };
   }
@@ -75221,7 +75234,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-f1bc56cd4c925ee4e65d46c96fb8c204184b707a`;
+  const localVersion = `0.0.0-3b93d927624e63c84b79f412fd708e9bcd2092e0`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -76776,7 +76789,7 @@ moveToTail_fn = function(index) {
 
 // node_modules/glob/node_modules/path-scurry/dist/mjs/index.js
 import { posix, win32 } from "path";
-import { fileURLToPath as fileURLToPath3 } from "url";
+import { fileURLToPath as fileURLToPath4 } from "url";
 import * as actualFS from "fs";
 import { lstatSync as lstatSync2, readdir as readdirCB, readdirSync as readdirSync4, readlinkSync, realpathSync as rps } from "fs";
 import { lstat, readdir, readlink, realpath } from "fs/promises";
@@ -78285,7 +78298,7 @@ var PathScurryBase = class {
     __privateAdd(this, _fs2, void 0);
     __privateSet(this, _fs2, fsFromOption(fs6));
     if (cwd instanceof URL || cwd.startsWith("file://")) {
-      cwd = fileURLToPath3(cwd);
+      cwd = fileURLToPath4(cwd);
     }
     const cwdPath = pathImpl.resolve(cwd);
     this.roots = /* @__PURE__ */ Object.create(null);
@@ -78796,7 +78809,7 @@ var Path = process.platform === "win32" ? PathWin32 : PathPosix;
 var PathScurry = process.platform === "win32" ? PathScurryWin32 : process.platform === "darwin" ? PathScurryDarwin : PathScurryPosix;
 
 // node_modules/glob/dist/esm/glob.js
-import { fileURLToPath as fileURLToPath4 } from "url";
+import { fileURLToPath as fileURLToPath5 } from "url";
 
 // node_modules/glob/dist/esm/pattern.js
 var isPatternList = (pl) => pl.length >= 1;
@@ -79584,7 +79597,7 @@ var Glob = class {
     if (!opts.cwd) {
       this.cwd = "";
     } else if (opts.cwd instanceof URL || opts.cwd.startsWith("file://")) {
-      opts.cwd = fileURLToPath4(opts.cwd);
+      opts.cwd = fileURLToPath5(opts.cwd);
     }
     this.cwd = opts.cwd || "";
     this.root = opts.root;
@@ -79771,7 +79784,7 @@ glob.glob = glob;
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync12 } from "fs";
-import { dirname as dirname4, join as join13, resolve as resolve10 } from "path";
+import { dirname as dirname5, join as join13, resolve as resolve10 } from "path";
 import ts2 from "typescript";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/file_system.js
@@ -79874,7 +79887,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join13(dirname4(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join13(dirname5(containingFilePath), specifier) : specifier;
     const stat = getFileStatus(importFullPath);
     if (stat && stat.isFile()) {
       return importFullPath;
@@ -79894,9 +79907,9 @@ var Analyzer = class {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/config.js
-import { dirname as dirname5, isAbsolute, resolve as resolve11 } from "path";
+import { dirname as dirname6, isAbsolute, resolve as resolve11 } from "path";
 function loadTestConfig(configPath) {
-  const configBaseDir = dirname5(configPath);
+  const configBaseDir = dirname6(configPath);
   const resolveRelativePath = (relativePath) => resolve11(configBaseDir, relativePath);
   try {
     const config = __require(configPath);
