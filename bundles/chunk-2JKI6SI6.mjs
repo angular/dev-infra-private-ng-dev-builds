@@ -61,14 +61,6 @@ var __privateSet = (obj, member, value, setter) => {
   setter ? setter.call(obj, value) : member.set(obj, value);
   return value;
 };
-var __privateWrapper = (obj, member, setter, getter) => ({
-  set _(value) {
-    __privateSet(obj, member, value, setter);
-  },
-  get _() {
-    return __privateGet(obj, member, getter);
-  }
-});
 var __privateMethod = (obj, member, method) => {
   __accessCheck(obj, member, "access private method");
   return method;
@@ -85,7 +77,6 @@ export {
   __privateGet,
   __privateAdd,
   __privateSet,
-  __privateWrapper,
   __privateMethod
 };
-//# sourceMappingURL=chunk-GZ4KLE6L.mjs.map
+//# sourceMappingURL=chunk-2JKI6SI6.mjs.map
