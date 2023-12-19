@@ -2110,9 +2110,9 @@ var require_cli_cursor = __commonJS({
   }
 });
 
-// node_modules/run-async/index.js
+// node_modules/inquirer/node_modules/run-async/index.js
 var require_run_async = __commonJS({
-  "node_modules/run-async/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/run-async/index.js"(exports2, module2) {
     "use strict";
     function isPromise2(obj) {
       return !!obj && (typeof obj === "object" || typeof obj === "function") && typeof obj.then === "function";
@@ -32178,9 +32178,9 @@ var require_main = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/function-bind/implementation.js
+// node_modules/function-bind/implementation.js
 var require_implementation = __commonJS({
-  "node_modules/inquirer/node_modules/function-bind/implementation.js"(exports2, module2) {
+  "node_modules/function-bind/implementation.js"(exports2, module2) {
     "use strict";
     var ERROR_MESSAGE = "Function.prototype.bind called on incompatible ";
     var toStr = Object.prototype.toString;
@@ -32254,9 +32254,9 @@ var require_implementation = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/function-bind/index.js
+// node_modules/function-bind/index.js
 var require_function_bind = __commonJS({
-  "node_modules/inquirer/node_modules/function-bind/index.js"(exports2, module2) {
+  "node_modules/function-bind/index.js"(exports2, module2) {
     "use strict";
     var implementation = require_implementation();
     module2.exports = Function.prototype.bind || implementation;
@@ -32353,183 +32353,13 @@ var require_has_proto = __commonJS({
   }
 });
 
-// node_modules/get-intrinsic/node_modules/function-bind/implementation.js
-var require_implementation2 = __commonJS({
-  "node_modules/get-intrinsic/node_modules/function-bind/implementation.js"(exports2, module2) {
-    "use strict";
-    var ERROR_MESSAGE = "Function.prototype.bind called on incompatible ";
-    var toStr = Object.prototype.toString;
-    var max = Math.max;
-    var funcType = "[object Function]";
-    var concatty = function concatty2(a, b) {
-      var arr = [];
-      for (var i = 0; i < a.length; i += 1) {
-        arr[i] = a[i];
-      }
-      for (var j = 0; j < b.length; j += 1) {
-        arr[j + a.length] = b[j];
-      }
-      return arr;
-    };
-    var slicy = function slicy2(arrLike, offset) {
-      var arr = [];
-      for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
-        arr[j] = arrLike[i];
-      }
-      return arr;
-    };
-    var joiny = function(arr, joiner) {
-      var str = "";
-      for (var i = 0; i < arr.length; i += 1) {
-        str += arr[i];
-        if (i + 1 < arr.length) {
-          str += joiner;
-        }
-      }
-      return str;
-    };
-    module2.exports = function bind(that) {
-      var target = this;
-      if (typeof target !== "function" || toStr.apply(target) !== funcType) {
-        throw new TypeError(ERROR_MESSAGE + target);
-      }
-      var args = slicy(arguments, 1);
-      var bound;
-      var binder = function() {
-        if (this instanceof bound) {
-          var result = target.apply(
-            this,
-            concatty(args, arguments)
-          );
-          if (Object(result) === result) {
-            return result;
-          }
-          return this;
-        }
-        return target.apply(
-          that,
-          concatty(args, arguments)
-        );
-      };
-      var boundLength = max(0, target.length - args.length);
-      var boundArgs = [];
-      for (var i = 0; i < boundLength; i++) {
-        boundArgs[i] = "$" + i;
-      }
-      bound = Function("binder", "return function (" + joiny(boundArgs, ",") + "){ return binder.apply(this,arguments); }")(binder);
-      if (target.prototype) {
-        var Empty = function Empty2() {
-        };
-        Empty.prototype = target.prototype;
-        bound.prototype = new Empty();
-        Empty.prototype = null;
-      }
-      return bound;
-    };
-  }
-});
-
-// node_modules/get-intrinsic/node_modules/function-bind/index.js
-var require_function_bind2 = __commonJS({
-  "node_modules/get-intrinsic/node_modules/function-bind/index.js"(exports2, module2) {
-    "use strict";
-    var implementation = require_implementation2();
-    module2.exports = Function.prototype.bind || implementation;
-  }
-});
-
-// node_modules/hasown/node_modules/function-bind/implementation.js
-var require_implementation3 = __commonJS({
-  "node_modules/hasown/node_modules/function-bind/implementation.js"(exports2, module2) {
-    "use strict";
-    var ERROR_MESSAGE = "Function.prototype.bind called on incompatible ";
-    var toStr = Object.prototype.toString;
-    var max = Math.max;
-    var funcType = "[object Function]";
-    var concatty = function concatty2(a, b) {
-      var arr = [];
-      for (var i = 0; i < a.length; i += 1) {
-        arr[i] = a[i];
-      }
-      for (var j = 0; j < b.length; j += 1) {
-        arr[j + a.length] = b[j];
-      }
-      return arr;
-    };
-    var slicy = function slicy2(arrLike, offset) {
-      var arr = [];
-      for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
-        arr[j] = arrLike[i];
-      }
-      return arr;
-    };
-    var joiny = function(arr, joiner) {
-      var str = "";
-      for (var i = 0; i < arr.length; i += 1) {
-        str += arr[i];
-        if (i + 1 < arr.length) {
-          str += joiner;
-        }
-      }
-      return str;
-    };
-    module2.exports = function bind(that) {
-      var target = this;
-      if (typeof target !== "function" || toStr.apply(target) !== funcType) {
-        throw new TypeError(ERROR_MESSAGE + target);
-      }
-      var args = slicy(arguments, 1);
-      var bound;
-      var binder = function() {
-        if (this instanceof bound) {
-          var result = target.apply(
-            this,
-            concatty(args, arguments)
-          );
-          if (Object(result) === result) {
-            return result;
-          }
-          return this;
-        }
-        return target.apply(
-          that,
-          concatty(args, arguments)
-        );
-      };
-      var boundLength = max(0, target.length - args.length);
-      var boundArgs = [];
-      for (var i = 0; i < boundLength; i++) {
-        boundArgs[i] = "$" + i;
-      }
-      bound = Function("binder", "return function (" + joiny(boundArgs, ",") + "){ return binder.apply(this,arguments); }")(binder);
-      if (target.prototype) {
-        var Empty = function Empty2() {
-        };
-        Empty.prototype = target.prototype;
-        bound.prototype = new Empty();
-        Empty.prototype = null;
-      }
-      return bound;
-    };
-  }
-});
-
-// node_modules/hasown/node_modules/function-bind/index.js
-var require_function_bind3 = __commonJS({
-  "node_modules/hasown/node_modules/function-bind/index.js"(exports2, module2) {
-    "use strict";
-    var implementation = require_implementation3();
-    module2.exports = Function.prototype.bind || implementation;
-  }
-});
-
 // node_modules/hasown/index.js
 var require_hasown = __commonJS({
   "node_modules/hasown/index.js"(exports2, module2) {
     "use strict";
     var call = Function.prototype.call;
     var $hasOwn = Object.prototype.hasOwnProperty;
-    var bind = require_function_bind3();
+    var bind = require_function_bind();
     module2.exports = bind.call(call, $hasOwn);
   }
 });
@@ -32730,7 +32560,7 @@ var require_get_intrinsic = __commonJS({
       "%WeakMapPrototype%": ["WeakMap", "prototype"],
       "%WeakSetPrototype%": ["WeakSet", "prototype"]
     };
-    var bind = require_function_bind2();
+    var bind = require_function_bind();
     var hasOwn = require_hasown();
     var $concat = bind.call(Function.call, Array.prototype.concat);
     var $spliceApply = bind.call(Function.apply, Array.prototype.splice);
@@ -32986,9 +32816,9 @@ var require_set_function_length = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/call-bind/index.js
+// node_modules/call-bind/index.js
 var require_call_bind = __commonJS({
-  "node_modules/inquirer/node_modules/call-bind/index.js"(exports2, module2) {
+  "node_modules/call-bind/index.js"(exports2, module2) {
     "use strict";
     var bind = require_function_bind();
     var GetIntrinsic = require_get_intrinsic();
@@ -33028,9 +32858,9 @@ var require_call_bind = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/@ljharb/through/index.js
+// node_modules/@ljharb/through/index.js
 var require_through = __commonJS({
-  "node_modules/inquirer/node_modules/@ljharb/through/index.js"(exports2, module2) {
+  "node_modules/@ljharb/through/index.js"(exports2, module2) {
     "use strict";
     var Stream2 = __require("stream").Stream;
     var callBind = require_call_bind();
@@ -52491,9 +52321,9 @@ var require_normalize_options = __commonJS({
   }
 });
 
-// node_modules/function-bind/implementation.js
-var require_implementation4 = __commonJS({
-  "node_modules/function-bind/implementation.js"(exports2, module2) {
+// node_modules/has/node_modules/function-bind/implementation.js
+var require_implementation2 = __commonJS({
+  "node_modules/has/node_modules/function-bind/implementation.js"(exports2, module2) {
     "use strict";
     var ERROR_MESSAGE = "Function.prototype.bind called on incompatible ";
     var slice = Array.prototype.slice;
@@ -52541,11 +52371,11 @@ var require_implementation4 = __commonJS({
   }
 });
 
-// node_modules/function-bind/index.js
-var require_function_bind4 = __commonJS({
-  "node_modules/function-bind/index.js"(exports2, module2) {
+// node_modules/has/node_modules/function-bind/index.js
+var require_function_bind2 = __commonJS({
+  "node_modules/has/node_modules/function-bind/index.js"(exports2, module2) {
     "use strict";
-    var implementation = require_implementation4();
+    var implementation = require_implementation2();
     module2.exports = Function.prototype.bind || implementation;
   }
 });
@@ -52554,7 +52384,7 @@ var require_function_bind4 = __commonJS({
 var require_src2 = __commonJS({
   "node_modules/has/src/index.js"(exports2, module2) {
     "use strict";
-    var bind = require_function_bind4();
+    var bind = require_function_bind2();
     module2.exports = bind.call(Function.call, Object.prototype.hasOwnProperty);
   }
 });
@@ -67471,10 +67301,10 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/figures/index.js
+// node_modules/inquirer/node_modules/figures/index.js
 import process3 from "process";
 
-// node_modules/figures/node_modules/is-unicode-supported/index.js
+// node_modules/inquirer/node_modules/is-unicode-supported/index.js
 import process2 from "process";
 function isUnicodeSupported() {
   if (process2.platform !== "win32") {
@@ -67483,7 +67313,7 @@ function isUnicodeSupported() {
   return Boolean(process2.env.CI) || Boolean(process2.env.WT_SESSION) || Boolean(process2.env.TERMINUS_SUBLIME) || process2.env.ConEmuTask === "{cmd::Cmder}" || process2.env.TERM_PROGRAM === "Terminus-Sublime" || process2.env.TERM_PROGRAM === "vscode" || process2.env.TERM === "xterm-256color" || process2.env.TERM === "alacritty" || process2.env.TERMINAL_EMULATOR === "JetBrains-JediTerm";
 }
 
-// node_modules/figures/index.js
+// node_modules/inquirer/node_modules/figures/index.js
 var { platform } = process3;
 var common = {
   square: "\u2588",
@@ -75237,7 +75067,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a3, _b2, _c2;
-  const localVersion = `0.0.0-5818d103879b282445ef359c1900e8087ca9d57c`;
+  const localVersion = `0.0.0-4fad60dfaf9f8acae50a589d0f74d19bef7b10fd`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
