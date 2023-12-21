@@ -78012,7 +78012,7 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
         Log.info(green(`  \u2713  Exiting due to dry run mode.`));
         return;
       }
-      if (!this.flags.forceManualBranches && this.flags.branchPrompt && !await Prompt2.confirm(getTargetedBranchesConfirmationPromptMessage())) {
+      if (!this.config.pullRequest.__noTargetLabeling && !this.flags.forceManualBranches && this.flags.branchPrompt && !await Prompt2.confirm(getTargetedBranchesConfirmationPromptMessage())) {
         throw new UserAbortedMergeToolError();
       }
       await strategy.merge(pullRequest);
@@ -80402,7 +80402,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-ba09fc69c3a631f676291b28a4fc2039b7af753e`;
+  const localVersion = `0.0.0-d01e0c2916c4ba253852fc12819c413f382cde73`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
