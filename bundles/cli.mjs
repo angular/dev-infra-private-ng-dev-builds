@@ -66174,7 +66174,7 @@ var require_out4 = __commonJS({
 // node_modules/yargs/lib/platform-shims/esm.mjs
 import { notStrictEqual, strictEqual } from "assert";
 
-// node_modules/yargs/node_modules/cliui/build/lib/index.js
+// node_modules/cliui/build/lib/index.js
 var align = {
   right: alignRight,
   center: alignCenter
@@ -66428,7 +66428,7 @@ function cliui(opts, _mixin) {
   });
 }
 
-// node_modules/yargs/node_modules/cliui/build/lib/string-utils.js
+// node_modules/cliui/build/lib/string-utils.js
 var ansi = new RegExp("\x1B(?:\\[(?:\\d+[ABCDEFGJKSTm]|\\d+;\\d+[Hfm]|\\d+;\\d+;\\d+m|6n|s|u|\\?25[lh])|\\w)", "g");
 function stripAnsi(str) {
   return str.replace(ansi, "");
@@ -66449,7 +66449,7 @@ function wrap(str, width) {
   return wrapped;
 }
 
-// node_modules/yargs/node_modules/cliui/index.mjs
+// node_modules/cliui/index.mjs
 function ui(opts) {
   return cliui(opts, {
     stringWidth: (str) => {
@@ -80402,7 +80402,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-250a7a7f6617a7b5de31f1c2569ef6a6c5f4d476`;
+  const localVersion = `0.0.0-276ea0300c344e9b6aa9745e063102c0f067c533`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
