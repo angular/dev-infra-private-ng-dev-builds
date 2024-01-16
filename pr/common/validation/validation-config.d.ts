@@ -18,6 +18,7 @@ export declare class PullRequestValidationConfig {
     assertPassingCi: boolean;
     assertCompletedReviews: boolean;
     assertEnforcedStatuses: boolean;
+    assertMinimumReviews: boolean;
     static create(config: Partial<PullRequestValidationConfig>): PullRequestValidationConfig & Partial<PullRequestValidationConfig>;
 }
 /** Type describing a helper function for validations to create a validation failure. */

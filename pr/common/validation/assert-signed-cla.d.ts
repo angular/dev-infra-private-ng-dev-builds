@@ -56,6 +56,11 @@ export declare const signedClaValidation: {
         reviewRequests: {
             totalCount: number;
         };
+        reviews: {
+            nodes: {
+                authorAssociation: import("@octokit/graphql-schema/schema.js").CommentAuthorAssociation;
+            }[];
+        };
         maintainerCanModify: boolean;
         viewerDidAuthor: boolean;
         headRefOid: string;

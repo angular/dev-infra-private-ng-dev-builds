@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { CheckConclusionState, CheckStatusState, MergeableState, PullRequestState, StatusState } from '@octokit/graphql-schema';
+import { CheckConclusionState, CheckStatusState, MergeableState, PullRequestState, StatusState, CommentAuthorAssociation } from '@octokit/graphql-schema';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 /** A status for a pull request status or check. */
 export declare enum PullRequestStatus {
@@ -62,6 +62,11 @@ export declare const PR_SCHEMA: {
     };
     reviewRequests: {
         totalCount: number;
+    };
+    reviews: {
+        nodes: {
+            authorAssociation: CommentAuthorAssociation;
+        }[];
     };
     maintainerCanModify: boolean;
     viewerDidAuthor: boolean;
