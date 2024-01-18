@@ -36212,10 +36212,10 @@ var require_root2 = __commonJS({
       function finish(err, root) {
         if (!callback)
           return;
-        var cb = callback;
-        callback = null;
         if (sync)
           throw err;
+        var cb = callback;
+        callback = null;
         cb(err, root);
       }
       function getBundledFileName(filename2) {
@@ -80422,7 +80422,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-193dc8fec5bfe12d7ba43990315d03e3daca0459`;
+  const localVersion = `0.0.0-ab86d6660fcdb24b899314d4a09efe7db8a16a42`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
