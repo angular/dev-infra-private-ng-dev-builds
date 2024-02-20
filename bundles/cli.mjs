@@ -2146,9 +2146,9 @@ var require_cli_cursor = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/run-async/index.js
+// node_modules/run-async/index.js
 var require_run_async = __commonJS({
-  "node_modules/inquirer/node_modules/run-async/index.js"(exports2, module2) {
+  "node_modules/run-async/index.js"(exports2, module2) {
     "use strict";
     function isPromise2(obj) {
       return !!obj && (typeof obj === "object" || typeof obj === "function") && typeof obj.then === "function";
@@ -32754,9 +32754,9 @@ var require_gopd = __commonJS({
   }
 });
 
-// node_modules/define-data-property/index.js
+// node_modules/inquirer/node_modules/define-data-property/index.js
 var require_define_data_property = __commonJS({
-  "node_modules/define-data-property/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/define-data-property/index.js"(exports2, module2) {
     "use strict";
     var hasPropertyDescriptors = require_has_property_descriptors()();
     var GetIntrinsic = require_get_intrinsic();
@@ -32811,9 +32811,9 @@ var require_define_data_property = __commonJS({
   }
 });
 
-// node_modules/set-function-length/index.js
+// node_modules/inquirer/node_modules/set-function-length/index.js
 var require_set_function_length = __commonJS({
-  "node_modules/set-function-length/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/set-function-length/index.js"(exports2, module2) {
     "use strict";
     var GetIntrinsic = require_get_intrinsic();
     var define2 = require_define_data_property();
@@ -32852,9 +32852,9 @@ var require_set_function_length = __commonJS({
   }
 });
 
-// node_modules/call-bind/index.js
+// node_modules/inquirer/node_modules/call-bind/index.js
 var require_call_bind = __commonJS({
-  "node_modules/call-bind/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/call-bind/index.js"(exports2, module2) {
     "use strict";
     var bind = require_function_bind();
     var GetIntrinsic = require_get_intrinsic();
@@ -32894,9 +32894,9 @@ var require_call_bind = __commonJS({
   }
 });
 
-// node_modules/@ljharb/through/index.js
+// node_modules/inquirer/node_modules/@ljharb/through/index.js
 var require_through = __commonJS({
-  "node_modules/@ljharb/through/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/@ljharb/through/index.js"(exports2, module2) {
     "use strict";
     var Stream = __require("stream").Stream;
     var callBind = require_call_bind();
@@ -80459,7 +80459,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-77b43652a547e737b401c132dc76086dae9c2855`;
+  const localVersion = `0.0.0-f3f14a3660225b570e7a5fb8ce10ffff57f8471b`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
