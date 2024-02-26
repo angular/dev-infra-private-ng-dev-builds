@@ -2306,9 +2306,9 @@ var require_cli_cursor = __commonJS({
   }
 });
 
-// node_modules/run-async/index.js
+// node_modules/inquirer/node_modules/run-async/index.js
 var require_run_async = __commonJS({
-  "node_modules/run-async/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/run-async/index.js"(exports2, module2) {
     "use strict";
     function isPromise2(obj) {
       return !!obj && (typeof obj === "object" || typeof obj === "function") && typeof obj.then === "function";
@@ -16159,9 +16159,9 @@ var require_ansi_styles = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/wrap-ansi/index.js
+// node_modules/wrap-ansi/index.js
 var require_wrap_ansi = __commonJS({
-  "node_modules/inquirer/node_modules/wrap-ansi/index.js"(exports2, module2) {
+  "node_modules/wrap-ansi/index.js"(exports2, module2) {
     "use strict";
     var stringWidth2 = require_string_width();
     var stripAnsi3 = require_strip_ansi();
@@ -41746,7 +41746,6 @@ var require_Pair = __commonJS({
 var require_stringifyCollection = __commonJS({
   "node_modules/yaml/dist/stringify/stringifyCollection.js"(exports2) {
     "use strict";
-    var Collection = require_Collection();
     var identity = require_identity3();
     var stringify = require_stringify();
     var stringifyComment = require_stringifyComment();
@@ -41862,7 +41861,7 @@ ${indent}${line}` : "\n";
       } else {
         if (!reqNewline) {
           const len = lines.reduce((sum, line) => sum + line.length + 2, 2);
-          reqNewline = len > Collection.Collection.maxFlowStringSingleLineLength;
+          reqNewline = ctx.options.lineWidth > 0 && len > ctx.options.lineWidth;
         }
         if (reqNewline) {
           str = start;
@@ -80685,7 +80684,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-f01dcb10b25487efbcfd79f2846a21355c91e90c`;
+  const localVersion = `0.0.0-1ffbf2209c4d19fa22eda37dd4070ad0064a1b1e`;
   const workspacePackageJsonFile = path4.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path4.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
