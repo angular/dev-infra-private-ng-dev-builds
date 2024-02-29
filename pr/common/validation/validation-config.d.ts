@@ -5,22 +5,9 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { PullRequestValidationConfig } from '../../config/index.js';
 import { PullRequestValidationFailure } from './validation-failure.js';
-/**
- * Pull request validation configuration controlling which assertions
- * should run or not. This enables the forcibly non-fatal ignore feature.
- */
-export declare class PullRequestValidationConfig {
-    assertPending: boolean;
-    assertMergeReady: boolean;
-    assertSignedCla: boolean;
-    assertChangesAllowForTargetLabel: boolean;
-    assertPassingCi: boolean;
-    assertCompletedReviews: boolean;
-    assertEnforcedStatuses: boolean;
-    assertMinimumReviews: boolean;
-    static create(config: Partial<PullRequestValidationConfig>): PullRequestValidationConfig & Partial<PullRequestValidationConfig>;
-}
+export declare function createPullRequestValidationConfig(config: PullRequestValidationConfig): PullRequestValidationConfig;
 /** Type describing a helper function for validations to create a validation failure. */
 export type PullRequestValidationErrorCreateFn = (message: string) => PullRequestValidationFailure;
 /**
@@ -32,7 +19,7 @@ export declare abstract class PullRequestValidation {
     protected _createError: PullRequestValidationErrorCreateFn;
     constructor(name: keyof PullRequestValidationConfig, _createError: PullRequestValidationErrorCreateFn);
     /** Assertion function to be defined for the specific validator. */
-    abstract assert(...parameters: unknown[]): void;
+    abstract assert(...parameters: unknown[]): void | Promise<void>;
 }
 /** Creates a pull request validation from a configuration and implementation class. */
 export declare function createPullRequestValidation<T extends PullRequestValidation>({ name, canBeForceIgnored }: {

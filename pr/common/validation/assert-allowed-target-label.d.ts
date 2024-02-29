@@ -11,5 +11,5 @@ import { PullRequestConfig } from '../../config/index.js';
 import { TargetLabel } from '../labels/target.js';
 /** Assert the commits provided are allowed to merge to the provided target label. */
 export declare const changesAllowForTargetLabelValidation: {
-    run(validationConfig: import("./validation-config.js").PullRequestValidationConfig, commits: Commit[], targetLabel: TargetLabel, config: PullRequestConfig, releaseTrains: ActiveReleaseTrains, labelsOnPullRequest: string[]): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
+    run(validationConfig: import("../../config/index.js").PullRequestValidationConfig, commits: Commit[], targetLabel: TargetLabel, config: PullRequestConfig, releaseTrains: ActiveReleaseTrains, labelsOnPullRequest: string[]): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };

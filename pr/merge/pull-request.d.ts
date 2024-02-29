@@ -5,11 +5,10 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { PullRequestValidationConfig } from '../common/validation/validation-config.js';
 import { PullRequestValidationFailure } from '../common/validation/validation-failure.js';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 import { GithubConfig, NgDevConfig } from '../../utils/config.js';
-import { PullRequestConfig } from '../config/index.js';
+import { PullRequestConfig, PullRequestValidationConfig } from '../config/index.js';
 /** Interface that describes a pull request. */
 export interface PullRequest {
     /** URL to the pull request. */

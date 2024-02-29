@@ -18,7 +18,6 @@ import {
   _npmPackageInfoCache,
   actionLabels,
   allLabels,
-  assertValidCaretakerConfig,
   assertValidCommitMessageConfig,
   assertValidFormatConfig,
   assertValidPullRequestConfig,
@@ -38,13 +37,15 @@ import {
   managedLabels,
   mergeLabels,
   priorityLabels,
+  requiresLabels,
   targetLabels
-} from "./chunk-RWI7KSQD.mjs";
+} from "./chunk-JBHPDUJT.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
   Log,
   LogLevel,
+  assertValidCaretakerConfig,
   assertValidGithubConfig,
   assertValidReleaseConfig,
   blue,
@@ -58,7 +59,7 @@ import {
   setConfig,
   underline,
   yellow
-} from "./chunk-Q6HD26OW.mjs";
+} from "./chunk-UNUYI25Y.mjs";
 import "./chunk-BEEB7UQG.mjs";
 import "./chunk-2JKI6SI6.mjs";
 export {
@@ -110,6 +111,7 @@ export {
   mergeLabels,
   priorityLabels,
   red,
+  requiresLabels,
   reset,
   setConfig,
   targetLabels,

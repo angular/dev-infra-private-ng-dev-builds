@@ -50,6 +50,10 @@ export interface PullRequestConfig {
      */
     targetLabelExemptScopes?: string[];
     /**
+     * Optional map of validations to enable/disable, merged with the defaults from ng-dev.
+     */
+    validators?: PullRequestValidationConfig;
+    /**
      * Whether target labeling should be disabled. Special option for repositories
      * not working with the canonical versioning and branching of Angular projects.
      *
@@ -64,3 +68,6 @@ export declare function assertValidPullRequestConfig<T extends NgDevConfig>(conf
 }>): asserts config is T & {
     pullRequest: PullRequestConfig;
 };
+export interface PullRequestValidationConfig {
+    [key: `assert${string}`]: boolean;
+}

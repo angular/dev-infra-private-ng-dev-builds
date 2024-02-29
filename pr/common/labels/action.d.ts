@@ -11,6 +11,10 @@ export declare const actionLabels: {
         description: string;
         name: string;
     };
+    ACTION_GLOBAL_PRESUBMIT: {
+        description: string;
+        name: string;
+    };
     ACTION_REVIEW: {
         description: string;
         name: string;

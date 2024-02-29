@@ -30,6 +30,7 @@ export declare class GithubClient {
         paginate: import("@octokit/plugin-paginate-rest/dist-types").PaginateInterface;
     } & import("@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types").RestEndpointMethods & import("@octokit/plugin-rest-endpoint-methods/dist-types/types").Api;
     readonly pulls: Octokit['pulls'];
+    readonly orgs: Octokit['orgs'];
     readonly repos: Octokit['repos'];
     readonly issues: Octokit['issues'];
     readonly git: Octokit['git'];

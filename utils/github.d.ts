@@ -12,3 +12,5 @@ import { AuthenticatedGitClient } from './git/authenticated-git-client.js';
 export declare function getPr<PrSchema>(prSchema: PrSchema, prNumber: number, git: AuthenticatedGitClient): Promise<PrSchema | null>;
 /** Get all pending PRs from github  */
 export declare function getPendingPrs<PrSchema>(prSchema: PrSchema, git: AuthenticatedGitClient): Promise<PrSchema[]>;
+/** Get all files in a PR from github  */
+export declare function getPrFiles<PrSchema>(fileSchema: PrSchema, prNumber: number, git: AuthenticatedGitClient): Promise<PrSchema[]>;

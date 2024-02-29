@@ -7,7 +7,7 @@
  */
 /** Assert the pull request has a passing combined CI status. */
 export declare const passingCiValidation: {
-    run(validationConfig: import("./validation-config.js").PullRequestValidationConfig, pullRequest: {
+    run(validationConfig: import("../../config/index.js").PullRequestValidationConfig, pullRequest: {
         url: string;
         isDraft: boolean;
         state: import("@octokit/graphql-schema/schema.js").PullRequestState;
@@ -29,6 +29,8 @@ export declare const passingCiValidation: {
             totalCount: number;
             nodes: {
                 commit: {
+                    oid: string;
+                    authoredDate: string;
                     statusCheckRollup: {
                         state: import("@octokit/graphql-schema/schema.js").StatusState;
                         contexts: {
@@ -58,7 +60,14 @@ export declare const passingCiValidation: {
         };
         reviews: {
             nodes: {
+                author: {
+                    login: string;
+                };
                 authorAssociation: import("@octokit/graphql-schema/schema.js").CommentAuthorAssociation;
+                bodyText: string;
+                commit: {
+                    oid: string;
+                };
             }[];
         };
         maintainerCanModify: boolean;

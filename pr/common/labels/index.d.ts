@@ -3,8 +3,13 @@ import { actionLabels } from './action.js';
 import { mergeLabels } from './merge.js';
 import { targetLabels } from './target.js';
 import { priorityLabels } from './priority.js';
+import { requiresLabels } from './requires.js';
 import { Label } from './base.js';
 export declare const allLabels: {
+    REQUIRES_TGP: {
+        name: string;
+        description: string;
+    };
     FEATURE_IN_BACKLOG: {
         name: string;
         description: string;
@@ -79,6 +84,10 @@ export declare const allLabels: {
         description: string;
         name: string;
     };
+    ACTION_GLOBAL_PRESUBMIT: {
+        description: string;
+        name: string;
+    };
     ACTION_REVIEW: {
         description: string;
         name: string;
@@ -109,5 +118,5 @@ export declare const allLabels: {
         commitCheck: (c: import("../../../commit-message/parse.js").Commit) => boolean;
     };
 };
-export { managedLabels, actionLabels, mergeLabels, targetLabels, priorityLabels };
+export { managedLabels, actionLabels, mergeLabels, targetLabels, priorityLabels, requiresLabels };
 export { Label };

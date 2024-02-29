@@ -34,6 +34,41 @@ export interface GithubConfig {
     /** Whether to default to use NgDevService for authentication. */
     useNgDevAuthService?: boolean;
 }
+/** Configuration describing how files are synced into Google. */
+export interface GoogleSyncConfig {
+    /**
+     * Patterns matching files which are synced into Google. Patterns
+     * should be relative to the project directory.
+     */
+    syncedFilePatterns: string[];
+    /**
+     * Patterns matching files which are never synced into Google. Patterns
+     * should be relative to the project directory.
+     */
+    alwaysExternalFilePatterns: string[];
+    /**
+     * Patterns matching files which need to be synced separately.
+     * Patterns should be relative to the project directory.
+     */
+    separateFilePatterns: string[];
+}
+export interface CaretakerConfig {
+    /** Github queries showing a snapshot of pulls/issues caretakers need to monitor. */
+    githubQueries?: {
+        name: string;
+        query: string;
+    }[];
+    /**
+     * The Github group used to track current caretakers. A second group is assumed to exist with the
+     * name "<group-name>-roster" containing a list of all users eligible for the caretaker group.
+     * */
+    caretakerGroup?: string;
+    /**
+     * Project-relative path to a config file describing how the project is synced into Google.
+     * The configuration file is expected to be valid JSONC and match {@see GoogleSyncConfig}.
+     */
+    g3SyncConfigPath?: string;
+}
 /**
  * Set the cached configuration object to be loaded later. Only to be used on
  * CI and test situations in which loading from the `.ng-dev/` directory is not possible.
@@ -66,4 +101,10 @@ export declare function assertValidGithubConfig<T extends NgDevConfig>(config: T
     github: GithubConfig;
 }>): asserts config is T & {
     github: GithubConfig;
+};
+/** Retrieve and validate the config as `CaretakerConfig`. */
+export declare function assertValidCaretakerConfig<T extends NgDevConfig>(config: T & Partial<{
+    caretaker: CaretakerConfig;
+}>): asserts config is T & {
+    caretaker: CaretakerConfig;
 };

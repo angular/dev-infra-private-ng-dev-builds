@@ -36,6 +36,8 @@ export declare const PR_SCHEMA: {
         totalCount: number;
         nodes: {
             commit: {
+                oid: string;
+                authoredDate: string;
                 statusCheckRollup: {
                     state: StatusState;
                     contexts: {
@@ -65,7 +67,14 @@ export declare const PR_SCHEMA: {
     };
     reviews: {
         nodes: {
+            author: {
+                login: string;
+            };
             authorAssociation: CommentAuthorAssociation;
+            bodyText: string;
+            commit: {
+                oid: string;
+            };
         }[];
     };
     maintainerCanModify: boolean;
@@ -94,6 +103,12 @@ export declare const PR_SCHEMA: {
     };
 };
 export type PullRequestFromGithub = typeof PR_SCHEMA;
+export declare const PR_FILES_SCHEMA: {
+    nodes: {
+        path: string;
+    }[];
+};
+export type PullRequestFilesFromGithub = typeof PR_FILES_SCHEMA;
 /** Type describing the normalized and combined status of a pull request. */
 export type PullRequestStatusInfo = {
     combinedStatus: PullRequestStatus;
@@ -107,6 +122,8 @@ export type PullRequestStatusInfo = {
 export declare function fetchPullRequestFromGithub(git: AuthenticatedGitClient, prNumber: number): Promise<PullRequestFromGithub | null>;
 /** Fetches a pull request from Github. Returns null if an error occurred. */
 export declare function fetchPendingPullRequestsFromGithub(git: AuthenticatedGitClient): Promise<PullRequestFromGithub[] | null>;
+/** Fetches a pull request from Github. Returns null if an error occurred. */
+export declare function fetchPullRequestFilesFromGithub(git: AuthenticatedGitClient, prNumber: number): Promise<PullRequestFilesFromGithub[] | null>;
 /**
  * Gets the statuses for a commit from a pull request, using a consistent interface
  * for both status and checks results.

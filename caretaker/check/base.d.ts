@@ -5,9 +5,8 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { GithubConfig } from '../../utils/config.js';
+import { GithubConfig, CaretakerConfig } from '../../utils/config.js';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
-import { CaretakerConfig } from '../config.js';
 /** The BaseModule to extend modules for caretaker checks from. */
 export declare abstract class BaseModule<Data> {
     protected git: AuthenticatedGitClient;

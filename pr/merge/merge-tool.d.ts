@@ -6,9 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
-import { PullRequestConfig } from '../config/index.js';
+import { PullRequestConfig, PullRequestValidationConfig } from '../config/index.js';
 import { GithubConfig, NgDevConfig } from '../../utils/config.js';
-import { PullRequestValidationConfig } from '../common/validation/validation-config.js';
 export interface PullRequestMergeFlags {
     branchPrompt: boolean;
     forceManualBranches: boolean;
@@ -34,10 +33,10 @@ export declare class MergeTool {
     /**
      * Merges the given pull request and pushes it upstream.
      * @param prNumber Pull request that should be merged.
-     * @param validationConfig Pull request validation config. Can be modified to skip
+     * @param partialValidationConfig Pull request validation config. Can be modified to skip
      *   certain non-fatal validations.
      */
-    merge(prNumber: number, validationConfig: PullRequestValidationConfig): Promise<void>;
+    merge(prNumber: number, partialValidationConfig: PullRequestValidationConfig): Promise<void>;
     /**
      * Modifies the pull request in place with new target branches based on user
      * selection from the available active branches.
