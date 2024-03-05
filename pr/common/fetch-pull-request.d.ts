@@ -104,9 +104,7 @@ export declare const PR_SCHEMA: {
 };
 export type PullRequestFromGithub = typeof PR_SCHEMA;
 export declare const PR_FILES_SCHEMA: {
-    nodes: {
-        path: string;
-    }[];
+    path: string;
 };
 export type PullRequestFilesFromGithub = typeof PR_FILES_SCHEMA;
 /** Type describing the normalized and combined status of a pull request. */

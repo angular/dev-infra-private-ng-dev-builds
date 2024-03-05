@@ -77361,11 +77361,16 @@ async function getPrFiles(fileSchema, prNumber, git) {
       pullRequest: (0, import_typed_graphqlify2.params)({
         number: prNumber
       }, {
-        files: [fileSchema],
-        pageInfo: {
-          hasNextPage: import_typed_graphqlify2.types.boolean,
-          endCursor: import_typed_graphqlify2.types.string
-        }
+        files: (0, import_typed_graphqlify2.params)({
+          first: "$first",
+          after: "$after"
+        }, {
+          nodes: [fileSchema],
+          pageInfo: {
+            hasNextPage: import_typed_graphqlify2.types.boolean,
+            endCursor: import_typed_graphqlify2.types.string
+          }
+        })
       })
     })
   });
@@ -77380,9 +77385,9 @@ async function getPrFiles(fileSchema, prNumber, git) {
       name
     };
     const results = await git.github.graphql(PRS_QUERY, paramsValue);
-    files.push(...results.repository.pullRequest.files);
-    hasNextPage = results.repository.pullRequest.pageInfo.hasNextPage;
-    cursor = results.repository.pullRequest.pageInfo.endCursor;
+    files.push(...results.repository.pullRequest.files.nodes);
+    hasNextPage = results.repository.pullRequest.files.pageInfo.hasNextPage;
+    cursor = results.repository.pullRequest.files.pageInfo.endCursor;
   }
   return files;
 }
@@ -77566,13 +77571,9 @@ var PR_SCHEMA2 = {
     ]
   })
 };
-var PR_FILES_SCHEMA = {
-  nodes: [
-    {
-      path: import_typed_graphqlify4.types.string
-    }
-  ]
-};
+var PR_FILES_SCHEMA = (0, import_typed_graphqlify4.params)({ first: 100 }, {
+  path: import_typed_graphqlify4.types.string
+});
 async function fetchPullRequestFromGithub(git, prNumber) {
   return await getPr(PR_SCHEMA2, prNumber, git);
 }
@@ -77977,7 +77978,7 @@ var PullRequestFiles = class {
   }
   async loadPullRequestFiles() {
     const files = await fetchPullRequestFilesFromGithub(this.git, this.prNumber);
-    return (files == null ? void 0 : files.flatMap((x) => x.nodes).map((p) => p.path)) ?? [];
+    return (files == null ? void 0 : files.map((x) => x.path)) ?? [];
   }
   async pullRequestHasSeparateFiles() {
     const pullRequestFiles = await this.loadPullRequestFiles();
@@ -80876,7 +80877,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-b18378deb8556573a8dc7f841415260bccfba878`;
+  const localVersion = `0.0.0-96a8277d21eb61a2370061717ffa8dee5668caa0`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

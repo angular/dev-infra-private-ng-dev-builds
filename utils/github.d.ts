@@ -13,4 +13,4 @@ export declare function getPr<PrSchema>(prSchema: PrSchema, prNumber: number, gi
 /** Get all pending PRs from github  */
 export declare function getPendingPrs<PrSchema>(prSchema: PrSchema, git: AuthenticatedGitClient): Promise<PrSchema[]>;
 /** Get all files in a PR from github  */
-export declare function getPrFiles<PrSchema>(fileSchema: PrSchema, prNumber: number, git: AuthenticatedGitClient): Promise<PrSchema[]>;
+export declare function getPrFiles<PrFileSchema>(fileSchema: PrFileSchema, prNumber: number, git: AuthenticatedGitClient): Promise<PrFileSchema[]>;
