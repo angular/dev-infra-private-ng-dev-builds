@@ -6,7 +6,8 @@
  * found in the LICENSE file at https://angular.io/license
  */
 /// <reference types="node" />
-/// <reference types="node" />
+/// <reference types="@types/node/child_process.js" />
+/// <reference types="@types/node/ts4.8/child_process.js" />
 import { SpawnOptions as _SpawnOptions, SpawnSyncOptions as _SpawnSyncOptions } from 'child_process';
 /** Interface describing the options for spawning a process synchronously. */
 export interface SpawnSyncOptions extends Omit<_SpawnSyncOptions, 'shell' | 'stdio'> {

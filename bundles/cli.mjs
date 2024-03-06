@@ -22,7 +22,6 @@ import {
   computeLtsEndDateOfMajor,
   convertVersionBranchToSemVer,
   exceptionalMinorPackageIndicator,
-  fetch,
   fetchLongTermSupportBranchesFromNpm,
   fetchProjectNpmPackageInfo,
   getFileContentsUrl,
@@ -46,7 +45,7 @@ import {
   require_wrappy,
   requiresLabels,
   targetLabels
-} from "./chunk-JBHPDUJT.mjs";
+} from "./chunk-JQEPMH7C.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -68,7 +67,6 @@ import {
   underline,
   yellow
 } from "./chunk-UNUYI25Y.mjs";
-import "./chunk-BEEB7UQG.mjs";
 import {
   __commonJS,
   __privateAdd,
@@ -80877,7 +80875,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-96a8277d21eb61a2370061717ffa8dee5668caa0`;
+  const localVersion = `0.0.0-5774b71c01a55c4c998f858ee37d3b77ae704c31`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
