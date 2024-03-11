@@ -40954,7 +40954,7 @@ var require_foldFlowLines = __commonJS({
       let escStart = -1;
       let escEnd = -1;
       if (mode === FOLD_BLOCK) {
-        i = consumeMoreIndentedLines(text, i);
+        i = consumeMoreIndentedLines(text, i, indent.length);
         if (i !== -1)
           end = i + endStep;
       }
@@ -40978,8 +40978,8 @@ var require_foldFlowLines = __commonJS({
         }
         if (ch === "\n") {
           if (mode === FOLD_BLOCK)
-            i = consumeMoreIndentedLines(text, i);
-          end = i + endStep;
+            i = consumeMoreIndentedLines(text, i, indent.length);
+          end = i + indent.length + endStep;
           split = void 0;
         } else {
           if (ch === " " && prev && prev !== " " && prev !== "\n" && prev !== "	") {
@@ -41034,15 +41034,23 @@ ${indent}${text.slice(fold + 1, end2)}`;
       }
       return res;
     }
-    function consumeMoreIndentedLines(text, i) {
-      let ch = text[i + 1];
+    function consumeMoreIndentedLines(text, i, indent) {
+      let end = i;
+      let start = i + 1;
+      let ch = text[start];
       while (ch === " " || ch === "	") {
-        do {
-          ch = text[i += 1];
-        } while (ch && ch !== "\n");
-        ch = text[i + 1];
+        if (i < start + indent) {
+          ch = text[++i];
+        } else {
+          do {
+            ch = text[++i];
+          } while (ch && ch !== "\n");
+          end = i;
+          start = i + 1;
+          ch = text[start];
+        }
       }
-      return i;
+      return end;
     }
     exports2.FOLD_BLOCK = FOLD_BLOCK;
     exports2.FOLD_FLOW = FOLD_FLOW;
@@ -41802,7 +41810,7 @@ ${indent}${line}` : "\n";
         onChompKeep();
       return str;
     }
-    function stringifyFlowCollection({ comment, items }, ctx, { flowChars, itemIndent, onComment }) {
+    function stringifyFlowCollection({ items }, ctx, { flowChars, itemIndent }) {
       const { indent, indentStep, flowCollectionPadding: fcPadding, options: { commentString } } = ctx;
       itemIndent += indentStep;
       const itemCtx = Object.assign({}, ctx, {
@@ -41815,13 +41823,13 @@ ${indent}${line}` : "\n";
       const lines = [];
       for (let i = 0; i < items.length; ++i) {
         const item = items[i];
-        let comment2 = null;
+        let comment = null;
         if (identity.isNode(item)) {
           if (item.spaceBefore)
             lines.push("");
           addCommentBefore(ctx, lines, item.commentBefore, false);
           if (item.comment)
-            comment2 = item.comment;
+            comment = item.comment;
         } else if (identity.isPair(item)) {
           const ik = identity.isNode(item.key) ? item.key : null;
           if (ik) {
@@ -41834,51 +41842,44 @@ ${indent}${line}` : "\n";
           const iv = identity.isNode(item.value) ? item.value : null;
           if (iv) {
             if (iv.comment)
-              comment2 = iv.comment;
+              comment = iv.comment;
             if (iv.commentBefore)
               reqNewline = true;
           } else if (item.value == null && (ik == null ? void 0 : ik.comment)) {
-            comment2 = ik.comment;
+            comment = ik.comment;
           }
         }
-        if (comment2)
+        if (comment)
           reqNewline = true;
-        let str2 = stringify.stringify(item, itemCtx, () => comment2 = null);
+        let str = stringify.stringify(item, itemCtx, () => comment = null);
         if (i < items.length - 1)
-          str2 += ",";
-        if (comment2)
-          str2 += stringifyComment.lineComment(str2, itemIndent, commentString(comment2));
-        if (!reqNewline && (lines.length > linesAtValue || str2.includes("\n")))
+          str += ",";
+        if (comment)
+          str += stringifyComment.lineComment(str, itemIndent, commentString(comment));
+        if (!reqNewline && (lines.length > linesAtValue || str.includes("\n")))
           reqNewline = true;
-        lines.push(str2);
+        lines.push(str);
         linesAtValue = lines.length;
       }
-      let str;
       const { start, end } = flowChars;
       if (lines.length === 0) {
-        str = start + end;
+        return start + end;
       } else {
         if (!reqNewline) {
           const len = lines.reduce((sum, line) => sum + line.length + 2, 2);
           reqNewline = ctx.options.lineWidth > 0 && len > ctx.options.lineWidth;
         }
         if (reqNewline) {
-          str = start;
+          let str = start;
           for (const line of lines)
             str += line ? `
 ${indentStep}${indent}${line}` : "\n";
-          str += `
+          return `${str}
 ${indent}${end}`;
         } else {
-          str = `${start}${fcPadding}${lines.join(" ")}${fcPadding}${end}`;
+          return `${start}${fcPadding}${lines.join(" ")}${fcPadding}${end}`;
         }
       }
-      if (comment) {
-        str += stringifyComment.lineComment(str, indent, commentString(comment));
-        if (onComment)
-          onComment();
-      }
-      return str;
     }
     function addCommentBefore({ indent, options: { commentString } }, lines, comment, chompKeep) {
       if (comment && chompKeep)
@@ -46401,7 +46402,7 @@ var require_parser2 = __commonJS({
             return;
         }
         if (this.indent >= map9.indent) {
-          const atNextItem = !this.onKeyLine && this.indent === map9.indent && it.sep;
+          const atNextItem = !this.onKeyLine && this.indent === map9.indent && it.sep && this.type !== "seq-item-ind";
           let start = [];
           if (atNextItem && it.sep && !it.value) {
             const nl = [];
@@ -80875,7 +80876,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-219a481559dfea90892651fa3670eea6ec7b1ede`;
+  const localVersion = `0.0.0-6f2a160ef444180531afc8750af761fa73732018`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
