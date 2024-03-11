@@ -14931,9 +14931,9 @@ var require_map2 = __commonJS({
   }
 });
 
-// node_modules/cli-width/index.js
+// node_modules/inquirer/node_modules/cli-width/index.js
 var require_cli_width = __commonJS({
-  "node_modules/cli-width/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/cli-width/index.js"(exports2, module2) {
     "use strict";
     module2.exports = cliWidth2;
     function normalizeOpts(options) {
@@ -16158,9 +16158,9 @@ var require_ansi_styles = __commonJS({
   }
 });
 
-// node_modules/wrap-ansi/index.js
+// node_modules/inquirer/node_modules/wrap-ansi/index.js
 var require_wrap_ansi = __commonJS({
-  "node_modules/wrap-ansi/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/wrap-ansi/index.js"(exports2, module2) {
     "use strict";
     var stringWidth2 = require_string_width();
     var stripAnsi3 = require_strip_ansi();
@@ -33524,9 +33524,9 @@ var require_through = __commonJS({
   }
 });
 
-// node_modules/mute-stream/lib/index.js
+// node_modules/inquirer/node_modules/mute-stream/lib/index.js
 var require_lib2 = __commonJS({
-  "node_modules/mute-stream/lib/index.js"(exports2, module2) {
+  "node_modules/inquirer/node_modules/mute-stream/lib/index.js"(exports2, module2) {
     var Stream = __require("stream");
     var _isTTY, _destSrc, destSrc_fn, _proxy, proxy_fn;
     var MuteStream2 = class extends Stream {
@@ -80875,7 +80875,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d3f415143153f2f45b584e17780045c4564946f1`;
+  const localVersion = `0.0.0-e0bc4792bde8db4b3edd595c7daaa5b962ebde66`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
