@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import type { OctokitOptions } from '@octokit/core/dist-types/types.js';
+import type { OctokitOptions } from '@octokit/core';
 import { Octokit } from '@octokit/rest';
 import { RequestParameters } from '@octokit/types';
 import { RequestError } from '@octokit/request-error';
@@ -26,7 +26,7 @@ export interface GithubRepo {
 export declare class GithubClient {
     private _octokitOptions?;
     /** The octokit instance actually performing API requests. */
-    protected _octokit: import("@octokit/core/dist-types").Octokit & {
+    protected _octokit: import("@octokit/core").Octokit & {
         paginate: import("@octokit/plugin-paginate-rest/dist-types").PaginateInterface;
     } & import("@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types").RestEndpointMethods & import("@octokit/plugin-rest-endpoint-methods/dist-types/types").Api;
     readonly pulls: Octokit['pulls'];
