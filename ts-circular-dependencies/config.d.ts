@@ -34,4 +34,17 @@ export interface CircularDependenciesTestConfig extends CircularDependenciesPars
  * Loads the configuration for the circular dependencies test. If the config cannot be
  * loaded, an error will be printed and the process exists with a non-zero exit code.
  */
-export declare function loadTestConfig(configPath: string): CircularDependenciesTestConfig;
+export declare function loadTestConfig(configPath: string): Promise<CircularDependenciesTestConfig>;
+/**
+ * This uses a dynamic import to load a module which may be ESM.
+ * CommonJS code can load ESM code via a dynamic import. Unfortunately, TypeScript
+ * will currently, unconditionally downlevel dynamic import into a require call.
+ * require calls cannot load ESM code and will result in a runtime error. To workaround
+ * this, a Function constructor is used to prevent TypeScript from changing the dynamic import.
+ * Once TypeScript provides support for keeping the dynamic import this workaround can
+ * be dropped.
+ *
+ * @param modulePath The path of the module to load.
+ * @returns A Promise that resolves to the dynamically imported module.
+ */
+export declare function loadEsmModule<T>(modulePath: string | URL): Promise<T>;

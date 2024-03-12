@@ -2133,7 +2133,7 @@ var require_signal_exit = __commonJS({
         }
         assert2.equal(typeof cb, "function", "a callback must be provided for exit handler");
         if (loaded === false) {
-          load();
+          load2();
         }
         var ev = "exit";
         if (opts && opts.alwaysLast) {
@@ -2193,7 +2193,7 @@ var require_signal_exit = __commonJS({
         return signals;
       };
       loaded = false;
-      load = function load2() {
+      load2 = function load3() {
         if (loaded || !processOk(global.process)) {
           return;
         }
@@ -2210,7 +2210,7 @@ var require_signal_exit = __commonJS({
         process2.emit = processEmit;
         process2.reallyExit = processReallyExit;
       };
-      module2.exports.load = load;
+      module2.exports.load = load2;
       originalProcessReallyExit = process2.reallyExit;
       processReallyExit = function processReallyExit2(code) {
         if (!processOk(global.process)) {
@@ -2245,7 +2245,7 @@ var require_signal_exit = __commonJS({
     var emit;
     var sigListeners;
     var loaded;
-    var load;
+    var load2;
     var originalProcessReallyExit;
     var processReallyExit;
     var originalProcessEmit;
@@ -36753,14 +36753,14 @@ var require_root2 = __commonJS({
     Root.prototype.fetch = util.fetch;
     function SYNC() {
     }
-    Root.prototype.load = function load(filename, options, callback) {
+    Root.prototype.load = function load2(filename, options, callback) {
       if (typeof options === "function") {
         callback = options;
         options = void 0;
       }
       var self2 = this;
       if (!callback)
-        return util.asPromise(load, self2, filename, options);
+        return util.asPromise(load2, self2, filename, options);
       var sync = callback === SYNC;
       function finish(err, root) {
         if (!callback)
@@ -37323,7 +37323,7 @@ var require_index_light = __commonJS({
     "use strict";
     var protobuf = module2.exports = require_index_minimal();
     protobuf.build = "light";
-    function load(filename, root, callback) {
+    function load2(filename, root, callback) {
       if (typeof root === "function") {
         callback = root;
         root = new protobuf.Root();
@@ -37331,7 +37331,7 @@ var require_index_light = __commonJS({
         root = new protobuf.Root();
       return root.load(filename, callback);
     }
-    protobuf.load = load;
+    protobuf.load = load2;
     function loadSync(filename, root) {
       if (!root)
         root = new protobuf.Root();
@@ -53367,8 +53367,8 @@ var require_async2 = __commonJS({
           loadAsFilePackage = void 0;
         }
         var exts = [""].concat(extensions);
-        load(exts, x2, loadAsFilePackage);
-        function load(exts2, x3, loadPackage) {
+        load2(exts, x2, loadAsFilePackage);
+        function load2(exts2, x3, loadPackage) {
           if (exts2.length === 0)
             return cb2(null, void 0, loadPackage);
           var file = x3 + exts2[0];
@@ -53386,7 +53386,7 @@ var require_async2 = __commonJS({
               var rel = rfile.slice(0, rfile.length - exts2[0].length);
               var r = opts.pathFilter(pkg, x3, rel);
               if (r)
-                return load(
+                return load2(
                   [""].concat(extensions.slice()),
                   path7.resolve(dir, r),
                   pkg
@@ -53399,7 +53399,7 @@ var require_async2 = __commonJS({
               return cb2(err2);
             if (ex)
               return cb2(null, file, pkg);
-            load(exts2.slice(1), x3, pkg);
+            load2(exts2.slice(1), x3, pkg);
           }
         }
       }
@@ -57429,7 +57429,7 @@ var require_browser = __commonJS({
     exports2.log = log;
     exports2.formatArgs = formatArgs;
     exports2.save = save;
-    exports2.load = load;
+    exports2.load = load2;
     exports2.useColors = useColors;
     exports2.storage = localstorage();
     exports2.colors = ["#0000CC", "#0000FF", "#0033CC", "#0033FF", "#0066CC", "#0066FF", "#0099CC", "#0099FF", "#00CC00", "#00CC33", "#00CC66", "#00CC99", "#00CCCC", "#00CCFF", "#3300CC", "#3300FF", "#3333CC", "#3333FF", "#3366CC", "#3366FF", "#3399CC", "#3399FF", "#33CC00", "#33CC33", "#33CC66", "#33CC99", "#33CCCC", "#33CCFF", "#6600CC", "#6600FF", "#6633CC", "#6633FF", "#66CC00", "#66CC33", "#9900CC", "#9900FF", "#9933CC", "#9933FF", "#99CC00", "#99CC33", "#CC0000", "#CC0033", "#CC0066", "#CC0099", "#CC00CC", "#CC00FF", "#CC3300", "#CC3333", "#CC3366", "#CC3399", "#CC33CC", "#CC33FF", "#CC6600", "#CC6633", "#CC9900", "#CC9933", "#CCCC00", "#CCCC33", "#FF0000", "#FF0033", "#FF0066", "#FF0099", "#FF00CC", "#FF00FF", "#FF3300", "#FF3333", "#FF3366", "#FF3399", "#FF33CC", "#FF33FF", "#FF6600", "#FF6633", "#FF9900", "#FF9933", "#FFCC00", "#FFCC33"];
@@ -57476,7 +57476,7 @@ var require_browser = __commonJS({
       } catch (error) {
       }
     }
-    function load() {
+    function load2() {
       var r;
       try {
         r = exports2.storage.getItem("debug");
@@ -57515,7 +57515,7 @@ var require_node2 = __commonJS({
     exports2.log = log;
     exports2.formatArgs = formatArgs;
     exports2.save = save;
-    exports2.load = load;
+    exports2.load = load2;
     exports2.useColors = useColors;
     exports2.colors = [6, 2, 3, 4, 5, 1];
     try {
@@ -57576,7 +57576,7 @@ var require_node2 = __commonJS({
         delete process.env.DEBUG;
       }
     }
-    function load() {
+    function load2() {
       return process.env.DEBUG;
     }
     function init(debug) {
@@ -58926,10 +58926,10 @@ var require_ejs = __commonJS({
     exports2.promiseImpl = new Function("return this;")().Promise;
     exports2.resolveInclude = function(name, filename, isDir) {
       var dirname7 = path7.dirname;
-      var extname3 = path7.extname;
+      var extname4 = path7.extname;
       var resolve13 = path7.resolve;
       var includePath = resolve13(isDir ? filename : dirname7(filename), name);
-      var ext2 = extname3(name);
+      var ext2 = extname4(name);
       if (!ext2) {
         includePath += ".ejs";
       }
@@ -59719,7 +59719,7 @@ var require_browser2 = __commonJS({
   "node_modules/debug/src/browser.js"(exports2, module2) {
     exports2.formatArgs = formatArgs;
     exports2.save = save;
-    exports2.load = load;
+    exports2.load = load2;
     exports2.useColors = useColors;
     exports2.storage = localstorage();
     exports2.destroy = (() => {
@@ -59850,7 +59850,7 @@ var require_browser2 = __commonJS({
       } catch (error) {
       }
     }
-    function load() {
+    function load2() {
       let r;
       try {
         r = exports2.storage.getItem("debug");
@@ -59888,7 +59888,7 @@ var require_node3 = __commonJS({
     exports2.log = log;
     exports2.formatArgs = formatArgs;
     exports2.save = save;
-    exports2.load = load;
+    exports2.load = load2;
     exports2.useColors = useColors;
     exports2.destroy = util.deprecate(
       () => {
@@ -60030,7 +60030,7 @@ var require_node3 = __commonJS({
         delete process.env.DEBUG;
       }
     }
-    function load() {
+    function load2() {
       return process.env.DEBUG;
     }
     function init(debug) {
@@ -81109,7 +81109,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-994410c9453994bf113b8273ee12854cbb9ccbe4`;
+  const localVersion = `0.0.0-0160e8961d844eb2063575623582802820b60890`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -81672,12 +81672,29 @@ var Analyzer = class {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/config.js
-import { dirname as dirname6, isAbsolute, resolve as resolve11 } from "path";
-function loadTestConfig(configPath) {
+import { dirname as dirname6, extname as extname3, isAbsolute, resolve as resolve11 } from "path";
+async function loadTestConfig(configPath) {
   const configBaseDir = dirname6(configPath);
   const resolveRelativePath = (relativePath) => resolve11(configBaseDir, relativePath);
   try {
-    const config = __require(configPath);
+    let config;
+    switch (extname3(configPath)) {
+      case ".mjs":
+        config = await loadEsmModule(configPath);
+        break;
+      case ".cjs":
+        config = __require(configPath);
+        break;
+      default:
+        try {
+          config = __require(configPath);
+        } catch (e) {
+          if (e.code === "ERR_REQUIRE_ESM") {
+            config = await loadEsmModule(configPath);
+          }
+          throw e;
+        }
+    }
     if (!isAbsolute(config.baseDir)) {
       config.baseDir = resolveRelativePath(config.baseDir);
     }
@@ -81693,6 +81710,11 @@ function loadTestConfig(configPath) {
     Log.error(`Failed with error:`, e);
     process.exit(1);
   }
+}
+var load;
+function loadEsmModule(modulePath) {
+  load ?? (load = new Function("modulePath", `return import(modulePath);`));
+  return load(modulePath);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/golden.js
@@ -81762,15 +81784,15 @@ function tsCircularDependenciesBuilder(localYargs) {
     type: "string",
     demandOption: true,
     description: "Path to the configuration file."
-  }).option("warnings", { type: "boolean", description: "Prints all warnings." }).command("check", "Checks if the circular dependencies have changed.", (args) => args, (argv) => {
+  }).option("warnings", { type: "boolean", description: "Prints all warnings." }).command("check", "Checks if the circular dependencies have changed.", (args) => args, async (argv) => {
     const { config: configArg, warnings } = argv;
     const configPath = isAbsolute2(configArg) ? configArg : resolve12(configArg);
-    const config = loadTestConfig(configPath);
+    const config = await loadTestConfig(configPath);
     process.exit(main(false, config, !!warnings));
-  }).command("approve", "Approves the current circular dependencies.", (args) => args, (argv) => {
+  }).command("approve", "Approves the current circular dependencies.", (args) => args, async (argv) => {
     const { config: configArg, warnings } = argv;
     const configPath = isAbsolute2(configArg) ? configArg : resolve12(configArg);
-    const config = loadTestConfig(configPath);
+    const config = await loadTestConfig(configPath);
     process.exit(main(true, config, !!warnings));
   });
 }
