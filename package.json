@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-94ce5cf8c9722668a24a175563bfafd099625552",
+  "version": "0.0.0-61a079014ef0e62e712d46c086f70387fbd2843f",
   "type": "module",
   "private": true,
   "bin": {
