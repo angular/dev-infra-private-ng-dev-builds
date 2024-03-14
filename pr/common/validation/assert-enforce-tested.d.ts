@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { GithubClient } from '../../../utils/git/github.js';
+import { AuthenticatedGithubClient } from '../../../utils/git/github.js';
 import { PullRequestFromGithub } from '../fetch-pull-request.js';
 /** Assert the pull request has passing enforced statuses. */
 export declare const enforceTestedValidation: {
@@ -96,9 +96,9 @@ export declare const enforceTestedValidation: {
                 name: string;
             }[];
         };
-    }, gitClient: GithubClient): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
+    }, gitClient: AuthenticatedGithubClient): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
 /**
  * Checks for `TESTED=[reason]` review comment on a current commit sha from a google organization member
  */
-export declare function pullRequestHasValidTestedComment(pullRequest: PullRequestFromGithub, gitClient: GithubClient): Promise<boolean>;
+export declare function pullRequestHasValidTestedComment(pullRequest: PullRequestFromGithub, gitClient: AuthenticatedGithubClient): Promise<boolean>;

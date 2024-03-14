@@ -7,7 +7,7 @@
  */
 import { BaseModule } from './base.js';
 /** The result of checking a branch on CI. */
-type CiBranchStatus = 'success' | 'failed' | 'not found';
+type CiBranchStatus = 'pending' | 'passing' | 'failing' | null;
 /** A list of results for checking CI branches. */
 type CiData = {
     active: boolean;
@@ -20,10 +20,8 @@ export declare class CiModule extends BaseModule<CiData> {
         active: boolean;
         name: string;
         label: string;
-        status: CiBranchStatus;
+        status: "pending" | "passing" | "failing" | null;
     }[]>;
     printToTerminal(): Promise<void>;
-    /** Get the CI status of a given branch from CircleCI. */
-    private getBranchStatusFromCi;
 }
 export {};

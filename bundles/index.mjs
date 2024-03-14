@@ -39,7 +39,7 @@ import {
   priorityLabels,
   requiresLabels,
   targetLabels
-} from "./chunk-2WV27DIC.mjs";
+} from "./chunk-HYVLSZWM.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
