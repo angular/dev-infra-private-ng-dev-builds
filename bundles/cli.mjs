@@ -74634,12 +74634,12 @@ var ReleaseAction = class {
     return status === "ahead" && ahead_by === expectedAheadCount;
   }
   async assertPassingGithubStatus(commitSha, branchNameForError) {
-    const { data: { state } } = await this.git.github.repos.getCombinedStatusForRef({
+    const { result } = await github_macros_default.getCombinedChecksAndStatusesForRef(this.git.github, {
       ...this.git.remoteParams,
       ref: commitSha
     });
     const branchCommitsUrl = getListCommitsInBranchUrl(this.git, branchNameForError);
-    if (state === "failure") {
+    if (result === "failing" || result === null) {
       Log.error(`  \u2718   Cannot stage release. Commit "${commitSha}" does not pass all github status checks. Please make sure this commit passes all checks before re-running.`);
       Log.error(`      Please have a look at: ${branchCommitsUrl}`);
       if (await Prompt2.confirm("Do you want to ignore the Github status and proceed?")) {
@@ -74647,7 +74647,7 @@ var ReleaseAction = class {
         return;
       }
       throw new UserAbortedReleaseActionError();
-    } else if (state === "pending") {
+    } else if (result === "pending") {
       Log.error(`  \u2718   Commit "${commitSha}" still has pending github statuses that need to succeed before staging a release.`);
       Log.error(`      Please have a look at: ${branchCommitsUrl}`);
       if (await Prompt2.confirm("Do you want to ignore the Github status and proceed?")) {
@@ -75406,7 +75406,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-2214a4943d30e2b555bf97070ccdf8358012416e`;
+  const localVersion = `0.0.0-602dd0a29dc13b234ebe0c599d2d407678688a5c`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
