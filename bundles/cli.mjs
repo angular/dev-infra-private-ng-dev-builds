@@ -67780,7 +67780,7 @@ function transformConfigIntoMatcher(config) {
   const alwaysExternalFilePatterns = config.alwaysExternalFilePatterns.map((p) => new Minimatch(p));
   const separateFilePatterns = config.separateFilePatterns.map((p) => new Minimatch(p));
   const ngSyncMatchFn = (projectRelativePath) => syncedFilePatterns.some((p) => p.match(projectRelativePath)) && alwaysExternalFilePatterns.every((p) => !p.match(projectRelativePath)) && separateFilePatterns.every((p) => !p.match(projectRelativePath));
-  const separateSyncMatchFn = (projectRelativePath) => separateFilePatterns.some((p) => p.match(projectRelativePath)) && alwaysExternalFilePatterns.every((p) => !p.match(projectRelativePath)) && syncedFilePatterns.every((p) => !p.match(projectRelativePath));
+  const separateSyncMatchFn = (projectRelativePath) => separateFilePatterns.some((p) => p.match(projectRelativePath)) && alwaysExternalFilePatterns.every((p) => !p.match(projectRelativePath));
   return { ngSyncMatchFn, separateSyncMatchFn };
 }
 async function getGoogleSyncConfig(absolutePath) {
@@ -75406,7 +75406,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-378401bfaaa01a23a0b0a73e530b69e7466b3aac`;
+  const localVersion = `0.0.0-804107deac3621184db54fab3e7cfe7f735a0d74`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
