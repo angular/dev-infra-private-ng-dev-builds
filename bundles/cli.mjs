@@ -41,7 +41,7 @@ import {
   require_wrappy,
   requiresLabels,
   targetLabels
-} from "./chunk-HYVLSZWM.mjs";
+} from "./chunk-ZJIVK4FF.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -71512,7 +71512,7 @@ function withDefaults(oldDefaults, newDefaults) {
 }
 var endpoint = withDefaults(null, DEFAULTS);
 
-// node_modules/@octokit/request-error/dist-src/index.js
+// node_modules/@octokit/graphql/node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
   name;
   status;
@@ -75406,7 +75406,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-479413e75d568ecb7a563c95664a675beb99276f`;
+  const localVersion = `0.0.0-375d0b78a4921f80cb51251b752f35c4b951091a`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
