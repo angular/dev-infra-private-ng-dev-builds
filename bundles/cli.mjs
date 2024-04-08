@@ -2301,9 +2301,9 @@ var require_cli_cursor = __commonJS({
   }
 });
 
-// node_modules/inquirer/node_modules/run-async/index.js
+// node_modules/run-async/index.js
 var require_run_async = __commonJS({
-  "node_modules/inquirer/node_modules/run-async/index.js"(exports, module) {
+  "node_modules/run-async/index.js"(exports, module) {
     "use strict";
     function isPromise2(obj) {
       return !!obj && (typeof obj === "object" || typeof obj === "function") && typeof obj.then === "function";
@@ -75406,7 +75406,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-e67838ae5ac1343a83ce8a5d04a935673555f3f1`;
+  const localVersion = `0.0.0-d696facff36ee2f6b36e3ec20d7541b0e9135522`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
