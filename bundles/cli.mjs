@@ -70271,7 +70271,7 @@ var Buildifier = class extends Formatter {
     };
   }
 };
-var BAZEL_WARNING_FLAG = `--warnings=attr-cfg,attr-license,attr-non-empty,attr-output-default,attr-single-file,constant-glob,ctx-args,depset-iteration,depset-union,dict-concatenation,duplicated-name,filetype,git-repository,http-archive,integer-division,load,native-build,native-package,output-group,package-name,package-on-top,positional-args,redefined-variable,repository-name,same-origin-load,string-iteration,unused-variable`;
+var BAZEL_WARNING_FLAG = `--warnings=attr-cfg,attr-license,attr-non-empty,attr-output-default,attr-single-file,constant-glob,ctx-args,depset-iteration,depset-union,dict-concatenation,duplicated-name,filetype,git-repository,http-archive,integer-division,load,native-build,native-package,output-group,package-name,package-on-top,positional-args,redefined-variable,repository-name,string-iteration,unused-variable`;
 
 // bazel-out/k8-fastbuild/bin/ng-dev/format/formatters/clang-format.js
 import { join as join2 } from "path";
@@ -75406,7 +75406,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-86c4e22089a8e19ccf02ba52d2e93a744d62ac03`;
+  const localVersion = `0.0.0-4a904a92b839e4529f3d768df02148398a5fcdb6`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
