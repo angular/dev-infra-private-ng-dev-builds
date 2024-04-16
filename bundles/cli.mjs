@@ -71518,7 +71518,7 @@ function withDefaults(oldDefaults, newDefaults) {
 }
 var endpoint = withDefaults(null, DEFAULTS);
 
-// node_modules/@octokit/request-error/dist-src/index.js
+// node_modules/@octokit/graphql/node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
   name;
   status;
@@ -75412,7 +75412,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-2001282cbeb3e406b3ea9d253d1104d0a7d56438`;
+  const localVersion = `0.0.0-58db80067deef0c2e993247ad9ea4c7a1ef74c8d`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
