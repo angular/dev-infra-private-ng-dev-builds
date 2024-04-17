@@ -42,4 +42,28 @@ export declare function checkOutPullRequestLocally(prNumber: number, opts?: Pull
     resetGitState: () => boolean;
     pushToUpstreamCommand: string;
     resetGitStateCommand: string;
+    pullRequest: {
+        author: {
+            login: string;
+        };
+        state: string;
+        maintainerCanModify: boolean;
+        viewerDidAuthor: boolean;
+        headRefOid: string;
+        headRef: {
+            name: string;
+            repository: {
+                url: string;
+                nameWithOwner: string;
+            };
+        };
+        baseRefOid: string;
+        baseRef: {
+            name: string;
+            repository: {
+                url: string;
+                nameWithOwner: string;
+            };
+        };
+    };
 }>;

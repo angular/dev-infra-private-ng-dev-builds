@@ -19351,7 +19351,7 @@ var require_buffer_list = __commonJS({
         }
       }, {
         key: "join",
-        value: function join13(s) {
+        value: function join14(s) {
           if (this.length === 0)
             return "";
           var p = this.head;
@@ -33680,7 +33680,7 @@ var require_regex = __commonJS({
   "node_modules/conventional-commits-parser/lib/regex.js"(exports, module) {
     "use strict";
     var reNomatch = /(?!.*)/;
-    function join13(array, joiner) {
+    function join14(array, joiner) {
       return array.map(function(val) {
         return val.trim();
       }).filter(function(val) {
@@ -33691,7 +33691,7 @@ var require_regex = __commonJS({
       if (!noteKeywords) {
         return reNomatch;
       }
-      const noteKeywordsSelection = join13(noteKeywords, "|");
+      const noteKeywordsSelection = join14(noteKeywords, "|");
       if (!notesPattern) {
         return new RegExp("^[\\s|*]*(" + noteKeywordsSelection + ")[:\\s]+(.*)", "i");
       }
@@ -33702,13 +33702,13 @@ var require_regex = __commonJS({
         return reNomatch;
       }
       const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join13(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
+      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join14(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
     }
     function getReferencesRegex(referenceActions) {
       if (!referenceActions) {
         return /()(.+)/gi;
       }
-      const joinedKeywords = join13(referenceActions, "|");
+      const joinedKeywords = join14(referenceActions, "|");
       return new RegExp("(" + joinedKeywords + ")(?:\\s+(.*?))(?=(?:" + joinedKeywords + ")|$)", "gi");
     }
     module.exports = function(options) {
@@ -34905,7 +34905,7 @@ var require_cjs2 = __commonJS({
 var require_lib3 = __commonJS({
   "node_modules/which/lib/index.js"(exports, module) {
     var { isexe, sync: isexeSync } = require_cjs2();
-    var { join: join13, delimiter, sep: sep2, posix } = __require("path");
+    var { join: join14, delimiter, sep: sep2, posix } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix.sep}${sep2 === posix.sep ? "" : sep2}]`.replace(/(\\)/g, "\\$1"));
     var rRel = new RegExp(`^\\.${rSlash.source}`);
@@ -34932,7 +34932,7 @@ var require_lib3 = __commonJS({
     var getPathPart = (raw, cmd) => {
       const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
       const prefix = !pathPart && rRel.test(cmd) ? cmd.slice(0, 2) : "";
-      return prefix + join13(pathPart, cmd);
+      return prefix + join14(pathPart, cmd);
     };
     var which2 = async (cmd, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
@@ -49615,7 +49615,7 @@ var require_json_parse_even_better_errors = __commonJS({
 // node_modules/read-installed/node_modules/npm-normalize-package-bin/index.js
 var require_npm_normalize_package_bin = __commonJS({
   "node_modules/read-installed/node_modules/npm-normalize-package-bin/index.js"(exports, module) {
-    var { join: join13, basename: basename2 } = __require("path");
+    var { join: join14, basename: basename2 } = __require("path");
     var normalize2 = (pkg) => !pkg.bin ? removeBin(pkg) : typeof pkg.bin === "string" ? normalizeString(pkg) : Array.isArray(pkg.bin) ? normalizeArray(pkg) : typeof pkg.bin === "object" ? normalizeObject(pkg) : removeBin(pkg);
     var normalizeString = (pkg) => {
       if (!pkg.name)
@@ -49639,10 +49639,10 @@ var require_npm_normalize_package_bin = __commonJS({
       const clean = {};
       let hasBins = false;
       Object.keys(orig).forEach((binKey) => {
-        const base = join13("/", basename2(binKey.replace(/\\|:/g, "/"))).substr(1);
+        const base = join14("/", basename2(binKey.replace(/\\|:/g, "/"))).substr(1);
         if (typeof orig[binKey] !== "string" || !base)
           return;
-        const binTarget = join13("/", orig[binKey]).replace(/\\/g, "/").substr(1);
+        const binTarget = join14("/", orig[binKey]).replace(/\\/g, "/").substr(1);
         if (!binTarget)
           return;
         clean[base] = binTarget;
@@ -54126,10 +54126,10 @@ var require_ejs = __commonJS({
     exports.localsName = _DEFAULT_LOCALS_NAME;
     exports.promiseImpl = new Function("return this;")().Promise;
     exports.resolveInclude = function(name, filename, isDir) {
-      var dirname7 = path7.dirname;
+      var dirname8 = path7.dirname;
       var extname3 = path7.extname;
       var resolve13 = path7.resolve;
-      var includePath = resolve13(isDir ? filename : dirname7(filename), name);
+      var includePath = resolve13(isDir ? filename : dirname8(filename), name);
       var ext2 = extname3(name);
       if (!ext2) {
         includePath += ".ejs";
@@ -55909,26 +55909,26 @@ var require_folder_hash = __commonJS({
           }
         });
       }
-      function hashElementPromise(stats, dirname7, options, isRootElement = false) {
+      function hashElementPromise(stats, dirname8, options, isRootElement = false) {
         const name = stats.name;
         let promise = void 0;
         if (stats.isDirectory()) {
-          promise = hashFolderPromise(name, dirname7, options, isRootElement);
+          promise = hashFolderPromise(name, dirname8, options, isRootElement);
         } else if (stats.isFile()) {
-          promise = hashFilePromise(name, dirname7, options, isRootElement);
+          promise = hashFilePromise(name, dirname8, options, isRootElement);
         } else if (stats.isSymbolicLink()) {
-          promise = hashSymLinkPromise(name, dirname7, options, isRootElement);
+          promise = hashSymLinkPromise(name, dirname8, options, isRootElement);
         } else {
           log.err("hashElementPromise cannot handle ", stats);
           return Promise.resolve({ name, hash: "Error: unknown element type" });
         }
         return promise.catch((err) => {
           if (err.code && (err.code === "EMFILE" || err.code === "ENFILE")) {
-            log.queue(`queued ${dirname7}/${name} because of ${err.code}`);
+            log.queue(`queued ${dirname8}/${name} because of ${err.code}`);
             const promise2 = new Promise((resolve13, reject) => {
               queue.push(() => {
-                log.queue(`Will processs queued ${dirname7}/${name}`);
-                return hashElementPromise(stats, dirname7, options, isRootElement).then((ok) => resolve13(ok)).catch((err2) => reject(err2));
+                log.queue(`Will processs queued ${dirname8}/${name}`);
+                return hashElementPromise(stats, dirname8, options, isRootElement).then((ok) => resolve13(ok)).catch((err2) => reject(err2));
               });
             });
             if (queueTimer === void 0) {
@@ -71190,6 +71190,9 @@ var CheckTargetBranchesModule = {
   describe: "Check a PR to determine what branches it is currently targeting"
 };
 
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/checkout.js
+import { dirname as dirname4, join as join7 } from "path";
+
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/checkout-pr.js
 var import_typed_graphqlify3 = __toESM(require_dist());
 
@@ -71947,6 +71950,9 @@ async function getPrFiles(fileSchema, prNumber, git) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/checkout-pr.js
 var PR_SCHEMA = {
+  author: {
+    login: import_typed_graphqlify3.types.string
+  },
   state: import_typed_graphqlify3.types.string,
   maintainerCanModify: import_typed_graphqlify3.types.boolean,
   viewerDidAuthor: import_typed_graphqlify3.types.boolean,
@@ -71958,6 +71964,7 @@ var PR_SCHEMA = {
       nameWithOwner: import_typed_graphqlify3.types.string
     }
   },
+  baseRefOid: import_typed_graphqlify3.types.string,
   baseRef: {
     name: import_typed_graphqlify3.types.string,
     repository: {
@@ -71990,7 +71997,6 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
     throw new MaintainerModifyAccessError("PR is not set to allow maintainers to modify the PR");
   }
   try {
-    Log.info(`Checking out PR #${prNumber} from ${fullHeadRef}`);
     git.run(["fetch", "-q", headRefUrl, headRefName]);
     git.run(["checkout", "--detach", "FETCH_HEAD"]);
   } catch (e) {
@@ -72006,21 +72012,90 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
       return git.checkout(previousBranchOrRevision, true);
     },
     pushToUpstreamCommand: `git push ${pr.headRef.repository.url} HEAD:${headRefName} ${forceWithLeaseFlag}`,
-    resetGitStateCommand: `git rebase --abort && git reset --hard && git checkout ${previousBranchOrRevision}`
+    resetGitStateCommand: `git rebase --abort && git reset --hard && git checkout ${previousBranchOrRevision}`,
+    pullRequest: pr
   };
 }
 
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/cli.js
-function builder14(yargs) {
-  return addGithubTokenOption(yargs).positional("pr", { type: "number", demandOption: true });
-}
-async function handler14({ pr }) {
-  const options = { allowIfMaintainerCannotModify: true, branchName: `pr-${pr}` };
-  const { pushToUpstreamCommand } = await checkOutPullRequestLocally(pr, options);
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/checkout.js
+import { fileURLToPath as fileURLToPath3 } from "url";
+var takeoverAccounts = ["angular-robot"];
+async function checkoutPullRequest(params4) {
+  const { pr, takeover } = params4;
+  const git = await AuthenticatedGitClient.get();
+  const branchName = `pr-takeover-${pr}`;
+  if (git.hasUncommittedChanges()) {
+    Log.error(` \u2718 Local working repository not clean. Please make sure there are no uncommitted changes`);
+    return;
+  }
+  const { resetGitState, pullRequest, pushToUpstreamCommand } = await checkOutPullRequestLocally(pr, {
+    allowIfMaintainerCannotModify: true
+  });
+  if (pullRequest.maintainerCanModify === false || takeover) {
+    if (takeover !== true) {
+      Log.info("The author of this pull request does not allow maintainers to modify the pull");
+      Log.info("request. Since you will not be able to push changes to the original pull request");
+      Log.info('you will instead need to perform a "takeover." In a takeover the original pull');
+      Log.info("request will be checked out, the commits are modified to close the original on");
+      Log.info("merge of the newly created branch.\n");
+      if (!await Prompt2.confirm(`Would you like to create a takeover pull request?`, true)) {
+        Log.info("Aborting takeover..");
+        await resetGitState();
+        return;
+      }
+    }
+    if (git.runGraceful(["rev-parse", "-q", "--verify", branchName]).status === 0) {
+      Log.error(` \u2718 Expected branch name \`${branchName}\` already exists locally`);
+      return;
+    }
+    if (!takeoverAccounts.includes(pullRequest.author.login)) {
+      Log.warn(` \u26A0 ${bold(pullRequest.author.login)} is not an account fully supported for takeover.`);
+      Log.warn(`   Supported accounts: ${bold(takeoverAccounts.join(", "))}`);
+      if (await Prompt2.confirm(`Continue with pull request takeover anyway?`, true)) {
+        Log.debug("Continuing per user confirmation in prompt");
+      } else {
+        Log.info("Aborting takeover..");
+        await resetGitState();
+        return;
+      }
+    }
+    Log.info(`Setting local branch name based on the pull request`);
+    git.run(["checkout", "-q", "-b", branchName]);
+    Log.info("Updating commit messages to close previous pull request");
+    git.run([
+      "filter-branch",
+      "-f",
+      "--msg-filter",
+      `${getCommitMessageFilterScriptPath()} ${pr}`,
+      `${pullRequest.baseRefOid}..HEAD`
+    ]);
+    Log.info(` ${green("\u2714")} Checked out pull request #${pr} into branch: ${branchName}`);
+    return;
+  }
   Log.info(`Checked out the remote branch for pull request #${pr}
 `);
   Log.info("To push the checked out branch back to its PR, run the following command:");
   Log.info(`  $ ${pushToUpstreamCommand}`);
+}
+function getCommitMessageFilterScriptPath() {
+  const bundlesDir = dirname4(fileURLToPath3(import.meta.url));
+  return join7(bundlesDir, "./pr/checkout/commit-message-filter.mjs");
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/cli.js
+function builder14(yargs) {
+  return addGithubTokenOption(yargs).positional("pr", {
+    type: "number",
+    demandOption: true,
+    describe: "The pull request number for the pull request to checkout"
+  }).option("takeover", {
+    type: "boolean",
+    demandOption: false,
+    describe: "Check out the pull request to perform a takeover"
+  });
+}
+async function handler14({ pr, takeover }) {
+  await checkoutPullRequest({ pr, takeover });
 }
 var CheckoutCommandModule = {
   handler: handler14,
@@ -72921,8 +72996,8 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/autosquash-merge.js
-import { dirname as dirname4, join as join7 } from "path";
-import { fileURLToPath as fileURLToPath3 } from "url";
+import { dirname as dirname5, join as join8 } from "path";
+import { fileURLToPath as fileURLToPath4 } from "url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
   async merge(pullRequest) {
     const { githubTargetBranch, targetBranches, revisionRange, needsCommitMessageFixup, baseSha, prNumber } = pullRequest;
@@ -72937,7 +73012,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
       "filter-branch",
       "-f",
       "--msg-filter",
-      `${getCommitMessageFilterScriptPath()} ${prNumber}`,
+      `${getCommitMessageFilterScriptPath2()} ${prNumber}`,
       revisionRange
     ]);
     const failedBranches = this.cherryPickIntoTargetBranches(revisionRange, targetBranches);
@@ -72962,9 +73037,9 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
     }
   }
 };
-function getCommitMessageFilterScriptPath() {
-  const bundlesDir = dirname4(fileURLToPath3(import.meta.url));
-  return join7(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
+function getCommitMessageFilterScriptPath2() {
+  const bundlesDir = dirname5(fileURLToPath4(import.meta.url));
+  return join8(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/merge-tool.js
@@ -74008,7 +74083,7 @@ function santizeCommitMessage(content) {
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/changelog.js
 var import_semver2 = __toESM(require_semver());
 import { existsSync as existsSync2, readFileSync as readFileSync8, writeFileSync as writeFileSync3 } from "fs";
-import { join as join8 } from "path";
+import { join as join9 } from "path";
 var changelogPath = "CHANGELOG.md";
 var changelogArchivePath = "CHANGELOG_ARCHIVE.md";
 var splitMarker = "<!-- CHANGELOG SPLIT MARKER -->";
@@ -74048,8 +74123,8 @@ var Changelog = class {
   }
   constructor(git) {
     this.git = git;
-    this.filePath = join8(this.git.baseDir, changelogPath);
-    this.archiveFilePath = join8(this.git.baseDir, changelogArchivePath);
+    this.filePath = join9(this.git.baseDir, changelogPath);
+    this.archiveFilePath = join9(this.git.baseDir, changelogArchivePath);
     this._entries = void 0;
     this._archiveEntries = void 0;
   }
@@ -74336,7 +74411,7 @@ var workspaceRelativeYarnLockFilePath = "yarn.lock";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
 import { promises as fs3 } from "fs";
-import { join as join9 } from "path";
+import { join as join10 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/experimental-versions.js
 var import_semver6 = __toESM(require_semver());
@@ -74626,7 +74701,7 @@ var ReleaseAction = class {
     this.projectDir = projectDir;
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
-    const pkgJsonPath = join9(this.projectDir, workspaceRelativePackageJsonPath);
+    const pkgJsonPath = join10(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs3.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
@@ -74772,7 +74847,7 @@ var ReleaseAction = class {
     this.git.run(["checkout", "-q", "FETCH_HEAD", "--detach"]);
   }
   async installDependenciesForCurrentBranch() {
-    const nodeModulesDir = join9(this.projectDir, "node_modules");
+    const nodeModulesDir = join10(this.projectDir, "node_modules");
     await fs3.rm(nodeModulesDir, { force: true, recursive: true, maxRetries: 3 });
     await ExternalCommands.invokeYarnInstall(this.projectDir);
   }
@@ -74901,7 +74976,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join9(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join10(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -75421,7 +75496,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-10f65a101457091d4bc3500963d3a9630d55f7bd`;
+  const localVersion = `0.0.0-ac1646464fa4ca7b3a4ec6eaa4b5232fd2bc6964`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -75685,7 +75760,7 @@ import url from "url";
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
 var import_semver20 = __toESM(require_semver());
-import { join as join11 } from "path";
+import { join as join12 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -75762,7 +75837,7 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join11(git.baseDir, "package.json");
+  const packageJsonPath = join12(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs5.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
@@ -75861,7 +75936,7 @@ import { isAbsolute as isAbsolute2, relative as relative3, resolve as resolve12 
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync11 } from "fs";
-import { dirname as dirname5, join as join12, resolve as resolve10 } from "path";
+import { dirname as dirname6, join as join13, resolve as resolve10 } from "path";
 import ts2 from "typescript";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/file_system.js
@@ -75964,7 +76039,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join12(dirname5(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join13(dirname6(containingFilePath), specifier) : specifier;
     const stat = getFileStatus(importFullPath);
     if (stat && stat.isFile()) {
       return importFullPath;
@@ -75977,16 +76052,16 @@ var Analyzer = class {
       }
     }
     if (stat && stat.isDirectory()) {
-      return this._resolveFileSpecifier(join12(importFullPath, "index"));
+      return this._resolveFileSpecifier(join13(importFullPath, "index"));
     }
     return null;
   }
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/config.js
-import { dirname as dirname6, extname as extname2, isAbsolute, resolve as resolve11 } from "path";
+import { dirname as dirname7, extname as extname2, isAbsolute, resolve as resolve11 } from "path";
 async function loadTestConfig(configPath) {
-  const configBaseDir = dirname6(configPath);
+  const configBaseDir = dirname7(configPath);
   const resolveRelativePath = (relativePath) => resolve11(configBaseDir, relativePath);
   try {
     let config;
