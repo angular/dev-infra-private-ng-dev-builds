@@ -54030,6 +54030,15 @@ function encode_char(c) {
         return {};
       };
     }();
+    exports.hasOwnOnlyObject = function(obj) {
+      var o = exports.createNullProtoObjWherePossible();
+      for (var p in obj) {
+        if (hasOwn(obj, p)) {
+          o[p] = obj[p];
+        }
+      }
+      return o;
+    };
   }
 });
 
@@ -54044,7 +54053,7 @@ var require_package = __commonJS({
         "engine",
         "ejs"
       ],
-      version: "3.1.9",
+      version: "3.1.10",
       author: "Matthew Eernisse <mde@fleegix.org> (http://fleegix.org)",
       license: "Apache-2.0",
       bin: {
@@ -54075,7 +54084,7 @@ var require_package = __commonJS({
         node: ">=0.10.0"
       },
       scripts: {
-        test: "mocha -u tdd"
+        test: "npx jake test"
       }
     };
   }
@@ -54312,8 +54321,8 @@ var require_ejs = __commonJS({
     exports.clearCache = function() {
       exports.cache.reset();
     };
-    function Template(text, opts) {
-      opts = opts || utils.createNullProtoObjWherePossible();
+    function Template(text, optsParam) {
+      var opts = utils.hasOwnOnlyObject(optsParam);
       var options = utils.createNullProtoObjWherePossible();
       this.templateText = text;
       this.mode = null;
@@ -75412,7 +75421,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-80da3a6b83bd7bd1bf4c4855439ed07c8e41fedd`;
+  const localVersion = `0.0.0-10f65a101457091d4bc3500963d3a9630d55f7bd`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
