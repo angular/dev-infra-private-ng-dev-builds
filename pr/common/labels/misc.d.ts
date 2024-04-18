@@ -11,4 +11,8 @@ export declare const miscLabels: {
         name: string;
         description: string;
     };
+    RENOVATE_MANAGED: {
+        name: string;
+        description: string;
+    };
 };
