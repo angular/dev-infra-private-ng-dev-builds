@@ -41,7 +41,7 @@ import {
   require_wrappy,
   requiresLabels,
   targetLabels
-} from "./chunk-SEJDIHPZ.mjs";
+} from "./chunk-BIZWJKT5.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -71530,7 +71530,7 @@ function withDefaults(oldDefaults, newDefaults) {
 }
 var endpoint = withDefaults(null, DEFAULTS);
 
-// node_modules/@octokit/graphql/node_modules/@octokit/request-error/dist-src/index.js
+// node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
   name;
   status;
@@ -71577,7 +71577,7 @@ function getBufferResponse(response) {
   return response.arrayBuffer();
 }
 function fetchWrapper(requestOptions) {
-  var _a2, _b2, _c2;
+  var _a2, _b2, _c2, _d;
   const log = requestOptions.request && requestOptions.request.log ? requestOptions.request.log : console;
   const parseSuccessResponseBody = ((_a2 = requestOptions.request) == null ? void 0 : _a2.parseSuccessResponseBody) !== false;
   if (isPlainObject3(requestOptions.body) || Array.isArray(requestOptions.body)) {
@@ -71598,13 +71598,14 @@ function fetchWrapper(requestOptions) {
   return fetch2(requestOptions.url, {
     method: requestOptions.method,
     body: requestOptions.body,
+    redirect: (_c2 = requestOptions.request) == null ? void 0 : _c2.redirect,
     headers: Object.fromEntries(
       Object.entries(requestOptions.headers).map(([name, value]) => [
         name,
         String(value)
       ])
     ),
-    signal: (_c2 = requestOptions.request) == null ? void 0 : _c2.signal,
+    signal: (_d = requestOptions.request) == null ? void 0 : _d.signal,
     ...requestOptions.body && { duplex: "half" }
   }).then(async (response) => {
     url2 = response.url;
@@ -75496,7 +75497,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-c7d51f70c07e2fae2f01e8ec4a3ea1a76c440c04`;
+  const localVersion = `0.0.0-60edce3ad9d80f75e60a5a029265421612cfd598`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
