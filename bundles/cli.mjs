@@ -1848,166 +1848,6 @@ var require_jsonc_parser = __commonJS({
   }
 });
 
-// node_modules/escape-string-regexp/index.js
-var require_escape_string_regexp = __commonJS({
-  "node_modules/escape-string-regexp/index.js"(exports, module) {
-    "use strict";
-    var matchOperatorsRe = /[|\\{}()[\]^$+*?.]/g;
-    module.exports = function(str) {
-      if (typeof str !== "string") {
-        throw new TypeError("Expected a string");
-      }
-      return str.replace(matchOperatorsRe, "\\$&");
-    };
-  }
-});
-
-// node_modules/figures/index.js
-var require_figures = __commonJS({
-  "node_modules/figures/index.js"(exports, module) {
-    "use strict";
-    var escapeStringRegexp = require_escape_string_regexp();
-    var { platform } = process;
-    var main2 = {
-      tick: "\u2714",
-      cross: "\u2716",
-      star: "\u2605",
-      square: "\u2587",
-      squareSmall: "\u25FB",
-      squareSmallFilled: "\u25FC",
-      play: "\u25B6",
-      circle: "\u25EF",
-      circleFilled: "\u25C9",
-      circleDotted: "\u25CC",
-      circleDouble: "\u25CE",
-      circleCircle: "\u24DE",
-      circleCross: "\u24E7",
-      circlePipe: "\u24BE",
-      circleQuestionMark: "?\u20DD",
-      bullet: "\u25CF",
-      dot: "\u2024",
-      line: "\u2500",
-      ellipsis: "\u2026",
-      pointer: "\u276F",
-      pointerSmall: "\u203A",
-      info: "\u2139",
-      warning: "\u26A0",
-      hamburger: "\u2630",
-      smiley: "\u32E1",
-      mustache: "\u0DF4",
-      heart: "\u2665",
-      nodejs: "\u2B22",
-      arrowUp: "\u2191",
-      arrowDown: "\u2193",
-      arrowLeft: "\u2190",
-      arrowRight: "\u2192",
-      radioOn: "\u25C9",
-      radioOff: "\u25EF",
-      checkboxOn: "\u2612",
-      checkboxOff: "\u2610",
-      checkboxCircleOn: "\u24E7",
-      checkboxCircleOff: "\u24BE",
-      questionMarkPrefix: "?\u20DD",
-      oneHalf: "\xBD",
-      oneThird: "\u2153",
-      oneQuarter: "\xBC",
-      oneFifth: "\u2155",
-      oneSixth: "\u2159",
-      oneSeventh: "\u2150",
-      oneEighth: "\u215B",
-      oneNinth: "\u2151",
-      oneTenth: "\u2152",
-      twoThirds: "\u2154",
-      twoFifths: "\u2156",
-      threeQuarters: "\xBE",
-      threeFifths: "\u2157",
-      threeEighths: "\u215C",
-      fourFifths: "\u2158",
-      fiveSixths: "\u215A",
-      fiveEighths: "\u215D",
-      sevenEighths: "\u215E"
-    };
-    var windows = {
-      tick: "\u221A",
-      cross: "\xD7",
-      star: "*",
-      square: "\u2588",
-      squareSmall: "[ ]",
-      squareSmallFilled: "[\u2588]",
-      play: "\u25BA",
-      circle: "( )",
-      circleFilled: "(*)",
-      circleDotted: "( )",
-      circleDouble: "( )",
-      circleCircle: "(\u25CB)",
-      circleCross: "(\xD7)",
-      circlePipe: "(\u2502)",
-      circleQuestionMark: "(?)",
-      bullet: "*",
-      dot: ".",
-      line: "\u2500",
-      ellipsis: "...",
-      pointer: ">",
-      pointerSmall: "\xBB",
-      info: "i",
-      warning: "\u203C",
-      hamburger: "\u2261",
-      smiley: "\u263A",
-      mustache: "\u250C\u2500\u2510",
-      heart: main2.heart,
-      nodejs: "\u2666",
-      arrowUp: main2.arrowUp,
-      arrowDown: main2.arrowDown,
-      arrowLeft: main2.arrowLeft,
-      arrowRight: main2.arrowRight,
-      radioOn: "(*)",
-      radioOff: "( )",
-      checkboxOn: "[\xD7]",
-      checkboxOff: "[ ]",
-      checkboxCircleOn: "(\xD7)",
-      checkboxCircleOff: "( )",
-      questionMarkPrefix: "\uFF1F",
-      oneHalf: "1/2",
-      oneThird: "1/3",
-      oneQuarter: "1/4",
-      oneFifth: "1/5",
-      oneSixth: "1/6",
-      oneSeventh: "1/7",
-      oneEighth: "1/8",
-      oneNinth: "1/9",
-      oneTenth: "1/10",
-      twoThirds: "2/3",
-      twoFifths: "2/5",
-      threeQuarters: "3/4",
-      threeFifths: "3/5",
-      threeEighths: "3/8",
-      fourFifths: "4/5",
-      fiveSixths: "5/6",
-      fiveEighths: "5/8",
-      sevenEighths: "7/8"
-    };
-    if (platform === "linux") {
-      main2.questionMarkPrefix = "?";
-    }
-    var figures4 = platform === "win32" ? windows : main2;
-    var fn = (string) => {
-      if (figures4 === main2) {
-        return string;
-      }
-      for (const [key, value] of Object.entries(main2)) {
-        if (value === figures4[key]) {
-          continue;
-        }
-        string = string.replace(new RegExp(escapeStringRegexp(value), "g"), figures4[key]);
-      }
-      return string;
-    };
-    module.exports = Object.assign(fn, figures4);
-    module.exports.main = main2;
-    module.exports.windows = windows;
-  }
-});
-
 // node_modules/mimic-fn/index.js
 var require_mimic_fn = __commonJS({
   "node_modules/mimic-fn/index.js"(exports, module) {
@@ -2098,11 +1938,11 @@ var require_signals = __commonJS({
 // node_modules/signal-exit/index.js
 var require_signal_exit = __commonJS({
   "node_modules/signal-exit/index.js"(exports, module) {
-    var process2 = global.process;
-    var processOk = function(process3) {
-      return process3 && typeof process3 === "object" && typeof process3.removeListener === "function" && typeof process3.emit === "function" && typeof process3.reallyExit === "function" && typeof process3.listeners === "function" && typeof process3.kill === "function" && typeof process3.pid === "number" && typeof process3.on === "function";
+    var process3 = global.process;
+    var processOk = function(process4) {
+      return process4 && typeof process4 === "object" && typeof process4.removeListener === "function" && typeof process4.emit === "function" && typeof process4.reallyExit === "function" && typeof process4.listeners === "function" && typeof process4.kill === "function" && typeof process4.pid === "number" && typeof process4.on === "function";
     };
-    if (!processOk(process2)) {
+    if (!processOk(process3)) {
       module.exports = function() {
         return function() {
         };
@@ -2110,15 +1950,15 @@ var require_signal_exit = __commonJS({
     } else {
       assert2 = __require("assert");
       signals = require_signals();
-      isWin = /^win/i.test(process2.platform);
+      isWin = /^win/i.test(process3.platform);
       EE = __require("events");
       if (typeof EE !== "function") {
         EE = EE.EventEmitter;
       }
-      if (process2.__signal_exit_emitter__) {
-        emitter = process2.__signal_exit_emitter__;
+      if (process3.__signal_exit_emitter__) {
+        emitter = process3.__signal_exit_emitter__;
       } else {
-        emitter = process2.__signal_exit_emitter__ = new EE();
+        emitter = process3.__signal_exit_emitter__ = new EE();
         emitter.count = 0;
         emitter.emitted = {};
       }
@@ -2155,12 +1995,12 @@ var require_signal_exit = __commonJS({
         loaded = false;
         signals.forEach(function(sig) {
           try {
-            process2.removeListener(sig, sigListeners[sig]);
+            process3.removeListener(sig, sigListeners[sig]);
           } catch (er) {
           }
         });
-        process2.emit = originalProcessEmit;
-        process2.reallyExit = originalProcessReallyExit;
+        process3.emit = originalProcessEmit;
+        process3.reallyExit = originalProcessReallyExit;
         emitter.count -= 1;
       };
       module.exports.unload = unload;
@@ -2177,7 +2017,7 @@ var require_signal_exit = __commonJS({
           if (!processOk(global.process)) {
             return;
           }
-          var listeners = process2.listeners(sig);
+          var listeners = process3.listeners(sig);
           if (listeners.length === emitter.count) {
             unload();
             emit("exit", null, sig);
@@ -2185,7 +2025,7 @@ var require_signal_exit = __commonJS({
             if (isWin && sig === "SIGHUP") {
               sig = "SIGINT";
             }
-            process2.kill(process2.pid, sig);
+            process3.kill(process3.pid, sig);
           }
         };
       });
@@ -2201,35 +2041,35 @@ var require_signal_exit = __commonJS({
         emitter.count += 1;
         signals = signals.filter(function(sig) {
           try {
-            process2.on(sig, sigListeners[sig]);
+            process3.on(sig, sigListeners[sig]);
             return true;
           } catch (er) {
             return false;
           }
         });
-        process2.emit = processEmit;
-        process2.reallyExit = processReallyExit;
+        process3.emit = processEmit;
+        process3.reallyExit = processReallyExit;
       };
       module.exports.load = load2;
-      originalProcessReallyExit = process2.reallyExit;
+      originalProcessReallyExit = process3.reallyExit;
       processReallyExit = function processReallyExit2(code) {
         if (!processOk(global.process)) {
           return;
         }
-        process2.exitCode = code || 0;
-        emit("exit", process2.exitCode, null);
-        emit("afterexit", process2.exitCode, null);
-        originalProcessReallyExit.call(process2, process2.exitCode);
+        process3.exitCode = code || 0;
+        emit("exit", process3.exitCode, null);
+        emit("afterexit", process3.exitCode, null);
+        originalProcessReallyExit.call(process3, process3.exitCode);
       };
-      originalProcessEmit = process2.emit;
+      originalProcessEmit = process3.emit;
       processEmit = function processEmit2(ev, arg) {
         if (ev === "exit" && processOk(global.process)) {
           if (arg !== void 0) {
-            process2.exitCode = arg;
+            process3.exitCode = arg;
           }
           var ret = originalProcessEmit.apply(this, arguments);
-          emit("exit", process2.exitCode, null);
-          emit("afterexit", process2.exitCode, null);
+          emit("exit", process3.exitCode, null);
+          emit("afterexit", process3.exitCode, null);
           return ret;
         } else {
           return originalProcessEmit.apply(this, arguments);
@@ -5560,7 +5400,7 @@ var require_innerFrom = __commonJS({
     exports.fromIterable = fromIterable;
     function fromAsyncIterable(asyncIterable) {
       return new Observable_1.Observable(function(subscriber) {
-        process2(asyncIterable, subscriber).catch(function(err) {
+        process3(asyncIterable, subscriber).catch(function(err) {
           return subscriber.error(err);
         });
       });
@@ -5570,7 +5410,7 @@ var require_innerFrom = __commonJS({
       return fromAsyncIterable(isReadableStreamLike_1.readableStreamLikeToAsyncGenerator(readableStream));
     }
     exports.fromReadableStreamLike = fromReadableStreamLike;
-    function process2(asyncIterable, subscriber) {
+    function process3(asyncIterable, subscriber) {
       var asyncIterable_1, asyncIterable_1_1;
       var e_2, _a2;
       return __awaiter(this, void 0, void 0, function() {
@@ -18829,7 +18669,7 @@ var require_log_symbols = __commonJS({
   "node_modules/log-symbols/index.js"(exports, module) {
     "use strict";
     var chalk = require_source2();
-    var isUnicodeSupported = require_is_unicode_supported();
+    var isUnicodeSupported2 = require_is_unicode_supported();
     var main2 = {
       info: chalk.blue("\u2139"),
       success: chalk.green("\u2714"),
@@ -18842,7 +18682,7 @@ var require_log_symbols = __commonJS({
       warning: chalk.yellow("\u203C"),
       error: chalk.red("\xD7")
     };
-    module.exports = isUnicodeSupported() ? main2 : fallback;
+    module.exports = isUnicodeSupported2() ? main2 : fallback;
   }
 });
 
@@ -22464,7 +22304,7 @@ var require_ora = __commonJS({
     var stripAnsi3 = require_strip_ansi();
     var wcwidth = require_wcwidth();
     var isInteractive = require_is_interactive();
-    var isUnicodeSupported = require_is_unicode_supported();
+    var isUnicodeSupported2 = require_is_unicode_supported();
     var { BufferListStream } = require_bl();
     var TEXT = Symbol("text");
     var PREFIX_TEXT = Symbol("prefixText");
@@ -22587,7 +22427,7 @@ var require_ora = __commonJS({
             throw new Error("The given spinner must have a `frames` property");
           }
           this._spinner = spinner;
-        } else if (!isUnicodeSupported()) {
+        } else if (!isUnicodeSupported2()) {
           this._spinner = cliSpinners.line;
         } else if (spinner === void 0) {
           this._spinner = cliSpinners.dots;
@@ -38402,7 +38242,7 @@ var require_async3 = __commonJS({
     var rpl = require_run_parallel();
     var constants_1 = require_constants3();
     var utils = require_utils4();
-    var common = require_common();
+    var common2 = require_common();
     function read(directory, settings, callback) {
       if (!settings.stats && constants_1.IS_SUPPORT_READDIR_WITH_FILE_TYPES) {
         readdirWithFileTypes(directory, settings, callback);
@@ -38420,7 +38260,7 @@ var require_async3 = __commonJS({
         const entries = dirents.map((dirent) => ({
           dirent,
           name: dirent.name,
-          path: common.joinPathSegments(directory, dirent.name, settings.pathSegmentSeparator)
+          path: common2.joinPathSegments(directory, dirent.name, settings.pathSegmentSeparator)
         }));
         if (!settings.followSymbolicLinks) {
           callSuccessCallback(callback, entries);
@@ -38464,7 +38304,7 @@ var require_async3 = __commonJS({
           return;
         }
         const tasks = names.map((name) => {
-          const path7 = common.joinPathSegments(directory, name, settings.pathSegmentSeparator);
+          const path7 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
           return (done) => {
             fsStat.stat(path7, settings.fsStatSettings, (error, stats) => {
               if (error !== null) {
@@ -38511,7 +38351,7 @@ var require_sync2 = __commonJS({
     var fsStat = require_out();
     var constants_1 = require_constants3();
     var utils = require_utils4();
-    var common = require_common();
+    var common2 = require_common();
     function read(directory, settings) {
       if (!settings.stats && constants_1.IS_SUPPORT_READDIR_WITH_FILE_TYPES) {
         return readdirWithFileTypes(directory, settings);
@@ -38525,7 +38365,7 @@ var require_sync2 = __commonJS({
         const entry = {
           dirent,
           name: dirent.name,
-          path: common.joinPathSegments(directory, dirent.name, settings.pathSegmentSeparator)
+          path: common2.joinPathSegments(directory, dirent.name, settings.pathSegmentSeparator)
         };
         if (entry.dirent.isSymbolicLink() && settings.followSymbolicLinks) {
           try {
@@ -38544,7 +38384,7 @@ var require_sync2 = __commonJS({
     function readdir(directory, settings) {
       const names = settings.fs.readdirSync(directory);
       return names.map((name) => {
-        const entryPath = common.joinPathSegments(directory, name, settings.pathSegmentSeparator);
+        const entryPath = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
         const stats = fsStat.statSync(entryPath, settings.fsStatSettings);
         const entry = {
           name,
@@ -38979,12 +38819,12 @@ var require_reader = __commonJS({
   "node_modules/@nodelib/fs.walk/out/readers/reader.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var common = require_common2();
+    var common2 = require_common2();
     var Reader = class {
       constructor(_root2, _settings) {
         this._root = _root2;
         this._settings = _settings;
-        this._root = common.replacePathSegmentSeparator(_root2, _settings.pathSegmentSeparator);
+        this._root = common2.replacePathSegmentSeparator(_root2, _settings.pathSegmentSeparator);
       }
     };
     exports.default = Reader;
@@ -38999,7 +38839,7 @@ var require_async4 = __commonJS({
     var events_1 = __require("events");
     var fsScandir = require_out2();
     var fastq = require_queue2();
-    var common = require_common2();
+    var common2 = require_common2();
     var reader_1 = require_reader();
     var AsyncReader = class extends reader_1.default {
       constructor(_root2, _settings) {
@@ -39064,7 +38904,7 @@ var require_async4 = __commonJS({
         });
       }
       _handleError(error) {
-        if (this._isDestroyed || !common.isFatalError(this._settings, error)) {
+        if (this._isDestroyed || !common2.isFatalError(this._settings, error)) {
           return;
         }
         this._isFatalError = true;
@@ -39077,12 +38917,12 @@ var require_async4 = __commonJS({
         }
         const fullpath = entry.path;
         if (base !== void 0) {
-          entry.path = common.joinPathSegments(base, entry.name, this._settings.pathSegmentSeparator);
+          entry.path = common2.joinPathSegments(base, entry.name, this._settings.pathSegmentSeparator);
         }
-        if (common.isAppliedFilter(this._settings.entryFilter, entry)) {
+        if (common2.isAppliedFilter(this._settings.entryFilter, entry)) {
           this._emitEntry(entry);
         }
-        if (entry.dirent.isDirectory() && common.isAppliedFilter(this._settings.deepFilter, entry)) {
+        if (entry.dirent.isDirectory() && common2.isAppliedFilter(this._settings.deepFilter, entry)) {
           this._pushToQueue(fullpath, base === void 0 ? void 0 : entry.path);
         }
       }
@@ -39177,7 +39017,7 @@ var require_sync3 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var fsScandir = require_out2();
-    var common = require_common2();
+    var common2 = require_common2();
     var reader_1 = require_reader();
     var SyncReader = class extends reader_1.default {
       constructor() {
@@ -39210,7 +39050,7 @@ var require_sync3 = __commonJS({
         }
       }
       _handleError(error) {
-        if (!common.isFatalError(this._settings, error)) {
+        if (!common2.isFatalError(this._settings, error)) {
           return;
         }
         throw error;
@@ -39218,12 +39058,12 @@ var require_sync3 = __commonJS({
       _handleEntry(entry, base) {
         const fullpath = entry.path;
         if (base !== void 0) {
-          entry.path = common.joinPathSegments(base, entry.name, this._settings.pathSegmentSeparator);
+          entry.path = common2.joinPathSegments(base, entry.name, this._settings.pathSegmentSeparator);
         }
-        if (common.isAppliedFilter(this._settings.entryFilter, entry)) {
+        if (common2.isAppliedFilter(this._settings.entryFilter, entry)) {
           this._pushToStorage(entry);
         }
-        if (entry.dirent.isDirectory() && common.isAppliedFilter(this._settings.deepFilter, entry)) {
+        if (entry.dirent.isDirectory() && common2.isAppliedFilter(this._settings.deepFilter, entry)) {
           this._pushToQueue(fullpath, base === void 0 ? void 0 : entry.path);
         }
       }
@@ -50507,11 +50347,11 @@ var require_sync7 = __commonJS({
     var path7 = __require("path");
     var assert2 = __require("assert");
     var isAbsolute3 = require_path_is_absolute();
-    var common = require_common3();
-    var setopts = common.setopts;
-    var ownProp = common.ownProp;
-    var childrenIgnored = common.childrenIgnored;
-    var isIgnored = common.isIgnored;
+    var common2 = require_common3();
+    var setopts = common2.setopts;
+    var ownProp = common2.ownProp;
+    var childrenIgnored = common2.childrenIgnored;
+    var isIgnored = common2.isIgnored;
     function globSync2(pattern, options) {
       if (typeof options === "function" || arguments.length === 3)
         throw new TypeError("callback provided to sync glob\nSee: https://github.com/isaacs/node-glob/issues/167");
@@ -50554,7 +50394,7 @@ var require_sync7 = __commonJS({
           }
         });
       }
-      common.finish(this);
+      common2.finish(this);
     };
     GlobSync.prototype._process = function(pattern, index, inGlobStar) {
       assert2.ok(this instanceof GlobSync);
@@ -50838,10 +50678,10 @@ var require_sync7 = __commonJS({
       return c;
     };
     GlobSync.prototype._mark = function(p) {
-      return common.mark(this, p);
+      return common2.mark(this, p);
     };
     GlobSync.prototype._makeAbs = function(f) {
-      return common.makeAbs(this, f);
+      return common2.makeAbs(this, f);
     };
   }
 });
@@ -50906,13 +50746,13 @@ var require_glob = __commonJS({
     var assert2 = __require("assert");
     var isAbsolute3 = require_path_is_absolute();
     var globSync2 = require_sync7();
-    var common = require_common3();
-    var setopts = common.setopts;
-    var ownProp = common.ownProp;
+    var common2 = require_common3();
+    var setopts = common2.setopts;
+    var ownProp = common2.ownProp;
     var inflight = require_inflight();
     var util = __require("util");
-    var childrenIgnored = common.childrenIgnored;
-    var isIgnored = common.isIgnored;
+    var childrenIgnored = common2.childrenIgnored;
+    var isIgnored = common2.isIgnored;
     var once = require_once();
     function glob2(pattern, options, cb) {
       if (typeof options === "function")
@@ -51013,7 +50853,7 @@ var require_glob = __commonJS({
         return;
       if (this.realpath && !this._didRealpath)
         return this._realpath();
-      common.finish(this);
+      common2.finish(this);
       this.emit("end", this.found);
     };
     Glob.prototype._realpath = function() {
@@ -51058,10 +50898,10 @@ var require_glob = __commonJS({
       });
     };
     Glob.prototype._mark = function(p) {
-      return common.mark(this, p);
+      return common2.mark(this, p);
     };
     Glob.prototype._makeAbs = function(f) {
-      return common.makeAbs(this, f);
+      return common2.makeAbs(this, f);
     };
     Glob.prototype.abort = function() {
       this.aborted = true;
@@ -55979,6 +55819,20 @@ var require_read_installed = __commonJS({
         o[i] = copy(obj[i]);
       return o;
     }
+  }
+});
+
+// node_modules/escape-string-regexp/index.js
+var require_escape_string_regexp = __commonJS({
+  "node_modules/escape-string-regexp/index.js"(exports, module) {
+    "use strict";
+    var matchOperatorsRe = /[|\\{}()[\]^$+*?.]/g;
+    module.exports = function(str) {
+      if (typeof str !== "string") {
+        throw new TypeError("Expected a string");
+      }
+      return str.replace(matchOperatorsRe, "\\$&");
+    };
   }
 });
 
@@ -68074,8 +67928,293 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
+// node_modules/@inquirer/figures/dist/esm/index.mjs
+import process2 from "process";
+function isUnicodeSupported() {
+  if (process2.platform !== "win32") {
+    return process2.env["TERM"] !== "linux";
+  }
+  return Boolean(process2.env["WT_SESSION"]) || Boolean(process2.env["TERMINUS_SUBLIME"]) || process2.env["ConEmuTask"] === "{cmd::Cmder}" || process2.env["TERM_PROGRAM"] === "Terminus-Sublime" || process2.env["TERM_PROGRAM"] === "vscode" || process2.env["TERM"] === "xterm-256color" || process2.env["TERM"] === "alacritty" || process2.env["TERMINAL_EMULATOR"] === "JetBrains-JediTerm";
+}
+var common = {
+  circleQuestionMark: "(?)",
+  questionMarkPrefix: "(?)",
+  square: "\u2588",
+  squareDarkShade: "\u2593",
+  squareMediumShade: "\u2592",
+  squareLightShade: "\u2591",
+  squareTop: "\u2580",
+  squareBottom: "\u2584",
+  squareLeft: "\u258C",
+  squareRight: "\u2590",
+  squareCenter: "\u25A0",
+  bullet: "\u25CF",
+  dot: "\u2024",
+  ellipsis: "\u2026",
+  pointerSmall: "\u203A",
+  triangleUp: "\u25B2",
+  triangleUpSmall: "\u25B4",
+  triangleDown: "\u25BC",
+  triangleDownSmall: "\u25BE",
+  triangleLeftSmall: "\u25C2",
+  triangleRightSmall: "\u25B8",
+  home: "\u2302",
+  heart: "\u2665",
+  musicNote: "\u266A",
+  musicNoteBeamed: "\u266B",
+  arrowUp: "\u2191",
+  arrowDown: "\u2193",
+  arrowLeft: "\u2190",
+  arrowRight: "\u2192",
+  arrowLeftRight: "\u2194",
+  arrowUpDown: "\u2195",
+  almostEqual: "\u2248",
+  notEqual: "\u2260",
+  lessOrEqual: "\u2264",
+  greaterOrEqual: "\u2265",
+  identical: "\u2261",
+  infinity: "\u221E",
+  subscriptZero: "\u2080",
+  subscriptOne: "\u2081",
+  subscriptTwo: "\u2082",
+  subscriptThree: "\u2083",
+  subscriptFour: "\u2084",
+  subscriptFive: "\u2085",
+  subscriptSix: "\u2086",
+  subscriptSeven: "\u2087",
+  subscriptEight: "\u2088",
+  subscriptNine: "\u2089",
+  oneHalf: "\xBD",
+  oneThird: "\u2153",
+  oneQuarter: "\xBC",
+  oneFifth: "\u2155",
+  oneSixth: "\u2159",
+  oneEighth: "\u215B",
+  twoThirds: "\u2154",
+  twoFifths: "\u2156",
+  threeQuarters: "\xBE",
+  threeFifths: "\u2157",
+  threeEighths: "\u215C",
+  fourFifths: "\u2158",
+  fiveSixths: "\u215A",
+  fiveEighths: "\u215D",
+  sevenEighths: "\u215E",
+  line: "\u2500",
+  lineBold: "\u2501",
+  lineDouble: "\u2550",
+  lineDashed0: "\u2504",
+  lineDashed1: "\u2505",
+  lineDashed2: "\u2508",
+  lineDashed3: "\u2509",
+  lineDashed4: "\u254C",
+  lineDashed5: "\u254D",
+  lineDashed6: "\u2574",
+  lineDashed7: "\u2576",
+  lineDashed8: "\u2578",
+  lineDashed9: "\u257A",
+  lineDashed10: "\u257C",
+  lineDashed11: "\u257E",
+  lineDashed12: "\u2212",
+  lineDashed13: "\u2013",
+  lineDashed14: "\u2010",
+  lineDashed15: "\u2043",
+  lineVertical: "\u2502",
+  lineVerticalBold: "\u2503",
+  lineVerticalDouble: "\u2551",
+  lineVerticalDashed0: "\u2506",
+  lineVerticalDashed1: "\u2507",
+  lineVerticalDashed2: "\u250A",
+  lineVerticalDashed3: "\u250B",
+  lineVerticalDashed4: "\u254E",
+  lineVerticalDashed5: "\u254F",
+  lineVerticalDashed6: "\u2575",
+  lineVerticalDashed7: "\u2577",
+  lineVerticalDashed8: "\u2579",
+  lineVerticalDashed9: "\u257B",
+  lineVerticalDashed10: "\u257D",
+  lineVerticalDashed11: "\u257F",
+  lineDownLeft: "\u2510",
+  lineDownLeftArc: "\u256E",
+  lineDownBoldLeftBold: "\u2513",
+  lineDownBoldLeft: "\u2512",
+  lineDownLeftBold: "\u2511",
+  lineDownDoubleLeftDouble: "\u2557",
+  lineDownDoubleLeft: "\u2556",
+  lineDownLeftDouble: "\u2555",
+  lineDownRight: "\u250C",
+  lineDownRightArc: "\u256D",
+  lineDownBoldRightBold: "\u250F",
+  lineDownBoldRight: "\u250E",
+  lineDownRightBold: "\u250D",
+  lineDownDoubleRightDouble: "\u2554",
+  lineDownDoubleRight: "\u2553",
+  lineDownRightDouble: "\u2552",
+  lineUpLeft: "\u2518",
+  lineUpLeftArc: "\u256F",
+  lineUpBoldLeftBold: "\u251B",
+  lineUpBoldLeft: "\u251A",
+  lineUpLeftBold: "\u2519",
+  lineUpDoubleLeftDouble: "\u255D",
+  lineUpDoubleLeft: "\u255C",
+  lineUpLeftDouble: "\u255B",
+  lineUpRight: "\u2514",
+  lineUpRightArc: "\u2570",
+  lineUpBoldRightBold: "\u2517",
+  lineUpBoldRight: "\u2516",
+  lineUpRightBold: "\u2515",
+  lineUpDoubleRightDouble: "\u255A",
+  lineUpDoubleRight: "\u2559",
+  lineUpRightDouble: "\u2558",
+  lineUpDownLeft: "\u2524",
+  lineUpBoldDownBoldLeftBold: "\u252B",
+  lineUpBoldDownBoldLeft: "\u2528",
+  lineUpDownLeftBold: "\u2525",
+  lineUpBoldDownLeftBold: "\u2529",
+  lineUpDownBoldLeftBold: "\u252A",
+  lineUpDownBoldLeft: "\u2527",
+  lineUpBoldDownLeft: "\u2526",
+  lineUpDoubleDownDoubleLeftDouble: "\u2563",
+  lineUpDoubleDownDoubleLeft: "\u2562",
+  lineUpDownLeftDouble: "\u2561",
+  lineUpDownRight: "\u251C",
+  lineUpBoldDownBoldRightBold: "\u2523",
+  lineUpBoldDownBoldRight: "\u2520",
+  lineUpDownRightBold: "\u251D",
+  lineUpBoldDownRightBold: "\u2521",
+  lineUpDownBoldRightBold: "\u2522",
+  lineUpDownBoldRight: "\u251F",
+  lineUpBoldDownRight: "\u251E",
+  lineUpDoubleDownDoubleRightDouble: "\u2560",
+  lineUpDoubleDownDoubleRight: "\u255F",
+  lineUpDownRightDouble: "\u255E",
+  lineDownLeftRight: "\u252C",
+  lineDownBoldLeftBoldRightBold: "\u2533",
+  lineDownLeftBoldRightBold: "\u252F",
+  lineDownBoldLeftRight: "\u2530",
+  lineDownBoldLeftBoldRight: "\u2531",
+  lineDownBoldLeftRightBold: "\u2532",
+  lineDownLeftRightBold: "\u252E",
+  lineDownLeftBoldRight: "\u252D",
+  lineDownDoubleLeftDoubleRightDouble: "\u2566",
+  lineDownDoubleLeftRight: "\u2565",
+  lineDownLeftDoubleRightDouble: "\u2564",
+  lineUpLeftRight: "\u2534",
+  lineUpBoldLeftBoldRightBold: "\u253B",
+  lineUpLeftBoldRightBold: "\u2537",
+  lineUpBoldLeftRight: "\u2538",
+  lineUpBoldLeftBoldRight: "\u2539",
+  lineUpBoldLeftRightBold: "\u253A",
+  lineUpLeftRightBold: "\u2536",
+  lineUpLeftBoldRight: "\u2535",
+  lineUpDoubleLeftDoubleRightDouble: "\u2569",
+  lineUpDoubleLeftRight: "\u2568",
+  lineUpLeftDoubleRightDouble: "\u2567",
+  lineUpDownLeftRight: "\u253C",
+  lineUpBoldDownBoldLeftBoldRightBold: "\u254B",
+  lineUpDownBoldLeftBoldRightBold: "\u2548",
+  lineUpBoldDownLeftBoldRightBold: "\u2547",
+  lineUpBoldDownBoldLeftRightBold: "\u254A",
+  lineUpBoldDownBoldLeftBoldRight: "\u2549",
+  lineUpBoldDownLeftRight: "\u2540",
+  lineUpDownBoldLeftRight: "\u2541",
+  lineUpDownLeftBoldRight: "\u253D",
+  lineUpDownLeftRightBold: "\u253E",
+  lineUpBoldDownBoldLeftRight: "\u2542",
+  lineUpDownLeftBoldRightBold: "\u253F",
+  lineUpBoldDownLeftBoldRight: "\u2543",
+  lineUpBoldDownLeftRightBold: "\u2544",
+  lineUpDownBoldLeftBoldRight: "\u2545",
+  lineUpDownBoldLeftRightBold: "\u2546",
+  lineUpDoubleDownDoubleLeftDoubleRightDouble: "\u256C",
+  lineUpDoubleDownDoubleLeftRight: "\u256B",
+  lineUpDownLeftDoubleRightDouble: "\u256A",
+  lineCross: "\u2573",
+  lineBackslash: "\u2572",
+  lineSlash: "\u2571"
+};
+var specialMainSymbols = {
+  tick: "\u2714",
+  info: "\u2139",
+  warning: "\u26A0",
+  cross: "\u2718",
+  squareSmall: "\u25FB",
+  squareSmallFilled: "\u25FC",
+  circle: "\u25EF",
+  circleFilled: "\u25C9",
+  circleDotted: "\u25CC",
+  circleDouble: "\u25CE",
+  circleCircle: "\u24DE",
+  circleCross: "\u24E7",
+  circlePipe: "\u24BE",
+  radioOn: "\u25C9",
+  radioOff: "\u25EF",
+  checkboxOn: "\u2612",
+  checkboxOff: "\u2610",
+  checkboxCircleOn: "\u24E7",
+  checkboxCircleOff: "\u24BE",
+  pointer: "\u276F",
+  triangleUpOutline: "\u25B3",
+  triangleLeft: "\u25C0",
+  triangleRight: "\u25B6",
+  lozenge: "\u25C6",
+  lozengeOutline: "\u25C7",
+  hamburger: "\u2630",
+  smiley: "\u32E1",
+  mustache: "\u0DF4",
+  star: "\u2605",
+  play: "\u25B6",
+  nodejs: "\u2B22",
+  oneSeventh: "\u2150",
+  oneNinth: "\u2151",
+  oneTenth: "\u2152"
+};
+var specialFallbackSymbols = {
+  tick: "\u221A",
+  info: "i",
+  warning: "\u203C",
+  cross: "\xD7",
+  squareSmall: "\u25A1",
+  squareSmallFilled: "\u25A0",
+  circle: "( )",
+  circleFilled: "(*)",
+  circleDotted: "( )",
+  circleDouble: "( )",
+  circleCircle: "(\u25CB)",
+  circleCross: "(\xD7)",
+  circlePipe: "(\u2502)",
+  radioOn: "(*)",
+  radioOff: "( )",
+  checkboxOn: "[\xD7]",
+  checkboxOff: "[ ]",
+  checkboxCircleOn: "(\xD7)",
+  checkboxCircleOff: "( )",
+  pointer: ">",
+  triangleUpOutline: "\u2206",
+  triangleLeft: "\u25C4",
+  triangleRight: "\u25BA",
+  lozenge: "\u2666",
+  lozengeOutline: "\u25CA",
+  hamburger: "\u2261",
+  smiley: "\u263A",
+  mustache: "\u250C\u2500\u2510",
+  star: "\u2736",
+  play: "\u25BA",
+  nodejs: "\u2666",
+  oneSeventh: "1/7",
+  oneNinth: "1/9",
+  oneTenth: "1/10"
+};
+var mainSymbols = { ...common, ...specialMainSymbols };
+var fallbackSymbols = {
+  ...common,
+  ...specialFallbackSymbols
+};
+var shouldUseMain = isUnicodeSupported();
+var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
+var esm_default2 = figures;
+var replacements = Object.entries(specialMainSymbols);
+
 // node_modules/inquirer/lib/prompts/list.js
-var import_figures2 = __toESM(require_figures(), 1);
 var import_cli_cursor = __toESM(require_cli_cursor(), 1);
 var import_run_async2 = __toESM(require_run_async(), 1);
 var import_rxjs3 = __toESM(require_cjs(), 1);
@@ -68199,11 +68338,10 @@ var import_map = __toESM(require_map2(), 1);
 import assert from "assert";
 
 // node_modules/inquirer/lib/objects/separator.js
-var import_figures = __toESM(require_figures(), 1);
 var Separator = class {
   constructor(line) {
     this.type = "separator";
-    this.line = source_default.dim(line || new Array(15).join(import_figures.default.line));
+    this.line = source_default.dim(line || new Array(15).join(esm_default2.line));
   }
   static exclude(obj) {
     return obj.type !== "separator";
@@ -68646,7 +68784,7 @@ function listRender(choices, pointer) {
       return;
     }
     const isSelected = i - separatorOffset === pointer;
-    let line = (isSelected ? import_figures2.default.pointer + " " : "  ") + choice.name;
+    let line = (isSelected ? esm_default2.pointer + " " : "  ") + choice.name;
     if (isSelected) {
       line = source_default.cyan(line);
     }
@@ -69083,7 +69221,6 @@ function renderChoices2(choices, pointer) {
 
 // node_modules/inquirer/lib/prompts/checkbox.js
 var import_cli_cursor2 = __toESM(require_cli_cursor(), 1);
-var import_figures3 = __toESM(require_figures(), 1);
 var import_rxjs8 = __toESM(require_cjs(), 1);
 var CheckboxPrompt = class extends Prompt {
   constructor(questions, rl, answers) {
@@ -69235,7 +69372,7 @@ function renderChoices3(choices, pointer) {
     } else {
       const line = getCheckbox(choice.checked) + " " + choice.name;
       if (i - separatorOffset === pointer) {
-        output += source_default.cyan(import_figures3.default.pointer + line);
+        output += source_default.cyan(esm_default2.pointer + line);
       } else {
         output += " " + line;
       }
@@ -69245,7 +69382,7 @@ function renderChoices3(choices, pointer) {
   return output.replace(/\n$/, "");
 }
 function getCheckbox(checked) {
-  return checked ? source_default.green(import_figures3.default.radioOn) : import_figures3.default.radioOff;
+  return checked ? source_default.green(esm_default2.radioOn) : esm_default2.radioOff;
 }
 
 // node_modules/inquirer/lib/prompts/password.js
@@ -70198,12 +70335,12 @@ function multimatch(list, patterns, options = {}) {
   let result = [];
   for (const item of list) {
     for (let pattern of patterns) {
-      let process2 = array_union_default;
+      let process3 = array_union_default;
       if (pattern[0] === "!") {
         pattern = pattern.slice(1);
-        process2 = arrayDiffer;
+        process3 = arrayDiffer;
       }
-      result = process2(result, minimatch.match([item], pattern, options));
+      result = process3(result, minimatch.match([item], pattern, options));
     }
   }
   return result;
@@ -75499,7 +75636,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-8734828aba5621594dfb875703786015fa95b76f`;
+  const localVersion = `0.0.0-f4b29c5efaf268af8a2a5f3a845fa07a7ad675d6`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
