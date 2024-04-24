@@ -14,3 +14,5 @@ export declare function getPr<PrSchema>(prSchema: PrSchema, prNumber: number, gi
 export declare function getPendingPrs<PrSchema>(prSchema: PrSchema, git: AuthenticatedGitClient): Promise<PrSchema[]>;
 /** Get all files in a PR from github  */
 export declare function getPrFiles<PrFileSchema>(fileSchema: PrFileSchema, prNumber: number, git: AuthenticatedGitClient): Promise<PrFileSchema[]>;
+/** Get all files in a PR from github  */
+export declare function getPrComments<PrCommentsSchema>(commentsSchema: PrCommentsSchema, prNumber: number, git: AuthenticatedGitClient): Promise<PrCommentsSchema[]>;

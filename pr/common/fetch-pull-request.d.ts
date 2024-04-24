@@ -107,6 +107,14 @@ export declare const PR_FILES_SCHEMA: {
     path: string;
 };
 export type PullRequestFilesFromGithub = typeof PR_FILES_SCHEMA;
+export declare const PR_COMMENTS_SCHEMA: {
+    author: {
+        login: string;
+    };
+    authorAssociation: CommentAuthorAssociation;
+    bodyText: string;
+};
+export type PullRequestCommentsFromGithub = typeof PR_COMMENTS_SCHEMA;
 /** Type describing the normalized and combined status of a pull request. */
 export type PullRequestStatusInfo = {
     combinedStatus: PullRequestStatus;
@@ -122,6 +130,8 @@ export declare function fetchPullRequestFromGithub(git: AuthenticatedGitClient, 
 export declare function fetchPendingPullRequestsFromGithub(git: AuthenticatedGitClient): Promise<PullRequestFromGithub[] | null>;
 /** Fetches a pull request from Github. Returns null if an error occurred. */
 export declare function fetchPullRequestFilesFromGithub(git: AuthenticatedGitClient, prNumber: number): Promise<PullRequestFilesFromGithub[] | null>;
+/** Fetches a pull request from Github. Returns null if an error occurred. */
+export declare function fetchPullRequestCommentsFromGithub(git: AuthenticatedGitClient, prNumber: number): Promise<PullRequestCommentsFromGithub[] | null>;
 /**
  * Gets the statuses for a commit from a pull request, using a consistent interface
  * for both status and checks results.

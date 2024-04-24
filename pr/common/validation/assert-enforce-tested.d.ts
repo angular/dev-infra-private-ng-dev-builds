@@ -5,8 +5,8 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { AuthenticatedGithubClient } from '../../../utils/git/github.js';
-import { PullRequestFromGithub } from '../fetch-pull-request.js';
+import { PullRequestCommentsFromGithub } from '../fetch-pull-request.js';
+import { AuthenticatedGitClient } from '../../../utils/git/authenticated-git-client.js';
 /** Assert the pull request has passing enforced statuses. */
 export declare const enforceTestedValidation: {
     run(validationConfig: import("../../config/index.js").PullRequestValidationConfig, pullRequest: {
@@ -96,9 +96,19 @@ export declare const enforceTestedValidation: {
                 name: string;
             }[];
         };
-    }, gitClient: AuthenticatedGithubClient): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
+    }, gitClient: AuthenticatedGitClient): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
+export declare class PullRequestComments {
+    private git;
+    private prNumber;
+    constructor(git: AuthenticatedGitClient, prNumber: number);
+    /**
+     * Loads the files from a given pull request.
+     */
+    loadPullRequestComments(): Promise<PullRequestCommentsFromGithub[]>;
+    static create(git: AuthenticatedGitClient, prNumber: number): PullRequestComments;
+}
 /**
- * Checks for `TESTED=[reason]` review comment on a current commit sha from a google organization member
+ * Checks for `TESTED=[reason]` comment on a current commit sha from a google organization member
  */
-export declare function pullRequestHasValidTestedComment(pullRequest: PullRequestFromGithub, gitClient: AuthenticatedGithubClient): Promise<boolean>;
+export declare function pullRequestHasValidTestedComment(comments: PullRequestCommentsFromGithub[], gitClient: AuthenticatedGitClient): Promise<boolean>;
