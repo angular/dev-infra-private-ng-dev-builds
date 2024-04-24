@@ -72907,7 +72907,10 @@ var Validation8 = class extends PullRequestValidation {
 var passingCiValidation = createPullRequestValidation({ name: "assertPassingCi", canBeForceIgnored: true }, () => Validation9);
 var Validation9 = class extends PullRequestValidation {
   assert(pullRequest) {
-    const { combinedStatus } = getStatusesForPullRequest(pullRequest);
+    const { combinedStatus, statuses } = getStatusesForPullRequest(pullRequest);
+    if (statuses.find((status) => status.name === "lint") === void 0) {
+      throw this._createError("Pull request is missing expected status checks. Check the pull request for pending workflows");
+    }
     if (combinedStatus === PullRequestStatus.PENDING) {
       throw this._createError("Pull request has pending status checks.");
     }
@@ -75701,7 +75704,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-bf2888a32ca8595e8f2425236b8e5eaaa1b5915b`;
+  const localVersion = `0.0.0-14a4b5f952f0728f122b3678979338bdc995453c`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
