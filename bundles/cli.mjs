@@ -75704,7 +75704,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-ca77629b7e018cceca4791dcbca6e405ec166b94`;
+  const localVersion = `0.0.0-eb7a061177826db42777592223ee2e83f49f650a`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -76442,11 +76442,11 @@ function main(approve, config, printWarnings) {
     Log.info(yellow(`
    Total: ${newCircularDeps.length} new cycle(s), ${fixedCircularDeps.length} fixed cycle(s). 
 `));
-    if (approveCommand) {
-      Log.info(yellow(`   Please approve the new golden with: ${approveCommand}`));
-    } else {
-      Log.info(yellow(`   Please update the golden. The following command can be run: yarn ts-circular-deps approve ${getRelativePath(process.cwd(), goldenFile)}.`));
-    }
+  }
+  if (approveCommand) {
+    Log.info(yellow(`   Please approve the new golden with: ${approveCommand}`));
+  } else {
+    Log.info(yellow(`   Please update the golden. The following command can be run: yarn ng-dev ts-circular-deps approve ${getRelativePath(process.cwd(), goldenFile)}.`));
   }
   return 1;
 }
