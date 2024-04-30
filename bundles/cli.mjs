@@ -19191,7 +19191,7 @@ var require_buffer_list = __commonJS({
         }
       }, {
         key: "join",
-        value: function join14(s) {
+        value: function join13(s) {
           if (this.length === 0)
             return "";
           var p = this.head;
@@ -33520,7 +33520,7 @@ var require_regex = __commonJS({
   "node_modules/conventional-commits-parser/lib/regex.js"(exports, module) {
     "use strict";
     var reNomatch = /(?!.*)/;
-    function join14(array, joiner) {
+    function join13(array, joiner) {
       return array.map(function(val) {
         return val.trim();
       }).filter(function(val) {
@@ -33531,7 +33531,7 @@ var require_regex = __commonJS({
       if (!noteKeywords) {
         return reNomatch;
       }
-      const noteKeywordsSelection = join14(noteKeywords, "|");
+      const noteKeywordsSelection = join13(noteKeywords, "|");
       if (!notesPattern) {
         return new RegExp("^[\\s|*]*(" + noteKeywordsSelection + ")[:\\s]+(.*)", "i");
       }
@@ -33542,13 +33542,13 @@ var require_regex = __commonJS({
         return reNomatch;
       }
       const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join14(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
+      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join13(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
     }
     function getReferencesRegex(referenceActions) {
       if (!referenceActions) {
         return /()(.+)/gi;
       }
-      const joinedKeywords = join14(referenceActions, "|");
+      const joinedKeywords = join13(referenceActions, "|");
       return new RegExp("(" + joinedKeywords + ")(?:\\s+(.*?))(?=(?:" + joinedKeywords + ")|$)", "gi");
     }
     module.exports = function(options) {
@@ -40101,7 +40101,7 @@ var require_cjs2 = __commonJS({
 var require_lib3 = __commonJS({
   "node_modules/which/lib/index.js"(exports, module) {
     var { isexe, sync: isexeSync } = require_cjs2();
-    var { join: join14, delimiter, sep: sep2, posix } = __require("path");
+    var { join: join13, delimiter, sep: sep2, posix } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix.sep}${sep2 === posix.sep ? "" : sep2}]`.replace(/(\\)/g, "\\$1"));
     var rRel = new RegExp(`^\\.${rSlash.source}`);
@@ -40128,7 +40128,7 @@ var require_lib3 = __commonJS({
     var getPathPart = (raw, cmd) => {
       const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
       const prefix = !pathPart && rRel.test(cmd) ? cmd.slice(0, 2) : "";
-      return prefix + join14(pathPart, cmd);
+      return prefix + join13(pathPart, cmd);
     };
     var which2 = async (cmd, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
@@ -55879,7 +55879,7 @@ var require_json_parse_even_better_errors = __commonJS({
 // node_modules/read-package-json/node_modules/npm-normalize-package-bin/index.js
 var require_npm_normalize_package_bin = __commonJS({
   "node_modules/read-package-json/node_modules/npm-normalize-package-bin/index.js"(exports, module) {
-    var { join: join14, basename: basename2 } = __require("path");
+    var { join: join13, basename: basename2 } = __require("path");
     var normalize2 = (pkg) => !pkg.bin ? removeBin(pkg) : typeof pkg.bin === "string" ? normalizeString(pkg) : Array.isArray(pkg.bin) ? normalizeArray(pkg) : typeof pkg.bin === "object" ? normalizeObject(pkg) : removeBin(pkg);
     var normalizeString = (pkg) => {
       if (!pkg.name)
@@ -55903,10 +55903,10 @@ var require_npm_normalize_package_bin = __commonJS({
       const clean = {};
       let hasBins = false;
       Object.keys(orig).forEach((binKey) => {
-        const base = join14("/", basename2(binKey.replace(/\\|:/g, "/"))).substr(1);
+        const base = join13("/", basename2(binKey.replace(/\\|:/g, "/"))).substr(1);
         if (typeof orig[binKey] !== "string" || !base)
           return;
-        const binTarget = join14("/", orig[binKey]).replace(/\\/g, "/").substr(1);
+        const binTarget = join13("/", orig[binKey]).replace(/\\/g, "/").substr(1);
         if (!binTarget)
           return;
         clean[base] = binTarget;
@@ -71469,44 +71469,13 @@ var Buildifier = class extends Formatter {
 };
 var BAZEL_WARNING_FLAG = `--warnings=attr-cfg,attr-license,attr-non-empty,attr-output-default,attr-single-file,constant-glob,ctx-args,depset-iteration,depset-union,dict-concatenation,duplicated-name,filetype,git-repository,http-archive,integer-division,load,native-build,native-package,output-group,package-name,package-on-top,positional-args,redefined-variable,repository-name,string-iteration,unused-variable`;
 
-// bazel-out/k8-fastbuild/bin/ng-dev/format/formatters/clang-format.js
-import { join as join2 } from "path";
-var ClangFormat = class extends Formatter {
-  constructor() {
-    super(...arguments);
-    this.name = "clang-format";
-    this.binaryFilePath = join2(this.git.baseDir, "node_modules/.bin/clang-format");
-    this.defaultFileMatcher = ["**/*.{t,j,cj,mj}s"];
-    this.actions = {
-      check: {
-        commandFlags: `--Werror -n -style=file`,
-        callback: (_3, code) => {
-          return code !== 0;
-        }
-      },
-      format: {
-        commandFlags: `-i -style=file`,
-        callback: (file, code, _3, stderr) => {
-          if (code !== 0) {
-            Log.error(`Error running clang-format on: ${file}`);
-            Log.error(stderr);
-            Log.error();
-            return true;
-          }
-          return false;
-        }
-      }
-    };
-  }
-};
-
 // bazel-out/k8-fastbuild/bin/ng-dev/format/formatters/prettier.js
-import { join as join3 } from "path";
+import { join as join2 } from "path";
 var Prettier = class extends Formatter {
   constructor() {
     super(...arguments);
     this.name = "prettier";
-    this.binaryFilePath = join3(this.git.baseDir, "node_modules/.bin/prettier");
+    this.binaryFilePath = join2(this.git.baseDir, "node_modules/.bin/prettier");
     this.defaultFileMatcher = [
       "**/*.{js,cjs,mjs}",
       "**/*.{ts,cts,mts}",
@@ -71515,7 +71484,7 @@ var Prettier = class extends Formatter {
     ];
     this.configPath = this.config["prettier"] ? ChildProcess.spawnSync(this.binaryFilePath, [
       "--find-config-path",
-      join3(process.cwd(), "dummy.js")
+      join2(process.cwd(), "dummy.js")
     ]).stdout.trim() : "";
     this.actions = {
       check: {
@@ -71545,11 +71514,7 @@ async function getActiveFormatters() {
   const config = await getConfig();
   assertValidFormatConfig(config);
   const gitClient = await GitClient.get();
-  return [
-    new Prettier(gitClient, config.format),
-    new Buildifier(gitClient, config.format),
-    new ClangFormat(gitClient, config.format)
-  ].filter((formatter) => formatter.isEnabled());
+  return [new Prettier(gitClient, config.format), new Buildifier(gitClient, config.format)].filter((formatter) => formatter.isEnabled());
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/format/run-commands-parallel.js
@@ -71760,7 +71725,7 @@ import { lstatSync } from "fs";
 import { resolve as resolve6 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/build/index.js
-import { dirname as dirname3, join as join4 } from "path";
+import { dirname as dirname3, join as join3 } from "path";
 import { fileURLToPath as fileURLToPath2 } from "url";
 import { fork } from "child_process";
 var BuildWorker = class {
@@ -71777,7 +71742,7 @@ var BuildWorker = class {
 };
 function getBuildWorkerScriptPath() {
   const bundlesDir = dirname3(fileURLToPath2(import.meta.url));
-  return join4(bundlesDir, "./release/build/build-worker.mjs");
+  return join3(bundlesDir, "./release/build/build-worker.mjs");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/build-and-link/cli.js
@@ -71822,7 +71787,7 @@ var BuildAndLinkCommandModule = {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/update-yarn/cli.js
 import { readdirSync as readdirSync2, unlinkSync as unlinkSync2 } from "fs";
-import { join as join6 } from "path";
+import { join as join5 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/spinner.js
 import { cursorTo, clearLine as clearLine2 } from "readline";
@@ -71971,8 +71936,8 @@ async function handler11() {
     git.run(["fetch", "-q", git.getRepoGitUrl(), mainBranchName]);
     git.checkout("FETCH_HEAD", false);
     spinner.update("Removing previous yarn version.");
-    const yarnReleasesDir = join6(git.baseDir, ".yarn/releases");
-    readdirSync2(yarnReleasesDir).forEach((file) => unlinkSync2(join6(yarnReleasesDir, file)));
+    const yarnReleasesDir = join5(git.baseDir, ".yarn/releases");
+    readdirSync2(yarnReleasesDir).forEach((file) => unlinkSync2(join5(yarnReleasesDir, file)));
     spinner.update("Updating yarn version.");
     ChildProcess.spawnSync(yarnGlobalBin, ["policies", "set-version", "latest"]);
     spinner.update("Confirming the version of yarn was updated.");
@@ -72374,7 +72339,7 @@ var CheckTargetBranchesModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/checkout.js
-import { dirname as dirname4, join as join7 } from "path";
+import { dirname as dirname4, join as join6 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/checkout-pr.js
 var import_typed_graphqlify3 = __toESM(require_dist());
@@ -73305,7 +73270,7 @@ async function checkoutPullRequest(params4) {
 }
 function getCommitMessageFilterScriptPath() {
   const bundlesDir = dirname4(fileURLToPath3(import.meta.url));
-  return join7(bundlesDir, "./pr/checkout/commit-message-filter.mjs");
+  return join6(bundlesDir, "./pr/checkout/commit-message-filter.mjs");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/cli.js
@@ -74248,7 +74213,7 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/autosquash-merge.js
-import { dirname as dirname5, join as join8 } from "path";
+import { dirname as dirname5, join as join7 } from "path";
 import { fileURLToPath as fileURLToPath4 } from "url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
   async merge(pullRequest) {
@@ -74291,7 +74256,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
 };
 function getCommitMessageFilterScriptPath2() {
   const bundlesDir = dirname5(fileURLToPath4(import.meta.url));
-  return join8(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
+  return join7(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/merge-tool.js
@@ -75335,7 +75300,7 @@ function santizeCommitMessage(content) {
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/changelog.js
 var import_semver2 = __toESM(require_semver());
 import { existsSync as existsSync2, readFileSync as readFileSync8, writeFileSync as writeFileSync3 } from "fs";
-import { join as join9 } from "path";
+import { join as join8 } from "path";
 var changelogPath = "CHANGELOG.md";
 var changelogArchivePath = "CHANGELOG_ARCHIVE.md";
 var splitMarker = "<!-- CHANGELOG SPLIT MARKER -->";
@@ -75375,8 +75340,8 @@ var Changelog = class {
   }
   constructor(git) {
     this.git = git;
-    this.filePath = join9(this.git.baseDir, changelogPath);
-    this.archiveFilePath = join9(this.git.baseDir, changelogArchivePath);
+    this.filePath = join8(this.git.baseDir, changelogPath);
+    this.archiveFilePath = join8(this.git.baseDir, changelogArchivePath);
     this._entries = void 0;
     this._archiveEntries = void 0;
   }
@@ -75663,7 +75628,7 @@ var workspaceRelativeYarnLockFilePath = "yarn.lock";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
 import { promises as fs3 } from "fs";
-import { join as join10 } from "path";
+import { join as join9 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/experimental-versions.js
 var import_semver6 = __toESM(require_semver());
@@ -75953,7 +75918,7 @@ var ReleaseAction = class {
     this.projectDir = projectDir;
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
-    const pkgJsonPath = join10(this.projectDir, workspaceRelativePackageJsonPath);
+    const pkgJsonPath = join9(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs3.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
@@ -76099,7 +76064,7 @@ var ReleaseAction = class {
     this.git.run(["checkout", "-q", "FETCH_HEAD", "--detach"]);
   }
   async installDependenciesForCurrentBranch() {
-    const nodeModulesDir = join10(this.projectDir, "node_modules");
+    const nodeModulesDir = join9(this.projectDir, "node_modules");
     await fs3.rm(nodeModulesDir, { force: true, recursive: true, maxRetries: 3 });
     await ExternalCommands.invokeYarnInstall(this.projectDir);
   }
@@ -76228,7 +76193,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join10(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join9(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -76748,7 +76713,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-bd79da7676bb090261391254039f4318ae5ee0c3`;
+  const localVersion = `0.0.0-57d2618060bd2cb79c72411ac306e8406f12814d`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -77012,7 +76977,7 @@ import url from "url";
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
 var import_semver20 = __toESM(require_semver());
-import { join as join12 } from "path";
+import { join as join11 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -77089,7 +77054,7 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join12(git.baseDir, "package.json");
+  const packageJsonPath = join11(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs5.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
@@ -77188,7 +77153,7 @@ import { isAbsolute as isAbsolute2, relative as relative3, resolve as resolve12 
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync11 } from "fs";
-import { dirname as dirname6, join as join13, resolve as resolve10 } from "path";
+import { dirname as dirname6, join as join12, resolve as resolve10 } from "path";
 import ts2 from "typescript";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/file_system.js
@@ -77291,7 +77256,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join13(dirname6(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join12(dirname6(containingFilePath), specifier) : specifier;
     const stat = getFileStatus(importFullPath);
     if (stat && stat.isFile()) {
       return importFullPath;
@@ -77304,7 +77269,7 @@ var Analyzer = class {
       }
     }
     if (stat && stat.isDirectory()) {
-      return this._resolveFileSpecifier(join13(importFullPath, "index"));
+      return this._resolveFileSpecifier(join12(importFullPath, "index"));
     }
     return null;
   }
