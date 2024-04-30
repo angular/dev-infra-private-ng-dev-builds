@@ -55783,9 +55783,9 @@ var require_normalize = __commonJS({
   }
 });
 
-// node_modules/read-package-json/node_modules/json-parse-even-better-errors/index.js
+// node_modules/json-parse-even-better-errors/index.js
 var require_json_parse_even_better_errors = __commonJS({
-  "node_modules/read-package-json/node_modules/json-parse-even-better-errors/index.js"(exports, module) {
+  "node_modules/json-parse-even-better-errors/index.js"(exports, module) {
     "use strict";
     var hexify = (char) => {
       const h = char.charCodeAt(0).toString(16).toUpperCase();
@@ -76748,7 +76748,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-56d0b1f597b9e4b5d99f289f6904a220802164c1`;
+  const localVersion = `0.0.0-ebf90e33a6133ac32078e86b715e31a96791ad51`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
