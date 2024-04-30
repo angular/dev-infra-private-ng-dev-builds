@@ -41,7 +41,7 @@ import {
   require_wrappy,
   requiresLabels,
   targetLabels
-} from "./chunk-BIZWJKT5.mjs";
+} from "./chunk-23FBXKP4.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -72347,7 +72347,7 @@ var import_typed_graphqlify3 = __toESM(require_dist());
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/github.js
 var import_typed_graphqlify2 = __toESM(require_dist());
 
-// node_modules/@octokit/graphql/node_modules/universal-user-agent/index.js
+// node_modules/universal-user-agent/index.js
 function getUserAgent() {
   if (typeof navigator === "object" && "userAgent" in navigator) {
     return navigator.userAgent;
@@ -72358,7 +72358,7 @@ function getUserAgent() {
   return "<environment undetectable>";
 }
 
-// node_modules/@octokit/graphql/node_modules/@octokit/endpoint/dist-bundle/index.js
+// node_modules/@octokit/request/node_modules/@octokit/endpoint/dist-bundle/index.js
 var VERSION = "0.0.0-development";
 var userAgent = `octokit-endpoint.js/${VERSION} ${getUserAgent()}`;
 var DEFAULTS = {
@@ -72708,7 +72708,7 @@ var RequestError = class extends Error {
   }
 };
 
-// node_modules/@octokit/graphql/node_modules/@octokit/request/dist-bundle/index.js
+// node_modules/@octokit/request/dist-bundle/index.js
 var VERSION2 = "0.0.0-development";
 function isPlainObject3(value) {
   if (typeof value !== "object" || value === null)
@@ -76713,7 +76713,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-57d2618060bd2cb79c72411ac306e8406f12814d`;
+  const localVersion = `0.0.0-6e8f46db9cb4ab709cb34387fa6e2c76eecd3c7a`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
