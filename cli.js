@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { runParserWithCompletedFunctions } from './utils/yargs.js';
+import { buildCaretakerParser } from './caretaker/cli.js';
+import { buildCommitMessageParser } from './commit-message/cli.js';
+import { buildFormatParser } from './format/cli.js';
+import { buildMiscParser } from './misc/cli.js';
+import { buildNgbotParser } from './ngbot/cli.js';
+import { buildPrParser } from './pr/cli.js';
+import { buildPullapproveParser } from './pullapprove/cli.js';
+import { buildReleaseParser } from './release/cli.js';
+import { tsCircularDependenciesBuilder } from './ts-circular-dependencies/index.js';
+import { captureLogOutputForCommand } from './utils/logging.js';
+import { buildAuthParser } from './auth/cli.js';
+runParserWithCompletedFunctions((yargs) => {
+    return yargs
+        .scriptName('ng-dev')
+        .middleware(captureLogOutputForCommand, true)
+        .demandCommand()
+        .recommendCommands()
+        .command('auth <command>', false, buildAuthParser)
+        .command('commit-message <command>', '', buildCommitMessageParser)
+        .command('format <command>', '', buildFormatParser)
+        .command('pr <command>', '', buildPrParser)
+        .command('pullapprove <command>', '', buildPullapproveParser)
+        .command('release <command>', '', buildReleaseParser)
+        .command('ts-circular-deps <command>', '', tsCircularDependenciesBuilder)
+        .command('caretaker <command>', '', buildCaretakerParser)
+        .command('misc <command>', '', buildMiscParser)
+        .command('ngbot <command>', false, buildNgbotParser)
+        .wrap(120)
+        .strict();
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2xpLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vbmctZGV2L2NsaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBRUE7Ozs7OztHQU1HO0FBQ0gsT0FBTyxFQUFDLCtCQUErQixFQUFDLE1BQU0sa0JBQWtCLENBQUM7QUFFakUsT0FBTyxFQUFDLG9CQUFvQixFQUFDLE1BQU0sb0JBQW9CLENBQUM7QUFDeEQsT0FBTyxFQUFDLHdCQUF3QixFQUFDLE1BQU0seUJBQXlCLENBQUM7QUFDakUsT0FBTyxFQUFDLGlCQUFpQixFQUFDLE1BQU0saUJBQWlCLENBQUM7QUFDbEQsT0FBTyxFQUFDLGVBQWUsRUFBQyxNQUFNLGVBQWUsQ0FBQztBQUM5QyxPQUFPLEVBQUMsZ0JBQWdCLEVBQUMsTUFBTSxnQkFBZ0IsQ0FBQztBQUNoRCxPQUFPLEVBQUMsYUFBYSxFQUFDLE1BQU0sYUFBYSxDQUFDO0FBQzFDLE9BQU8sRUFBQyxzQkFBc0IsRUFBQyxNQUFNLHNCQUFzQixDQUFDO0FBQzVELE9BQU8sRUFBQyxrQkFBa0IsRUFBQyxNQUFNLGtCQUFrQixDQUFDO0FBQ3BELE9BQU8sRUFBQyw2QkFBNkIsRUFBQyxNQUFNLHFDQUFxQyxDQUFDO0FBQ2xGLE9BQU8sRUFBQywwQkFBMEIsRUFBQyxNQUFNLG9CQUFvQixDQUFDO0FBQzlELE9BQU8sRUFBQyxlQUFlLEVBQUMsTUFBTSxlQUFlLENBQUM7QUFHOUMsK0JBQStCLENBQUMsQ0FBQyxLQUFXLEVBQUUsRUFBRTtJQUM5QyxPQUFPLEtBQUs7U0FDVCxVQUFVLENBQUMsUUFBUSxDQUFDO1NBQ3BCLFVBQVUsQ0FBQywwQkFBMEIsRUFBRSxJQUFJLENBQUM7U0FDNUMsYUFBYSxFQUFFO1NBQ2YsaUJBQWlCLEVBQUU7U0FDbkIsT0FBTyxDQUFDLGdCQUFnQixFQUFFLEtBQUssRUFBRSxlQUFlLENBQUM7U0FDakQsT0FBTyxDQUFDLDBCQUEwQixFQUFFLEVBQUUsRUFBRSx3QkFBd0IsQ0FBQztTQUNqRSxPQUFPLENBQUMsa0JBQWtCLEVBQUUsRUFBRSxFQUFFLGlCQUFpQixDQUFDO1NBQ2xELE9BQU8sQ0FBQyxjQUFjLEVBQUUsRUFBRSxFQUFFLGFBQWEsQ0FBQztTQUMxQyxPQUFPLENBQUMsdUJBQXVCLEVBQUUsRUFBRSxFQUFFLHNCQUFzQixDQUFDO1NBQzVELE9BQU8sQ0FBQyxtQkFBbUIsRUFBRSxFQUFFLEVBQUUsa0JBQWtCLENBQUM7U0FDcEQsT0FBTyxDQUFDLDRCQUE0QixFQUFFLEVBQUUsRUFBRSw2QkFBNkIsQ0FBQztTQUN4RSxPQUFPLENBQUMscUJBQXFCLEVBQUUsRUFBRSxFQUFFLG9CQUFvQixDQUFDO1NBQ3hELE9BQU8sQ0FBQyxnQkFBZ0IsRUFBRSxFQUFFLEVBQUUsZUFBZSxDQUFDO1NBQzlDLE9BQU8sQ0FBQyxpQkFBaUIsRUFBRSxLQUFLLEVBQUUsZ0JBQWdCLENBQUM7U0FDbkQsSUFBSSxDQUFDLEdBQUcsQ0FBQztTQUNULE1BQU0sRUFBRSxDQUFDO0FBQ2QsQ0FBQyxDQUFDLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIjIS91c3IvYmluL2VudiBub2RlXG5cbi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuaW1wb3J0IHtydW5QYXJzZXJXaXRoQ29tcGxldGVkRnVuY3Rpb25zfSBmcm9tICcuL3V0aWxzL3lhcmdzLmpzJztcblxuaW1wb3J0IHtidWlsZENhcmV0YWtlclBhcnNlcn0gZnJvbSAnLi9jYXJldGFrZXIvY2xpLmpzJztcbmltcG9ydCB7YnVpbGRDb21taXRNZXNzYWdlUGFyc2VyfSBmcm9tICcuL2NvbW1pdC1tZXNzYWdlL2NsaS5qcyc7XG5pbXBvcnQge2J1aWxkRm9ybWF0UGFyc2VyfSBmcm9tICcuL2Zvcm1hdC9jbGkuanMnO1xuaW1wb3J0IHtidWlsZE1pc2NQYXJzZXJ9IGZyb20gJy4vbWlzYy9jbGkuanMnO1xuaW1wb3J0IHtidWlsZE5nYm90UGFyc2VyfSBmcm9tICcuL25nYm90L2NsaS5qcyc7XG5pbXBvcnQge2J1aWxkUHJQYXJzZXJ9IGZyb20gJy4vcHIvY2xpLmpzJztcbmltcG9ydCB7YnVpbGRQdWxsYXBwcm92ZVBhcnNlcn0gZnJvbSAnLi9wdWxsYXBwcm92ZS9jbGkuanMnO1xuaW1wb3J0IHtidWlsZFJlbGVhc2VQYXJzZXJ9IGZyb20gJy4vcmVsZWFzZS9jbGkuanMnO1xuaW1wb3J0IHt0c0NpcmN1bGFyRGVwZW5kZW5jaWVzQnVpbGRlcn0gZnJvbSAnLi90cy1jaXJjdWxhci1kZXBlbmRlbmNpZXMvaW5kZXguanMnO1xuaW1wb3J0IHtjYXB0dXJlTG9nT3V0cHV0Rm9yQ29tbWFuZH0gZnJvbSAnLi91dGlscy9sb2dnaW5nLmpzJztcbmltcG9ydCB7YnVpbGRBdXRoUGFyc2VyfSBmcm9tICcuL2F1dGgvY2xpLmpzJztcbmltcG9ydCB7QXJndn0gZnJvbSAneWFyZ3MnO1xuXG5ydW5QYXJzZXJXaXRoQ29tcGxldGVkRnVuY3Rpb25zKCh5YXJnczogQXJndikgPT4ge1xuICByZXR1cm4geWFyZ3NcbiAgICAuc2NyaXB0TmFtZSgnbmctZGV2JylcbiAgICAubWlkZGxld2FyZShjYXB0dXJlTG9nT3V0cHV0Rm9yQ29tbWFuZCwgdHJ1ZSlcbiAgICAuZGVtYW5kQ29tbWFuZCgpXG4gICAgLnJlY29tbWVuZENvbW1hbmRzKClcbiAgICAuY29tbWFuZCgnYXV0aCA8Y29tbWFuZD4nLCBmYWxzZSwgYnVpbGRBdXRoUGFyc2VyKVxuICAgIC5jb21tYW5kKCdjb21taXQtbWVzc2FnZSA8Y29tbWFuZD4nLCAnJywgYnVpbGRDb21taXRNZXNzYWdlUGFyc2VyKVxuICAgIC5jb21tYW5kKCdmb3JtYXQgPGNvbW1hbmQ+JywgJycsIGJ1aWxkRm9ybWF0UGFyc2VyKVxuICAgIC5jb21tYW5kKCdwciA8Y29tbWFuZD4nLCAnJywgYnVpbGRQclBhcnNlcilcbiAgICAuY29tbWFuZCgncHVsbGFwcHJvdmUgPGNvbW1hbmQ+JywgJycsIGJ1aWxkUHVsbGFwcHJvdmVQYXJzZXIpXG4gICAgLmNvbW1hbmQoJ3JlbGVhc2UgPGNvbW1hbmQ+JywgJycsIGJ1aWxkUmVsZWFzZVBhcnNlcilcbiAgICAuY29tbWFuZCgndHMtY2lyY3VsYXItZGVwcyA8Y29tbWFuZD4nLCAnJywgdHNDaXJjdWxhckRlcGVuZGVuY2llc0J1aWxkZXIpXG4gICAgLmNvbW1hbmQoJ2NhcmV0YWtlciA8Y29tbWFuZD4nLCAnJywgYnVpbGRDYXJldGFrZXJQYXJzZXIpXG4gICAgLmNvbW1hbmQoJ21pc2MgPGNvbW1hbmQ+JywgJycsIGJ1aWxkTWlzY1BhcnNlcilcbiAgICAuY29tbWFuZCgnbmdib3QgPGNvbW1hbmQ+JywgZmFsc2UsIGJ1aWxkTmdib3RQYXJzZXIpXG4gICAgLndyYXAoMTIwKVxuICAgIC5zdHJpY3QoKTtcbn0pO1xuIl19

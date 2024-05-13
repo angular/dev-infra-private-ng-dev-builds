@@ -1,0 +1,38 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { managedLabels } from '../labels/index.js';
+import { createPullRequestValidation, PullRequestValidation } from './validation-config.js';
+/** Assert the pull request is properly denoted if it contains breaking changes. */
+// TODO: update typings to make sure portability is properly handled for windows build.
+export const breakingChangeInfoValidation = createPullRequestValidation({ name: 'assertPending', canBeForceIgnored: false }, () => Validation);
+class Validation extends PullRequestValidation {
+    assert(commits, labels) {
+        // Whether the PR has a label noting a breaking change.
+        const hasLabel = labels.includes(managedLabels.DETECTED_BREAKING_CHANGE.name);
+        // Whether the PR has at least one commit which notes a breaking change.
+        const hasCommit = commits.some((commit) => commit.breakingChanges.length !== 0);
+        if (!hasLabel && hasCommit) {
+            throw this._createMissingBreakingChangeLabelError();
+        }
+        if (hasLabel && !hasCommit) {
+            throw this._createMissingBreakingChangeCommitError();
+        }
+    }
+    _createMissingBreakingChangeLabelError() {
+        const message = `Pull Request has at least one commit containing a breaking change note, ` +
+            `but does not have a breaking change label. Make sure to apply the ` +
+            `following label: ${managedLabels.DETECTED_BREAKING_CHANGE.name}`;
+        return this._createError(message);
+    }
+    _createMissingBreakingChangeCommitError() {
+        const message = 'Pull Request has a breaking change label, but does not contain any commits with ' +
+            'breaking change notes (i.e. commits do not have a `BREAKING CHANGE: <..>` section).';
+        return this._createError(message);
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXNzZXJ0LWJyZWFraW5nLWNoYW5nZS1pbmZvLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3ByL2NvbW1vbi92YWxpZGF0aW9uL2Fzc2VydC1icmVha2luZy1jaGFuZ2UtaW5mby50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFHSCxPQUFPLEVBQUMsYUFBYSxFQUFDLE1BQU0sb0JBQW9CLENBQUM7QUFDakQsT0FBTyxFQUFDLDJCQUEyQixFQUFFLHFCQUFxQixFQUFDLE1BQU0sd0JBQXdCLENBQUM7QUFFMUYsbUZBQW1GO0FBQ25GLHVGQUF1RjtBQUN2RixNQUFNLENBQUMsTUFBTSw0QkFBNEIsR0FBRywyQkFBMkIsQ0FDckUsRUFBQyxJQUFJLEVBQUUsZUFBZSxFQUFFLGlCQUFpQixFQUFFLEtBQUssRUFBQyxFQUNqRCxHQUFHLEVBQUUsQ0FBQyxVQUFVLENBQ2pCLENBQUM7QUFFRixNQUFNLFVBQVcsU0FBUSxxQkFBcUI7SUFDNUMsTUFBTSxDQUFDLE9BQWlCLEVBQUUsTUFBZ0I7UUFDeEMsdURBQXVEO1FBQ3ZELE1BQU0sUUFBUSxHQUFHLE1BQU0sQ0FBQyxRQUFRLENBQUMsYUFBYSxDQUFDLHdCQUF3QixDQUFDLElBQUksQ0FBQyxDQUFDO1FBQzlFLHdFQUF3RTtRQUN4RSxNQUFNLFNBQVMsR0FBRyxPQUFPLENBQUMsSUFBSSxDQUFDLENBQUMsTUFBTSxFQUFFLEVBQUUsQ0FBQyxNQUFNLENBQUMsZUFBZSxDQUFDLE1BQU0sS0FBSyxDQUFDLENBQUMsQ0FBQztRQUVoRixJQUFJLENBQUMsUUFBUSxJQUFJLFNBQVMsRUFBRSxDQUFDO1lBQzNCLE1BQU0sSUFBSSxDQUFDLHNDQUFzQyxFQUFFLENBQUM7UUFDdEQsQ0FBQztRQUVELElBQUksUUFBUSxJQUFJLENBQUMsU0FBUyxFQUFFLENBQUM7WUFDM0IsTUFBTSxJQUFJLENBQUMsdUNBQXVDLEVBQUUsQ0FBQztRQUN2RCxDQUFDO0lBQ0gsQ0FBQztJQUVPLHNDQUFzQztRQUM1QyxNQUFNLE9BQU8sR0FDWCwwRUFBMEU7WUFDMUUsb0VBQW9FO1lBQ3BFLG9CQUFvQixhQUFhLENBQUMsd0JBQXdCLENBQUMsSUFBSSxFQUFFLENBQUM7UUFDcEUsT0FBTyxJQUFJLENBQUMsWUFBWSxDQUFDLE9BQU8sQ0FBQyxDQUFDO0lBQ3BDLENBQUM7SUFFTyx1Q0FBdUM7UUFDN0MsTUFBTSxPQUFPLEdBQ1gsa0ZBQWtGO1lBQ2xGLHFGQUFxRixDQUFDO1FBQ3hGLE9BQU8sSUFBSSxDQUFDLFlBQVksQ0FBQyxPQUFPLENBQUMsQ0FBQztJQUNwQyxDQUFDO0NBQ0YiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBsaWNlbnNlXG4gKiBDb3B5cmlnaHQgR29vZ2xlIExMQ1xuICpcbiAqIFVzZSBvZiB0aGlzIHNvdXJjZSBjb2RlIGlzIGdvdmVybmVkIGJ5IGFuIE1JVC1zdHlsZSBsaWNlbnNlIHRoYXQgY2FuIGJlXG4gKiBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGF0IGh0dHBzOi8vYW5ndWxhci5pby9saWNlbnNlXG4gKi9cblxuaW1wb3J0IHtDb21taXR9IGZyb20gJy4uLy4uLy4uL2NvbW1pdC1tZXNzYWdlL3BhcnNlLmpzJztcbmltcG9ydCB7bWFuYWdlZExhYmVsc30gZnJvbSAnLi4vbGFiZWxzL2luZGV4LmpzJztcbmltcG9ydCB7Y3JlYXRlUHVsbFJlcXVlc3RWYWxpZGF0aW9uLCBQdWxsUmVxdWVzdFZhbGlkYXRpb259IGZyb20gJy4vdmFsaWRhdGlvbi1jb25maWcuanMnO1xuXG4vKiogQXNzZXJ0IHRoZSBwdWxsIHJlcXVlc3QgaXMgcHJvcGVybHkgZGVub3RlZCBpZiBpdCBjb250YWlucyBicmVha2luZyBjaGFuZ2VzLiAqL1xuLy8gVE9ETzogdXBkYXRlIHR5cGluZ3MgdG8gbWFrZSBzdXJlIHBvcnRhYmlsaXR5IGlzIHByb3Blcmx5IGhhbmRsZWQgZm9yIHdpbmRvd3MgYnVpbGQuXG5leHBvcnQgY29uc3QgYnJlYWtpbmdDaGFuZ2VJbmZvVmFsaWRhdGlvbiA9IGNyZWF0ZVB1bGxSZXF1ZXN0VmFsaWRhdGlvbihcbiAge25hbWU6ICdhc3NlcnRQZW5kaW5nJywgY2FuQmVGb3JjZUlnbm9yZWQ6IGZhbHNlfSxcbiAgKCkgPT4gVmFsaWRhdGlvbixcbik7XG5cbmNsYXNzIFZhbGlkYXRpb24gZXh0ZW5kcyBQdWxsUmVxdWVzdFZhbGlkYXRpb24ge1xuICBhc3NlcnQoY29tbWl0czogQ29tbWl0W10sIGxhYmVsczogc3RyaW5nW10pIHtcbiAgICAvLyBXaGV0aGVyIHRoZSBQUiBoYXMgYSBsYWJlbCBub3RpbmcgYSBicmVha2luZyBjaGFuZ2UuXG4gICAgY29uc3QgaGFzTGFiZWwgPSBsYWJlbHMuaW5jbHVkZXMobWFuYWdlZExhYmVscy5ERVRFQ1RFRF9CUkVBS0lOR19DSEFOR0UubmFtZSk7XG4gICAgLy8gV2hldGhlciB0aGUgUFIgaGFzIGF0IGxlYXN0IG9uZSBjb21taXQgd2hpY2ggbm90ZXMgYSBicmVha2luZyBjaGFuZ2UuXG4gICAgY29uc3QgaGFzQ29tbWl0ID0gY29tbWl0cy5zb21lKChjb21taXQpID0+IGNvbW1pdC5icmVha2luZ0NoYW5nZXMubGVuZ3RoICE9PSAwKTtcblxuICAgIGlmICghaGFzTGFiZWwgJiYgaGFzQ29tbWl0KSB7XG4gICAgICB0aHJvdyB0aGlzLl9jcmVhdGVNaXNzaW5nQnJlYWtpbmdDaGFuZ2VMYWJlbEVycm9yKCk7XG4gICAgfVxuXG4gICAgaWYgKGhhc0xhYmVsICYmICFoYXNDb21taXQpIHtcbiAgICAgIHRocm93IHRoaXMuX2NyZWF0ZU1pc3NpbmdCcmVha2luZ0NoYW5nZUNvbW1pdEVycm9yKCk7XG4gICAgfVxuICB9XG5cbiAgcHJpdmF0ZSBfY3JlYXRlTWlzc2luZ0JyZWFraW5nQ2hhbmdlTGFiZWxFcnJvcigpIHtcbiAgICBjb25zdCBtZXNzYWdlID1cbiAgICAgIGBQdWxsIFJlcXVlc3QgaGFzIGF0IGxlYXN0IG9uZSBjb21taXQgY29udGFpbmluZyBhIGJyZWFraW5nIGNoYW5nZSBub3RlLCBgICtcbiAgICAgIGBidXQgZG9lcyBub3QgaGF2ZSBhIGJyZWFraW5nIGNoYW5nZSBsYWJlbC4gTWFrZSBzdXJlIHRvIGFwcGx5IHRoZSBgICtcbiAgICAgIGBmb2xsb3dpbmcgbGFiZWw6ICR7bWFuYWdlZExhYmVscy5ERVRFQ1RFRF9CUkVBS0lOR19DSEFOR0UubmFtZX1gO1xuICAgIHJldHVybiB0aGlzLl9jcmVhdGVFcnJvcihtZXNzYWdlKTtcbiAgfVxuXG4gIHByaXZhdGUgX2NyZWF0ZU1pc3NpbmdCcmVha2luZ0NoYW5nZUNvbW1pdEVycm9yKCkge1xuICAgIGNvbnN0IG1lc3NhZ2UgPVxuICAgICAgJ1B1bGwgUmVxdWVzdCBoYXMgYSBicmVha2luZyBjaGFuZ2UgbGFiZWwsIGJ1dCBkb2VzIG5vdCBjb250YWluIGFueSBjb21taXRzIHdpdGggJyArXG4gICAgICAnYnJlYWtpbmcgY2hhbmdlIG5vdGVzIChpLmUuIGNvbW1pdHMgZG8gbm90IGhhdmUgYSBgQlJFQUtJTkcgQ0hBTkdFOiA8Li4+YCBzZWN0aW9uKS4nO1xuICAgIHJldHVybiB0aGlzLl9jcmVhdGVFcnJvcihtZXNzYWdlKTtcbiAgfVxufVxuIl19

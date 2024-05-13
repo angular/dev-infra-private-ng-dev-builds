@@ -1,0 +1,15 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Gets whether the given version is the first `-next` pre-release.
+ * e.g. returns `true` for `v14.0.0-next.0`, but not for `v14.0.0-next.1`.
+ */
+export function isFirstNextPrerelease(v) {
+    return v.prerelease[0] === 'next' && v.prerelease[1] === 0;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHJlcmVsZWFzZS12ZXJzaW9uLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3JlbGVhc2UvdmVyc2lvbmluZy9wcmVyZWxlYXNlLXZlcnNpb24udHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7OztHQU1HO0FBSUg7OztHQUdHO0FBQ0gsTUFBTSxVQUFVLHFCQUFxQixDQUFDLENBQWdCO0lBQ3BELE9BQU8sQ0FBQyxDQUFDLFVBQVUsQ0FBQyxDQUFDLENBQUMsS0FBSyxNQUFNLElBQUksQ0FBQyxDQUFDLFVBQVUsQ0FBQyxDQUFDLENBQUMsS0FBSyxDQUFDLENBQUM7QUFDN0QsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG5pbXBvcnQgc2VtdmVyIGZyb20gJ3NlbXZlcic7XG5cbi8qKlxuICogR2V0cyB3aGV0aGVyIHRoZSBnaXZlbiB2ZXJzaW9uIGlzIHRoZSBmaXJzdCBgLW5leHRgIHByZS1yZWxlYXNlLlxuICogZS5nLiByZXR1cm5zIGB0cnVlYCBmb3IgYHYxNC4wLjAtbmV4dC4wYCwgYnV0IG5vdCBmb3IgYHYxNC4wLjAtbmV4dC4xYC5cbiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGlzRmlyc3ROZXh0UHJlcmVsZWFzZSh2OiBzZW12ZXIuU2VtVmVyKTogYm9vbGVhbiB7XG4gIHJldHVybiB2LnByZXJlbGVhc2VbMF0gPT09ICduZXh0JyAmJiB2LnByZXJlbGVhc2VbMV0gPT09IDA7XG59XG4iXX0=

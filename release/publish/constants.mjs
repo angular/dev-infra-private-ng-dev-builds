@@ -1,0 +1,13 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+/**
+ * Maximum number of characters a Github release entry can use for its body.  This number was
+ * confirmed by reaching out to Github support to confirm the character limit.
+ */
+export const githubReleaseBodyLimit = 125000;
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uc3RhbnRzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3JlbGVhc2UvcHVibGlzaC9jb25zdGFudHMudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7OztHQU1HO0FBRUg7OztHQUdHO0FBQ0gsTUFBTSxDQUFDLE1BQU0sc0JBQXNCLEdBQUcsTUFBTSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAbGljZW5zZVxuICogQ29weXJpZ2h0IEdvb2dsZSBMTENcbiAqXG4gKiBVc2Ugb2YgdGhpcyBzb3VyY2UgY29kZSBpcyBnb3Zlcm5lZCBieSBhbiBNSVQtc3R5bGUgbGljZW5zZSB0aGF0IGNhbiBiZVxuICogZm91bmQgaW4gdGhlIExJQ0VOU0UgZmlsZSBhdCBodHRwczovL2FuZ3VsYXIuaW8vbGljZW5zZVxuICovXG5cbi8qKlxuICogTWF4aW11bSBudW1iZXIgb2YgY2hhcmFjdGVycyBhIEdpdGh1YiByZWxlYXNlIGVudHJ5IGNhbiB1c2UgZm9yIGl0cyBib2R5LiAgVGhpcyBudW1iZXIgd2FzXG4gKiBjb25maXJtZWQgYnkgcmVhY2hpbmcgb3V0IHRvIEdpdGh1YiBzdXBwb3J0IHRvIGNvbmZpcm0gdGhlIGNoYXJhY3RlciBsaW1pdC5cbiAqL1xuZXhwb3J0IGNvbnN0IGdpdGh1YlJlbGVhc2VCb2R5TGltaXQgPSAxMjUwMDA7XG4iXX0=

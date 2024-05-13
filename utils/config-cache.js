@@ -1,0 +1,25 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+// NOTE: This file is decoupled from `config.ts` and is mainly responsible for storing
+// the previously read configuration. It is a separate file to allow for it being a
+// separate Bazel target with reduced dependencies. This file is used in the overall
+// jasmine bootstrap logic and we wouldn't want to bring all of `ng-dev/utils`.
+/** The configuration for ng-dev. */
+let cachedConfig = null;
+/**
+ * Set the cached configuration object to be loaded later. Only to be used on
+ * CI and test situations in which loading from the `.ng-dev/` directory is not possible.
+ */
+export function setCachedConfig(config) {
+    cachedConfig = config;
+}
+/** Gets the cached configuration, or `null` if not set. */
+export function getCachedConfig() {
+    return cachedConfig;
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29uZmlnLWNhY2hlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vbmctZGV2L3V0aWxzL2NvbmZpZy1jYWNoZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFFSCxzRkFBc0Y7QUFDdEYsbUZBQW1GO0FBQ25GLG9GQUFvRjtBQUNwRiwrRUFBK0U7QUFFL0Usb0NBQW9DO0FBQ3BDLElBQUksWUFBWSxHQUFjLElBQUksQ0FBQztBQUVuQzs7O0dBR0c7QUFDSCxNQUFNLFVBQVUsZUFBZSxDQUFDLE1BQVU7SUFDeEMsWUFBWSxHQUFHLE1BQU0sQ0FBQztBQUN4QixDQUFDO0FBRUQsMkRBQTJEO0FBQzNELE1BQU0sVUFBVSxlQUFlO0lBQzdCLE9BQU8sWUFBWSxDQUFDO0FBQ3RCLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBsaWNlbnNlXG4gKiBDb3B5cmlnaHQgR29vZ2xlIExMQ1xuICpcbiAqIFVzZSBvZiB0aGlzIHNvdXJjZSBjb2RlIGlzIGdvdmVybmVkIGJ5IGFuIE1JVC1zdHlsZSBsaWNlbnNlIHRoYXQgY2FuIGJlXG4gKiBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGF0IGh0dHBzOi8vYW5ndWxhci5pby9saWNlbnNlXG4gKi9cblxuLy8gTk9URTogVGhpcyBmaWxlIGlzIGRlY291cGxlZCBmcm9tIGBjb25maWcudHNgIGFuZCBpcyBtYWlubHkgcmVzcG9uc2libGUgZm9yIHN0b3Jpbmdcbi8vIHRoZSBwcmV2aW91c2x5IHJlYWQgY29uZmlndXJhdGlvbi4gSXQgaXMgYSBzZXBhcmF0ZSBmaWxlIHRvIGFsbG93IGZvciBpdCBiZWluZyBhXG4vLyBzZXBhcmF0ZSBCYXplbCB0YXJnZXQgd2l0aCByZWR1Y2VkIGRlcGVuZGVuY2llcy4gVGhpcyBmaWxlIGlzIHVzZWQgaW4gdGhlIG92ZXJhbGxcbi8vIGphc21pbmUgYm9vdHN0cmFwIGxvZ2ljIGFuZCB3ZSB3b3VsZG4ndCB3YW50IHRvIGJyaW5nIGFsbCBvZiBgbmctZGV2L3V0aWxzYC5cblxuLyoqIFRoZSBjb25maWd1cmF0aW9uIGZvciBuZy1kZXYuICovXG5sZXQgY2FjaGVkQ29uZmlnOiB7fSB8IG51bGwgPSBudWxsO1xuXG4vKipcbiAqIFNldCB0aGUgY2FjaGVkIGNvbmZpZ3VyYXRpb24gb2JqZWN0IHRvIGJlIGxvYWRlZCBsYXRlci4gT25seSB0byBiZSB1c2VkIG9uXG4gKiBDSSBhbmQgdGVzdCBzaXR1YXRpb25zIGluIHdoaWNoIGxvYWRpbmcgZnJvbSB0aGUgYC5uZy1kZXYvYCBkaXJlY3RvcnkgaXMgbm90IHBvc3NpYmxlLlxuICovXG5leHBvcnQgZnVuY3Rpb24gc2V0Q2FjaGVkQ29uZmlnKGNvbmZpZzoge30pOiB2b2lkIHtcbiAgY2FjaGVkQ29uZmlnID0gY29uZmlnO1xufVxuXG4vKiogR2V0cyB0aGUgY2FjaGVkIGNvbmZpZ3VyYXRpb24sIG9yIGBudWxsYCBpZiBub3Qgc2V0LiAqL1xuZXhwb3J0IGZ1bmN0aW9uIGdldENhY2hlZENvbmZpZygpOiB7fSB8IG51bGwge1xuICByZXR1cm4gY2FjaGVkQ29uZmlnO1xufVxuIl19

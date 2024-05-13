@@ -1,0 +1,28 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { printTargetBranchesForPr } from './check-target-branches.js';
+/** Builds the command. */
+function builder(argv) {
+    return argv.positional('pr', {
+        description: 'The pull request number',
+        type: 'number',
+        demandOption: true,
+    });
+}
+/** Handles the command. */
+async function handler({ pr }) {
+    await printTargetBranchesForPr(pr);
+}
+/** yargs command module describing the command.  */
+export const CheckTargetBranchesModule = {
+    handler,
+    builder,
+    command: 'check-target-branches <pr>',
+    describe: 'Check a PR to determine what branches it is currently targeting',
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2xpLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3ByL2NoZWNrLXRhcmdldC1icmFuY2hlcy9jbGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7OztHQU1HO0FBSUgsT0FBTyxFQUFDLHdCQUF3QixFQUFDLE1BQU0sNEJBQTRCLENBQUM7QUFNcEUsMEJBQTBCO0FBQzFCLFNBQVMsT0FBTyxDQUFDLElBQVU7SUFDekIsT0FBTyxJQUFJLENBQUMsVUFBVSxDQUFDLElBQUksRUFBRTtRQUMzQixXQUFXLEVBQUUseUJBQXlCO1FBQ3RDLElBQUksRUFBRSxRQUFRO1FBQ2QsWUFBWSxFQUFFLElBQUk7S0FDbkIsQ0FBQyxDQUFDO0FBQ0wsQ0FBQztBQUVELDJCQUEyQjtBQUMzQixLQUFLLFVBQVUsT0FBTyxDQUFDLEVBQUMsRUFBRSxFQUF3QztJQUNoRSxNQUFNLHdCQUF3QixDQUFDLEVBQUUsQ0FBQyxDQUFDO0FBQ3JDLENBQUM7QUFFRCxvREFBb0Q7QUFDcEQsTUFBTSxDQUFDLE1BQU0seUJBQXlCLEdBQWtEO0lBQ3RGLE9BQU87SUFDUCxPQUFPO0lBQ1AsT0FBTyxFQUFFLDRCQUE0QjtJQUNyQyxRQUFRLEVBQUUsaUVBQWlFO0NBQzVFLENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBsaWNlbnNlXG4gKiBDb3B5cmlnaHQgR29vZ2xlIExMQ1xuICpcbiAqIFVzZSBvZiB0aGlzIHNvdXJjZSBjb2RlIGlzIGdvdmVybmVkIGJ5IGFuIE1JVC1zdHlsZSBsaWNlbnNlIHRoYXQgY2FuIGJlXG4gKiBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGF0IGh0dHBzOi8vYW5ndWxhci5pby9saWNlbnNlXG4gKi9cblxuaW1wb3J0IHtBcmd2LCBBcmd1bWVudHMsIENvbW1hbmRNb2R1bGV9IGZyb20gJ3lhcmdzJztcblxuaW1wb3J0IHtwcmludFRhcmdldEJyYW5jaGVzRm9yUHJ9IGZyb20gJy4vY2hlY2stdGFyZ2V0LWJyYW5jaGVzLmpzJztcblxuZXhwb3J0IGludGVyZmFjZSBDaGVja1RhcmdldEJyYW5jaGVzT3B0aW9ucyB7XG4gIHByOiBudW1iZXI7XG59XG5cbi8qKiBCdWlsZHMgdGhlIGNvbW1hbmQuICovXG5mdW5jdGlvbiBidWlsZGVyKGFyZ3Y6IEFyZ3YpIHtcbiAgcmV0dXJuIGFyZ3YucG9zaXRpb25hbCgncHInLCB7XG4gICAgZGVzY3JpcHRpb246ICdUaGUgcHVsbCByZXF1ZXN0IG51bWJlcicsXG4gICAgdHlwZTogJ251bWJlcicsXG4gICAgZGVtYW5kT3B0aW9uOiB0cnVlLFxuICB9KTtcbn1cblxuLyoqIEhhbmRsZXMgdGhlIGNvbW1hbmQuICovXG5hc3luYyBmdW5jdGlvbiBoYW5kbGVyKHtwcn06IEFyZ3VtZW50czxDaGVja1RhcmdldEJyYW5jaGVzT3B0aW9ucz4pIHtcbiAgYXdhaXQgcHJpbnRUYXJnZXRCcmFuY2hlc0ZvclByKHByKTtcbn1cblxuLyoqIHlhcmdzIGNvbW1hbmQgbW9kdWxlIGRlc2NyaWJpbmcgdGhlIGNvbW1hbmQuICAqL1xuZXhwb3J0IGNvbnN0IENoZWNrVGFyZ2V0QnJhbmNoZXNNb2R1bGU6IENvbW1hbmRNb2R1bGU8e30sIENoZWNrVGFyZ2V0QnJhbmNoZXNPcHRpb25zPiA9IHtcbiAgaGFuZGxlcixcbiAgYnVpbGRlcixcbiAgY29tbWFuZDogJ2NoZWNrLXRhcmdldC1icmFuY2hlcyA8cHI+JyxcbiAgZGVzY3JpYmU6ICdDaGVjayBhIFBSIHRvIGRldGVybWluZSB3aGF0IGJyYW5jaGVzIGl0IGlzIGN1cnJlbnRseSB0YXJnZXRpbmcnLFxufTtcbiJdfQ==

@@ -1,0 +1,48 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { addDryRunFlag } from '../../utils/dry-run.js';
+import { mergePullRequest } from './merge-pull-request.js';
+import { addGithubTokenOption } from '../../utils/git/github-yargs.js';
+/** Builds the command. */
+async function builder(argv) {
+    return addDryRunFlag(addGithubTokenOption(argv))
+        .help()
+        .strict()
+        .positional('pr', {
+        demandOption: true,
+        type: 'number',
+        description: 'The PR to be merged.',
+    })
+        .option('branch-prompt', {
+        type: 'boolean',
+        default: true,
+        description: 'Whether to prompt to confirm the branches a PR will merge into.',
+    })
+        .option('force-manual-branches', {
+        type: 'boolean',
+        default: false,
+        description: 'Whether to manually select the branches you wish to merge the PR into.',
+    })
+        .option('ignore-pending-reviews', {
+        type: 'boolean',
+        default: false,
+        description: 'Bypass the check for pending reviews on the pull request',
+    });
+}
+/** Handles the command. */
+async function handler({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews, }) {
+    await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
+}
+/** yargs command module describing the command. */
+export const MergeCommandModule = {
+    handler,
+    builder,
+    command: 'merge <pr>',
+    describe: 'Merge a PR into its targeted branches.',
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2xpLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3ByL21lcmdlL2NsaS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFHSCxPQUFPLEVBQUMsYUFBYSxFQUFDLE1BQU0sd0JBQXdCLENBQUM7QUFFckQsT0FBTyxFQUFDLGdCQUFnQixFQUFDLE1BQU0seUJBQXlCLENBQUM7QUFDekQsT0FBTyxFQUFDLG9CQUFvQixFQUFDLE1BQU0saUNBQWlDLENBQUM7QUFXckUsMEJBQTBCO0FBQzFCLEtBQUssVUFBVSxPQUFPLENBQUMsSUFBVTtJQUMvQixPQUFPLGFBQWEsQ0FBQyxvQkFBb0IsQ0FBQyxJQUFJLENBQUMsQ0FBQztTQUM3QyxJQUFJLEVBQUU7U0FDTixNQUFNLEVBQUU7U0FDUixVQUFVLENBQUMsSUFBSSxFQUFFO1FBQ2hCLFlBQVksRUFBRSxJQUFJO1FBQ2xCLElBQUksRUFBRSxRQUFRO1FBQ2QsV0FBVyxFQUFFLHNCQUFzQjtLQUNwQyxDQUFDO1NBQ0QsTUFBTSxDQUFDLGVBQWlDLEVBQUU7UUFDekMsSUFBSSxFQUFFLFNBQVM7UUFDZixPQUFPLEVBQUUsSUFBSTtRQUNiLFdBQVcsRUFBRSxpRUFBaUU7S0FDL0UsQ0FBQztTQUNELE1BQU0sQ0FBQyx1QkFBZ0QsRUFBRTtRQUN4RCxJQUFJLEVBQUUsU0FBUztRQUNmLE9BQU8sRUFBRSxLQUFLO1FBQ2QsV0FBVyxFQUFFLHdFQUF3RTtLQUN0RixDQUFDO1NBQ0QsTUFBTSxDQUFDLHdCQUFrRCxFQUFFO1FBQzFELElBQUksRUFBRSxTQUFTO1FBQ2YsT0FBTyxFQUFFLEtBQUs7UUFDZCxXQUFXLEVBQUUsMERBQTBEO0tBQ3hFLENBQUMsQ0FBQztBQUNQLENBQUM7QUFFRCwyQkFBMkI7QUFDM0IsS0FBSyxVQUFVLE9BQU8sQ0FBQyxFQUNyQixFQUFFLEVBQ0YsWUFBWSxFQUNaLG1CQUFtQixFQUNuQixNQUFNLEVBQ04sb0JBQW9CLEdBQ1c7SUFDL0IsTUFBTSxnQkFBZ0IsQ0FBQyxFQUFFLEVBQUUsRUFBQyxZQUFZLEVBQUUsbUJBQW1CLEVBQUUsTUFBTSxFQUFFLG9CQUFvQixFQUFDLENBQUMsQ0FBQztBQUNoRyxDQUFDO0FBRUQsbURBQW1EO0FBQ25ELE1BQU0sQ0FBQyxNQUFNLGtCQUFrQixHQUEyQztJQUN4RSxPQUFPO0lBQ1AsT0FBTztJQUNQLE9BQU8sRUFBRSxZQUFZO0lBQ3JCLFFBQVEsRUFBRSx3Q0FBd0M7Q0FDbkQsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG5pbXBvcnQge0FyZ3YsIEFyZ3VtZW50cywgQ29tbWFuZE1vZHVsZX0gZnJvbSAneWFyZ3MnO1xuaW1wb3J0IHthZGREcnlSdW5GbGFnfSBmcm9tICcuLi8uLi91dGlscy9kcnktcnVuLmpzJztcblxuaW1wb3J0IHttZXJnZVB1bGxSZXF1ZXN0fSBmcm9tICcuL21lcmdlLXB1bGwtcmVxdWVzdC5qcyc7XG5pbXBvcnQge2FkZEdpdGh1YlRva2VuT3B0aW9ufSBmcm9tICcuLi8uLi91dGlscy9naXQvZ2l0aHViLXlhcmdzLmpzJztcblxuLyoqIFRoZSBvcHRpb25zIGF2YWlsYWJsZSB0byB0aGUgbWVyZ2UgY29tbWFuZCB2aWEgQ0xJLiAqL1xuZXhwb3J0IGludGVyZmFjZSBNZXJnZUNvbW1hbmRPcHRpb25zIHtcbiAgcHI6IG51bWJlcjtcbiAgYnJhbmNoUHJvbXB0OiBib29sZWFuO1xuICBmb3JjZU1hbnVhbEJyYW5jaGVzOiBib29sZWFuO1xuICBkcnlSdW46IGJvb2xlYW47XG4gIGlnbm9yZVBlbmRpbmdSZXZpZXdzOiBib29sZWFuO1xufVxuXG4vKiogQnVpbGRzIHRoZSBjb21tYW5kLiAqL1xuYXN5bmMgZnVuY3Rpb24gYnVpbGRlcihhcmd2OiBBcmd2KSB7XG4gIHJldHVybiBhZGREcnlSdW5GbGFnKGFkZEdpdGh1YlRva2VuT3B0aW9uKGFyZ3YpKVxuICAgIC5oZWxwKClcbiAgICAuc3RyaWN0KClcbiAgICAucG9zaXRpb25hbCgncHInLCB7XG4gICAgICBkZW1hbmRPcHRpb246IHRydWUsXG4gICAgICB0eXBlOiAnbnVtYmVyJyxcbiAgICAgIGRlc2NyaXB0aW9uOiAnVGhlIFBSIHRvIGJlIG1lcmdlZC4nLFxuICAgIH0pXG4gICAgLm9wdGlvbignYnJhbmNoLXByb21wdCcgYXMgJ2JyYW5jaFByb21wdCcsIHtcbiAgICAgIHR5cGU6ICdib29sZWFuJyxcbiAgICAgIGRlZmF1bHQ6IHRydWUsXG4gICAgICBkZXNjcmlwdGlvbjogJ1doZXRoZXIgdG8gcHJvbXB0IHRvIGNvbmZpcm0gdGhlIGJyYW5jaGVzIGEgUFIgd2lsbCBtZXJnZSBpbnRvLicsXG4gICAgfSlcbiAgICAub3B0aW9uKCdmb3JjZS1tYW51YWwtYnJhbmNoZXMnIGFzICdmb3JjZU1hbnVhbEJyYW5jaGVzJywge1xuICAgICAgdHlwZTogJ2Jvb2xlYW4nLFxuICAgICAgZGVmYXVsdDogZmFsc2UsXG4gICAgICBkZXNjcmlwdGlvbjogJ1doZXRoZXIgdG8gbWFudWFsbHkgc2VsZWN0IHRoZSBicmFuY2hlcyB5b3Ugd2lzaCB0byBtZXJnZSB0aGUgUFIgaW50by4nLFxuICAgIH0pXG4gICAgLm9wdGlvbignaWdub3JlLXBlbmRpbmctcmV2aWV3cycgYXMgJ2lnbm9yZVBlbmRpbmdSZXZpZXdzJywge1xuICAgICAgdHlwZTogJ2Jvb2xlYW4nLFxuICAgICAgZGVmYXVsdDogZmFsc2UsXG4gICAgICBkZXNjcmlwdGlvbjogJ0J5cGFzcyB0aGUgY2hlY2sgZm9yIHBlbmRpbmcgcmV2aWV3cyBvbiB0aGUgcHVsbCByZXF1ZXN0JyxcbiAgICB9KTtcbn1cblxuLyoqIEhhbmRsZXMgdGhlIGNvbW1hbmQuICovXG5hc3luYyBmdW5jdGlvbiBoYW5kbGVyKHtcbiAgcHIsXG4gIGJyYW5jaFByb21wdCxcbiAgZm9yY2VNYW51YWxCcmFuY2hlcyxcbiAgZHJ5UnVuLFxuICBpZ25vcmVQZW5kaW5nUmV2aWV3cyxcbn06IEFyZ3VtZW50czxNZXJnZUNvbW1hbmRPcHRpb25zPikge1xuICBhd2FpdCBtZXJnZVB1bGxSZXF1ZXN0KHByLCB7YnJhbmNoUHJvbXB0LCBmb3JjZU1hbnVhbEJyYW5jaGVzLCBkcnlSdW4sIGlnbm9yZVBlbmRpbmdSZXZpZXdzfSk7XG59XG5cbi8qKiB5YXJncyBjb21tYW5kIG1vZHVsZSBkZXNjcmliaW5nIHRoZSBjb21tYW5kLiAqL1xuZXhwb3J0IGNvbnN0IE1lcmdlQ29tbWFuZE1vZHVsZTogQ29tbWFuZE1vZHVsZTx7fSwgTWVyZ2VDb21tYW5kT3B0aW9ucz4gPSB7XG4gIGhhbmRsZXIsXG4gIGJ1aWxkZXIsXG4gIGNvbW1hbmQ6ICdtZXJnZSA8cHI+JyxcbiAgZGVzY3JpYmU6ICdNZXJnZSBhIFBSIGludG8gaXRzIHRhcmdldGVkIGJyYW5jaGVzLicsXG59O1xuIl19

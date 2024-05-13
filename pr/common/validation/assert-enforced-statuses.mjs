@@ -1,0 +1,30 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { getStatusesForPullRequest } from '../fetch-pull-request.js';
+import { createPullRequestValidation, PullRequestValidation } from './validation-config.js';
+/** Assert the pull request has passing enforced statuses. */
+// TODO: update typings to make sure portability is properly handled for windows build.
+export const enforcedStatusesValidation = createPullRequestValidation({ name: 'assertEnforcedStatuses', canBeForceIgnored: true }, () => Validation);
+class Validation extends PullRequestValidation {
+    assert(pullRequest, config) {
+        if (config.requiredStatuses === undefined) {
+            return;
+        }
+        const { statuses } = getStatusesForPullRequest(pullRequest);
+        const missing = [];
+        for (const enforced of config.requiredStatuses) {
+            if (!statuses.some((s) => s.name === enforced.name && s.type === enforced.type)) {
+                missing.push(enforced.name);
+            }
+        }
+        if (missing.length > 0) {
+            throw this._createError(`Required statuses are missing on the pull request (${missing.join(', ')}).`);
+        }
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXNzZXJ0LWVuZm9yY2VkLXN0YXR1c2VzLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3ByL2NvbW1vbi92YWxpZGF0aW9uL2Fzc2VydC1lbmZvcmNlZC1zdGF0dXNlcy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFHSCxPQUFPLEVBQUMseUJBQXlCLEVBQXdCLE1BQU0sMEJBQTBCLENBQUM7QUFDMUYsT0FBTyxFQUFDLDJCQUEyQixFQUFFLHFCQUFxQixFQUFDLE1BQU0sd0JBQXdCLENBQUM7QUFFMUYsNkRBQTZEO0FBQzdELHVGQUF1RjtBQUN2RixNQUFNLENBQUMsTUFBTSwwQkFBMEIsR0FBRywyQkFBMkIsQ0FDbkUsRUFBQyxJQUFJLEVBQUUsd0JBQXdCLEVBQUUsaUJBQWlCLEVBQUUsSUFBSSxFQUFDLEVBQ3pELEdBQUcsRUFBRSxDQUFDLFVBQVUsQ0FDakIsQ0FBQztBQUVGLE1BQU0sVUFBVyxTQUFRLHFCQUFxQjtJQUM1QyxNQUFNLENBQUMsV0FBa0MsRUFBRSxNQUF5QjtRQUNsRSxJQUFJLE1BQU0sQ0FBQyxnQkFBZ0IsS0FBSyxTQUFTLEVBQUUsQ0FBQztZQUMxQyxPQUFPO1FBQ1QsQ0FBQztRQUVELE1BQU0sRUFBQyxRQUFRLEVBQUMsR0FBRyx5QkFBeUIsQ0FBQyxXQUFXLENBQUMsQ0FBQztRQUMxRCxNQUFNLE9BQU8sR0FBYSxFQUFFLENBQUM7UUFFN0IsS0FBSyxNQUFNLFFBQVEsSUFBSSxNQUFNLENBQUMsZ0JBQWdCLEVBQUUsQ0FBQztZQUMvQyxJQUFJLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxDQUFDLENBQUMsRUFBRSxFQUFFLENBQUMsQ0FBQyxDQUFDLElBQUksS0FBSyxRQUFRLENBQUMsSUFBSSxJQUFJLENBQUMsQ0FBQyxJQUFJLEtBQUssUUFBUSxDQUFDLElBQUksQ0FBQyxFQUFFLENBQUM7Z0JBQ2hGLE9BQU8sQ0FBQyxJQUFJLENBQUMsUUFBUSxDQUFDLElBQUksQ0FBQyxDQUFDO1lBQzlCLENBQUM7UUFDSCxDQUFDO1FBRUQsSUFBSSxPQUFPLENBQUMsTUFBTSxHQUFHLENBQUMsRUFBRSxDQUFDO1lBQ3ZCLE1BQU0sSUFBSSxDQUFDLFlBQVksQ0FDckIsc0RBQXNELE9BQU8sQ0FBQyxJQUFJLENBQUMsSUFBSSxDQUFDLElBQUksQ0FDN0UsQ0FBQztRQUNKLENBQUM7SUFDSCxDQUFDO0NBQ0YiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBsaWNlbnNlXG4gKiBDb3B5cmlnaHQgR29vZ2xlIExMQ1xuICpcbiAqIFVzZSBvZiB0aGlzIHNvdXJjZSBjb2RlIGlzIGdvdmVybmVkIGJ5IGFuIE1JVC1zdHlsZSBsaWNlbnNlIHRoYXQgY2FuIGJlXG4gKiBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGF0IGh0dHBzOi8vYW5ndWxhci5pby9saWNlbnNlXG4gKi9cblxuaW1wb3J0IHtQdWxsUmVxdWVzdENvbmZpZ30gZnJvbSAnLi4vLi4vY29uZmlnL2luZGV4LmpzJztcbmltcG9ydCB7Z2V0U3RhdHVzZXNGb3JQdWxsUmVxdWVzdCwgUHVsbFJlcXVlc3RGcm9tR2l0aHVifSBmcm9tICcuLi9mZXRjaC1wdWxsLXJlcXVlc3QuanMnO1xuaW1wb3J0IHtjcmVhdGVQdWxsUmVxdWVzdFZhbGlkYXRpb24sIFB1bGxSZXF1ZXN0VmFsaWRhdGlvbn0gZnJvbSAnLi92YWxpZGF0aW9uLWNvbmZpZy5qcyc7XG5cbi8qKiBBc3NlcnQgdGhlIHB1bGwgcmVxdWVzdCBoYXMgcGFzc2luZyBlbmZvcmNlZCBzdGF0dXNlcy4gKi9cbi8vIFRPRE86IHVwZGF0ZSB0eXBpbmdzIHRvIG1ha2Ugc3VyZSBwb3J0YWJpbGl0eSBpcyBwcm9wZXJseSBoYW5kbGVkIGZvciB3aW5kb3dzIGJ1aWxkLlxuZXhwb3J0IGNvbnN0IGVuZm9yY2VkU3RhdHVzZXNWYWxpZGF0aW9uID0gY3JlYXRlUHVsbFJlcXVlc3RWYWxpZGF0aW9uKFxuICB7bmFtZTogJ2Fzc2VydEVuZm9yY2VkU3RhdHVzZXMnLCBjYW5CZUZvcmNlSWdub3JlZDogdHJ1ZX0sXG4gICgpID0+IFZhbGlkYXRpb24sXG4pO1xuXG5jbGFzcyBWYWxpZGF0aW9uIGV4dGVuZHMgUHVsbFJlcXVlc3RWYWxpZGF0aW9uIHtcbiAgYXNzZXJ0KHB1bGxSZXF1ZXN0OiBQdWxsUmVxdWVzdEZyb21HaXRodWIsIGNvbmZpZzogUHVsbFJlcXVlc3RDb25maWcpIHtcbiAgICBpZiAoY29uZmlnLnJlcXVpcmVkU3RhdHVzZXMgPT09IHVuZGVmaW5lZCkge1xuICAgICAgcmV0dXJuO1xuICAgIH1cblxuICAgIGNvbnN0IHtzdGF0dXNlc30gPSBnZXRTdGF0dXNlc0ZvclB1bGxSZXF1ZXN0KHB1bGxSZXF1ZXN0KTtcbiAgICBjb25zdCBtaXNzaW5nOiBzdHJpbmdbXSA9IFtdO1xuXG4gICAgZm9yIChjb25zdCBlbmZvcmNlZCBvZiBjb25maWcucmVxdWlyZWRTdGF0dXNlcykge1xuICAgICAgaWYgKCFzdGF0dXNlcy5zb21lKChzKSA9PiBzLm5hbWUgPT09IGVuZm9yY2VkLm5hbWUgJiYgcy50eXBlID09PSBlbmZvcmNlZC50eXBlKSkge1xuICAgICAgICBtaXNzaW5nLnB1c2goZW5mb3JjZWQubmFtZSk7XG4gICAgICB9XG4gICAgfVxuXG4gICAgaWYgKG1pc3NpbmcubGVuZ3RoID4gMCkge1xuICAgICAgdGhyb3cgdGhpcy5fY3JlYXRlRXJyb3IoXG4gICAgICAgIGBSZXF1aXJlZCBzdGF0dXNlcyBhcmUgbWlzc2luZyBvbiB0aGUgcHVsbCByZXF1ZXN0ICgke21pc3Npbmcuam9pbignLCAnKX0pLmAsXG4gICAgICApO1xuICAgIH1cbiAgfVxufVxuIl19

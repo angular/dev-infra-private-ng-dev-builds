@@ -1,0 +1,30 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { readFileSync } from 'fs';
+import { resolve } from 'path';
+import { parse as parseYaml } from 'yaml';
+import { Log, green } from '../utils/logging.js';
+import { GitClient } from '../utils/git/git-client.js';
+export async function verify() {
+    const git = await GitClient.get();
+    /** Full path to NgBot config file */
+    const NGBOT_CONFIG_YAML_PATH = resolve(git.baseDir, '.github/angular-robot.yml');
+    /** The NgBot config file */
+    const ngBotYaml = readFileSync(NGBOT_CONFIG_YAML_PATH, 'utf8');
+    try {
+        // Try parsing the config file to verify that the syntax is correct.
+        parseYaml(ngBotYaml);
+        Log.info(green('√  Valid NgBot YAML config'));
+    }
+    catch (e) {
+        Log.error(`! Invalid NgBot YAML config`);
+        Log.error(e);
+        process.exitCode = 1;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidmVyaWZ5LmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vbmctZGV2L25nYm90L3ZlcmlmeS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFDSCxPQUFPLEVBQUMsWUFBWSxFQUFDLE1BQU0sSUFBSSxDQUFDO0FBQ2hDLE9BQU8sRUFBQyxPQUFPLEVBQUMsTUFBTSxNQUFNLENBQUM7QUFDN0IsT0FBTyxFQUFDLEtBQUssSUFBSSxTQUFTLEVBQUMsTUFBTSxNQUFNLENBQUM7QUFFeEMsT0FBTyxFQUFDLEdBQUcsRUFBRSxLQUFLLEVBQUMsTUFBTSxxQkFBcUIsQ0FBQztBQUMvQyxPQUFPLEVBQUMsU0FBUyxFQUFDLE1BQU0sNEJBQTRCLENBQUM7QUFFckQsTUFBTSxDQUFDLEtBQUssVUFBVSxNQUFNO0lBQzFCLE1BQU0sR0FBRyxHQUFHLE1BQU0sU0FBUyxDQUFDLEdBQUcsRUFBRSxDQUFDO0lBQ2xDLHFDQUFxQztJQUNyQyxNQUFNLHNCQUFzQixHQUFHLE9BQU8sQ0FBQyxHQUFHLENBQUMsT0FBTyxFQUFFLDJCQUEyQixDQUFDLENBQUM7SUFFakYsNEJBQTRCO0lBQzVCLE1BQU0sU0FBUyxHQUFHLFlBQVksQ0FBQyxzQkFBc0IsRUFBRSxNQUFNLENBQUMsQ0FBQztJQUUvRCxJQUFJLENBQUM7UUFDSCxvRUFBb0U7UUFDcEUsU0FBUyxDQUFDLFNBQVMsQ0FBQyxDQUFDO1FBQ3JCLEdBQUcsQ0FBQyxJQUFJLENBQUMsS0FBSyxDQUFDLDRCQUE0QixDQUFDLENBQUMsQ0FBQztJQUNoRCxDQUFDO0lBQUMsT0FBTyxDQUFDLEVBQUUsQ0FBQztRQUNYLEdBQUcsQ0FBQyxLQUFLLENBQUMsNkJBQTZCLENBQUMsQ0FBQztRQUN6QyxHQUFHLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQyxDQUFDO1FBQ2IsT0FBTyxDQUFDLFFBQVEsR0FBRyxDQUFDLENBQUM7SUFDdkIsQ0FBQztBQUNILENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBsaWNlbnNlXG4gKiBDb3B5cmlnaHQgR29vZ2xlIExMQ1xuICpcbiAqIFVzZSBvZiB0aGlzIHNvdXJjZSBjb2RlIGlzIGdvdmVybmVkIGJ5IGFuIE1JVC1zdHlsZSBsaWNlbnNlIHRoYXQgY2FuIGJlXG4gKiBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGF0IGh0dHBzOi8vYW5ndWxhci5pby9saWNlbnNlXG4gKi9cbmltcG9ydCB7cmVhZEZpbGVTeW5jfSBmcm9tICdmcyc7XG5pbXBvcnQge3Jlc29sdmV9IGZyb20gJ3BhdGgnO1xuaW1wb3J0IHtwYXJzZSBhcyBwYXJzZVlhbWx9IGZyb20gJ3lhbWwnO1xuXG5pbXBvcnQge0xvZywgZ3JlZW59IGZyb20gJy4uL3V0aWxzL2xvZ2dpbmcuanMnO1xuaW1wb3J0IHtHaXRDbGllbnR9IGZyb20gJy4uL3V0aWxzL2dpdC9naXQtY2xpZW50LmpzJztcblxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIHZlcmlmeSgpIHtcbiAgY29uc3QgZ2l0ID0gYXdhaXQgR2l0Q2xpZW50LmdldCgpO1xuICAvKiogRnVsbCBwYXRoIHRvIE5nQm90IGNvbmZpZyBmaWxlICovXG4gIGNvbnN0IE5HQk9UX0NPTkZJR19ZQU1MX1BBVEggPSByZXNvbHZlKGdpdC5iYXNlRGlyLCAnLmdpdGh1Yi9hbmd1bGFyLXJvYm90LnltbCcpO1xuXG4gIC8qKiBUaGUgTmdCb3QgY29uZmlnIGZpbGUgKi9cbiAgY29uc3QgbmdCb3RZYW1sID0gcmVhZEZpbGVTeW5jKE5HQk9UX0NPTkZJR19ZQU1MX1BBVEgsICd1dGY4Jyk7XG5cbiAgdHJ5IHtcbiAgICAvLyBUcnkgcGFyc2luZyB0aGUgY29uZmlnIGZpbGUgdG8gdmVyaWZ5IHRoYXQgdGhlIHN5bnRheCBpcyBjb3JyZWN0LlxuICAgIHBhcnNlWWFtbChuZ0JvdFlhbWwpO1xuICAgIExvZy5pbmZvKGdyZWVuKCfiiJogIFZhbGlkIE5nQm90IFlBTUwgY29uZmlnJykpO1xuICB9IGNhdGNoIChlKSB7XG4gICAgTG9nLmVycm9yKGAhIEludmFsaWQgTmdCb3QgWUFNTCBjb25maWdgKTtcbiAgICBMb2cuZXJyb3IoZSk7XG4gICAgcHJvY2Vzcy5leGl0Q29kZSA9IDE7XG4gIH1cbn1cbiJdfQ==
