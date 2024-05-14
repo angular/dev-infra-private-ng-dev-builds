@@ -1,11 +1,9 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-05dd2348960fcb5e7cb18f201b5455a465552885",
+  "version": "0.0.0-8b117748ae8243f98d261a9731908867b8e3d876",
   "type": "module",
   "private": true,
-  "bin": {
-    "ng-dev": "./bundles/cli.mjs"
-  },
+  "bin": "./bundles/cli.mjs",
   "exports": {
     ".": {
       "types": "./index.d.ts",
@@ -17,14 +15,14 @@
     }
   },
   "dependencies": {
-    "@yarnpkg/lockfile": "^1.1.0",
-    "typescript": "~4.9.0",
-    "@types/semver": "^7.3.6",
-    "semver": "^7.5.4",
-    "@types/supports-color": "^8.1.1",
-    "supports-color": "9.4.0",
     "@octokit/rest": "20.1.0",
+    "@types/semver": "^7.3.6",
+    "@types/supports-color": "^8.1.1",
+    "@yarnpkg/lockfile": "^1.1.0",
+    "chalk": "^5.0.1",
+    "semver": "^7.5.4",
+    "supports-color": "9.4.0",
     "typed-graphqlify": "^3.1.1",
-    "chalk": "^5.0.1"
+    "typescript": "~4.9.0"
   }
 }
