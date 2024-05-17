@@ -41,7 +41,7 @@ import {
   require_wrappy,
   requiresLabels,
   targetLabels
-} from "./chunk-23FBXKP4.mjs";
+} from "./chunk-JRE4BLJK.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -76716,7 +76716,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-128f3277d17e083606346fcb85f3cd934e5bbe60`;
+  const localVersion = `0.0.0-0f8b62f21a62018ba8ffddca4f4fc7601b4a7ffc`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
