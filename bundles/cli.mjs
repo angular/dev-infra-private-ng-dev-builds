@@ -73786,7 +73786,7 @@ var Validation4 = class extends PullRequestValidation {
     if (diffStats.separateFiles > 0 && !hasSeparateSyncFiles) {
       throw this._createError(`This PR cannot be merged as Shared Primitives code has already been merged. Primitives and Framework code must be merged and synced separately. Try again after a g3sync has finished.`);
     }
-    if (diffStats.files > 0 && hasSeparateSyncFiles) {
+    if (diffStats.files > 0 && diffStats.separateFiles === 0 && hasSeparateSyncFiles) {
       throw this._createError(`This PR cannot be merged as Angular framework code has already been merged. Primitives and Framework code must be merged and synced separately. Try again after a g3sync has finished.`);
     }
   }
@@ -76716,7 +76716,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-fca0d3ffd591712f78e84c3105ede099b07d4d66`;
+  const localVersion = `0.0.0-9ae826d6c385ab347fb26ba5e267c1151120c798`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
