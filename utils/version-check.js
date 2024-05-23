@@ -21,7 +21,7 @@ import { Log } from './logging.js';
  */
 export async function verifyNgDevToolIsUpToDate(workspacePath) {
     // The placeholder will be replaced by the `pkg_npm` substitutions.
-    const localVersion = `0.0.0-89624a6442b75b5cda33c5e9b5c8c4f87ca4f13d`;
+    const localVersion = `0.0.0-1c7452283da9a7d204609132a70bf1bd6a87bd29`;
     const workspacePackageJsonFile = path.join(workspacePath, workspaceRelativePackageJsonPath);
     const workspaceDirLockFile = path.join(workspacePath, workspaceRelativeYarnLockFilePath);
     try {
