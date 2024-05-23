@@ -74172,6 +74172,11 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
       throw new MergeConflictsFatalError(failedBranches);
     }
     this.pushTargetBranchesUpstream(cherryPickTargetBranches);
+    await this.git.github.issues.createComment({
+      ...this.git.remoteParams,
+      issue_number: pullRequest.prNumber,
+      body: `The changes were merged into the following branches: ${targetBranches.join(", ")}`
+    });
   }
   async _promptCommitMessageEdit(pullRequest, mergeOptions) {
     const commitMessage = await this._getDefaultSquashCommitMessage(pullRequest);
@@ -74246,7 +74251,9 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
     await this.git.github.issues.createComment({
       ...this.git.remoteParams,
       issue_number: pullRequest.prNumber,
-      body: `This PR was merged into the repository by commit ${sha}.`
+      body: `This PR was merged into the repository by commit ${sha}.
+
+The changes were merged into the following branches: ${targetBranches.join(", ")}`
     });
     if (githubTargetBranch !== this.git.mainBranchName) {
       await this.git.github.pulls.update({
@@ -76716,7 +76723,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-4b88a0061798df4106ef4eb217fa44e47ef7e23c`;
+  const localVersion = `0.0.0-ab1820c2aefc389a9190bcf1fa5f9006a4adff54`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
