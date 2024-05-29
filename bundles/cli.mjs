@@ -34891,7 +34891,7 @@ var require_utils = __commonJS({
       return (Number(max) - Number(min)) / Number(step) >= limit;
     };
     exports.escapeNode = (block, n = 0, type) => {
-      let node = block.nodes[n];
+      const node = block.nodes[n];
       if (!node)
         return;
       if (type && node.type === type || node.type === "open" || node.type === "close") {
@@ -34942,8 +34942,14 @@ var require_utils = __commonJS({
       const result = [];
       const flat = (arr) => {
         for (let i = 0; i < arr.length; i++) {
-          let ele = arr[i];
-          Array.isArray(ele) ? flat(ele, result) : ele !== void 0 && result.push(ele);
+          const ele = arr[i];
+          if (Array.isArray(ele)) {
+            flat(ele);
+            continue;
+          }
+          if (ele !== void 0) {
+            result.push(ele);
+          }
         }
         return result;
       };
@@ -34959,9 +34965,9 @@ var require_stringify = __commonJS({
     "use strict";
     var utils = require_utils();
     module.exports = (ast, options = {}) => {
-      let stringify = (node, parent = {}) => {
-        let invalidBlock = options.escapeInvalid && utils.isInvalidBrace(parent);
-        let invalidNode = node.invalid === true && options.escapeInvalid === true;
+      const stringify = (node, parent = {}) => {
+        const invalidBlock = options.escapeInvalid && utils.isInvalidBrace(parent);
+        const invalidNode = node.invalid === true && options.escapeInvalid === true;
         let output = "";
         if (node.value) {
           if ((invalidBlock || invalidNode) && utils.isOpenOrClose(node)) {
@@ -34973,7 +34979,7 @@ var require_stringify = __commonJS({
           return node.value;
         }
         if (node.nodes) {
-          for (let child of node.nodes) {
+          for (const child of node.nodes) {
             output += stringify(child);
           }
         }
@@ -35265,7 +35271,7 @@ var require_fill_range = __commonJS({
         input = "0" + input;
       return negative ? "-" + input : input;
     };
-    var toSequence = (parts, options) => {
+    var toSequence = (parts, options, maxLen) => {
       parts.negatives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
       parts.positives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
       let prefix = options.capture ? "" : "?:";
@@ -35273,10 +35279,10 @@ var require_fill_range = __commonJS({
       let negatives = "";
       let result;
       if (parts.positives.length) {
-        positives = parts.positives.join("|");
+        positives = parts.positives.map((v) => toMaxLen(String(v), maxLen)).join("|");
       }
       if (parts.negatives.length) {
-        negatives = `-(${prefix}${parts.negatives.join("|")})`;
+        negatives = `-(${prefix}${parts.negatives.map((v) => toMaxLen(String(v), maxLen)).join("|")})`;
       }
       if (positives && negatives) {
         result = `${positives}|${negatives}`;
@@ -35358,7 +35364,7 @@ var require_fill_range = __commonJS({
         index++;
       }
       if (options.toRegex === true) {
-        return step > 1 ? toSequence(parts, options) : toRegex(range, null, { wrap: false, ...options });
+        return step > 1 ? toSequence(parts, options, maxLen) : toRegex(range, null, { wrap: false, ...options });
       }
       return range;
     };
@@ -35425,16 +35431,17 @@ var require_compile = __commonJS({
     var fill = require_fill_range();
     var utils = require_utils();
     var compile = (ast, options = {}) => {
-      let walk = (node, parent = {}) => {
-        let invalidBlock = utils.isInvalidBrace(parent);
-        let invalidNode = node.invalid === true && options.escapeInvalid === true;
-        let invalid = invalidBlock === true || invalidNode === true;
-        let prefix = options.escapeInvalid === true ? "\\" : "";
+      const walk = (node, parent = {}) => {
+        const invalidBlock = utils.isInvalidBrace(parent);
+        const invalidNode = node.invalid === true && options.escapeInvalid === true;
+        const invalid = invalidBlock === true || invalidNode === true;
+        const prefix = options.escapeInvalid === true ? "\\" : "";
         let output = "";
         if (node.isOpen === true) {
           return prefix + node.value;
         }
         if (node.isClose === true) {
+          console.log("node.isClose", prefix, node.value);
           return prefix + node.value;
         }
         if (node.type === "open") {
@@ -35450,14 +35457,14 @@ var require_compile = __commonJS({
           return node.value;
         }
         if (node.nodes && node.ranges > 0) {
-          let args = utils.reduce(node.nodes);
-          let range = fill(...args, { ...options, wrap: false, toRegex: true });
+          const args = utils.reduce(node.nodes);
+          const range = fill(...args, { ...options, wrap: false, toRegex: true, strictZeros: true });
           if (range.length !== 0) {
             return args.length > 1 && range.length > 1 ? `(${range})` : range;
           }
         }
         if (node.nodes) {
-          for (let child of node.nodes) {
+          for (const child of node.nodes) {
             output += walk(child, node);
           }
         }
@@ -35477,7 +35484,7 @@ var require_expand2 = __commonJS({
     var stringify = require_stringify();
     var utils = require_utils();
     var append = (queue = "", stash = "", enclose = false) => {
-      let result = [];
+      const result = [];
       queue = [].concat(queue);
       stash = [].concat(stash);
       if (!stash.length)
@@ -35485,9 +35492,9 @@ var require_expand2 = __commonJS({
       if (!queue.length) {
         return enclose ? utils.flatten(stash).map((ele) => `{${ele}}`) : stash;
       }
-      for (let item of queue) {
+      for (const item of queue) {
         if (Array.isArray(item)) {
-          for (let value of item) {
+          for (const value of item) {
             result.push(append(value, stash, enclose));
           }
         } else {
@@ -35501,8 +35508,8 @@ var require_expand2 = __commonJS({
       return utils.flatten(result);
     };
     var expand3 = (ast, options = {}) => {
-      let rangeLimit = options.rangeLimit === void 0 ? 1e3 : options.rangeLimit;
-      let walk = (node, parent = {}) => {
+      const rangeLimit = options.rangeLimit === void 0 ? 1e3 : options.rangeLimit;
+      const walk = (node, parent = {}) => {
         node.queue = [];
         let p = parent;
         let q = parent.queue;
@@ -35519,7 +35526,7 @@ var require_expand2 = __commonJS({
           return;
         }
         if (node.nodes && node.ranges > 0) {
-          let args = utils.reduce(node.nodes);
+          const args = utils.reduce(node.nodes);
           if (utils.exceedsLimit(...args, options.step, rangeLimit)) {
             throw new RangeError("expanded array length exceeds range limit. Use options.rangeLimit to increase or disable the limit.");
           }
@@ -35531,7 +35538,7 @@ var require_expand2 = __commonJS({
           node.nodes = [];
           return;
         }
-        let enclose = utils.encloseBrace(node);
+        const enclose = utils.encloseBrace(node);
         let queue = node.queue;
         let block = node;
         while (block.type !== "brace" && block.type !== "root" && block.parent) {
@@ -35539,7 +35546,7 @@ var require_expand2 = __commonJS({
           queue = block.queue;
         }
         for (let i = 0; i < node.nodes.length; i++) {
-          let child = node.nodes[i];
+          const child = node.nodes[i];
           if (child.type === "comma" && node.type === "brace") {
             if (i === 1)
               queue.push("");
@@ -35571,7 +35578,7 @@ var require_constants = __commonJS({
   "node_modules/braces/lib/constants.js"(exports, module) {
     "use strict";
     module.exports = {
-      MAX_LENGTH: 1024 * 64,
+      MAX_LENGTH: 1e4,
       CHAR_0: "0",
       CHAR_9: "9",
       CHAR_UPPERCASE_A: "A",
@@ -35646,21 +35653,20 @@ var require_parse = __commonJS({
       if (typeof input !== "string") {
         throw new TypeError("Expected a string");
       }
-      let opts = options || {};
-      let max = typeof opts.maxLength === "number" ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
+      const opts = options || {};
+      const max = typeof opts.maxLength === "number" ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
       if (input.length > max) {
         throw new SyntaxError(`Input length (${input.length}), exceeds max characters (${max})`);
       }
-      let ast = { type: "root", input, nodes: [] };
-      let stack = [ast];
+      const ast = { type: "root", input, nodes: [] };
+      const stack = [ast];
       let block = ast;
       let prev = ast;
       let brackets = 0;
-      let length = input.length;
+      const length = input.length;
       let index = 0;
       let depth = 0;
       let value;
-      let memo = {};
       const advance = () => input[index++];
       const push = (node) => {
         if (node.type === "text" && prev.type === "dot") {
@@ -35693,7 +35699,6 @@ var require_parse = __commonJS({
         }
         if (value === CHAR_LEFT_SQUARE_BRACKET) {
           brackets++;
-          let closed = true;
           let next;
           while (index < length && (next = advance())) {
             value += next;
@@ -35732,7 +35737,7 @@ var require_parse = __commonJS({
           continue;
         }
         if (value === CHAR_DOUBLE_QUOTE || value === CHAR_SINGLE_QUOTE || value === CHAR_BACKTICK) {
-          let open = value;
+          const open = value;
           let next;
           if (options.keepQuotes !== true) {
             value = "";
@@ -35754,8 +35759,8 @@ var require_parse = __commonJS({
         }
         if (value === CHAR_LEFT_CURLY_BRACE) {
           depth++;
-          let dollar = prev.value && prev.value.slice(-1) === "$" || block.dollar === true;
-          let brace = {
+          const dollar = prev.value && prev.value.slice(-1) === "$" || block.dollar === true;
+          const brace = {
             type: "brace",
             open: true,
             close: false,
@@ -35775,7 +35780,7 @@ var require_parse = __commonJS({
             push({ type: "text", value });
             continue;
           }
-          let type = "close";
+          const type = "close";
           block = stack.pop();
           block.close = true;
           push({ type, value });
@@ -35786,7 +35791,7 @@ var require_parse = __commonJS({
         if (value === CHAR_COMMA && depth > 0) {
           if (block.ranges > 0) {
             block.ranges = 0;
-            let open = block.nodes.shift();
+            const open = block.nodes.shift();
             block.nodes = [open, { type: "text", value: stringify(block) }];
           }
           push({ type: "comma", value });
@@ -35794,7 +35799,7 @@ var require_parse = __commonJS({
           continue;
         }
         if (value === CHAR_DOT && depth > 0 && block.commas === 0) {
-          let siblings = block.nodes;
+          const siblings = block.nodes;
           if (depth === 0 || siblings.length === 0) {
             push({ type: "text", value });
             continue;
@@ -35815,7 +35820,7 @@ var require_parse = __commonJS({
           }
           if (prev.type === "range") {
             siblings.pop();
-            let before = siblings[siblings.length - 1];
+            const before = siblings[siblings.length - 1];
             before.value += prev.value + value;
             prev = before;
             block.ranges--;
@@ -35840,8 +35845,8 @@ var require_parse = __commonJS({
               node.invalid = true;
             }
           });
-          let parent = stack[stack.length - 1];
-          let index2 = parent.nodes.indexOf(block);
+          const parent = stack[stack.length - 1];
+          const index2 = parent.nodes.indexOf(block);
           parent.nodes.splice(index2, 1, ...block.nodes);
         }
       } while (stack.length > 0);
@@ -35863,8 +35868,8 @@ var require_braces = __commonJS({
     var braces = (input, options = {}) => {
       let output = [];
       if (Array.isArray(input)) {
-        for (let pattern of input) {
-          let result = braces.create(pattern, options);
+        for (const pattern of input) {
+          const result = braces.create(pattern, options);
           if (Array.isArray(result)) {
             output.push(...result);
           } else {
@@ -52361,6 +52366,7 @@ var require_spdx_license_ids = __commonJS({
   "node_modules/spdx-license-ids/index.json"(exports, module) {
     module.exports = [
       "0BSD",
+      "3D-Slicer-1.0",
       "AAL",
       "ADSL",
       "AFL-1.1",
@@ -52372,6 +52378,7 @@ var require_spdx_license_ids = __commonJS({
       "AGPL-1.0-or-later",
       "AGPL-3.0-only",
       "AGPL-3.0-or-later",
+      "AMD-newlib",
       "AMDPLPA",
       "AML",
       "AML-glslang",
@@ -52408,6 +52415,7 @@ var require_spdx_license_ids = __commonJS({
       "BSD-2-Clause-Darwin",
       "BSD-2-Clause-Patent",
       "BSD-2-Clause-Views",
+      "BSD-2-Clause-first-lines",
       "BSD-3-Clause",
       "BSD-3-Clause-Attribution",
       "BSD-3-Clause-Clear",
@@ -52537,6 +52545,7 @@ var require_spdx_license_ids = __commonJS({
       "CUA-OPL-1.0",
       "Caldera",
       "Caldera-no-preamble",
+      "Catharon",
       "ClArtistic",
       "Clips",
       "Community-Spec-1.0",
@@ -52616,25 +52625,32 @@ var require_spdx_license_ids = __commonJS({
       "Glide",
       "Glulxe",
       "Graphics-Gems",
+      "Gutmann",
       "HP-1986",
       "HP-1989",
       "HPND",
       "HPND-DEC",
       "HPND-Fenneberg-Livingston",
       "HPND-INRIA-IMAG",
+      "HPND-Intel",
       "HPND-Kevlin-Henney",
       "HPND-MIT-disclaimer",
       "HPND-Markus-Kuhn",
       "HPND-Pbmplus",
       "HPND-UC",
+      "HPND-UC-export-US",
       "HPND-doc",
       "HPND-doc-sell",
       "HPND-export-US",
+      "HPND-export-US-acknowledgement",
       "HPND-export-US-modify",
+      "HPND-export2-US",
+      "HPND-merchantability-variant",
       "HPND-sell-MIT-disclaimer-xserver",
       "HPND-sell-regexpr",
       "HPND-sell-variant",
       "HPND-sell-variant-MIT-disclaimer",
+      "HPND-sell-variant-MIT-disclaimer-rev",
       "HTMLTIDY",
       "HaskellReport",
       "Hippocratic-2.1",
@@ -52699,6 +52715,7 @@ var require_spdx_license_ids = __commonJS({
       "MIT-0",
       "MIT-CMU",
       "MIT-Festival",
+      "MIT-Khronos-old",
       "MIT-Modern-Variant",
       "MIT-Wu",
       "MIT-advertising",
@@ -52732,7 +52749,9 @@ var require_spdx_license_ids = __commonJS({
       "NAIST-2003",
       "NASA-1.3",
       "NBPL-1.0",
+      "NCBI-PD",
       "NCGL-UK-2.0",
+      "NCL",
       "NCSA",
       "NGPL",
       "NICTA-1.0",
@@ -52756,6 +52775,7 @@ var require_spdx_license_ids = __commonJS({
       "Nokia",
       "Noweb",
       "O-UDA-1.0",
+      "OAR",
       "OCCT-PL",
       "OCLC-2.0",
       "ODC-By-1.0",
@@ -52809,6 +52829,7 @@ var require_spdx_license_ids = __commonJS({
       "PDDL-1.0",
       "PHP-3.0",
       "PHP-3.01",
+      "PPL",
       "PSF-2.0",
       "Parity-6.0.0",
       "Parity-7.0.0",
@@ -52864,6 +52885,7 @@ var require_spdx_license_ids = __commonJS({
       "Spencer-99",
       "SugarCRM-1.1.3",
       "Sun-PPP",
+      "Sun-PPP-2000",
       "SunPro",
       "Symlinks",
       "TAPR-OHL-1.0",
@@ -52920,6 +52942,7 @@ var require_spdx_license_ids = __commonJS({
       "Zimbra-1.3",
       "Zimbra-1.4",
       "Zlib",
+      "any-OSI",
       "bcrypt-Solar-Designer",
       "blessing",
       "bzip2-1.0.6",
@@ -52928,6 +52951,7 @@ var require_spdx_license_ids = __commonJS({
       "copyleft-next-0.3.0",
       "copyleft-next-0.3.1",
       "curl",
+      "cve-tou",
       "diffmark",
       "dtoa",
       "dvipdfm",
@@ -52950,6 +52974,7 @@ var require_spdx_license_ids = __commonJS({
       "mpi-permissive",
       "mpich2",
       "mplus",
+      "pkgconf",
       "pnmstitch",
       "psfrag",
       "psutils",
@@ -52959,12 +52984,14 @@ var require_spdx_license_ids = __commonJS({
       "softSurfer",
       "ssh-keyscan",
       "swrule",
+      "threeparttable",
       "ulem",
       "w3m",
       "xinetd",
       "xkeyboard-config-Zinoviev",
       "xlock",
       "xpp",
+      "xzoom",
       "zlib-acknowledgement"
     ];
   }
@@ -52982,24 +53009,18 @@ var require_deprecated = __commonJS({
       "GFDL-1.2",
       "GFDL-1.3",
       "GPL-1.0",
-      "GPL-1.0+",
       "GPL-2.0",
-      "GPL-2.0+",
       "GPL-2.0-with-GCC-exception",
       "GPL-2.0-with-autoconf-exception",
       "GPL-2.0-with-bison-exception",
       "GPL-2.0-with-classpath-exception",
       "GPL-2.0-with-font-exception",
       "GPL-3.0",
-      "GPL-3.0+",
       "GPL-3.0-with-GCC-exception",
       "GPL-3.0-with-autoconf-exception",
       "LGPL-2.0",
-      "LGPL-2.0+",
       "LGPL-2.1",
-      "LGPL-2.1+",
       "LGPL-3.0",
-      "LGPL-3.0+",
       "Nunit",
       "StandardML-NJ",
       "bzip2-1.0.5",
@@ -76723,7 +76744,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-239d56b71911f9fa1eeefb6e4505dbe7b0cd81a7`;
+  const localVersion = `0.0.0-e805b4cfbbf04cf922ca279de2c49e2f778545ff`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
