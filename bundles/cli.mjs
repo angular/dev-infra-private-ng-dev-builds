@@ -41636,7 +41636,7 @@ var require_stringifyPair = __commonJS({
         if (keyComment) {
           throw new Error("With simple keys, key nodes cannot have comments");
         }
-        if (identity.isCollection(key)) {
+        if (identity.isCollection(key) || !identity.isNode(key) && typeof key === "object") {
           const msg = "With simple keys, collection cannot be used as a key value";
           throw new Error(msg);
         }
@@ -42420,7 +42420,7 @@ var require_float = __commonJS({
       identify: (value) => typeof value === "number",
       default: true,
       tag: "tag:yaml.org,2002:float",
-      test: /^(?:[-+]?\.(?:inf|Inf|INF|nan|NaN|NAN))$/,
+      test: /^(?:[-+]?\.(?:inf|Inf|INF)|\.nan|\.NaN|\.NAN)$/,
       resolve: (str) => str.slice(-3).toLowerCase() === "nan" ? NaN : str[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
       stringify: stringifyNumber.stringifyNumber
     };
@@ -42845,7 +42845,7 @@ var require_float2 = __commonJS({
       identify: (value) => typeof value === "number",
       default: true,
       tag: "tag:yaml.org,2002:float",
-      test: /^[-+]?\.(?:inf|Inf|INF|nan|NaN|NAN)$/,
+      test: /^(?:[-+]?\.(?:inf|Inf|INF)|\.nan|\.NaN|\.NAN)$/,
       resolve: (str) => str.slice(-3).toLowerCase() === "nan" ? NaN : str[0] === "-" ? Number.NEGATIVE_INFINITY : Number.POSITIVE_INFINITY,
       stringify: stringifyNumber.stringifyNumber
     };
@@ -45579,6 +45579,8 @@ var require_lexer = __commonJS({
       }
       *lex(source, incomplete = false) {
         if (source) {
+          if (typeof source !== "string")
+            throw TypeError("source is not a string");
           this.buffer = this.buffer ? this.buffer + source : source;
           this.lineEndPos = null;
         }
@@ -45676,11 +45678,15 @@ var require_lexer = __commonJS({
         }
         if (line[0] === "%") {
           let dirEnd = line.length;
-          const cs = line.indexOf("#");
-          if (cs !== -1) {
+          let cs = line.indexOf("#");
+          while (cs !== -1) {
             const ch = line[cs - 1];
-            if (ch === " " || ch === "	")
+            if (ch === " " || ch === "	") {
               dirEnd = cs - 1;
+              break;
+            } else {
+              cs = line.indexOf("#", cs + 1);
+            }
           }
           while (true) {
             const ch = line[dirEnd - 1];
@@ -69020,7 +69026,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/@inquirer/figures/dist/esm/index.mjs
+// node_modules/inquirer/node_modules/@inquirer/figures/dist/esm/index.mjs
 import process2 from "process";
 function isUnicodeSupported() {
   if (process2.platform !== "win32") {
@@ -70538,15 +70544,16 @@ var EditorPrompt = class extends Prompt {
     const events = observe(this.rl);
     this.lineSubscription = events.line.subscribe(this.startExternalEditor.bind(this));
     const waitUserInput = this.opt.waitUserInput === void 0 ? true : this.opt.waitUserInput;
-    if (!waitUserInput) {
-      this.startExternalEditor();
-    }
     const validation2 = this.handleSubmitEvents(this.editorResult);
     validation2.success.forEach(this.onEnd.bind(this));
     validation2.error.forEach(this.onError.bind(this));
     this.currentText = this.opt.default;
     this.opt.default = null;
-    this.render();
+    if (waitUserInput) {
+      this.render();
+    } else {
+      this.startExternalEditor();
+    }
     return this;
   }
   render(error) {
@@ -76744,7 +76751,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-6b773fed068522ddaceecd8d5227bd65bc52b907`;
+  const localVersion = `0.0.0-02a7d35cb0806b62d6c4f5609eeeb757a40b9074`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
