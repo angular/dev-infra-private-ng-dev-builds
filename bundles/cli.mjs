@@ -61527,7 +61527,7 @@ var require_node3 = __commonJS({
       return new Date().toISOString() + " ";
     }
     function log(...args) {
-      return process.stderr.write(util.format(...args) + "\n");
+      return process.stderr.write(util.formatWithOptions(exports.inspectOpts, ...args) + "\n");
     }
     function save(namespaces) {
       if (namespaces) {
@@ -69026,7 +69026,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/inquirer/node_modules/@inquirer/figures/dist/esm/index.mjs
+// node_modules/@inquirer/figures/dist/esm/index.mjs
 import process2 from "process";
 function isUnicodeSupported() {
   if (process2.platform !== "win32") {
@@ -76751,7 +76751,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-4ea6cd0446dbd1abe1f2704206d5afa4ed0548de`;
+  const localVersion = `0.0.0-03b8a7dffd1205e061f0bee949024ebefc2a6592`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
