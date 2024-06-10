@@ -18,3 +18,7 @@ import { PullRequestMergeFlags } from './merge-tool.js';
  * @param flags Configuration options for merging pull requests.
  */
 export declare function mergePullRequest(prNumber: number, flags: PullRequestMergeFlags): Promise<void>;
+/**
+ * Parses the pull request number from either the number or url string
+ */
+export declare function parsePrNumber(prUrlOrNumber: string): number;

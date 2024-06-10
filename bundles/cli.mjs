@@ -74522,12 +74522,20 @@ async function createPullRequestMergeTool(flags) {
     throw e;
   }
 }
+function parsePrNumber(prUrlOrNumber) {
+  const prNumber = parseInt(prUrlOrNumber.split("/").pop());
+  if (isNaN(prNumber)) {
+    throw new Error("Pull Request was unable to be parsed from the parameters");
+  }
+  return prNumber;
+}
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/cli.js
 async function builder16(argv) {
   return addDryRunFlag(addGithubTokenOption(argv)).help().strict().positional("pr", {
     demandOption: true,
-    type: "number",
+    coerce: (prUrlOrNumber) => parsePrNumber(prUrlOrNumber),
+    type: "string",
     description: "The PR to be merged."
   }).option("branch-prompt", {
     type: "boolean",
@@ -76751,7 +76759,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-03b8a7dffd1205e061f0bee949024ebefc2a6592`;
+  const localVersion = `0.0.0-4dea6062cae911ba735a4854333ad19f6317bb88`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
