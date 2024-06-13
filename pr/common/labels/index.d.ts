@@ -117,6 +117,11 @@ export declare const allLabels: {
         name: string;
         commitCheck: (c: import("../../../commit-message/parse.js").Commit) => boolean;
     };
+    DETECTED_PERF_CHANGE: {
+        description: string;
+        name: string;
+        commitCheck: (c: import("../../../commit-message/parse.js").Commit) => boolean;
+    };
 };
 export { managedLabels, actionLabels, mergeLabels, targetLabels, priorityLabels, requiresLabels };
 export { Label };
