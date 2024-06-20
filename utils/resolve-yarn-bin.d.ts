@@ -19,6 +19,7 @@ export type ConfigWithParser = {
 export interface YarnCommandInfo {
     binary: string;
     args: string[];
+    legacy?: boolean;
 }
 /** List of Yarn configuration files and their parsing mechanisms. */
 export declare const yarnConfigFiles: ConfigWithParser[];

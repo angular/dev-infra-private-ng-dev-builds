@@ -71902,15 +71902,24 @@ var yarnConfigFiles = [
   { fileName: ".yarnrc.yml", parse: (c) => (0, import_yaml.parse)(c) }
 ];
 async function resolveYarnScriptForProject(projectDir) {
+  let info2;
   const yarnPathFromConfig = await getYarnPathFromConfigurationIfPresent(projectDir);
   if (yarnPathFromConfig !== null) {
-    return { binary: "node", args: [yarnPathFromConfig] };
+    info2 = { binary: "node", args: [yarnPathFromConfig] };
   }
-  const yarnPathFromNpmBin = await getYarnPathFromNpmGlobalBinaries();
-  if (yarnPathFromNpmBin !== null) {
-    return { binary: yarnPathFromNpmBin, args: [] };
+  if (!info2) {
+    const yarnPathFromNpmBin = await getYarnPathFromNpmGlobalBinaries();
+    if (yarnPathFromNpmBin !== null) {
+      info2 = { binary: yarnPathFromNpmBin, args: [] };
+    }
   }
-  return { binary: "yarn", args: [] };
+  info2 ?? (info2 = { binary: "yarn", args: [] });
+  const yarnVersion = await getYarnVersion(info2);
+  if (yarnVersion && Number(yarnVersion.split(".")[0]) < 2) {
+    info2.args.push("--silent");
+    info2.legacy = true;
+  }
+  return info2;
 }
 async function getYarnPathFromNpmGlobalBinaries() {
   const npmGlobalBinPath = await getNpmGlobalBinPath();
@@ -71942,6 +71951,14 @@ async function getYarnPathFromConfigurationIfPresent(projectDir) {
     return null;
   }
   return path3.resolve(projectDir, yarnPath);
+}
+async function getYarnVersion(info2) {
+  try {
+    return (await ChildProcess.spawn(info2.binary, [...info2.args, "--version"], { mode: "silent" })).stdout.trim();
+  } catch (e) {
+    Log.debug("Could not determine Yarn version. Error:", e);
+    return null;
+  }
 }
 async function findAndParseYarnConfiguration(projectDir) {
   const files = await Promise.all(yarnConfigFiles.map(async (entry) => ({
@@ -75843,7 +75860,6 @@ var ExternalCommands = class {
     try {
       await ChildProcess.spawn(yarnCommand.binary, [
         ...yarnCommand.args,
-        "--silent",
         "ng-dev",
         "release",
         "set-dist-tag",
@@ -75861,15 +75877,7 @@ var ExternalCommands = class {
   static async invokeDeleteNpmDistTag(projectDir, npmDistTag) {
     const yarnCommand = await resolveYarnScriptForProject(projectDir);
     try {
-      await ChildProcess.spawn(yarnCommand.binary, [
-        ...yarnCommand.args,
-        "--silent",
-        "ng-dev",
-        "release",
-        "npm-dist-tag",
-        "delete",
-        npmDistTag
-      ], { cwd: projectDir });
+      await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "ng-dev", "release", "npm-dist-tag", "delete", npmDistTag], { cwd: projectDir });
       Log.info(green(`  \u2713   Deleted "${npmDistTag}" NPM dist tag for all packages.`));
     } catch (e) {
       Log.error(e);
@@ -75881,7 +75889,7 @@ var ExternalCommands = class {
     const yarnCommand = await resolveYarnScriptForProject(projectDir);
     const spinner = new Spinner("Building release output. This can take a few minutes.");
     try {
-      const { stdout } = await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "--silent", "ng-dev", "release", "build", "--json"], {
+      const { stdout } = await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "ng-dev", "release", "build", "--json"], {
         cwd: projectDir,
         mode: "silent"
       });
@@ -75898,7 +75906,7 @@ var ExternalCommands = class {
   static async invokeReleaseInfo(projectDir) {
     const yarnCommand = await resolveYarnScriptForProject(projectDir);
     try {
-      const { stdout } = await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "--silent", "ng-dev", "release", "info", "--json"], {
+      const { stdout } = await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "ng-dev", "release", "info", "--json"], {
         cwd: projectDir,
         mode: "silent"
       });
@@ -75916,7 +75924,7 @@ var ExternalCommands = class {
       newVersion: newVersion.format()
     };
     try {
-      await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "--silent", "ng-dev", "release", "precheck"], {
+      await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "ng-dev", "release", "precheck"], {
         cwd: projectDir,
         input: JSON.stringify(precheckStdin)
       });
@@ -75930,11 +75938,11 @@ var ExternalCommands = class {
   static async invokeYarnInstall(projectDir) {
     const yarnCommand = await resolveYarnScriptForProject(projectDir);
     try {
-      await ChildProcess.spawn(
-        yarnCommand.binary,
-        [...yarnCommand.args, "install", "--frozen-lockfile", "--non-interactive"],
-        { cwd: projectDir }
-      );
+      await ChildProcess.spawn(yarnCommand.binary, [
+        ...yarnCommand.args,
+        "install",
+        ...yarnCommand.legacy ? ["--frozen-lockfile", "--non-interactive"] : ["--immutable"]
+      ], { cwd: projectDir });
       Log.info(green("  \u2713   Installed project dependencies."));
     } catch (e) {
       Log.error(e);
@@ -76841,7 +76849,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-e4f04a388c2485687429402f13c8bd88e46dde2e`;
+  const localVersion = `0.0.0-c6406e1cddeaac35f6b4ee02fa60823404d45f6b`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
