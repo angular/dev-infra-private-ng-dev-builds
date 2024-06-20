@@ -76844,25 +76844,31 @@ var actions = [
 ];
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/version-check.js
+var import_yaml4 = __toESM(require_dist2());
 import * as path5 from "path";
 import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-c6406e1cddeaac35f6b4ee02fa60823404d45f6b`;
+  const localVersion = `0.0.0-24d66aa1e5c592f4784c2c878b2c2f92c374c6c4`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
-    const lockFileContent = fs4.readFileSync(workspaceDirLockFile, "utf8");
     const packageJson = JSON.parse(fs4.readFileSync(workspacePackageJsonFile, "utf8"));
-    const lockFile = lockfile2.parse(lockFileContent);
-    if (lockFile.type !== "success") {
-      throw Error("Unable to parse workspace lock file. Please ensure the file is valid.");
-    }
     if (packageJson.name === ngDevNpmPackageName) {
       return true;
     }
-    const lockFileObject = lockFile.object;
+    const lockFileContent = fs4.readFileSync(workspaceDirLockFile, "utf8");
+    let lockFileObject;
+    try {
+      const lockFile = lockfile2.parse(lockFileContent);
+      if (lockFile.type !== "success") {
+        throw Error("Unable to parse workspace lock file. Please ensure the file is valid.");
+      }
+      lockFileObject = lockFile.object;
+    } catch {
+      lockFileObject = (0, import_yaml4.parse)(lockFileContent);
+    }
     const devInfraPkgVersion = ((_a2 = packageJson == null ? void 0 : packageJson.dependencies) == null ? void 0 : _a2[ngDevNpmPackageName]) ?? ((_b2 = packageJson == null ? void 0 : packageJson.devDependencies) == null ? void 0 : _b2[ngDevNpmPackageName]) ?? ((_c2 = packageJson == null ? void 0 : packageJson.optionalDependencies) == null ? void 0 : _c2[ngDevNpmPackageName]);
     const expectedVersion = lockFileObject[`${ngDevNpmPackageName}@${devInfraPkgVersion}`].version;
     if (localVersion !== expectedVersion) {
