@@ -73274,10 +73274,13 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/checkout.js
 import { fileURLToPath as fileURLToPath3 } from "url";
 var takeoverAccounts = ["angular-robot"];
-async function checkoutPullRequest(params4) {
-  const { pr, takeover } = params4;
+async function checkoutPullRequest(params4, config) {
+  const { pr, takeover, target } = params4;
   const git = await AuthenticatedGitClient.get();
-  const branchName = `pr-takeover-${pr}`;
+  if (takeover && target) {
+    Log.error(` \u2718 You cannot specify both takeover and target branch at the same time`);
+    return;
+  }
   if (git.hasUncommittedChanges()) {
     Log.error(` \u2718 Local working repository not clean. Please make sure there are no uncommitted changes`);
     return;
@@ -73285,51 +73288,92 @@ async function checkoutPullRequest(params4) {
   const { resetGitState, pullRequest, pushToUpstreamCommand } = await checkOutPullRequestLocally(pr, {
     allowIfMaintainerCannotModify: true
   });
-  if (pullRequest.maintainerCanModify === false || takeover) {
-    if (takeover !== true) {
-      Log.info("The author of this pull request does not allow maintainers to modify the pull");
-      Log.info("request. Since you will not be able to push changes to the original pull request");
-      Log.info('you will instead need to perform a "takeover." In a takeover the original pull');
-      Log.info("request will be checked out, the commits are modified to close the original on");
-      Log.info("merge of the newly created branch.\n");
-      if (!await Prompt2.confirm(`Would you like to create a takeover pull request?`, true)) {
-        Log.info("Aborting takeover..");
-        await resetGitState();
+  if (!target) {
+    const branchName = `pr-takeover-${pr}`;
+    if (pullRequest.maintainerCanModify === false || takeover) {
+      if (takeover !== true) {
+        Log.info("The author of this pull request does not allow maintainers to modify the pull");
+        Log.info("request. Since you will not be able to push changes to the original pull request");
+        Log.info('you will instead need to perform a "takeover." In a takeover the original pull');
+        Log.info("request will be checked out, the commits are modified to close the original on");
+        Log.info("merge of the newly created branch.\n");
+        if (!await Prompt2.confirm(`Would you like to create a takeover pull request?`, true)) {
+          Log.info("Aborting takeover..");
+          await resetGitState();
+          return;
+        }
+      }
+      if (git.runGraceful(["rev-parse", "-q", "--verify", branchName]).status === 0) {
+        Log.error(` \u2718 Expected branch name \`${branchName}\` already exists locally`);
         return;
       }
-    }
-    if (git.runGraceful(["rev-parse", "-q", "--verify", branchName]).status === 0) {
-      Log.error(` \u2718 Expected branch name \`${branchName}\` already exists locally`);
+      if (!takeoverAccounts.includes(pullRequest.author.login)) {
+        Log.warn(` \u26A0 ${bold(pullRequest.author.login)} is not an account fully supported for takeover.`);
+        Log.warn(`   Supported accounts: ${bold(takeoverAccounts.join(", "))}`);
+        if (await Prompt2.confirm(`Continue with pull request takeover anyway?`, true)) {
+          Log.debug("Continuing per user confirmation in prompt");
+        } else {
+          Log.info("Aborting takeover..");
+          await resetGitState();
+          return;
+        }
+      }
+      Log.info(`Setting local branch name based on the pull request`);
+      git.run(["checkout", "-q", "-b", branchName]);
+      Log.info("Updating commit messages to close previous pull request");
+      git.run([
+        "filter-branch",
+        "-f",
+        "--msg-filter",
+        `${getCommitMessageFilterScriptPath()} ${pr}`,
+        `${pullRequest.baseRefOid}..HEAD`
+      ]);
+      Log.info(` ${green("\u2714")} Checked out pull request #${pr} into branch: ${branchName}`);
       return;
     }
-    if (!takeoverAccounts.includes(pullRequest.author.login)) {
-      Log.warn(` \u26A0 ${bold(pullRequest.author.login)} is not an account fully supported for takeover.`);
-      Log.warn(`   Supported accounts: ${bold(takeoverAccounts.join(", "))}`);
-      if (await Prompt2.confirm(`Continue with pull request takeover anyway?`, true)) {
-        Log.debug("Continuing per user confirmation in prompt");
-      } else {
-        Log.info("Aborting takeover..");
-        await resetGitState();
-        return;
-      }
+    Log.info(`Checked out the remote branch for pull request #${pr}
+`);
+    Log.info("To push the checked out branch back to its PR, run the following command:");
+    Log.info(`  $ ${pushToUpstreamCommand}`);
+  } else {
+    const branchName = `pr-${target.toLowerCase().replaceAll(/[\W_]/gm, "-")}-${pr}`;
+    const { owner, name: repo } = config.github;
+    const activeReleaseTrains = await ActiveReleaseTrains.fetch({
+      name: repo,
+      owner,
+      nextBranchName: getNextBranchName(config.github),
+      api: git.github
+    });
+    let targetBranch = target;
+    let targetName = target;
+    if (target === "patch" || target === "latest" || activeReleaseTrains.latest.branchName === target) {
+      targetName = "patch";
+      targetBranch = activeReleaseTrains.latest.branchName;
+    } else if (target === "main" || target === "next" || target === "minor" || activeReleaseTrains.next.branchName === target) {
+      targetName = "main";
+      targetBranch = activeReleaseTrains.next.branchName;
+    } else if (activeReleaseTrains.releaseCandidate && (target === "rc" || activeReleaseTrains.releaseCandidate.branchName === target)) {
+      targetName = "rc";
+      targetBranch = activeReleaseTrains.releaseCandidate.branchName;
     }
-    Log.info(`Setting local branch name based on the pull request`);
-    git.run(["checkout", "-q", "-b", branchName]);
-    Log.info("Updating commit messages to close previous pull request");
-    git.run([
-      "filter-branch",
-      "-f",
-      "--msg-filter",
-      `${getCommitMessageFilterScriptPath()} ${pr}`,
-      `${pullRequest.baseRefOid}..HEAD`
-    ]);
-    Log.info(` ${green("\u2714")} Checked out pull request #${pr} into branch: ${branchName}`);
+    Log.info(`Targeting '${targetBranch}' branch
+`);
+    const baseRefUrl = addTokenToGitHttpsUrl(pullRequest.baseRef.repository.url, git.githubToken);
+    git.run(["checkout", "-q", targetBranch]);
+    git.run(["fetch", "-q", baseRefUrl, targetBranch, "--deepen=500"]);
+    git.run(["checkout", "-b", branchName]);
+    Log.info(`Running cherry-pick
+`);
+    try {
+      const revisionRange = `${pullRequest.baseRefOid}..${pullRequest.headRefOid}`;
+      git.run(["cherry-pick", revisionRange]);
+      Log.info(`Cherry-pick is complete. You can now push to create a new pull request.`);
+    } catch {
+      Log.info(`Cherry-pick resulted in conflicts. Please resolve them manually and push to create your patch PR`);
+      return;
+    }
     return;
   }
-  Log.info(`Checked out the remote branch for pull request #${pr}
-`);
-  Log.info("To push the checked out branch back to its PR, run the following command:");
-  Log.info(`  $ ${pushToUpstreamCommand}`);
 }
 function getCommitMessageFilterScriptPath() {
   const bundlesDir = dirname4(fileURLToPath3(import.meta.url));
@@ -73346,10 +73390,16 @@ function builder14(yargs) {
     type: "boolean",
     demandOption: false,
     describe: "Check out the pull request to perform a takeover"
+  }).option("target", {
+    type: "string",
+    demandOption: false,
+    describe: "Check out the pull request targeting the specified base branch"
   });
 }
-async function handler14({ pr, takeover }) {
-  await checkoutPullRequest({ pr, takeover });
+async function handler14({ pr, takeover, target }) {
+  const config = await getConfig();
+  assertValidGithubConfig(config);
+  await checkoutPullRequest({ pr, takeover, target }, config);
 }
 var CheckoutCommandModule = {
   handler: handler14,
@@ -76791,7 +76841,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-f9a55a8d166809baa07af8b6bb51438a06ea025c`;
+  const localVersion = `0.0.0-4a67a7d96d0db4b1ab20bcf8f498f4908c372bc8`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
