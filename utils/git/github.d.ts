@@ -26,9 +26,9 @@ export interface GithubRepo {
 export declare class GithubClient {
     private _octokitOptions?;
     /** The octokit instance actually performing API requests. */
-    protected _octokit: import("@octokit/core").Octokit & {
+    protected _octokit: import("@octokit/core").Octokit & import("@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types").RestEndpointMethods & import("@octokit/plugin-rest-endpoint-methods/dist-types").Api & {
         paginate: import("@octokit/plugin-paginate-rest/dist-types").PaginateInterface;
-    } & import("@octokit/plugin-rest-endpoint-methods/dist-types/generated/method-types").RestEndpointMethods & import("@octokit/plugin-rest-endpoint-methods/dist-types").Api;
+    };
     readonly pulls: Octokit['pulls'];
     readonly orgs: Octokit['orgs'];
     readonly repos: Octokit['repos'];
