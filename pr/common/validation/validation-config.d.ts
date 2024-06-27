@@ -26,5 +26,5 @@ export declare function createPullRequestValidation<T extends PullRequestValidat
     name: keyof PullRequestValidationConfig;
     canBeForceIgnored: boolean;
 }, getValidationCtor: () => new (...args: ConstructorParameters<typeof PullRequestValidation>) => T): {
-    run(validationConfig: PullRequestValidationConfig, ...args: Parameters<T['assert']>): Promise<PullRequestValidationFailure | null>;
+    run(validationConfig: PullRequestValidationConfig, ...args: Parameters<T["assert"]>): Promise<PullRequestValidationFailure | null>;
 };

@@ -10,7 +10,7 @@ type ConditionGrouping = keyof Pick<PullApproveGroupResult, 'matchedConditions' 
 /** Create logs for each pullapprove group result. */
 export declare function logGroup(group: PullApproveGroupResult, conditionsToPrint: ConditionGrouping, printMessageFn?: {
     (...values: unknown[]): void;
-    group(label: string, collapsed?: boolean | undefined): void;
+    group(label: string, collapsed?: boolean): void;
     groupEnd(): void;
 }): void;
 /** Logs a header within a text drawn box. */

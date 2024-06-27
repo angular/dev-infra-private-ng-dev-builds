@@ -22,6 +22,6 @@ export declare function validateCommitMessage(commitMsg: string | Commit, option
 /** Print the error messages from the commit message validation to the console. */
 export declare function printValidationErrors(errors: string[], print?: {
     (...values: unknown[]): void;
-    group(label: string, collapsed?: boolean | undefined): void;
+    group(label: string, collapsed?: boolean): void;
     groupEnd(): void;
 }): void;

@@ -5,7 +5,6 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-/// <reference types="node" />
 import { GithubConfig } from '../config.js';
 import { SpawnSyncOptions, SpawnSyncReturns } from 'child_process';
 import { GithubClient } from './github.js';
