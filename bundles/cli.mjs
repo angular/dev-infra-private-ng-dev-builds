@@ -40,7 +40,7 @@ import {
   require_semver,
   requiresLabels,
   targetLabels
-} from "./chunk-2RQUBTP5.mjs";
+} from "./chunk-CWELO4LO.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -1866,9 +1866,9 @@ var require_jsonc_parser = __commonJS({
   }
 });
 
-// node_modules/@inquirer/core/node_modules/yoctocolors-cjs/index.js
+// node_modules/yoctocolors-cjs/index.js
 var require_yoctocolors_cjs = __commonJS({
-  "node_modules/@inquirer/core/node_modules/yoctocolors-cjs/index.js"(exports, module) {
+  "node_modules/yoctocolors-cjs/index.js"(exports, module) {
     var tty = __require("tty");
     var _a2, _b2, _c2;
     var hasColors = ((_c2 = (_b2 = (_a2 = tty == null ? void 0 : tty.WriteStream) == null ? void 0 : _a2.prototype) == null ? void 0 : _b2.hasColors) == null ? void 0 : _c2.call(_b2)) ?? false;
@@ -5192,81 +5192,6 @@ var require_ansi_escapes = __commonJS({
         return ret + BEL;
       }
     };
-  }
-});
-
-// node_modules/inquirer/node_modules/yoctocolors-cjs/index.js
-var require_yoctocolors_cjs2 = __commonJS({
-  "node_modules/inquirer/node_modules/yoctocolors-cjs/index.js"(exports, module) {
-    var tty = __require("tty");
-    var _a2, _b2, _c2;
-    var hasColors = ((_c2 = (_b2 = (_a2 = tty == null ? void 0 : tty.WriteStream) == null ? void 0 : _a2.prototype) == null ? void 0 : _b2.hasColors) == null ? void 0 : _c2.call(_b2)) ?? false;
-    var format3 = (open, close) => {
-      if (!hasColors) {
-        return (input) => input;
-      }
-      const openCode = `\x1B[${open}m`;
-      const closeCode = `\x1B[${close}m`;
-      return (input) => {
-        const string = input + "";
-        let index = string.indexOf(closeCode);
-        if (index === -1) {
-          return openCode + string + closeCode;
-        }
-        let result = openCode;
-        let lastIndex = 0;
-        while (index !== -1) {
-          result += string.slice(lastIndex, index) + openCode;
-          lastIndex = index + closeCode.length;
-          index = string.indexOf(closeCode, lastIndex);
-        }
-        result += string.slice(lastIndex) + closeCode;
-        return result;
-      };
-    };
-    var colors7 = {};
-    colors7.reset = format3(0, 0);
-    colors7.bold = format3(1, 22);
-    colors7.dim = format3(2, 22);
-    colors7.italic = format3(3, 23);
-    colors7.underline = format3(4, 24);
-    colors7.overline = format3(53, 55);
-    colors7.inverse = format3(7, 27);
-    colors7.hidden = format3(8, 28);
-    colors7.strikethrough = format3(9, 29);
-    colors7.black = format3(30, 39);
-    colors7.red = format3(31, 39);
-    colors7.green = format3(32, 39);
-    colors7.yellow = format3(33, 39);
-    colors7.blue = format3(34, 39);
-    colors7.magenta = format3(35, 39);
-    colors7.cyan = format3(36, 39);
-    colors7.white = format3(37, 39);
-    colors7.gray = format3(90, 39);
-    colors7.bgBlack = format3(40, 49);
-    colors7.bgRed = format3(41, 49);
-    colors7.bgGreen = format3(42, 49);
-    colors7.bgYellow = format3(43, 49);
-    colors7.bgBlue = format3(44, 49);
-    colors7.bgMagenta = format3(45, 49);
-    colors7.bgCyan = format3(46, 49);
-    colors7.bgWhite = format3(47, 49);
-    colors7.bgGray = format3(100, 49);
-    colors7.redBright = format3(91, 39);
-    colors7.greenBright = format3(92, 39);
-    colors7.yellowBright = format3(93, 39);
-    colors7.blueBright = format3(94, 39);
-    colors7.magentaBright = format3(95, 39);
-    colors7.cyanBright = format3(96, 39);
-    colors7.whiteBright = format3(97, 39);
-    colors7.bgRedBright = format3(101, 49);
-    colors7.bgGreenBright = format3(102, 49);
-    colors7.bgYellowBright = format3(103, 49);
-    colors7.bgBlueBright = format3(104, 49);
-    colors7.bgMagentaBright = format3(105, 49);
-    colors7.bgCyanBright = format3(106, 49);
-    colors7.bgWhiteBright = format3(107, 49);
-    module.exports = colors7;
   }
 });
 
@@ -60834,7 +60759,7 @@ var CancelablePromise = class extends Promise {
 // node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
 var import_mute_stream = __toESM(require_lib(), 1);
 
-// node_modules/signal-exit/dist/mjs/signals.js
+// node_modules/@inquirer/core/node_modules/signal-exit/dist/mjs/signals.js
 var signals = [];
 signals.push("SIGHUP", "SIGINT", "SIGTERM");
 if (process.platform !== "win32") {
@@ -60855,7 +60780,7 @@ if (process.platform === "linux") {
   signals.push("SIGIO", "SIGPOLL", "SIGPWR", "SIGSTKFLT");
 }
 
-// node_modules/signal-exit/dist/mjs/index.js
+// node_modules/@inquirer/core/node_modules/signal-exit/dist/mjs/index.js
 var processOk = (process4) => !!process4 && typeof process4 === "object" && typeof process4.removeListener === "function" && typeof process4.emit === "function" && typeof process4.reallyExit === "function" && typeof process4.listeners === "function" && typeof process4.kill === "function" && typeof process4.pid === "number" && typeof process4.on === "function";
 var kExitEmitter = Symbol.for("signal-exit emitter");
 var global2 = globalThis;
@@ -61521,8 +61446,8 @@ var Separator = class {
   }
 };
 
-// node_modules/inquirer/node_modules/@inquirer/checkbox/dist/esm/index.mjs
-var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs2(), 1);
+// node_modules/@inquirer/checkbox/dist/esm/index.mjs
+var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
   icon: {
@@ -61662,7 +61587,7 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
-// node_modules/inquirer/node_modules/@inquirer/editor/dist/esm/index.mjs
+// node_modules/@inquirer/editor/dist/esm/index.mjs
 var import_external_editor = __toESM(require_main(), 1);
 import { AsyncResource as AsyncResource3 } from "async_hooks";
 var esm_default4 = createPrompt((config, done) => {
@@ -61728,7 +61653,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/confirm/dist/esm/index.mjs
+// node_modules/@inquirer/confirm/dist/esm/index.mjs
 var esm_default5 = createPrompt((config, done) => {
   const { transformer = (answer) => answer ? "yes" : "no" } = config;
   const [status, setStatus] = useState("pending");
@@ -61760,7 +61685,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/inquirer/node_modules/@inquirer/input/dist/esm/index.mjs
+// node_modules/@inquirer/input/dist/esm/index.mjs
 var esm_default6 = createPrompt((config, done) => {
   const { required, validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -61897,8 +61822,8 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/expand/dist/esm/index.mjs
-var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs2(), 1);
+// node_modules/@inquirer/expand/dist/esm/index.mjs
+var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
 var helpChoice = {
   key: "h",
   name: "Help, list all options",
@@ -61983,8 +61908,8 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/rawlist/dist/esm/index.mjs
-var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs2(), 1);
+// node_modules/@inquirer/rawlist/dist/esm/index.mjs
+var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs(), 1);
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
   return choice != null && !Separator.isSeparator(choice);
@@ -62046,7 +61971,7 @@ var esm_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/password/dist/esm/index.mjs
+// node_modules/@inquirer/password/dist/esm/index.mjs
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var esm_default10 = createPrompt((config, done) => {
   const { validate = () => true } = config;
@@ -62097,8 +62022,8 @@ var esm_default10 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/select/dist/esm/index.mjs
-var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs2(), 1);
+// node_modules/@inquirer/select/dist/esm/index.mjs
+var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes4 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
   icon: { cursor: esm_default2.pointer },
@@ -67780,7 +67705,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-a413dd40d7b655cc5fdbc1ed7ea1912b3a1b6e00`;
+  const localVersion = `0.0.0-ae8bb6bfbf89a5f10b8410e6ccfafc0e2009a940`;
   const workspacePackageJsonFile = path5.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path5.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
