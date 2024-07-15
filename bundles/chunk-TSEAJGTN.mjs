@@ -2563,7 +2563,7 @@ function withDefaults(oldDefaults, newDefaults) {
 }
 var endpoint = withDefaults(null, DEFAULTS);
 
-// node_modules/@octokit/request/node_modules/@octokit/request-error/dist-src/index.js
+// node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
   name;
   status;
@@ -6150,4 +6150,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-6AGVK5HF.mjs.map
+//# sourceMappingURL=chunk-TSEAJGTN.mjs.map
