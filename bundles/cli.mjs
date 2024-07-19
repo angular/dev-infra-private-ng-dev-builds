@@ -40,7 +40,7 @@ import {
   require_semver,
   requiresLabels,
   targetLabels
-} from "./chunk-TSEAJGTN.mjs";
+} from "./chunk-GPIEFZKP.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -45740,6 +45740,7 @@ var require_core = __commonJS({
       "node:readline/promises": ">= 17",
       repl: true,
       "node:repl": [">= 14.18 && < 15", ">= 16"],
+      "node:sea": [">= 20.12 && < 21", ">= 21.7"],
       smalloc: ">= 0.11.5 && < 3",
       _stream_duplex: ">= 0.9.4",
       "node:_stream_duplex": [">= 14.18 && < 15", ">= 16"],
@@ -60394,7 +60395,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/key.mjs
+// node_modules/@inquirer/core/dist/esm/lib/key.mjs
 var isUpKey = (key) => key.name === "up" || key.name === "k" || key.ctrl && key.name === "p";
 var isDownKey = (key) => key.name === "down" || key.name === "j" || key.ctrl && key.name === "n";
 var isSpaceKey = (key) => key.name === "space";
@@ -60402,7 +60403,7 @@ var isBackspaceKey = (key) => key.name === "backspace";
 var isNumberKey = (key) => "123456789".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/errors.mjs
+// node_modules/@inquirer/core/dist/esm/lib/errors.mjs
 var CancelPromptError = class extends Error {
   message = "Prompt was canceled";
 };
@@ -60413,10 +60414,10 @@ var HookError = class extends Error {
 var ValidationError = class extends Error {
 };
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
+// node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
 import { AsyncResource as AsyncResource2 } from "async_hooks";
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/hook-engine.mjs
+// node_modules/@inquirer/core/dist/esm/lib/hook-engine.mjs
 import { AsyncLocalStorage, AsyncResource } from "async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -60508,7 +60509,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/use-state.mjs
+// node_modules/@inquirer/core/dist/esm/lib/use-state.mjs
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setFn = (newValue) => {
@@ -60526,7 +60527,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/use-effect.mjs
+// node_modules/@inquirer/core/dist/esm/lib/use-effect.mjs
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -60538,7 +60539,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/theme.mjs
+// node_modules/@inquirer/core/dist/esm/lib/theme.mjs
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs(), 1);
 var import_cli_spinners = __toESM(require_cli_spinners(), 1);
 var defaultTheme = {
@@ -60558,7 +60559,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/make-theme.mjs
+// node_modules/@inquirer/core/dist/esm/lib/make-theme.mjs
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -60586,7 +60587,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
+// node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
 function usePrefix({ isLoading = false, theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -60616,7 +60617,7 @@ function usePrefix({ isLoading = false, theme }) {
   return prefix;
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/use-memo.mjs
+// node_modules/@inquirer/core/dist/esm/lib/use-memo.mjs
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -60629,12 +60630,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/use-ref.mjs
+// node_modules/@inquirer/core/dist/esm/lib/use-ref.mjs
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/use-keypress.mjs
+// node_modules/@inquirer/core/dist/esm/lib/use-keypress.mjs
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -60649,7 +60650,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/utils.mjs
+// node_modules/@inquirer/core/dist/esm/lib/utils.mjs
 var import_cli_width = __toESM(require_cli_width(), 1);
 var import_wrap_ansi = __toESM(require_wrap_ansi(), 1);
 function breakLines(content, width) {
@@ -60659,7 +60660,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/pagination/lines.mjs
+// node_modules/@inquirer/core/dist/esm/lib/pagination/lines.mjs
 function split(content, width) {
   return breakLines(content, width).split("\n");
 }
@@ -60703,7 +60704,7 @@ function lines({ items, width, renderItem, active, position: requested, pageSize
   return pageBuffer.filter((line) => typeof line === "string");
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/pagination/position.mjs
+// node_modules/@inquirer/core/dist/esm/lib/pagination/position.mjs
 function finite({ active, pageSize, total }) {
   const middle = Math.floor(pageSize / 2);
   if (total <= pageSize || active < middle)
@@ -60721,7 +60722,7 @@ function infinite({ active, lastActive, total, pageSize, pointer }) {
   return pointer;
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.mjs
+// node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.mjs
 function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   const state = useRef({ position: 0, lastActive: 0 });
   const position = loop ? infinite({
@@ -60747,19 +60748,19 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   }).join("\n");
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
+// node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
 import * as readline2 from "readline";
 
-// node_modules/@inquirer/type/dist/esm/index.mjs
+// node_modules/@inquirer/type/dist/esm/inquirer.mjs
 var CancelablePromise = class extends Promise {
   cancel = () => {
   };
 };
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
+// node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
 var import_mute_stream = __toESM(require_lib(), 1);
 
-// node_modules/inquirer/node_modules/signal-exit/dist/mjs/signals.js
+// node_modules/@inquirer/core/node_modules/signal-exit/dist/mjs/signals.js
 var signals = [];
 signals.push("SIGHUP", "SIGINT", "SIGTERM");
 if (process.platform !== "win32") {
@@ -60780,7 +60781,7 @@ if (process.platform === "linux") {
   signals.push("SIGIO", "SIGPOLL", "SIGPWR", "SIGSTKFLT");
 }
 
-// node_modules/inquirer/node_modules/signal-exit/dist/mjs/index.js
+// node_modules/@inquirer/core/node_modules/signal-exit/dist/mjs/index.js
 var processOk = (process4) => !!process4 && typeof process4 === "object" && typeof process4.removeListener === "function" && typeof process4.emit === "function" && typeof process4.reallyExit === "function" && typeof process4.listeners === "function" && typeof process4.kill === "function" && typeof process4.pid === "number" && typeof process4.on === "function";
 var kExitEmitter = Symbol.for("signal-exit emitter");
 var global2 = globalThis;
@@ -60992,7 +60993,7 @@ var {
   unload
 } = signalExitWrap(processOk(process2) ? new SignalExit(process2) : new SignalExitFallback());
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/screen-manager.mjs
+// node_modules/@inquirer/core/dist/esm/lib/screen-manager.mjs
 var import_strip_ansi = __toESM(require_strip_ansi(), 1);
 var import_ansi_escapes = __toESM(require_ansi_escapes(), 1);
 var height = (content) => content.split("\n").length;
@@ -61070,7 +61071,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
+// node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
 function createPrompt(view) {
   const prompt2 = (config, context) => {
     const input = (context == null ? void 0 : context.input) ?? process.stdin;
@@ -61143,10 +61144,10 @@ function createPrompt(view) {
   return prompt2;
 }
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
+// node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs(), 1);
 
-// node_modules/inquirer/node_modules/@inquirer/figures/dist/esm/index.mjs
+// node_modules/@inquirer/figures/dist/esm/index.mjs
 import process3 from "process";
 function isUnicodeSupported() {
   if (process3.platform !== "win32") {
@@ -61432,7 +61433,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/inquirer/node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
+// node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
   type = "separator";
@@ -61446,7 +61447,7 @@ var Separator = class {
   }
 };
 
-// node_modules/inquirer/node_modules/@inquirer/checkbox/dist/esm/index.mjs
+// node_modules/@inquirer/checkbox/dist/esm/index.mjs
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
@@ -61457,7 +61458,7 @@ var checkboxTheme = {
   },
   style: {
     disabledChoice: (text) => import_yoctocolors_cjs3.default.dim(`- ${text}`),
-    renderSelectedChoices: (selectedChoices) => selectedChoices.map((choice) => choice.name || choice.value).join(", ")
+    renderSelectedChoices: (selectedChoices) => selectedChoices.map((choice) => choice.short ?? choice.name ?? choice.value).join(", ")
   },
   helpMode: "auto"
 };
@@ -61587,7 +61588,7 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
-// node_modules/inquirer/node_modules/@inquirer/editor/dist/esm/index.mjs
+// node_modules/@inquirer/editor/dist/esm/index.mjs
 var import_external_editor = __toESM(require_main(), 1);
 import { AsyncResource as AsyncResource3 } from "async_hooks";
 var esm_default4 = createPrompt((config, done) => {
@@ -61653,7 +61654,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/confirm/dist/esm/index.mjs
+// node_modules/@inquirer/confirm/dist/esm/index.mjs
 var esm_default5 = createPrompt((config, done) => {
   const { transformer = (answer) => answer ? "yes" : "no" } = config;
   const [status, setStatus] = useState("pending");
@@ -61685,7 +61686,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/inquirer/node_modules/@inquirer/input/dist/esm/index.mjs
+// node_modules/@inquirer/input/dist/esm/index.mjs
 var esm_default6 = createPrompt((config, done) => {
   const { required, validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -61745,7 +61746,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/number/dist/esm/index.mjs
+// node_modules/@inquirer/number/dist/esm/index.mjs
 function validateNumber(value, { min, max, step }) {
   if (value == null || Number.isNaN(value)) {
     return false;
@@ -61822,7 +61823,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/expand/dist/esm/index.mjs
+// node_modules/@inquirer/expand/dist/esm/index.mjs
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
 var helpChoice = {
   key: "h",
@@ -61908,7 +61909,7 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/rawlist/dist/esm/index.mjs
+// node_modules/@inquirer/rawlist/dist/esm/index.mjs
 var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs(), 1);
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -61971,7 +61972,7 @@ var esm_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/password/dist/esm/index.mjs
+// node_modules/@inquirer/password/dist/esm/index.mjs
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var esm_default10 = createPrompt((config, done) => {
   const { validate = () => true } = config;
@@ -62022,7 +62023,7 @@ var esm_default10 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/inquirer/node_modules/@inquirer/select/dist/esm/index.mjs
+// node_modules/@inquirer/select/dist/esm/index.mjs
 var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes4 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
@@ -62126,7 +62127,7 @@ ${theme.style.help("(Use arrow keys to reveal more choices)")}`;
     loop
   });
   if (status === "done") {
-    const answer = selectedChoice.name || String(selectedChoice.value);
+    const answer = selectedChoice.short ?? selectedChoice.name ?? String(selectedChoice.value);
     return `${prefix} ${message} ${theme.style.answer(answer)}`;
   }
   const choiceDescription = selectedChoice.description ? `
@@ -68943,7 +68944,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-2c0c71a7bd4c285ede149858650fba9dd2a1544e`;
+  const localVersion = `0.0.0-3b9536b799d033fe6ab4437131c81c10c7bdd101`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
