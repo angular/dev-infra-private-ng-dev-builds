@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-d3cb53bf6c1291032fc58406e3ce92555d2b16cd",
+  "version": "0.0.0-1bafcd13317ff073ec7d9060343d79f157ff5903",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -15,7 +15,7 @@
     }
   },
   "dependencies": {
-    "@octokit/rest": "21.0.0",
+    "@octokit/rest": "21.0.1",
     "@types/semver": "^7.3.6",
     "@types/supports-color": "^8.1.1",
     "@yarnpkg/lockfile": "^1.1.0",
