@@ -19657,7 +19657,7 @@ var require_async2 = __commonJS({
     var rpl = require_run_parallel();
     var constants_1 = require_constants3();
     var utils = require_utils4();
-    var common2 = require_common();
+    var common3 = require_common();
     function read(directory, settings, callback) {
       if (!settings.stats && constants_1.IS_SUPPORT_READDIR_WITH_FILE_TYPES) {
         readdirWithFileTypes(directory, settings, callback);
@@ -19675,7 +19675,7 @@ var require_async2 = __commonJS({
         const entries = dirents.map((dirent) => ({
           dirent,
           name: dirent.name,
-          path: common2.joinPathSegments(directory, dirent.name, settings.pathSegmentSeparator)
+          path: common3.joinPathSegments(directory, dirent.name, settings.pathSegmentSeparator)
         }));
         if (!settings.followSymbolicLinks) {
           callSuccessCallback(callback, entries);
@@ -19719,7 +19719,7 @@ var require_async2 = __commonJS({
           return;
         }
         const tasks = names.map((name) => {
-          const path8 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
+          const path8 = common3.joinPathSegments(directory, name, settings.pathSegmentSeparator);
           return (done) => {
             fsStat.stat(path8, settings.fsStatSettings, (error, stats) => {
               if (error !== null) {
@@ -19766,7 +19766,7 @@ var require_sync2 = __commonJS({
     var fsStat = require_out();
     var constants_1 = require_constants3();
     var utils = require_utils4();
-    var common2 = require_common();
+    var common3 = require_common();
     function read(directory, settings) {
       if (!settings.stats && constants_1.IS_SUPPORT_READDIR_WITH_FILE_TYPES) {
         return readdirWithFileTypes(directory, settings);
@@ -19780,7 +19780,7 @@ var require_sync2 = __commonJS({
         const entry = {
           dirent,
           name: dirent.name,
-          path: common2.joinPathSegments(directory, dirent.name, settings.pathSegmentSeparator)
+          path: common3.joinPathSegments(directory, dirent.name, settings.pathSegmentSeparator)
         };
         if (entry.dirent.isSymbolicLink() && settings.followSymbolicLinks) {
           try {
@@ -19799,7 +19799,7 @@ var require_sync2 = __commonJS({
     function readdir(directory, settings) {
       const names = settings.fs.readdirSync(directory);
       return names.map((name) => {
-        const entryPath = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
+        const entryPath = common3.joinPathSegments(directory, name, settings.pathSegmentSeparator);
         const stats = fsStat.statSync(entryPath, settings.fsStatSettings);
         const entry = {
           name,
@@ -20234,12 +20234,12 @@ var require_reader = __commonJS({
   "node_modules/@nodelib/fs.walk/out/readers/reader.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var common2 = require_common2();
+    var common3 = require_common2();
     var Reader = class {
       constructor(_root3, _settings) {
         this._root = _root3;
         this._settings = _settings;
-        this._root = common2.replacePathSegmentSeparator(_root3, _settings.pathSegmentSeparator);
+        this._root = common3.replacePathSegmentSeparator(_root3, _settings.pathSegmentSeparator);
       }
     };
     exports.default = Reader;
@@ -20254,7 +20254,7 @@ var require_async3 = __commonJS({
     var events_1 = __require("events");
     var fsScandir = require_out2();
     var fastq = require_queue();
-    var common2 = require_common2();
+    var common3 = require_common2();
     var reader_1 = require_reader();
     var AsyncReader = class extends reader_1.default {
       constructor(_root3, _settings) {
@@ -20319,7 +20319,7 @@ var require_async3 = __commonJS({
         });
       }
       _handleError(error) {
-        if (this._isDestroyed || !common2.isFatalError(this._settings, error)) {
+        if (this._isDestroyed || !common3.isFatalError(this._settings, error)) {
           return;
         }
         this._isFatalError = true;
@@ -20332,12 +20332,12 @@ var require_async3 = __commonJS({
         }
         const fullpath = entry.path;
         if (base !== void 0) {
-          entry.path = common2.joinPathSegments(base, entry.name, this._settings.pathSegmentSeparator);
+          entry.path = common3.joinPathSegments(base, entry.name, this._settings.pathSegmentSeparator);
         }
-        if (common2.isAppliedFilter(this._settings.entryFilter, entry)) {
+        if (common3.isAppliedFilter(this._settings.entryFilter, entry)) {
           this._emitEntry(entry);
         }
-        if (entry.dirent.isDirectory() && common2.isAppliedFilter(this._settings.deepFilter, entry)) {
+        if (entry.dirent.isDirectory() && common3.isAppliedFilter(this._settings.deepFilter, entry)) {
           this._pushToQueue(fullpath, base === void 0 ? void 0 : entry.path);
         }
       }
@@ -20432,7 +20432,7 @@ var require_sync3 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var fsScandir = require_out2();
-    var common2 = require_common2();
+    var common3 = require_common2();
     var reader_1 = require_reader();
     var SyncReader = class extends reader_1.default {
       constructor() {
@@ -20465,7 +20465,7 @@ var require_sync3 = __commonJS({
         }
       }
       _handleError(error) {
-        if (!common2.isFatalError(this._settings, error)) {
+        if (!common3.isFatalError(this._settings, error)) {
           return;
         }
         throw error;
@@ -20473,12 +20473,12 @@ var require_sync3 = __commonJS({
       _handleEntry(entry, base) {
         const fullpath = entry.path;
         if (base !== void 0) {
-          entry.path = common2.joinPathSegments(base, entry.name, this._settings.pathSegmentSeparator);
+          entry.path = common3.joinPathSegments(base, entry.name, this._settings.pathSegmentSeparator);
         }
-        if (common2.isAppliedFilter(this._settings.entryFilter, entry)) {
+        if (common3.isAppliedFilter(this._settings.entryFilter, entry)) {
           this._pushToStorage(entry);
         }
-        if (entry.dirent.isDirectory() && common2.isAppliedFilter(this._settings.deepFilter, entry)) {
+        if (entry.dirent.isDirectory() && common3.isAppliedFilter(this._settings.deepFilter, entry)) {
           this._pushToQueue(fullpath, base === void 0 ? void 0 : entry.path);
         }
       }
@@ -31847,11 +31847,11 @@ var require_sync7 = __commonJS({
     var path8 = __require("path");
     var assert = __require("assert");
     var isAbsolute3 = require_path_is_absolute();
-    var common2 = require_common3();
-    var setopts = common2.setopts;
-    var ownProp = common2.ownProp;
-    var childrenIgnored = common2.childrenIgnored;
-    var isIgnored = common2.isIgnored;
+    var common3 = require_common3();
+    var setopts = common3.setopts;
+    var ownProp = common3.ownProp;
+    var childrenIgnored = common3.childrenIgnored;
+    var isIgnored = common3.isIgnored;
     function globSync2(pattern, options) {
       if (typeof options === "function" || arguments.length === 3)
         throw new TypeError("callback provided to sync glob\nSee: https://github.com/isaacs/node-glob/issues/167");
@@ -31894,7 +31894,7 @@ var require_sync7 = __commonJS({
           }
         });
       }
-      common2.finish(this);
+      common3.finish(this);
     };
     GlobSync.prototype._process = function(pattern, index, inGlobStar) {
       assert.ok(this instanceof GlobSync);
@@ -32178,10 +32178,10 @@ var require_sync7 = __commonJS({
       return c;
     };
     GlobSync.prototype._mark = function(p) {
-      return common2.mark(this, p);
+      return common3.mark(this, p);
     };
     GlobSync.prototype._makeAbs = function(f) {
-      return common2.makeAbs(this, f);
+      return common3.makeAbs(this, f);
     };
   }
 });
@@ -32322,13 +32322,13 @@ var require_glob = __commonJS({
     var assert = __require("assert");
     var isAbsolute3 = require_path_is_absolute();
     var globSync2 = require_sync7();
-    var common2 = require_common3();
-    var setopts = common2.setopts;
-    var ownProp = common2.ownProp;
+    var common3 = require_common3();
+    var setopts = common3.setopts;
+    var ownProp = common3.ownProp;
     var inflight = require_inflight();
     var util = __require("util");
-    var childrenIgnored = common2.childrenIgnored;
-    var isIgnored = common2.isIgnored;
+    var childrenIgnored = common3.childrenIgnored;
+    var isIgnored = common3.isIgnored;
     var once = require_once();
     function glob2(pattern, options, cb) {
       if (typeof options === "function")
@@ -32429,7 +32429,7 @@ var require_glob = __commonJS({
         return;
       if (this.realpath && !this._didRealpath)
         return this._realpath();
-      common2.finish(this);
+      common3.finish(this);
       this.emit("end", this.found);
     };
     Glob.prototype._realpath = function() {
@@ -32474,10 +32474,10 @@ var require_glob = __commonJS({
       });
     };
     Glob.prototype._mark = function(p) {
-      return common2.mark(this, p);
+      return common3.mark(this, p);
     };
     Glob.prototype._makeAbs = function(f) {
-      return common2.makeAbs(this, f);
+      return common3.makeAbs(this, f);
     };
     Glob.prototype.abort = function() {
       this.aborted = true;
@@ -50972,7 +50972,7 @@ function lines({ items, width, renderItem, active, position: requested, pageSize
     isActive: index === active
   }));
   const layoutsInPage = rotate(active - requested, layouts).slice(0, pageSize);
-  const renderItemAt = (index) => split(renderItem(layoutsInPage[index]), width);
+  const renderItemAt = (index) => layoutsInPage[index] == null ? [] : split(renderItem(layoutsInPage[index]), width);
   const pageBuffer = Array.from({ length: pageSize });
   const activeItem = renderItemAt(requested).slice(0, pageSize);
   const position = requested + activeItem.length <= pageSize ? requested : pageSize - activeItem.length;
@@ -51078,7 +51078,7 @@ if (process.platform === "linux") {
 }
 
 // node_modules/@inquirer/core/node_modules/signal-exit/dist/mjs/index.js
-var processOk = (process4) => !!process4 && typeof process4 === "object" && typeof process4.removeListener === "function" && typeof process4.emit === "function" && typeof process4.reallyExit === "function" && typeof process4.listeners === "function" && typeof process4.kill === "function" && typeof process4.pid === "number" && typeof process4.on === "function";
+var processOk = (process5) => !!process5 && typeof process5 === "object" && typeof process5.removeListener === "function" && typeof process5.emit === "function" && typeof process5.reallyExit === "function" && typeof process5.listeners === "function" && typeof process5.kill === "function" && typeof process5.pid === "number" && typeof process5.on === "function";
 var kExitEmitter = Symbol.for("signal-exit emitter");
 var global2 = globalThis;
 var ObjectDefineProperty = Object.defineProperty.bind(Object);
@@ -51161,7 +51161,7 @@ var SignalExitFallback = class extends SignalExitBase {
 };
 var _hupSig, _emitter, _process, _originalProcessEmit, _originalProcessReallyExit, _sigListeners, _loaded, _processReallyExit, processReallyExit_fn, _processEmit, processEmit_fn;
 var SignalExit = class extends SignalExitBase {
-  constructor(process4) {
+  constructor(process5) {
     super();
     __privateAdd(this, _processReallyExit);
     __privateAdd(this, _processEmit);
@@ -51172,13 +51172,13 @@ var SignalExit = class extends SignalExitBase {
     __privateAdd(this, _originalProcessReallyExit, void 0);
     __privateAdd(this, _sigListeners, {});
     __privateAdd(this, _loaded, false);
-    __privateSet(this, _process, process4);
+    __privateSet(this, _process, process5);
     __privateSet(this, _sigListeners, {});
     for (const sig of signals) {
       __privateGet(this, _sigListeners)[sig] = () => {
         const listeners = __privateGet(this, _process).listeners(sig);
         let { count } = __privateGet(this, _emitter);
-        const p = process4;
+        const p = process5;
         if (typeof p.__signal_exit_emitter__ === "object" && typeof p.__signal_exit_emitter__.count === "number") {
           count += p.__signal_exit_emitter__.count;
         }
@@ -51187,12 +51187,12 @@ var SignalExit = class extends SignalExitBase {
           const ret = __privateGet(this, _emitter).emit("exit", null, sig);
           const s = sig === "SIGHUP" ? __privateGet(this, _hupSig) : sig;
           if (!ret)
-            process4.kill(process4.pid, s);
+            process5.kill(process5.pid, s);
         }
       };
     }
-    __privateSet(this, _originalProcessReallyExit, process4.reallyExit);
-    __privateSet(this, _originalProcessEmit, process4.emit);
+    __privateSet(this, _originalProcessReallyExit, process5.reallyExit);
+    __privateSet(this, _originalProcessEmit, process5.emit);
   }
   onExit(cb, opts) {
     if (!processOk(__privateGet(this, _process))) {
@@ -51743,14 +51743,302 @@ var Separator = class {
   }
 };
 
-// node_modules/@inquirer/checkbox/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.mjs
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
+
+// node_modules/@inquirer/prompts/node_modules/@inquirer/figures/dist/esm/index.mjs
+import process4 from "process";
+function isUnicodeSupported2() {
+  if (process4.platform !== "win32") {
+    return process4.env["TERM"] !== "linux";
+  }
+  return Boolean(process4.env["WT_SESSION"]) || Boolean(process4.env["TERMINUS_SUBLIME"]) || process4.env["ConEmuTask"] === "{cmd::Cmder}" || process4.env["TERM_PROGRAM"] === "Terminus-Sublime" || process4.env["TERM_PROGRAM"] === "vscode" || process4.env["TERM"] === "xterm-256color" || process4.env["TERM"] === "alacritty" || process4.env["TERMINAL_EMULATOR"] === "JetBrains-JediTerm";
+}
+var common2 = {
+  circleQuestionMark: "(?)",
+  questionMarkPrefix: "(?)",
+  square: "\u2588",
+  squareDarkShade: "\u2593",
+  squareMediumShade: "\u2592",
+  squareLightShade: "\u2591",
+  squareTop: "\u2580",
+  squareBottom: "\u2584",
+  squareLeft: "\u258C",
+  squareRight: "\u2590",
+  squareCenter: "\u25A0",
+  bullet: "\u25CF",
+  dot: "\u2024",
+  ellipsis: "\u2026",
+  pointerSmall: "\u203A",
+  triangleUp: "\u25B2",
+  triangleUpSmall: "\u25B4",
+  triangleDown: "\u25BC",
+  triangleDownSmall: "\u25BE",
+  triangleLeftSmall: "\u25C2",
+  triangleRightSmall: "\u25B8",
+  home: "\u2302",
+  heart: "\u2665",
+  musicNote: "\u266A",
+  musicNoteBeamed: "\u266B",
+  arrowUp: "\u2191",
+  arrowDown: "\u2193",
+  arrowLeft: "\u2190",
+  arrowRight: "\u2192",
+  arrowLeftRight: "\u2194",
+  arrowUpDown: "\u2195",
+  almostEqual: "\u2248",
+  notEqual: "\u2260",
+  lessOrEqual: "\u2264",
+  greaterOrEqual: "\u2265",
+  identical: "\u2261",
+  infinity: "\u221E",
+  subscriptZero: "\u2080",
+  subscriptOne: "\u2081",
+  subscriptTwo: "\u2082",
+  subscriptThree: "\u2083",
+  subscriptFour: "\u2084",
+  subscriptFive: "\u2085",
+  subscriptSix: "\u2086",
+  subscriptSeven: "\u2087",
+  subscriptEight: "\u2088",
+  subscriptNine: "\u2089",
+  oneHalf: "\xBD",
+  oneThird: "\u2153",
+  oneQuarter: "\xBC",
+  oneFifth: "\u2155",
+  oneSixth: "\u2159",
+  oneEighth: "\u215B",
+  twoThirds: "\u2154",
+  twoFifths: "\u2156",
+  threeQuarters: "\xBE",
+  threeFifths: "\u2157",
+  threeEighths: "\u215C",
+  fourFifths: "\u2158",
+  fiveSixths: "\u215A",
+  fiveEighths: "\u215D",
+  sevenEighths: "\u215E",
+  line: "\u2500",
+  lineBold: "\u2501",
+  lineDouble: "\u2550",
+  lineDashed0: "\u2504",
+  lineDashed1: "\u2505",
+  lineDashed2: "\u2508",
+  lineDashed3: "\u2509",
+  lineDashed4: "\u254C",
+  lineDashed5: "\u254D",
+  lineDashed6: "\u2574",
+  lineDashed7: "\u2576",
+  lineDashed8: "\u2578",
+  lineDashed9: "\u257A",
+  lineDashed10: "\u257C",
+  lineDashed11: "\u257E",
+  lineDashed12: "\u2212",
+  lineDashed13: "\u2013",
+  lineDashed14: "\u2010",
+  lineDashed15: "\u2043",
+  lineVertical: "\u2502",
+  lineVerticalBold: "\u2503",
+  lineVerticalDouble: "\u2551",
+  lineVerticalDashed0: "\u2506",
+  lineVerticalDashed1: "\u2507",
+  lineVerticalDashed2: "\u250A",
+  lineVerticalDashed3: "\u250B",
+  lineVerticalDashed4: "\u254E",
+  lineVerticalDashed5: "\u254F",
+  lineVerticalDashed6: "\u2575",
+  lineVerticalDashed7: "\u2577",
+  lineVerticalDashed8: "\u2579",
+  lineVerticalDashed9: "\u257B",
+  lineVerticalDashed10: "\u257D",
+  lineVerticalDashed11: "\u257F",
+  lineDownLeft: "\u2510",
+  lineDownLeftArc: "\u256E",
+  lineDownBoldLeftBold: "\u2513",
+  lineDownBoldLeft: "\u2512",
+  lineDownLeftBold: "\u2511",
+  lineDownDoubleLeftDouble: "\u2557",
+  lineDownDoubleLeft: "\u2556",
+  lineDownLeftDouble: "\u2555",
+  lineDownRight: "\u250C",
+  lineDownRightArc: "\u256D",
+  lineDownBoldRightBold: "\u250F",
+  lineDownBoldRight: "\u250E",
+  lineDownRightBold: "\u250D",
+  lineDownDoubleRightDouble: "\u2554",
+  lineDownDoubleRight: "\u2553",
+  lineDownRightDouble: "\u2552",
+  lineUpLeft: "\u2518",
+  lineUpLeftArc: "\u256F",
+  lineUpBoldLeftBold: "\u251B",
+  lineUpBoldLeft: "\u251A",
+  lineUpLeftBold: "\u2519",
+  lineUpDoubleLeftDouble: "\u255D",
+  lineUpDoubleLeft: "\u255C",
+  lineUpLeftDouble: "\u255B",
+  lineUpRight: "\u2514",
+  lineUpRightArc: "\u2570",
+  lineUpBoldRightBold: "\u2517",
+  lineUpBoldRight: "\u2516",
+  lineUpRightBold: "\u2515",
+  lineUpDoubleRightDouble: "\u255A",
+  lineUpDoubleRight: "\u2559",
+  lineUpRightDouble: "\u2558",
+  lineUpDownLeft: "\u2524",
+  lineUpBoldDownBoldLeftBold: "\u252B",
+  lineUpBoldDownBoldLeft: "\u2528",
+  lineUpDownLeftBold: "\u2525",
+  lineUpBoldDownLeftBold: "\u2529",
+  lineUpDownBoldLeftBold: "\u252A",
+  lineUpDownBoldLeft: "\u2527",
+  lineUpBoldDownLeft: "\u2526",
+  lineUpDoubleDownDoubleLeftDouble: "\u2563",
+  lineUpDoubleDownDoubleLeft: "\u2562",
+  lineUpDownLeftDouble: "\u2561",
+  lineUpDownRight: "\u251C",
+  lineUpBoldDownBoldRightBold: "\u2523",
+  lineUpBoldDownBoldRight: "\u2520",
+  lineUpDownRightBold: "\u251D",
+  lineUpBoldDownRightBold: "\u2521",
+  lineUpDownBoldRightBold: "\u2522",
+  lineUpDownBoldRight: "\u251F",
+  lineUpBoldDownRight: "\u251E",
+  lineUpDoubleDownDoubleRightDouble: "\u2560",
+  lineUpDoubleDownDoubleRight: "\u255F",
+  lineUpDownRightDouble: "\u255E",
+  lineDownLeftRight: "\u252C",
+  lineDownBoldLeftBoldRightBold: "\u2533",
+  lineDownLeftBoldRightBold: "\u252F",
+  lineDownBoldLeftRight: "\u2530",
+  lineDownBoldLeftBoldRight: "\u2531",
+  lineDownBoldLeftRightBold: "\u2532",
+  lineDownLeftRightBold: "\u252E",
+  lineDownLeftBoldRight: "\u252D",
+  lineDownDoubleLeftDoubleRightDouble: "\u2566",
+  lineDownDoubleLeftRight: "\u2565",
+  lineDownLeftDoubleRightDouble: "\u2564",
+  lineUpLeftRight: "\u2534",
+  lineUpBoldLeftBoldRightBold: "\u253B",
+  lineUpLeftBoldRightBold: "\u2537",
+  lineUpBoldLeftRight: "\u2538",
+  lineUpBoldLeftBoldRight: "\u2539",
+  lineUpBoldLeftRightBold: "\u253A",
+  lineUpLeftRightBold: "\u2536",
+  lineUpLeftBoldRight: "\u2535",
+  lineUpDoubleLeftDoubleRightDouble: "\u2569",
+  lineUpDoubleLeftRight: "\u2568",
+  lineUpLeftDoubleRightDouble: "\u2567",
+  lineUpDownLeftRight: "\u253C",
+  lineUpBoldDownBoldLeftBoldRightBold: "\u254B",
+  lineUpDownBoldLeftBoldRightBold: "\u2548",
+  lineUpBoldDownLeftBoldRightBold: "\u2547",
+  lineUpBoldDownBoldLeftRightBold: "\u254A",
+  lineUpBoldDownBoldLeftBoldRight: "\u2549",
+  lineUpBoldDownLeftRight: "\u2540",
+  lineUpDownBoldLeftRight: "\u2541",
+  lineUpDownLeftBoldRight: "\u253D",
+  lineUpDownLeftRightBold: "\u253E",
+  lineUpBoldDownBoldLeftRight: "\u2542",
+  lineUpDownLeftBoldRightBold: "\u253F",
+  lineUpBoldDownLeftBoldRight: "\u2543",
+  lineUpBoldDownLeftRightBold: "\u2544",
+  lineUpDownBoldLeftBoldRight: "\u2545",
+  lineUpDownBoldLeftRightBold: "\u2546",
+  lineUpDoubleDownDoubleLeftDoubleRightDouble: "\u256C",
+  lineUpDoubleDownDoubleLeftRight: "\u256B",
+  lineUpDownLeftDoubleRightDouble: "\u256A",
+  lineCross: "\u2573",
+  lineBackslash: "\u2572",
+  lineSlash: "\u2571"
+};
+var specialMainSymbols2 = {
+  tick: "\u2714",
+  info: "\u2139",
+  warning: "\u26A0",
+  cross: "\u2718",
+  squareSmall: "\u25FB",
+  squareSmallFilled: "\u25FC",
+  circle: "\u25EF",
+  circleFilled: "\u25C9",
+  circleDotted: "\u25CC",
+  circleDouble: "\u25CE",
+  circleCircle: "\u24DE",
+  circleCross: "\u24E7",
+  circlePipe: "\u24BE",
+  radioOn: "\u25C9",
+  radioOff: "\u25EF",
+  checkboxOn: "\u2612",
+  checkboxOff: "\u2610",
+  checkboxCircleOn: "\u24E7",
+  checkboxCircleOff: "\u24BE",
+  pointer: "\u276F",
+  triangleUpOutline: "\u25B3",
+  triangleLeft: "\u25C0",
+  triangleRight: "\u25B6",
+  lozenge: "\u25C6",
+  lozengeOutline: "\u25C7",
+  hamburger: "\u2630",
+  smiley: "\u32E1",
+  mustache: "\u0DF4",
+  star: "\u2605",
+  play: "\u25B6",
+  nodejs: "\u2B22",
+  oneSeventh: "\u2150",
+  oneNinth: "\u2151",
+  oneTenth: "\u2152"
+};
+var specialFallbackSymbols2 = {
+  tick: "\u221A",
+  info: "i",
+  warning: "\u203C",
+  cross: "\xD7",
+  squareSmall: "\u25A1",
+  squareSmallFilled: "\u25A0",
+  circle: "( )",
+  circleFilled: "(*)",
+  circleDotted: "( )",
+  circleDouble: "( )",
+  circleCircle: "(\u25CB)",
+  circleCross: "(\xD7)",
+  circlePipe: "(\u2502)",
+  radioOn: "(*)",
+  radioOff: "( )",
+  checkboxOn: "[\xD7]",
+  checkboxOff: "[ ]",
+  checkboxCircleOn: "(\xD7)",
+  checkboxCircleOff: "( )",
+  pointer: ">",
+  triangleUpOutline: "\u2206",
+  triangleLeft: "\u25C4",
+  triangleRight: "\u25BA",
+  lozenge: "\u2666",
+  lozengeOutline: "\u25CA",
+  hamburger: "\u2261",
+  smiley: "\u263A",
+  mustache: "\u250C\u2500\u2510",
+  star: "\u2736",
+  play: "\u25BA",
+  nodejs: "\u2666",
+  oneSeventh: "1/7",
+  oneNinth: "1/9",
+  oneTenth: "1/10"
+};
+var mainSymbols2 = { ...common2, ...specialMainSymbols2 };
+var fallbackSymbols2 = {
+  ...common2,
+  ...specialFallbackSymbols2
+};
+var shouldUseMain2 = isUnicodeSupported2();
+var figures2 = shouldUseMain2 ? mainSymbols2 : fallbackSymbols2;
+var esm_default3 = figures2;
+var replacements2 = Object.entries(specialMainSymbols2);
+
+// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.mjs
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
   icon: {
-    checked: import_yoctocolors_cjs3.default.green(esm_default2.circleFilled),
-    unchecked: esm_default2.circle,
-    cursor: esm_default2.pointer
+    checked: import_yoctocolors_cjs3.default.green(esm_default3.circleFilled),
+    unchecked: esm_default3.circle,
+    cursor: esm_default3.pointer
   },
   style: {
     disabledChoice: (text) => import_yoctocolors_cjs3.default.dim(`- ${text}`),
@@ -51772,7 +52060,7 @@ function check(checked) {
     return isSelectable(item) ? { ...item, checked } : item;
   };
 }
-var esm_default3 = createPrompt((config, done) => {
+var esm_default4 = createPrompt((config, done) => {
   const { instructions, pageSize = 7, loop = true, choices, required, validate = () => true } = config;
   const theme = makeTheme(checkboxTheme, config.theme);
   const prefix = usePrefix({ theme });
@@ -51887,7 +52175,7 @@ ${page}${helpTipBottom}${error}${import_ansi_escapes2.default.cursorHide}`;
 // node_modules/@inquirer/editor/dist/esm/index.mjs
 var import_external_editor = __toESM(require_main(), 1);
 import { AsyncResource as AsyncResource3 } from "async_hooks";
-var esm_default4 = createPrompt((config, done) => {
+var esm_default5 = createPrompt((config, done) => {
   const { waitForUseInput = true, validate = () => true } = config;
   const theme = makeTheme(config.theme);
   const [status, setStatus] = useState("pending");
@@ -51951,7 +52239,7 @@ var esm_default4 = createPrompt((config, done) => {
 });
 
 // node_modules/@inquirer/confirm/dist/esm/index.mjs
-var esm_default5 = createPrompt((config, done) => {
+var esm_default6 = createPrompt((config, done) => {
   const { transformer = (answer) => answer ? "yes" : "no" } = config;
   const [status, setStatus] = useState("pending");
   const [value, setValue] = useState("");
@@ -51983,7 +52271,7 @@ var esm_default5 = createPrompt((config, done) => {
 });
 
 // node_modules/@inquirer/input/dist/esm/index.mjs
-var esm_default6 = createPrompt((config, done) => {
+var esm_default7 = createPrompt((config, done) => {
   const { required, validate = () => true } = config;
   const theme = makeTheme(config.theme);
   const [status, setStatus] = useState("pending");
@@ -52042,18 +52330,18 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/select/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/select/dist/esm/index.mjs
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
-  icon: { cursor: esm_default2.pointer },
+  icon: { cursor: esm_default3.pointer },
   style: { disabled: (text) => import_yoctocolors_cjs4.default.dim(`- ${text}`) },
   helpMode: "auto"
 };
 function isSelectable2(item) {
   return !Separator.isSeparator(item) && !item.disabled;
 }
-var esm_default7 = createPrompt((config, done) => {
+var esm_default8 = createPrompt((config, done) => {
   const { choices: items, loop = true, pageSize = 7 } = config;
   const firstRender = useRef(true);
   const theme = makeTheme(selectTheme, config.theme);
@@ -52158,11 +52446,11 @@ ${page}${choiceDescription}${helpTipBottom}${import_ansi_escapes3.default.cursor
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/prompt.js
 var Prompt = class {
 };
-Prompt.confirm = esm_default5;
-Prompt.input = esm_default6;
-Prompt.checkbox = esm_default3;
-Prompt.select = esm_default7;
-Prompt.editor = esm_default4;
+Prompt.confirm = esm_default6;
+Prompt.input = esm_default7;
+Prompt.checkbox = esm_default4;
+Prompt.select = esm_default8;
+Prompt.editor = esm_default5;
 
 // bazel-out/k8-fastbuild/bin/ng-dev/caretaker/handoff/update-github-team.js
 async function updateCaretakerTeamViaPrompt() {
@@ -53927,12 +54215,12 @@ function multimatch(list, patterns, options = {}) {
   let result = [];
   for (const item of list) {
     for (let pattern of patterns) {
-      let process4 = array_union_default;
+      let process5 = array_union_default;
       if (pattern[0] === "!") {
         pattern = pattern.slice(1);
-        process4 = arrayDiffer;
+        process5 = arrayDiffer;
       }
-      result = process4(result, minimatch2.match([item], pattern, options));
+      result = process5(result, minimatch2.match([item], pattern, options));
     }
   }
   return result;
@@ -58686,7 +58974,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-1bafcd13317ff073ec7d9060343d79f157ff5903`;
+  const localVersion = `0.0.0-41a9f08706cb37aa49d325729adfbb4e95070aba`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
