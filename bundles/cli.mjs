@@ -51443,7 +51443,7 @@ function createPrompt(view) {
 // node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs(), 1);
 
-// node_modules/@inquirer/figures/dist/esm/index.mjs
+// node_modules/@inquirer/core/node_modules/@inquirer/figures/dist/esm/index.mjs
 import process3 from "process";
 function isUnicodeSupported() {
   if (process3.platform !== "win32") {
@@ -51743,10 +51743,10 @@ var Separator = class {
   }
 };
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.mjs
+// node_modules/@inquirer/checkbox/dist/esm/index.mjs
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/figures/dist/esm/index.mjs
+// node_modules/@inquirer/figures/dist/esm/index.mjs
 import process4 from "process";
 function isUnicodeSupported2() {
   if (process4.platform !== "win32") {
@@ -52032,7 +52032,7 @@ var figures2 = shouldUseMain2 ? mainSymbols2 : fallbackSymbols2;
 var esm_default3 = figures2;
 var replacements2 = Object.entries(specialMainSymbols2);
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.mjs
+// node_modules/@inquirer/checkbox/dist/esm/index.mjs
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
   icon: {
@@ -52330,7 +52330,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/select/dist/esm/index.mjs
+// node_modules/@inquirer/select/dist/esm/index.mjs
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
@@ -58974,7 +58974,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-843be402f90aeb8755aafa81eb0ac931b1f186fb`;
+  const localVersion = `0.0.0-12a4be9d5194c938d76efa5b651c39d571ff0749`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
