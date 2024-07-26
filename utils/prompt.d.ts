@@ -41,14 +41,14 @@ export declare abstract class Prompt {
         })[];
         loop?: boolean;
         required?: boolean;
-        validate?: ((items: readonly (import("@inquirer/prompts").Separator | {
+        validate?: ((choices: readonly {
             name?: string;
             value: Value;
             short?: string;
             disabled?: boolean | string;
             checked?: boolean;
             type?: never;
-        })[]) => boolean | string | Promise<string | boolean>) | undefined;
+        }[]) => boolean | string | Promise<string | boolean>) | undefined;
         theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme<{
             icon: {
                 checked: string;
@@ -95,6 +95,7 @@ export declare abstract class Prompt {
             };
             style: {
                 disabled: (text: string) => string;
+                description: (text: string) => string;
             };
             helpMode: "always" | "never" | "auto";
         }>>;
