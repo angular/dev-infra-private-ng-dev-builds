@@ -51750,7 +51750,7 @@ var Separator = class {
   }
 };
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.mjs
+// node_modules/@inquirer/checkbox/dist/esm/index.mjs
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
@@ -52049,7 +52049,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/select/dist/esm/index.mjs
+// node_modules/@inquirer/select/dist/esm/index.mjs
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
@@ -58696,7 +58696,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-27c783142fb8d0aca46f9ebf67faa605884edc79`;
+  const localVersion = `0.0.0-583107acd39e08f30690ccadc9e95ab34e6718e2`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
