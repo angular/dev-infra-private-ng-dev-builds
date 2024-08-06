@@ -14,7 +14,22 @@ export declare abstract class Prompt {
         message: string;
         default?: boolean;
         transformer?: (value: boolean) => string;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme>;
+        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<{
+            prefix: string;
+            spinner: {
+                interval: number;
+                frames: string[];
+            };
+            style: {
+                answer: (text: string) => string;
+                message: (text: string) => string;
+                error: (text: string) => string;
+                defaultAnswer: (text: string) => string;
+                help: (text: string) => string;
+                highlight: (text: string) => string;
+                key: (text: string) => string;
+            };
+        }>;
     }>;
     static input: import("@inquirer/type/dist/cjs/types").Prompt<string, {
         message: string;
@@ -24,7 +39,22 @@ export declare abstract class Prompt {
             isFinal: boolean;
         }) => string;
         validate?: (value: string) => boolean | string | Promise<string | boolean>;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme>;
+        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<{
+            prefix: string;
+            spinner: {
+                interval: number;
+                frames: string[];
+            };
+            style: {
+                answer: (text: string) => string;
+                message: (text: string) => string;
+                error: (text: string) => string;
+                defaultAnswer: (text: string) => string;
+                help: (text: string) => string;
+                highlight: (text: string) => string;
+                key: (text: string) => string;
+            };
+        }>;
     }>;
     static checkbox: <Value>(config: {
         message: string;
@@ -49,7 +79,7 @@ export declare abstract class Prompt {
             checked?: boolean;
             type?: never;
         }[]) => boolean | string | Promise<string | boolean>) | undefined;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme<{
+        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<{
             icon: {
                 checked: string;
                 unchecked: string;
@@ -72,9 +102,22 @@ export declare abstract class Prompt {
                     checked?: boolean;
                     type?: never;
                 } | import("@inquirer/prompts").Separator>) => string;
+            } & {
+                answer: (text: string) => string;
+                message: (text: string) => string;
+                error: (text: string) => string;
+                defaultAnswer: (text: string) => string;
+                help: (text: string) => string;
+                highlight: (text: string) => string;
+                key: (text: string) => string;
             };
             helpMode: "always" | "never" | "auto";
-        }>> | undefined;
+            prefix: string;
+            spinner: {
+                interval: number;
+                frames: string[];
+            };
+        }> | undefined;
     }, context?: import("@inquirer/type/dist/cjs/types").Context) => import("@inquirer/type/dist/cjs/types").CancelablePromise<Value[]>;
     static select: <Value>(config: {
         message: string;
@@ -89,16 +132,29 @@ export declare abstract class Prompt {
         pageSize?: number | undefined;
         loop?: boolean | undefined;
         default?: unknown;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme<{
+        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<{
             icon: {
                 cursor: string;
             };
             style: {
                 disabled: (text: string) => string;
                 description: (text: string) => string;
+            } & {
+                answer: (text: string) => string;
+                message: (text: string) => string;
+                error: (text: string) => string;
+                defaultAnswer: (text: string) => string;
+                help: (text: string) => string;
+                highlight: (text: string) => string;
+                key: (text: string) => string;
             };
             helpMode: "always" | "never" | "auto";
-        }>> | undefined;
+            prefix: string;
+            spinner: {
+                interval: number;
+                frames: string[];
+            };
+        }> | undefined;
     }, context?: import("@inquirer/type/dist/cjs/types").Context) => import("@inquirer/type/dist/cjs/types").CancelablePromise<Value>;
     static editor: import("@inquirer/type/dist/cjs/types").Prompt<string, {
         message: string;
@@ -106,6 +162,21 @@ export declare abstract class Prompt {
         postfix?: string;
         waitForUseInput?: boolean;
         validate?: (value: string) => boolean | string | Promise<string | boolean>;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme>;
+        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<{
+            prefix: string;
+            spinner: {
+                interval: number;
+                frames: string[];
+            };
+            style: {
+                answer: (text: string) => string;
+                message: (text: string) => string;
+                error: (text: string) => string;
+                defaultAnswer: (text: string) => string;
+                help: (text: string) => string;
+                highlight: (text: string) => string;
+                key: (text: string) => string;
+            };
+        }>;
     }>;
 }
