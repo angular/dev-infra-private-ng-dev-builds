@@ -18795,7 +18795,11 @@ var require_micromatch = __commonJS({
     var braces = require_braces();
     var picomatch = require_picomatch2();
     var utils = require_utils2();
-    var isEmptyString = (val) => val === "" || val === "./";
+    var isEmptyString = (v) => v === "" || v === "./";
+    var hasBraces = (v) => {
+      const index = v.indexOf("{");
+      return index > -1 && v.indexOf("}", index) > -1;
+    };
     var micromatch = (list, patterns, options) => {
       patterns = [].concat(patterns);
       list = [].concat(list);
@@ -18935,7 +18939,7 @@ var require_micromatch = __commonJS({
     micromatch.braces = (pattern, options) => {
       if (typeof pattern !== "string")
         throw new TypeError("Expected a string");
-      if (options && options.nobrace === true || !/\{.*\}/.test(pattern)) {
+      if (options && options.nobrace === true || !hasBraces(pattern)) {
         return [pattern];
       }
       return braces(pattern, options);
@@ -18945,6 +18949,7 @@ var require_micromatch = __commonJS({
         throw new TypeError("Expected a string");
       return micromatch.braces(pattern, { ...options, expand: true });
     };
+    micromatch.hasBraces = hasBraces;
     module.exports = micromatch;
   }
 });
@@ -34141,6 +34146,8 @@ var require_spdx_license_ids = __commonJS({
       "DRL-1.0",
       "DRL-1.1",
       "DSDP",
+      "DocBook-Schema",
+      "DocBook-XML",
       "Dotseqn",
       "ECL-1.0",
       "ECL-2.0",
@@ -34204,6 +34211,7 @@ var require_spdx_license_ids = __commonJS({
       "Glulxe",
       "Graphics-Gems",
       "Gutmann",
+      "HIDAPI",
       "HP-1986",
       "HP-1989",
       "HPND",
@@ -34214,6 +34222,7 @@ var require_spdx_license_ids = __commonJS({
       "HPND-Kevlin-Henney",
       "HPND-MIT-disclaimer",
       "HPND-Markus-Kuhn",
+      "HPND-Netrek",
       "HPND-Pbmplus",
       "HPND-UC",
       "HPND-UC-export-US",
@@ -34347,7 +34356,6 @@ var require_spdx_license_ids = __commonJS({
       "NTP",
       "NTP-0",
       "Naumen",
-      "Net-SNMP",
       "NetCDF",
       "Newsletr",
       "Nokia",
@@ -34429,6 +34437,7 @@ var require_spdx_license_ids = __commonJS({
       "RSCPL",
       "Rdisc",
       "Ruby",
+      "Ruby-pty",
       "SAX-PD",
       "SAX-PD-2.0",
       "SCEA",
@@ -34485,6 +34494,7 @@ var require_spdx_license_ids = __commonJS({
       "UMich-Merit",
       "UPL-1.0",
       "URT-RLE",
+      "Ubuntu-font-1.0",
       "Unicode-3.0",
       "Unicode-DFS-2015",
       "Unicode-DFS-2016",
@@ -34503,6 +34513,7 @@ var require_spdx_license_ids = __commonJS({
       "Wsuipa",
       "X11",
       "X11-distribute-modifications-variant",
+      "X11-swapped",
       "XFree86-1.1",
       "XSkat",
       "Xdebug-1.03",
@@ -34599,6 +34610,7 @@ var require_deprecated = __commonJS({
       "LGPL-2.0",
       "LGPL-2.1",
       "LGPL-3.0",
+      "Net-SNMP",
       "Nunit",
       "StandardML-NJ",
       "bzip2-1.0.5",
@@ -36071,8 +36083,8 @@ var require_core = __commonJS({
       "node:sys": [">= 14.18 && < 15", ">= 16"],
       "test/reporters": ">= 19.9 && < 20.2",
       "node:test/reporters": [">= 18.17 && < 19", ">= 19.9", ">= 20"],
-      "test/mock_loader": ">= 22.3",
-      "node:test/mock_loader": ">= 22.3",
+      "test/mock_loader": ">= 22.3 && < 22.7",
+      "node:test/mock_loader": ">= 22.3 && < 22.7",
       "node:test": [">= 16.17 && < 17", ">= 18"],
       timers: true,
       "node:timers": [">= 14.18 && < 15", ">= 16"],
@@ -58702,7 +58714,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-cde4334fed3726b2d1cee1dd457552d43f254ee4`;
+  const localVersion = `0.0.0-e782650c2783da0b53dda23cd8b646d1e157f59d`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
