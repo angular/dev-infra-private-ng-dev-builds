@@ -112,6 +112,16 @@ export declare const allLabels: {
         name: string;
         commitCheck: (c: import("../../../commit-message/parse.js").Commit) => boolean;
     };
+    DETECTED_COMPILER_CHANGE: {
+        description: string;
+        name: string;
+        commitCheck: (c: import("../../../commit-message/parse.js").Commit) => boolean;
+    };
+    DETECTED_PLATFORM_BROWSER_CHANGE: {
+        description: string;
+        name: string;
+        commitCheck: (c: import("../../../commit-message/parse.js").Commit) => boolean;
+    };
     DETECTED_INFRA_CHANGE: {
         description: string;
         name: string;
