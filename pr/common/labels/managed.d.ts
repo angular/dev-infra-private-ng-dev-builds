@@ -40,4 +40,9 @@ export declare const managedLabels: {
         name: string;
         commitCheck: (c: Commit) => boolean;
     };
+    DETECTED_HTTP_CHANGE: {
+        description: string;
+        name: string;
+        commitCheck: (c: Commit) => boolean;
+    };
 };

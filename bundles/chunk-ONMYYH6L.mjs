@@ -5985,6 +5985,11 @@ var managedLabels = createTypedObject()({
     description: "Issues related to performance",
     name: "area: performance",
     commitCheck: (c) => c.type === "perf"
+  },
+  DETECTED_HTTP_CHANGE: {
+    description: "",
+    name: "area: common/http",
+    commitCheck: (c) => c.type === "common/http" || c.type === "http"
   }
 });
 
@@ -6179,4 +6184,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-INUKFWUR.mjs.map
+//# sourceMappingURL=chunk-ONMYYH6L.mjs.map
