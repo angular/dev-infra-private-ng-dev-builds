@@ -48953,7 +48953,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/key.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/key.mjs
 var isUpKey = (key) => key.name === "up" || key.name === "k" || key.ctrl && key.name === "p";
 var isDownKey = (key) => key.name === "down" || key.name === "j" || key.ctrl && key.name === "n";
 var isSpaceKey = (key) => key.name === "space";
@@ -48961,7 +48961,7 @@ var isBackspaceKey = (key) => key.name === "backspace";
 var isNumberKey = (key) => "123456789".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/@inquirer/core/dist/esm/lib/errors.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/errors.mjs
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -48984,10 +48984,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
 import { AsyncResource as AsyncResource2 } from "async_hooks";
 
-// node_modules/@inquirer/core/dist/esm/lib/hook-engine.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/hook-engine.mjs
 import { AsyncLocalStorage, AsyncResource } from "async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -49094,7 +49094,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/use-state.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-state.mjs
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setFn = (newValue) => {
@@ -49112,7 +49112,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-effect.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-effect.mjs
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -49124,7 +49124,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/theme.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/theme.mjs
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs(), 1);
 
 // node_modules/@inquirer/figures/dist/esm/index.mjs
@@ -49413,7 +49413,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/@inquirer/core/dist/esm/lib/theme.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/theme.mjs
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
@@ -49434,7 +49434,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/make-theme.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/make-theme.mjs
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -49462,7 +49462,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -49493,7 +49493,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName];
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-memo.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-memo.mjs
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -49506,12 +49506,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-ref.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-ref.mjs
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-keypress.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-keypress.mjs
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -49530,7 +49530,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/utils.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/utils.mjs
 var import_cli_width = __toESM(require_cli_width(), 1);
 var import_wrap_ansi = __toESM(require_wrap_ansi(), 1);
 function breakLines(content, width) {
@@ -49540,7 +49540,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/lines.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/lines.mjs
 function split(content, width) {
   return breakLines(content, width).split("\n");
 }
@@ -49584,7 +49584,7 @@ function lines({ items, width, renderItem, active, position: requested, pageSize
   return pageBuffer.filter((line) => typeof line === "string");
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/position.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/position.mjs
 function finite({ active, pageSize, total }) {
   const middle = Math.floor(pageSize / 2);
   if (total <= pageSize || active < middle)
@@ -49602,7 +49602,7 @@ function infinite({ active, lastActive, total, pageSize, pointer }) {
   return pointer;
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.mjs
 function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   const state = useRef({ position: 0, lastActive: 0 });
   const position = loop ? infinite({
@@ -49628,7 +49628,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   }).join("\n");
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
 var import_mute_stream = __toESM(require_lib(), 1);
 import * as readline2 from "readline";
 import { AsyncResource as AsyncResource3 } from "async_hooks";
@@ -49866,7 +49866,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/@inquirer/core/dist/esm/lib/screen-manager.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/screen-manager.mjs
 var import_strip_ansi = __toESM(require_strip_ansi(), 1);
 var import_ansi_escapes = __toESM(require_ansi_escapes(), 1);
 var height = (content) => content.split("\n").length;
@@ -49931,7 +49931,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.mjs
 var PromisePolyfill = class extends Promise {
   static withResolver() {
     let resolve13;
@@ -49944,7 +49944,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
 function createPrompt(view) {
   const prompt = (config, context = {}) => {
     const { input = process.stdin, signal } = context;
@@ -50006,7 +50006,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs(), 1);
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
@@ -50021,7 +50021,7 @@ var Separator = class {
   }
 };
 
-// node_modules/@inquirer/checkbox/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.mjs
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
@@ -50078,9 +50078,9 @@ function normalizeChoices(choices) {
 var esm_default3 = createPrompt((config, done) => {
   const { instructions, pageSize = 7, loop = true, required, validate = () => true } = config;
   const theme = makeTheme(checkboxTheme, config.theme);
-  const prefix = usePrefix({ theme });
   const firstRender = useRef(true);
-  const [status, setStatus] = useState("pending");
+  const [status, setStatus] = useState("idle");
+  const prefix = usePrefix({ status, theme });
   const [items, setItems] = useState(normalizeChoices(config.choices));
   const bounds = useMemo(() => {
     const first = items.findIndex(isSelectable);
@@ -50132,7 +50132,7 @@ var esm_default3 = createPrompt((config, done) => {
       }
     }
   });
-  const message = theme.style.message(config.message);
+  const message = theme.style.message(config.message, status);
   let description;
   const page = usePagination({
     items,
@@ -50192,17 +50192,16 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${choiceDescription}${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
-// node_modules/@inquirer/editor/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/editor/dist/esm/index.mjs
 var import_external_editor = __toESM(require_main(), 1);
 import { AsyncResource as AsyncResource4 } from "async_hooks";
 var esm_default4 = createPrompt((config, done) => {
   const { waitForUseInput = true, postfix = ".txt", validate = () => true } = config;
   const theme = makeTheme(config.theme);
-  const [status, setStatus] = useState("pending");
+  const [status, setStatus] = useState("idle");
   const [value, setValue] = useState(config.default || "");
   const [errorMsg, setError] = useState();
-  const isLoading = status === "loading";
-  const prefix = usePrefix({ isLoading, theme });
+  const prefix = usePrefix({ status, theme });
   function startEditor(rl) {
     rl.pause();
     const editCallback = AsyncResource4.bind(async (error2, answer) => {
@@ -50219,7 +50218,7 @@ var esm_default4 = createPrompt((config, done) => {
         } else {
           setValue(answer);
           setError(isValid || "You must provide a valid value");
-          setStatus("pending");
+          setStatus("idle");
         }
       }
     });
@@ -50231,18 +50230,18 @@ var esm_default4 = createPrompt((config, done) => {
     }
   }, []);
   useKeypress((key, rl) => {
-    if (status !== "pending") {
+    if (status !== "idle") {
       return;
     }
     if (isEnterKey(key)) {
       startEditor(rl);
     }
   });
-  const message = theme.style.message(config.message);
+  const message = theme.style.message(config.message, status);
   let helpTip = "";
   if (status === "loading") {
     helpTip = theme.style.help("Received");
-  } else if (status === "pending") {
+  } else if (status === "idle") {
     const enterKey = theme.style.key("enter");
     helpTip = theme.style.help(`Press ${enterKey} to launch your preferred editor.`);
   }
@@ -50253,13 +50252,13 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/@inquirer/confirm/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/confirm/dist/esm/index.mjs
 var esm_default5 = createPrompt((config, done) => {
   const { transformer = (answer) => answer ? "yes" : "no" } = config;
-  const [status, setStatus] = useState("pending");
+  const [status, setStatus] = useState("idle");
   const [value, setValue] = useState("");
   const theme = makeTheme(config.theme);
-  const prefix = usePrefix({ theme });
+  const prefix = usePrefix({ status, theme });
   useKeypress((key, rl) => {
     if (isEnterKey(key)) {
       let answer = config.default !== false;
@@ -50281,22 +50280,21 @@ var esm_default5 = createPrompt((config, done) => {
   } else {
     defaultValue = ` ${theme.style.defaultAnswer(config.default === false ? "y/N" : "Y/n")}`;
   }
-  const message = theme.style.message(config.message);
+  const message = theme.style.message(config.message, status);
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/@inquirer/input/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/input/dist/esm/index.mjs
 var esm_default6 = createPrompt((config, done) => {
   const { required, validate = () => true } = config;
   const theme = makeTheme(config.theme);
-  const [status, setStatus] = useState("pending");
+  const [status, setStatus] = useState("idle");
   const [defaultValue = "", setDefaultValue] = useState(config.default);
   const [errorMsg, setError] = useState();
   const [value, setValue] = useState("");
-  const isLoading = status === "loading";
-  const prefix = usePrefix({ isLoading, theme });
+  const prefix = usePrefix({ status, theme });
   useKeypress(async (key, rl) => {
-    if (status !== "pending") {
+    if (status !== "idle") {
       return;
     }
     if (isEnterKey(key)) {
@@ -50310,7 +50308,7 @@ var esm_default6 = createPrompt((config, done) => {
       } else {
         rl.write(value);
         setError(isValid || "You must provide a valid value");
-        setStatus("pending");
+        setStatus("idle");
       }
     } else if (isBackspaceKey(key) && !value) {
       setDefaultValue(void 0);
@@ -50324,7 +50322,7 @@ var esm_default6 = createPrompt((config, done) => {
       setError(void 0);
     }
   });
-  const message = theme.style.message(config.message);
+  const message = theme.style.message(config.message, status);
   let formattedValue = value;
   if (typeof config.transformer === "function") {
     formattedValue = config.transformer(value, { isFinal: status === "done" });
@@ -50345,7 +50343,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/select/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/select/dist/esm/index.mjs
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
@@ -50385,8 +50383,8 @@ var esm_default7 = createPrompt((config, done) => {
   const { loop = true, pageSize = 7 } = config;
   const firstRender = useRef(true);
   const theme = makeTheme(selectTheme, config.theme);
-  const prefix = usePrefix({ theme });
-  const [status, setStatus] = useState("pending");
+  const [status, setStatus] = useState("idle");
+  const prefix = usePrefix({ status, theme });
   const searchTimeoutRef = useRef();
   const items = useMemo(() => normalizeChoices2(config.choices), [config.choices]);
   const bounds = useMemo(() => {
@@ -50446,7 +50444,7 @@ var esm_default7 = createPrompt((config, done) => {
   useEffect(() => () => {
     clearTimeout(searchTimeoutRef.current);
   }, []);
-  const message = theme.style.message(config.message);
+  const message = theme.style.message(config.message, status);
   let helpTipTop = "";
   let helpTipBottom = "";
   if (theme.helpMode === "always" || theme.helpMode === "auto" && firstRender.current) {
@@ -57016,7 +57014,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d73c31dd25aa10d72b8cb520f1b6f5df5a6ed69d`;
+  const localVersion = `0.0.0-b5637530773da44c3ad2d08e6023980f96c1079f`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

@@ -5,110 +5,15 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
+import { confirm, input, checkbox, select, editor } from '@inquirer/prompts';
 /**
  * A set of prompts from inquirer to be used throughout our tooling.  We access them via static metonds on this
  * class to allow easier mocking management in test environments.
  */
-export declare abstract class Prompt {
-    static confirm: import("@inquirer/type/dist/cjs/types").Prompt<boolean, {
-        message: string;
-        default?: boolean;
-        transformer?: (value: boolean) => string;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme>;
-    }>;
-    static input: import("@inquirer/type/dist/cjs/types").Prompt<string, {
-        message: string;
-        default?: string;
-        required?: boolean;
-        transformer?: (value: string, { isFinal }: {
-            isFinal: boolean;
-        }) => string;
-        validate?: (value: string) => boolean | string | Promise<string | boolean>;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme>;
-    }>;
-    static checkbox: <Value>(config: {
-        message: string;
-        prefix?: string | undefined;
-        pageSize?: number | undefined;
-        instructions?: (string | boolean) | undefined;
-        choices: readonly (string | import("@inquirer/prompts").Separator)[] | readonly (import("@inquirer/prompts").Separator | {
-            value: Value;
-            name?: string;
-            description?: string;
-            short?: string;
-            disabled?: boolean | string;
-            checked?: boolean;
-            type?: never;
-        })[];
-        loop?: boolean | undefined;
-        required?: boolean | undefined;
-        validate?: ((choices: readonly {
-            value: Value;
-            name?: string;
-            description?: string;
-            short?: string;
-            disabled?: boolean | string;
-            checked?: boolean;
-            type?: never;
-        }[]) => boolean | string | Promise<string | boolean>) | undefined;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme<{
-            icon: {
-                checked: string;
-                unchecked: string;
-                cursor: string;
-            };
-            style: {
-                disabledChoice: (text: string) => string;
-                renderSelectedChoices: <T>(selectedChoices: ReadonlyArray<{
-                    value: T;
-                    name: string;
-                    description?: string;
-                    short: string;
-                    disabled: boolean | string;
-                    checked: boolean;
-                }>, allChoices: ReadonlyArray<{
-                    value: T;
-                    name: string;
-                    description?: string;
-                    short: string;
-                    disabled: boolean | string;
-                    checked: boolean;
-                } | import("@inquirer/prompts").Separator>) => string;
-                description: (text: string) => string;
-            };
-            helpMode: "always" | "never" | "auto";
-        }>> | undefined;
-    }, context?: import("@inquirer/type/dist/cjs/types").Context) => import("@inquirer/type/dist/cjs/types").CancelablePromise<Value[]>;
-    static select: <Value>(config: {
-        message: string;
-        choices: readonly (string | import("@inquirer/prompts").Separator)[] | readonly (import("@inquirer/prompts").Separator | {
-            value: Value;
-            name?: string;
-            description?: string;
-            short?: string;
-            disabled?: boolean | string;
-            type?: never;
-        })[];
-        pageSize?: number | undefined;
-        loop?: boolean | undefined;
-        default?: unknown;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme<{
-            icon: {
-                cursor: string;
-            };
-            style: {
-                disabled: (text: string) => string;
-                description: (text: string) => string;
-            };
-            helpMode: "always" | "never" | "auto";
-        }>> | undefined;
-    }, context?: import("@inquirer/type/dist/cjs/types").Context) => import("@inquirer/type/dist/cjs/types").CancelablePromise<Value>;
-    static editor: import("@inquirer/type/dist/cjs/types").Prompt<string, {
-        message: string;
-        default?: string;
-        postfix?: string;
-        waitForUseInput?: boolean;
-        validate?: (value: string) => boolean | string | Promise<string | boolean>;
-        theme?: import("@inquirer/type/dist/cjs/types").PartialDeep<import("@inquirer/core/dist/cjs/types").Theme>;
-    }>;
+export declare class Prompt {
+    static confirm: typeof confirm;
+    static input: typeof input;
+    static checkbox: typeof checkbox;
+    static select: typeof select;
+    static editor: typeof editor;
 }
