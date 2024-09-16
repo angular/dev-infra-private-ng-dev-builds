@@ -1,18 +1,5 @@
-export declare const miscLabels: {
-    FEATURE: {
-        name: string;
-        description: string;
-    };
-    GOOD_FIRST_ISSUE: {
-        name: string;
-        description: string;
-    };
-    HELP_WANTED: {
-        name: string;
-        description: string;
-    };
-    RENOVATE_MANAGED: {
-        name: string;
-        description: string;
-    };
-};
+import { Label } from './base.js';
+declare class MiscLabel extends Label {
+}
+export declare const miscLabels: Record<PropertyKey, MiscLabel>;
+export {};

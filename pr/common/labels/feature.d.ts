@@ -1,18 +1,5 @@
-export declare const featureLabels: {
-    FEATURE_IN_BACKLOG: {
-        name: string;
-        description: string;
-    };
-    FEATURE_VOTES_REQUIRED: {
-        name: string;
-        description: string;
-    };
-    FEATURE_UNDER_CONSIDERATION: {
-        name: string;
-        description: string;
-    };
-    FEATURE_INSUFFICIENT_VOTES: {
-        name: string;
-        description: string;
-    };
-};
+import { Label } from './base.js';
+declare class FeatureLabel extends Label {
+}
+export declare const featureLabels: Record<PropertyKey, FeatureLabel>;
+export {};

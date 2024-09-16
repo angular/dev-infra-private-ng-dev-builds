@@ -9,11 +9,4 @@ export declare class TargetLabel extends Label {
  * More details can be found here:
  * https://docs.google.com/document/d/197kVillDwx-RZtSVOBtPb4BBIAw0E9RT3q3v6DZkykU#heading=h.lkuypj38h15d
  */
-export declare const targetLabels: {
-    TARGET_FEATURE: TargetLabel;
-    TARGET_LTS: TargetLabel;
-    TARGET_MAJOR: TargetLabel;
-    TARGET_MINOR: TargetLabel;
-    TARGET_PATCH: TargetLabel;
-    TARGET_RC: TargetLabel;
-};
+export declare const targetLabels: Record<PropertyKey, TargetLabel>;
