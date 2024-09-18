@@ -55035,7 +55035,7 @@ function convertConditionToFunction(expr) {
   };
 }
 function transformExpressionToJs(expression) {
-  return expression.replace(/^(.+)\s+not in\s+(\[.+\])$/, "!$2.some(x => $1.matchesAny || $1 == x)").replace(/^(.+)\s+in\s+(.+)$/, "$2.some(x => $1.matchesAny || $1 == x)").replace(/^(.+)\s+not in\s+(.+)$/, "!$2.includes($1)").replace(/^(.+)\s+in\s+(.+)$/, "$2.includes($1)").replace(/not\s+/g, "!");
+  return expression.replace(/^(.+)\s+not in\s+(\[.+\])$/, "!$2.includes($1)").replace(/^(.+)\s+in\s+(.+)$/, "$2.some(x => $1.matchesAny || $1 == x)").replace(/^(.+)\s+not in\s+(.+)$/, "!$2.includes($1)").replace(/^(.+)\s+in\s+(.+)$/, "$2.includes($1)").replace(/not\s+/g, "!");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pullapprove/group.js
@@ -57016,7 +57016,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-dc94a5fa985b0d6506b41dc5ca910468ce624bc0`;
+  const localVersion = `0.0.0-12e38ba595aa3bbe4230e9568517c7309fca93bc`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
