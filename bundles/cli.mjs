@@ -50021,7 +50021,7 @@ var Separator = class {
   }
 };
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.mjs
+// node_modules/@inquirer/checkbox/dist/esm/index.mjs
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
@@ -50192,7 +50192,7 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${choiceDescription}${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/editor/dist/esm/index.mjs
+// node_modules/@inquirer/editor/dist/esm/index.mjs
 var import_external_editor = __toESM(require_main(), 1);
 import { AsyncResource as AsyncResource4 } from "async_hooks";
 var esm_default4 = createPrompt((config, done) => {
@@ -50252,7 +50252,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/confirm/dist/esm/index.mjs
+// node_modules/@inquirer/confirm/dist/esm/index.mjs
 var esm_default5 = createPrompt((config, done) => {
   const { transformer = (answer) => answer ? "yes" : "no" } = config;
   const [status, setStatus] = useState("idle");
@@ -50284,7 +50284,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/input/dist/esm/index.mjs
+// node_modules/@inquirer/input/dist/esm/index.mjs
 var esm_default6 = createPrompt((config, done) => {
   const { required, validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -50343,7 +50343,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/prompts/node_modules/@inquirer/select/dist/esm/index.mjs
+// node_modules/@inquirer/select/dist/esm/index.mjs
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
@@ -57016,7 +57016,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-89a8a8316e33c1f0cf7045a6c9880db52546cb63`;
+  const localVersion = `0.0.0-a1f91b85a8c933f694dd98b87aa836baa14ca06a`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
