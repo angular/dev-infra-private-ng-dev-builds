@@ -52343,7 +52343,7 @@ var Buildifier = class extends Formatter {
     };
   }
 };
-var BAZEL_WARNING_FLAG = `--warnings=attr-cfg,attr-license,attr-non-empty,attr-output-default,attr-single-file,constant-glob,ctx-args,depset-iteration,depset-union,dict-concatenation,duplicated-name,filetype,git-repository,http-archive,integer-division,load,native-build,native-package,output-group,package-name,package-on-top,positional-args,redefined-variable,repository-name,string-iteration,unused-variable`;
+var BAZEL_WARNING_FLAG = `--warnings=attr-cfg,attr-license,attr-non-empty,attr-output-default,attr-single-file,ctx-args,depset-iteration,depset-union,dict-concatenation,duplicated-name,filetype,git-repository,http-archive,integer-division,load,native-build,native-package,output-group,package-name,package-on-top,positional-args,redefined-variable,repository-name,string-iteration,unused-variable`;
 
 // bazel-out/k8-fastbuild/bin/ng-dev/format/formatters/prettier.js
 import { join as join2 } from "path";
@@ -57016,7 +57016,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-9d5ffbf4376493ab0018b95ac5fa41abb5384145`;
+  const localVersion = `0.0.0-322163a896c47a584de7e721cc7427b017f51ccb`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
