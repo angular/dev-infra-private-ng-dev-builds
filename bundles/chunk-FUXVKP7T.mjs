@@ -3069,7 +3069,7 @@ function requestLog(octokit) {
 }
 requestLog.VERSION = VERSION5;
 
-// node_modules/@octokit/plugin-paginate-rest/dist-bundle/index.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-paginate-rest/dist-bundle/index.js
 var VERSION6 = "0.0.0-development";
 function normalizePaginatedListResponse(response) {
   if (!response.data) {
@@ -3175,10 +3175,10 @@ function paginateRest(octokit) {
 }
 paginateRest.VERSION = VERSION6;
 
-// node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/version.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/version.js
 var VERSION7 = "13.2.4";
 
-// node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/generated/endpoints.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/generated/endpoints.js
 var Endpoints = {
   actions: {
     addCustomLabelsToSelfHostedRunnerForOrg: [
@@ -5119,7 +5119,7 @@ var Endpoints = {
 };
 var endpoints_default = Endpoints;
 
-// node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/endpoints-to-methods.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/endpoints-to-methods.js
 var endpointMethodsMap = /* @__PURE__ */ new Map();
 for (const [scope, endpoints] of Object.entries(endpoints_default)) {
   for (const [methodName, endpoint2] of Object.entries(endpoints)) {
@@ -5241,7 +5241,7 @@ function decorate(octokit, scope, methodName, defaults, decorations) {
   return Object.assign(withDecorations, requestWithDefaults);
 }
 
-// node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/index.js
+// node_modules/@octokit/rest/node_modules/@octokit/plugin-rest-endpoint-methods/dist-src/index.js
 function restEndpointMethods(octokit) {
   const api = endpointsToMethods(octokit);
   return {
@@ -6224,4 +6224,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-RYLNJBPQ.mjs.map
+//# sourceMappingURL=chunk-FUXVKP7T.mjs.map
