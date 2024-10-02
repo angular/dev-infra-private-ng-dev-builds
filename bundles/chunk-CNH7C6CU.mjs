@@ -623,7 +623,7 @@ var chalkStderr = createChalk({ level: stderrColor ? stderrColor.level : 0 });
 var source_default = chalk;
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/logging.js
-import { writeFileSync } from "fs";
+import { copyFileSync, writeFileSync } from "fs";
 import { join } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/child-process.js
@@ -714,6 +714,8 @@ ${stderr}`);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/logging.js
+import { appendFile } from "fs/promises";
+import { stripVTControlCharacters } from "util";
 var LogLevel;
 (function(LogLevel2) {
   LogLevel2[LogLevel2["SILENT"] = 0] = "SILENT";
@@ -759,7 +761,7 @@ function runConsoleCommand(loadCommand, logLevel, ...text) {
   if (getLogLevel() >= logLevel) {
     loadCommand()(...text);
   }
-  printToLogFile(logLevel, ...text);
+  appendToLogFile(logLevel, ...text);
 }
 function getLogLevel() {
   const logLevel = Object.keys(LogLevel).indexOf((process.env[`LOG_LEVEL`] || "").toUpperCase());
@@ -768,42 +770,48 @@ function getLogLevel() {
   }
   return logLevel;
 }
-var LOGGED_TEXT = "";
-var FILE_LOGGING_ENABLED = false;
 var LOG_LEVEL_COLUMNS = 7;
+var logFilePath = void 0;
 async function captureLogOutputForCommand(argv) {
-  if (FILE_LOGGING_ENABLED) {
+  if (logFilePath !== void 0) {
     return;
   }
   const repoDir = determineRepoBaseDirFromCwd();
+  logFilePath = join(repoDir, ".ng-dev.log");
+  writeFileSync(logFilePath, "");
   const now = new Date();
   const headerLine = Array(100).fill("#").join("");
-  LOGGED_TEXT += `${headerLine}
+  appendToLogFile(void 0, `${headerLine}
 Command: ${argv.$0} ${argv._.join(" ")}
 Ran at: ${now}
-`;
+`);
   process.on("exit", (code) => {
-    LOGGED_TEXT += `${headerLine}
-`;
-    LOGGED_TEXT += `Command ran in ${new Date().getTime() - now.getTime()}ms
-`;
-    LOGGED_TEXT += `Exit Code: ${code}
-`;
-    const logFilePath = join(repoDir, ".ng-dev.log");
-    LOGGED_TEXT = LOGGED_TEXT.replace(/\x1B\[([0-9]{1,3}(;[0-9]{1,2})?)?[mGK]/g, "");
-    writeFileSync(logFilePath, LOGGED_TEXT);
-    if (code > 1) {
-      const logFileName = `.ng-dev.err-${now.getTime()}.log`;
-      console.error(`Exit code: ${code}. Writing full log to ${logFileName}`);
-      writeFileSync(join(repoDir, logFileName), LOGGED_TEXT);
+    appendToLogFile(void 0, `
+
+Command ran in ${new Date().getTime() - now.getTime()}ms
+Exit Code: ${code}
+`);
+    if (code > 1 && logFilePath) {
+      const errorLogFileName = `.ng-dev.err-${now.getTime()}.log`;
+      console.error(`Exit code: ${code}. Writing full log to ${errorLogFileName}`);
+      copyFileSync(logFilePath, join(repoDir, errorLogFileName));
     }
   });
-  FILE_LOGGING_ENABLED = true;
 }
-function printToLogFile(logLevel, ...text) {
+function appendToLogFile(logLevel, ...text) {
+  if (logFilePath === void 0) {
+    return;
+  }
+  if (logLevel === void 0) {
+    appendFile(logFilePath, text.join(" "));
+    return;
+  }
   const logLevelText = `${LogLevel[logLevel]}:`.padEnd(LOG_LEVEL_COLUMNS);
-  LOGGED_TEXT += text.join(" ").split("\n").map((l) => `${logLevelText} ${l}
-`).join("");
+  appendFile(
+    logFilePath,
+    stripVTControlCharacters(text.join(" ").split("\n").map((l) => `${logLevelText} ${l}
+`).join(""))
+  );
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/config.js
@@ -955,4 +963,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-VUE4T6L6.mjs.map
+//# sourceMappingURL=chunk-CNH7C6CU.mjs.map
