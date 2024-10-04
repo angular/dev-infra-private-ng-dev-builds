@@ -8931,7 +8931,7 @@ var require_chardet = __commonJS({
         opts = void 0;
       }
       var fd;
-      var handler28 = function(err, buffer) {
+      var handler29 = function(err, buffer) {
         if (fd) {
           fs6.closeSync(fd);
         }
@@ -8942,11 +8942,11 @@ var require_chardet = __commonJS({
       if (opts && opts.sampleSize) {
         fd = fs6.openSync(filepath, "r"), sample = Buffer.allocUnsafe(opts.sampleSize);
         fs6.read(fd, sample, 0, opts.sampleSize, null, function(err) {
-          handler28(err, sample);
+          handler29(err, sample);
         });
         return;
       }
-      fs6.readFile(filepath, handler28);
+      fs6.readFile(filepath, handler29);
     };
     module.exports.detectFileSync = function(filepath, opts) {
       if (opts && opts.sampleSize) {
@@ -13285,7 +13285,7 @@ var require_regex = __commonJS({
   "node_modules/conventional-commits-parser/lib/regex.js"(exports, module) {
     "use strict";
     var reNomatch = /(?!.*)/;
-    function join13(array, joiner) {
+    function join14(array, joiner) {
       return array.map(function(val) {
         return val.trim();
       }).filter(function(val) {
@@ -13296,7 +13296,7 @@ var require_regex = __commonJS({
       if (!noteKeywords) {
         return reNomatch;
       }
-      const noteKeywordsSelection = join13(noteKeywords, "|");
+      const noteKeywordsSelection = join14(noteKeywords, "|");
       if (!notesPattern) {
         return new RegExp("^[\\s|*]*(" + noteKeywordsSelection + ")[:\\s]+(.*)", "i");
       }
@@ -13307,13 +13307,13 @@ var require_regex = __commonJS({
         return reNomatch;
       }
       const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join13(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
+      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join14(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
     }
     function getReferencesRegex(referenceActions) {
       if (!referenceActions) {
         return /()(.+)/gi;
       }
-      const joinedKeywords = join13(referenceActions, "|");
+      const joinedKeywords = join14(referenceActions, "|");
       return new RegExp("(" + joinedKeywords + ")(?:\\s+(.*?))(?=(?:" + joinedKeywords + ")|$)", "gi");
     }
     module.exports = function(options) {
@@ -18463,8 +18463,8 @@ var require_queue = __commonJS({
         self.drain();
         self.drain = noop;
       }
-      function error(handler28) {
-        errorHandler = handler28;
+      function error(handler29) {
+        errorHandler = handler29;
       }
     }
     function noop() {
@@ -19876,7 +19876,7 @@ var require_cjs = __commonJS({
 var require_lib3 = __commonJS({
   "node_modules/which/lib/index.js"(exports, module) {
     var { isexe, sync: isexeSync } = require_cjs();
-    var { join: join13, delimiter, sep: sep3, posix } = __require("path");
+    var { join: join14, delimiter, sep: sep3, posix } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix.sep}${sep3 === posix.sep ? "" : sep3}]`.replace(/(\\)/g, "\\$1"));
     var rRel = new RegExp(`^\\.${rSlash.source}`);
@@ -19903,7 +19903,7 @@ var require_lib3 = __commonJS({
     var getPathPart = (raw, cmd) => {
       const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
       const prefix = !pathPart && rRel.test(cmd) ? cmd.slice(0, 2) : "";
-      return prefix + join13(pathPart, cmd);
+      return prefix + join14(pathPart, cmd);
     };
     var which2 = async (cmd, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
@@ -35947,7 +35947,7 @@ var require_json_parse_even_better_errors = __commonJS({
 // node_modules/read-package-json/node_modules/npm-normalize-package-bin/index.js
 var require_npm_normalize_package_bin = __commonJS({
   "node_modules/read-package-json/node_modules/npm-normalize-package-bin/index.js"(exports, module) {
-    var { join: join13, basename: basename2 } = __require("path");
+    var { join: join14, basename: basename2 } = __require("path");
     var normalize2 = (pkg) => !pkg.bin ? removeBin(pkg) : typeof pkg.bin === "string" ? normalizeString(pkg) : Array.isArray(pkg.bin) ? normalizeArray(pkg) : typeof pkg.bin === "object" ? normalizeObject(pkg) : removeBin(pkg);
     var normalizeString = (pkg) => {
       if (!pkg.name)
@@ -35971,10 +35971,10 @@ var require_npm_normalize_package_bin = __commonJS({
       const clean = {};
       let hasBins = false;
       Object.keys(orig).forEach((binKey) => {
-        const base = join13("/", basename2(binKey.replace(/\\|:/g, "/"))).substr(1);
+        const base = join14("/", basename2(binKey.replace(/\\|:/g, "/"))).substr(1);
         if (typeof orig[binKey] !== "string" || !base)
           return;
-        const binTarget = join13("/", orig[binKey]).replace(/\\/g, "/").substr(1);
+        const binTarget = join14("/", orig[binKey]).replace(/\\/g, "/").substr(1);
         if (!binTarget)
           return;
         clean[base] = binTarget;
@@ -38423,13 +38423,13 @@ var require_chalk = __commonJS({
     var proto = Object.defineProperties(() => {
     }, styles);
     function build(_styles, _empty, key) {
-      const builder27 = function() {
-        return applyStyle.apply(builder27, arguments);
+      const builder28 = function() {
+        return applyStyle.apply(builder28, arguments);
       };
-      builder27._styles = _styles;
-      builder27._empty = _empty;
+      builder28._styles = _styles;
+      builder28._empty = _empty;
       const self = this;
-      Object.defineProperty(builder27, "level", {
+      Object.defineProperty(builder28, "level", {
         enumerable: true,
         get() {
           return self.level;
@@ -38438,7 +38438,7 @@ var require_chalk = __commonJS({
           self.level = level;
         }
       });
-      Object.defineProperty(builder27, "enabled", {
+      Object.defineProperty(builder28, "enabled", {
         enumerable: true,
         get() {
           return self.enabled;
@@ -38447,9 +38447,9 @@ var require_chalk = __commonJS({
           self.enabled = enabled;
         }
       });
-      builder27.hasGrey = this.hasGrey || key === "gray" || key === "grey";
-      builder27.__proto__ = proto;
-      return builder27;
+      builder28.hasGrey = this.hasGrey || key === "gray" || key === "grey";
+      builder28.__proto__ = proto;
+      return builder28;
     }
     function applyStyle() {
       const args = arguments;
@@ -44238,10 +44238,10 @@ var CommandInstance = class {
     };
     this.shim.requireDirectory({ require: req, filename: callerFile }, dir, opts);
   }
-  addHandler(cmd, description, builder27, handler28, commandMiddleware, deprecated) {
+  addHandler(cmd, description, builder28, handler29, commandMiddleware, deprecated) {
     let aliases = [];
     const middlewares = commandMiddlewareFactory(commandMiddleware);
-    handler28 = handler28 || (() => {
+    handler29 = handler29 || (() => {
     });
     if (Array.isArray(cmd)) {
       if (isCommandAndAliases(cmd)) {
@@ -44257,8 +44257,8 @@ var CommandInstance = class {
         command2 = [].concat(command2).concat(cmd.aliases);
       this.addHandler(command2, this.extractDesc(cmd), cmd.builder, cmd.handler, cmd.middlewares, cmd.deprecated);
       return;
-    } else if (isCommandBuilderDefinition(builder27)) {
-      this.addHandler([cmd].concat(aliases), description, builder27.builder, builder27.handler, builder27.middlewares, builder27.deprecated);
+    } else if (isCommandBuilderDefinition(builder28)) {
+      this.addHandler([cmd].concat(aliases), description, builder28.builder, builder28.handler, builder28.middlewares, builder28.deprecated);
       return;
     }
     if (typeof cmd === "string") {
@@ -44288,8 +44288,8 @@ var CommandInstance = class {
       this.handlers[parsedCommand.cmd] = {
         original: cmd,
         description,
-        handler: handler28,
-        builder: builder27 || {},
+        handler: handler29,
+        builder: builder28 || {},
         middlewares,
         deprecated,
         demanded: parsedCommand.demanded,
@@ -44321,22 +44321,22 @@ var CommandInstance = class {
     return isPromise(builderResult) ? builderResult.then((result) => this.applyMiddlewareAndGetResult(isDefaultCommand, commandHandler, result.innerArgv, currentContext, helpOnly, result.aliases, yargs)) : this.applyMiddlewareAndGetResult(isDefaultCommand, commandHandler, builderResult.innerArgv, currentContext, helpOnly, builderResult.aliases, yargs);
   }
   applyBuilderUpdateUsageAndParse(isDefaultCommand, commandHandler, yargs, aliases, parentCommands, commandIndex, helpOnly, helpOrVersionSet) {
-    const builder27 = commandHandler.builder;
+    const builder28 = commandHandler.builder;
     let innerYargs = yargs;
-    if (isCommandBuilderCallback(builder27)) {
+    if (isCommandBuilderCallback(builder28)) {
       yargs.getInternalMethods().getUsageInstance().freeze();
-      const builderOutput = builder27(yargs.getInternalMethods().reset(aliases), helpOrVersionSet);
+      const builderOutput = builder28(yargs.getInternalMethods().reset(aliases), helpOrVersionSet);
       if (isPromise(builderOutput)) {
         return builderOutput.then((output) => {
           innerYargs = isYargsInstance(output) ? output : yargs;
           return this.parseAndUpdateUsage(isDefaultCommand, commandHandler, innerYargs, parentCommands, commandIndex, helpOnly);
         });
       }
-    } else if (isCommandBuilderOptionDefinitions(builder27)) {
+    } else if (isCommandBuilderOptionDefinitions(builder28)) {
       yargs.getInternalMethods().getUsageInstance().freeze();
       innerYargs = yargs.getInternalMethods().reset(aliases);
       Object.keys(commandHandler.builder).forEach((key) => {
-        innerYargs.option(key, builder27[key]);
+        innerYargs.option(key, builder28[key]);
       });
     }
     return this.parseAndUpdateUsage(isDefaultCommand, commandHandler, innerYargs, parentCommands, commandIndex, helpOnly);
@@ -44527,12 +44527,12 @@ var CommandInstance = class {
       const commandString = DEFAULT_MARKER.test(this.defaultCommand.original) ? this.defaultCommand.original : this.defaultCommand.original.replace(/^[^[\]<>]*/, "$0 ");
       yargs.getInternalMethods().getUsageInstance().usage(commandString, this.defaultCommand.description);
     }
-    const builder27 = this.defaultCommand.builder;
-    if (isCommandBuilderCallback(builder27)) {
-      return builder27(yargs, true);
-    } else if (!isCommandBuilderDefinition(builder27)) {
-      Object.keys(builder27).forEach((key) => {
-        yargs.option(key, builder27[key]);
+    const builder28 = this.defaultCommand.builder;
+    if (isCommandBuilderCallback(builder28)) {
+      return builder28(yargs, true);
+    } else if (!isCommandBuilderDefinition(builder28)) {
+      Object.keys(builder28).forEach((key) => {
+        yargs.option(key, builder28[key]);
       });
     }
     return void 0;
@@ -44581,17 +44581,17 @@ var CommandInstance = class {
 function command(usage2, validation2, globalMiddleware, shim3) {
   return new CommandInstance(usage2, validation2, globalMiddleware, shim3);
 }
-function isCommandBuilderDefinition(builder27) {
-  return typeof builder27 === "object" && !!builder27.builder && typeof builder27.handler === "function";
+function isCommandBuilderDefinition(builder28) {
+  return typeof builder28 === "object" && !!builder28.builder && typeof builder28.handler === "function";
 }
 function isCommandAndAliases(cmd) {
   return cmd.every((c) => typeof c === "string");
 }
-function isCommandBuilderCallback(builder27) {
-  return typeof builder27 === "function";
+function isCommandBuilderCallback(builder28) {
+  return typeof builder28 === "function";
 }
-function isCommandBuilderOptionDefinitions(builder27) {
-  return typeof builder27 === "object";
+function isCommandBuilderOptionDefinitions(builder28) {
+  return typeof builder28 === "object";
 }
 function isCommandHandlerDefinition(cmd) {
   return typeof cmd === "object" && !Array.isArray(cmd);
@@ -45215,11 +45215,11 @@ var Completion = class {
     const handlers = this.command.getCommandHandlers();
     for (let i = 0, ii = args.length; i < ii; ++i) {
       if (handlers[args[i]] && handlers[args[i]].builder) {
-        const builder27 = handlers[args[i]].builder;
-        if (isCommandBuilderCallback(builder27)) {
+        const builder28 = handlers[args[i]].builder;
+        if (isCommandBuilderCallback(builder28)) {
           this.indexAfterLastReset = i + 1;
           const y = this.yargs.getInternalMethods().reset();
-          builder27(y, true);
+          builder28(y, true);
           return y.argv;
         }
       }
@@ -46070,13 +46070,13 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_completion, "f").registerFunction(fn);
     return this;
   }
-  command(cmd, description, builder27, handler28, middlewares, deprecated) {
-    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder27, handler28, middlewares, deprecated], arguments.length);
-    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder27, handler28, middlewares, deprecated);
+  command(cmd, description, builder28, handler29, middlewares, deprecated) {
+    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder28, handler29, middlewares, deprecated], arguments.length);
+    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder28, handler29, middlewares, deprecated);
     return this;
   }
-  commands(cmd, description, builder27, handler28, middlewares, deprecated) {
-    return this.command(cmd, description, builder27, handler28, middlewares, deprecated);
+  commands(cmd, description, builder28, handler29, middlewares, deprecated) {
+    return this.command(cmd, description, builder28, handler29, middlewares, deprecated);
   }
   commandDir(dir, opts) {
     argsert("<string> [object]", [dir, opts], arguments.length);
@@ -46678,12 +46678,12 @@ var YargsInstance = class {
     __classPrivateFieldGet(this, _YargsInstance_shim, "f").y18n.updateLocale(obj);
     return this;
   }
-  usage(msg, description, builder27, handler28) {
-    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder27, handler28], arguments.length);
+  usage(msg, description, builder28, handler29) {
+    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder28, handler29], arguments.length);
     if (description !== void 0) {
       assertNotStrictEqual(msg, null, __classPrivateFieldGet(this, _YargsInstance_shim, "f"));
       if ((msg || "").match(/^\$0( |$)/)) {
-        return this.command(msg, description, builder27, handler28);
+        return this.command(msg, description, builder28, handler29);
       } else {
         throw new YError(".usage() description must start with $0 if being used as alias for .command()");
       }
@@ -46875,24 +46875,24 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type].push(key);
     });
   }
-  [kPopulateParserHintSingleValueDictionary](builder27, type, key, value) {
-    this[kPopulateParserHintDictionary](builder27, type, key, value, (type2, key2, value2) => {
+  [kPopulateParserHintSingleValueDictionary](builder28, type, key, value) {
+    this[kPopulateParserHintDictionary](builder28, type, key, value, (type2, key2, value2) => {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] = value2;
     });
   }
-  [kPopulateParserHintArrayDictionary](builder27, type, key, value) {
-    this[kPopulateParserHintDictionary](builder27, type, key, value, (type2, key2, value2) => {
+  [kPopulateParserHintArrayDictionary](builder28, type, key, value) {
+    this[kPopulateParserHintDictionary](builder28, type, key, value, (type2, key2, value2) => {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] = (__classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] || []).concat(value2);
     });
   }
-  [kPopulateParserHintDictionary](builder27, type, key, value, singleKeyHandler) {
+  [kPopulateParserHintDictionary](builder28, type, key, value, singleKeyHandler) {
     if (Array.isArray(key)) {
       key.forEach((k) => {
-        builder27(k, value);
+        builder28(k, value);
       });
     } else if (((key2) => typeof key2 === "object")(key)) {
       for (const k of objectKeys(key)) {
-        builder27(k, key[k]);
+        builder28(k, key[k]);
       }
     } else {
       singleKeyHandler(type, this[kSanitizeKey](key), value);
@@ -49517,15 +49517,15 @@ function useKeypress(userHandler) {
   signal.current = userHandler;
   useEffect((rl) => {
     let ignore = false;
-    const handler28 = withUpdates((_input, event) => {
+    const handler29 = withUpdates((_input, event) => {
       if (ignore)
         return;
       void signal.current(event, rl);
     });
-    rl.input.on("keypress", handler28);
+    rl.input.on("keypress", handler29);
     return () => {
       ignore = true;
-      rl.input.removeListener("keypress", handler28);
+      rl.input.removeListener("keypress", handler29);
     };
   }, []);
 }
@@ -49713,16 +49713,16 @@ var Emitter = class {
 };
 var SignalExitBase = class {
 };
-var signalExitWrap = (handler28) => {
+var signalExitWrap = (handler29) => {
   return {
     onExit(cb, opts) {
-      return handler28.onExit(cb, opts);
+      return handler29.onExit(cb, opts);
     },
     load() {
-      return handler28.load();
+      return handler29.load();
     },
     unload() {
-      return handler28.unload();
+      return handler29.unload();
     }
   };
 };
@@ -52982,9 +52982,57 @@ var ValidateLicensesModule = {
   describe: "Validate the licenses for all dependencies in the project"
 };
 
+// bazel-out/k8-fastbuild/bin/ng-dev/utils/bazel-bin.js
+import { join as join6 } from "path";
+var BAZEL_BIN = void 0;
+function getBazelBin() {
+  if (BAZEL_BIN === void 0) {
+    BAZEL_BIN = process.env.BAZEL || join6(determineRepoBaseDirFromCwd(), "node_modules/.bin/bazel");
+  }
+  return BAZEL_BIN;
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/misc/generated-files/update-generated-files.js
+async function updateGeneratedFileTargets() {
+  const spinner = new Spinner("Querying for all generated file targets");
+  const result = await ChildProcess.spawn(getBazelBin(), ["query", `"kind(nodejs_binary, //...) intersect attr(name, '.update$', //...)"`], { mode: "silent" });
+  if (result.status !== 0) {
+    spinner.complete();
+    throw Error(`Unexpected error: ${result.stderr}`);
+  }
+  const targets = result.stdout.trim().split(/\r?\n/);
+  spinner.update(`Found ${targets.length} generated file targets to update`);
+  await ChildProcess.spawn(getBazelBin(), ["build", targets.join(" ")], { mode: "silent" });
+  for (let idx = 0; idx < targets.length; idx++) {
+    const target = targets[idx];
+    spinner.update(`${idx + 1} of ${targets.length} updates completed`);
+    const updateResult = await ChildProcess.spawn(getBazelBin(), ["run", target], { mode: "silent" });
+    if (updateResult.status !== 0) {
+      spinner.complete();
+      throw Error(`Unexpected error while updating: ${target}.`);
+    }
+  }
+  spinner.complete();
+  Log.info(` ${green("\u2714")}  Updated all generated files (${targets.length} targets)`);
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/misc/generated-files/cli.js
+async function builder13(argv) {
+  return argv;
+}
+async function handler13() {
+  await updateGeneratedFileTargets();
+}
+var GeneratedFilesModule = {
+  builder: builder13,
+  handler: handler13,
+  command: "update-generated-files",
+  describe: "Automatically discover all bazel generated file targets and update them."
+};
+
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/cli.js
 function buildMiscParser(localYargs) {
-  return localYargs.help().strict().command(BuildAndLinkCommandModule).command(UpdateYarnCommandModule).command(ValidateLicensesModule);
+  return localYargs.help().strict().command(BuildAndLinkCommandModule).command(UpdateYarnCommandModule).command(ValidateLicensesModule).command(GeneratedFilesModule);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ngbot/verify.js
@@ -53214,25 +53262,25 @@ async function printTargetBranchesForPr(prNumber) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/check-target-branches/cli.js
-function builder13(argv) {
+function builder14(argv) {
   return argv.positional("pr", {
     description: "The pull request number",
     type: "number",
     demandOption: true
   });
 }
-async function handler13({ pr }) {
+async function handler14({ pr }) {
   await printTargetBranchesForPr(pr);
 }
 var CheckTargetBranchesModule = {
-  handler: handler13,
-  builder: builder13,
+  handler: handler14,
+  builder: builder14,
   command: "check-target-branches <pr>",
   describe: "Check a PR to determine what branches it is currently targeting"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/checkout.js
-import { dirname as dirname4, join as join6 } from "path";
+import { dirname as dirname4, join as join7 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/common/checkout-pr.js
 var import_typed_graphqlify3 = __toESM(require_dist());
@@ -53566,11 +53614,11 @@ async function checkoutPullRequest(params4, config) {
 }
 function getCommitMessageFilterScriptPath() {
   const bundlesDir = dirname4(fileURLToPath3(import.meta.url));
-  return join6(bundlesDir, "./pr/checkout/commit-message-filter.mjs");
+  return join7(bundlesDir, "./pr/checkout/commit-message-filter.mjs");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/cli.js
-function builder14(yargs) {
+function builder15(yargs) {
   return addGithubTokenOption(yargs).positional("pr", {
     type: "number",
     demandOption: true,
@@ -53585,14 +53633,14 @@ function builder14(yargs) {
     describe: "Check out the pull request targeting the specified base branch"
   });
 }
-async function handler14({ pr, takeover, target }) {
+async function handler15({ pr, takeover, target }) {
   const config = await getConfig();
   assertValidGithubConfig(config);
   await checkoutPullRequest({ pr, takeover, target }, config);
 }
 var CheckoutCommandModule = {
-  handler: handler14,
-  builder: builder14,
+  handler: handler15,
+  builder: builder15,
   command: "checkout <pr>",
   describe: "Checkout a PR from the upstream repo"
 };
@@ -53849,7 +53897,7 @@ async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/discover-new-conflicts/cli.js
-function builder15(argv) {
+function builder16(argv) {
   return addGithubTokenOption(argv).option("date", {
     description: "Only consider PRs updated since provided date",
     defaultDescription: "30 days ago",
@@ -53857,7 +53905,7 @@ function builder15(argv) {
     default: getThirtyDaysAgoDate()
   }).positional("pr", { demandOption: true, type: "number" });
 }
-async function handler15({ pr, date }) {
+async function handler16({ pr, date }) {
   if (isNaN(date)) {
     Log.error("Unable to parse the value provided via --date flag");
     process.exit(1);
@@ -53871,8 +53919,8 @@ function getThirtyDaysAgoDate() {
   return date.getTime();
 }
 var DiscoverNewConflictsCommandModule = {
-  handler: handler15,
-  builder: builder15,
+  handler: handler16,
+  builder: builder16,
   command: "discover-new-conflicts <pr>",
   describe: "Check if a pending PR causes new conflicts for other pending PRs"
 };
@@ -54518,7 +54566,7 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/autosquash-merge.js
-import { dirname as dirname5, join as join7 } from "path";
+import { dirname as dirname5, join as join8 } from "path";
 import { fileURLToPath as fileURLToPath4 } from "url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
   async merge(pullRequest) {
@@ -54563,7 +54611,7 @@ The changes were merged into the following branches: ${targetBranches.join(", ")
 };
 function getCommitMessageFilterScriptPath2() {
   const bundlesDir = dirname5(fileURLToPath4(import.meta.url));
-  return join7(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
+  return join8(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/merge-tool.js
@@ -54795,7 +54843,7 @@ function parsePrNumber(prUrlOrNumber) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/cli.js
-async function builder16(argv) {
+async function builder17(argv) {
   return addDryRunFlag(addGithubTokenOption(argv)).help().strict().positional("pr", {
     demandOption: true,
     coerce: (prUrlOrNumber) => parsePrNumber(prUrlOrNumber),
@@ -54815,12 +54863,12 @@ async function builder16(argv) {
     description: "Bypass the check for pending reviews on the pull request"
   });
 }
-async function handler16({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
+async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
   await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
 }
 var MergeCommandModule = {
-  handler: handler16,
-  builder: builder16,
+  handler: handler17,
+  builder: builder17,
   command: "merge <pr>",
   describe: "Merge a PR into its targeted branches."
 };
@@ -54895,15 +54943,15 @@ async function rebasePr(prNumber) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/rebase/cli.js
-function builder17(argv) {
+function builder18(argv) {
   return addGithubTokenOption(argv).positional("pr", { type: "number", demandOption: true });
 }
-async function handler17({ pr }) {
+async function handler18({ pr }) {
   process.exitCode = await rebasePr(pr);
 }
 var RebaseCommandModule = {
-  handler: handler17,
-  builder: builder17,
+  handler: handler18,
+  builder: builder18,
   command: "rebase <pr>",
   describe: "Rebase a pending PR and push the rebased commits back to Github"
 };
@@ -55193,14 +55241,14 @@ function buildPullapproveParser(localYargs) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/build/cli.js
-function builder18(argv) {
+function builder19(argv) {
   return argv.option("json", {
     type: "boolean",
     description: "Whether the built packages should be printed to stdout as JSON.",
     default: false
   });
 }
-async function handler18(args) {
+async function handler19(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages } = config.release;
@@ -55228,8 +55276,8 @@ async function handler18(args) {
   }
 }
 var ReleaseBuildCommandModule = {
-  builder: builder18,
-  handler: handler18,
+  builder: builder19,
+  handler: handler19,
   command: "build",
   describe: "Builds the release output for the current branch."
 };
@@ -55284,14 +55332,14 @@ async function printActiveReleaseTrains(active, config) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/info/cli.js
-function builder19(argv) {
+function builder20(argv) {
   return argv.option("json", {
     type: "boolean",
     description: "Whether information should be written as JSON to stdout.",
     default: false
   });
 }
-async function handler19(argv) {
+async function handler20(argv) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   if (argv.json) {
@@ -55305,8 +55353,8 @@ async function handler19(argv) {
   await printActiveReleaseTrains(releaseTrains, config.release);
 }
 var ReleaseInfoCommandModule = {
-  builder: builder19,
-  handler: handler19,
+  builder: builder20,
+  handler: handler20,
   command: "info",
   describe: "Prints information for the current release state."
 };
@@ -55615,7 +55663,7 @@ function santizeCommitMessage(content) {
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/changelog.js
 var import_semver2 = __toESM(require_semver());
 import { existsSync as existsSync2, readFileSync as readFileSync8, writeFileSync as writeFileSync3 } from "fs";
-import { join as join8 } from "path";
+import { join as join9 } from "path";
 var changelogPath = "CHANGELOG.md";
 var changelogArchivePath = "CHANGELOG_ARCHIVE.md";
 var splitMarker = "<!-- CHANGELOG SPLIT MARKER -->";
@@ -55655,8 +55703,8 @@ var Changelog = class {
   }
   constructor(git) {
     this.git = git;
-    this.filePath = join8(this.git.baseDir, changelogPath);
-    this.archiveFilePath = join8(this.git.baseDir, changelogArchivePath);
+    this.filePath = join9(this.git.baseDir, changelogPath);
+    this.archiveFilePath = join9(this.git.baseDir, changelogArchivePath);
     this._entries = void 0;
     this._archiveEntries = void 0;
   }
@@ -55787,7 +55835,7 @@ var ReleaseNotes = class {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/cli.js
-function builder20(argv) {
+function builder21(argv) {
   return argv.option("releaseVersion", {
     type: "string",
     default: "0.0.0",
@@ -55811,7 +55859,7 @@ function builder20(argv) {
     description: "Whether to update the changelog with the newly created entry"
   });
 }
-async function handler20({ releaseVersion, from, to, prependToChangelog, type }) {
+async function handler21({ releaseVersion, from, to, prependToChangelog, type }) {
   const git = await GitClient.get();
   const releaseNotes = await ReleaseNotes.forRange(git, releaseVersion, from, to);
   if (prependToChangelog) {
@@ -55823,8 +55871,8 @@ async function handler20({ releaseVersion, from, to, prependToChangelog, type })
   process.stdout.write(releaseNotesEntry);
 }
 var ReleaseNotesCommandModule = {
-  builder: builder20,
-  handler: handler20,
+  builder: builder21,
+  handler: handler21,
   command: "notes",
   describe: "Generate release notes"
 };
@@ -55846,7 +55894,7 @@ function readBufferFromStdinUntilClosed(input = process.stdin) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/precheck/cli.js
-async function handler21() {
+async function handler22() {
   const stdin = await readBufferFromStdinUntilClosed();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -55867,7 +55915,7 @@ async function handler21() {
   }
 }
 var ReleasePrecheckCommandModule = {
-  handler: handler21,
+  handler: handler22,
   command: "precheck",
   describe: false
 };
@@ -55943,7 +55991,7 @@ var workspaceRelativeYarnLockFilePath = "yarn.lock";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
 import { promises as fs3 } from "fs";
-import { join as join9 } from "path";
+import { join as join10 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/experimental-versions.js
 var import_semver6 = __toESM(require_semver());
@@ -56224,7 +56272,7 @@ var ReleaseAction = class {
     this.projectDir = projectDir;
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
-    const pkgJsonPath = join9(this.projectDir, workspaceRelativePackageJsonPath);
+    const pkgJsonPath = join10(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs3.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
@@ -56370,7 +56418,7 @@ var ReleaseAction = class {
     this.git.run(["checkout", "-q", "FETCH_HEAD", "--detach"]);
   }
   async installDependenciesForCurrentBranch() {
-    const nodeModulesDir = join9(this.projectDir, "node_modules");
+    const nodeModulesDir = join10(this.projectDir, "node_modules");
     await fs3.rm(nodeModulesDir, { force: true, recursive: true, maxRetries: 3 });
     await ExternalCommands.invokeYarnInstall(this.projectDir);
   }
@@ -56499,7 +56547,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join9(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join10(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -57016,7 +57064,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d836a5ac2aaebabcac7020ec35d0aaf0668e9173`;
+  const localVersion = `0.0.0-c30ec68d5ede6ad2f6d38cb6ad1491807deecb30`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -57179,10 +57227,10 @@ var ReleaseTool = class {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/cli.js
-function builder21(argv) {
+function builder22(argv) {
   return addGithubTokenOption(argv);
 }
-async function handler22() {
+async function handler23() {
   const git = await AuthenticatedGitClient.get();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -57204,15 +57252,15 @@ async function handler22() {
   }
 }
 var ReleasePublishCommandModule = {
-  builder: builder21,
-  handler: handler22,
+  builder: builder22,
+  handler: handler23,
   command: "publish",
   describe: "Publish new releases and configure version branches."
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/npm-dist-tag/set/cli.js
 var import_semver19 = __toESM(require_semver());
-function builder22(args) {
+function builder23(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
@@ -57227,7 +57275,7 @@ function builder22(args) {
     default: false
   });
 }
-async function handler23(args) {
+async function handler24(args) {
   const { targetVersion: rawVersion, tagName, skipExperimentalPackages } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -57264,8 +57312,8 @@ async function handler23(args) {
   Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version}`)}.`));
 }
 var ReleaseNpmDistTagSetCommand = {
-  builder: builder22,
-  handler: handler23,
+  builder: builder23,
+  handler: handler24,
   command: "set <tag-name> <target-version>",
   describe: "Sets a given NPM dist tag for all release packages."
 };
@@ -57283,7 +57331,7 @@ import url from "url";
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
 var import_semver20 = __toESM(require_semver());
-import { join as join11 } from "path";
+import { join as join12 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -57360,7 +57408,7 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join11(git.baseDir, "package.json");
+  const packageJsonPath = join12(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs5.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
@@ -57369,7 +57417,7 @@ function getVersionFromWorkspacePackageJson(git) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/cli.js
-function builder23(args) {
+function builder24(args) {
   return args.option("mode", {
     demandOption: true,
     description: "Whether the env-stamp should be built for a snapshot or release",
@@ -57383,7 +57431,7 @@ function builder23(args) {
     description: "Working-dir relative or absolute path to an ESM script which can print additional stamping variables"
   });
 }
-async function handler24({ mode, includeVersion, additionalStampingScript }) {
+async function handler25({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
     const scriptURL = url.pathToFileURL(path7.resolve(additionalStampingScript));
@@ -57392,21 +57440,21 @@ async function handler24({ mode, includeVersion, additionalStampingScript }) {
   }
 }
 var BuildEnvStampCommand = {
-  builder: builder23,
-  handler: handler24,
+  builder: builder24,
+  handler: handler25,
   command: "build-env-stamp",
   describe: "Build the environment stamping information"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/npm-dist-tag/delete/cli.js
-function builder24(args) {
+function builder25(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
     description: "Name of the NPM dist tag."
   });
 }
-async function handler25(args) {
+async function handler26(args) {
   const { tagName } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -57429,8 +57477,8 @@ async function handler25(args) {
   Log.info(green(`  \u2713   Deleted "${bold(tagName)}" NPM dist tag for all packages.`));
 }
 var ReleaseNpmDistTagDeleteCommand = {
-  builder: builder24,
-  handler: handler25,
+  builder: builder25,
+  handler: handler26,
   command: "delete <tag-name>",
   describe: "Deletes a given NPM dist tag for all release packages."
 };
@@ -57459,7 +57507,7 @@ import { isAbsolute as isAbsolute2, relative as relative3, resolve as resolve12 
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync11 } from "fs";
-import { dirname as dirname6, join as join12, resolve as resolve10 } from "path";
+import { dirname as dirname6, join as join13, resolve as resolve10 } from "path";
 import ts2 from "typescript";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/file_system.js
@@ -57562,7 +57610,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join12(dirname6(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join13(dirname6(containingFilePath), specifier) : specifier;
     const stat = getFileStatus(importFullPath);
     if (stat && stat.isFile()) {
       return importFullPath;
@@ -57575,7 +57623,7 @@ var Analyzer = class {
       }
     }
     if (stat && stat.isDirectory()) {
-      return this._resolveFileSpecifier(join12(importFullPath, "index"));
+      return this._resolveFileSpecifier(join13(importFullPath, "index"));
     }
     return null;
   }
@@ -57773,31 +57821,31 @@ function convertReferenceChainToString(chain) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/login/cli.js
-async function builder25(yargs) {
+async function builder26(yargs) {
   return yargs;
 }
-async function handler26() {
+async function handler27() {
   Log.warn("ng-dev auth login has been deprecated. Authentication will be done");
   Log.warn("using TOKEN from the local environment.");
 }
 var LoginModule = {
-  handler: handler26,
-  builder: builder25,
+  handler: handler27,
+  builder: builder26,
   command: "login",
   describe: "Log into the ng-dev service"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/logout/cli.js
-async function builder26(yargs) {
+async function builder27(yargs) {
   return yargs;
 }
-async function handler27() {
+async function handler28() {
   Log.warn("ng-dev auth logout has been deprecated. Authentication will be done");
   Log.warn("using local environment.");
 }
 var LogoutModule = {
-  handler: handler27,
-  builder: builder26,
+  handler: handler28,
+  builder: builder27,
   command: "logout",
   describe: "Log out of the ng-dev service"
 };
