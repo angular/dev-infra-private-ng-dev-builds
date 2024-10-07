@@ -53469,12 +53469,20 @@ function getBazelBin() {
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/generated-files/update-generated-files.js
 async function updateGeneratedFileTargets() {
   const spinner = new Spinner("Querying for all generated file targets");
-  const result = await ChildProcess.spawn(getBazelBin(), ["query", `"kind(nodejs_binary, //...) intersect attr(name, '.update$', //...)"`], { mode: "silent" });
+  const result = await ChildProcess.spawn(getBazelBin(), [
+    "query",
+    `"kind(nodejs_binary, //...) intersect attr(name, '.update$', //...)"`,
+    "--output",
+    "label"
+  ], { mode: "silent" });
   if (result.status !== 0) {
     spinner.complete();
     throw Error(`Unexpected error: ${result.stderr}`);
   }
   const targets = result.stdout.trim().split(/\r?\n/);
+  Log.debug.group("Discovered Targets");
+  targets.forEach((target) => Log.debug(target));
+  Log.debug.groupEnd();
   spinner.update(`Found ${targets.length} generated file targets to update`);
   await ChildProcess.spawn(getBazelBin(), ["build", targets.join(" ")], { mode: "silent" });
   for (let idx = 0; idx < targets.length; idx++) {
@@ -57538,7 +57546,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-f2202323c6449aadb542456ef03a31b3689c217a`;
+  const localVersion = `0.0.0-358b27d9f887a9a6834023666647ea19b5b8d323`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
