@@ -1895,49 +1895,49 @@ var require_yoctocolors_cjs = __commonJS({
         return result;
       };
     };
-    var colors5 = {};
-    colors5.reset = format3(0, 0);
-    colors5.bold = format3(1, 22);
-    colors5.dim = format3(2, 22);
-    colors5.italic = format3(3, 23);
-    colors5.underline = format3(4, 24);
-    colors5.overline = format3(53, 55);
-    colors5.inverse = format3(7, 27);
-    colors5.hidden = format3(8, 28);
-    colors5.strikethrough = format3(9, 29);
-    colors5.black = format3(30, 39);
-    colors5.red = format3(31, 39);
-    colors5.green = format3(32, 39);
-    colors5.yellow = format3(33, 39);
-    colors5.blue = format3(34, 39);
-    colors5.magenta = format3(35, 39);
-    colors5.cyan = format3(36, 39);
-    colors5.white = format3(37, 39);
-    colors5.gray = format3(90, 39);
-    colors5.bgBlack = format3(40, 49);
-    colors5.bgRed = format3(41, 49);
-    colors5.bgGreen = format3(42, 49);
-    colors5.bgYellow = format3(43, 49);
-    colors5.bgBlue = format3(44, 49);
-    colors5.bgMagenta = format3(45, 49);
-    colors5.bgCyan = format3(46, 49);
-    colors5.bgWhite = format3(47, 49);
-    colors5.bgGray = format3(100, 49);
-    colors5.redBright = format3(91, 39);
-    colors5.greenBright = format3(92, 39);
-    colors5.yellowBright = format3(93, 39);
-    colors5.blueBright = format3(94, 39);
-    colors5.magentaBright = format3(95, 39);
-    colors5.cyanBright = format3(96, 39);
-    colors5.whiteBright = format3(97, 39);
-    colors5.bgRedBright = format3(101, 49);
-    colors5.bgGreenBright = format3(102, 49);
-    colors5.bgYellowBright = format3(103, 49);
-    colors5.bgBlueBright = format3(104, 49);
-    colors5.bgMagentaBright = format3(105, 49);
-    colors5.bgCyanBright = format3(106, 49);
-    colors5.bgWhiteBright = format3(107, 49);
-    module.exports = colors5;
+    var colors8 = {};
+    colors8.reset = format3(0, 0);
+    colors8.bold = format3(1, 22);
+    colors8.dim = format3(2, 22);
+    colors8.italic = format3(3, 23);
+    colors8.underline = format3(4, 24);
+    colors8.overline = format3(53, 55);
+    colors8.inverse = format3(7, 27);
+    colors8.hidden = format3(8, 28);
+    colors8.strikethrough = format3(9, 29);
+    colors8.black = format3(30, 39);
+    colors8.red = format3(31, 39);
+    colors8.green = format3(32, 39);
+    colors8.yellow = format3(33, 39);
+    colors8.blue = format3(34, 39);
+    colors8.magenta = format3(35, 39);
+    colors8.cyan = format3(36, 39);
+    colors8.white = format3(37, 39);
+    colors8.gray = format3(90, 39);
+    colors8.bgBlack = format3(40, 49);
+    colors8.bgRed = format3(41, 49);
+    colors8.bgGreen = format3(42, 49);
+    colors8.bgYellow = format3(43, 49);
+    colors8.bgBlue = format3(44, 49);
+    colors8.bgMagenta = format3(45, 49);
+    colors8.bgCyan = format3(46, 49);
+    colors8.bgWhite = format3(47, 49);
+    colors8.bgGray = format3(100, 49);
+    colors8.redBright = format3(91, 39);
+    colors8.greenBright = format3(92, 39);
+    colors8.yellowBright = format3(93, 39);
+    colors8.blueBright = format3(94, 39);
+    colors8.magentaBright = format3(95, 39);
+    colors8.cyanBright = format3(96, 39);
+    colors8.whiteBright = format3(97, 39);
+    colors8.bgRedBright = format3(101, 49);
+    colors8.bgGreenBright = format3(102, 49);
+    colors8.bgYellowBright = format3(103, 49);
+    colors8.bgBlueBright = format3(104, 49);
+    colors8.bgMagentaBright = format3(105, 49);
+    colors8.bgCyanBright = format3(106, 49);
+    colors8.bgWhiteBright = format3(107, 49);
+    module.exports = colors8;
   }
 });
 
@@ -3301,9 +3301,9 @@ var require_wrap_ansi = __commonJS({
   }
 });
 
-// node_modules/mute-stream/lib/index.js
+// node_modules/@inquirer/prompts/node_modules/mute-stream/lib/index.js
 var require_lib = __commonJS({
-  "node_modules/mute-stream/lib/index.js"(exports, module) {
+  "node_modules/@inquirer/prompts/node_modules/mute-stream/lib/index.js"(exports, module) {
     var Stream = __require("stream");
     var _isTTY, _destSrc, destSrc_fn, _proxy, proxy_fn;
     var MuteStream2 = class extends Stream {
@@ -3433,14 +3433,14 @@ var require_lib = __commonJS({
 var require_ansi_escapes = __commonJS({
   "node_modules/ansi-escapes/index.js"(exports, module) {
     "use strict";
-    var ansiEscapes4 = module.exports;
-    module.exports.default = ansiEscapes4;
+    var ansiEscapes5 = module.exports;
+    module.exports.default = ansiEscapes5;
     var ESC = "\x1B[";
     var OSC = "\x1B]";
     var BEL = "\x07";
     var SEP = ";";
     var isTerminalApp = process.env.TERM_PROGRAM === "Apple_Terminal";
-    ansiEscapes4.cursorTo = (x, y) => {
+    ansiEscapes5.cursorTo = (x, y) => {
       if (typeof x !== "number") {
         throw new TypeError("The `x` argument is required");
       }
@@ -3449,7 +3449,7 @@ var require_ansi_escapes = __commonJS({
       }
       return ESC + (y + 1) + ";" + (x + 1) + "H";
     };
-    ansiEscapes4.cursorMove = (x, y) => {
+    ansiEscapes5.cursorMove = (x, y) => {
       if (typeof x !== "number") {
         throw new TypeError("The `x` argument is required");
       }
@@ -3466,40 +3466,40 @@ var require_ansi_escapes = __commonJS({
       }
       return ret;
     };
-    ansiEscapes4.cursorUp = (count = 1) => ESC + count + "A";
-    ansiEscapes4.cursorDown = (count = 1) => ESC + count + "B";
-    ansiEscapes4.cursorForward = (count = 1) => ESC + count + "C";
-    ansiEscapes4.cursorBackward = (count = 1) => ESC + count + "D";
-    ansiEscapes4.cursorLeft = ESC + "G";
-    ansiEscapes4.cursorSavePosition = isTerminalApp ? "\x1B7" : ESC + "s";
-    ansiEscapes4.cursorRestorePosition = isTerminalApp ? "\x1B8" : ESC + "u";
-    ansiEscapes4.cursorGetPosition = ESC + "6n";
-    ansiEscapes4.cursorNextLine = ESC + "E";
-    ansiEscapes4.cursorPrevLine = ESC + "F";
-    ansiEscapes4.cursorHide = ESC + "?25l";
-    ansiEscapes4.cursorShow = ESC + "?25h";
-    ansiEscapes4.eraseLines = (count) => {
+    ansiEscapes5.cursorUp = (count = 1) => ESC + count + "A";
+    ansiEscapes5.cursorDown = (count = 1) => ESC + count + "B";
+    ansiEscapes5.cursorForward = (count = 1) => ESC + count + "C";
+    ansiEscapes5.cursorBackward = (count = 1) => ESC + count + "D";
+    ansiEscapes5.cursorLeft = ESC + "G";
+    ansiEscapes5.cursorSavePosition = isTerminalApp ? "\x1B7" : ESC + "s";
+    ansiEscapes5.cursorRestorePosition = isTerminalApp ? "\x1B8" : ESC + "u";
+    ansiEscapes5.cursorGetPosition = ESC + "6n";
+    ansiEscapes5.cursorNextLine = ESC + "E";
+    ansiEscapes5.cursorPrevLine = ESC + "F";
+    ansiEscapes5.cursorHide = ESC + "?25l";
+    ansiEscapes5.cursorShow = ESC + "?25h";
+    ansiEscapes5.eraseLines = (count) => {
       let clear = "";
       for (let i = 0; i < count; i++) {
-        clear += ansiEscapes4.eraseLine + (i < count - 1 ? ansiEscapes4.cursorUp() : "");
+        clear += ansiEscapes5.eraseLine + (i < count - 1 ? ansiEscapes5.cursorUp() : "");
       }
       if (count) {
-        clear += ansiEscapes4.cursorLeft;
+        clear += ansiEscapes5.cursorLeft;
       }
       return clear;
     };
-    ansiEscapes4.eraseEndLine = ESC + "K";
-    ansiEscapes4.eraseStartLine = ESC + "1K";
-    ansiEscapes4.eraseLine = ESC + "2K";
-    ansiEscapes4.eraseDown = ESC + "J";
-    ansiEscapes4.eraseUp = ESC + "1J";
-    ansiEscapes4.eraseScreen = ESC + "2J";
-    ansiEscapes4.scrollUp = ESC + "S";
-    ansiEscapes4.scrollDown = ESC + "T";
-    ansiEscapes4.clearScreen = "\x1Bc";
-    ansiEscapes4.clearTerminal = process.platform === "win32" ? `${ansiEscapes4.eraseScreen}${ESC}0f` : `${ansiEscapes4.eraseScreen}${ESC}3J${ESC}H`;
-    ansiEscapes4.beep = BEL;
-    ansiEscapes4.link = (text, url2) => {
+    ansiEscapes5.eraseEndLine = ESC + "K";
+    ansiEscapes5.eraseStartLine = ESC + "1K";
+    ansiEscapes5.eraseLine = ESC + "2K";
+    ansiEscapes5.eraseDown = ESC + "J";
+    ansiEscapes5.eraseUp = ESC + "1J";
+    ansiEscapes5.eraseScreen = ESC + "2J";
+    ansiEscapes5.scrollUp = ESC + "S";
+    ansiEscapes5.scrollDown = ESC + "T";
+    ansiEscapes5.clearScreen = "\x1Bc";
+    ansiEscapes5.clearTerminal = process.platform === "win32" ? `${ansiEscapes5.eraseScreen}${ESC}0f` : `${ansiEscapes5.eraseScreen}${ESC}3J${ESC}H`;
+    ansiEscapes5.beep = BEL;
+    ansiEscapes5.link = (text, url2) => {
       return [
         OSC,
         "8",
@@ -3515,7 +3515,7 @@ var require_ansi_escapes = __commonJS({
         BEL
       ].join("");
     };
-    ansiEscapes4.image = (buffer, options = {}) => {
+    ansiEscapes5.image = (buffer, options = {}) => {
       let ret = `${OSC}1337;File=inline=1`;
       if (options.width) {
         ret += `;width=${options.width}`;
@@ -3528,7 +3528,7 @@ var require_ansi_escapes = __commonJS({
       }
       return ret + ":" + buffer.toString("base64") + BEL;
     };
-    ansiEscapes4.iTerm = {
+    ansiEscapes5.iTerm = {
       setCwd: (cwd = process.cwd()) => `${OSC}50;CurrentDir=${cwd}${BEL}`,
       annotation: (message, options = {}) => {
         let ret = `${OSC}1337;`;
@@ -48953,7 +48953,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/key.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/key.js
 var isUpKey = (key) => key.name === "up" || key.name === "k" || key.ctrl && key.name === "p";
 var isDownKey = (key) => key.name === "down" || key.name === "j" || key.ctrl && key.name === "n";
 var isSpaceKey = (key) => key.name === "space";
@@ -48961,7 +48961,7 @@ var isBackspaceKey = (key) => key.name === "backspace";
 var isNumberKey = (key) => "123456789".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/@inquirer/core/dist/esm/lib/errors.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -48984,10 +48984,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 import { AsyncResource as AsyncResource2 } from "async_hooks";
 
-// node_modules/@inquirer/core/dist/esm/lib/hook-engine.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -49094,7 +49094,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/use-state.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setFn = (newValue) => {
@@ -49112,7 +49112,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-effect.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -49124,10 +49124,10 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/theme.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs(), 1);
 
-// node_modules/@inquirer/figures/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/figures/dist/esm/index.js
 import process2 from "process";
 function isUnicodeSupported() {
   if (process2.platform !== "win32") {
@@ -49413,7 +49413,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/@inquirer/core/dist/esm/lib/theme.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
@@ -49434,7 +49434,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/make-theme.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -49462,7 +49462,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-prefix.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -49493,7 +49493,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName];
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-memo.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -49506,12 +49506,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-ref.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-keypress.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -49530,7 +49530,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/utils.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/utils.js
 var import_cli_width = __toESM(require_cli_width(), 1);
 var import_wrap_ansi = __toESM(require_wrap_ansi(), 1);
 function breakLines(content, width) {
@@ -49540,7 +49540,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/lines.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/lines.js
 function split(content, width) {
   return breakLines(content, width).split("\n");
 }
@@ -49584,7 +49584,7 @@ function lines({ items, width, renderItem, active, position: requested, pageSize
   return pageBuffer.filter((line) => typeof line === "string");
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/position.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/position.js
 function finite({ active, pageSize, total }) {
   const middle = Math.floor(pageSize / 2);
   if (total <= pageSize || active < middle)
@@ -49602,7 +49602,7 @@ function infinite({ active, lastActive, total, pageSize, pointer }) {
   return pointer;
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   const state = useRef({ position: 0, lastActive: 0 });
   const position = loop ? infinite({
@@ -49628,7 +49628,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   }).join("\n");
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib(), 1);
 import * as readline2 from "readline";
 import { AsyncResource as AsyncResource3 } from "async_hooks";
@@ -49866,7 +49866,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/@inquirer/core/dist/esm/lib/screen-manager.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var import_strip_ansi = __toESM(require_strip_ansi(), 1);
 var import_ansi_escapes = __toESM(require_ansi_escapes(), 1);
 var height = (content) => content.split("\n").length;
@@ -49931,7 +49931,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   static withResolver() {
     let resolve13;
@@ -49944,7 +49944,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/create-prompt.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 function createPrompt(view) {
   const prompt = (config, context = {}) => {
     const { input = process.stdin, signal } = context;
@@ -50006,7 +50006,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/Separator.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/Separator.js
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs(), 1);
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
@@ -50021,7 +50021,7 @@ var Separator = class {
   }
 };
 
-// node_modules/@inquirer/checkbox/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
@@ -50085,7 +50085,7 @@ var esm_default3 = createPrompt((config, done) => {
   const bounds = useMemo(() => {
     const first = items.findIndex(isSelectable);
     const last = items.findLastIndex(isSelectable);
-    if (first < 0) {
+    if (first === -1) {
       throw new ValidationError("[checkbox prompt] No selectable choices. All choices are disabled.");
     }
     return { first, last };
@@ -50192,7 +50192,7 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${choiceDescription}${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
-// node_modules/@inquirer/editor/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/editor/dist/esm/index.js
 var import_external_editor = __toESM(require_main(), 1);
 import { AsyncResource as AsyncResource4 } from "async_hooks";
 var esm_default4 = createPrompt((config, done) => {
@@ -50252,7 +50252,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/@inquirer/confirm/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/confirm/dist/esm/index.js
 var esm_default5 = createPrompt((config, done) => {
   const { transformer = (answer) => answer ? "yes" : "no" } = config;
   const [status, setStatus] = useState("idle");
@@ -50284,7 +50284,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/@inquirer/input/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/input/dist/esm/index.js
 var esm_default6 = createPrompt((config, done) => {
   const { required, validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -50343,21 +50343,332 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/select/dist/esm/index.mjs
+// node_modules/@inquirer/prompts/node_modules/@inquirer/number/dist/esm/index.js
+function isStepOf(value, step, min) {
+  const valuePow = value * Math.pow(10, 6);
+  const stepPow = step * Math.pow(10, 6);
+  const minPow = min * Math.pow(10, 6);
+  return (valuePow - (Number.isFinite(min) ? minPow : 0)) % stepPow === 0;
+}
+function validateNumber(value, { min, max, step }) {
+  if (value == null || Number.isNaN(value)) {
+    return false;
+  } else if (value < min || value > max) {
+    return `Value must be between ${min} and ${max}`;
+  } else if (step !== "any" && !isStepOf(value, step, min)) {
+    return `Value must be a multiple of ${step}${Number.isFinite(min) ? ` starting from ${min}` : ""}`;
+  }
+  return true;
+}
+var esm_default7 = createPrompt((config, done) => {
+  var _a2;
+  const { validate = () => true, min = -Infinity, max = Infinity, step = 1, required = false } = config;
+  const theme = makeTheme(config.theme);
+  const [status, setStatus] = useState("idle");
+  const [value, setValue] = useState("");
+  const validDefault = validateNumber(config.default, { min, max, step }) === true ? (_a2 = config.default) == null ? void 0 : _a2.toString() : void 0;
+  const [defaultValue = "", setDefaultValue] = useState(validDefault);
+  const [errorMsg, setError] = useState();
+  const prefix = usePrefix({ status, theme });
+  useKeypress(async (key, rl) => {
+    if (status !== "idle") {
+      return;
+    }
+    if (isEnterKey(key)) {
+      const input = value || defaultValue;
+      const answer = input === "" ? void 0 : Number(input);
+      setStatus("loading");
+      let isValid = true;
+      if (required || answer != null) {
+        isValid = validateNumber(answer, { min, max, step });
+      }
+      if (isValid === true) {
+        isValid = await validate(answer);
+      }
+      if (isValid === true) {
+        setValue(String(answer ?? ""));
+        setStatus("done");
+        done(answer);
+      } else {
+        rl.write(value);
+        setError(isValid || "You must provide a valid numeric value");
+        setStatus("idle");
+      }
+    } else if (isBackspaceKey(key) && !value) {
+      setDefaultValue(void 0);
+    } else if (key.name === "tab" && !value) {
+      setDefaultValue(void 0);
+      rl.clearLine(0);
+      rl.write(defaultValue);
+      setValue(defaultValue);
+    } else {
+      setValue(rl.line);
+      setError(void 0);
+    }
+  });
+  const message = theme.style.message(config.message, status);
+  let formattedValue = value;
+  if (status === "done") {
+    formattedValue = theme.style.answer(value);
+  }
+  let defaultStr;
+  if (defaultValue && status !== "done" && !value) {
+    defaultStr = theme.style.defaultAnswer(defaultValue);
+  }
+  let error = "";
+  if (errorMsg) {
+    error = theme.style.error(errorMsg);
+  }
+  return [
+    [prefix, message, defaultStr, formattedValue].filter((v) => v !== void 0).join(" "),
+    error
+  ];
+});
+
+// node_modules/@inquirer/prompts/node_modules/@inquirer/expand/dist/esm/index.js
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
+function normalizeChoices2(choices) {
+  return choices.map((choice) => {
+    if (Separator.isSeparator(choice)) {
+      return choice;
+    }
+    const name = "name" in choice ? choice.name : String(choice.value);
+    const value = "value" in choice ? choice.value : name;
+    return {
+      value,
+      name,
+      key: choice.key.toLowerCase()
+    };
+  });
+}
+var helpChoice = {
+  key: "h",
+  name: "Help, list all options",
+  value: void 0
+};
+var esm_default8 = createPrompt((config, done) => {
+  const { default: defaultKey = "h" } = config;
+  const choices = useMemo(() => normalizeChoices2(config.choices), [config.choices]);
+  const [status, setStatus] = useState("idle");
+  const [value, setValue] = useState("");
+  const [expanded, setExpanded] = useState(config.expanded ?? false);
+  const [errorMsg, setError] = useState();
+  const theme = makeTheme(config.theme);
+  const prefix = usePrefix({ theme, status });
+  useKeypress((event, rl) => {
+    if (isEnterKey(event)) {
+      const answer = (value || defaultKey).toLowerCase();
+      if (answer === "h" && !expanded) {
+        setExpanded(true);
+      } else {
+        const selectedChoice = choices.find((choice) => !Separator.isSeparator(choice) && choice.key === answer);
+        if (selectedChoice) {
+          setStatus("done");
+          setValue(answer);
+          done(selectedChoice.value);
+        } else if (value === "") {
+          setError("Please input a value");
+        } else {
+          setError(`"${import_yoctocolors_cjs4.default.red(value)}" isn't an available option`);
+        }
+      }
+    } else {
+      setValue(rl.line);
+      setError(void 0);
+    }
+  });
+  const message = theme.style.message(config.message, status);
+  if (status === "done") {
+    const selectedChoice = choices.find((choice) => !Separator.isSeparator(choice) && choice.key === value.toLowerCase());
+    return `${prefix} ${message} ${theme.style.answer(selectedChoice.name)}`;
+  }
+  const allChoices = expanded ? choices : [...choices, helpChoice];
+  let longChoices = "";
+  let shortChoices = allChoices.map((choice) => {
+    if (Separator.isSeparator(choice))
+      return "";
+    if (choice.key === defaultKey) {
+      return choice.key.toUpperCase();
+    }
+    return choice.key;
+  }).join("");
+  shortChoices = ` ${theme.style.defaultAnswer(shortChoices)}`;
+  if (expanded) {
+    shortChoices = "";
+    longChoices = allChoices.map((choice) => {
+      if (Separator.isSeparator(choice)) {
+        return ` ${choice.separator}`;
+      }
+      const line = `  ${choice.key}) ${choice.name}`;
+      if (choice.key === value.toLowerCase()) {
+        return theme.style.highlight(line);
+      }
+      return line;
+    }).join("\n");
+  }
+  let helpTip = "";
+  const currentOption = choices.find((choice) => !Separator.isSeparator(choice) && choice.key === value.toLowerCase());
+  if (currentOption) {
+    helpTip = `${import_yoctocolors_cjs4.default.cyan(">>")} ${currentOption.name}`;
+  }
+  let error = "";
+  if (errorMsg) {
+    error = theme.style.error(errorMsg);
+  }
+  return [
+    `${prefix} ${message}${shortChoices} ${value}`,
+    [longChoices, helpTip, error].filter(Boolean).join("\n")
+  ];
+});
+
+// node_modules/@inquirer/prompts/node_modules/@inquirer/rawlist/dist/esm/index.js
+var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs(), 1);
+var numberRegex = /\d+/;
+function isSelectableChoice(choice) {
+  return choice != null && !Separator.isSeparator(choice);
+}
+function normalizeChoices3(choices) {
+  let index = 0;
+  return choices.map((choice) => {
+    if (Separator.isSeparator(choice))
+      return choice;
+    index += 1;
+    if (typeof choice === "string") {
+      return {
+        value: choice,
+        name: choice,
+        short: choice,
+        key: String(index)
+      };
+    }
+    const name = choice.name ?? String(choice.value);
+    return {
+      value: choice.value,
+      name,
+      short: choice.short ?? name,
+      key: choice.key ?? String(index)
+    };
+  });
+}
+var esm_default9 = createPrompt((config, done) => {
+  const choices = useMemo(() => normalizeChoices3(config.choices), [config.choices]);
+  const [status, setStatus] = useState("idle");
+  const [value, setValue] = useState("");
+  const [errorMsg, setError] = useState();
+  const theme = makeTheme(config.theme);
+  const prefix = usePrefix({ status, theme });
+  useKeypress((key, rl) => {
+    if (isEnterKey(key)) {
+      let selectedChoice;
+      if (numberRegex.test(value)) {
+        const answer = Number.parseInt(value, 10) - 1;
+        selectedChoice = choices.filter(isSelectableChoice)[answer];
+      } else {
+        selectedChoice = choices.find((choice) => isSelectableChoice(choice) && choice.key === value);
+      }
+      if (isSelectableChoice(selectedChoice)) {
+        setValue(selectedChoice.short ?? selectedChoice.name ?? String(selectedChoice.value));
+        setStatus("done");
+        done(selectedChoice.value);
+      } else if (value === "") {
+        setError("Please input a value");
+      } else {
+        setError(`"${import_yoctocolors_cjs5.default.red(value)}" isn't an available option`);
+      }
+    } else {
+      setValue(rl.line);
+      setError(void 0);
+    }
+  });
+  const message = theme.style.message(config.message, status);
+  if (status === "done") {
+    return `${prefix} ${message} ${theme.style.answer(value)}`;
+  }
+  const choicesStr = choices.map((choice) => {
+    if (Separator.isSeparator(choice)) {
+      return ` ${choice.separator}`;
+    }
+    const line = `  ${choice.key}) ${choice.name}`;
+    if (choice.key === value.toLowerCase()) {
+      return theme.style.highlight(line);
+    }
+    return line;
+  }).join("\n");
+  let error = "";
+  if (errorMsg) {
+    error = theme.style.error(errorMsg);
+  }
+  return [
+    `${prefix} ${message} ${value}`,
+    [choicesStr, error].filter(Boolean).join("\n")
+  ];
+});
+
+// node_modules/@inquirer/prompts/node_modules/@inquirer/password/dist/esm/index.js
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
-var selectTheme = {
+var esm_default10 = createPrompt((config, done) => {
+  const { validate = () => true } = config;
+  const theme = makeTheme(config.theme);
+  const [status, setStatus] = useState("idle");
+  const [errorMsg, setError] = useState();
+  const [value, setValue] = useState("");
+  const prefix = usePrefix({ status, theme });
+  useKeypress(async (key, rl) => {
+    if (status !== "idle") {
+      return;
+    }
+    if (isEnterKey(key)) {
+      const answer = value;
+      setStatus("loading");
+      const isValid = await validate(answer);
+      if (isValid === true) {
+        setValue(answer);
+        setStatus("done");
+        done(answer);
+      } else {
+        rl.write(value);
+        setError(isValid || "You must provide a valid value");
+        setStatus("idle");
+      }
+    } else {
+      setValue(rl.line);
+      setError(void 0);
+    }
+  });
+  const message = theme.style.message(config.message, status);
+  let formattedValue = "";
+  let helpTip;
+  if (config.mask) {
+    const maskChar = typeof config.mask === "string" ? config.mask : "*";
+    formattedValue = maskChar.repeat(value.length);
+  } else if (status !== "done") {
+    helpTip = `${theme.style.help("[input is masked]")}${import_ansi_escapes3.default.cursorHide}`;
+  }
+  if (status === "done") {
+    formattedValue = theme.style.answer(formattedValue);
+  }
+  let error = "";
+  if (errorMsg) {
+    error = theme.style.error(errorMsg);
+  }
+  return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
+});
+
+// node_modules/@inquirer/prompts/node_modules/@inquirer/search/dist/esm/index.js
+var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs(), 1);
+var searchTheme = {
   icon: { cursor: esm_default2.pointer },
   style: {
-    disabled: (text) => import_yoctocolors_cjs4.default.dim(`- ${text}`),
-    description: (text) => import_yoctocolors_cjs4.default.cyan(text)
+    disabled: (text) => import_yoctocolors_cjs6.default.dim(`- ${text}`),
+    searchTerm: (text) => import_yoctocolors_cjs6.default.cyan(text),
+    description: (text) => import_yoctocolors_cjs6.default.cyan(text)
   },
   helpMode: "auto"
 };
 function isSelectable2(item) {
   return !Separator.isSeparator(item) && !item.disabled;
 }
-function normalizeChoices2(choices) {
+function normalizeChoices4(choices) {
   return choices.map((choice) => {
     if (Separator.isSeparator(choice))
       return choice;
@@ -50379,18 +50690,181 @@ function normalizeChoices2(choices) {
     };
   });
 }
-var esm_default7 = createPrompt((config, done) => {
+var esm_default11 = createPrompt((config, done) => {
+  const { pageSize = 7, validate = () => true } = config;
+  const theme = makeTheme(searchTheme, config.theme);
+  const firstRender = useRef(true);
+  const [status, setStatus] = useState("loading");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchError, setSearchError] = useState();
+  const prefix = usePrefix({ status, theme });
+  const bounds = useMemo(() => {
+    const first = searchResults.findIndex(isSelectable2);
+    const last = searchResults.findLastIndex(isSelectable2);
+    return { first, last };
+  }, [searchResults]);
+  const [active = bounds.first, setActive] = useState();
+  useEffect(() => {
+    const controller = new AbortController();
+    setStatus("loading");
+    setSearchError(void 0);
+    const fetchResults = async () => {
+      try {
+        const results = await config.source(searchTerm || void 0, {
+          signal: controller.signal
+        });
+        if (!controller.signal.aborted) {
+          setActive(void 0);
+          setSearchError(void 0);
+          setSearchResults(normalizeChoices4(results));
+          setStatus("idle");
+        }
+      } catch (error2) {
+        if (!controller.signal.aborted && error2 instanceof Error) {
+          setSearchError(error2.message);
+        }
+      }
+    };
+    void fetchResults();
+    return () => {
+      controller.abort();
+    };
+  }, [searchTerm]);
+  const selectedChoice = searchResults[active];
+  useKeypress(async (key, rl) => {
+    if (isEnterKey(key)) {
+      if (selectedChoice) {
+        setStatus("loading");
+        const isValid = await validate(selectedChoice.value);
+        setStatus("idle");
+        if (isValid === true) {
+          setStatus("done");
+          done(selectedChoice.value);
+        } else if (selectedChoice.name === searchTerm) {
+          setSearchError(isValid || "You must provide a valid value");
+        } else {
+          rl.write(selectedChoice.name);
+          setSearchTerm(selectedChoice.name);
+        }
+      } else {
+        rl.write(searchTerm);
+      }
+    } else if (key.name === "tab" && selectedChoice) {
+      rl.clearLine(0);
+      rl.write(selectedChoice.name);
+      setSearchTerm(selectedChoice.name);
+    } else if (status !== "loading" && (key.name === "up" || key.name === "down")) {
+      rl.clearLine(0);
+      if (key.name === "up" && active !== bounds.first || key.name === "down" && active !== bounds.last) {
+        const offset = key.name === "up" ? -1 : 1;
+        let next = active;
+        do {
+          next = (next + offset + searchResults.length) % searchResults.length;
+        } while (!isSelectable2(searchResults[next]));
+        setActive(next);
+      }
+    } else {
+      setSearchTerm(rl.line);
+    }
+  });
+  const message = theme.style.message(config.message, status);
+  if (active > 0) {
+    firstRender.current = false;
+  }
+  let helpTip = "";
+  if (searchResults.length > 1 && (theme.helpMode === "always" || theme.helpMode === "auto" && firstRender.current)) {
+    helpTip = searchResults.length > pageSize ? `
+${theme.style.help("(Use arrow keys to reveal more choices)")}` : `
+${theme.style.help("(Use arrow keys)")}`;
+  }
+  const page = usePagination({
+    items: searchResults,
+    active,
+    renderItem({ item, isActive }) {
+      if (Separator.isSeparator(item)) {
+        return ` ${item.separator}`;
+      }
+      if (item.disabled) {
+        const disabledLabel = typeof item.disabled === "string" ? item.disabled : "(disabled)";
+        return theme.style.disabled(`${item.name} ${disabledLabel}`);
+      }
+      const color = isActive ? theme.style.highlight : (x) => x;
+      const cursor = isActive ? theme.icon.cursor : ` `;
+      return color(`${cursor} ${item.name}`);
+    },
+    pageSize,
+    loop: false
+  });
+  let error;
+  if (searchError) {
+    error = theme.style.error(searchError);
+  } else if (searchResults.length === 0 && searchTerm !== "" && status === "idle") {
+    error = theme.style.error("No results found");
+  }
+  let searchStr;
+  if (status === "done" && selectedChoice) {
+    const answer = selectedChoice.short ?? selectedChoice.name;
+    return `${prefix} ${message} ${theme.style.answer(answer)}`;
+  } else {
+    searchStr = theme.style.searchTerm(searchTerm);
+  }
+  const choiceDescription = (selectedChoice == null ? void 0 : selectedChoice.description) ? `
+${theme.style.description(selectedChoice.description)}` : ``;
+  return [
+    [prefix, message, searchStr].filter(Boolean).join(" "),
+    `${error ?? page}${helpTip}${choiceDescription}`
+  ];
+});
+
+// node_modules/@inquirer/prompts/node_modules/@inquirer/select/dist/esm/index.js
+var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs(), 1);
+var import_ansi_escapes4 = __toESM(require_ansi_escapes(), 1);
+var selectTheme = {
+  icon: { cursor: esm_default2.pointer },
+  style: {
+    disabled: (text) => import_yoctocolors_cjs7.default.dim(`- ${text}`),
+    description: (text) => import_yoctocolors_cjs7.default.cyan(text)
+  },
+  helpMode: "auto"
+};
+function isSelectable3(item) {
+  return !Separator.isSeparator(item) && !item.disabled;
+}
+function normalizeChoices5(choices) {
+  return choices.map((choice) => {
+    if (Separator.isSeparator(choice))
+      return choice;
+    if (typeof choice === "string") {
+      return {
+        value: choice,
+        name: choice,
+        short: choice,
+        disabled: false
+      };
+    }
+    const name = choice.name ?? String(choice.value);
+    return {
+      value: choice.value,
+      name,
+      description: choice.description,
+      short: choice.short ?? name,
+      disabled: choice.disabled ?? false
+    };
+  });
+}
+var esm_default12 = createPrompt((config, done) => {
   const { loop = true, pageSize = 7 } = config;
   const firstRender = useRef(true);
   const theme = makeTheme(selectTheme, config.theme);
   const [status, setStatus] = useState("idle");
   const prefix = usePrefix({ status, theme });
   const searchTimeoutRef = useRef();
-  const items = useMemo(() => normalizeChoices2(config.choices), [config.choices]);
+  const items = useMemo(() => normalizeChoices5(config.choices), [config.choices]);
   const bounds = useMemo(() => {
-    const first = items.findIndex(isSelectable2);
-    const last = items.findLastIndex(isSelectable2);
-    if (first < 0) {
+    const first = items.findIndex(isSelectable3);
+    const last = items.findLastIndex(isSelectable3);
+    if (first === -1) {
       throw new ValidationError("[select prompt] No selectable choices. All choices are disabled.");
     }
     return { first, last };
@@ -50398,7 +50872,7 @@ var esm_default7 = createPrompt((config, done) => {
   const defaultItemIndex = useMemo(() => {
     if (!("default" in config))
       return -1;
-    return items.findIndex((item) => isSelectable2(item) && item.value === config.default);
+    return items.findIndex((item) => isSelectable3(item) && item.value === config.default);
   }, [config.default, items]);
   const [active, setActive] = useState(defaultItemIndex === -1 ? bounds.first : defaultItemIndex);
   const selectedChoice = items[active];
@@ -50414,14 +50888,14 @@ var esm_default7 = createPrompt((config, done) => {
         let next = active;
         do {
           next = (next + offset + items.length) % items.length;
-        } while (!isSelectable2(items[next]));
+        } while (!isSelectable3(items[next]));
         setActive(next);
       }
     } else if (isNumberKey(key)) {
       rl.clearLine(0);
       const position = Number(key.name) - 1;
       const item = items[position];
-      if (item != null && isSelectable2(item)) {
+      if (item != null && isSelectable3(item)) {
         setActive(position);
       }
     } else if (isBackspaceKey(key)) {
@@ -50429,11 +50903,11 @@ var esm_default7 = createPrompt((config, done) => {
     } else {
       const searchTerm = rl.line.toLowerCase();
       const matchIndex = items.findIndex((item) => {
-        if (Separator.isSeparator(item) || !isSelectable2(item))
+        if (Separator.isSeparator(item) || !isSelectable3(item))
           return false;
         return item.name.toLowerCase().startsWith(searchTerm);
       });
-      if (matchIndex >= 0) {
+      if (matchIndex !== -1) {
         setActive(matchIndex);
       }
       searchTimeoutRef.current = setTimeout(() => {
@@ -50480,7 +50954,7 @@ ${theme.style.help("(Use arrow keys to reveal more choices)")}`;
   const choiceDescription = selectedChoice.description ? `
 ${theme.style.description(selectedChoice.description)}` : ``;
   return `${[prefix, message, helpTipTop].filter(Boolean).join(" ")}
-${page}${helpTipBottom}${choiceDescription}${import_ansi_escapes3.default.cursorHide}`;
+${page}${helpTipBottom}${choiceDescription}${import_ansi_escapes4.default.cursorHide}`;
 });
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/prompt.js
@@ -50489,7 +50963,7 @@ var Prompt = class {
 Prompt.confirm = esm_default5;
 Prompt.input = esm_default6;
 Prompt.checkbox = esm_default3;
-Prompt.select = esm_default7;
+Prompt.select = esm_default12;
 Prompt.editor = esm_default4;
 
 // bazel-out/k8-fastbuild/bin/ng-dev/caretaker/handoff/update-github-team.js
@@ -57064,7 +57538,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-f68f67572f9e40fcd539da1ef42f80bd0364c00f`;
+  const localVersion = `0.0.0-079d12e2213835d2891129f0f69ee344c833609e`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
