@@ -15685,9 +15685,9 @@ var require_braces = __commonJS({
   }
 });
 
-// node_modules/picomatch/lib/constants.js
+// node_modules/micromatch/node_modules/picomatch/lib/constants.js
 var require_constants2 = __commonJS({
-  "node_modules/picomatch/lib/constants.js"(exports, module) {
+  "node_modules/micromatch/node_modules/picomatch/lib/constants.js"(exports, module) {
     "use strict";
     var path8 = __require("path");
     var WIN_SLASH = "\\\\/";
@@ -15828,9 +15828,9 @@ var require_constants2 = __commonJS({
   }
 });
 
-// node_modules/picomatch/lib/utils.js
+// node_modules/micromatch/node_modules/picomatch/lib/utils.js
 var require_utils2 = __commonJS({
-  "node_modules/picomatch/lib/utils.js"(exports) {
+  "node_modules/micromatch/node_modules/picomatch/lib/utils.js"(exports) {
     "use strict";
     var path8 = __require("path");
     var win32 = process.platform === "win32";
@@ -15891,9 +15891,9 @@ var require_utils2 = __commonJS({
   }
 });
 
-// node_modules/picomatch/lib/scan.js
+// node_modules/micromatch/node_modules/picomatch/lib/scan.js
 var require_scan = __commonJS({
-  "node_modules/picomatch/lib/scan.js"(exports, module) {
+  "node_modules/micromatch/node_modules/picomatch/lib/scan.js"(exports, module) {
     "use strict";
     var utils = require_utils2();
     var {
@@ -16209,9 +16209,9 @@ var require_scan = __commonJS({
   }
 });
 
-// node_modules/picomatch/lib/parse.js
+// node_modules/micromatch/node_modules/picomatch/lib/parse.js
 var require_parse2 = __commonJS({
-  "node_modules/picomatch/lib/parse.js"(exports, module) {
+  "node_modules/micromatch/node_modules/picomatch/lib/parse.js"(exports, module) {
     "use strict";
     var constants = require_constants2();
     var utils = require_utils2();
@@ -16990,9 +16990,9 @@ var require_parse2 = __commonJS({
   }
 });
 
-// node_modules/picomatch/lib/picomatch.js
+// node_modules/micromatch/node_modules/picomatch/lib/picomatch.js
 var require_picomatch = __commonJS({
-  "node_modules/picomatch/lib/picomatch.js"(exports, module) {
+  "node_modules/micromatch/node_modules/picomatch/lib/picomatch.js"(exports, module) {
     "use strict";
     var path8 = __require("path");
     var scan = require_scan();
@@ -17134,9 +17134,9 @@ var require_picomatch = __commonJS({
   }
 });
 
-// node_modules/picomatch/index.js
+// node_modules/micromatch/node_modules/picomatch/index.js
 var require_picomatch2 = __commonJS({
-  "node_modules/picomatch/index.js"(exports, module) {
+  "node_modules/micromatch/node_modules/picomatch/index.js"(exports, module) {
     "use strict";
     module.exports = require_picomatch();
   }
@@ -57617,7 +57617,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-6a7bc4b11c49adc81d7137fe9eff02ac6818b85d`;
+  const localVersion = `0.0.0-a3d0749c4d64959e85843fbeb54507e830be0f44`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
