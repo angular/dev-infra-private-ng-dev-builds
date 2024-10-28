@@ -50069,7 +50069,7 @@ function createPrompt(view) {
         throw error;
       }).finally(() => {
         cleanups.forEach((cleanup) => cleanup());
-        screen.done({ clearContent: Boolean(context == null ? void 0 : context.clearPromptOnDone) });
+        screen.done({ clearContent: Boolean(context.clearPromptOnDone) });
         output.end();
       }).then(() => promise), { cancel });
     });
@@ -50638,7 +50638,7 @@ var esm_default9 = createPrompt((config, done) => {
         selectedChoice = choices.find((choice) => isSelectableChoice(choice) && choice.key === value);
       }
       if (isSelectableChoice(selectedChoice)) {
-        setValue(selectedChoice.short ?? selectedChoice.name ?? String(selectedChoice.value));
+        setValue(selectedChoice.short);
         setStatus("done");
         done(selectedChoice.value);
       } else if (value === "") {
@@ -50875,7 +50875,7 @@ ${theme.style.help("(Use arrow keys)")}`;
   }
   let searchStr;
   if (status === "done" && selectedChoice) {
-    const answer = selectedChoice.short ?? selectedChoice.name;
+    const answer = selectedChoice.short;
     return `${prefix} ${message} ${theme.style.answer(answer)}`;
   } else {
     searchStr = theme.style.searchTerm(searchTerm);
@@ -57617,7 +57617,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d77c069b25345ec1792df0a86150a8d16eac3f8a`;
+  const localVersion = `0.0.0-4fac02b46c1689e4508eb3707ebae7cc46d72606`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
