@@ -40,7 +40,7 @@ import {
   require_semver,
   requiresLabels,
   targetLabels
-} from "./chunk-65LBL2KY.mjs";
+} from "./chunk-3NR4AIIB.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -60,7 +60,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-CNH7C6CU.mjs";
+} from "./chunk-V5SHN7H5.mjs";
 import {
   __commonJS,
   __privateAdd,
@@ -1118,7 +1118,7 @@ var require_jsonc_parser = __commonJS({
         }
       };
     }
-    function parse3(text, errors = [], options = ParseOptions.DEFAULT) {
+    function parse4(text, errors = [], options = ParseOptions.DEFAULT) {
       let currentProperty = null;
       let currentParent = [];
       const previousParents = [];
@@ -1773,7 +1773,7 @@ var require_jsonc_parser = __commonJS({
       SyntaxKind2[SyntaxKind2["EOF"] = 17] = "EOF";
     })(SyntaxKind || (SyntaxKind = {}));
     var getLocation2 = getLocation;
-    var parse22 = parse3;
+    var parse22 = parse4;
     var parseTree2 = parseTree;
     var findNodeAtLocation2 = findNodeAtLocation;
     var findNodeAtOffset2 = findNodeAtOffset;
@@ -8931,7 +8931,7 @@ var require_chardet = __commonJS({
         opts = void 0;
       }
       var fd;
-      var handler29 = function(err, buffer) {
+      var handler30 = function(err, buffer) {
         if (fd) {
           fs6.closeSync(fd);
         }
@@ -8942,11 +8942,11 @@ var require_chardet = __commonJS({
       if (opts && opts.sampleSize) {
         fd = fs6.openSync(filepath, "r"), sample = Buffer.allocUnsafe(opts.sampleSize);
         fs6.read(fd, sample, 0, opts.sampleSize, null, function(err) {
-          handler29(err, sample);
+          handler30(err, sample);
         });
         return;
       }
-      fs6.readFile(filepath, handler29);
+      fs6.readFile(filepath, handler30);
     };
     module.exports.detectFileSync = function(filepath, opts) {
       if (opts && opts.sampleSize) {
@@ -13285,7 +13285,7 @@ var require_regex = __commonJS({
   "node_modules/conventional-commits-parser/lib/regex.js"(exports, module) {
     "use strict";
     var reNomatch = /(?!.*)/;
-    function join14(array, joiner) {
+    function join15(array, joiner) {
       return array.map(function(val) {
         return val.trim();
       }).filter(function(val) {
@@ -13296,7 +13296,7 @@ var require_regex = __commonJS({
       if (!noteKeywords) {
         return reNomatch;
       }
-      const noteKeywordsSelection = join14(noteKeywords, "|");
+      const noteKeywordsSelection = join15(noteKeywords, "|");
       if (!notesPattern) {
         return new RegExp("^[\\s|*]*(" + noteKeywordsSelection + ")[:\\s]+(.*)", "i");
       }
@@ -13307,13 +13307,13 @@ var require_regex = __commonJS({
         return reNomatch;
       }
       const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join14(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
+      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join15(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
     }
     function getReferencesRegex(referenceActions) {
       if (!referenceActions) {
         return /()(.+)/gi;
       }
-      const joinedKeywords = join14(referenceActions, "|");
+      const joinedKeywords = join15(referenceActions, "|");
       return new RegExp("(" + joinedKeywords + ")(?:\\s+(.*?))(?=(?:" + joinedKeywords + ")|$)", "gi");
     }
     module.exports = function(options) {
@@ -13881,7 +13881,7 @@ var require_options = __commonJS({
       }
     }
     module.exports = {
-      parse: function parse3(rawOptions, preset) {
+      parse: function parse4(rawOptions, preset) {
         const options = {};
         const opt = Object.assign({}, preset, rawOptions);
         options.throttleTime = 1e3 / mergeOption(opt.fps, 10);
@@ -15414,7 +15414,7 @@ var require_parse = __commonJS({
       CHAR_NO_BREAK_SPACE,
       CHAR_ZERO_WIDTH_NOBREAK_SPACE
     } = require_constants();
-    var parse3 = (input, options = {}) => {
+    var parse4 = (input, options = {}) => {
       if (typeof input !== "string") {
         throw new TypeError("Expected a string");
       }
@@ -15618,7 +15618,7 @@ var require_parse = __commonJS({
       push({ type: "eos" });
       return ast;
     };
-    module.exports = parse3;
+    module.exports = parse4;
   }
 });
 
@@ -15629,7 +15629,7 @@ var require_braces = __commonJS({
     var stringify = require_stringify();
     var compile = require_compile();
     var expand3 = require_expand();
-    var parse3 = require_parse();
+    var parse4 = require_parse();
     var braces = (input, options = {}) => {
       let output = [];
       if (Array.isArray(input)) {
@@ -15649,7 +15649,7 @@ var require_braces = __commonJS({
       }
       return output;
     };
-    braces.parse = (input, options = {}) => parse3(input, options);
+    braces.parse = (input, options = {}) => parse4(input, options);
     braces.stringify = (input, options = {}) => {
       if (typeof input === "string") {
         return stringify(braces.parse(input, options), options);
@@ -16238,7 +16238,7 @@ var require_parse2 = __commonJS({
     var syntaxError = (type, char) => {
       return `Missing ${type}: "${char}" - use "\\\\${char}" to match literal characters`;
     };
-    var parse3 = (input, options) => {
+    var parse4 = (input, options) => {
       if (typeof input !== "string") {
         throw new TypeError("Expected a string");
       }
@@ -16388,7 +16388,7 @@ var require_parse2 = __commonJS({
             output = token.close = `)$))${extglobStar}`;
           }
           if (token.inner.includes("*") && (rest = remaining()) && /^\.[^\\/.]+$/.test(rest)) {
-            const expression = parse3(rest, { ...options, fastpaths: false }).output;
+            const expression = parse4(rest, { ...options, fastpaths: false }).output;
             output = token.close = `)${expression})${extglobStar})`;
           }
           if (token.prev.type === "bos") {
@@ -16917,7 +16917,7 @@ var require_parse2 = __commonJS({
       }
       return state;
     };
-    parse3.fastpaths = (input, options) => {
+    parse4.fastpaths = (input, options) => {
       const opts = { ...options };
       const max = typeof opts.maxLength === "number" ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
       const len = input.length;
@@ -16986,7 +16986,7 @@ var require_parse2 = __commonJS({
       }
       return source;
     };
-    module.exports = parse3;
+    module.exports = parse4;
   }
 });
 
@@ -16996,7 +16996,7 @@ var require_picomatch = __commonJS({
     "use strict";
     var path8 = __require("path");
     var scan = require_scan();
-    var parse3 = require_parse2();
+    var parse4 = require_parse2();
     var utils = require_utils2();
     var constants = require_constants2();
     var isObject = (val) => val && typeof val === "object" && !Array.isArray(val);
@@ -17086,7 +17086,7 @@ var require_picomatch = __commonJS({
     picomatch.parse = (pattern, options) => {
       if (Array.isArray(pattern))
         return pattern.map((p) => picomatch.parse(p, options));
-      return parse3(pattern, { ...options, fastpaths: false });
+      return parse4(pattern, { ...options, fastpaths: false });
     };
     picomatch.scan = (input, options) => scan(input, options);
     picomatch.compileRe = (state, options, returnOutput = false, returnState = false) => {
@@ -17112,10 +17112,10 @@ var require_picomatch = __commonJS({
       }
       let parsed = { negated: false, fastpaths: true };
       if (options.fastpaths !== false && (input[0] === "." || input[0] === "*")) {
-        parsed.output = parse3.fastpaths(input, options);
+        parsed.output = parse4.fastpaths(input, options);
       }
       if (!parsed.output) {
-        parsed = parse3(input, options);
+        parsed = parse4(input, options);
       }
       return picomatch.compileRe(parsed, options, returnOutput, returnState);
     };
@@ -18463,8 +18463,8 @@ var require_queue = __commonJS({
         self.drain();
         self.drain = noop;
       }
-      function error(handler29) {
-        errorHandler = handler29;
+      function error(handler30) {
+        errorHandler = handler30;
       }
     }
     function noop() {
@@ -19876,7 +19876,7 @@ var require_cjs = __commonJS({
 var require_lib3 = __commonJS({
   "node_modules/which/lib/index.js"(exports, module) {
     var { isexe, sync: isexeSync } = require_cjs();
-    var { join: join14, delimiter, sep: sep3, posix } = __require("path");
+    var { join: join15, delimiter, sep: sep3, posix } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix.sep}${sep3 === posix.sep ? "" : sep3}]`.replace(/(\\)/g, "\\$1"));
     var rRel = new RegExp(`^\\.${rSlash.source}`);
@@ -19903,7 +19903,7 @@ var require_lib3 = __commonJS({
     var getPathPart = (raw, cmd) => {
       const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
       const prefix = !pathPart && rRel.test(cmd) ? cmd.slice(0, 2) : "";
-      return prefix + join14(pathPart, cmd);
+      return prefix + join15(pathPart, cmd);
     };
     var which2 = async (cmd, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
@@ -26901,7 +26901,7 @@ var require_public_api = __commonJS({
       }
       return doc;
     }
-    function parse3(src, reviver, options) {
+    function parse4(src, reviver, options) {
       let _reviver = void 0;
       if (typeof reviver === "function") {
         _reviver = reviver;
@@ -26942,7 +26942,7 @@ var require_public_api = __commonJS({
         return value.toString(options);
       return new Document.Document(value, _replacer, options).toString(options);
     }
-    exports.parse = parse3;
+    exports.parse = parse4;
     exports.parseAllDocuments = parseAllDocuments;
     exports.parseDocument = parseDocument;
     exports.stringify = stringify;
@@ -27524,8 +27524,8 @@ var require_graceful_fs = __commonJS({
       fs7.createReadStream = createReadStream;
       fs7.createWriteStream = createWriteStream;
       var fs$readFile = fs7.readFile;
-      fs7.readFile = readFile;
-      function readFile(path8, options, cb) {
+      fs7.readFile = readFile2;
+      function readFile2(path8, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
         return go$readFile(path8, options, cb);
@@ -28047,8 +28047,8 @@ var require_semver2 = __commonJS({
       }
     }
     var i;
-    exports.parse = parse3;
-    function parse3(version, options) {
+    exports.parse = parse4;
+    function parse4(version, options) {
       if (!options || typeof options !== "object") {
         options = {
           loose: !!options,
@@ -28076,12 +28076,12 @@ var require_semver2 = __commonJS({
     }
     exports.valid = valid;
     function valid(version, options) {
-      var v = parse3(version, options);
+      var v = parse4(version, options);
       return v ? v.version : null;
     }
     exports.clean = clean;
     function clean(version, options) {
-      var s = parse3(version.trim().replace(/^[=v]+/, ""), options);
+      var s = parse4(version.trim().replace(/^[=v]+/, ""), options);
       return s ? s.version : null;
     }
     exports.SemVer = SemVer;
@@ -28291,8 +28291,8 @@ var require_semver2 = __commonJS({
       if (eq(version1, version2)) {
         return null;
       } else {
-        var v1 = parse3(version1);
-        var v2 = parse3(version2);
+        var v1 = parse4(version1);
+        var v2 = parse4(version2);
         var prefix = "";
         if (v1.prerelease.length || v2.prerelease.length) {
           prefix = "pre";
@@ -28962,7 +28962,7 @@ var require_semver2 = __commonJS({
     }
     exports.prerelease = prerelease;
     function prerelease(version, options) {
-      var parsed = parse3(version, options);
+      var parsed = parse4(version, options);
       return parsed && parsed.prerelease.length ? parsed.prerelease : null;
     }
     exports.intersects = intersects;
@@ -28983,7 +28983,7 @@ var require_semver2 = __commonJS({
       if (match3 == null) {
         return null;
       }
-      return parse3(match3[1] + "." + (match3[2] || "0") + "." + (match3[3] || "0"));
+      return parse4(match3[1] + "." + (match3[2] || "0") + "." + (match3[3] || "0"));
     }
   }
 });
@@ -29620,9 +29620,9 @@ var require_minimatch = __commonJS({
         throw new TypeError("pattern is too long");
       }
     };
-    Minimatch3.prototype.parse = parse3;
+    Minimatch3.prototype.parse = parse4;
     var SUBPARSE = {};
-    function parse3(pattern, isSub) {
+    function parse4(pattern, isSub) {
       assertValidPattern3(pattern);
       var options = this.options;
       if (pattern === "**") {
@@ -31432,8 +31432,8 @@ var require_semver3 = __commonJS({
       }
     }
     var i;
-    exports.parse = parse3;
-    function parse3(version, options) {
+    exports.parse = parse4;
+    function parse4(version, options) {
       if (!options || typeof options !== "object") {
         options = {
           loose: !!options,
@@ -31461,12 +31461,12 @@ var require_semver3 = __commonJS({
     }
     exports.valid = valid;
     function valid(version, options) {
-      var v = parse3(version, options);
+      var v = parse4(version, options);
       return v ? v.version : null;
     }
     exports.clean = clean;
     function clean(version, options) {
-      var s = parse3(version.trim().replace(/^[=v]+/, ""), options);
+      var s = parse4(version.trim().replace(/^[=v]+/, ""), options);
       return s ? s.version : null;
     }
     exports.SemVer = SemVer;
@@ -31676,8 +31676,8 @@ var require_semver3 = __commonJS({
       if (eq(version1, version2)) {
         return null;
       } else {
-        var v1 = parse3(version1);
-        var v2 = parse3(version2);
+        var v1 = parse4(version1);
+        var v2 = parse4(version2);
         var prefix = "";
         if (v1.prerelease.length || v2.prerelease.length) {
           prefix = "pre";
@@ -32347,7 +32347,7 @@ var require_semver3 = __commonJS({
     }
     exports.prerelease = prerelease;
     function prerelease(version, options) {
-      var parsed = parse3(version, options);
+      var parsed = parse4(version, options);
       return parsed && parsed.prerelease.length ? parsed.prerelease : null;
     }
     exports.intersects = intersects;
@@ -32368,7 +32368,7 @@ var require_semver3 = __commonJS({
       if (match3 == null) {
         return null;
       }
-      return parse3(match3[1] + "." + (match3[2] || "0") + "." + (match3[3] || "0"));
+      return parse4(match3[1] + "." + (match3[2] || "0") + "." + (match3[3] || "0"));
     }
   }
 });
@@ -33346,9 +33346,9 @@ var require_spdx_expression_parse = __commonJS({
   "node_modules/spdx-expression-parse/index.js"(exports, module) {
     "use strict";
     var scan = require_scan2();
-    var parse3 = require_parse3();
+    var parse4 = require_parse3();
     module.exports = function(source) {
-      return parse3(scan(source));
+      return parse4(scan(source));
     };
   }
 });
@@ -33356,11 +33356,11 @@ var require_spdx_expression_parse = __commonJS({
 // node_modules/spdx-correct/index.js
 var require_spdx_correct = __commonJS({
   "node_modules/spdx-correct/index.js"(exports, module) {
-    var parse3 = require_spdx_expression_parse();
+    var parse4 = require_spdx_expression_parse();
     var spdxLicenseIds = require_spdx_license_ids();
     function valid(string) {
       try {
-        parse3(string);
+        parse4(string);
         return true;
       } catch (error) {
         return false;
@@ -33659,7 +33659,7 @@ var require_spdx_correct = __commonJS({
 // node_modules/validate-npm-package-license/index.js
 var require_validate_npm_package_license = __commonJS({
   "node_modules/validate-npm-package-license/index.js"(exports, module) {
-    var parse3 = require_spdx_expression_parse();
+    var parse4 = require_spdx_expression_parse();
     var correct = require_spdx_correct();
     var genericWarning = 'license should be a valid SPDX license expression (without "LicenseRef"), "UNLICENSED", or "SEE LICENSE IN <filename>"';
     var fileReferenceRE = /^SEE LICEN[CS]E IN (.+)$/;
@@ -33677,7 +33677,7 @@ var require_validate_npm_package_license = __commonJS({
     module.exports = function(argument) {
       var ast;
       try {
-        ast = parse3(argument);
+        ast = parse4(argument);
       } catch (e) {
         var match3;
         if (argument === "UNLICENSED" || argument === "UNLICENCED") {
@@ -34178,7 +34178,7 @@ var require_path_parse = __commonJS({
 var require_node_modules_paths = __commonJS({
   "node_modules/resolve/lib/node-modules-paths.js"(exports, module) {
     var path8 = __require("path");
-    var parse3 = path8.parse || require_path_parse();
+    var parse4 = path8.parse || require_path_parse();
     var getNodeModulesDirs = function getNodeModulesDirs2(absoluteStart, modules) {
       var prefix = "/";
       if (/^([A-Za-z]:)/.test(absoluteStart)) {
@@ -34187,10 +34187,10 @@ var require_node_modules_paths = __commonJS({
         prefix = "\\\\";
       }
       var paths = [absoluteStart];
-      var parsed = parse3(absoluteStart);
+      var parsed = parse4(absoluteStart);
       while (parsed.dir !== paths[paths.length - 1]) {
         paths.push(parsed.dir);
-        parsed = parse3(parsed.dir);
+        parsed = parse4(parsed.dir);
       }
       return paths.reduce(function(dirs, aPath) {
         return dirs.concat(modules.map(function(moduleDir) {
@@ -34673,8 +34673,8 @@ var require_async7 = __commonJS({
         cb(null, x);
       }
     };
-    var defaultReadPackage = function defaultReadPackage2(readFile, pkgfile, cb) {
-      readFile(pkgfile, function(readFileErr, body) {
+    var defaultReadPackage = function defaultReadPackage2(readFile2, pkgfile, cb) {
+      readFile2(pkgfile, function(readFileErr, body) {
         if (readFileErr)
           cb(readFileErr);
         else {
@@ -34710,7 +34710,7 @@ var require_async7 = __commonJS({
       opts = normalizeOptions(x, opts);
       var isFile = opts.isFile || defaultIsFile;
       var isDirectory = opts.isDirectory || defaultIsDir;
-      var readFile = opts.readFile || fs6.readFile;
+      var readFile2 = opts.readFile || fs6.readFile;
       var realpath = opts.realpath || defaultRealpath;
       var readPackage = opts.readPackage || defaultReadPackage;
       if (opts.readFile && opts.readPackage) {
@@ -34851,7 +34851,7 @@ var require_async7 = __commonJS({
           isFile(pkgfile, function(err2, ex) {
             if (!ex)
               return loadpkg(path8.dirname(dir), cb2);
-            readPackage(readFile, pkgfile, function(err3, pkgParam) {
+            readPackage(readFile2, pkgfile, function(err3, pkgParam) {
               if (err3)
                 cb2(err3);
               var pkg = pkgParam;
@@ -34879,7 +34879,7 @@ var require_async7 = __commonJS({
               return cb2(err2);
             if (!ex)
               return loadAsFile(path8.join(x2, "index"), fpkg, cb2);
-            readPackage(readFile, pkgfile, function(err3, pkgParam) {
+            readPackage(readFile2, pkgfile, function(err3, pkgParam) {
               if (err3)
                 return cb2(err3);
               var pkg = pkgParam;
@@ -36018,7 +36018,7 @@ var require_json_parse_even_better_errors = __commonJS({
 // node_modules/read-package-json/node_modules/npm-normalize-package-bin/index.js
 var require_npm_normalize_package_bin = __commonJS({
   "node_modules/read-package-json/node_modules/npm-normalize-package-bin/index.js"(exports, module) {
-    var { join: join14, basename: basename2 } = __require("path");
+    var { join: join15, basename: basename2 } = __require("path");
     var normalize2 = (pkg) => !pkg.bin ? removeBin(pkg) : typeof pkg.bin === "string" ? normalizeString(pkg) : Array.isArray(pkg.bin) ? normalizeArray(pkg) : typeof pkg.bin === "object" ? normalizeObject(pkg) : removeBin(pkg);
     var normalizeString = (pkg) => {
       if (!pkg.name)
@@ -36042,10 +36042,10 @@ var require_npm_normalize_package_bin = __commonJS({
       const clean = {};
       let hasBins = false;
       Object.keys(orig).forEach((binKey) => {
-        const base = join14("/", basename2(binKey.replace(/\\|:/g, "/"))).substr(1);
+        const base = join15("/", basename2(binKey.replace(/\\|:/g, "/"))).substr(1);
         if (typeof orig[binKey] !== "string" || !base)
           return;
-        const binTarget = join14("/", orig[binKey]).replace(/\\/g, "/").substr(1);
+        const binTarget = join15("/", orig[binKey]).replace(/\\/g, "/").substr(1);
         if (!binTarget)
           return;
         clean[base] = binTarget;
@@ -38494,13 +38494,13 @@ var require_chalk = __commonJS({
     var proto = Object.defineProperties(() => {
     }, styles);
     function build(_styles, _empty, key) {
-      const builder28 = function() {
-        return applyStyle.apply(builder28, arguments);
+      const builder29 = function() {
+        return applyStyle.apply(builder29, arguments);
       };
-      builder28._styles = _styles;
-      builder28._empty = _empty;
+      builder29._styles = _styles;
+      builder29._empty = _empty;
       const self = this;
-      Object.defineProperty(builder28, "level", {
+      Object.defineProperty(builder29, "level", {
         enumerable: true,
         get() {
           return self.level;
@@ -38509,7 +38509,7 @@ var require_chalk = __commonJS({
           self.level = level;
         }
       });
-      Object.defineProperty(builder28, "enabled", {
+      Object.defineProperty(builder29, "enabled", {
         enumerable: true,
         get() {
           return self.enabled;
@@ -38518,9 +38518,9 @@ var require_chalk = __commonJS({
           self.enabled = enabled;
         }
       });
-      builder28.hasGrey = this.hasGrey || key === "gray" || key === "grey";
-      builder28.__proto__ = proto;
-      return builder28;
+      builder29.hasGrey = this.hasGrey || key === "gray" || key === "grey";
+      builder29.__proto__ = proto;
+      return builder29;
     }
     function applyStyle() {
       const args = arguments;
@@ -38769,7 +38769,7 @@ var require_ms = __commonJS({
       options = options || {};
       var type = typeof val;
       if (type === "string" && val.length > 0) {
-        return parse3(val);
+        return parse4(val);
       } else if (type === "number" && isFinite(val)) {
         return options.long ? fmtLong(val) : fmtShort(val);
       }
@@ -38777,7 +38777,7 @@ var require_ms = __commonJS({
         "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
       );
     };
-    function parse3(str) {
+    function parse4(str) {
       str = String(str);
       if (str.length > 100) {
         return;
@@ -39584,16 +39584,16 @@ var require_spdx_ranges = __commonJS({
 var require_spdx_compare = __commonJS({
   "node_modules/spdx-compare/index.js"(exports) {
     var arrayFindIndex = require_array_find_index();
-    var parse3 = require_spdx_expression_parse();
+    var parse4 = require_spdx_expression_parse();
     var ranges = require_spdx_ranges();
     var notALicenseIdentifier = " is not a simple license identifier";
     var rangeComparison = function(comparison) {
       return function(first, second) {
-        var firstAST = parse3(first);
+        var firstAST = parse4(first);
         if (!firstAST.hasOwnProperty("license")) {
           throw new Error('"' + first + '"' + notALicenseIdentifier);
         }
-        var secondAST = parse3(second);
+        var secondAST = parse4(second);
         if (!secondAST.hasOwnProperty("license")) {
           throw new Error('"' + second + '"' + notALicenseIdentifier);
         }
@@ -39632,7 +39632,7 @@ var require_spdx_compare = __commonJS({
 var require_spdx_satisfies = __commonJS({
   "node_modules/license-checker/node_modules/spdx-satisfies/index.js"(exports, module) {
     var compare = require_spdx_compare();
-    var parse3 = require_spdx_expression_parse();
+    var parse4 = require_spdx_expression_parse();
     var ranges = require_spdx_ranges();
     var rangesAreCompatible = function(first, second) {
       return first.license === second.license || ranges.some(function(range) {
@@ -39707,8 +39707,8 @@ var require_spdx_satisfies = __commonJS({
     }
     module.exports = function(first, second) {
       return recurse(
-        normalizeGPLIdentifiers(parse3(first)),
-        normalizeGPLIdentifiers(parse3(second))
+        normalizeGPLIdentifiers(parse4(first)),
+        normalizeGPLIdentifiers(parse4(second))
       );
     };
   }
@@ -40210,7 +40210,7 @@ var require_lib4 = __commonJS({
 var require_spdx_satisfies2 = __commonJS({
   "node_modules/spdx-satisfies/index.js"(exports, module) {
     var compare = require_spdx_compare();
-    var parse3 = require_spdx_expression_parse();
+    var parse4 = require_spdx_expression_parse();
     var ranges = require_spdx_ranges();
     var rangesAreCompatible = function(first, second) {
       return first.license === second.license || ranges.some(function(range) {
@@ -40315,8 +40315,8 @@ var require_spdx_satisfies2 = __commonJS({
       });
     }
     function satisfies(first, second) {
-      var one = expand3(normalizeGPLIdentifiers(parse3(first)));
-      var two = flatten(normalizeGPLIdentifiers(parse3(second)));
+      var one = expand3(normalizeGPLIdentifiers(parse4(first)));
+      var two = flatten(normalizeGPLIdentifiers(parse4(second)));
       return one.some(function(o) {
         return isANDCompatible(o, two);
       });
@@ -44309,10 +44309,10 @@ var CommandInstance = class {
     };
     this.shim.requireDirectory({ require: req, filename: callerFile }, dir, opts);
   }
-  addHandler(cmd, description, builder28, handler29, commandMiddleware, deprecated) {
+  addHandler(cmd, description, builder29, handler30, commandMiddleware, deprecated) {
     let aliases = [];
     const middlewares = commandMiddlewareFactory(commandMiddleware);
-    handler29 = handler29 || (() => {
+    handler30 = handler30 || (() => {
     });
     if (Array.isArray(cmd)) {
       if (isCommandAndAliases(cmd)) {
@@ -44328,8 +44328,8 @@ var CommandInstance = class {
         command2 = [].concat(command2).concat(cmd.aliases);
       this.addHandler(command2, this.extractDesc(cmd), cmd.builder, cmd.handler, cmd.middlewares, cmd.deprecated);
       return;
-    } else if (isCommandBuilderDefinition(builder28)) {
-      this.addHandler([cmd].concat(aliases), description, builder28.builder, builder28.handler, builder28.middlewares, builder28.deprecated);
+    } else if (isCommandBuilderDefinition(builder29)) {
+      this.addHandler([cmd].concat(aliases), description, builder29.builder, builder29.handler, builder29.middlewares, builder29.deprecated);
       return;
     }
     if (typeof cmd === "string") {
@@ -44359,8 +44359,8 @@ var CommandInstance = class {
       this.handlers[parsedCommand.cmd] = {
         original: cmd,
         description,
-        handler: handler29,
-        builder: builder28 || {},
+        handler: handler30,
+        builder: builder29 || {},
         middlewares,
         deprecated,
         demanded: parsedCommand.demanded,
@@ -44392,22 +44392,22 @@ var CommandInstance = class {
     return isPromise(builderResult) ? builderResult.then((result) => this.applyMiddlewareAndGetResult(isDefaultCommand, commandHandler, result.innerArgv, currentContext, helpOnly, result.aliases, yargs)) : this.applyMiddlewareAndGetResult(isDefaultCommand, commandHandler, builderResult.innerArgv, currentContext, helpOnly, builderResult.aliases, yargs);
   }
   applyBuilderUpdateUsageAndParse(isDefaultCommand, commandHandler, yargs, aliases, parentCommands, commandIndex, helpOnly, helpOrVersionSet) {
-    const builder28 = commandHandler.builder;
+    const builder29 = commandHandler.builder;
     let innerYargs = yargs;
-    if (isCommandBuilderCallback(builder28)) {
+    if (isCommandBuilderCallback(builder29)) {
       yargs.getInternalMethods().getUsageInstance().freeze();
-      const builderOutput = builder28(yargs.getInternalMethods().reset(aliases), helpOrVersionSet);
+      const builderOutput = builder29(yargs.getInternalMethods().reset(aliases), helpOrVersionSet);
       if (isPromise(builderOutput)) {
         return builderOutput.then((output) => {
           innerYargs = isYargsInstance(output) ? output : yargs;
           return this.parseAndUpdateUsage(isDefaultCommand, commandHandler, innerYargs, parentCommands, commandIndex, helpOnly);
         });
       }
-    } else if (isCommandBuilderOptionDefinitions(builder28)) {
+    } else if (isCommandBuilderOptionDefinitions(builder29)) {
       yargs.getInternalMethods().getUsageInstance().freeze();
       innerYargs = yargs.getInternalMethods().reset(aliases);
       Object.keys(commandHandler.builder).forEach((key) => {
-        innerYargs.option(key, builder28[key]);
+        innerYargs.option(key, builder29[key]);
       });
     }
     return this.parseAndUpdateUsage(isDefaultCommand, commandHandler, innerYargs, parentCommands, commandIndex, helpOnly);
@@ -44598,12 +44598,12 @@ var CommandInstance = class {
       const commandString = DEFAULT_MARKER.test(this.defaultCommand.original) ? this.defaultCommand.original : this.defaultCommand.original.replace(/^[^[\]<>]*/, "$0 ");
       yargs.getInternalMethods().getUsageInstance().usage(commandString, this.defaultCommand.description);
     }
-    const builder28 = this.defaultCommand.builder;
-    if (isCommandBuilderCallback(builder28)) {
-      return builder28(yargs, true);
-    } else if (!isCommandBuilderDefinition(builder28)) {
-      Object.keys(builder28).forEach((key) => {
-        yargs.option(key, builder28[key]);
+    const builder29 = this.defaultCommand.builder;
+    if (isCommandBuilderCallback(builder29)) {
+      return builder29(yargs, true);
+    } else if (!isCommandBuilderDefinition(builder29)) {
+      Object.keys(builder29).forEach((key) => {
+        yargs.option(key, builder29[key]);
       });
     }
     return void 0;
@@ -44652,17 +44652,17 @@ var CommandInstance = class {
 function command(usage2, validation2, globalMiddleware, shim3) {
   return new CommandInstance(usage2, validation2, globalMiddleware, shim3);
 }
-function isCommandBuilderDefinition(builder28) {
-  return typeof builder28 === "object" && !!builder28.builder && typeof builder28.handler === "function";
+function isCommandBuilderDefinition(builder29) {
+  return typeof builder29 === "object" && !!builder29.builder && typeof builder29.handler === "function";
 }
 function isCommandAndAliases(cmd) {
   return cmd.every((c) => typeof c === "string");
 }
-function isCommandBuilderCallback(builder28) {
-  return typeof builder28 === "function";
+function isCommandBuilderCallback(builder29) {
+  return typeof builder29 === "function";
 }
-function isCommandBuilderOptionDefinitions(builder28) {
-  return typeof builder28 === "object";
+function isCommandBuilderOptionDefinitions(builder29) {
+  return typeof builder29 === "object";
 }
 function isCommandHandlerDefinition(cmd) {
   return typeof cmd === "object" && !Array.isArray(cmd);
@@ -45286,11 +45286,11 @@ var Completion = class {
     const handlers = this.command.getCommandHandlers();
     for (let i = 0, ii = args.length; i < ii; ++i) {
       if (handlers[args[i]] && handlers[args[i]].builder) {
-        const builder28 = handlers[args[i]].builder;
-        if (isCommandBuilderCallback(builder28)) {
+        const builder29 = handlers[args[i]].builder;
+        if (isCommandBuilderCallback(builder29)) {
           this.indexAfterLastReset = i + 1;
           const y = this.yargs.getInternalMethods().reset();
-          builder28(y, true);
+          builder29(y, true);
           return y.argv;
         }
       }
@@ -46141,13 +46141,13 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_completion, "f").registerFunction(fn);
     return this;
   }
-  command(cmd, description, builder28, handler29, middlewares, deprecated) {
-    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder28, handler29, middlewares, deprecated], arguments.length);
-    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder28, handler29, middlewares, deprecated);
+  command(cmd, description, builder29, handler30, middlewares, deprecated) {
+    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder29, handler30, middlewares, deprecated], arguments.length);
+    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder29, handler30, middlewares, deprecated);
     return this;
   }
-  commands(cmd, description, builder28, handler29, middlewares, deprecated) {
-    return this.command(cmd, description, builder28, handler29, middlewares, deprecated);
+  commands(cmd, description, builder29, handler30, middlewares, deprecated) {
+    return this.command(cmd, description, builder29, handler30, middlewares, deprecated);
   }
   commandDir(dir, opts) {
     argsert("<string> [object]", [dir, opts], arguments.length);
@@ -46330,9 +46330,9 @@ var YargsInstance = class {
     __classPrivateFieldSet(this, _YargsInstance_hasOutput, true, "f");
     if (!__classPrivateFieldGet(this, _YargsInstance_usage, "f").hasCachedHelpMessage()) {
       if (!this.parsed) {
-        const parse3 = this[kRunYargsParserAndExecuteCommands](__classPrivateFieldGet(this, _YargsInstance_processArgs, "f"), void 0, void 0, 0, true);
-        if (isPromise(parse3)) {
-          return parse3.then(() => {
+        const parse4 = this[kRunYargsParserAndExecuteCommands](__classPrivateFieldGet(this, _YargsInstance_processArgs, "f"), void 0, void 0, 0, true);
+        if (isPromise(parse4)) {
+          return parse4.then(() => {
             return __classPrivateFieldGet(this, _YargsInstance_usage, "f").help();
           });
         }
@@ -46676,9 +46676,9 @@ var YargsInstance = class {
     __classPrivateFieldSet(this, _YargsInstance_hasOutput, true, "f");
     if (!__classPrivateFieldGet(this, _YargsInstance_usage, "f").hasCachedHelpMessage()) {
       if (!this.parsed) {
-        const parse3 = this[kRunYargsParserAndExecuteCommands](__classPrivateFieldGet(this, _YargsInstance_processArgs, "f"), void 0, void 0, 0, true);
-        if (isPromise(parse3)) {
-          parse3.then(() => {
+        const parse4 = this[kRunYargsParserAndExecuteCommands](__classPrivateFieldGet(this, _YargsInstance_processArgs, "f"), void 0, void 0, 0, true);
+        if (isPromise(parse4)) {
+          parse4.then(() => {
             __classPrivateFieldGet(this, _YargsInstance_usage, "f").showHelp(level);
           });
           return this;
@@ -46749,12 +46749,12 @@ var YargsInstance = class {
     __classPrivateFieldGet(this, _YargsInstance_shim, "f").y18n.updateLocale(obj);
     return this;
   }
-  usage(msg, description, builder28, handler29) {
-    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder28, handler29], arguments.length);
+  usage(msg, description, builder29, handler30) {
+    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder29, handler30], arguments.length);
     if (description !== void 0) {
       assertNotStrictEqual(msg, null, __classPrivateFieldGet(this, _YargsInstance_shim, "f"));
       if ((msg || "").match(/^\$0( |$)/)) {
-        return this.command(msg, description, builder28, handler29);
+        return this.command(msg, description, builder29, handler30);
       } else {
         throw new YError(".usage() description must start with $0 if being used as alias for .command()");
       }
@@ -46946,24 +46946,24 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type].push(key);
     });
   }
-  [kPopulateParserHintSingleValueDictionary](builder28, type, key, value) {
-    this[kPopulateParserHintDictionary](builder28, type, key, value, (type2, key2, value2) => {
+  [kPopulateParserHintSingleValueDictionary](builder29, type, key, value) {
+    this[kPopulateParserHintDictionary](builder29, type, key, value, (type2, key2, value2) => {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] = value2;
     });
   }
-  [kPopulateParserHintArrayDictionary](builder28, type, key, value) {
-    this[kPopulateParserHintDictionary](builder28, type, key, value, (type2, key2, value2) => {
+  [kPopulateParserHintArrayDictionary](builder29, type, key, value) {
+    this[kPopulateParserHintDictionary](builder29, type, key, value, (type2, key2, value2) => {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] = (__classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] || []).concat(value2);
     });
   }
-  [kPopulateParserHintDictionary](builder28, type, key, value, singleKeyHandler) {
+  [kPopulateParserHintDictionary](builder29, type, key, value, singleKeyHandler) {
     if (Array.isArray(key)) {
       key.forEach((k) => {
-        builder28(k, value);
+        builder29(k, value);
       });
     } else if (((key2) => typeof key2 === "object")(key)) {
       for (const k of objectKeys(key)) {
-        builder28(k, key[k]);
+        builder29(k, key[k]);
       }
     } else {
       singleKeyHandler(type, this[kSanitizeKey](key), value);
@@ -49588,15 +49588,15 @@ function useKeypress(userHandler) {
   signal.current = userHandler;
   useEffect((rl) => {
     let ignore = false;
-    const handler29 = withUpdates((_input, event) => {
+    const handler30 = withUpdates((_input, event) => {
       if (ignore)
         return;
       void signal.current(event, rl);
     });
-    rl.input.on("keypress", handler29);
+    rl.input.on("keypress", handler30);
     return () => {
       ignore = true;
-      rl.input.removeListener("keypress", handler29);
+      rl.input.removeListener("keypress", handler30);
     };
   }, []);
 }
@@ -49784,16 +49784,16 @@ var Emitter = class {
 };
 var SignalExitBase = class {
 };
-var signalExitWrap = (handler29) => {
+var signalExitWrap = (handler30) => {
   return {
     onExit(cb, opts) {
-      return handler29.onExit(cb, opts);
+      return handler30.onExit(cb, opts);
     },
     load() {
-      return handler29.load();
+      return handler30.load();
     },
     unload() {
-      return handler29.unload();
+      return handler30.unload();
     }
   };
 };
@@ -53216,11 +53216,13 @@ var hideCursor = "\x1B[?25l";
 var showCursor = "\x1B[?25h";
 var Spinner = class {
   constructor(text) {
-    this.text = text;
+    this.isRunning = true;
     this.intervalId = setInterval(() => this.printFrame(), 125);
     this.spinnerCharacters = ["\u280B", "\u2819", "\u2839", "\u2838", "\u283C", "\u2834", "\u2826", "\u2827", "\u2807", "\u280F"];
     this.currentSpinnerCharacterIndex = 0;
+    this.text = "";
     process.stdout.write(hideCursor);
+    this.update(text);
   }
   getNextSpinnerCharacter() {
     this.currentSpinnerCharacterIndex = (this.currentSpinnerCharacterIndex + 1) % this.spinnerCharacters.length;
@@ -53234,11 +53236,21 @@ var Spinner = class {
   }
   update(text) {
     this.text = text;
+    this.printFrame(this.spinnerCharacters[this.currentSpinnerCharacterIndex]);
   }
-  complete() {
+  complete(text) {
+    if (!this.isRunning) {
+      return;
+    }
     clearInterval(this.intervalId);
-    process.stdout.write("\n");
+    clearLine(process.stdout, 1);
+    cursorTo(process.stdout, 0);
+    if (text) {
+      process.stdout.write(text);
+      process.stdout.write("\n");
+    }
     process.stdout.write(showCursor);
+    this.isRunning = false;
   }
 };
 
@@ -57617,7 +57629,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-78984547c9b3b7c14792e589f7545a22f5170391`;
+  const localVersion = `0.0.0-db24afe6d0137a064bf881f75895c9e70f6a5e4a`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -58408,9 +58420,88 @@ function buildAuthParser(yargs) {
   return yargs.command(LoginModule).command(LogoutModule);
 }
 
+// bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/workflow.js
+async function measureWorkflow({ name, workflow, prepare, cleanup }) {
+  const spinner = new Spinner("");
+  try {
+    if (prepare) {
+      spinner.update("Preparing environment for workflow execution");
+      await runCommands(prepare);
+      spinner.update("Environment preperation completed");
+    }
+    spinner.update(`Executing workflow (${name})`);
+    performance.mark("start");
+    await runCommands(workflow);
+    performance.mark("end");
+    spinner.update("Workflow completed");
+    if (cleanup) {
+      spinner.update("Cleaning up environment after workflow");
+      await runCommands(cleanup);
+      spinner.update("Environment cleanup complete");
+    }
+    const results = performance.measure(name, "start", "end");
+    spinner.complete(` ${green("\u2713")} ${name}: ${results.duration.toFixed(2)}ms`);
+    return results.toJSON();
+  } finally {
+    spinner.complete();
+  }
+}
+async function runCommands(commands) {
+  if (!commands || commands.length === 0) {
+    return;
+  }
+  for (let cmd of commands) {
+    await ChildProcess.exec(cmd, { mode: "silent" });
+  }
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/loader.js
+var import_yaml5 = __toESM(require_dist2());
+import { readFile } from "fs/promises";
+async function loadWorkflows(src) {
+  const rawWorkflows = await readFile(src, { encoding: "utf-8" });
+  return (0, import_yaml5.parse)(rawWorkflows).workflows;
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/cli.js
+import { join as join14 } from "path";
+function builder28(yargs) {
+  return yargs.option("config-file", {
+    default: ".ng-dev/dx-perf-workflows.yml",
+    type: "string",
+    description: "The path to the workflow definitions in a yml file"
+  }).option("json", {
+    default: false,
+    type: "boolean",
+    description: "Whether to output the results as a json object"
+  });
+}
+async function handler29({ configFile, json }) {
+  const workflows = await loadWorkflows(join14(determineRepoBaseDirFromCwd(), configFile));
+  const results = {};
+  for (const workflow of workflows) {
+    const { name, duration } = await measureWorkflow(workflow);
+    results[name] = duration;
+  }
+  if (json) {
+    process.stdout.write(JSON.stringify(results));
+  }
+}
+var WorkflowsModule = {
+  handler: handler29,
+  builder: builder28,
+  command: "workflows",
+  describe: "Evaluate the performance of the provided workflows"
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/perf/cli.js
+function buildPerfParser(localYargs) {
+  return localYargs.help().strict().demandCommand().command(WorkflowsModule);
+}
+
 // bazel-out/k8-fastbuild/bin/ng-dev/cli.js
 runParserWithCompletedFunctions((yargs) => {
-  return yargs.scriptName("ng-dev").middleware(captureLogOutputForCommand, true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).wrap(120).strict();
+  return yargs.scriptName("ng-dev").middleware(captureLogOutputForCommand, true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).wrap(120).strict();
 });
 /*!
  * Tmp

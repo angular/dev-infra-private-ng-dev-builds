@@ -1,0 +1,45 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { measureWorkflow } from './workflow.js';
+import { loadWorkflows } from './loader.js';
+import { join } from 'path';
+import { determineRepoBaseDirFromCwd } from '../../utils/repo-directory.js';
+/** Builds the checkout pull request command. */
+function builder(yargs) {
+    return yargs
+        .option('config-file', {
+        default: '.ng-dev/dx-perf-workflows.yml',
+        type: 'string',
+        description: 'The path to the workflow definitions in a yml file',
+    })
+        .option('json', {
+        default: false,
+        type: 'boolean',
+        description: 'Whether to output the results as a json object',
+    });
+}
+/** Handles the checkout pull request command. */
+async function handler({ configFile, json }) {
+    const workflows = await loadWorkflows(join(determineRepoBaseDirFromCwd(), configFile));
+    const results = {};
+    for (const workflow of workflows) {
+        const { name, duration } = await measureWorkflow(workflow);
+        results[name] = duration;
+    }
+    if (json) {
+        process.stdout.write(JSON.stringify(results));
+    }
+}
+/** yargs command module for checking out a PR. */
+export const WorkflowsModule = {
+    handler,
+    builder,
+    command: 'workflows',
+    describe: 'Evaluate the performance of the provided workflows',
+};
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2xpLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3BlcmYvd29ya2Zsb3cvY2xpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7R0FNRztBQUdILE9BQU8sRUFBQyxlQUFlLEVBQUMsTUFBTSxlQUFlLENBQUM7QUFDOUMsT0FBTyxFQUFDLGFBQWEsRUFBQyxNQUFNLGFBQWEsQ0FBQztBQUMxQyxPQUFPLEVBQUMsSUFBSSxFQUFDLE1BQU0sTUFBTSxDQUFDO0FBQzFCLE9BQU8sRUFBQywyQkFBMkIsRUFBQyxNQUFNLCtCQUErQixDQUFDO0FBTzFFLGdEQUFnRDtBQUNoRCxTQUFTLE9BQU8sQ0FBQyxLQUFXO0lBQzFCLE9BQU8sS0FBSztTQUNULE1BQU0sQ0FBQyxhQUE2QixFQUFFO1FBQ3JDLE9BQU8sRUFBRSwrQkFBK0I7UUFDeEMsSUFBSSxFQUFFLFFBQVE7UUFDZCxXQUFXLEVBQUUsb0RBQW9EO0tBQ2xFLENBQUM7U0FDRCxNQUFNLENBQUMsTUFBTSxFQUFFO1FBQ2QsT0FBTyxFQUFFLEtBQUs7UUFDZCxJQUFJLEVBQUUsU0FBUztRQUNmLFdBQVcsRUFBRSxnREFBZ0Q7S0FDOUQsQ0FBQyxDQUFDO0FBQ1AsQ0FBQztBQUVELGlEQUFpRDtBQUNqRCxLQUFLLFVBQVUsT0FBTyxDQUFDLEVBQUMsVUFBVSxFQUFFLElBQUksRUFBa0I7SUFDeEQsTUFBTSxTQUFTLEdBQUcsTUFBTSxhQUFhLENBQUMsSUFBSSxDQUFDLDJCQUEyQixFQUFFLEVBQUUsVUFBVSxDQUFDLENBQUMsQ0FBQztJQUN2RixNQUFNLE9BQU8sR0FBNEIsRUFBRSxDQUFDO0lBQzVDLEtBQUssTUFBTSxRQUFRLElBQUksU0FBUyxFQUFFLENBQUM7UUFDakMsTUFBTSxFQUFDLElBQUksRUFBRSxRQUFRLEVBQUMsR0FBRyxNQUFNLGVBQWUsQ0FBQyxRQUFRLENBQUMsQ0FBQztRQUN6RCxPQUFPLENBQUMsSUFBSSxDQUFDLEdBQUcsUUFBUSxDQUFDO0lBQzNCLENBQUM7SUFFRCxJQUFJLElBQUksRUFBRSxDQUFDO1FBQ1QsT0FBTyxDQUFDLE1BQU0sQ0FBQyxLQUFLLENBQUMsSUFBSSxDQUFDLFNBQVMsQ0FBQyxPQUFPLENBQUMsQ0FBQyxDQUFDO0lBQ2hELENBQUM7QUFDSCxDQUFDO0FBRUQsa0RBQWtEO0FBQ2xELE1BQU0sQ0FBQyxNQUFNLGVBQWUsR0FBdUM7SUFDakUsT0FBTztJQUNQLE9BQU87SUFDUCxPQUFPLEVBQUUsV0FBVztJQUNwQixRQUFRLEVBQUUsb0RBQW9EO0NBQy9ELENBQUMiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIEBsaWNlbnNlXG4gKiBDb3B5cmlnaHQgR29vZ2xlIExMQ1xuICpcbiAqIFVzZSBvZiB0aGlzIHNvdXJjZSBjb2RlIGlzIGdvdmVybmVkIGJ5IGFuIE1JVC1zdHlsZSBsaWNlbnNlIHRoYXQgY2FuIGJlXG4gKiBmb3VuZCBpbiB0aGUgTElDRU5TRSBmaWxlIGF0IGh0dHBzOi8vYW5ndWxhci5pby9saWNlbnNlXG4gKi9cblxuaW1wb3J0IHtBcmd2LCBDb21tYW5kTW9kdWxlfSBmcm9tICd5YXJncyc7XG5pbXBvcnQge21lYXN1cmVXb3JrZmxvd30gZnJvbSAnLi93b3JrZmxvdy5qcyc7XG5pbXBvcnQge2xvYWRXb3JrZmxvd3N9IGZyb20gJy4vbG9hZGVyLmpzJztcbmltcG9ydCB7am9pbn0gZnJvbSAncGF0aCc7XG5pbXBvcnQge2RldGVybWluZVJlcG9CYXNlRGlyRnJvbUN3ZH0gZnJvbSAnLi4vLi4vdXRpbHMvcmVwby1kaXJlY3RvcnkuanMnO1xuXG5pbnRlcmZhY2UgV29ya2Zsb3dzUGFyYW1zIHtcbiAgY29uZmlnRmlsZTogc3RyaW5nO1xuICBqc29uOiBib29sZWFuO1xufVxuXG4vKiogQnVpbGRzIHRoZSBjaGVja291dCBwdWxsIHJlcXVlc3QgY29tbWFuZC4gKi9cbmZ1bmN0aW9uIGJ1aWxkZXIoeWFyZ3M6IEFyZ3YpIHtcbiAgcmV0dXJuIHlhcmdzXG4gICAgLm9wdGlvbignY29uZmlnLWZpbGUnIGFzICdjb25maWdGaWxlJywge1xuICAgICAgZGVmYXVsdDogJy5uZy1kZXYvZHgtcGVyZi13b3JrZmxvd3MueW1sJyxcbiAgICAgIHR5cGU6ICdzdHJpbmcnLFxuICAgICAgZGVzY3JpcHRpb246ICdUaGUgcGF0aCB0byB0aGUgd29ya2Zsb3cgZGVmaW5pdGlvbnMgaW4gYSB5bWwgZmlsZScsXG4gICAgfSlcbiAgICAub3B0aW9uKCdqc29uJywge1xuICAgICAgZGVmYXVsdDogZmFsc2UsXG4gICAgICB0eXBlOiAnYm9vbGVhbicsXG4gICAgICBkZXNjcmlwdGlvbjogJ1doZXRoZXIgdG8gb3V0cHV0IHRoZSByZXN1bHRzIGFzIGEganNvbiBvYmplY3QnLFxuICAgIH0pO1xufVxuXG4vKiogSGFuZGxlcyB0aGUgY2hlY2tvdXQgcHVsbCByZXF1ZXN0IGNvbW1hbmQuICovXG5hc3luYyBmdW5jdGlvbiBoYW5kbGVyKHtjb25maWdGaWxlLCBqc29ufTogV29ya2Zsb3dzUGFyYW1zKSB7XG4gIGNvbnN0IHdvcmtmbG93cyA9IGF3YWl0IGxvYWRXb3JrZmxvd3Moam9pbihkZXRlcm1pbmVSZXBvQmFzZURpckZyb21Dd2QoKSwgY29uZmlnRmlsZSkpO1xuICBjb25zdCByZXN1bHRzOiB7W2tleTogc3RyaW5nXTogbnVtYmVyfSA9IHt9O1xuICBmb3IgKGNvbnN0IHdvcmtmbG93IG9mIHdvcmtmbG93cykge1xuICAgIGNvbnN0IHtuYW1lLCBkdXJhdGlvbn0gPSBhd2FpdCBtZWFzdXJlV29ya2Zsb3cod29ya2Zsb3cpO1xuICAgIHJlc3VsdHNbbmFtZV0gPSBkdXJhdGlvbjtcbiAgfVxuXG4gIGlmIChqc29uKSB7XG4gICAgcHJvY2Vzcy5zdGRvdXQud3JpdGUoSlNPTi5zdHJpbmdpZnkocmVzdWx0cykpO1xuICB9XG59XG5cbi8qKiB5YXJncyBjb21tYW5kIG1vZHVsZSBmb3IgY2hlY2tpbmcgb3V0IGEgUFIuICovXG5leHBvcnQgY29uc3QgV29ya2Zsb3dzTW9kdWxlOiBDb21tYW5kTW9kdWxlPHt9LCBXb3JrZmxvd3NQYXJhbXM+ID0ge1xuICBoYW5kbGVyLFxuICBidWlsZGVyLFxuICBjb21tYW5kOiAnd29ya2Zsb3dzJyxcbiAgZGVzY3JpYmU6ICdFdmFsdWF0ZSB0aGUgcGVyZm9ybWFuY2Ugb2YgdGhlIHByb3ZpZGVkIHdvcmtmbG93cycsXG59O1xuIl19

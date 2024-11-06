@@ -5,7 +5,7 @@
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-import { SpawnOptions as _SpawnOptions, SpawnSyncOptions as _SpawnSyncOptions } from 'child_process';
+import { SpawnOptions as _SpawnOptions, SpawnSyncOptions as _SpawnSyncOptions, ExecOptions as _ExecOptions } from 'child_process';
 /** Interface describing the options for spawning a process synchronously. */
 export interface SpawnSyncOptions extends Omit<_SpawnSyncOptions, 'shell' | 'stdio'> {
     /** Whether to prevent exit codes being treated as failures. */
@@ -18,6 +18,13 @@ export interface SpawnOptions extends Omit<_SpawnOptions, 'shell' | 'stdio'> {
     /** Whether to prevent exit codes being treated as failures. */
     suppressErrorOnFailingExitCode?: boolean;
     input?: string;
+}
+/** Interface describing the options for exec-ing a process. */
+export interface ExecOptions extends Omit<_ExecOptions, 'shell' | 'stdio'> {
+    /** Console output mode. Defaults to "enabled". */
+    mode?: 'enabled' | 'silent' | 'on-error';
+    /** Whether to prevent exit codes being treated as failures. */
+    suppressErrorOnFailingExitCode?: boolean;
 }
 /** Interface describing the options for spawning an interactive process. */
 export type SpawnInteractiveCommandOptions = Omit<_SpawnOptions, 'shell' | 'stdio'>;
@@ -54,4 +61,5 @@ export declare abstract class ChildProcess {
      * @returns The command's stdout and stderr.
      */
     static spawnSync(command: string, args: string[], options?: SpawnSyncOptions): SpawnResult;
+    static exec(command: string, options?: ExecOptions): Promise<unknown>;
 }
