@@ -53212,45 +53212,81 @@ import { join as join5 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/spinner.js
 import { cursorTo, clearLine } from "readline";
+var IS_CI = process.env["CI"];
 var hideCursor = "\x1B[?25l";
 var showCursor = "\x1B[?25h";
 var Spinner = class {
+  set text(text) {
+    this._text = text || this._text;
+    this.printFrame(this.getNextSpinnerCharacter(), text);
+  }
+  get text() {
+    return this._text;
+  }
   constructor(text) {
-    this.isRunning = true;
-    this.intervalId = setInterval(() => this.printFrame(), 125);
+    this.completed = false;
+    this.intervalId = setInterval(() => this.printFrame(), IS_CI ? 2500 : 125);
     this.spinnerCharacters = ["\u280B", "\u2819", "\u2839", "\u2838", "\u283C", "\u2834", "\u2826", "\u2827", "\u2807", "\u280F"];
     this.currentSpinnerCharacterIndex = 0;
-    this.text = "";
-    process.stdout.write(hideCursor);
-    this.update(text);
+    this._text = "";
+    this.hideCursor();
+    this.text = text;
+  }
+  update(text) {
+    this.text = text;
+  }
+  success(text) {
+    this._complete(green("\u2713"), text);
+  }
+  failure(text) {
+    this._complete(red("\u2718"), text);
+  }
+  complete() {
+    this._complete("", this.text);
+  }
+  _complete(prefix, text) {
+    if (this.completed) {
+      return;
+    }
+    clearInterval(this.intervalId);
+    this.printFrame(prefix, text);
+    process.stdout.write("\n");
+    this.showCursor();
+    this.completed = true;
   }
   getNextSpinnerCharacter() {
     this.currentSpinnerCharacterIndex = (this.currentSpinnerCharacterIndex + 1) % this.spinnerCharacters.length;
     return this.spinnerCharacters[this.currentSpinnerCharacterIndex];
   }
-  printFrame(prefix = this.getNextSpinnerCharacter(), text = this.text) {
+  printFrame(prefix = this.getNextSpinnerCharacter(), text) {
+    if (IS_CI) {
+      this.printNextCIFrame(text);
+    } else {
+      this.printNextLocalFrame(prefix, text);
+    }
+  }
+  printNextLocalFrame(prefix, text) {
     cursorTo(process.stdout, 0);
-    process.stdout.write(` ${prefix} ${text}`);
+    process.stdout.write(` ${prefix} ${text || this.text}`);
     clearLine(process.stdout, 1);
-    cursorTo(process.stdout, 0);
   }
-  update(text) {
-    this.text = text;
-    this.printFrame(this.spinnerCharacters[this.currentSpinnerCharacterIndex]);
-  }
-  complete(text) {
-    if (!this.isRunning) {
+  printNextCIFrame(text) {
+    if (text) {
+      process.stdout.write(`
+${text}.`);
       return;
     }
-    clearInterval(this.intervalId);
-    clearLine(process.stdout, 1);
-    cursorTo(process.stdout, 0);
-    if (text) {
-      process.stdout.write(text);
-      process.stdout.write("\n");
+    process.stdout.write(".");
+  }
+  hideCursor() {
+    if (!IS_CI) {
+      process.stdout.write(hideCursor);
     }
-    process.stdout.write(showCursor);
-    this.isRunning = false;
+  }
+  showCursor() {
+    if (!IS_CI) {
+      process.stdout.write(showCursor);
+    }
   }
 };
 
@@ -57629,7 +57665,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d99222bacaf01a2024ad0098bb4eecdeb2518c3b`;
+  const localVersion = `0.0.0-11967c8271b12267398936a06f4dcb1379db553c`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -58422,7 +58458,7 @@ function buildAuthParser(yargs) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/workflow.js
 async function measureWorkflow({ name, workflow, prepare, cleanup }) {
-  const spinner = new Spinner("");
+  const spinner = new Spinner();
   try {
     if (prepare) {
       spinner.update("Preparing environment for workflow execution");
@@ -58440,7 +58476,7 @@ async function measureWorkflow({ name, workflow, prepare, cleanup }) {
       spinner.update("Environment cleanup complete");
     }
     const results = performance.measure(name, "start", "end");
-    spinner.complete(` ${green("\u2713")} ${name}: ${results.duration.toFixed(2)}ms`);
+    spinner.success(`${name}: ${results.duration.toFixed(2)}ms`);
     return results.toJSON();
   } finally {
     spinner.complete();
