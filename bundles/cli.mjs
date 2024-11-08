@@ -47482,11 +47482,11 @@ var CiModule = class extends BaseModule {
       if (result.status === null) {
         Log.info(`${result.name} branch was not found on CI`);
       } else if (result.status === "passing") {
-        Log.info(`${label} \u2705`);
+        Log.info(`${label} ${green("\u2714")}`);
       } else if (result.status === "pending") {
-        Log.info(`${label} \u{1F7E1}`);
+        Log.info(`${label} ${yellow("\u23FA")}`);
       } else {
-        Log.info(`${label} \u274C`);
+        Log.info(`${label} ${red("\u2718")}`);
       }
     });
     Log.info.groupEnd();
@@ -48844,7 +48844,7 @@ var G3Module = class extends BaseModule {
     Log.info.group(bold("g3 branch check"));
     if (stats.files === 0 && stats.separateFiles === 0) {
       Log.info(`${stats.commits} commits between g3 and ${this.git.mainBranchName}`);
-      Log.info("\u2705  No sync is needed at this time");
+      Log.info(` ${green("\u2714")} No sync is needed at this time`);
     } else if (stats.separateFiles > 0) {
       Log.info(`${stats.separateFiles} primitives files changed, ${stats.files} Angular files changed, ${stats.insertions} insertions(+), ${stats.deletions} deletions(-) from ${stats.commits} commits will be included in the next sync
 Note: Shared primivites code has been merged. Only more Shared Primitives code can be merged until the next sync is landed`);
@@ -48962,9 +48962,9 @@ var ServicesModule = class extends BaseModule {
     for (const status of statuses) {
       const name = status.name.padEnd(serviceNameMinLength);
       if (status.status === "passing") {
-        Log.info(`${name} \u2705`);
+        Log.info(`${name} ${green("\u2714")}`);
       } else {
-        Log.info.group(`${name} \u274C (Updated: ${status.lastUpdated.toLocaleString()})`);
+        Log.info.group(`${name} ${red("\u2718")} (Updated: ${status.lastUpdated.toLocaleString()})`);
         Log.info(`  Details: ${status.description}`);
         Log.info(`  Status URL: ${status.statusUrl}`);
         Log.info.groupEnd();
@@ -51068,7 +51068,7 @@ async function updateCaretakerTeamViaPrompt() {
     return;
   }
   if (JSON.stringify(selected) === JSON.stringify(current)) {
-    Log.info(green("  \u221A  Caretaker group already up to date."));
+    Log.info(green("  \u2714  Caretaker group already up to date."));
     return;
   }
   try {
@@ -51077,7 +51077,7 @@ async function updateCaretakerTeamViaPrompt() {
     Log.error("  \u2718  Failed to update caretaker group.");
     return;
   }
-  Log.info(green("  \u221A  Successfully updated caretaker group"));
+  Log.info(green("  \u2714  Successfully updated caretaker group"));
 }
 async function getGroupMembers(group) {
   const git = await AuthenticatedGitClient.get();
@@ -51398,7 +51398,7 @@ async function validateFile(filePath, isErrorMode) {
   const commitMessage = readFileSync5(resolve5(git.baseDir, filePath), "utf8");
   const { valid, errors } = await validateCommitMessage(commitMessage);
   if (valid) {
-    Log.info(`${green("\u221A")}  Valid commit message`);
+    Log.info(`${green("\u2714")}  Valid commit message`);
     deleteCommitMessageDraft(filePath);
     process.exitCode = 0;
     return;
@@ -51493,7 +51493,7 @@ async function validateCommitRange(from, to) {
     allCommitsInRangeValid = allCommitsInRangeValid && valid;
   }
   if (allCommitsInRangeValid) {
-    Log.info(green("\u221A  All commit messages in range valid."));
+    Log.info(green("\u2714  All commit messages in range valid."));
   } else {
     Log.error("\u2718  Invalid commit message");
     errors.forEach(([header, validationErrors]) => {
@@ -53014,7 +53014,7 @@ async function formatFiles(files) {
     Log.error(`Formatting failed, see errors above for more information.`);
     return 1;
   }
-  Log.info(green(`\u221A  Formatting complete.`));
+  Log.info(green(`\u2714  Formatting complete.`));
   return 0;
 }
 async function checkFiles(files) {
@@ -53043,7 +53043,7 @@ async function checkFiles(files) {
       return 1;
     }
   } else {
-    Log.info(green("\u221A  All files correctly formatted."));
+    Log.info(green("\u2714  All files correctly formatted."));
     return 0;
   }
 }
@@ -53610,7 +53610,7 @@ async function verify() {
   const ngBotYaml = readFileSync6(NGBOT_CONFIG_YAML_PATH, "utf8");
   try {
     (0, import_yaml2.parse)(ngBotYaml);
-    Log.info(green("\u221A  Valid NgBot YAML config"));
+    Log.info(green("\u2714  Valid NgBot YAML config"));
   } catch (e) {
     Log.error(`! Invalid NgBot YAML config`);
     Log.error(e);
@@ -57629,7 +57629,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-6e89d0ae1f4cbd70b86d6790ef840106ec98595f`;
+  const localVersion = `0.0.0-d99222bacaf01a2024ad0098bb4eecdeb2518c3b`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -58333,10 +58333,10 @@ function main(approve, config, printWarnings) {
   Log.info(green(`   Current number of cycles: ${yellow(cycles.length.toString())}`));
   if (approve) {
     writeFileSync4(goldenFile, JSON.stringify(actual, null, 2));
-    Log.info(green("\u2705  Updated golden file."));
+    Log.info(green("\u2714  Updated golden file."));
     return 0;
   } else if (!existsSync3(goldenFile)) {
-    Log.error(`\u274C  Could not find golden file: ${goldenFile}`);
+    Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
   const warningsCount = analyzer.unresolvedFiles.size + analyzer.unresolvedModules.size;
@@ -58355,10 +58355,10 @@ function main(approve, config, printWarnings) {
   const { fixedCircularDeps, newCircularDeps } = compareGoldens(actual, expected);
   const isMatching = fixedCircularDeps.length === 0 && newCircularDeps.length === 0;
   if (isMatching) {
-    Log.info(green("\u2705  Golden matches current circular dependencies."));
+    Log.info(green("\u2714  Golden matches current circular dependencies."));
     return 0;
   }
-  Log.error("\u274C  Golden does not match current circular dependencies.");
+  Log.error("\u2718  Golden does not match current circular dependencies.");
   if (newCircularDeps.length !== 0) {
     Log.error(`   New circular dependencies which are not allowed:`);
     newCircularDeps.forEach((c) => Log.error(`     \u2022 ${convertReferenceChainToString(c)}`));
