@@ -51031,7 +51031,13 @@ ${page}${helpTipBottom}${choiceDescription}${import_ansi_escapes4.default.cursor
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/prompt.js
 var Prompt = class {
 };
-Prompt.confirm = esm_default5;
+Prompt.confirm = (_config, _context) => {
+  const config = {
+    default: false,
+    ..._config
+  };
+  return esm_default5(config, _context);
+};
 Prompt.input = esm_default6;
 Prompt.checkbox = esm_default3;
 Prompt.select = esm_default12;
@@ -57665,7 +57671,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-63dad12f75b2245d2ba27895f8eed28ea7770be1`;
+  const localVersion = `0.0.0-3793c199a8c97b63423a20c755c9f55343c52f55`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
