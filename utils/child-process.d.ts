@@ -7,17 +7,17 @@
  */
 import { SpawnOptions as _SpawnOptions, SpawnSyncOptions as _SpawnSyncOptions, ExecOptions as _ExecOptions } from 'child_process';
 export interface CommonCmdOpts {
+    input?: string;
     /** Console output mode. Defaults to "enabled". */
     mode?: 'enabled' | 'silent' | 'on-error';
     /** Whether to prevent exit codes being treated as failures. */
     suppressErrorOnFailingExitCode?: boolean;
 }
 /** Interface describing the options for spawning a process synchronously. */
-export interface SpawnSyncOptions extends CommonCmdOpts, Omit<_SpawnSyncOptions, 'shell' | 'stdio'> {
+export interface SpawnSyncOptions extends CommonCmdOpts, Omit<_SpawnSyncOptions, 'shell' | 'stdio' | 'input'> {
 }
 /** Interface describing the options for spawning a process. */
 export interface SpawnOptions extends CommonCmdOpts, Omit<_SpawnOptions, 'shell' | 'stdio'> {
-    input?: string;
 }
 /** Interface describing the options for exec-ing a process. */
 export interface ExecOptions extends CommonCmdOpts, Omit<_ExecOptions, 'shell' | 'stdio'> {
