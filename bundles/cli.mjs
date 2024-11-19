@@ -57682,7 +57682,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-81dd606409b43d062b1346dccff6de896d4e05fa`;
+  const localVersion = `0.0.0-f9ad7d8350ef729311963c32cbc814c37a0d7918`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -58523,22 +58523,32 @@ function builder28(yargs) {
     default: ".ng-dev/dx-perf-workflows.yml",
     type: "string",
     description: "The path to the workflow definitions in a yml file"
-  }).option("json", {
+  }).option("list", {
     default: false,
     type: "boolean",
-    description: "Whether to output the results as a json object"
+    description: "Whether to get back a list of workflows that can be executed"
+  }).option("name", {
+    type: "string",
+    description: "A specific workflow to run by name"
   });
 }
-async function handler29({ configFile, json }) {
+async function handler29({ configFile, list, name }) {
   const workflows = await loadWorkflows(join14(determineRepoBaseDirFromCwd(), configFile));
+  if (list) {
+    process.stdout.write(JSON.stringify(Object.keys(workflows)));
+    return;
+  }
+  if (name) {
+    const { duration } = await measureWorkflow(workflows[name]);
+    process.stdout.write(JSON.stringify({ [name]: duration }));
+    return;
+  }
   const results = {};
-  for (const workflow of workflows) {
-    const { name, duration } = await measureWorkflow(workflow);
-    results[name] = duration;
+  for (const workflow of Object.values(workflows)) {
+    const { name: name2, duration } = await measureWorkflow(workflow);
+    results[name2] = duration;
   }
-  if (json) {
-    process.stdout.write(JSON.stringify(results));
-  }
+  process.stdout.write(JSON.stringify(results));
 }
 var WorkflowsModule = {
   handler: handler29,

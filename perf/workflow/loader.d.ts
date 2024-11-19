@@ -4,4 +4,6 @@ export interface Workflow {
     prepare?: string[];
     cleanup?: string[];
 }
-export declare function loadWorkflows(src: string): Promise<Workflow[]>;
+export declare function loadWorkflows(src: string): Promise<{
+    [key: string]: Workflow;
+}>;

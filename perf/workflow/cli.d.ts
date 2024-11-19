@@ -8,7 +8,8 @@
 import { CommandModule } from 'yargs';
 interface WorkflowsParams {
     configFile: string;
-    json: boolean;
+    list: boolean;
+    name?: string;
 }
 /** yargs command module for checking out a PR. */
 export declare const WorkflowsModule: CommandModule<{}, WorkflowsParams>;
