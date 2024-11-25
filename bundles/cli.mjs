@@ -57682,7 +57682,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-01c8c16f830d02110c28640aea16f145a7937080`;
+  const localVersion = `0.0.0-2ca2e982c83cbf1da2213c109f6c3654c409b02f`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -58494,7 +58494,10 @@ async function measureWorkflow({ name, workflow, prepare, cleanup }) {
     }
     const results = performance.measure(name, "start", "end");
     spinner.success(`${name}: ${results.duration.toFixed(2)}ms`);
-    return results.toJSON();
+    return {
+      name,
+      value: results.duration
+    };
   } finally {
     spinner.complete();
   }
@@ -58518,6 +58521,24 @@ async function loadWorkflows(src) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/cli.js
 import { join as join14 } from "path";
+
+// bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/database.js
+import { Spanner } from "@google-cloud/spanner";
+async function addWorkflowPerformanceResult(result) {
+  const spanner = new Spanner({
+    projectId: "internal-200822"
+  });
+  const instance = spanner.instance("ng-measurables");
+  const database = instance.database("commit_performance");
+  const workflowPerformanceTable = database.table("WorkflowPerformance");
+  try {
+    await workflowPerformanceTable.insert(result);
+  } finally {
+    await database.close();
+  }
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/cli.js
 function builder28(yargs) {
   return yargs.option("config-file", {
     default: ".ng-dev/dx-perf-workflows.yml",
@@ -58530,25 +58551,41 @@ function builder28(yargs) {
   }).option("name", {
     type: "string",
     description: "A specific workflow to run by name"
+  }).option("commit-sha", {
+    type: "string",
+    description: "The commit sha to associate the measurement with, uploading it to our database"
   });
 }
-async function handler29({ configFile, list, name }) {
+async function handler29({ configFile, list, name, commitSha }) {
   const workflows = await loadWorkflows(join14(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
     return;
   }
+  const results = [];
   if (name) {
-    const { duration } = await measureWorkflow(workflows[name]);
-    process.stdout.write(JSON.stringify({ [name]: duration }));
-    return;
+    const { value } = await measureWorkflow(workflows[name]);
+    results.push({ value, name });
+  } else {
+    for (const workflow of Object.values(workflows)) {
+      const { name: name2, value } = await measureWorkflow(workflow);
+      results.push({ value, name: name2 });
+    }
   }
-  const results = {};
-  for (const workflow of Object.values(workflows)) {
-    const { name: name2, duration } = await measureWorkflow(workflow);
-    results[name2] = duration;
+  if (commitSha) {
+    const spinner = new Spinner("Uploading performance results to database");
+    try {
+      for (let { value, name: name2 } of results) {
+        await addWorkflowPerformanceResult({
+          name: name2,
+          value,
+          commit_sha: commitSha
+        });
+      }
+    } finally {
+      spinner.success("Upload complete");
+    }
   }
-  process.stdout.write(JSON.stringify(results));
 }
 var WorkflowsModule = {
   handler: handler29,

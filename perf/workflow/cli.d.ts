@@ -10,6 +10,7 @@ interface WorkflowsParams {
     configFile: string;
     list: boolean;
     name?: string;
+    commitSha?: string;
 }
 /** yargs command module for checking out a PR. */
 export declare const WorkflowsModule: CommandModule<{}, WorkflowsParams>;
