@@ -34,41 +34,31 @@ export declare abstract class Log {
     /** Write to the console for at INFO logging level */
     static info: {
         (...values: unknown[]): void;
-        /** Start a group at the LOG_LEVEL, optionally starting it as collapsed. */
         group(label: string, collapsed?: boolean): void;
-        /** End the group at the LOG_LEVEL. */
         groupEnd(): void;
     };
     /** Write to the console for at ERROR logging level */
     static error: {
         (...values: unknown[]): void;
-        /** Start a group at the LOG_LEVEL, optionally starting it as collapsed. */
         group(label: string, collapsed?: boolean): void;
-        /** End the group at the LOG_LEVEL. */
         groupEnd(): void;
     };
     /** Write to the console for at DEBUG logging level */
     static debug: {
         (...values: unknown[]): void;
-        /** Start a group at the LOG_LEVEL, optionally starting it as collapsed. */
         group(label: string, collapsed?: boolean): void;
-        /** End the group at the LOG_LEVEL. */
         groupEnd(): void;
     };
     /** Write to the console for at LOG logging level */
     static log: {
         (...values: unknown[]): void;
-        /** Start a group at the LOG_LEVEL, optionally starting it as collapsed. */
         group(label: string, collapsed?: boolean): void;
-        /** End the group at the LOG_LEVEL. */
         groupEnd(): void;
     };
     /** Write to the console for at WARN logging level */
     static warn: {
         (...values: unknown[]): void;
-        /** Start a group at the LOG_LEVEL, optionally starting it as collapsed. */
         group(label: string, collapsed?: boolean): void;
-        /** End the group at the LOG_LEVEL. */
         groupEnd(): void;
     };
 }
