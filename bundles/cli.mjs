@@ -57682,7 +57682,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-4a7240fbb160c743629950a6eeafe50dd773b027`;
+  const localVersion = `0.0.0-d4ffcd67a4788bec64b7d61a68d2ba3aa83eed61`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -58515,8 +58515,15 @@ async function runCommands(commands) {
 var import_yaml5 = __toESM(require_dist2());
 import { readFile } from "fs/promises";
 async function loadWorkflows(src) {
+  const filteredWorkflows = {};
   const rawWorkflows = await readFile(src, { encoding: "utf-8" });
-  return (0, import_yaml5.parse)(rawWorkflows).workflows;
+  const workflows = (0, import_yaml5.parse)(rawWorkflows).workflows;
+  for (const [name, workflow] of Object.entries(workflows)) {
+    if (workflow.disabled !== true) {
+      filteredWorkflows[name] = workflow;
+    }
+  }
+  return filteredWorkflows;
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/cli.js
