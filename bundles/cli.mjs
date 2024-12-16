@@ -34494,6 +34494,7 @@ var require_core = __commonJS({
       "node:repl": [">= 14.18 && < 15", ">= 16"],
       "node:sea": [">= 20.12 && < 21", ">= 21.7"],
       smalloc: ">= 0.11.5 && < 3",
+      "node:sqlite": ">= 23.4",
       _stream_duplex: ">= 0.9.4",
       "node:_stream_duplex": [">= 14.18 && < 15", ">= 16"],
       _stream_transform: ">= 0.9.4",
@@ -35060,7 +35061,9 @@ var require_core2 = __commonJS({
       "node:readline/promises": ">= 17",
       repl: true,
       "node:repl": [">= 14.18 && < 15", ">= 16"],
+      "node:sea": [">= 20.12 && < 21", ">= 21.7"],
       smalloc: ">= 0.11.5 && < 3",
+      "node:sqlite": ">= 23.4",
       _stream_duplex: ">= 0.9.4",
       "node:_stream_duplex": [">= 14.18 && < 15", ">= 16"],
       _stream_transform: ">= 0.9.4",
@@ -35087,6 +35090,8 @@ var require_core2 = __commonJS({
       "node:sys": [">= 14.18 && < 15", ">= 16"],
       "test/reporters": ">= 19.9 && < 20.2",
       "node:test/reporters": [">= 18.17 && < 19", ">= 19.9", ">= 20"],
+      "test/mock_loader": ">= 22.3 && < 22.7",
+      "node:test/mock_loader": ">= 22.3 && < 22.7",
       "node:test": [">= 16.17 && < 17", ">= 18"],
       timers: true,
       "node:timers": [">= 14.18 && < 15", ">= 16"],
@@ -57744,7 +57749,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-18d61ca14bb1732e065a81aeaf4c86606d97059e`;
+  const localVersion = `0.0.0-2e0abc2882242fac98af9e90bb05bd7f426726a7`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
