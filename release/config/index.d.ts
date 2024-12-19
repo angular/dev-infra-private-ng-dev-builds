@@ -54,6 +54,11 @@ export interface ReleaseConfig {
      * the release will abort the release and print the `ReleasePrecheckError` error.
      */
     prereleaseCheck?: (newVersion: string, builtPackagesWithInfo: BuiltPackageWithInfo[]) => Promise<void>;
+    /**
+     * Whether the repository is in rules_js interop mode, relying on
+     * integrity files to be automatically updated.
+     */
+    rulesJsInteropMode?: boolean;
 }
 /**
  * Type describing a built package with its associated NPM package info and package
