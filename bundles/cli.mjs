@@ -34494,7 +34494,7 @@ var require_core = __commonJS({
       "node:repl": [">= 14.18 && < 15", ">= 16"],
       "node:sea": [">= 20.12 && < 21", ">= 21.7"],
       smalloc: ">= 0.11.5 && < 3",
-      "node:sqlite": ">= 23.4",
+      "node:sqlite": [">= 22.13 && < 23", ">= 23.4"],
       _stream_duplex: ">= 0.9.4",
       "node:_stream_duplex": [">= 14.18 && < 15", ">= 16"],
       _stream_transform: ">= 0.9.4",
@@ -57762,7 +57762,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-8e8bf8fcb2b720d1f78c89c0791475f54b3d0b7f`;
+  const localVersion = `0.0.0-f7fc52fe999eacb75a2f2559e404723e7be64931`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path7.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
