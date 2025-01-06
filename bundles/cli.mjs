@@ -10,7 +10,6 @@ import {
   GITHUB_TOKEN_GENERATE_URL,
   GitClient,
   GitCommandError,
-  GraphqlResponseError,
   ReleaseNotesLevel,
   ScopeRequirement,
   actionLabels,
@@ -30,17 +29,19 @@ import {
   getLtsNpmDistTagOfMajor,
   getNextBranchName,
   getRepositoryGitUrl,
+  getUserAgent,
   getVersionInfoForBranch,
   isGithubApiError,
   isVersionBranch,
   isVersionPublishedToNpm,
   managedLabels,
   mergeLabels,
+  request,
   require_dist,
   require_semver,
   requiresLabels,
   targetLabels
-} from "./chunk-UDANNA3D.mjs";
+} from "./chunk-HHYJ2HSE.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -34252,11 +34253,11 @@ var require_node_modules_paths = __commonJS({
         }));
       }, []);
     };
-    module.exports = function nodeModulesPaths(start, opts, request) {
+    module.exports = function nodeModulesPaths(start, opts, request2) {
       var modules = opts && opts.moduleDirectory ? [].concat(opts.moduleDirectory) : ["node_modules"];
       if (opts && typeof opts.paths === "function") {
         return opts.paths(
-          request,
+          request2,
           start,
           function() {
             return getNodeModulesDirs(start, modules);
@@ -34279,10 +34280,10 @@ var require_normalize_options = __commonJS({
       if (opts.forceNodeResolution || !process.versions.pnp)
         return opts;
       const { findPnpApi } = __require("module");
-      const runPnpResolution = (request, basedir) => {
-        const parts = request.match(/^((?:@[^/]+\/)?[^/]+)(\/.*)?/);
+      const runPnpResolution = (request2, basedir) => {
+        const parts = request2.match(/^((?:@[^/]+\/)?[^/]+)(\/.*)?/);
         if (!parts)
-          throw new Error(`Assertion failed: Expected the "resolve" package to call the "paths" callback with package names only (got "${request}")`);
+          throw new Error(`Assertion failed: Expected the "resolve" package to call the "paths" callback with package names only (got "${request2}")`);
         if (basedir.charAt(basedir.length - 1) !== `/`)
           basedir = path9.join(basedir, `/`);
         const api = findPnpApi(basedir);
@@ -34300,9 +34301,9 @@ var require_normalize_options = __commonJS({
         const unqualifiedPath = typeof parts[2] !== `undefined` ? path9.join(packagePath, parts[2]) : packagePath;
         return { packagePath, unqualifiedPath };
       };
-      const runPnpResolutionOnArray = (request, paths2) => {
+      const runPnpResolutionOnArray = (request2, paths2) => {
         for (let i = 0; i < paths2.length; i++) {
-          const resolution = runPnpResolution(request, paths2[i]);
+          const resolution = runPnpResolution(request2, paths2[i]);
           if (resolution || i === paths2.length - 1) {
             return resolution;
           }
@@ -34310,38 +34311,38 @@ var require_normalize_options = __commonJS({
         return null;
       };
       const originalPaths = Array.isArray(opts.paths) ? opts.paths : [];
-      const packageIterator = (request, basedir, getCandidates, opts2) => {
+      const packageIterator = (request2, basedir, getCandidates, opts2) => {
         const pathsToTest = [basedir].concat(originalPaths);
-        const resolution = runPnpResolutionOnArray(request, pathsToTest);
+        const resolution = runPnpResolutionOnArray(request2, pathsToTest);
         if (resolution == null)
           return getCandidates();
         return [resolution.unqualifiedPath];
       };
-      const paths = (request, basedir, getNodeModulePaths, opts2) => {
+      const paths = (request2, basedir, getNodeModulePaths, opts2) => {
         const pathsToTest = [basedir].concat(originalPaths);
-        const resolution = runPnpResolutionOnArray(request, pathsToTest);
+        const resolution = runPnpResolutionOnArray(request2, pathsToTest);
         if (resolution == null)
           return getNodeModulePaths().concat(originalPaths);
         let nodeModules = path9.dirname(resolution.packagePath);
-        if (request.match(/^@[^/]+\//))
+        if (request2.match(/^@[^/]+\//))
           nodeModules = path9.dirname(nodeModules);
         return [nodeModules];
       };
       let isInsideIterator = false;
       if (!opts.__skipPackageIterator) {
-        opts.packageIterator = function(request, basedir, getCandidates, opts2) {
+        opts.packageIterator = function(request2, basedir, getCandidates, opts2) {
           isInsideIterator = true;
           try {
-            return packageIterator(request, basedir, getCandidates, opts2);
+            return packageIterator(request2, basedir, getCandidates, opts2);
           } finally {
             isInsideIterator = false;
           }
         };
       }
-      opts.paths = function(request, basedir, getNodeModulePaths, opts2) {
+      opts.paths = function(request2, basedir, getNodeModulePaths, opts2) {
         if (isInsideIterator)
           return getNodeModulePaths().concat(originalPaths);
-        return paths(request, basedir, getNodeModulePaths, opts2);
+        return paths(request2, basedir, getNodeModulePaths, opts2);
       };
       return opts;
     };
@@ -54757,6 +54758,109 @@ var import_typed_graphqlify3 = __toESM(require_dist());
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/github.js
 var import_typed_graphqlify2 = __toESM(require_dist());
+
+// node_modules/@octokit/graphql/dist-bundle/index.js
+var VERSION = "0.0.0-development";
+function _buildMessageForResponseErrors(data) {
+  return `Request failed due to following response errors:
+` + data.errors.map((e) => ` - ${e.message}`).join("\n");
+}
+var GraphqlResponseError = class extends Error {
+  constructor(request2, headers, response) {
+    super(_buildMessageForResponseErrors(response));
+    this.request = request2;
+    this.headers = headers;
+    this.response = response;
+    this.errors = response.errors;
+    this.data = response.data;
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+  name = "GraphqlResponseError";
+  errors;
+  data;
+};
+var NON_VARIABLE_OPTIONS = [
+  "method",
+  "baseUrl",
+  "url",
+  "headers",
+  "request",
+  "query",
+  "mediaType"
+];
+var FORBIDDEN_VARIABLE_OPTIONS = ["query", "method", "url"];
+var GHES_V3_SUFFIX_REGEX = /\/api\/v3\/?$/;
+function graphql(request2, query, options) {
+  if (options) {
+    if (typeof query === "string" && "query" in options) {
+      return Promise.reject(
+        new Error(`[@octokit/graphql] "query" cannot be used as variable name`)
+      );
+    }
+    for (const key in options) {
+      if (!FORBIDDEN_VARIABLE_OPTIONS.includes(key))
+        continue;
+      return Promise.reject(
+        new Error(
+          `[@octokit/graphql] "${key}" cannot be used as variable name`
+        )
+      );
+    }
+  }
+  const parsedOptions = typeof query === "string" ? Object.assign({ query }, options) : query;
+  const requestOptions = Object.keys(
+    parsedOptions
+  ).reduce((result, key) => {
+    if (NON_VARIABLE_OPTIONS.includes(key)) {
+      result[key] = parsedOptions[key];
+      return result;
+    }
+    if (!result.variables) {
+      result.variables = {};
+    }
+    result.variables[key] = parsedOptions[key];
+    return result;
+  }, {});
+  const baseUrl = parsedOptions.baseUrl || request2.endpoint.DEFAULTS.baseUrl;
+  if (GHES_V3_SUFFIX_REGEX.test(baseUrl)) {
+    requestOptions.url = baseUrl.replace(GHES_V3_SUFFIX_REGEX, "/api/graphql");
+  }
+  return request2(requestOptions).then((response) => {
+    if (response.data.errors) {
+      const headers = {};
+      for (const key of Object.keys(response.headers)) {
+        headers[key] = response.headers[key];
+      }
+      throw new GraphqlResponseError(
+        requestOptions,
+        headers,
+        response.data
+      );
+    }
+    return response.data.data;
+  });
+}
+function withDefaults(request2, newDefaults) {
+  const newRequest = request2.defaults(newDefaults);
+  const newApi = (query, options) => {
+    return graphql(newRequest, query, options);
+  };
+  return Object.assign(newApi, {
+    defaults: withDefaults.bind(null, newRequest),
+    endpoint: newRequest.endpoint
+  });
+}
+var graphql2 = withDefaults(request, {
+  headers: {
+    "user-agent": `octokit-graphql.js/${VERSION} ${getUserAgent()}`
+  },
+  method: "POST",
+  url: "/graphql"
+});
+
+// bazel-out/k8-fastbuild/bin/ng-dev/utils/github.js
 async function getPr(prSchema, prNumber, git) {
   var _a2;
   const { owner, name } = git.remoteConfig;
@@ -58547,7 +58651,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d6cdaaac717f6cc2f0b8119ccd1e4a1c125c410d`;
+  const localVersion = `0.0.0-359350bbc10aab1bac85d0eec61a53377078ab82`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path7.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
