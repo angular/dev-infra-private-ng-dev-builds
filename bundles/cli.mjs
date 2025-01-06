@@ -40,7 +40,7 @@ import {
   require_semver,
   requiresLabels,
   targetLabels
-} from "./chunk-SFLVGMWJ.mjs";
+} from "./chunk-UDANNA3D.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -18535,17 +18535,20 @@ var require_queue = __commonJS({
         return p;
       }
       function drained() {
-        if (queue.idle()) {
-          return new Promise(function(resolve13) {
-            resolve13();
-          });
-        }
-        var previousDrain = queue.drain;
         var p = new Promise(function(resolve13) {
-          queue.drain = function() {
-            previousDrain();
-            resolve13();
-          };
+          process.nextTick(function() {
+            if (queue.idle()) {
+              resolve13();
+            } else {
+              var previousDrain = queue.drain;
+              queue.drain = function() {
+                if (typeof previousDrain === "function")
+                  previousDrain();
+                resolve13();
+                queue.drain = previousDrain;
+              };
+            }
+          });
         });
         return p;
       }
@@ -57762,7 +57765,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-f0a9343aa86aac0222d035814dc919282fbdaa19`;
+  const localVersion = `0.0.0-e0411b290888ad66e8d3b0c2689310d8ef5f1f3e`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path7.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
