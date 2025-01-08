@@ -57507,11 +57507,16 @@ var ExternalCommands = class {
     }
   }
   static async invokeBazelUpdateAspectLockFiles(projectDir) {
+    const spinner = new Spinner("Updating Aspect lock files");
     try {
-      await ChildProcess.spawn(getBazelBin(), ["run", "@npm2//:sync"], { cwd: projectDir });
+      await ChildProcess.spawn(getBazelBin(), ["run", "@npm2//:sync"], {
+        cwd: projectDir,
+        mode: "silent"
+      });
     } catch (e) {
+      Log.debug(e);
     }
-    Log.info(green("  \u2713   Updated Aspect `rules_js` lock files."));
+    spinner.success(green(" Updated Aspect `rules_js` lock files."));
   }
 };
 
@@ -58414,7 +58419,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-32c0b11ac97525d3edeb7298a8f3e98d367ed12c`;
+  const localVersion = `0.0.0-6c8b1147896cb74bb54c6d840a2c6240f93c732e`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path7.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
