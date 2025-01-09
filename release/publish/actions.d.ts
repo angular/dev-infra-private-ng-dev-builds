@@ -72,6 +72,7 @@ export declare abstract class ReleaseAction {
      *   the version update. Can be used to update other fields.
      */
     protected updateProjectVersion(newVersion: semver.SemVer, additionalUpdateFn?: (pkgJson: PackageJson) => void): Promise<void>;
+    protected getAspectLockFiles(): string[];
     /** Gets the most recent commit of a specified branch. */
     protected getLatestCommitOfBranch(branchName: string): Promise<string>;
     /** Checks whether the given revision is ahead to the base by the specified amount. */

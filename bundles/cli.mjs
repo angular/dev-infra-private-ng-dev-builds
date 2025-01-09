@@ -44330,6 +44330,9 @@ var ReleaseAction = class {
       await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
     }
   }
+  getAspectLockFiles() {
+    return this.config.rulesJsInteropMode ? import_fast_glob2.glob.sync([".aspect/**", "pnpm-lock.yaml"], { cwd: this.projectDir }) : [];
+  }
   async getLatestCommitOfBranch(branchName) {
     const { data: { commit } } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
     return commit.sha;
@@ -44374,10 +44377,11 @@ var ReleaseAction = class {
       throw new UserAbortedReleaseActionError();
     }
     const commitMessage = getCommitMessageForRelease(newVersion);
-    const filesToCommit = [workspaceRelativePackageJsonPath, workspaceRelativeChangelogPath];
-    if (this.config.rulesJsInteropMode) {
-      filesToCommit.push(...import_fast_glob2.glob.sync([".aspect/**", "pnpm-lock.yaml"], { cwd: this.projectDir }));
-    }
+    const filesToCommit = [
+      workspaceRelativePackageJsonPath,
+      workspaceRelativeChangelogPath,
+      ...this.getAspectLockFiles()
+    ];
     await this.createCommit(commitMessage, filesToCommit);
     if (this.git.hasUncommittedChanges()) {
       Log.error("  \u2718   Unrelated changes have been made as part of the changelog editing.");
@@ -44633,7 +44637,8 @@ var ConfigureNextAsMajorAction = class extends ReleaseAction {
     await this.checkoutUpstreamBranch(branchName);
     await this.updateProjectVersion(newVersion);
     await this.createCommit(getCommitMessageForNextBranchMajorSwitch(newVersion), [
-      workspaceRelativePackageJsonPath
+      workspaceRelativePackageJsonPath,
+      ...this.getAspectLockFiles()
     ]);
     const pullRequest = await this.pushChangesToForkAndCreatePullRequest(branchName, `switch-next-to-major-${newVersion}`, `Configure next branch to receive major changes for v${newVersion}`);
     Log.info(green("  \u2713   Next branch update pull request has been created."));
@@ -44918,7 +44923,8 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
       pkgJson[exceptionalMinorPackageIndicator] = true;
     });
     await this.createCommit(`build: prepare exceptional minor branch: ${this._newBranch}`, [
-      workspaceRelativePackageJsonPath
+      workspaceRelativePackageJsonPath,
+      ...this.getAspectLockFiles()
     ]);
     await this.pushHeadToRemoteBranch(this._newBranch);
     Log.info(green(`  \u2713   Version branch "${this._newBranch}" created.`));
@@ -44987,7 +44993,10 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
-    await this.createCommit(bumpCommitMessage, [workspaceRelativePackageJsonPath]);
+    await this.createCommit(bumpCommitMessage, [
+      workspaceRelativePackageJsonPath,
+      ...this.getAspectLockFiles()
+    ]);
     await this.prependReleaseNotesToChangelog(releaseNotes);
     const commitMessage = getReleaseNoteCherryPickCommitMessage(releaseNotes.version);
     await this.createCommit(commitMessage, [workspaceRelativeChangelogPath]);
@@ -45113,7 +45122,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-0b6f7cbd5a1b8383be81f8ef3ed1caf891c7c25c`;
+  const localVersion = `0.0.0-1037f979be4f54084d33b6629d20123c7fc9702e`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path7.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
