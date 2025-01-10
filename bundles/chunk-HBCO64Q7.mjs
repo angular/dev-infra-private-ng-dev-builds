@@ -6269,6 +6269,12 @@ var managedLabels = createTypedObject(ManagedLabel)({
     name: "area: zones",
     commitCheck: (c) => c.scope === "zone.js",
     repositories: [ManagedRepositories.ANGULAR]
+  },
+  DETECTED_LOCALIZE_CHANGE: {
+    description: "Issues related to localization and internationalization",
+    name: "area: i18n",
+    commitCheck: (c) => c.scope === "localize",
+    repositories: [ManagedRepositories.ANGULAR]
   }
 });
 
@@ -6473,4 +6479,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-6XAMJ77Z.mjs.map
+//# sourceMappingURL=chunk-HBCO64Q7.mjs.map
