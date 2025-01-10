@@ -6243,19 +6243,31 @@ var managedLabels = createTypedObject(ManagedLabel)({
   DETECTED_HTTP_CHANGE: {
     description: "Issues related to HTTP and HTTP Client",
     name: "area: common/http",
-    commitCheck: (c) => c.type === "common/http" || c.type === "http",
+    commitCheck: (c) => c.scope === "common/http" || c.scope === "http",
     repositories: [ManagedRepositories.ANGULAR]
   },
   DETECTED_COMPILER_CHANGE: {
     description: "Issues related to `ngc`, Angular's template compiler",
     name: "area: compiler",
-    commitCheck: (c) => c.type === "compiler" || c.type === "compiler-cli",
+    commitCheck: (c) => c.scope === "compiler" || c.scope === "compiler-cli",
     repositories: [ManagedRepositories.ANGULAR]
   },
   DETECTED_PLATFORM_BROWSER_CHANGE: {
     description: "Issues related to the framework runtime",
     name: "area: core",
-    commitCheck: (c) => c.type === "platform-browser" || c.type === "core",
+    commitCheck: (c) => c.scope === "platform-browser" || c.scope === "core" || c.scope === "platform-browser-dynamic",
+    repositories: [ManagedRepositories.ANGULAR]
+  },
+  DETECTED_PLATFORM_SERVER_CHANGE: {
+    description: "Issues related to server-side rendering",
+    name: "area: server",
+    commitCheck: (c) => c.scope === "platform-server",
+    repositories: [ManagedRepositories.ANGULAR]
+  },
+  DETECTED_ZONES_CHANGE: {
+    description: "Issues related to zone.js",
+    name: "area: zones",
+    commitCheck: (c) => c.scope === "zone.js",
     repositories: [ManagedRepositories.ANGULAR]
   }
 });
@@ -6461,4 +6473,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-XUYDWLBB.mjs.map
+//# sourceMappingURL=chunk-6XAMJ77Z.mjs.map
