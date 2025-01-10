@@ -38732,6 +38732,10 @@ async function validateCommitMessage(commitMsg, options = {}) {
       return true;
     }
     if (commit.isFixup) {
+      if (options.disallowFixup) {
+        errors.push("The commit must be manually fixed-up into the target commit as fixup commits are disallowed");
+        return false;
+      }
       if (options.nonFixupCommitHeaders && !options.nonFixupCommitHeaders.includes(commit.header)) {
         errors.push("Unable to find match for fixup commit among prior commits: " + (options.nonFixupCommitHeaders.map((x) => `
       ${x}`).join("") || "-"));
@@ -45018,7 +45022,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-5b4b2a6258dece411626435f680d2818769f469a`;
+  const localVersion = `0.0.0-fe58c3e519feafb4223f1e69fc36af1e6766fecc`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path7.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

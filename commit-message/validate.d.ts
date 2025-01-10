@@ -9,6 +9,7 @@ import { Commit } from './parse.js';
 /** Options for commit message validation. */
 export interface ValidateCommitMessageOptions {
     disallowSquash?: boolean;
+    disallowFixup?: boolean;
     nonFixupCommitHeaders?: string[];
 }
 /** The result of a commit message validation check. */
