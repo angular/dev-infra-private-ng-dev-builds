@@ -40,7 +40,7 @@ import {
   require_semver,
   requiresLabels,
   targetLabels
-} from "./chunk-GUKMH3SG.mjs";
+} from "./chunk-XUYDWLBB.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -38732,7 +38732,7 @@ async function validateCommitMessage(commitMsg, options = {}) {
       return true;
     }
     if (commit.isFixup) {
-      if (options.disallowFixup) {
+      if (config.disallowFixup) {
         errors.push("The commit must be manually fixed-up into the target commit as fixup commits are disallowed");
         return false;
       }
@@ -45022,7 +45022,7 @@ import * as fs4 from "fs";
 import lockfile2 from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-fe58c3e519feafb4223f1e69fc36af1e6766fecc`;
+  const localVersion = `0.0.0-7863aba23429b9cdb432a63cb688dd4c61f51ce6`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path7.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
