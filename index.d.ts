@@ -19,3 +19,4 @@ export * from './utils/logging.js';
 export * from './utils/git/authenticated-git-client.js';
 export * from './utils/git/git-client.js';
 export * from './utils/git/github.js';
+export { resolveYarnScriptForProject, YarnCommandInfo } from './utils/resolve-yarn-bin.js';

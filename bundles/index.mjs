@@ -38,8 +38,9 @@ import {
   mergeLabels,
   priorityLabels,
   requiresLabels,
+  resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-IPKBAWYB.mjs";
+} from "./chunk-PSBRY2K3.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -112,6 +113,7 @@ export {
   red,
   requiresLabels,
   reset,
+  resolveYarnScriptForProject,
   setConfig,
   targetLabels,
   underline,
