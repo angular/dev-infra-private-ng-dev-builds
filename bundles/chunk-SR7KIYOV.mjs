@@ -10211,7 +10211,7 @@ function withDefaults2(oldEndpoint, newDefaults) {
 }
 var request = withDefaults2(endpoint, defaults_default);
 
-// node_modules/@octokit/graphql/dist-bundle/index.js
+// node_modules/@octokit/core/node_modules/@octokit/graphql/dist-bundle/index.js
 var VERSION3 = "0.0.0-development";
 function _buildMessageForResponseErrors(data) {
   return `Request failed due to following response errors:
@@ -10240,7 +10240,8 @@ var NON_VARIABLE_OPTIONS = [
   "headers",
   "request",
   "query",
-  "mediaType"
+  "mediaType",
+  "operationName"
 ];
 var FORBIDDEN_VARIABLE_OPTIONS = ["query", "method", "url"];
 var GHES_V3_SUFFIX_REGEX = /\/api\/v3\/?$/;
@@ -13859,7 +13860,8 @@ async function assertPassingReleasePrechecks(config, newVersion, builtPackagesWi
 export {
   require_dist,
   addDryRunFlag,
-  GraphqlResponseError,
+  getUserAgent,
+  request,
   GithubClient,
   AuthenticatedGithubClient,
   isGithubApiError,
@@ -13914,4 +13916,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-BZWPAREM.mjs.map
+//# sourceMappingURL=chunk-SR7KIYOV.mjs.map

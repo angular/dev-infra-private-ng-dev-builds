@@ -10,7 +10,6 @@ import {
   GITHUB_TOKEN_GENERATE_URL,
   GitClient,
   GitCommandError,
-  GraphqlResponseError,
   ReleaseNotesLevel,
   ScopeRequirement,
   actionLabels,
@@ -30,6 +29,7 @@ import {
   getLtsNpmDistTagOfMajor,
   getNextBranchName,
   getRepositoryGitUrl,
+  getUserAgent,
   getVersionInfoForBranch,
   getYarnPathFromNpmGlobalBinaries,
   isGithubApiError,
@@ -37,13 +37,14 @@ import {
   isVersionPublishedToNpm,
   managedLabels,
   mergeLabels,
+  request,
   require_dist,
   require_dist2,
   require_semver,
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-BZWPAREM.mjs";
+} from "./chunk-SR7KIYOV.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -30227,6 +30228,7 @@ function normalizeChoices(choices) {
 }
 var esm_default3 = createPrompt((config, done) => {
   const { instructions, pageSize = 7, loop = true, required, validate = () => true } = config;
+  const shortcuts = { all: "a", invert: "i", ...config.shortcuts };
   const theme = makeTheme(checkboxTheme, config.theme);
   const firstRender = useRef(true);
   const [status, setStatus] = useState("idle");
@@ -30268,10 +30270,10 @@ var esm_default3 = createPrompt((config, done) => {
       setError(void 0);
       setShowHelpTip(false);
       setItems(items.map((choice, i) => i === active ? toggle(choice) : choice));
-    } else if (key.name === "a") {
+    } else if (key.name === shortcuts.all) {
       const selectAll = items.some((choice) => isSelectable(choice) && !choice.checked);
       setItems(items.map(check(selectAll)));
-    } else if (key.name === "i") {
+    } else if (key.name === shortcuts.invert) {
       setItems(items.map(toggle));
     } else if (isNumberKey(key)) {
       const position = Number(key.name) - 1;
@@ -30319,11 +30321,11 @@ var esm_default3 = createPrompt((config, done) => {
     } else {
       const keys = [
         `${theme.style.key("space")} to select`,
-        `${theme.style.key("a")} to toggle all`,
-        `${theme.style.key("i")} to invert selection`,
+        shortcuts.all ? `${theme.style.key(shortcuts.all)} to toggle all` : "",
+        shortcuts.invert ? `${theme.style.key(shortcuts.invert)} to invert selection` : "",
         `and ${theme.style.key("enter")} to proceed`
       ];
-      helpTipTop = ` (Press ${keys.join(", ")})`;
+      helpTipTop = ` (Press ${keys.filter((key) => key !== "").join(", ")})`;
     }
     if (items.length > pageSize && (theme.helpMode === "always" || theme.helpMode === "auto" && firstRender.current)) {
       helpTipBottom = `
@@ -33806,6 +33808,109 @@ var import_typed_graphqlify3 = __toESM(require_dist());
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/github.js
 var import_typed_graphqlify2 = __toESM(require_dist());
+
+// node_modules/@octokit/graphql/dist-bundle/index.js
+var VERSION = "0.0.0-development";
+function _buildMessageForResponseErrors(data) {
+  return `Request failed due to following response errors:
+` + data.errors.map((e) => ` - ${e.message}`).join("\n");
+}
+var GraphqlResponseError = class extends Error {
+  constructor(request2, headers, response) {
+    super(_buildMessageForResponseErrors(response));
+    this.request = request2;
+    this.headers = headers;
+    this.response = response;
+    this.errors = response.errors;
+    this.data = response.data;
+    if (Error.captureStackTrace) {
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+  name = "GraphqlResponseError";
+  errors;
+  data;
+};
+var NON_VARIABLE_OPTIONS = [
+  "method",
+  "baseUrl",
+  "url",
+  "headers",
+  "request",
+  "query",
+  "mediaType"
+];
+var FORBIDDEN_VARIABLE_OPTIONS = ["query", "method", "url"];
+var GHES_V3_SUFFIX_REGEX = /\/api\/v3\/?$/;
+function graphql(request2, query, options) {
+  if (options) {
+    if (typeof query === "string" && "query" in options) {
+      return Promise.reject(
+        new Error(`[@octokit/graphql] "query" cannot be used as variable name`)
+      );
+    }
+    for (const key in options) {
+      if (!FORBIDDEN_VARIABLE_OPTIONS.includes(key))
+        continue;
+      return Promise.reject(
+        new Error(
+          `[@octokit/graphql] "${key}" cannot be used as variable name`
+        )
+      );
+    }
+  }
+  const parsedOptions = typeof query === "string" ? Object.assign({ query }, options) : query;
+  const requestOptions = Object.keys(
+    parsedOptions
+  ).reduce((result, key) => {
+    if (NON_VARIABLE_OPTIONS.includes(key)) {
+      result[key] = parsedOptions[key];
+      return result;
+    }
+    if (!result.variables) {
+      result.variables = {};
+    }
+    result.variables[key] = parsedOptions[key];
+    return result;
+  }, {});
+  const baseUrl = parsedOptions.baseUrl || request2.endpoint.DEFAULTS.baseUrl;
+  if (GHES_V3_SUFFIX_REGEX.test(baseUrl)) {
+    requestOptions.url = baseUrl.replace(GHES_V3_SUFFIX_REGEX, "/api/graphql");
+  }
+  return request2(requestOptions).then((response) => {
+    if (response.data.errors) {
+      const headers = {};
+      for (const key of Object.keys(response.headers)) {
+        headers[key] = response.headers[key];
+      }
+      throw new GraphqlResponseError(
+        requestOptions,
+        headers,
+        response.data
+      );
+    }
+    return response.data.data;
+  });
+}
+function withDefaults(request2, newDefaults) {
+  const newRequest = request2.defaults(newDefaults);
+  const newApi = (query, options) => {
+    return graphql(newRequest, query, options);
+  };
+  return Object.assign(newApi, {
+    defaults: withDefaults.bind(null, newRequest),
+    endpoint: newRequest.endpoint
+  });
+}
+var graphql2 = withDefaults(request, {
+  headers: {
+    "user-agent": `octokit-graphql.js/${VERSION} ${getUserAgent()}`
+  },
+  method: "POST",
+  url: "/graphql"
+});
+
+// bazel-out/k8-fastbuild/bin/ng-dev/utils/github.js
 async function getPr(prSchema, prNumber, git) {
   var _a2;
   const { owner, name } = git.remoteConfig;
@@ -37615,7 +37720,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-b1a5c741afb3e2e439bd1195642692caabbd032e`;
+  const localVersion = `0.0.0-be0b37a11ec2ff7d71e7b6174f3b84fb3a1c0ee5`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
