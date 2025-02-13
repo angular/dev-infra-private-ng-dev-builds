@@ -36697,12 +36697,14 @@ var ExternalCommands = class {
   static async invokeBazelUpdateAspectLockFiles(projectDir) {
     const spinner = new Spinner("Updating Aspect lock files");
     try {
-      await ChildProcess.spawn(getBazelBin(), ["run", "@npm2//:sync"], {
+      await ChildProcess.spawn(getBazelBin(), ["sync", "--only=repo"], {
         cwd: projectDir,
         mode: "silent"
       });
     } catch (e) {
-      Log.debug(e);
+      Log.error(e);
+      Log.error("  \u2718   An error occurred while updating Aspect lock files.");
+      throw new FatalReleaseActionError();
     }
     spinner.success(green(" Updated Aspect `rules_js` lock files."));
   }
@@ -37616,7 +37618,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-389821c85e153020b32ad72751e683ce127937f0`;
+  const localVersion = `0.0.0-b7317b125003e3a0e6fbf1b628fc3c4fbec61a32`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {

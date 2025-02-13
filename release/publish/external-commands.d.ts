@@ -55,7 +55,7 @@ export declare abstract class ExternalCommands {
      */
     static invokeYarnInstall(projectDir: string): Promise<void>;
     /**
-     * Invokes the `yarn bazel run @npm2//:sync` command in order
+     * Invokes the `yarn bazel sync --only=repo` command in order
      * to refresh Aspect lock files.
      */
     static invokeBazelUpdateAspectLockFiles(projectDir: string): Promise<void>;
