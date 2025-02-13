@@ -36702,9 +36702,7 @@ var ExternalCommands = class {
         mode: "silent"
       });
     } catch (e) {
-      Log.error(e);
-      Log.error("  \u2718   An error occurred while updating Aspect lock files.");
-      throw new FatalReleaseActionError();
+      Log.debug(e);
     }
     spinner.success(green(" Updated Aspect `rules_js` lock files."));
   }
@@ -37618,7 +37616,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-b7317b125003e3a0e6fbf1b628fc3c4fbec61a32`;
+  const localVersion = `0.0.0-b015169b635123c1ab9084f604e36b6342eac171`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
