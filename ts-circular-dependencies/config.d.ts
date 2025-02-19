@@ -16,7 +16,7 @@ export interface CircularDependenciesTestConfig extends CircularDependenciesPars
     /** Base directory used for shortening paths in the golden file. */
     baseDir: string;
     /** Path to the golden file that is used for checking and approving. */
-    goldenFile: string;
+    goldenFile?: string;
     /** Glob that resolves source files which should be checked. */
     glob: string;
     /**

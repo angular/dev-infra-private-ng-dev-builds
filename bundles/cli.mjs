@@ -37721,7 +37721,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-d16848fd2ed19fce59488b540fa26a3353c72ad4`;
+  const localVersion = `0.0.0-89fd28e8697f24b550337d9600f3c06c5429ea48`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -38314,7 +38314,7 @@ async function loadTestConfig(configPath) {
     if (!isAbsolute(config.baseDir)) {
       config.baseDir = resolveRelativePath(config.baseDir);
     }
-    if (!isAbsolute(config.goldenFile)) {
+    if (config.goldenFile && !isAbsolute(config.goldenFile)) {
       config.goldenFile = resolveRelativePath(config.goldenFile);
     }
     if (!isAbsolute(config.glob)) {
@@ -38423,10 +38423,13 @@ function main(approve, config, printWarnings) {
   });
   const actual = convertReferenceChainToGolden(cycles, baseDir);
   Log.info(green(`   Current number of cycles: ${yellow(cycles.length.toString())}`));
-  if (approve) {
+  if (goldenFile && approve) {
     writeFileSync4(goldenFile, JSON.stringify(actual, null, 2));
     Log.info(green("\u2714  Updated golden file."));
     return 0;
+  } else if (!goldenFile) {
+    Log.error(`x  Circular dependency goldens are not allowed.`);
+    return 1;
   } else if (!existsSync4(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
@@ -38443,7 +38446,7 @@ function main(approve, config, printWarnings) {
     Log.warn(`\u26A0  ${warningsCount} imports could not be resolved.`);
     Log.warn(`   Please rerun with "--warnings" to inspect unresolved imports.`);
   }
-  const expected = JSON.parse(readFileSync12(goldenFile, "utf8"));
+  const expected = goldenFile ? JSON.parse(readFileSync12(goldenFile, "utf8")) : [];
   const { fixedCircularDeps, newCircularDeps } = compareGoldens(actual, expected);
   const isMatching = fixedCircularDeps.length === 0 && newCircularDeps.length === 0;
   if (isMatching) {
@@ -38465,7 +38468,7 @@ function main(approve, config, printWarnings) {
   }
   if (approveCommand) {
     Log.info(yellow(`   Please approve the new golden with: ${approveCommand}`));
-  } else {
+  } else if (goldenFile) {
     Log.info(yellow(`   Please update the golden. The following command can be run: yarn ng-dev ts-circular-deps approve ${getRelativePath(process.cwd(), goldenFile)}.`));
   }
   return 1;
