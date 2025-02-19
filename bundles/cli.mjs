@@ -37721,7 +37721,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-25e3ba3f435bab928699717dadc45976292d05e0`;
+  const localVersion = `0.0.0-0ad6a370f70638e785d6ef1f90dc6ede34684a47`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -38423,17 +38423,6 @@ function main(approve, config, printWarnings) {
   });
   const actual = convertReferenceChainToGolden(cycles, baseDir);
   Log.info(green(`   Current number of cycles: ${yellow(cycles.length.toString())}`));
-  if (goldenFile && approve) {
-    writeFileSync4(goldenFile, JSON.stringify(actual, null, 2));
-    Log.info(green("\u2714  Updated golden file."));
-    return 0;
-  } else if (!goldenFile) {
-    Log.error(`x  Circular dependency goldens are not allowed.`);
-    return 1;
-  } else if (!existsSync4(goldenFile)) {
-    Log.error(`x  Could not find golden file: ${goldenFile}`);
-    return 1;
-  }
   const warningsCount = analyzer.unresolvedFiles.size + analyzer.unresolvedModules.size;
   if (printWarnings && warningsCount !== 0) {
     Log.info(yellow("\u26A0  The following imports could not be resolved:"));
@@ -38445,6 +38434,27 @@ function main(approve, config, printWarnings) {
   } else {
     Log.warn(`\u26A0  ${warningsCount} imports could not be resolved.`);
     Log.warn(`   Please rerun with "--warnings" to inspect unresolved imports.`);
+  }
+  if (goldenFile === void 0) {
+    if (approve) {
+      Log.error(`x  Cannot approve circular depdencies within this repository as no golden file exists.`);
+      return 1;
+    }
+    if (cycles.length > 0) {
+      Log.error(`x  No circular dependencies are allow within this repository.`);
+      return 1;
+    }
+    Log.info(green("\u2714  No circular dependencies found in this repository."));
+    return 0;
+  }
+  if (approve) {
+    writeFileSync4(goldenFile, JSON.stringify(actual, null, 2));
+    Log.info(green("\u2714  Updated golden file."));
+    return 0;
+  }
+  if (!existsSync4(goldenFile)) {
+    Log.error(`x  Could not find golden file: ${goldenFile}`);
+    return 1;
   }
   const expected = goldenFile ? JSON.parse(readFileSync12(goldenFile, "utf8")) : [];
   const { fixedCircularDeps, newCircularDeps } = compareGoldens(actual, expected);
