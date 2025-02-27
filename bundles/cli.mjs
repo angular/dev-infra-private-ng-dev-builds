@@ -31508,6 +31508,10 @@ function printValidationErrors(errors, print = Log.error) {
   print();
   print(`<breaking change description>`);
   print();
+  print(`DEPRECATED: <deprecation summary>`);
+  print();
+  print(`<deprecation description>`);
+  print();
   print();
 }
 
@@ -37616,7 +37620,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-744a2caa9074eaf2e0ca26d6f7cba79bdfec185d`;
+  const localVersion = `0.0.0-59bc991e351f9cbec8e338185054d979f6d2a320`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
