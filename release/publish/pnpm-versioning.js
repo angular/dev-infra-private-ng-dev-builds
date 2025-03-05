@@ -1,0 +1,34 @@
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { existsSync } from 'node:fs';
+/**
+ * Class that exposes helpers for fetching and using pnpm
+ * based on a currently-checked out revision.
+ *
+ * This is useful as there is no vendoring/checking-in of specific
+ * pnpm versions, so we need to automatically fetch the proper pnpm
+ * version when executing commands in version branches. Keep in mind that
+ * version branches may have different pnpm version ranges, and the release
+ * tool should automatically be able to satisfy those.
+ */
+export class PnpmVersioning {
+    async isUsingPnpm(repoPath) {
+        // If there is only a pnpm lock file at the workspace root, we assume pnpm
+        // is the primary package manager. We can remove such checks in the future.
+        return existsSync(join(repoPath, 'pnpm-lock.yaml')) && !existsSync(join(repoPath, 'yarn.lock'));
+    }
+    async getPackageSpec(repoPath) {
+        const packageJsonRaw = await readFile(join(repoPath, 'package.json'), 'utf8');
+        const packageJson = JSON.parse(packageJsonRaw);
+        const pnpmAllowedRange = packageJson?.engines?.['pnpm'] ?? 'latest';
+        return `pnpm@${pnpmAllowedRange}`;
+    }
+}
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicG5wbS12ZXJzaW9uaW5nLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3JlbGVhc2UvcHVibGlzaC9wbnBtLXZlcnNpb25pbmcudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Ozs7OztHQU1HO0FBRUgsT0FBTyxFQUFDLFFBQVEsRUFBQyxNQUFNLGtCQUFrQixDQUFDO0FBQzFDLE9BQU8sRUFBQyxJQUFJLEVBQUMsTUFBTSxXQUFXLENBQUM7QUFDL0IsT0FBTyxFQUFDLFVBQVUsRUFBQyxNQUFNLFNBQVMsQ0FBQztBQUVuQzs7Ozs7Ozs7O0dBU0c7QUFDSCxNQUFNLE9BQU8sY0FBYztJQUN6QixLQUFLLENBQUMsV0FBVyxDQUFDLFFBQWdCO1FBQ2hDLDBFQUEwRTtRQUMxRSwyRUFBMkU7UUFDM0UsT0FBTyxVQUFVLENBQUMsSUFBSSxDQUFDLFFBQVEsRUFBRSxnQkFBZ0IsQ0FBQyxDQUFDLElBQUksQ0FBQyxVQUFVLENBQUMsSUFBSSxDQUFDLFFBQVEsRUFBRSxXQUFXLENBQUMsQ0FBQyxDQUFDO0lBQ2xHLENBQUM7SUFFRCxLQUFLLENBQUMsY0FBYyxDQUFDLFFBQWdCO1FBQ25DLE1BQU0sY0FBYyxHQUFHLE1BQU0sUUFBUSxDQUFDLElBQUksQ0FBQyxRQUFRLEVBQUUsY0FBYyxDQUFDLEVBQUUsTUFBTSxDQUFDLENBQUM7UUFDOUUsTUFBTSxXQUFXLEdBQUcsSUFBSSxDQUFDLEtBQUssQ0FBQyxjQUFjLENBQXVDLENBQUM7UUFFckYsTUFBTSxnQkFBZ0IsR0FBRyxXQUFXLEVBQUUsT0FBTyxFQUFFLENBQUMsTUFBTSxDQUFDLElBQUksUUFBUSxDQUFDO1FBQ3BFLE9BQU8sUUFBUSxnQkFBZ0IsRUFBRSxDQUFDO0lBQ3BDLENBQUM7Q0FDRiIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG5pbXBvcnQge3JlYWRGaWxlfSBmcm9tICdub2RlOmZzL3Byb21pc2VzJztcbmltcG9ydCB7am9pbn0gZnJvbSAnbm9kZTpwYXRoJztcbmltcG9ydCB7ZXhpc3RzU3luY30gZnJvbSAnbm9kZTpmcyc7XG5cbi8qKlxuICogQ2xhc3MgdGhhdCBleHBvc2VzIGhlbHBlcnMgZm9yIGZldGNoaW5nIGFuZCB1c2luZyBwbnBtXG4gKiBiYXNlZCBvbiBhIGN1cnJlbnRseS1jaGVja2VkIG91dCByZXZpc2lvbi5cbiAqXG4gKiBUaGlzIGlzIHVzZWZ1bCBhcyB0aGVyZSBpcyBubyB2ZW5kb3JpbmcvY2hlY2tpbmctaW4gb2Ygc3BlY2lmaWNcbiAqIHBucG0gdmVyc2lvbnMsIHNvIHdlIG5lZWQgdG8gYXV0b21hdGljYWxseSBmZXRjaCB0aGUgcHJvcGVyIHBucG1cbiAqIHZlcnNpb24gd2hlbiBleGVjdXRpbmcgY29tbWFuZHMgaW4gdmVyc2lvbiBicmFuY2hlcy4gS2VlcCBpbiBtaW5kIHRoYXRcbiAqIHZlcnNpb24gYnJhbmNoZXMgbWF5IGhhdmUgZGlmZmVyZW50IHBucG0gdmVyc2lvbiByYW5nZXMsIGFuZCB0aGUgcmVsZWFzZVxuICogdG9vbCBzaG91bGQgYXV0b21hdGljYWxseSBiZSBhYmxlIHRvIHNhdGlzZnkgdGhvc2UuXG4gKi9cbmV4cG9ydCBjbGFzcyBQbnBtVmVyc2lvbmluZyB7XG4gIGFzeW5jIGlzVXNpbmdQbnBtKHJlcG9QYXRoOiBzdHJpbmcpIHtcbiAgICAvLyBJZiB0aGVyZSBpcyBvbmx5IGEgcG5wbSBsb2NrIGZpbGUgYXQgdGhlIHdvcmtzcGFjZSByb290LCB3ZSBhc3N1bWUgcG5wbVxuICAgIC8vIGlzIHRoZSBwcmltYXJ5IHBhY2thZ2UgbWFuYWdlci4gV2UgY2FuIHJlbW92ZSBzdWNoIGNoZWNrcyBpbiB0aGUgZnV0dXJlLlxuICAgIHJldHVybiBleGlzdHNTeW5jKGpvaW4ocmVwb1BhdGgsICdwbnBtLWxvY2sueWFtbCcpKSAmJiAhZXhpc3RzU3luYyhqb2luKHJlcG9QYXRoLCAneWFybi5sb2NrJykpO1xuICB9XG5cbiAgYXN5bmMgZ2V0UGFja2FnZVNwZWMocmVwb1BhdGg6IHN0cmluZykge1xuICAgIGNvbnN0IHBhY2thZ2VKc29uUmF3ID0gYXdhaXQgcmVhZEZpbGUoam9pbihyZXBvUGF0aCwgJ3BhY2thZ2UuanNvbicpLCAndXRmOCcpO1xuICAgIGNvbnN0IHBhY2thZ2VKc29uID0gSlNPTi5wYXJzZShwYWNrYWdlSnNvblJhdykgYXMge2VuZ2luZXM/OiBSZWNvcmQ8c3RyaW5nLCBzdHJpbmc+fTtcblxuICAgIGNvbnN0IHBucG1BbGxvd2VkUmFuZ2UgPSBwYWNrYWdlSnNvbj8uZW5naW5lcz8uWydwbnBtJ10gPz8gJ2xhdGVzdCc7XG4gICAgcmV0dXJuIGBwbnBtQCR7cG5wbUFsbG93ZWRSYW5nZX1gO1xuICB9XG59XG4iXX0=

@@ -43,7 +43,7 @@ import {
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-5NDV7X6K.mjs";
+} from "./chunk-SHKHUSNU.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -63,7 +63,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-A44KY2LO.mjs";
+} from "./chunk-XPC4VRJH.mjs";
 import {
   __commonJS,
   __privateAdd,
@@ -13288,7 +13288,7 @@ var require_regex = __commonJS({
   "node_modules/conventional-commits-parser/lib/regex.js"(exports, module) {
     "use strict";
     var reNomatch = /(?!.*)/;
-    function join14(array, joiner) {
+    function join15(array, joiner) {
       return array.map(function(val) {
         return val.trim();
       }).filter(function(val) {
@@ -13299,7 +13299,7 @@ var require_regex = __commonJS({
       if (!noteKeywords) {
         return reNomatch;
       }
-      const noteKeywordsSelection = join14(noteKeywords, "|");
+      const noteKeywordsSelection = join15(noteKeywords, "|");
       if (!notesPattern) {
         return new RegExp("^[\\s|*]*(" + noteKeywordsSelection + ")[:\\s]+(.*)", "i");
       }
@@ -13310,13 +13310,13 @@ var require_regex = __commonJS({
         return reNomatch;
       }
       const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join14(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
+      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join15(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
     }
     function getReferencesRegex(referenceActions) {
       if (!referenceActions) {
         return /()(.+)/gi;
       }
-      const joinedKeywords = join14(referenceActions, "|");
+      const joinedKeywords = join15(referenceActions, "|");
       return new RegExp("(" + joinedKeywords + ")(?:\\s+(.*?))(?=(?:" + joinedKeywords + ")|$)", "gi");
     }
     module.exports = function(options) {
@@ -36520,8 +36520,8 @@ var workspaceRelativePackageJsonPath = "package.json";
 var workspaceRelativeYarnLockFilePath = "yarn.lock";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
-import { promises as fs2, existsSync as existsSync3 } from "fs";
-import path5, { join as join9 } from "path";
+import { promises as fs2, existsSync as existsSync4 } from "fs";
+import path5, { join as join10 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/experimental-versions.js
 var import_semver6 = __toESM(require_semver());
@@ -36603,18 +36603,16 @@ var githubReleaseBodyLimit = 125e3;
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/external-commands.js
 var ExternalCommands = class {
-  static async invokeSetNpmDist(projectDir, npmDistTag, version, options = { skipExperimentalPackages: false }) {
-    const yarnCommand = await resolveYarnScriptForProject(projectDir);
+  static async invokeSetNpmDist(projectDir, npmDistTag, version, pnpmVersioning, options = { skipExperimentalPackages: false }) {
     try {
-      await ChildProcess.spawn(yarnCommand.binary, [
-        ...yarnCommand.args,
+      await this._spawnNpmScript([
         "ng-dev",
         "release",
         "set-dist-tag",
         npmDistTag,
         version.format(),
         `--skip-experimental-packages=${options.skipExperimentalPackages}`
-      ], { cwd: projectDir });
+      ], projectDir, pnpmVersioning);
       Log.info(green(`  \u2713   Set "${npmDistTag}" NPM dist tag for all packages to v${version}.`));
     } catch (e) {
       Log.error(e);
@@ -36622,10 +36620,9 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeDeleteNpmDistTag(projectDir, npmDistTag) {
-    const yarnCommand = await resolveYarnScriptForProject(projectDir);
+  static async invokeDeleteNpmDistTag(projectDir, npmDistTag, pnpmVersioning) {
     try {
-      await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "ng-dev", "release", "npm-dist-tag", "delete", npmDistTag], { cwd: projectDir });
+      await this._spawnNpmScript(["ng-dev", "release", "npm-dist-tag", "delete", npmDistTag], projectDir, pnpmVersioning);
       Log.info(green(`  \u2713   Deleted "${npmDistTag}" NPM dist tag for all packages.`));
     } catch (e) {
       Log.error(e);
@@ -36633,12 +36630,10 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeReleaseBuild(projectDir) {
-    const yarnCommand = await resolveYarnScriptForProject(projectDir);
+  static async invokeReleaseBuild(projectDir, pnpmVersioning) {
     const spinner = new Spinner("Building release output. This can take a few minutes.");
     try {
-      const { stdout } = await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "ng-dev", "release", "build", "--json"], {
-        cwd: projectDir,
+      const { stdout } = await this._spawnNpmScript(["ng-dev", "release", "build", "--json"], projectDir, pnpmVersioning, {
         mode: "silent"
       });
       spinner.complete();
@@ -36651,13 +36646,9 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeReleaseInfo(projectDir) {
-    const yarnCommand = await resolveYarnScriptForProject(projectDir);
+  static async invokeReleaseInfo(projectDir, pnpmVersioning) {
     try {
-      const { stdout } = await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "ng-dev", "release", "info", "--json"], {
-        cwd: projectDir,
-        mode: "silent"
-      });
+      const { stdout } = await this._spawnNpmScript(["ng-dev", "release", "info", "--json"], projectDir, pnpmVersioning, { mode: "silent" });
       return JSON.parse(stdout.trim());
     } catch (e) {
       Log.error(e);
@@ -36665,15 +36656,13 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeReleasePrecheck(projectDir, newVersion, builtPackagesWithInfo) {
-    const yarnCommand = await resolveYarnScriptForProject(projectDir);
+  static async invokeReleasePrecheck(projectDir, newVersion, builtPackagesWithInfo, pnpmVersioning) {
     const precheckStdin = {
       builtPackagesWithInfo,
       newVersion: newVersion.format()
     };
     try {
-      await ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, "ng-dev", "release", "precheck"], {
-        cwd: projectDir,
+      await this._spawnNpmScript(["ng-dev", "release", "precheck"], projectDir, pnpmVersioning, {
         input: JSON.stringify(precheckStdin)
       });
       Log.info(green(`  \u2713   Executed release pre-checks for ${newVersion}`));
@@ -36698,6 +36687,19 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
+  static async invokePnpmInstall(projectDir, pnpmVersioning) {
+    try {
+      const pnpmSpec = await pnpmVersioning.getPackageSpec(projectDir);
+      await ChildProcess.spawn("npx", ["--yes", pnpmSpec, "install", "--frozen-lockfile"], {
+        cwd: projectDir
+      });
+      Log.info(green("  \u2713   Installed project dependencies."));
+    } catch (e) {
+      Log.error(e);
+      Log.error("  \u2718   An error occurred while installing dependencies.");
+      throw new FatalReleaseActionError();
+    }
+  }
   static async invokeBazelUpdateAspectLockFiles(projectDir) {
     const spinner = new Spinner("Updating Aspect lock files");
     try {
@@ -36709,6 +36711,21 @@ var ExternalCommands = class {
       Log.debug(e);
     }
     spinner.success(green(" Updated Aspect `rules_js` lock files."));
+  }
+  static async _spawnNpmScript(args, projectDir, pnpmVersioning, spawnOptions = {}) {
+    if (await pnpmVersioning.isUsingPnpm(projectDir)) {
+      const pnpmSpec = await pnpmVersioning.getPackageSpec(projectDir);
+      return ChildProcess.spawn("npx", ["--yes", pnpmSpec, "run", ...args], {
+        ...spawnOptions,
+        cwd: projectDir
+      });
+    } else {
+      const yarnCommand = await resolveYarnScriptForProject(projectDir);
+      return ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, ...args], {
+        ...spawnOptions,
+        cwd: projectDir
+      });
+    }
   }
 };
 
@@ -36804,6 +36821,25 @@ async function gracefulCheckIfPullRequestIsMerged(git, id) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
 var import_fast_glob2 = __toESM(require_out4());
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/pnpm-versioning.js
+import { readFile } from "fs/promises";
+import { join as join9 } from "path";
+import { existsSync as existsSync3 } from "fs";
+var PnpmVersioning = class {
+  async isUsingPnpm(repoPath) {
+    return existsSync3(join9(repoPath, "pnpm-lock.yaml")) && !existsSync3(join9(repoPath, "yarn.lock"));
+  }
+  async getPackageSpec(repoPath) {
+    var _a2;
+    const packageJsonRaw = await readFile(join9(repoPath, "package.json"), "utf8");
+    const packageJson = JSON.parse(packageJsonRaw);
+    const pnpmAllowedRange = ((_a2 = packageJson == null ? void 0 : packageJson.engines) == null ? void 0 : _a2["pnpm"]) ?? "latest";
+    return `pnpm@${pnpmAllowedRange}`;
+  }
+};
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
 var ReleaseAction = class {
   static isActive(_trains, _config) {
     throw Error("Not implemented.");
@@ -36813,9 +36849,10 @@ var ReleaseAction = class {
     this.git = git;
     this.config = config;
     this.projectDir = projectDir;
+    this.pnpmVersioning = new PnpmVersioning();
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
-    const pkgJsonPath = join9(this.projectDir, workspaceRelativePackageJsonPath);
+    const pkgJsonPath = join10(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs2.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
@@ -36824,7 +36861,7 @@ var ReleaseAction = class {
     await fs2.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
     Log.info(green(`  \u2713   Updated project version to ${pkgJson.version}`));
-    if (this.config.rulesJsInteropMode && existsSync3(path5.join(this.projectDir, ".aspect"))) {
+    if (this.config.rulesJsInteropMode && existsSync4(path5.join(this.projectDir, ".aspect"))) {
       await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
     }
   }
@@ -36969,7 +37006,11 @@ var ReleaseAction = class {
     this.git.run(["checkout", "-q", "FETCH_HEAD", "--detach"]);
   }
   async installDependenciesForCurrentBranch() {
-    const nodeModulesDir = join9(this.projectDir, "node_modules");
+    if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
+      await ExternalCommands.invokePnpmInstall(this.projectDir, this.pnpmVersioning);
+      return;
+    }
+    const nodeModulesDir = join10(this.projectDir, "node_modules");
     await fs2.rm(nodeModulesDir, { force: true, recursive: true, maxRetries: 3 });
     await ExternalCommands.invokeYarnInstall(this.projectDir);
   }
@@ -36978,8 +37019,8 @@ var ReleaseAction = class {
     this.git.run(["commit", "-q", "--no-verify", "-m", message, ...files]);
   }
   async buildReleaseForCurrentBranch() {
-    const builtPackages = await ExternalCommands.invokeReleaseBuild(this.projectDir);
-    const releaseInfo = await ExternalCommands.invokeReleaseInfo(this.projectDir);
+    const builtPackages = await ExternalCommands.invokeReleaseBuild(this.projectDir, this.pnpmVersioning);
+    const releaseInfo = await ExternalCommands.invokeReleaseInfo(this.projectDir, this.pnpmVersioning);
     return analyzeAndExtendBuiltPackagesWithInfo(builtPackages, releaseInfo.npmPackages);
   }
   async stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, pullRequestTargetBranch, opts) {
@@ -36996,7 +37037,7 @@ var ReleaseAction = class {
     await this.waitForEditsAndCreateReleaseCommit(newVersion);
     await this.installDependenciesForCurrentBranch();
     const builtPackagesWithInfo = await this.buildReleaseForCurrentBranch();
-    await ExternalCommands.invokeReleasePrecheck(this.projectDir, newVersion, builtPackagesWithInfo);
+    await ExternalCommands.invokeReleasePrecheck(this.projectDir, newVersion, builtPackagesWithInfo, this.pnpmVersioning);
     await this._verifyPackageVersions(releaseNotes.version, builtPackagesWithInfo);
     const pullRequest = await this.pushChangesToForkAndCreatePullRequest(pullRequestTargetBranch, `release-stage-${newVersion}`, `Bump version to "v${newVersion}" with changelog.`);
     Log.info(green("  \u2713   Release staging pull request has been created."));
@@ -37098,7 +37139,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join9(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join10(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -37331,14 +37372,14 @@ var CutStableAction = class extends ReleaseAction {
     await this.promptAndWaitForPullRequestMerged(pullRequest);
     await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this._getNpmDistTag(), { showAsLatestOnGitHub: true });
     if (this._train === this.active.exceptionalMinor) {
-      await ExternalCommands.invokeDeleteNpmDistTag(this.projectDir, "do-not-use-exceptional-minor");
+      await ExternalCommands.invokeDeleteNpmDistTag(this.projectDir, "do-not-use-exceptional-minor", this.pnpmVersioning);
     }
     if (this._isNewMajor) {
       const previousPatch = this.active.latest;
       const ltsTagForPatch = getLtsNpmDistTagOfMajor(previousPatch.version.major);
       await this.checkoutUpstreamBranch(previousPatch.branchName);
       await this.installDependenciesForCurrentBranch();
-      await ExternalCommands.invokeSetNpmDist(this.projectDir, ltsTagForPatch, previousPatch.version, {
+      await ExternalCommands.invokeSetNpmDist(this.projectDir, ltsTagForPatch, previousPatch.version, this.pnpmVersioning, {
         skipExperimentalPackages: true
       });
     }
@@ -37572,7 +37613,7 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
     await this.updateGithubReleaseEntryToStable(this.active.latest.version);
     await this.checkoutUpstreamBranch(this.active.latest.branchName);
     await this.installDependenciesForCurrentBranch();
-    await ExternalCommands.invokeSetNpmDist(this.projectDir, "latest", this.active.latest.version);
+    await ExternalCommands.invokeSetNpmDist(this.projectDir, "latest", this.active.latest.version, this.pnpmVersioning);
   }
   async updateGithubReleaseEntryToStable(version) {
     const releaseTagName = getReleaseTagForVersion(version);
@@ -37620,7 +37661,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-14cf20fd65531a0448ba5a50774cb4125b1c0835`;
+  const localVersion = `0.0.0-17e5969226628e7e92ac95cb6856b9509190c6ef`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
@@ -37887,7 +37928,7 @@ import url from "url";
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
 import * as fs4 from "fs";
 var import_semver20 = __toESM(require_semver());
-import { join as join11 } from "path";
+import { join as join12 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -37964,7 +38005,7 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join11(git.baseDir, "package.json");
+  const packageJsonPath = join12(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs4.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
@@ -38058,12 +38099,12 @@ function buildReleaseParser(localYargs) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync4, readFileSync as readFileSync12, writeFileSync as writeFileSync4 } from "fs";
+import { existsSync as existsSync5, readFileSync as readFileSync12, writeFileSync as writeFileSync4 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative3, resolve as resolve11 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync11 } from "fs";
-import { dirname as dirname6, join as join12, resolve as resolve9 } from "path";
+import { dirname as dirname6, join as join13, resolve as resolve9 } from "path";
 import ts2 from "typescript";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/file_system.js
@@ -38166,7 +38207,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join12(dirname6(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join13(dirname6(containingFilePath), specifier) : specifier;
     const stat = getFileStatus(importFullPath);
     if (stat && stat.isFile()) {
       return importFullPath;
@@ -38179,7 +38220,7 @@ var Analyzer = class {
       }
     }
     if (stat && stat.isDirectory()) {
-      return this._resolveFileSpecifier(join12(importFullPath, "index"));
+      return this._resolveFileSpecifier(join13(importFullPath, "index"));
     }
     return null;
   }
@@ -38351,7 +38392,7 @@ function main(approve, config, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync4(goldenFile)) {
+  if (!existsSync5(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
@@ -38464,10 +38505,10 @@ async function runCommands(commands) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/loader.js
 var import_yaml4 = __toESM(require_dist2());
-import { readFile } from "fs/promises";
+import { readFile as readFile2 } from "fs/promises";
 async function loadWorkflows(src) {
   const filteredWorkflows = {};
-  const rawWorkflows = await readFile(src, { encoding: "utf-8" });
+  const rawWorkflows = await readFile2(src, { encoding: "utf-8" });
   const workflows = (0, import_yaml4.parse)(rawWorkflows).workflows;
   for (const [name, workflow] of Object.entries(workflows)) {
     if (workflow.disabled !== true) {
@@ -38478,7 +38519,7 @@ async function loadWorkflows(src) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/cli.js
-import { join as join13 } from "path";
+import { join as join14 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/database.js
 import { Spanner } from "@google-cloud/spanner";
@@ -38515,7 +38556,7 @@ function builder27(yargs) {
   });
 }
 async function handler28({ configFile, list, name, commitSha }) {
-  const workflows = await loadWorkflows(join13(determineRepoBaseDirFromCwd(), configFile));
+  const workflows = await loadWorkflows(join14(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
     return;

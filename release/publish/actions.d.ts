@@ -11,6 +11,7 @@ import { BuiltPackageWithInfo, ReleaseConfig } from '../config/index.js';
 import { ReleaseNotes } from '../notes/release-notes.js';
 import { NpmDistTag, PackageJson } from '../versioning/index.js';
 import { ActiveReleaseTrains } from '../versioning/active-release-trains.js';
+import { PnpmVersioning } from './pnpm-versioning.js';
 /** Interface describing a Github repository. */
 export interface GithubRepo {
     owner: string;
@@ -63,6 +64,7 @@ export declare abstract class ReleaseAction {
      * @throws {FatalReleaseActionError} When the action has been aborted due to a fatal error.
      */
     abstract perform(): Promise<void>;
+    protected pnpmVersioning: PnpmVersioning;
     constructor(active: ActiveReleaseTrains, git: AuthenticatedGitClient, config: ReleaseConfig, projectDir: string);
     /**
      * Updates the version in the project top-level `package.json` file.
