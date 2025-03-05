@@ -89,7 +89,7 @@ export declare function getConfig<A extends MultipleAssertions>(assertions: A): 
  * present. The object is an untyped object as there are no required user configurations.
  */
 export declare function getUserConfig(): Promise<{
-    [x: string]: any;
+    [key: string]: any;
 }>;
 /** A standard error class to thrown during assertions while validating configuration. */
 export declare class ConfigValidationError extends Error {
