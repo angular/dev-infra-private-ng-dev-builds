@@ -22545,6 +22545,2286 @@ ${padding}]`;
   }
 });
 
+// node_modules/@pnpm/crypto.polyfill/lib/index.js
+var require_lib3 = __commonJS({
+  "node_modules/@pnpm/crypto.polyfill/lib/index.js"(exports) {
+    "use strict";
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.hash = void 0;
+    var crypto_1 = __importDefault(__require("crypto"));
+    exports.hash = crypto_1.default.hash ?? ((algorithm, data, outputEncoding) => crypto_1.default.createHash(algorithm).update(data).digest(outputEncoding));
+  }
+});
+
+// node_modules/graceful-fs/polyfills.js
+var require_polyfills = __commonJS({
+  "node_modules/graceful-fs/polyfills.js"(exports, module) {
+    var constants = __require("constants");
+    var origCwd = process.cwd;
+    var cwd = null;
+    var platform = process.env.GRACEFUL_FS_PLATFORM || process.platform;
+    process.cwd = function() {
+      if (!cwd)
+        cwd = origCwd.call(process);
+      return cwd;
+    };
+    try {
+      process.cwd();
+    } catch (er) {
+    }
+    if (typeof process.chdir === "function") {
+      chdir = process.chdir;
+      process.chdir = function(d) {
+        cwd = null;
+        chdir.call(process, d);
+      };
+      if (Object.setPrototypeOf)
+        Object.setPrototypeOf(process.chdir, chdir);
+    }
+    var chdir;
+    module.exports = patch;
+    function patch(fs5) {
+      if (constants.hasOwnProperty("O_SYMLINK") && process.version.match(/^v0\.6\.[0-2]|^v0\.5\./)) {
+        patchLchmod(fs5);
+      }
+      if (!fs5.lutimes) {
+        patchLutimes(fs5);
+      }
+      fs5.chown = chownFix(fs5.chown);
+      fs5.fchown = chownFix(fs5.fchown);
+      fs5.lchown = chownFix(fs5.lchown);
+      fs5.chmod = chmodFix(fs5.chmod);
+      fs5.fchmod = chmodFix(fs5.fchmod);
+      fs5.lchmod = chmodFix(fs5.lchmod);
+      fs5.chownSync = chownFixSync(fs5.chownSync);
+      fs5.fchownSync = chownFixSync(fs5.fchownSync);
+      fs5.lchownSync = chownFixSync(fs5.lchownSync);
+      fs5.chmodSync = chmodFixSync(fs5.chmodSync);
+      fs5.fchmodSync = chmodFixSync(fs5.fchmodSync);
+      fs5.lchmodSync = chmodFixSync(fs5.lchmodSync);
+      fs5.stat = statFix(fs5.stat);
+      fs5.fstat = statFix(fs5.fstat);
+      fs5.lstat = statFix(fs5.lstat);
+      fs5.statSync = statFixSync(fs5.statSync);
+      fs5.fstatSync = statFixSync(fs5.fstatSync);
+      fs5.lstatSync = statFixSync(fs5.lstatSync);
+      if (fs5.chmod && !fs5.lchmod) {
+        fs5.lchmod = function(path8, mode, cb) {
+          if (cb)
+            process.nextTick(cb);
+        };
+        fs5.lchmodSync = function() {
+        };
+      }
+      if (fs5.chown && !fs5.lchown) {
+        fs5.lchown = function(path8, uid, gid, cb) {
+          if (cb)
+            process.nextTick(cb);
+        };
+        fs5.lchownSync = function() {
+        };
+      }
+      if (platform === "win32") {
+        fs5.rename = typeof fs5.rename !== "function" ? fs5.rename : function(fs$rename) {
+          function rename(from, to, cb) {
+            var start = Date.now();
+            var backoff = 0;
+            fs$rename(from, to, function CB(er) {
+              if (er && (er.code === "EACCES" || er.code === "EPERM" || er.code === "EBUSY") && Date.now() - start < 6e4) {
+                setTimeout(function() {
+                  fs5.stat(to, function(stater, st) {
+                    if (stater && stater.code === "ENOENT")
+                      fs$rename(from, to, CB);
+                    else
+                      cb(er);
+                  });
+                }, backoff);
+                if (backoff < 100)
+                  backoff += 10;
+                return;
+              }
+              if (cb)
+                cb(er);
+            });
+          }
+          if (Object.setPrototypeOf)
+            Object.setPrototypeOf(rename, fs$rename);
+          return rename;
+        }(fs5.rename);
+      }
+      fs5.read = typeof fs5.read !== "function" ? fs5.read : function(fs$read) {
+        function read(fd, buffer, offset, length, position, callback_) {
+          var callback;
+          if (callback_ && typeof callback_ === "function") {
+            var eagCounter = 0;
+            callback = function(er, _, __) {
+              if (er && er.code === "EAGAIN" && eagCounter < 10) {
+                eagCounter++;
+                return fs$read.call(fs5, fd, buffer, offset, length, position, callback);
+              }
+              callback_.apply(this, arguments);
+            };
+          }
+          return fs$read.call(fs5, fd, buffer, offset, length, position, callback);
+        }
+        if (Object.setPrototypeOf)
+          Object.setPrototypeOf(read, fs$read);
+        return read;
+      }(fs5.read);
+      fs5.readSync = typeof fs5.readSync !== "function" ? fs5.readSync : function(fs$readSync) {
+        return function(fd, buffer, offset, length, position) {
+          var eagCounter = 0;
+          while (true) {
+            try {
+              return fs$readSync.call(fs5, fd, buffer, offset, length, position);
+            } catch (er) {
+              if (er.code === "EAGAIN" && eagCounter < 10) {
+                eagCounter++;
+                continue;
+              }
+              throw er;
+            }
+          }
+        };
+      }(fs5.readSync);
+      function patchLchmod(fs6) {
+        fs6.lchmod = function(path8, mode, callback) {
+          fs6.open(
+            path8,
+            constants.O_WRONLY | constants.O_SYMLINK,
+            mode,
+            function(err, fd) {
+              if (err) {
+                if (callback)
+                  callback(err);
+                return;
+              }
+              fs6.fchmod(fd, mode, function(err2) {
+                fs6.close(fd, function(err22) {
+                  if (callback)
+                    callback(err2 || err22);
+                });
+              });
+            }
+          );
+        };
+        fs6.lchmodSync = function(path8, mode) {
+          var fd = fs6.openSync(path8, constants.O_WRONLY | constants.O_SYMLINK, mode);
+          var threw = true;
+          var ret;
+          try {
+            ret = fs6.fchmodSync(fd, mode);
+            threw = false;
+          } finally {
+            if (threw) {
+              try {
+                fs6.closeSync(fd);
+              } catch (er) {
+              }
+            } else {
+              fs6.closeSync(fd);
+            }
+          }
+          return ret;
+        };
+      }
+      function patchLutimes(fs6) {
+        if (constants.hasOwnProperty("O_SYMLINK") && fs6.futimes) {
+          fs6.lutimes = function(path8, at, mt, cb) {
+            fs6.open(path8, constants.O_SYMLINK, function(er, fd) {
+              if (er) {
+                if (cb)
+                  cb(er);
+                return;
+              }
+              fs6.futimes(fd, at, mt, function(er2) {
+                fs6.close(fd, function(er22) {
+                  if (cb)
+                    cb(er2 || er22);
+                });
+              });
+            });
+          };
+          fs6.lutimesSync = function(path8, at, mt) {
+            var fd = fs6.openSync(path8, constants.O_SYMLINK);
+            var ret;
+            var threw = true;
+            try {
+              ret = fs6.futimesSync(fd, at, mt);
+              threw = false;
+            } finally {
+              if (threw) {
+                try {
+                  fs6.closeSync(fd);
+                } catch (er) {
+                }
+              } else {
+                fs6.closeSync(fd);
+              }
+            }
+            return ret;
+          };
+        } else if (fs6.futimes) {
+          fs6.lutimes = function(_a2, _b2, _c2, cb) {
+            if (cb)
+              process.nextTick(cb);
+          };
+          fs6.lutimesSync = function() {
+          };
+        }
+      }
+      function chmodFix(orig) {
+        if (!orig)
+          return orig;
+        return function(target, mode, cb) {
+          return orig.call(fs5, target, mode, function(er) {
+            if (chownErOk(er))
+              er = null;
+            if (cb)
+              cb.apply(this, arguments);
+          });
+        };
+      }
+      function chmodFixSync(orig) {
+        if (!orig)
+          return orig;
+        return function(target, mode) {
+          try {
+            return orig.call(fs5, target, mode);
+          } catch (er) {
+            if (!chownErOk(er))
+              throw er;
+          }
+        };
+      }
+      function chownFix(orig) {
+        if (!orig)
+          return orig;
+        return function(target, uid, gid, cb) {
+          return orig.call(fs5, target, uid, gid, function(er) {
+            if (chownErOk(er))
+              er = null;
+            if (cb)
+              cb.apply(this, arguments);
+          });
+        };
+      }
+      function chownFixSync(orig) {
+        if (!orig)
+          return orig;
+        return function(target, uid, gid) {
+          try {
+            return orig.call(fs5, target, uid, gid);
+          } catch (er) {
+            if (!chownErOk(er))
+              throw er;
+          }
+        };
+      }
+      function statFix(orig) {
+        if (!orig)
+          return orig;
+        return function(target, options, cb) {
+          if (typeof options === "function") {
+            cb = options;
+            options = null;
+          }
+          function callback(er, stats) {
+            if (stats) {
+              if (stats.uid < 0)
+                stats.uid += 4294967296;
+              if (stats.gid < 0)
+                stats.gid += 4294967296;
+            }
+            if (cb)
+              cb.apply(this, arguments);
+          }
+          return options ? orig.call(fs5, target, options, callback) : orig.call(fs5, target, callback);
+        };
+      }
+      function statFixSync(orig) {
+        if (!orig)
+          return orig;
+        return function(target, options) {
+          var stats = options ? orig.call(fs5, target, options) : orig.call(fs5, target);
+          if (stats) {
+            if (stats.uid < 0)
+              stats.uid += 4294967296;
+            if (stats.gid < 0)
+              stats.gid += 4294967296;
+          }
+          return stats;
+        };
+      }
+      function chownErOk(er) {
+        if (!er)
+          return true;
+        if (er.code === "ENOSYS")
+          return true;
+        var nonroot = !process.getuid || process.getuid() !== 0;
+        if (nonroot) {
+          if (er.code === "EINVAL" || er.code === "EPERM")
+            return true;
+        }
+        return false;
+      }
+    }
+  }
+});
+
+// node_modules/graceful-fs/legacy-streams.js
+var require_legacy_streams = __commonJS({
+  "node_modules/graceful-fs/legacy-streams.js"(exports, module) {
+    var Stream = __require("stream").Stream;
+    module.exports = legacy;
+    function legacy(fs5) {
+      return {
+        ReadStream,
+        WriteStream
+      };
+      function ReadStream(path8, options) {
+        if (!(this instanceof ReadStream))
+          return new ReadStream(path8, options);
+        Stream.call(this);
+        var self = this;
+        this.path = path8;
+        this.fd = null;
+        this.readable = true;
+        this.paused = false;
+        this.flags = "r";
+        this.mode = 438;
+        this.bufferSize = 64 * 1024;
+        options = options || {};
+        var keys = Object.keys(options);
+        for (var index = 0, length = keys.length; index < length; index++) {
+          var key = keys[index];
+          this[key] = options[key];
+        }
+        if (this.encoding)
+          this.setEncoding(this.encoding);
+        if (this.start !== void 0) {
+          if ("number" !== typeof this.start) {
+            throw TypeError("start must be a Number");
+          }
+          if (this.end === void 0) {
+            this.end = Infinity;
+          } else if ("number" !== typeof this.end) {
+            throw TypeError("end must be a Number");
+          }
+          if (this.start > this.end) {
+            throw new Error("start must be <= end");
+          }
+          this.pos = this.start;
+        }
+        if (this.fd !== null) {
+          process.nextTick(function() {
+            self._read();
+          });
+          return;
+        }
+        fs5.open(this.path, this.flags, this.mode, function(err, fd) {
+          if (err) {
+            self.emit("error", err);
+            self.readable = false;
+            return;
+          }
+          self.fd = fd;
+          self.emit("open", fd);
+          self._read();
+        });
+      }
+      function WriteStream(path8, options) {
+        if (!(this instanceof WriteStream))
+          return new WriteStream(path8, options);
+        Stream.call(this);
+        this.path = path8;
+        this.fd = null;
+        this.writable = true;
+        this.flags = "w";
+        this.encoding = "binary";
+        this.mode = 438;
+        this.bytesWritten = 0;
+        options = options || {};
+        var keys = Object.keys(options);
+        for (var index = 0, length = keys.length; index < length; index++) {
+          var key = keys[index];
+          this[key] = options[key];
+        }
+        if (this.start !== void 0) {
+          if ("number" !== typeof this.start) {
+            throw TypeError("start must be a Number");
+          }
+          if (this.start < 0) {
+            throw new Error("start must be >= zero");
+          }
+          this.pos = this.start;
+        }
+        this.busy = false;
+        this._queue = [];
+        if (this.fd === null) {
+          this._open = fs5.open;
+          this._queue.push([this._open, this.path, this.flags, this.mode, void 0]);
+          this.flush();
+        }
+      }
+    }
+  }
+});
+
+// node_modules/graceful-fs/clone.js
+var require_clone = __commonJS({
+  "node_modules/graceful-fs/clone.js"(exports, module) {
+    "use strict";
+    module.exports = clone;
+    var getPrototypeOf = Object.getPrototypeOf || function(obj) {
+      return obj.__proto__;
+    };
+    function clone(obj) {
+      if (obj === null || typeof obj !== "object")
+        return obj;
+      if (obj instanceof Object)
+        var copy = { __proto__: getPrototypeOf(obj) };
+      else
+        var copy = /* @__PURE__ */ Object.create(null);
+      Object.getOwnPropertyNames(obj).forEach(function(key) {
+        Object.defineProperty(copy, key, Object.getOwnPropertyDescriptor(obj, key));
+      });
+      return copy;
+    }
+  }
+});
+
+// node_modules/graceful-fs/graceful-fs.js
+var require_graceful_fs = __commonJS({
+  "node_modules/graceful-fs/graceful-fs.js"(exports, module) {
+    var fs5 = __require("fs");
+    var polyfills = require_polyfills();
+    var legacy = require_legacy_streams();
+    var clone = require_clone();
+    var util = __require("util");
+    var gracefulQueue;
+    var previousSymbol;
+    if (typeof Symbol === "function" && typeof Symbol.for === "function") {
+      gracefulQueue = Symbol.for("graceful-fs.queue");
+      previousSymbol = Symbol.for("graceful-fs.previous");
+    } else {
+      gracefulQueue = "___graceful-fs.queue";
+      previousSymbol = "___graceful-fs.previous";
+    }
+    function noop() {
+    }
+    function publishQueue(context, queue2) {
+      Object.defineProperty(context, gracefulQueue, {
+        get: function() {
+          return queue2;
+        }
+      });
+    }
+    var debug = noop;
+    if (util.debuglog)
+      debug = util.debuglog("gfs4");
+    else if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || ""))
+      debug = function() {
+        var m = util.format.apply(util, arguments);
+        m = "GFS4: " + m.split(/\n/).join("\nGFS4: ");
+        console.error(m);
+      };
+    if (!fs5[gracefulQueue]) {
+      queue = global[gracefulQueue] || [];
+      publishQueue(fs5, queue);
+      fs5.close = function(fs$close) {
+        function close(fd, cb) {
+          return fs$close.call(fs5, fd, function(err) {
+            if (!err) {
+              resetQueue();
+            }
+            if (typeof cb === "function")
+              cb.apply(this, arguments);
+          });
+        }
+        Object.defineProperty(close, previousSymbol, {
+          value: fs$close
+        });
+        return close;
+      }(fs5.close);
+      fs5.closeSync = function(fs$closeSync) {
+        function closeSync(fd) {
+          fs$closeSync.apply(fs5, arguments);
+          resetQueue();
+        }
+        Object.defineProperty(closeSync, previousSymbol, {
+          value: fs$closeSync
+        });
+        return closeSync;
+      }(fs5.closeSync);
+      if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || "")) {
+        process.on("exit", function() {
+          debug(fs5[gracefulQueue]);
+          __require("assert").equal(fs5[gracefulQueue].length, 0);
+        });
+      }
+    }
+    var queue;
+    if (!global[gracefulQueue]) {
+      publishQueue(global, fs5[gracefulQueue]);
+    }
+    module.exports = patch(clone(fs5));
+    if (process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !fs5.__patched) {
+      module.exports = patch(fs5);
+      fs5.__patched = true;
+    }
+    function patch(fs6) {
+      polyfills(fs6);
+      fs6.gracefulify = patch;
+      fs6.createReadStream = createReadStream;
+      fs6.createWriteStream = createWriteStream;
+      var fs$readFile = fs6.readFile;
+      fs6.readFile = readFile3;
+      function readFile3(path8, options, cb) {
+        if (typeof options === "function")
+          cb = options, options = null;
+        return go$readFile(path8, options, cb);
+        function go$readFile(path9, options2, cb2, startTime) {
+          return fs$readFile(path9, options2, function(err) {
+            if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
+              enqueue([go$readFile, [path9, options2, cb2], err, startTime || Date.now(), Date.now()]);
+            else {
+              if (typeof cb2 === "function")
+                cb2.apply(this, arguments);
+            }
+          });
+        }
+      }
+      var fs$writeFile = fs6.writeFile;
+      fs6.writeFile = writeFile2;
+      function writeFile2(path8, data, options, cb) {
+        if (typeof options === "function")
+          cb = options, options = null;
+        return go$writeFile(path8, data, options, cb);
+        function go$writeFile(path9, data2, options2, cb2, startTime) {
+          return fs$writeFile(path9, data2, options2, function(err) {
+            if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
+              enqueue([go$writeFile, [path9, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+            else {
+              if (typeof cb2 === "function")
+                cb2.apply(this, arguments);
+            }
+          });
+        }
+      }
+      var fs$appendFile = fs6.appendFile;
+      if (fs$appendFile)
+        fs6.appendFile = appendFile;
+      function appendFile(path8, data, options, cb) {
+        if (typeof options === "function")
+          cb = options, options = null;
+        return go$appendFile(path8, data, options, cb);
+        function go$appendFile(path9, data2, options2, cb2, startTime) {
+          return fs$appendFile(path9, data2, options2, function(err) {
+            if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
+              enqueue([go$appendFile, [path9, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+            else {
+              if (typeof cb2 === "function")
+                cb2.apply(this, arguments);
+            }
+          });
+        }
+      }
+      var fs$copyFile = fs6.copyFile;
+      if (fs$copyFile)
+        fs6.copyFile = copyFile;
+      function copyFile(src, dest, flags, cb) {
+        if (typeof flags === "function") {
+          cb = flags;
+          flags = 0;
+        }
+        return go$copyFile(src, dest, flags, cb);
+        function go$copyFile(src2, dest2, flags2, cb2, startTime) {
+          return fs$copyFile(src2, dest2, flags2, function(err) {
+            if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
+              enqueue([go$copyFile, [src2, dest2, flags2, cb2], err, startTime || Date.now(), Date.now()]);
+            else {
+              if (typeof cb2 === "function")
+                cb2.apply(this, arguments);
+            }
+          });
+        }
+      }
+      var fs$readdir = fs6.readdir;
+      fs6.readdir = readdir;
+      var noReaddirOptionVersions = /^v[0-5]\./;
+      function readdir(path8, options, cb) {
+        if (typeof options === "function")
+          cb = options, options = null;
+        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path9, options2, cb2, startTime) {
+          return fs$readdir(path9, fs$readdirCallback(
+            path9,
+            options2,
+            cb2,
+            startTime
+          ));
+        } : function go$readdir2(path9, options2, cb2, startTime) {
+          return fs$readdir(path9, options2, fs$readdirCallback(
+            path9,
+            options2,
+            cb2,
+            startTime
+          ));
+        };
+        return go$readdir(path8, options, cb);
+        function fs$readdirCallback(path9, options2, cb2, startTime) {
+          return function(err, files) {
+            if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
+              enqueue([
+                go$readdir,
+                [path9, options2, cb2],
+                err,
+                startTime || Date.now(),
+                Date.now()
+              ]);
+            else {
+              if (files && files.sort)
+                files.sort();
+              if (typeof cb2 === "function")
+                cb2.call(this, err, files);
+            }
+          };
+        }
+      }
+      if (process.version.substr(0, 4) === "v0.8") {
+        var legStreams = legacy(fs6);
+        ReadStream = legStreams.ReadStream;
+        WriteStream = legStreams.WriteStream;
+      }
+      var fs$ReadStream = fs6.ReadStream;
+      if (fs$ReadStream) {
+        ReadStream.prototype = Object.create(fs$ReadStream.prototype);
+        ReadStream.prototype.open = ReadStream$open;
+      }
+      var fs$WriteStream = fs6.WriteStream;
+      if (fs$WriteStream) {
+        WriteStream.prototype = Object.create(fs$WriteStream.prototype);
+        WriteStream.prototype.open = WriteStream$open;
+      }
+      Object.defineProperty(fs6, "ReadStream", {
+        get: function() {
+          return ReadStream;
+        },
+        set: function(val) {
+          ReadStream = val;
+        },
+        enumerable: true,
+        configurable: true
+      });
+      Object.defineProperty(fs6, "WriteStream", {
+        get: function() {
+          return WriteStream;
+        },
+        set: function(val) {
+          WriteStream = val;
+        },
+        enumerable: true,
+        configurable: true
+      });
+      var FileReadStream = ReadStream;
+      Object.defineProperty(fs6, "FileReadStream", {
+        get: function() {
+          return FileReadStream;
+        },
+        set: function(val) {
+          FileReadStream = val;
+        },
+        enumerable: true,
+        configurable: true
+      });
+      var FileWriteStream = WriteStream;
+      Object.defineProperty(fs6, "FileWriteStream", {
+        get: function() {
+          return FileWriteStream;
+        },
+        set: function(val) {
+          FileWriteStream = val;
+        },
+        enumerable: true,
+        configurable: true
+      });
+      function ReadStream(path8, options) {
+        if (this instanceof ReadStream)
+          return fs$ReadStream.apply(this, arguments), this;
+        else
+          return ReadStream.apply(Object.create(ReadStream.prototype), arguments);
+      }
+      function ReadStream$open() {
+        var that = this;
+        open(that.path, that.flags, that.mode, function(err, fd) {
+          if (err) {
+            if (that.autoClose)
+              that.destroy();
+            that.emit("error", err);
+          } else {
+            that.fd = fd;
+            that.emit("open", fd);
+            that.read();
+          }
+        });
+      }
+      function WriteStream(path8, options) {
+        if (this instanceof WriteStream)
+          return fs$WriteStream.apply(this, arguments), this;
+        else
+          return WriteStream.apply(Object.create(WriteStream.prototype), arguments);
+      }
+      function WriteStream$open() {
+        var that = this;
+        open(that.path, that.flags, that.mode, function(err, fd) {
+          if (err) {
+            that.destroy();
+            that.emit("error", err);
+          } else {
+            that.fd = fd;
+            that.emit("open", fd);
+          }
+        });
+      }
+      function createReadStream(path8, options) {
+        return new fs6.ReadStream(path8, options);
+      }
+      function createWriteStream(path8, options) {
+        return new fs6.WriteStream(path8, options);
+      }
+      var fs$open = fs6.open;
+      fs6.open = open;
+      function open(path8, flags, mode, cb) {
+        if (typeof mode === "function")
+          cb = mode, mode = null;
+        return go$open(path8, flags, mode, cb);
+        function go$open(path9, flags2, mode2, cb2, startTime) {
+          return fs$open(path9, flags2, mode2, function(err, fd) {
+            if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
+              enqueue([go$open, [path9, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
+            else {
+              if (typeof cb2 === "function")
+                cb2.apply(this, arguments);
+            }
+          });
+        }
+      }
+      return fs6;
+    }
+    function enqueue(elem) {
+      debug("ENQUEUE", elem[0].name, elem[1]);
+      fs5[gracefulQueue].push(elem);
+      retry();
+    }
+    var retryTimer;
+    function resetQueue() {
+      var now = Date.now();
+      for (var i = 0; i < fs5[gracefulQueue].length; ++i) {
+        if (fs5[gracefulQueue][i].length > 2) {
+          fs5[gracefulQueue][i][3] = now;
+          fs5[gracefulQueue][i][4] = now;
+        }
+      }
+      retry();
+    }
+    function retry() {
+      clearTimeout(retryTimer);
+      retryTimer = void 0;
+      if (fs5[gracefulQueue].length === 0)
+        return;
+      var elem = fs5[gracefulQueue].shift();
+      var fn = elem[0];
+      var args = elem[1];
+      var err = elem[2];
+      var startTime = elem[3];
+      var lastTime = elem[4];
+      if (startTime === void 0) {
+        debug("RETRY", fn.name, args);
+        fn.apply(null, args);
+      } else if (Date.now() - startTime >= 6e4) {
+        debug("TIMEOUT", fn.name, args);
+        var cb = args.pop();
+        if (typeof cb === "function")
+          cb.call(null, err);
+      } else {
+        var sinceAttempt = Date.now() - lastTime;
+        var sinceStart = Math.max(lastTime - startTime, 1);
+        var desiredDelay = Math.min(sinceStart * 1.2, 100);
+        if (sinceAttempt >= desiredDelay) {
+          debug("RETRY", fn.name, args);
+          fn.apply(null, args.concat([startTime]));
+        } else {
+          fs5[gracefulQueue].push(elem);
+        }
+      }
+      if (retryTimer === void 0) {
+        retryTimer = setTimeout(retry, 0);
+      }
+    }
+  }
+});
+
+// node_modules/@pnpm/graceful-fs/lib/index.js
+var require_lib4 = __commonJS({
+  "node_modules/@pnpm/graceful-fs/lib/index.js"(exports) {
+    "use strict";
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var util_1 = __require("util");
+    var graceful_fs_1 = __importDefault(require_graceful_fs());
+    exports.default = {
+      copyFile: (0, util_1.promisify)(graceful_fs_1.default.copyFile),
+      copyFileSync: graceful_fs_1.default.copyFileSync,
+      createReadStream: graceful_fs_1.default.createReadStream,
+      link: (0, util_1.promisify)(graceful_fs_1.default.link),
+      linkSync: graceful_fs_1.default.linkSync,
+      readFile: (0, util_1.promisify)(graceful_fs_1.default.readFile),
+      readFileSync: graceful_fs_1.default.readFileSync,
+      readdirSync: graceful_fs_1.default.readdirSync,
+      stat: (0, util_1.promisify)(graceful_fs_1.default.stat),
+      statSync: graceful_fs_1.default.statSync,
+      unlinkSync: graceful_fs_1.default.unlinkSync,
+      writeFile: (0, util_1.promisify)(graceful_fs_1.default.writeFile),
+      writeFileSync: graceful_fs_1.default.writeFileSync
+    };
+  }
+});
+
+// node_modules/minipass/dist/commonjs/index.js
+var require_commonjs = __commonJS({
+  "node_modules/minipass/dist/commonjs/index.js"(exports) {
+    "use strict";
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.Minipass = exports.isWritable = exports.isReadable = exports.isStream = void 0;
+    var proc = typeof process === "object" && process ? process : {
+      stdout: null,
+      stderr: null
+    };
+    var node_events_1 = __require("events");
+    var node_stream_1 = __importDefault(__require("stream"));
+    var node_string_decoder_1 = __require("string_decoder");
+    var isStream = (s) => !!s && typeof s === "object" && (s instanceof Minipass || s instanceof node_stream_1.default || (0, exports.isReadable)(s) || (0, exports.isWritable)(s));
+    exports.isStream = isStream;
+    var isReadable = (s) => !!s && typeof s === "object" && s instanceof node_events_1.EventEmitter && typeof s.pipe === "function" && s.pipe !== node_stream_1.default.Writable.prototype.pipe;
+    exports.isReadable = isReadable;
+    var isWritable = (s) => !!s && typeof s === "object" && s instanceof node_events_1.EventEmitter && typeof s.write === "function" && typeof s.end === "function";
+    exports.isWritable = isWritable;
+    var EOF = Symbol("EOF");
+    var MAYBE_EMIT_END = Symbol("maybeEmitEnd");
+    var EMITTED_END = Symbol("emittedEnd");
+    var EMITTING_END = Symbol("emittingEnd");
+    var EMITTED_ERROR = Symbol("emittedError");
+    var CLOSED = Symbol("closed");
+    var READ = Symbol("read");
+    var FLUSH = Symbol("flush");
+    var FLUSHCHUNK = Symbol("flushChunk");
+    var ENCODING = Symbol("encoding");
+    var DECODER = Symbol("decoder");
+    var FLOWING = Symbol("flowing");
+    var PAUSED = Symbol("paused");
+    var RESUME = Symbol("resume");
+    var BUFFER = Symbol("buffer");
+    var PIPES = Symbol("pipes");
+    var BUFFERLENGTH = Symbol("bufferLength");
+    var BUFFERPUSH = Symbol("bufferPush");
+    var BUFFERSHIFT = Symbol("bufferShift");
+    var OBJECTMODE = Symbol("objectMode");
+    var DESTROYED = Symbol("destroyed");
+    var ERROR = Symbol("error");
+    var EMITDATA = Symbol("emitData");
+    var EMITEND = Symbol("emitEnd");
+    var EMITEND2 = Symbol("emitEnd2");
+    var ASYNC = Symbol("async");
+    var ABORT = Symbol("abort");
+    var ABORTED = Symbol("aborted");
+    var SIGNAL = Symbol("signal");
+    var DATALISTENERS = Symbol("dataListeners");
+    var DISCARDED = Symbol("discarded");
+    var defer = (fn) => Promise.resolve().then(fn);
+    var nodefer = (fn) => fn();
+    var isEndish = (ev) => ev === "end" || ev === "finish" || ev === "prefinish";
+    var isArrayBufferLike = (b) => b instanceof ArrayBuffer || !!b && typeof b === "object" && b.constructor && b.constructor.name === "ArrayBuffer" && b.byteLength >= 0;
+    var isArrayBufferView = (b) => !Buffer.isBuffer(b) && ArrayBuffer.isView(b);
+    var Pipe = class {
+      src;
+      dest;
+      opts;
+      ondrain;
+      constructor(src, dest, opts) {
+        this.src = src;
+        this.dest = dest;
+        this.opts = opts;
+        this.ondrain = () => src[RESUME]();
+        this.dest.on("drain", this.ondrain);
+      }
+      unpipe() {
+        this.dest.removeListener("drain", this.ondrain);
+      }
+      proxyErrors(_er) {
+      }
+      end() {
+        this.unpipe();
+        if (this.opts.end)
+          this.dest.end();
+      }
+    };
+    var PipeProxyErrors = class extends Pipe {
+      unpipe() {
+        this.src.removeListener("error", this.proxyErrors);
+        super.unpipe();
+      }
+      constructor(src, dest, opts) {
+        super(src, dest, opts);
+        this.proxyErrors = (er) => dest.emit("error", er);
+        src.on("error", this.proxyErrors);
+      }
+    };
+    var isObjectModeOptions = (o) => !!o.objectMode;
+    var isEncodingOptions = (o) => !o.objectMode && !!o.encoding && o.encoding !== "buffer";
+    var Minipass = class extends node_events_1.EventEmitter {
+      [FLOWING] = false;
+      [PAUSED] = false;
+      [PIPES] = [];
+      [BUFFER] = [];
+      [OBJECTMODE];
+      [ENCODING];
+      [ASYNC];
+      [DECODER];
+      [EOF] = false;
+      [EMITTED_END] = false;
+      [EMITTING_END] = false;
+      [CLOSED] = false;
+      [EMITTED_ERROR] = null;
+      [BUFFERLENGTH] = 0;
+      [DESTROYED] = false;
+      [SIGNAL];
+      [ABORTED] = false;
+      [DATALISTENERS] = 0;
+      [DISCARDED] = false;
+      writable = true;
+      readable = true;
+      constructor(...args) {
+        const options = args[0] || {};
+        super();
+        if (options.objectMode && typeof options.encoding === "string") {
+          throw new TypeError("Encoding and objectMode may not be used together");
+        }
+        if (isObjectModeOptions(options)) {
+          this[OBJECTMODE] = true;
+          this[ENCODING] = null;
+        } else if (isEncodingOptions(options)) {
+          this[ENCODING] = options.encoding;
+          this[OBJECTMODE] = false;
+        } else {
+          this[OBJECTMODE] = false;
+          this[ENCODING] = null;
+        }
+        this[ASYNC] = !!options.async;
+        this[DECODER] = this[ENCODING] ? new node_string_decoder_1.StringDecoder(this[ENCODING]) : null;
+        if (options && options.debugExposeBuffer === true) {
+          Object.defineProperty(this, "buffer", { get: () => this[BUFFER] });
+        }
+        if (options && options.debugExposePipes === true) {
+          Object.defineProperty(this, "pipes", { get: () => this[PIPES] });
+        }
+        const { signal } = options;
+        if (signal) {
+          this[SIGNAL] = signal;
+          if (signal.aborted) {
+            this[ABORT]();
+          } else {
+            signal.addEventListener("abort", () => this[ABORT]());
+          }
+        }
+      }
+      get bufferLength() {
+        return this[BUFFERLENGTH];
+      }
+      get encoding() {
+        return this[ENCODING];
+      }
+      set encoding(_enc) {
+        throw new Error("Encoding must be set at instantiation time");
+      }
+      setEncoding(_enc) {
+        throw new Error("Encoding must be set at instantiation time");
+      }
+      get objectMode() {
+        return this[OBJECTMODE];
+      }
+      set objectMode(_om) {
+        throw new Error("objectMode must be set at instantiation time");
+      }
+      get ["async"]() {
+        return this[ASYNC];
+      }
+      set ["async"](a) {
+        this[ASYNC] = this[ASYNC] || !!a;
+      }
+      [ABORT]() {
+        var _a2, _b2;
+        this[ABORTED] = true;
+        this.emit("abort", (_a2 = this[SIGNAL]) == null ? void 0 : _a2.reason);
+        this.destroy((_b2 = this[SIGNAL]) == null ? void 0 : _b2.reason);
+      }
+      get aborted() {
+        return this[ABORTED];
+      }
+      set aborted(_) {
+      }
+      write(chunk, encoding, cb) {
+        var _a2;
+        if (this[ABORTED])
+          return false;
+        if (this[EOF])
+          throw new Error("write after end");
+        if (this[DESTROYED]) {
+          this.emit("error", Object.assign(new Error("Cannot call write after a stream was destroyed"), { code: "ERR_STREAM_DESTROYED" }));
+          return true;
+        }
+        if (typeof encoding === "function") {
+          cb = encoding;
+          encoding = "utf8";
+        }
+        if (!encoding)
+          encoding = "utf8";
+        const fn = this[ASYNC] ? defer : nodefer;
+        if (!this[OBJECTMODE] && !Buffer.isBuffer(chunk)) {
+          if (isArrayBufferView(chunk)) {
+            chunk = Buffer.from(chunk.buffer, chunk.byteOffset, chunk.byteLength);
+          } else if (isArrayBufferLike(chunk)) {
+            chunk = Buffer.from(chunk);
+          } else if (typeof chunk !== "string") {
+            throw new Error("Non-contiguous data written to non-objectMode stream");
+          }
+        }
+        if (this[OBJECTMODE]) {
+          if (this[FLOWING] && this[BUFFERLENGTH] !== 0)
+            this[FLUSH](true);
+          if (this[FLOWING])
+            this.emit("data", chunk);
+          else
+            this[BUFFERPUSH](chunk);
+          if (this[BUFFERLENGTH] !== 0)
+            this.emit("readable");
+          if (cb)
+            fn(cb);
+          return this[FLOWING];
+        }
+        if (!chunk.length) {
+          if (this[BUFFERLENGTH] !== 0)
+            this.emit("readable");
+          if (cb)
+            fn(cb);
+          return this[FLOWING];
+        }
+        if (typeof chunk === "string" && !(encoding === this[ENCODING] && !((_a2 = this[DECODER]) == null ? void 0 : _a2.lastNeed))) {
+          chunk = Buffer.from(chunk, encoding);
+        }
+        if (Buffer.isBuffer(chunk) && this[ENCODING]) {
+          chunk = this[DECODER].write(chunk);
+        }
+        if (this[FLOWING] && this[BUFFERLENGTH] !== 0)
+          this[FLUSH](true);
+        if (this[FLOWING])
+          this.emit("data", chunk);
+        else
+          this[BUFFERPUSH](chunk);
+        if (this[BUFFERLENGTH] !== 0)
+          this.emit("readable");
+        if (cb)
+          fn(cb);
+        return this[FLOWING];
+      }
+      read(n) {
+        if (this[DESTROYED])
+          return null;
+        this[DISCARDED] = false;
+        if (this[BUFFERLENGTH] === 0 || n === 0 || n && n > this[BUFFERLENGTH]) {
+          this[MAYBE_EMIT_END]();
+          return null;
+        }
+        if (this[OBJECTMODE])
+          n = null;
+        if (this[BUFFER].length > 1 && !this[OBJECTMODE]) {
+          this[BUFFER] = [
+            this[ENCODING] ? this[BUFFER].join("") : Buffer.concat(this[BUFFER], this[BUFFERLENGTH])
+          ];
+        }
+        const ret = this[READ](n || null, this[BUFFER][0]);
+        this[MAYBE_EMIT_END]();
+        return ret;
+      }
+      [READ](n, chunk) {
+        if (this[OBJECTMODE])
+          this[BUFFERSHIFT]();
+        else {
+          const c = chunk;
+          if (n === c.length || n === null)
+            this[BUFFERSHIFT]();
+          else if (typeof c === "string") {
+            this[BUFFER][0] = c.slice(n);
+            chunk = c.slice(0, n);
+            this[BUFFERLENGTH] -= n;
+          } else {
+            this[BUFFER][0] = c.subarray(n);
+            chunk = c.subarray(0, n);
+            this[BUFFERLENGTH] -= n;
+          }
+        }
+        this.emit("data", chunk);
+        if (!this[BUFFER].length && !this[EOF])
+          this.emit("drain");
+        return chunk;
+      }
+      end(chunk, encoding, cb) {
+        if (typeof chunk === "function") {
+          cb = chunk;
+          chunk = void 0;
+        }
+        if (typeof encoding === "function") {
+          cb = encoding;
+          encoding = "utf8";
+        }
+        if (chunk !== void 0)
+          this.write(chunk, encoding);
+        if (cb)
+          this.once("end", cb);
+        this[EOF] = true;
+        this.writable = false;
+        if (this[FLOWING] || !this[PAUSED])
+          this[MAYBE_EMIT_END]();
+        return this;
+      }
+      [RESUME]() {
+        if (this[DESTROYED])
+          return;
+        if (!this[DATALISTENERS] && !this[PIPES].length) {
+          this[DISCARDED] = true;
+        }
+        this[PAUSED] = false;
+        this[FLOWING] = true;
+        this.emit("resume");
+        if (this[BUFFER].length)
+          this[FLUSH]();
+        else if (this[EOF])
+          this[MAYBE_EMIT_END]();
+        else
+          this.emit("drain");
+      }
+      resume() {
+        return this[RESUME]();
+      }
+      pause() {
+        this[FLOWING] = false;
+        this[PAUSED] = true;
+        this[DISCARDED] = false;
+      }
+      get destroyed() {
+        return this[DESTROYED];
+      }
+      get flowing() {
+        return this[FLOWING];
+      }
+      get paused() {
+        return this[PAUSED];
+      }
+      [BUFFERPUSH](chunk) {
+        if (this[OBJECTMODE])
+          this[BUFFERLENGTH] += 1;
+        else
+          this[BUFFERLENGTH] += chunk.length;
+        this[BUFFER].push(chunk);
+      }
+      [BUFFERSHIFT]() {
+        if (this[OBJECTMODE])
+          this[BUFFERLENGTH] -= 1;
+        else
+          this[BUFFERLENGTH] -= this[BUFFER][0].length;
+        return this[BUFFER].shift();
+      }
+      [FLUSH](noDrain = false) {
+        do {
+        } while (this[FLUSHCHUNK](this[BUFFERSHIFT]()) && this[BUFFER].length);
+        if (!noDrain && !this[BUFFER].length && !this[EOF])
+          this.emit("drain");
+      }
+      [FLUSHCHUNK](chunk) {
+        this.emit("data", chunk);
+        return this[FLOWING];
+      }
+      pipe(dest, opts) {
+        if (this[DESTROYED])
+          return dest;
+        this[DISCARDED] = false;
+        const ended = this[EMITTED_END];
+        opts = opts || {};
+        if (dest === proc.stdout || dest === proc.stderr)
+          opts.end = false;
+        else
+          opts.end = opts.end !== false;
+        opts.proxyErrors = !!opts.proxyErrors;
+        if (ended) {
+          if (opts.end)
+            dest.end();
+        } else {
+          this[PIPES].push(!opts.proxyErrors ? new Pipe(this, dest, opts) : new PipeProxyErrors(this, dest, opts));
+          if (this[ASYNC])
+            defer(() => this[RESUME]());
+          else
+            this[RESUME]();
+        }
+        return dest;
+      }
+      unpipe(dest) {
+        const p = this[PIPES].find((p2) => p2.dest === dest);
+        if (p) {
+          if (this[PIPES].length === 1) {
+            if (this[FLOWING] && this[DATALISTENERS] === 0) {
+              this[FLOWING] = false;
+            }
+            this[PIPES] = [];
+          } else
+            this[PIPES].splice(this[PIPES].indexOf(p), 1);
+          p.unpipe();
+        }
+      }
+      addListener(ev, handler29) {
+        return this.on(ev, handler29);
+      }
+      on(ev, handler29) {
+        const ret = super.on(ev, handler29);
+        if (ev === "data") {
+          this[DISCARDED] = false;
+          this[DATALISTENERS]++;
+          if (!this[PIPES].length && !this[FLOWING]) {
+            this[RESUME]();
+          }
+        } else if (ev === "readable" && this[BUFFERLENGTH] !== 0) {
+          super.emit("readable");
+        } else if (isEndish(ev) && this[EMITTED_END]) {
+          super.emit(ev);
+          this.removeAllListeners(ev);
+        } else if (ev === "error" && this[EMITTED_ERROR]) {
+          const h = handler29;
+          if (this[ASYNC])
+            defer(() => h.call(this, this[EMITTED_ERROR]));
+          else
+            h.call(this, this[EMITTED_ERROR]);
+        }
+        return ret;
+      }
+      removeListener(ev, handler29) {
+        return this.off(ev, handler29);
+      }
+      off(ev, handler29) {
+        const ret = super.off(ev, handler29);
+        if (ev === "data") {
+          this[DATALISTENERS] = this.listeners("data").length;
+          if (this[DATALISTENERS] === 0 && !this[DISCARDED] && !this[PIPES].length) {
+            this[FLOWING] = false;
+          }
+        }
+        return ret;
+      }
+      removeAllListeners(ev) {
+        const ret = super.removeAllListeners(ev);
+        if (ev === "data" || ev === void 0) {
+          this[DATALISTENERS] = 0;
+          if (!this[DISCARDED] && !this[PIPES].length) {
+            this[FLOWING] = false;
+          }
+        }
+        return ret;
+      }
+      get emittedEnd() {
+        return this[EMITTED_END];
+      }
+      [MAYBE_EMIT_END]() {
+        if (!this[EMITTING_END] && !this[EMITTED_END] && !this[DESTROYED] && this[BUFFER].length === 0 && this[EOF]) {
+          this[EMITTING_END] = true;
+          this.emit("end");
+          this.emit("prefinish");
+          this.emit("finish");
+          if (this[CLOSED])
+            this.emit("close");
+          this[EMITTING_END] = false;
+        }
+      }
+      emit(ev, ...args) {
+        const data = args[0];
+        if (ev !== "error" && ev !== "close" && ev !== DESTROYED && this[DESTROYED]) {
+          return false;
+        } else if (ev === "data") {
+          return !this[OBJECTMODE] && !data ? false : this[ASYNC] ? (defer(() => this[EMITDATA](data)), true) : this[EMITDATA](data);
+        } else if (ev === "end") {
+          return this[EMITEND]();
+        } else if (ev === "close") {
+          this[CLOSED] = true;
+          if (!this[EMITTED_END] && !this[DESTROYED])
+            return false;
+          const ret2 = super.emit("close");
+          this.removeAllListeners("close");
+          return ret2;
+        } else if (ev === "error") {
+          this[EMITTED_ERROR] = data;
+          super.emit(ERROR, data);
+          const ret2 = !this[SIGNAL] || this.listeners("error").length ? super.emit("error", data) : false;
+          this[MAYBE_EMIT_END]();
+          return ret2;
+        } else if (ev === "resume") {
+          const ret2 = super.emit("resume");
+          this[MAYBE_EMIT_END]();
+          return ret2;
+        } else if (ev === "finish" || ev === "prefinish") {
+          const ret2 = super.emit(ev);
+          this.removeAllListeners(ev);
+          return ret2;
+        }
+        const ret = super.emit(ev, ...args);
+        this[MAYBE_EMIT_END]();
+        return ret;
+      }
+      [EMITDATA](data) {
+        for (const p of this[PIPES]) {
+          if (p.dest.write(data) === false)
+            this.pause();
+        }
+        const ret = this[DISCARDED] ? false : super.emit("data", data);
+        this[MAYBE_EMIT_END]();
+        return ret;
+      }
+      [EMITEND]() {
+        if (this[EMITTED_END])
+          return false;
+        this[EMITTED_END] = true;
+        this.readable = false;
+        return this[ASYNC] ? (defer(() => this[EMITEND2]()), true) : this[EMITEND2]();
+      }
+      [EMITEND2]() {
+        if (this[DECODER]) {
+          const data = this[DECODER].end();
+          if (data) {
+            for (const p of this[PIPES]) {
+              p.dest.write(data);
+            }
+            if (!this[DISCARDED])
+              super.emit("data", data);
+          }
+        }
+        for (const p of this[PIPES]) {
+          p.end();
+        }
+        const ret = super.emit("end");
+        this.removeAllListeners("end");
+        return ret;
+      }
+      async collect() {
+        const buf = Object.assign([], {
+          dataLength: 0
+        });
+        if (!this[OBJECTMODE])
+          buf.dataLength = 0;
+        const p = this.promise();
+        this.on("data", (c) => {
+          buf.push(c);
+          if (!this[OBJECTMODE])
+            buf.dataLength += c.length;
+        });
+        await p;
+        return buf;
+      }
+      async concat() {
+        if (this[OBJECTMODE]) {
+          throw new Error("cannot concat in objectMode");
+        }
+        const buf = await this.collect();
+        return this[ENCODING] ? buf.join("") : Buffer.concat(buf, buf.dataLength);
+      }
+      async promise() {
+        return new Promise((resolve12, reject) => {
+          this.on(DESTROYED, () => reject(new Error("stream destroyed")));
+          this.on("error", (er) => reject(er));
+          this.on("end", () => resolve12());
+        });
+      }
+      [Symbol.asyncIterator]() {
+        this[DISCARDED] = false;
+        let stopped = false;
+        const stop = async () => {
+          this.pause();
+          stopped = true;
+          return { value: void 0, done: true };
+        };
+        const next = () => {
+          if (stopped)
+            return stop();
+          const res = this.read();
+          if (res !== null)
+            return Promise.resolve({ done: false, value: res });
+          if (this[EOF])
+            return stop();
+          let resolve12;
+          let reject;
+          const onerr = (er) => {
+            this.off("data", ondata);
+            this.off("end", onend);
+            this.off(DESTROYED, ondestroy);
+            stop();
+            reject(er);
+          };
+          const ondata = (value) => {
+            this.off("error", onerr);
+            this.off("end", onend);
+            this.off(DESTROYED, ondestroy);
+            this.pause();
+            resolve12({ value, done: !!this[EOF] });
+          };
+          const onend = () => {
+            this.off("error", onerr);
+            this.off("data", ondata);
+            this.off(DESTROYED, ondestroy);
+            stop();
+            resolve12({ done: true, value: void 0 });
+          };
+          const ondestroy = () => onerr(new Error("stream destroyed"));
+          return new Promise((res2, rej) => {
+            reject = rej;
+            resolve12 = res2;
+            this.once(DESTROYED, ondestroy);
+            this.once("error", onerr);
+            this.once("end", onend);
+            this.once("data", ondata);
+          });
+        };
+        return {
+          next,
+          throw: stop,
+          return: stop,
+          [Symbol.asyncIterator]() {
+            return this;
+          }
+        };
+      }
+      [Symbol.iterator]() {
+        this[DISCARDED] = false;
+        let stopped = false;
+        const stop = () => {
+          this.pause();
+          this.off(ERROR, stop);
+          this.off(DESTROYED, stop);
+          this.off("end", stop);
+          stopped = true;
+          return { done: true, value: void 0 };
+        };
+        const next = () => {
+          if (stopped)
+            return stop();
+          const value = this.read();
+          return value === null ? stop() : { done: false, value };
+        };
+        this.once("end", stop);
+        this.once(ERROR, stop);
+        this.once(DESTROYED, stop);
+        return {
+          next,
+          throw: stop,
+          return: stop,
+          [Symbol.iterator]() {
+            return this;
+          }
+        };
+      }
+      destroy(er) {
+        if (this[DESTROYED]) {
+          if (er)
+            this.emit("error", er);
+          else
+            this.emit(DESTROYED);
+          return this;
+        }
+        this[DESTROYED] = true;
+        this[DISCARDED] = true;
+        this[BUFFER].length = 0;
+        this[BUFFERLENGTH] = 0;
+        const wc = this;
+        if (typeof wc.close === "function" && !this[CLOSED])
+          wc.close();
+        if (er)
+          this.emit("error", er);
+        else
+          this.emit(DESTROYED);
+        return this;
+      }
+      static get isStream() {
+        return exports.isStream;
+      }
+    };
+    exports.Minipass = Minipass;
+  }
+});
+
+// node_modules/@pnpm/crypto.hash/node_modules/ssri/lib/index.js
+var require_lib5 = __commonJS({
+  "node_modules/@pnpm/crypto.hash/node_modules/ssri/lib/index.js"(exports, module) {
+    "use strict";
+    var crypto = __require("crypto");
+    var { Minipass } = require_commonjs();
+    var SPEC_ALGORITHMS = ["sha512", "sha384", "sha256"];
+    var DEFAULT_ALGORITHMS = ["sha512"];
+    var BASE64_REGEX = /^[a-z0-9+/]+(?:=?=?)$/i;
+    var SRI_REGEX = /^([a-z0-9]+)-([^?]+)([?\S*]*)$/;
+    var STRICT_SRI_REGEX = /^([a-z0-9]+)-([A-Za-z0-9+/=]{44,88})(\?[\x21-\x7E]*)?$/;
+    var VCHAR_REGEX = /^[\x21-\x7E]+$/;
+    var getOptString = (options) => (options == null ? void 0 : options.length) ? `?${options.join("?")}` : "";
+    var _emittedIntegrity, _emittedSize, _emittedVerified, _getOptions, getOptions_fn, _onEnd, onEnd_fn;
+    var IntegrityStream = class extends Minipass {
+      constructor(opts) {
+        super();
+        __privateAdd(this, _getOptions);
+        __privateAdd(this, _onEnd);
+        __privateAdd(this, _emittedIntegrity, void 0);
+        __privateAdd(this, _emittedSize, void 0);
+        __privateAdd(this, _emittedVerified, void 0);
+        this.size = 0;
+        this.opts = opts;
+        __privateMethod(this, _getOptions, getOptions_fn).call(this);
+        if (opts == null ? void 0 : opts.algorithms) {
+          this.algorithms = [...opts.algorithms];
+        } else {
+          this.algorithms = [...DEFAULT_ALGORITHMS];
+        }
+        if (this.algorithm !== null && !this.algorithms.includes(this.algorithm)) {
+          this.algorithms.push(this.algorithm);
+        }
+        this.hashes = this.algorithms.map(crypto.createHash);
+      }
+      on(ev, handler29) {
+        if (ev === "size" && __privateGet(this, _emittedSize)) {
+          return handler29(__privateGet(this, _emittedSize));
+        }
+        if (ev === "integrity" && __privateGet(this, _emittedIntegrity)) {
+          return handler29(__privateGet(this, _emittedIntegrity));
+        }
+        if (ev === "verified" && __privateGet(this, _emittedVerified)) {
+          return handler29(__privateGet(this, _emittedVerified));
+        }
+        return super.on(ev, handler29);
+      }
+      emit(ev, data) {
+        if (ev === "end") {
+          __privateMethod(this, _onEnd, onEnd_fn).call(this);
+        }
+        return super.emit(ev, data);
+      }
+      write(data) {
+        this.size += data.length;
+        this.hashes.forEach((h) => h.update(data));
+        return super.write(data);
+      }
+    };
+    _emittedIntegrity = new WeakMap();
+    _emittedSize = new WeakMap();
+    _emittedVerified = new WeakMap();
+    _getOptions = new WeakSet();
+    getOptions_fn = function() {
+      var _a2, _b2, _c2, _d;
+      this.sri = ((_a2 = this.opts) == null ? void 0 : _a2.integrity) ? parse4((_b2 = this.opts) == null ? void 0 : _b2.integrity, this.opts) : null;
+      this.expectedSize = (_c2 = this.opts) == null ? void 0 : _c2.size;
+      if (!this.sri) {
+        this.algorithm = null;
+      } else if (this.sri.isHash) {
+        this.goodSri = true;
+        this.algorithm = this.sri.algorithm;
+      } else {
+        this.goodSri = !this.sri.isEmpty();
+        this.algorithm = this.sri.pickAlgorithm(this.opts);
+      }
+      this.digests = this.goodSri ? this.sri[this.algorithm] : null;
+      this.optString = getOptString((_d = this.opts) == null ? void 0 : _d.options);
+    };
+    _onEnd = new WeakSet();
+    onEnd_fn = function() {
+      if (!this.goodSri) {
+        __privateMethod(this, _getOptions, getOptions_fn).call(this);
+      }
+      const newSri = parse4(this.hashes.map((h, i) => {
+        return `${this.algorithms[i]}-${h.digest("base64")}${this.optString}`;
+      }).join(" "), this.opts);
+      const match3 = this.goodSri && newSri.match(this.sri, this.opts);
+      if (typeof this.expectedSize === "number" && this.size !== this.expectedSize) {
+        const err = new Error(`stream size mismatch when checking ${this.sri}.
+  Wanted: ${this.expectedSize}
+  Found: ${this.size}`);
+        err.code = "EBADSIZE";
+        err.found = this.size;
+        err.expected = this.expectedSize;
+        err.sri = this.sri;
+        this.emit("error", err);
+      } else if (this.sri && !match3) {
+        const err = new Error(`${this.sri} integrity checksum failed when using ${this.algorithm}: wanted ${this.digests} but got ${newSri}. (${this.size} bytes)`);
+        err.code = "EINTEGRITY";
+        err.found = newSri;
+        err.expected = this.digests;
+        err.algorithm = this.algorithm;
+        err.sri = this.sri;
+        this.emit("error", err);
+      } else {
+        __privateSet(this, _emittedSize, this.size);
+        this.emit("size", this.size);
+        __privateSet(this, _emittedIntegrity, newSri);
+        this.emit("integrity", newSri);
+        if (match3) {
+          __privateSet(this, _emittedVerified, match3);
+          this.emit("verified", match3);
+        }
+      }
+    };
+    var Hash = class {
+      get isHash() {
+        return true;
+      }
+      constructor(hash, opts) {
+        const strict = opts == null ? void 0 : opts.strict;
+        this.source = hash.trim();
+        this.digest = "";
+        this.algorithm = "";
+        this.options = [];
+        const match3 = this.source.match(
+          strict ? STRICT_SRI_REGEX : SRI_REGEX
+        );
+        if (!match3) {
+          return;
+        }
+        if (strict && !SPEC_ALGORITHMS.includes(match3[1])) {
+          return;
+        }
+        this.algorithm = match3[1];
+        this.digest = match3[2];
+        const rawOpts = match3[3];
+        if (rawOpts) {
+          this.options = rawOpts.slice(1).split("?");
+        }
+      }
+      hexDigest() {
+        return this.digest && Buffer.from(this.digest, "base64").toString("hex");
+      }
+      toJSON() {
+        return this.toString();
+      }
+      match(integrity, opts) {
+        const other = parse4(integrity, opts);
+        if (!other) {
+          return false;
+        }
+        if (other.isIntegrity) {
+          const algo = other.pickAlgorithm(opts, [this.algorithm]);
+          if (!algo) {
+            return false;
+          }
+          const foundHash = other[algo].find((hash) => hash.digest === this.digest);
+          if (foundHash) {
+            return foundHash;
+          }
+          return false;
+        }
+        return other.digest === this.digest ? other : false;
+      }
+      toString(opts) {
+        if (opts == null ? void 0 : opts.strict) {
+          if (!(SPEC_ALGORITHMS.includes(this.algorithm) && this.digest.match(BASE64_REGEX) && this.options.every((opt) => opt.match(VCHAR_REGEX)))) {
+            return "";
+          }
+        }
+        return `${this.algorithm}-${this.digest}${getOptString(this.options)}`;
+      }
+    };
+    function integrityHashToString(toString, sep3, opts, hashes) {
+      const toStringIsNotEmpty = toString !== "";
+      let shouldAddFirstSep = false;
+      let complement = "";
+      const lastIndex = hashes.length - 1;
+      for (let i = 0; i < lastIndex; i++) {
+        const hashString = Hash.prototype.toString.call(hashes[i], opts);
+        if (hashString) {
+          shouldAddFirstSep = true;
+          complement += hashString;
+          complement += sep3;
+        }
+      }
+      const finalHashString = Hash.prototype.toString.call(hashes[lastIndex], opts);
+      if (finalHashString) {
+        shouldAddFirstSep = true;
+        complement += finalHashString;
+      }
+      if (toStringIsNotEmpty && shouldAddFirstSep) {
+        return toString + sep3 + complement;
+      }
+      return toString + complement;
+    }
+    var Integrity = class {
+      get isIntegrity() {
+        return true;
+      }
+      toJSON() {
+        return this.toString();
+      }
+      isEmpty() {
+        return Object.keys(this).length === 0;
+      }
+      toString(opts) {
+        let sep3 = (opts == null ? void 0 : opts.sep) || " ";
+        let toString = "";
+        if (opts == null ? void 0 : opts.strict) {
+          sep3 = sep3.replace(/\S+/g, " ");
+          for (const hash of SPEC_ALGORITHMS) {
+            if (this[hash]) {
+              toString = integrityHashToString(toString, sep3, opts, this[hash]);
+            }
+          }
+        } else {
+          for (const hash of Object.keys(this)) {
+            toString = integrityHashToString(toString, sep3, opts, this[hash]);
+          }
+        }
+        return toString;
+      }
+      concat(integrity, opts) {
+        const other = typeof integrity === "string" ? integrity : stringify(integrity, opts);
+        return parse4(`${this.toString(opts)} ${other}`, opts);
+      }
+      hexDigest() {
+        return parse4(this, { single: true }).hexDigest();
+      }
+      merge(integrity, opts) {
+        const other = parse4(integrity, opts);
+        for (const algo in other) {
+          if (this[algo]) {
+            if (!this[algo].find((hash) => other[algo].find((otherhash) => hash.digest === otherhash.digest))) {
+              throw new Error("hashes do not match, cannot update integrity");
+            }
+          } else {
+            this[algo] = other[algo];
+          }
+        }
+      }
+      match(integrity, opts) {
+        const other = parse4(integrity, opts);
+        if (!other) {
+          return false;
+        }
+        const algo = other.pickAlgorithm(opts, Object.keys(this));
+        return !!algo && this[algo] && other[algo] && this[algo].find(
+          (hash) => other[algo].find(
+            (otherhash) => hash.digest === otherhash.digest
+          )
+        ) || false;
+      }
+      pickAlgorithm(opts, hashes) {
+        const pickAlgorithm = (opts == null ? void 0 : opts.pickAlgorithm) || getPrioritizedHash;
+        const keys = Object.keys(this).filter((k) => {
+          if (hashes == null ? void 0 : hashes.length) {
+            return hashes.includes(k);
+          }
+          return true;
+        });
+        if (keys.length) {
+          return keys.reduce((acc, algo) => pickAlgorithm(acc, algo) || acc);
+        }
+        return null;
+      }
+    };
+    module.exports.parse = parse4;
+    function parse4(sri, opts) {
+      if (!sri) {
+        return null;
+      }
+      if (typeof sri === "string") {
+        return _parse(sri, opts);
+      } else if (sri.algorithm && sri.digest) {
+        const fullSri = new Integrity();
+        fullSri[sri.algorithm] = [sri];
+        return _parse(stringify(fullSri, opts), opts);
+      } else {
+        return _parse(stringify(sri, opts), opts);
+      }
+    }
+    function _parse(integrity, opts) {
+      if (opts == null ? void 0 : opts.single) {
+        return new Hash(integrity, opts);
+      }
+      const hashes = integrity.trim().split(/\s+/).reduce((acc, string) => {
+        const hash = new Hash(string, opts);
+        if (hash.algorithm && hash.digest) {
+          const algo = hash.algorithm;
+          if (!acc[algo]) {
+            acc[algo] = [];
+          }
+          acc[algo].push(hash);
+        }
+        return acc;
+      }, new Integrity());
+      return hashes.isEmpty() ? null : hashes;
+    }
+    module.exports.stringify = stringify;
+    function stringify(obj, opts) {
+      if (obj.algorithm && obj.digest) {
+        return Hash.prototype.toString.call(obj, opts);
+      } else if (typeof obj === "string") {
+        return stringify(parse4(obj, opts), opts);
+      } else {
+        return Integrity.prototype.toString.call(obj, opts);
+      }
+    }
+    module.exports.fromHex = fromHex;
+    function fromHex(hexDigest, algorithm, opts) {
+      const optString = getOptString(opts == null ? void 0 : opts.options);
+      return parse4(
+        `${algorithm}-${Buffer.from(hexDigest, "hex").toString("base64")}${optString}`,
+        opts
+      );
+    }
+    module.exports.fromData = fromData;
+    function fromData(data, opts) {
+      const algorithms = (opts == null ? void 0 : opts.algorithms) || [...DEFAULT_ALGORITHMS];
+      const optString = getOptString(opts == null ? void 0 : opts.options);
+      return algorithms.reduce((acc, algo) => {
+        const digest = crypto.createHash(algo).update(data).digest("base64");
+        const hash = new Hash(
+          `${algo}-${digest}${optString}`,
+          opts
+        );
+        if (hash.algorithm && hash.digest) {
+          const hashAlgo = hash.algorithm;
+          if (!acc[hashAlgo]) {
+            acc[hashAlgo] = [];
+          }
+          acc[hashAlgo].push(hash);
+        }
+        return acc;
+      }, new Integrity());
+    }
+    module.exports.fromStream = fromStream;
+    function fromStream(stream, opts) {
+      const istream = integrityStream(opts);
+      return new Promise((resolve12, reject) => {
+        stream.pipe(istream);
+        stream.on("error", reject);
+        istream.on("error", reject);
+        let sri;
+        istream.on("integrity", (s) => {
+          sri = s;
+        });
+        istream.on("end", () => resolve12(sri));
+        istream.resume();
+      });
+    }
+    module.exports.checkData = checkData;
+    function checkData(data, sri, opts) {
+      sri = parse4(sri, opts);
+      if (!sri || !Object.keys(sri).length) {
+        if (opts == null ? void 0 : opts.error) {
+          throw Object.assign(
+            new Error("No valid integrity hashes to check against"),
+            {
+              code: "EINTEGRITY"
+            }
+          );
+        } else {
+          return false;
+        }
+      }
+      const algorithm = sri.pickAlgorithm(opts);
+      const digest = crypto.createHash(algorithm).update(data).digest("base64");
+      const newSri = parse4({ algorithm, digest });
+      const match3 = newSri.match(sri, opts);
+      opts = opts || {};
+      if (match3 || !opts.error) {
+        return match3;
+      } else if (typeof opts.size === "number" && data.length !== opts.size) {
+        const err = new Error(`data size mismatch when checking ${sri}.
+  Wanted: ${opts.size}
+  Found: ${data.length}`);
+        err.code = "EBADSIZE";
+        err.found = data.length;
+        err.expected = opts.size;
+        err.sri = sri;
+        throw err;
+      } else {
+        const err = new Error(`Integrity checksum failed when using ${algorithm}: Wanted ${sri}, but got ${newSri}. (${data.length} bytes)`);
+        err.code = "EINTEGRITY";
+        err.found = newSri;
+        err.expected = sri;
+        err.algorithm = algorithm;
+        err.sri = sri;
+        throw err;
+      }
+    }
+    module.exports.checkStream = checkStream;
+    function checkStream(stream, sri, opts) {
+      opts = opts || /* @__PURE__ */ Object.create(null);
+      opts.integrity = sri;
+      sri = parse4(sri, opts);
+      if (!sri || !Object.keys(sri).length) {
+        return Promise.reject(Object.assign(
+          new Error("No valid integrity hashes to check against"),
+          {
+            code: "EINTEGRITY"
+          }
+        ));
+      }
+      const checker = integrityStream(opts);
+      return new Promise((resolve12, reject) => {
+        stream.pipe(checker);
+        stream.on("error", reject);
+        checker.on("error", reject);
+        let verified;
+        checker.on("verified", (s) => {
+          verified = s;
+        });
+        checker.on("end", () => resolve12(verified));
+        checker.resume();
+      });
+    }
+    module.exports.integrityStream = integrityStream;
+    function integrityStream(opts = /* @__PURE__ */ Object.create(null)) {
+      return new IntegrityStream(opts);
+    }
+    module.exports.create = createIntegrity;
+    function createIntegrity(opts) {
+      const algorithms = (opts == null ? void 0 : opts.algorithms) || [...DEFAULT_ALGORITHMS];
+      const optString = getOptString(opts == null ? void 0 : opts.options);
+      const hashes = algorithms.map(crypto.createHash);
+      return {
+        update: function(chunk, enc) {
+          hashes.forEach((h) => h.update(chunk, enc));
+          return this;
+        },
+        digest: function(enc) {
+          const integrity = algorithms.reduce((acc, algo) => {
+            const digest = hashes.shift().digest("base64");
+            const hash = new Hash(
+              `${algo}-${digest}${optString}`,
+              opts
+            );
+            if (hash.algorithm && hash.digest) {
+              const hashAlgo = hash.algorithm;
+              if (!acc[hashAlgo]) {
+                acc[hashAlgo] = [];
+              }
+              acc[hashAlgo].push(hash);
+            }
+            return acc;
+          }, new Integrity());
+          return integrity;
+        }
+      };
+    }
+    var NODE_HASHES = crypto.getHashes();
+    var DEFAULT_PRIORITY = [
+      "md5",
+      "whirlpool",
+      "sha1",
+      "sha224",
+      "sha256",
+      "sha384",
+      "sha512",
+      "sha3",
+      "sha3-256",
+      "sha3-384",
+      "sha3-512",
+      "sha3_256",
+      "sha3_384",
+      "sha3_512"
+    ].filter((algo) => NODE_HASHES.includes(algo));
+    function getPrioritizedHash(algo1, algo2) {
+      return DEFAULT_PRIORITY.indexOf(algo1.toLowerCase()) >= DEFAULT_PRIORITY.indexOf(algo2.toLowerCase()) ? algo1 : algo2;
+    }
+  }
+});
+
+// node_modules/@pnpm/crypto.hash/lib/index.js
+var require_lib6 = __commonJS({
+  "node_modules/@pnpm/crypto.hash/lib/index.js"(exports) {
+    "use strict";
+    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
+      }
+      Object.defineProperty(o, k2, desc);
+    } : function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      o[k2] = m[k];
+    });
+    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+      Object.defineProperty(o, "default", { enumerable: true, value: v });
+    } : function(o, v) {
+      o["default"] = v;
+    });
+    var __importStar = exports && exports.__importStar || function(mod) {
+      if (mod && mod.__esModule)
+        return mod;
+      var result = {};
+      if (mod != null) {
+        for (var k in mod)
+          if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k))
+            __createBinding(result, mod, k);
+      }
+      __setModuleDefault(result, mod);
+      return result;
+    };
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.createShortHash = createShortHash;
+    exports.createHexHash = createHexHash;
+    exports.createHash = createHash;
+    exports.createHashFromFile = createHashFromFile;
+    exports.createHexHashFromFile = createHexHashFromFile;
+    exports.getTarballIntegrity = getTarballIntegrity;
+    var crypto = __importStar(require_lib3());
+    var fs_1 = __importDefault(__require("fs"));
+    var graceful_fs_1 = __importDefault(require_lib4());
+    var ssri_1 = __importDefault(require_lib5());
+    function createShortHash(input) {
+      return createHexHash(input).substring(0, 32);
+    }
+    function createHexHash(input) {
+      return crypto.hash("sha256", input, "hex");
+    }
+    function createHash(input) {
+      return `sha256-${crypto.hash("sha256", input, "base64")}`;
+    }
+    async function createHashFromFile(file) {
+      return createHash(await readNormalizedFile(file));
+    }
+    async function createHexHashFromFile(file) {
+      return createHexHash(await readNormalizedFile(file));
+    }
+    async function readNormalizedFile(file) {
+      const content = await fs_1.default.promises.readFile(file, "utf8");
+      return content.split("\r\n").join("\n");
+    }
+    async function getTarballIntegrity(filename) {
+      return (await ssri_1.default.fromStream(graceful_fs_1.default.createReadStream(filename))).toString();
+    }
+  }
+});
+
+// node_modules/@pnpm/dependency-path/lib/index.js
+var require_lib7 = __commonJS({
+  "node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
+    "use strict";
+    var __importDefault = exports && exports.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.isAbsolute = isAbsolute3;
+    exports.indexOfPeersSuffix = indexOfPeersSuffix;
+    exports.parseDepPath = parseDepPath;
+    exports.removeSuffix = removeSuffix;
+    exports.getPkgIdWithPatchHash = getPkgIdWithPatchHash;
+    exports.tryGetPackageId = tryGetPackageId2;
+    exports.getRegistryByPackageName = getRegistryByPackageName;
+    exports.refToRelative = refToRelative;
+    exports.parse = parse4;
+    exports.depPathToFilename = depPathToFilename;
+    exports.createPeersDirSuffix = createPeersDirSuffix;
+    var crypto_hash_1 = require_lib6();
+    var semver_1 = __importDefault(require_semver());
+    function isAbsolute3(dependencyPath) {
+      return dependencyPath[0] !== "/";
+    }
+    function indexOfPeersSuffix(depPath) {
+      if (!depPath.endsWith(")"))
+        return { peersIndex: -1, patchHashIndex: -1 };
+      let open = 1;
+      for (let i = depPath.length - 2; i >= 0; i--) {
+        if (depPath[i] === "(") {
+          open--;
+        } else if (depPath[i] === ")") {
+          open++;
+        } else if (!open) {
+          if (depPath.substring(i + 1).startsWith("(patch_hash=")) {
+            return {
+              patchHashIndex: i + 1,
+              peersIndex: depPath.indexOf("(", i + 2)
+            };
+          }
+          return {
+            patchHashIndex: -1,
+            peersIndex: i + 1
+          };
+        }
+      }
+      return { peersIndex: -1, patchHashIndex: -1 };
+    }
+    function parseDepPath(relDepPath) {
+      const { peersIndex } = indexOfPeersSuffix(relDepPath);
+      if (peersIndex !== -1) {
+        return {
+          id: relDepPath.substring(0, peersIndex),
+          peersSuffix: relDepPath.substring(peersIndex)
+        };
+      }
+      return {
+        id: relDepPath,
+        peersSuffix: ""
+      };
+    }
+    function removeSuffix(relDepPath) {
+      const { peersIndex, patchHashIndex } = indexOfPeersSuffix(relDepPath);
+      if (patchHashIndex !== -1) {
+        return relDepPath.substring(0, patchHashIndex);
+      }
+      if (peersIndex !== -1) {
+        return relDepPath.substring(0, peersIndex);
+      }
+      return relDepPath;
+    }
+    function getPkgIdWithPatchHash(depPath) {
+      let pkgId = depPath;
+      const { peersIndex: sepIndex } = indexOfPeersSuffix(pkgId);
+      if (sepIndex !== -1) {
+        pkgId = pkgId.substring(0, sepIndex);
+      }
+      if (pkgId.includes(":")) {
+        pkgId = pkgId.substring(pkgId.indexOf("@", 1) + 1);
+      }
+      return pkgId;
+    }
+    function tryGetPackageId2(relDepPath) {
+      let pkgId = relDepPath;
+      const { peersIndex, patchHashIndex } = indexOfPeersSuffix(pkgId);
+      const sepIndex = patchHashIndex === -1 ? peersIndex : patchHashIndex;
+      if (sepIndex !== -1) {
+        pkgId = pkgId.substring(0, sepIndex);
+      }
+      if (pkgId.includes(":")) {
+        pkgId = pkgId.substring(pkgId.indexOf("@", 1) + 1);
+      }
+      return pkgId;
+    }
+    function getRegistryByPackageName(registries, packageName) {
+      if (packageName[0] !== "@")
+        return registries.default;
+      const scope = packageName.substring(0, packageName.indexOf("/"));
+      return registries[scope] || registries.default;
+    }
+    function refToRelative(reference, pkgName) {
+      if (reference.startsWith("link:")) {
+        return null;
+      }
+      if (reference.startsWith("@"))
+        return reference;
+      const atIndex = reference.indexOf("@");
+      if (atIndex === -1)
+        return `${pkgName}@${reference}`;
+      const colonIndex = reference.indexOf(":");
+      const bracketIndex = reference.indexOf("(");
+      if ((colonIndex === -1 || atIndex < colonIndex) && (bracketIndex === -1 || atIndex < bracketIndex))
+        return reference;
+      return `${pkgName}@${reference}`;
+    }
+    function parse4(dependencyPath) {
+      if (typeof dependencyPath !== "string") {
+        throw new TypeError(`Expected \`dependencyPath\` to be of type \`string\`, got \`${dependencyPath === null ? "null" : typeof dependencyPath}\``);
+      }
+      const sepIndex = dependencyPath.indexOf("@", 1);
+      if (sepIndex === -1) {
+        return {};
+      }
+      const name = dependencyPath.substring(0, sepIndex);
+      let version = dependencyPath.substring(sepIndex + 1);
+      if (version) {
+        let peersSuffix;
+        let patchHash;
+        const { peersIndex, patchHashIndex } = indexOfPeersSuffix(version);
+        if (peersIndex !== -1 || patchHashIndex !== -1) {
+          if (peersIndex === -1) {
+            patchHash = version.substring(patchHashIndex);
+            version = version.substring(0, patchHashIndex);
+          } else if (patchHashIndex === -1) {
+            peersSuffix = version.substring(peersIndex);
+            version = version.substring(0, peersIndex);
+          } else {
+            patchHash = version.substring(patchHashIndex, peersIndex);
+            peersSuffix = version.substring(peersIndex);
+            version = version.substring(0, patchHashIndex);
+          }
+        }
+        if (semver_1.default.valid(version)) {
+          return {
+            name,
+            peersSuffix,
+            version,
+            patchHash
+          };
+        }
+        return {
+          name,
+          nonSemverVersion: version,
+          peersSuffix,
+          patchHash
+        };
+      }
+      return {};
+    }
+    function depPathToFilename(depPath, maxLengthWithoutHash) {
+      let filename = depPathToFilenameUnescaped(depPath).replace(/[\\/:*?"<>|#]/g, "+");
+      if (filename.includes("(")) {
+        filename = filename.replace(/\)$/, "").replace(/\)\(|\(|\)/g, "_");
+      }
+      if (filename.length > maxLengthWithoutHash || filename !== filename.toLowerCase() && !filename.startsWith("file+")) {
+        return `${filename.substring(0, maxLengthWithoutHash - 33)}_${(0, crypto_hash_1.createShortHash)(filename)}`;
+      }
+      return filename;
+    }
+    function depPathToFilenameUnescaped(depPath) {
+      if (depPath.indexOf("file:") !== 0) {
+        if (depPath[0] === "/") {
+          depPath = depPath.substring(1);
+        }
+        const index = depPath.indexOf("@", 1);
+        if (index === -1)
+          return depPath;
+        return `${depPath.substring(0, index)}@${depPath.slice(index + 1)}`;
+      }
+      return depPath.replace(":", "+");
+    }
+    function createPeersDirSuffix(peerIds, maxLength = 1e3) {
+      let dirName = peerIds.map((peerId) => {
+        if (typeof peerId !== "string") {
+          return `${peerId.name}@${peerId.version}`;
+        }
+        if (peerId.startsWith("/")) {
+          return peerId.substring(1);
+        }
+        return peerId;
+      }).sort().join(")(");
+      if (dirName.length > maxLength) {
+        dirName = (0, crypto_hash_1.createShortHash)(dirName);
+      }
+      return `(${dirName})`;
+    }
+  }
+});
+
 // node_modules/yargs/lib/platform-shims/esm.mjs
 import { notStrictEqual, strictEqual } from "assert";
 
@@ -36517,7 +38797,6 @@ var import_semver7 = __toESM(require_semver());
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/constants.js
 var ngDevNpmPackageName = "@angular/ng-dev";
 var workspaceRelativePackageJsonPath = "package.json";
-var workspaceRelativeYarnLockFilePath = "yarn.lock";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
 import { promises as fs2, existsSync as existsSync4 } from "fs";
@@ -37659,17 +39938,31 @@ var import_yaml3 = __toESM(require_dist2());
 import * as path6 from "path";
 import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
+var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  var _a2, _b2, _c2;
-  const localVersion = `0.0.0-e38c95eff3c62f8fdcb2e35e55416785701ef84e`;
+  const localVersion = `0.0.0-471dc9772b769125f2d2bc81c6da025733dfbcae`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
-  const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
+  const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
+  const yarnLockFile = path6.join(workspacePath, "yarn.lock");
+  const isPnpmMigrated = fs3.existsSync(pnpmLockFile) && !fs3.existsSync(yarnLockFile);
+  const expectedVersion = isPnpmMigrated ? getExpectedVersionFromPnpmLock(workspacePackageJsonFile, pnpmLockFile) : getExpectedVersionFromYarnLock(workspacePackageJsonFile, yarnLockFile);
+  Log.debug(`Expecting the following ng-dev version: ${expectedVersion}`);
+  if (localVersion !== expectedVersion) {
+    Log.error("  \u2718   Your locally installed version of the `ng-dev` tool is outdated and not");
+    Log.error("      matching with the version in the `package.json` file.");
+    Log.error("      Re-install the dependencies to ensure you are using the correct version.");
+    return false;
+  }
+  return true;
+}
+function getExpectedVersionFromYarnLock(workspacePackageJsonFile, lockFilePath) {
+  var _a2, _b2, _c2;
   try {
     const packageJson = JSON.parse(fs3.readFileSync(workspacePackageJsonFile, "utf8"));
     if (packageJson.name === ngDevNpmPackageName) {
       return true;
     }
-    const lockFileContent = fs3.readFileSync(workspaceDirLockFile, "utf8");
+    const lockFileContent = fs3.readFileSync(lockFilePath, "utf8");
     let lockFileObject;
     try {
       const lockFile = lockfile.parse(lockFileContent);
@@ -37681,17 +39974,28 @@ async function verifyNgDevToolIsUpToDate(workspacePath) {
       lockFileObject = (0, import_yaml3.parse)(lockFileContent);
     }
     const devInfraPkgVersion = ((_a2 = packageJson == null ? void 0 : packageJson.dependencies) == null ? void 0 : _a2[ngDevNpmPackageName]) ?? ((_b2 = packageJson == null ? void 0 : packageJson.devDependencies) == null ? void 0 : _b2[ngDevNpmPackageName]) ?? ((_c2 = packageJson == null ? void 0 : packageJson.optionalDependencies) == null ? void 0 : _c2[ngDevNpmPackageName]);
-    const expectedVersion = lockFileObject[`${ngDevNpmPackageName}@${devInfraPkgVersion}`].version;
-    if (localVersion !== expectedVersion) {
-      Log.error("  \u2718   Your locally installed version of the `ng-dev` tool is outdated and not");
-      Log.error("      matching with the version in the `package.json` file.");
-      Log.error("      Re-install the dependencies to ensure you are using the correct version.");
-      return false;
-    }
-    return true;
+    return lockFileObject[`${ngDevNpmPackageName}@${devInfraPkgVersion}`].version;
   } catch (e) {
-    Log.error(e);
-    return false;
+    Log.debug("Could not find expected ng-dev version from `yarn.lock` file:", e);
+    return null;
+  }
+}
+function getExpectedVersionFromPnpmLock(workspacePackageJsonFile, lockFilePath) {
+  var _a2, _b2, _c2;
+  try {
+    const packageJson = JSON.parse(fs3.readFileSync(workspacePackageJsonFile, "utf8"));
+    if (packageJson.name === ngDevNpmPackageName) {
+      return true;
+    }
+    const lockFileContent = fs3.readFileSync(lockFilePath, "utf8");
+    const lockFile = (0, import_yaml3.parse)(lockFileContent);
+    const importers = lockFile["importers"]["."];
+    const depEntry = ((_a2 = importers.dependencies) == null ? void 0 : _a2["@angular/ng-dev"]) ?? ((_b2 = importers.devDependencies) == null ? void 0 : _b2["@angular/ng-dev"]) ?? ((_c2 = importers.optionalDependencies) == null ? void 0 : _c2["@angular/ng-dev"]);
+    const packageId = (0, import_dependency_path.tryGetPackageId)(depEntry.version);
+    return lockFile["packages"][`@angular/ng-dev@${packageId}`].version;
+  } catch (e) {
+    Log.debug("Could not find expected ng-dev version from `pnpm-lock.yaml` file:", e);
+    return null;
   }
 }
 
@@ -38099,7 +40403,7 @@ function buildReleaseParser(localYargs) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync5, readFileSync as readFileSync12, writeFileSync as writeFileSync4 } from "fs";
+import { existsSync as existsSync6, readFileSync as readFileSync12, writeFileSync as writeFileSync4 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative3, resolve as resolve11 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
@@ -38392,7 +40696,7 @@ function main(approve, config, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync5(goldenFile)) {
+  if (!existsSync6(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
