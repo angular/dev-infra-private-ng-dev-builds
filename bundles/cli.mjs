@@ -38994,7 +38994,7 @@ var ExternalCommands = class {
   static async _spawnNpmScript(args, projectDir, pnpmVersioning, spawnOptions = {}) {
     if (await pnpmVersioning.isUsingPnpm(projectDir)) {
       const pnpmSpec = await pnpmVersioning.getPackageSpec(projectDir);
-      return ChildProcess.spawn("npx", ["--yes", pnpmSpec, "run", ...args], {
+      return ChildProcess.spawn("npx", ["--yes", pnpmSpec, "-s", "run", ...args], {
         ...spawnOptions,
         cwd: projectDir
       });
@@ -39940,7 +39940,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-471dc9772b769125f2d2bc81c6da025733dfbcae`;
+  const localVersion = `0.0.0-47572aba6019f368057c00966ac7ce354b1d65bc`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
