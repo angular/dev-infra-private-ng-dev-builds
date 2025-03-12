@@ -3171,9 +3171,9 @@ var require_ansi_styles = __commonJS({
   }
 });
 
-// node_modules/@inquirer/core/node_modules/wrap-ansi/index.js
+// node_modules/wrap-ansi/index.js
 var require_wrap_ansi = __commonJS({
-  "node_modules/@inquirer/core/node_modules/wrap-ansi/index.js"(exports, module) {
+  "node_modules/wrap-ansi/index.js"(exports, module) {
     "use strict";
     var stringWidth = require_string_width();
     var stripAnsi2 = require_strip_ansi();
@@ -29081,7 +29081,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/key.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/key.js
 var isUpKey = (key) => key.name === "up" || key.name === "k" || key.ctrl && key.name === "p";
 var isDownKey = (key) => key.name === "down" || key.name === "j" || key.ctrl && key.name === "n";
 var isSpaceKey = (key) => key.name === "space";
@@ -29089,7 +29089,7 @@ var isBackspaceKey = (key) => key.name === "backspace";
 var isNumberKey = (key) => "123456789".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/@inquirer/core/dist/esm/lib/errors.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -29112,10 +29112,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 import { AsyncResource as AsyncResource2 } from "async_hooks";
 
-// node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -29222,7 +29222,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setFn = (newValue) => {
@@ -29240,7 +29240,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-effect.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -29252,10 +29252,10 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs(), 1);
 
-// node_modules/@inquirer/figures/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/figures/dist/esm/index.js
 import process2 from "process";
 function isUnicodeSupported() {
   if (process2.platform !== "win32") {
@@ -29541,7 +29541,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
@@ -29562,7 +29562,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/make-theme.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -29590,7 +29590,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -29621,7 +29621,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-memo.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -29634,12 +29634,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-ref.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -29658,7 +29658,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/utils.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/utils.js
 var import_cli_width = __toESM(require_cli_width(), 1);
 var import_wrap_ansi = __toESM(require_wrap_ansi(), 1);
 function breakLines(content, width) {
@@ -29668,7 +29668,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/lines.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/lines.js
 function split(content, width) {
   return breakLines(content, width).split("\n");
 }
@@ -29712,7 +29712,7 @@ function lines({ items, width, renderItem, active, position: requested, pageSize
   return pageBuffer.filter((line) => typeof line === "string");
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/position.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/position.js
 function finite({ active, pageSize, total }) {
   const middle = Math.floor(pageSize / 2);
   if (total <= pageSize || active < middle)
@@ -29730,7 +29730,7 @@ function infinite({ active, lastActive, total, pageSize, pointer }) {
   return pointer;
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   const state = useRef({ position: 0, lastActive: 0 });
   const position = loop ? infinite({
@@ -29756,7 +29756,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   }).join("\n");
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib(), 1);
 import * as readline2 from "readline";
 import { AsyncResource as AsyncResource3 } from "async_hooks";
@@ -29994,7 +29994,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var import_ansi_escapes = __toESM(require_ansi_escapes(), 1);
 import { stripVTControlCharacters } from "util";
 var height = (content) => content.split("\n").length;
@@ -30003,12 +30003,11 @@ function cursorDown(n) {
   return n > 0 ? import_ansi_escapes.default.cursorDown(n) : "";
 }
 var ScreenManager = class {
-  rl;
   height = 0;
   extraLinesUnderPrompt = 0;
   cursorPos;
+  rl;
   constructor(rl) {
-    this.rl = rl;
     this.rl = rl;
     this.cursorPos = rl.getCursorPos();
   }
@@ -30059,7 +30058,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   static withResolver() {
     let resolve12;
@@ -30072,26 +30071,25 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
+  let result = [];
   try {
-    let result = [];
     Error.prepareStackTrace = (_, callSites) => {
       const callSitesWithoutCurrent = callSites.slice(1);
       result = callSitesWithoutCurrent;
       return callSitesWithoutCurrent;
     };
     new Error().stack;
+  } catch {
     return result;
-  } finally {
-    Error.prepareStackTrace = _prepareStackTrace;
   }
+  Error.prepareStackTrace = _prepareStackTrace;
+  return result;
 }
 function createPrompt(view) {
-  var _a2, _b2;
   const callSites = getCallSites();
-  const callerFilename = (_b2 = (_a2 = callSites[1]) == null ? void 0 : _a2.getFileName) == null ? void 0 : _b2.call(_a2);
   const prompt = (config, context = {}) => {
     const { input = process.stdin, signal } = context;
     const cleanups = /* @__PURE__ */ new Set();
@@ -30125,11 +30123,13 @@ function createPrompt(view) {
       rl.on("close", hooksCleanup);
       cleanups.add(() => rl.removeListener("close", hooksCleanup));
       cycle(() => {
+        var _a2, _b2;
         try {
           const nextView = view(config, (value) => {
             setImmediate(() => resolve12(value));
           });
           if (nextView === void 0) {
+            const callerFilename = (_b2 = (_a2 = callSites[1]) == null ? void 0 : _a2.getFileName) == null ? void 0 : _b2.call(_a2);
             throw new Error(`Prompt functions must return a string.
     at ${callerFilename}`);
           }
@@ -30156,7 +30156,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/Separator.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/core/dist/esm/lib/Separator.js
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs(), 1);
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
@@ -30171,7 +30171,7 @@ var Separator = class {
   }
 };
 
-// node_modules/@inquirer/checkbox/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes2 = __toESM(require_ansi_escapes(), 1);
 var checkboxTheme = {
@@ -30343,7 +30343,7 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${choiceDescription}${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
-// node_modules/@inquirer/editor/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/editor/dist/esm/index.js
 var import_external_editor = __toESM(require_main(), 1);
 import { AsyncResource as AsyncResource4 } from "async_hooks";
 var editorTheme = {
@@ -30413,7 +30413,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/@inquirer/confirm/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/confirm/dist/esm/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -30457,7 +30457,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/@inquirer/input/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/input/dist/esm/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -30523,7 +30523,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/number/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/number/dist/esm/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -30605,7 +30605,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/expand/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/expand/dist/esm/index.js
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs(), 1);
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -30701,7 +30701,7 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/rawlist/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/rawlist/dist/esm/index.js
 var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs(), 1);
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -30784,7 +30784,7 @@ var esm_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/@inquirer/password/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/password/dist/esm/index.js
 var import_ansi_escapes3 = __toESM(require_ansi_escapes(), 1);
 var esm_default10 = createPrompt((config, done) => {
   const { validate = () => true } = config;
@@ -30834,7 +30834,7 @@ var esm_default10 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/@inquirer/search/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/search/dist/esm/index.js
 var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs(), 1);
 var searchTheme = {
   icon: { cursor: esm_default2.pointer },
@@ -30997,7 +30997,7 @@ ${theme.style.description(selectedChoice.description)}` : ``;
   ];
 });
 
-// node_modules/@inquirer/select/dist/esm/index.js
+// node_modules/@inquirer/prompts/node_modules/@inquirer/select/dist/esm/index.js
 var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs(), 1);
 var import_ansi_escapes4 = __toESM(require_ansi_escapes(), 1);
 var selectTheme = {
@@ -37661,7 +37661,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 async function verifyNgDevToolIsUpToDate(workspacePath) {
   var _a2, _b2, _c2;
-  const localVersion = `0.0.0-eefd71f67ffe0ed05423609a8de2b6bde38a0e58`;
+  const localVersion = `0.0.0-e38c95eff3c62f8fdcb2e35e55416785701ef84e`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const workspaceDirLockFile = path6.join(workspacePath, workspaceRelativeYarnLockFilePath);
   try {
