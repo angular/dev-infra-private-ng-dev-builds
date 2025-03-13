@@ -38365,9 +38365,6 @@ _%>
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/templates/github-release.js
 var github_release_default = `
-<a name="<%- urlFragmentForRelease %>"></a>
-# <%- version %><% if (title) { %> "<%- title %>"<% } %> (<%- dateStamp %>)
-
 <%_
 const commitsInChangelog = commits.filter(includeInReleaseNotes());
 for (const group of asCommitGroups(commitsInChangelog)) {
@@ -39362,7 +39359,7 @@ var ReleaseAction = class {
     }
     await this.git.github.repos.createRelease({
       ...this.git.remoteParams,
-      name: `v${releaseNotes.version}`,
+      name: releaseNotes.version.toString(),
       tag_name: tagName,
       prerelease: isPrerelease,
       make_latest: showAsLatestOnGitHub ? "true" : "false",
@@ -39940,7 +39937,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-f9c5a8162b545410f7b08567591a9d242488bcb6`;
+  const localVersion = `0.0.0-85eab901e27abe60bb725fbfd8def94559cbe636`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
