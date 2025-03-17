@@ -33440,19 +33440,31 @@ async function updateCaretakerTeamViaPrompt() {
     throw Error("`caretakerGroup` is not defined in the `caretaker` config");
   }
   const current = new Set(await getGroupMembers(caretakerGroup));
-  const roster = (await getGroupMembers(`${caretakerGroup}-roster`)).map((member) => ({
-    value: member,
-    checked: current.has(member)
-  }));
-  const selected = await Prompt.checkbox({
-    choices: roster,
-    message: "Select 2 caretakers for the upcoming rotation:",
+  const [roster, emeaRoster] = await Promise.all([
+    getGroupMembers(`${caretakerGroup}-roster`),
+    getGroupMembers(`${caretakerGroup}-roster-emea`)
+  ]);
+  const selectedPrimaryAndSecondary = await Prompt.checkbox({
+    choices: roster.map((member) => ({
+      value: member,
+      checked: current.has(member)
+    })),
+    message: "Select 2 caretakers for the upcoming rotation (primary and secondary):",
     validate: (value) => {
       if (value.length !== 2) {
         return "Please select exactly 2 caretakers for the upcoming rotation.";
       }
       return true;
     }
+  });
+  const emeaOptions = emeaRoster.filter((m) => !selectedPrimaryAndSecondary.includes(m)).map((member) => ({
+    value: member,
+    name: `${member} (EMEA)`,
+    checked: current.has(member)
+  }));
+  const selectedEmea = await Prompt.select({
+    choices: emeaOptions,
+    message: "Select EMEA caretaker"
   });
   const confirmation = await Prompt.confirm({
     default: true,
@@ -33462,12 +33474,14 @@ async function updateCaretakerTeamViaPrompt() {
     Log.warn("  \u26A0  Skipping caretaker group update.");
     return;
   }
-  if (JSON.stringify(selected) === JSON.stringify(current)) {
+  const selectedSorted = [...selectedPrimaryAndSecondary, selectedEmea].sort();
+  const currentSorted = Array.from(current).sort();
+  if (JSON.stringify(selectedSorted) === JSON.stringify(currentSorted)) {
     Log.info(green("  \u2714  Caretaker group already up to date."));
     return;
   }
   try {
-    await setCaretakerGroup(caretakerGroup, selected);
+    await setCaretakerGroup(caretakerGroup, selectedSorted);
   } catch {
     Log.error("  \u2718  Failed to update caretaker group.");
     return;
@@ -39937,7 +39951,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-cc73dde52b557f831cc3b6e48daf8c3b542a33df`;
+  const localVersion = `0.0.0-5bfed188ca261362bdfc36e8afe0e5758cd16606`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
