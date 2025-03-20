@@ -39951,7 +39951,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-27078026111b01a7202449e9788ce38f2b2e103f`;
+  const localVersion = `0.0.0-78bd12c8526c396fc85e5ac3d72c039dc7e0a51a`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -40696,7 +40696,8 @@ function main(approve, config, printWarnings) {
       return 1;
     }
     if (cycles.length > 0) {
-      Log.error(`x  No circular dependencies are allow within this repository.`);
+      Log.error(`x  No circular dependencies are allow within this repository, but circular dependencies were found:`);
+      actual.forEach((c) => Log.error(`     \u2022 ${convertReferenceChainToString(c)}`));
       return 1;
     }
     Log.info(green("\u2714  No circular dependencies found in this repository."));
