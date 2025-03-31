@@ -14027,7 +14027,8 @@ var mergeLabels = createTypedObject(MergeLabel)({
   },
   MERGE_FIX_COMMIT_MESSAGE: {
     description: "When the PR is merged, rewrites/fixups of the commit messages are needed",
-    name: "merge: fix commit message"
+    name: "merge: fix commit message",
+    repositories: [ManagedRepositories.COMPONENTS, ManagedRepositories.ANGULAR_CLI]
   },
   MERGE_CARETAKER_NOTE: {
     description: "Alert the caretaker performing the merge to check the PR for an out of normal action needed or note",
@@ -14191,4 +14192,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-SBKSJV2Y.mjs.map
+//# sourceMappingURL=chunk-ZDYQ23AW.mjs.map
