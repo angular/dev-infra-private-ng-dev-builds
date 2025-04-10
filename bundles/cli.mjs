@@ -37747,10 +37747,9 @@ async function rebasePr(prNumber, interactive = false) {
       default: true
     });
     Log.info(`Attempting to rebase PR #${prNumber} on ${fullBaseRef}`);
+    const env2 = squashFixups && !interactive ? { ...process.env, GIT_SEQUENCE_EDITOR: "true" } : void 0;
     let flags = [];
-    let env2 = void 0;
     if (squashFixups || interactive) {
-      env2 = { ...process.env, GIT_SEQUENCE_EDITOR: "true" };
       flags.push("--interactive");
     }
     if (squashFixups) {
@@ -39977,7 +39976,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-77fb8b4387755a887550b2e5c3fe1206ae130007`;
+  const localVersion = `0.0.0-9eca781d19825445aa9e6e1aa18c2e96ab514055`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
