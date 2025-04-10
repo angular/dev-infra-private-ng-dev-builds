@@ -9,6 +9,7 @@ import { CommandModule } from 'yargs';
 /** The options available to the rebase command via CLI. */
 export interface RebaseOptions {
     pr: number;
+    i?: boolean;
 }
 /** yargs command module for rebasing a PR  */
 export declare const RebaseCommandModule: CommandModule<{}, RebaseOptions>;

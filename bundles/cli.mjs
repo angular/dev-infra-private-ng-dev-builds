@@ -37711,7 +37711,7 @@ var MergeCommandModule = {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/rebase/index.js
-async function rebasePr(prNumber) {
+async function rebasePr(prNumber, interactive = false) {
   const git = await AuthenticatedGitClient.get();
   if (git.hasUncommittedChanges()) {
     Log.error("Cannot perform rebase of PR with local changes.");
@@ -37747,7 +37747,15 @@ async function rebasePr(prNumber) {
       default: true
     });
     Log.info(`Attempting to rebase PR #${prNumber} on ${fullBaseRef}`);
-    const [flags, env2] = squashFixups ? [["--interactive", "--autosquash"], { ...process.env, GIT_SEQUENCE_EDITOR: "true" }] : [[], void 0];
+    let flags = [];
+    let env2 = void 0;
+    if (squashFixups || interactive) {
+      env2 = { ...process.env, GIT_SEQUENCE_EDITOR: "true" };
+      flags.push("--interactive");
+    }
+    if (squashFixups) {
+      flags.push("--autosquash");
+    }
     const rebaseResult = git.runGraceful(["rebase", ...flags, "FETCH_HEAD"], { env: env2 });
     if (rebaseResult.status === 0) {
       Log.info(`Rebase was able to complete automatically without conflicts`);
@@ -37781,10 +37789,15 @@ async function rebasePr(prNumber) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/rebase/cli.js
 function builder17(argv) {
-  return addGithubTokenOption(argv).positional("pr", { type: "number", demandOption: true });
+  return addGithubTokenOption(argv).positional("pr", { type: "number", demandOption: true }).option("interactive", {
+    type: "boolean",
+    alias: ["i"],
+    demandOption: false,
+    describe: "Do the rebase interactively so that things can be squashed and amended"
+  });
 }
-async function handler17({ pr }) {
-  process.exitCode = await rebasePr(pr);
+async function handler17({ pr, i }) {
+  process.exitCode = await rebasePr(pr, i);
 }
 var RebaseCommandModule = {
   handler: handler17,
@@ -39964,7 +39977,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-40b1b25a194c2ce3750e1878a1420d08472accc3`;
+  const localVersion = `0.0.0-77fb8b4387755a887550b2e5c3fe1206ae130007`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
