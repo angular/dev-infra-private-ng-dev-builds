@@ -9590,7 +9590,7 @@ function getUserAgent() {
   return "<environment undetectable>";
 }
 
-// node_modules/before-after-hook/lib/register.js
+// node_modules/@octokit/core/node_modules/before-after-hook/lib/register.js
 function register(state, name, method, options) {
   if (typeof method !== "function") {
     throw new Error("method for before hook must be a function");
@@ -9613,7 +9613,7 @@ function register(state, name, method, options) {
   });
 }
 
-// node_modules/before-after-hook/lib/add.js
+// node_modules/@octokit/core/node_modules/before-after-hook/lib/add.js
 function addHook(state, kind, name, hook2) {
   const orig = hook2;
   if (!state.registry[name]) {
@@ -9648,7 +9648,7 @@ function addHook(state, kind, name, hook2) {
   });
 }
 
-// node_modules/before-after-hook/lib/remove.js
+// node_modules/@octokit/core/node_modules/before-after-hook/lib/remove.js
 function removeHook(state, name, method) {
   if (!state.registry[name]) {
     return;
@@ -9662,7 +9662,7 @@ function removeHook(state, name, method) {
   state.registry[name].splice(index, 1);
 }
 
-// node_modules/before-after-hook/index.js
+// node_modules/@octokit/core/node_modules/before-after-hook/index.js
 var bind = Function.bind;
 var bindable = bind.bind(bind);
 function bindApi(hook2, state, name) {
@@ -10019,7 +10019,7 @@ var endpoint = withDefaults(null, DEFAULTS);
 // node_modules/@octokit/request/dist-bundle/index.js
 var import_fast_content_type_parse = __toESM(require_fast_content_type_parse(), 1);
 
-// node_modules/@octokit/request/node_modules/@octokit/request-error/dist-src/index.js
+// node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
   name;
   status;
@@ -10226,7 +10226,7 @@ function withDefaults2(oldEndpoint, newDefaults) {
 }
 var request = withDefaults2(endpoint, defaults_default);
 
-// node_modules/@octokit/rest/node_modules/@octokit/graphql/dist-bundle/index.js
+// node_modules/@octokit/graphql/dist-bundle/index.js
 var VERSION3 = "0.0.0-development";
 function _buildMessageForResponseErrors(data) {
   return `Request failed due to following response errors:
@@ -10334,7 +10334,7 @@ function withCustomRequest(customRequest) {
   });
 }
 
-// node_modules/@octokit/auth-token/dist-bundle/index.js
+// node_modules/@octokit/core/node_modules/@octokit/auth-token/dist-bundle/index.js
 var b64url = "(?:[a-zA-Z0-9_-]+)";
 var sep = "\\.";
 var jwtRE = new RegExp(`^${b64url}${sep}${b64url}${sep}${b64url}$`);
@@ -10379,10 +10379,10 @@ var createTokenAuth = function createTokenAuth2(token) {
   });
 };
 
-// node_modules/@octokit/rest/node_modules/@octokit/core/dist-src/version.js
+// node_modules/@octokit/core/dist-src/version.js
 var VERSION4 = "6.1.5";
 
-// node_modules/@octokit/rest/node_modules/@octokit/core/dist-src/index.js
+// node_modules/@octokit/core/dist-src/index.js
 var noop = () => {
 };
 var consoleWarn = console.warn.bind(console);
@@ -10495,10 +10495,10 @@ var Octokit = class {
 __publicField(Octokit, "VERSION", VERSION4);
 __publicField(Octokit, "plugins", []);
 
-// node_modules/@octokit/rest/node_modules/@octokit/plugin-request-log/dist-src/version.js
+// node_modules/@octokit/plugin-request-log/dist-src/version.js
 var VERSION5 = "5.3.1";
 
-// node_modules/@octokit/rest/node_modules/@octokit/plugin-request-log/dist-src/index.js
+// node_modules/@octokit/plugin-request-log/dist-src/index.js
 function requestLog(octokit) {
   octokit.hook.wrap("request", (request2, options) => {
     octokit.log.debug("request", options);
@@ -14137,8 +14137,7 @@ async function assertPassingReleasePrechecks(config, newVersion, builtPackagesWi
 export {
   require_dist,
   addDryRunFlag,
-  getUserAgent,
-  request,
+  GraphqlResponseError,
   GithubClient,
   AuthenticatedGithubClient,
   isGithubApiError,
@@ -14193,4 +14192,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-MUH7BPKU.mjs.map
+//# sourceMappingURL=chunk-5CL7LVW4.mjs.map

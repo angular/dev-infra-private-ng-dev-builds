@@ -10,6 +10,7 @@ import {
   GITHUB_TOKEN_GENERATE_URL,
   GitClient,
   GitCommandError,
+  GraphqlResponseError,
   ReleaseNotesLevel,
   ScopeRequirement,
   actionLabels,
@@ -29,7 +30,6 @@ import {
   getLtsNpmDistTagOfMajor,
   getNextBranchName,
   getRepositoryGitUrl,
-  getUserAgent,
   getVersionInfoForBranch,
   getYarnPathFromNpmGlobalBinaries,
   isGithubApiError,
@@ -37,14 +37,13 @@ import {
   isVersionPublishedToNpm,
   managedLabels,
   mergeLabels,
-  request,
   require_dist,
   require_dist2,
   require_semver,
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-MUH7BPKU.mjs";
+} from "./chunk-5CL7LVW4.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -36119,110 +36118,6 @@ var import_typed_graphqlify3 = __toESM(require_dist());
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/github.js
 var import_typed_graphqlify2 = __toESM(require_dist());
-
-// node_modules/@octokit/graphql/dist-bundle/index.js
-var VERSION = "0.0.0-development";
-function _buildMessageForResponseErrors(data) {
-  return `Request failed due to following response errors:
-` + data.errors.map((e) => ` - ${e.message}`).join("\n");
-}
-var GraphqlResponseError = class extends Error {
-  constructor(request2, headers, response) {
-    super(_buildMessageForResponseErrors(response));
-    this.request = request2;
-    this.headers = headers;
-    this.response = response;
-    this.errors = response.errors;
-    this.data = response.data;
-    if (Error.captureStackTrace) {
-      Error.captureStackTrace(this, this.constructor);
-    }
-  }
-  name = "GraphqlResponseError";
-  errors;
-  data;
-};
-var NON_VARIABLE_OPTIONS = [
-  "method",
-  "baseUrl",
-  "url",
-  "headers",
-  "request",
-  "query",
-  "mediaType",
-  "operationName"
-];
-var FORBIDDEN_VARIABLE_OPTIONS = ["query", "method", "url"];
-var GHES_V3_SUFFIX_REGEX = /\/api\/v3\/?$/;
-function graphql(request2, query, options) {
-  if (options) {
-    if (typeof query === "string" && "query" in options) {
-      return Promise.reject(
-        new Error(`[@octokit/graphql] "query" cannot be used as variable name`)
-      );
-    }
-    for (const key in options) {
-      if (!FORBIDDEN_VARIABLE_OPTIONS.includes(key))
-        continue;
-      return Promise.reject(
-        new Error(
-          `[@octokit/graphql] "${key}" cannot be used as variable name`
-        )
-      );
-    }
-  }
-  const parsedOptions = typeof query === "string" ? Object.assign({ query }, options) : query;
-  const requestOptions = Object.keys(
-    parsedOptions
-  ).reduce((result, key) => {
-    if (NON_VARIABLE_OPTIONS.includes(key)) {
-      result[key] = parsedOptions[key];
-      return result;
-    }
-    if (!result.variables) {
-      result.variables = {};
-    }
-    result.variables[key] = parsedOptions[key];
-    return result;
-  }, {});
-  const baseUrl = parsedOptions.baseUrl || request2.endpoint.DEFAULTS.baseUrl;
-  if (GHES_V3_SUFFIX_REGEX.test(baseUrl)) {
-    requestOptions.url = baseUrl.replace(GHES_V3_SUFFIX_REGEX, "/api/graphql");
-  }
-  return request2(requestOptions).then((response) => {
-    if (response.data.errors) {
-      const headers = {};
-      for (const key of Object.keys(response.headers)) {
-        headers[key] = response.headers[key];
-      }
-      throw new GraphqlResponseError(
-        requestOptions,
-        headers,
-        response.data
-      );
-    }
-    return response.data.data;
-  });
-}
-function withDefaults(request2, newDefaults) {
-  const newRequest = request2.defaults(newDefaults);
-  const newApi = (query, options) => {
-    return graphql(newRequest, query, options);
-  };
-  return Object.assign(newApi, {
-    defaults: withDefaults.bind(null, newRequest),
-    endpoint: newRequest.endpoint
-  });
-}
-var graphql2 = withDefaults(request, {
-  headers: {
-    "user-agent": `octokit-graphql.js/${VERSION} ${getUserAgent()}`
-  },
-  method: "POST",
-  url: "/graphql"
-});
-
-// bazel-out/k8-fastbuild/bin/ng-dev/utils/github.js
 async function getPr(prSchema, prNumber, git) {
   var _a2;
   const { owner, name } = git.remoteConfig;
@@ -40081,7 +39976,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-12a91033cf950858fcea946aeaefed683bdff1de`;
+  const localVersion = `0.0.0-4868983822d75460038e90df527a44250cc8825e`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
