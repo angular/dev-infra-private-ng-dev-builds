@@ -33013,22 +33013,36 @@ function normalizeChoices3(choices) {
     };
   });
 }
+function getSelectedChoice(input, choices) {
+  let selectedChoice;
+  const selectableChoices = choices.filter(isSelectableChoice);
+  if (numberRegex.test(input)) {
+    const answer = Number.parseInt(input, 10) - 1;
+    selectedChoice = selectableChoices[answer];
+  } else {
+    selectedChoice = selectableChoices.find((choice) => choice.key === input);
+  }
+  return selectedChoice ? [selectedChoice, choices.indexOf(selectedChoice)] : [void 0, void 0];
+}
 var esm_default9 = createPrompt((config, done) => {
+  const { loop = true } = config;
   const choices = useMemo(() => normalizeChoices3(config.choices), [config.choices]);
   const [status, setStatus] = useState("idle");
   const [value, setValue] = useState("");
   const [errorMsg, setError] = useState();
   const theme = makeTheme(config.theme);
   const prefix = usePrefix({ status, theme });
+  const bounds = useMemo(() => {
+    const first = choices.findIndex(isSelectableChoice);
+    const last = choices.findLastIndex(isSelectableChoice);
+    if (first === -1) {
+      throw new ValidationError("[select prompt] No selectable choices. All choices are disabled.");
+    }
+    return { first, last };
+  }, [choices]);
   useKeypress((key, rl) => {
     if (isEnterKey(key)) {
-      let selectedChoice;
-      if (numberRegex.test(value)) {
-        const answer = Number.parseInt(value, 10) - 1;
-        selectedChoice = choices.filter(isSelectableChoice)[answer];
-      } else {
-        selectedChoice = choices.find((choice) => isSelectableChoice(choice) && choice.key === value);
-      }
+      const [selectedChoice] = getSelectedChoice(value, choices);
       if (isSelectableChoice(selectedChoice)) {
         setValue(selectedChoice.short);
         setStatus("done");
@@ -33037,6 +33051,20 @@ var esm_default9 = createPrompt((config, done) => {
         setError("Please input a value");
       } else {
         setError(`"${import_yoctocolors_cjs5.default.red(value)}" isn't an available option`);
+      }
+    } else if (key.name === "up" || key.name === "down") {
+      rl.clearLine(0);
+      const [selectedChoice, active] = getSelectedChoice(value, choices);
+      if (!selectedChoice) {
+        const firstChoice = key.name === "down" ? choices.find(isSelectableChoice) : choices.findLast(isSelectableChoice);
+        setValue(firstChoice.key);
+      } else if (loop || key.name === "up" && active !== bounds.first || key.name === "down" && active !== bounds.last) {
+        const offset = key.name === "up" ? -1 : 1;
+        let next = active;
+        do {
+          next = (next + offset + choices.length) % choices.length;
+        } while (!isSelectableChoice(choices[next]));
+        setValue(choices[next].key);
       }
     } else {
       setValue(rl.line);
@@ -33324,6 +33352,7 @@ function normalizeChoices5(choices) {
   });
 }
 var esm_default12 = createPrompt((config, done) => {
+  var _a2, _b2;
   const { loop = true, pageSize = 7 } = config;
   const firstRender = useRef(true);
   const theme = makeTheme(selectTheme, config.theme);
@@ -33397,9 +33426,9 @@ var esm_default12 = createPrompt((config, done) => {
     firstRender.current = false;
     if (items.length > pageSize) {
       helpTipBottom = `
-${theme.style.help("(Use arrow keys to reveal more choices)")}`;
+${theme.style.help(`(${((_a2 = config.instructions) == null ? void 0 : _a2.pager) ?? "Use arrow keys to reveal more choices"})`)}`;
     } else {
-      helpTipTop = theme.style.help("(Use arrow keys)");
+      helpTipTop = theme.style.help(`(${((_b2 = config.instructions) == null ? void 0 : _b2.navigation) ?? "Use arrow keys"})`);
     }
   }
   const page = usePagination({
@@ -39976,7 +40005,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-46b594244e02f9c26b67f22d1756bae31230e517`;
+  const localVersion = `0.0.0-54d5678caddcfdf6e062877d5878b9ded07f071e`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
