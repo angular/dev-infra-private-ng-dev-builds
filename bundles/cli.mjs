@@ -39214,15 +39214,7 @@ var ReleaseAction = class {
   }
   async getLatestCommitOfBranch(branchName) {
     const { data: { commit } } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
-    return commit.sha;
-  }
-  async _isRevisionAheadOfBase(baseRevision, targetRevision, expectedAheadCount) {
-    const { data: { ahead_by, status } } = await this.git.github.repos.compareCommits({
-      ...this.git.remoteParams,
-      base: baseRevision,
-      head: targetRevision
-    });
-    return status === "ahead" && ahead_by === expectedAheadCount;
+    return commit;
   }
   async assertPassingGithubStatus(commitSha, branchNameForError) {
     const { result } = await github_macros_default.getCombinedChecksAndStatusesForRef(this.git.github, {
@@ -39388,7 +39380,7 @@ var ReleaseAction = class {
     return { releaseNotes, pullRequest, builtPackagesWithInfo };
   }
   async checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, stagingBranch, stagingOpts) {
-    const beforeStagingSha = await this.getLatestCommitOfBranch(stagingBranch);
+    const { sha: beforeStagingSha } = await this.getLatestCommitOfBranch(stagingBranch);
     await this.assertPassingGithubStatus(beforeStagingSha, stagingBranch);
     await this.checkoutUpstreamBranch(stagingBranch);
     const stagingInfo = await this.stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, stagingBranch, stagingOpts);
@@ -39441,19 +39433,9 @@ var ReleaseAction = class {
     return `${baseUrl}#${urlFragment}`;
   }
   async publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, publishBranch, npmDistTag, additionalOptions) {
-    const versionBumpCommitSha = await this.getLatestCommitOfBranch(publishBranch);
-    if (!await this._isCommitForVersionStaging(releaseNotes.version, versionBumpCommitSha)) {
-      Log.error(`  \u2718   Latest commit in "${publishBranch}" branch is not a staging commit.`);
-      Log.error("      Please make sure the staging pull request has been merged.");
-      throw new FatalReleaseActionError();
-    }
-    if (!await this._isRevisionAheadOfBase(beforeStagingSha, versionBumpCommitSha, 1)) {
-      Log.error(`  \u2718   Unexpected additional commits have landed while staging the release.`);
-      Log.error("      Please revert the bump commit and retry, or cut a new version on top.");
-      throw new FatalReleaseActionError();
-    }
+    const releaseSha = await this._getAndValidateLatestCommitForPublishing(publishBranch, releaseNotes.version, beforeStagingSha);
     await assertIntegrityOfBuiltPackages(builtPackagesWithInfo);
-    await this._createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, npmDistTag === "next", additionalOptions.showAsLatestOnGitHub);
+    await this._createGithubReleaseForVersion(releaseNotes, releaseSha, npmDistTag === "next", additionalOptions.showAsLatestOnGitHub);
     for (const pkg of builtPackagesWithInfo) {
       await this._publishBuiltPackageToNpm(pkg, npmDistTag);
     }
@@ -39473,12 +39455,27 @@ var ReleaseAction = class {
       throw new FatalReleaseActionError();
     }
   }
-  async _isCommitForVersionStaging(version, commitSha) {
-    const { data } = await this.git.github.repos.getCommit({
-      ...this.git.remoteParams,
-      ref: commitSha
-    });
-    return data.commit.message.startsWith(getCommitMessageForRelease(version));
+  async _getAndValidateLatestCommitForPublishing(branch, version, previousSha, isRetry = false) {
+    try {
+      const commit = await this.getLatestCommitOfBranch(branch);
+      if (!commit.commit.message.startsWith(getCommitMessageForRelease(version))) {
+        const sha = commit.sha.slice(0, 8);
+        Log.error(`  \u2718   Latest commit (${sha}) in "${branch}" branch is not a staging commit.`);
+        Log.error("      Please make sure the staging pull request has been merged.");
+        throw new FatalReleaseActionError();
+      }
+      if (commit.parents[0].sha !== previousSha) {
+        Log.error(`  \u2718   Unexpected additional commits have landed while staging the release.`);
+        Log.error("      Please revert the bump commit and retry, or cut a new version on top.");
+        throw new FatalReleaseActionError();
+      }
+      return commit.sha;
+    } catch (e) {
+      if (isRetry) {
+        throw e;
+      }
+      return this._getAndValidateLatestCommitForPublishing(branch, version, previousSha, true);
+    }
   }
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
@@ -39515,7 +39512,7 @@ var ConfigureNextAsMajorAction = class extends ReleaseAction {
   async perform() {
     const { branchName } = this.active.next;
     const newVersion = this._newVersion;
-    const beforeStagingSha = await this.getLatestCommitOfBranch(branchName);
+    const { sha: beforeStagingSha } = await this.getLatestCommitOfBranch(branchName);
     await this.assertPassingGithubStatus(beforeStagingSha, branchName);
     await this.checkoutUpstreamBranch(branchName);
     await this.updateProjectVersion(newVersion);
@@ -39798,7 +39795,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
     return `Prepare an exceptional minor based on the existing "${this._baseBranch}" branch (${this._newBranch}).`;
   }
   async perform() {
-    const latestBaseBranchSha = await this.getLatestCommitOfBranch(this._baseBranch);
+    const { sha: latestBaseBranchSha } = await this.getLatestCommitOfBranch(this._baseBranch);
     await this.assertPassingGithubStatus(latestBaseBranchSha, this._baseBranch);
     await this.checkoutUpstreamBranch(this._baseBranch);
     await this.createLocalBranchFromHead(this._newBranch);
@@ -39842,7 +39839,7 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
     const compareVersionForReleaseNotes = await this._computeReleaseNoteCompareVersion();
     const newVersion = await this._computeNewVersion();
     const newBranch = `${newVersion.major}.${newVersion.minor}.x`;
-    const beforeStagingSha = await this.getLatestCommitOfBranch(nextBranchName);
+    const { sha: beforeStagingSha } = await this.getLatestCommitOfBranch(nextBranchName);
     await this.assertPassingGithubStatus(beforeStagingSha, nextBranchName);
     await this._createNewVersionBranchFromNext(newBranch);
     const { pullRequest, releaseNotes, builtPackagesWithInfo } = await this.stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, newBranch);
@@ -40005,7 +40002,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-54d5678caddcfdf6e062877d5878b9ded07f071e`;
+  const localVersion = `0.0.0-c4207bf0632fd405c3c19598e48c56b436d6c9c9`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

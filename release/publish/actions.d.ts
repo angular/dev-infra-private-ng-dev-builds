@@ -12,6 +12,7 @@ import { ReleaseNotes } from '../notes/release-notes.js';
 import { NpmDistTag, PackageJson } from '../versioning/index.js';
 import { ActiveReleaseTrains } from '../versioning/active-release-trains.js';
 import { PnpmVersioning } from './pnpm-versioning.js';
+import { Commit } from '../../utils/git/octokit-types.js';
 /** Interface describing a Github repository. */
 export interface GithubRepo {
     owner: string;
@@ -76,9 +77,7 @@ export declare abstract class ReleaseAction {
     protected updateProjectVersion(newVersion: semver.SemVer, additionalUpdateFn?: (pkgJson: PackageJson) => void): Promise<void>;
     protected getAspectLockFiles(): string[];
     /** Gets the most recent commit of a specified branch. */
-    protected getLatestCommitOfBranch(branchName: string): Promise<string>;
-    /** Checks whether the given revision is ahead to the base by the specified amount. */
-    private _isRevisionAheadOfBase;
+    protected getLatestCommitOfBranch(branchName: string): Promise<Commit>;
     /**
      * Verifies that the given commit has passing all statuses.
      *
@@ -227,8 +226,14 @@ export declare abstract class ReleaseAction {
     }): Promise<void>;
     /** Publishes the given built package to NPM with the specified NPM dist tag. */
     private _publishBuiltPackageToNpm;
-    /** Checks whether the given commit represents a staging commit for the specified version. */
-    private _isCommitForVersionStaging;
+    /**
+     * Retreive the latest commit from the provided branch, and verify that it is the expected
+     * release commit and is the direct child of the previous sha provided.
+     *
+     * The method will make one recursive attempt to check again before throwing an error if
+     * any error occurs during this validation.
+     */
+    private _getAndValidateLatestCommitForPublishing;
     /** Verify the version of each generated package exact matches the specified version. */
     private _verifyPackageVersions;
 }
