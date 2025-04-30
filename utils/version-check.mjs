@@ -23,7 +23,7 @@ import { tryGetPackageId } from '@pnpm/dependency-path';
  */
 export async function verifyNgDevToolIsUpToDate(workspacePath) {
     // The placeholder will be replaced by the `pkg_npm` substitutions.
-    const localVersion = `0.0.0-8ca74b8a897d28f4735043c745693a706ff5ca81`;
+    const localVersion = `0.0.0-14c3d6bd2fa5c3231be7bd4b3c0bba68c9d79e94`;
     const workspacePackageJsonFile = path.join(workspacePath, workspaceRelativePackageJsonPath);
     const pnpmLockFile = path.join(workspacePath, 'pnpm-lock.yaml');
     const yarnLockFile = path.join(workspacePath, 'yarn.lock');
