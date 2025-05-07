@@ -8934,7 +8934,7 @@ var require_chardet = __commonJS({
         opts = void 0;
       }
       var fd;
-      var handler29 = function(err, buffer) {
+      var handler30 = function(err, buffer) {
         if (fd) {
           fs5.closeSync(fd);
         }
@@ -8945,11 +8945,11 @@ var require_chardet = __commonJS({
       if (opts && opts.sampleSize) {
         fd = fs5.openSync(filepath, "r"), sample = Buffer.allocUnsafe(opts.sampleSize);
         fs5.read(fd, sample, 0, opts.sampleSize, null, function(err) {
-          handler29(err, sample);
+          handler30(err, sample);
         });
         return;
       }
-      fs5.readFile(filepath, handler29);
+      fs5.readFile(filepath, handler30);
     };
     module.exports.detectFileSync = function(filepath, opts) {
       if (opts && opts.sampleSize) {
@@ -18483,8 +18483,8 @@ var require_queue = __commonJS({
         self.drain();
         self.drain = noop;
       }
-      function error(handler29) {
-        errorHandler = handler29;
+      function error(handler30) {
+        errorHandler = handler30;
       }
     }
     function noop() {
@@ -23797,11 +23797,11 @@ var require_commonjs = __commonJS({
           p.unpipe();
         }
       }
-      addListener(ev, handler29) {
-        return this.on(ev, handler29);
+      addListener(ev, handler30) {
+        return this.on(ev, handler30);
       }
-      on(ev, handler29) {
-        const ret = super.on(ev, handler29);
+      on(ev, handler30) {
+        const ret = super.on(ev, handler30);
         if (ev === "data") {
           this[DISCARDED] = false;
           this[DATALISTENERS]++;
@@ -23814,7 +23814,7 @@ var require_commonjs = __commonJS({
           super.emit(ev);
           this.removeAllListeners(ev);
         } else if (ev === "error" && this[EMITTED_ERROR]) {
-          const h = handler29;
+          const h = handler30;
           if (this[ASYNC])
             defer(() => h.call(this, this[EMITTED_ERROR]));
           else
@@ -23822,11 +23822,11 @@ var require_commonjs = __commonJS({
         }
         return ret;
       }
-      removeListener(ev, handler29) {
-        return this.off(ev, handler29);
+      removeListener(ev, handler30) {
+        return this.off(ev, handler30);
       }
-      off(ev, handler29) {
-        const ret = super.off(ev, handler29);
+      off(ev, handler30) {
+        const ret = super.off(ev, handler30);
         if (ev === "data") {
           this[DATALISTENERS] = this.listeners("data").length;
           if (this[DATALISTENERS] === 0 && !this[DISCARDED] && !this[PIPES].length) {
@@ -24107,17 +24107,17 @@ var require_lib5 = __commonJS({
         }
         this.hashes = this.algorithms.map(crypto.createHash);
       }
-      on(ev, handler29) {
+      on(ev, handler30) {
         if (ev === "size" && __privateGet(this, _emittedSize)) {
-          return handler29(__privateGet(this, _emittedSize));
+          return handler30(__privateGet(this, _emittedSize));
         }
         if (ev === "integrity" && __privateGet(this, _emittedIntegrity)) {
-          return handler29(__privateGet(this, _emittedIntegrity));
+          return handler30(__privateGet(this, _emittedIntegrity));
         }
         if (ev === "verified" && __privateGet(this, _emittedVerified)) {
-          return handler29(__privateGet(this, _emittedVerified));
+          return handler30(__privateGet(this, _emittedVerified));
         }
-        return super.on(ev, handler29);
+        return super.on(ev, handler30);
       }
       emit(ev, data) {
         if (ev === "end") {
@@ -26646,10 +26646,10 @@ var CommandInstance = class {
     };
     this.shim.requireDirectory({ require: req, filename: callerFile }, dir, opts);
   }
-  addHandler(cmd, description, builder28, handler29, commandMiddleware, deprecated) {
+  addHandler(cmd, description, builder29, handler30, commandMiddleware, deprecated) {
     let aliases = [];
     const middlewares = commandMiddlewareFactory(commandMiddleware);
-    handler29 = handler29 || (() => {
+    handler30 = handler30 || (() => {
     });
     if (Array.isArray(cmd)) {
       if (isCommandAndAliases(cmd)) {
@@ -26665,8 +26665,8 @@ var CommandInstance = class {
         command2 = [].concat(command2).concat(cmd.aliases);
       this.addHandler(command2, this.extractDesc(cmd), cmd.builder, cmd.handler, cmd.middlewares, cmd.deprecated);
       return;
-    } else if (isCommandBuilderDefinition(builder28)) {
-      this.addHandler([cmd].concat(aliases), description, builder28.builder, builder28.handler, builder28.middlewares, builder28.deprecated);
+    } else if (isCommandBuilderDefinition(builder29)) {
+      this.addHandler([cmd].concat(aliases), description, builder29.builder, builder29.handler, builder29.middlewares, builder29.deprecated);
       return;
     }
     if (typeof cmd === "string") {
@@ -26696,8 +26696,8 @@ var CommandInstance = class {
       this.handlers[parsedCommand.cmd] = {
         original: cmd,
         description,
-        handler: handler29,
-        builder: builder28 || {},
+        handler: handler30,
+        builder: builder29 || {},
         middlewares,
         deprecated,
         demanded: parsedCommand.demanded,
@@ -26729,22 +26729,22 @@ var CommandInstance = class {
     return isPromise(builderResult) ? builderResult.then((result) => this.applyMiddlewareAndGetResult(isDefaultCommand, commandHandler, result.innerArgv, currentContext, helpOnly, result.aliases, yargs)) : this.applyMiddlewareAndGetResult(isDefaultCommand, commandHandler, builderResult.innerArgv, currentContext, helpOnly, builderResult.aliases, yargs);
   }
   applyBuilderUpdateUsageAndParse(isDefaultCommand, commandHandler, yargs, aliases, parentCommands, commandIndex, helpOnly, helpOrVersionSet) {
-    const builder28 = commandHandler.builder;
+    const builder29 = commandHandler.builder;
     let innerYargs = yargs;
-    if (isCommandBuilderCallback(builder28)) {
+    if (isCommandBuilderCallback(builder29)) {
       yargs.getInternalMethods().getUsageInstance().freeze();
-      const builderOutput = builder28(yargs.getInternalMethods().reset(aliases), helpOrVersionSet);
+      const builderOutput = builder29(yargs.getInternalMethods().reset(aliases), helpOrVersionSet);
       if (isPromise(builderOutput)) {
         return builderOutput.then((output) => {
           innerYargs = isYargsInstance(output) ? output : yargs;
           return this.parseAndUpdateUsage(isDefaultCommand, commandHandler, innerYargs, parentCommands, commandIndex, helpOnly);
         });
       }
-    } else if (isCommandBuilderOptionDefinitions(builder28)) {
+    } else if (isCommandBuilderOptionDefinitions(builder29)) {
       yargs.getInternalMethods().getUsageInstance().freeze();
       innerYargs = yargs.getInternalMethods().reset(aliases);
       Object.keys(commandHandler.builder).forEach((key) => {
-        innerYargs.option(key, builder28[key]);
+        innerYargs.option(key, builder29[key]);
       });
     }
     return this.parseAndUpdateUsage(isDefaultCommand, commandHandler, innerYargs, parentCommands, commandIndex, helpOnly);
@@ -26935,12 +26935,12 @@ var CommandInstance = class {
       const commandString = DEFAULT_MARKER.test(this.defaultCommand.original) ? this.defaultCommand.original : this.defaultCommand.original.replace(/^[^[\]<>]*/, "$0 ");
       yargs.getInternalMethods().getUsageInstance().usage(commandString, this.defaultCommand.description);
     }
-    const builder28 = this.defaultCommand.builder;
-    if (isCommandBuilderCallback(builder28)) {
-      return builder28(yargs, true);
-    } else if (!isCommandBuilderDefinition(builder28)) {
-      Object.keys(builder28).forEach((key) => {
-        yargs.option(key, builder28[key]);
+    const builder29 = this.defaultCommand.builder;
+    if (isCommandBuilderCallback(builder29)) {
+      return builder29(yargs, true);
+    } else if (!isCommandBuilderDefinition(builder29)) {
+      Object.keys(builder29).forEach((key) => {
+        yargs.option(key, builder29[key]);
       });
     }
     return void 0;
@@ -26989,17 +26989,17 @@ var CommandInstance = class {
 function command(usage2, validation2, globalMiddleware, shim3) {
   return new CommandInstance(usage2, validation2, globalMiddleware, shim3);
 }
-function isCommandBuilderDefinition(builder28) {
-  return typeof builder28 === "object" && !!builder28.builder && typeof builder28.handler === "function";
+function isCommandBuilderDefinition(builder29) {
+  return typeof builder29 === "object" && !!builder29.builder && typeof builder29.handler === "function";
 }
 function isCommandAndAliases(cmd) {
   return cmd.every((c) => typeof c === "string");
 }
-function isCommandBuilderCallback(builder28) {
-  return typeof builder28 === "function";
+function isCommandBuilderCallback(builder29) {
+  return typeof builder29 === "function";
 }
-function isCommandBuilderOptionDefinitions(builder28) {
-  return typeof builder28 === "object";
+function isCommandBuilderOptionDefinitions(builder29) {
+  return typeof builder29 === "object";
 }
 function isCommandHandlerDefinition(cmd) {
   return typeof cmd === "object" && !Array.isArray(cmd);
@@ -27623,11 +27623,11 @@ var Completion = class {
     const handlers = this.command.getCommandHandlers();
     for (let i = 0, ii = args.length; i < ii; ++i) {
       if (handlers[args[i]] && handlers[args[i]].builder) {
-        const builder28 = handlers[args[i]].builder;
-        if (isCommandBuilderCallback(builder28)) {
+        const builder29 = handlers[args[i]].builder;
+        if (isCommandBuilderCallback(builder29)) {
           this.indexAfterLastReset = i + 1;
           const y = this.yargs.getInternalMethods().reset();
-          builder28(y, true);
+          builder29(y, true);
           return y.argv;
         }
       }
@@ -28478,13 +28478,13 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_completion, "f").registerFunction(fn);
     return this;
   }
-  command(cmd, description, builder28, handler29, middlewares, deprecated) {
-    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder28, handler29, middlewares, deprecated], arguments.length);
-    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder28, handler29, middlewares, deprecated);
+  command(cmd, description, builder29, handler30, middlewares, deprecated) {
+    argsert("<string|array|object> [string|boolean] [function|object] [function] [array] [boolean|string]", [cmd, description, builder29, handler30, middlewares, deprecated], arguments.length);
+    __classPrivateFieldGet(this, _YargsInstance_command, "f").addHandler(cmd, description, builder29, handler30, middlewares, deprecated);
     return this;
   }
-  commands(cmd, description, builder28, handler29, middlewares, deprecated) {
-    return this.command(cmd, description, builder28, handler29, middlewares, deprecated);
+  commands(cmd, description, builder29, handler30, middlewares, deprecated) {
+    return this.command(cmd, description, builder29, handler30, middlewares, deprecated);
   }
   commandDir(dir, opts) {
     argsert("<string> [object]", [dir, opts], arguments.length);
@@ -29086,12 +29086,12 @@ var YargsInstance = class {
     __classPrivateFieldGet(this, _YargsInstance_shim, "f").y18n.updateLocale(obj);
     return this;
   }
-  usage(msg, description, builder28, handler29) {
-    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder28, handler29], arguments.length);
+  usage(msg, description, builder29, handler30) {
+    argsert("<string|null|undefined> [string|boolean] [function|object] [function]", [msg, description, builder29, handler30], arguments.length);
     if (description !== void 0) {
       assertNotStrictEqual(msg, null, __classPrivateFieldGet(this, _YargsInstance_shim, "f"));
       if ((msg || "").match(/^\$0( |$)/)) {
-        return this.command(msg, description, builder28, handler29);
+        return this.command(msg, description, builder29, handler30);
       } else {
         throw new YError(".usage() description must start with $0 if being used as alias for .command()");
       }
@@ -29283,24 +29283,24 @@ var YargsInstance = class {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type].push(key);
     });
   }
-  [kPopulateParserHintSingleValueDictionary](builder28, type, key, value) {
-    this[kPopulateParserHintDictionary](builder28, type, key, value, (type2, key2, value2) => {
+  [kPopulateParserHintSingleValueDictionary](builder29, type, key, value) {
+    this[kPopulateParserHintDictionary](builder29, type, key, value, (type2, key2, value2) => {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] = value2;
     });
   }
-  [kPopulateParserHintArrayDictionary](builder28, type, key, value) {
-    this[kPopulateParserHintDictionary](builder28, type, key, value, (type2, key2, value2) => {
+  [kPopulateParserHintArrayDictionary](builder29, type, key, value) {
+    this[kPopulateParserHintDictionary](builder29, type, key, value, (type2, key2, value2) => {
       __classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] = (__classPrivateFieldGet(this, _YargsInstance_options, "f")[type2][key2] || []).concat(value2);
     });
   }
-  [kPopulateParserHintDictionary](builder28, type, key, value, singleKeyHandler) {
+  [kPopulateParserHintDictionary](builder29, type, key, value, singleKeyHandler) {
     if (Array.isArray(key)) {
       key.forEach((k) => {
-        builder28(k, value);
+        builder29(k, value);
       });
     } else if (((key2) => typeof key2 === "object")(key)) {
       for (const k of objectKeys(key)) {
-        builder28(k, key[k]);
+        builder29(k, key[k]);
       }
     } else {
       singleKeyHandler(type, this[kSanitizeKey](key), value);
@@ -31925,15 +31925,15 @@ function useKeypress(userHandler) {
   signal.current = userHandler;
   useEffect((rl) => {
     let ignore = false;
-    const handler29 = withUpdates((_input, event) => {
+    const handler30 = withUpdates((_input, event) => {
       if (ignore)
         return;
       void signal.current(event, rl);
     });
-    rl.input.on("keypress", handler29);
+    rl.input.on("keypress", handler30);
     return () => {
       ignore = true;
-      rl.input.removeListener("keypress", handler29);
+      rl.input.removeListener("keypress", handler30);
     };
   }, []);
 }
@@ -32121,16 +32121,16 @@ var Emitter = class {
 };
 var SignalExitBase = class {
 };
-var signalExitWrap = (handler29) => {
+var signalExitWrap = (handler30) => {
   return {
     onExit(cb, opts) {
-      return handler29.onExit(cb, opts);
+      return handler30.onExit(cb, opts);
     },
     load() {
-      return handler29.load();
+      return handler30.load();
     },
     unload() {
-      return handler29.unload();
+      return handler30.unload();
     }
   };
 };
@@ -35893,9 +35893,92 @@ var GeneratedFilesModule = {
   describe: "Automatically discover all bazel generated file targets and update them."
 };
 
+// bazel-out/k8-fastbuild/bin/ng-dev/misc/generate-nodejs-toolchain/cli.js
+import https from "https";
+function builder13(argv) {
+  return argv.positional("nodeJsVersion", {
+    type: "string",
+    demandOption: true
+  }).check(({ nodeJsVersion }) => {
+    if (!/^\d+\.\d+\.\d+$/.test(nodeJsVersion)) {
+      throw new Error(`Invalid version format "${nodeJsVersion}". Expected X.Y.Z (Example: 22.11.0)`);
+    }
+    return true;
+  });
+}
+var GeneratedNodeJsToolchainModule = {
+  builder: builder13,
+  handler: handler13,
+  command: "generate-nodejs-toolchain <nodeJsVersion>",
+  describe: "Generates a Bazel toolchain definition for a specific Node.js version."
+};
+var REPOSITORY_TYPES = {
+  "darwin-arm64.tar.gz": "darwin_arm64",
+  "darwin-x64.tar.gz": "darwin_amd64",
+  "linux-x64.tar.xz": "linux_amd64",
+  "linux-arm64.tar.xz": "linux_arm64",
+  "linux-s390x.tar.xz": "linux_s390x",
+  "win-x64.zip": "windows_amd64",
+  "linux-ppc64le.tar.xz": "linux_ppc64le"
+};
+function getText2(url2) {
+  return new Promise((resolve12, reject) => {
+    const request = https.get(url2, (res) => {
+      if (res.statusCode !== 200) {
+        return reject(new Error(`Failed to get ${url2}. Status Code: ${res.statusCode ?? "unknown"}`));
+      }
+      const body = [];
+      res.on("data", (chunk) => body.push(chunk));
+      res.on("end", () => resolve12(body.join("")));
+    });
+    request.on("error", (err) => reject(err));
+  });
+}
+async function getNodeJsRepositories(version) {
+  const text = await getText2(`https://nodejs.org/dist/v${version}/SHASUMS256.txt`);
+  const repositories = text.split("\n").filter(Boolean).map((line) => {
+    const [sha, filename] = line.trim().split(/\s+/);
+    if (!filename) {
+      return void 0;
+    }
+    const fileTypeSuffix = filename.replace(/^node-v[\d.]+-/, "");
+    const type = REPOSITORY_TYPES[fileTypeSuffix];
+    return type ? { filename, sha, type } : void 0;
+  }).filter((repo) => repo !== void 0);
+  return {
+    version,
+    repositories
+  };
+}
+async function handler13({ nodeJsVersion }) {
+  try {
+    const { version, repositories } = await getNodeJsRepositories(nodeJsVersion);
+    if (!(repositories == null ? void 0 : repositories.length)) {
+      Log.error(`  \u2718   Could not find any downloadable files for Node.js version ${version}. Please check if the version exists and has published binaries at https://nodejs.org/dist/v${version}/`);
+      process.exit(1);
+    }
+    const [majorVersion] = version.split(".");
+    console.log(`nodejs_register_toolchains(`);
+    console.log(`    name = "node${majorVersion}",`);
+    console.log(`    node_repositories = {`);
+    for (const { filename, sha, type } of repositories) {
+      const strippedFilename = filename.replace(/(\.tar)?\.[^.]+$/, "");
+      console.log(`        "${version}-${type}": ("${filename}", "${strippedFilename}", "${sha}"),`);
+    }
+    console.log(`    },`);
+    console.log(`    node_version = "${version}",`);
+    console.log(`)
+`);
+  } catch (error) {
+    Log.error(`  \u2718  Aborted due to an error:
+${error}`);
+    process.exit(1);
+  }
+}
+
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/cli.js
 function buildMiscParser(localYargs) {
-  return localYargs.help().strict().command(BuildAndLinkCommandModule).command(UpdateYarnCommandModule).command(GeneratedFilesModule);
+  return localYargs.help().strict().command(BuildAndLinkCommandModule).command(UpdateYarnCommandModule).command(GeneratedFilesModule).command(GeneratedNodeJsToolchainModule);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ngbot/verify.js
@@ -36125,19 +36208,19 @@ async function printTargetBranchesForPr(prNumber) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/check-target-branches/cli.js
-function builder13(argv) {
+function builder14(argv) {
   return argv.positional("pr", {
     description: "The pull request number",
     type: "number",
     demandOption: true
   });
 }
-async function handler13({ pr }) {
+async function handler14({ pr }) {
   await printTargetBranchesForPr(pr);
 }
 var CheckTargetBranchesModule = {
-  handler: handler13,
-  builder: builder13,
+  handler: handler14,
+  builder: builder14,
   command: "check-target-branches <pr>",
   describe: "Check a PR to determine what branches it is currently targeting"
 };
@@ -36486,7 +36569,7 @@ async function checkoutPullRequest(params4) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/checkout/cli.js
-function builder14(yargs) {
+function builder15(yargs) {
   return addGithubTokenOption(yargs).positional("pr", {
     type: "number",
     demandOption: true,
@@ -36501,12 +36584,12 @@ function builder14(yargs) {
     describe: "Check out the pull request targeting the specified base branch"
   });
 }
-async function handler14({ pr, takeover, target }) {
+async function handler15({ pr, takeover, target }) {
   await checkoutPullRequest({ pr, takeover, target });
 }
 var CheckoutCommandModule = {
-  handler: handler14,
-  builder: builder14,
+  handler: handler15,
+  builder: builder15,
   command: "checkout <pr>",
   describe: "Checkout a PR from the upstream repo"
 };
@@ -36763,7 +36846,7 @@ async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/discover-new-conflicts/cli.js
-function builder15(argv) {
+function builder16(argv) {
   return addGithubTokenOption(argv).option("date", {
     description: "Only consider PRs updated since provided date",
     defaultDescription: "30 days ago",
@@ -36771,7 +36854,7 @@ function builder15(argv) {
     default: getThirtyDaysAgoDate()
   }).positional("pr", { demandOption: true, type: "number" });
 }
-async function handler15({ pr, date }) {
+async function handler16({ pr, date }) {
   if (isNaN(date)) {
     Log.error("Unable to parse the value provided via --date flag");
     process.exit(1);
@@ -36785,8 +36868,8 @@ function getThirtyDaysAgoDate() {
   return date.getTime();
 }
 var DiscoverNewConflictsCommandModule = {
-  handler: handler15,
-  builder: builder15,
+  handler: handler16,
+  builder: builder16,
   command: "discover-new-conflicts <pr>",
   describe: "Check if a pending PR causes new conflicts for other pending PRs"
 };
@@ -37709,7 +37792,7 @@ function parsePrNumber(prUrlOrNumber) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/cli.js
-async function builder16(argv) {
+async function builder17(argv) {
   return addDryRunFlag(addGithubTokenOption(argv)).help().strict().positional("pr", {
     demandOption: true,
     coerce: (prUrlOrNumber) => parsePrNumber(prUrlOrNumber),
@@ -37729,12 +37812,12 @@ async function builder16(argv) {
     description: "Bypass the check for pending reviews on the pull request"
   });
 }
-async function handler16({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
+async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
   await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
 }
 var MergeCommandModule = {
-  handler: handler16,
-  builder: builder16,
+  handler: handler17,
+  builder: builder17,
   command: "merge <pr>",
   describe: "Merge a PR into its targeted branches."
 };
@@ -37816,7 +37899,7 @@ async function rebasePr(prNumber, interactive = false) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/pr/rebase/cli.js
-function builder17(argv) {
+function builder18(argv) {
   return addGithubTokenOption(argv).positional("pr", { type: "number", demandOption: true }).option("interactive", {
     type: "boolean",
     alias: ["i"],
@@ -37824,12 +37907,12 @@ function builder17(argv) {
     describe: "Do the rebase interactively so that things can be squashed and amended"
   });
 }
-async function handler17({ pr, i }) {
+async function handler18({ pr, i }) {
   process.exitCode = await rebasePr(pr, i);
 }
 var RebaseCommandModule = {
-  handler: handler17,
-  builder: builder17,
+  handler: handler18,
+  builder: builder18,
   command: "rebase <pr>",
   describe: "Rebase a pending PR and push the rebased commits back to Github"
 };
@@ -38119,14 +38202,14 @@ function buildPullapproveParser(localYargs) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/build/cli.js
-function builder18(argv) {
+function builder19(argv) {
   return argv.option("json", {
     type: "boolean",
     description: "Whether the built packages should be printed to stdout as JSON.",
     default: false
   });
 }
-async function handler18(args) {
+async function handler19(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages } = config.release;
@@ -38154,8 +38237,8 @@ async function handler18(args) {
   }
 }
 var ReleaseBuildCommandModule = {
-  builder: builder18,
-  handler: handler18,
+  builder: builder19,
+  handler: handler19,
   command: "build",
   describe: "Builds the release output for the current branch."
 };
@@ -38210,14 +38293,14 @@ async function printActiveReleaseTrains(active, config) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/info/cli.js
-function builder19(argv) {
+function builder20(argv) {
   return argv.option("json", {
     type: "boolean",
     description: "Whether information should be written as JSON to stdout.",
     default: false
   });
 }
-async function handler19(argv) {
+async function handler20(argv) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   if (argv.json) {
@@ -38231,8 +38314,8 @@ async function handler19(argv) {
   await printActiveReleaseTrains(releaseTrains, config.release);
 }
 var ReleaseInfoCommandModule = {
-  builder: builder19,
-  handler: handler19,
+  builder: builder20,
+  handler: handler20,
   command: "info",
   describe: "Prints information for the current release state."
 };
@@ -38710,7 +38793,7 @@ var ReleaseNotes = class {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/notes/cli.js
-function builder20(argv) {
+function builder21(argv) {
   return argv.option("releaseVersion", {
     type: "string",
     default: "0.0.0",
@@ -38734,7 +38817,7 @@ function builder20(argv) {
     description: "Whether to update the changelog with the newly created entry"
   });
 }
-async function handler20({ releaseVersion, from, to, prependToChangelog, type }) {
+async function handler21({ releaseVersion, from, to, prependToChangelog, type }) {
   const git = await GitClient.get();
   const releaseNotes = await ReleaseNotes.forRange(git, releaseVersion, from, to);
   if (prependToChangelog) {
@@ -38746,8 +38829,8 @@ async function handler20({ releaseVersion, from, to, prependToChangelog, type })
   process.stdout.write(releaseNotesEntry);
 }
 var ReleaseNotesCommandModule = {
-  builder: builder20,
-  handler: handler20,
+  builder: builder21,
+  handler: handler21,
   command: "notes",
   describe: "Generate release notes"
 };
@@ -38769,7 +38852,7 @@ function readBufferFromStdinUntilClosed(input = process.stdin) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/precheck/cli.js
-async function handler21() {
+async function handler22() {
   const stdin = await readBufferFromStdinUntilClosed();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -38790,7 +38873,7 @@ async function handler21() {
   }
 }
 var ReleasePrecheckCommandModule = {
-  handler: handler21,
+  handler: handler22,
   command: "precheck",
   describe: false
 };
@@ -40002,7 +40085,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-b3df5e35ff652de75d22d1f68f3887696f3b49a2`;
+  const localVersion = `0.0.0-2c7bab7971084f3f1f6f72735099a9591ee5ebcb`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -40190,10 +40273,10 @@ var ReleaseTool = class {
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/cli.js
-function builder21(argv) {
+function builder22(argv) {
   return addGithubTokenOption(argv);
 }
-async function handler22() {
+async function handler23() {
   const git = await AuthenticatedGitClient.get();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -40215,15 +40298,15 @@ async function handler22() {
   }
 }
 var ReleasePublishCommandModule = {
-  builder: builder21,
-  handler: handler22,
+  builder: builder22,
+  handler: handler23,
   command: "publish",
   describe: "Publish new releases and configure version branches."
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/npm-dist-tag/set/cli.js
 var import_semver19 = __toESM(require_semver());
-function builder22(args) {
+function builder23(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
@@ -40238,7 +40321,7 @@ function builder22(args) {
     default: false
   });
 }
-async function handler23(args) {
+async function handler24(args) {
   const { targetVersion: rawVersion, tagName, skipExperimentalPackages } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -40275,8 +40358,8 @@ async function handler23(args) {
   Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version}`)}.`));
 }
 var ReleaseNpmDistTagSetCommand = {
-  builder: builder22,
-  handler: handler23,
+  builder: builder23,
+  handler: handler24,
   command: "set <tag-name> <target-version>",
   describe: "Sets a given NPM dist tag for all release packages."
 };
@@ -40380,7 +40463,7 @@ function getVersionFromWorkspacePackageJson(git) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/cli.js
-function builder23(args) {
+function builder24(args) {
   return args.option("mode", {
     demandOption: true,
     description: "Whether the env-stamp should be built for a snapshot or release",
@@ -40394,7 +40477,7 @@ function builder23(args) {
     description: "Working-dir relative or absolute path to an ESM script which can print additional stamping variables"
   });
 }
-async function handler24({ mode, includeVersion, additionalStampingScript }) {
+async function handler25({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
     const scriptURL = url.pathToFileURL(path7.resolve(additionalStampingScript));
@@ -40403,21 +40486,21 @@ async function handler24({ mode, includeVersion, additionalStampingScript }) {
   }
 }
 var BuildEnvStampCommand = {
-  builder: builder23,
-  handler: handler24,
+  builder: builder24,
+  handler: handler25,
   command: "build-env-stamp",
   describe: "Build the environment stamping information"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/npm-dist-tag/delete/cli.js
-function builder24(args) {
+function builder25(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
     description: "Name of the NPM dist tag."
   });
 }
-async function handler25(args) {
+async function handler26(args) {
   const { tagName } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -40440,8 +40523,8 @@ async function handler25(args) {
   Log.info(green(`  \u2713   Deleted "${bold(tagName)}" NPM dist tag for all packages.`));
 }
 var ReleaseNpmDistTagDeleteCommand = {
-  builder: builder24,
-  handler: handler25,
+  builder: builder25,
+  handler: handler26,
   command: "delete <tag-name>",
   describe: "Deletes a given NPM dist tag for all release packages."
 };
@@ -40798,31 +40881,31 @@ function convertReferenceChainToString(chain) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/login/cli.js
-async function builder25(yargs) {
+async function builder26(yargs) {
   return yargs;
 }
-async function handler26() {
+async function handler27() {
   Log.warn("ng-dev auth login has been deprecated. Authentication will be done");
   Log.warn("using TOKEN from the local environment.");
 }
 var LoginModule = {
-  handler: handler26,
-  builder: builder25,
+  handler: handler27,
+  builder: builder26,
   command: "login",
   describe: "Log into the ng-dev service"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/auth/logout/cli.js
-async function builder26(yargs) {
+async function builder27(yargs) {
   return yargs;
 }
-async function handler27() {
+async function handler28() {
   Log.warn("ng-dev auth logout has been deprecated. Authentication will be done");
   Log.warn("using local environment.");
 }
 var LogoutModule = {
-  handler: handler27,
-  builder: builder26,
+  handler: handler28,
+  builder: builder27,
   command: "logout",
   describe: "Log out of the ng-dev service"
 };
@@ -40905,7 +40988,7 @@ async function addWorkflowPerformanceResult(result) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/cli.js
-function builder27(yargs) {
+function builder28(yargs) {
   return yargs.option("config-file", {
     default: ".ng-dev/dx-perf-workflows.yml",
     type: "string",
@@ -40922,7 +41005,7 @@ function builder27(yargs) {
     description: "The commit sha to associate the measurement with, uploading it to our database"
   });
 }
-async function handler28({ configFile, list, name, commitSha }) {
+async function handler29({ configFile, list, name, commitSha }) {
   const workflows = await loadWorkflows(join14(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
@@ -40954,8 +41037,8 @@ async function handler28({ configFile, list, name, commitSha }) {
   }
 }
 var WorkflowsModule = {
-  handler: handler28,
-  builder: builder27,
+  handler: handler29,
+  builder: builder28,
   command: "workflows",
   describe: "Evaluate the performance of the provided workflows"
 };
