@@ -13288,7 +13288,7 @@ var require_regex = __commonJS({
   "node_modules/conventional-commits-parser/lib/regex.js"(exports, module) {
     "use strict";
     var reNomatch = /(?!.*)/;
-    function join15(array, joiner) {
+    function join16(array, joiner) {
       return array.map(function(val) {
         return val.trim();
       }).filter(function(val) {
@@ -13299,7 +13299,7 @@ var require_regex = __commonJS({
       if (!noteKeywords) {
         return reNomatch;
       }
-      const noteKeywordsSelection = join15(noteKeywords, "|");
+      const noteKeywordsSelection = join16(noteKeywords, "|");
       if (!notesPattern) {
         return new RegExp("^[\\s|*]*(" + noteKeywordsSelection + ")[:\\s]+(.*)", "i");
       }
@@ -13310,13 +13310,13 @@ var require_regex = __commonJS({
         return reNomatch;
       }
       const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join15(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
+      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join16(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
     }
     function getReferencesRegex(referenceActions) {
       if (!referenceActions) {
         return /()(.+)/gi;
       }
-      const joinedKeywords = join15(referenceActions, "|");
+      const joinedKeywords = join16(referenceActions, "|");
       return new RegExp("(" + joinedKeywords + ")(?:\\s+(.*?))(?=(?:" + joinedKeywords + ")|$)", "gi");
     }
     module.exports = function(options) {
@@ -23082,8 +23082,8 @@ var require_graceful_fs = __commonJS({
       fs6.createReadStream = createReadStream;
       fs6.createWriteStream = createWriteStream;
       var fs$readFile = fs6.readFile;
-      fs6.readFile = readFile3;
-      function readFile3(path8, options, cb) {
+      fs6.readFile = readFile4;
+      function readFile4(path8, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
         return go$readFile(path8, options, cb);
@@ -23099,8 +23099,8 @@ var require_graceful_fs = __commonJS({
         }
       }
       var fs$writeFile = fs6.writeFile;
-      fs6.writeFile = writeFile2;
-      function writeFile2(path8, data, options, cb) {
+      fs6.writeFile = writeFile3;
+      function writeFile3(path8, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
         return go$writeFile(path8, data, options, cb);
@@ -39906,6 +39906,31 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/branch-off-next-branch.js
 var import_semver16 = __toESM(require_semver());
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/renovate-config-updates.js
+import { existsSync as existsSync5 } from "fs";
+import { join as join11 } from "path";
+import { writeFile as writeFile2, readFile as readFile2 } from "fs/promises";
+async function updateRenovateConfig(projectDir, newBranchName) {
+  const renovateConfigPath = join11(projectDir, "renovate.json");
+  if (!existsSync5(renovateConfigPath)) {
+    Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
+    return null;
+  }
+  const config = await readFile2(renovateConfigPath, "utf-8");
+  const configJson = JSON.parse(config);
+  const baseBranches = configJson.baseBranches;
+  if (!Array.isArray(baseBranches) || baseBranches.length !== 2) {
+    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranches" must contain exactly 2 branches.`);
+    return null;
+  }
+  configJson.baseBranches = ["main", newBranchName];
+  await writeFile2(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
+  Log.info(green(`  \u2713   Updated Renovate config.`));
+  return renovateConfigPath;
+}
+
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/branch-off-next-branch.js
 var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   constructor() {
     super(...arguments);
@@ -39956,10 +39981,15 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
-    await this.createCommit(bumpCommitMessage, [
+    const filesToCommit = [
       workspaceRelativePackageJsonPath,
       ...this.getAspectLockFiles()
-    ]);
+    ];
+    const renovateConfigPath = await updateRenovateConfig(this.projectDir, nextBranch);
+    if (renovateConfigPath) {
+      filesToCommit.push(renovateConfigPath);
+    }
+    await this.createCommit(bumpCommitMessage, filesToCommit);
     await this.prependReleaseNotesToChangelog(releaseNotes);
     const commitMessage = getReleaseNoteCherryPickCommitMessage(releaseNotes.version);
     await this.createCommit(commitMessage, [workspaceRelativeChangelogPath]);
@@ -40085,7 +40115,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-359e881fea4d3db74124ab9255b8e6cd68f736a6`;
+  const localVersion = `0.0.0-d344104dedb9e84e90acbc1bcc533cb33d883799`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -40377,7 +40407,7 @@ import url from "url";
 // bazel-out/k8-fastbuild/bin/ng-dev/release/stamping/env-stamp.js
 import * as fs4 from "fs";
 var import_semver20 = __toESM(require_semver());
-import { join as join12 } from "path";
+import { join as join13 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -40454,7 +40484,7 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join12(git.baseDir, "package.json");
+  const packageJsonPath = join13(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs4.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
@@ -40548,12 +40578,12 @@ function buildReleaseParser(localYargs) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync6, readFileSync as readFileSync12, writeFileSync as writeFileSync4 } from "fs";
+import { existsSync as existsSync7, readFileSync as readFileSync12, writeFileSync as writeFileSync4 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative3, resolve as resolve11 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync11 } from "fs";
-import { dirname as dirname6, join as join13, resolve as resolve9 } from "path";
+import { dirname as dirname6, join as join14, resolve as resolve9 } from "path";
 import ts2 from "typescript";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ts-circular-dependencies/file_system.js
@@ -40656,7 +40686,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join13(dirname6(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join14(dirname6(containingFilePath), specifier) : specifier;
     const stat = getFileStatus(importFullPath);
     if (stat && stat.isFile()) {
       return importFullPath;
@@ -40669,7 +40699,7 @@ var Analyzer = class {
       }
     }
     if (stat && stat.isDirectory()) {
-      return this._resolveFileSpecifier(join13(importFullPath, "index"));
+      return this._resolveFileSpecifier(join14(importFullPath, "index"));
     }
     return null;
   }
@@ -40842,7 +40872,7 @@ function main(approve, config, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync6(goldenFile)) {
+  if (!existsSync7(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
@@ -40955,10 +40985,10 @@ async function runCommands(commands) {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/loader.js
 var import_yaml4 = __toESM(require_dist2());
-import { readFile as readFile2 } from "fs/promises";
+import { readFile as readFile3 } from "fs/promises";
 async function loadWorkflows(src) {
   const filteredWorkflows = {};
-  const rawWorkflows = await readFile2(src, { encoding: "utf-8" });
+  const rawWorkflows = await readFile3(src, { encoding: "utf-8" });
   const workflows = (0, import_yaml4.parse)(rawWorkflows).workflows;
   for (const [name, workflow] of Object.entries(workflows)) {
     if (workflow.disabled !== true) {
@@ -40969,7 +40999,7 @@ async function loadWorkflows(src) {
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/cli.js
-import { join as join14 } from "path";
+import { join as join15 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/perf/workflow/database.js
 import { Spanner } from "@google-cloud/spanner";
@@ -41006,7 +41036,7 @@ function builder28(yargs) {
   });
 }
 async function handler29({ configFile, list, name, commitSha }) {
-  const workflows = await loadWorkflows(join14(determineRepoBaseDirFromCwd(), configFile));
+  const workflows = await loadWorkflows(join15(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
     return;
