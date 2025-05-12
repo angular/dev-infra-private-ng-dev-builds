@@ -35359,7 +35359,7 @@ var Prettier = class extends Formatter {
     this.defaultFileMatcher = [
       "**/*.{js,cjs,mjs}",
       "**/*.{ts,cts,mts}",
-      "**/*.json",
+      "**/*.{json,json5}",
       "**/*.{yml,yaml}"
     ];
     this.configPath = this.config["prettier"] ? ChildProcess.spawnSync(this.binaryFilePath, [
@@ -40115,7 +40115,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-fdf5843c88415065fb0f9a06e3a43851cf926415`;
+  const localVersion = `0.0.0-0d8ab4398985b149890e6a2002802649412ce21e`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
