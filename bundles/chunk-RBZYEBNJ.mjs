@@ -406,6 +406,7 @@ var require_dist = __commonJS({
 // node_modules/semver/internal/constants.js
 var require_constants = __commonJS({
   "node_modules/semver/internal/constants.js"(exports, module) {
+    "use strict";
     var SEMVER_SPEC_VERSION = "2.0.0";
     var MAX_LENGTH = 256;
     var MAX_SAFE_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
@@ -436,6 +437,7 @@ var require_constants = __commonJS({
 // node_modules/semver/internal/debug.js
 var require_debug = __commonJS({
   "node_modules/semver/internal/debug.js"(exports, module) {
+    "use strict";
     var debug2 = typeof process === "object" && process.env && process.env.NODE_DEBUG && /\bsemver\b/i.test(process.env.NODE_DEBUG) ? (...args) => console.error("SEMVER", ...args) : () => {
     };
     module.exports = debug2;
@@ -445,6 +447,7 @@ var require_debug = __commonJS({
 // node_modules/semver/internal/re.js
 var require_re = __commonJS({
   "node_modules/semver/internal/re.js"(exports, module) {
+    "use strict";
     var {
       MAX_SAFE_COMPONENT_LENGTH,
       MAX_SAFE_BUILD_LENGTH,
@@ -485,8 +488,8 @@ var require_re = __commonJS({
     createToken("NONNUMERICIDENTIFIER", `\\d*[a-zA-Z-]${LETTERDASHNUMBER}*`);
     createToken("MAINVERSION", `(${src[t.NUMERICIDENTIFIER]})\\.(${src[t.NUMERICIDENTIFIER]})\\.(${src[t.NUMERICIDENTIFIER]})`);
     createToken("MAINVERSIONLOOSE", `(${src[t.NUMERICIDENTIFIERLOOSE]})\\.(${src[t.NUMERICIDENTIFIERLOOSE]})\\.(${src[t.NUMERICIDENTIFIERLOOSE]})`);
-    createToken("PRERELEASEIDENTIFIER", `(?:${src[t.NUMERICIDENTIFIER]}|${src[t.NONNUMERICIDENTIFIER]})`);
-    createToken("PRERELEASEIDENTIFIERLOOSE", `(?:${src[t.NUMERICIDENTIFIERLOOSE]}|${src[t.NONNUMERICIDENTIFIER]})`);
+    createToken("PRERELEASEIDENTIFIER", `(?:${src[t.NONNUMERICIDENTIFIER]}|${src[t.NUMERICIDENTIFIER]})`);
+    createToken("PRERELEASEIDENTIFIERLOOSE", `(?:${src[t.NONNUMERICIDENTIFIER]}|${src[t.NUMERICIDENTIFIERLOOSE]})`);
     createToken("PRERELEASE", `(?:-(${src[t.PRERELEASEIDENTIFIER]}(?:\\.${src[t.PRERELEASEIDENTIFIER]})*))`);
     createToken("PRERELEASELOOSE", `(?:-?(${src[t.PRERELEASEIDENTIFIERLOOSE]}(?:\\.${src[t.PRERELEASEIDENTIFIERLOOSE]})*))`);
     createToken("BUILDIDENTIFIER", `${LETTERDASHNUMBER}+`);
@@ -532,6 +535,7 @@ var require_re = __commonJS({
 // node_modules/semver/internal/parse-options.js
 var require_parse_options = __commonJS({
   "node_modules/semver/internal/parse-options.js"(exports, module) {
+    "use strict";
     var looseOption = Object.freeze({ loose: true });
     var emptyOpts = Object.freeze({});
     var parseOptions = (options) => {
@@ -550,6 +554,7 @@ var require_parse_options = __commonJS({
 // node_modules/semver/internal/identifiers.js
 var require_identifiers = __commonJS({
   "node_modules/semver/internal/identifiers.js"(exports, module) {
+    "use strict";
     var numeric = /^[0-9]+$/;
     var compareIdentifiers = (a, b) => {
       const anum = numeric.test(a);
@@ -571,9 +576,10 @@ var require_identifiers = __commonJS({
 // node_modules/semver/classes/semver.js
 var require_semver = __commonJS({
   "node_modules/semver/classes/semver.js"(exports, module) {
+    "use strict";
     var debug2 = require_debug();
     var { MAX_LENGTH, MAX_SAFE_INTEGER } = require_constants();
-    var { safeRe: re, safeSrc: src, t } = require_re();
+    var { safeRe: re, t } = require_re();
     var parseOptions = require_parse_options();
     var { compareIdentifiers } = require_identifiers();
     var SemVer = class {
@@ -716,8 +722,7 @@ var require_semver = __commonJS({
             throw new Error("invalid increment argument: identifier is empty");
           }
           if (identifier) {
-            const r = new RegExp(`^${this.options.loose ? src[t.PRERELEASELOOSE] : src[t.PRERELEASE]}$`);
-            const match = `-${identifier}`.match(r);
+            const match = `-${identifier}`.match(this.options.loose ? re[t.PRERELEASELOOSE] : re[t.PRERELEASE]);
             if (!match || match[1] !== identifier) {
               throw new Error(`invalid identifier: ${identifier}`);
             }
@@ -826,6 +831,7 @@ var require_semver = __commonJS({
 // node_modules/semver/functions/parse.js
 var require_parse = __commonJS({
   "node_modules/semver/functions/parse.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var parse2 = (version, options, throwErrors = false) => {
       if (version instanceof SemVer) {
@@ -847,6 +853,7 @@ var require_parse = __commonJS({
 // node_modules/semver/functions/valid.js
 var require_valid = __commonJS({
   "node_modules/semver/functions/valid.js"(exports, module) {
+    "use strict";
     var parse2 = require_parse();
     var valid = (version, options) => {
       const v = parse2(version, options);
@@ -859,6 +866,7 @@ var require_valid = __commonJS({
 // node_modules/semver/functions/clean.js
 var require_clean = __commonJS({
   "node_modules/semver/functions/clean.js"(exports, module) {
+    "use strict";
     var parse2 = require_parse();
     var clean = (version, options) => {
       const s = parse2(version.trim().replace(/^[=v]+/, ""), options);
@@ -871,6 +879,7 @@ var require_clean = __commonJS({
 // node_modules/semver/functions/inc.js
 var require_inc = __commonJS({
   "node_modules/semver/functions/inc.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var inc = (version, release, options, identifier, identifierBase) => {
       if (typeof options === "string") {
@@ -894,6 +903,7 @@ var require_inc = __commonJS({
 // node_modules/semver/functions/diff.js
 var require_diff = __commonJS({
   "node_modules/semver/functions/diff.js"(exports, module) {
+    "use strict";
     var parse2 = require_parse();
     var diff = (version1, version2) => {
       const v1 = parse2(version1, null, true);
@@ -937,6 +947,7 @@ var require_diff = __commonJS({
 // node_modules/semver/functions/major.js
 var require_major = __commonJS({
   "node_modules/semver/functions/major.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var major = (a, loose) => new SemVer(a, loose).major;
     module.exports = major;
@@ -946,6 +957,7 @@ var require_major = __commonJS({
 // node_modules/semver/functions/minor.js
 var require_minor = __commonJS({
   "node_modules/semver/functions/minor.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var minor = (a, loose) => new SemVer(a, loose).minor;
     module.exports = minor;
@@ -955,6 +967,7 @@ var require_minor = __commonJS({
 // node_modules/semver/functions/patch.js
 var require_patch = __commonJS({
   "node_modules/semver/functions/patch.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var patch = (a, loose) => new SemVer(a, loose).patch;
     module.exports = patch;
@@ -964,6 +977,7 @@ var require_patch = __commonJS({
 // node_modules/semver/functions/prerelease.js
 var require_prerelease = __commonJS({
   "node_modules/semver/functions/prerelease.js"(exports, module) {
+    "use strict";
     var parse2 = require_parse();
     var prerelease = (version, options) => {
       const parsed = parse2(version, options);
@@ -976,6 +990,7 @@ var require_prerelease = __commonJS({
 // node_modules/semver/functions/compare.js
 var require_compare = __commonJS({
   "node_modules/semver/functions/compare.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var compare = (a, b, loose) => new SemVer(a, loose).compare(new SemVer(b, loose));
     module.exports = compare;
@@ -985,6 +1000,7 @@ var require_compare = __commonJS({
 // node_modules/semver/functions/rcompare.js
 var require_rcompare = __commonJS({
   "node_modules/semver/functions/rcompare.js"(exports, module) {
+    "use strict";
     var compare = require_compare();
     var rcompare = (a, b, loose) => compare(b, a, loose);
     module.exports = rcompare;
@@ -994,6 +1010,7 @@ var require_rcompare = __commonJS({
 // node_modules/semver/functions/compare-loose.js
 var require_compare_loose = __commonJS({
   "node_modules/semver/functions/compare-loose.js"(exports, module) {
+    "use strict";
     var compare = require_compare();
     var compareLoose = (a, b) => compare(a, b, true);
     module.exports = compareLoose;
@@ -1003,6 +1020,7 @@ var require_compare_loose = __commonJS({
 // node_modules/semver/functions/compare-build.js
 var require_compare_build = __commonJS({
   "node_modules/semver/functions/compare-build.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var compareBuild = (a, b, loose) => {
       const versionA = new SemVer(a, loose);
@@ -1016,6 +1034,7 @@ var require_compare_build = __commonJS({
 // node_modules/semver/functions/sort.js
 var require_sort = __commonJS({
   "node_modules/semver/functions/sort.js"(exports, module) {
+    "use strict";
     var compareBuild = require_compare_build();
     var sort = (list, loose) => list.sort((a, b) => compareBuild(a, b, loose));
     module.exports = sort;
@@ -1025,6 +1044,7 @@ var require_sort = __commonJS({
 // node_modules/semver/functions/rsort.js
 var require_rsort = __commonJS({
   "node_modules/semver/functions/rsort.js"(exports, module) {
+    "use strict";
     var compareBuild = require_compare_build();
     var rsort = (list, loose) => list.sort((a, b) => compareBuild(b, a, loose));
     module.exports = rsort;
@@ -1034,6 +1054,7 @@ var require_rsort = __commonJS({
 // node_modules/semver/functions/gt.js
 var require_gt = __commonJS({
   "node_modules/semver/functions/gt.js"(exports, module) {
+    "use strict";
     var compare = require_compare();
     var gt = (a, b, loose) => compare(a, b, loose) > 0;
     module.exports = gt;
@@ -1043,6 +1064,7 @@ var require_gt = __commonJS({
 // node_modules/semver/functions/lt.js
 var require_lt = __commonJS({
   "node_modules/semver/functions/lt.js"(exports, module) {
+    "use strict";
     var compare = require_compare();
     var lt = (a, b, loose) => compare(a, b, loose) < 0;
     module.exports = lt;
@@ -1052,6 +1074,7 @@ var require_lt = __commonJS({
 // node_modules/semver/functions/eq.js
 var require_eq = __commonJS({
   "node_modules/semver/functions/eq.js"(exports, module) {
+    "use strict";
     var compare = require_compare();
     var eq = (a, b, loose) => compare(a, b, loose) === 0;
     module.exports = eq;
@@ -1061,6 +1084,7 @@ var require_eq = __commonJS({
 // node_modules/semver/functions/neq.js
 var require_neq = __commonJS({
   "node_modules/semver/functions/neq.js"(exports, module) {
+    "use strict";
     var compare = require_compare();
     var neq = (a, b, loose) => compare(a, b, loose) !== 0;
     module.exports = neq;
@@ -1070,6 +1094,7 @@ var require_neq = __commonJS({
 // node_modules/semver/functions/gte.js
 var require_gte = __commonJS({
   "node_modules/semver/functions/gte.js"(exports, module) {
+    "use strict";
     var compare = require_compare();
     var gte = (a, b, loose) => compare(a, b, loose) >= 0;
     module.exports = gte;
@@ -1079,6 +1104,7 @@ var require_gte = __commonJS({
 // node_modules/semver/functions/lte.js
 var require_lte = __commonJS({
   "node_modules/semver/functions/lte.js"(exports, module) {
+    "use strict";
     var compare = require_compare();
     var lte = (a, b, loose) => compare(a, b, loose) <= 0;
     module.exports = lte;
@@ -1088,6 +1114,7 @@ var require_lte = __commonJS({
 // node_modules/semver/functions/cmp.js
 var require_cmp = __commonJS({
   "node_modules/semver/functions/cmp.js"(exports, module) {
+    "use strict";
     var eq = require_eq();
     var neq = require_neq();
     var gt = require_gt();
@@ -1137,6 +1164,7 @@ var require_cmp = __commonJS({
 // node_modules/semver/functions/coerce.js
 var require_coerce = __commonJS({
   "node_modules/semver/functions/coerce.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var parse2 = require_parse();
     var { safeRe: re, t } = require_re();
@@ -1182,6 +1210,7 @@ var require_coerce = __commonJS({
 // node_modules/semver/internal/lrucache.js
 var require_lrucache = __commonJS({
   "node_modules/semver/internal/lrucache.js"(exports, module) {
+    "use strict";
     var LRUCache = class {
       constructor() {
         this.max = 1e3;
@@ -1219,6 +1248,7 @@ var require_lrucache = __commonJS({
 // node_modules/semver/classes/range.js
 var require_range = __commonJS({
   "node_modules/semver/classes/range.js"(exports, module) {
+    "use strict";
     var SPACE_CHARACTERS = /\s+/g;
     var Range = class {
       constructor(range, options) {
@@ -1593,6 +1623,7 @@ var require_range = __commonJS({
 // node_modules/semver/classes/comparator.js
 var require_comparator = __commonJS({
   "node_modules/semver/classes/comparator.js"(exports, module) {
+    "use strict";
     var ANY = Symbol("SemVer ANY");
     var Comparator = class {
       static get ANY() {
@@ -1705,6 +1736,7 @@ var require_comparator = __commonJS({
 // node_modules/semver/functions/satisfies.js
 var require_satisfies = __commonJS({
   "node_modules/semver/functions/satisfies.js"(exports, module) {
+    "use strict";
     var Range = require_range();
     var satisfies = (version, range, options) => {
       try {
@@ -1721,6 +1753,7 @@ var require_satisfies = __commonJS({
 // node_modules/semver/ranges/to-comparators.js
 var require_to_comparators = __commonJS({
   "node_modules/semver/ranges/to-comparators.js"(exports, module) {
+    "use strict";
     var Range = require_range();
     var toComparators = (range, options) => new Range(range, options).set.map((comp) => comp.map((c) => c.value).join(" ").trim().split(" "));
     module.exports = toComparators;
@@ -1730,6 +1763,7 @@ var require_to_comparators = __commonJS({
 // node_modules/semver/ranges/max-satisfying.js
 var require_max_satisfying = __commonJS({
   "node_modules/semver/ranges/max-satisfying.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var Range = require_range();
     var maxSatisfying = (versions, range, options) => {
@@ -1758,6 +1792,7 @@ var require_max_satisfying = __commonJS({
 // node_modules/semver/ranges/min-satisfying.js
 var require_min_satisfying = __commonJS({
   "node_modules/semver/ranges/min-satisfying.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var Range = require_range();
     var minSatisfying = (versions, range, options) => {
@@ -1786,6 +1821,7 @@ var require_min_satisfying = __commonJS({
 // node_modules/semver/ranges/min-version.js
 var require_min_version = __commonJS({
   "node_modules/semver/ranges/min-version.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var Range = require_range();
     var gt = require_gt();
@@ -1842,6 +1878,7 @@ var require_min_version = __commonJS({
 // node_modules/semver/ranges/valid.js
 var require_valid2 = __commonJS({
   "node_modules/semver/ranges/valid.js"(exports, module) {
+    "use strict";
     var Range = require_range();
     var validRange = (range, options) => {
       try {
@@ -1857,6 +1894,7 @@ var require_valid2 = __commonJS({
 // node_modules/semver/ranges/outside.js
 var require_outside = __commonJS({
   "node_modules/semver/ranges/outside.js"(exports, module) {
+    "use strict";
     var SemVer = require_semver();
     var Comparator = require_comparator();
     var { ANY } = Comparator;
@@ -1925,6 +1963,7 @@ var require_outside = __commonJS({
 // node_modules/semver/ranges/gtr.js
 var require_gtr = __commonJS({
   "node_modules/semver/ranges/gtr.js"(exports, module) {
+    "use strict";
     var outside = require_outside();
     var gtr = (version, range, options) => outside(version, range, ">", options);
     module.exports = gtr;
@@ -1934,6 +1973,7 @@ var require_gtr = __commonJS({
 // node_modules/semver/ranges/ltr.js
 var require_ltr = __commonJS({
   "node_modules/semver/ranges/ltr.js"(exports, module) {
+    "use strict";
     var outside = require_outside();
     var ltr = (version, range, options) => outside(version, range, "<", options);
     module.exports = ltr;
@@ -1943,6 +1983,7 @@ var require_ltr = __commonJS({
 // node_modules/semver/ranges/intersects.js
 var require_intersects = __commonJS({
   "node_modules/semver/ranges/intersects.js"(exports, module) {
+    "use strict";
     var Range = require_range();
     var intersects = (r1, r2, options) => {
       r1 = new Range(r1, options);
@@ -1956,6 +1997,7 @@ var require_intersects = __commonJS({
 // node_modules/semver/ranges/simplify.js
 var require_simplify = __commonJS({
   "node_modules/semver/ranges/simplify.js"(exports, module) {
+    "use strict";
     var satisfies = require_satisfies();
     var compare = require_compare();
     module.exports = (versions, range, options) => {
@@ -2005,6 +2047,7 @@ var require_simplify = __commonJS({
 // node_modules/semver/ranges/subset.js
 var require_subset = __commonJS({
   "node_modules/semver/ranges/subset.js"(exports, module) {
+    "use strict";
     var Range = require_range();
     var Comparator = require_comparator();
     var { ANY } = Comparator;
@@ -2167,6 +2210,7 @@ var require_subset = __commonJS({
 // node_modules/semver/index.js
 var require_semver2 = __commonJS({
   "node_modules/semver/index.js"(exports, module) {
+    "use strict";
     var internalRe = require_re();
     var constants = require_constants();
     var SemVer = require_semver();
@@ -14192,4 +14236,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-5CL7LVW4.mjs.map
+//# sourceMappingURL=chunk-RBZYEBNJ.mjs.map
