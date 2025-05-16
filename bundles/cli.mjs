@@ -35853,33 +35853,38 @@ function getBazelBin() {
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/generated-files/update-generated-files.js
 async function updateGeneratedFileTargets() {
   const spinner = new Spinner("Querying for all generated file targets");
-  const result = await ChildProcess.spawn(getBazelBin(), [
-    "query",
-    `"kind(nodejs_binary, //...) intersect attr(name, '.update$', //...)"`,
-    "--output",
-    "label"
-  ], { mode: "silent" });
-  if (result.status !== 0) {
-    spinner.complete();
-    throw Error(`Unexpected error: ${result.stderr}`);
-  }
-  const targets = result.stdout.trim().split(/\r?\n/);
-  Log.debug.group("Discovered Targets");
-  targets.forEach((target) => Log.debug(target));
-  Log.debug.groupEnd();
-  spinner.update(`Found ${targets.length} generated file targets to update`);
-  await ChildProcess.spawn(getBazelBin(), ["build", targets.join(" ")], { mode: "silent" });
-  for (let idx = 0; idx < targets.length; idx++) {
-    const target = targets[idx];
-    spinner.update(`${idx + 1} of ${targets.length} updates completed`);
-    const updateResult = await ChildProcess.spawn(getBazelBin(), ["run", target], { mode: "silent" });
-    if (updateResult.status !== 0) {
-      spinner.complete();
-      throw Error(`Unexpected error while updating: ${target}.`);
+  try {
+    const result = await ChildProcess.spawn(getBazelBin(), [
+      "query",
+      `"kind(nodejs_binary, //...) intersect attr(name, '.update$', //...)"`,
+      "--output",
+      "label"
+    ], { mode: "silent" });
+    if (result.status !== 0) {
+      throw new Error(`Unexpected error: ${result.stderr}`);
     }
+    const targets = result.stdout.trim().split(/\r?\n/);
+    Log.debug.group("Discovered Targets");
+    targets.forEach((target) => Log.debug(target));
+    Log.debug.groupEnd();
+    spinner.update(`Found ${targets.length} generated file targets to update`);
+    await ChildProcess.spawn(getBazelBin(), ["build", targets.join(" ")], { mode: "silent" });
+    for (let idx = 0; idx < targets.length; idx++) {
+      const target = targets[idx];
+      spinner.update(`${idx + 1} of ${targets.length} updates completed`);
+      const updateResult = await ChildProcess.spawn(getBazelBin(), ["run", target], {
+        mode: "silent"
+      });
+      if (updateResult.status !== 0) {
+        throw new Error(`Unexpected error while updating: ${target}.`);
+      }
+    }
+    spinner.complete();
+    Log.info(` ${green("\u2714")}  Updated all generated files (${targets.length} targets)`);
+  } catch (e) {
+    spinner.failure("An error has occurred.");
+    throw e;
   }
-  spinner.complete();
-  Log.info(` ${green("\u2714")}  Updated all generated files (${targets.length} targets)`);
 }
 
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/generated-files/cli.js
@@ -40118,7 +40123,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-91da94a75421120404f1f4a3232e9db971812761`;
+  const localVersion = `0.0.0-4d867b54b0a8b4a5a5b1aafc826098546d715148`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
