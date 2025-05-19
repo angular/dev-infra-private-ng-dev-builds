@@ -43,7 +43,7 @@ import {
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-RBZYEBNJ.mjs";
+} from "./chunk-HOFIIZKT.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -20593,9 +20593,9 @@ var require_ms = __commonJS({
   }
 });
 
-// node_modules/debug/src/common.js
+// node_modules/folder-hash/node_modules/debug/src/common.js
 var require_common3 = __commonJS({
-  "node_modules/debug/src/common.js"(exports, module) {
+  "node_modules/folder-hash/node_modules/debug/src/common.js"(exports, module) {
     function setup(env2) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
@@ -20770,9 +20770,9 @@ var require_common3 = __commonJS({
   }
 });
 
-// node_modules/debug/src/browser.js
+// node_modules/folder-hash/node_modules/debug/src/browser.js
 var require_browser = __commonJS({
-  "node_modules/debug/src/browser.js"(exports, module) {
+  "node_modules/folder-hash/node_modules/debug/src/browser.js"(exports, module) {
     exports.formatArgs = formatArgs;
     exports.save = save;
     exports.load = load3;
@@ -20936,9 +20936,9 @@ var require_browser = __commonJS({
   }
 });
 
-// node_modules/debug/src/node.js
+// node_modules/folder-hash/node_modules/debug/src/node.js
 var require_node = __commonJS({
-  "node_modules/debug/src/node.js"(exports, module) {
+  "node_modules/folder-hash/node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
     var util = __require("util");
     exports.init = init;
@@ -21110,9 +21110,9 @@ var require_node = __commonJS({
   }
 });
 
-// node_modules/debug/src/index.js
+// node_modules/folder-hash/node_modules/debug/src/index.js
 var require_src = __commonJS({
-  "node_modules/debug/src/index.js"(exports, module) {
+  "node_modules/folder-hash/node_modules/debug/src/index.js"(exports, module) {
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
       module.exports = require_browser();
     } else {
@@ -40123,7 +40123,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-bff2afd1d18e57298fcee8ecb55435595fedd3af`;
+  const localVersion = `0.0.0-a9061f8b8f7bb7b0ea2b578d48dcfd4e6b83a18b`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
