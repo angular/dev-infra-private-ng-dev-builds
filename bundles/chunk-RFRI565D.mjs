@@ -13,9 +13,9 @@ __export(supports_color_exports, {
   createSupportsColor: () => createSupportsColor2,
   default: () => supports_color_default2
 });
-import process3 from "process";
-import os2 from "os";
-import tty2 from "tty";
+import process3 from "node:process";
+import os2 from "node:os";
+import tty2 from "node:tty";
 function hasFlag2(flag, argv = globalThis.Deno ? globalThis.Deno.args : process3.argv) {
   const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
   const position = argv.indexOf(prefix + flag);
@@ -328,9 +328,9 @@ var ansiStyles = assembleStyles();
 var ansi_styles_default = ansiStyles;
 
 // node_modules/chalk/source/vendor/supports-color/index.js
-import process2 from "process";
-import os from "os";
-import tty from "tty";
+import process2 from "node:process";
+import os from "node:os";
+import tty from "node:tty";
 function hasFlag(flag, argv = globalThis.Deno ? globalThis.Deno.args : process2.argv) {
   const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
   const position = argv.indexOf(prefix + flag);
@@ -677,7 +677,6 @@ function getEnvironmentForNonInteractiveCommand(userProvidedEnv) {
 }
 function processAsyncCmd(command, options, childProcess) {
   return new Promise((resolve, reject) => {
-    var _a, _b;
     let logOutput = "";
     let stdout = "";
     let stderr = "";
@@ -687,14 +686,14 @@ function processAsyncCmd(command, options, childProcess) {
       childProcess.stdin.write(options.input);
       childProcess.stdin.end();
     }
-    (_a = childProcess.stderr) == null ? void 0 : _a.on("data", (message) => {
+    childProcess.stderr?.on("data", (message) => {
       stderr += message;
       logOutput += message;
       if (options.mode === void 0 || options.mode === "enabled") {
         process.stderr.write(message);
       }
     });
-    (_b = childProcess.stdout) == null ? void 0 : _b.on("data", (message) => {
+    childProcess.stdout?.on("data", (message) => {
       stdout += message;
       logOutput += message;
       if (options.mode === void 0 || options.mode === "enabled") {
@@ -933,10 +932,7 @@ function assertValidReleaseConfig(config) {
     errors.push(`No "buildPackages" function configured for releasing.`);
   }
   if (config.release.representativeNpmPackage && config.release.npmPackages) {
-    const representativePkgEntry = config.release.npmPackages.find((pkg) => {
-      var _a;
-      return pkg.name === ((_a = config.release) == null ? void 0 : _a.representativeNpmPackage);
-    });
+    const representativePkgEntry = config.release.npmPackages.find((pkg) => pkg.name === config.release?.representativeNpmPackage);
     if (representativePkgEntry === void 0) {
       errors.push(`Configured "representativeNpmPackage" (${representativePkgEntry}) does not match a package in "npmPackages".`);
     } else if (representativePkgEntry.experimental) {
@@ -979,4 +975,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-XPC4VRJH.mjs.map
+//# sourceMappingURL=chunk-RFRI565D.mjs.map

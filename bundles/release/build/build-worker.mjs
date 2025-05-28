@@ -5,7 +5,7 @@ const require = __cjsCompatRequire(import.meta.url);
 import {
   assertValidReleaseConfig,
   getConfig
-} from "../../chunk-XPC4VRJH.mjs";
+} from "../../chunk-RFRI565D.mjs";
 import "../../chunk-2JKI6SI6.mjs";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/build/build-worker.js
