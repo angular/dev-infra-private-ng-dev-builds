@@ -11,7 +11,7 @@ import { confirm, input, checkbox, select, editor } from '@inquirer/prompts';
  * class to allow easier mocking management in test environments.
  */
 export declare class Prompt {
-    static confirm: typeof confirm;
+    static confirm: (_config: Parameters<typeof confirm>[0], _context?: Parameters<typeof confirm>[1]) => Promise<boolean>;
     static input: typeof input;
     static checkbox: typeof checkbox;
     static select: typeof select;

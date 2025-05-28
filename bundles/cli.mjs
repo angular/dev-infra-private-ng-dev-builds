@@ -40025,27 +40025,30 @@ var ReleaseAction = class {
       throw new FatalReleaseActionError();
     }
   }
-  async _getAndValidateLatestCommitForPublishing(branch, version, previousSha, isRetry = false) {
-    try {
+  async _getAndValidateLatestCommitForPublishing(branch, version, previousSha) {
+    let latestSha = null;
+    while (latestSha === null) {
       const commit = await this.getLatestCommitOfBranch(branch);
       if (!commit.commit.message.startsWith(getCommitMessageForRelease(version))) {
         const sha = commit.sha.slice(0, 8);
         Log.error(`  \u2718   Latest commit (${sha}) in "${branch}" branch is not a staging commit.`);
         Log.error("      Please make sure the staging pull request has been merged.");
+        if (await Prompt.confirm({ message: `Do you want to re-try?`, default: true })) {
+          continue;
+        }
         throw new FatalReleaseActionError();
       }
       if (commit.parents[0].sha !== previousSha) {
         Log.error(`  \u2718   Unexpected additional commits have landed while staging the release.`);
         Log.error("      Please revert the bump commit and retry, or cut a new version on top.");
+        if (await Prompt.confirm({ message: `Do you want to re-try?`, default: true })) {
+          continue;
+        }
         throw new FatalReleaseActionError();
       }
-      return commit.sha;
-    } catch (e) {
-      if (isRetry) {
-        throw e;
-      }
-      return this._getAndValidateLatestCommitForPublishing(branch, version, previousSha, true);
+      latestSha = commit.sha;
     }
+    return latestSha;
   }
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
@@ -40602,7 +40605,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-91948588476a107c9bc6b5f6888641dd4d58c26d`;
+  const localVersion = `0.0.0-fd8272be12b7fc6fcc39f1e087114239244c1303`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
