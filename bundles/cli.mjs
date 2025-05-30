@@ -13090,12 +13090,12 @@ var require_parser = __commonJS({
         return line.charAt(0) !== char;
       };
     }
-    function truncateToScissor(lines2) {
-      const scissorIndex = lines2.indexOf(SCISSOR);
+    function truncateToScissor(lines) {
+      const scissorIndex = lines.indexOf(SCISSOR);
       if (scissorIndex === -1) {
-        return lines2;
+        return lines;
       }
-      return lines2.slice(0, scissorIndex);
+      return lines.slice(0, scissorIndex);
     }
     function getReferences(input, regex3) {
       const references = [];
@@ -13145,7 +13145,7 @@ var require_parser = __commonJS({
       const commentFilter = typeof options.commentChar === "string" ? getCommentFilter(options.commentChar) : passTrough;
       const gpgFilter = (line) => !line.match(/^\s*gpg:/);
       const rawLines = trimOffNewlines(raw).split(/\r?\n/);
-      const lines2 = truncateToScissor(rawLines).filter(commentFilter).filter(gpgFilter);
+      const lines = truncateToScissor(rawLines).filter(commentFilter).filter(gpgFilter);
       let continueNote = false;
       let isBody = true;
       const headerCorrespondence2 = options.headerCorrespondence?.map(function(part) {
@@ -13165,7 +13165,7 @@ var require_parser = __commonJS({
       const notes = [];
       const references = [];
       let revert = null;
-      if (lines2.length === 0) {
+      if (lines.length === 0) {
         return {
           body,
           footer,
@@ -13180,7 +13180,7 @@ var require_parser = __commonJS({
           type: null
         };
       }
-      merge = lines2.shift();
+      merge = lines.shift();
       const mergeParts = {};
       const headerParts = {};
       body = "";
@@ -13188,9 +13188,9 @@ var require_parser = __commonJS({
       const mergeMatch = merge.match(options.mergePattern);
       if (mergeMatch && options.mergePattern) {
         merge = mergeMatch[0];
-        header = lines2.shift();
+        header = lines.shift();
         while (header !== void 0 && !header.trim()) {
-          header = lines2.shift();
+          header = lines.shift();
         }
         if (!header) {
           header = "";
@@ -13221,7 +13221,7 @@ var require_parser = __commonJS({
         references: regex3.references,
         referenceParts: regex3.referenceParts
       }));
-      lines2.forEach(function(line) {
+      lines.forEach(function(line) {
         if (options.fieldPattern) {
           const fieldMatch = options.fieldPattern.exec(line);
           if (fieldMatch) {
@@ -13516,7 +13516,7 @@ var require_split2 = __commonJS({
     function noop(incoming) {
       return incoming;
     }
-    function split2(matcher, mapper, options) {
+    function split(matcher, mapper, options) {
       matcher = matcher || /\r?\n/;
       mapper = mapper || noop;
       options = options || {};
@@ -13559,7 +13559,7 @@ var require_split2 = __commonJS({
       };
       return stream;
     }
-    module.exports = split2;
+    module.exports = split;
   }
 });
 
@@ -13568,7 +13568,7 @@ var require_git_raw_commits = __commonJS({
   "node_modules/git-raw-commits/index.js"(exports, module) {
     var { Readable, Transform } = __require("stream");
     var { execFile } = __require("child_process");
-    var split2 = require_split2();
+    var split = require_split2();
     var DELIMITER = "------------------------ >8 ------------------------";
     function normalizeExecOpts(execOpts) {
       execOpts = execOpts || {};
@@ -13611,7 +13611,7 @@ var require_git_raw_commits = __commonJS({
           cwd: execOpts.cwd,
           maxBuffer: Infinity
         });
-        child.stdout.pipe(split2(DELIMITER + "\n")).pipe(
+        child.stdout.pipe(split(DELIMITER + "\n")).pipe(
           new Transform({
             transform(chunk, enc, cb) {
               isError = false;
@@ -20118,11 +20118,11 @@ var require_ejs = __commonJS({
       return handleCache(opts);
     }
     function rethrow(err, str, flnm, lineno, esc) {
-      var lines2 = str.split("\n");
+      var lines = str.split("\n");
       var start = Math.max(lineno - 3, 0);
-      var end = Math.min(lines2.length, lineno + 3);
+      var end = Math.min(lines.length, lineno + 3);
       var filename = esc(flnm);
-      var context = lines2.slice(start, end).map(function(line, i) {
+      var context = lines.slice(start, end).map(function(line, i) {
         var curr = i + start + 1;
         return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
       }).join("\n");
@@ -20729,8 +20729,8 @@ var require_common3 = __commonJS({
         createDebug.namespaces = namespaces;
         createDebug.names = [];
         createDebug.skips = [];
-        const split2 = (typeof namespaces === "string" ? namespaces : "").trim().replace(" ", ",").split(",").filter(Boolean);
-        for (const ns of split2) {
+        const split = (typeof namespaces === "string" ? namespaces : "").trim().replace(" ", ",").split(",").filter(Boolean);
+        for (const ns of split) {
           if (ns[0] === "-") {
             createDebug.skips.push(ns.slice(1));
           } else {
@@ -24922,13 +24922,13 @@ var UI = class {
     return [0, noAnsi.match(/\s*$/)[0].length, 0, noAnsi.match(/^\s*/)[0].length];
   }
   toString() {
-    const lines2 = [];
+    const lines = [];
     this.rows.forEach((row) => {
-      this.rowToString(row, lines2);
+      this.rowToString(row, lines);
     });
-    return lines2.filter((line) => !line.hidden).map((line) => line.text).join("\n");
+    return lines.filter((line) => !line.hidden).map((line) => line.text).join("\n");
   }
-  rowToString(row, lines2) {
+  rowToString(row, lines) {
     this.rasterize(row).forEach((rrow, r) => {
       let str = "";
       rrow.forEach((col, c) => {
@@ -24955,16 +24955,16 @@ var UI = class {
         if (padding[right]) {
           str += " ".repeat(padding[right]);
         }
-        if (r === 0 && lines2.length > 0) {
-          str = this.renderInline(str, lines2[lines2.length - 1]);
+        if (r === 0 && lines.length > 0) {
+          str = this.renderInline(str, lines[lines.length - 1]);
         }
       });
-      lines2.push({
+      lines.push({
         text: str.replace(/ +$/, ""),
         span: row.span
       });
     });
-    return lines2;
+    return lines;
   }
   renderInline(source, previousLine) {
     const match3 = source.match(/^ */);
@@ -31896,7 +31896,7 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/@inquirer/core/dist/esm/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
 // node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
@@ -32008,18 +32008,18 @@ var effectScheduler = {
 // node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
-    const setFn = (newValue) => {
+    const setState = AsyncResource2.bind(function setState2(newValue) {
       if (pointer.get() !== newValue) {
         pointer.set(newValue);
         handleChange();
       }
-    };
+    });
     if (pointer.initialized) {
-      return [pointer.get(), setFn];
+      return [pointer.get(), setState];
     }
     const value = typeof defaultValue === "function" ? defaultValue() : defaultValue;
     pointer.set(value);
-    return [value, setFn];
+    return [value, setState];
   });
 }
 
@@ -32382,13 +32382,13 @@ function usePrefix({ status = "idle", theme }) {
     if (status === "loading") {
       let tickInterval;
       let inc = -1;
-      const delayTimeout = setTimeout(AsyncResource2.bind(() => {
+      const delayTimeout = setTimeout(() => {
         setShowLoader(true);
-        tickInterval = setInterval(AsyncResource2.bind(() => {
+        tickInterval = setInterval(() => {
           inc = inc + 1;
           setTick(inc % spinner.frames.length);
-        }), spinner.interval);
-      }), 300);
+        }, spinner.interval);
+      }, 300);
       return () => {
         clearTimeout(delayTimeout);
         clearInterval(tickInterval);
@@ -32451,92 +32451,75 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/@inquirer/core/dist/esm/lib/pagination/lines.js
-function split(content, width) {
-  return breakLines(content, width).split("\n");
-}
-function rotate(count, items) {
-  const max = items.length;
-  const offset = (count % max + max) % max;
-  return [...items.slice(offset), ...items.slice(0, offset)];
-}
-function lines({ items, width, renderItem, active, position: requested, pageSize }) {
-  const layouts = items.map((item, index) => ({
-    item,
-    index,
-    isActive: index === active
-  }));
-  const layoutsInPage = rotate(active - requested, layouts).slice(0, pageSize);
-  const renderItemAt = (index) => layoutsInPage[index] == null ? [] : split(renderItem(layoutsInPage[index]), width);
-  const pageBuffer = Array.from({ length: pageSize });
-  const activeItem = renderItemAt(requested).slice(0, pageSize);
-  const position = requested + activeItem.length <= pageSize ? requested : pageSize - activeItem.length;
-  pageBuffer.splice(position, activeItem.length, ...activeItem);
-  let bufferPointer = position + activeItem.length;
-  let layoutPointer = requested + 1;
-  while (bufferPointer < pageSize && layoutPointer < layoutsInPage.length) {
-    for (const line of renderItemAt(layoutPointer)) {
-      pageBuffer[bufferPointer++] = line;
-      if (bufferPointer >= pageSize)
-        break;
-    }
-    layoutPointer++;
-  }
-  bufferPointer = position - 1;
-  layoutPointer = requested - 1;
-  while (bufferPointer >= 0 && layoutPointer >= 0) {
-    for (const line of renderItemAt(layoutPointer).reverse()) {
-      pageBuffer[bufferPointer--] = line;
-      if (bufferPointer < 0)
-        break;
-    }
-    layoutPointer--;
-  }
-  return pageBuffer.filter((line) => typeof line === "string");
-}
-
-// node_modules/@inquirer/core/dist/esm/lib/pagination/position.js
-function finite({ active, pageSize, total }) {
+// node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
+function usePointerPosition({ active, renderedItems, pageSize, loop }) {
+  const state = useRef({
+    lastPointer: active,
+    lastActive: void 0
+  });
+  const { lastPointer, lastActive } = state.current;
   const middle = Math.floor(pageSize / 2);
-  if (total <= pageSize || active < middle)
-    return active;
-  if (active >= total - middle)
-    return active + pageSize - total;
-  return middle;
-}
-function infinite({ active, lastActive, total, pageSize, pointer }) {
-  if (total <= pageSize)
-    return active;
-  if (lastActive < active && active - lastActive < pageSize) {
-    return Math.min(Math.floor(pageSize / 2), pointer + active - lastActive);
+  const renderedLength = renderedItems.reduce((acc, item) => acc + item.length, 0);
+  const defaultPointerPosition = renderedItems.slice(0, active).reduce((acc, item) => acc + item.length, 0);
+  let pointer = defaultPointerPosition;
+  if (renderedLength > pageSize) {
+    if (loop) {
+      pointer = lastPointer;
+      if (lastActive != null && lastActive < active && active - lastActive < pageSize) {
+        pointer = Math.min(
+          middle,
+          Math.abs(active - lastActive) === 1 ? Math.min(
+            lastPointer + (renderedItems[lastActive]?.length ?? 0),
+            Math.max(defaultPointerPosition, lastPointer)
+          ) : lastPointer + active - lastActive
+        );
+      }
+    } else {
+      const spaceUnderActive = renderedItems.slice(active).reduce((acc, item) => acc + item.length, 0);
+      pointer = spaceUnderActive < pageSize - middle ? pageSize - spaceUnderActive : Math.min(defaultPointerPosition, middle);
+    }
   }
+  state.current.lastPointer = pointer;
+  state.current.lastActive = active;
   return pointer;
 }
-
-// node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePagination({ items, active, renderItem, pageSize, loop = true }) {
-  const state = useRef({ position: 0, lastActive: 0 });
-  const position = loop ? infinite({
-    active,
-    lastActive: state.current.lastActive,
-    total: items.length,
-    pageSize,
-    pointer: state.current.position
-  }) : finite({
-    active,
-    total: items.length,
-    pageSize
+  const width = readlineWidth();
+  const bound = (num) => (num % items.length + items.length) % items.length;
+  const renderedItems = items.map((item, index) => {
+    if (item == null)
+      return [];
+    return breakLines(renderItem({ item, index, isActive: index === active }), width).split("\n");
   });
-  state.current.position = position;
-  state.current.lastActive = active;
-  return lines({
-    items,
-    width: readlineWidth(),
-    renderItem,
-    active,
-    position,
-    pageSize
-  }).join("\n");
+  const renderedLength = renderedItems.reduce((acc, item) => acc + item.length, 0);
+  const renderItemAtIndex = (index) => renderedItems[index] ?? [];
+  const pointer = usePointerPosition({ active, renderedItems, pageSize, loop });
+  const activeItem = renderItemAtIndex(active).slice(0, pageSize);
+  const activeItemPosition = pointer + activeItem.length <= pageSize ? pointer : pageSize - activeItem.length;
+  const pageBuffer = Array.from({ length: pageSize });
+  pageBuffer.splice(activeItemPosition, activeItem.length, ...activeItem);
+  const itemVisited = /* @__PURE__ */ new Set([active]);
+  let bufferPointer = activeItemPosition + activeItem.length;
+  let itemPointer = bound(active + 1);
+  while (bufferPointer < pageSize && !itemVisited.has(itemPointer) && (loop && renderedLength > pageSize ? itemPointer !== active : itemPointer > active)) {
+    const lines = renderItemAtIndex(itemPointer);
+    const linesToAdd = lines.slice(0, pageSize - bufferPointer);
+    pageBuffer.splice(bufferPointer, linesToAdd.length, ...linesToAdd);
+    itemVisited.add(itemPointer);
+    bufferPointer += linesToAdd.length;
+    itemPointer = bound(itemPointer + 1);
+  }
+  bufferPointer = activeItemPosition - 1;
+  itemPointer = bound(active - 1);
+  while (bufferPointer >= 0 && !itemVisited.has(itemPointer) && (loop && renderedLength > pageSize ? itemPointer !== active : itemPointer < active)) {
+    const lines = renderItemAtIndex(itemPointer);
+    const linesToAdd = lines.slice(Math.max(0, lines.length - bufferPointer - 1));
+    pageBuffer.splice(bufferPointer - linesToAdd.length + 1, linesToAdd.length, ...linesToAdd);
+    itemVisited.add(itemPointer);
+    bufferPointer -= linesToAdd.length;
+    itemPointer = bound(itemPointer - 1);
+  }
+  return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
 // node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
@@ -33121,7 +33104,6 @@ ${page}${helpTipBottom}${choiceDescription}${error}${import_ansi_escapes2.defaul
 
 // node_modules/@inquirer/editor/dist/esm/index.js
 var import_external_editor = __toESM(require_main(), 1);
-import { AsyncResource as AsyncResource4 } from "node:async_hooks";
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -33134,7 +33116,7 @@ var esm_default4 = createPrompt((config, done) => {
   const prefix = usePrefix({ status, theme });
   function startEditor(rl) {
     rl.pause();
-    const editCallback = AsyncResource4.bind(async (error2, answer) => {
+    const editCallback = async (error2, answer) => {
       rl.resume();
       if (error2) {
         setError(error2.toString());
@@ -33155,7 +33137,7 @@ var esm_default4 = createPrompt((config, done) => {
           setStatus("idle");
         }
       }
-    });
+    };
     (0, import_external_editor.editAsync)(value, (error2, answer) => void editCallback(error2, answer), {
       postfix,
       ...fileProps
@@ -40605,7 +40587,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-2c1cd18598d8f77760006a84a69c378b3695d2da`;
+  const localVersion = `0.0.0-1854e46201de68aed90ca4fab544be06c11133de`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
