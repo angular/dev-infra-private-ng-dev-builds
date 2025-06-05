@@ -39417,8 +39417,8 @@ var ngDevNpmPackageName = "@angular/ng-dev";
 var workspaceRelativePackageJsonPath = "package.json";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
-import { promises as fs2, existsSync as existsSync4 } from "fs";
-import path5, { join as join11 } from "path";
+import { promises as fs2, existsSync as existsSync5 } from "fs";
+import path5, { join as join12 } from "path";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/versioning/experimental-versions.js
 var import_semver6 = __toESM(require_semver());
@@ -39735,6 +39735,69 @@ var PnpmVersioning = class {
   }
 };
 
+// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/renovate-config-updates.js
+import { existsSync as existsSync4 } from "node:fs";
+import { join as join11 } from "node:path";
+import { writeFile as writeFile2, readFile as readFile2 } from "node:fs/promises";
+async function updateRenovateConfig(projectDir, newBranchName) {
+  const renovateConfigPath = join11(projectDir, "renovate.json");
+  if (!existsSync4(renovateConfigPath)) {
+    Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
+    return null;
+  }
+  const config = await readFile2(renovateConfigPath, "utf-8");
+  const configJson = JSON.parse(config);
+  const baseBranches = configJson.baseBranches;
+  if (!Array.isArray(baseBranches) || baseBranches.length !== 2) {
+    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranches" must contain exactly 2 branches.`);
+    return null;
+  }
+  configJson.baseBranches = ["main", newBranchName];
+  updateRenovateTargetLabel(configJson, targetLabels["TARGET_PATCH"].name, targetLabels["TARGET_RC"].name);
+  await writeFile2(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
+  Log.info(green(`  \u2713   Updated Renovate config.`));
+  return renovateConfigPath;
+}
+async function updateRenovateConfigTargetLabels(projectDir, fromLabel, toLabel) {
+  const renovateConfigPath = join11(projectDir, "renovate.json");
+  if (!existsSync4(renovateConfigPath)) {
+    Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
+    return null;
+  }
+  const config = await readFile2(renovateConfigPath, "utf-8");
+  const configJson = JSON.parse(config);
+  const baseBranches = configJson.baseBranches;
+  if (!Array.isArray(baseBranches) || baseBranches.length !== 2) {
+    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranches" must contain exactly 2 branches.`);
+    return null;
+  }
+  if (updateRenovateTargetLabel(configJson, fromLabel, toLabel)) {
+    await writeFile2(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
+    Log.info(green(`  \u2713   Updated target label in Renovate config.`));
+    return renovateConfigPath;
+  } else {
+    Log.info(green(`  \u2713   No changes to target labels in Renovate config.`));
+    return null;
+  }
+}
+function updateRenovateTargetLabel(configJson, fromLabel, toLabel) {
+  if (!Array.isArray(configJson.packageRules)) {
+    return false;
+  }
+  let updated = false;
+  for (const rule of configJson.packageRules) {
+    if (!Array.isArray(rule.addLabels)) {
+      continue;
+    }
+    const idx = rule.addLabels.findIndex((x) => x === fromLabel);
+    if (idx >= 0) {
+      rule.addLabels[idx] = toLabel;
+      updated = true;
+    }
+  }
+  return updated;
+}
+
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions.js
 var ReleaseAction = class {
   static isActive(_trains, _config) {
@@ -39748,7 +39811,7 @@ var ReleaseAction = class {
     this.pnpmVersioning = new PnpmVersioning();
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
-    const pkgJsonPath = join11(this.projectDir, workspaceRelativePackageJsonPath);
+    const pkgJsonPath = join12(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs2.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
@@ -39757,7 +39820,7 @@ var ReleaseAction = class {
     await fs2.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
     Log.info(green(`  \u2713   Updated project version to ${pkgJson.version}`));
-    if (this.config.rulesJsInteropMode && existsSync4(path5.join(this.projectDir, ".aspect"))) {
+    if (this.config.rulesJsInteropMode && existsSync5(path5.join(this.projectDir, ".aspect"))) {
       await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
     }
   }
@@ -39799,12 +39862,18 @@ var ReleaseAction = class {
     if (!await Prompt.confirm({ message: "Do you want to proceed and commit the changes?" })) {
       throw new UserAbortedReleaseActionError();
     }
-    const commitMessage = getCommitMessageForRelease(newVersion);
     const filesToCommit = [
       workspaceRelativePackageJsonPath,
       workspaceRelativeChangelogPath,
       ...this.getAspectLockFiles()
     ];
+    if (newVersion.patch === 0 && !newVersion.prerelease) {
+      const renovateConfigPath = await updateRenovateConfigTargetLabels(this.projectDir, targetLabels["TARGET_RC"].name, targetLabels["TARGET_PATCH"].name);
+      if (renovateConfigPath) {
+        filesToCommit.push(renovateConfigPath);
+      }
+    }
+    const commitMessage = getCommitMessageForRelease(newVersion);
     await this.createCommit(commitMessage, filesToCommit);
     if (this.git.hasUncommittedChanges()) {
       Log.error("  \u2718   Unrelated changes have been made as part of the changelog editing.");
@@ -39898,7 +39967,7 @@ var ReleaseAction = class {
       await ExternalCommands.invokePnpmInstall(this.projectDir, this.pnpmVersioning);
       return;
     }
-    const nodeModulesDir = join11(this.projectDir, "node_modules");
+    const nodeModulesDir = join12(this.projectDir, "node_modules");
     await fs2.rm(nodeModulesDir, { force: true, recursive: true, maxRetries: 3 });
     await ExternalCommands.invokeYarnInstall(this.projectDir);
   }
@@ -40035,7 +40104,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join11(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join12(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -40378,31 +40447,6 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 
 // bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/branch-off-next-branch.js
 var import_semver16 = __toESM(require_semver());
-
-// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/renovate-config-updates.js
-import { existsSync as existsSync5 } from "node:fs";
-import { join as join12 } from "node:path";
-import { writeFile as writeFile2, readFile as readFile2 } from "node:fs/promises";
-async function updateRenovateConfig(projectDir, newBranchName) {
-  const renovateConfigPath = join12(projectDir, "renovate.json");
-  if (!existsSync5(renovateConfigPath)) {
-    Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
-    return null;
-  }
-  const config = await readFile2(renovateConfigPath, "utf-8");
-  const configJson = JSON.parse(config);
-  const baseBranches = configJson.baseBranches;
-  if (!Array.isArray(baseBranches) || baseBranches.length !== 2) {
-    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranches" must contain exactly 2 branches.`);
-    return null;
-  }
-  configJson.baseBranches = ["main", newBranchName];
-  await writeFile2(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
-  Log.info(green(`  \u2713   Updated Renovate config.`));
-  return renovateConfigPath;
-}
-
-// bazel-out/k8-fastbuild/bin/ng-dev/release/publish/actions/shared/branch-off-next-branch.js
 var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   constructor() {
     super(...arguments);
@@ -40587,7 +40631,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-64207a2b8551d751aa5fd1b114bff514dcaaf7c0`;
+  const localVersion = `0.0.0-f072244090ead81c3fc2446317a1d4d7a6727537`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
