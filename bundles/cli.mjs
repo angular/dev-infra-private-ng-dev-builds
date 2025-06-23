@@ -24657,7 +24657,7 @@ var require_lib7 = __commonJS({
     };
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.isAbsolute = isAbsolute3;
-    exports.indexOfPeersSuffix = indexOfPeersSuffix;
+    exports.indexOfDepPathSuffix = indexOfDepPathSuffix;
     exports.parseDepPath = parseDepPath;
     exports.removeSuffix = removeSuffix;
     exports.getPkgIdWithPatchHash = getPkgIdWithPatchHash;
@@ -24666,13 +24666,13 @@ var require_lib7 = __commonJS({
     exports.refToRelative = refToRelative;
     exports.parse = parse4;
     exports.depPathToFilename = depPathToFilename;
-    exports.createPeersDirSuffix = createPeersDirSuffix;
+    exports.createPeerDepGraphHash = createPeerDepGraphHash;
     var crypto_hash_1 = require_lib6();
     var semver_1 = __importDefault(require_semver());
     function isAbsolute3(dependencyPath) {
       return dependencyPath[0] !== "/";
     }
-    function indexOfPeersSuffix(depPath) {
+    function indexOfDepPathSuffix(depPath) {
       if (!depPath.endsWith(")"))
         return { peersIndex: -1, patchHashIndex: -1 };
       let open = 1;
@@ -24697,20 +24697,20 @@ var require_lib7 = __commonJS({
       return { peersIndex: -1, patchHashIndex: -1 };
     }
     function parseDepPath(relDepPath) {
-      const { peersIndex } = indexOfPeersSuffix(relDepPath);
+      const { peersIndex } = indexOfDepPathSuffix(relDepPath);
       if (peersIndex !== -1) {
         return {
           id: relDepPath.substring(0, peersIndex),
-          peersSuffix: relDepPath.substring(peersIndex)
+          peerDepGraphHash: relDepPath.substring(peersIndex)
         };
       }
       return {
         id: relDepPath,
-        peersSuffix: ""
+        peerDepGraphHash: ""
       };
     }
     function removeSuffix(relDepPath) {
-      const { peersIndex, patchHashIndex } = indexOfPeersSuffix(relDepPath);
+      const { peersIndex, patchHashIndex } = indexOfDepPathSuffix(relDepPath);
       if (patchHashIndex !== -1) {
         return relDepPath.substring(0, patchHashIndex);
       }
@@ -24721,7 +24721,7 @@ var require_lib7 = __commonJS({
     }
     function getPkgIdWithPatchHash(depPath) {
       let pkgId = depPath;
-      const { peersIndex: sepIndex } = indexOfPeersSuffix(pkgId);
+      const { peersIndex: sepIndex } = indexOfDepPathSuffix(pkgId);
       if (sepIndex !== -1) {
         pkgId = pkgId.substring(0, sepIndex);
       }
@@ -24732,7 +24732,7 @@ var require_lib7 = __commonJS({
     }
     function tryGetPackageId2(relDepPath) {
       let pkgId = relDepPath;
-      const { peersIndex, patchHashIndex } = indexOfPeersSuffix(pkgId);
+      const { peersIndex, patchHashIndex } = indexOfDepPathSuffix(pkgId);
       const sepIndex = patchHashIndex === -1 ? peersIndex : patchHashIndex;
       if (sepIndex !== -1) {
         pkgId = pkgId.substring(0, sepIndex);
@@ -24774,26 +24774,26 @@ var require_lib7 = __commonJS({
       const name = dependencyPath.substring(0, sepIndex);
       let version = dependencyPath.substring(sepIndex + 1);
       if (version) {
-        let peersSuffix;
+        let peerDepGraphHash;
         let patchHash;
-        const { peersIndex, patchHashIndex } = indexOfPeersSuffix(version);
+        const { peersIndex, patchHashIndex } = indexOfDepPathSuffix(version);
         if (peersIndex !== -1 || patchHashIndex !== -1) {
           if (peersIndex === -1) {
             patchHash = version.substring(patchHashIndex);
             version = version.substring(0, patchHashIndex);
           } else if (patchHashIndex === -1) {
-            peersSuffix = version.substring(peersIndex);
+            peerDepGraphHash = version.substring(peersIndex);
             version = version.substring(0, peersIndex);
           } else {
             patchHash = version.substring(patchHashIndex, peersIndex);
-            peersSuffix = version.substring(peersIndex);
+            peerDepGraphHash = version.substring(peersIndex);
             version = version.substring(0, patchHashIndex);
           }
         }
         if (semver_1.default.valid(version)) {
           return {
             name,
-            peersSuffix,
+            peerDepGraphHash,
             version,
             patchHash
           };
@@ -24801,7 +24801,7 @@ var require_lib7 = __commonJS({
         return {
           name,
           nonSemverVersion: version,
-          peersSuffix,
+          peerDepGraphHash,
           patchHash
         };
       }
@@ -24829,7 +24829,7 @@ var require_lib7 = __commonJS({
       }
       return depPath.replace(":", "+");
     }
-    function createPeersDirSuffix(peerIds, maxLength = 1e3) {
+    function createPeerDepGraphHash(peerIds, maxLength = 1e3) {
       let dirName = peerIds.map((peerId) => {
         if (typeof peerId !== "string") {
           return `${peerId.name}@${peerId.version}`;
@@ -40839,7 +40839,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-45faf1bab9ea289fdeb2962727e054305645864a`;
+  const localVersion = `0.0.0-e668ff113aeb6d8f5ef438f9e903121a8b197bec`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
