@@ -10068,7 +10068,7 @@ var RequestError = class extends Error {
 };
 
 // node_modules/@octokit/request/dist-bundle/index.js
-var VERSION2 = "0.0.0-development";
+var VERSION2 = "10.0.3";
 var defaults_default = {
   headers: {
     "user-agent": `octokit-request.js/${VERSION2} ${getUserAgent()}`
@@ -10538,7 +10538,7 @@ function requestLog(octokit) {
 }
 requestLog.VERSION = VERSION5;
 
-// node_modules/@octokit/rest/node_modules/@octokit/plugin-paginate-rest/dist-bundle/index.js
+// node_modules/@octokit/plugin-paginate-rest/dist-bundle/index.js
 var VERSION6 = "0.0.0-development";
 function normalizePaginatedListResponse(response) {
   if (!response.data) {
@@ -10547,15 +10547,17 @@ function normalizePaginatedListResponse(response) {
       data: []
     };
   }
-  const responseNeedsNormalization = "total_count" in response.data && !("url" in response.data);
+  const responseNeedsNormalization = "total_count" in response.data && !("url" in response.data) || "total_commits" in response.data;
   if (!responseNeedsNormalization)
     return response;
   const incompleteResults = response.data.incomplete_results;
   const repositorySelection = response.data.repository_selection;
   const totalCount = response.data.total_count;
+  const totalCommits = response.data.total_commits;
   delete response.data.incomplete_results;
   delete response.data.repository_selection;
   delete response.data.total_count;
+  delete response.data.total_commits;
   const namespaceKey = Object.keys(response.data)[0];
   const data = response.data[namespaceKey];
   response.data = data;
@@ -10566,6 +10568,7 @@ function normalizePaginatedListResponse(response) {
     response.data.repository_selection = repositorySelection;
   }
   response.data.total_count = totalCount;
+  response.data.total_commits = totalCommits;
   return response;
 }
 function iterator(octokit, route, parameters) {
@@ -10585,6 +10588,16 @@ function iterator(octokit, route, parameters) {
           url = ((normalizedResponse.headers.link || "").match(
             /<([^<>]+)>;\s*rel="next"/
           ) || [])[1];
+          if (!url && "total_commits" in normalizedResponse.data) {
+            const parsedUrl = new URL(normalizedResponse.url);
+            const params2 = parsedUrl.searchParams;
+            const page = parseInt(params2.get("page") || "1", 10);
+            const per_page = parseInt(params2.get("per_page") || "250", 10);
+            if (page * per_page < normalizedResponse.data.total_commits) {
+              params2.set("page", String(page + 1));
+              url = parsedUrl.toString();
+            }
+          }
           return { value: normalizedResponse };
         } catch (error) {
           if (error.status !== 409)
@@ -12963,11 +12976,11 @@ var DryRunError = class extends Error {
 import { spawnSync } from "child_process";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/utils/git/github-urls.js
-import { URL } from "url";
+import { URL as URL2 } from "url";
 var GITHUB_TOKEN_SETTINGS_URL = "https://github.com/settings/tokens";
 var GITHUB_TOKEN_GENERATE_URL = "https://github.com/settings/tokens/new";
 function addTokenToGitHttpsUrl(githubHttpsUrl, token) {
-  const url = new URL(githubHttpsUrl);
+  const url = new URL2(githubHttpsUrl);
   url.password = token;
   url.username = "x-access-token";
   return url.href;
@@ -13983,4 +13996,4 @@ export {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=chunk-OEGJ5YQR.mjs.map
+//# sourceMappingURL=chunk-LA2OW6SO.mjs.map
