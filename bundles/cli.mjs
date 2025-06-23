@@ -60498,7 +60498,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-2f7d6fb48b0cbabe27046ee9c6469ec6b9c9d6a0`;
+  const localVersion = `0.0.0-db18d7175d759fdfb3e40d363a1579621d1fcffd`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -78440,12 +78440,12 @@ function builder29(argv) {
   }).option("apiKey", {
     type: "string",
     alias: "a",
-    default: DEFAULT_API_KEY,
     description: "API key used when making calls to the Gemini API"
   });
 }
 async function handler30(options) {
-  assert(options.apiKey, [
+  const apiKey = options.apiKey || DEFAULT_API_KEY;
+  assert(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
     "For internal users, see go/aistudio-apikey"
   ].join("\n"));
@@ -78457,7 +78457,7 @@ async function handler30(options) {
     Log.error(`No files matched the pattern "${options.files}"`);
     process.exit(1);
   }
-  const ai = new GoogleGenAI({ apiKey: options.apiKey });
+  const ai = new GoogleGenAI({ apiKey });
   const progressBar = new import_cli_progress3.SingleBar({}, import_cli_progress3.Presets.shades_grey);
   const failures = [];
   const running = /* @__PURE__ */ new Set();
@@ -78582,11 +78582,12 @@ function builder30(argv) {
   });
 }
 async function handler31(options) {
-  assert2(options.apiKey, [
+  const apiKey = options.apiKey || DEFAULT_API_KEY;
+  assert2(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
     "For internal users, see go/aistudio-apikey"
   ].join("\n"));
-  const fixedContents = await fixFilesWithAI(options.apiKey, options.files, options.error, options.model, options.temperature);
+  const fixedContents = await fixFilesWithAI(apiKey, options.files, options.error, options.model, options.temperature);
   Log.info("\n--- AI Suggested Fixes Summary ---");
   if (fixedContents.length === 0) {
     Log.info("No files were fixed or found matching the pattern. Check your glob pattern and check whether the files exist.");
