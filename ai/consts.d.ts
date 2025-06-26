@@ -6,7 +6,7 @@
  * found in the LICENSE file at https://angular.io/license
  */
 /** Default model to use for AI-based scripts. */
-export declare const DEFAULT_MODEL = "gemini-2.5-flash";
+export declare const DEFAULT_MODEL = "gemini-2.5-pro";
 /** Default temperature for AI-based scripts. */
 export declare const DEFAULT_TEMPERATURE = 0.1;
 /** Default API key to use when running AI-based scripts. */

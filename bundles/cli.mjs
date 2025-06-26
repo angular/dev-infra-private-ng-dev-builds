@@ -60498,7 +60498,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-0bc6e070fa29e7454b632bf590324eddb738cfce`;
+  const localVersion = `0.0.0-80d294a9cc063ff8cff9ee9a79bae1a5eb25d61e`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -78405,7 +78405,7 @@ var import_cli_progress3 = __toESM(require_cli_progress());
 import { readFile as readFile4, writeFile as writeFile4 } from "fs/promises";
 
 // bazel-out/k8-fastbuild/bin/ng-dev/ai/consts.js
-var DEFAULT_MODEL = "gemini-2.5-flash";
+var DEFAULT_MODEL = "gemini-2.5-pro";
 var DEFAULT_TEMPERATURE = 0.1;
 var DEFAULT_API_KEY = process.env.GEMINI_API_KEY;
 
