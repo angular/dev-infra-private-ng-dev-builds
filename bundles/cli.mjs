@@ -59875,19 +59875,20 @@ var ReleaseAction = class {
   }
   async cherryPickChangelogIntoNextBranch(releaseNotes, stagingBranch) {
     const nextBranch = this.active.next.branchName;
-    const commitMessage = getReleaseNoteCherryPickCommitMessage(releaseNotes.version);
+    const { version } = releaseNotes;
+    const commitMessage = getReleaseNoteCherryPickCommitMessage(version);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.prependReleaseNotesToChangelog(releaseNotes);
     const filesToCommit = [workspaceRelativeChangelogPath];
-    if (releaseNotes.version.patch === 0 && !releaseNotes.version.prerelease) {
+    if (version.patch === 0 && version.prerelease.length === 0) {
       const renovateConfigPath = await updateRenovateConfigTargetLabels(this.projectDir, targetLabels["TARGET_RC"].name, targetLabels["TARGET_PATCH"].name);
       if (renovateConfigPath) {
         filesToCommit.push(renovateConfigPath);
       }
     }
     await this.createCommit(commitMessage, filesToCommit);
-    Log.info(green(`  \u2713   Created changelog cherry-pick commit for: "${releaseNotes.version}".`));
-    const pullRequest = await this.pushChangesToForkAndCreatePullRequest(nextBranch, `changelog-cherry-pick-${releaseNotes.version}`, commitMessage, `Cherry-picks the changelog from the "${stagingBranch}" branch to the next branch (${nextBranch}).`);
+    Log.info(green(`  \u2713   Created changelog cherry-pick commit for: "${version}".`));
+    const pullRequest = await this.pushChangesToForkAndCreatePullRequest(nextBranch, `changelog-cherry-pick-${version}`, commitMessage, `Cherry-picks the changelog from the "${stagingBranch}" branch to the next branch (${nextBranch}).`);
     Log.info(green(`  \u2713   Pull request for cherry-picking the changelog into "${nextBranch}" has been created.`));
     await this.promptAndWaitForPullRequestMerged(pullRequest);
     return true;
@@ -60501,7 +60502,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-d861dc95432d4430e786808d86422fa9ab5588c1`;
+  const localVersion = `0.0.0-76e78bb749aa3a4e236307f7dfa0551452cd7177`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
