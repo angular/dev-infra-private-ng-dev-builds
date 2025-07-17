@@ -57547,6 +57547,9 @@ async function pullRequestHasValidTestedComment(comments, gitClient) {
 var mergeReadyValidation = createPullRequestValidation({ name: "assertMergeReady", canBeForceIgnored: false }, () => Validation7);
 var Validation7 = class extends PullRequestValidation {
   assert(pullRequest) {
+    if (pullRequest.isDraft) {
+      throw this._createError("Pull request is still a draft.");
+    }
     if (!pullRequest.labels.nodes.some(({ name }) => name === actionLabels.ACTION_MERGE.name)) {
       throw this._createError("Pull request is not marked as merge ready.");
     }
@@ -57585,9 +57588,6 @@ var Validation9 = class extends PullRequestValidation {
 var pendingStateValidation = createPullRequestValidation({ name: "assertPending", canBeForceIgnored: false }, () => Validation10);
 var Validation10 = class extends PullRequestValidation {
   assert(pullRequest) {
-    if (pullRequest.isDraft) {
-      throw this._createError("Pull request is still a draft.");
-    }
     switch (pullRequest.state) {
       case "CLOSED":
         throw this._createError("Pull request is already closed.");
@@ -60515,7 +60515,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-1be5b0e0d34a5c01840518d8b25189d5e94495a4`;
+  const localVersion = `0.0.0-872ab8f2d107ccab872b64e94d0e9c7c39fc9a2e`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
