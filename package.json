@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-316baec37f3c648cc405dfb8429cefccec6f70f7",
+  "version": "0.0.0-b4e336690fdb1e05ffcbdac26781cf65b564dd72",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.4.0",
-    "@google-cloud/spanner": "8.0.0",
+    "@google-cloud/spanner": "8.1.0",
     "@octokit/rest": "22.0.0",
     "@types/semver": "^7.3.6",
     "@types/supports-color": "^10.0.0",
