@@ -24746,7 +24746,10 @@ var require_lib7 = __commonJS({
         pkgId = pkgId.substring(0, sepIndex);
       }
       if (pkgId.includes(":")) {
-        pkgId = pkgId.substring(pkgId.indexOf("@", 1) + 1);
+        const newPkgId = pkgId.substring(pkgId.indexOf("@", 1) + 1);
+        if (!newPkgId.startsWith("runtime:")) {
+          pkgId = newPkgId;
+        }
       }
       return pkgId;
     }
@@ -53632,8 +53635,8 @@ var esm_default11 = createPrompt((config, done) => {
   let helpTip = "";
   if (searchResults.length > 1 && (theme.helpMode === "always" || theme.helpMode === "auto" && firstRender.current)) {
     helpTip = searchResults.length > pageSize ? `
-${theme.style.help("(Use arrow keys to reveal more choices)")}` : `
-${theme.style.help("(Use arrow keys)")}`;
+${theme.style.help(`(${config.instructions?.pager ?? "Use arrow keys to reveal more choices"})`)}` : `
+${theme.style.help(`(${config.instructions?.navigation ?? "Use arrow keys"})`)}`;
   }
   const page = usePagination({
     items: searchResults,
@@ -53800,14 +53803,16 @@ ${theme.style.help(`(${config.instructions?.pager ?? "Use arrow keys to reveal m
       helpTipTop = theme.style.help(`(${config.instructions?.navigation ?? "Use arrow keys"})`);
     }
   }
+  let separatorCount = 0;
   const page = usePagination({
     items,
     active,
     renderItem({ item, isActive, index }) {
       if (Separator.isSeparator(item)) {
+        separatorCount++;
         return ` ${item.separator}`;
       }
-      const indexLabel = theme.indexMode === "number" ? `${index + 1}. ` : "";
+      const indexLabel = theme.indexMode === "number" ? `${index + 1 - separatorCount}. ` : "";
       if (item.disabled) {
         const disabledLabel = typeof item.disabled === "string" ? item.disabled : "(disabled)";
         return theme.style.disabled(`${indexLabel}${item.name} ${disabledLabel}`);
@@ -60529,7 +60534,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-b4e336690fdb1e05ffcbdac26781cf65b564dd72`;
+  const localVersion = `0.0.0-6a135f30fd5951cb549d2b7df2be64af6f841857`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -61510,17 +61515,17 @@ function getDefaultBaseUrls() {
     vertexUrl: _defaultBaseVertexUrl
   };
 }
-function getBaseUrl(options, vertexBaseUrlFromEnv, geminiBaseUrlFromEnv) {
-  var _a2, _b2, _c2;
-  if (!((_a2 = options.httpOptions) === null || _a2 === void 0 ? void 0 : _a2.baseUrl)) {
+function getBaseUrl(httpOptions, vertexai, vertexBaseUrlFromEnv, geminiBaseUrlFromEnv) {
+  var _a2, _b2;
+  if (!(httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.baseUrl)) {
     const defaultBaseUrls = getDefaultBaseUrls();
-    if (options.vertexai) {
-      return (_b2 = defaultBaseUrls.vertexUrl) !== null && _b2 !== void 0 ? _b2 : vertexBaseUrlFromEnv;
+    if (vertexai) {
+      return (_a2 = defaultBaseUrls.vertexUrl) !== null && _a2 !== void 0 ? _a2 : vertexBaseUrlFromEnv;
     } else {
-      return (_c2 = defaultBaseUrls.geminiUrl) !== null && _c2 !== void 0 ? _c2 : geminiBaseUrlFromEnv;
+      return (_b2 = defaultBaseUrls.geminiUrl) !== null && _b2 !== void 0 ? _b2 : geminiBaseUrlFromEnv;
     }
   }
-  return options.httpOptions.baseUrl;
+  return httpOptions.baseUrl;
 }
 var BaseModule2 = class {
 };
@@ -61625,6 +61630,12 @@ function getValueByPath(data, keys) {
     }
     throw error;
   }
+}
+function tBytes$1(fromBytes) {
+  if (typeof fromBytes !== "string") {
+    throw new Error("fromImageBytes must be a string");
+  }
+  return fromBytes;
 }
 var Outcome;
 (function(Outcome2) {
@@ -62095,6 +62106,8 @@ var CountTokensResponse = class {
 };
 var ComputeTokensResponse = class {
 };
+var GenerateVideosResponse = class {
+};
 var ListTuningJobsResponse = class {
 };
 var DeleteCachedContentResponse = class {
@@ -62152,6 +62165,55 @@ var LiveServerMessage = class {
       console.warn(`there are non-data parts ${nonDataParts} in the response, returning concatenation of all data parts. Please refer to the non data parts for a full response from model.`);
     }
     return data.length > 0 ? btoa(data) : void 0;
+  }
+};
+var GenerateVideosOperation = class {
+  _fromAPIResponse({ apiResponse, isVertexAI }) {
+    const operation = new GenerateVideosOperation();
+    operation.name = apiResponse["name"];
+    operation.metadata = apiResponse["metadata"];
+    operation.done = apiResponse["done"];
+    operation.error = apiResponse["error"];
+    if (isVertexAI) {
+      const response = apiResponse["response"];
+      if (response) {
+        const operationResponse = new GenerateVideosResponse();
+        const responseVideos = response["videos"];
+        operationResponse.generatedVideos = responseVideos === null || responseVideos === void 0 ? void 0 : responseVideos.map((generatedVideo) => {
+          return {
+            video: {
+              uri: generatedVideo["gcsUri"],
+              videoBytes: generatedVideo["bytesBase64Encoded"] ? tBytes$1(generatedVideo["bytesBase64Encoded"]) : void 0,
+              mimeType: generatedVideo["mimeType"]
+            }
+          };
+        });
+        operationResponse.raiMediaFilteredCount = response["raiMediaFilteredCount"];
+        operationResponse.raiMediaFilteredReasons = response["raiMediaFilteredReasons"];
+        operation.response = operationResponse;
+      }
+    } else {
+      const response = apiResponse["response"];
+      if (response) {
+        const operationResponse = new GenerateVideosResponse();
+        const generatedVideoResponse = response["generateVideoResponse"];
+        const responseVideos = generatedVideoResponse === null || generatedVideoResponse === void 0 ? void 0 : generatedVideoResponse["generatedSamples"];
+        operationResponse.generatedVideos = responseVideos === null || responseVideos === void 0 ? void 0 : responseVideos.map((generatedVideo) => {
+          const video = generatedVideo["video"];
+          return {
+            video: {
+              uri: video === null || video === void 0 ? void 0 : video["uri"],
+              videoBytes: (video === null || video === void 0 ? void 0 : video["encodedVideo"]) ? tBytes$1(video === null || video === void 0 ? void 0 : video["encodedVideo"]) : void 0,
+              mimeType: generatedVideo["encoding"]
+            }
+          };
+        });
+        operationResponse.raiMediaFilteredCount = generatedVideoResponse === null || generatedVideoResponse === void 0 ? void 0 : generatedVideoResponse["raiMediaFilteredCount"];
+        operationResponse.raiMediaFilteredReasons = generatedVideoResponse === null || generatedVideoResponse === void 0 ? void 0 : generatedVideoResponse["raiMediaFilteredReasons"];
+        operation.response = operationResponse;
+      }
+    }
+    return operation;
   }
 };
 var LiveMusicServerMessage = class {
@@ -62501,10 +62563,7 @@ function tTuningJobStatus(status) {
   }
 }
 function tBytes(fromImageBytes) {
-  if (typeof fromImageBytes !== "string") {
-    throw new Error("fromImageBytes must be a string");
-  }
-  return fromImageBytes;
+  return tBytes$1(fromImageBytes);
 }
 function _isFile(origin) {
   return origin !== null && origin !== void 0 && typeof origin === "object" && "name" in origin;
@@ -63951,6 +64010,12 @@ function batchJobFromMldev(fromObject) {
 }
 function listBatchJobsResponseFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -64092,6 +64157,12 @@ function batchJobFromVertex(fromObject) {
 }
 function listBatchJobsResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -64147,9 +64218,10 @@ var Pager = class {
     var _a2, _b2;
     this.nameInternal = name;
     this.pageInternal = response[this.nameInternal] || [];
+    this.sdkHttpResponseInternal = response === null || response === void 0 ? void 0 : response.sdkHttpResponse;
     this.idxInternal = 0;
     let requestParams = { config: {} };
-    if (!params4) {
+    if (!params4 || Object.keys(params4).length === 0) {
       requestParams = { config: {} };
     } else if (typeof params4 === "object") {
       requestParams = Object.assign({}, params4);
@@ -64173,6 +64245,9 @@ var Pager = class {
   }
   get pageSize() {
     return this.pageInternalSize;
+  }
+  get sdkHttpResponse() {
+    return this.sdkHttpResponseInternal;
   }
   get params() {
     return this.paramsInternal;
@@ -64403,7 +64478,13 @@ var Batches = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listBatchJobsResponseFromVertex(apiResponse);
@@ -64426,7 +64507,13 @@ var Batches = class extends BaseModule2 {
         httpOptions: (_c2 = params4.config) === null || _c2 === void 0 ? void 0 : _c2.httpOptions,
         abortSignal: (_d = params4.config) === null || _d === void 0 ? void 0 : _d.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listBatchJobsResponseFromMldev(apiResponse);
@@ -65457,6 +65544,12 @@ function deleteCachedContentResponseFromMldev() {
 }
 function listCachedContentsResponseFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -65517,6 +65610,12 @@ function deleteCachedContentResponseFromVertex() {
 }
 function listCachedContentsResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -65765,7 +65864,13 @@ var Caches = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listCachedContentsResponseFromVertex(apiResponse);
@@ -65788,7 +65893,13 @@ var Caches = class extends BaseModule2 {
         httpOptions: (_c2 = params4.config) === null || _c2 === void 0 ? void 0 : _c2.httpOptions,
         abortSignal: (_d = params4.config) === null || _d === void 0 ? void 0 : _d.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listCachedContentsResponseFromMldev(apiResponse);
@@ -66292,6 +66403,12 @@ function fileFromMldev(fromObject) {
 }
 function listFilesResponseFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -66366,7 +66483,13 @@ var Files = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listFilesResponseFromMldev(apiResponse);
@@ -69543,6 +69666,9 @@ function generateImagesConfigToMldev(fromObject, parentObject) {
   if (getValueByPath(fromObject, ["addWatermark"]) !== void 0) {
     throw new Error("addWatermark parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["imageSize"]) !== void 0) {
+    throw new Error("imageSize parameter is not supported in Gemini API.");
+  }
   if (getValueByPath(fromObject, ["enhancePrompt"]) !== void 0) {
     throw new Error("enhancePrompt parameter is not supported in Gemini API.");
   }
@@ -70619,6 +70745,10 @@ function generateImagesConfigToVertex(fromObject, parentObject) {
   if (parentObject !== void 0 && fromAddWatermark != null) {
     setValueByPath(parentObject, ["parameters", "addWatermark"], fromAddWatermark);
   }
+  const fromImageSize = getValueByPath(fromObject, ["imageSize"]);
+  if (parentObject !== void 0 && fromImageSize != null) {
+    setValueByPath(parentObject, ["parameters", "sampleImageSize"], fromImageSize);
+  }
   const fromEnhancePrompt = getValueByPath(fromObject, [
     "enhancePrompt"
   ]);
@@ -71457,6 +71587,12 @@ function embedContentMetadataFromMldev() {
 }
 function embedContentResponseFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromEmbeddings = getValueByPath(fromObject, ["embeddings"]);
   if (fromEmbeddings != null) {
     let transformedList = fromEmbeddings;
@@ -71529,6 +71665,12 @@ function generatedImageFromMldev(fromObject) {
 }
 function generateImagesResponseFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromGeneratedImages = getValueByPath(fromObject, [
     "predictions"
   ]);
@@ -71609,6 +71751,12 @@ function modelFromMldev(fromObject) {
 }
 function listModelsResponseFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -71633,6 +71781,12 @@ function deleteModelResponseFromMldev() {
 }
 function countTokensResponseFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromTotalTokens = getValueByPath(fromObject, ["totalTokens"]);
   if (fromTotalTokens != null) {
     setValueByPath(toObject, ["totalTokens"], fromTotalTokens);
@@ -71645,7 +71799,7 @@ function countTokensResponseFromMldev(fromObject) {
   }
   return toObject;
 }
-function videoFromMldev$1(fromObject) {
+function videoFromMldev(fromObject) {
   const toObject = {};
   const fromUri = getValueByPath(fromObject, ["video", "uri"]);
   if (fromUri != null) {
@@ -71664,15 +71818,15 @@ function videoFromMldev$1(fromObject) {
   }
   return toObject;
 }
-function generatedVideoFromMldev$1(fromObject) {
+function generatedVideoFromMldev(fromObject) {
   const toObject = {};
   const fromVideo = getValueByPath(fromObject, ["_self"]);
   if (fromVideo != null) {
-    setValueByPath(toObject, ["video"], videoFromMldev$1(fromVideo));
+    setValueByPath(toObject, ["video"], videoFromMldev(fromVideo));
   }
   return toObject;
 }
-function generateVideosResponseFromMldev$1(fromObject) {
+function generateVideosResponseFromMldev(fromObject) {
   const toObject = {};
   const fromGeneratedVideos = getValueByPath(fromObject, [
     "generatedSamples"
@@ -71681,7 +71835,7 @@ function generateVideosResponseFromMldev$1(fromObject) {
     let transformedList = fromGeneratedVideos;
     if (Array.isArray(transformedList)) {
       transformedList = transformedList.map((item) => {
-        return generatedVideoFromMldev$1(item);
+        return generatedVideoFromMldev(item);
       });
     }
     setValueByPath(toObject, ["generatedVideos"], transformedList);
@@ -71700,7 +71854,7 @@ function generateVideosResponseFromMldev$1(fromObject) {
   }
   return toObject;
 }
-function generateVideosOperationFromMldev$1(fromObject) {
+function generateVideosOperationFromMldev(fromObject) {
   const toObject = {};
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
@@ -71723,7 +71877,7 @@ function generateVideosOperationFromMldev$1(fromObject) {
     "generateVideoResponse"
   ]);
   if (fromResponse != null) {
-    setValueByPath(toObject, ["response"], generateVideosResponseFromMldev$1(fromResponse));
+    setValueByPath(toObject, ["response"], generateVideosResponseFromMldev(fromResponse));
   }
   return toObject;
 }
@@ -72019,6 +72173,12 @@ function embedContentMetadataFromVertex(fromObject) {
 }
 function embedContentResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromEmbeddings = getValueByPath(fromObject, [
     "predictions[]",
     "embeddings"
@@ -72102,6 +72262,12 @@ function generatedImageFromVertex(fromObject) {
 }
 function generateImagesResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromGeneratedImages = getValueByPath(fromObject, [
     "predictions"
   ]);
@@ -72124,6 +72290,12 @@ function generateImagesResponseFromVertex(fromObject) {
 }
 function editImageResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromGeneratedImages = getValueByPath(fromObject, [
     "predictions"
   ]);
@@ -72140,6 +72312,12 @@ function editImageResponseFromVertex(fromObject) {
 }
 function upscaleImageResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromGeneratedImages = getValueByPath(fromObject, [
     "predictions"
   ]);
@@ -72259,6 +72437,12 @@ function modelFromVertex(fromObject) {
 }
 function listModelsResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -72283,6 +72467,12 @@ function deleteModelResponseFromVertex() {
 }
 function countTokensResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromTotalTokens = getValueByPath(fromObject, ["totalTokens"]);
   if (fromTotalTokens != null) {
     setValueByPath(toObject, ["totalTokens"], fromTotalTokens);
@@ -72291,13 +72481,19 @@ function countTokensResponseFromVertex(fromObject) {
 }
 function computeTokensResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromTokensInfo = getValueByPath(fromObject, ["tokensInfo"]);
   if (fromTokensInfo != null) {
     setValueByPath(toObject, ["tokensInfo"], fromTokensInfo);
   }
   return toObject;
 }
-function videoFromVertex$1(fromObject) {
+function videoFromVertex(fromObject) {
   const toObject = {};
   const fromUri = getValueByPath(fromObject, ["gcsUri"]);
   if (fromUri != null) {
@@ -72315,22 +72511,22 @@ function videoFromVertex$1(fromObject) {
   }
   return toObject;
 }
-function generatedVideoFromVertex$1(fromObject) {
+function generatedVideoFromVertex(fromObject) {
   const toObject = {};
   const fromVideo = getValueByPath(fromObject, ["_self"]);
   if (fromVideo != null) {
-    setValueByPath(toObject, ["video"], videoFromVertex$1(fromVideo));
+    setValueByPath(toObject, ["video"], videoFromVertex(fromVideo));
   }
   return toObject;
 }
-function generateVideosResponseFromVertex$1(fromObject) {
+function generateVideosResponseFromVertex(fromObject) {
   const toObject = {};
   const fromGeneratedVideos = getValueByPath(fromObject, ["videos"]);
   if (fromGeneratedVideos != null) {
     let transformedList = fromGeneratedVideos;
     if (Array.isArray(transformedList)) {
       transformedList = transformedList.map((item) => {
-        return generatedVideoFromVertex$1(item);
+        return generatedVideoFromVertex(item);
       });
     }
     setValueByPath(toObject, ["generatedVideos"], transformedList);
@@ -72349,7 +72545,7 @@ function generateVideosResponseFromVertex$1(fromObject) {
   }
   return toObject;
 }
-function generateVideosOperationFromVertex$1(fromObject) {
+function generateVideosOperationFromVertex(fromObject) {
   const toObject = {};
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
@@ -72369,7 +72565,7 @@ function generateVideosOperationFromVertex$1(fromObject) {
   }
   const fromResponse = getValueByPath(fromObject, ["response"]);
   if (fromResponse != null) {
-    setValueByPath(toObject, ["response"], generateVideosResponseFromVertex$1(fromResponse));
+    setValueByPath(toObject, ["response"], generateVideosResponseFromVertex(fromResponse));
   }
   return toObject;
 }
@@ -72377,7 +72573,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.10.0";
+var SDK_VERSION = "1.12.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -72842,14 +73038,6 @@ function setMcpUsageHeader(headers) {
   const existingHeader = (_a2 = headers[GOOGLE_API_CLIENT_HEADER]) !== null && _a2 !== void 0 ? _a2 : "";
   headers[GOOGLE_API_CLIENT_HEADER] = (existingHeader + ` ${MCP_LABEL}`).trimStart();
 }
-function hasMcpClientTools(params4) {
-  var _a2, _b2, _c2;
-  return (_c2 = (_b2 = (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.tools) === null || _b2 === void 0 ? void 0 : _b2.some((tool) => isMcpCallableTool(tool))) !== null && _c2 !== void 0 ? _c2 : false;
-}
-function hasNonMcpTools(params4) {
-  var _a2, _b2, _c2;
-  return (_c2 = (_b2 = (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.tools) === null || _b2 === void 0 ? void 0 : _b2.some((tool) => !isMcpCallableTool(tool))) !== null && _c2 !== void 0 ? _c2 : false;
-}
 function isMcpCallableTool(object) {
   return object !== null && typeof object === "object" && object instanceof McpCallableTool;
 }
@@ -73104,11 +73292,11 @@ var Live = class {
     const websocketBaseUrl = this.apiClient.getWebsocketBaseUrl();
     const apiVersion = this.apiClient.getApiVersion();
     let url2;
-    const defaultHeaders = this.apiClient.getDefaultHeaders();
+    const clientHeaders = this.apiClient.getHeaders();
     if (params4.config && params4.config.tools && hasMcpToolUsage(params4.config.tools)) {
-      setMcpUsageHeader(defaultHeaders);
+      setMcpUsageHeader(clientHeaders);
     }
-    const headers = mapToHeaders(defaultHeaders);
+    const headers = mapToHeaders(clientHeaders);
     if (this.apiClient.isVertexAI()) {
       url2 = `${websocketBaseUrl}/ws/google.cloud.aiplatform.${apiVersion}.LlmBidiService/BidiGenerateContent`;
       await this.auth.addAuthHeaders(headers);
@@ -73323,6 +73511,14 @@ function shouldDisableAfc(config) {
 function isCallableTool(tool) {
   return "callTool" in tool && typeof tool.callTool === "function";
 }
+function hasCallableTools(params4) {
+  var _a2, _b2, _c2;
+  return (_c2 = (_b2 = (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.tools) === null || _b2 === void 0 ? void 0 : _b2.some((tool) => isCallableTool(tool))) !== null && _c2 !== void 0 ? _c2 : false;
+}
+function hasNonCallableTools(params4) {
+  var _a2, _b2, _c2;
+  return (_c2 = (_b2 = (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.tools) === null || _b2 === void 0 ? void 0 : _b2.some((tool) => !isCallableTool(tool))) !== null && _c2 !== void 0 ? _c2 : false;
+}
 function shouldAppendAfcHistory(config) {
   var _a2;
   return !((_a2 = config === null || config === void 0 ? void 0 : config.automaticFunctionCalling) === null || _a2 === void 0 ? void 0 : _a2.ignoreCallHistory);
@@ -73333,12 +73529,12 @@ var Models = class extends BaseModule2 {
     this.apiClient = apiClient;
     this.generateContent = async (params4) => {
       var _a2, _b2, _c2, _d, _e;
-      const transformedParams = await this.processParamsForMcpUsage(params4);
+      const transformedParams = await this.processParamsMaybeAddMcpUsage(params4);
       this.maybeMoveToResponseJsonSchem(params4);
-      if (!hasMcpClientTools(params4) || shouldDisableAfc(params4.config)) {
+      if (!hasCallableTools(params4) || shouldDisableAfc(params4.config)) {
         return await this.generateContentInternal(transformedParams);
       }
-      if (hasNonMcpTools(params4)) {
+      if (hasNonCallableTools(params4)) {
         throw new Error("Automatic function calling with CallableTools and Tools is not yet supported.");
       }
       let response;
@@ -73381,7 +73577,7 @@ var Models = class extends BaseModule2 {
     this.generateContentStream = async (params4) => {
       this.maybeMoveToResponseJsonSchem(params4);
       if (shouldDisableAfc(params4.config)) {
-        const transformedParams = await this.processParamsForMcpUsage(params4);
+        const transformedParams = await this.processParamsMaybeAddMcpUsage(params4);
         return await this.generateContentStreamInternal(transformedParams);
       } else {
         return await this.processAfcStream(params4);
@@ -73405,11 +73601,13 @@ var Models = class extends BaseModule2 {
         if (positivePromptSafetyAttributes) {
           response = {
             generatedImages,
-            positivePromptSafetyAttributes
+            positivePromptSafetyAttributes,
+            sdkHttpResponse: apiResponse.sdkHttpResponse
           };
         } else {
           response = {
-            generatedImages
+            generatedImages,
+            sdkHttpResponse: apiResponse.sdkHttpResponse
           };
         }
         return response;
@@ -73465,6 +73663,9 @@ var Models = class extends BaseModule2 {
       };
       return await this.upscaleImageInternal(apiParams);
     };
+    this.generateVideos = async (params4) => {
+      return await this.generateVideosInternal(params4);
+    };
   }
   maybeMoveToResponseJsonSchem(params4) {
     if (params4.config && params4.config.responseSchema) {
@@ -73477,7 +73678,7 @@ var Models = class extends BaseModule2 {
     }
     return;
   }
-  async processParamsForMcpUsage(params4) {
+  async processParamsMaybeAddMcpUsage(params4) {
     var _a2, _b2, _c2;
     const tools = (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.tools;
     if (!tools) {
@@ -73542,7 +73743,7 @@ var Models = class extends BaseModule2 {
             remoteCallCount++;
             wereFunctionsCalled = false;
           }
-          const transformedParams = yield __await(models.processParamsForMcpUsage(params5));
+          const transformedParams = yield __await(models.processParamsMaybeAddMcpUsage(params5));
           const response = yield __await(models.generateContentStreamInternal(transformedParams));
           const functionResponses = [];
           const responseContents = [];
@@ -73789,7 +73990,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = embedContentResponseFromVertex(apiResponse);
@@ -73812,7 +74019,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_c2 = params4.config) === null || _c2 === void 0 ? void 0 : _c2.httpOptions,
         abortSignal: (_d = params4.config) === null || _d === void 0 ? void 0 : _d.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = embedContentResponseFromMldev(apiResponse);
@@ -73842,7 +74055,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = generateImagesResponseFromVertex(apiResponse);
@@ -73865,7 +74084,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_c2 = params4.config) === null || _c2 === void 0 ? void 0 : _c2.httpOptions,
         abortSignal: (_d = params4.config) === null || _d === void 0 ? void 0 : _d.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = generateImagesResponseFromMldev(apiResponse);
@@ -73895,7 +74120,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = editImageResponseFromVertex(apiResponse);
@@ -73927,7 +74158,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = upscaleImageResponseFromVertex(apiResponse);
@@ -74008,7 +74245,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listModelsResponseFromVertex(apiResponse);
@@ -74031,7 +74274,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_c2 = params4.config) === null || _c2 === void 0 ? void 0 : _c2.httpOptions,
         abortSignal: (_d = params4.config) === null || _d === void 0 ? void 0 : _d.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listModelsResponseFromMldev(apiResponse);
@@ -74163,7 +74412,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = countTokensResponseFromVertex(apiResponse);
@@ -74186,7 +74441,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_c2 = params4.config) === null || _c2 === void 0 ? void 0 : _c2.httpOptions,
         abortSignal: (_d = params4.config) === null || _d === void 0 ? void 0 : _d.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = countTokensResponseFromMldev(apiResponse);
@@ -74216,7 +74477,13 @@ var Models = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = computeTokensResponseFromVertex(apiResponse);
@@ -74228,7 +74495,7 @@ var Models = class extends BaseModule2 {
       throw new Error("This method is only supported by the Vertex AI.");
     }
   }
-  async generateVideos(params4) {
+  async generateVideosInternal(params4) {
     var _a2, _b2, _c2, _d;
     let response;
     let path8 = "";
@@ -74251,8 +74518,10 @@ var Models = class extends BaseModule2 {
         return httpResponse.json();
       });
       return response.then((apiResponse) => {
-        const resp = generateVideosOperationFromVertex$1(apiResponse);
-        return resp;
+        const resp = generateVideosOperationFromVertex(apiResponse);
+        const typedResp = new GenerateVideosOperation();
+        Object.assign(typedResp, resp);
+        return typedResp;
       });
     } else {
       const body = generateVideosParametersToMldev(this.apiClient, params4);
@@ -74272,8 +74541,10 @@ var Models = class extends BaseModule2 {
         return httpResponse.json();
       });
       return response.then((apiResponse) => {
-        const resp = generateVideosOperationFromMldev$1(apiResponse);
-        return resp;
+        const resp = generateVideosOperationFromMldev(apiResponse);
+        const typedResp = new GenerateVideosOperation();
+        Object.assign(typedResp, resp);
+        return typedResp;
       });
     }
   }
@@ -74324,164 +74595,6 @@ function fetchPredictOperationParametersToVertex(fromObject) {
   }
   return toObject;
 }
-function videoFromMldev(fromObject) {
-  const toObject = {};
-  const fromUri = getValueByPath(fromObject, ["video", "uri"]);
-  if (fromUri != null) {
-    setValueByPath(toObject, ["uri"], fromUri);
-  }
-  const fromVideoBytes = getValueByPath(fromObject, [
-    "video",
-    "encodedVideo"
-  ]);
-  if (fromVideoBytes != null) {
-    setValueByPath(toObject, ["videoBytes"], tBytes(fromVideoBytes));
-  }
-  const fromMimeType = getValueByPath(fromObject, ["encoding"]);
-  if (fromMimeType != null) {
-    setValueByPath(toObject, ["mimeType"], fromMimeType);
-  }
-  return toObject;
-}
-function generatedVideoFromMldev(fromObject) {
-  const toObject = {};
-  const fromVideo = getValueByPath(fromObject, ["_self"]);
-  if (fromVideo != null) {
-    setValueByPath(toObject, ["video"], videoFromMldev(fromVideo));
-  }
-  return toObject;
-}
-function generateVideosResponseFromMldev(fromObject) {
-  const toObject = {};
-  const fromGeneratedVideos = getValueByPath(fromObject, [
-    "generatedSamples"
-  ]);
-  if (fromGeneratedVideos != null) {
-    let transformedList = fromGeneratedVideos;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return generatedVideoFromMldev(item);
-      });
-    }
-    setValueByPath(toObject, ["generatedVideos"], transformedList);
-  }
-  const fromRaiMediaFilteredCount = getValueByPath(fromObject, [
-    "raiMediaFilteredCount"
-  ]);
-  if (fromRaiMediaFilteredCount != null) {
-    setValueByPath(toObject, ["raiMediaFilteredCount"], fromRaiMediaFilteredCount);
-  }
-  const fromRaiMediaFilteredReasons = getValueByPath(fromObject, [
-    "raiMediaFilteredReasons"
-  ]);
-  if (fromRaiMediaFilteredReasons != null) {
-    setValueByPath(toObject, ["raiMediaFilteredReasons"], fromRaiMediaFilteredReasons);
-  }
-  return toObject;
-}
-function generateVideosOperationFromMldev(fromObject) {
-  const toObject = {};
-  const fromName = getValueByPath(fromObject, ["name"]);
-  if (fromName != null) {
-    setValueByPath(toObject, ["name"], fromName);
-  }
-  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
-  if (fromMetadata != null) {
-    setValueByPath(toObject, ["metadata"], fromMetadata);
-  }
-  const fromDone = getValueByPath(fromObject, ["done"]);
-  if (fromDone != null) {
-    setValueByPath(toObject, ["done"], fromDone);
-  }
-  const fromError = getValueByPath(fromObject, ["error"]);
-  if (fromError != null) {
-    setValueByPath(toObject, ["error"], fromError);
-  }
-  const fromResponse = getValueByPath(fromObject, [
-    "response",
-    "generateVideoResponse"
-  ]);
-  if (fromResponse != null) {
-    setValueByPath(toObject, ["response"], generateVideosResponseFromMldev(fromResponse));
-  }
-  return toObject;
-}
-function videoFromVertex(fromObject) {
-  const toObject = {};
-  const fromUri = getValueByPath(fromObject, ["gcsUri"]);
-  if (fromUri != null) {
-    setValueByPath(toObject, ["uri"], fromUri);
-  }
-  const fromVideoBytes = getValueByPath(fromObject, [
-    "bytesBase64Encoded"
-  ]);
-  if (fromVideoBytes != null) {
-    setValueByPath(toObject, ["videoBytes"], tBytes(fromVideoBytes));
-  }
-  const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
-  if (fromMimeType != null) {
-    setValueByPath(toObject, ["mimeType"], fromMimeType);
-  }
-  return toObject;
-}
-function generatedVideoFromVertex(fromObject) {
-  const toObject = {};
-  const fromVideo = getValueByPath(fromObject, ["_self"]);
-  if (fromVideo != null) {
-    setValueByPath(toObject, ["video"], videoFromVertex(fromVideo));
-  }
-  return toObject;
-}
-function generateVideosResponseFromVertex(fromObject) {
-  const toObject = {};
-  const fromGeneratedVideos = getValueByPath(fromObject, ["videos"]);
-  if (fromGeneratedVideos != null) {
-    let transformedList = fromGeneratedVideos;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return generatedVideoFromVertex(item);
-      });
-    }
-    setValueByPath(toObject, ["generatedVideos"], transformedList);
-  }
-  const fromRaiMediaFilteredCount = getValueByPath(fromObject, [
-    "raiMediaFilteredCount"
-  ]);
-  if (fromRaiMediaFilteredCount != null) {
-    setValueByPath(toObject, ["raiMediaFilteredCount"], fromRaiMediaFilteredCount);
-  }
-  const fromRaiMediaFilteredReasons = getValueByPath(fromObject, [
-    "raiMediaFilteredReasons"
-  ]);
-  if (fromRaiMediaFilteredReasons != null) {
-    setValueByPath(toObject, ["raiMediaFilteredReasons"], fromRaiMediaFilteredReasons);
-  }
-  return toObject;
-}
-function generateVideosOperationFromVertex(fromObject) {
-  const toObject = {};
-  const fromName = getValueByPath(fromObject, ["name"]);
-  if (fromName != null) {
-    setValueByPath(toObject, ["name"], fromName);
-  }
-  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
-  if (fromMetadata != null) {
-    setValueByPath(toObject, ["metadata"], fromMetadata);
-  }
-  const fromDone = getValueByPath(fromObject, ["done"]);
-  if (fromDone != null) {
-    setValueByPath(toObject, ["done"], fromDone);
-  }
-  const fromError = getValueByPath(fromObject, ["error"]);
-  if (fromError != null) {
-    setValueByPath(toObject, ["error"], fromError);
-  }
-  const fromResponse = getValueByPath(fromObject, ["response"]);
-  if (fromResponse != null) {
-    setValueByPath(toObject, ["response"], generateVideosResponseFromVertex(fromResponse));
-  }
-  return toObject;
-}
 var Operations = class extends BaseModule2 {
   constructor(apiClient) {
     super();
@@ -74499,15 +74612,55 @@ var Operations = class extends BaseModule2 {
       if (config && "httpOptions" in config) {
         httpOptions = config.httpOptions;
       }
-      return this.fetchPredictVideosOperationInternal({
+      const rawOperation = await this.fetchPredictVideosOperationInternal({
         operationName: operation.name,
         resourceName: resourceName2,
         config: { httpOptions }
       });
+      return operation._fromAPIResponse({
+        apiResponse: rawOperation,
+        isVertexAI: true
+      });
     } else {
-      return this.getVideosOperationInternal({
+      const rawOperation = await this.getVideosOperationInternal({
         operationName: operation.name,
         config
+      });
+      return operation._fromAPIResponse({
+        apiResponse: rawOperation,
+        isVertexAI: false
+      });
+    }
+  }
+  async get(parameters) {
+    const operation = parameters.operation;
+    const config = parameters.config;
+    if (operation.name === void 0 || operation.name === "") {
+      throw new Error("Operation name is required.");
+    }
+    if (this.apiClient.isVertexAI()) {
+      const resourceName2 = operation.name.split("/operations/")[0];
+      let httpOptions = void 0;
+      if (config && "httpOptions" in config) {
+        httpOptions = config.httpOptions;
+      }
+      const rawOperation = await this.fetchPredictVideosOperationInternal({
+        operationName: operation.name,
+        resourceName: resourceName2,
+        config: { httpOptions }
+      });
+      return operation._fromAPIResponse({
+        apiResponse: rawOperation,
+        isVertexAI: true
+      });
+    } else {
+      const rawOperation = await this.getVideosOperationInternal({
+        operationName: operation.name,
+        config
+      });
+      return operation._fromAPIResponse({
+        apiResponse: rawOperation,
+        isVertexAI: false
       });
     }
   }
@@ -74533,10 +74686,7 @@ var Operations = class extends BaseModule2 {
       }).then((httpResponse) => {
         return httpResponse.json();
       });
-      return response.then((apiResponse) => {
-        const resp = generateVideosOperationFromVertex(apiResponse);
-        return resp;
-      });
+      return response;
     } else {
       const body = getOperationParametersToMldev(params4);
       path8 = formatMap("{operationName}", body["_url"]);
@@ -74554,10 +74704,7 @@ var Operations = class extends BaseModule2 {
       }).then((httpResponse) => {
         return httpResponse.json();
       });
-      return response.then((apiResponse) => {
-        const resp = generateVideosOperationFromMldev(apiResponse);
-        return resp;
-      });
+      return response;
     }
   }
   async fetchPredictVideosOperationInternal(params4) {
@@ -74582,10 +74729,7 @@ var Operations = class extends BaseModule2 {
       }).then((httpResponse) => {
         return httpResponse.json();
       });
-      return response.then((apiResponse) => {
-        const resp = generateVideosOperationFromVertex(apiResponse);
-        return resp;
-      });
+      return response;
     } else {
       throw new Error("This method is only supported by the Vertex AI.");
     }
@@ -75700,6 +75844,12 @@ function tunedModelFromMldev(fromObject) {
 }
 function tuningJobFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
     setValueByPath(toObject, ["name"], fromName);
@@ -75784,6 +75934,12 @@ function tuningJobFromMldev(fromObject) {
 }
 function listTuningJobsResponseFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -75804,6 +75960,12 @@ function listTuningJobsResponseFromMldev(fromObject) {
 }
 function tuningOperationFromMldev(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
     setValueByPath(toObject, ["name"], fromName);
@@ -75866,6 +76028,12 @@ function tunedModelFromVertex(fromObject) {
 }
 function tuningJobFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
     setValueByPath(toObject, ["name"], fromName);
@@ -75972,6 +76140,12 @@ function tuningJobFromVertex(fromObject) {
 }
 function listTuningJobsResponseFromVertex(fromObject) {
   const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
   const fromNextPageToken = getValueByPath(fromObject, [
     "nextPageToken"
   ]);
@@ -76039,7 +76213,13 @@ var Tunings = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = tuningJobFromVertex(apiResponse);
@@ -76060,7 +76240,13 @@ var Tunings = class extends BaseModule2 {
         httpOptions: (_c2 = params4.config) === null || _c2 === void 0 ? void 0 : _c2.httpOptions,
         abortSignal: (_d = params4.config) === null || _d === void 0 ? void 0 : _d.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = tuningJobFromMldev(apiResponse);
@@ -76088,7 +76274,13 @@ var Tunings = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listTuningJobsResponseFromVertex(apiResponse);
@@ -76111,7 +76303,13 @@ var Tunings = class extends BaseModule2 {
         httpOptions: (_c2 = params4.config) === null || _c2 === void 0 ? void 0 : _c2.httpOptions,
         abortSignal: (_d = params4.config) === null || _d === void 0 ? void 0 : _d.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = listTuningJobsResponseFromMldev(apiResponse);
@@ -76141,7 +76339,13 @@ var Tunings = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = tuningJobFromVertex(apiResponse);
@@ -76173,7 +76377,13 @@ var Tunings = class extends BaseModule2 {
         httpOptions: (_a2 = params4.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b2 = params4.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
       }).then((httpResponse) => {
-        return httpResponse.json();
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
       });
       return response.then((apiResponse) => {
         const resp = tuningOperationFromMldev(apiResponse);
@@ -76443,7 +76653,7 @@ var GoogleGenAI = class {
         this.apiKey = void 0;
       }
     }
-    const baseUrl = getBaseUrl(options, getEnv("GOOGLE_VERTEX_BASE_URL"), getEnv("GOOGLE_GEMINI_BASE_URL"));
+    const baseUrl = getBaseUrl(options.httpOptions, options.vertexai, getEnv("GOOGLE_VERTEX_BASE_URL"), getEnv("GOOGLE_GEMINI_BASE_URL"));
     if (baseUrl) {
       if (options.httpOptions) {
         options.httpOptions.baseUrl = baseUrl;
