@@ -56021,8 +56021,8 @@ async function handler10({ projectRoot }) {
   }
   Log.info(green(` \u2713  Built release output.`));
   for (const { outputPath, name } of builtPackages) {
-    await ChildProcess.spawn("yarn", ["link", "--cwd", outputPath]);
-    await ChildProcess.spawn("yarn", ["link", "--cwd", projectRoot, name]);
+    await ChildProcess.spawn("pnpm", ["--dir", outputPath, "link", "--global"]);
+    await ChildProcess.spawn("pnpm", ["--dir", projectRoot, "link", "--global", name]);
   }
   Log.info(green(` \u2713  Linked release packages in provided project.`));
 }
@@ -56030,7 +56030,7 @@ var BuildAndLinkCommandModule = {
   builder: builder10,
   handler: handler10,
   command: "build-and-link <projectRoot>",
-  describe: "Builds the release output, registers the outputs as linked, and links via yarn to the provided project"
+  describe: "Builds the release output, registers the outputs as linked, and links via pnpm to the provided project"
 };
 
 // bazel-out/k8-fastbuild/bin/ng-dev/misc/update-yarn/cli.js
@@ -60534,7 +60534,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-73442df90c353b4b777574ffac1ede88ee89ac4d`;
+  const localVersion = `0.0.0-7a84c5fc1eaddf7b7ec5a178ae4415e92ca48421`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
