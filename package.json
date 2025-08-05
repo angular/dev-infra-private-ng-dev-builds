@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-7a84c5fc1eaddf7b7ec5a178ae4415e92ca48421",
+  "version": "0.0.0-0dd93abfd15a503b36ba6df22b0fe0c3868af93c",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -23,10 +23,10 @@
     "@yarnpkg/lockfile": "^1.1.0",
     "chalk": "^5.0.1",
     "semver": "^7.5.4",
-    "supports-color": "10.0.0",
+    "supports-color": "10.1.0",
     "typed-graphqlify": "^3.1.1",
     "typescript": "~4.9.0",
     "which": "^5.0.0",
-    "yaml": "2.8.0"
+    "yaml": "2.8.1"
   }
 }
