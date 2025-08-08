@@ -1,14 +1,4 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { Formatter } from './base-formatter.js';
-/**
- * Formatter for running buildifier against bazel related files.
- */
 export declare class Buildifier extends Formatter {
     name: string;
     binaryFilePath: string;

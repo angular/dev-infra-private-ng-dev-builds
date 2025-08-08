@@ -1,10 +1,3 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 export * from './utils/config.js';
 export * from './commit-message/config.js';
 export * from './format/config.js';

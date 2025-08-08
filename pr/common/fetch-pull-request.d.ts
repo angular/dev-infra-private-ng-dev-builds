@@ -1,19 +1,10 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { CheckConclusionState, CheckStatusState, MergeableState, PullRequestState, StatusState, CommentAuthorAssociation } from '@octokit/graphql-schema';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
-/** A status for a pull request status or check. */
 export declare enum PullRequestStatus {
     PASSING = 0,
     FAILING = 1,
     PENDING = 2
 }
-/** Graphql schema for the response body the requested pull request. */
 export declare const PR_SCHEMA: {
     url: string;
     isDraft: boolean;
@@ -115,7 +106,6 @@ export declare const PR_COMMENTS_SCHEMA: {
     bodyText: string;
 };
 export type PullRequestCommentsFromGithub = typeof PR_COMMENTS_SCHEMA;
-/** Type describing the normalized and combined status of a pull request. */
 export type PullRequestStatusInfo = {
     combinedStatus: PullRequestStatus;
     statuses: {
@@ -124,16 +114,8 @@ export type PullRequestStatusInfo = {
         name: string;
     }[];
 };
-/** Fetches a pull request from Github. Returns null if an error occurred. */
 export declare function fetchPullRequestFromGithub(git: AuthenticatedGitClient, prNumber: number): Promise<PullRequestFromGithub | null>;
-/** Fetches a pull request from Github. Returns null if an error occurred. */
 export declare function fetchPendingPullRequestsFromGithub(git: AuthenticatedGitClient): Promise<PullRequestFromGithub[] | null>;
-/** Fetches a pull request from Github. Returns null if an error occurred. */
 export declare function fetchPullRequestFilesFromGithub(git: AuthenticatedGitClient, prNumber: number): Promise<PullRequestFilesFromGithub[] | null>;
-/** Fetches a pull request from Github. Returns null if an error occurred. */
 export declare function fetchPullRequestCommentsFromGithub(git: AuthenticatedGitClient, prNumber: number): Promise<PullRequestCommentsFromGithub[] | null>;
-/**
- * Gets the statuses for a commit from a pull request, using a consistent interface
- * for both status and checks results.
- */
 export declare function getStatusesForPullRequest(pullRequest: PullRequestFromGithub): PullRequestStatusInfo;

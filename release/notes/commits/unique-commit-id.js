@@ -1,25 +1,5 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/**
- * Fields from a `Commit` to incorporate when building up an unique
- * id for a commit message.
- *
- * Note: The header incorporates the commit type, scope and message
- * but lacks information for fixup, revert or squash commits..
- */
 const fieldsToIncorporateForId = ['header', 'isFixup', 'isRevert', 'isSquash'];
-/**
- * Computes an unique id for the given commit using its commit message.
- * This can be helpful for comparisons, if commits differ in SHAs due
- * to cherry-picking.
- */
 export function computeUniqueIdFromCommitMessage(commit) {
-    // Join all resolved fields with a special character to build up an id.
     return fieldsToIncorporateForId.map((f) => commit[f]).join('ɵɵ');
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoidW5pcXVlLWNvbW1pdC1pZC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uLy4uLy4uLy4uLy4uL25nLWRldi9yZWxlYXNlL25vdGVzL2NvbW1pdHMvdW5pcXVlLWNvbW1pdC1pZC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFJSDs7Ozs7O0dBTUc7QUFDSCxNQUFNLHdCQUF3QixHQUFxQixDQUFDLFFBQVEsRUFBRSxTQUFTLEVBQUUsVUFBVSxFQUFFLFVBQVUsQ0FBQyxDQUFDO0FBRWpHOzs7O0dBSUc7QUFDSCxNQUFNLFVBQVUsZ0NBQWdDLENBQUMsTUFBYztJQUM3RCx1RUFBdUU7SUFDdkUsT0FBTyx3QkFBd0IsQ0FBQyxHQUFHLENBQUMsQ0FBQyxDQUFDLEVBQUUsRUFBRSxDQUFDLE1BQU0sQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDLElBQUksQ0FBQyxJQUFJLENBQUMsQ0FBQztBQUNuRSxDQUFDIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAbGljZW5zZVxuICogQ29weXJpZ2h0IEdvb2dsZSBMTENcbiAqXG4gKiBVc2Ugb2YgdGhpcyBzb3VyY2UgY29kZSBpcyBnb3Zlcm5lZCBieSBhbiBNSVQtc3R5bGUgbGljZW5zZSB0aGF0IGNhbiBiZVxuICogZm91bmQgaW4gdGhlIExJQ0VOU0UgZmlsZSBhdCBodHRwczovL2FuZ3VsYXIuaW8vbGljZW5zZVxuICovXG5cbmltcG9ydCB7Q29tbWl0fSBmcm9tICcuLi8uLi8uLi9jb21taXQtbWVzc2FnZS9wYXJzZS5qcyc7XG5cbi8qKlxuICogRmllbGRzIGZyb20gYSBgQ29tbWl0YCB0byBpbmNvcnBvcmF0ZSB3aGVuIGJ1aWxkaW5nIHVwIGFuIHVuaXF1ZVxuICogaWQgZm9yIGEgY29tbWl0IG1lc3NhZ2UuXG4gKlxuICogTm90ZTogVGhlIGhlYWRlciBpbmNvcnBvcmF0ZXMgdGhlIGNvbW1pdCB0eXBlLCBzY29wZSBhbmQgbWVzc2FnZVxuICogYnV0IGxhY2tzIGluZm9ybWF0aW9uIGZvciBmaXh1cCwgcmV2ZXJ0IG9yIHNxdWFzaCBjb21taXRzLi5cbiAqL1xuY29uc3QgZmllbGRzVG9JbmNvcnBvcmF0ZUZvcklkOiAoa2V5b2YgQ29tbWl0KVtdID0gWydoZWFkZXInLCAnaXNGaXh1cCcsICdpc1JldmVydCcsICdpc1NxdWFzaCddO1xuXG4vKipcbiAqIENvbXB1dGVzIGFuIHVuaXF1ZSBpZCBmb3IgdGhlIGdpdmVuIGNvbW1pdCB1c2luZyBpdHMgY29tbWl0IG1lc3NhZ2UuXG4gKiBUaGlzIGNhbiBiZSBoZWxwZnVsIGZvciBjb21wYXJpc29ucywgaWYgY29tbWl0cyBkaWZmZXIgaW4gU0hBcyBkdWVcbiAqIHRvIGNoZXJyeS1waWNraW5nLlxuICovXG5leHBvcnQgZnVuY3Rpb24gY29tcHV0ZVVuaXF1ZUlkRnJvbUNvbW1pdE1lc3NhZ2UoY29tbWl0OiBDb21taXQpOiBzdHJpbmcge1xuICAvLyBKb2luIGFsbCByZXNvbHZlZCBmaWVsZHMgd2l0aCBhIHNwZWNpYWwgY2hhcmFjdGVyIHRvIGJ1aWxkIHVwIGFuIGlkLlxuICByZXR1cm4gZmllbGRzVG9JbmNvcnBvcmF0ZUZvcklkLm1hcCgoZikgPT4gY29tbWl0W2ZdKS5qb2luKCfJtcm1Jyk7XG59XG4iXX0=
+//# sourceMappingURL=unique-commit-id.js.map

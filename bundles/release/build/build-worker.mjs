@@ -5,10 +5,10 @@ const require = __cjsCompatRequire(import.meta.url);
 import {
   assertValidReleaseConfig,
   getConfig
-} from "../../chunk-KRDECNW4.mjs";
-import "../../chunk-2JKI6SI6.mjs";
+} from "../../chunk-NREWSLX7.mjs";
+import "../../chunk-MWPZFPDY.mjs";
 
-// bazel-out/k8-fastbuild/bin/ng-dev/release/build/build-worker.js
+// ng-dev/release/build/build-worker.ts
 main().catch((e) => {
   console.error(e);
   throw e;
@@ -29,4 +29,3 @@ async function main() {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=build-worker.mjs.map

@@ -1,16 +1,7 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { hashElement } from 'folder-hash';
-/** Class holding methods for hashing a directory. */
 export class DirectoryHash {
-    /** Computes a hash for the given directory. */
     static async compute(dirPath) {
         return (await hashElement(dirPath, {})).hash;
     }
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiZGlyZWN0b3J5LWhhc2guanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi8uLi8uLi8uLi9uZy1kZXYvcmVsZWFzZS9wdWJsaXNoL2RpcmVjdG9yeS1oYXNoLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBOzs7Ozs7R0FNRztBQUVILE9BQU8sRUFBQyxXQUFXLEVBQUMsTUFBTSxhQUFhLENBQUM7QUFFeEMscURBQXFEO0FBQ3JELE1BQU0sT0FBZ0IsYUFBYTtJQUNqQywrQ0FBK0M7SUFDL0MsTUFBTSxDQUFDLEtBQUssQ0FBQyxPQUFPLENBQUMsT0FBZTtRQUNsQyxPQUFPLENBQUMsTUFBTSxXQUFXLENBQUMsT0FBTyxFQUFFLEVBQUUsQ0FBQyxDQUFDLENBQUMsSUFBSSxDQUFDO0lBQy9DLENBQUM7Q0FDRiIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGxpY2Vuc2VcbiAqIENvcHlyaWdodCBHb29nbGUgTExDXG4gKlxuICogVXNlIG9mIHRoaXMgc291cmNlIGNvZGUgaXMgZ292ZXJuZWQgYnkgYW4gTUlULXN0eWxlIGxpY2Vuc2UgdGhhdCBjYW4gYmVcbiAqIGZvdW5kIGluIHRoZSBMSUNFTlNFIGZpbGUgYXQgaHR0cHM6Ly9hbmd1bGFyLmlvL2xpY2Vuc2VcbiAqL1xuXG5pbXBvcnQge2hhc2hFbGVtZW50fSBmcm9tICdmb2xkZXItaGFzaCc7XG5cbi8qKiBDbGFzcyBob2xkaW5nIG1ldGhvZHMgZm9yIGhhc2hpbmcgYSBkaXJlY3RvcnkuICovXG5leHBvcnQgYWJzdHJhY3QgY2xhc3MgRGlyZWN0b3J5SGFzaCB7XG4gIC8qKiBDb21wdXRlcyBhIGhhc2ggZm9yIHRoZSBnaXZlbiBkaXJlY3RvcnkuICovXG4gIHN0YXRpYyBhc3luYyBjb21wdXRlKGRpclBhdGg6IHN0cmluZyk6IFByb21pc2U8c3RyaW5nPiB7XG4gICAgcmV0dXJuIChhd2FpdCBoYXNoRWxlbWVudChkaXJQYXRoLCB7fSkpLmhhc2g7XG4gIH1cbn1cbiJdfQ==
+//# sourceMappingURL=directory-hash.js.map

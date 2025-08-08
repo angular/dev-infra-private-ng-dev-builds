@@ -1,20 +1,12 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { PullRequestCommentsFromGithub } from '../fetch-pull-request.js';
 import { AuthenticatedGitClient } from '../../../utils/git/authenticated-git-client.js';
-/** Assert the pull request has passing enforced statuses. */
 export declare const enforceTestedValidation: {
     run(validationConfig: import("../../config/index.js").PullRequestValidationConfig, pullRequest: {
         url: string;
         isDraft: boolean;
-        state: import("@octokit/graphql-schema/schema.js").PullRequestState;
+        state: import("@octokit/graphql-schema").PullRequestState;
         number: number;
-        mergeable: import("@octokit/graphql-schema/schema.js").MergeableState;
+        mergeable: import("@octokit/graphql-schema").MergeableState;
         updatedAt: string;
         baseCommitInfo: {
             nodes: {
@@ -34,18 +26,18 @@ export declare const enforceTestedValidation: {
                     oid: string;
                     authoredDate: string;
                     statusCheckRollup: {
-                        state: import("@octokit/graphql-schema/schema.js").StatusState;
+                        state: import("@octokit/graphql-schema").StatusState;
                         contexts: {
                             nodes: ({
                                 __typename: "CheckRun";
-                                status: import("@octokit/graphql-schema/schema.js").CheckStatusState;
-                                conclusion: import("@octokit/graphql-schema/schema.js").CheckConclusionState | null;
+                                status: import("@octokit/graphql-schema").CheckStatusState;
+                                conclusion: import("@octokit/graphql-schema").CheckConclusionState | null;
                                 name: string;
                                 state?: undefined;
                                 context?: undefined;
                             } | {
                                 __typename: "StatusContext";
-                                state: import("@octokit/graphql-schema/schema.js").StatusState;
+                                state: import("@octokit/graphql-schema").StatusState;
                                 context: string;
                                 status?: undefined;
                                 conclusion?: undefined;
@@ -65,7 +57,7 @@ export declare const enforceTestedValidation: {
                 author: {
                     login: string;
                 };
-                authorAssociation: import("@octokit/graphql-schema/schema.js").CommentAuthorAssociation;
+                authorAssociation: import("@octokit/graphql-schema").CommentAuthorAssociation;
                 bodyText: string;
                 commit: {
                     oid: string;
@@ -102,13 +94,7 @@ export declare class PullRequestComments {
     private git;
     private prNumber;
     constructor(git: AuthenticatedGitClient, prNumber: number);
-    /**
-     * Loads the files from a given pull request.
-     */
     loadPullRequestComments(): Promise<PullRequestCommentsFromGithub[]>;
     static create(git: AuthenticatedGitClient, prNumber: number): PullRequestComments;
 }
-/**
- * Checks for `TESTED=[reason]` comment on a current commit sha from a google organization member
- */
 export declare function pullRequestHasValidTestedComment(comments: PullRequestCommentsFromGithub[], gitClient: AuthenticatedGitClient): Promise<boolean>;

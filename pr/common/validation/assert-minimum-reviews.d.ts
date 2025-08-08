@@ -1,18 +1,10 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/** Assert the pull request has completed all requested reviews. */
 export declare const minimumReviewsValidation: {
     run(validationConfig: import("../../config/index.js").PullRequestValidationConfig, pullRequest: {
         url: string;
         isDraft: boolean;
-        state: import("@octokit/graphql-schema/schema.js").PullRequestState;
+        state: import("@octokit/graphql-schema").PullRequestState;
         number: number;
-        mergeable: import("@octokit/graphql-schema/schema.js").MergeableState;
+        mergeable: import("@octokit/graphql-schema").MergeableState;
         updatedAt: string;
         baseCommitInfo: {
             nodes: {
@@ -32,18 +24,18 @@ export declare const minimumReviewsValidation: {
                     oid: string;
                     authoredDate: string;
                     statusCheckRollup: {
-                        state: import("@octokit/graphql-schema/schema.js").StatusState;
+                        state: import("@octokit/graphql-schema").StatusState;
                         contexts: {
                             nodes: ({
                                 __typename: "CheckRun";
-                                status: import("@octokit/graphql-schema/schema.js").CheckStatusState;
-                                conclusion: import("@octokit/graphql-schema/schema.js").CheckConclusionState | null;
+                                status: import("@octokit/graphql-schema").CheckStatusState;
+                                conclusion: import("@octokit/graphql-schema").CheckConclusionState | null;
                                 name: string;
                                 state?: undefined;
                                 context?: undefined;
                             } | {
                                 __typename: "StatusContext";
-                                state: import("@octokit/graphql-schema/schema.js").StatusState;
+                                state: import("@octokit/graphql-schema").StatusState;
                                 context: string;
                                 status?: undefined;
                                 conclusion?: undefined;
@@ -63,7 +55,7 @@ export declare const minimumReviewsValidation: {
                 author: {
                     login: string;
                 };
-                authorAssociation: import("@octokit/graphql-schema/schema.js").CommentAuthorAssociation;
+                authorAssociation: import("@octokit/graphql-schema").CommentAuthorAssociation;
                 bodyText: string;
                 commit: {
                     oid: string;

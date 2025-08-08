@@ -1,35 +1,14 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { semverInc } from '../../../../utils/semver.js';
 import { CutExceptionalMinorPrereleaseAction } from './cut-exceptional-minor-prerelease.js';
-/**
- * Release action that allows for the first exceptional minor release-candidate. The
- * action is only active when there is an in-progress exceptional minor that
- * is still in the `-next` pre-release phase.
- *
- * The action will bump the pre-release version from the `-next` prerelease to
- * the first release-candidate. The action will then become inactive again as
- * additional RC pre-releases would be handled by `CutExceptionalMinorPrereleaseAction`
- * then.
- */
 export class CutExceptionalMinorReleaseCandidateAction extends CutExceptionalMinorPrereleaseAction {
     async getDescription() {
-        // Use the RC description and make it clear that this action is for an exceptional minor.
         return `Exceptional Minor: ${await super.getReleaseCandidateDescription()}`;
     }
     async getNewVersion() {
         return semverInc(this.releaseTrain.version, 'prerelease', 'rc');
     }
     static async isActive(active) {
-        return (
-        // If there is an exceptional minor and we are still in `-next` pre-releases,
-        // the first RC pre-release can be cut.
-        active.exceptionalMinor !== null && active.exceptionalMinor.version.prerelease[0] === 'next');
+        return (active.exceptionalMinor !== null && active.exceptionalMinor.version.prerelease[0] === 'next');
     }
 }
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY3V0LWV4Y2VwdGlvbmFsLW1pbm9yLXJlbGVhc2UtY2FuZGlkYXRlLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L3JlbGVhc2UvcHVibGlzaC9hY3Rpb25zL2V4Y2VwdGlvbmFsLW1pbm9yL2N1dC1leGNlcHRpb25hbC1taW5vci1yZWxlYXNlLWNhbmRpZGF0ZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTs7Ozs7O0dBTUc7QUFHSCxPQUFPLEVBQUMsU0FBUyxFQUFDLE1BQU0sNkJBQTZCLENBQUM7QUFFdEQsT0FBTyxFQUFDLG1DQUFtQyxFQUFDLE1BQU0sdUNBQXVDLENBQUM7QUFFMUY7Ozs7Ozs7OztHQVNHO0FBQ0gsTUFBTSxPQUFPLHlDQUEwQyxTQUFRLG1DQUFtQztJQUN2RixLQUFLLENBQUMsY0FBYztRQUMzQix5RkFBeUY7UUFDekYsT0FBTyxzQkFBc0IsTUFBTSxLQUFLLENBQUMsOEJBQThCLEVBQUUsRUFBRSxDQUFDO0lBQzlFLENBQUM7SUFFUSxLQUFLLENBQUMsYUFBYTtRQUMxQixPQUFPLFNBQVMsQ0FBQyxJQUFJLENBQUMsWUFBWSxDQUFDLE9BQU8sRUFBRSxZQUFZLEVBQUUsSUFBSSxDQUFDLENBQUM7SUFDbEUsQ0FBQztJQUVELE1BQU0sQ0FBVSxLQUFLLENBQUMsUUFBUSxDQUFDLE1BQTJCO1FBQ3hELE9BQU87UUFDTCw2RUFBNkU7UUFDN0UsdUNBQXVDO1FBQ3ZDLE1BQU0sQ0FBQyxnQkFBZ0IsS0FBSyxJQUFJLElBQUksTUFBTSxDQUFDLGdCQUFnQixDQUFDLE9BQU8sQ0FBQyxVQUFVLENBQUMsQ0FBQyxDQUFDLEtBQUssTUFBTSxDQUM3RixDQUFDO0lBQ0osQ0FBQztDQUNGIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBAbGljZW5zZVxuICogQ29weXJpZ2h0IEdvb2dsZSBMTENcbiAqXG4gKiBVc2Ugb2YgdGhpcyBzb3VyY2UgY29kZSBpcyBnb3Zlcm5lZCBieSBhbiBNSVQtc3R5bGUgbGljZW5zZSB0aGF0IGNhbiBiZVxuICogZm91bmQgaW4gdGhlIExJQ0VOU0UgZmlsZSBhdCBodHRwczovL2FuZ3VsYXIuaW8vbGljZW5zZVxuICovXG5cbmltcG9ydCBzZW12ZXIgZnJvbSAnc2VtdmVyJztcbmltcG9ydCB7c2VtdmVySW5jfSBmcm9tICcuLi8uLi8uLi8uLi91dGlscy9zZW12ZXIuanMnO1xuaW1wb3J0IHtBY3RpdmVSZWxlYXNlVHJhaW5zfSBmcm9tICcuLi8uLi8uLi92ZXJzaW9uaW5nL2FjdGl2ZS1yZWxlYXNlLXRyYWlucy5qcyc7XG5pbXBvcnQge0N1dEV4Y2VwdGlvbmFsTWlub3JQcmVyZWxlYXNlQWN0aW9ufSBmcm9tICcuL2N1dC1leGNlcHRpb25hbC1taW5vci1wcmVyZWxlYXNlLmpzJztcblxuLyoqXG4gKiBSZWxlYXNlIGFjdGlvbiB0aGF0IGFsbG93cyBmb3IgdGhlIGZpcnN0IGV4Y2VwdGlvbmFsIG1pbm9yIHJlbGVhc2UtY2FuZGlkYXRlLiBUaGVcbiAqIGFjdGlvbiBpcyBvbmx5IGFjdGl2ZSB3aGVuIHRoZXJlIGlzIGFuIGluLXByb2dyZXNzIGV4Y2VwdGlvbmFsIG1pbm9yIHRoYXRcbiAqIGlzIHN0aWxsIGluIHRoZSBgLW5leHRgIHByZS1yZWxlYXNlIHBoYXNlLlxuICpcbiAqIFRoZSBhY3Rpb24gd2lsbCBidW1wIHRoZSBwcmUtcmVsZWFzZSB2ZXJzaW9uIGZyb20gdGhlIGAtbmV4dGAgcHJlcmVsZWFzZSB0b1xuICogdGhlIGZpcnN0IHJlbGVhc2UtY2FuZGlkYXRlLiBUaGUgYWN0aW9uIHdpbGwgdGhlbiBiZWNvbWUgaW5hY3RpdmUgYWdhaW4gYXNcbiAqIGFkZGl0aW9uYWwgUkMgcHJlLXJlbGVhc2VzIHdvdWxkIGJlIGhhbmRsZWQgYnkgYEN1dEV4Y2VwdGlvbmFsTWlub3JQcmVyZWxlYXNlQWN0aW9uYFxuICogdGhlbi5cbiAqL1xuZXhwb3J0IGNsYXNzIEN1dEV4Y2VwdGlvbmFsTWlub3JSZWxlYXNlQ2FuZGlkYXRlQWN0aW9uIGV4dGVuZHMgQ3V0RXhjZXB0aW9uYWxNaW5vclByZXJlbGVhc2VBY3Rpb24ge1xuICBvdmVycmlkZSBhc3luYyBnZXREZXNjcmlwdGlvbigpOiBQcm9taXNlPHN0cmluZz4ge1xuICAgIC8vIFVzZSB0aGUgUkMgZGVzY3JpcHRpb24gYW5kIG1ha2UgaXQgY2xlYXIgdGhhdCB0aGlzIGFjdGlvbiBpcyBmb3IgYW4gZXhjZXB0aW9uYWwgbWlub3IuXG4gICAgcmV0dXJuIGBFeGNlcHRpb25hbCBNaW5vcjogJHthd2FpdCBzdXBlci5nZXRSZWxlYXNlQ2FuZGlkYXRlRGVzY3JpcHRpb24oKX1gO1xuICB9XG5cbiAgb3ZlcnJpZGUgYXN5bmMgZ2V0TmV3VmVyc2lvbigpOiBQcm9taXNlPHNlbXZlci5TZW1WZXI+IHtcbiAgICByZXR1cm4gc2VtdmVySW5jKHRoaXMucmVsZWFzZVRyYWluLnZlcnNpb24sICdwcmVyZWxlYXNlJywgJ3JjJyk7XG4gIH1cblxuICBzdGF0aWMgb3ZlcnJpZGUgYXN5bmMgaXNBY3RpdmUoYWN0aXZlOiBBY3RpdmVSZWxlYXNlVHJhaW5zKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIC8vIElmIHRoZXJlIGlzIGFuIGV4Y2VwdGlvbmFsIG1pbm9yIGFuZCB3ZSBhcmUgc3RpbGwgaW4gYC1uZXh0YCBwcmUtcmVsZWFzZXMsXG4gICAgICAvLyB0aGUgZmlyc3QgUkMgcHJlLXJlbGVhc2UgY2FuIGJlIGN1dC5cbiAgICAgIGFjdGl2ZS5leGNlcHRpb25hbE1pbm9yICE9PSBudWxsICYmIGFjdGl2ZS5leGNlcHRpb25hbE1pbm9yLnZlcnNpb24ucHJlcmVsZWFzZVswXSA9PT0gJ25leHQnXG4gICAgKTtcbiAgfVxufVxuIl19
+//# sourceMappingURL=cut-exceptional-minor-release-candidate.js.map

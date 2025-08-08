@@ -1,22 +1,8 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
 import { Formatter } from './base-formatter.js';
-/**
- * Formatter for running prettier against Typescript and Javascript files.
- */
 export declare class Prettier extends Formatter {
     name: string;
     binaryFilePath: string;
     defaultFileMatcher: string[];
-    /**
-     * The configuration path of the prettier config, obtained during construction to prevent needing
-     * to discover it repeatedly for each execution.
-     */
     private configPath;
     actions: {
         check: {

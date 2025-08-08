@@ -1,11 +1,3 @@
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
-/** Error class that indicates a fatal merge tool error that cannot be ignored. */
 export declare class FatalMergeToolError extends Error {
     constructor(message: string);
 }

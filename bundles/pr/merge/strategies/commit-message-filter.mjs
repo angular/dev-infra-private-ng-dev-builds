@@ -4,7 +4,7 @@ import {createRequire as __cjsCompatRequire} from 'module';
 const require = __cjsCompatRequire(import.meta.url);
 
 
-// bazel-out/k8-fastbuild/bin/ng-dev/pr/merge/strategies/commit-message-filter.js
+// ng-dev/pr/merge/strategies/commit-message-filter.ts
 main();
 function main() {
   const [prNumber] = process.argv.slice(2);
@@ -37,4 +37,3 @@ function rewriteCommitMessage(message, prNumber) {
  * Use of this source code is governed by an MIT-style license that can be
  * found in the LICENSE file at https://angular.io/license
  */
-//# sourceMappingURL=commit-message-filter.mjs.map

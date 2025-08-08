@@ -1,18 +1,15 @@
 import { Log } from '../../utils/logging.js';
-/** Builds the command. */
 async function builder(yargs) {
     return yargs;
 }
-/** Handles the command. */
 async function handler() {
     Log.warn('ng-dev auth login has been deprecated. Authentication will be done');
     Log.warn('using TOKEN from the local environment.');
 }
-/** yargs command module for logging into the ng-dev service. */
 export const LoginModule = {
     handler,
     builder,
     command: 'login',
     describe: 'Log into the ng-dev service',
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2xpLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiLi4vLi4vLi4vLi4vLi4vLi4vbmctZGV2L2F1dGgvbG9naW4vY2xpLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUNBLE9BQU8sRUFBQyxHQUFHLEVBQUMsTUFBTSx3QkFBd0IsQ0FBQztBQUkzQywwQkFBMEI7QUFDMUIsS0FBSyxVQUFVLE9BQU8sQ0FBQyxLQUFXO0lBQ2hDLE9BQU8sS0FBSyxDQUFDO0FBQ2YsQ0FBQztBQUVELDJCQUEyQjtBQUMzQixLQUFLLFVBQVUsT0FBTztJQUNwQixHQUFHLENBQUMsSUFBSSxDQUFDLG9FQUFvRSxDQUFDLENBQUM7SUFDL0UsR0FBRyxDQUFDLElBQUksQ0FBQyx5Q0FBeUMsQ0FBQyxDQUFDO0FBQ3RELENBQUM7QUFFRCxnRUFBZ0U7QUFDaEUsTUFBTSxDQUFDLE1BQU0sV0FBVyxHQUErQjtJQUNyRCxPQUFPO0lBQ1AsT0FBTztJQUNQLE9BQU8sRUFBRSxPQUFPO0lBQ2hCLFFBQVEsRUFBRSw2QkFBNkI7Q0FDeEMsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7QXJndiwgQ29tbWFuZE1vZHVsZX0gZnJvbSAneWFyZ3MnO1xuaW1wb3J0IHtMb2d9IGZyb20gJy4uLy4uL3V0aWxzL2xvZ2dpbmcuanMnO1xuXG5leHBvcnQgaW50ZXJmYWNlIE9wdGlvbnMge31cblxuLyoqIEJ1aWxkcyB0aGUgY29tbWFuZC4gKi9cbmFzeW5jIGZ1bmN0aW9uIGJ1aWxkZXIoeWFyZ3M6IEFyZ3YpIHtcbiAgcmV0dXJuIHlhcmdzO1xufVxuXG4vKiogSGFuZGxlcyB0aGUgY29tbWFuZC4gKi9cbmFzeW5jIGZ1bmN0aW9uIGhhbmRsZXIoKSB7XG4gIExvZy53YXJuKCduZy1kZXYgYXV0aCBsb2dpbiBoYXMgYmVlbiBkZXByZWNhdGVkLiBBdXRoZW50aWNhdGlvbiB3aWxsIGJlIGRvbmUnKTtcbiAgTG9nLndhcm4oJ3VzaW5nIFRPS0VOIGZyb20gdGhlIGxvY2FsIGVudmlyb25tZW50LicpO1xufVxuXG4vKiogeWFyZ3MgY29tbWFuZCBtb2R1bGUgZm9yIGxvZ2dpbmcgaW50byB0aGUgbmctZGV2IHNlcnZpY2UuICovXG5leHBvcnQgY29uc3QgTG9naW5Nb2R1bGU6IENvbW1hbmRNb2R1bGU8e30sIE9wdGlvbnM+ID0ge1xuICBoYW5kbGVyLFxuICBidWlsZGVyLFxuICBjb21tYW5kOiAnbG9naW4nLFxuICBkZXNjcmliZTogJ0xvZyBpbnRvIHRoZSBuZy1kZXYgc2VydmljZScsXG59O1xuIl19
+//# sourceMappingURL=cli.js.map

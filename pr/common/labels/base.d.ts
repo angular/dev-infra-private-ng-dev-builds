@@ -3,12 +3,10 @@ export interface LabelParams {
     name: string;
     description: string;
     color?: string;
-    /** The repositories the label is to be used in. */
     repositories?: ManagedRepositories[];
 }
 export declare class Label<T extends LabelParams = LabelParams> {
     readonly params: T;
-    /** The repositories the label is to be used in. */
     repositories: ManagedRepositories[];
     name: string;
     description: string;
