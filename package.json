@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-{BUILD_SCM_COMMIT_SHA}",
+  "version": "0.0.0-dadb2ea2c1f5a082596040372a538b03f8829d4a",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
