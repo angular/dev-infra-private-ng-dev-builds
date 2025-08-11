@@ -57951,14 +57951,14 @@ async function updateGeneratedFileTargets() {
   try {
     const result = await ChildProcess.spawn(getBazelBin(), [
       "query",
-      `"kind(nodejs_binary, //...) intersect attr(name, '.update$', //...)"`,
+      `"kind(esbuild, //...) intersect attr(name, '_generated$', //...)"`,
       "--output",
       "label"
     ], { mode: "silent" });
     if (result.status !== 0) {
       throw new Error(`Unexpected error: ${result.stderr}`);
     }
-    const targets = result.stdout.trim().split(/\r?\n/);
+    const targets = result.stdout.trim().split(/\r?\n/).map((x) => x.replace(/_generated$/, ""));
     Log.debug.group("Discovered Targets");
     targets.forEach((target) => Log.debug(target));
     Log.debug.groupEnd();
@@ -62243,7 +62243,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-dadb2ea2c1f5a082596040372a538b03f8829d4a`;
+  const localVersion = `0.0.0-8f19310a6861d54d57a9c98c5419a898628eaba9`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

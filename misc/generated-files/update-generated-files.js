@@ -7,14 +7,17 @@ export async function updateGeneratedFileTargets() {
     try {
         const result = await ChildProcess.spawn(getBazelBin(), [
             'query',
-            `"kind(nodejs_binary, //...) intersect attr(name, '.update$', //...)"`,
+            `"kind(esbuild, //...) intersect attr(name, '_generated$', //...)"`,
             '--output',
             'label',
         ], { mode: 'silent' });
         if (result.status !== 0) {
             throw new Error(`Unexpected error: ${result.stderr}`);
         }
-        const targets = result.stdout.trim().split(/\r?\n/);
+        const targets = result.stdout
+            .trim()
+            .split(/\r?\n/)
+            .map((x) => x.replace(/_generated$/, ''));
         Log.debug.group('Discovered Targets');
         targets.forEach((target) => Log.debug(target));
         Log.debug.groupEnd();
