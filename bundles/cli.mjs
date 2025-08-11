@@ -57596,7 +57596,7 @@ async function checkFiles(files) {
     } else {
       Log.info();
       Log.info(`To format the failing file run the following command:`);
-      Log.info(`  yarn ng-dev format files ${failures.map((f) => f.filePath).join(" ")}`);
+      Log.info(`  pnpm ng-dev format files ${failures.map((f) => f.filePath).join(" ")}`);
       return 1;
     }
   } else {
@@ -62243,7 +62243,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-ef64fabeab088c2d016508c9b045c122cdc44116`;
+  const localVersion = `0.0.0-0b24ffe8d1f7144d6302dafcc214790e708e598a`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -63078,7 +63078,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.13.0_1545225743/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.13.0_796444809/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable2 } from "node:stream";
@@ -63090,7 +63090,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.13.0_1545225743/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.13.0_796444809/node_modules/@google/genai/dist/node/index.mjs
 import * as fs4 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
