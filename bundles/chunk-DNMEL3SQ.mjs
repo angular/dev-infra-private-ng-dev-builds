@@ -2030,10 +2030,10 @@ var require_posix = __commonJS({
     exports.sync = exports.isexe = void 0;
     var fs_1 = __require("fs");
     var promises_1 = __require("fs/promises");
-    var isexe = async (path3, options = {}) => {
+    var isexe = async (path2, options = {}) => {
       const { ignoreErrors = false } = options;
       try {
-        return checkStat(await (0, promises_1.stat)(path3), options);
+        return checkStat(await (0, promises_1.stat)(path2), options);
       } catch (e) {
         const er = e;
         if (ignoreErrors || er.code === "EACCES")
@@ -2042,10 +2042,10 @@ var require_posix = __commonJS({
       }
     };
     exports.isexe = isexe;
-    var sync = (path3, options = {}) => {
+    var sync = (path2, options = {}) => {
       const { ignoreErrors = false } = options;
       try {
-        return checkStat((0, fs_1.statSync)(path3), options);
+        return checkStat((0, fs_1.statSync)(path2), options);
       } catch (e) {
         const er = e;
         if (ignoreErrors || er.code === "EACCES")
@@ -2083,10 +2083,10 @@ var require_win32 = __commonJS({
     exports.sync = exports.isexe = void 0;
     var fs_1 = __require("fs");
     var promises_1 = __require("fs/promises");
-    var isexe = async (path3, options = {}) => {
+    var isexe = async (path2, options = {}) => {
       const { ignoreErrors = false } = options;
       try {
-        return checkStat(await (0, promises_1.stat)(path3), path3, options);
+        return checkStat(await (0, promises_1.stat)(path2), path2, options);
       } catch (e) {
         const er = e;
         if (ignoreErrors || er.code === "EACCES")
@@ -2095,10 +2095,10 @@ var require_win32 = __commonJS({
       }
     };
     exports.isexe = isexe;
-    var sync = (path3, options = {}) => {
+    var sync = (path2, options = {}) => {
       const { ignoreErrors = false } = options;
       try {
-        return checkStat((0, fs_1.statSync)(path3), path3, options);
+        return checkStat((0, fs_1.statSync)(path2), path2, options);
       } catch (e) {
         const er = e;
         if (ignoreErrors || er.code === "EACCES")
@@ -2107,7 +2107,7 @@ var require_win32 = __commonJS({
       }
     };
     exports.sync = sync;
-    var checkPathExt = (path3, options) => {
+    var checkPathExt = (path2, options) => {
       const { pathExt = process.env.PATHEXT || "" } = options;
       const peSplit = pathExt.split(";");
       if (peSplit.indexOf("") !== -1) {
@@ -2115,14 +2115,14 @@ var require_win32 = __commonJS({
       }
       for (let i = 0; i < peSplit.length; i++) {
         const p = peSplit[i].toLowerCase();
-        const ext = path3.substring(path3.length - p.length).toLowerCase();
+        const ext = path2.substring(path2.length - p.length).toLowerCase();
         if (p && ext === p) {
           return true;
         }
       }
       return false;
     };
-    var checkStat = (stat, path3, options) => stat.isFile() && checkPathExt(path3, options);
+    var checkStat = (stat, path2, options) => stat.isFile() && checkPathExt(path2, options);
   }
 });
 
@@ -2186,7 +2186,7 @@ var require_cjs = __commonJS({
 var require_lib = __commonJS({
   "node_modules/.aspect_rules_js/which@5.0.0/node_modules/which/lib/index.js"(exports, module) {
     var { isexe, sync: isexeSync } = require_cjs();
-    var { join: join3, delimiter, sep: sep2, posix } = __require("path");
+    var { join: join2, delimiter, sep: sep2, posix } = __require("path");
     var isWindows = process.platform === "win32";
     var rSlash = new RegExp(`[${posix.sep}${sep2 === posix.sep ? "" : sep2}]`.replace(/(\\)/g, "\\$1"));
     var rRel = new RegExp(`^\\.${rSlash.source}`);
@@ -2215,7 +2215,7 @@ var require_lib = __commonJS({
     var getPathPart = (raw, cmd) => {
       const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
       const prefix = !pathPart && rRel.test(cmd) ? cmd.slice(0, 2) : "";
-      return prefix + join3(pathPart, cmd);
+      return prefix + join2(pathPart, cmd);
     };
     var which2 = async (cmd, opt = {}) => {
       const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
@@ -2347,17 +2347,17 @@ var require_visit = __commonJS({
     visit.BREAK = BREAK;
     visit.SKIP = SKIP;
     visit.REMOVE = REMOVE;
-    function visit_(key, node, visitor, path3) {
-      const ctrl = callVisitor(key, node, visitor, path3);
+    function visit_(key, node, visitor, path2) {
+      const ctrl = callVisitor(key, node, visitor, path2);
       if (identity.isNode(ctrl) || identity.isPair(ctrl)) {
-        replaceNode(key, path3, ctrl);
-        return visit_(key, ctrl, visitor, path3);
+        replaceNode(key, path2, ctrl);
+        return visit_(key, ctrl, visitor, path2);
       }
       if (typeof ctrl !== "symbol") {
         if (identity.isCollection(node)) {
-          path3 = Object.freeze(path3.concat(node));
+          path2 = Object.freeze(path2.concat(node));
           for (let i = 0; i < node.items.length; ++i) {
-            const ci = visit_(i, node.items[i], visitor, path3);
+            const ci = visit_(i, node.items[i], visitor, path2);
             if (typeof ci === "number")
               i = ci - 1;
             else if (ci === BREAK)
@@ -2368,13 +2368,13 @@ var require_visit = __commonJS({
             }
           }
         } else if (identity.isPair(node)) {
-          path3 = Object.freeze(path3.concat(node));
-          const ck = visit_("key", node.key, visitor, path3);
+          path2 = Object.freeze(path2.concat(node));
+          const ck = visit_("key", node.key, visitor, path2);
           if (ck === BREAK)
             return BREAK;
           else if (ck === REMOVE)
             node.key = null;
-          const cv = visit_("value", node.value, visitor, path3);
+          const cv = visit_("value", node.value, visitor, path2);
           if (cv === BREAK)
             return BREAK;
           else if (cv === REMOVE)
@@ -2395,17 +2395,17 @@ var require_visit = __commonJS({
     visitAsync.BREAK = BREAK;
     visitAsync.SKIP = SKIP;
     visitAsync.REMOVE = REMOVE;
-    async function visitAsync_(key, node, visitor, path3) {
-      const ctrl = await callVisitor(key, node, visitor, path3);
+    async function visitAsync_(key, node, visitor, path2) {
+      const ctrl = await callVisitor(key, node, visitor, path2);
       if (identity.isNode(ctrl) || identity.isPair(ctrl)) {
-        replaceNode(key, path3, ctrl);
-        return visitAsync_(key, ctrl, visitor, path3);
+        replaceNode(key, path2, ctrl);
+        return visitAsync_(key, ctrl, visitor, path2);
       }
       if (typeof ctrl !== "symbol") {
         if (identity.isCollection(node)) {
-          path3 = Object.freeze(path3.concat(node));
+          path2 = Object.freeze(path2.concat(node));
           for (let i = 0; i < node.items.length; ++i) {
-            const ci = await visitAsync_(i, node.items[i], visitor, path3);
+            const ci = await visitAsync_(i, node.items[i], visitor, path2);
             if (typeof ci === "number")
               i = ci - 1;
             else if (ci === BREAK)
@@ -2416,13 +2416,13 @@ var require_visit = __commonJS({
             }
           }
         } else if (identity.isPair(node)) {
-          path3 = Object.freeze(path3.concat(node));
-          const ck = await visitAsync_("key", node.key, visitor, path3);
+          path2 = Object.freeze(path2.concat(node));
+          const ck = await visitAsync_("key", node.key, visitor, path2);
           if (ck === BREAK)
             return BREAK;
           else if (ck === REMOVE)
             node.key = null;
-          const cv = await visitAsync_("value", node.value, visitor, path3);
+          const cv = await visitAsync_("value", node.value, visitor, path2);
           if (cv === BREAK)
             return BREAK;
           else if (cv === REMOVE)
@@ -2449,23 +2449,23 @@ var require_visit = __commonJS({
       }
       return visitor;
     }
-    function callVisitor(key, node, visitor, path3) {
+    function callVisitor(key, node, visitor, path2) {
       if (typeof visitor === "function")
-        return visitor(key, node, path3);
+        return visitor(key, node, path2);
       if (identity.isMap(node))
-        return visitor.Map?.(key, node, path3);
+        return visitor.Map?.(key, node, path2);
       if (identity.isSeq(node))
-        return visitor.Seq?.(key, node, path3);
+        return visitor.Seq?.(key, node, path2);
       if (identity.isPair(node))
-        return visitor.Pair?.(key, node, path3);
+        return visitor.Pair?.(key, node, path2);
       if (identity.isScalar(node))
-        return visitor.Scalar?.(key, node, path3);
+        return visitor.Scalar?.(key, node, path2);
       if (identity.isAlias(node))
-        return visitor.Alias?.(key, node, path3);
+        return visitor.Alias?.(key, node, path2);
       return void 0;
     }
-    function replaceNode(key, path3, node) {
-      const parent = path3[path3.length - 1];
+    function replaceNode(key, path2, node) {
+      const parent = path2[path2.length - 1];
       if (identity.isCollection(parent)) {
         parent.items[key] = node;
       } else if (identity.isPair(parent)) {
@@ -3073,10 +3073,10 @@ var require_Collection = __commonJS({
     var createNode = require_createNode();
     var identity = require_identity();
     var Node = require_Node();
-    function collectionFromPath(schema, path3, value) {
+    function collectionFromPath(schema, path2, value) {
       let v = value;
-      for (let i = path3.length - 1; i >= 0; --i) {
-        const k = path3[i];
+      for (let i = path2.length - 1; i >= 0; --i) {
+        const k = path2[i];
         if (typeof k === "number" && Number.isInteger(k) && k >= 0) {
           const a = [];
           a[k] = v;
@@ -3095,7 +3095,7 @@ var require_Collection = __commonJS({
         sourceObjects: /* @__PURE__ */ new Map()
       });
     }
-    var isEmptyPath = (path3) => path3 == null || typeof path3 === "object" && !!path3[Symbol.iterator]().next().done;
+    var isEmptyPath = (path2) => path2 == null || typeof path2 === "object" && !!path2[Symbol.iterator]().next().done;
     var Collection2 = class extends Node.NodeBase {
       constructor(type, schema) {
         super(type);
@@ -3125,11 +3125,11 @@ var require_Collection = __commonJS({
        * be a Pair instance or a `{ key, value }` object, which may not have a key
        * that already exists in the map.
        */
-      addIn(path3, value) {
-        if (isEmptyPath(path3))
+      addIn(path2, value) {
+        if (isEmptyPath(path2))
           this.add(value);
         else {
-          const [key, ...rest] = path3;
+          const [key, ...rest] = path2;
           const node = this.get(key, true);
           if (identity.isCollection(node))
             node.addIn(rest, value);
@@ -3143,8 +3143,8 @@ var require_Collection = __commonJS({
        * Removes a value from the collection.
        * @returns `true` if the item was found and removed.
        */
-      deleteIn(path3) {
-        const [key, ...rest] = path3;
+      deleteIn(path2) {
+        const [key, ...rest] = path2;
         if (rest.length === 0)
           return this.delete(key);
         const node = this.get(key, true);
@@ -3158,8 +3158,8 @@ var require_Collection = __commonJS({
        * scalar values from their surrounding node; to disable set `keepScalar` to
        * `true` (collections are always returned intact).
        */
-      getIn(path3, keepScalar) {
-        const [key, ...rest] = path3;
+      getIn(path2, keepScalar) {
+        const [key, ...rest] = path2;
         const node = this.get(key, true);
         if (rest.length === 0)
           return !keepScalar && identity.isScalar(node) ? node.value : node;
@@ -3177,8 +3177,8 @@ var require_Collection = __commonJS({
       /**
        * Checks if the collection includes a value with the key `key`.
        */
-      hasIn(path3) {
-        const [key, ...rest] = path3;
+      hasIn(path2) {
+        const [key, ...rest] = path2;
         if (rest.length === 0)
           return this.has(key);
         const node = this.get(key, true);
@@ -3188,8 +3188,8 @@ var require_Collection = __commonJS({
        * Sets a value in this collection. For `!!set`, `value` needs to be a
        * boolean to add/remove the item from the set.
        */
-      setIn(path3, value) {
-        const [key, ...rest] = path3;
+      setIn(path2, value) {
+        const [key, ...rest] = path2;
         if (rest.length === 0) {
           this.set(key, value);
         } else {
@@ -5693,9 +5693,9 @@ var require_Document = __commonJS({
           this.contents.add(value);
       }
       /** Adds a value to the document. */
-      addIn(path3, value) {
+      addIn(path2, value) {
         if (assertCollection(this.contents))
-          this.contents.addIn(path3, value);
+          this.contents.addIn(path2, value);
       }
       /**
        * Create a new `Alias` node, ensuring that the target `node` has the required anchor.
@@ -5770,14 +5770,14 @@ var require_Document = __commonJS({
        * Removes a value from the document.
        * @returns `true` if the item was found and removed.
        */
-      deleteIn(path3) {
-        if (Collection2.isEmptyPath(path3)) {
+      deleteIn(path2) {
+        if (Collection2.isEmptyPath(path2)) {
           if (this.contents == null)
             return false;
           this.contents = null;
           return true;
         }
-        return assertCollection(this.contents) ? this.contents.deleteIn(path3) : false;
+        return assertCollection(this.contents) ? this.contents.deleteIn(path2) : false;
       }
       /**
        * Returns item at `key`, or `undefined` if not found. By default unwraps
@@ -5792,10 +5792,10 @@ var require_Document = __commonJS({
        * scalar values from their surrounding node; to disable set `keepScalar` to
        * `true` (collections are always returned intact).
        */
-      getIn(path3, keepScalar) {
-        if (Collection2.isEmptyPath(path3))
+      getIn(path2, keepScalar) {
+        if (Collection2.isEmptyPath(path2))
           return !keepScalar && identity.isScalar(this.contents) ? this.contents.value : this.contents;
-        return identity.isCollection(this.contents) ? this.contents.getIn(path3, keepScalar) : void 0;
+        return identity.isCollection(this.contents) ? this.contents.getIn(path2, keepScalar) : void 0;
       }
       /**
        * Checks if the document includes a value with the key `key`.
@@ -5806,10 +5806,10 @@ var require_Document = __commonJS({
       /**
        * Checks if the document includes a value at `path`.
        */
-      hasIn(path3) {
-        if (Collection2.isEmptyPath(path3))
+      hasIn(path2) {
+        if (Collection2.isEmptyPath(path2))
           return this.contents !== void 0;
-        return identity.isCollection(this.contents) ? this.contents.hasIn(path3) : false;
+        return identity.isCollection(this.contents) ? this.contents.hasIn(path2) : false;
       }
       /**
        * Sets a value in this document. For `!!set`, `value` needs to be a
@@ -5826,13 +5826,13 @@ var require_Document = __commonJS({
        * Sets a value in this document. For `!!set`, `value` needs to be a
        * boolean to add/remove the item from the set.
        */
-      setIn(path3, value) {
-        if (Collection2.isEmptyPath(path3)) {
+      setIn(path2, value) {
+        if (Collection2.isEmptyPath(path2)) {
           this.contents = value;
         } else if (this.contents == null) {
-          this.contents = Collection2.collectionFromPath(this.schema, Array.from(path3), value);
+          this.contents = Collection2.collectionFromPath(this.schema, Array.from(path2), value);
         } else if (assertCollection(this.contents)) {
-          this.contents.setIn(path3, value);
+          this.contents.setIn(path2, value);
         }
       }
       /**
@@ -7784,9 +7784,9 @@ var require_cst_visit = __commonJS({
     visit.BREAK = BREAK;
     visit.SKIP = SKIP;
     visit.REMOVE = REMOVE;
-    visit.itemAtPath = (cst, path3) => {
+    visit.itemAtPath = (cst, path2) => {
       let item = cst;
-      for (const [field, index] of path3) {
+      for (const [field, index] of path2) {
         const tok = item?.[field];
         if (tok && "items" in tok) {
           item = tok.items[index];
@@ -7795,23 +7795,23 @@ var require_cst_visit = __commonJS({
       }
       return item;
     };
-    visit.parentCollection = (cst, path3) => {
-      const parent = visit.itemAtPath(cst, path3.slice(0, -1));
-      const field = path3[path3.length - 1][0];
+    visit.parentCollection = (cst, path2) => {
+      const parent = visit.itemAtPath(cst, path2.slice(0, -1));
+      const field = path2[path2.length - 1][0];
       const coll = parent?.[field];
       if (coll && "items" in coll)
         return coll;
       throw new Error("Parent collection not found");
     };
-    function _visit(path3, item, visitor) {
-      let ctrl = visitor(item, path3);
+    function _visit(path2, item, visitor) {
+      let ctrl = visitor(item, path2);
       if (typeof ctrl === "symbol")
         return ctrl;
       for (const field of ["key", "value"]) {
         const token = item[field];
         if (token && "items" in token) {
           for (let i = 0; i < token.items.length; ++i) {
-            const ci = _visit(Object.freeze(path3.concat([[field, i]])), token.items[i], visitor);
+            const ci = _visit(Object.freeze(path2.concat([[field, i]])), token.items[i], visitor);
             if (typeof ci === "number")
               i = ci - 1;
             else if (ci === BREAK)
@@ -7822,10 +7822,10 @@ var require_cst_visit = __commonJS({
             }
           }
           if (typeof ctrl === "function" && field === "key")
-            ctrl = ctrl(item, path3);
+            ctrl = ctrl(item, path2);
         }
       }
-      return typeof ctrl === "function" ? ctrl(item, path3) : ctrl;
+      return typeof ctrl === "function" ? ctrl(item, path2) : ctrl;
     }
     exports.visit = visit;
   }
@@ -9110,14 +9110,14 @@ var require_parser = __commonJS({
             case "scalar":
             case "single-quoted-scalar":
             case "double-quoted-scalar": {
-              const fs3 = this.flowScalar(this.type);
+              const fs2 = this.flowScalar(this.type);
               if (atNextItem || it.value) {
-                map.items.push({ start, key: fs3, sep: [] });
+                map.items.push({ start, key: fs2, sep: [] });
                 this.onKeyLine = true;
               } else if (it.sep) {
-                this.stack.push(fs3);
+                this.stack.push(fs2);
               } else {
-                Object.assign(it, { key: fs3, sep: [] });
+                Object.assign(it, { key: fs2, sep: [] });
                 this.onKeyLine = true;
               }
               return;
@@ -9245,13 +9245,13 @@ var require_parser = __commonJS({
             case "scalar":
             case "single-quoted-scalar":
             case "double-quoted-scalar": {
-              const fs3 = this.flowScalar(this.type);
+              const fs2 = this.flowScalar(this.type);
               if (!it || it.value)
-                fc.items.push({ start: [], key: fs3, sep: [] });
+                fc.items.push({ start: [], key: fs2, sep: [] });
               else if (it.sep)
-                this.stack.push(fs3);
+                this.stack.push(fs2);
               else
-                Object.assign(it, { key: fs3, sep: [] });
+                Object.assign(it, { key: fs2, sep: [] });
               return;
             }
             case "flow-map-end":
@@ -9729,8 +9729,8 @@ function removeUndefinedProperties(obj) {
 }
 function merge(defaults, route, options) {
   if (typeof route === "string") {
-    let [method, url2] = route.split(" ");
-    options = Object.assign(url2 ? { method, url: url2 } : { url: method }, options);
+    let [method, url] = route.split(" ");
+    options = Object.assign(url ? { method, url } : { url: method }, options);
   } else {
     options = Object.assign({}, route);
   }
@@ -9748,13 +9748,13 @@ function merge(defaults, route, options) {
   }
   return mergedOptions;
 }
-function addQueryParameters(url2, parameters) {
-  const separator = /\?/.test(url2) ? "&" : "?";
+function addQueryParameters(url, parameters) {
+  const separator = /\?/.test(url) ? "&" : "?";
   const names = Object.keys(parameters);
   if (names.length === 0) {
-    return url2;
+    return url;
   }
-  return url2 + separator + names.map((name) => {
+  return url + separator + names.map((name) => {
     if (name === "q") {
       return "q=" + parameters.q.split("+").map(encodeURIComponent).join("+");
     }
@@ -9765,8 +9765,8 @@ var urlVariableRegex = /\{[^{}}]+\}/g;
 function removeNonChars(variableName) {
   return variableName.replace(/(?:^\W+)|(?:(?<!\W)\W+$)/g, "").split(/,/);
 }
-function extractUrlVariableNames(url2) {
-  const matches = url2.match(urlVariableRegex);
+function extractUrlVariableNames(url) {
+  const matches = url.match(urlVariableRegex);
   if (!matches) {
     return [];
   }
@@ -9913,7 +9913,7 @@ function expand(template, context) {
 }
 function parse(options) {
   let method = options.method.toUpperCase();
-  let url2 = (options.url || "/").replace(/:([a-z]\w+)/g, "{$1}");
+  let url = (options.url || "/").replace(/:([a-z]\w+)/g, "{$1}");
   let headers = Object.assign({}, options.headers);
   let body;
   let parameters = omit(options, [
@@ -9924,10 +9924,10 @@ function parse(options) {
     "request",
     "mediaType"
   ]);
-  const urlVariableNames = extractUrlVariableNames(url2);
-  url2 = parseUrl(url2).expand(parameters);
-  if (!/^http/.test(url2)) {
-    url2 = options.baseUrl + url2;
+  const urlVariableNames = extractUrlVariableNames(url);
+  url = parseUrl(url).expand(parameters);
+  if (!/^http/.test(url)) {
+    url = options.baseUrl + url;
   }
   const omittedParameters = Object.keys(options).filter((option) => urlVariableNames.includes(option)).concat("baseUrl");
   const remainingParameters = omit(parameters, omittedParameters);
@@ -9941,7 +9941,7 @@ function parse(options) {
         )
       ).join(",");
     }
-    if (url2.endsWith("/graphql")) {
+    if (url.endsWith("/graphql")) {
       if (options.mediaType.previews?.length) {
         const previewsFromAcceptHeader = headers.accept.match(/(?<![\w-])[\w-]+(?=-preview)/g) || [];
         headers.accept = previewsFromAcceptHeader.concat(options.mediaType.previews).map((preview) => {
@@ -9952,7 +9952,7 @@ function parse(options) {
     }
   }
   if (["GET", "HEAD"].includes(method)) {
-    url2 = addQueryParameters(url2, remainingParameters);
+    url = addQueryParameters(url, remainingParameters);
   } else {
     if ("data" in remainingParameters) {
       body = remainingParameters.data;
@@ -9969,7 +9969,7 @@ function parse(options) {
     body = "";
   }
   return Object.assign(
-    { method, url: url2, headers },
+    { method, url, headers },
     typeof body !== "undefined" ? { body } : null,
     options.request ? { request: options.request } : null
   );
@@ -10097,13 +10097,13 @@ async function fetchWrapper(requestOptions) {
     throw requestError;
   }
   const status = fetchResponse.status;
-  const url2 = fetchResponse.url;
+  const url = fetchResponse.url;
   const responseHeaders = {};
   for (const [key, value] of fetchResponse.headers) {
     responseHeaders[key] = value;
   }
   const octokitResponse = {
-    url: url2,
+    url,
     status,
     headers: responseHeaders,
     data: ""
@@ -10503,17 +10503,17 @@ function requestLog(octokit) {
     octokit.log.debug("request", options);
     const start = Date.now();
     const requestOptions = octokit.request.endpoint.parse(options);
-    const path3 = requestOptions.url.replace(options.baseUrl, "");
+    const path2 = requestOptions.url.replace(options.baseUrl, "");
     return request2(options).then((response) => {
       const requestId = response.headers["x-github-request-id"];
       octokit.log.info(
-        `${requestOptions.method} ${path3} - ${response.status} with id ${requestId} in ${Date.now() - start}ms`
+        `${requestOptions.method} ${path2} - ${response.status} with id ${requestId} in ${Date.now() - start}ms`
       );
       return response;
     }).catch((error) => {
       const requestId = error.response?.headers["x-github-request-id"] || "UNKNOWN";
       octokit.log.error(
-        `${requestOptions.method} ${path3} - ${error.status} with id ${requestId} in ${Date.now() - start}ms`
+        `${requestOptions.method} ${path2} - ${error.status} with id ${requestId} in ${Date.now() - start}ms`
       );
       throw error;
     });
@@ -10558,31 +10558,31 @@ function iterator(octokit, route, parameters) {
   const requestMethod = typeof route === "function" ? route : octokit.request;
   const method = options.method;
   const headers = options.headers;
-  let url2 = options.url;
+  let url = options.url;
   return {
     [Symbol.asyncIterator]: () => ({
       async next() {
-        if (!url2) return { done: true };
+        if (!url) return { done: true };
         try {
-          const response = await requestMethod({ method, url: url2, headers });
+          const response = await requestMethod({ method, url, headers });
           const normalizedResponse = normalizePaginatedListResponse(response);
-          url2 = ((normalizedResponse.headers.link || "").match(
+          url = ((normalizedResponse.headers.link || "").match(
             /<([^<>]+)>;\s*rel="next"/
           ) || [])[1];
-          if (!url2 && "total_commits" in normalizedResponse.data) {
+          if (!url && "total_commits" in normalizedResponse.data) {
             const parsedUrl = new URL(normalizedResponse.url);
             const params2 = parsedUrl.searchParams;
             const page = parseInt(params2.get("page") || "1", 10);
             const per_page = parseInt(params2.get("per_page") || "250", 10);
             if (page * per_page < normalizedResponse.data.total_commits) {
               params2.set("page", String(page + 1));
-              url2 = parsedUrl.toString();
+              url = parsedUrl.toString();
             }
           }
           return { value: normalizedResponse };
         } catch (error) {
           if (error.status !== 409) throw error;
-          url2 = "";
+          url = "";
           return {
             value: {
               status: 200,
@@ -12750,11 +12750,11 @@ var endpointMethodsMap = /* @__PURE__ */ new Map();
 for (const [scope, endpoints] of Object.entries(endpoints_default)) {
   for (const [methodName, endpoint2] of Object.entries(endpoints)) {
     const [route, defaults, decorations] = endpoint2;
-    const [method, url2] = route.split(/ /);
+    const [method, url] = route.split(/ /);
     const endpointDefaults = Object.assign(
       {
         method,
-        url: url2
+        url
       },
       defaults
     );
@@ -12926,7 +12926,7 @@ function renderParams(params2, brackets, array) {
   if (!params2) {
     return "";
   }
-  var builder2 = [];
+  var builder = [];
   for (var _i = 0, _a = Object.entries(params2); _i < _a.length; _i++) {
     var _b = _a[_i], key = _b[0], value = _b[1];
     var params_1 = void 0;
@@ -12939,9 +12939,9 @@ function renderParams(params2, brackets, array) {
     } else {
       params_1 = "".concat(value);
     }
-    builder2.push(array ? "".concat(params_1) : "".concat(key, ":").concat(params_1));
+    builder.push(array ? "".concat(params_1) : "".concat(key, ":").concat(params_1));
   }
-  var built = builder2.join(",");
+  var built = builder.join(",");
   if (brackets) {
     built = "(".concat(built, ")");
   }
@@ -13207,10 +13207,10 @@ import { URL as URL2 } from "url";
 var GITHUB_TOKEN_SETTINGS_URL = "https://github.com/settings/tokens";
 var GITHUB_TOKEN_GENERATE_URL = "https://github.com/settings/tokens/new";
 function addTokenToGitHttpsUrl(githubHttpsUrl, token) {
-  const url2 = new URL2(githubHttpsUrl);
-  url2.password = token;
-  url2.username = "x-access-token";
-  return url2.href;
+  const url = new URL2(githubHttpsUrl);
+  url.password = token;
+  url.username = "x-access-token";
+  return url.href;
 }
 function getRepositoryGitUrl(config, githubToken) {
   if (config.useSsh) {
@@ -14164,141 +14164,6 @@ async function assertPassingReleasePrechecks(config, newVersion, builtPackagesWi
   }
 }
 
-// ng-dev/release/stamping/env-stamp.js
-import * as fs2 from "fs";
-var import_semver5 = __toESM(require_semver2());
-
-// ng-dev/release/versioning/experimental-versions.js
-var import_semver4 = __toESM(require_semver2());
-function isExperimentalSemver(version) {
-  return version.major === 0 && version.minor >= 100;
-}
-function createExperimentalSemver(version) {
-  version = new import_semver4.default.SemVer(version);
-  const experimentalVersion = new import_semver4.default.SemVer(version.format());
-  experimentalVersion.major = 0;
-  experimentalVersion.minor = version.major * 100 + version.minor;
-  return new import_semver4.default.SemVer(experimentalVersion.format());
-}
-
-// ng-dev/release/stamping/env-stamp.js
-import { join as join2 } from "path";
-async function printEnvStamp(mode, includeVersion) {
-  const git = await GitClient.get();
-  console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
-  console.info(`BUILD_SCM_COMMIT_SHA ${getCurrentSha(git)}`);
-  console.info(`BUILD_SCM_HASH ${getCurrentSha(git)}`);
-  console.info(`BUILD_SCM_ABBREV_HASH ${getCurrentAbbrevSha(git)}`);
-  console.info(`BUILD_SCM_BRANCH ${getCurrentBranchOrRevision(git)}`);
-  console.info(`BUILD_SCM_LOCAL_CHANGES ${hasLocalChanges(git)}`);
-  console.info(`BUILD_SCM_USER ${getCurrentGitUser(git)}`);
-  if (includeVersion === true) {
-    const { version, experimentalVersion } = getSCMVersions(git, mode);
-    console.info(`STABLE_PROJECT_VERSION ${version}`);
-    console.info(`STABLE_PROJECT_EXPERIMENTAL_VERSION ${experimentalVersion}`);
-  }
-}
-function hasLocalChanges(git) {
-  try {
-    return git.hasUncommittedChanges();
-  } catch {
-    return true;
-  }
-}
-function getSCMVersions(git, mode) {
-  const version = getVersionFromWorkspacePackageJson(git).format();
-  const experimentalVersion = createExperimentalSemver(version).format();
-  if (mode === "release") {
-    return {
-      version,
-      experimentalVersion
-    };
-  }
-  const headShaAbbreviated = getCurrentSha(git).slice(0, 7);
-  const localChanges = hasLocalChanges(git) ? "-with-local-changes" : "";
-  return {
-    version: `${version}+sha-${headShaAbbreviated}${localChanges}`,
-    experimentalVersion: `${experimentalVersion}+sha-${headShaAbbreviated}${localChanges}`
-  };
-}
-function getCurrentSha(git) {
-  try {
-    return git.run(["rev-parse", "HEAD"]).stdout.trim();
-  } catch {
-    return "";
-  }
-}
-function getCurrentAbbrevSha(git) {
-  try {
-    return git.run(["rev-parse", "--short", "HEAD"]).stdout.trim();
-  } catch {
-    return "";
-  }
-}
-function getCurrentBranchOrRevision(git) {
-  try {
-    return git.getCurrentBranchOrRevision();
-  } catch {
-    return "";
-  }
-}
-function getCurrentBranch(git) {
-  try {
-    return git.run(["symbolic-ref", "--short", "HEAD"]).stdout.trim();
-  } catch {
-    return "";
-  }
-}
-function getCurrentGitUser(git) {
-  try {
-    let userName = git.runGraceful(["config", "user.name"]).stdout.trim() || "Unknown User";
-    let userEmail = git.runGraceful(["config", "user.email"]).stdout.trim() || "unknown_email";
-    return `${userName} <${userEmail}>`;
-  } catch {
-    return "";
-  }
-}
-function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join2(git.baseDir, "package.json");
-  const packageJson = JSON.parse(fs2.readFileSync(packageJsonPath, "utf8"));
-  if (packageJson.version === void 0) {
-    throw new Error(`No workspace version found in: ${packageJsonPath}`);
-  }
-  return new import_semver5.default.SemVer(packageJson.version);
-}
-
-// ng-dev/release/stamping/cli.js
-import path2 from "path";
-import url from "url";
-function builder(args) {
-  return args.option("mode", {
-    demandOption: true,
-    description: "Whether the env-stamp should be built for a snapshot or release",
-    choices: ["snapshot", "release"]
-  }).option("includeVersion", {
-    type: "boolean",
-    description: "Whether the version should be included in the stamp.",
-    default: true
-  }).option("additionalStampingScript", {
-    type: "string",
-    description: "Working-dir relative or absolute path to an ESM script which can print additional stamping variables"
-  });
-}
-async function handler2({ mode, includeVersion, additionalStampingScript }) {
-  await printEnvStamp(mode, includeVersion);
-  if (additionalStampingScript !== void 0) {
-    const scriptURL = url.pathToFileURL(path2.resolve(additionalStampingScript));
-    const stampingExports = await import(scriptURL.toString());
-    await stampingExports.default(mode);
-  }
-}
-var BuildEnvStampCommand = {
-  builder,
-  handler: handler2,
-  command: "build-env-stamp",
-  describe: "Build the environment stamping information"
-};
-
 export {
   params,
   alias,
@@ -14352,8 +14217,5 @@ export {
   requiresLabels,
   allLabels,
   ReleasePrecheckError,
-  assertPassingReleasePrechecks,
-  isExperimentalSemver,
-  createExperimentalSemver,
-  BuildEnvStampCommand
+  assertPassingReleasePrechecks
 };

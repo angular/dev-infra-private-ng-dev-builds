@@ -40,7 +40,7 @@ import {
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-LHAKV6XN.mjs";
+} from "./chunk-DNMEL3SQ.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -119,10 +119,3 @@ export {
   underline,
   yellow
 };
-/**
- * @license
- * Copyright Google LLC
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://angular.io/license
- */
