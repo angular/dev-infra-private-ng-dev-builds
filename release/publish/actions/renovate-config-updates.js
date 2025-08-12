@@ -11,12 +11,12 @@ export async function updateRenovateConfig(projectDir, newBranchName) {
     }
     const config = await readFile(renovateConfigPath, 'utf-8');
     const configJson = JSON.parse(config);
-    const baseBranches = configJson['baseBranches'];
-    if (!Array.isArray(baseBranches) || baseBranches.length !== 2) {
-        Log.warn(`  ✘   Skipped updating Renovate config: "baseBranches" must contain exactly 2 branches.`);
+    const baseBranchPatterns = configJson['baseBranchPatterns'];
+    if (!Array.isArray(baseBranchPatterns) || baseBranchPatterns.length !== 2) {
+        Log.warn(`  ✘   Skipped updating Renovate config: "baseBranchPatterns" must contain exactly 2 branches.`);
         return null;
     }
-    configJson['baseBranches'] = ['main', newBranchName];
+    configJson['baseBranchPatterns'] = ['main', newBranchName];
     updateRenovateTargetLabel(configJson, targetLabels['TARGET_PATCH'].name, targetLabels['TARGET_RC'].name);
     await writeFile(renovateConfigPath, JSON.stringify(configJson, undefined, 2));
     Log.info(green(`  ✓   Updated Renovate config.`));
@@ -30,9 +30,9 @@ export async function updateRenovateConfigTargetLabels(projectDir, fromLabel, to
     }
     const config = await readFile(renovateConfigPath, 'utf-8');
     const configJson = JSON.parse(config);
-    const baseBranches = configJson['baseBranches'];
-    if (!Array.isArray(baseBranches) || baseBranches.length !== 2) {
-        Log.warn(`  ✘   Skipped updating Renovate config: "baseBranches" must contain exactly 2 branches.`);
+    const baseBranchPatterns = configJson['baseBranchPatterns'];
+    if (!Array.isArray(baseBranchPatterns) || baseBranchPatterns.length !== 2) {
+        Log.warn(`  ✘   Skipped updating Renovate config: "baseBranchPatterns" must contain exactly 2 branches.`);
         return null;
     }
     if (updateRenovateTargetLabel(configJson, fromLabel, toLabel)) {

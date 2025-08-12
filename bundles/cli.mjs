@@ -61367,12 +61367,12 @@ async function updateRenovateConfig(projectDir, newBranchName) {
   }
   const config = await readFile2(renovateConfigPath, "utf-8");
   const configJson = JSON.parse(config);
-  const baseBranches = configJson["baseBranches"];
-  if (!Array.isArray(baseBranches) || baseBranches.length !== 2) {
-    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranches" must contain exactly 2 branches.`);
+  const baseBranchPatterns = configJson["baseBranchPatterns"];
+  if (!Array.isArray(baseBranchPatterns) || baseBranchPatterns.length !== 2) {
+    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranchPatterns" must contain exactly 2 branches.`);
     return null;
   }
-  configJson["baseBranches"] = ["main", newBranchName];
+  configJson["baseBranchPatterns"] = ["main", newBranchName];
   updateRenovateTargetLabel(configJson, targetLabels["TARGET_PATCH"].name, targetLabels["TARGET_RC"].name);
   await writeFile2(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
   Log.info(green(`  \u2713   Updated Renovate config.`));
@@ -61386,9 +61386,9 @@ async function updateRenovateConfigTargetLabels(projectDir, fromLabel, toLabel) 
   }
   const config = await readFile2(renovateConfigPath, "utf-8");
   const configJson = JSON.parse(config);
-  const baseBranches = configJson["baseBranches"];
-  if (!Array.isArray(baseBranches) || baseBranches.length !== 2) {
-    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranches" must contain exactly 2 branches.`);
+  const baseBranchPatterns = configJson["baseBranchPatterns"];
+  if (!Array.isArray(baseBranchPatterns) || baseBranchPatterns.length !== 2) {
+    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranchPatterns" must contain exactly 2 branches.`);
     return null;
   }
   if (updateRenovateTargetLabel(configJson, fromLabel, toLabel)) {
@@ -62253,7 +62253,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib7());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-3d092464fe48048f8e97e3e2291b5b648954e5ab`;
+  const localVersion = `0.0.0-27acaa6914c9fc2ac4e1f8ccfbaecccb2769ac96`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
