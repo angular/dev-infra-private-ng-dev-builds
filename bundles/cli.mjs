@@ -57553,10 +57553,13 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokePnpmInstall(projectDir, pnpmVersioning) {
+  static async invokePnpmInstall(projectDir) {
     try {
-      const pnpmSpec = await pnpmVersioning.getPackageSpec(projectDir);
-      await ChildProcess.spawn("npx", ["--yes", pnpmSpec, "install", "--frozen-lockfile"], {
+      await ChildProcess.spawn("pnpm", [
+        "install",
+        "--frozen-lockfile",
+        "--config.confirmModulesPurge=false"
+      ], {
         cwd: projectDir
       });
       Log.info(green("  \u2713   Installed project dependencies."));
@@ -57927,7 +57930,7 @@ var ReleaseAction = class {
   }
   async installDependenciesForCurrentBranch() {
     if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
-      await ExternalCommands.invokePnpmInstall(this.projectDir, this.pnpmVersioning);
+      await ExternalCommands.invokePnpmInstall(this.projectDir);
       return;
     }
     const nodeModulesDir = join12(this.projectDir, "node_modules");
@@ -58602,7 +58605,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-368d4b7c2fa82d37087b92419462d94f73f7cd02`;
+  const localVersion = `0.0.0-7f2c99469dcf64fd466abf6cb53bede791d7599d`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path7.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path7.join(workspacePath, "yarn.lock");

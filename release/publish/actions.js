@@ -187,7 +187,7 @@ export class ReleaseAction {
     }
     async installDependenciesForCurrentBranch() {
         if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
-            await ExternalCommands.invokePnpmInstall(this.projectDir, this.pnpmVersioning);
+            await ExternalCommands.invokePnpmInstall(this.projectDir);
             return;
         }
         const nodeModulesDir = join(this.projectDir, 'node_modules');

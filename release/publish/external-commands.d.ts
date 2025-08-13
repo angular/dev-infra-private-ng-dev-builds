@@ -13,7 +13,7 @@ export declare abstract class ExternalCommands {
     static invokeReleaseInfo(projectDir: string, pnpmVersioning: PnpmVersioning): Promise<ReleaseInfoJsonStdout>;
     static invokeReleasePrecheck(projectDir: string, newVersion: semver.SemVer, builtPackagesWithInfo: BuiltPackageWithInfo[], pnpmVersioning: PnpmVersioning): Promise<void>;
     static invokeYarnInstall(projectDir: string): Promise<void>;
-    static invokePnpmInstall(projectDir: string, pnpmVersioning: PnpmVersioning): Promise<void>;
+    static invokePnpmInstall(projectDir: string): Promise<void>;
     static invokeBazelUpdateAspectLockFiles(projectDir: string): Promise<void>;
     private static _spawnNpmScript;
 }

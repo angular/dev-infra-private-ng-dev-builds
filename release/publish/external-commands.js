@@ -96,10 +96,13 @@ export class ExternalCommands {
             throw new FatalReleaseActionError();
         }
     }
-    static async invokePnpmInstall(projectDir, pnpmVersioning) {
+    static async invokePnpmInstall(projectDir) {
         try {
-            const pnpmSpec = await pnpmVersioning.getPackageSpec(projectDir);
-            await ChildProcess.spawn('npx', ['--yes', pnpmSpec, 'install', '--frozen-lockfile'], {
+            await ChildProcess.spawn('pnpm', [
+                'install',
+                '--frozen-lockfile',
+                '--config.confirmModulesPurge=false',
+            ], {
                 cwd: projectDir,
             });
             Log.info(green('  ✓   Installed project dependencies.'));
