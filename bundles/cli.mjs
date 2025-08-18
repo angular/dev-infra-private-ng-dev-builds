@@ -41996,13 +41996,12 @@ function cliui(opts, _mixin) {
   });
 }
 
-// node_modules/.aspect_rules_js/ansi-regex@6.1.0/node_modules/ansi-regex/index.js
+// node_modules/.aspect_rules_js/ansi-regex@6.2.0/node_modules/ansi-regex/index.js
 function ansiRegex({ onlyFirst = false } = {}) {
   const ST = "(?:\\u0007|\\u001B\\u005C|\\u009C)";
-  const pattern = [
-    `[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?${ST})`,
-    "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]))"
-  ].join("|");
+  const osc = `(?:\\u001B\\][\\s\\S]*?${ST})`;
+  const csi = "[\\u001B\\u009B][[\\]()#;?]*(?:\\d{1,4}(?:[;:]\\d{0,4})*)?[\\dA-PR-TZcf-nq-uy=><~]";
+  const pattern = `${osc}|${csi}`;
   return new RegExp(pattern, onlyFirst ? void 0 : "g");
 }
 
@@ -51032,7 +51031,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.0_at_types_node_24.2.0/node_modules/@inquirer/checkbox/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.1_at_types_node_24.2.0/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs());
 var import_ansi_escapes2 = __toESM(require_ansi_escapes());
 var checkboxTheme = {
@@ -51052,7 +51051,7 @@ function isSelectable(item) {
   return !Separator.isSeparator(item) && !item.disabled;
 }
 function isChecked(item) {
-  return isSelectable(item) && Boolean(item.checked);
+  return isSelectable(item) && item.checked;
 }
 function toggle(item) {
   return isSelectable(item) ? { ...item, checked: !item.checked } : item;
@@ -51215,7 +51214,7 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${choiceDescription}${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.0_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -51224,7 +51223,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.0_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -51233,7 +51232,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.0_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -51242,7 +51241,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.0_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -51251,7 +51250,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.0_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -51260,7 +51259,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.0_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -51414,7 +51413,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@4.2.16_at_types_node_24.2.0/node_modules/@inquirer/editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@4.2.17_at_types_node_24.2.0/node_modules/@inquirer/editor/dist/esm/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -51483,7 +51482,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.14_at_types_node_24.2.0/node_modules/@inquirer/confirm/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.15_at_types_node_24.2.0/node_modules/@inquirer/confirm/dist/esm/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -51502,6 +51501,8 @@ var esm_default5 = createPrompt((config, done) => {
   const theme = makeTheme(config.theme);
   const prefix = usePrefix({ status, theme });
   useKeypress((key, rl) => {
+    if (status !== "idle")
+      return;
     if (isEnterKey(key)) {
       const answer = getBooleanValue(value, config.default);
       setValue(transformer(answer));
@@ -59052,7 +59053,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-96411830d91356417856c3e3a22287e2309adc64`;
+  const localVersion = `0.0.0-1e09768cbc5effa0c0ad3f82c33f615efb15c9ce`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path7.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path7.join(workspacePath, "yarn.lock");
@@ -60009,7 +60010,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.13.0_796444809/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.13.0_737224072/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable2 } from "node:stream";
@@ -60021,7 +60022,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.13.0_796444809/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.13.0_737224072/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
