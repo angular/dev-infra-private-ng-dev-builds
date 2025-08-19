@@ -6,7 +6,7 @@ export class Buildifier extends Formatter {
         super(...arguments);
         this.name = 'buildifier';
         this.binaryFilePath = join(this.git.baseDir, 'node_modules/.bin/buildifier');
-        this.defaultFileMatcher = ['**/*.bzl', '**/BUILD.bazel', '**/WORKSPACE', '**/BUILD'];
+        this.defaultFileMatcher = ['**/*.bzl', '**/*.bazel', '**/WORKSPACE', '**/BUILD'];
         this.actions = {
             check: {
                 commandFlags: `${BAZEL_WARNING_FLAG} --lint=warn --mode=check --format=json`,

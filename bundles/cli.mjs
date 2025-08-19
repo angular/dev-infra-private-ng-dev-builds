@@ -54215,7 +54215,7 @@ var Buildifier = class extends Formatter {
     super(...arguments);
     this.name = "buildifier";
     this.binaryFilePath = join2(this.git.baseDir, "node_modules/.bin/buildifier");
-    this.defaultFileMatcher = ["**/*.bzl", "**/BUILD.bazel", "**/WORKSPACE", "**/BUILD"];
+    this.defaultFileMatcher = ["**/*.bzl", "**/*.bazel", "**/WORKSPACE", "**/BUILD"];
     this.actions = {
       check: {
         commandFlags: `${BAZEL_WARNING_FLAG} --lint=warn --mode=check --format=json`,
@@ -59053,7 +59053,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-1e09768cbc5effa0c0ad3f82c33f615efb15c9ce`;
+  const localVersion = `0.0.0-fada401aa5023cb046753a15bfda9ec520eb4ed6`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path7.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path7.join(workspacePath, "yarn.lock");
