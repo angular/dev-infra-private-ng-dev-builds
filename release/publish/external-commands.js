@@ -113,6 +113,21 @@ export class ExternalCommands {
             throw new FatalReleaseActionError();
         }
     }
+    static async invokeBazelModDepsUpdate(projectDir) {
+        const spinner = new Spinner('Updating "MODULE.bazel.lock"');
+        try {
+            await ChildProcess.spawn(getBazelBin(), ['mod', 'deps', '--lockfile_mode=update'], {
+                cwd: projectDir,
+                mode: 'silent',
+            });
+        }
+        catch (e) {
+            Log.error(e);
+            Log.error('  ✘   An error occurred while updating "MODULE.bazel.lock".');
+            throw new FatalReleaseActionError();
+        }
+        spinner.success(green(' Updated "MODULE.bazel.lock" file.'));
+    }
     static async invokeBazelUpdateAspectLockFiles(projectDir) {
         const spinner = new Spinner('Updating Aspect lock files');
         try {

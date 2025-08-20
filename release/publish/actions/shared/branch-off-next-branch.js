@@ -62,6 +62,10 @@ export class BranchOffNextBranchBaseAction extends CutNpmNextPrereleaseAction {
             workspaceRelativePackageJsonPath,
             ...this.getAspectLockFiles(),
         ];
+        const bazelModuleLockFile = this.getModuleBazelLockFile();
+        if (bazelModuleLockFile) {
+            filesToCommit.push(bazelModuleLockFile);
+        }
         const renovateConfigPath = await updateRenovateConfig(this.projectDir, `${version.major}.${version.minor}.x`);
         if (renovateConfigPath) {
             filesToCommit.push(renovateConfigPath);

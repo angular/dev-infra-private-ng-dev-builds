@@ -1,6 +1,6 @@
 import { promises as fs, existsSync } from 'fs';
 import path, { join } from 'path';
-import { workspaceRelativePackageJsonPath } from '../../utils/constants.js';
+import { workspaceRelativeBazelModuleLock, workspaceRelativePackageJsonPath, } from '../../utils/constants.js';
 import { isGithubApiError } from '../../utils/git/github.js';
 import githubMacros from '../../utils/git/github-macros.js';
 import { getFileContentsUrl, getListCommitsInBranchUrl, getRepositoryGitUrl, } from '../../utils/git/github-urls.js';
@@ -44,11 +44,19 @@ export class ReleaseAction {
         if (this.config.rulesJsInteropMode && existsSync(path.join(this.projectDir, '.aspect'))) {
             await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
         }
+        if (existsSync(join(this.projectDir, workspaceRelativeBazelModuleLock))) {
+            await ExternalCommands.invokeBazelModDepsUpdate(this.projectDir);
+        }
     }
     getAspectLockFiles() {
         return this.config.rulesJsInteropMode
             ? glob.sync(['.aspect/**', 'pnpm-lock.yaml'], { cwd: this.projectDir })
             : [];
+    }
+    getModuleBazelLockFile() {
+        return existsSync(join(this.projectDir, workspaceRelativeBazelModuleLock))
+            ? workspaceRelativeBazelModuleLock
+            : undefined;
     }
     async getLatestCommitOfBranch(branchName) {
         const { data: { commit }, } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -94,6 +102,10 @@ export class ReleaseAction {
             workspaceRelativeChangelogPath,
             ...this.getAspectLockFiles(),
         ];
+        const bazelModuleLockFile = this.getModuleBazelLockFile();
+        if (bazelModuleLockFile) {
+            filesToCommit.push(bazelModuleLockFile);
+        }
         const commitMessage = getCommitMessageForRelease(newVersion);
         await this.createCommit(commitMessage, filesToCommit);
         if (this.git.hasUncommittedChanges()) {

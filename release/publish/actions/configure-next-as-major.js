@@ -22,10 +22,15 @@ export class ConfigureNextAsMajorAction extends ReleaseAction {
         await this.assertPassingGithubStatus(beforeStagingSha, branchName);
         await this.checkoutUpstreamBranch(branchName);
         await this.updateProjectVersion(newVersion);
-        await this.createCommit(getCommitMessageForNextBranchMajorSwitch(newVersion), [
+        const filesToCommit = [
             workspaceRelativePackageJsonPath,
             ...this.getAspectLockFiles(),
-        ]);
+        ];
+        const bazelModuleLockFile = this.getModuleBazelLockFile();
+        if (bazelModuleLockFile) {
+            filesToCommit.push(bazelModuleLockFile);
+        }
+        await this.createCommit(getCommitMessageForNextBranchMajorSwitch(newVersion), filesToCommit);
         const pullRequest = await this.pushChangesToForkAndCreatePullRequest(branchName, `switch-next-to-major-${newVersion}`, `Configure next branch to receive major changes for v${newVersion}`);
         Log.info(green('  ✓   Next branch update pull request has been created.'));
         await this.promptAndWaitForPullRequestMerged(pullRequest);

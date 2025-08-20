@@ -57832,6 +57832,7 @@ var import_semver7 = __toESM(require_semver());
 // ng-dev/utils/constants.js
 var ngDevNpmPackageName = "@angular/ng-dev";
 var workspaceRelativePackageJsonPath = "package.json";
+var workspaceRelativeBazelModuleLock = "MODULE.bazel.lock";
 
 // ng-dev/release/publish/actions.js
 import { promises as fs2, existsSync as existsSync5 } from "fs";
@@ -58016,6 +58017,20 @@ var ExternalCommands = class {
       Log.error("  \u2718   An error occurred while installing dependencies.");
       throw new FatalReleaseActionError();
     }
+  }
+  static async invokeBazelModDepsUpdate(projectDir) {
+    const spinner = new Spinner('Updating "MODULE.bazel.lock"');
+    try {
+      await ChildProcess.spawn(getBazelBin(), ["mod", "deps", "--lockfile_mode=update"], {
+        cwd: projectDir,
+        mode: "silent"
+      });
+    } catch (e) {
+      Log.error(e);
+      Log.error('  \u2718   An error occurred while updating "MODULE.bazel.lock".');
+      throw new FatalReleaseActionError();
+    }
+    spinner.success(green(' Updated "MODULE.bazel.lock" file.'));
   }
   static async invokeBazelUpdateAspectLockFiles(projectDir) {
     const spinner = new Spinner("Updating Aspect lock files");
@@ -58243,9 +58258,15 @@ var ReleaseAction = class {
     if (this.config.rulesJsInteropMode && existsSync5(path6.join(this.projectDir, ".aspect"))) {
       await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
     }
+    if (existsSync5(join12(this.projectDir, workspaceRelativeBazelModuleLock))) {
+      await ExternalCommands.invokeBazelModDepsUpdate(this.projectDir);
+    }
   }
   getAspectLockFiles() {
     return this.config.rulesJsInteropMode ? import_fast_glob2.default.sync([".aspect/**", "pnpm-lock.yaml"], { cwd: this.projectDir }) : [];
+  }
+  getModuleBazelLockFile() {
+    return existsSync5(join12(this.projectDir, workspaceRelativeBazelModuleLock)) ? workspaceRelativeBazelModuleLock : void 0;
   }
   async getLatestCommitOfBranch(branchName) {
     const { data: { commit } } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -58287,6 +58308,10 @@ var ReleaseAction = class {
       workspaceRelativeChangelogPath,
       ...this.getAspectLockFiles()
     ];
+    const bazelModuleLockFile = this.getModuleBazelLockFile();
+    if (bazelModuleLockFile) {
+      filesToCommit.push(bazelModuleLockFile);
+    }
     const commitMessage = getCommitMessageForRelease(newVersion);
     await this.createCommit(commitMessage, filesToCommit);
     if (this.git.hasUncommittedChanges()) {
@@ -58562,10 +58587,15 @@ var ConfigureNextAsMajorAction = class extends ReleaseAction {
     await this.assertPassingGithubStatus(beforeStagingSha, branchName);
     await this.checkoutUpstreamBranch(branchName);
     await this.updateProjectVersion(newVersion);
-    await this.createCommit(getCommitMessageForNextBranchMajorSwitch(newVersion), [
+    const filesToCommit = [
       workspaceRelativePackageJsonPath,
       ...this.getAspectLockFiles()
-    ]);
+    ];
+    const bazelModuleLockFile = this.getModuleBazelLockFile();
+    if (bazelModuleLockFile) {
+      filesToCommit.push(bazelModuleLockFile);
+    }
+    await this.createCommit(getCommitMessageForNextBranchMajorSwitch(newVersion), filesToCommit);
     const pullRequest = await this.pushChangesToForkAndCreatePullRequest(branchName, `switch-next-to-major-${newVersion}`, `Configure next branch to receive major changes for v${newVersion}`);
     Log.info(green("  \u2713   Next branch update pull request has been created."));
     await this.promptAndWaitForPullRequestMerged(pullRequest);
@@ -58848,10 +58878,15 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
     await this.updateProjectVersion(this._newVersion, (pkgJson) => {
       pkgJson[exceptionalMinorPackageIndicator] = true;
     });
-    await this.createCommit(`build: prepare exceptional minor branch: ${this._newBranch}`, [
+    const filesToCommit = [
       workspaceRelativePackageJsonPath,
       ...this.getAspectLockFiles()
-    ]);
+    ];
+    const bazelModuleLockFile = this.getModuleBazelLockFile();
+    if (bazelModuleLockFile) {
+      filesToCommit.push(bazelModuleLockFile);
+    }
+    await this.createCommit(`build: prepare exceptional minor branch: ${this._newBranch}`, filesToCommit);
     await this.pushHeadToRemoteBranch(this._newBranch);
     Log.info(green(`  \u2713   Version branch "${this._newBranch}" created.`));
     Log.info(green(`      Exceptional minor release-train is now active.`));
@@ -58923,6 +58958,10 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
       workspaceRelativePackageJsonPath,
       ...this.getAspectLockFiles()
     ];
+    const bazelModuleLockFile = this.getModuleBazelLockFile();
+    if (bazelModuleLockFile) {
+      filesToCommit.push(bazelModuleLockFile);
+    }
     const renovateConfigPath = await updateRenovateConfig(this.projectDir, `${version2.major}.${version2.minor}.x`);
     if (renovateConfigPath) {
       filesToCommit.push(renovateConfigPath);
@@ -59053,7 +59092,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-fada401aa5023cb046753a15bfda9ec520eb4ed6`;
+  const localVersion = `0.0.0-dc417715e8a82ff999fb0baa6e046b8547e94b79`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path7.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path7.join(workspacePath, "yarn.lock");
