@@ -58,10 +58,17 @@ export class GithubApiMergeStrategy extends MergeStrategy {
             throw new MergeConflictsFatalError(failedBranches);
         }
         this.pushTargetBranchesUpstream(cherryPickTargetBranches);
+        const banchesAndSha = targetBranches.map((targetBranch) => {
+            const localBranch = this.getLocalTargetBranchName(targetBranch);
+            const sha = this.git.run(['rev-parse', localBranch]).stdout.trim();
+            return [targetBranch, sha];
+        });
         await this.git.github.issues.createComment({
             ...this.git.remoteParams,
             issue_number: pullRequest.prNumber,
-            body: `The changes were merged into the following branches: ${targetBranches.join(', ')}`,
+            body: 'This PR was merged into the repository. ' +
+                'The changes were merged into the following branches:\n\n' +
+                `${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join('\n')}`,
         });
     }
     async _promptCommitMessageEdit(pullRequest, mergeOptions) {

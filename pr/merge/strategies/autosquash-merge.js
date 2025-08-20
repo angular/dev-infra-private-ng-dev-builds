@@ -26,14 +26,18 @@ export class AutosquashMergeStrategy extends MergeStrategy {
             throw new MergeConflictsFatalError(failedBranches);
         }
         this.pushTargetBranchesUpstream(targetBranches);
-        const localBranch = this.getLocalTargetBranchName(githubTargetBranch);
-        const sha = this.git.run(['rev-parse', localBranch]).stdout.trim();
+        const banchesAndSha = targetBranches.map((targetBranch) => {
+            const localBranch = this.getLocalTargetBranchName(targetBranch);
+            const sha = this.git.run(['rev-parse', localBranch]).stdout.trim();
+            return [targetBranch, sha];
+        });
         await new Promise((resolve) => setTimeout(resolve, parseInt(process.env['AUTOSQUASH_TIMEOUT'] || '0')));
         await this.git.github.issues.createComment({
             ...this.git.remoteParams,
             issue_number: pullRequest.prNumber,
-            body: `This PR was merged into the repository by commit ${sha}.\n\n` +
-                `The changes were merged into the following branches: ${targetBranches.join(', ')}`,
+            body: 'This PR was merged into the repository. ' +
+                'The changes were merged into the following branches:\n\n' +
+                `${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join('\n')}`,
         });
         if (githubTargetBranch !== this.git.mainBranchName) {
             await this.git.github.pulls.update({

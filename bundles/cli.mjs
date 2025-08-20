@@ -56356,10 +56356,17 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
       throw new MergeConflictsFatalError(failedBranches);
     }
     this.pushTargetBranchesUpstream(cherryPickTargetBranches);
+    const banchesAndSha = targetBranches.map((targetBranch) => {
+      const localBranch = this.getLocalTargetBranchName(targetBranch);
+      const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
+      return [targetBranch, sha];
+    });
     await this.git.github.issues.createComment({
       ...this.git.remoteParams,
       issue_number: pullRequest.prNumber,
-      body: `The changes were merged into the following branches: ${targetBranches.join(", ")}`
+      body: `This PR was merged into the repository. The changes were merged into the following branches:
+
+${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     });
   }
   async _promptCommitMessageEdit(pullRequest, mergeOptions) {
@@ -56427,15 +56434,18 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
       throw new MergeConflictsFatalError(failedBranches);
     }
     this.pushTargetBranchesUpstream(targetBranches);
-    const localBranch = this.getLocalTargetBranchName(githubTargetBranch);
-    const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
+    const banchesAndSha = targetBranches.map((targetBranch) => {
+      const localBranch = this.getLocalTargetBranchName(targetBranch);
+      const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
+      return [targetBranch, sha];
+    });
     await new Promise((resolve12) => setTimeout(resolve12, parseInt(process.env["AUTOSQUASH_TIMEOUT"] || "0")));
     await this.git.github.issues.createComment({
       ...this.git.remoteParams,
       issue_number: pullRequest.prNumber,
-      body: `This PR was merged into the repository by commit ${sha}.
+      body: `This PR was merged into the repository. The changes were merged into the following branches:
 
-The changes were merged into the following branches: ${targetBranches.join(", ")}`
+${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     });
     if (githubTargetBranch !== this.git.mainBranchName) {
       await this.git.github.pulls.update({
@@ -59092,7 +59102,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-60d9b74deef772dee47206902f74f56369744b91`;
+  const localVersion = `0.0.0-b2f3a8548a679c0babf0cf141212be15c2f63e9c`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path7.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path7.join(workspacePath, "yarn.lock");
