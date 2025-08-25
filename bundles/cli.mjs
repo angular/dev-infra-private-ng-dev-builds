@@ -101,9 +101,9 @@ var require_get_caller_file = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yoctocolors-cjs@2.1.2/node_modules/yoctocolors-cjs/index.js
+// node_modules/.aspect_rules_js/yoctocolors-cjs@2.1.3/node_modules/yoctocolors-cjs/index.js
 var require_yoctocolors_cjs = __commonJS({
-  "node_modules/.aspect_rules_js/yoctocolors-cjs@2.1.2/node_modules/yoctocolors-cjs/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/yoctocolors-cjs@2.1.3/node_modules/yoctocolors-cjs/index.js"(exports, module) {
     var tty = __require("node:tty");
     var hasColors = tty?.WriteStream?.prototype?.hasColors?.() ?? false;
     var format4 = (open2, close) => {
@@ -120,8 +120,10 @@ var require_yoctocolors_cjs = __commonJS({
         }
         let result = openCode;
         let lastIndex = 0;
+        const reopenOnNestedClose = close === 22;
+        const replaceCode = (reopenOnNestedClose ? closeCode : "") + openCode;
         while (index !== -1) {
-          result += string.slice(lastIndex, index) + openCode;
+          result += string.slice(lastIndex, index) + replaceCode;
           lastIndex = index + closeCode.length;
           index = string.indexOf(closeCode, lastIndex);
         }
@@ -49904,25 +49906,16 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/key.js
-var isUpKey = (key) => (
-  // The up key
-  key.name === "up" || // Vim keybinding
-  key.name === "k" || // Emacs keybinding
-  key.ctrl && key.name === "p"
-);
-var isDownKey = (key) => (
-  // The down key
-  key.name === "down" || // Vim keybinding
-  key.name === "j" || // Emacs keybinding
-  key.ctrl && key.name === "n"
-);
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/key.js
+var isUpKey = (key) => key.name === "up";
+var isDownKey = (key) => key.name === "down";
 var isSpaceKey = (key) => key.name === "space";
 var isBackspaceKey = (key) => key.name === "backspace";
+var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -49945,10 +49938,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -50054,7 +50047,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -50072,7 +50065,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -50084,7 +50077,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs());
 
 // node_modules/.aspect_rules_js/@inquirer+figures@1.0.13/node_modules/@inquirer/figures/dist/esm/index.js
@@ -50376,7 +50369,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
@@ -50398,7 +50391,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -50426,7 +50419,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -50457,7 +50450,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -50470,12 +50463,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -50494,7 +50487,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 var import_wrap_ansi2 = __toESM(require_wrap_ansi());
 function breakLines(content, width) {
@@ -50504,7 +50497,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -50593,7 +50586,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -50849,7 +50842,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var import_ansi_escapes = __toESM(require_ansi_escapes());
 import { stripVTControlCharacters } from "node:util";
 var height = (content) => content.split("\n").length;
@@ -50914,7 +50907,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -50929,7 +50922,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -51016,7 +51009,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.1.15_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/Separator.js
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs());
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
@@ -51031,7 +51024,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.1_at_types_node_24.2.0/node_modules/@inquirer/checkbox/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.2_at_types_node_24.2.0/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs());
 var import_ansi_escapes2 = __toESM(require_ansi_escapes());
 var checkboxTheme = {
@@ -51413,7 +51406,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@4.2.17_at_types_node_24.2.0/node_modules/@inquirer/editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@4.2.18_at_types_node_24.2.0/node_modules/@inquirer/editor/dist/esm/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -51482,7 +51475,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.15_at_types_node_24.2.0/node_modules/@inquirer/confirm/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.16_at_types_node_24.2.0/node_modules/@inquirer/confirm/dist/esm/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -51508,7 +51501,7 @@ var esm_default5 = createPrompt((config, done) => {
       setValue(transformer(answer));
       setStatus("done");
       done(answer);
-    } else if (key.name === "tab") {
+    } else if (isTabKey(key)) {
       const answer = boolToString(!getBooleanValue(value, config.default));
       rl.clearLine(0);
       rl.write(answer);
@@ -51528,7 +51521,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@4.2.1_at_types_node_24.2.0/node_modules/@inquirer/input/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@4.2.2_at_types_node_24.2.0/node_modules/@inquirer/input/dist/esm/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -51563,7 +51556,7 @@ var esm_default6 = createPrompt((config, done) => {
       }
     } else if (isBackspaceKey(key) && !value) {
       setDefaultValue(void 0);
-    } else if (key.name === "tab" && !value) {
+    } else if (isTabKey(key) && !value) {
       setDefaultValue(void 0);
       rl.clearLine(0);
       rl.write(defaultValue);
@@ -51600,7 +51593,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@3.0.17_at_types_node_24.2.0/node_modules/@inquirer/number/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@3.0.18_at_types_node_24.2.0/node_modules/@inquirer/number/dist/esm/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -51652,7 +51645,7 @@ var esm_default7 = createPrompt((config, done) => {
       }
     } else if (isBackspaceKey(key) && !value) {
       setDefaultValue(void 0);
-    } else if (key.name === "tab" && !value) {
+    } else if (isTabKey(key) && !value) {
       setDefaultValue(void 0);
       rl.clearLine(0);
       rl.write(defaultValue);
@@ -51681,7 +51674,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@4.0.17_at_types_node_24.2.0/node_modules/@inquirer/expand/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@4.0.18_at_types_node_24.2.0/node_modules/@inquirer/expand/dist/esm/index.js
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs());
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -51777,7 +51770,7 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.5_at_types_node_24.2.0/node_modules/@inquirer/rawlist/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.6_at_types_node_24.2.0/node_modules/@inquirer/rawlist/dist/esm/index.js
 var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs());
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -51845,14 +51838,14 @@ var esm_default9 = createPrompt((config, done) => {
       } else {
         setError(`"${import_yoctocolors_cjs5.default.red(value)}" isn't an available option`);
       }
-    } else if (key.name === "up" || key.name === "down") {
+    } else if (isUpKey(key) || isDownKey(key)) {
       rl.clearLine(0);
       const [selectedChoice, active] = getSelectedChoice(value, choices);
       if (!selectedChoice) {
-        const firstChoice = key.name === "down" ? choices.find(isSelectableChoice) : choices.findLast(isSelectableChoice);
+        const firstChoice = isDownKey(key) ? choices.find(isSelectableChoice) : choices.findLast(isSelectableChoice);
         setValue(firstChoice.key);
-      } else if (loop || key.name === "up" && active !== bounds.first || key.name === "down" && active !== bounds.last) {
-        const offset = key.name === "up" ? -1 : 1;
+      } else if (loop || isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
+        const offset = isUpKey(key) ? -1 : 1;
         let next = active;
         do {
           next = (next + offset + choices.length) % choices.length;
@@ -51888,7 +51881,7 @@ var esm_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@4.0.17_at_types_node_24.2.0/node_modules/@inquirer/password/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@4.0.18_at_types_node_24.2.0/node_modules/@inquirer/password/dist/esm/index.js
 var import_ansi_escapes3 = __toESM(require_ansi_escapes());
 var esm_default10 = createPrompt((config, done) => {
   const { validate: validate3 = () => true } = config;
@@ -51938,7 +51931,7 @@ var esm_default10 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@3.1.0_at_types_node_24.2.0/node_modules/@inquirer/search/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@3.1.1_at_types_node_24.2.0/node_modules/@inquirer/search/dist/esm/index.js
 var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs());
 var searchTheme = {
   icon: { cursor: esm_default2.pointer },
@@ -52037,14 +52030,14 @@ var esm_default11 = createPrompt((config, done) => {
       } else {
         rl.write(searchTerm);
       }
-    } else if (key.name === "tab" && selectedChoice) {
+    } else if (isTabKey(key) && selectedChoice) {
       rl.clearLine(0);
       rl.write(selectedChoice.name);
       setSearchTerm(selectedChoice.name);
-    } else if (status !== "loading" && (key.name === "up" || key.name === "down")) {
+    } else if (status !== "loading" && (isUpKey(key) || isDownKey(key))) {
       rl.clearLine(0);
-      if (key.name === "up" && active !== bounds.first || key.name === "down" && active !== bounds.last) {
-        const offset = key.name === "up" ? -1 : 1;
+      if (isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
+        const offset = isUpKey(key) ? -1 : 1;
         let next = active;
         do {
           next = (next + offset + searchResults.length) % searchResults.length;
@@ -52104,7 +52097,7 @@ ${theme.style.description(selectedChoice.description)}` : ``;
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@4.3.1_at_types_node_24.2.0/node_modules/@inquirer/select/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@4.3.2_at_types_node_24.2.0/node_modules/@inquirer/select/dist/esm/index.js
 var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs());
 var import_ansi_escapes4 = __toESM(require_ansi_escapes());
 var selectTheme = {
@@ -59102,7 +59095,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-c310123e1d031a896a2a4a14a051f4ce6a879508`;
+  const localVersion = `0.0.0-98b7d6118f4f9e540bb2b46f02f832fea14fb855`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path7.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path7.join(workspacePath, "yarn.lock");
@@ -60059,7 +60052,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.13.0_737224072/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.13.0_678003335/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable2 } from "node:stream";
@@ -60071,7 +60064,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.13.0_737224072/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.13.0_678003335/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
