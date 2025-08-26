@@ -7,7 +7,7 @@ import {
   __export
 } from "./chunk-UHIZKGIY.mjs";
 
-// node_modules/.aspect_rules_js/supports-color@10.1.0/node_modules/supports-color/index.js
+// node_modules/.aspect_rules_js/supports-color@10.2.0/node_modules/supports-color/index.js
 var supports_color_exports = {};
 __export(supports_color_exports, {
   createSupportsColor: () => createSupportsColor2,
@@ -107,6 +107,9 @@ function _supportsColor2(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
   if (env2.TERM === "xterm-ghostty") {
     return 3;
   }
+  if (env2.TERM === "wezterm") {
+    return 3;
+  }
   if ("TERM_PROGRAM" in env2) {
     const version = Number.parseInt((env2.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
     switch (env2.TERM_PROGRAM) {
@@ -138,7 +141,7 @@ function createSupportsColor2(stream, options = {}) {
 }
 var env2, flagForceColor2, supportsColor2, supports_color_default2;
 var init_supports_color = __esm({
-  "node_modules/.aspect_rules_js/supports-color@10.1.0/node_modules/supports-color/index.js"() {
+  "node_modules/.aspect_rules_js/supports-color@10.2.0/node_modules/supports-color/index.js"() {
     ({ env: env2 } = process3);
     if (hasFlag2("no-color") || hasFlag2("no-colors") || hasFlag2("color=false") || hasFlag2("color=never")) {
       flagForceColor2 = 0;
@@ -153,7 +156,7 @@ var init_supports_color = __esm({
   }
 });
 
-// node_modules/.aspect_rules_js/chalk@5.5.0/node_modules/chalk/source/vendor/ansi-styles/index.js
+// node_modules/.aspect_rules_js/chalk@5.6.0/node_modules/chalk/source/vendor/ansi-styles/index.js
 var ANSI_BACKGROUND_OFFSET = 10;
 var wrapAnsi16 = (offset = 0) => (code) => `\x1B[${code + offset}m`;
 var wrapAnsi256 = (offset = 0) => (code) => `\x1B[${38 + offset};5;${code}m`;
@@ -339,7 +342,7 @@ function assembleStyles() {
 var ansiStyles = assembleStyles();
 var ansi_styles_default = ansiStyles;
 
-// node_modules/.aspect_rules_js/chalk@5.5.0/node_modules/chalk/source/vendor/supports-color/index.js
+// node_modules/.aspect_rules_js/chalk@5.6.0/node_modules/chalk/source/vendor/supports-color/index.js
 import process2 from "node:process";
 import os from "node:os";
 import tty from "node:tty";
@@ -433,6 +436,9 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
   if (env.TERM === "xterm-ghostty") {
     return 3;
   }
+  if (env.TERM === "wezterm") {
+    return 3;
+  }
   if ("TERM_PROGRAM" in env) {
     const version = Number.parseInt((env.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
     switch (env.TERM_PROGRAM) {
@@ -468,7 +474,7 @@ var supportsColor = {
 };
 var supports_color_default = supportsColor;
 
-// node_modules/.aspect_rules_js/chalk@5.5.0/node_modules/chalk/source/utilities.js
+// node_modules/.aspect_rules_js/chalk@5.6.0/node_modules/chalk/source/utilities.js
 function stringReplaceAll(string, substring, replacer) {
   let index = string.indexOf(substring);
   if (index === -1) {
@@ -498,7 +504,7 @@ function stringEncaseCRLFWithFirstIndex(string, prefix, postfix, index) {
   return returnValue;
 }
 
-// node_modules/.aspect_rules_js/chalk@5.5.0/node_modules/chalk/source/index.js
+// node_modules/.aspect_rules_js/chalk@5.6.0/node_modules/chalk/source/index.js
 var { stdout: stdoutColor, stderr: stderrColor } = supports_color_default;
 var GENERATOR = Symbol("GENERATOR");
 var STYLER = Symbol("STYLER");

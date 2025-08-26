@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-IGOCWD5Y.mjs";
+} from "./chunk-7BNZSUCR.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -67,7 +67,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-5LQTSFBV.mjs";
+} from "./chunk-TI5ZV2I3.mjs";
 import {
   __commonJS,
   __esm,
@@ -19054,9 +19054,9 @@ var require_ms = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.1.0/node_modules/debug/src/common.js
+// node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/common.js
 var require_common3 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.1.0/node_modules/debug/src/common.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/common.js"(exports, module) {
     function setup(env2) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
@@ -19231,9 +19231,9 @@ var require_common3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.1.0/node_modules/debug/src/browser.js
+// node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/browser.js
 var require_browser = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.1.0/node_modules/debug/src/browser.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/browser.js"(exports, module) {
     exports.formatArgs = formatArgs;
     exports.save = save;
     exports.load = load3;
@@ -19401,9 +19401,9 @@ var require_browser = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.1.0/node_modules/debug/src/node.js
+// node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/node.js
 var require_node2 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.1.0/node_modules/debug/src/node.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
     var util = __require("util");
     exports.init = init;
@@ -19575,9 +19575,9 @@ var require_node2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.1.0/node_modules/debug/src/index.js
+// node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/index.js
 var require_src = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.1.0/node_modules/debug/src/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/index.js"(exports, module) {
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
       module.exports = require_browser();
     } else {
@@ -20695,9 +20695,9 @@ var require_index_cjs = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color_10.1.0/node_modules/folder-hash/index.js
+// node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color_10.2.0/node_modules/folder-hash/index.js
 var require_folder_hash = __commonJS({
-  "node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color_10.1.0/node_modules/folder-hash/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color_10.2.0/node_modules/folder-hash/index.js"(exports, module) {
     var crypto6 = __require("crypto");
     var debug = require_src();
     var minimatch3 = require_index_cjs();
@@ -26736,9 +26736,9 @@ var require_is_stream = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/package.json
+// node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/package.json
 var require_package2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/package.json"(exports, module) {
+  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/package.json"(exports, module) {
     module.exports = {
       name: "gaxios",
       version: "6.7.1",
@@ -26838,9 +26838,9 @@ var require_package2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/util.js
+// node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/util.js
 var require_util = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/util.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/util.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.pkg = void 0;
@@ -26848,9 +26848,9 @@ var require_util = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/common.js
+// node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/common.js
 var require_common4 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/common.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/common.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -26987,9 +26987,9 @@ var require_common4 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/retry.js
+// node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/retry.js
 var require_retry = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/retry.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/retry.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRetryConfig = getRetryConfig;
@@ -27446,9 +27446,9 @@ var init_esm_node = __esm({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/interceptor.js
+// node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/interceptor.js
 var require_interceptor = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/interceptor.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/interceptor.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GaxiosInterceptorManager = void 0;
@@ -27458,9 +27458,9 @@ var require_interceptor = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.1.0/node_modules/debug/src/common.js
+// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/common.js
 var require_common5 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.1.0/node_modules/debug/src/common.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/common.js"(exports, module) {
     function setup(env2) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
@@ -27635,9 +27635,9 @@ var require_common5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.1.0/node_modules/debug/src/browser.js
+// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/browser.js
 var require_browser2 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.1.0/node_modules/debug/src/browser.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/browser.js"(exports, module) {
     exports.formatArgs = formatArgs;
     exports.save = save;
     exports.load = load3;
@@ -27805,9 +27805,9 @@ var require_browser2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.1.0/node_modules/debug/src/node.js
+// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/node.js
 var require_node3 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.1.0/node_modules/debug/src/node.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
     var util = __require("util");
     exports.init = init;
@@ -27979,9 +27979,9 @@ var require_node3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.1.0/node_modules/debug/src/index.js
+// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/index.js
 var require_src2 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.1.0/node_modules/debug/src/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/index.js"(exports, module) {
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
       module.exports = require_browser2();
     } else {
@@ -28228,9 +28228,9 @@ var require_dist2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/https-proxy-agent@7.0.6_supports-color_10.1.0/node_modules/https-proxy-agent/dist/parse-proxy-response.js
+// node_modules/.aspect_rules_js/https-proxy-agent@7.0.6_supports-color_10.2.0/node_modules/https-proxy-agent/dist/parse-proxy-response.js
 var require_parse_proxy_response = __commonJS({
-  "node_modules/.aspect_rules_js/https-proxy-agent@7.0.6_supports-color_10.1.0/node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports) {
+  "node_modules/.aspect_rules_js/https-proxy-agent@7.0.6_supports-color_10.2.0/node_modules/https-proxy-agent/dist/parse-proxy-response.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -28324,9 +28324,9 @@ var require_parse_proxy_response = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/https-proxy-agent@7.0.6_supports-color_10.1.0/node_modules/https-proxy-agent/dist/index.js
+// node_modules/.aspect_rules_js/https-proxy-agent@7.0.6_supports-color_10.2.0/node_modules/https-proxy-agent/dist/index.js
 var require_dist3 = __commonJS({
-  "node_modules/.aspect_rules_js/https-proxy-agent@7.0.6_supports-color_10.1.0/node_modules/https-proxy-agent/dist/index.js"(exports) {
+  "node_modules/.aspect_rules_js/https-proxy-agent@7.0.6_supports-color_10.2.0/node_modules/https-proxy-agent/dist/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -28479,9 +28479,9 @@ var require_dist3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/gaxios.js
+// node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/gaxios.js
 var require_gaxios = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/gaxios.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/gaxios.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -28914,9 +28914,9 @@ Content-Type: ${partContentType}\r
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/index.js
+// node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/index.js
 var require_src3 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537804320/node_modules/gaxios/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@6.7.1_1537834111/node_modules/gaxios/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -30848,9 +30848,9 @@ var require_json_bigint = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gcp-metadata@6.1.1_1537804320/node_modules/gcp-metadata/build/src/gcp-residency.js
+// node_modules/.aspect_rules_js/gcp-metadata@6.1.1_1537834111/node_modules/gcp-metadata/build/src/gcp-residency.js
 var require_gcp_residency = __commonJS({
-  "node_modules/.aspect_rules_js/gcp-metadata@6.1.1_1537804320/node_modules/gcp-metadata/build/src/gcp-residency.js"(exports) {
+  "node_modules/.aspect_rules_js/gcp-metadata@6.1.1_1537834111/node_modules/gcp-metadata/build/src/gcp-residency.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GCE_LINUX_BIOS_PATHS = void 0;
@@ -31262,9 +31262,9 @@ var require_src4 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gcp-metadata@6.1.1_1537804320/node_modules/gcp-metadata/build/src/index.js
+// node_modules/.aspect_rules_js/gcp-metadata@6.1.1_1537834111/node_modules/gcp-metadata/build/src/index.js
 var require_src5 = __commonJS({
-  "node_modules/.aspect_rules_js/gcp-metadata@6.1.1_1537804320/node_modules/gcp-metadata/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/gcp-metadata@6.1.1_1537834111/node_modules/gcp-metadata/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -31621,9 +31621,9 @@ var require_base64_js = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
 var require_crypto = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BrowserCrypto = void 0;
@@ -31717,9 +31717,9 @@ var require_crypto = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/crypto/node/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/crypto/node/crypto.js
 var require_crypto2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.NodeCrypto = void 0;
@@ -31781,9 +31781,9 @@ var require_crypto2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/crypto/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/crypto/crypto.js
 var require_crypto3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.createCrypto = createCrypto;
@@ -31809,9 +31809,9 @@ var require_crypto3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/options.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/options.js
 var require_options2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/options.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/options.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.validate = validate3;
@@ -31831,9 +31831,9 @@ var require_options2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/package.json
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/package.json
 var require_package3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/package.json"(exports, module) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/package.json"(exports, module) {
     module.exports = {
       name: "google-auth-library",
       version: "9.15.1",
@@ -31931,9 +31931,9 @@ var require_package3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/transporters.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/transporters.js
 var require_transporters = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/transporters.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/transporters.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DefaultTransporter = void 0;
@@ -32238,9 +32238,9 @@ var require_ecdsa_sig_formatter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/util.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/util.js
 var require_util2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/util.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/util.js"(exports) {
     "use strict";
     var __classPrivateFieldGet2 = exports && exports.__classPrivateFieldGet || function(receiver, state, kind, f) {
       if (kind === "a" && !f)
@@ -32318,9 +32318,9 @@ var require_util2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/authclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/authclient.js
 var require_authclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/authclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/authclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AuthClient = exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports.DEFAULT_UNIVERSE = void 0;
@@ -32411,9 +32411,9 @@ var require_authclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/loginticket.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/loginticket.js
 var require_loginticket = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LoginTicket = void 0;
@@ -32461,9 +32461,9 @@ var require_loginticket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/oauth2client.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/oauth2client.js
 var require_oauth2client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuth2Client = exports.ClientAuthentication = exports.CertificateFormat = exports.CodeChallengeMethod = void 0;
@@ -33113,9 +33113,9 @@ var require_oauth2client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/computeclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/computeclient.js
 var require_computeclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Compute = void 0;
@@ -33203,9 +33203,9 @@ var require_computeclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/idtokenclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/idtokenclient.js
 var require_idtokenclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IdTokenClient = void 0;
@@ -33247,9 +33247,9 @@ var require_idtokenclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/envDetect.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/envDetect.js
 var require_envDetect = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GCPEnv = void 0;
@@ -33851,9 +33851,9 @@ var require_jws = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gtoken@7.1.0_1537804320/node_modules/gtoken/build/src/index.js
+// node_modules/.aspect_rules_js/gtoken@7.1.0_1537834111/node_modules/gtoken/build/src/index.js
 var require_src6 = __commonJS({
-  "node_modules/.aspect_rules_js/gtoken@7.1.0_1537804320/node_modules/gtoken/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/gtoken@7.1.0_1537834111/node_modules/gtoken/build/src/index.js"(exports) {
     "use strict";
     var __classPrivateFieldGet2 = exports && exports.__classPrivateFieldGet || function(receiver, state, kind, f) {
       if (kind === "a" && !f)
@@ -34120,9 +34120,9 @@ var require_src6 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/jwtaccess.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/jwtaccess.js
 var require_jwtaccess = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.JWTAccess = void 0;
@@ -34285,9 +34285,9 @@ var require_jwtaccess = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/jwtclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/jwtclient.js
 var require_jwtclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.JWT = void 0;
@@ -34537,9 +34537,9 @@ var require_jwtclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/refreshclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/refreshclient.js
 var require_refreshclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UserRefreshClient = exports.USER_REFRESH_ACCOUNT_TYPE = void 0;
@@ -34652,9 +34652,9 @@ var require_refreshclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/impersonated.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/impersonated.js
 var require_impersonated = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Impersonated = exports.IMPERSONATED_ACCOUNT_TYPE = void 0;
@@ -34821,9 +34821,9 @@ var require_impersonated = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/oauth2common.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/oauth2common.js
 var require_oauth2common = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuthClientAuthHandler = void 0;
@@ -34974,9 +34974,9 @@ var require_oauth2common = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/stscredentials.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/stscredentials.js
 var require_stscredentials = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StsCredentials = void 0;
@@ -35063,9 +35063,9 @@ var require_stscredentials = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
 var require_baseexternalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports) {
     "use strict";
     var __classPrivateFieldGet2 = exports && exports.__classPrivateFieldGet || function(receiver, state, kind, f) {
       if (kind === "a" && !f)
@@ -35438,9 +35438,9 @@ var require_baseexternalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
 var require_filesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports) {
     "use strict";
     var _a2;
     var _b2;
@@ -35503,9 +35503,9 @@ var require_filesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
 var require_urlsubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UrlSubjectTokenSupplier = void 0;
@@ -35554,9 +35554,9 @@ var require_urlsubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
 var require_identitypoolclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IdentityPoolClient = void 0;
@@ -35644,9 +35644,9 @@ var require_identitypoolclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
 var require_awsrequestsigner = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AwsRequestSigner = void 0;
@@ -35789,9 +35789,9 @@ ${credentialScope}
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
 var require_defaultawssecuritycredentialssupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports) {
     "use strict";
     var __classPrivateFieldGet2 = exports && exports.__classPrivateFieldGet || function(receiver, state, kind, f) {
       if (kind === "a" && !f)
@@ -35944,9 +35944,9 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/awsclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/awsclient.js
 var require_awsclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports) {
     "use strict";
     var __classPrivateFieldGet2 = exports && exports.__classPrivateFieldGet || function(receiver, state, kind, f) {
       if (kind === "a" && !f)
@@ -36066,9 +36066,9 @@ var require_awsclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/executable-response.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/executable-response.js
 var require_executable_response = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.InvalidSubjectTokenError = exports.InvalidMessageFieldError = exports.InvalidCodeFieldError = exports.InvalidTokenTypeFieldError = exports.InvalidExpirationTimeFieldError = exports.InvalidSuccessFieldError = exports.InvalidVersionFieldError = exports.ExecutableResponseError = exports.ExecutableResponse = void 0;
@@ -36166,9 +36166,9 @@ var require_executable_response = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
 var require_pluggable_auth_handler = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PluggableAuthHandler = void 0;
@@ -36293,9 +36293,9 @@ var require_pluggable_auth_handler = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
 var require_pluggable_auth_client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PluggableAuthClient = exports.ExecutableError = void 0;
@@ -36411,9 +36411,9 @@ var require_pluggable_auth_client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/externalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/externalclient.js
 var require_externalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ExternalAccountClient = void 0;
@@ -36457,9 +36457,9 @@ var require_externalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
 var require_externalAccountAuthorizedUserClient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
@@ -36651,9 +36651,9 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/googleauth.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/googleauth.js
 var require_googleauth = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports) {
     "use strict";
     var __classPrivateFieldGet2 = exports && exports.__classPrivateFieldGet || function(receiver, state, kind, f) {
       if (kind === "a" && !f)
@@ -37381,9 +37381,9 @@ var require_googleauth = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/iam.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/iam.js
 var require_iam = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/iam.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/iam.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IAMAuth = void 0;
@@ -37415,9 +37415,9 @@ var require_iam = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/downscopedclient.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/downscopedclient.js
 var require_downscopedclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DownscopedClient = exports.EXPIRATION_TIME_OFFSET = exports.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
@@ -37599,9 +37599,9 @@ var require_downscopedclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/passthrough.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/passthrough.js
 var require_passthrough = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PassThroughClient = void 0;
@@ -37646,9 +37646,9 @@ var require_passthrough = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/index.js
+// node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/index.js
 var require_src7 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537804320/node_modules/google-auth-library/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@9.15.1_1537834111/node_modules/google-auth-library/build/src/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GoogleAuth = exports.auth = exports.DefaultTransporter = exports.PassThroughClient = exports.ExecutableError = exports.PluggableAuthClient = exports.DownscopedClient = exports.BaseExternalAccountClient = exports.ExternalAccountClient = exports.IdentityPoolClient = exports.AwsRequestSigner = exports.AwsClient = exports.UserRefreshClient = exports.LoginTicket = exports.ClientAuthentication = exports.OAuth2Client = exports.CodeChallengeMethod = exports.Impersonated = exports.JWT = exports.JWTAccess = exports.IdTokenClient = exports.IAMAuth = exports.GCPEnv = exports.Compute = exports.DEFAULT_UNIVERSE = exports.AuthClient = exports.gaxios = exports.gcpMetadata = void 0;
@@ -49906,7 +49906,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/key.js
 var isUpKey = (key) => key.name === "up";
 var isDownKey = (key) => key.name === "down";
 var isSpaceKey = (key) => key.name === "space";
@@ -49915,7 +49915,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -49938,10 +49938,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -50047,7 +50047,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -50065,7 +50065,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -50077,7 +50077,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs());
 
 // node_modules/.aspect_rules_js/@inquirer+figures@1.0.13/node_modules/@inquirer/figures/dist/esm/index.js
@@ -50369,7 +50369,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
@@ -50391,7 +50391,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -50419,7 +50419,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -50450,7 +50450,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -50463,12 +50463,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -50487,7 +50487,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 var import_wrap_ansi2 = __toESM(require_wrap_ansi());
 function breakLines(content, width) {
@@ -50497,7 +50497,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -50586,7 +50586,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -50842,7 +50842,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var import_ansi_escapes = __toESM(require_ansi_escapes());
 import { stripVTControlCharacters } from "node:util";
 var height = (content) => content.split("\n").length;
@@ -50907,7 +50907,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -50922,7 +50922,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -51009,7 +51009,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.2.0/node_modules/@inquirer/core/dist/esm/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.0_at_types_node_24.3.0/node_modules/@inquirer/core/dist/esm/lib/Separator.js
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs());
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
@@ -51024,7 +51024,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.2_at_types_node_24.2.0/node_modules/@inquirer/checkbox/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.2_at_types_node_24.3.0/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs());
 var import_ansi_escapes2 = __toESM(require_ansi_escapes());
 var checkboxTheme = {
@@ -51207,7 +51207,7 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${choiceDescription}${error}${import_ansi_escapes2.default.cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.3.0/node_modules/@inquirer/external-editor/dist/esm/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -51216,7 +51216,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.3.0/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -51225,7 +51225,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.3.0/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -51234,7 +51234,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.3.0/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -51243,7 +51243,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.3.0/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -51252,7 +51252,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.2.0/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.1_at_types_node_24.3.0/node_modules/@inquirer/external-editor/dist/esm/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -51406,7 +51406,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@4.2.18_at_types_node_24.2.0/node_modules/@inquirer/editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@4.2.18_at_types_node_24.3.0/node_modules/@inquirer/editor/dist/esm/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -51475,7 +51475,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.16_at_types_node_24.2.0/node_modules/@inquirer/confirm/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.16_at_types_node_24.3.0/node_modules/@inquirer/confirm/dist/esm/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -51521,7 +51521,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@4.2.2_at_types_node_24.2.0/node_modules/@inquirer/input/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@4.2.2_at_types_node_24.3.0/node_modules/@inquirer/input/dist/esm/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -51593,7 +51593,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@3.0.18_at_types_node_24.2.0/node_modules/@inquirer/number/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@3.0.18_at_types_node_24.3.0/node_modules/@inquirer/number/dist/esm/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -51674,7 +51674,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@4.0.18_at_types_node_24.2.0/node_modules/@inquirer/expand/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@4.0.18_at_types_node_24.3.0/node_modules/@inquirer/expand/dist/esm/index.js
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs());
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -51770,7 +51770,7 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.6_at_types_node_24.2.0/node_modules/@inquirer/rawlist/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.6_at_types_node_24.3.0/node_modules/@inquirer/rawlist/dist/esm/index.js
 var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs());
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -51881,7 +51881,7 @@ var esm_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@4.0.18_at_types_node_24.2.0/node_modules/@inquirer/password/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@4.0.18_at_types_node_24.3.0/node_modules/@inquirer/password/dist/esm/index.js
 var import_ansi_escapes3 = __toESM(require_ansi_escapes());
 var esm_default10 = createPrompt((config, done) => {
   const { validate: validate3 = () => true } = config;
@@ -51931,7 +51931,7 @@ var esm_default10 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@3.1.1_at_types_node_24.2.0/node_modules/@inquirer/search/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@3.1.1_at_types_node_24.3.0/node_modules/@inquirer/search/dist/esm/index.js
 var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs());
 var searchTheme = {
   icon: { cursor: esm_default2.pointer },
@@ -52097,7 +52097,7 @@ ${theme.style.description(selectedChoice.description)}` : ``;
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@4.3.2_at_types_node_24.2.0/node_modules/@inquirer/select/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@4.3.2_at_types_node_24.3.0/node_modules/@inquirer/select/dist/esm/index.js
 var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs());
 var import_ansi_escapes4 = __toESM(require_ansi_escapes());
 var selectTheme = {
@@ -59095,7 +59095,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-00a4cf14cdc374867673a52ecb556f356da8bec0`;
+  const localVersion = `0.0.0-fc71b572acb06a4830ef5566edb05500f822b7ad`;
   const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path7.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path7.join(workspacePath, "yarn.lock");
@@ -60052,7 +60052,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.13.0_678003335/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.15.0_1856225767/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable2 } from "node:stream";
@@ -60064,7 +60064,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.13.0_678003335/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.15.0_1856225767/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -60268,11 +60268,6 @@ var ApiSpec;
   ApiSpec2["SIMPLE_SEARCH"] = "SIMPLE_SEARCH";
   ApiSpec2["ELASTIC_SEARCH"] = "ELASTIC_SEARCH";
 })(ApiSpec || (ApiSpec = {}));
-var Environment;
-(function(Environment2) {
-  Environment2["ENVIRONMENT_UNSPECIFIED"] = "ENVIRONMENT_UNSPECIFIED";
-  Environment2["ENVIRONMENT_BROWSER"] = "ENVIRONMENT_BROWSER";
-})(Environment || (Environment = {}));
 var UrlRetrievalStatus;
 (function(UrlRetrievalStatus2) {
   UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_UNSPECIFIED"] = "URL_RETRIEVAL_STATUS_UNSPECIFIED";
@@ -60357,6 +60352,12 @@ var JobState;
   JobState2["JOB_STATE_UPDATING"] = "JOB_STATE_UPDATING";
   JobState2["JOB_STATE_PARTIALLY_SUCCEEDED"] = "JOB_STATE_PARTIALLY_SUCCEEDED";
 })(JobState || (JobState = {}));
+var TuningMode;
+(function(TuningMode2) {
+  TuningMode2["TUNING_MODE_UNSPECIFIED"] = "TUNING_MODE_UNSPECIFIED";
+  TuningMode2["TUNING_MODE_FULL"] = "TUNING_MODE_FULL";
+  TuningMode2["TUNING_MODE_PEFT_ADAPTER"] = "TUNING_MODE_PEFT_ADAPTER";
+})(TuningMode || (TuningMode = {}));
 var AdapterSize;
 (function(AdapterSize2) {
   AdapterSize2["ADAPTER_SIZE_UNSPECIFIED"] = "ADAPTER_SIZE_UNSPECIFIED";
@@ -60385,6 +60386,11 @@ var DynamicRetrievalConfigMode;
   DynamicRetrievalConfigMode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
   DynamicRetrievalConfigMode2["MODE_DYNAMIC"] = "MODE_DYNAMIC";
 })(DynamicRetrievalConfigMode || (DynamicRetrievalConfigMode = {}));
+var Environment;
+(function(Environment2) {
+  Environment2["ENVIRONMENT_UNSPECIFIED"] = "ENVIRONMENT_UNSPECIFIED";
+  Environment2["ENVIRONMENT_BROWSER"] = "ENVIRONMENT_BROWSER";
+})(Environment || (Environment = {}));
 var FunctionCallingConfigMode;
 (function(FunctionCallingConfigMode2) {
   FunctionCallingConfigMode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
@@ -60449,6 +60455,14 @@ var EditMode;
   EditMode2["EDIT_MODE_BGSWAP"] = "EDIT_MODE_BGSWAP";
   EditMode2["EDIT_MODE_PRODUCT_IMAGE"] = "EDIT_MODE_PRODUCT_IMAGE";
 })(EditMode || (EditMode = {}));
+var SegmentMode;
+(function(SegmentMode2) {
+  SegmentMode2["FOREGROUND"] = "FOREGROUND";
+  SegmentMode2["BACKGROUND"] = "BACKGROUND";
+  SegmentMode2["PROMPT"] = "PROMPT";
+  SegmentMode2["SEMANTIC"] = "SEMANTIC";
+  SegmentMode2["INTERACTIVE"] = "INTERACTIVE";
+})(SegmentMode || (SegmentMode = {}));
 var VideoCompressionQuality;
 (function(VideoCompressionQuality2) {
   VideoCompressionQuality2["OPTIMIZED"] = "OPTIMIZED";
@@ -60789,6 +60803,8 @@ var EditImageResponse = class {
 var UpscaleImageResponse = class {
 };
 var RecontextImageResponse = class {
+};
+var SegmentImageResponse = class {
 };
 var ListModelsResponse = class {
 };
@@ -61759,6 +61775,9 @@ function googleSearchToMldev$4(fromObject) {
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], intervalToMldev$4(fromTimeRangeFilter));
   }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function dynamicRetrievalConfigToMldev$4(fromObject) {
@@ -61787,6 +61806,14 @@ function googleSearchRetrievalToMldev$4(fromObject) {
 }
 function urlContextToMldev$4() {
   const toObject = {};
+  return toObject;
+}
+function toolComputerUseToMldev$4(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
   return toObject;
 }
 function toolToMldev$4(fromObject) {
@@ -61826,15 +61853,15 @@ function toolToMldev$4(fromObject) {
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], urlContextToMldev$4());
   }
+  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
+  if (fromComputerUse != null) {
+    setValueByPath(toObject, ["computerUse"], toolComputerUseToMldev$4(fromComputerUse));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
-  }
-  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
-  if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
   }
   return toObject;
 }
@@ -63106,6 +63133,7 @@ var Batches = class extends BaseModule2 {
     super();
     this.apiClient = apiClient;
     this.create = async (params2) => {
+      var _a2, _b2;
       if (this.apiClient.isVertexAI()) {
         const timestamp = Date.now();
         const timestampStr = timestamp.toString();
@@ -63124,6 +63152,48 @@ var Batches = class extends BaseModule2 {
           } else {
             throw new Error("Unsupported source:" + params2.src);
           }
+        }
+      } else {
+        if (Array.isArray(params2.src) || typeof params2.src !== "string" && params2.src.inlinedRequests) {
+          let path9 = "";
+          let queryParams = {};
+          const body = createBatchJobParametersToMldev(this.apiClient, params2);
+          path9 = formatMap("{model}:batchGenerateContent", body["_url"]);
+          queryParams = body["_query"];
+          const batch = body["batch"];
+          const inputConfig = batch["inputConfig"];
+          const requestsWrapper = inputConfig["requests"];
+          const requests = requestsWrapper["requests"];
+          const newRequests = [];
+          for (const request of requests) {
+            const requestDict = request;
+            if (requestDict["systemInstruction"]) {
+              const systemInstructionValue = requestDict["systemInstruction"];
+              delete requestDict["systemInstruction"];
+              const requestContent = requestDict["request"];
+              requestContent["systemInstruction"] = systemInstructionValue;
+              requestDict["request"] = requestContent;
+            }
+            newRequests.push(requestDict);
+          }
+          requestsWrapper["requests"] = newRequests;
+          delete body["config"];
+          delete body["_url"];
+          delete body["_query"];
+          const response = this.apiClient.request({
+            path: path9,
+            queryParams,
+            body: JSON.stringify(body),
+            httpMethod: "POST",
+            httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
+            abortSignal: (_b2 = params2.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
+          }).then((httpResponse) => {
+            return httpResponse.json();
+          });
+          return response.then((apiResponse) => {
+            const resp = batchJobFromMldev(apiResponse);
+            return resp;
+          });
         }
       }
       return await this.createInternal(params2);
@@ -63607,6 +63677,9 @@ function googleSearchToMldev$3(fromObject) {
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], intervalToMldev$3(fromTimeRangeFilter));
   }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function dynamicRetrievalConfigToMldev$3(fromObject) {
@@ -63635,6 +63708,14 @@ function googleSearchRetrievalToMldev$3(fromObject) {
 }
 function urlContextToMldev$3() {
   const toObject = {};
+  return toObject;
+}
+function toolComputerUseToMldev$3(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
   return toObject;
 }
 function toolToMldev$3(fromObject) {
@@ -63674,15 +63755,15 @@ function toolToMldev$3(fromObject) {
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], urlContextToMldev$3());
   }
+  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
+  if (fromComputerUse != null) {
+    setValueByPath(toObject, ["computerUse"], toolComputerUseToMldev$3(fromComputerUse));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
-  }
-  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
-  if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
   }
   return toObject;
 }
@@ -64044,6 +64125,12 @@ function googleSearchToVertex$2(fromObject) {
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], intervalToVertex$2(fromTimeRangeFilter));
   }
+  const fromExcludeDomains = getValueByPath(fromObject, [
+    "excludeDomains"
+  ]);
+  if (fromExcludeDomains != null) {
+    setValueByPath(toObject, ["excludeDomains"], fromExcludeDomains);
+  }
   return toObject;
 }
 function dynamicRetrievalConfigToVertex$2(fromObject) {
@@ -64070,8 +64157,14 @@ function googleSearchRetrievalToVertex$2(fromObject) {
   }
   return toObject;
 }
-function enterpriseWebSearchToVertex$2() {
+function enterpriseWebSearchToVertex$2(fromObject) {
   const toObject = {};
+  const fromExcludeDomains = getValueByPath(fromObject, [
+    "excludeDomains"
+  ]);
+  if (fromExcludeDomains != null) {
+    setValueByPath(toObject, ["excludeDomains"], fromExcludeDomains);
+  }
   return toObject;
 }
 function apiKeyConfigToVertex$2(fromObject) {
@@ -64126,6 +64219,14 @@ function urlContextToVertex$2() {
   const toObject = {};
   return toObject;
 }
+function toolComputerUseToVertex$2(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
+  return toObject;
+}
 function toolToVertex$2(fromObject) {
   const toObject = {};
   const fromFunctionDeclarations = getValueByPath(fromObject, [
@@ -64158,7 +64259,7 @@ function toolToVertex$2(fromObject) {
     "enterpriseWebSearch"
   ]);
   if (fromEnterpriseWebSearch != null) {
-    setValueByPath(toObject, ["enterpriseWebSearch"], enterpriseWebSearchToVertex$2());
+    setValueByPath(toObject, ["enterpriseWebSearch"], enterpriseWebSearchToVertex$2(fromEnterpriseWebSearch));
   }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
@@ -64168,15 +64269,15 @@ function toolToVertex$2(fromObject) {
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], urlContextToVertex$2());
   }
+  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
+  if (fromComputerUse != null) {
+    setValueByPath(toObject, ["computerUse"], toolComputerUseToVertex$2(fromComputerUse));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
-  }
-  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
-  if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
   }
   return toObject;
 }
@@ -64930,9 +65031,6 @@ function isValidContent(content) {
   }
   for (const part of content.parts) {
     if (part === void 0 || Object.keys(part).length === 0) {
-      return false;
-    }
-    if (!part.thought && part.text !== void 0 && part.text === "") {
       return false;
     }
   }
@@ -65930,6 +66028,9 @@ function googleSearchToMldev$2(fromObject) {
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], intervalToMldev$2(fromTimeRangeFilter));
   }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function dynamicRetrievalConfigToMldev$2(fromObject) {
@@ -65958,6 +66059,14 @@ function googleSearchRetrievalToMldev$2(fromObject) {
 }
 function urlContextToMldev$2() {
   const toObject = {};
+  return toObject;
+}
+function toolComputerUseToMldev$2(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
   return toObject;
 }
 function toolToMldev$2(fromObject) {
@@ -65997,15 +66106,15 @@ function toolToMldev$2(fromObject) {
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], urlContextToMldev$2());
   }
+  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
+  if (fromComputerUse != null) {
+    setValueByPath(toObject, ["computerUse"], toolComputerUseToMldev$2(fromComputerUse));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
-  }
-  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
-  if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
   }
   return toObject;
 }
@@ -66622,6 +66731,12 @@ function googleSearchToVertex$1(fromObject) {
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], intervalToVertex$1(fromTimeRangeFilter));
   }
+  const fromExcludeDomains = getValueByPath(fromObject, [
+    "excludeDomains"
+  ]);
+  if (fromExcludeDomains != null) {
+    setValueByPath(toObject, ["excludeDomains"], fromExcludeDomains);
+  }
   return toObject;
 }
 function dynamicRetrievalConfigToVertex$1(fromObject) {
@@ -66648,8 +66763,14 @@ function googleSearchRetrievalToVertex$1(fromObject) {
   }
   return toObject;
 }
-function enterpriseWebSearchToVertex$1() {
+function enterpriseWebSearchToVertex$1(fromObject) {
   const toObject = {};
+  const fromExcludeDomains = getValueByPath(fromObject, [
+    "excludeDomains"
+  ]);
+  if (fromExcludeDomains != null) {
+    setValueByPath(toObject, ["excludeDomains"], fromExcludeDomains);
+  }
   return toObject;
 }
 function apiKeyConfigToVertex$1(fromObject) {
@@ -66704,6 +66825,14 @@ function urlContextToVertex$1() {
   const toObject = {};
   return toObject;
 }
+function toolComputerUseToVertex$1(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
+  return toObject;
+}
 function toolToVertex$1(fromObject) {
   const toObject = {};
   const fromFunctionDeclarations = getValueByPath(fromObject, [
@@ -66736,7 +66865,7 @@ function toolToVertex$1(fromObject) {
     "enterpriseWebSearch"
   ]);
   if (fromEnterpriseWebSearch != null) {
-    setValueByPath(toObject, ["enterpriseWebSearch"], enterpriseWebSearchToVertex$1());
+    setValueByPath(toObject, ["enterpriseWebSearch"], enterpriseWebSearchToVertex$1(fromEnterpriseWebSearch));
   }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
@@ -66746,15 +66875,15 @@ function toolToVertex$1(fromObject) {
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], urlContextToVertex$1());
   }
+  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
+  if (fromComputerUse != null) {
+    setValueByPath(toObject, ["computerUse"], toolComputerUseToVertex$1(fromComputerUse));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
-  }
-  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
-  if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
   }
   return toObject;
 }
@@ -68277,6 +68406,9 @@ function googleSearchToMldev$1(fromObject) {
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], intervalToMldev$1(fromTimeRangeFilter));
   }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function dynamicRetrievalConfigToMldev$1(fromObject) {
@@ -68305,6 +68437,14 @@ function googleSearchRetrievalToMldev$1(fromObject) {
 }
 function urlContextToMldev$1() {
   const toObject = {};
+  return toObject;
+}
+function toolComputerUseToMldev$1(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
   return toObject;
 }
 function toolToMldev$1(fromObject) {
@@ -68344,15 +68484,15 @@ function toolToMldev$1(fromObject) {
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], urlContextToMldev$1());
   }
+  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
+  if (fromComputerUse != null) {
+    setValueByPath(toObject, ["computerUse"], toolComputerUseToMldev$1(fromComputerUse));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
-  }
-  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
-  if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
   }
   return toObject;
 }
@@ -68990,6 +69130,9 @@ function generateVideosConfigToMldev(fromObject, parentObject) {
   if (getValueByPath(fromObject, ["lastFrame"]) !== void 0) {
     throw new Error("lastFrame parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["referenceImages"]) !== void 0) {
+    throw new Error("referenceImages parameter is not supported in Gemini API.");
+  }
   if (getValueByPath(fromObject, ["compressionQuality"]) !== void 0) {
     throw new Error("compressionQuality parameter is not supported in Gemini API.");
   }
@@ -69317,6 +69460,12 @@ function googleSearchToVertex(fromObject) {
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], intervalToVertex(fromTimeRangeFilter));
   }
+  const fromExcludeDomains = getValueByPath(fromObject, [
+    "excludeDomains"
+  ]);
+  if (fromExcludeDomains != null) {
+    setValueByPath(toObject, ["excludeDomains"], fromExcludeDomains);
+  }
   return toObject;
 }
 function dynamicRetrievalConfigToVertex(fromObject) {
@@ -69343,8 +69492,14 @@ function googleSearchRetrievalToVertex(fromObject) {
   }
   return toObject;
 }
-function enterpriseWebSearchToVertex() {
+function enterpriseWebSearchToVertex(fromObject) {
   const toObject = {};
+  const fromExcludeDomains = getValueByPath(fromObject, [
+    "excludeDomains"
+  ]);
+  if (fromExcludeDomains != null) {
+    setValueByPath(toObject, ["excludeDomains"], fromExcludeDomains);
+  }
   return toObject;
 }
 function apiKeyConfigToVertex(fromObject) {
@@ -69399,6 +69554,14 @@ function urlContextToVertex() {
   const toObject = {};
   return toObject;
 }
+function toolComputerUseToVertex(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
+  return toObject;
+}
 function toolToVertex(fromObject) {
   const toObject = {};
   const fromFunctionDeclarations = getValueByPath(fromObject, [
@@ -69431,7 +69594,7 @@ function toolToVertex(fromObject) {
     "enterpriseWebSearch"
   ]);
   if (fromEnterpriseWebSearch != null) {
-    setValueByPath(toObject, ["enterpriseWebSearch"], enterpriseWebSearchToVertex());
+    setValueByPath(toObject, ["enterpriseWebSearch"], enterpriseWebSearchToVertex(fromEnterpriseWebSearch));
   }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
@@ -69441,15 +69604,15 @@ function toolToVertex(fromObject) {
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], urlContextToVertex());
   }
+  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
+  if (fromComputerUse != null) {
+    setValueByPath(toObject, ["computerUse"], toolComputerUseToVertex(fromComputerUse));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
-  }
-  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
-  if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
   }
   return toObject;
 }
@@ -70280,6 +70443,78 @@ function recontextImageParametersToVertex(apiClient, fromObject) {
   }
   return toObject;
 }
+function scribbleImageToVertex(fromObject) {
+  const toObject = {};
+  const fromImage = getValueByPath(fromObject, ["image"]);
+  if (fromImage != null) {
+    setValueByPath(toObject, ["image"], imageToVertex(fromImage));
+  }
+  return toObject;
+}
+function segmentImageSourceToVertex(fromObject, parentObject) {
+  const toObject = {};
+  const fromPrompt = getValueByPath(fromObject, ["prompt"]);
+  if (parentObject !== void 0 && fromPrompt != null) {
+    setValueByPath(parentObject, ["instances[0]", "prompt"], fromPrompt);
+  }
+  const fromImage = getValueByPath(fromObject, ["image"]);
+  if (parentObject !== void 0 && fromImage != null) {
+    setValueByPath(parentObject, ["instances[0]", "image"], imageToVertex(fromImage));
+  }
+  const fromScribbleImage = getValueByPath(fromObject, [
+    "scribbleImage"
+  ]);
+  if (parentObject !== void 0 && fromScribbleImage != null) {
+    setValueByPath(parentObject, ["instances[0]", "scribble"], scribbleImageToVertex(fromScribbleImage));
+  }
+  return toObject;
+}
+function segmentImageConfigToVertex(fromObject, parentObject) {
+  const toObject = {};
+  const fromMode = getValueByPath(fromObject, ["mode"]);
+  if (parentObject !== void 0 && fromMode != null) {
+    setValueByPath(parentObject, ["parameters", "mode"], fromMode);
+  }
+  const fromMaxPredictions = getValueByPath(fromObject, [
+    "maxPredictions"
+  ]);
+  if (parentObject !== void 0 && fromMaxPredictions != null) {
+    setValueByPath(parentObject, ["parameters", "maxPredictions"], fromMaxPredictions);
+  }
+  const fromConfidenceThreshold = getValueByPath(fromObject, [
+    "confidenceThreshold"
+  ]);
+  if (parentObject !== void 0 && fromConfidenceThreshold != null) {
+    setValueByPath(parentObject, ["parameters", "confidenceThreshold"], fromConfidenceThreshold);
+  }
+  const fromMaskDilation = getValueByPath(fromObject, ["maskDilation"]);
+  if (parentObject !== void 0 && fromMaskDilation != null) {
+    setValueByPath(parentObject, ["parameters", "maskDilation"], fromMaskDilation);
+  }
+  const fromBinaryColorThreshold = getValueByPath(fromObject, [
+    "binaryColorThreshold"
+  ]);
+  if (parentObject !== void 0 && fromBinaryColorThreshold != null) {
+    setValueByPath(parentObject, ["parameters", "binaryColorThreshold"], fromBinaryColorThreshold);
+  }
+  return toObject;
+}
+function segmentImageParametersToVertex(apiClient, fromObject) {
+  const toObject = {};
+  const fromModel = getValueByPath(fromObject, ["model"]);
+  if (fromModel != null) {
+    setValueByPath(toObject, ["_url", "model"], tModel(apiClient, fromModel));
+  }
+  const fromSource = getValueByPath(fromObject, ["source"]);
+  if (fromSource != null) {
+    setValueByPath(toObject, ["config"], segmentImageSourceToVertex(fromSource, toObject));
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    setValueByPath(toObject, ["config"], segmentImageConfigToVertex(fromConfig, toObject));
+  }
+  return toObject;
+}
 function getModelParametersToVertex(apiClient, fromObject) {
   const toObject = {};
   const fromModel = getValueByPath(fromObject, ["model"]);
@@ -70448,6 +70683,20 @@ function videoToVertex(fromObject) {
   }
   return toObject;
 }
+function videoGenerationReferenceImageToVertex(fromObject) {
+  const toObject = {};
+  const fromImage = getValueByPath(fromObject, ["image"]);
+  if (fromImage != null) {
+    setValueByPath(toObject, ["image"], imageToVertex(fromImage));
+  }
+  const fromReferenceType = getValueByPath(fromObject, [
+    "referenceType"
+  ]);
+  if (fromReferenceType != null) {
+    setValueByPath(toObject, ["referenceType"], fromReferenceType);
+  }
+  return toObject;
+}
 function generateVideosConfigToVertex(fromObject, parentObject) {
   const toObject = {};
   const fromNumberOfVideos = getValueByPath(fromObject, [
@@ -70513,6 +70762,18 @@ function generateVideosConfigToVertex(fromObject, parentObject) {
   const fromLastFrame = getValueByPath(fromObject, ["lastFrame"]);
   if (parentObject !== void 0 && fromLastFrame != null) {
     setValueByPath(parentObject, ["instances[0]", "lastFrame"], imageToVertex(fromLastFrame));
+  }
+  const fromReferenceImages = getValueByPath(fromObject, [
+    "referenceImages"
+  ]);
+  if (parentObject !== void 0 && fromReferenceImages != null) {
+    let transformedList = fromReferenceImages;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return videoGenerationReferenceImageToVertex(item);
+      });
+    }
+    setValueByPath(parentObject, ["instances[0]", "referenceImages"], transformedList);
   }
   const fromCompressionQuality = getValueByPath(fromObject, [
     "compressionQuality"
@@ -71563,6 +71824,50 @@ function recontextImageResponseFromVertex(fromObject) {
   }
   return toObject;
 }
+function entityLabelFromVertex(fromObject) {
+  const toObject = {};
+  const fromLabel = getValueByPath(fromObject, ["label"]);
+  if (fromLabel != null) {
+    setValueByPath(toObject, ["label"], fromLabel);
+  }
+  const fromScore = getValueByPath(fromObject, ["score"]);
+  if (fromScore != null) {
+    setValueByPath(toObject, ["score"], fromScore);
+  }
+  return toObject;
+}
+function generatedImageMaskFromVertex(fromObject) {
+  const toObject = {};
+  const fromMask = getValueByPath(fromObject, ["_self"]);
+  if (fromMask != null) {
+    setValueByPath(toObject, ["mask"], imageFromVertex(fromMask));
+  }
+  const fromLabels = getValueByPath(fromObject, ["labels"]);
+  if (fromLabels != null) {
+    let transformedList = fromLabels;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return entityLabelFromVertex(item);
+      });
+    }
+    setValueByPath(toObject, ["labels"], transformedList);
+  }
+  return toObject;
+}
+function segmentImageResponseFromVertex(fromObject) {
+  const toObject = {};
+  const fromGeneratedMasks = getValueByPath(fromObject, ["predictions"]);
+  if (fromGeneratedMasks != null) {
+    let transformedList = fromGeneratedMasks;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return generatedImageMaskFromVertex(item);
+      });
+    }
+    setValueByPath(toObject, ["generatedMasks"], transformedList);
+  }
+  return toObject;
+}
 function endpointFromVertex(fromObject) {
   const toObject = {};
   const fromName = getValueByPath(fromObject, ["endpoint"]);
@@ -71804,7 +72109,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.13.0";
+var SDK_VERSION = "1.15.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -73804,6 +74109,58 @@ var Models = class extends BaseModule2 {
     }
   }
   /**
+   * Segments an image, creating a mask of a specified area.
+   *
+   * @param params - The parameters for segmenting an image.
+   * @return The response from the API.
+   *
+   * @example
+   * ```ts
+   * const response = await ai.models.segmentImage({
+   *  model: 'image-segmentation-001',
+   *  source: {
+   *    image: image,
+   *  },
+   *  config: {
+   *    mode: 'foreground',
+   *  },
+   * });
+   * console.log(response?.generatedMasks?.[0]?.mask?.imageBytes);
+   * ```
+   */
+  async segmentImage(params2) {
+    var _a2, _b2;
+    let response;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      const body = segmentImageParametersToVertex(this.apiClient, params2);
+      path9 = formatMap("{model}:predict", body["_url"]);
+      queryParams = body["_query"];
+      delete body["config"];
+      delete body["_url"];
+      delete body["_query"];
+      response = this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "POST",
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
+        abortSignal: (_b2 = params2.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json();
+      });
+      return response.then((apiResponse) => {
+        const resp = segmentImageResponseFromVertex(apiResponse);
+        const typedResp = new SegmentImageResponse();
+        Object.assign(typedResp, resp);
+        return typedResp;
+      });
+    } else {
+      throw new Error("This method is only supported by the Vertex AI.");
+    }
+  }
+  /**
    * Fetches information about a model by name.
    *
    * @example
@@ -74705,6 +75062,9 @@ function googleSearchToMldev(fromObject) {
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], intervalToMldev(fromTimeRangeFilter));
   }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function dynamicRetrievalConfigToMldev(fromObject) {
@@ -74733,6 +75093,14 @@ function googleSearchRetrievalToMldev(fromObject) {
 }
 function urlContextToMldev() {
   const toObject = {};
+  return toObject;
+}
+function toolComputerUseToMldev(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
   return toObject;
 }
 function toolToMldev(fromObject) {
@@ -74772,15 +75140,15 @@ function toolToMldev(fromObject) {
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], urlContextToMldev());
   }
+  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
+  if (fromComputerUse != null) {
+    setValueByPath(toObject, ["computerUse"], toolComputerUseToMldev(fromComputerUse));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
-  }
-  const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
-  if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
   }
   return toObject;
 }
@@ -75483,6 +75851,9 @@ function createTuningJobConfigToMldev(fromObject, parentObject) {
   if (getValueByPath(fromObject, ["exportLastCheckpointOnly"]) !== void 0) {
     throw new Error("exportLastCheckpointOnly parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["preTunedModelCheckpointId"]) !== void 0) {
+    throw new Error("preTunedModelCheckpointId parameter is not supported in Gemini API.");
+  }
   if (getValueByPath(fromObject, ["adapterSize"]) !== void 0) {
     throw new Error("adapterSize parameter is not supported in Gemini API.");
   }
@@ -75496,11 +75867,17 @@ function createTuningJobConfigToMldev(fromObject, parentObject) {
   }
   return toObject;
 }
-function createTuningJobParametersToMldev(fromObject) {
+function createTuningJobParametersPrivateToMldev(fromObject) {
   const toObject = {};
   const fromBaseModel = getValueByPath(fromObject, ["baseModel"]);
   if (fromBaseModel != null) {
     setValueByPath(toObject, ["baseModel"], fromBaseModel);
+  }
+  const fromPreTunedModel = getValueByPath(fromObject, [
+    "preTunedModel"
+  ]);
+  if (fromPreTunedModel != null) {
+    setValueByPath(toObject, ["preTunedModel"], fromPreTunedModel);
   }
   const fromTrainingDataset = getValueByPath(fromObject, [
     "trainingDataset"
@@ -75615,6 +75992,12 @@ function createTuningJobConfigToVertex(fromObject, parentObject) {
   if (parentObject !== void 0 && fromExportLastCheckpointOnly != null) {
     setValueByPath(parentObject, ["supervisedTuningSpec", "exportLastCheckpointOnly"], fromExportLastCheckpointOnly);
   }
+  const fromPreTunedModelCheckpointId = getValueByPath(fromObject, [
+    "preTunedModelCheckpointId"
+  ]);
+  if (fromPreTunedModelCheckpointId != null) {
+    setValueByPath(toObject, ["preTunedModel", "checkpointId"], fromPreTunedModelCheckpointId);
+  }
   const fromAdapterSize = getValueByPath(fromObject, ["adapterSize"]);
   if (parentObject !== void 0 && fromAdapterSize != null) {
     setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "adapterSize"], fromAdapterSize);
@@ -75627,11 +76010,17 @@ function createTuningJobConfigToVertex(fromObject, parentObject) {
   }
   return toObject;
 }
-function createTuningJobParametersToVertex(fromObject) {
+function createTuningJobParametersPrivateToVertex(fromObject) {
   const toObject = {};
   const fromBaseModel = getValueByPath(fromObject, ["baseModel"]);
   if (fromBaseModel != null) {
     setValueByPath(toObject, ["baseModel"], fromBaseModel);
+  }
+  const fromPreTunedModel = getValueByPath(fromObject, [
+    "preTunedModel"
+  ]);
+  if (fromPreTunedModel != null) {
+    setValueByPath(toObject, ["preTunedModel"], fromPreTunedModel);
   }
   const fromTrainingDataset = getValueByPath(fromObject, [
     "trainingDataset"
@@ -75707,11 +76096,11 @@ function tuningJobFromMldev(fromObject) {
   if (fromTunedModel != null) {
     setValueByPath(toObject, ["tunedModel"], tunedModelFromMldev(fromTunedModel));
   }
-  const fromDistillationSpec = getValueByPath(fromObject, [
-    "distillationSpec"
+  const fromCustomBaseModel = getValueByPath(fromObject, [
+    "customBaseModel"
   ]);
-  if (fromDistillationSpec != null) {
-    setValueByPath(toObject, ["distillationSpec"], fromDistillationSpec);
+  if (fromCustomBaseModel != null) {
+    setValueByPath(toObject, ["customBaseModel"], fromCustomBaseModel);
   }
   const fromExperiment = getValueByPath(fromObject, ["experiment"]);
   if (fromExperiment != null) {
@@ -75721,17 +76110,13 @@ function tuningJobFromMldev(fromObject) {
   if (fromLabels != null) {
     setValueByPath(toObject, ["labels"], fromLabels);
   }
+  const fromOutputUri = getValueByPath(fromObject, ["outputUri"]);
+  if (fromOutputUri != null) {
+    setValueByPath(toObject, ["outputUri"], fromOutputUri);
+  }
   const fromPipelineJob = getValueByPath(fromObject, ["pipelineJob"]);
   if (fromPipelineJob != null) {
     setValueByPath(toObject, ["pipelineJob"], fromPipelineJob);
-  }
-  const fromSatisfiesPzi = getValueByPath(fromObject, ["satisfiesPzi"]);
-  if (fromSatisfiesPzi != null) {
-    setValueByPath(toObject, ["satisfiesPzi"], fromSatisfiesPzi);
-  }
-  const fromSatisfiesPzs = getValueByPath(fromObject, ["satisfiesPzs"]);
-  if (fromSatisfiesPzs != null) {
-    setValueByPath(toObject, ["satisfiesPzs"], fromSatisfiesPzs);
   }
   const fromServiceAccount = getValueByPath(fromObject, [
     "serviceAccount"
@@ -75889,6 +76274,12 @@ function tuningJobFromVertex(fromObject) {
   if (fromTunedModel != null) {
     setValueByPath(toObject, ["tunedModel"], tunedModelFromVertex(fromTunedModel));
   }
+  const fromPreTunedModel = getValueByPath(fromObject, [
+    "preTunedModel"
+  ]);
+  if (fromPreTunedModel != null) {
+    setValueByPath(toObject, ["preTunedModel"], fromPreTunedModel);
+  }
   const fromSupervisedTuningSpec = getValueByPath(fromObject, [
     "supervisedTuningSpec"
   ]);
@@ -75913,11 +76304,11 @@ function tuningJobFromVertex(fromObject) {
   if (fromPartnerModelTuningSpec != null) {
     setValueByPath(toObject, ["partnerModelTuningSpec"], fromPartnerModelTuningSpec);
   }
-  const fromDistillationSpec = getValueByPath(fromObject, [
-    "distillationSpec"
+  const fromCustomBaseModel = getValueByPath(fromObject, [
+    "customBaseModel"
   ]);
-  if (fromDistillationSpec != null) {
-    setValueByPath(toObject, ["distillationSpec"], fromDistillationSpec);
+  if (fromCustomBaseModel != null) {
+    setValueByPath(toObject, ["customBaseModel"], fromCustomBaseModel);
   }
   const fromExperiment = getValueByPath(fromObject, ["experiment"]);
   if (fromExperiment != null) {
@@ -75927,17 +76318,13 @@ function tuningJobFromVertex(fromObject) {
   if (fromLabels != null) {
     setValueByPath(toObject, ["labels"], fromLabels);
   }
+  const fromOutputUri = getValueByPath(fromObject, ["outputUri"]);
+  if (fromOutputUri != null) {
+    setValueByPath(toObject, ["outputUri"], fromOutputUri);
+  }
   const fromPipelineJob = getValueByPath(fromObject, ["pipelineJob"]);
   if (fromPipelineJob != null) {
     setValueByPath(toObject, ["pipelineJob"], fromPipelineJob);
-  }
-  const fromSatisfiesPzi = getValueByPath(fromObject, ["satisfiesPzi"]);
-  if (fromSatisfiesPzi != null) {
-    setValueByPath(toObject, ["satisfiesPzi"], fromSatisfiesPzi);
-  }
-  const fromSatisfiesPzs = getValueByPath(fromObject, ["satisfiesPzs"]);
-  if (fromSatisfiesPzs != null) {
-    setValueByPath(toObject, ["satisfiesPzs"], fromSatisfiesPzs);
   }
   const fromServiceAccount = getValueByPath(fromObject, [
     "serviceAccount"
@@ -75991,9 +76378,20 @@ var Tunings = class extends BaseModule2 {
     };
     this.tune = async (params2) => {
       if (this.apiClient.isVertexAI()) {
-        return await this.tuneInternal(params2);
+        if (params2.baseModel.startsWith("projects/")) {
+          const preTunedModel = {
+            tunedModelName: params2.baseModel
+          };
+          const paramsPrivate = Object.assign(Object.assign({}, params2), { preTunedModel });
+          paramsPrivate.baseModel = void 0;
+          return await this.tuneInternal(paramsPrivate);
+        } else {
+          const paramsPrivate = Object.assign({}, params2);
+          return await this.tuneInternal(paramsPrivate);
+        }
       } else {
-        const operation = await this.tuneMldevInternal(params2);
+        const paramsPrivate = Object.assign({}, params2);
+        const operation = await this.tuneMldevInternal(paramsPrivate);
         let tunedModelName = "";
         if (operation["metadata"] !== void 0 && operation["metadata"]["tunedModel"] !== void 0) {
           tunedModelName = operation["metadata"]["tunedModel"];
@@ -76140,7 +76538,7 @@ var Tunings = class extends BaseModule2 {
     let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
-      const body = createTuningJobParametersToVertex(params2);
+      const body = createTuningJobParametersPrivateToVertex(params2);
       path9 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
@@ -76178,7 +76576,7 @@ var Tunings = class extends BaseModule2 {
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
-      const body = createTuningJobParametersToMldev(params2);
+      const body = createTuningJobParametersPrivateToMldev(params2);
       path9 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
