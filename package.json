@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-b78158c11f6d3fb7011dcea5c4ae668adb511f7c",
+  "version": "0.0.0-1ed2eb0de0c183e350386f60d71018c0cc40ec18",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@actions/core": "1.11.1",
     "@google-cloud/spanner": "8.0.0",
-    "@google/genai": "1.15.0",
+    "@google/genai": "1.16.0",
     "@inquirer/prompts": "7.8.4",
     "@inquirer/type": "3.0.8",
     "@octokit/auth-app": "8.1.0",
