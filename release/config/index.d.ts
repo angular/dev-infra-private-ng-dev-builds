@@ -16,7 +16,6 @@ export interface ReleaseConfig {
     releasePrLabels?: string[];
     releaseNotes?: ReleaseNotesConfig;
     prereleaseCheck?: (newVersion: string, builtPackagesWithInfo: BuiltPackageWithInfo[]) => Promise<void>;
-    rulesJsInteropMode?: boolean;
 }
 export interface BuiltPackageWithInfo extends BuiltPackage, NpmPackage {
     hash: string;

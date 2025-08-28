@@ -1,6 +1,6 @@
-import { promises as fs, existsSync } from 'fs';
-import path, { join } from 'path';
-import { workspaceRelativeBazelModuleLock, workspaceRelativePackageJsonPath, } from '../../utils/constants.js';
+import { promises as fs } from 'fs';
+import { join } from 'path';
+import { workspaceRelativePackageJsonPath } from '../../utils/constants.js';
 import { isGithubApiError } from '../../utils/git/github.js';
 import githubMacros from '../../utils/git/github-macros.js';
 import { getFileContentsUrl, getListCommitsInBranchUrl, getRepositoryGitUrl, } from '../../utils/git/github-urls.js';
@@ -17,7 +17,6 @@ import { githubReleaseBodyLimit } from './constants.js';
 import { ExternalCommands } from './external-commands.js';
 import { promptToInitiatePullRequestMerge } from './prompt-merge.js';
 import { Prompt } from '../../utils/prompt.js';
-import glob from 'fast-glob';
 import { PnpmVersioning } from './pnpm-versioning.js';
 import { updateRenovateConfigTargetLabels } from './actions/renovate-config-updates.js';
 import { targetLabels } from '../../pr/common/labels/target.js';
@@ -41,22 +40,6 @@ export class ReleaseAction {
         pkgJson.version = newVersion.format();
         await fs.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}\n`);
         Log.info(green(`  ✓   Updated project version to ${pkgJson.version}`));
-        if (this.config.rulesJsInteropMode && existsSync(path.join(this.projectDir, '.aspect'))) {
-            await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
-        }
-        if (existsSync(join(this.projectDir, workspaceRelativeBazelModuleLock))) {
-            await ExternalCommands.invokeBazelModDepsUpdate(this.projectDir);
-        }
-    }
-    getAspectLockFiles() {
-        return this.config.rulesJsInteropMode
-            ? glob.sync(['.aspect/**', 'pnpm-lock.yaml'], { cwd: this.projectDir })
-            : [];
-    }
-    getModuleBazelLockFile() {
-        return existsSync(join(this.projectDir, workspaceRelativeBazelModuleLock))
-            ? workspaceRelativeBazelModuleLock
-            : undefined;
     }
     async getLatestCommitOfBranch(branchName) {
         const { data: { commit }, } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -97,15 +80,7 @@ export class ReleaseAction {
         if (!(await Prompt.confirm({ message: 'Do you want to proceed and commit the changes?' }))) {
             throw new UserAbortedReleaseActionError();
         }
-        const filesToCommit = [
-            workspaceRelativePackageJsonPath,
-            workspaceRelativeChangelogPath,
-            ...this.getAspectLockFiles(),
-        ];
-        const bazelModuleLockFile = this.getModuleBazelLockFile();
-        if (bazelModuleLockFile) {
-            filesToCommit.push(bazelModuleLockFile);
-        }
+        const filesToCommit = [workspaceRelativePackageJsonPath, workspaceRelativeChangelogPath];
         const commitMessage = getCommitMessageForRelease(newVersion);
         await this.createCommit(commitMessage, filesToCommit);
         if (this.git.hasUncommittedChanges()) {

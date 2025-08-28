@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-7BNZSUCR.mjs";
+} from "./chunk-BFO53F2L.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -67,7 +67,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-TI5ZV2I3.mjs";
+} from "./chunk-YDWHIINW.mjs";
 import {
   __commonJS,
   __esm,
@@ -1193,15 +1193,15 @@ var require_route = __commonJS({
       };
     }
     function wrapConversion(toModel, graph) {
-      const path9 = [graph[toModel].parent, toModel];
+      const path8 = [graph[toModel].parent, toModel];
       let fn = conversions[graph[toModel].parent][toModel];
       let cur = graph[toModel].parent;
       while (graph[cur].parent) {
-        path9.unshift(graph[cur].parent);
+        path8.unshift(graph[cur].parent);
         fn = link(conversions[graph[cur].parent][cur], fn);
         cur = graph[cur].parent;
       }
-      fn.conversion = path9;
+      fn.conversion = path8;
       return fn;
     }
     module.exports = function(fromModel) {
@@ -12736,7 +12736,7 @@ var require_path = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.convertPosixPathToPattern = exports.convertWindowsPathToPattern = exports.convertPathToPattern = exports.escapePosixPath = exports.escapeWindowsPath = exports.escape = exports.removeLeadingDotSegment = exports.makeAbsolute = exports.unixify = void 0;
     var os2 = __require("os");
-    var path9 = __require("path");
+    var path8 = __require("path");
     var IS_WINDOWS_PLATFORM = os2.platform() === "win32";
     var LEADING_DOT_SEGMENT_CHARACTERS_COUNT = 2;
     var POSIX_UNESCAPED_GLOB_SYMBOLS_RE = /(\\?)([()*?[\]{|}]|^!|[!+@](?=\()|\\(?![!()*+?@[\]{|}]))/g;
@@ -12748,7 +12748,7 @@ var require_path = __commonJS({
     }
     exports.unixify = unixify;
     function makeAbsolute(cwd, filepath) {
-      return path9.resolve(cwd, filepath);
+      return path8.resolve(cwd, filepath);
     }
     exports.makeAbsolute = makeAbsolute;
     function removeLeadingDotSegment(entry) {
@@ -14074,7 +14074,7 @@ var require_braces = __commonJS({
 var require_constants2 = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/constants.js"(exports, module) {
     "use strict";
-    var path9 = __require("path");
+    var path8 = __require("path");
     var WIN_SLASH = "\\\\/";
     var WIN_NO_SLASH = `[^${WIN_SLASH}]`;
     var DOT_LITERAL = "\\.";
@@ -14244,7 +14244,7 @@ var require_constants2 = __commonJS({
       /* | */
       CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279,
       /* \uFEFF */
-      SEP: path9.sep,
+      SEP: path8.sep,
       /**
        * Create EXTGLOB_CHARS
        */
@@ -14271,7 +14271,7 @@ var require_constants2 = __commonJS({
 var require_utils3 = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/utils.js"(exports) {
     "use strict";
-    var path9 = __require("path");
+    var path8 = __require("path");
     var win32 = process.platform === "win32";
     var {
       REGEX_BACKSLASH,
@@ -14300,7 +14300,7 @@ var require_utils3 = __commonJS({
       if (options && typeof options.windows === "boolean") {
         return options.windows;
       }
-      return win32 === true || path9.sep === "\\";
+      return win32 === true || path8.sep === "\\";
     };
     exports.escapeLast = (input, char, lastIdx) => {
       const idx = input.lastIndexOf(char, lastIdx);
@@ -14576,7 +14576,7 @@ var require_scan = __commonJS({
       }
       let base = str;
       let prefix = "";
-      let glob6 = "";
+      let glob5 = "";
       if (start > 0) {
         prefix = str.slice(0, start);
         str = str.slice(start);
@@ -14584,10 +14584,10 @@ var require_scan = __commonJS({
       }
       if (base && isGlob === true && lastIndex > 0) {
         base = str.slice(0, lastIndex);
-        glob6 = str.slice(lastIndex);
+        glob5 = str.slice(lastIndex);
       } else if (isGlob === true) {
         base = "";
-        glob6 = str;
+        glob5 = str;
       } else {
         base = str;
       }
@@ -14597,8 +14597,8 @@ var require_scan = __commonJS({
         }
       }
       if (opts.unescape === true) {
-        if (glob6)
-          glob6 = utils.removeBackslashes(glob6);
+        if (glob5)
+          glob5 = utils.removeBackslashes(glob5);
         if (base && backslashes === true) {
           base = utils.removeBackslashes(base);
         }
@@ -14608,7 +14608,7 @@ var require_scan = __commonJS({
         input,
         start,
         base,
-        glob: glob6,
+        glob: glob5,
         isBrace,
         isBracket,
         isGlob,
@@ -15448,15 +15448,15 @@ var require_parse2 = __commonJS({
 var require_picomatch = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/picomatch.js"(exports, module) {
     "use strict";
-    var path9 = __require("path");
+    var path8 = __require("path");
     var scan = require_scan();
     var parse6 = require_parse2();
     var utils = require_utils3();
     var constants = require_constants2();
     var isObject = (val) => val && typeof val === "object" && !Array.isArray(val);
-    var picomatch = (glob6, options, returnState = false) => {
-      if (Array.isArray(glob6)) {
-        const fns = glob6.map((input) => picomatch(input, options, returnState));
+    var picomatch = (glob5, options, returnState = false) => {
+      if (Array.isArray(glob5)) {
+        const fns = glob5.map((input) => picomatch(input, options, returnState));
         const arrayMatcher = (str) => {
           for (const isMatch of fns) {
             const state2 = isMatch(str);
@@ -15467,13 +15467,13 @@ var require_picomatch = __commonJS({
         };
         return arrayMatcher;
       }
-      const isState = isObject(glob6) && glob6.tokens && glob6.input;
-      if (glob6 === "" || typeof glob6 !== "string" && !isState) {
+      const isState = isObject(glob5) && glob5.tokens && glob5.input;
+      if (glob5 === "" || typeof glob5 !== "string" && !isState) {
         throw new TypeError("Expected pattern to be a non-empty string");
       }
       const opts = options || {};
       const posix = utils.isWindows(options);
-      const regex2 = isState ? picomatch.compileRe(glob6, options) : picomatch.makeRe(glob6, options, false, true);
+      const regex2 = isState ? picomatch.compileRe(glob5, options) : picomatch.makeRe(glob5, options, false, true);
       const state = regex2.state;
       delete regex2.state;
       let isIgnored = () => false;
@@ -15482,8 +15482,8 @@ var require_picomatch = __commonJS({
         isIgnored = picomatch(opts.ignore, ignoreOpts, returnState);
       }
       const matcher = (input, returnObject = false) => {
-        const { isMatch, match: match3, output } = picomatch.test(input, regex2, options, { glob: glob6, posix });
-        const result = { glob: glob6, state, regex: regex2, posix, input, output, match: match3, isMatch };
+        const { isMatch, match: match3, output } = picomatch.test(input, regex2, options, { glob: glob5, posix });
+        const result = { glob: glob5, state, regex: regex2, posix, input, output, match: match3, isMatch };
         if (typeof opts.onResult === "function") {
           opts.onResult(result);
         }
@@ -15508,7 +15508,7 @@ var require_picomatch = __commonJS({
       }
       return matcher;
     };
-    picomatch.test = (input, regex2, options, { glob: glob6, posix } = {}) => {
+    picomatch.test = (input, regex2, options, { glob: glob5, posix } = {}) => {
       if (typeof input !== "string") {
         throw new TypeError("Expected input to be a string");
       }
@@ -15517,11 +15517,11 @@ var require_picomatch = __commonJS({
       }
       const opts = options || {};
       const format4 = opts.format || (posix ? utils.toPosixSlashes : null);
-      let match3 = input === glob6;
+      let match3 = input === glob5;
       let output = match3 && format4 ? format4(input) : input;
       if (match3 === false) {
         output = format4 ? format4(input) : input;
-        match3 = output === glob6;
+        match3 = output === glob5;
       }
       if (match3 === false || opts.capture === true) {
         if (opts.matchBase === true || opts.basename === true) {
@@ -15532,9 +15532,9 @@ var require_picomatch = __commonJS({
       }
       return { isMatch: Boolean(match3), match: match3, output };
     };
-    picomatch.matchBase = (input, glob6, options, posix = utils.isWindows(options)) => {
-      const regex2 = glob6 instanceof RegExp ? glob6 : picomatch.makeRe(glob6, options);
-      return regex2.test(path9.basename(input));
+    picomatch.matchBase = (input, glob5, options, posix = utils.isWindows(options)) => {
+      const regex2 = glob5 instanceof RegExp ? glob5 : picomatch.makeRe(glob5, options);
+      return regex2.test(path8.basename(input));
     };
     picomatch.isMatch = (str, patterns, options) => picomatch(patterns, options)(str);
     picomatch.parse = (pattern, options) => {
@@ -15726,9 +15726,9 @@ var require_micromatch = __commonJS({
       }
       return [].concat(patterns).every((p) => picomatch(p, options)(str));
     };
-    micromatch.capture = (glob6, input, options) => {
+    micromatch.capture = (glob5, input, options) => {
       let posix = utils.isWindows(options);
-      let regex2 = picomatch.makeRe(String(glob6), { ...options, capture: true });
+      let regex2 = picomatch.makeRe(String(glob5), { ...options, capture: true });
       let match3 = regex2.exec(posix ? utils.toPosixSlashes(input) : input);
       if (match3) {
         return match3.slice(1).map((v) => v === void 0 ? "" : v);
@@ -15769,7 +15769,7 @@ var require_pattern = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.isAbsolute = exports.partitionAbsoluteAndRelative = exports.removeDuplicateSlashes = exports.matchAny = exports.convertPatternsToRe = exports.makeRe = exports.getPatternParts = exports.expandBraceExpansion = exports.expandPatternsWithBraceExpansion = exports.isAffectDepthOfReadingPattern = exports.endsWithSlashGlobStar = exports.hasGlobStar = exports.getBaseDirectory = exports.isPatternRelatedToParentDirectory = exports.getPatternsOutsideCurrentDirectory = exports.getPatternsInsideCurrentDirectory = exports.getPositivePatterns = exports.getNegativePatterns = exports.isPositivePattern = exports.isNegativePattern = exports.convertToNegativePattern = exports.convertToPositivePattern = exports.isDynamicPattern = exports.isStaticPattern = void 0;
-    var path9 = __require("path");
+    var path8 = __require("path");
     var globParent = require_glob_parent();
     var micromatch = require_micromatch();
     var GLOBSTAR3 = "**";
@@ -15864,7 +15864,7 @@ var require_pattern = __commonJS({
     }
     exports.endsWithSlashGlobStar = endsWithSlashGlobStar;
     function isAffectDepthOfReadingPattern(pattern) {
-      const basename3 = path9.basename(pattern);
+      const basename3 = path8.basename(pattern);
       return endsWithSlashGlobStar(pattern) || isStaticPattern(basename3);
     }
     exports.isAffectDepthOfReadingPattern = isAffectDepthOfReadingPattern;
@@ -15922,7 +15922,7 @@ var require_pattern = __commonJS({
     }
     exports.partitionAbsoluteAndRelative = partitionAbsoluteAndRelative;
     function isAbsolute3(pattern) {
-      return path9.isAbsolute(pattern);
+      return path8.isAbsolute(pattern);
     }
     exports.isAbsolute = isAbsolute3;
   }
@@ -16099,8 +16099,8 @@ var require_utils4 = __commonJS({
     exports.errno = errno;
     var fs6 = require_fs();
     exports.fs = fs6;
-    var path9 = require_path();
-    exports.path = path9;
+    var path8 = require_path();
+    exports.path = path8;
     var pattern = require_pattern();
     exports.pattern = pattern;
     var stream = require_stream();
@@ -16212,8 +16212,8 @@ var require_async = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.read = void 0;
-    function read(path9, settings, callback) {
-      settings.fs.lstat(path9, (lstatError, lstat) => {
+    function read(path8, settings, callback) {
+      settings.fs.lstat(path8, (lstatError, lstat) => {
         if (lstatError !== null) {
           callFailureCallback(callback, lstatError);
           return;
@@ -16222,7 +16222,7 @@ var require_async = __commonJS({
           callSuccessCallback(callback, lstat);
           return;
         }
-        settings.fs.stat(path9, (statError, stat2) => {
+        settings.fs.stat(path8, (statError, stat2) => {
           if (statError !== null) {
             if (settings.throwErrorOnBrokenSymbolicLink) {
               callFailureCallback(callback, statError);
@@ -16254,13 +16254,13 @@ var require_sync = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.read = void 0;
-    function read(path9, settings) {
-      const lstat = settings.fs.lstatSync(path9);
+    function read(path8, settings) {
+      const lstat = settings.fs.lstatSync(path8);
       if (!lstat.isSymbolicLink() || !settings.followSymbolicLink) {
         return lstat;
       }
       try {
-        const stat2 = settings.fs.statSync(path9);
+        const stat2 = settings.fs.statSync(path8);
         if (settings.markSymbolicLink) {
           stat2.isSymbolicLink = () => true;
         }
@@ -16331,17 +16331,17 @@ var require_out = __commonJS({
     var sync = require_sync();
     var settings_1 = require_settings();
     exports.Settings = settings_1.default;
-    function stat2(path9, optionsOrSettingsOrCallback, callback) {
+    function stat2(path8, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
-        async.read(path9, getSettings(), optionsOrSettingsOrCallback);
+        async.read(path8, getSettings(), optionsOrSettingsOrCallback);
         return;
       }
-      async.read(path9, getSettings(optionsOrSettingsOrCallback), callback);
+      async.read(path8, getSettings(optionsOrSettingsOrCallback), callback);
     }
     exports.stat = stat2;
-    function statSync4(path9, optionsOrSettings) {
+    function statSync4(path8, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
-      return sync.read(path9, settings);
+      return sync.read(path8, settings);
     }
     exports.statSync = statSync4;
     function getSettings(settingsOrOptions = {}) {
@@ -16560,16 +16560,16 @@ var require_async2 = __commonJS({
           return;
         }
         const tasks = names.map((name) => {
-          const path9 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
+          const path8 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
           return (done) => {
-            fsStat.stat(path9, settings.fsStatSettings, (error, stats) => {
+            fsStat.stat(path8, settings.fsStatSettings, (error, stats) => {
               if (error !== null) {
                 done(error);
                 return;
               }
               const entry = {
                 name,
-                path: path9,
+                path: path8,
                 dirent: utils.fs.createDirentFromStats(name, stats)
               };
               if (settings.stats) {
@@ -16687,7 +16687,7 @@ var require_settings2 = __commonJS({
   "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/settings.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var path9 = __require("path");
+    var path8 = __require("path");
     var fsStat = require_out();
     var fs6 = require_fs4();
     var Settings = class {
@@ -16695,7 +16695,7 @@ var require_settings2 = __commonJS({
         this._options = _options;
         this.followSymbolicLinks = this._getValue(this._options.followSymbolicLinks, false);
         this.fs = fs6.createFileSystemAdapter(this._options.fs);
-        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path9.sep);
+        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path8.sep);
         this.stats = this._getValue(this._options.stats, false);
         this.throwErrorOnBrokenSymbolicLink = this._getValue(this._options.throwErrorOnBrokenSymbolicLink, true);
         this.fsStatSettings = new fsStat.Settings({
@@ -16722,17 +16722,17 @@ var require_out2 = __commonJS({
     var sync = require_sync2();
     var settings_1 = require_settings2();
     exports.Settings = settings_1.default;
-    function scandir(path9, optionsOrSettingsOrCallback, callback) {
+    function scandir(path8, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
-        async.read(path9, getSettings(), optionsOrSettingsOrCallback);
+        async.read(path8, getSettings(), optionsOrSettingsOrCallback);
         return;
       }
-      async.read(path9, getSettings(optionsOrSettingsOrCallback), callback);
+      async.read(path8, getSettings(optionsOrSettingsOrCallback), callback);
     }
     exports.scandir = scandir;
-    function scandirSync(path9, optionsOrSettings) {
+    function scandirSync(path8, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
-      return sync.read(path9, settings);
+      return sync.read(path8, settings);
     }
     exports.scandirSync = scandirSync;
     function getSettings(settingsOrOptions = {}) {
@@ -17359,7 +17359,7 @@ var require_settings3 = __commonJS({
   "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/settings.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var path9 = __require("path");
+    var path8 = __require("path");
     var fsScandir = require_out2();
     var Settings = class {
       constructor(_options = {}) {
@@ -17369,7 +17369,7 @@ var require_settings3 = __commonJS({
         this.deepFilter = this._getValue(this._options.deepFilter, null);
         this.entryFilter = this._getValue(this._options.entryFilter, null);
         this.errorFilter = this._getValue(this._options.errorFilter, null);
-        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path9.sep);
+        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path8.sep);
         this.fsScandirSettings = new fsScandir.Settings({
           followSymbolicLinks: this._options.followSymbolicLinks,
           fs: this._options.fs,
@@ -17431,7 +17431,7 @@ var require_reader2 = __commonJS({
   "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/reader.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var path9 = __require("path");
+    var path8 = __require("path");
     var fsStat = require_out();
     var utils = require_utils4();
     var Reader = class {
@@ -17444,7 +17444,7 @@ var require_reader2 = __commonJS({
         });
       }
       _getFullEntryPath(filepath) {
-        return path9.resolve(this._settings.cwd, filepath);
+        return path8.resolve(this._settings.cwd, filepath);
       }
       _makeEntry(stats, pattern) {
         const entry = {
@@ -17860,7 +17860,7 @@ var require_provider = __commonJS({
   "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/provider.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var path9 = __require("path");
+    var path8 = __require("path");
     var deep_1 = require_deep();
     var entry_1 = require_entry();
     var error_1 = require_error();
@@ -17874,7 +17874,7 @@ var require_provider = __commonJS({
         this.entryTransformer = new entry_2.default(this._settings);
       }
       _getRootDirectory(task) {
-        return path9.resolve(this._settings.cwd, task.base);
+        return path8.resolve(this._settings.cwd, task.base);
       }
       _getReaderOptions(task) {
         const basePath = task.base === "." ? "" : task.base;
@@ -18397,7 +18397,7 @@ var require_ejs = __commonJS({
   "node_modules/.aspect_rules_js/ejs@3.1.10/node_modules/ejs/lib/ejs.js"(exports) {
     "use strict";
     var fs6 = __require("fs");
-    var path9 = __require("path");
+    var path8 = __require("path");
     var utils = require_utils6();
     var scopeOptionWarned = false;
     var _VERSION_STRING = require_package().version;
@@ -18428,9 +18428,9 @@ var require_ejs = __commonJS({
     exports.localsName = _DEFAULT_LOCALS_NAME;
     exports.promiseImpl = new Function("return this;")().Promise;
     exports.resolveInclude = function(name, filename, isDir) {
-      var dirname8 = path9.dirname;
-      var extname3 = path9.extname;
-      var resolve12 = path9.resolve;
+      var dirname8 = path8.dirname;
+      var extname3 = path8.extname;
+      var resolve12 = path8.resolve;
       var includePath = resolve12(isDir ? filename : dirname8(filename), name);
       var ext3 = extname3(name);
       if (!ext3) {
@@ -18447,30 +18447,30 @@ var require_ejs = __commonJS({
         return filePath;
       }
     }
-    function getIncludePath(path10, options) {
+    function getIncludePath(path9, options) {
       var includePath;
       var filePath;
       var views = options.views;
-      var match3 = /^[A-Za-z]+:\\|^\//.exec(path10);
+      var match3 = /^[A-Za-z]+:\\|^\//.exec(path9);
       if (match3 && match3.length) {
-        path10 = path10.replace(/^\/*/, "");
+        path9 = path9.replace(/^\/*/, "");
         if (Array.isArray(options.root)) {
-          includePath = resolvePaths(path10, options.root);
+          includePath = resolvePaths(path9, options.root);
         } else {
-          includePath = exports.resolveInclude(path10, options.root || "/", true);
+          includePath = exports.resolveInclude(path9, options.root || "/", true);
         }
       } else {
         if (options.filename) {
-          filePath = exports.resolveInclude(path10, options.filename);
+          filePath = exports.resolveInclude(path9, options.filename);
           if (fs6.existsSync(filePath)) {
             includePath = filePath;
           }
         }
         if (!includePath && Array.isArray(views)) {
-          includePath = resolvePaths(path10, views);
+          includePath = resolvePaths(path9, views);
         }
         if (!includePath && typeof options.includer !== "function") {
-          throw new Error('Could not find the include file "' + options.escapeFunction(path10) + '"');
+          throw new Error('Could not find the include file "' + options.escapeFunction(path9) + '"');
         }
       }
       return includePath;
@@ -18529,11 +18529,11 @@ var require_ejs = __commonJS({
     function fileLoader(filePath) {
       return exports.fileLoader(filePath);
     }
-    function includeFile(path10, options) {
+    function includeFile(path9, options) {
       var opts = utils.shallowCopy(utils.createNullProtoObjWherePossible(), options);
-      opts.filename = getIncludePath(path10, opts);
+      opts.filename = getIncludePath(path9, opts);
       if (typeof options.includer === "function") {
-        var includerResult = options.includer(path10, opts.filename);
+        var includerResult = options.includer(path9, opts.filename);
         if (includerResult) {
           if (includerResult.filename) {
             opts.filename = includerResult.filename;
@@ -18768,12 +18768,12 @@ var require_ejs = __commonJS({
           throw e;
         }
         var returnedFn = opts.client ? fn : function anonymous(data) {
-          var include = function(path10, includeData) {
+          var include = function(path9, includeData) {
             var d = utils.shallowCopy(utils.createNullProtoObjWherePossible(), data);
             if (includeData) {
               d = utils.shallowCopy(d, includeData);
             }
-            return includeFile(path10, opts)(d);
+            return includeFile(path9, opts)(d);
           };
           return fn.apply(
             opts.context,
@@ -18782,7 +18782,7 @@ var require_ejs = __commonJS({
         };
         if (opts.filename && typeof Object.defineProperty === "function") {
           var filename = opts.filename;
-          var basename3 = path9.basename(filename, path9.extname(filename));
+          var basename3 = path8.basename(filename, path8.extname(filename));
           try {
             Object.defineProperty(returnedFn, "name", {
               value: basename3,
@@ -19611,9 +19611,9 @@ var require_brace_expressions = __commonJS({
     var braceEscape3 = (s) => s.replace(/[[\]\\-]/g, "\\$&");
     var regexpEscape3 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     var rangesToString3 = (ranges) => ranges.join("");
-    var parseClass3 = (glob6, position) => {
+    var parseClass3 = (glob5, position) => {
       const pos = position;
-      if (glob6.charAt(pos) !== "[") {
+      if (glob5.charAt(pos) !== "[") {
         throw new Error("not in a brace expression");
       }
       const ranges = [];
@@ -19626,8 +19626,8 @@ var require_brace_expressions = __commonJS({
       let endPos = pos;
       let rangeStart = "";
       WHILE:
-        while (i < glob6.length) {
-          const c = glob6.charAt(i);
+        while (i < glob5.length) {
+          const c = glob5.charAt(i);
           if ((c === "!" || c === "^") && i === pos + 1) {
             negate = true;
             i++;
@@ -19647,9 +19647,9 @@ var require_brace_expressions = __commonJS({
           }
           if (c === "[" && !escaping) {
             for (const [cls, [unip, u, neg]] of Object.entries(posixClasses3)) {
-              if (glob6.startsWith(cls, i)) {
+              if (glob5.startsWith(cls, i)) {
                 if (rangeStart) {
-                  return ["$.", false, glob6.length - pos, true];
+                  return ["$.", false, glob5.length - pos, true];
                 }
                 i += cls.length;
                 if (neg)
@@ -19672,12 +19672,12 @@ var require_brace_expressions = __commonJS({
             i++;
             continue;
           }
-          if (glob6.startsWith("-]", i + 1)) {
+          if (glob5.startsWith("-]", i + 1)) {
             ranges.push(braceEscape3(c + "-"));
             i += 2;
             continue;
           }
-          if (glob6.startsWith("-", i + 1)) {
+          if (glob5.startsWith("-", i + 1)) {
             rangeStart = c;
             i += 2;
             continue;
@@ -19689,7 +19689,7 @@ var require_brace_expressions = __commonJS({
         return ["", false, 0, false];
       }
       if (!ranges.length && !negs.length) {
-        return ["$.", false, glob6.length - pos, true];
+        return ["$.", false, glob5.length - pos, true];
       }
       if (negs.length === 0 && ranges.length === 1 && /^\\?.$/.test(ranges[0]) && !negate) {
         const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
@@ -19803,11 +19803,11 @@ var require_cjs = __commonJS({
       return (f) => f.length === len && f !== "." && f !== "..";
     };
     var defaultPlatform3 = typeof process === "object" && process ? typeof process.env === "object" && process.env && process.env.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
-    var path9 = {
+    var path8 = {
       win32: { sep: "\\" },
       posix: { sep: "/" }
     };
-    exports.sep = defaultPlatform3 === "win32" ? path9.win32.sep : path9.posix.sep;
+    exports.sep = defaultPlatform3 === "win32" ? path8.win32.sep : path8.posix.sep;
     exports.minimatch.sep = exports.sep;
     exports.GLOBSTAR = Symbol("globstar **");
     exports.minimatch.GLOBSTAR = exports.GLOBSTAR;
@@ -20701,7 +20701,7 @@ var require_folder_hash = __commonJS({
     var crypto6 = __require("crypto");
     var debug = require_src();
     var minimatch3 = require_index_cjs();
-    var path9 = __require("path");
+    var path8 = __require("path");
     var defaultOptions = {
       algo: "sha1",
       // see crypto.getHashes() for options
@@ -20750,7 +20750,7 @@ var require_folder_hash = __commonJS({
         callback = arguments[arguments.length - 1];
         return parseParameters(arguments).then(({ basename: basename3, dir: dir2, options: options2 }) => {
           options2.skipMatching = true;
-          return fs6.promises.lstat(path9.join(dir2, basename3)).then((stats) => {
+          return fs6.promises.lstat(path8.join(dir2, basename3)).then((stats) => {
             stats.name = basename3;
             return stats;
           }).then((stats) => hashElementPromise(stats, dir2, options2, true));
@@ -20806,7 +20806,7 @@ var require_folder_hash = __commonJS({
         runnables.forEach((run) => run());
       }
       async function hashFolderPromise(name, dir, options, isRootElement = false) {
-        const folderPath = path9.join(dir, name);
+        const folderPath = path8.join(dir, name);
         let ignoreBasenameOnce = options.ignoreBasenameOnce;
         delete options.ignoreBasenameOnce;
         if (options.skipMatching) {
@@ -20825,7 +20825,7 @@ var require_folder_hash = __commonJS({
         return hash;
       }
       function hashFilePromise(name, dir, options, isRootElement = false) {
-        const filePath = path9.join(dir, name);
+        const filePath = path8.join(dir, name);
         if (options.skipMatching) {
           log.match(`skipped '${filePath}'`);
           delete options.skipMatching;
@@ -20856,7 +20856,7 @@ var require_folder_hash = __commonJS({
         });
       }
       async function hashSymLinkPromise(name, dir, options, isRootElement = false) {
-        const target = await fs6.promises.readlink(path9.join(dir, name));
+        const target = await fs6.promises.readlink(path8.join(dir, name));
         log.symlink(`handling symbolic link ${name} -> ${target}`);
         if (options.symbolicLinks.include) {
           if (options.symbolicLinks.ignoreTargetContent) {
@@ -20889,7 +20889,7 @@ var require_folder_hash = __commonJS({
           options.ignoreBasenameOnce = true;
         }
         try {
-          const stats = await fs6.promises.stat(path9.join(dir, name));
+          const stats = await fs6.promises.stat(path8.join(dir, name));
           stats.name = name;
           const temp = await hashElementPromise(stats, dir, options, isRootElement);
           if (!options.symbolicLinks.ignoreTargetPath) {
@@ -20917,13 +20917,13 @@ var require_folder_hash = __commonJS({
           }
         }
       }
-      function ignore(name, path10, rules) {
+      function ignore(name, path9, rules) {
         if (rules.exclude) {
           if (rules.matchBasename && rules.exclude(name)) {
             log.match(`exclude basename '${name}'`);
             return true;
-          } else if (rules.matchPath && rules.exclude(path10)) {
-            log.match(`exclude path '${path10}'`);
+          } else if (rules.matchPath && rules.exclude(path9)) {
+            log.match(`exclude path '${path9}'`);
             return true;
           }
         }
@@ -20931,15 +20931,15 @@ var require_folder_hash = __commonJS({
           if (rules.matchBasename && rules.include(name)) {
             log.match(`include basename '${name}'`);
             return false;
-          } else if (rules.matchPath && rules.include(path10)) {
-            log.match(`include path '${path10}'`);
+          } else if (rules.matchPath && rules.include(path9)) {
+            log.match(`include path '${path9}'`);
             return false;
           } else {
-            log.match(`include rule failed for path '${path10}'`);
+            log.match(`include rule failed for path '${path9}'`);
             return true;
           }
         }
-        log.match(`Will not ignore unmatched '${path10}'`);
+        log.match(`Will not ignore unmatched '${path9}'`);
         return false;
       }
       return hashElement2;
@@ -20950,8 +20950,8 @@ var require_folder_hash = __commonJS({
         return Promise.reject(new TypeError("First argument must be a string"));
       }
       if (!isString(dir)) {
-        dir = path9.dirname(basename3);
-        basename3 = path9.basename(basename3);
+        dir = path8.dirname(basename3);
+        basename3 = path8.basename(basename3);
         options_ = args[1];
       }
       if (!isObject(options_))
@@ -21118,7 +21118,7 @@ var require_polyfills = __commonJS({
       fs6.fstatSync = statFixSync(fs6.fstatSync);
       fs6.lstatSync = statFixSync(fs6.lstatSync);
       if (fs6.chmod && !fs6.lchmod) {
-        fs6.lchmod = function(path9, mode, cb) {
+        fs6.lchmod = function(path8, mode, cb) {
           if (cb)
             process.nextTick(cb);
         };
@@ -21126,7 +21126,7 @@ var require_polyfills = __commonJS({
         };
       }
       if (fs6.chown && !fs6.lchown) {
-        fs6.lchown = function(path9, uid, gid, cb) {
+        fs6.lchown = function(path8, uid, gid, cb) {
           if (cb)
             process.nextTick(cb);
         };
@@ -21197,9 +21197,9 @@ var require_polyfills = __commonJS({
         };
       }(fs6.readSync);
       function patchLchmod(fs7) {
-        fs7.lchmod = function(path9, mode, callback) {
+        fs7.lchmod = function(path8, mode, callback) {
           fs7.open(
-            path9,
+            path8,
             constants.O_WRONLY | constants.O_SYMLINK,
             mode,
             function(err, fd) {
@@ -21217,8 +21217,8 @@ var require_polyfills = __commonJS({
             }
           );
         };
-        fs7.lchmodSync = function(path9, mode) {
-          var fd = fs7.openSync(path9, constants.O_WRONLY | constants.O_SYMLINK, mode);
+        fs7.lchmodSync = function(path8, mode) {
+          var fd = fs7.openSync(path8, constants.O_WRONLY | constants.O_SYMLINK, mode);
           var threw = true;
           var ret;
           try {
@@ -21239,8 +21239,8 @@ var require_polyfills = __commonJS({
       }
       function patchLutimes(fs7) {
         if (constants.hasOwnProperty("O_SYMLINK") && fs7.futimes) {
-          fs7.lutimes = function(path9, at, mt, cb) {
-            fs7.open(path9, constants.O_SYMLINK, function(er, fd) {
+          fs7.lutimes = function(path8, at, mt, cb) {
+            fs7.open(path8, constants.O_SYMLINK, function(er, fd) {
               if (er) {
                 if (cb)
                   cb(er);
@@ -21254,8 +21254,8 @@ var require_polyfills = __commonJS({
               });
             });
           };
-          fs7.lutimesSync = function(path9, at, mt) {
-            var fd = fs7.openSync(path9, constants.O_SYMLINK);
+          fs7.lutimesSync = function(path8, at, mt) {
+            var fd = fs7.openSync(path8, constants.O_SYMLINK);
             var ret;
             var threw = true;
             try {
@@ -21391,12 +21391,12 @@ var require_legacy_streams = __commonJS({
         ReadStream,
         WriteStream
       };
-      function ReadStream(path9, options) {
+      function ReadStream(path8, options) {
         if (!(this instanceof ReadStream))
-          return new ReadStream(path9, options);
+          return new ReadStream(path8, options);
         Stream2.call(this);
         var self2 = this;
-        this.path = path9;
+        this.path = path8;
         this.fd = null;
         this.readable = true;
         this.paused = false;
@@ -21442,11 +21442,11 @@ var require_legacy_streams = __commonJS({
           self2._read();
         });
       }
-      function WriteStream(path9, options) {
+      function WriteStream(path8, options) {
         if (!(this instanceof WriteStream))
-          return new WriteStream(path9, options);
+          return new WriteStream(path8, options);
         Stream2.call(this);
-        this.path = path9;
+        this.path = path8;
         this.fd = null;
         this.writable = true;
         this.flags = "w";
@@ -21589,14 +21589,14 @@ var require_graceful_fs = __commonJS({
       fs7.createWriteStream = createWriteStream2;
       var fs$readFile = fs7.readFile;
       fs7.readFile = readFile6;
-      function readFile6(path9, options, cb) {
+      function readFile6(path8, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$readFile(path9, options, cb);
-        function go$readFile(path10, options2, cb2, startTime) {
-          return fs$readFile(path10, options2, function(err) {
+        return go$readFile(path8, options, cb);
+        function go$readFile(path9, options2, cb2, startTime) {
+          return fs$readFile(path9, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$readFile, [path10, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$readFile, [path9, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -21606,14 +21606,14 @@ var require_graceful_fs = __commonJS({
       }
       var fs$writeFile = fs7.writeFile;
       fs7.writeFile = writeFile6;
-      function writeFile6(path9, data, options, cb) {
+      function writeFile6(path8, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$writeFile(path9, data, options, cb);
-        function go$writeFile(path10, data2, options2, cb2, startTime) {
-          return fs$writeFile(path10, data2, options2, function(err) {
+        return go$writeFile(path8, data, options, cb);
+        function go$writeFile(path9, data2, options2, cb2, startTime) {
+          return fs$writeFile(path9, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$writeFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$writeFile, [path9, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -21624,14 +21624,14 @@ var require_graceful_fs = __commonJS({
       var fs$appendFile = fs7.appendFile;
       if (fs$appendFile)
         fs7.appendFile = appendFile;
-      function appendFile(path9, data, options, cb) {
+      function appendFile(path8, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$appendFile(path9, data, options, cb);
-        function go$appendFile(path10, data2, options2, cb2, startTime) {
-          return fs$appendFile(path10, data2, options2, function(err) {
+        return go$appendFile(path8, data, options, cb);
+        function go$appendFile(path9, data2, options2, cb2, startTime) {
+          return fs$appendFile(path9, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$appendFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$appendFile, [path9, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -21662,31 +21662,31 @@ var require_graceful_fs = __commonJS({
       var fs$readdir = fs7.readdir;
       fs7.readdir = readdir;
       var noReaddirOptionVersions = /^v[0-5]\./;
-      function readdir(path9, options, cb) {
+      function readdir(path8, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path10, options2, cb2, startTime) {
-          return fs$readdir(path10, fs$readdirCallback(
-            path10,
+        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path9, options2, cb2, startTime) {
+          return fs$readdir(path9, fs$readdirCallback(
+            path9,
             options2,
             cb2,
             startTime
           ));
-        } : function go$readdir2(path10, options2, cb2, startTime) {
-          return fs$readdir(path10, options2, fs$readdirCallback(
-            path10,
+        } : function go$readdir2(path9, options2, cb2, startTime) {
+          return fs$readdir(path9, options2, fs$readdirCallback(
+            path9,
             options2,
             cb2,
             startTime
           ));
         };
-        return go$readdir(path9, options, cb);
-        function fs$readdirCallback(path10, options2, cb2, startTime) {
+        return go$readdir(path8, options, cb);
+        function fs$readdirCallback(path9, options2, cb2, startTime) {
           return function(err, files) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
               enqueue([
                 go$readdir,
-                [path10, options2, cb2],
+                [path9, options2, cb2],
                 err,
                 startTime || Date.now(),
                 Date.now()
@@ -21757,7 +21757,7 @@ var require_graceful_fs = __commonJS({
         enumerable: true,
         configurable: true
       });
-      function ReadStream(path9, options) {
+      function ReadStream(path8, options) {
         if (this instanceof ReadStream)
           return fs$ReadStream.apply(this, arguments), this;
         else
@@ -21777,7 +21777,7 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function WriteStream(path9, options) {
+      function WriteStream(path8, options) {
         if (this instanceof WriteStream)
           return fs$WriteStream.apply(this, arguments), this;
         else
@@ -21795,22 +21795,22 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function createReadStream(path9, options) {
-        return new fs7.ReadStream(path9, options);
+      function createReadStream(path8, options) {
+        return new fs7.ReadStream(path8, options);
       }
-      function createWriteStream2(path9, options) {
-        return new fs7.WriteStream(path9, options);
+      function createWriteStream2(path8, options) {
+        return new fs7.WriteStream(path8, options);
       }
       var fs$open = fs7.open;
       fs7.open = open2;
-      function open2(path9, flags, mode, cb) {
+      function open2(path8, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
-        return go$open(path9, flags, mode, cb);
-        function go$open(path10, flags2, mode2, cb2, startTime) {
-          return fs$open(path10, flags2, mode2, function(err, fd) {
+        return go$open(path8, flags, mode, cb);
+        function go$open(path9, flags2, mode2, cb2, startTime) {
+          return fs$open(path9, flags2, mode2, function(err, fd) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$open, [path10, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$open, [path9, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -24393,14 +24393,14 @@ var require_url_state_machine = __commonJS({
       return url2.replace(/\u0009|\u000A|\u000D/g, "");
     }
     function shortenPath(url2) {
-      const path9 = url2.path;
-      if (path9.length === 0) {
+      const path8 = url2.path;
+      if (path8.length === 0) {
         return;
       }
-      if (url2.scheme === "file" && path9.length === 1 && isNormalizedWindowsDriveLetter(path9[0])) {
+      if (url2.scheme === "file" && path8.length === 1 && isNormalizedWindowsDriveLetter(path8[0])) {
         return;
       }
-      path9.pop();
+      path8.pop();
     }
     function includesCredentials(url2) {
       return url2.username !== "" || url2.password !== "";
@@ -33884,7 +33884,7 @@ var require_src6 = __commonJS({
     var fs6 = __require("fs");
     var gaxios_1 = require_src3();
     var jws = require_jws();
-    var path9 = __require("path");
+    var path8 = __require("path");
     var util_1 = __require("util");
     var readFile6 = fs6.readFile ? (0, util_1.promisify)(fs6.readFile) : async () => {
       throw new ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
@@ -33972,7 +33972,7 @@ var require_src6 = __commonJS({
        * @returns an object with privateKey and clientEmail properties
        */
       async getCredentials(keyFile) {
-        const ext3 = path9.extname(keyFile);
+        const ext3 = path8.extname(keyFile);
         switch (ext3) {
           case ".json": {
             const key = await readFile6(keyFile, "utf8");
@@ -36681,7 +36681,7 @@ var require_googleauth = __commonJS({
     var fs6 = __require("fs");
     var gcpMetadata = require_src5();
     var os2 = __require("os");
-    var path9 = __require("path");
+    var path8 = __require("path");
     var crypto_1 = require_crypto3();
     var transporters_1 = require_transporters();
     var computeclient_1 = require_computeclient();
@@ -36942,11 +36942,11 @@ var require_googleauth = __commonJS({
         } else {
           const home = process.env["HOME"];
           if (home) {
-            location = path9.join(home, ".config");
+            location = path8.join(home, ".config");
           }
         }
         if (location) {
-          location = path9.join(location, "gcloud", "application_default_credentials.json");
+          location = path8.join(location, "gcloud", "application_default_credentials.json");
           if (!fs6.existsSync(location)) {
             location = null;
           }
@@ -37364,7 +37364,7 @@ var require_googleauth = __commonJS({
       if (this.jsonContent) {
         return this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
       } else if (this.keyFilename) {
-        const filePath = path9.resolve(this.keyFilename);
+        const filePath = path8.resolve(this.keyFilename);
         const stream = fs6.createReadStream(filePath);
         return await this.fromStreamAsync(stream, this.clientOptions);
       } else if (this.apiKey) {
@@ -37782,7 +37782,7 @@ var require_constants4 = __commonJS({
 var require_node_gyp_build = __commonJS({
   "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js"(exports, module) {
     var fs6 = __require("fs");
-    var path9 = __require("path");
+    var path8 = __require("path");
     var os2 = __require("os");
     var runtimeRequire = typeof __webpack_require__ === "function" ? __non_webpack_require__ : __require;
     var vars = process.config && process.config.variables || {};
@@ -37799,25 +37799,25 @@ var require_node_gyp_build = __commonJS({
       return runtimeRequire(load3.resolve(dir));
     }
     load3.resolve = load3.path = function(dir) {
-      dir = path9.resolve(dir || ".");
+      dir = path8.resolve(dir || ".");
       try {
-        var name = runtimeRequire(path9.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
+        var name = runtimeRequire(path8.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
         if (process.env[name + "_PREBUILD"])
           dir = process.env[name + "_PREBUILD"];
       } catch (err) {
       }
       if (!prebuildsOnly) {
-        var release = getFirst(path9.join(dir, "build/Release"), matchBuild);
+        var release = getFirst(path8.join(dir, "build/Release"), matchBuild);
         if (release)
           return release;
-        var debug = getFirst(path9.join(dir, "build/Debug"), matchBuild);
+        var debug = getFirst(path8.join(dir, "build/Debug"), matchBuild);
         if (debug)
           return debug;
       }
       var prebuild = resolve12(dir);
       if (prebuild)
         return prebuild;
-      var nearby = resolve12(path9.dirname(process.execPath));
+      var nearby = resolve12(path8.dirname(process.execPath));
       if (nearby)
         return nearby;
       var target = [
@@ -37835,16 +37835,16 @@ var require_node_gyp_build = __commonJS({
       ].filter(Boolean).join(" ");
       throw new Error("No native build was found for " + target + "\n    loaded from: " + dir + "\n");
       function resolve12(dir2) {
-        var tuples = readdirSync4(path9.join(dir2, "prebuilds")).map(parseTuple);
+        var tuples = readdirSync4(path8.join(dir2, "prebuilds")).map(parseTuple);
         var tuple = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0];
         if (!tuple)
           return;
-        var prebuilds = path9.join(dir2, "prebuilds", tuple.name);
+        var prebuilds = path8.join(dir2, "prebuilds", tuple.name);
         var parsed = readdirSync4(prebuilds).map(parseTags);
         var candidates = parsed.filter(matchTags(runtime, abi));
         var winner = candidates.sort(compareTags(runtime))[0];
         if (winner)
-          return path9.join(prebuilds, winner.file);
+          return path8.join(prebuilds, winner.file);
       }
     };
     function readdirSync4(dir) {
@@ -37856,7 +37856,7 @@ var require_node_gyp_build = __commonJS({
     }
     function getFirst(dir, filter3) {
       var files = readdirSync4(dir).filter(filter3);
-      return files[0] && path9.join(dir, files[0]);
+      return files[0] && path8.join(dir, files[0]);
     }
     function matchBuild(name) {
       return /\.node$/.test(name);
@@ -43430,11 +43430,11 @@ var parser = new YargsParser({
   format,
   normalize,
   resolve: resolve2,
-  require: (path9) => {
+  require: (path8) => {
     if (typeof require2 !== "undefined") {
-      return require2(path9);
-    } else if (path9.match(/\.json$/)) {
-      return JSON.parse(readFileSync(path9, "utf8"));
+      return require2(path8);
+    } else if (path8.match(/\.json$/)) {
+      return JSON.parse(readFileSync(path8, "utf8"));
     } else {
       throw Error("only .json config files are supported in ESM");
     }
@@ -47433,9 +47433,9 @@ var posixClasses = {
 var braceEscape = (s) => s.replace(/[[\]\\-]/g, "\\$&");
 var regexpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 var rangesToString = (ranges) => ranges.join("");
-var parseClass = (glob6, position) => {
+var parseClass = (glob5, position) => {
   const pos = position;
-  if (glob6.charAt(pos) !== "[") {
+  if (glob5.charAt(pos) !== "[") {
     throw new Error("not in a brace expression");
   }
   const ranges = [];
@@ -47448,8 +47448,8 @@ var parseClass = (glob6, position) => {
   let endPos = pos;
   let rangeStart = "";
   WHILE:
-    while (i < glob6.length) {
-      const c = glob6.charAt(i);
+    while (i < glob5.length) {
+      const c = glob5.charAt(i);
       if ((c === "!" || c === "^") && i === pos + 1) {
         negate = true;
         i++;
@@ -47469,9 +47469,9 @@ var parseClass = (glob6, position) => {
       }
       if (c === "[" && !escaping) {
         for (const [cls, [unip, u, neg]] of Object.entries(posixClasses)) {
-          if (glob6.startsWith(cls, i)) {
+          if (glob5.startsWith(cls, i)) {
             if (rangeStart) {
-              return ["$.", false, glob6.length - pos, true];
+              return ["$.", false, glob5.length - pos, true];
             }
             i += cls.length;
             if (neg)
@@ -47494,12 +47494,12 @@ var parseClass = (glob6, position) => {
         i++;
         continue;
       }
-      if (glob6.startsWith("-]", i + 1)) {
+      if (glob5.startsWith("-]", i + 1)) {
         ranges.push(braceEscape(c + "-"));
         i += 2;
         continue;
       }
-      if (glob6.startsWith("-", i + 1)) {
+      if (glob5.startsWith("-", i + 1)) {
         rangeStart = c;
         i += 2;
         continue;
@@ -47511,7 +47511,7 @@ var parseClass = (glob6, position) => {
     return ["", false, 0, false];
   }
   if (!ranges.length && !negs.length) {
-    return ["$.", false, glob6.length - pos, true];
+    return ["$.", false, glob5.length - pos, true];
   }
   if (negs.length === 0 && ranges.length === 1 && /^\\?.$/.test(ranges[0]) && !negate) {
     const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
@@ -47790,16 +47790,16 @@ var AST = class _AST {
   toMMPattern() {
     if (this !== this.#root)
       return this.#root.toMMPattern();
-    const glob6 = this.toString();
+    const glob5 = this.toString();
     const [re, body, hasMagic, uflag] = this.toRegExpSource();
-    const anyMagic = hasMagic || this.#hasMagic || this.#options.nocase && !this.#options.nocaseMagicOnly && glob6.toUpperCase() !== glob6.toLowerCase();
+    const anyMagic = hasMagic || this.#hasMagic || this.#options.nocase && !this.#options.nocaseMagicOnly && glob5.toUpperCase() !== glob5.toLowerCase();
     if (!anyMagic) {
       return body;
     }
     const flags = (this.#options.nocase ? "i" : "") + (uflag ? "u" : "");
     return Object.assign(new RegExp(`^${re}$`, flags), {
       _src: re,
-      _glob: glob6
+      _glob: glob5
     });
   }
   get options() {
@@ -47959,19 +47959,19 @@ var AST = class _AST {
       return re;
     }).filter((p) => !(this.isStart() && this.isEnd()) || !!p).join("|");
   }
-  static #parseGlob(glob6, hasMagic, noEmpty = false) {
+  static #parseGlob(glob5, hasMagic, noEmpty = false) {
     let escaping = false;
     let re = "";
     let uflag = false;
-    for (let i = 0; i < glob6.length; i++) {
-      const c = glob6.charAt(i);
+    for (let i = 0; i < glob5.length; i++) {
+      const c = glob5.charAt(i);
       if (escaping) {
         escaping = false;
         re += (reSpecials.has(c) ? "\\" : "") + c;
         continue;
       }
       if (c === "\\") {
-        if (i === glob6.length - 1) {
+        if (i === glob5.length - 1) {
           re += "\\\\";
         } else {
           escaping = true;
@@ -47979,7 +47979,7 @@ var AST = class _AST {
         continue;
       }
       if (c === "[") {
-        const [src, needUflag, consumed, magic] = parseClass(glob6, i);
+        const [src, needUflag, consumed, magic] = parseClass(glob5, i);
         if (consumed) {
           re += src;
           uflag = uflag || needUflag;
@@ -47989,7 +47989,7 @@ var AST = class _AST {
         }
       }
       if (c === "*") {
-        if (noEmpty && glob6 === "*")
+        if (noEmpty && glob5 === "*")
           re += starNoEmpty;
         else
           re += star;
@@ -48003,7 +48003,7 @@ var AST = class _AST {
       }
       re += regExpEscape(c);
     }
-    return [re, unescape2(glob6), !!hasMagic, uflag];
+    return [re, unescape2(glob5), !!hasMagic, uflag];
   }
 };
 
@@ -52827,9 +52827,9 @@ var posixClasses2 = {
 var braceEscape2 = (s) => s.replace(/[[\]\\-]/g, "\\$&");
 var regexpEscape2 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 var rangesToString2 = (ranges) => ranges.join("");
-var parseClass2 = (glob6, position) => {
+var parseClass2 = (glob5, position) => {
   const pos = position;
-  if (glob6.charAt(pos) !== "[") {
+  if (glob5.charAt(pos) !== "[") {
     throw new Error("not in a brace expression");
   }
   const ranges = [];
@@ -52842,8 +52842,8 @@ var parseClass2 = (glob6, position) => {
   let endPos = pos;
   let rangeStart = "";
   WHILE:
-    while (i < glob6.length) {
-      const c = glob6.charAt(i);
+    while (i < glob5.length) {
+      const c = glob5.charAt(i);
       if ((c === "!" || c === "^") && i === pos + 1) {
         negate = true;
         i++;
@@ -52863,9 +52863,9 @@ var parseClass2 = (glob6, position) => {
       }
       if (c === "[" && !escaping) {
         for (const [cls, [unip, u, neg]] of Object.entries(posixClasses2)) {
-          if (glob6.startsWith(cls, i)) {
+          if (glob5.startsWith(cls, i)) {
             if (rangeStart) {
-              return ["$.", false, glob6.length - pos, true];
+              return ["$.", false, glob5.length - pos, true];
             }
             i += cls.length;
             if (neg)
@@ -52888,12 +52888,12 @@ var parseClass2 = (glob6, position) => {
         i++;
         continue;
       }
-      if (glob6.startsWith("-]", i + 1)) {
+      if (glob5.startsWith("-]", i + 1)) {
         ranges.push(braceEscape2(c + "-"));
         i += 2;
         continue;
       }
-      if (glob6.startsWith("-", i + 1)) {
+      if (glob5.startsWith("-", i + 1)) {
         rangeStart = c;
         i += 2;
         continue;
@@ -52905,7 +52905,7 @@ var parseClass2 = (glob6, position) => {
     return ["", false, 0, false];
   }
   if (!ranges.length && !negs.length) {
-    return ["$.", false, glob6.length - pos, true];
+    return ["$.", false, glob5.length - pos, true];
   }
   if (negs.length === 0 && ranges.length === 1 && /^\\?.$/.test(ranges[0]) && !negate) {
     const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
@@ -53184,16 +53184,16 @@ var AST2 = class _AST {
   toMMPattern() {
     if (this !== this.#root)
       return this.#root.toMMPattern();
-    const glob6 = this.toString();
+    const glob5 = this.toString();
     const [re, body, hasMagic, uflag] = this.toRegExpSource();
-    const anyMagic = hasMagic || this.#hasMagic || this.#options.nocase && !this.#options.nocaseMagicOnly && glob6.toUpperCase() !== glob6.toLowerCase();
+    const anyMagic = hasMagic || this.#hasMagic || this.#options.nocase && !this.#options.nocaseMagicOnly && glob5.toUpperCase() !== glob5.toLowerCase();
     if (!anyMagic) {
       return body;
     }
     const flags = (this.#options.nocase ? "i" : "") + (uflag ? "u" : "");
     return Object.assign(new RegExp(`^${re}$`, flags), {
       _src: re,
-      _glob: glob6
+      _glob: glob5
     });
   }
   get options() {
@@ -53353,19 +53353,19 @@ var AST2 = class _AST {
       return re;
     }).filter((p) => !(this.isStart() && this.isEnd()) || !!p).join("|");
   }
-  static #parseGlob(glob6, hasMagic, noEmpty = false) {
+  static #parseGlob(glob5, hasMagic, noEmpty = false) {
     let escaping = false;
     let re = "";
     let uflag = false;
-    for (let i = 0; i < glob6.length; i++) {
-      const c = glob6.charAt(i);
+    for (let i = 0; i < glob5.length; i++) {
+      const c = glob5.charAt(i);
       if (escaping) {
         escaping = false;
         re += (reSpecials2.has(c) ? "\\" : "") + c;
         continue;
       }
       if (c === "\\") {
-        if (i === glob6.length - 1) {
+        if (i === glob5.length - 1) {
           re += "\\\\";
         } else {
           escaping = true;
@@ -53373,7 +53373,7 @@ var AST2 = class _AST {
         continue;
       }
       if (c === "[") {
-        const [src, needUflag, consumed, magic] = parseClass2(glob6, i);
+        const [src, needUflag, consumed, magic] = parseClass2(glob5, i);
         if (consumed) {
           re += src;
           uflag = uflag || needUflag;
@@ -53383,7 +53383,7 @@ var AST2 = class _AST {
         }
       }
       if (c === "*") {
-        if (noEmpty && glob6 === "*")
+        if (noEmpty && glob5 === "*")
           re += starNoEmpty2;
         else
           re += star3;
@@ -53397,7 +53397,7 @@ var AST2 = class _AST {
       }
       re += regExpEscape3(c);
     }
-    return [re, unescape3(glob6), !!hasMagic, uflag];
+    return [re, unescape3(glob5), !!hasMagic, uflag];
   }
 };
 
@@ -54515,7 +54515,7 @@ function builder10(argv) {
   return argv.positional("projectRoot", {
     type: "string",
     normalize: true,
-    coerce: (path9) => resolve6(path9),
+    coerce: (path8) => resolve6(path8),
     demandOption: true
   });
 }
@@ -55995,8 +55995,8 @@ var PullRequestFiles = class _PullRequestFiles {
   async pullRequestHasSeparateFiles() {
     const pullRequestFiles = await this.loadPullRequestFiles();
     const separateFilePatterns = this.config.separateFilePatterns.map((p) => new Minimatch(p));
-    for (let path9 of pullRequestFiles) {
-      if (separateFilePatterns.some((p) => p.match(path9))) {
+    for (let path8 of pullRequestFiles) {
+      if (separateFilePatterns.some((p) => p.match(path8))) {
         return true;
       }
     }
@@ -56860,9 +56860,9 @@ function getOrCreateGlob(pattern) {
   if (patternCache.has(pattern)) {
     return patternCache.get(pattern);
   }
-  const glob6 = new Minimatch(pattern, { dot: false, nobrace: false });
-  patternCache.set(pattern, glob6);
-  return glob6;
+  const glob5 = new Minimatch(pattern, { dot: false, nobrace: false });
+  patternCache.set(pattern, glob5);
+  return glob5;
 }
 
 // ng-dev/pullapprove/pullapprove_arrays.js
@@ -57589,11 +57589,11 @@ var Changelog = class {
     const changelog = this.entries.map((entry) => entry.content).join(joinMarker);
     writeFileSync4(this.filePath, changelog, {});
   }
-  getEntriesFor(path9) {
-    if (!existsSync2(path9)) {
+  getEntriesFor(path8) {
+    if (!existsSync2(path8)) {
       return [];
     }
-    return readFileSync9(path9, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
+    return readFileSync9(path8, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
   }
 };
 function parseChangelogEntry(content) {
@@ -57835,11 +57835,10 @@ var import_semver7 = __toESM(require_semver());
 // ng-dev/utils/constants.js
 var ngDevNpmPackageName = "@angular/ng-dev";
 var workspaceRelativePackageJsonPath = "package.json";
-var workspaceRelativeBazelModuleLock = "MODULE.bazel.lock";
 
 // ng-dev/release/publish/actions.js
-import { promises as fs2, existsSync as existsSync5 } from "fs";
-import path6, { join as join12 } from "path";
+import { promises as fs2 } from "fs";
+import { join as join12 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
 var import_semver6 = __toESM(require_semver());
@@ -58021,32 +58020,6 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeBazelModDepsUpdate(projectDir) {
-    const spinner = new Spinner('Updating "MODULE.bazel.lock"');
-    try {
-      await ChildProcess.spawn(getBazelBin(), ["mod", "deps", "--lockfile_mode=update"], {
-        cwd: projectDir,
-        mode: "silent"
-      });
-    } catch (e) {
-      Log.error(e);
-      Log.error('  \u2718   An error occurred while updating "MODULE.bazel.lock".');
-      throw new FatalReleaseActionError();
-    }
-    spinner.success(green(' Updated "MODULE.bazel.lock" file.'));
-  }
-  static async invokeBazelUpdateAspectLockFiles(projectDir) {
-    const spinner = new Spinner("Updating Aspect lock files");
-    try {
-      await ChildProcess.spawn(getBazelBin(), ["sync", "--only=repo"], {
-        cwd: projectDir,
-        mode: "silent"
-      });
-    } catch (e) {
-      Log.debug(e);
-    }
-    spinner.success(green(" Updated Aspect `rules_js` lock files."));
-  }
   static async _spawnNpmScript(args, projectDir, pnpmVersioning, spawnOptions = {}) {
     if (await pnpmVersioning.isUsingPnpm(projectDir)) {
       const pnpmSpec = await pnpmVersioning.getPackageSpec(projectDir);
@@ -58154,9 +58127,6 @@ async function gracefulCheckIfPullRequestIsMerged(git, id) {
   }
 }
 
-// ng-dev/release/publish/actions.js
-var import_fast_glob2 = __toESM(require_out4());
-
 // ng-dev/release/publish/pnpm-versioning.js
 import { readFile } from "node:fs/promises";
 import { join as join10 } from "node:path";
@@ -58258,18 +58228,6 @@ var ReleaseAction = class {
     await fs2.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
     Log.info(green(`  \u2713   Updated project version to ${pkgJson.version}`));
-    if (this.config.rulesJsInteropMode && existsSync5(path6.join(this.projectDir, ".aspect"))) {
-      await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
-    }
-    if (existsSync5(join12(this.projectDir, workspaceRelativeBazelModuleLock))) {
-      await ExternalCommands.invokeBazelModDepsUpdate(this.projectDir);
-    }
-  }
-  getAspectLockFiles() {
-    return this.config.rulesJsInteropMode ? import_fast_glob2.default.sync([".aspect/**", "pnpm-lock.yaml"], { cwd: this.projectDir }) : [];
-  }
-  getModuleBazelLockFile() {
-    return existsSync5(join12(this.projectDir, workspaceRelativeBazelModuleLock)) ? workspaceRelativeBazelModuleLock : void 0;
   }
   async getLatestCommitOfBranch(branchName) {
     const { data: { commit } } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -58306,15 +58264,7 @@ var ReleaseAction = class {
     if (!await Prompt.confirm({ message: "Do you want to proceed and commit the changes?" })) {
       throw new UserAbortedReleaseActionError();
     }
-    const filesToCommit = [
-      workspaceRelativePackageJsonPath,
-      workspaceRelativeChangelogPath,
-      ...this.getAspectLockFiles()
-    ];
-    const bazelModuleLockFile = this.getModuleBazelLockFile();
-    if (bazelModuleLockFile) {
-      filesToCommit.push(bazelModuleLockFile);
-    }
+    const filesToCommit = [workspaceRelativePackageJsonPath, workspaceRelativeChangelogPath];
     const commitMessage = getCommitMessageForRelease(newVersion);
     await this.createCommit(commitMessage, filesToCommit);
     if (this.git.hasUncommittedChanges()) {
@@ -58590,14 +58540,7 @@ var ConfigureNextAsMajorAction = class extends ReleaseAction {
     await this.assertPassingGithubStatus(beforeStagingSha, branchName);
     await this.checkoutUpstreamBranch(branchName);
     await this.updateProjectVersion(newVersion);
-    const filesToCommit = [
-      workspaceRelativePackageJsonPath,
-      ...this.getAspectLockFiles()
-    ];
-    const bazelModuleLockFile = this.getModuleBazelLockFile();
-    if (bazelModuleLockFile) {
-      filesToCommit.push(bazelModuleLockFile);
-    }
+    const filesToCommit = [workspaceRelativePackageJsonPath];
     await this.createCommit(getCommitMessageForNextBranchMajorSwitch(newVersion), filesToCommit);
     const pullRequest = await this.pushChangesToForkAndCreatePullRequest(branchName, `switch-next-to-major-${newVersion}`, `Configure next branch to receive major changes for v${newVersion}`);
     Log.info(green("  \u2713   Next branch update pull request has been created."));
@@ -58881,14 +58824,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
     await this.updateProjectVersion(this._newVersion, (pkgJson) => {
       pkgJson[exceptionalMinorPackageIndicator] = true;
     });
-    const filesToCommit = [
-      workspaceRelativePackageJsonPath,
-      ...this.getAspectLockFiles()
-    ];
-    const bazelModuleLockFile = this.getModuleBazelLockFile();
-    if (bazelModuleLockFile) {
-      filesToCommit.push(bazelModuleLockFile);
-    }
+    const filesToCommit = [workspaceRelativePackageJsonPath];
     await this.createCommit(`build: prepare exceptional minor branch: ${this._newBranch}`, filesToCommit);
     await this.pushHeadToRemoteBranch(this._newBranch);
     Log.info(green(`  \u2713   Version branch "${this._newBranch}" created.`));
@@ -58957,14 +58893,7 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
-    const filesToCommit = [
-      workspaceRelativePackageJsonPath,
-      ...this.getAspectLockFiles()
-    ];
-    const bazelModuleLockFile = this.getModuleBazelLockFile();
-    if (bazelModuleLockFile) {
-      filesToCommit.push(bazelModuleLockFile);
-    }
+    const filesToCommit = [workspaceRelativePackageJsonPath];
     const renovateConfigPath = await updateRenovateConfig(this.projectDir, `${version2.major}.${version2.minor}.x`);
     if (renovateConfigPath) {
       filesToCommit.push(renovateConfigPath);
@@ -59090,15 +59019,15 @@ var actions = [
 
 // ng-dev/utils/version-check.js
 var import_yaml3 = __toESM(require_dist());
-import * as path7 from "path";
+import * as path6 from "path";
 import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-99cc8797af306d7e992e1f380b522cc75bf85731`;
-  const workspacePackageJsonFile = path7.join(workspacePath, workspaceRelativePackageJsonPath);
-  const pnpmLockFile = path7.join(workspacePath, "pnpm-lock.yaml");
-  const yarnLockFile = path7.join(workspacePath, "yarn.lock");
+  const localVersion = `0.0.0-b78158c11f6d3fb7011dcea5c4ae668adb511f7c`;
+  const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
+  const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
+  const yarnLockFile = path6.join(workspacePath, "yarn.lock");
   const isPnpmMigrated = fs3.existsSync(pnpmLockFile) && !fs3.existsSync(yarnLockFile);
   const expectedVersion = isPnpmMigrated ? getExpectedVersionFromPnpmLock(workspacePackageJsonFile, pnpmLockFile) : getExpectedVersionFromYarnLock(workspacePackageJsonFile, yarnLockFile);
   Log.debug(`Expecting the following ng-dev version: ${expectedVersion}`);
@@ -59378,7 +59307,7 @@ var ReleaseSetDistTagCommand = {
 };
 
 // ng-dev/release/stamping/cli.js
-import path8 from "path";
+import path7 from "path";
 import url from "url";
 
 // ng-dev/release/stamping/env-stamp.js
@@ -59487,7 +59416,7 @@ function builder24(args) {
 async function handler25({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
-    const scriptURL = url.pathToFileURL(path8.resolve(additionalStampingScript));
+    const scriptURL = url.pathToFileURL(path7.resolve(additionalStampingScript));
     const stampingExports = await import(scriptURL.toString());
     await stampingExports.default(mode);
   }
@@ -59554,8 +59483,8 @@ function buildReleaseParser(localYargs) {
 }
 
 // ng-dev/ts-circular-dependencies/index.js
-var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync7, readFileSync as readFileSync13, writeFileSync as writeFileSync5 } from "fs";
+var import_fast_glob2 = __toESM(require_out4());
+import { existsSync as existsSync6, readFileSync as readFileSync13, writeFileSync as writeFileSync5 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative3, resolve as resolve11 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
@@ -59572,8 +59501,8 @@ function getFileStatus(filePath) {
     return null;
   }
 }
-function convertPathToForwardSlash(path9) {
-  return path9.replace(/\\/g, "/");
+function convertPathToForwardSlash(path8) {
+  return path8.replace(/\\/g, "/");
 }
 
 // ng-dev/ts-circular-dependencies/parser.js
@@ -59606,21 +59535,21 @@ var Analyzer = class {
     this.unresolvedFiles = /* @__PURE__ */ new Map();
     this._ignoreTypeOnlyChecks = !!ignoreTypeOnlyChecks;
   }
-  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path9 = []) {
-    const previousIndex = path9.indexOf(sf);
+  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path8 = []) {
+    const previousIndex = path8.indexOf(sf);
     if (previousIndex !== -1) {
-      return [path9.slice(previousIndex)];
+      return [path8.slice(previousIndex)];
     }
     if (visited.has(sf)) {
       return [];
     }
-    path9.push(sf);
+    path8.push(sf);
     visited.add(sf);
     const result = [];
     for (const ref of getModuleReferences(sf, this._ignoreTypeOnlyChecks)) {
       const targetFile = this._resolveImport(ref, sf.fileName);
       if (targetFile !== null) {
-        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path9.slice()));
+        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path8.slice()));
       }
     }
     return result;
@@ -59748,23 +59677,23 @@ function compareGoldens(actual, expected) {
   });
   return { newCircularDeps, fixedCircularDeps };
 }
-function normalizeCircularDependency(path9) {
-  if (path9.length <= 1) {
-    return path9;
+function normalizeCircularDependency(path8) {
+  if (path8.length <= 1) {
+    return path8;
   }
   let indexFirstNode = 0;
-  let valueFirstNode = path9[0];
-  for (let i = 1; i < path9.length; i++) {
-    const value = path9[i];
+  let valueFirstNode = path8[0];
+  for (let i = 1; i < path8.length; i++) {
+    const value = path8[i];
     if (value.localeCompare(valueFirstNode, "en") < 0) {
       indexFirstNode = i;
       valueFirstNode = value;
     }
   }
   if (indexFirstNode === 0) {
-    return path9;
+    return path8;
   }
-  return [...path9.slice(indexFirstNode), ...path9.slice(0, indexFirstNode)];
+  return [...path8.slice(indexFirstNode), ...path8.slice(0, indexFirstNode)];
 }
 function isSameCircularDependency(actual, expected) {
   if (actual.length !== expected.length) {
@@ -59810,7 +59739,7 @@ function main(approve, config, printWarnings) {
   const analyzer = new Analyzer(resolveModule, ignoreTypeOnlyChecks);
   const cycles = [];
   const checkedNodes = /* @__PURE__ */ new WeakSet();
-  import_fast_glob3.default.globSync(globPattern, { absolute: true, ignore: ["**/node_modules/**"] }).forEach((filePath) => {
+  import_fast_glob2.default.globSync(globPattern, { absolute: true, ignore: ["**/node_modules/**"] }).forEach((filePath) => {
     const sourceFile = analyzer.getSourceFile(filePath);
     cycles.push(...analyzer.findCycles(sourceFile, checkedNodes));
   });
@@ -59846,7 +59775,7 @@ function main(approve, config, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync7(goldenFile)) {
+  if (!existsSync6(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
@@ -59877,8 +59806,8 @@ function main(approve, config, printWarnings) {
   }
   return 1;
 }
-function getRelativePath(baseDir, path9) {
-  return convertPathToForwardSlash(relative3(baseDir, path9));
+function getRelativePath(baseDir, path8) {
+  return convertPathToForwardSlash(relative3(baseDir, path8));
 }
 function convertReferenceChainToString(chain) {
   return chain.join(" \u2192 ");
@@ -63155,10 +63084,10 @@ var Batches = class extends BaseModule2 {
         }
       } else {
         if (Array.isArray(params2.src) || typeof params2.src !== "string" && params2.src.inlinedRequests) {
-          let path9 = "";
+          let path8 = "";
           let queryParams = {};
           const body = createBatchJobParametersToMldev(this.apiClient, params2);
-          path9 = formatMap("{model}:batchGenerateContent", body["_url"]);
+          path8 = formatMap("{model}:batchGenerateContent", body["_url"]);
           queryParams = body["_query"];
           const batch = body["batch"];
           const inputConfig = batch["inputConfig"];
@@ -63181,7 +63110,7 @@ var Batches = class extends BaseModule2 {
           delete body["_url"];
           delete body["_query"];
           const response = this.apiClient.request({
-            path: path9,
+            path: path8,
             queryParams,
             body: JSON.stringify(body),
             httpMethod: "POST",
@@ -63212,17 +63141,17 @@ var Batches = class extends BaseModule2 {
   async createInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs", body["_url"]);
+      path8 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63237,13 +63166,13 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = createBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:batchGenerateContent", body["_url"]);
+      path8 = formatMap("{model}:batchGenerateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63272,17 +63201,17 @@ var Batches = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path8 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63297,13 +63226,13 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = getBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}", body["_url"]);
+      path8 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63331,17 +63260,17 @@ var Batches = class extends BaseModule2 {
    */
   async cancel(params2) {
     var _a2, _b2, _c2, _d;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
+      path8 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63350,13 +63279,13 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = cancelBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}:cancel", body["_url"]);
+      path8 = formatMap("batches/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63368,17 +63297,17 @@ var Batches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listBatchJobsParametersToVertex(params2);
-      path9 = formatMap("batchPredictionJobs", body["_url"]);
+      path8 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63401,13 +63330,13 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = listBatchJobsParametersToMldev(params2);
-      path9 = formatMap("batches", body["_url"]);
+      path8 = formatMap("batches", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63444,17 +63373,17 @@ var Batches = class extends BaseModule2 {
   async delete(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path8 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -63475,13 +63404,13 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = deleteBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}", body["_url"]);
+      path8 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -64634,17 +64563,17 @@ var Caches = class extends BaseModule2 {
   async create(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path8 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -64659,13 +64588,13 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = createCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path8 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -64694,17 +64623,17 @@ var Caches = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -64719,13 +64648,13 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = getCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -64754,17 +64683,17 @@ var Caches = class extends BaseModule2 {
   async delete(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -64781,13 +64710,13 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = deleteCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -64821,17 +64750,17 @@ var Caches = class extends BaseModule2 {
   async update(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -64846,13 +64775,13 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = updateCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -64870,17 +64799,17 @@ var Caches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listCachedContentsParametersToVertex(params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path8 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -64903,13 +64832,13 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = listCachedContentsParametersToMldev(params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path8 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -65632,19 +65561,19 @@ var Files = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listFilesParametersToMldev(params2);
-      path9 = formatMap("files", body["_url"]);
+      path8 = formatMap("files", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -65670,19 +65599,19 @@ var Files = class extends BaseModule2 {
   async createInternal(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createFileParametersToMldev(params2);
-      path9 = formatMap("upload/v1beta/files", body["_url"]);
+      path8 = formatMap("upload/v1beta/files", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -65717,19 +65646,19 @@ var Files = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getFileParametersToMldev(params2);
-      path9 = formatMap("files/{file}", body["_url"]);
+      path8 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -65760,19 +65689,19 @@ var Files = class extends BaseModule2 {
   async delete(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteFileParametersToMldev(params2);
-      path9 = formatMap("files/{file}", body["_url"]);
+      path8 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -72222,13 +72151,13 @@ var ApiClient = class {
       throw new Error("HTTP options are not correctly set.");
     }
   }
-  constructUrl(path9, httpOptions, prependProjectLocation) {
+  constructUrl(path8, httpOptions, prependProjectLocation) {
     const urlElement = [this.getRequestUrlInternal(httpOptions)];
     if (prependProjectLocation) {
       urlElement.push(this.getBaseResourcePath());
     }
-    if (path9 !== "") {
-      urlElement.push(path9);
+    if (path8 !== "") {
+      urlElement.push(path8);
     }
     const url2 = new URL(`${urlElement.join("/")}`);
     return url2;
@@ -73633,17 +73562,17 @@ var Models = class extends BaseModule2 {
   async generateContentInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:generateContent", body["_url"]);
+      path8 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -73666,13 +73595,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:generateContent", body["_url"]);
+      path8 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -73698,18 +73627,18 @@ var Models = class extends BaseModule2 {
   async generateContentStreamInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path8 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -73747,14 +73676,14 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path8 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -73816,17 +73745,17 @@ var Models = class extends BaseModule2 {
   async embedContent(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = embedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path8 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -73849,13 +73778,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = embedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:batchEmbedContents", body["_url"]);
+      path8 = formatMap("{model}:batchEmbedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -73900,17 +73829,17 @@ var Models = class extends BaseModule2 {
   async generateImagesInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateImagesParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path8 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -73933,13 +73862,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateImagesParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path8 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -73965,17 +73894,17 @@ var Models = class extends BaseModule2 {
   async editImageInternal(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = editImageParametersInternalToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path8 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74003,17 +73932,17 @@ var Models = class extends BaseModule2 {
   async upscaleImageInternal(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = upscaleImageAPIParametersInternalToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path8 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74079,17 +74008,17 @@ var Models = class extends BaseModule2 {
   async recontextImage(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = recontextImageParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path8 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74131,17 +74060,17 @@ var Models = class extends BaseModule2 {
   async segmentImage(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = segmentImageParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path8 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74171,17 +74100,17 @@ var Models = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -74196,13 +74125,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = getModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -74220,17 +74149,17 @@ var Models = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listModelsParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{models_url}", body["_url"]);
+      path8 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -74253,13 +74182,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = listModelsParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{models_url}", body["_url"]);
+      path8 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -74302,17 +74231,17 @@ var Models = class extends BaseModule2 {
   async update(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}", body["_url"]);
+      path8 = formatMap("{model}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -74327,13 +74256,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = updateModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -74362,17 +74291,17 @@ var Models = class extends BaseModule2 {
   async delete(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -74389,13 +74318,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = deleteModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -74431,17 +74360,17 @@ var Models = class extends BaseModule2 {
   async countTokens(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = countTokensParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:countTokens", body["_url"]);
+      path8 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74464,13 +74393,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = countTokensParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:countTokens", body["_url"]);
+      path8 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74514,17 +74443,17 @@ var Models = class extends BaseModule2 {
   async computeTokens(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = computeTokensParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:computeTokens", body["_url"]);
+      path8 = formatMap("{model}:computeTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74575,17 +74504,17 @@ var Models = class extends BaseModule2 {
   async generateVideosInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateVideosParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path8 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74602,13 +74531,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateVideosParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path8 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -74756,17 +74685,17 @@ var Operations = class extends BaseModule2 {
   async getVideosOperationInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getOperationParametersToVertex(params2);
-      path9 = formatMap("{operationName}", body["_url"]);
+      path8 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -74778,13 +74707,13 @@ var Operations = class extends BaseModule2 {
       return response;
     } else {
       const body = getOperationParametersToMldev(params2);
-      path9 = formatMap("{operationName}", body["_url"]);
+      path8 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -74799,17 +74728,17 @@ var Operations = class extends BaseModule2 {
   async fetchPredictVideosOperationInternal(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = fetchPredictOperationParametersToVertex(params2);
-      path9 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
+      path8 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -75587,20 +75516,20 @@ var Tokens = class extends BaseModule2 {
   async create(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("The client.tokens.create method is only supported by the Gemini Developer API.");
     } else {
       const body = createAuthTokenParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("auth_tokens", body["_url"]);
+      path8 = formatMap("auth_tokens", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       const transformedBody = convertBidiSetupToTokenSetup(body, params2.config);
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(transformedBody),
         httpMethod: "POST",
@@ -76409,17 +76338,17 @@ var Tunings = class extends BaseModule2 {
   async getInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getTuningJobParametersToVertex(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -76440,13 +76369,13 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = getTuningJobParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path8 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -76470,17 +76399,17 @@ var Tunings = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b2, _c2, _d;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listTuningJobsParametersToVertex(params2);
-      path9 = formatMap("tuningJobs", body["_url"]);
+      path8 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -76503,13 +76432,13 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = listTuningJobsParametersToMldev(params2);
-      path9 = formatMap("tunedModels", body["_url"]);
+      path8 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -76535,17 +76464,17 @@ var Tunings = class extends BaseModule2 {
   async tuneInternal(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createTuningJobParametersPrivateToVertex(params2);
-      path9 = formatMap("tuningJobs", body["_url"]);
+      path8 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -76571,19 +76500,19 @@ var Tunings = class extends BaseModule2 {
   async tuneMldevInternal(params2) {
     var _a2, _b2;
     let response;
-    let path9 = "";
+    let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createTuningJobParametersPrivateToMldev(params2);
-      path9 = formatMap("tunedModels", body["_url"]);
+      path8 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path8,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -76941,7 +76870,7 @@ var DEFAULT_API_KEY = process.env["GEMINI_API_KEY"];
 
 // ng-dev/ai/migrate.js
 import assert from "node:assert";
-var import_fast_glob4 = __toESM(require_out4());
+var import_fast_glob3 = __toESM(require_out4());
 function builder29(argv) {
   return argv.option("prompt", {
     type: "string",
@@ -76980,7 +76909,7 @@ async function handler30(options) {
     "For internal users, see go/aistudio-apikey"
   ].join("\n"));
   const [files, prompt] = await Promise.all([
-    (0, import_fast_glob4.default)([options.files]),
+    (0, import_fast_glob3.default)([options.files]),
     readFile4(options.prompt, "utf-8")
   ]);
   if (files.length === 0) {
@@ -77076,7 +77005,7 @@ var MigrateModule = {
 };
 
 // ng-dev/ai/fix.js
-var import_fast_glob5 = __toESM(require_out4());
+var import_fast_glob4 = __toESM(require_out4());
 var import_cli_progress4 = __toESM(require_cli_progress());
 import { setTimeout as setTimeout2 } from "node:timers/promises";
 import { readFile as readFile5, writeFile as writeFile5 } from "node:fs/promises";
@@ -77128,7 +77057,7 @@ async function handler31(options) {
   await Promise.all(writeTasks);
 }
 async function fixFilesWithAI(apiKey, globPatterns, errorDescription, model, temperature) {
-  const filePaths = await (0, import_fast_glob5.default)(globPatterns, {
+  const filePaths = await (0, import_fast_glob4.default)(globPatterns, {
     onlyFiles: true,
     absolute: false
   });

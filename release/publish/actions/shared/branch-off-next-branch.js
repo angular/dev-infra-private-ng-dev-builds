@@ -58,14 +58,7 @@ export class BranchOffNextBranchBaseAction extends CutNpmNextPrereleaseAction {
         const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
         await this.checkoutUpstreamBranch(nextBranch);
         await this.updateProjectVersion(newNextVersion);
-        const filesToCommit = [
-            workspaceRelativePackageJsonPath,
-            ...this.getAspectLockFiles(),
-        ];
-        const bazelModuleLockFile = this.getModuleBazelLockFile();
-        if (bazelModuleLockFile) {
-            filesToCommit.push(bazelModuleLockFile);
-        }
+        const filesToCommit = [workspaceRelativePackageJsonPath];
         const renovateConfigPath = await updateRenovateConfig(this.projectDir, `${version.major}.${version.minor}.x`);
         if (renovateConfigPath) {
             filesToCommit.push(renovateConfigPath);

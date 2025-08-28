@@ -34,8 +34,6 @@ export declare abstract class ReleaseAction {
     protected pnpmVersioning: PnpmVersioning;
     constructor(active: ActiveReleaseTrains, git: AuthenticatedGitClient, config: ReleaseConfig, projectDir: string);
     protected updateProjectVersion(newVersion: semver.SemVer, additionalUpdateFn?: (pkgJson: PackageJson) => void): Promise<void>;
-    protected getAspectLockFiles(): string[];
-    protected getModuleBazelLockFile(): string | undefined;
     protected getLatestCommitOfBranch(branchName: string): Promise<Commit>;
     protected assertPassingGithubStatus(commitSha: string, branchNameForError: string): Promise<void>;
     protected waitForEditsAndCreateReleaseCommit(newVersion: semver.SemVer): Promise<void>;
