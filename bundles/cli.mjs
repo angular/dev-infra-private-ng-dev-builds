@@ -69,6 +69,9 @@ import {
   yellow
 } from "./chunk-YDWHIINW.mjs";
 import {
+  require_conventional_commits_parser
+} from "./chunk-YNC5Y42I.mjs";
+import {
   __commonJS,
   __esm,
   __export,
@@ -11096,598 +11099,6 @@ var require_lib3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@5.0.0/node_modules/conventional-commits-parser/lib/parser.js
-var require_parser = __commonJS({
-  "node_modules/.aspect_rules_js/conventional-commits-parser@5.0.0/node_modules/conventional-commits-parser/lib/parser.js"(exports, module) {
-    "use strict";
-    var CATCH_ALL = /()(.+)/gi;
-    var SCISSOR = "# ------------------------ >8 ------------------------";
-    function trimOffNewlines(input) {
-      const result = input.match(/[^\r\n]/);
-      if (!result) {
-        return "";
-      }
-      const firstIndex = result.index;
-      let lastIndex = input.length - 1;
-      while (input[lastIndex] === "\r" || input[lastIndex] === "\n") {
-        lastIndex--;
-      }
-      return input.substring(firstIndex, lastIndex + 1);
-    }
-    function append(src, line) {
-      if (src) {
-        src += "\n" + line;
-      } else {
-        src = line;
-      }
-      return src;
-    }
-    function getCommentFilter(char) {
-      return function(line) {
-        return line.charAt(0) !== char;
-      };
-    }
-    function truncateToScissor(lines) {
-      const scissorIndex = lines.indexOf(SCISSOR);
-      if (scissorIndex === -1) {
-        return lines;
-      }
-      return lines.slice(0, scissorIndex);
-    }
-    function getReferences(input, regex2) {
-      const references = [];
-      let referenceSentences;
-      let referenceMatch;
-      const reApplicable = input.match(regex2.references) !== null ? regex2.references : CATCH_ALL;
-      while (referenceSentences = reApplicable.exec(input)) {
-        const action = referenceSentences[1] || null;
-        const sentence = referenceSentences[2];
-        while (referenceMatch = regex2.referenceParts.exec(sentence)) {
-          let owner = null;
-          let repository = referenceMatch[1] || "";
-          const ownerRepo = repository.split("/");
-          if (ownerRepo.length > 1) {
-            owner = ownerRepo.shift();
-            repository = ownerRepo.join("/");
-          }
-          const reference = {
-            action,
-            owner,
-            repository: repository || null,
-            issue: referenceMatch[3],
-            raw: referenceMatch[0],
-            prefix: referenceMatch[2]
-          };
-          references.push(reference);
-        }
-      }
-      return references;
-    }
-    function passTrough() {
-      return true;
-    }
-    function parser2(raw, options, regex2) {
-      if (!raw || !raw.trim()) {
-        throw new TypeError("Expected a raw commit");
-      }
-      if (!options || typeof options === "object" && !Object.keys(options).length) {
-        throw new TypeError("Expected options");
-      }
-      if (!regex2) {
-        throw new TypeError("Expected regex");
-      }
-      let currentProcessedField;
-      let mentionsMatch;
-      const otherFields = {};
-      const commentFilter = typeof options.commentChar === "string" ? getCommentFilter(options.commentChar) : passTrough;
-      const gpgFilter = (line) => !line.match(/^\s*gpg:/);
-      const rawLines = trimOffNewlines(raw).split(/\r?\n/);
-      const lines = truncateToScissor(rawLines).filter(commentFilter).filter(gpgFilter);
-      let continueNote = false;
-      let isBody = true;
-      const headerCorrespondence2 = options.headerCorrespondence?.map(function(part) {
-        return part.trim();
-      }) || [];
-      const revertCorrespondence = options.revertCorrespondence?.map(function(field) {
-        return field.trim();
-      }) || [];
-      const mergeCorrespondence = options.mergeCorrespondence?.map(function(field) {
-        return field.trim();
-      }) || [];
-      let body = null;
-      let footer = null;
-      let header = null;
-      const mentions = [];
-      let merge = null;
-      const notes = [];
-      const references = [];
-      let revert = null;
-      if (lines.length === 0) {
-        return {
-          body,
-          footer,
-          header,
-          mentions,
-          merge,
-          notes,
-          references,
-          revert,
-          scope: null,
-          subject: null,
-          type: null
-        };
-      }
-      merge = lines.shift();
-      const mergeParts = {};
-      const headerParts = {};
-      body = "";
-      footer = "";
-      const mergeMatch = merge.match(options.mergePattern);
-      if (mergeMatch && options.mergePattern) {
-        merge = mergeMatch[0];
-        header = lines.shift();
-        while (header !== void 0 && !header.trim()) {
-          header = lines.shift();
-        }
-        if (!header) {
-          header = "";
-        }
-        mergeCorrespondence.forEach(function(partName, index) {
-          const partValue = mergeMatch[index + 1] || null;
-          mergeParts[partName] = partValue;
-        });
-      } else {
-        header = merge;
-        merge = null;
-        mergeCorrespondence.forEach(function(partName) {
-          mergeParts[partName] = null;
-        });
-      }
-      const headerMatch = header.match(options.headerPattern);
-      if (headerMatch) {
-        headerCorrespondence2.forEach(function(partName, index) {
-          const partValue = headerMatch[index + 1] || null;
-          headerParts[partName] = partValue;
-        });
-      } else {
-        headerCorrespondence2.forEach(function(partName) {
-          headerParts[partName] = null;
-        });
-      }
-      references.push(...getReferences(header, {
-        references: regex2.references,
-        referenceParts: regex2.referenceParts
-      }));
-      lines.forEach(function(line) {
-        if (options.fieldPattern) {
-          const fieldMatch = options.fieldPattern.exec(line);
-          if (fieldMatch) {
-            currentProcessedField = fieldMatch[1];
-            return;
-          }
-          if (currentProcessedField) {
-            otherFields[currentProcessedField] = append(otherFields[currentProcessedField], line);
-            return;
-          }
-        }
-        let referenceMatched;
-        const notesMatch = line.match(regex2.notes);
-        if (notesMatch) {
-          continueNote = true;
-          isBody = false;
-          footer = append(footer, line);
-          const note = {
-            title: notesMatch[1],
-            text: notesMatch[2]
-          };
-          notes.push(note);
-          return;
-        }
-        const lineReferences = getReferences(line, {
-          references: regex2.references,
-          referenceParts: regex2.referenceParts
-        });
-        if (lineReferences.length > 0) {
-          isBody = false;
-          referenceMatched = true;
-          continueNote = false;
-        }
-        Array.prototype.push.apply(references, lineReferences);
-        if (referenceMatched) {
-          footer = append(footer, line);
-          return;
-        }
-        if (continueNote) {
-          notes[notes.length - 1].text = append(notes[notes.length - 1].text, line);
-          footer = append(footer, line);
-          return;
-        }
-        if (isBody) {
-          body = append(body, line);
-        } else {
-          footer = append(footer, line);
-        }
-      });
-      if (options.breakingHeaderPattern && notes.length === 0) {
-        const breakingHeader = header.match(options.breakingHeaderPattern);
-        if (breakingHeader) {
-          const noteText = breakingHeader[3];
-          notes.push({
-            title: "BREAKING CHANGE",
-            text: noteText
-          });
-        }
-      }
-      while (mentionsMatch = regex2.mentions.exec(raw)) {
-        mentions.push(mentionsMatch[1]);
-      }
-      const revertMatch = raw.match(options.revertPattern);
-      if (revertMatch) {
-        revert = {};
-        revertCorrespondence.forEach(function(partName, index) {
-          const partValue = revertMatch[index + 1] || null;
-          revert[partName] = partValue;
-        });
-      } else {
-        revert = null;
-      }
-      notes.forEach(function(note) {
-        note.text = trimOffNewlines(note.text);
-      });
-      const msg = {
-        ...headerParts,
-        ...mergeParts,
-        merge,
-        header,
-        body: body ? trimOffNewlines(body) : null,
-        footer: footer ? trimOffNewlines(footer) : null,
-        notes,
-        references,
-        mentions,
-        revert,
-        ...otherFields
-      };
-      return msg;
-    }
-    module.exports = parser2;
-  }
-});
-
-// node_modules/.aspect_rules_js/conventional-commits-parser@5.0.0/node_modules/conventional-commits-parser/lib/regex.js
-var require_regex = __commonJS({
-  "node_modules/.aspect_rules_js/conventional-commits-parser@5.0.0/node_modules/conventional-commits-parser/lib/regex.js"(exports, module) {
-    "use strict";
-    var reNomatch = /(?!.*)/;
-    function join17(array, joiner) {
-      return array.map(function(val) {
-        return val.trim();
-      }).filter(function(val) {
-        return val.length;
-      }).join(joiner);
-    }
-    function getNotesRegex(noteKeywords, notesPattern) {
-      if (!noteKeywords) {
-        return reNomatch;
-      }
-      const noteKeywordsSelection = join17(noteKeywords, "|");
-      if (!notesPattern) {
-        return new RegExp("^[\\s|*]*(" + noteKeywordsSelection + ")[:\\s]+(.*)", "i");
-      }
-      return notesPattern(noteKeywordsSelection);
-    }
-    function getReferencePartsRegex(issuePrefixes, issuePrefixesCaseSensitive) {
-      if (!issuePrefixes) {
-        return reNomatch;
-      }
-      const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-      return new RegExp("(?:.*?)??\\s*([\\w-\\.\\/]*?)??(" + join17(issuePrefixes, "|") + ")([\\w-]*\\d+)", flags);
-    }
-    function getReferencesRegex(referenceActions) {
-      if (!referenceActions) {
-        return /()(.+)/gi;
-      }
-      const joinedKeywords = join17(referenceActions, "|");
-      return new RegExp("(" + joinedKeywords + ")(?:\\s+(.*?))(?=(?:" + joinedKeywords + ")|$)", "gi");
-    }
-    module.exports = function(options) {
-      options = options || {};
-      const reNotes = getNotesRegex(options.noteKeywords, options.notesPattern);
-      const reReferenceParts = getReferencePartsRegex(options.issuePrefixes, options.issuePrefixesCaseSensitive);
-      const reReferences = getReferencesRegex(options.referenceActions);
-      return {
-        notes: reNotes,
-        referenceParts: reReferenceParts,
-        references: reReferences,
-        mentions: /@([\w-]+)/g
-      };
-    };
-  }
-});
-
-// node_modules/.aspect_rules_js/conventional-commits-parser@5.0.0/node_modules/conventional-commits-parser/index.js
-var require_conventional_commits_parser = __commonJS({
-  "node_modules/.aspect_rules_js/conventional-commits-parser@5.0.0/node_modules/conventional-commits-parser/index.js"(exports, module) {
-    "use strict";
-    var { Transform } = __require("stream");
-    var parser2 = require_parser();
-    var regex2 = require_regex();
-    function assignOpts(options) {
-      options = {
-        headerPattern: /^(\w*)(?:\(([\w$.\-*/ ]*)\))?: (.*)$/,
-        headerCorrespondence: ["type", "scope", "subject"],
-        referenceActions: [
-          "close",
-          "closes",
-          "closed",
-          "fix",
-          "fixes",
-          "fixed",
-          "resolve",
-          "resolves",
-          "resolved"
-        ],
-        issuePrefixes: ["#"],
-        noteKeywords: ["BREAKING CHANGE", "BREAKING-CHANGE"],
-        fieldPattern: /^-(.*?)-$/,
-        revertPattern: /^Revert\s"([\s\S]*)"\s*This reverts commit (\w*)\./,
-        revertCorrespondence: ["header", "hash"],
-        warn: function() {
-        },
-        mergePattern: null,
-        mergeCorrespondence: null,
-        ...options
-      };
-      if (typeof options.headerPattern === "string") {
-        options.headerPattern = new RegExp(options.headerPattern);
-      }
-      if (typeof options.headerCorrespondence === "string") {
-        options.headerCorrespondence = options.headerCorrespondence.split(",");
-      }
-      if (typeof options.referenceActions === "string") {
-        options.referenceActions = options.referenceActions.split(",");
-      }
-      if (typeof options.issuePrefixes === "string") {
-        options.issuePrefixes = options.issuePrefixes.split(",");
-      }
-      if (typeof options.noteKeywords === "string") {
-        options.noteKeywords = options.noteKeywords.split(",");
-      }
-      if (typeof options.fieldPattern === "string") {
-        options.fieldPattern = new RegExp(options.fieldPattern);
-      }
-      if (typeof options.revertPattern === "string") {
-        options.revertPattern = new RegExp(options.revertPattern);
-      }
-      if (typeof options.revertCorrespondence === "string") {
-        options.revertCorrespondence = options.revertCorrespondence.split(",");
-      }
-      if (typeof options.mergePattern === "string") {
-        options.mergePattern = new RegExp(options.mergePattern);
-      }
-      return options;
-    }
-    function conventionalCommitsParser(options) {
-      options = assignOpts(options);
-      const reg = regex2(options);
-      return new Transform({
-        objectMode: true,
-        highWaterMark: 16,
-        transform(data, enc, cb) {
-          let commit;
-          try {
-            commit = parser2(data.toString(), options, reg);
-            cb(null, commit);
-          } catch (err) {
-            if (options.warn === true) {
-              cb(err);
-            } else {
-              options.warn(err.toString());
-              cb(null, "");
-            }
-          }
-        }
-      });
-    }
-    function sync(commit, options) {
-      options = assignOpts(options);
-      const reg = regex2(options);
-      return parser2(commit, options, reg);
-    }
-    module.exports = conventionalCommitsParser;
-    module.exports.sync = sync;
-  }
-});
-
-// node_modules/.aspect_rules_js/split2@4.2.0/node_modules/split2/index.js
-var require_split2 = __commonJS({
-  "node_modules/.aspect_rules_js/split2@4.2.0/node_modules/split2/index.js"(exports, module) {
-    "use strict";
-    var { Transform } = __require("stream");
-    var { StringDecoder } = __require("string_decoder");
-    var kLast = Symbol("last");
-    var kDecoder = Symbol("decoder");
-    function transform(chunk, enc, cb) {
-      let list;
-      if (this.overflow) {
-        const buf = this[kDecoder].write(chunk);
-        list = buf.split(this.matcher);
-        if (list.length === 1)
-          return cb();
-        list.shift();
-        this.overflow = false;
-      } else {
-        this[kLast] += this[kDecoder].write(chunk);
-        list = this[kLast].split(this.matcher);
-      }
-      this[kLast] = list.pop();
-      for (let i = 0; i < list.length; i++) {
-        try {
-          push(this, this.mapper(list[i]));
-        } catch (error) {
-          return cb(error);
-        }
-      }
-      this.overflow = this[kLast].length > this.maxLength;
-      if (this.overflow && !this.skipOverflow) {
-        cb(new Error("maximum buffer reached"));
-        return;
-      }
-      cb();
-    }
-    function flush(cb) {
-      this[kLast] += this[kDecoder].end();
-      if (this[kLast]) {
-        try {
-          push(this, this.mapper(this[kLast]));
-        } catch (error) {
-          return cb(error);
-        }
-      }
-      cb();
-    }
-    function push(self2, val) {
-      if (val !== void 0) {
-        self2.push(val);
-      }
-    }
-    function noop(incoming) {
-      return incoming;
-    }
-    function split(matcher, mapper, options) {
-      matcher = matcher || /\r?\n/;
-      mapper = mapper || noop;
-      options = options || {};
-      switch (arguments.length) {
-        case 1:
-          if (typeof matcher === "function") {
-            mapper = matcher;
-            matcher = /\r?\n/;
-          } else if (typeof matcher === "object" && !(matcher instanceof RegExp) && !matcher[Symbol.split]) {
-            options = matcher;
-            matcher = /\r?\n/;
-          }
-          break;
-        case 2:
-          if (typeof matcher === "function") {
-            options = mapper;
-            mapper = matcher;
-            matcher = /\r?\n/;
-          } else if (typeof mapper === "object") {
-            options = mapper;
-            mapper = noop;
-          }
-      }
-      options = Object.assign({}, options);
-      options.autoDestroy = true;
-      options.transform = transform;
-      options.flush = flush;
-      options.readableObjectMode = true;
-      const stream = new Transform(options);
-      stream[kLast] = "";
-      stream[kDecoder] = new StringDecoder("utf8");
-      stream.matcher = matcher;
-      stream.mapper = mapper;
-      stream.maxLength = options.maxLength;
-      stream.skipOverflow = options.skipOverflow || false;
-      stream.overflow = false;
-      stream._destroy = function(err, cb) {
-        this._writableState.errorEmitted = false;
-        cb(err);
-      };
-      return stream;
-    }
-    module.exports = split;
-  }
-});
-
-// node_modules/.aspect_rules_js/git-raw-commits@4.0.0/node_modules/git-raw-commits/index.js
-var require_git_raw_commits = __commonJS({
-  "node_modules/.aspect_rules_js/git-raw-commits@4.0.0/node_modules/git-raw-commits/index.js"(exports, module) {
-    var { Readable: Readable3, Transform } = __require("stream");
-    var { execFile } = __require("child_process");
-    var split = require_split2();
-    var DELIMITER = "------------------------ >8 ------------------------";
-    function normalizeExecOpts(execOpts) {
-      execOpts = execOpts || {};
-      execOpts.cwd = execOpts.cwd || process.cwd();
-      return execOpts;
-    }
-    function normalizeGitOpts(gitOpts) {
-      gitOpts = gitOpts || {};
-      gitOpts.format = gitOpts.format || "%B";
-      gitOpts.from = gitOpts.from || "";
-      gitOpts.to = gitOpts.to || "HEAD";
-      return gitOpts;
-    }
-    async function getGitArgs(gitOpts) {
-      const { default: dargs } = await import("./dargs-XDED6M3D.mjs");
-      const gitFormat = `--format=${gitOpts.format || ""}%n${DELIMITER}`;
-      const gitFromTo = [gitOpts.from, gitOpts.to].filter(Boolean).join("..");
-      const gitArgs = ["log", gitFormat, gitFromTo].concat(dargs(gitOpts, {
-        excludes: ["debug", "from", "to", "format", "path", "ignore"]
-      }));
-      if (gitOpts.path) {
-        gitArgs.push("--", ...Array.isArray(gitOpts.path) ? gitOpts.path : [gitOpts.path]);
-      }
-      return gitArgs;
-    }
-    function gitRawCommits(rawGitOpts, rawExecOpts) {
-      const readable = new Readable3();
-      readable._read = () => {
-      };
-      const gitOpts = normalizeGitOpts(rawGitOpts);
-      const execOpts = normalizeExecOpts(rawExecOpts);
-      let isError = false;
-      getGitArgs(gitOpts).then((args) => {
-        if (gitOpts.debug) {
-          gitOpts.debug("Your git-log command is:\ngit " + args.join(" "));
-        }
-        const ignoreRegex = typeof gitOpts.ignore === "string" ? new RegExp(gitOpts.ignore) : gitOpts.ignore;
-        const shouldNotIgnore = ignoreRegex ? (chunk) => !ignoreRegex.test(chunk.toString()) : () => true;
-        const child = execFile("git", args, {
-          cwd: execOpts.cwd,
-          maxBuffer: Infinity
-        });
-        child.stdout.pipe(split(DELIMITER + "\n")).pipe(
-          new Transform({
-            transform(chunk, enc, cb) {
-              isError = false;
-              setImmediate(() => {
-                if (shouldNotIgnore(chunk)) {
-                  readable.push(chunk);
-                }
-                cb();
-              });
-            },
-            flush(cb) {
-              setImmediate(() => {
-                if (!isError) {
-                  readable.push(null);
-                  readable.emit("close");
-                }
-                cb();
-              });
-            }
-          })
-        );
-        child.stderr.pipe(
-          new Transform({
-            objectMode: true,
-            highWaterMark: 16,
-            transform(chunk) {
-              isError = true;
-              readable.emit("error", new Error(chunk));
-              readable.emit("close");
-            }
-          })
-        );
-      });
-      return readable;
-    }
-    module.exports = gitRawCommits;
-  }
-});
-
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/eta.js
 var require_eta = __commonJS({
   "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/eta.js"(exports, module) {
@@ -19234,7 +18645,7 @@ var require_common3 = __commonJS({
 // node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/browser.js
 var require_browser = __commonJS({
   "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.0/node_modules/debug/src/browser.js"(exports, module) {
-    exports.formatArgs = formatArgs;
+    exports.formatArgs = formatArgs2;
     exports.save = save;
     exports.load = load3;
     exports.useColors = useColors;
@@ -19340,7 +18751,7 @@ var require_browser = __commonJS({
       typeof navigator !== "undefined" && navigator.userAgent && (m = navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)) && parseInt(m[1], 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
       typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
     }
-    function formatArgs(args) {
+    function formatArgs2(args) {
       args[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args[0] + (this.useColors ? "%c " : " ") + "+" + module.exports.humanize(this.diff);
       if (!this.useColors) {
         return;
@@ -19408,7 +18819,7 @@ var require_node2 = __commonJS({
     var util = __require("util");
     exports.init = init;
     exports.log = log;
-    exports.formatArgs = formatArgs;
+    exports.formatArgs = formatArgs2;
     exports.save = save;
     exports.load = load3;
     exports.useColors = useColors;
@@ -19524,7 +18935,7 @@ var require_node2 = __commonJS({
     function useColors() {
       return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(process.stderr.fd);
     }
-    function formatArgs(args) {
+    function formatArgs2(args) {
       const { namespace: name, useColors: useColors2 } = this;
       if (useColors2) {
         const c = this.color;
@@ -26090,11 +25501,11 @@ function destroyStream(stream, err) {
     stream.end();
   }
 }
-var import_whatwg_url, Readable, BUFFER, TYPE, Blob2, convert, INTERNALS, PassThrough, invalidTokenRegex, invalidHeaderCharRegex, MAP, Headers2, INTERNAL, HeadersIteratorPrototype, INTERNALS$1, STATUS_CODES, Response2, INTERNALS$2, URL2, parse_url, format_url, streamDestructionSupported, Request, URL$1, PassThrough$1, isDomainOrSubdomain, isSameProtocol, lib_default2;
+var import_whatwg_url, Readable2, BUFFER, TYPE, Blob2, convert, INTERNALS, PassThrough, invalidTokenRegex, invalidHeaderCharRegex, MAP, Headers2, INTERNAL, HeadersIteratorPrototype, INTERNALS$1, STATUS_CODES, Response2, INTERNALS$2, URL2, parse_url, format_url, streamDestructionSupported, Request, URL$1, PassThrough$1, isDomainOrSubdomain, isSameProtocol, lib_default2;
 var init_lib = __esm({
   "node_modules/.aspect_rules_js/node-fetch@2.7.0_encoding_0.1.13/node_modules/node-fetch/lib/index.mjs"() {
     import_whatwg_url = __toESM(require_public_api(), 1);
-    Readable = Stream.Readable;
+    Readable2 = Stream.Readable;
     BUFFER = Symbol("buffer");
     TYPE = Symbol("type");
     Blob2 = class _Blob {
@@ -26146,7 +25557,7 @@ var init_lib = __esm({
         return Promise.resolve(ab);
       }
       stream() {
-        const readable = new Readable();
+        const readable = new Readable2();
         readable._read = function() {
         };
         readable.push(this[BUFFER]);
@@ -27638,7 +27049,7 @@ var require_common5 = __commonJS({
 // node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/browser.js
 var require_browser2 = __commonJS({
   "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.0/node_modules/debug/src/browser.js"(exports, module) {
-    exports.formatArgs = formatArgs;
+    exports.formatArgs = formatArgs2;
     exports.save = save;
     exports.load = load3;
     exports.useColors = useColors;
@@ -27744,7 +27155,7 @@ var require_browser2 = __commonJS({
       typeof navigator !== "undefined" && navigator.userAgent && (m = navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)) && parseInt(m[1], 10) >= 31 || // Double check webkit in userAgent just in case we are in a worker
       typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
     }
-    function formatArgs(args) {
+    function formatArgs2(args) {
       args[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args[0] + (this.useColors ? "%c " : " ") + "+" + module.exports.humanize(this.diff);
       if (!this.useColors) {
         return;
@@ -27812,7 +27223,7 @@ var require_node3 = __commonJS({
     var util = __require("util");
     exports.init = init;
     exports.log = log;
-    exports.formatArgs = formatArgs;
+    exports.formatArgs = formatArgs2;
     exports.save = save;
     exports.load = load3;
     exports.useColors = useColors;
@@ -27928,7 +27339,7 @@ var require_node3 = __commonJS({
     function useColors() {
       return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(process.stderr.fd);
     }
-    function formatArgs(args) {
+    function formatArgs2(args) {
       const { namespace: name, useColors: useColors2 } = this;
       if (useColors2) {
         const c = this.color;
@@ -40285,7 +39696,7 @@ var require_websocket = __commonJS({
     var net = __require("net");
     var tls = __require("tls");
     var { randomBytes, createHash } = __require("crypto");
-    var { Duplex, Readable: Readable3 } = __require("stream");
+    var { Duplex, Readable: Readable4 } = __require("stream");
     var { URL: URL4 } = __require("url");
     var PerMessageDeflate = require_permessage_deflate();
     var Receiver2 = require_receiver();
@@ -52711,12 +52122,295 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
+// node_modules/.aspect_rules_js/git-raw-commits@5.0.0_874231993/node_modules/git-raw-commits/src/index.js
+import { Readable } from "stream";
+
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_874231993/node_modules/@conventional-changelog/git-client/dist/utils.js
+import { spawn as spawnChild } from "child_process";
+function catchProcessError(child) {
+  return new Promise((resolve12) => {
+    let stderr = "";
+    let error = null;
+    child.stderr.on("data", (chunk) => {
+      stderr += chunk.toString();
+    });
+    child.on("error", (err) => {
+      error = err;
+    });
+    child.on("close", () => {
+      if (stderr) {
+        error = new Error(stderr);
+      }
+      resolve12(error);
+    });
+  });
+}
+async function* stdoutSpawn(cmd, args, options) {
+  const child = spawnChild(cmd, args, options);
+  const errorPromise = catchProcessError(child);
+  yield* child.stdout;
+  const error = await errorPromise;
+  if (error) {
+    throw error;
+  }
+}
+async function spawn2(cmd, args, options) {
+  const stdout = stdoutSpawn(cmd, args, options);
+  let chunk;
+  const output = [];
+  for await (chunk of stdout) {
+    output.push(chunk);
+  }
+  return Buffer.concat(output);
+}
+async function* splitStream(stream, separator) {
+  let chunk;
+  let payload;
+  let buffer = "";
+  for await (chunk of stream) {
+    buffer += chunk.toString();
+    if (buffer.includes(separator)) {
+      payload = buffer.split(separator);
+      buffer = payload.pop() || "";
+      yield* payload;
+    }
+  }
+  if (buffer) {
+    yield buffer;
+  }
+}
+function formatKeyValue(key, value) {
+  return `${key.length === 1 ? "-" : "--"}${key.replace(/[A-Z]/g, "-$&").toLowerCase()}${value ? `=${value}` : ""}`;
+}
+function formatParams(params2) {
+  const args = [];
+  let key;
+  let value;
+  let arrayValue;
+  for (key in params2) {
+    value = params2[key];
+    if (value === true) {
+      args.push(formatKeyValue(key));
+    } else if (value === false) {
+      args.push(formatKeyValue(`no-${key}`));
+    } else if (Array.isArray(value)) {
+      for (arrayValue of value) {
+        args.push(formatKeyValue(key, arrayValue));
+      }
+    } else if (value) {
+      args.push(formatKeyValue(key, value));
+    }
+  }
+  return args;
+}
+function formatArgs(...args) {
+  const finalArgs = [];
+  for (const arg of args) {
+    if (!arg) {
+      continue;
+    }
+    if (Array.isArray(arg)) {
+      finalArgs.push(...formatArgs(...arg));
+    } else if (typeof arg === "object" && !(arg instanceof RegExp)) {
+      finalArgs.push(...formatParams(arg));
+    } else {
+      finalArgs.push(String(arg));
+    }
+  }
+  return finalArgs;
+}
+
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_874231993/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+var SCISSOR = "------------------------ >8 ------------------------";
+var GitClient2 = class {
+  cwd;
+  debug;
+  constructor(cwd, debug = false) {
+    this.cwd = cwd;
+    this.debug = debug;
+  }
+  formatArgs(...args) {
+    const finalArgs = formatArgs(...args);
+    if (this.debug) {
+      this.debug(finalArgs);
+    }
+    return finalArgs;
+  }
+  /**
+   * Get raw commits stream.
+   * @param params
+   * @param params.path - Read commits from specific path.
+   * @param params.from - Start commits range.
+   * @param params.to - End commits range.
+   * @param params.format - Commits format.
+   * @yields Raw commits data.
+   */
+  async *getRawCommits(params2 = {}) {
+    const { path: path8, from = "", to = "HEAD", format: format4 = "%B", ignore, ...restParams } = params2;
+    const shouldNotIgnore = ignore ? (chunk2) => !ignore.test(chunk2) : () => true;
+    const args = this.formatArgs("log", `--format=${format4}%n${SCISSOR}`, [from, to].filter(Boolean).join(".."), restParams, path8 && ["--", path8]);
+    const stdout = stdoutSpawn("git", args, {
+      cwd: this.cwd
+    });
+    const commitsStream = splitStream(stdout, `${SCISSOR}
+`);
+    let chunk;
+    for await (chunk of commitsStream) {
+      if (shouldNotIgnore(chunk)) {
+        yield chunk;
+      }
+    }
+  }
+  /**
+   * Get tags stream.
+   * @param params - Additional git params.
+   * @yields Tags
+   */
+  async *getTags(params2 = {}) {
+    const tagRegex = /tag:\s*(.+?)[,)]/gi;
+    const args = this.formatArgs("log", "--decorate", "--no-color", "--date-order", params2);
+    const stdout = stdoutSpawn("git", args, {
+      cwd: this.cwd
+    });
+    let chunk;
+    let matches;
+    let tag;
+    for await (chunk of stdout) {
+      matches = chunk.toString().trim().matchAll(tagRegex);
+      for ([, tag] of matches) {
+        yield tag;
+      }
+    }
+  }
+  /**
+   * Get last tag.
+   * @param params - Additional git params.
+   * @returns Last tag, `null` if not found.
+   */
+  async getLastTag(params2 = {}) {
+    return (await this.getTags(params2).next()).value || null;
+  }
+  /**
+   * Check file is ignored via .gitignore.
+   * @param file - Path to target file.
+   * @param params - Additional git params.
+   * @returns Boolean value.
+   */
+  async checkIgnore(file, params2 = {}) {
+    const args = this.formatArgs("check-ignore", file, params2);
+    try {
+      await spawn2("git", args, {
+        cwd: this.cwd
+      });
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+  /**
+   * Add files to git index.
+   * @param files - Files to stage.
+   * @param params - Additional git params.
+   */
+  async add(files, params2 = {}) {
+    const args = this.formatArgs("add", files, params2);
+    await spawn2("git", args, {
+      cwd: this.cwd
+    });
+  }
+  /**
+   * Commit changes.
+   * @param params
+   * @param params.verify
+   * @param params.sign
+   * @param params.files
+   * @param params.message
+   */
+  async commit(params2) {
+    const { verify: verify3 = true, sign = false, files = [], message, ...restParams } = params2;
+    const args = this.formatArgs("commit", !verify3 && "--no-verify", sign && "-S", files, "-m", message, restParams);
+    await spawn2("git", args, {
+      cwd: this.cwd
+    });
+  }
+  /**
+   * Create a tag for the current commit.
+   * @param params
+   * @param params.sign
+   * @param params.name
+   * @param params.message
+   */
+  async tag(params2) {
+    let { sign = false, name, message, ...restParams } = params2;
+    if (sign) {
+      message = "";
+    }
+    const args = this.formatArgs("tag", sign && "-s", message && "-a", name, message && ["-m", message], restParams);
+    await spawn2("git", args, {
+      cwd: this.cwd
+    });
+  }
+  /**
+   * Get current branch name.
+   * @param params - Additional git params.
+   * @returns Current branch name.
+   */
+  async getCurrentBranch(params2 = {}) {
+    const args = this.formatArgs("rev-parse", "--abbrev-ref", "HEAD", params2);
+    const branch = (await spawn2("git", args, {
+      cwd: this.cwd
+    })).toString().trim();
+    return branch;
+  }
+  /**
+   * Push changes to remote.
+   * @param branch
+   * @param params - Additional git params.
+   */
+  async push(branch, params2 = {}) {
+    const args = this.formatArgs("push", "--follow-tags", "origin", branch, params2);
+    await spawn2("git", args, {
+      cwd: this.cwd
+    });
+  }
+};
+
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_874231993/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+var import_semver = __toESM(require_semver());
+
+// node_modules/.aspect_rules_js/git-raw-commits@5.0.0_874231993/node_modules/git-raw-commits/src/index.js
+function getFinalOptions(options = {}) {
+  const finalOptions = {
+    cwd: process.cwd(),
+    ...options
+  };
+  if (options.debug) {
+    finalOptions.debug = (args) => {
+      options.debug("Your git-log command is:\ngit " + args.join(" "));
+    };
+  }
+  return finalOptions;
+}
+async function* getRawCommits(options) {
+  const { cwd, debug, ...finalOptions } = getFinalOptions(options);
+  const client = new GitClient2(cwd, debug);
+  let commit;
+  if (typeof finalOptions.ignore === "string") {
+    finalOptions.ignore = new RegExp(finalOptions.ignore);
+  }
+  for await (commit of client.getRawCommits(finalOptions)) {
+    yield commit;
+  }
+}
+function getRawCommitsStream(options) {
+  return Readable.from(getRawCommits(options));
+}
+
 // ng-dev/commit-message/utils.js
-var import_git_raw_commits = __toESM(require_git_raw_commits());
 function getCommitsInRange(from, to = "HEAD") {
   return new Promise((resolve12, reject) => {
     const commits = [];
-    const commitStream = (0, import_git_raw_commits.default)({ from, to, format: gitLogFormatForParsing });
+    const commitStream = getRawCommitsStream({ from, to, format: gitLogFormatForParsing });
     commitStream.on("data", (commit) => commits.push(parseCommitFromGitLog(commit)));
     commitStream.on("error", (err) => reject(err));
     commitStream.on("end", () => resolve12(commits));
@@ -54895,7 +54589,7 @@ function buildNgbotParser(localYargs) {
 }
 
 // ng-dev/pr/common/targeting/lts-branch.js
-var import_semver = __toESM(require_semver());
+var import_semver2 = __toESM(require_semver());
 
 // ng-dev/utils/locale.js
 var defaultLocale = "en-US";
@@ -54908,7 +54602,7 @@ async function assertActiveLtsBranch(repo, releaseConfig, branchName) {
   const { version: version2 } = await getVersionInfoForBranch(repo, branchName);
   const { "dist-tags": distTags, time } = await fetchProjectNpmPackageInfo(releaseConfig);
   const ltsNpmTag = getLtsNpmDistTagOfMajor(version2.major);
-  const ltsVersion = import_semver.default.parse(distTags[ltsNpmTag]);
+  const ltsVersion = import_semver2.default.parse(distTags[ltsNpmTag]);
   if (ltsVersion === null) {
     throw new InvalidTargetBranchError(`No LTS version tagged for v${version2.major} in NPM.`);
   }
@@ -57212,11 +56906,11 @@ var ReleaseInfoCommandModule = {
 };
 
 // ng-dev/release/notes/cli.js
-var import_semver4 = __toESM(require_semver());
+var import_semver5 = __toESM(require_semver());
 
 // ng-dev/release/notes/release-notes.js
 var import_ejs = __toESM(require_ejs());
-var import_semver3 = __toESM(require_semver());
+var import_semver4 = __toESM(require_semver());
 
 // ng-dev/release/notes/context.js
 var typesToIncludeInReleaseNotes = Object.values(COMMIT_TYPES).filter((type) => type.releaseNotesLevel === ReleaseNotesLevel.Visible).map((type) => type.name);
@@ -57509,7 +57203,7 @@ function santizeCommitMessage(content) {
 }
 
 // ng-dev/release/notes/changelog.js
-var import_semver2 = __toESM(require_semver());
+var import_semver3 = __toESM(require_semver());
 import { existsSync as existsSync2, readFileSync as readFileSync9, writeFileSync as writeFileSync4 } from "fs";
 import { join as join9 } from "path";
 var changelogPath = "CHANGELOG.md";
@@ -57571,7 +57265,7 @@ var Changelog = class {
   }
   moveEntriesPriorToVersionToArchive(version2) {
     [...this.entries].reverse().forEach((entry) => {
-      if (import_semver2.default.lt(entry.version, version2)) {
+      if (import_semver3.default.lt(entry.version, version2)) {
         this.archiveEntries.unshift(entry);
         this.entries.splice(this.entries.indexOf(entry), 1);
       }
@@ -57601,7 +57295,7 @@ function parseChangelogEntry(content) {
   if (versionMatcherResult === null) {
     throw Error(`Unable to determine version for changelog entry: ${content}`);
   }
-  const version2 = import_semver2.default.parse(versionMatcherResult[1]);
+  const version2 = import_semver3.default.parse(versionMatcherResult[1]);
   if (version2 === null) {
     throw Error(`Unable to determine version for changelog entry, with tag: ${versionMatcherResult[1]}`);
   }
@@ -57634,7 +57328,7 @@ var ReleaseNotes = class _ReleaseNotes {
     return (0, import_ejs.render)(changelog_default, await this.generateRenderContext(), { rmWhitespace: true });
   }
   async prependEntryToChangelogFile() {
-    if (import_semver3.default.prerelease(this.version) === null) {
+    if (import_semver4.default.prerelease(this.version) === null) {
       Changelog.removePrereleaseEntriesForVersion(this.git, this.version);
     }
     Changelog.prependEntryToChangelogFile(this.git, await this.getChangelogEntry());
@@ -57687,7 +57381,7 @@ function builder21(argv) {
   return argv.option("releaseVersion", {
     type: "string",
     default: "0.0.0",
-    coerce: (version2) => new import_semver4.default.SemVer(version2)
+    coerce: (version2) => new import_semver5.default.SemVer(version2)
   }).option("from", {
     type: "string",
     description: "The git tag or ref to start the changelog entry from",
@@ -57726,7 +57420,7 @@ var ReleaseNotesCommandModule = {
 };
 
 // ng-dev/release/precheck/cli.js
-var import_semver5 = __toESM(require_semver());
+var import_semver6 = __toESM(require_semver());
 
 // ng-dev/utils/read-stdin-until-closed.js
 var ReadBufferFromStdinError = class extends Error {
@@ -57752,7 +57446,7 @@ async function handler22() {
     process.exitCode = 1;
     return;
   }
-  const newVersion = import_semver5.default.parse(newVersionRaw);
+  const newVersion = import_semver6.default.parse(newVersionRaw);
   if (newVersion === null) {
     Log.error(`  \u2718   Release pre-checks failed. Invalid new version was provided.`);
     process.exitCode = 1;
@@ -57830,7 +57524,7 @@ var FatalReleaseActionError = class extends Error {
 };
 
 // ng-dev/release/publish/actions/configure-next-as-major.js
-var import_semver7 = __toESM(require_semver());
+var import_semver8 = __toESM(require_semver());
 
 // ng-dev/utils/constants.js
 var ngDevNpmPackageName = "@angular/ng-dev";
@@ -57841,16 +57535,16 @@ import { promises as fs2 } from "fs";
 import { join as join12 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
-var import_semver6 = __toESM(require_semver());
+var import_semver7 = __toESM(require_semver());
 function isExperimentalSemver(version2) {
   return version2.major === 0 && version2.minor >= 100;
 }
 function createExperimentalSemver(version2) {
-  version2 = new import_semver6.default.SemVer(version2);
-  const experimentalVersion = new import_semver6.default.SemVer(version2.format());
+  version2 = new import_semver7.default.SemVer(version2);
+  const experimentalVersion = new import_semver7.default.SemVer(version2.format());
   experimentalVersion.major = 0;
   experimentalVersion.minor = version2.major * 100 + version2.minor;
-  return new import_semver6.default.SemVer(experimentalVersion.format());
+  return new import_semver7.default.SemVer(experimentalVersion.format());
 }
 
 // ng-dev/release/versioning/version-tags.js
@@ -58526,7 +58220,7 @@ function isFirstNextPrerelease(v) {
 var ConfigureNextAsMajorAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
-    this._newVersion = import_semver7.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
+    this._newVersion = import_semver8.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
   }
   async getDescription() {
     const { branchName } = this.active.next;
@@ -58552,9 +58246,9 @@ var ConfigureNextAsMajorAction = class extends ReleaseAction {
 };
 
 // ng-dev/utils/semver.js
-var import_semver8 = __toESM(require_semver());
+var import_semver9 = __toESM(require_semver());
 function semverInc(version2, release, identifier) {
-  const clone2 = new import_semver8.default.SemVer(version2.version);
+  const clone2 = new import_semver9.default.SemVer(version2.version);
   return clone2.inc(release, identifier);
 }
 
@@ -58703,7 +58397,7 @@ var CutNpmNextReleaseCandidateAction = class extends CutNpmNextPrereleaseAction 
 };
 
 // ng-dev/release/publish/actions/cut-stable.js
-var import_semver13 = __toESM(require_semver());
+var import_semver14 = __toESM(require_semver());
 var CutStableAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -58752,7 +58446,7 @@ var CutStableAction = class extends ReleaseAction {
     return this._isNewMajor ? "next" : "latest";
   }
   _computeNewVersion({ version: version2 }) {
-    return import_semver13.default.parse(`${version2.major}.${version2.minor}.${version2.patch}`);
+    return import_semver14.default.parse(`${version2.major}.${version2.minor}.${version2.patch}`);
   }
   static async isActive(active) {
     if (active.exceptionalMinor !== null) {
@@ -58803,7 +58497,7 @@ var CutExceptionalMinorReleaseCandidateAction = class extends CutExceptionalMino
 };
 
 // ng-dev/release/publish/actions/exceptional-minor/prepare-exceptional-minor.js
-var import_semver15 = __toESM(require_semver());
+var import_semver16 = __toESM(require_semver());
 var PrepareExceptionalMinorAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -58811,7 +58505,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
     this._baseBranch = this._patch.branchName;
     this._patchVersion = this._patch.version;
     this._newBranch = `${this._patchVersion.major}.${this._patchVersion.minor + 1}.x`;
-    this._newVersion = import_semver15.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
+    this._newVersion = import_semver16.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
   }
   async getDescription() {
     return `Prepare an exceptional minor based on the existing "${this._baseBranch}" branch (${this._newBranch}).`;
@@ -58842,7 +58536,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 };
 
 // ng-dev/release/publish/actions/shared/branch-off-next-branch.js
-var import_semver16 = __toESM(require_semver());
+var import_semver17 = __toESM(require_semver());
 var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   constructor() {
     super(...arguments);
@@ -58889,7 +58583,7 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   }
   async _createNextBranchUpdatePullRequest(releaseNotes, newVersion) {
     const { branchName: nextBranch, version: version2 } = this.active.next;
-    const newNextVersion = import_semver16.default.parse(`${version2.major}.${version2.minor + 1}.0-next.0`);
+    const newNextVersion = import_semver17.default.parse(`${version2.major}.${version2.minor + 1}.0-next.0`);
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
@@ -58934,15 +58628,15 @@ var MoveNextIntoReleaseCandidateAction = class extends BranchOffNextBranchBaseAc
 };
 
 // ng-dev/release/publish/actions/special/cut-lts-minor.js
-var import_semver17 = __toESM(require_semver());
+var import_semver18 = __toESM(require_semver());
 var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
   async getDescription() {
     return `SPECIAL: Cut a new release for an LTS minor.`;
   }
   async perform() {
     const ltsBranch = await this._askForVersionBranch("Please specify the target LTS branch:");
-    const compareVersionForReleaseNotes = import_semver17.default.parse(await Prompt.input({ message: "Compare version for release" }));
-    const newVersion = import_semver17.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
+    const compareVersionForReleaseNotes = import_semver18.default.parse(await Prompt.input({ message: "Compare version for release" }));
+    const newVersion = import_semver18.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, ltsBranch.branch);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
     await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.branch, getLtsNpmDistTagOfMajor(newVersion.major), { showAsLatestOnGitHub: false });
@@ -58967,7 +58661,7 @@ var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
 };
 
 // ng-dev/release/publish/actions/tag-recent-major-as-latest.js
-var import_semver18 = __toESM(require_semver());
+var import_semver19 = __toESM(require_semver());
 var TagRecentMajorAsLatest = class extends ReleaseAction {
   async getDescription() {
     return `Retag recently published major v${this.active.latest.version} as "latest" in NPM.`;
@@ -58995,7 +58689,7 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
       return false;
     }
     const packageInfo = await fetchProjectNpmPackageInfo(config);
-    const npmLatestVersion = import_semver18.default.parse(packageInfo["dist-tags"]["latest"]);
+    const npmLatestVersion = import_semver19.default.parse(packageInfo["dist-tags"]["latest"]);
     return npmLatestVersion !== null && npmLatestVersion.major === latest.version.major - 1;
   }
 };
@@ -59024,7 +58718,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-1ed2eb0de0c183e350386f60d71018c0cc40ec18`;
+  const localVersion = `0.0.0-b9c76c9e48a9ad4d0f0430982bf794bf7ef987b9`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -59241,7 +58935,7 @@ var ReleasePublishCommandModule = {
 };
 
 // ng-dev/release/npm-dist-tag/set/cli.js
-var import_semver19 = __toESM(require_semver());
+var import_semver20 = __toESM(require_semver());
 function builder23(args) {
   return args.positional("tagName", {
     type: "string",
@@ -59262,7 +58956,7 @@ async function handler24(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages, publishRegistry } = config.release;
-  const version2 = import_semver19.default.parse(rawVersion);
+  const version2 = import_semver20.default.parse(rawVersion);
   if (version2 === null) {
     Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
     process.exit(1);
@@ -59312,7 +59006,7 @@ import url from "url";
 
 // ng-dev/release/stamping/env-stamp.js
 import * as fs4 from "fs";
-var import_semver20 = __toESM(require_semver());
+var import_semver21 = __toESM(require_semver());
 import { join as join14 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
@@ -59395,7 +59089,7 @@ function getVersionFromWorkspacePackageJson(git) {
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver20.default.SemVer(packageJson.version);
+  return new import_semver21.default.SemVer(packageJson.version);
 }
 
 // ng-dev/release/stamping/cli.js
@@ -59984,10 +59678,10 @@ function buildPerfParser(localYargs) {
 // node_modules/.aspect_rules_js/@google+genai@1.16.0_1856225767/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
-import { Readable as Readable2 } from "node:stream";
+import { Readable as Readable3 } from "node:stream";
 
 // node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/wrapper.mjs
-var import_stream2 = __toESM(require_stream5(), 1);
+var import_stream3 = __toESM(require_stream5(), 1);
 var import_receiver = __toESM(require_receiver(), 1);
 var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
@@ -75731,7 +75425,7 @@ var NodeDownloader = class {
       const response = await downloadFile(params2, apiClient);
       if (response instanceof HttpResponse) {
         const writer = createWriteStream(params2.downloadPath);
-        Readable2.fromWeb(response.responseInternal.body).pipe(writer);
+        Readable3.fromWeb(response.responseInternal.body).pipe(writer);
       } else {
         writeFile3(params2.downloadPath, response, { encoding: "base64" }, (error) => {
           if (error) {
