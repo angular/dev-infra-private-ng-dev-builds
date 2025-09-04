@@ -58718,7 +58718,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-2d4dab90eaec1991cc7630c43ceab76502cd328c`;
+  const localVersion = `0.0.0-a8cabedfe7eaeeae39ebeaab56a3376ff8608015`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -59675,7 +59675,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.16.0_1856225767/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.17.0_1856225767/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable3 } from "node:stream";
@@ -59687,7 +59687,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.16.0_1856225767/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.17.0_1856225767/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -68783,8 +68783,9 @@ function generateVideosConfigToMldev(fromObject, parentObject) {
   if (parentObject !== void 0 && fromAspectRatio != null) {
     setValueByPath(parentObject, ["parameters", "aspectRatio"], fromAspectRatio);
   }
-  if (getValueByPath(fromObject, ["resolution"]) !== void 0) {
-    throw new Error("resolution parameter is not supported in Gemini API.");
+  const fromResolution = getValueByPath(fromObject, ["resolution"]);
+  if (parentObject !== void 0 && fromResolution != null) {
+    setValueByPath(parentObject, ["parameters", "resolution"], fromResolution);
   }
   const fromPersonGeneration = getValueByPath(fromObject, [
     "personGeneration"
@@ -71836,7 +71837,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.16.0";
+var SDK_VERSION = "1.17.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -73609,23 +73610,7 @@ var Models = class extends BaseModule2 {
     }
   }
   /**
-   * Generates an image based on a text description and configuration.
-   *
-   * @param params - The parameters for generating images.
-   * @return The response from the API.
-   *
-   * @example
-   * ```ts
-   * const response = await ai.models.generateImages({
-   *  model: 'imagen-3.0-generate-002',
-   *  prompt: 'Robot holding a red skateboard',
-   *  config: {
-   *    numberOfImages: 1,
-   *    includeRaiReason: true,
-   *  },
-   * });
-   * console.log(response?.generatedImages?.[0]?.image?.imageBytes);
-   * ```
+   * Private method for generating images.
    */
   async generateImagesInternal(params2) {
     var _a2, _b2, _c2, _d;
@@ -73692,6 +73677,9 @@ var Models = class extends BaseModule2 {
       });
     }
   }
+  /**
+   * Private method for editing an image.
+   */
   async editImageInternal(params2) {
     var _a2, _b2;
     let response;
@@ -73730,6 +73718,9 @@ var Models = class extends BaseModule2 {
       throw new Error("This method is only supported by the Vertex AI.");
     }
   }
+  /**
+   * Private method for upscaling an image.
+   */
   async upscaleImageInternal(params2) {
     var _a2, _b2;
     let response;
@@ -74292,27 +74283,7 @@ var Models = class extends BaseModule2 {
     }
   }
   /**
-   *  Generates videos based on a text description and configuration.
-   *
-   * @param params - The parameters for generating videos.
-   * @return A Promise<GenerateVideosOperation> which allows you to track the progress and eventually retrieve the generated videos using the operations.get method.
-   *
-   * @example
-   * ```ts
-   * const operation = await ai.models.generateVideos({
-   *  model: 'veo-2.0-generate-001',
-   *  prompt: 'A neon hologram of a cat driving at top speed',
-   *  config: {
-   *    numberOfVideos: 1
-   * });
-   *
-   * while (!operation.done) {
-   *   await new Promise(resolve => setTimeout(resolve, 10000));
-   *   operation = await ai.operations.getVideosOperation({operation: operation});
-   * }
-   *
-   * console.log(operation.response?.generatedVideos?.[0]?.video?.uri);
-   * ```
+   * Private method for generating videos.
    */
   async generateVideosInternal(params2) {
     var _a2, _b2, _c2, _d;
