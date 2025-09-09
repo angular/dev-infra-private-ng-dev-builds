@@ -69,8 +69,8 @@ import {
   yellow
 } from "./chunk-VH5DUMDH.mjs";
 import {
-  require_conventional_commits_parser
-} from "./chunk-YNC5Y42I.mjs";
+  CommitParser
+} from "./chunk-XYXO6PR7.mjs";
 import {
   __commonJS,
   __esm,
@@ -11384,7 +11384,7 @@ var require_options = __commonJS({
     }
     module.exports = {
       // set global options
-      parse: function parse6(rawOptions, preset) {
+      parse: function parse5(rawOptions, preset) {
         const options = {};
         const opt = Object.assign({}, preset, rawOptions);
         options.throttleTime = 1e3 / mergeOption(opt.fps, 10);
@@ -13210,7 +13210,7 @@ var require_parse = __commonJS({
       CHAR_NO_BREAK_SPACE,
       CHAR_ZERO_WIDTH_NOBREAK_SPACE
     } = require_constants();
-    var parse6 = (input, options = {}) => {
+    var parse5 = (input, options = {}) => {
       if (typeof input !== "string") {
         throw new TypeError("Expected a string");
       }
@@ -13414,7 +13414,7 @@ var require_parse = __commonJS({
       push({ type: "eos" });
       return ast;
     };
-    module.exports = parse6;
+    module.exports = parse5;
   }
 });
 
@@ -13425,7 +13425,7 @@ var require_braces = __commonJS({
     var stringify2 = require_stringify();
     var compile = require_compile();
     var expand3 = require_expand();
-    var parse6 = require_parse();
+    var parse5 = require_parse();
     var braces = (input, options = {}) => {
       let output = [];
       if (Array.isArray(input)) {
@@ -13445,7 +13445,7 @@ var require_braces = __commonJS({
       }
       return output;
     };
-    braces.parse = (input, options = {}) => parse6(input, options);
+    braces.parse = (input, options = {}) => parse5(input, options);
     braces.stringify = (input, options = {}) => {
       if (typeof input === "string") {
         return stringify2(braces.parse(input, options), options);
@@ -14103,7 +14103,7 @@ var require_parse2 = __commonJS({
     var syntaxError = (type, char) => {
       return `Missing ${type}: "${char}" - use "\\\\${char}" to match literal characters`;
     };
-    var parse6 = (input, options) => {
+    var parse5 = (input, options) => {
       if (typeof input !== "string") {
         throw new TypeError("Expected a string");
       }
@@ -14253,7 +14253,7 @@ var require_parse2 = __commonJS({
             output = token.close = `)$))${extglobStar}`;
           }
           if (token.inner.includes("*") && (rest = remaining()) && /^\.[^\\/.]+$/.test(rest)) {
-            const expression = parse6(rest, { ...options, fastpaths: false }).output;
+            const expression = parse5(rest, { ...options, fastpaths: false }).output;
             output = token.close = `)${expression})${extglobStar})`;
           }
           if (token.prev.type === "bos") {
@@ -14782,7 +14782,7 @@ var require_parse2 = __commonJS({
       }
       return state;
     };
-    parse6.fastpaths = (input, options) => {
+    parse5.fastpaths = (input, options) => {
       const opts = { ...options };
       const max = typeof opts.maxLength === "number" ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
       const len = input.length;
@@ -14851,7 +14851,7 @@ var require_parse2 = __commonJS({
       }
       return source;
     };
-    module.exports = parse6;
+    module.exports = parse5;
   }
 });
 
@@ -14861,7 +14861,7 @@ var require_picomatch = __commonJS({
     "use strict";
     var path8 = __require("path");
     var scan = require_scan();
-    var parse6 = require_parse2();
+    var parse5 = require_parse2();
     var utils = require_utils3();
     var constants = require_constants2();
     var isObject = (val) => val && typeof val === "object" && !Array.isArray(val);
@@ -14951,7 +14951,7 @@ var require_picomatch = __commonJS({
     picomatch.parse = (pattern, options) => {
       if (Array.isArray(pattern))
         return pattern.map((p) => picomatch.parse(p, options));
-      return parse6(pattern, { ...options, fastpaths: false });
+      return parse5(pattern, { ...options, fastpaths: false });
     };
     picomatch.scan = (input, options) => scan(input, options);
     picomatch.compileRe = (state, options, returnOutput = false, returnState = false) => {
@@ -14977,10 +14977,10 @@ var require_picomatch = __commonJS({
       }
       let parsed = { negated: false, fastpaths: true };
       if (options.fastpaths !== false && (input[0] === "." || input[0] === "*")) {
-        parsed.output = parse6.fastpaths(input, options);
+        parsed.output = parse5.fastpaths(input, options);
       }
       if (!parsed.output) {
-        parsed = parse6(input, options);
+        parsed = parse5(input, options);
       }
       return picomatch.compileRe(parsed, options, returnOutput, returnState);
     };
@@ -18362,7 +18362,7 @@ var require_ms = __commonJS({
       options = options || {};
       var type = typeof val;
       if (type === "string" && val.length > 0) {
-        return parse6(val);
+        return parse5(val);
       } else if (type === "number" && isFinite(val)) {
         return options.long ? fmtLong(val) : fmtShort(val);
       }
@@ -18370,7 +18370,7 @@ var require_ms = __commonJS({
         "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
       );
     };
-    function parse6(str) {
+    function parse5(str) {
       str = String(str);
       if (str.length > 100) {
         return;
@@ -22237,7 +22237,7 @@ var require_lib6 = __commonJS({
         this.hashes = this.algorithms.map(crypto6.createHash);
       }
       #getOptions() {
-        this.sri = this.opts?.integrity ? parse6(this.opts?.integrity, this.opts) : null;
+        this.sri = this.opts?.integrity ? parse5(this.opts?.integrity, this.opts) : null;
         this.expectedSize = this.opts?.size;
         if (!this.sri) {
           this.algorithm = null;
@@ -22278,7 +22278,7 @@ var require_lib6 = __commonJS({
         if (!this.goodSri) {
           this.#getOptions();
         }
-        const newSri = parse6(this.hashes.map((h, i) => {
+        const newSri = parse5(this.hashes.map((h, i) => {
           return `${this.algorithms[i]}-${h.digest("base64")}${this.optString}`;
         }).join(" "), this.opts);
         const match3 = this.goodSri && newSri.match(this.sri, this.opts);
@@ -22344,7 +22344,7 @@ var require_lib6 = __commonJS({
         return this.toString();
       }
       match(integrity, opts) {
-        const other = parse6(integrity, opts);
+        const other = parse5(integrity, opts);
         if (!other) {
           return false;
         }
@@ -22431,15 +22431,15 @@ var require_lib6 = __commonJS({
       }
       concat(integrity, opts) {
         const other = typeof integrity === "string" ? integrity : stringify2(integrity, opts);
-        return parse6(`${this.toString(opts)} ${other}`, opts);
+        return parse5(`${this.toString(opts)} ${other}`, opts);
       }
       hexDigest() {
-        return parse6(this, { single: true }).hexDigest();
+        return parse5(this, { single: true }).hexDigest();
       }
       // add additional hashes to an integrity value, but prevent
       // *changing* an existing integrity hash.
       merge(integrity, opts) {
-        const other = parse6(integrity, opts);
+        const other = parse5(integrity, opts);
         for (const algo in other) {
           if (this[algo]) {
             if (!this[algo].find((hash) => other[algo].find((otherhash) => hash.digest === otherhash.digest))) {
@@ -22451,7 +22451,7 @@ var require_lib6 = __commonJS({
         }
       }
       match(integrity, opts) {
-        const other = parse6(integrity, opts);
+        const other = parse5(integrity, opts);
         if (!other) {
           return false;
         }
@@ -22479,8 +22479,8 @@ var require_lib6 = __commonJS({
         return null;
       }
     };
-    module.exports.parse = parse6;
-    function parse6(sri, opts) {
+    module.exports.parse = parse5;
+    function parse5(sri, opts) {
       if (!sri) {
         return null;
       }
@@ -22516,7 +22516,7 @@ var require_lib6 = __commonJS({
       if (obj.algorithm && obj.digest) {
         return Hash.prototype.toString.call(obj, opts);
       } else if (typeof obj === "string") {
-        return stringify2(parse6(obj, opts), opts);
+        return stringify2(parse5(obj, opts), opts);
       } else {
         return Integrity.prototype.toString.call(obj, opts);
       }
@@ -22524,7 +22524,7 @@ var require_lib6 = __commonJS({
     module.exports.fromHex = fromHex;
     function fromHex(hexDigest, algorithm, opts) {
       const optString = getOptString(opts?.options);
-      return parse6(
+      return parse5(
         `${algorithm}-${Buffer.from(hexDigest, "hex").toString("base64")}${optString}`,
         opts
       );
@@ -22566,7 +22566,7 @@ var require_lib6 = __commonJS({
     }
     module.exports.checkData = checkData;
     function checkData(data, sri, opts) {
-      sri = parse6(sri, opts);
+      sri = parse5(sri, opts);
       if (!sri || !Object.keys(sri).length) {
         if (opts?.error) {
           throw Object.assign(
@@ -22581,7 +22581,7 @@ var require_lib6 = __commonJS({
       }
       const algorithm = sri.pickAlgorithm(opts);
       const digest = crypto6.createHash(algorithm).update(data).digest("base64");
-      const newSri = parse6({ algorithm, digest });
+      const newSri = parse5({ algorithm, digest });
       const match3 = newSri.match(sri, opts);
       opts = opts || {};
       if (match3 || !opts.error) {
@@ -22609,7 +22609,7 @@ var require_lib6 = __commonJS({
     function checkStream(stream, sri, opts) {
       opts = opts || /* @__PURE__ */ Object.create(null);
       opts.integrity = sri;
-      sri = parse6(sri, opts);
+      sri = parse5(sri, opts);
       if (!sri || !Object.keys(sri).length) {
         return Promise.reject(Object.assign(
           new Error("No valid integrity hashes to check against"),
@@ -22789,7 +22789,7 @@ var require_lib8 = __commonJS({
     exports.tryGetPackageId = tryGetPackageId2;
     exports.getRegistryByPackageName = getRegistryByPackageName;
     exports.refToRelative = refToRelative;
-    exports.parse = parse6;
+    exports.parse = parse5;
     exports.depPathToFilename = depPathToFilename;
     exports.createPeerDepGraphHash = createPeerDepGraphHash;
     var crypto_hash_1 = require_lib7();
@@ -22891,7 +22891,7 @@ var require_lib8 = __commonJS({
         return reference;
       return `${pkgName}@${reference}`;
     }
-    function parse6(dependencyPath) {
+    function parse5(dependencyPath) {
       if (typeof dependencyPath !== "string") {
         throw new TypeError(`Expected \`dependencyPath\` to be of type \`string\`, got \`${// eslint-disable-next-line: strict-type-predicates
         dependencyPath === null ? "null" : typeof dependencyPath}\``);
@@ -26626,7 +26626,7 @@ var init_v1 = __esm({
 });
 
 // node_modules/.aspect_rules_js/uuid@9.0.1/node_modules/uuid/dist/esm-node/parse.js
-function parse5(uuid) {
+function parse4(uuid) {
   if (!validate_default(uuid)) {
     throw TypeError("Invalid UUID");
   }
@@ -26654,7 +26654,7 @@ var parse_default;
 var init_parse = __esm({
   "node_modules/.aspect_rules_js/uuid@9.0.1/node_modules/uuid/dist/esm-node/parse.js"() {
     init_validate();
-    parse_default = parse5;
+    parse_default = parse4;
   }
 });
 
@@ -39527,7 +39527,7 @@ var require_extension = __commonJS({
       else
         dest[name].push(elem);
     }
-    function parse6(header) {
+    function parse5(header) {
       const offers = /* @__PURE__ */ Object.create(null);
       let params2 = /* @__PURE__ */ Object.create(null);
       let mustUnescape = false;
@@ -39682,7 +39682,7 @@ var require_extension = __commonJS({
         }).join(", ");
       }).join(", ");
     }
-    module.exports = { format: format4, parse: parse6 };
+    module.exports = { format: format4, parse: parse5 };
   }
 });
 
@@ -39715,7 +39715,7 @@ var require_websocket = __commonJS({
     var {
       EventTarget: { addEventListener, removeEventListener }
     } = require_event_target();
-    var { format: format4, parse: parse6 } = require_extension();
+    var { format: format4, parse: parse5 } = require_extension();
     var { toBuffer } = require_buffer_util();
     var closeTimeout = 30 * 1e3;
     var kAborted = Symbol("kAborted");
@@ -40403,7 +40403,7 @@ var require_websocket = __commonJS({
           }
           let extensions;
           try {
-            extensions = parse6(secWebSocketExtensions);
+            extensions = parse5(secWebSocketExtensions);
           } catch (err) {
             const message = "Invalid Sec-WebSocket-Extensions header";
             abortHandshake(websocket, socket, message);
@@ -40709,7 +40709,7 @@ var require_subprotocol = __commonJS({
   "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/subprotocol.js"(exports, module) {
     "use strict";
     var { tokenChars } = require_validation();
-    function parse6(header) {
+    function parse5(header) {
       const protocols = /* @__PURE__ */ new Set();
       let start = -1;
       let end = -1;
@@ -40748,7 +40748,7 @@ var require_subprotocol = __commonJS({
       protocols.add(protocol);
       return protocols;
     }
-    module.exports = { parse: parse6 };
+    module.exports = { parse: parse5 };
   }
 });
 
@@ -45429,9 +45429,9 @@ var YargsInstance = class {
     __classPrivateFieldSet(this, _YargsInstance_hasOutput, true, "f");
     if (!__classPrivateFieldGet(this, _YargsInstance_usage, "f").hasCachedHelpMessage()) {
       if (!this.parsed) {
-        const parse6 = this[kRunYargsParserAndExecuteCommands](__classPrivateFieldGet(this, _YargsInstance_processArgs, "f"), void 0, void 0, 0, true);
-        if (isPromise(parse6)) {
-          return parse6.then(() => {
+        const parse5 = this[kRunYargsParserAndExecuteCommands](__classPrivateFieldGet(this, _YargsInstance_processArgs, "f"), void 0, void 0, 0, true);
+        if (isPromise(parse5)) {
+          return parse5.then(() => {
             return __classPrivateFieldGet(this, _YargsInstance_usage, "f").help();
           });
         }
@@ -45775,9 +45775,9 @@ var YargsInstance = class {
     __classPrivateFieldSet(this, _YargsInstance_hasOutput, true, "f");
     if (!__classPrivateFieldGet(this, _YargsInstance_usage, "f").hasCachedHelpMessage()) {
       if (!this.parsed) {
-        const parse6 = this[kRunYargsParserAndExecuteCommands](__classPrivateFieldGet(this, _YargsInstance_processArgs, "f"), void 0, void 0, 0, true);
-        if (isPromise(parse6)) {
-          parse6.then(() => {
+        const parse5 = this[kRunYargsParserAndExecuteCommands](__classPrivateFieldGet(this, _YargsInstance_processArgs, "f"), void 0, void 0, 0, true);
+        if (isPromise(parse5)) {
+          parse5.then(() => {
             __classPrivateFieldGet(this, _YargsInstance_usage, "f").showHelp(level);
           });
           return this;
@@ -51883,7 +51883,6 @@ import { readFileSync as readFileSync6 } from "fs";
 import { resolve as resolve5 } from "path";
 
 // ng-dev/commit-message/parse.js
-var import_conventional_commits_parser = __toESM(require_conventional_commits_parser());
 var commitFields = {
   hash: "%H",
   shortHash: "%h",
@@ -51910,21 +51909,26 @@ var parseOptions = {
   noteKeywords: [NoteSections.BREAKING_CHANGE, NoteSections.DEPRECATED],
   notesPattern: (keywords) => new RegExp(`^\\s*(${keywords}): ?(.*)`)
 };
+var commitParser;
 var parseCommitMessage = parseInternal;
 var parseCommitFromGitLog = parseInternal;
 function parseInternal(fullText) {
   fullText = fullText.toString();
   const strippedCommitMsg = fullText.replace(FIXUP_PREFIX_RE, "").replace(SQUASH_PREFIX_RE, "").replace(REVERT_PREFIX_RE, "");
-  const commit = (0, import_conventional_commits_parser.sync)(strippedCommitMsg, parseOptions);
+  commitParser ?? (commitParser = new CommitParser(parseOptions));
+  const commit = commitParser.parse(strippedCommitMsg);
   const breakingChanges = [];
   const deprecations = [];
-  commit.notes.forEach((note) => {
-    if (note.title === NoteSections.BREAKING_CHANGE) {
-      breakingChanges.push(note);
-    } else if (note.title === NoteSections.DEPRECATED) {
-      deprecations.push(note);
+  for (const note of commit.notes) {
+    switch (note.title) {
+      case NoteSections.BREAKING_CHANGE:
+        breakingChanges.push(note);
+        break;
+      case NoteSections.DEPRECATED:
+        deprecations.push(note);
+        break;
     }
-  });
+  }
   return {
     fullText,
     breakingChanges,
@@ -51933,9 +51937,9 @@ function parseInternal(fullText) {
     footer: commit.footer || "",
     header: commit.header || "",
     references: commit.references,
-    scope: commit.scope || "",
-    subject: commit.subject || "",
-    type: commit.type || "",
+    scope: commit["scope"] || "",
+    subject: commit["subject"] || "",
+    type: commit["type"] || "",
     isFixup: FIXUP_PREFIX_RE.test(fullText),
     isSquash: SQUASH_PREFIX_RE.test(fullText),
     isRevert: REVERT_PREFIX_RE.test(fullText),
@@ -52122,10 +52126,10 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/git-raw-commits@5.0.0_874231993/node_modules/git-raw-commits/src/index.js
+// node_modules/.aspect_rules_js/git-raw-commits@5.0.0_902920726/node_modules/git-raw-commits/src/index.js
 import { Readable } from "stream";
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_874231993/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_902920726/node_modules/@conventional-changelog/git-client/dist/utils.js
 import { spawn as spawnChild } from "child_process";
 function catchProcessError(child) {
   return new Promise((resolve12) => {
@@ -52220,7 +52224,7 @@ function formatArgs(...args) {
   return finalArgs;
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_874231993/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_902920726/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var GitClient2 = class {
   cwd;
@@ -52375,10 +52379,10 @@ var GitClient2 = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_874231993/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_902920726/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
 var import_semver = __toESM(require_semver());
 
-// node_modules/.aspect_rules_js/git-raw-commits@5.0.0_874231993/node_modules/git-raw-commits/src/index.js
+// node_modules/.aspect_rules_js/git-raw-commits@5.0.0_902920726/node_modules/git-raw-commits/src/index.js
 function getFinalOptions(options = {}) {
   const finalOptions = {
     cwd: process.cwd(),
@@ -58718,7 +58722,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-e6e11249d33f6190728ee7c190ed6ac0d628c337`;
+  const localVersion = `0.0.0-238d775bf817ed92f2ee2e570eada7c4d23ee2be`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

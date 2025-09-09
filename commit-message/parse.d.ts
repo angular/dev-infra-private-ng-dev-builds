@@ -1,15 +1,15 @@
-import { Commit as ParsedCommit } from 'conventional-commits-parser';
+import { CommitReference, CommitNote } from 'conventional-commits-parser';
 export interface Commit {
     fullText: string;
     header: string;
     body: string;
     footer: string;
-    references: ParsedCommit.Reference[];
+    references: CommitReference[];
     type: string;
     scope: string;
     subject: string;
-    breakingChanges: ParsedCommit.Note[];
-    deprecations: ParsedCommit.Note[];
+    breakingChanges: CommitNote[];
+    deprecations: CommitNote[];
     isFixup: boolean;
     isSquash: boolean;
     isRevert: boolean;

@@ -1,4 +1,4 @@
-import { sync as parse } from 'conventional-commits-parser';
+import { CommitParser, } from 'conventional-commits-parser';
 const commitFields = {
     hash: '%H',
     shortHash: '%h',
@@ -27,6 +27,7 @@ const parseOptions = {
     noteKeywords: [NoteSections.BREAKING_CHANGE, NoteSections.DEPRECATED],
     notesPattern: (keywords) => new RegExp(`^\\s*(${keywords}): ?(.*)`),
 };
+let commitParser;
 export const parseCommitMessage = parseInternal;
 export const parseCommitFromGitLog = parseInternal;
 function parseInternal(fullText) {
@@ -35,17 +36,20 @@ function parseInternal(fullText) {
         .replace(FIXUP_PREFIX_RE, '')
         .replace(SQUASH_PREFIX_RE, '')
         .replace(REVERT_PREFIX_RE, '');
-    const commit = parse(strippedCommitMsg, parseOptions);
+    commitParser ?? (commitParser = new CommitParser(parseOptions));
+    const commit = commitParser.parse(strippedCommitMsg);
     const breakingChanges = [];
     const deprecations = [];
-    commit.notes.forEach((note) => {
-        if (note.title === NoteSections.BREAKING_CHANGE) {
-            breakingChanges.push(note);
+    for (const note of commit.notes) {
+        switch (note.title) {
+            case NoteSections.BREAKING_CHANGE:
+                breakingChanges.push(note);
+                break;
+            case NoteSections.DEPRECATED:
+                deprecations.push(note);
+                break;
         }
-        else if (note.title === NoteSections.DEPRECATED) {
-            deprecations.push(note);
-        }
-    });
+    }
     return {
         fullText,
         breakingChanges,
@@ -54,9 +58,9 @@ function parseInternal(fullText) {
         footer: commit.footer || '',
         header: commit.header || '',
         references: commit.references,
-        scope: commit.scope || '',
-        subject: commit.subject || '',
-        type: commit.type || '',
+        scope: commit['scope'] || '',
+        subject: commit['subject'] || '',
+        type: commit['type'] || '',
         isFixup: FIXUP_PREFIX_RE.test(fullText),
         isSquash: SQUASH_PREFIX_RE.test(fullText),
         isRevert: REVERT_PREFIX_RE.test(fullText),
