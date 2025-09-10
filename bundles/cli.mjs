@@ -58057,7 +58057,6 @@ var ReleaseAction = class {
       await ExternalCommands.invokePnpmInstall(this.projectDir);
       return;
     }
-    const nodeModulesDir = join12(this.projectDir, "node_modules");
     try {
       this.git.run(["clean", "-qdfX", "**/node_modules"]);
     } catch {
@@ -58725,7 +58724,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-5043638fd8529765b375831a4679b9013141b326`;
+  const localVersion = `0.0.0-ba37a2d2a190be3596c0ffce47516f328b836eb0`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

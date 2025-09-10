@@ -177,7 +177,6 @@ export class ReleaseAction {
             await ExternalCommands.invokePnpmInstall(this.projectDir);
             return;
         }
-        const nodeModulesDir = join(this.projectDir, 'node_modules');
         try {
             this.git.run(['clean', '-qdfX', '**/node_modules']);
         }
