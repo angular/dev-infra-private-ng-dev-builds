@@ -58722,7 +58722,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-94ec92a48dbedef33b5c2c6571d6141ea7f5f8b4`;
+  const localVersion = `0.0.0-7e755fc79b619ce76ced61f8fd6d6deab36619d9`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -59679,7 +59679,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.18.0_665383079/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.19.0_665383079/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable3 } from "node:stream";
@@ -59691,7 +59691,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.18.0_665383079/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.19.0_665383079/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -59827,6 +59827,210 @@ function tBytes$1(fromBytes) {
     throw new Error("fromImageBytes must be a string");
   }
   return fromBytes;
+}
+function getOperationParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromOperationName = getValueByPath(fromObject, [
+    "operationName"
+  ]);
+  if (fromOperationName != null) {
+    setValueByPath(toObject, ["_url", "operationName"], fromOperationName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    setValueByPath(toObject, ["config"], fromConfig);
+  }
+  return toObject;
+}
+function fetchPredictOperationParametersToVertex(fromObject) {
+  const toObject = {};
+  const fromOperationName = getValueByPath(fromObject, [
+    "operationName"
+  ]);
+  if (fromOperationName != null) {
+    setValueByPath(toObject, ["operationName"], fromOperationName);
+  }
+  const fromResourceName = getValueByPath(fromObject, ["resourceName"]);
+  if (fromResourceName != null) {
+    setValueByPath(toObject, ["_url", "resourceName"], fromResourceName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    setValueByPath(toObject, ["config"], fromConfig);
+  }
+  return toObject;
+}
+function getOperationParametersToVertex(fromObject) {
+  const toObject = {};
+  const fromOperationName = getValueByPath(fromObject, [
+    "operationName"
+  ]);
+  if (fromOperationName != null) {
+    setValueByPath(toObject, ["_url", "operationName"], fromOperationName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    setValueByPath(toObject, ["config"], fromConfig);
+  }
+  return toObject;
+}
+function videoFromMldev$1(fromObject) {
+  const toObject = {};
+  const fromUri = getValueByPath(fromObject, ["video", "uri"]);
+  if (fromUri != null) {
+    setValueByPath(toObject, ["uri"], fromUri);
+  }
+  const fromVideoBytes = getValueByPath(fromObject, [
+    "video",
+    "encodedVideo"
+  ]);
+  if (fromVideoBytes != null) {
+    setValueByPath(toObject, ["videoBytes"], tBytes$1(fromVideoBytes));
+  }
+  const fromMimeType = getValueByPath(fromObject, ["encoding"]);
+  if (fromMimeType != null) {
+    setValueByPath(toObject, ["mimeType"], fromMimeType);
+  }
+  return toObject;
+}
+function generatedVideoFromMldev$1(fromObject) {
+  const toObject = {};
+  const fromVideo = getValueByPath(fromObject, ["_self"]);
+  if (fromVideo != null) {
+    setValueByPath(toObject, ["video"], videoFromMldev$1(fromVideo));
+  }
+  return toObject;
+}
+function generateVideosResponseFromMldev$1(fromObject) {
+  const toObject = {};
+  const fromGeneratedVideos = getValueByPath(fromObject, [
+    "generatedSamples"
+  ]);
+  if (fromGeneratedVideos != null) {
+    let transformedList = fromGeneratedVideos;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return generatedVideoFromMldev$1(item);
+      });
+    }
+    setValueByPath(toObject, ["generatedVideos"], transformedList);
+  }
+  const fromRaiMediaFilteredCount = getValueByPath(fromObject, [
+    "raiMediaFilteredCount"
+  ]);
+  if (fromRaiMediaFilteredCount != null) {
+    setValueByPath(toObject, ["raiMediaFilteredCount"], fromRaiMediaFilteredCount);
+  }
+  const fromRaiMediaFilteredReasons = getValueByPath(fromObject, [
+    "raiMediaFilteredReasons"
+  ]);
+  if (fromRaiMediaFilteredReasons != null) {
+    setValueByPath(toObject, ["raiMediaFilteredReasons"], fromRaiMediaFilteredReasons);
+  }
+  return toObject;
+}
+function generateVideosOperationFromMldev$1(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
+  if (fromMetadata != null) {
+    setValueByPath(toObject, ["metadata"], fromMetadata);
+  }
+  const fromDone = getValueByPath(fromObject, ["done"]);
+  if (fromDone != null) {
+    setValueByPath(toObject, ["done"], fromDone);
+  }
+  const fromError = getValueByPath(fromObject, ["error"]);
+  if (fromError != null) {
+    setValueByPath(toObject, ["error"], fromError);
+  }
+  const fromResponse = getValueByPath(fromObject, [
+    "response",
+    "generateVideoResponse"
+  ]);
+  if (fromResponse != null) {
+    setValueByPath(toObject, ["response"], generateVideosResponseFromMldev$1(fromResponse));
+  }
+  return toObject;
+}
+function videoFromVertex$1(fromObject) {
+  const toObject = {};
+  const fromUri = getValueByPath(fromObject, ["gcsUri"]);
+  if (fromUri != null) {
+    setValueByPath(toObject, ["uri"], fromUri);
+  }
+  const fromVideoBytes = getValueByPath(fromObject, [
+    "bytesBase64Encoded"
+  ]);
+  if (fromVideoBytes != null) {
+    setValueByPath(toObject, ["videoBytes"], tBytes$1(fromVideoBytes));
+  }
+  const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
+  if (fromMimeType != null) {
+    setValueByPath(toObject, ["mimeType"], fromMimeType);
+  }
+  return toObject;
+}
+function generatedVideoFromVertex$1(fromObject) {
+  const toObject = {};
+  const fromVideo = getValueByPath(fromObject, ["_self"]);
+  if (fromVideo != null) {
+    setValueByPath(toObject, ["video"], videoFromVertex$1(fromVideo));
+  }
+  return toObject;
+}
+function generateVideosResponseFromVertex$1(fromObject) {
+  const toObject = {};
+  const fromGeneratedVideos = getValueByPath(fromObject, ["videos"]);
+  if (fromGeneratedVideos != null) {
+    let transformedList = fromGeneratedVideos;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return generatedVideoFromVertex$1(item);
+      });
+    }
+    setValueByPath(toObject, ["generatedVideos"], transformedList);
+  }
+  const fromRaiMediaFilteredCount = getValueByPath(fromObject, [
+    "raiMediaFilteredCount"
+  ]);
+  if (fromRaiMediaFilteredCount != null) {
+    setValueByPath(toObject, ["raiMediaFilteredCount"], fromRaiMediaFilteredCount);
+  }
+  const fromRaiMediaFilteredReasons = getValueByPath(fromObject, [
+    "raiMediaFilteredReasons"
+  ]);
+  if (fromRaiMediaFilteredReasons != null) {
+    setValueByPath(toObject, ["raiMediaFilteredReasons"], fromRaiMediaFilteredReasons);
+  }
+  return toObject;
+}
+function generateVideosOperationFromVertex$1(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
+  if (fromMetadata != null) {
+    setValueByPath(toObject, ["metadata"], fromMetadata);
+  }
+  const fromDone = getValueByPath(fromObject, ["done"]);
+  if (fromDone != null) {
+    setValueByPath(toObject, ["done"], fromDone);
+  }
+  const fromError = getValueByPath(fromObject, ["error"]);
+  if (fromError != null) {
+    setValueByPath(toObject, ["error"], fromError);
+  }
+  const fromResponse = getValueByPath(fromObject, ["response"]);
+  if (fromResponse != null) {
+    setValueByPath(toObject, ["response"], generateVideosResponseFromVertex$1(fromResponse));
+  }
+  return toObject;
 }
 var Outcome;
 (function(Outcome2) {
@@ -60452,8 +60656,6 @@ var CountTokensResponse = class {
 };
 var ComputeTokensResponse = class {
 };
-var GenerateVideosResponse = class {
-};
 var GenerateVideosOperation = class _GenerateVideosOperation {
   /**
    * Instantiates an Operation of the same type as the one being called with the fields set from the API response.
@@ -60461,49 +60663,14 @@ var GenerateVideosOperation = class _GenerateVideosOperation {
    */
   _fromAPIResponse({ apiResponse, isVertexAI }) {
     const operation = new _GenerateVideosOperation();
-    operation.name = apiResponse["name"];
-    operation.metadata = apiResponse["metadata"];
-    operation.done = apiResponse["done"];
-    operation.error = apiResponse["error"];
+    let response;
+    const op = apiResponse;
     if (isVertexAI) {
-      const response = apiResponse["response"];
-      if (response) {
-        const operationResponse = new GenerateVideosResponse();
-        const responseVideos = response["videos"];
-        operationResponse.generatedVideos = responseVideos === null || responseVideos === void 0 ? void 0 : responseVideos.map((generatedVideo) => {
-          return {
-            video: {
-              uri: generatedVideo["gcsUri"],
-              videoBytes: generatedVideo["bytesBase64Encoded"] ? tBytes$1(generatedVideo["bytesBase64Encoded"]) : void 0,
-              mimeType: generatedVideo["mimeType"]
-            }
-          };
-        });
-        operationResponse.raiMediaFilteredCount = response["raiMediaFilteredCount"];
-        operationResponse.raiMediaFilteredReasons = response["raiMediaFilteredReasons"];
-        operation.response = operationResponse;
-      }
+      response = generateVideosOperationFromVertex$1(op);
     } else {
-      const response = apiResponse["response"];
-      if (response) {
-        const operationResponse = new GenerateVideosResponse();
-        const generatedVideoResponse = response["generateVideoResponse"];
-        const responseVideos = generatedVideoResponse === null || generatedVideoResponse === void 0 ? void 0 : generatedVideoResponse["generatedSamples"];
-        operationResponse.generatedVideos = responseVideos === null || responseVideos === void 0 ? void 0 : responseVideos.map((generatedVideo) => {
-          const video = generatedVideo["video"];
-          return {
-            video: {
-              uri: video === null || video === void 0 ? void 0 : video["uri"],
-              videoBytes: (video === null || video === void 0 ? void 0 : video["encodedVideo"]) ? tBytes$1(video === null || video === void 0 ? void 0 : video["encodedVideo"]) : void 0,
-              mimeType: generatedVideo["encoding"]
-            }
-          };
-        });
-        operationResponse.raiMediaFilteredCount = generatedVideoResponse === null || generatedVideoResponse === void 0 ? void 0 : generatedVideoResponse["raiMediaFilteredCount"];
-        operationResponse.raiMediaFilteredReasons = generatedVideoResponse === null || generatedVideoResponse === void 0 ? void 0 : generatedVideoResponse["raiMediaFilteredReasons"];
-        operation.response = operationResponse;
-      }
+      response = generateVideosOperationFromMldev$1(op);
     }
+    Object.assign(operation, response);
     return operation;
   }
 };
@@ -63989,8 +64156,9 @@ function fileDataToVertex$2(fromObject) {
 }
 function functionCallToVertex$2(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["id"]) !== void 0) {
-    throw new Error("id parameter is not supported in Vertex AI.");
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
   }
   const fromArgs = getValueByPath(fromObject, ["args"]);
   if (fromArgs != null) {
@@ -66662,8 +66830,9 @@ function fileDataToVertex$1(fromObject) {
 }
 function functionCallToVertex$1(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["id"]) !== void 0) {
-    throw new Error("id parameter is not supported in Vertex AI.");
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
   }
   const fromArgs = getValueByPath(fromObject, ["args"]);
   if (fromArgs != null) {
@@ -67860,6 +68029,10 @@ function fileDataFromVertex$1(fromObject) {
 }
 function functionCallFromVertex$1(fromObject) {
   const toObject = {};
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
+  }
   const fromArgs = getValueByPath(fromObject, ["args"]);
   if (fromArgs != null) {
     setValueByPath(toObject, ["args"], fromArgs);
@@ -69236,6 +69409,9 @@ function generateVideosConfigToMldev(fromObject, parentObject) {
   if (getValueByPath(fromObject, ["referenceImages"]) !== void 0) {
     throw new Error("referenceImages parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["mask"]) !== void 0) {
+    throw new Error("mask parameter is not supported in Gemini API.");
+  }
   if (getValueByPath(fromObject, ["compressionQuality"]) !== void 0) {
     throw new Error("compressionQuality parameter is not supported in Gemini API.");
   }
@@ -69318,8 +69494,9 @@ function fileDataToVertex(fromObject) {
 }
 function functionCallToVertex(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["id"]) !== void 0) {
-    throw new Error("id parameter is not supported in Vertex AI.");
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
   }
   const fromArgs = getValueByPath(fromObject, ["args"]);
   if (fromArgs != null) {
@@ -70843,6 +71020,18 @@ function videoGenerationReferenceImageToVertex(fromObject) {
   }
   return toObject;
 }
+function videoGenerationMaskToVertex(fromObject) {
+  const toObject = {};
+  const fromImage = getValueByPath(fromObject, ["image"]);
+  if (fromImage != null) {
+    setValueByPath(toObject, ["_self"], imageToVertex(fromImage));
+  }
+  const fromMaskMode = getValueByPath(fromObject, ["maskMode"]);
+  if (fromMaskMode != null) {
+    setValueByPath(toObject, ["maskMode"], fromMaskMode);
+  }
+  return toObject;
+}
 function generateVideosConfigToVertex(fromObject, parentObject) {
   const toObject = {};
   const fromNumberOfVideos = getValueByPath(fromObject, [
@@ -70920,6 +71109,10 @@ function generateVideosConfigToVertex(fromObject, parentObject) {
       });
     }
     setValueByPath(parentObject, ["instances[0]", "referenceImages"], transformedList);
+  }
+  const fromMask = getValueByPath(fromObject, ["mask"]);
+  if (parentObject !== void 0 && fromMask != null) {
+    setValueByPath(parentObject, ["instances[0]", "mask"], videoGenerationMaskToVertex(fromMask));
   }
   const fromCompressionQuality = getValueByPath(fromObject, [
     "compressionQuality"
@@ -71579,6 +71772,10 @@ function fileDataFromVertex(fromObject) {
 }
 function functionCallFromVertex(fromObject) {
   const toObject = {};
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
+  }
   const fromArgs = getValueByPath(fromObject, ["args"]);
   if (fromArgs != null) {
     setValueByPath(toObject, ["args"], fromArgs);
@@ -72299,7 +72496,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.18.0";
+var SDK_VERSION = "1.19.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -74801,52 +74998,6 @@ var Models = class extends BaseModule2 {
     }
   }
 };
-function getOperationParametersToMldev(fromObject) {
-  const toObject = {};
-  const fromOperationName = getValueByPath(fromObject, [
-    "operationName"
-  ]);
-  if (fromOperationName != null) {
-    setValueByPath(toObject, ["_url", "operationName"], fromOperationName);
-  }
-  const fromConfig = getValueByPath(fromObject, ["config"]);
-  if (fromConfig != null) {
-    setValueByPath(toObject, ["config"], fromConfig);
-  }
-  return toObject;
-}
-function fetchPredictOperationParametersToVertex(fromObject) {
-  const toObject = {};
-  const fromOperationName = getValueByPath(fromObject, [
-    "operationName"
-  ]);
-  if (fromOperationName != null) {
-    setValueByPath(toObject, ["operationName"], fromOperationName);
-  }
-  const fromResourceName = getValueByPath(fromObject, ["resourceName"]);
-  if (fromResourceName != null) {
-    setValueByPath(toObject, ["_url", "resourceName"], fromResourceName);
-  }
-  const fromConfig = getValueByPath(fromObject, ["config"]);
-  if (fromConfig != null) {
-    setValueByPath(toObject, ["config"], fromConfig);
-  }
-  return toObject;
-}
-function getOperationParametersToVertex(fromObject) {
-  const toObject = {};
-  const fromOperationName = getValueByPath(fromObject, [
-    "operationName"
-  ]);
-  if (fromOperationName != null) {
-    setValueByPath(toObject, ["_url", "operationName"], fromOperationName);
-  }
-  const fromConfig = getValueByPath(fromObject, ["config"]);
-  if (fromConfig != null) {
-    setValueByPath(toObject, ["config"], fromConfig);
-  }
-  return toObject;
-}
 var Operations = class extends BaseModule2 {
   constructor(apiClient) {
     super();
@@ -76068,6 +76219,9 @@ function createTuningJobConfigToMldev(fromObject, parentObject) {
   if (parentObject !== void 0 && fromLearningRate != null) {
     setValueByPath(parentObject, ["tuningTask", "hyperparameters", "learningRate"], fromLearningRate);
   }
+  if (getValueByPath(fromObject, ["labels"]) !== void 0) {
+    throw new Error("labels parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function createTuningJobParametersPrivateToMldev(fromObject) {
@@ -76222,6 +76376,10 @@ function createTuningJobConfigToVertex(fromObject, parentObject) {
   }
   if (getValueByPath(fromObject, ["learningRate"]) !== void 0) {
     throw new Error("learningRate parameter is not supported in Vertex AI.");
+  }
+  const fromLabels = getValueByPath(fromObject, ["labels"]);
+  if (parentObject !== void 0 && fromLabels != null) {
+    setValueByPath(parentObject, ["labels"], fromLabels);
   }
   return toObject;
 }
