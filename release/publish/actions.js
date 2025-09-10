@@ -172,7 +172,7 @@ export class ReleaseAction {
         this.git.run(['fetch', '-q', this.git.getRepoGitUrl(), branchName]);
         this.git.run(['checkout', '-q', 'FETCH_HEAD', '--detach']);
         try {
-            this.git.run(['clean', 'git clean -dfX **/node_modules']);
+            this.git.run(['clean', '-qdfX **/node_modules']);
         }
         catch { }
     }

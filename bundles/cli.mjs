@@ -58052,7 +58052,7 @@ var ReleaseAction = class {
     this.git.run(["fetch", "-q", this.git.getRepoGitUrl(), branchName]);
     this.git.run(["checkout", "-q", "FETCH_HEAD", "--detach"]);
     try {
-      this.git.run(["clean", "git clean -dfX **/node_modules"]);
+      this.git.run(["clean", "-qdfX **/node_modules"]);
     } catch {
     }
   }
@@ -58726,7 +58726,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-dbc0e074f396df2fdef698ead5dab9e47d4ba035`;
+  const localVersion = `0.0.0-937d2f865d2583ad1aee9b6ac180cb4f1a459974`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
