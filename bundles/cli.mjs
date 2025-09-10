@@ -58051,10 +58051,6 @@ var ReleaseAction = class {
   async checkoutUpstreamBranch(branchName) {
     this.git.run(["fetch", "-q", this.git.getRepoGitUrl(), branchName]);
     this.git.run(["checkout", "-q", "FETCH_HEAD", "--detach"]);
-    try {
-      this.git.run(["clean", "-qdfX **/node_modules"]);
-    } catch {
-    }
   }
   async installDependenciesForCurrentBranch() {
     if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
@@ -58062,7 +58058,10 @@ var ReleaseAction = class {
       return;
     }
     const nodeModulesDir = join12(this.projectDir, "node_modules");
-    await fs2.rm(nodeModulesDir, { force: true, recursive: true, maxRetries: 3 });
+    try {
+      this.git.run(["clean", "-qdfX", "**/node_modules"]);
+    } catch {
+    }
     await ExternalCommands.invokeYarnInstall(this.projectDir);
   }
   async createCommit(message, files) {
@@ -58726,7 +58725,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-937d2f865d2583ad1aee9b6ac180cb4f1a459974`;
+  const localVersion = `0.0.0-5043638fd8529765b375831a4679b9013141b326`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

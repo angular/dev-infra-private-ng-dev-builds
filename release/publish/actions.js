@@ -171,10 +171,6 @@ export class ReleaseAction {
     async checkoutUpstreamBranch(branchName) {
         this.git.run(['fetch', '-q', this.git.getRepoGitUrl(), branchName]);
         this.git.run(['checkout', '-q', 'FETCH_HEAD', '--detach']);
-        try {
-            this.git.run(['clean', '-qdfX **/node_modules']);
-        }
-        catch { }
     }
     async installDependenciesForCurrentBranch() {
         if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
@@ -182,7 +178,10 @@ export class ReleaseAction {
             return;
         }
         const nodeModulesDir = join(this.projectDir, 'node_modules');
-        await fs.rm(nodeModulesDir, { force: true, recursive: true, maxRetries: 3 });
+        try {
+            this.git.run(['clean', '-qdfX', '**/node_modules']);
+        }
+        catch { }
         await ExternalCommands.invokeYarnInstall(this.projectDir);
     }
     async createCommit(message, files) {
