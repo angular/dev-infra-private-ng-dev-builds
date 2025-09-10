@@ -171,6 +171,7 @@ export class ReleaseAction {
     async checkoutUpstreamBranch(branchName) {
         this.git.run(['fetch', '-q', this.git.getRepoGitUrl(), branchName]);
         this.git.run(['checkout', '-q', 'FETCH_HEAD', '--detach']);
+        this.git.run(['clean', '-dfq']);
     }
     async installDependenciesForCurrentBranch() {
         if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
