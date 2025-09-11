@@ -13,6 +13,13 @@ export async function updateCaretakerTeamViaPrompt() {
         getGroupMembers(`${caretakerGroup}-roster`),
         getGroupMembers(`${caretakerGroup}-roster-emea`),
     ]);
+    if (emeaRoster === null) {
+        Log.debug(`  Unable to retrieve members of the group: ${caretakerGroup}-roster-emea`);
+    }
+    if (roster === null) {
+        Log.error(`  ✘  Unable to retrieve members of the group: ${caretakerGroup}-roster`);
+        return;
+    }
     const selectedPrimaryAndSecondary = await Prompt.checkbox({
         choices: roster.map((member) => ({
             value: member,
@@ -26,26 +33,29 @@ export async function updateCaretakerTeamViaPrompt() {
             return true;
         },
     });
-    const emeaOptions = emeaRoster
-        .filter((m) => !selectedPrimaryAndSecondary.includes(m))
-        .map((member) => ({
-        value: member,
-        name: `${member} (EMEA)`,
-        checked: current.has(member),
-    }));
-    const selectedEmea = await Prompt.select({
-        choices: emeaOptions,
-        message: 'Select EMEA caretaker',
-    });
-    const confirmation = await Prompt.confirm({
-        default: true,
-        message: 'Are you sure?',
-    });
-    if (confirmation === false) {
-        Log.warn('  ⚠  Skipping caretaker group update.');
-        return;
+    let selectedEmea = '';
+    if (emeaRoster !== null) {
+        const emeaOptions = emeaRoster
+            .filter((m) => !selectedPrimaryAndSecondary.includes(m))
+            .map((member) => ({
+            value: member,
+            name: `${member} (EMEA)`,
+            checked: current.has(member),
+        }));
+        selectedEmea = await Prompt.select({
+            choices: emeaOptions,
+            message: 'Select EMEA caretaker',
+        });
+        const confirmation = await Prompt.confirm({
+            default: true,
+            message: 'Are you sure?',
+        });
+        if (confirmation === false) {
+            Log.warn('  ⚠  Skipping caretaker group update.');
+            return;
+        }
     }
-    const selectedSorted = [...selectedPrimaryAndSecondary, selectedEmea].sort();
+    const selectedSorted = [...selectedPrimaryAndSecondary, selectedEmea].filter((_) => !!_).sort();
     const currentSorted = Array.from(current).sort();
     if (JSON.stringify(selectedSorted) === JSON.stringify(currentSorted)) {
         Log.info(green('  ✔  Caretaker group already up to date.'));
@@ -62,17 +72,23 @@ export async function updateCaretakerTeamViaPrompt() {
 }
 async function getGroupMembers(group) {
     const git = await AuthenticatedGitClient.get();
-    return (await git.github.teams.listMembersInOrg({
-        org: git.remoteConfig.owner,
-        team_slug: group,
-    })).data
-        .filter((_) => !!_)
-        .map((member) => member.login);
+    try {
+        return (await git.github.teams.listMembersInOrg({
+            org: git.remoteConfig.owner,
+            team_slug: group,
+        })).data
+            .filter((_) => !!_)
+            .map((member) => member.login);
+    }
+    catch (e) {
+        Log.debug(e);
+        return null;
+    }
 }
 async function setCaretakerGroup(group, members) {
     const git = await AuthenticatedGitClient.get();
     const fullSlug = `${git.remoteConfig.owner}/${group}`;
-    const current = await getGroupMembers(group);
+    const current = (await getGroupMembers(group)) || [];
     const removed = current.filter((login) => !members.includes(login));
     const add = async (username) => {
         Log.debug(`Adding ${username} to ${fullSlug}.`);

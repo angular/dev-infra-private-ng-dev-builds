@@ -46146,6 +46146,13 @@ async function updateCaretakerTeamViaPrompt() {
     getGroupMembers(`${caretakerGroup}-roster`),
     getGroupMembers(`${caretakerGroup}-roster-emea`)
   ]);
+  if (emeaRoster === null) {
+    Log.debug(`  Unable to retrieve members of the group: ${caretakerGroup}-roster-emea`);
+  }
+  if (roster === null) {
+    Log.error(`  \u2718  Unable to retrieve members of the group: ${caretakerGroup}-roster`);
+    return;
+  }
   const selectedPrimaryAndSecondary = await Prompt.checkbox({
     choices: roster.map((member) => ({
       value: member,
@@ -46159,24 +46166,27 @@ async function updateCaretakerTeamViaPrompt() {
       return true;
     }
   });
-  const emeaOptions = emeaRoster.filter((m) => !selectedPrimaryAndSecondary.includes(m)).map((member) => ({
-    value: member,
-    name: `${member} (EMEA)`,
-    checked: current.has(member)
-  }));
-  const selectedEmea = await Prompt.select({
-    choices: emeaOptions,
-    message: "Select EMEA caretaker"
-  });
-  const confirmation = await Prompt.confirm({
-    default: true,
-    message: "Are you sure?"
-  });
-  if (confirmation === false) {
-    Log.warn("  \u26A0  Skipping caretaker group update.");
-    return;
+  let selectedEmea = "";
+  if (emeaRoster !== null) {
+    const emeaOptions = emeaRoster.filter((m) => !selectedPrimaryAndSecondary.includes(m)).map((member) => ({
+      value: member,
+      name: `${member} (EMEA)`,
+      checked: current.has(member)
+    }));
+    selectedEmea = await Prompt.select({
+      choices: emeaOptions,
+      message: "Select EMEA caretaker"
+    });
+    const confirmation = await Prompt.confirm({
+      default: true,
+      message: "Are you sure?"
+    });
+    if (confirmation === false) {
+      Log.warn("  \u26A0  Skipping caretaker group update.");
+      return;
+    }
   }
-  const selectedSorted = [...selectedPrimaryAndSecondary, selectedEmea].sort();
+  const selectedSorted = [...selectedPrimaryAndSecondary, selectedEmea].filter((_) => !!_).sort();
   const currentSorted = Array.from(current).sort();
   if (JSON.stringify(selectedSorted) === JSON.stringify(currentSorted)) {
     Log.info(green("  \u2714  Caretaker group already up to date."));
@@ -46192,15 +46202,20 @@ async function updateCaretakerTeamViaPrompt() {
 }
 async function getGroupMembers(group) {
   const git = await AuthenticatedGitClient.get();
-  return (await git.github.teams.listMembersInOrg({
-    org: git.remoteConfig.owner,
-    team_slug: group
-  })).data.filter((_) => !!_).map((member) => member.login);
+  try {
+    return (await git.github.teams.listMembersInOrg({
+      org: git.remoteConfig.owner,
+      team_slug: group
+    })).data.filter((_) => !!_).map((member) => member.login);
+  } catch (e) {
+    Log.debug(e);
+    return null;
+  }
 }
 async function setCaretakerGroup(group, members) {
   const git = await AuthenticatedGitClient.get();
   const fullSlug = `${git.remoteConfig.owner}/${group}`;
-  const current = await getGroupMembers(group);
+  const current = await getGroupMembers(group) || [];
   const removed = current.filter((login) => !members.includes(login));
   const add = async (username) => {
     Log.debug(`Adding ${username} to ${fullSlug}.`);
@@ -53179,7 +53194,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-64e2aae8f049c699bdac7e84212dd1eee3fb0248`;
+  const localVersion = `0.0.0-f67eae0284f8212b62cf6835998707eb275a211f`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
