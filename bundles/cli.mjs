@@ -49167,8 +49167,8 @@ async function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCand
     {
       label: targetLabels["TARGET_AUTOMATION"],
       branches: (githubTargetBranch) => {
-        if (!isVersionBranch(githubTargetBranch)) {
-          throw new InvalidTargetBranchError('"target: automation" pull requests can only target a release branch');
+        if (githubTargetBranch !== nextBranchName && !isVersionBranch(githubTargetBranch)) {
+          throw new InvalidTargetBranchError('"target: automation" pull requests can only target a releasable branch');
         }
         return [githubTargetBranch];
       }
@@ -53171,7 +53171,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-3cca7f43a88830b0fa6e28f550e009a5f52201cc`;
+  const localVersion = `0.0.0-30d78d3d9f682c5e11eb647033b567fcd4f72692`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
