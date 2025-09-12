@@ -74,6 +74,15 @@ export async function getTargetLabelConfigsForActiveReleaseTrains({ latest, rele
                 return [githubTargetBranch];
             },
         },
+        {
+            label: targetLabels['TARGET_AUTOMATION'],
+            branches: (githubTargetBranch) => {
+                if (!isVersionBranch(githubTargetBranch)) {
+                    throw new InvalidTargetBranchError('"target: automation" pull requests can only target a release branch');
+                }
+                return [githubTargetBranch];
+            },
+        },
     ];
     try {
         assertValidReleaseConfig(config);

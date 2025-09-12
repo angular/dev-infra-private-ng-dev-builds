@@ -86,5 +86,8 @@ export declare const mergeReadyValidation: {
                 name: string;
             }[];
         };
+        author: {
+            login: string;
+        };
     }): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };

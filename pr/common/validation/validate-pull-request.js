@@ -28,7 +28,7 @@ export async function assertValidPullRequest(pullRequest, validationConfig, ngDe
         enforceTestedValidation.run(validationConfig, pullRequest, gitClient),
     ];
     if (activeReleaseTrains !== null) {
-        validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels));
+        validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels, pullRequest));
     }
     return await Promise.all(validationResults).then((results) => {
         return results.filter((((result) => result !== null)));

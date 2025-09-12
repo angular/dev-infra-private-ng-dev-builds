@@ -88,6 +88,9 @@ export declare const enforceTestedValidation: {
                 name: string;
             }[];
         };
+        author: {
+            login: string;
+        };
     }, gitClient: AuthenticatedGitClient): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
 export declare class PullRequestComments {

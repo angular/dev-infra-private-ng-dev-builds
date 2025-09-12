@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-UOJDPCMD.mjs";
+} from "./chunk-US7MWMPG.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -49163,6 +49163,15 @@ async function getTargetLabelConfigsForActiveReleaseTrains({ latest, releaseCand
         }
         return [githubTargetBranch];
       }
+    },
+    {
+      label: targetLabels["TARGET_AUTOMATION"],
+      branches: (githubTargetBranch) => {
+        if (!isVersionBranch(githubTargetBranch)) {
+          throw new InvalidTargetBranchError('"target: automation" pull requests can only target a release branch');
+        }
+        return [githubTargetBranch];
+      }
     }
   ];
   try {
@@ -49739,7 +49748,10 @@ var PR_SCHEMA2 = {
         name: types.string
       }
     ]
-  })
+  }),
+  author: {
+    login: types.string
+  }
 };
 var PR_FILES_SCHEMA = params({ first: 100 }, {
   path: types.string
@@ -50025,9 +50037,10 @@ function createPullRequestValidation({ name, canBeForceIgnored }, getValidationC
 }
 
 // ng-dev/pr/common/validation/assert-allowed-target-label.js
+var automationBots = ["angular-robot"];
 var changesAllowForTargetLabelValidation = createPullRequestValidation({ name: "assertChangesAllowForTargetLabel", canBeForceIgnored: true }, () => Validation);
 var Validation = class extends PullRequestValidation {
-  assert(commits, targetLabel, config, releaseTrains, labelsOnPullRequest) {
+  assert(commits, targetLabel, config, releaseTrains, labelsOnPullRequest, pullRequest) {
     if (labelsOnPullRequest.includes(mergeLabels["MERGE_FIX_COMMIT_MESSAGE"].name)) {
       Log.debug("Skipping commit message target label validation because the commit message fixup label is applied.");
       return;
@@ -50057,6 +50070,10 @@ var Validation = class extends PullRequestValidation {
         if (hasDeprecations && !releaseTrains.isFeatureFreeze()) {
           throw this._createHasDeprecationsError(targetLabel);
         }
+      case targetLabels["TARGET_AUTOMATION"]:
+        if (!automationBots.includes(pullRequest.author.login)) {
+          throw this._createUserUsingAutomationLabelError(targetLabel, pullRequest.author.login);
+        }
         break;
       default:
         Log.warn(red("WARNING: Unable to confirm all commits in the pull request are"));
@@ -50074,6 +50091,10 @@ var Validation = class extends PullRequestValidation {
   }
   _createHasFeatureCommitsError(label) {
     const message = `Cannot merge into branch for "${label.name}" as the pull request has commits with the "feat" type. New features can only be merged with the "target: minor" or "target: major" label.`;
+    return this._createError(message);
+  }
+  _createUserUsingAutomationLabelError(label, author) {
+    const message = `Cannot merge into branch for "${label.name}" as the pull request is authored by "${author}" but only known automation bot accounts (${automationBots.join(", ")}) can use this label.`;
     return this._createError(message);
   }
 };
@@ -50328,7 +50349,7 @@ async function assertValidPullRequest(pullRequest, validationConfig, ngDevConfig
     enforceTestedValidation.run(validationConfig, pullRequest, gitClient)
   ];
   if (activeReleaseTrains !== null) {
-    validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels));
+    validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels, pullRequest));
   }
   return await Promise.all(validationResults).then((results) => {
     return results.filter((result) => result !== null);
@@ -53194,7 +53215,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-f67eae0284f8212b62cf6835998707eb275a211f`;
+  const localVersion = `0.0.0-0f0f9518682c1e02be885ef2ecf1255499863dde`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

@@ -92,6 +92,9 @@ export declare const PR_SCHEMA: {
             name: string;
         }[];
     };
+    author: {
+        login: string;
+    };
 };
 export type PullRequestFromGithub = typeof PR_SCHEMA;
 export declare const PR_FILES_SCHEMA: {

@@ -2,9 +2,10 @@ import { Log, red } from '../../../utils/logging.js';
 import { mergeLabels } from '../labels/index.js';
 import { targetLabels } from '../labels/target.js';
 import { createPullRequestValidation, PullRequestValidation } from './validation-config.js';
+const automationBots = ['angular-robot'];
 export const changesAllowForTargetLabelValidation = createPullRequestValidation({ name: 'assertChangesAllowForTargetLabel', canBeForceIgnored: true }, () => Validation);
 class Validation extends PullRequestValidation {
-    assert(commits, targetLabel, config, releaseTrains, labelsOnPullRequest) {
+    assert(commits, targetLabel, config, releaseTrains, labelsOnPullRequest, pullRequest) {
         if (labelsOnPullRequest.includes(mergeLabels['MERGE_FIX_COMMIT_MESSAGE'].name)) {
             Log.debug('Skipping commit message target label validation because the commit message fixup label is ' +
                 'applied.');
@@ -35,6 +36,10 @@ class Validation extends PullRequestValidation {
                 if (hasDeprecations && !releaseTrains.isFeatureFreeze()) {
                     throw this._createHasDeprecationsError(targetLabel);
                 }
+            case targetLabels['TARGET_AUTOMATION']:
+                if (!automationBots.includes(pullRequest.author.login)) {
+                    throw this._createUserUsingAutomationLabelError(targetLabel, pullRequest.author.login);
+                }
                 break;
             default:
                 Log.warn(red('WARNING: Unable to confirm all commits in the pull request are'));
@@ -57,6 +62,11 @@ class Validation extends PullRequestValidation {
         const message = `Cannot merge into branch for "${label.name}" as the pull request has ` +
             'commits with the "feat" type. New features can only be merged with the "target: minor" ' +
             'or "target: major" label.';
+        return this._createError(message);
+    }
+    _createUserUsingAutomationLabelError(label, author) {
+        const message = `Cannot merge into branch for "${label.name}" as the pull request is authored by "${author}" ` +
+            `but only known automation bot accounts (${automationBots.join(', ')}) can use this label.`;
         return this._createError(message);
     }
 }

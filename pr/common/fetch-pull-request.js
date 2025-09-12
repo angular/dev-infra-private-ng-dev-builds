@@ -89,6 +89,9 @@ export const PR_SCHEMA = {
             },
         ],
     }),
+    author: {
+        login: graphqlTypes.string,
+    },
 };
 export const PR_FILES_SCHEMA = params({ first: 100 }, {
     path: graphqlTypes.string,

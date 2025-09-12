@@ -87,5 +87,8 @@ export declare const enforcedStatusesValidation: {
                 name: string;
             }[];
         };
+        author: {
+            login: string;
+        };
     }, config: PullRequestConfig): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
