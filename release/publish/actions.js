@@ -18,8 +18,6 @@ import { ExternalCommands } from './external-commands.js';
 import { promptToInitiatePullRequestMerge } from './prompt-merge.js';
 import { Prompt } from '../../utils/prompt.js';
 import { PnpmVersioning } from './pnpm-versioning.js';
-import { updateRenovateConfigTargetLabels } from './actions/renovate-config-updates.js';
-import { targetLabels } from '../../pr/common/labels/target.js';
 export class ReleaseAction {
     static isActive(_trains, _config) {
         throw Error('Not implemented.');
@@ -229,12 +227,6 @@ export class ReleaseAction {
         await this.checkoutUpstreamBranch(nextBranch);
         await this.prependReleaseNotesToChangelog(releaseNotes);
         const filesToCommit = [workspaceRelativeChangelogPath];
-        if (version.patch === 0 && version.prerelease.length === 0) {
-            const renovateConfigPath = await updateRenovateConfigTargetLabels(this.projectDir, targetLabels['TARGET_RC'].name, targetLabels['TARGET_PATCH'].name);
-            if (renovateConfigPath) {
-                filesToCommit.push(renovateConfigPath);
-            }
-        }
         await this.createCommit(commitMessage, filesToCommit);
         Log.info(green(`  ✓   Created changelog cherry-pick commit for: "${version}".`));
         const pullRequest = await this.pushChangesToForkAndCreatePullRequest(nextBranch, `changelog-cherry-pick-${version}`, commitMessage, `Cherry-picks the changelog from the "${stagingBranch}" branch to the next ` +

@@ -52027,7 +52027,7 @@ var workspaceRelativePackageJsonPath = "package.json";
 
 // ng-dev/release/publish/actions.js
 import { promises as fs2 } from "fs";
-import { join as join12 } from "path";
+import { join as join11 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
 var import_semver7 = __toESM(require_semver());
@@ -52332,69 +52332,6 @@ var PnpmVersioning = class {
   }
 };
 
-// ng-dev/release/publish/actions/renovate-config-updates.js
-import { existsSync as existsSync4 } from "node:fs";
-import { join as join11 } from "node:path";
-import { writeFile as writeFile2, readFile as readFile2 } from "node:fs/promises";
-async function updateRenovateConfig(projectDir, newBranchName) {
-  const renovateConfigPath = join11(projectDir, "renovate.json");
-  if (!existsSync4(renovateConfigPath)) {
-    Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
-    return null;
-  }
-  const config = await readFile2(renovateConfigPath, "utf-8");
-  const configJson = JSON.parse(config);
-  const baseBranchPatterns = configJson["baseBranchPatterns"];
-  if (!Array.isArray(baseBranchPatterns) || baseBranchPatterns.length !== 2) {
-    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranchPatterns" must contain exactly 2 branches.`);
-    return null;
-  }
-  configJson["baseBranchPatterns"] = ["main", newBranchName];
-  updateRenovateTargetLabel(configJson, targetLabels["TARGET_PATCH"].name, targetLabels["TARGET_RC"].name);
-  await writeFile2(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
-  Log.info(green(`  \u2713   Updated Renovate config.`));
-  return renovateConfigPath;
-}
-async function updateRenovateConfigTargetLabels(projectDir, fromLabel, toLabel) {
-  const renovateConfigPath = join11(projectDir, "renovate.json");
-  if (!existsSync4(renovateConfigPath)) {
-    Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
-    return null;
-  }
-  const config = await readFile2(renovateConfigPath, "utf-8");
-  const configJson = JSON.parse(config);
-  const baseBranchPatterns = configJson["baseBranchPatterns"];
-  if (!Array.isArray(baseBranchPatterns) || baseBranchPatterns.length !== 2) {
-    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranchPatterns" must contain exactly 2 branches.`);
-    return null;
-  }
-  if (updateRenovateTargetLabel(configJson, fromLabel, toLabel)) {
-    await writeFile2(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
-    Log.info(green(`  \u2713   Updated target label in Renovate config.`));
-    return renovateConfigPath;
-  } else {
-    Log.info(green(`  \u2713   No changes to target labels in Renovate config.`));
-    return null;
-  }
-}
-function updateRenovateTargetLabel(configJson, fromLabel, toLabel) {
-  if (!Array.isArray(configJson["packageRules"])) {
-    return false;
-  }
-  let updated = false;
-  for (const rule of configJson["packageRules"]) {
-    if (!Array.isArray(rule.addLabels)) {
-      continue;
-    }
-    const idx = rule.addLabels.findIndex((x) => x === fromLabel);
-    if (idx >= 0) {
-      rule.addLabels[idx] = toLabel;
-      updated = true;
-    }
-  }
-  return updated;
-}
-
 // ng-dev/release/publish/actions.js
 var ReleaseAction = class {
   static isActive(_trains, _config) {
@@ -52408,7 +52345,7 @@ var ReleaseAction = class {
     this.pnpmVersioning = new PnpmVersioning();
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
-    const pkgJsonPath = join12(this.projectDir, workspaceRelativePackageJsonPath);
+    const pkgJsonPath = join11(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs2.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
@@ -52600,12 +52537,6 @@ var ReleaseAction = class {
     await this.checkoutUpstreamBranch(nextBranch);
     await this.prependReleaseNotesToChangelog(releaseNotes);
     const filesToCommit = [workspaceRelativeChangelogPath];
-    if (version2.patch === 0 && version2.prerelease.length === 0) {
-      const renovateConfigPath = await updateRenovateConfigTargetLabels(this.projectDir, targetLabels["TARGET_RC"].name, targetLabels["TARGET_PATCH"].name);
-      if (renovateConfigPath) {
-        filesToCommit.push(renovateConfigPath);
-      }
-    }
     await this.createCommit(commitMessage, filesToCommit);
     Log.info(green(`  \u2713   Created changelog cherry-pick commit for: "${version2}".`));
     const pullRequest = await this.pushChangesToForkAndCreatePullRequest(nextBranch, `changelog-cherry-pick-${version2}`, commitMessage, `Cherry-picks the changelog from the "${stagingBranch}" branch to the next branch (${nextBranch}).`);
@@ -52695,7 +52626,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version2, packages) {
     const experimentalVersion = createExperimentalSemver(version2);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join12(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join11(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version2;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -53034,6 +52965,31 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 
 // ng-dev/release/publish/actions/shared/branch-off-next-branch.js
 var import_semver17 = __toESM(require_semver());
+
+// ng-dev/release/publish/actions/renovate-config-updates.js
+import { existsSync as existsSync4 } from "node:fs";
+import { join as join12 } from "node:path";
+import { writeFile as writeFile2, readFile as readFile2 } from "node:fs/promises";
+async function updateRenovateConfig(projectDir, newBranchName) {
+  const renovateConfigPath = join12(projectDir, "renovate.json");
+  if (!existsSync4(renovateConfigPath)) {
+    Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
+    return null;
+  }
+  const config = await readFile2(renovateConfigPath, "utf-8");
+  const configJson = JSON.parse(config);
+  const baseBranchPatterns = configJson["baseBranchPatterns"];
+  if (!Array.isArray(baseBranchPatterns) || baseBranchPatterns.length !== 2) {
+    Log.warn(`  \u2718   Skipped updating Renovate config: "baseBranchPatterns" must contain exactly 2 branches.`);
+    return null;
+  }
+  configJson["baseBranchPatterns"] = ["main", newBranchName];
+  await writeFile2(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
+  Log.info(green(`  \u2713   Updated Renovate config.`));
+  return renovateConfigPath;
+}
+
+// ng-dev/release/publish/actions/shared/branch-off-next-branch.js
 var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   constructor() {
     super(...arguments);
@@ -53215,7 +53171,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-0f0f9518682c1e02be885ef2ecf1255499863dde`;
+  const localVersion = `0.0.0-b88878660f7755d26871fc0afe7bc4bbbfd62236`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
