@@ -50070,6 +50070,7 @@ var Validation = class extends PullRequestValidation {
         if (hasDeprecations && !releaseTrains.isFeatureFreeze()) {
           throw this._createHasDeprecationsError(targetLabel);
         }
+        break;
       case targetLabels["TARGET_AUTOMATION"]:
         if (!automationBots.includes(pullRequest.author.login)) {
           throw this._createUserUsingAutomationLabelError(targetLabel, pullRequest.author.login);
@@ -53171,7 +53172,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-30d78d3d9f682c5e11eb647033b567fcd4f72692`;
+  const localVersion = `0.0.0-41d3c8f24e701c382a11a415b40a3bdfa3323b6a`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
