@@ -47380,7 +47380,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/key.js
 var isUpKey = (key) => key.name === "up";
 var isDownKey = (key) => key.name === "down";
 var isSpaceKey = (key) => key.name === "space";
@@ -47389,7 +47389,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -47412,10 +47412,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -47521,7 +47521,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -47539,7 +47539,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -47551,7 +47551,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs());
 
 // node_modules/.aspect_rules_js/@inquirer+figures@1.0.13/node_modules/@inquirer/figures/dist/esm/index.js
@@ -47843,7 +47843,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
@@ -47865,7 +47865,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -47893,7 +47893,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -47924,7 +47924,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -47937,12 +47937,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -47961,7 +47961,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 var import_wrap_ansi2 = __toESM(require_wrap_ansi());
 function breakLines(content, width) {
@@ -47971,7 +47971,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -48060,7 +48060,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -48316,7 +48316,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@1.0.0/node_modules/@inquirer/ansi/dist/esm/index.js
@@ -48335,7 +48335,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -48395,7 +48395,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -48410,7 +48410,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -48497,7 +48497,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.0/node_modules/@inquirer/core/dist/esm/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.5.1/node_modules/@inquirer/core/dist/esm/lib/Separator.js
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs());
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
@@ -48512,7 +48512,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.4_at_types_node_24.5.0/node_modules/@inquirer/checkbox/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.4_at_types_node_24.5.1/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs());
 var checkboxTheme = {
   icon: {
@@ -48694,7 +48694,7 @@ ${theme.style.error(errorMsg)}`;
 ${page}${helpTipBottom}${choiceDescription}${error}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.0/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.1/node_modules/@inquirer/external-editor/dist/esm/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -48703,7 +48703,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.0/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.1/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -48712,7 +48712,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.0/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.1/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -48721,7 +48721,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.0/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.1/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -48730,7 +48730,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.0/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.1/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -48739,7 +48739,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.0/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.5.1/node_modules/@inquirer/external-editor/dist/esm/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -48893,7 +48893,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@4.2.20_at_types_node_24.5.0/node_modules/@inquirer/editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@4.2.20_at_types_node_24.5.1/node_modules/@inquirer/editor/dist/esm/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -48962,7 +48962,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.18_at_types_node_24.5.0/node_modules/@inquirer/confirm/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.18_at_types_node_24.5.1/node_modules/@inquirer/confirm/dist/esm/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -49008,7 +49008,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@4.2.4_at_types_node_24.5.0/node_modules/@inquirer/input/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@4.2.4_at_types_node_24.5.1/node_modules/@inquirer/input/dist/esm/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -49080,7 +49080,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@3.0.20_at_types_node_24.5.0/node_modules/@inquirer/number/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@3.0.20_at_types_node_24.5.1/node_modules/@inquirer/number/dist/esm/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -49161,7 +49161,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@4.0.20_at_types_node_24.5.0/node_modules/@inquirer/expand/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@4.0.20_at_types_node_24.5.1/node_modules/@inquirer/expand/dist/esm/index.js
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs());
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -49257,7 +49257,7 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.8_at_types_node_24.5.0/node_modules/@inquirer/rawlist/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.8_at_types_node_24.5.1/node_modules/@inquirer/rawlist/dist/esm/index.js
 var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs());
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -49367,7 +49367,7 @@ var esm_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@4.0.20_at_types_node_24.5.0/node_modules/@inquirer/password/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@4.0.20_at_types_node_24.5.1/node_modules/@inquirer/password/dist/esm/index.js
 var esm_default10 = createPrompt((config, done) => {
   const { validate: validate3 = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -49416,7 +49416,7 @@ var esm_default10 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@3.1.3_at_types_node_24.5.0/node_modules/@inquirer/search/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@3.1.3_at_types_node_24.5.1/node_modules/@inquirer/search/dist/esm/index.js
 var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs());
 var searchTheme = {
   icon: { cursor: esm_default2.pointer },
@@ -49582,7 +49582,7 @@ ${theme.style.description(selectedChoice.description)}` : ``;
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@4.3.4_at_types_node_24.5.0/node_modules/@inquirer/select/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@4.3.4_at_types_node_24.5.1/node_modules/@inquirer/select/dist/esm/index.js
 var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs());
 var selectTheme = {
   icon: { cursor: esm_default2.pointer },
@@ -56790,7 +56790,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-32a27cd52475f1225832877172bfbe14f41e3ac1`;
+  const localVersion = `0.0.0-5b3f1af69ecf1099b65c75fa4e5b24a6b1d978a7`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -57747,7 +57747,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.19.0_174287382/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.20.0_174287382/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable3 } from "node:stream";
@@ -57759,7 +57759,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.19.0_174287382/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.20.0_174287382/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -58373,6 +58373,13 @@ var VideoGenerationReferenceType;
   VideoGenerationReferenceType2["ASSET"] = "ASSET";
   VideoGenerationReferenceType2["STYLE"] = "STYLE";
 })(VideoGenerationReferenceType || (VideoGenerationReferenceType = {}));
+var VideoGenerationMaskMode;
+(function(VideoGenerationMaskMode2) {
+  VideoGenerationMaskMode2["INSERT"] = "INSERT";
+  VideoGenerationMaskMode2["REMOVE"] = "REMOVE";
+  VideoGenerationMaskMode2["REMOVE_STATIC"] = "REMOVE_STATIC";
+  VideoGenerationMaskMode2["OUTPAINT"] = "OUTPAINT";
+})(VideoGenerationMaskMode || (VideoGenerationMaskMode = {}));
 var VideoCompressionQuality;
 (function(VideoCompressionQuality2) {
   VideoCompressionQuality2["OPTIMIZED"] = "OPTIMIZED";
@@ -58391,6 +58398,13 @@ var FileSource;
   FileSource2["UPLOADED"] = "UPLOADED";
   FileSource2["GENERATED"] = "GENERATED";
 })(FileSource || (FileSource = {}));
+var TurnCompleteReason;
+(function(TurnCompleteReason2) {
+  TurnCompleteReason2["TURN_COMPLETE_REASON_UNSPECIFIED"] = "TURN_COMPLETE_REASON_UNSPECIFIED";
+  TurnCompleteReason2["MALFORMED_FUNCTION_CALL"] = "MALFORMED_FUNCTION_CALL";
+  TurnCompleteReason2["RESPONSE_REJECTED"] = "RESPONSE_REJECTED";
+  TurnCompleteReason2["NEED_MORE_INPUT"] = "NEED_MORE_INPUT";
+})(TurnCompleteReason || (TurnCompleteReason = {}));
 var MediaModality;
 (function(MediaModality2) {
   MediaModality2["MODALITY_UNSPECIFIED"] = "MODALITY_UNSPECIFIED";
@@ -65673,6 +65687,18 @@ function liveServerContentFromMldev(fromObject) {
   if (fromUrlContextMetadata != null) {
     setValueByPath(toObject, ["urlContextMetadata"], urlContextMetadataFromMldev$1(fromUrlContextMetadata));
   }
+  const fromTurnCompleteReason = getValueByPath(fromObject, [
+    "turnCompleteReason"
+  ]);
+  if (fromTurnCompleteReason != null) {
+    setValueByPath(toObject, ["turnCompleteReason"], fromTurnCompleteReason);
+  }
+  const fromWaitingForInput = getValueByPath(fromObject, [
+    "waitingForInput"
+  ]);
+  if (fromWaitingForInput != null) {
+    setValueByPath(toObject, ["waitingForInput"], fromWaitingForInput);
+  }
   return toObject;
 }
 function liveServerToolCallFromMldev(fromObject) {
@@ -66232,6 +66258,18 @@ function liveServerContentFromVertex(fromObject) {
   ]);
   if (fromOutputTranscription != null) {
     setValueByPath(toObject, ["outputTranscription"], transcriptionFromVertex(fromOutputTranscription));
+  }
+  const fromTurnCompleteReason = getValueByPath(fromObject, [
+    "turnCompleteReason"
+  ]);
+  if (fromTurnCompleteReason != null) {
+    setValueByPath(toObject, ["turnCompleteReason"], fromTurnCompleteReason);
+  }
+  const fromWaitingForInput = getValueByPath(fromObject, [
+    "waitingForInput"
+  ]);
+  if (fromWaitingForInput != null) {
+    setValueByPath(toObject, ["waitingForInput"], fromWaitingForInput);
   }
   return toObject;
 }
@@ -70564,7 +70602,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.19.0";
+var SDK_VERSION = "1.20.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
