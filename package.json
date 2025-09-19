@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-7b35868fc5f723448a6a7fadab13273585d30861",
+  "version": "0.0.0-9cd2a23ebe5204bc57ad232fac96fedb2fc62b9e",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -37,7 +37,7 @@
     "@types/folder-hash": "4.0.4",
     "@types/git-raw-commits": "5.0.0",
     "@types/jasmine": "5.1.9",
-    "@types/node": "24.5.1",
+    "@types/node": "24.5.2",
     "@types/semver": "7.7.1",
     "@types/which": "3.0.4",
     "@types/yargs": "17.0.33",
