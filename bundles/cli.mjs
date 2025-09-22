@@ -44624,15 +44624,18 @@ var CiModule = class extends BaseModule {
           status: null
         };
       }
-      const status = (await github_macros_default.getCombinedChecksAndStatusesForRef(this.git.github, {
+      const { result, results } = await github_macros_default.getCombinedChecksAndStatusesForRef(this.git.github, {
         ...this.git.remoteParams,
         ref: train.branchName
-      })).result;
+      });
+      Log.debug(`Individual Status Results for branch (${train.branchName})`);
+      results.forEach((r) => Log.debug(` - ${r.name}:`.padEnd(80), r.result));
+      Log.debug();
       return {
         active: true,
         name: train.branchName,
         label: `${trainName} (${train.branchName})`,
-        status
+        status: result
       };
     });
     return await Promise.all(ciResultPromises);
@@ -56790,7 +56793,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-ee61b6758d835c67c4c27093f71d94ebe180dff6`;
+  const localVersion = `0.0.0-ad9c933cb115f77a73c0d78a82328448a66ad89c`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
