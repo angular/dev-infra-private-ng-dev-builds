@@ -24932,9 +24932,9 @@ var require_interceptor = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.2/node_modules/debug/src/common.js
+// node_modules/.aspect_rules_js/debug@4.4.3_supports-color_10.2.2/node_modules/debug/src/common.js
 var require_common3 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.2/node_modules/debug/src/common.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.3_supports-color_10.2.2/node_modules/debug/src/common.js"(exports, module) {
     function setup(env2) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
@@ -25109,9 +25109,9 @@ var require_common3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.2/node_modules/debug/src/browser.js
+// node_modules/.aspect_rules_js/debug@4.4.3_supports-color_10.2.2/node_modules/debug/src/browser.js
 var require_browser2 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.2/node_modules/debug/src/browser.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.3_supports-color_10.2.2/node_modules/debug/src/browser.js"(exports, module) {
     exports.formatArgs = formatArgs2;
     exports.save = save;
     exports.load = load3;
@@ -25279,9 +25279,9 @@ var require_browser2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.2/node_modules/debug/src/node.js
+// node_modules/.aspect_rules_js/debug@4.4.3_supports-color_10.2.2/node_modules/debug/src/node.js
 var require_node3 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.2/node_modules/debug/src/node.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.3_supports-color_10.2.2/node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
     var util = __require("util");
     exports.init = init;
@@ -25453,9 +25453,9 @@ var require_node3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.2/node_modules/debug/src/index.js
+// node_modules/.aspect_rules_js/debug@4.4.3_supports-color_10.2.2/node_modules/debug/src/index.js
 var require_src2 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.1_supports-color_10.2.2/node_modules/debug/src/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.3_supports-color_10.2.2/node_modules/debug/src/index.js"(exports, module) {
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
       module.exports = require_browser2();
     } else {
@@ -56793,7 +56793,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-0d41d549638d4636938b12d6c500c507356cab8f`;
+  const localVersion = `0.0.0-b7672ff60456719e6d9b0cc052abc73a7adc8df2`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -57750,7 +57750,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.21.0_174287382/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.21.0_292728856/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable3 } from "node:stream";
@@ -57762,7 +57762,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.21.0_174287382/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.21.0_292728856/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
