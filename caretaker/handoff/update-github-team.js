@@ -25,7 +25,7 @@ export async function updateCaretakerTeamViaPrompt() {
             value: member,
             checked: current.has(member),
         })),
-        message: 'Select 2 caretakers for the upcoming rotation (primary and secondary):',
+        message: 'Select 2 caretakers for the upcoming rotation (primary and secondary, http://go/ng-caretaker-schedule):',
         validate: (value) => {
             if (value.length !== 2) {
                 return 'Please select exactly 2 caretakers for the upcoming rotation.';
@@ -44,7 +44,7 @@ export async function updateCaretakerTeamViaPrompt() {
         }));
         selectedEmea = await Prompt.select({
             choices: emeaOptions,
-            message: 'Select EMEA caretaker',
+            message: 'Select EMEA caretaker (http://go/ng-caretaker-schedule-emea)',
         });
         const confirmation = await Prompt.confirm({
             default: true,

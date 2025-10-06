@@ -49779,7 +49779,7 @@ async function updateCaretakerTeamViaPrompt() {
       value: member,
       checked: current.has(member)
     })),
-    message: "Select 2 caretakers for the upcoming rotation (primary and secondary):",
+    message: "Select 2 caretakers for the upcoming rotation (primary and secondary, http://go/ng-caretaker-schedule):",
     validate: (value) => {
       if (value.length !== 2) {
         return "Please select exactly 2 caretakers for the upcoming rotation.";
@@ -49796,7 +49796,7 @@ async function updateCaretakerTeamViaPrompt() {
     }));
     selectedEmea = await Prompt.select({
       choices: emeaOptions,
-      message: "Select EMEA caretaker"
+      message: "Select EMEA caretaker (http://go/ng-caretaker-schedule-emea)"
     });
     const confirmation = await Prompt.confirm({
       default: true,
@@ -56793,7 +56793,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-b7672ff60456719e6d9b0cc052abc73a7adc8df2`;
+  const localVersion = `0.0.0-a92ddc7f5d8404d4102ac9b3b2b83ae3bf41287b`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
