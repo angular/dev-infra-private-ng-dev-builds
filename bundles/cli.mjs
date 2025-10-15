@@ -47436,16 +47436,26 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/key.js
-var isUpKey = (key) => key.name === "up";
-var isDownKey = (key) => key.name === "down";
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/key.js
+var isUpKey = (key, keybindings = []) => (
+  // The up key
+  key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
+  keybindings.includes("vim") && key.name === "k" || // Emacs keybinding: Ctrl+P means "previous" in Emacs navigation conventions
+  keybindings.includes("emacs") && key.ctrl && key.name === "p"
+);
+var isDownKey = (key, keybindings = []) => (
+  // The down key
+  key.name === "down" || // Vim keybinding: hjkl keys map to left/down/up/right
+  keybindings.includes("vim") && key.name === "j" || // Emacs keybinding: Ctrl+N means "next" in Emacs navigation conventions
+  keybindings.includes("emacs") && key.ctrl && key.name === "n"
+);
 var isSpaceKey = (key) => key.name === "space";
 var isBackspaceKey = (key) => key.name === "backspace";
 var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -47468,10 +47478,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -47577,7 +47587,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -47595,7 +47605,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -47607,10 +47617,10 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs());
 
-// node_modules/.aspect_rules_js/@inquirer+figures@1.0.13/node_modules/@inquirer/figures/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+figures@1.0.14/node_modules/@inquirer/figures/dist/esm/index.js
 import process2 from "node:process";
 function isUnicodeSupported() {
   if (process2.platform !== "win32") {
@@ -47899,7 +47909,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
@@ -47921,7 +47931,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -47949,7 +47959,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -47980,7 +47990,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -47993,12 +48003,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -48017,7 +48027,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 var import_wrap_ansi2 = __toESM(require_wrap_ansi());
 function breakLines(content, width) {
@@ -48027,7 +48037,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -48116,7 +48126,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -48372,10 +48382,10 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
-// node_modules/.aspect_rules_js/@inquirer+ansi@1.0.0/node_modules/@inquirer/ansi/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+ansi@1.0.1/node_modules/@inquirer/ansi/dist/esm/index.js
 var ESC = "\x1B[";
 var cursorLeft = ESC + "G";
 var cursorHide = ESC + "?25l";
@@ -48391,7 +48401,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -48451,7 +48461,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -48466,7 +48476,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -48553,7 +48563,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.2.2_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.7.2/node_modules/@inquirer/core/dist/esm/lib/Separator.js
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs());
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
@@ -48568,7 +48578,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@4.2.4_at_types_node_24.7.2/node_modules/@inquirer/checkbox/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@4.3.0_at_types_node_24.7.2/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs());
 var checkboxTheme = {
   icon: {
@@ -48579,9 +48589,11 @@ var checkboxTheme = {
   style: {
     disabledChoice: (text) => import_yoctocolors_cjs3.default.dim(`- ${text}`),
     renderSelectedChoices: (selectedChoices) => selectedChoices.map((choice) => choice.short).join(", "),
-    description: (text) => import_yoctocolors_cjs3.default.cyan(text)
+    description: (text) => import_yoctocolors_cjs3.default.cyan(text),
+    keysHelpTip: (keys) => keys.map(([key, action]) => `${import_yoctocolors_cjs3.default.bold(key)} ${import_yoctocolors_cjs3.default.dim(action)}`).join(import_yoctocolors_cjs3.default.dim(" \u2022 "))
   },
-  helpMode: "auto"
+  helpMode: "always",
+  keybindings: []
 };
 function isSelectable(item) {
   return !Separator.isSeparator(item) && !item.disabled;
@@ -48606,6 +48618,7 @@ function normalizeChoices(choices) {
         value: choice,
         name: choice,
         short: choice,
+        checkedName: choice,
         disabled: false,
         checked: false
       };
@@ -48615,6 +48628,7 @@ function normalizeChoices(choices) {
       value: choice.value,
       name,
       short: choice.short ?? name,
+      checkedName: choice.checkedName ?? name,
       disabled: choice.disabled ?? false,
       checked: choice.checked ?? false
     };
@@ -48625,10 +48639,17 @@ function normalizeChoices(choices) {
   });
 }
 var esm_default3 = createPrompt((config, done) => {
-  const { instructions, pageSize = 7, loop = true, required, validate: validate3 = () => true } = config;
+  const {
+    // eslint-disable-next-line @typescript-eslint/no-deprecated
+    instructions,
+    pageSize = 7,
+    loop = true,
+    required,
+    validate: validate3 = () => true
+  } = config;
   const shortcuts = { all: "a", invert: "i", ...config.shortcuts };
   const theme = makeTheme(checkboxTheme, config.theme);
-  const firstRender = useRef(true);
+  const { keybindings } = theme;
   const [status, setStatus] = useState("idle");
   const prefix = usePrefix({ status, theme });
   const [items, setItems] = useState(normalizeChoices(config.choices));
@@ -48641,7 +48662,6 @@ var esm_default3 = createPrompt((config, done) => {
     return { first, last };
   }, [items]);
   const [active, setActive] = useState(bounds.first);
-  const [showHelpTip, setShowHelpTip] = useState(true);
   const [errorMsg, setError] = useState();
   useKeypress(async (key) => {
     if (isEnterKey(key)) {
@@ -48655,9 +48675,9 @@ var esm_default3 = createPrompt((config, done) => {
       } else {
         setError(isValid || "You must select a valid value");
       }
-    } else if (isUpKey(key) || isDownKey(key)) {
-      if (loop || isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
-        const offset = isUpKey(key) ? -1 : 1;
+    } else if (isUpKey(key, keybindings) || isDownKey(key, keybindings)) {
+      if (loop || isUpKey(key, keybindings) && active !== bounds.first || isDownKey(key, keybindings) && active !== bounds.last) {
+        const offset = isUpKey(key, keybindings) ? -1 : 1;
         let next = active;
         do {
           next = (next + offset + items.length) % items.length;
@@ -48666,7 +48686,6 @@ var esm_default3 = createPrompt((config, done) => {
       }
     } else if (isSpaceKey(key)) {
       setError(void 0);
-      setShowHelpTip(false);
       setItems(items.map((choice, i) => i === active ? toggle(choice) : choice));
     } else if (key.name === shortcuts.all) {
       const selectAll = items.some((choice) => isSelectable(choice) && !choice.checked);
@@ -48706,9 +48725,10 @@ var esm_default3 = createPrompt((config, done) => {
         description = item.description;
       }
       const checkbox = item.checked ? theme.icon.checked : theme.icon.unchecked;
+      const name = item.checked ? item.checkedName : item.name;
       const color = isActive ? theme.style.highlight : (x) => x;
       const cursor = isActive ? theme.icon.cursor : " ";
-      return color(`${cursor}${checkbox} ${item.name}`);
+      return color(`${cursor}${checkbox} ${name}`);
     },
     pageSize,
     loop
@@ -48716,38 +48736,34 @@ var esm_default3 = createPrompt((config, done) => {
   if (status === "done") {
     const selection = items.filter(isChecked);
     const answer = theme.style.answer(theme.style.renderSelectedChoices(selection, items));
-    return `${prefix} ${message} ${answer}`;
+    return [prefix, message, answer].filter(Boolean).join(" ");
   }
-  let helpTipTop = "";
-  let helpTipBottom = "";
-  if (theme.helpMode === "always" || theme.helpMode === "auto" && showHelpTip && (instructions === void 0 || instructions)) {
+  let helpLine;
+  if (theme.helpMode !== "never" && instructions !== false) {
     if (typeof instructions === "string") {
-      helpTipTop = instructions;
+      helpLine = instructions;
     } else {
       const keys = [
-        `${theme.style.key("space")} to select`,
-        shortcuts.all ? `${theme.style.key(shortcuts.all)} to toggle all` : "",
-        shortcuts.invert ? `${theme.style.key(shortcuts.invert)} to invert selection` : "",
-        `and ${theme.style.key("enter")} to proceed`
+        ["\u2191\u2193", "navigate"],
+        ["space", "select"]
       ];
-      helpTipTop = ` (Press ${keys.filter((key) => key !== "").join(", ")})`;
-    }
-    if (items.length > pageSize && (theme.helpMode === "always" || // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-    theme.helpMode === "auto" && firstRender.current)) {
-      helpTipBottom = `
-${theme.style.help("(Use arrow keys to reveal more choices)")}`;
-      firstRender.current = false;
+      if (shortcuts.all)
+        keys.push([shortcuts.all, "all"]);
+      if (shortcuts.invert)
+        keys.push([shortcuts.invert, "invert"]);
+      keys.push(["\u23CE", "submit"]);
+      helpLine = theme.style.keysHelpTip(keys);
     }
   }
-  const choiceDescription = description ? `
-${theme.style.description(description)}` : ``;
-  let error = "";
-  if (errorMsg) {
-    error = `
-${theme.style.error(errorMsg)}`;
-  }
-  return `${prefix} ${message}${helpTipTop}
-${page}${helpTipBottom}${choiceDescription}${error}${cursorHide}`;
+  const lines = [
+    [prefix, message].filter(Boolean).join(" "),
+    page,
+    " ",
+    description ? theme.style.description(description) : "",
+    errorMsg ? theme.style.error(errorMsg) : "",
+    helpLine
+  ].filter(Boolean).join("\n").trimEnd();
+  return `${lines}${cursorHide}`;
 });
 
 // node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.7.2/node_modules/@inquirer/external-editor/dist/esm/index.js
@@ -48949,7 +48965,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@4.2.20_at_types_node_24.7.2/node_modules/@inquirer/editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@4.2.21_at_types_node_24.7.2/node_modules/@inquirer/editor/dist/esm/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -49018,7 +49034,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.18_at_types_node_24.7.2/node_modules/@inquirer/confirm/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.19_at_types_node_24.7.2/node_modules/@inquirer/confirm/dist/esm/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -49064,7 +49080,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@4.2.4_at_types_node_24.7.2/node_modules/@inquirer/input/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@4.2.5_at_types_node_24.7.2/node_modules/@inquirer/input/dist/esm/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -49136,7 +49152,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@3.0.20_at_types_node_24.7.2/node_modules/@inquirer/number/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@3.0.21_at_types_node_24.7.2/node_modules/@inquirer/number/dist/esm/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -49217,7 +49233,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@4.0.20_at_types_node_24.7.2/node_modules/@inquirer/expand/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@4.0.21_at_types_node_24.7.2/node_modules/@inquirer/expand/dist/esm/index.js
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs());
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -49313,7 +49329,7 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.8_at_types_node_24.7.2/node_modules/@inquirer/rawlist/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.9_at_types_node_24.7.2/node_modules/@inquirer/rawlist/dist/esm/index.js
 var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs());
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -49423,7 +49439,7 @@ var esm_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@4.0.20_at_types_node_24.7.2/node_modules/@inquirer/password/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@4.0.21_at_types_node_24.7.2/node_modules/@inquirer/password/dist/esm/index.js
 var esm_default10 = createPrompt((config, done) => {
   const { validate: validate3 = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -49472,16 +49488,17 @@ var esm_default10 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@3.1.3_at_types_node_24.7.2/node_modules/@inquirer/search/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@3.2.0_at_types_node_24.7.2/node_modules/@inquirer/search/dist/esm/index.js
 var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs());
 var searchTheme = {
   icon: { cursor: esm_default2.pointer },
   style: {
     disabled: (text) => import_yoctocolors_cjs6.default.dim(`- ${text}`),
     searchTerm: (text) => import_yoctocolors_cjs6.default.cyan(text),
-    description: (text) => import_yoctocolors_cjs6.default.cyan(text)
+    description: (text) => import_yoctocolors_cjs6.default.cyan(text),
+    keysHelpTip: (keys) => keys.map(([key, action]) => `${import_yoctocolors_cjs6.default.bold(key)} ${import_yoctocolors_cjs6.default.dim(action)}`).join(import_yoctocolors_cjs6.default.dim(" \u2022 "))
   },
-  helpMode: "auto"
+  helpMode: "always"
 };
 function isSelectable2(item) {
   return !Separator.isSeparator(item) && !item.disabled;
@@ -49514,7 +49531,6 @@ function normalizeChoices4(choices) {
 var esm_default11 = createPrompt((config, done) => {
   const { pageSize = 7, validate: validate3 = () => true } = config;
   const theme = makeTheme(searchTheme, config.theme);
-  const firstRender = useRef(true);
   const [status, setStatus] = useState("loading");
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -49590,14 +49606,17 @@ var esm_default11 = createPrompt((config, done) => {
     }
   });
   const message = theme.style.message(config.message, status);
-  if (active > 0) {
-    firstRender.current = false;
-  }
-  let helpTip = "";
-  if (searchResults.length > 1 && (theme.helpMode === "always" || theme.helpMode === "auto" && firstRender.current)) {
-    helpTip = searchResults.length > pageSize ? `
-${theme.style.help(`(${config.instructions?.pager ?? "Use arrow keys to reveal more choices"})`)}` : `
-${theme.style.help(`(${config.instructions?.navigation ?? "Use arrow keys"})`)}`;
+  let helpLine;
+  if (theme.helpMode !== "never") {
+    if (config.instructions) {
+      const { pager, navigation } = config.instructions;
+      helpLine = theme.style.help(searchResults.length > pageSize ? pager : navigation);
+    } else {
+      helpLine = theme.style.keysHelpTip([
+        ["\u2191\u2193", "navigate"],
+        ["\u23CE", "select"]
+      ]);
+    }
   }
   const page = usePagination({
     items: searchResults,
@@ -49625,29 +49644,33 @@ ${theme.style.help(`(${config.instructions?.navigation ?? "Use arrow keys"})`)}`
   }
   let searchStr;
   if (status === "done" && selectedChoice) {
-    const answer = selectedChoice.short;
-    return `${prefix} ${message} ${theme.style.answer(answer)}`;
+    return [prefix, message, theme.style.answer(selectedChoice.short)].filter(Boolean).join(" ").trimEnd();
   } else {
     searchStr = theme.style.searchTerm(searchTerm);
   }
-  const choiceDescription = selectedChoice?.description ? `
-${theme.style.description(selectedChoice.description)}` : ``;
-  return [
-    [prefix, message, searchStr].filter(Boolean).join(" "),
-    `${error ?? page}${helpTip}${choiceDescription}`
-  ];
+  const description = selectedChoice?.description;
+  const header = [prefix, message, searchStr].filter(Boolean).join(" ").trimEnd();
+  const body = [
+    error ?? page,
+    " ",
+    description ? theme.style.description(description) : "",
+    helpLine
+  ].filter(Boolean).join("\n").trimEnd();
+  return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@4.3.4_at_types_node_24.7.2/node_modules/@inquirer/select/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@4.4.0_at_types_node_24.7.2/node_modules/@inquirer/select/dist/esm/index.js
 var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs());
 var selectTheme = {
   icon: { cursor: esm_default2.pointer },
   style: {
     disabled: (text) => import_yoctocolors_cjs7.default.dim(`- ${text}`),
-    description: (text) => import_yoctocolors_cjs7.default.cyan(text)
+    description: (text) => import_yoctocolors_cjs7.default.cyan(text),
+    keysHelpTip: (keys) => keys.map(([key, action]) => `${import_yoctocolors_cjs7.default.bold(key)} ${import_yoctocolors_cjs7.default.dim(action)}`).join(import_yoctocolors_cjs7.default.dim(" \u2022 "))
   },
-  helpMode: "auto",
-  indexMode: "hidden"
+  helpMode: "always",
+  indexMode: "hidden",
+  keybindings: []
 };
 function isSelectable3(item) {
   return !Separator.isSeparator(item) && !item.disabled;
@@ -49679,11 +49702,12 @@ function normalizeChoices5(choices) {
 }
 var esm_default12 = createPrompt((config, done) => {
   const { loop = true, pageSize = 7 } = config;
-  const firstRender = useRef(true);
   const theme = makeTheme(selectTheme, config.theme);
+  const { keybindings } = theme;
   const [status, setStatus] = useState("idle");
   const prefix = usePrefix({ status, theme });
   const searchTimeoutRef = useRef();
+  const searchEnabled = !keybindings.includes("vim");
   const items = useMemo(() => normalizeChoices5(config.choices), [config.choices]);
   const bounds = useMemo(() => {
     const first = items.findIndex(isSelectable3);
@@ -49705,10 +49729,10 @@ var esm_default12 = createPrompt((config, done) => {
     if (isEnterKey(key)) {
       setStatus("done");
       done(selectedChoice.value);
-    } else if (isUpKey(key) || isDownKey(key)) {
+    } else if (isUpKey(key, keybindings) || isDownKey(key, keybindings)) {
       rl.clearLine(0);
-      if (loop || isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
-        const offset = isUpKey(key) ? -1 : 1;
+      if (loop || isUpKey(key, keybindings) && active !== bounds.first || isDownKey(key, keybindings) && active !== bounds.last) {
+        const offset = isUpKey(key, keybindings) ? -1 : 1;
         let next = active;
         do {
           next = (next + offset + items.length) % items.length;
@@ -49733,7 +49757,7 @@ var esm_default12 = createPrompt((config, done) => {
       }, 700);
     } else if (isBackspaceKey(key)) {
       rl.clearLine(0);
-    } else {
+    } else if (searchEnabled) {
       const searchTerm = rl.line.toLowerCase();
       const matchIndex = items.findIndex((item) => {
         if (Separator.isSeparator(item) || !isSelectable3(item))
@@ -49752,15 +49776,16 @@ var esm_default12 = createPrompt((config, done) => {
     clearTimeout(searchTimeoutRef.current);
   }, []);
   const message = theme.style.message(config.message, status);
-  let helpTipTop = "";
-  let helpTipBottom = "";
-  if (theme.helpMode === "always" || theme.helpMode === "auto" && firstRender.current) {
-    firstRender.current = false;
-    if (items.length > pageSize) {
-      helpTipBottom = `
-${theme.style.help(`(${config.instructions?.pager ?? "Use arrow keys to reveal more choices"})`)}`;
+  let helpLine;
+  if (theme.helpMode !== "never") {
+    if (config.instructions) {
+      const { pager, navigation } = config.instructions;
+      helpLine = theme.style.help(items.length > pageSize ? pager : navigation);
     } else {
-      helpTipTop = theme.style.help(`(${config.instructions?.navigation ?? "Use arrow keys"})`);
+      helpLine = theme.style.keysHelpTip([
+        ["\u2191\u2193", "navigate"],
+        ["\u23CE", "select"]
+      ]);
     }
   }
   let separatorCount = 0;
@@ -49785,12 +49810,17 @@ ${theme.style.help(`(${config.instructions?.pager ?? "Use arrow keys to reveal m
     loop
   });
   if (status === "done") {
-    return `${prefix} ${message} ${theme.style.answer(selectedChoice.short)}`;
+    return [prefix, message, theme.style.answer(selectedChoice.short)].filter(Boolean).join(" ");
   }
-  const choiceDescription = selectedChoice.description ? `
-${theme.style.description(selectedChoice.description)}` : ``;
-  return `${[prefix, message, helpTipTop].filter(Boolean).join(" ")}
-${page}${helpTipBottom}${choiceDescription}${cursorHide}`;
+  const { description } = selectedChoice;
+  const lines = [
+    [prefix, message].filter(Boolean).join(" "),
+    page,
+    " ",
+    description ? theme.style.description(description) : "",
+    helpLine
+  ].filter(Boolean).join("\n").trimEnd();
+  return `${lines}${cursorHide}`;
 });
 
 // ng-dev/utils/prompt.js
@@ -56846,7 +56876,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-062c3fe43009ed534b4f7636b58adb56840cb536`;
+  const localVersion = `0.0.0-1fd3f8b3fa8d9c438135bc6c5cecacd07920ef42`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
