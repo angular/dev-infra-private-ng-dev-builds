@@ -56846,7 +56846,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-9b8eb9494aa8ad5c9fab8e13de90d43160f66384`;
+  const localVersion = `0.0.0-df41bbb9e718606975b7db70608f23053f1a8336`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
