@@ -56876,7 +56876,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-c776985eeff8f041f142d85577210976c98a2922`;
+  const localVersion = `0.0.0-aa7eafce1e85690dadfd8019d44ceadfb94851b8`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -57833,7 +57833,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.24.0_834787987/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.25.0_834787987/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src7(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable3 } from "node:stream";
@@ -57845,7 +57845,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.24.0_834787987/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.25.0_834787987/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -57976,6 +57976,75 @@ function getValueByPath(data, keys, defaultValue = void 0) {
     throw error;
   }
 }
+function moveValueByPath(data, paths) {
+  for (const [sourcePath, destPath] of Object.entries(paths)) {
+    const sourceKeys = sourcePath.split(".");
+    const destKeys = destPath.split(".");
+    const excludeKeys = /* @__PURE__ */ new Set();
+    let wildcardIdx = -1;
+    for (let i = 0; i < sourceKeys.length; i++) {
+      if (sourceKeys[i] === "*") {
+        wildcardIdx = i;
+        break;
+      }
+    }
+    if (wildcardIdx !== -1 && destKeys.length > wildcardIdx) {
+      for (let i = wildcardIdx; i < destKeys.length; i++) {
+        const key = destKeys[i];
+        if (key !== "*" && !key.endsWith("[]") && !key.endsWith("[0]")) {
+          excludeKeys.add(key);
+        }
+      }
+    }
+    _moveValueRecursive(data, sourceKeys, destKeys, 0, excludeKeys);
+  }
+}
+function _moveValueRecursive(data, sourceKeys, destKeys, keyIdx, excludeKeys) {
+  if (keyIdx >= sourceKeys.length) {
+    return;
+  }
+  if (typeof data !== "object" || data === null) {
+    return;
+  }
+  const key = sourceKeys[keyIdx];
+  if (key.endsWith("[]")) {
+    const keyName = key.slice(0, -2);
+    const dataRecord = data;
+    if (keyName in dataRecord && Array.isArray(dataRecord[keyName])) {
+      for (const item of dataRecord[keyName]) {
+        _moveValueRecursive(item, sourceKeys, destKeys, keyIdx + 1, excludeKeys);
+      }
+    }
+  } else if (key === "*") {
+    if (typeof data === "object" && data !== null && !Array.isArray(data)) {
+      const dataRecord = data;
+      const keysToMove = Object.keys(dataRecord).filter((k) => !k.startsWith("_") && !excludeKeys.has(k));
+      const valuesToMove = {};
+      for (const k of keysToMove) {
+        valuesToMove[k] = dataRecord[k];
+      }
+      for (const [k, v] of Object.entries(valuesToMove)) {
+        const newDestKeys = [];
+        for (const dk of destKeys.slice(keyIdx)) {
+          if (dk === "*") {
+            newDestKeys.push(k);
+          } else {
+            newDestKeys.push(dk);
+          }
+        }
+        setValueByPath(dataRecord, newDestKeys, v);
+      }
+      for (const k of keysToMove) {
+        delete dataRecord[k];
+      }
+    }
+  } else {
+    const dataRecord = data;
+    if (key in dataRecord) {
+      _moveValueRecursive(dataRecord[key], sourceKeys, destKeys, keyIdx + 1, excludeKeys);
+    }
+  }
+}
 function tBytes$1(fromBytes) {
   if (typeof fromBytes !== "string") {
     throw new Error("fromImageBytes must be a string");
@@ -58103,7 +58172,7 @@ function generateVideosResponseFromVertex$1(fromObject) {
 }
 function generatedVideoFromMldev$1(fromObject) {
   const toObject = {};
-  const fromVideo = getValueByPath(fromObject, ["_self"]);
+  const fromVideo = getValueByPath(fromObject, ["video"]);
   if (fromVideo != null) {
     setValueByPath(toObject, ["video"], videoFromMldev$1(fromVideo));
   }
@@ -58139,14 +58208,11 @@ function getOperationParametersToVertex(fromObject) {
 }
 function videoFromMldev$1(fromObject) {
   const toObject = {};
-  const fromUri = getValueByPath(fromObject, ["video", "uri"]);
+  const fromUri = getValueByPath(fromObject, ["uri"]);
   if (fromUri != null) {
     setValueByPath(toObject, ["uri"], fromUri);
   }
-  const fromVideoBytes = getValueByPath(fromObject, [
-    "video",
-    "encodedVideo"
-  ]);
+  const fromVideoBytes = getValueByPath(fromObject, ["encodedVideo"]);
   if (fromVideoBytes != null) {
     setValueByPath(toObject, ["videoBytes"], tBytes$1(fromVideoBytes));
   }
@@ -60028,6 +60094,7 @@ function embedContentBatchToMldev(apiClient, fromObject) {
   const fromConfig = getValueByPath(fromObject, ["config"]);
   if (fromConfig != null) {
     setValueByPath(toObject, ["_self"], embedContentConfigToMldev$1(fromConfig, toObject));
+    moveValueByPath(toObject, { "requests[].*": "requests[].request.*" });
   }
   return toObject;
 }
@@ -60755,34 +60822,11 @@ var Batches = class extends BaseModule2 {
       return this.createInternal(params2);
     };
     this.createEmbeddings = async (params2) => {
-      var _a2, _b2;
       console.warn("batches.createEmbeddings() is experimental and may change without notice.");
       if (this.apiClient.isVertexAI()) {
         throw new Error("Vertex AI does not support batches.createEmbeddings.");
       }
-      const src = params2.src;
-      const is_inlined = src.inlinedRequests !== void 0;
-      if (!is_inlined) {
-        return this.createEmbeddingsInternal(params2);
-      }
-      const result = this.createInlinedEmbedContentRequest(params2);
-      const path8 = result.path;
-      const requestBody = result.body;
-      const queryParams = createEmbeddingsBatchJobParametersToMldev(this.apiClient, params2)["_query"] || {};
-      const response = this.apiClient.request({
-        path: path8,
-        queryParams,
-        body: JSON.stringify(requestBody),
-        httpMethod: "POST",
-        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
-        abortSignal: (_b2 = params2.config) === null || _b2 === void 0 ? void 0 : _b2.abortSignal
-      }).then((httpResponse) => {
-        return httpResponse.json();
-      });
-      return response.then((apiResponse) => {
-        const resp = batchJobFromMldev(apiResponse);
-        return resp;
-      });
+      return this.createEmbeddingsInternal(params2);
     };
     this.list = async (params2 = {}) => {
       return new Pager(PagedItem.PAGED_ITEM_BATCH_JOBS, (x) => this.listInternal(x), await this.listInternal(params2), params2);
@@ -60810,38 +60854,6 @@ var Batches = class extends BaseModule2 {
         const requestContent = requestDict["request"];
         requestContent["systemInstruction"] = systemInstructionValue;
         requestDict["request"] = requestContent;
-      }
-      newRequests.push(requestDict);
-    }
-    requestsWrapper["requests"] = newRequests;
-    delete body["config"];
-    delete body["_url"];
-    delete body["_query"];
-    return { path: path8, body };
-  }
-  // Helper function to handle inlined embedding requests
-  createInlinedEmbedContentRequest(params2) {
-    const body = createEmbeddingsBatchJobParametersToMldev(
-      this.apiClient,
-      // Use instance apiClient
-      params2
-    );
-    const urlParams = body["_url"];
-    const path8 = formatMap("{model}:asyncBatchEmbedContent", urlParams);
-    const batch = body["batch"];
-    const inputConfig = batch["inputConfig"];
-    const requestsWrapper = inputConfig["requests"];
-    const requests = requestsWrapper["requests"];
-    const newRequests = [];
-    delete requestsWrapper["config"];
-    for (const request of requests) {
-      const requestDict = Object.assign({}, request);
-      const innerRequest = requestDict["request"];
-      for (const key in requestDict) {
-        if (key !== "request") {
-          innerRequest[key] = requestDict[key];
-          delete requestDict[key];
-        }
       }
       newRequests.push(requestDict);
     }
@@ -65551,7 +65563,7 @@ function generatedImageMaskFromVertex(fromObject) {
 }
 function generatedVideoFromMldev(fromObject) {
   const toObject = {};
-  const fromVideo = getValueByPath(fromObject, ["_self"]);
+  const fromVideo = getValueByPath(fromObject, ["video"]);
   if (fromVideo != null) {
     setValueByPath(toObject, ["video"], videoFromMldev(fromVideo));
   }
@@ -66697,14 +66709,11 @@ function upscaleImageResponseFromVertex(fromObject) {
 }
 function videoFromMldev(fromObject) {
   const toObject = {};
-  const fromUri = getValueByPath(fromObject, ["video", "uri"]);
+  const fromUri = getValueByPath(fromObject, ["uri"]);
   if (fromUri != null) {
     setValueByPath(toObject, ["uri"], fromUri);
   }
-  const fromVideoBytes = getValueByPath(fromObject, [
-    "video",
-    "encodedVideo"
-  ]);
+  const fromVideoBytes = getValueByPath(fromObject, ["encodedVideo"]);
   if (fromVideoBytes != null) {
     setValueByPath(toObject, ["videoBytes"], tBytes(fromVideoBytes));
   }
@@ -66776,11 +66785,11 @@ function videoToMldev(fromObject) {
   const toObject = {};
   const fromUri = getValueByPath(fromObject, ["uri"]);
   if (fromUri != null) {
-    setValueByPath(toObject, ["video", "uri"], fromUri);
+    setValueByPath(toObject, ["uri"], fromUri);
   }
   const fromVideoBytes = getValueByPath(fromObject, ["videoBytes"]);
   if (fromVideoBytes != null) {
-    setValueByPath(toObject, ["video", "encodedVideo"], tBytes(fromVideoBytes));
+    setValueByPath(toObject, ["encodedVideo"], tBytes(fromVideoBytes));
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -66808,7 +66817,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.24.0";
+var SDK_VERSION = "1.25.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -68163,8 +68172,22 @@ var Models = class extends BaseModule2 {
       return await this.upscaleImageInternal(apiParams);
     };
     this.generateVideos = async (params2) => {
+      var _a2, _b2, _c2, _d, _e, _f;
       if ((params2.prompt || params2.image || params2.video) && params2.source) {
         throw new Error("Source and prompt/image/video are mutually exclusive. Please only use source.");
+      }
+      if (!this.apiClient.isVertexAI()) {
+        if (((_a2 = params2.video) === null || _a2 === void 0 ? void 0 : _a2.uri) && ((_b2 = params2.video) === null || _b2 === void 0 ? void 0 : _b2.videoBytes)) {
+          params2.video = {
+            uri: params2.video.uri,
+            mimeType: params2.video.mimeType
+          };
+        } else if (((_d = (_c2 = params2.source) === null || _c2 === void 0 ? void 0 : _c2.video) === null || _d === void 0 ? void 0 : _d.uri) && ((_f = (_e = params2.source) === null || _e === void 0 ? void 0 : _e.video) === null || _f === void 0 ? void 0 : _f.videoBytes)) {
+          params2.source.video = {
+            uri: params2.source.video.uri,
+            mimeType: params2.source.video.mimeType
+          };
+        }
       }
       return await this.generateVideosInternal(params2);
     };
