@@ -7,7 +7,7 @@ export interface GithubApiMergeStrategyConfig {
         method: GithubApiMergeMethod;
     }[];
 }
-export interface PullRequestConfig {
+export type PullRequestConfig = {
     remote?: GithubConfig;
     requiredBaseCommits?: {
         [branchName: string]: string;
@@ -20,7 +20,10 @@ export interface PullRequestConfig {
     targetLabelExemptScopes?: string[];
     validators?: PullRequestValidationConfig;
     __noTargetLabeling?: boolean;
-}
+} & {
+    conditionalAutosquashMerge?: boolean;
+    githubApiMerge: GithubApiMergeStrategyConfig;
+};
 export declare function assertValidPullRequestConfig<T extends NgDevConfig>(config: T & Partial<{
     pullRequest: PullRequestConfig;
 }>): asserts config is T & {

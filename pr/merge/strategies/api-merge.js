@@ -1,4 +1,3 @@
-import { parseCommitMessage } from '../../../commit-message/parse.js';
 import { MergeStrategy } from './strategy.js';
 import { isGithubApiError } from '../../../utils/git/github.js';
 import { FatalMergeToolError, MergeConflictsFatalError } from '../failures.js';
@@ -11,7 +10,7 @@ export class GithubApiMergeStrategy extends MergeStrategy {
     }
     async merge(pullRequest) {
         const { githubTargetBranch, prNumber, needsCommitMessageFixup, targetBranches } = pullRequest;
-        const method = this._getMergeActionFromPullRequest(pullRequest);
+        const method = this.getMergeActionFromPullRequest(pullRequest);
         const cherryPickTargetBranches = targetBranches.filter((b) => b !== githubTargetBranch);
         const mergeOptions = {
             pull_number: prNumber,
@@ -82,10 +81,7 @@ export class GithubApiMergeStrategy extends MergeStrategy {
         mergeOptions.commit_message = newMessage.join(COMMIT_HEADER_SEPARATOR);
     }
     async _getDefaultSquashCommitMessage(pullRequest) {
-        const commits = (await this._getPullRequestCommitMessages(pullRequest)).map((message) => ({
-            message,
-            parsed: parseCommitMessage(message),
-        }));
+        const commits = await this.getPullRequestCommits(pullRequest);
         const messageBase = `${pullRequest.title}${COMMIT_HEADER_SEPARATOR}`;
         if (commits.length <= 1) {
             return `${messageBase}${commits[0].parsed.body}`;
@@ -93,14 +89,7 @@ export class GithubApiMergeStrategy extends MergeStrategy {
         const joinedMessages = commits.map((c) => `* ${c.message}`).join(COMMIT_HEADER_SEPARATOR);
         return `${messageBase}${joinedMessages}`;
     }
-    async _getPullRequestCommitMessages({ prNumber }) {
-        const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
-            ...this.git.remoteParams,
-            pull_number: prNumber,
-        });
-        return allCommits.map(({ commit }) => commit.message);
-    }
-    _getMergeActionFromPullRequest({ labels }) {
+    getMergeActionFromPullRequest({ labels }) {
         if (this._config.labels) {
             const matchingLabel = this._config.labels.find(({ pattern }) => labels.includes(pattern));
             if (matchingLabel !== undefined) {
