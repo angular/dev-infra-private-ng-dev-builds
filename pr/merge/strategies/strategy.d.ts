@@ -1,4 +1,3 @@
-import { Commit } from '../../../commit-message/parse.js';
 import { AuthenticatedGitClient } from '../../../utils/git/authenticated-git-client.js';
 import { PullRequest } from '../pull-request.js';
 export declare const TEMP_PR_HEAD_BRANCH = "merge_pr_head";
@@ -17,8 +16,4 @@ export declare abstract class MergeStrategy {
     protected fetchTargetBranches(names: string[], ...extraRefspecs: string[]): void;
     protected pushTargetBranchesUpstream(names: string[]): void;
     protected _assertMergeableOrThrow({ revisionRange }: PullRequest, targetBranches: string[]): Promise<void>;
-    protected getPullRequestCommits({ prNumber }: PullRequest): Promise<{
-        message: string;
-        parsed: Commit;
-    }[]>;
 }

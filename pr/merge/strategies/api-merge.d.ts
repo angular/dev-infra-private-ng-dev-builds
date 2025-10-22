@@ -1,5 +1,5 @@
 import { AuthenticatedGitClient } from '../../../utils/git/authenticated-git-client.js';
-import { GithubApiMergeMethod, GithubApiMergeStrategyConfig } from '../../config/index.js';
+import { GithubApiMergeStrategyConfig } from '../../config/index.js';
 import { PullRequest } from '../pull-request.js';
 import { MergeStrategy } from './strategy.js';
 export declare class GithubApiMergeStrategy extends MergeStrategy {
@@ -8,5 +8,6 @@ export declare class GithubApiMergeStrategy extends MergeStrategy {
     merge(pullRequest: PullRequest): Promise<void>;
     private _promptCommitMessageEdit;
     private _getDefaultSquashCommitMessage;
-    getMergeActionFromPullRequest({ labels }: PullRequest): GithubApiMergeMethod;
+    private _getPullRequestCommitMessages;
+    private _getMergeActionFromPullRequest;
 }

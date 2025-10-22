@@ -13982,12 +13982,8 @@ function assertValidPullRequestConfig(config) {
   if (config.pullRequest === void 0) {
     throw new ConfigValidationError("No pullRequest configuration found. Set the `pullRequest` configuration.");
   }
-  const { conditionalAutosquashMerge, githubApiMerge } = config.pullRequest;
-  if (githubApiMerge === void 0) {
+  if (config.pullRequest.githubApiMerge === void 0) {
     errors.push("No explicit choice of merge strategy. Please set `githubApiMerge`.");
-  }
-  if (conditionalAutosquashMerge && !githubApiMerge) {
-    errors.push("`conditionalAutosquashMerge` requires a GitHub API merge strategy to inspect commit history. Please configure `githubApiMerge` or disable `conditionalAutosquashMerge`.");
   }
   if (errors.length) {
     throw new ConfigValidationError("Invalid `pullRequest` configuration", errors);

@@ -3,7 +3,6 @@ import { getCaretakerNotePromptMessage, getTargetedBranchesConfirmationPromptMes
 import { loadAndValidatePullRequest } from './pull-request.js';
 import { GithubApiMergeStrategy } from './strategies/api-merge.js';
 import { AutosquashMergeStrategy } from './strategies/autosquash-merge.js';
-import { ConditionalAutosquashMergeStrategy } from './strategies/conditional-autosquash-merge.js';
 import { assertValidReleaseConfig } from '../../release/config/index.js';
 import { ActiveReleaseTrains, fetchLongTermSupportBranchesFromNpm, getNextBranchName, } from '../../release/versioning/index.js';
 import { FatalMergeToolError, PullRequestValidationError, UserAbortedMergeToolError, } from './failures.js';
@@ -61,17 +60,9 @@ export class MergeTool {
             !(await Prompt.confirm({ message: getCaretakerNotePromptMessage(pullRequest) }))) {
             throw new UserAbortedMergeToolError();
         }
-        let strategy;
-        const { conditionalAutosquashMerge, githubApiMerge } = this.config.pullRequest;
-        if (conditionalAutosquashMerge) {
-            strategy = new ConditionalAutosquashMergeStrategy(this.git, githubApiMerge);
-        }
-        else if (githubApiMerge) {
-            strategy = new GithubApiMergeStrategy(this.git, githubApiMerge);
-        }
-        else {
-            strategy = new AutosquashMergeStrategy(this.git);
-        }
+        const strategy = this.config.pullRequest.githubApiMerge
+            ? new GithubApiMergeStrategy(this.git, this.config.pullRequest.githubApiMerge)
+            : new AutosquashMergeStrategy(this.git);
         const previousBranchOrRevision = this.git.getCurrentBranchOrRevision();
         try {
             await strategy.prepare(pullRequest);

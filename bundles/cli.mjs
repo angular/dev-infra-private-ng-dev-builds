@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-ZKTJBKLH.mjs";
+} from "./chunk-YEMDQHMZ.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -54141,16 +54141,6 @@ var MergeStrategy = class {
       throw new MergeConflictsFatalError(failedBranches);
     }
   }
-  async getPullRequestCommits({ prNumber }) {
-    const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
-      ...this.git.remoteParams,
-      pull_number: prNumber
-    });
-    return allCommits.map(({ commit: { message } }) => ({
-      message,
-      parsed: parseCommitMessage(message)
-    }));
-  }
 };
 
 // ng-dev/pr/merge/pull-request.js
@@ -54208,7 +54198,7 @@ var GithubApiMergeStrategy = class extends MergeStrategy {
   }
   async merge(pullRequest) {
     const { githubTargetBranch, prNumber, needsCommitMessageFixup, targetBranches } = pullRequest;
-    const method = this.getMergeActionFromPullRequest(pullRequest);
+    const method = this._getMergeActionFromPullRequest(pullRequest);
     const cherryPickTargetBranches = targetBranches.filter((b) => b !== githubTargetBranch);
     const mergeOptions = {
       pull_number: prNumber,
@@ -54277,7 +54267,10 @@ ${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     mergeOptions.commit_message = newMessage.join(COMMIT_HEADER_SEPARATOR);
   }
   async _getDefaultSquashCommitMessage(pullRequest) {
-    const commits = await this.getPullRequestCommits(pullRequest);
+    const commits = (await this._getPullRequestCommitMessages(pullRequest)).map((message) => ({
+      message,
+      parsed: parseCommitMessage(message)
+    }));
     const messageBase = `${pullRequest.title}${COMMIT_HEADER_SEPARATOR}`;
     if (commits.length <= 1) {
       return `${messageBase}${commits[0].parsed.body}`;
@@ -54285,7 +54278,14 @@ ${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     const joinedMessages = commits.map((c) => `* ${c.message}`).join(COMMIT_HEADER_SEPARATOR);
     return `${messageBase}${joinedMessages}`;
   }
-  getMergeActionFromPullRequest({ labels }) {
+  async _getPullRequestCommitMessages({ prNumber }) {
+    const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
+      ...this.git.remoteParams,
+      pull_number: prNumber
+    });
+    return allCommits.map(({ commit }) => commit.message);
+  }
+  _getMergeActionFromPullRequest({ labels }) {
     if (this._config.labels) {
       const matchingLabel = this._config.labels.find(({ pattern }) => labels.includes(pattern));
       if (matchingLabel !== void 0) {
@@ -54348,23 +54348,6 @@ function getCommitMessageFilterScriptPath2() {
   return join8(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
 }
 
-// ng-dev/pr/merge/strategies/conditional-autosquash-merge.js
-var ConditionalAutosquashMergeStrategy = class extends MergeStrategy {
-  constructor(git, config) {
-    super(git);
-    this.config = config;
-    this.githubApiMergeStrategy = new GithubApiMergeStrategy(this.git, this.config);
-  }
-  async merge(pullRequest) {
-    const mergeAction = this.githubApiMergeStrategy.getMergeActionFromPullRequest(pullRequest);
-    return mergeAction === "rebase" && await this.hasFixupOrSquashCommits(pullRequest) ? new AutosquashMergeStrategy(this.git).merge(pullRequest) : this.githubApiMergeStrategy.merge(pullRequest);
-  }
-  async hasFixupOrSquashCommits(pullRequest) {
-    const commits = await this.getPullRequestCommits(pullRequest);
-    return commits.some(({ parsed: { isFixup, isSquash } }) => isFixup || isSquash);
-  }
-};
-
 // ng-dev/pr/merge/merge-tool.js
 var defaultPullRequestMergeFlags = {
   branchPrompt: true,
@@ -54416,15 +54399,7 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
     if (pullRequest.hasCaretakerNote && !await Prompt.confirm({ message: getCaretakerNotePromptMessage(pullRequest) })) {
       throw new UserAbortedMergeToolError();
     }
-    let strategy;
-    const { conditionalAutosquashMerge, githubApiMerge } = this.config.pullRequest;
-    if (conditionalAutosquashMerge) {
-      strategy = new ConditionalAutosquashMergeStrategy(this.git, githubApiMerge);
-    } else if (githubApiMerge) {
-      strategy = new GithubApiMergeStrategy(this.git, githubApiMerge);
-    } else {
-      strategy = new AutosquashMergeStrategy(this.git);
-    }
+    const strategy = this.config.pullRequest.githubApiMerge ? new GithubApiMergeStrategy(this.git, this.config.pullRequest.githubApiMerge) : new AutosquashMergeStrategy(this.git);
     const previousBranchOrRevision = this.git.getCurrentBranchOrRevision();
     try {
       await strategy.prepare(pullRequest);
@@ -56901,7 +56876,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-95499f4d7d3af0ed520313ab1a85cc0b5b44b70d`;
+  const localVersion = `0.0.0-a45413e72d41f52cac2854f761492bfd180c5659`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
