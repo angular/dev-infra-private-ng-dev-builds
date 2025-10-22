@@ -3,7 +3,7 @@ import {createRequire as __cjsCompatRequire} from 'module';
 const require = __cjsCompatRequire(import.meta.url);
 
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.0/node_modules/conventional-commits-parser/dist/regex.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/regex.js
 var nomatchRegex = /(?!.*)/;
 function join(parts, joiner) {
   return parts.map((val) => val.trim()).filter(Boolean).join(joiner);
@@ -23,7 +23,7 @@ function getReferencePartsRegex(issuePrefixes, issuePrefixesCaseSensitive) {
     return nomatchRegex;
   }
   const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-  return new RegExp(`(?:.*?)??\\s*([\\w-\\.\\/]*?)??(${join(issuePrefixes, "|")})([\\w-]*\\d+)`, flags);
+  return new RegExp(`(?:.*?)??\\s*([\\w-\\.\\/]*?)??(${join(issuePrefixes, "|")})([\\w-]+)(?=\\s|$|[,;)\\]])`, flags);
 }
 function getReferencesRegex(referenceActions) {
   if (!referenceActions) {
@@ -45,7 +45,7 @@ function getParserRegexes(options = {}) {
   };
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.0/node_modules/conventional-commits-parser/dist/utils.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/utils.js
 var SCISSOR = "------------------------ >8 ------------------------";
 function trimNewLines(input) {
   const matches = input.match(/[^\r\n]/);
@@ -85,7 +85,7 @@ function assignMatchedCorrespondence(target, matches, correspondence) {
   return target;
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.0/node_modules/conventional-commits-parser/dist/options.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/options.js
 var defaultOptions = {
   noteKeywords: ["BREAKING CHANGE", "BREAKING-CHANGE"],
   issuePrefixes: ["#"],
@@ -111,7 +111,7 @@ var defaultOptions = {
   fieldPattern: /^-(.*?)-$/
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.0/node_modules/conventional-commits-parser/dist/CommitParser.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/CommitParser.js
 function createCommitObject(initialData = {}) {
   return {
     merge: null,
@@ -405,7 +405,7 @@ var CommitParser = class {
   }
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.0/node_modules/conventional-commits-parser/dist/stream.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/stream.js
 import { Transform } from "stream";
 function parseCommits(options = {}) {
   const warnOption = options.warn;
