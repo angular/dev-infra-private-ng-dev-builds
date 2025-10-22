@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-YEMDQHMZ.mjs";
+} from "./chunk-5C3743DN.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -54141,6 +54141,16 @@ var MergeStrategy = class {
       throw new MergeConflictsFatalError(failedBranches);
     }
   }
+  async getPullRequestCommits({ prNumber }) {
+    const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
+      ...this.git.remoteParams,
+      pull_number: prNumber
+    });
+    return allCommits.map(({ commit: { message } }) => ({
+      message,
+      parsed: parseCommitMessage(message)
+    }));
+  }
 };
 
 // ng-dev/pr/merge/pull-request.js
@@ -54189,20 +54199,75 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
   };
 }
 
+// ng-dev/pr/merge/strategies/autosquash-merge.js
+import { dirname as dirname5, join as join8 } from "path";
+import { fileURLToPath as fileURLToPath4 } from "url";
+var AutosquashMergeStrategy = class extends MergeStrategy {
+  async merge(pullRequest) {
+    const { githubTargetBranch, targetBranches, revisionRange, needsCommitMessageFixup, baseSha, prNumber } = pullRequest;
+    const branchOrRevisionBeforeRebase = this.git.getCurrentBranchOrRevision();
+    const rebaseEnv = needsCommitMessageFixup ? void 0 : { ...process.env, GIT_SEQUENCE_EDITOR: "true" };
+    this.git.run(["rebase", "--interactive", "--autosquash", baseSha, TEMP_PR_HEAD_BRANCH], {
+      stdio: "inherit",
+      env: rebaseEnv
+    });
+    this.git.run(["checkout", "-f", branchOrRevisionBeforeRebase]);
+    this.git.run([
+      "filter-branch",
+      "-f",
+      "--msg-filter",
+      `${getCommitMessageFilterScriptPath2()} ${prNumber}`,
+      revisionRange
+    ]);
+    const failedBranches = this.cherryPickIntoTargetBranches(revisionRange, targetBranches);
+    if (failedBranches.length) {
+      throw new MergeConflictsFatalError(failedBranches);
+    }
+    this.pushTargetBranchesUpstream(targetBranches);
+    const banchesAndSha = targetBranches.map((targetBranch) => {
+      const localBranch = this.getLocalTargetBranchName(targetBranch);
+      const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
+      return [targetBranch, sha];
+    });
+    await new Promise((resolve12) => setTimeout(resolve12, parseInt(process.env["AUTOSQUASH_TIMEOUT"] || "0")));
+    await this.git.github.issues.createComment({
+      ...this.git.remoteParams,
+      issue_number: pullRequest.prNumber,
+      body: `This PR was merged into the repository. The changes were merged into the following branches:
+
+${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
+    });
+    if (githubTargetBranch !== this.git.mainBranchName) {
+      await this.git.github.pulls.update({
+        ...this.git.remoteParams,
+        pull_number: pullRequest.prNumber,
+        state: "closed"
+      });
+    }
+  }
+};
+function getCommitMessageFilterScriptPath2() {
+  const bundlesDir = dirname5(fileURLToPath4(import.meta.url));
+  return join8(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
+}
+
 // ng-dev/pr/merge/strategies/api-merge.js
 var COMMIT_HEADER_SEPARATOR = "\n\n";
-var GithubApiMergeStrategy = class extends MergeStrategy {
-  constructor(git, _config) {
+var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
+  constructor(git, config) {
     super(git);
-    this._config = _config;
+    this.config = config;
   }
   async merge(pullRequest) {
     const { githubTargetBranch, prNumber, needsCommitMessageFixup, targetBranches } = pullRequest;
-    const method = this._getMergeActionFromPullRequest(pullRequest);
+    const method = this.getMergeActionFromPullRequest(pullRequest);
     const cherryPickTargetBranches = targetBranches.filter((b) => b !== githubTargetBranch);
+    if (method === "rebase-with-fixup" && (pullRequest.needsCommitMessageFixup || await this.hasFixupOrSquashCommits(pullRequest))) {
+      return super.merge(pullRequest);
+    }
     const mergeOptions = {
       pull_number: prNumber,
-      merge_method: method,
+      merge_method: method === "rebase-with-fixup" ? "rebase" : method,
       ...this.git.remoteParams
     };
     if (needsCommitMessageFixup) {
@@ -54267,10 +54332,7 @@ ${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     mergeOptions.commit_message = newMessage.join(COMMIT_HEADER_SEPARATOR);
   }
   async _getDefaultSquashCommitMessage(pullRequest) {
-    const commits = (await this._getPullRequestCommitMessages(pullRequest)).map((message) => ({
-      message,
-      parsed: parseCommitMessage(message)
-    }));
+    const commits = await this.getPullRequestCommits(pullRequest);
     const messageBase = `${pullRequest.title}${COMMIT_HEADER_SEPARATOR}`;
     if (commits.length <= 1) {
       return `${messageBase}${commits[0].parsed.body}`;
@@ -54278,75 +54340,20 @@ ${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     const joinedMessages = commits.map((c) => `* ${c.message}`).join(COMMIT_HEADER_SEPARATOR);
     return `${messageBase}${joinedMessages}`;
   }
-  async _getPullRequestCommitMessages({ prNumber }) {
-    const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
-      ...this.git.remoteParams,
-      pull_number: prNumber
-    });
-    return allCommits.map(({ commit }) => commit.message);
-  }
-  _getMergeActionFromPullRequest({ labels }) {
-    if (this._config.labels) {
-      const matchingLabel = this._config.labels.find(({ pattern }) => labels.includes(pattern));
+  getMergeActionFromPullRequest({ labels }) {
+    if (this.config.labels) {
+      const matchingLabel = this.config.labels.find(({ pattern }) => labels.includes(pattern));
       if (matchingLabel !== void 0) {
         return matchingLabel.method;
       }
     }
-    return this._config.default;
+    return this.config.default;
+  }
+  async hasFixupOrSquashCommits(pullRequest) {
+    const commits = await this.getPullRequestCommits(pullRequest);
+    return commits.some(({ parsed: { isFixup, isSquash } }) => isFixup || isSquash);
   }
 };
-
-// ng-dev/pr/merge/strategies/autosquash-merge.js
-import { dirname as dirname5, join as join8 } from "path";
-import { fileURLToPath as fileURLToPath4 } from "url";
-var AutosquashMergeStrategy = class extends MergeStrategy {
-  async merge(pullRequest) {
-    const { githubTargetBranch, targetBranches, revisionRange, needsCommitMessageFixup, baseSha, prNumber } = pullRequest;
-    const branchOrRevisionBeforeRebase = this.git.getCurrentBranchOrRevision();
-    const rebaseEnv = needsCommitMessageFixup ? void 0 : { ...process.env, GIT_SEQUENCE_EDITOR: "true" };
-    this.git.run(["rebase", "--interactive", "--autosquash", baseSha, TEMP_PR_HEAD_BRANCH], {
-      stdio: "inherit",
-      env: rebaseEnv
-    });
-    this.git.run(["checkout", "-f", branchOrRevisionBeforeRebase]);
-    this.git.run([
-      "filter-branch",
-      "-f",
-      "--msg-filter",
-      `${getCommitMessageFilterScriptPath2()} ${prNumber}`,
-      revisionRange
-    ]);
-    const failedBranches = this.cherryPickIntoTargetBranches(revisionRange, targetBranches);
-    if (failedBranches.length) {
-      throw new MergeConflictsFatalError(failedBranches);
-    }
-    this.pushTargetBranchesUpstream(targetBranches);
-    const banchesAndSha = targetBranches.map((targetBranch) => {
-      const localBranch = this.getLocalTargetBranchName(targetBranch);
-      const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
-      return [targetBranch, sha];
-    });
-    await new Promise((resolve12) => setTimeout(resolve12, parseInt(process.env["AUTOSQUASH_TIMEOUT"] || "0")));
-    await this.git.github.issues.createComment({
-      ...this.git.remoteParams,
-      issue_number: pullRequest.prNumber,
-      body: `This PR was merged into the repository. The changes were merged into the following branches:
-
-${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
-    });
-    if (githubTargetBranch !== this.git.mainBranchName) {
-      await this.git.github.pulls.update({
-        ...this.git.remoteParams,
-        pull_number: pullRequest.prNumber,
-        state: "closed"
-      });
-    }
-  }
-};
-function getCommitMessageFilterScriptPath2() {
-  const bundlesDir = dirname5(fileURLToPath4(import.meta.url));
-  return join8(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
-}
 
 // ng-dev/pr/merge/merge-tool.js
 var defaultPullRequestMergeFlags = {
@@ -56876,7 +56883,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-52a1e1b2a2068f8d040417fcfe4fc0b08483e957`;
+  const localVersion = `0.0.0-bdbdbec9900b616bee602f8a90a2b2c53d915f08`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

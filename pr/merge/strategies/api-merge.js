@@ -1,21 +1,24 @@
-import { parseCommitMessage } from '../../../commit-message/parse.js';
-import { MergeStrategy } from './strategy.js';
 import { isGithubApiError } from '../../../utils/git/github.js';
 import { FatalMergeToolError, MergeConflictsFatalError } from '../failures.js';
 import { Prompt } from '../../../utils/prompt.js';
+import { AutosquashMergeStrategy } from './autosquash-merge.js';
 const COMMIT_HEADER_SEPARATOR = '\n\n';
-export class GithubApiMergeStrategy extends MergeStrategy {
-    constructor(git, _config) {
+export class GithubApiMergeStrategy extends AutosquashMergeStrategy {
+    constructor(git, config) {
         super(git);
-        this._config = _config;
+        this.config = config;
     }
     async merge(pullRequest) {
         const { githubTargetBranch, prNumber, needsCommitMessageFixup, targetBranches } = pullRequest;
-        const method = this._getMergeActionFromPullRequest(pullRequest);
+        const method = this.getMergeActionFromPullRequest(pullRequest);
         const cherryPickTargetBranches = targetBranches.filter((b) => b !== githubTargetBranch);
+        if (method === 'rebase-with-fixup' &&
+            (pullRequest.needsCommitMessageFixup || (await this.hasFixupOrSquashCommits(pullRequest)))) {
+            return super.merge(pullRequest);
+        }
         const mergeOptions = {
             pull_number: prNumber,
-            merge_method: method,
+            merge_method: method === 'rebase-with-fixup' ? 'rebase' : method,
             ...this.git.remoteParams,
         };
         if (needsCommitMessageFixup) {
@@ -82,10 +85,7 @@ export class GithubApiMergeStrategy extends MergeStrategy {
         mergeOptions.commit_message = newMessage.join(COMMIT_HEADER_SEPARATOR);
     }
     async _getDefaultSquashCommitMessage(pullRequest) {
-        const commits = (await this._getPullRequestCommitMessages(pullRequest)).map((message) => ({
-            message,
-            parsed: parseCommitMessage(message),
-        }));
+        const commits = await this.getPullRequestCommits(pullRequest);
         const messageBase = `${pullRequest.title}${COMMIT_HEADER_SEPARATOR}`;
         if (commits.length <= 1) {
             return `${messageBase}${commits[0].parsed.body}`;
@@ -93,21 +93,18 @@ export class GithubApiMergeStrategy extends MergeStrategy {
         const joinedMessages = commits.map((c) => `* ${c.message}`).join(COMMIT_HEADER_SEPARATOR);
         return `${messageBase}${joinedMessages}`;
     }
-    async _getPullRequestCommitMessages({ prNumber }) {
-        const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
-            ...this.git.remoteParams,
-            pull_number: prNumber,
-        });
-        return allCommits.map(({ commit }) => commit.message);
-    }
-    _getMergeActionFromPullRequest({ labels }) {
-        if (this._config.labels) {
-            const matchingLabel = this._config.labels.find(({ pattern }) => labels.includes(pattern));
+    getMergeActionFromPullRequest({ labels }) {
+        if (this.config.labels) {
+            const matchingLabel = this.config.labels.find(({ pattern }) => labels.includes(pattern));
             if (matchingLabel !== undefined) {
                 return matchingLabel.method;
             }
         }
-        return this._config.default;
+        return this.config.default;
+    }
+    async hasFixupOrSquashCommits(pullRequest) {
+        const commits = await this.getPullRequestCommits(pullRequest);
+        return commits.some(({ parsed: { isFixup, isSquash } }) => isFixup || isSquash);
     }
 }
 //# sourceMappingURL=api-merge.js.map

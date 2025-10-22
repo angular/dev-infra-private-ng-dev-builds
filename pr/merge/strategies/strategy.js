@@ -1,3 +1,4 @@
+import { parseCommitMessage } from '../../../commit-message/parse.js';
 import { FatalMergeToolError, MergeConflictsFatalError, MismatchedTargetBranchFatalError, UnsatisfiedBaseShaFatalError, } from '../failures.js';
 export const TEMP_PR_HEAD_BRANCH = 'merge_pr_head';
 export class MergeStrategy {
@@ -77,6 +78,16 @@ export class MergeStrategy {
         if (failedBranches.length) {
             throw new MergeConflictsFatalError(failedBranches);
         }
+    }
+    async getPullRequestCommits({ prNumber }) {
+        const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
+            ...this.git.remoteParams,
+            pull_number: prNumber,
+        });
+        return allCommits.map(({ commit: { message } }) => ({
+            message,
+            parsed: parseCommitMessage(message),
+        }));
     }
 }
 //# sourceMappingURL=strategy.js.map
