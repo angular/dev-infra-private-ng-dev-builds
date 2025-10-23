@@ -47176,7 +47176,6 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
     const commits = await this.getPullRequestCommits(pullRequest);
     const { squashCount, fixupCount, normalCommitsCount } = await this.getCommitsInfo(pullRequest);
     const method = this.getMergeActionFromPullRequest(pullRequest);
-    let pullRequestCommitCount = pullRequest.commitCount;
     const mergeOptions = {
       pull_number: prNumber,
       merge_method: method === "auto" ? "rebase" : method,
@@ -47191,13 +47190,11 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
       const hasOnlySquashForOneCommit = normalCommitsCount === 1 && squashCount > 1;
       if (hasOnlyFixUpForOneCommit) {
         mergeOptions.merge_method = "squash";
-        pullRequestCommitCount = 1;
         const [title, message = ""] = commits[0].message.split(COMMIT_HEADER_SEPARATOR);
         mergeOptions.commit_title = title;
         mergeOptions.commit_message = message;
       } else if (hasOnlySquashForOneCommit) {
         mergeOptions.merge_method = "squash";
-        pullRequestCommitCount = 1;
         await this._promptCommitMessageEdit(pullRequest, mergeOptions);
       }
     }
@@ -47233,6 +47230,7 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
       await this.createMergeComment(pullRequest, targetBranches);
       return;
     }
+    const pullRequestCommitCount = mergeOptions.merge_method === "rebase" ? pullRequest.commitCount : 1;
     const failedBranches = await this.cherryPickIntoTargetBranches(`${targetSha}~${pullRequestCommitCount}..${targetSha}`, cherryPickTargetBranches, {
       linkToOriginalCommits: true
     });
@@ -49836,7 +49834,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-e0c87a999843e8a222a4fe224e36eed1d4bcb75f`;
+  const localVersion = `0.0.0-43cd9cad8ecd8ee080a11072396380ebea930f38`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

@@ -16,7 +16,6 @@ export class GithubApiMergeStrategy extends AutosquashMergeStrategy {
         const commits = await this.getPullRequestCommits(pullRequest);
         const { squashCount, fixupCount, normalCommitsCount } = await this.getCommitsInfo(pullRequest);
         const method = this.getMergeActionFromPullRequest(pullRequest);
-        let pullRequestCommitCount = pullRequest.commitCount;
         const mergeOptions = {
             pull_number: prNumber,
             merge_method: method === 'auto' ? 'rebase' : method,
@@ -31,14 +30,12 @@ export class GithubApiMergeStrategy extends AutosquashMergeStrategy {
             const hasOnlySquashForOneCommit = normalCommitsCount === 1 && squashCount > 1;
             if (hasOnlyFixUpForOneCommit) {
                 mergeOptions.merge_method = 'squash';
-                pullRequestCommitCount = 1;
                 const [title, message = ''] = commits[0].message.split(COMMIT_HEADER_SEPARATOR);
                 mergeOptions.commit_title = title;
                 mergeOptions.commit_message = message;
             }
             else if (hasOnlySquashForOneCommit) {
                 mergeOptions.merge_method = 'squash';
-                pullRequestCommitCount = 1;
                 await this._promptCommitMessageEdit(pullRequest, mergeOptions);
             }
         }
@@ -76,6 +73,7 @@ export class GithubApiMergeStrategy extends AutosquashMergeStrategy {
             await this.createMergeComment(pullRequest, targetBranches);
             return;
         }
+        const pullRequestCommitCount = mergeOptions.merge_method === 'rebase' ? pullRequest.commitCount : 1;
         const failedBranches = await this.cherryPickIntoTargetBranches(`${targetSha}~${pullRequestCommitCount}..${targetSha}`, cherryPickTargetBranches, {
             linkToOriginalCommits: true,
         });
