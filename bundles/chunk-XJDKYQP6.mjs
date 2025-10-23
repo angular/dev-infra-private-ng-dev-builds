@@ -3,161 +3,14 @@ import {createRequire as __cjsCompatRequire} from 'module';
 const require = __cjsCompatRequire(import.meta.url);
 
 import {
+  init_supports_color,
+  supports_color_default
+} from "./chunk-AEYI6NEN.mjs";
+import {
   __commonJS,
-  __esm,
-  __export,
   __require,
   __toESM
 } from "./chunk-UHIZKGIY.mjs";
-
-// node_modules/.aspect_rules_js/supports-color@10.2.2/node_modules/supports-color/index.js
-var supports_color_exports = {};
-__export(supports_color_exports, {
-  createSupportsColor: () => createSupportsColor2,
-  default: () => supports_color_default2
-});
-import process3 from "node:process";
-import os2 from "node:os";
-import tty2 from "node:tty";
-function hasFlag2(flag, argv = globalThis.Deno ? globalThis.Deno.args : process3.argv) {
-  const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
-  const position = argv.indexOf(prefix + flag);
-  const terminatorPosition = argv.indexOf("--");
-  return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
-}
-function envForceColor2() {
-  if (!("FORCE_COLOR" in env2)) {
-    return;
-  }
-  if (env2.FORCE_COLOR === "true") {
-    return 1;
-  }
-  if (env2.FORCE_COLOR === "false") {
-    return 0;
-  }
-  if (env2.FORCE_COLOR.length === 0) {
-    return 1;
-  }
-  const level = Math.min(Number.parseInt(env2.FORCE_COLOR, 10), 3);
-  if (![0, 1, 2, 3].includes(level)) {
-    return;
-  }
-  return level;
-}
-function translateLevel2(level) {
-  if (level === 0) {
-    return false;
-  }
-  return {
-    level,
-    hasBasic: true,
-    has256: level >= 2,
-    has16m: level >= 3
-  };
-}
-function _supportsColor2(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
-  const noFlagForceColor = envForceColor2();
-  if (noFlagForceColor !== void 0) {
-    flagForceColor2 = noFlagForceColor;
-  }
-  const forceColor = sniffFlags ? flagForceColor2 : noFlagForceColor;
-  if (forceColor === 0) {
-    return 0;
-  }
-  if (sniffFlags) {
-    if (hasFlag2("color=16m") || hasFlag2("color=full") || hasFlag2("color=truecolor")) {
-      return 3;
-    }
-    if (hasFlag2("color=256")) {
-      return 2;
-    }
-  }
-  if ("TF_BUILD" in env2 && "AGENT_NAME" in env2) {
-    return 1;
-  }
-  if (haveStream && !streamIsTTY && forceColor === void 0) {
-    return 0;
-  }
-  const min = forceColor || 0;
-  if (env2.TERM === "dumb") {
-    return min;
-  }
-  if (process3.platform === "win32") {
-    const osRelease = os2.release().split(".");
-    if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
-      return Number(osRelease[2]) >= 14931 ? 3 : 2;
-    }
-    return 1;
-  }
-  if ("CI" in env2) {
-    if (["GITHUB_ACTIONS", "GITEA_ACTIONS", "CIRCLECI"].some((key) => key in env2)) {
-      return 3;
-    }
-    if (["TRAVIS", "APPVEYOR", "GITLAB_CI", "BUILDKITE", "DRONE"].some((sign) => sign in env2) || env2.CI_NAME === "codeship") {
-      return 1;
-    }
-    return min;
-  }
-  if ("TEAMCITY_VERSION" in env2) {
-    return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env2.TEAMCITY_VERSION) ? 1 : 0;
-  }
-  if (env2.COLORTERM === "truecolor") {
-    return 3;
-  }
-  if (env2.TERM === "xterm-kitty") {
-    return 3;
-  }
-  if (env2.TERM === "xterm-ghostty") {
-    return 3;
-  }
-  if (env2.TERM === "wezterm") {
-    return 3;
-  }
-  if ("TERM_PROGRAM" in env2) {
-    const version = Number.parseInt((env2.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
-    switch (env2.TERM_PROGRAM) {
-      case "iTerm.app": {
-        return version >= 3 ? 3 : 2;
-      }
-      case "Apple_Terminal": {
-        return 2;
-      }
-    }
-  }
-  if (/-256(color)?$/i.test(env2.TERM)) {
-    return 2;
-  }
-  if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env2.TERM)) {
-    return 1;
-  }
-  if ("COLORTERM" in env2) {
-    return 1;
-  }
-  return min;
-}
-function createSupportsColor2(stream, options = {}) {
-  const level = _supportsColor2(stream, {
-    streamIsTTY: stream && stream.isTTY,
-    ...options
-  });
-  return translateLevel2(level);
-}
-var env2, flagForceColor2, supportsColor2, supports_color_default2;
-var init_supports_color = __esm({
-  "node_modules/.aspect_rules_js/supports-color@10.2.2/node_modules/supports-color/index.js"() {
-    ({ env: env2 } = process3);
-    if (hasFlag2("no-color") || hasFlag2("no-colors") || hasFlag2("color=false") || hasFlag2("color=never")) {
-      flagForceColor2 = 0;
-    } else if (hasFlag2("color") || hasFlag2("colors") || hasFlag2("color=true") || hasFlag2("color=always")) {
-      flagForceColor2 = 1;
-    }
-    supportsColor2 = {
-      stdout: createSupportsColor2({ isTTY: tty2.isatty(1) }),
-      stderr: createSupportsColor2({ isTTY: tty2.isatty(2) })
-    };
-    supports_color_default2 = supportsColor2;
-  }
-});
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/array.js
 var require_array = __commonJS({
@@ -230,9 +83,9 @@ var require_path = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.convertPosixPathToPattern = exports.convertWindowsPathToPattern = exports.convertPathToPattern = exports.escapePosixPath = exports.escapeWindowsPath = exports.escape = exports.removeLeadingDotSegment = exports.makeAbsolute = exports.unixify = void 0;
-    var os3 = __require("os");
+    var os2 = __require("os");
     var path = __require("path");
-    var IS_WINDOWS_PLATFORM = os3.platform() === "win32";
+    var IS_WINDOWS_PLATFORM = os2.platform() === "win32";
     var LEADING_DOT_SEGMENT_CHARACTERS_COUNT = 2;
     var POSIX_UNESCAPED_GLOB_SYMBOLS_RE = /(\\?)([()*?[\]{|}]|^!|[!+@](?=\()|\\(?![!()*+?@[\]{|}]))/g;
     var WINDOWS_UNESCAPED_GLOB_SYMBOLS_RE = /(\\?)([()[\]{}]|^!|[!+@](?=\())/g;
@@ -5551,8 +5404,8 @@ var require_settings4 = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DEFAULT_FILE_SYSTEM_ADAPTER = void 0;
     var fs = __require("fs");
-    var os3 = __require("os");
-    var CPU_COUNT = Math.max(os3.cpus().length, 1);
+    var os2 = __require("os");
+    var CPU_COUNT = Math.max(os2.cpus().length, 1);
     exports.DEFAULT_FILE_SYSTEM_ADAPTER = {
       lstat: fs.lstat,
       lstatSync: fs.lstatSync,
@@ -6021,7 +5874,7 @@ var supportsColor = {
   stdout: createSupportsColor({ isTTY: tty.isatty(1) }),
   stderr: createSupportsColor({ isTTY: tty.isatty(2) })
 };
-var supports_color_default = supportsColor;
+var supports_color_default2 = supportsColor;
 
 // node_modules/.aspect_rules_js/chalk@5.6.2/node_modules/chalk/source/utilities.js
 function stringReplaceAll(string, substring, replacer) {
@@ -6054,7 +5907,7 @@ function stringEncaseCRLFWithFirstIndex(string, prefix, postfix, index) {
 }
 
 // node_modules/.aspect_rules_js/chalk@5.6.2/node_modules/chalk/source/index.js
-var { stdout: stdoutColor, stderr: stderrColor } = supports_color_default;
+var { stdout: stdoutColor, stderr: stderrColor } = supports_color_default2;
 var GENERATOR = Symbol("GENERATOR");
 var STYLER = Symbol("STYLER");
 var IS_EMPTY = Symbol("IS_EMPTY");
@@ -6219,9 +6072,9 @@ var ChildProcess = class {
   }
   static spawnSync(command, args, options = {}) {
     const commandText = `${command} ${args.join(" ")}`;
-    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
+    const env2 = getEnvironmentForNonInteractiveCommand(options.env);
     Log.debug(`Executing command: ${commandText}`);
-    const { status: exitCode, signal, stdout, stderr } = _spawnSync(command, args, { ...options, env: env3, encoding: "utf8", shell: true, stdio: "pipe" });
+    const { status: exitCode, signal, stdout, stderr } = _spawnSync(command, args, { ...options, env: env2, encoding: "utf8", shell: true, stdio: "pipe" });
     const status = statusFromExitCodeAndSignal(exitCode, signal);
     if (status === 0 || options.suppressErrorOnFailingExitCode) {
       return { status, stdout, stderr };
@@ -6230,19 +6083,19 @@ var ChildProcess = class {
   }
   static spawn(command, args, options = {}) {
     const commandText = `${command} ${args.join(" ")}`;
-    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
-    return processAsyncCmd(commandText, options, _spawn(command, args, { ...options, env: env3, shell: true, stdio: "pipe" }));
+    const env2 = getEnvironmentForNonInteractiveCommand(options.env);
+    return processAsyncCmd(commandText, options, _spawn(command, args, { ...options, env: env2, shell: true, stdio: "pipe" }));
   }
   static exec(command, options = {}) {
-    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
-    return processAsyncCmd(command, options, _exec(command, { ...options, env: env3 }));
+    const env2 = getEnvironmentForNonInteractiveCommand(options.env);
+    return processAsyncCmd(command, options, _exec(command, { ...options, env: env2 }));
   }
 };
 function statusFromExitCodeAndSignal(exitCode, signal) {
   return exitCode ?? signal ?? -1;
 }
 function getEnvironmentForNonInteractiveCommand(userProvidedEnv) {
-  const forceColorValue = supports_color_default2.stdout !== false ? supports_color_default2.stdout.level.toString() : void 0;
+  const forceColorValue = supports_color_default.stdout !== false ? supports_color_default.stdout.level.toString() : void 0;
   return { FORCE_COLOR: forceColorValue, ...userProvidedEnv ?? process.env };
 }
 function processAsyncCmd(command, options, childProcess) {
@@ -6515,8 +6368,6 @@ function assertValidReleaseConfig(config) {
 
 export {
   require_out4 as require_out,
-  supports_color_exports,
-  init_supports_color,
   ChildProcess,
   determineRepoBaseDirFromCwd,
   LogLevel,
