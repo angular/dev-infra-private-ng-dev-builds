@@ -1,5 +1,6 @@
-import { dirname, join } from 'path';
-import { fileURLToPath } from 'url';
+import { setTimeout as sleep } from 'node:timers/promises';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { MergeStrategy, TEMP_PR_HEAD_BRANCH } from './strategy.js';
 import { MergeConflictsFatalError } from '../failures.js';
 export class AutosquashMergeStrategy extends MergeStrategy {
@@ -26,19 +27,8 @@ export class AutosquashMergeStrategy extends MergeStrategy {
             throw new MergeConflictsFatalError(failedBranches);
         }
         this.pushTargetBranchesUpstream(targetBranches);
-        const banchesAndSha = targetBranches.map((targetBranch) => {
-            const localBranch = this.getLocalTargetBranchName(targetBranch);
-            const sha = this.git.run(['rev-parse', localBranch]).stdout.trim();
-            return [targetBranch, sha];
-        });
-        await new Promise((resolve) => setTimeout(resolve, parseInt(process.env['AUTOSQUASH_TIMEOUT'] || '0')));
-        await this.git.github.issues.createComment({
-            ...this.git.remoteParams,
-            issue_number: pullRequest.prNumber,
-            body: 'This PR was merged into the repository. ' +
-                'The changes were merged into the following branches:\n\n' +
-                `${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join('\n')}`,
-        });
+        await sleep(parseInt(process.env['AUTOSQUASH_TIMEOUT'] || '0'));
+        await this.createMergeComment(pullRequest, targetBranches);
         if (githubTargetBranch !== this.git.mainBranchName) {
             await this.git.github.pulls.update({
                 ...this.git.remoteParams,

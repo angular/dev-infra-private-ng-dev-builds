@@ -47059,15 +47059,19 @@ var MergeStrategy = class {
       throw new MergeConflictsFatalError(failedBranches);
     }
   }
-  async getPullRequestCommits({ prNumber }) {
-    const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
-      ...this.git.remoteParams,
-      pull_number: prNumber
+  async createMergeComment(pullRequest, targetBranches) {
+    const banchesAndSha = targetBranches.map((targetBranch) => {
+      const localBranch = this.getLocalTargetBranchName(targetBranch);
+      const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
+      return [targetBranch, sha];
     });
-    return allCommits.map(({ commit: { message } }) => ({
-      message,
-      parsed: parseCommitMessage(message)
-    }));
+    await this.git.github.issues.createComment({
+      ...this.git.remoteParams,
+      issue_number: pullRequest.prNumber,
+      body: `This PR was merged into the repository. The changes were merged into the following branches:
+
+${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
+    });
   }
 };
 
@@ -47118,8 +47122,9 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
 }
 
 // ng-dev/pr/merge/strategies/autosquash-merge.js
-import { dirname as dirname5, join as join8 } from "path";
-import { fileURLToPath as fileURLToPath4 } from "url";
+import { setTimeout as sleep } from "node:timers/promises";
+import { dirname as dirname5, join as join8 } from "node:path";
+import { fileURLToPath as fileURLToPath4 } from "node:url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
   async merge(pullRequest) {
     const { githubTargetBranch, targetBranches, revisionRange, needsCommitMessageFixup, baseSha, prNumber } = pullRequest;
@@ -47142,19 +47147,8 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
       throw new MergeConflictsFatalError(failedBranches);
     }
     this.pushTargetBranchesUpstream(targetBranches);
-    const banchesAndSha = targetBranches.map((targetBranch) => {
-      const localBranch = this.getLocalTargetBranchName(targetBranch);
-      const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
-      return [targetBranch, sha];
-    });
-    await new Promise((resolve12) => setTimeout(resolve12, parseInt(process.env["AUTOSQUASH_TIMEOUT"] || "0")));
-    await this.git.github.issues.createComment({
-      ...this.git.remoteParams,
-      issue_number: pullRequest.prNumber,
-      body: `This PR was merged into the repository. The changes were merged into the following branches:
-
-${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
-    });
+    await sleep(parseInt(process.env["AUTOSQUASH_TIMEOUT"] || "0"));
+    await this.createMergeComment(pullRequest, targetBranches);
     if (githubTargetBranch !== this.git.mainBranchName) {
       await this.git.github.pulls.update({
         ...this.git.remoteParams,
@@ -47178,16 +47172,35 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
   }
   async merge(pullRequest) {
     const { githubTargetBranch, prNumber, needsCommitMessageFixup, targetBranches } = pullRequest;
-    const method = this.getMergeActionFromPullRequest(pullRequest);
     const cherryPickTargetBranches = targetBranches.filter((b) => b !== githubTargetBranch);
-    if (method === "rebase-with-fixup" && (pullRequest.needsCommitMessageFixup || await this.hasFixupOrSquashCommits(pullRequest))) {
-      return super.merge(pullRequest);
-    }
+    const commits = await this.getPullRequestCommits(pullRequest);
+    const { squashCount, fixupCount, normalCommitsCount } = await this.getCommitsInfo(pullRequest);
+    const method = this.getMergeActionFromPullRequest(pullRequest);
+    let pullRequestCommitCount = pullRequest.commitCount;
     const mergeOptions = {
       pull_number: prNumber,
-      merge_method: method === "rebase-with-fixup" ? "rebase" : method,
+      merge_method: method === "auto" ? "rebase" : method,
       ...this.git.remoteParams
     };
+    if (method === "auto") {
+      const hasFixUpOrSquashAndMultipleCommits = normalCommitsCount > 1 && (fixupCount > 0 || squashCount > 0);
+      if (needsCommitMessageFixup || hasFixUpOrSquashAndMultipleCommits) {
+        return super.merge(pullRequest);
+      }
+      const hasOnlyFixUpForOneCommit = normalCommitsCount === 1 && fixupCount > 0 && squashCount === 0;
+      const hasOnlySquashForOneCommit = normalCommitsCount === 1 && squashCount > 1;
+      if (hasOnlyFixUpForOneCommit) {
+        mergeOptions.merge_method = "squash";
+        pullRequestCommitCount = 1;
+        const [title, message = ""] = commits[0].message.split(COMMIT_HEADER_SEPARATOR);
+        mergeOptions.commit_title = title;
+        mergeOptions.commit_message = message;
+      } else if (hasOnlySquashForOneCommit) {
+        mergeOptions.merge_method = "squash";
+        pullRequestCommitCount = 1;
+        await this._promptCommitMessageEdit(pullRequest, mergeOptions);
+      }
+    }
     if (needsCommitMessageFixup) {
       if (method !== "squash") {
         throw new FatalMergeToolError(`Unable to fixup commit message of pull request. Commit message can only be modified if the PR is merged using squash.`);
@@ -47214,33 +47227,23 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
     if (mergeStatusCode !== 200) {
       throw new FatalMergeToolError(`Unexpected merge status code: ${mergeStatusCode}: ${mergeResponseMessage}`);
     }
+    this.git.run(["checkout", TEMP_PR_HEAD_BRANCH]);
+    this.fetchTargetBranches([githubTargetBranch]);
     if (!cherryPickTargetBranches.length) {
+      await this.createMergeComment(pullRequest, targetBranches);
       return;
     }
-    this.fetchTargetBranches([githubTargetBranch]);
-    const targetCommitsCount = method === "squash" ? 1 : pullRequest.commitCount;
-    const failedBranches = await this.cherryPickIntoTargetBranches(`${targetSha}~${targetCommitsCount}..${targetSha}`, cherryPickTargetBranches, {
+    const failedBranches = await this.cherryPickIntoTargetBranches(`${targetSha}~${pullRequestCommitCount}..${targetSha}`, cherryPickTargetBranches, {
       linkToOriginalCommits: true
     });
     if (failedBranches.length) {
       throw new MergeConflictsFatalError(failedBranches);
     }
     this.pushTargetBranchesUpstream(cherryPickTargetBranches);
-    const banchesAndSha = targetBranches.map((targetBranch) => {
-      const localBranch = this.getLocalTargetBranchName(targetBranch);
-      const sha = this.git.run(["rev-parse", localBranch]).stdout.trim();
-      return [targetBranch, sha];
-    });
-    await this.git.github.issues.createComment({
-      ...this.git.remoteParams,
-      issue_number: pullRequest.prNumber,
-      body: `This PR was merged into the repository. The changes were merged into the following branches:
-
-${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
-    });
+    await this.createMergeComment(pullRequest, targetBranches);
   }
   async _promptCommitMessageEdit(pullRequest, mergeOptions) {
-    const commitMessage = await this._getDefaultSquashCommitMessage(pullRequest);
+    const commitMessage = await this.getDefaultSquashCommitMessage(pullRequest);
     const result = await Prompt.editor({
       message: "Please update the commit message",
       default: commitMessage
@@ -47249,7 +47252,7 @@ ${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     mergeOptions.commit_title = `${newTitle} (#${pullRequest.prNumber})`;
     mergeOptions.commit_message = newMessage.join(COMMIT_HEADER_SEPARATOR);
   }
-  async _getDefaultSquashCommitMessage(pullRequest) {
+  async getDefaultSquashCommitMessage(pullRequest) {
     const commits = await this.getPullRequestCommits(pullRequest);
     const messageBase = `${pullRequest.title}${COMMIT_HEADER_SEPARATOR}`;
     if (commits.length <= 1) {
@@ -47267,9 +47270,41 @@ ${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     }
     return this.config.default;
   }
-  async hasFixupOrSquashCommits(pullRequest) {
+  async getCommitsInfo(pullRequest) {
     const commits = await this.getPullRequestCommits(pullRequest);
-    return commits.some(({ parsed: { isFixup, isSquash } }) => isFixup || isSquash);
+    const commitsInfo = {
+      fixupCount: 0,
+      squashCount: 0,
+      normalCommitsCount: 1
+    };
+    if (commits.length === 1) {
+      return commitsInfo;
+    }
+    for (let index = 1; index < commits.length; index++) {
+      const { parsed: { isFixup, isSquash } } = commits[index];
+      if (isFixup) {
+        commitsInfo.fixupCount++;
+      } else if (isSquash) {
+        commitsInfo.squashCount++;
+      } else {
+        commitsInfo.normalCommitsCount++;
+      }
+    }
+    return commitsInfo;
+  }
+  async getPullRequestCommits({ prNumber }) {
+    if (this.commits) {
+      return this.commits;
+    }
+    const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
+      ...this.git.remoteParams,
+      pull_number: prNumber
+    });
+    this.commits = allCommits.map(({ commit: { message } }) => ({
+      message,
+      parsed: parseCommitMessage(message)
+    }));
+    return this.commits;
   }
 };
 
@@ -49801,7 +49836,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-0e8914a6c85af2d5b609c85b11f6340f22f3d731`;
+  const localVersion = `0.0.0-8704d6c3737c52172aebb7eead702e7675852542`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -63927,7 +63962,7 @@ async function uploadBlob(file, uploadUrl, apiClient) {
         break;
       }
       retryCount++;
-      await sleep(currentDelayMs);
+      await sleep2(currentDelayMs);
       currentDelayMs = currentDelayMs * DELAY_MULTIPLIER;
     }
     offset += chunkSize;
@@ -63948,7 +63983,7 @@ async function getBlobStat(file) {
   const fileStat = { size: file.size, type: file.type };
   return fileStat;
 }
-function sleep(ms) {
+function sleep2(ms) {
   return new Promise((resolvePromise) => setTimeout(resolvePromise, ms));
 }
 var NodeUploader = class {
@@ -64101,7 +64136,7 @@ var NodeUploader = class {
             break;
           }
           retryCount++;
-          await sleep(currentDelayMs);
+          await sleep2(currentDelayMs);
           currentDelayMs = currentDelayMs * DELAY_MULTIPLIER;
         }
         offset += bytesRead;

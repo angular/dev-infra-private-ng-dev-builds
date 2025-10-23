@@ -1,5 +1,5 @@
 import { GithubConfig, NgDevConfig } from '../../utils/config.js';
-export type GithubApiMergeMethod = 'merge' | 'squash' | 'rebase' | 'rebase-with-fixup';
+export type GithubApiMergeMethod = 'merge' | 'squash' | 'rebase' | 'auto';
 export interface GithubApiMergeStrategyConfig {
     default: GithubApiMergeMethod;
     labels?: {

@@ -1,4 +1,3 @@
-import { parseCommitMessage } from '../../../commit-message/parse.js';
 import { FatalMergeToolError, MergeConflictsFatalError, MismatchedTargetBranchFatalError, UnsatisfiedBaseShaFatalError, } from '../failures.js';
 export const TEMP_PR_HEAD_BRANCH = 'merge_pr_head';
 export class MergeStrategy {
@@ -79,15 +78,19 @@ export class MergeStrategy {
             throw new MergeConflictsFatalError(failedBranches);
         }
     }
-    async getPullRequestCommits({ prNumber }) {
-        const allCommits = await this.git.github.paginate(this.git.github.pulls.listCommits, {
-            ...this.git.remoteParams,
-            pull_number: prNumber,
+    async createMergeComment(pullRequest, targetBranches) {
+        const banchesAndSha = targetBranches.map((targetBranch) => {
+            const localBranch = this.getLocalTargetBranchName(targetBranch);
+            const sha = this.git.run(['rev-parse', localBranch]).stdout.trim();
+            return [targetBranch, sha];
         });
-        return allCommits.map(({ commit: { message } }) => ({
-            message,
-            parsed: parseCommitMessage(message),
-        }));
+        await this.git.github.issues.createComment({
+            ...this.git.remoteParams,
+            issue_number: pullRequest.prNumber,
+            body: 'This PR was merged into the repository. ' +
+                'The changes were merged into the following branches:\n\n' +
+                `${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join('\n')}`,
+        });
     }
 }
 //# sourceMappingURL=strategy.js.map
