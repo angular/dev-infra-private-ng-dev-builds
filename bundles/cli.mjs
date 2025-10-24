@@ -46373,7 +46373,15 @@ var PR_SCHEMA2 = {
   }),
   author: {
     login: types.string
-  }
+  },
+  closingIssuesReferences: params({ first: 100 }, {
+    nodes: [
+      {
+        number: types.number,
+        state: types.custom()
+      }
+    ]
+  })
 };
 var PR_FILES_SCHEMA = params({ first: 100 }, {
   path: types.string
@@ -47073,6 +47081,22 @@ var MergeStrategy = class {
 ${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     });
   }
+  async closeLinkedIssues({ closingIssuesReferences, githubTargetBranch }) {
+    if (githubTargetBranch === this.git.mainBranchName) {
+      return;
+    }
+    for (const { number: issue_number, state } of closingIssuesReferences) {
+      if (state === "CLOSED") {
+        continue;
+      }
+      await this.git.github.issues.update({
+        ...this.git.remoteParams,
+        issue_number,
+        state_reason: "completed",
+        state: "closed"
+      });
+    }
+  }
 };
 
 // ng-dev/pr/merge/pull-request.js
@@ -47117,7 +47141,8 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
     targetBranches: target.branches,
     title: prData.title,
     commitCount: prData.commits.totalCount,
-    headSha: prData.headRefOid
+    headSha: prData.headRefOid,
+    closingIssuesReferences: prData.closingIssuesReferences.nodes
   };
 }
 
@@ -47155,6 +47180,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
         pull_number: pullRequest.prNumber,
         state: "closed"
       });
+      await this.closeLinkedIssues(pullRequest);
     }
   }
 };
@@ -47223,6 +47249,9 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
     }
     if (mergeStatusCode !== 200) {
       throw new FatalMergeToolError(`Unexpected merge status code: ${mergeStatusCode}: ${mergeResponseMessage}`);
+    }
+    if (githubTargetBranch !== this.git.mainBranchName) {
+      await this.closeLinkedIssues(pullRequest);
     }
     this.git.run(["checkout", TEMP_PR_HEAD_BRANCH]);
     this.fetchTargetBranches([githubTargetBranch]);
@@ -49834,7 +49863,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-43cd9cad8ecd8ee080a11072396380ebea930f38`;
+  const localVersion = `0.0.0-0566e3ff6f3306497fbb55d743c169654f5be9ea`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

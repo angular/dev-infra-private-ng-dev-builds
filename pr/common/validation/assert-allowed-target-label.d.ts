@@ -93,5 +93,11 @@ export declare const changesAllowForTargetLabelValidation: {
         author: {
             login: string;
         };
+        closingIssuesReferences: {
+            nodes: {
+                number: number;
+                state: import("@octokit/graphql-schema").IssueState;
+            }[];
+        };
     }): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };

@@ -1,7 +1,12 @@
+import { IssueState } from '@octokit/graphql-schema';
 import { PullRequestValidationFailure } from '../common/validation/validation-failure.js';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 import { GithubConfig, NgDevConfig } from '../../utils/config.js';
 import { PullRequestConfig, PullRequestValidationConfig } from '../config/index.js';
+export interface PullRequestClosingIssuesReferences {
+    number: number;
+    state: IssueState;
+}
 export interface PullRequest {
     url: string;
     prNumber: number;
@@ -17,6 +22,7 @@ export interface PullRequest {
     revisionRange: string;
     validationFailures: PullRequestValidationFailure[];
     headSha: string;
+    closingIssuesReferences: PullRequestClosingIssuesReferences[];
 }
 export declare function loadAndValidatePullRequest({ git, config, }: {
     git: AuthenticatedGitClient;

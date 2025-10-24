@@ -50,6 +50,7 @@ export async function loadAndValidatePullRequest({ git, config, }, prNumber, val
         title: prData.title,
         commitCount: prData.commits.totalCount,
         headSha: prData.headRefOid,
+        closingIssuesReferences: prData.closingIssuesReferences.nodes,
     };
 }
 //# sourceMappingURL=pull-request.js.map

@@ -91,6 +91,12 @@ export declare const enforceTestedValidation: {
         author: {
             login: string;
         };
+        closingIssuesReferences: {
+            nodes: {
+                number: number;
+                state: import("@octokit/graphql-schema").IssueState;
+            }[];
+        };
     }, gitClient: AuthenticatedGitClient): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
 export declare class PullRequestComments {

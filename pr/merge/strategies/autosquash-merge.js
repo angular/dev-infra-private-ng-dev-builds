@@ -35,6 +35,7 @@ export class AutosquashMergeStrategy extends MergeStrategy {
                 pull_number: pullRequest.prNumber,
                 state: 'closed',
             });
+            await this.closeLinkedIssues(pullRequest);
         }
     }
 }

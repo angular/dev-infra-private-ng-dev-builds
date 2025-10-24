@@ -92,5 +92,21 @@ export class MergeStrategy {
                 `${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join('\n')}`,
         });
     }
+    async closeLinkedIssues({ closingIssuesReferences, githubTargetBranch, }) {
+        if (githubTargetBranch === this.git.mainBranchName) {
+            return;
+        }
+        for (const { number: issue_number, state } of closingIssuesReferences) {
+            if (state === 'CLOSED') {
+                continue;
+            }
+            await this.git.github.issues.update({
+                ...this.git.remoteParams,
+                issue_number,
+                state_reason: 'completed',
+                state: 'closed',
+            });
+        }
+    }
 }
 //# sourceMappingURL=strategy.js.map

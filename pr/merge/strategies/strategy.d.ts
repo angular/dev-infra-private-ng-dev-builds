@@ -17,4 +17,5 @@ export declare abstract class MergeStrategy {
     protected pushTargetBranchesUpstream(names: string[]): void;
     protected _assertMergeableOrThrow({ revisionRange }: PullRequest, targetBranches: string[]): Promise<void>;
     protected createMergeComment(pullRequest: PullRequest, targetBranches: string[]): Promise<void>;
+    protected closeLinkedIssues({ closingIssuesReferences, githubTargetBranch, }: PullRequest): Promise<void>;
 }

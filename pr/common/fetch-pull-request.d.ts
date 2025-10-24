@@ -1,4 +1,4 @@
-import { CheckConclusionState, CheckStatusState, MergeableState, PullRequestState, StatusState, CommentAuthorAssociation } from '@octokit/graphql-schema';
+import { CheckConclusionState, CheckStatusState, MergeableState, PullRequestState, StatusState, CommentAuthorAssociation, IssueState } from '@octokit/graphql-schema';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 export declare enum PullRequestStatus {
     PASSING = 0,
@@ -94,6 +94,12 @@ export declare const PR_SCHEMA: {
     };
     author: {
         login: string;
+    };
+    closingIssuesReferences: {
+        nodes: {
+            number: number;
+            state: IssueState;
+        }[];
     };
 };
 export type PullRequestFromGithub = typeof PR_SCHEMA;

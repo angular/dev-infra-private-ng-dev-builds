@@ -90,5 +90,11 @@ export declare const enforcedStatusesValidation: {
         author: {
             login: string;
         };
+        closingIssuesReferences: {
+            nodes: {
+                number: number;
+                state: import("@octokit/graphql-schema").IssueState;
+            }[];
+        };
     }, config: PullRequestConfig): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };

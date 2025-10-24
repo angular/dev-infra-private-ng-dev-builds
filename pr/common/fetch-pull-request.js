@@ -92,6 +92,14 @@ export const PR_SCHEMA = {
     author: {
         login: graphqlTypes.string,
     },
+    closingIssuesReferences: params({ first: 100 }, {
+        nodes: [
+            {
+                number: graphqlTypes.number,
+                state: graphqlTypes.custom(),
+            },
+        ],
+    }),
 };
 export const PR_FILES_SCHEMA = params({ first: 100 }, {
     path: graphqlTypes.string,

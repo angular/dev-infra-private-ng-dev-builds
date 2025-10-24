@@ -67,6 +67,9 @@ export class GithubApiMergeStrategy extends AutosquashMergeStrategy {
         if (mergeStatusCode !== 200) {
             throw new FatalMergeToolError(`Unexpected merge status code: ${mergeStatusCode}: ${mergeResponseMessage}`);
         }
+        if (githubTargetBranch !== this.git.mainBranchName) {
+            await this.closeLinkedIssues(pullRequest);
+        }
         this.git.run(['checkout', TEMP_PR_HEAD_BRANCH]);
         this.fetchTargetBranches([githubTargetBranch]);
         if (!cherryPickTargetBranches.length) {
