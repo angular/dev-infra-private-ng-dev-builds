@@ -49863,7 +49863,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-df29349bcc32ac02c6966c1f986b14b0571c6f42`;
+  const localVersion = `0.0.0-e12608620a98aa269f910e4d139e7c7b87f5c0c6`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -50820,7 +50820,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.26.0_1526804011/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.27.0_1526804011/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable2 } from "node:stream";
@@ -50832,7 +50832,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.26.0_1526804011/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.27.0_1526804011/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -59813,7 +59813,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.26.0";
+var SDK_VERSION = "1.27.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -59972,7 +59972,7 @@ var ApiClient = class {
     } else {
       requestInit.body = request.body;
     }
-    requestInit = await this.includeExtraHttpOptionsToRequestInit(requestInit, patchedHttpOptions, request.abortSignal);
+    requestInit = await this.includeExtraHttpOptionsToRequestInit(requestInit, patchedHttpOptions, url2.toString(), request.abortSignal);
     return this.unaryApiCall(url2, requestInit, request.httpMethod);
   }
   patchHttpOptions(baseHttpOptions, requestHttpOptions) {
@@ -59998,10 +59998,10 @@ var ApiClient = class {
     }
     let requestInit = {};
     requestInit.body = request.body;
-    requestInit = await this.includeExtraHttpOptionsToRequestInit(requestInit, patchedHttpOptions, request.abortSignal);
+    requestInit = await this.includeExtraHttpOptionsToRequestInit(requestInit, patchedHttpOptions, url2.toString(), request.abortSignal);
     return this.streamApiCall(url2, requestInit, request.httpMethod);
   }
-  async includeExtraHttpOptionsToRequestInit(requestInit, httpOptions, abortSignal) {
+  async includeExtraHttpOptionsToRequestInit(requestInit, httpOptions, url2, abortSignal) {
     if (httpOptions && httpOptions.timeout || abortSignal) {
       const abortController = new AbortController();
       const signal = abortController.signal;
@@ -60021,7 +60021,7 @@ var ApiClient = class {
     if (httpOptions && httpOptions.extraBody !== null) {
       includeExtraBodyToRequestInit(requestInit, httpOptions.extraBody);
     }
-    requestInit.headers = await this.getHeadersInternal(httpOptions);
+    requestInit.headers = await this.getHeadersInternal(httpOptions, url2);
     return requestInit;
   }
   async unaryApiCall(url2, requestInit, httpMethod) {
@@ -60124,7 +60124,7 @@ var ApiClient = class {
     headers[CONTENT_TYPE_HEADER] = "application/json";
     return headers;
   }
-  async getHeadersInternal(httpOptions) {
+  async getHeadersInternal(httpOptions, url2) {
     const headers = new Headers();
     if (httpOptions && httpOptions.headers) {
       for (const [key, value] of Object.entries(httpOptions.headers)) {
@@ -60134,7 +60134,7 @@ var ApiClient = class {
         headers.append(SERVER_TIMEOUT_HEADER, String(Math.ceil(httpOptions.timeout / 1e3)));
       }
     }
-    await this.clientOptions.auth.addAuthHeaders(headers);
+    await this.clientOptions.auth.addAuthHeaders(headers, url2);
     return headers;
   }
   /**
@@ -60696,7 +60696,7 @@ var Live = class {
     const headers = mapToHeaders(clientHeaders);
     if (this.apiClient.isVertexAI()) {
       url2 = `${websocketBaseUrl}/ws/google.cloud.aiplatform.${apiVersion}.LlmBidiService/BidiGenerateContent`;
-      await this.auth.addAuthHeaders(headers);
+      await this.auth.addAuthHeaders(headers, url2);
     } else {
       const apiKey = this.apiClient.getApiKey();
       let method = "BidiGenerateContent";
@@ -63002,7 +63002,7 @@ var NodeAuth = class {
     const vertexAuthOptions = buildGoogleAuthOptions(opts.googleAuthOptions);
     this.googleAuth = new import_google_auth_library.GoogleAuth(vertexAuthOptions);
   }
-  async addAuthHeaders(headers) {
+  async addAuthHeaders(headers, url2) {
     if (this.apiKey !== void 0) {
       if (this.apiKey.startsWith("auth_tokens/")) {
         throw new Error("Ephemeral tokens are only supported by the live API.");
@@ -63010,7 +63010,7 @@ var NodeAuth = class {
       this.addKeyHeader(headers);
       return;
     }
-    return this.addGoogleAuthHeaders(headers);
+    return this.addGoogleAuthHeaders(headers, url2);
   }
   addKeyHeader(headers) {
     if (headers.get(GOOGLE_API_KEY_HEADER) !== null) {
@@ -63021,12 +63021,12 @@ var NodeAuth = class {
     }
     headers.append(GOOGLE_API_KEY_HEADER, this.apiKey);
   }
-  async addGoogleAuthHeaders(headers) {
+  async addGoogleAuthHeaders(headers, url2) {
     if (this.googleAuth === void 0) {
       throw new Error("Trying to set google-auth headers but googleAuth is unset");
     }
-    const authHeaders = await this.googleAuth.getRequestHeaders();
-    for (const [key, value] of Object.entries(authHeaders)) {
+    const authHeaders = await this.googleAuth.getRequestHeaders(url2);
+    for (const [key, value] of authHeaders) {
       if (headers.get(key) !== null) {
         continue;
       }
@@ -63131,7 +63131,7 @@ var NodeWebSocket = class {
     this.ws.close();
   }
 };
-function cancelTuningJobParametersToMldev(fromObject) {
+function cancelTuningJobParametersToMldev(fromObject, _rootObject) {
   const toObject = {};
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
@@ -63139,7 +63139,7 @@ function cancelTuningJobParametersToMldev(fromObject) {
   }
   return toObject;
 }
-function cancelTuningJobParametersToVertex(fromObject) {
+function cancelTuningJobParametersToVertex(fromObject, _rootObject) {
   const toObject = {};
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
@@ -63147,7 +63147,7 @@ function cancelTuningJobParametersToVertex(fromObject) {
   }
   return toObject;
 }
-function createTuningJobConfigToMldev(fromObject, parentObject) {
+function createTuningJobConfigToMldev(fromObject, parentObject, _rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["validationDataset"]) !== void 0) {
     throw new Error("validationDataset parameter is not supported in Gemini API.");
@@ -63193,13 +63193,13 @@ function createTuningJobConfigToMldev(fromObject, parentObject) {
   }
   return toObject;
 }
-function createTuningJobConfigToVertex(fromObject, parentObject) {
+function createTuningJobConfigToVertex(fromObject, parentObject, rootObject) {
   const toObject = {};
   const fromValidationDataset = getValueByPath(fromObject, [
     "validationDataset"
   ]);
   if (parentObject !== void 0 && fromValidationDataset != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec"], tuningValidationDatasetToVertex(fromValidationDataset, toObject));
+    setValueByPath(parentObject, ["supervisedTuningSpec"], tuningValidationDatasetToVertex(fromValidationDataset));
   }
   const fromTunedModelDisplayName = getValueByPath(fromObject, [
     "tunedModelDisplayName"
@@ -63243,7 +63243,7 @@ function createTuningJobConfigToVertex(fromObject, parentObject) {
   }
   return toObject;
 }
-function createTuningJobParametersPrivateToMldev(fromObject) {
+function createTuningJobParametersPrivateToMldev(fromObject, rootObject) {
   const toObject = {};
   const fromBaseModel = getValueByPath(fromObject, ["baseModel"]);
   if (fromBaseModel != null) {
@@ -63267,7 +63267,7 @@ function createTuningJobParametersPrivateToMldev(fromObject) {
   }
   return toObject;
 }
-function createTuningJobParametersPrivateToVertex(fromObject) {
+function createTuningJobParametersPrivateToVertex(fromObject, rootObject) {
   const toObject = {};
   const fromBaseModel = getValueByPath(fromObject, ["baseModel"]);
   if (fromBaseModel != null) {
@@ -63283,7 +63283,7 @@ function createTuningJobParametersPrivateToVertex(fromObject) {
     "trainingDataset"
   ]);
   if (fromTrainingDataset != null) {
-    setValueByPath(toObject, ["supervisedTuningSpec", "trainingDatasetUri"], tuningDatasetToVertex(fromTrainingDataset, toObject));
+    tuningDatasetToVertex(fromTrainingDataset, toObject);
   }
   const fromConfig = getValueByPath(fromObject, ["config"]);
   if (fromConfig != null) {
@@ -63291,7 +63291,7 @@ function createTuningJobParametersPrivateToVertex(fromObject) {
   }
   return toObject;
 }
-function getTuningJobParametersToMldev(fromObject) {
+function getTuningJobParametersToMldev(fromObject, _rootObject) {
   const toObject = {};
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
@@ -63299,7 +63299,7 @@ function getTuningJobParametersToMldev(fromObject) {
   }
   return toObject;
 }
-function getTuningJobParametersToVertex(fromObject) {
+function getTuningJobParametersToVertex(fromObject, _rootObject) {
   const toObject = {};
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
@@ -63307,7 +63307,7 @@ function getTuningJobParametersToVertex(fromObject) {
   }
   return toObject;
 }
-function listTuningJobsConfigToMldev(fromObject, parentObject) {
+function listTuningJobsConfigToMldev(fromObject, parentObject, _rootObject) {
   const toObject = {};
   const fromPageSize = getValueByPath(fromObject, ["pageSize"]);
   if (parentObject !== void 0 && fromPageSize != null) {
@@ -63323,7 +63323,7 @@ function listTuningJobsConfigToMldev(fromObject, parentObject) {
   }
   return toObject;
 }
-function listTuningJobsConfigToVertex(fromObject, parentObject) {
+function listTuningJobsConfigToVertex(fromObject, parentObject, _rootObject) {
   const toObject = {};
   const fromPageSize = getValueByPath(fromObject, ["pageSize"]);
   if (parentObject !== void 0 && fromPageSize != null) {
@@ -63339,7 +63339,7 @@ function listTuningJobsConfigToVertex(fromObject, parentObject) {
   }
   return toObject;
 }
-function listTuningJobsParametersToMldev(fromObject) {
+function listTuningJobsParametersToMldev(fromObject, rootObject) {
   const toObject = {};
   const fromConfig = getValueByPath(fromObject, ["config"]);
   if (fromConfig != null) {
@@ -63347,7 +63347,7 @@ function listTuningJobsParametersToMldev(fromObject) {
   }
   return toObject;
 }
-function listTuningJobsParametersToVertex(fromObject) {
+function listTuningJobsParametersToVertex(fromObject, rootObject) {
   const toObject = {};
   const fromConfig = getValueByPath(fromObject, ["config"]);
   if (fromConfig != null) {
@@ -63355,7 +63355,7 @@ function listTuningJobsParametersToVertex(fromObject) {
   }
   return toObject;
 }
-function listTuningJobsResponseFromMldev(fromObject) {
+function listTuningJobsResponseFromMldev(fromObject, rootObject) {
   const toObject = {};
   const fromSdkHttpResponse = getValueByPath(fromObject, [
     "sdkHttpResponse"
@@ -63381,7 +63381,7 @@ function listTuningJobsResponseFromMldev(fromObject) {
   }
   return toObject;
 }
-function listTuningJobsResponseFromVertex(fromObject) {
+function listTuningJobsResponseFromVertex(fromObject, rootObject) {
   const toObject = {};
   const fromSdkHttpResponse = getValueByPath(fromObject, [
     "sdkHttpResponse"
@@ -63407,7 +63407,7 @@ function listTuningJobsResponseFromVertex(fromObject) {
   }
   return toObject;
 }
-function tunedModelFromMldev(fromObject) {
+function tunedModelFromMldev(fromObject, _rootObject) {
   const toObject = {};
   const fromModel = getValueByPath(fromObject, ["name"]);
   if (fromModel != null) {
@@ -63419,7 +63419,7 @@ function tunedModelFromMldev(fromObject) {
   }
   return toObject;
 }
-function tuningDatasetToMldev(fromObject) {
+function tuningDatasetToMldev(fromObject, _rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["gcsUri"]) !== void 0) {
     throw new Error("gcsUri parameter is not supported in Gemini API.");
@@ -63439,7 +63439,7 @@ function tuningDatasetToMldev(fromObject) {
   }
   return toObject;
 }
-function tuningDatasetToVertex(fromObject, parentObject) {
+function tuningDatasetToVertex(fromObject, parentObject, _rootObject) {
   const toObject = {};
   const fromGcsUri = getValueByPath(fromObject, ["gcsUri"]);
   if (parentObject !== void 0 && fromGcsUri != null) {
@@ -63456,7 +63456,7 @@ function tuningDatasetToVertex(fromObject, parentObject) {
   }
   return toObject;
 }
-function tuningJobFromMldev(fromObject) {
+function tuningJobFromMldev(fromObject, rootObject) {
   const toObject = {};
   const fromSdkHttpResponse = getValueByPath(fromObject, [
     "sdkHttpResponse"
@@ -63508,7 +63508,7 @@ function tuningJobFromMldev(fromObject) {
   }
   return toObject;
 }
-function tuningJobFromVertex(fromObject) {
+function tuningJobFromVertex(fromObject, _rootObject) {
   const toObject = {};
   const fromSdkHttpResponse = getValueByPath(fromObject, [
     "sdkHttpResponse"
@@ -63628,7 +63628,7 @@ function tuningJobFromVertex(fromObject) {
   }
   return toObject;
 }
-function tuningOperationFromMldev(fromObject) {
+function tuningOperationFromMldev(fromObject, _rootObject) {
   const toObject = {};
   const fromSdkHttpResponse = getValueByPath(fromObject, [
     "sdkHttpResponse"
@@ -63654,7 +63654,7 @@ function tuningOperationFromMldev(fromObject) {
   }
   return toObject;
 }
-function tuningValidationDatasetToVertex(fromObject, parentObject) {
+function tuningValidationDatasetToVertex(fromObject, _rootObject) {
   const toObject = {};
   const fromGcsUri = getValueByPath(fromObject, ["gcsUri"]);
   if (fromGcsUri != null) {
@@ -63663,8 +63663,8 @@ function tuningValidationDatasetToVertex(fromObject, parentObject) {
   const fromVertexDatasetResource = getValueByPath(fromObject, [
     "vertexDatasetResource"
   ]);
-  if (parentObject !== void 0 && fromVertexDatasetResource != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec", "trainingDatasetUri"], fromVertexDatasetResource);
+  if (fromVertexDatasetResource != null) {
+    setValueByPath(toObject, ["validationDatasetUri"], fromVertexDatasetResource);
   }
   return toObject;
 }
