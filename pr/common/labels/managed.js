@@ -74,11 +74,5 @@ export const managedLabels = createTypedObject(ManagedLabel)({
         commitCheck: (c) => c.scope === 'localize',
         repositories: [ManagedRepositories.ANGULAR],
     },
-    DETECTED_REQUIRES_TGP: {
-        description: 'This PR requires a passing TGP before merging is allowed',
-        name: 'requires: TGP',
-        commitCheck: (c) => false,
-        repositories: [ManagedRepositories.ANGULAR],
-    },
 });
 //# sourceMappingURL=managed.js.map

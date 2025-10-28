@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-ONYQUXJH.mjs";
+} from "./chunk-A2IW6ABW.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -49863,7 +49863,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-cad1e95f5ec9beb40232b420393c36735d4cd946`;
+  const localVersion = `0.0.0-8b845a41a4a3d812c4e6453217a36761c63bc832`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
