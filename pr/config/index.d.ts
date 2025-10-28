@@ -19,6 +19,9 @@ export interface PullRequestConfig {
     githubApiMerge: false | GithubApiMergeStrategyConfig;
     targetLabelExemptScopes?: string[];
     validators?: PullRequestValidationConfig;
+    managedLabelByPath?: {
+        [label: string]: string[];
+    };
     __noTargetLabeling?: boolean;
 }
 export declare function assertValidPullRequestConfig<T extends NgDevConfig>(config: T & Partial<{
