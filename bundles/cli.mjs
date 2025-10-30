@@ -37850,7 +37850,7 @@ function expand_(str, isTop) {
   return expansions;
 }
 
-// node_modules/.aspect_rules_js/minimatch@10.0.3/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/minimatch@10.1.1/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -37861,7 +37861,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.0.3/node_modules/minimatch/dist/esm/brace-expressions.js
+// node_modules/.aspect_rules_js/minimatch@10.1.1/node_modules/minimatch/dist/esm/brace-expressions.js
 var posixClasses = {
   "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
   "[:alpha:]": ["\\p{L}\\p{Nl}", true],
@@ -37971,12 +37971,15 @@ var parseClass = (glob5, position) => {
   return [comb, uflag, endPos - pos, true];
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.0.3/node_modules/minimatch/dist/esm/unescape.js
-var unescape = (s, { windowsPathsNoEscape = false } = {}) => {
-  return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
+// node_modules/.aspect_rules_js/minimatch@10.1.1/node_modules/minimatch/dist/esm/unescape.js
+var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
+  if (magicalBraces) {
+    return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
+  }
+  return windowsPathsNoEscape ? s.replace(/\[([^\/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\{}])\]/g, "$1$2").replace(/\\([^\/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.0.3/node_modules/minimatch/dist/esm/ast.js
+// node_modules/.aspect_rules_js/minimatch@10.1.1/node_modules/minimatch/dist/esm/ast.js
 var types2 = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
 var isExtglobType = (c) => types2.has(c);
 var startNoTraversal = "(?!(?:^|/)\\.\\.?(?:$|/))";
@@ -38327,7 +38330,7 @@ var AST = class _AST {
     if (this.#root === this)
       this.#fillNegs();
     if (!this.type) {
-      const noEmpty = this.isStart() && this.isEnd();
+      const noEmpty = this.isStart() && this.isEnd() && !this.#parts.some((s) => typeof s !== "string");
       const src = this.#parts.map((p) => {
         const [re, _, hasMagic, uflag] = typeof p === "string" ? _AST.#parseGlob(p, this.#hasMagic, noEmpty) : p.toRegExpSource(allowDot);
         this.#hasMagic = this.#hasMagic || hasMagic;
@@ -38437,10 +38440,7 @@ var AST = class _AST {
         }
       }
       if (c === "*") {
-        if (noEmpty && glob5 === "*")
-          re += starNoEmpty;
-        else
-          re += star;
+        re += noEmpty && glob5 === "*" ? starNoEmpty : star;
         hasMagic = true;
         continue;
       }
@@ -38455,12 +38455,15 @@ var AST = class _AST {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.0.3/node_modules/minimatch/dist/esm/escape.js
-var escape = (s, { windowsPathsNoEscape = false } = {}) => {
+// node_modules/.aspect_rules_js/minimatch@10.1.1/node_modules/minimatch/dist/esm/escape.js
+var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
+  if (magicalBraces) {
+    return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
+  }
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.0.3/node_modules/minimatch/dist/esm/index.js
+// node_modules/.aspect_rules_js/minimatch@10.1.1/node_modules/minimatch/dist/esm/index.js
 var minimatch = (p, pattern, options = {}) => {
   assertValidPattern(pattern);
   if (!options.nocomment && pattern.charAt(0) === "#") {
@@ -39097,16 +39100,27 @@ var Minimatch = class {
             pp[i] = twoStar;
           }
         } else if (next === void 0) {
-          pp[i - 1] = prev + "(?:\\/|" + twoStar + ")?";
+          pp[i - 1] = prev + "(?:\\/|\\/" + twoStar + ")?";
         } else if (next !== GLOBSTAR) {
           pp[i - 1] = prev + "(?:\\/|\\/" + twoStar + "\\/)" + next;
           pp[i + 1] = GLOBSTAR;
         }
       });
-      return pp.filter((p) => p !== GLOBSTAR).join("/");
+      const filtered = pp.filter((p) => p !== GLOBSTAR);
+      if (this.partial && filtered.length >= 1) {
+        const prefixes = [];
+        for (let i = 1; i <= filtered.length; i++) {
+          prefixes.push(filtered.slice(0, i).join("/"));
+        }
+        return "(?:" + prefixes.join("|") + ")";
+      }
+      return filtered.join("/");
     }).join("|");
     const [open2, close] = set.length > 1 ? ["(?:", ")"] : ["", ""];
     re = "^" + open2 + re + close + "$";
+    if (this.partial) {
+      re = "^(?:\\/|" + open2 + re.slice(1, -1) + close + ")$";
+    }
     if (this.negate)
       re = "^(?!" + re + ").+$";
     try {
@@ -40354,7 +40368,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -40373,7 +40387,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -40396,10 +40410,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -40505,7 +40519,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -40523,7 +40537,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -40535,7 +40549,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs());
 
 // node_modules/.aspect_rules_js/@inquirer+figures@1.0.14/node_modules/@inquirer/figures/dist/esm/index.js
@@ -40827,7 +40841,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default2 = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
@@ -40849,7 +40863,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -40877,7 +40891,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -40908,7 +40922,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -40921,12 +40935,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -40945,7 +40959,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 var import_wrap_ansi2 = __toESM(require_wrap_ansi());
 function breakLines(content, width) {
@@ -40955,7 +40969,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -41044,7 +41058,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -41300,7 +41314,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@1.0.1/node_modules/@inquirer/ansi/dist/esm/index.js
@@ -41319,7 +41333,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -41379,7 +41393,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -41394,7 +41408,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -41481,7 +41495,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.1/node_modules/@inquirer/core/dist/esm/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.9.2/node_modules/@inquirer/core/dist/esm/lib/Separator.js
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs());
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default2.line));
@@ -41496,7 +41510,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@4.3.0_at_types_node_24.9.1/node_modules/@inquirer/checkbox/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@4.3.0_at_types_node_24.9.2/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs());
 var checkboxTheme = {
   icon: {
@@ -41684,7 +41698,7 @@ var esm_default3 = createPrompt((config, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.1/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.2/node_modules/@inquirer/external-editor/dist/esm/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -41693,7 +41707,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.1/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.2/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -41702,7 +41716,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.1/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.2/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -41711,7 +41725,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.1/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.2/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -41720,7 +41734,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.1/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.2/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -41729,7 +41743,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.1/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.9.2/node_modules/@inquirer/external-editor/dist/esm/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -41883,7 +41897,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@4.2.21_at_types_node_24.9.1/node_modules/@inquirer/editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@4.2.21_at_types_node_24.9.2/node_modules/@inquirer/editor/dist/esm/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -41952,7 +41966,7 @@ var esm_default4 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.19_at_types_node_24.9.1/node_modules/@inquirer/confirm/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.19_at_types_node_24.9.2/node_modules/@inquirer/confirm/dist/esm/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -41998,7 +42012,7 @@ var esm_default5 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@4.2.5_at_types_node_24.9.1/node_modules/@inquirer/input/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@4.2.5_at_types_node_24.9.2/node_modules/@inquirer/input/dist/esm/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -42070,7 +42084,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@3.0.21_at_types_node_24.9.1/node_modules/@inquirer/number/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@3.0.21_at_types_node_24.9.2/node_modules/@inquirer/number/dist/esm/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -42151,7 +42165,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@4.0.21_at_types_node_24.9.1/node_modules/@inquirer/expand/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@4.0.21_at_types_node_24.9.2/node_modules/@inquirer/expand/dist/esm/index.js
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs());
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -42247,7 +42261,7 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.9_at_types_node_24.9.1/node_modules/@inquirer/rawlist/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.9_at_types_node_24.9.2/node_modules/@inquirer/rawlist/dist/esm/index.js
 var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs());
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -42357,7 +42371,7 @@ var esm_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@4.0.21_at_types_node_24.9.1/node_modules/@inquirer/password/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@4.0.21_at_types_node_24.9.2/node_modules/@inquirer/password/dist/esm/index.js
 var esm_default10 = createPrompt((config, done) => {
   const { validate: validate2 = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -42406,7 +42420,7 @@ var esm_default10 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@3.2.0_at_types_node_24.9.1/node_modules/@inquirer/search/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@3.2.0_at_types_node_24.9.2/node_modules/@inquirer/search/dist/esm/index.js
 var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs());
 var searchTheme = {
   icon: { cursor: esm_default2.pointer },
@@ -42577,7 +42591,7 @@ var esm_default11 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@4.4.0_at_types_node_24.9.1/node_modules/@inquirer/select/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@4.4.0_at_types_node_24.9.2/node_modules/@inquirer/select/dist/esm/index.js
 var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs());
 var selectTheme = {
   icon: { cursor: esm_default2.pointer },
@@ -49863,7 +49877,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-8b845a41a4a3d812c4e6453217a36761c63bc832`;
+  const localVersion = `0.0.0-3bebee37631ef411a6ec33b188e347f2e4de78b2`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
