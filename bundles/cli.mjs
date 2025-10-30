@@ -21164,9 +21164,9 @@ var require_base64_js = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
 var require_shared = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromArrayBufferToHex = fromArrayBufferToHex;
@@ -21179,9 +21179,9 @@ var require_shared = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
 var require_crypto = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BrowserCrypto = void 0;
@@ -21275,9 +21275,9 @@ var require_crypto = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
 var require_crypto2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.NodeCrypto = void 0;
@@ -21339,9 +21339,9 @@ var require_crypto2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
 var require_crypto3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -21603,9 +21603,9 @@ var require_ecdsa_sig_formatter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js
 var require_util2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LRUCache = void 0;
@@ -21718,12 +21718,12 @@ var require_util2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/package.json
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/package.json
 var require_package3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/package.json"(exports, module) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/package.json"(exports, module) {
     module.exports = {
       name: "google-auth-library",
-      version: "10.4.1",
+      version: "10.4.2",
       author: "Google Inc.",
       description: "Google APIs Authentication Client Library for Node.js",
       engines: {
@@ -21812,9 +21812,9 @@ var require_package3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs
 var require_shared2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.USER_AGENT = exports.PRODUCT_NAME = exports.pkg = void 0;
@@ -21827,9 +21827,9 @@ var require_shared2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
 var require_authclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AuthClient = exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports.DEFAULT_UNIVERSE = void 0;
@@ -22062,9 +22062,9 @@ var require_authclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
 var require_loginticket = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LoginTicket = void 0;
@@ -22114,9 +22114,9 @@ var require_loginticket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
 var require_oauth2client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuth2Client = exports.ClientAuthentication = exports.CertificateFormat = exports.CodeChallengeMethod = void 0;
@@ -22795,9 +22795,9 @@ var require_oauth2client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
 var require_computeclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Compute = void 0;
@@ -22887,9 +22887,9 @@ var require_computeclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
 var require_idtokenclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IdTokenClient = void 0;
@@ -22933,9 +22933,9 @@ var require_idtokenclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
 var require_envDetect = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GCPEnv = void 0;
@@ -24213,9 +24213,9 @@ var require_src5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
 var require_jwtaccess = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.JWTAccess = void 0;
@@ -24383,9 +24383,9 @@ var require_jwtaccess = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
 var require_jwtclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.JWT = void 0;
@@ -24654,9 +24654,9 @@ var require_jwtclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
 var require_refreshclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UserRefreshClient = exports.USER_REFRESH_ACCOUNT_TYPE = void 0;
@@ -24781,9 +24781,9 @@ var require_refreshclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
 var require_impersonated = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Impersonated = exports.IMPERSONATED_ACCOUNT_TYPE = void 0;
@@ -24960,9 +24960,9 @@ var require_impersonated = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
 var require_oauth2common = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuthClientAuthHandler = void 0;
@@ -25108,9 +25108,9 @@ var require_oauth2common = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
 var require_stscredentials = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StsCredentials = void 0;
@@ -25195,9 +25195,9 @@ var require_stscredentials = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
 var require_baseexternalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BaseExternalAccountClient = exports.CLOUD_RESOURCE_MANAGER = exports.EXTERNAL_ACCOUNT_TYPE = exports.EXPIRATION_TIME_OFFSET = void 0;
@@ -25572,9 +25572,9 @@ var require_baseexternalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
 var require_filesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.FileSubjectTokenSupplier = void 0;
@@ -25637,9 +25637,9 @@ var require_filesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
 var require_urlsubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UrlSubjectTokenSupplier = void 0;
@@ -25694,9 +25694,9 @@ var require_urlsubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
 var require_certificatesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CertificateSubjectTokenSupplier = exports.InvalidConfigurationError = exports.CertificateSourceUnavailableError = exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
@@ -25878,9 +25878,9 @@ var require_certificatesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
 var require_identitypoolclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IdentityPoolClient = void 0;
@@ -25990,9 +25990,9 @@ var require_identitypoolclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
 var require_awsrequestsigner = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AwsRequestSigner = void 0;
@@ -26140,9 +26140,9 @@ ${credentialScope}
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
 var require_defaultawssecuritycredentialssupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DefaultAwsSecurityCredentialsSupplier = void 0;
@@ -26291,9 +26291,9 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
 var require_awsclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AwsClient = void 0;
@@ -26405,9 +26405,9 @@ var require_awsclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
 var require_executable_response = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.InvalidSubjectTokenError = exports.InvalidMessageFieldError = exports.InvalidCodeFieldError = exports.InvalidTokenTypeFieldError = exports.InvalidExpirationTimeFieldError = exports.InvalidSuccessFieldError = exports.InvalidVersionFieldError = exports.ExecutableResponseError = exports.ExecutableResponse = void 0;
@@ -26536,9 +26536,9 @@ var require_executable_response = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
 var require_pluggable_auth_handler = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PluggableAuthHandler = exports.ExecutableError = void 0;
@@ -26677,9 +26677,9 @@ var require_pluggable_auth_handler = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
 var require_pluggable_auth_client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PluggableAuthClient = exports.ExecutableError = void 0;
@@ -26804,9 +26804,9 @@ var require_pluggable_auth_client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
 var require_externalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ExternalAccountClient = void 0;
@@ -26853,9 +26853,9 @@ var require_externalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
 var require_externalAccountAuthorizedUserClient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
@@ -27039,9 +27039,9 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
 var require_googleauth = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GoogleAuth = exports.GoogleAuthExceptionMessages = void 0;
@@ -27829,9 +27829,9 @@ var require_googleauth = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
 var require_iam = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IAMAuth = void 0;
@@ -27865,9 +27865,9 @@ var require_iam = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
 var require_downscopedclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DownscopedClient = exports.EXPIRATION_TIME_OFFSET = exports.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
@@ -28050,9 +28050,9 @@ var require_downscopedclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
 var require_passthrough = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PassThroughClient = void 0;
@@ -28095,12 +28095,12 @@ var require_passthrough = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js
+// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js
 var require_src6 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GoogleAuth = exports.auth = exports.PassThroughClient = exports.ExecutableError = exports.PluggableAuthClient = exports.DownscopedClient = exports.BaseExternalAccountClient = exports.ExternalAccountClient = exports.IdentityPoolClient = exports.AwsRequestSigner = exports.AwsClient = exports.UserRefreshClient = exports.LoginTicket = exports.ClientAuthentication = exports.OAuth2Client = exports.CodeChallengeMethod = exports.Impersonated = exports.JWT = exports.JWTAccess = exports.IdTokenClient = exports.IAMAuth = exports.GCPEnv = exports.Compute = exports.DEFAULT_UNIVERSE = exports.AuthClient = exports.gaxios = exports.gcpMetadata = void 0;
+    exports.GoogleAuth = exports.auth = exports.PassThroughClient = exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = exports.ExecutableError = exports.PluggableAuthClient = exports.DownscopedClient = exports.BaseExternalAccountClient = exports.ExternalAccountClient = exports.IdentityPoolClient = exports.AwsRequestSigner = exports.AwsClient = exports.UserRefreshClient = exports.LoginTicket = exports.ClientAuthentication = exports.OAuth2Client = exports.CodeChallengeMethod = exports.Impersonated = exports.JWT = exports.JWTAccess = exports.IdTokenClient = exports.IAMAuth = exports.GCPEnv = exports.Compute = exports.DEFAULT_UNIVERSE = exports.AuthClient = exports.gaxios = exports.gcpMetadata = void 0;
     var googleauth_1 = require_googleauth();
     Object.defineProperty(exports, "GoogleAuth", { enumerable: true, get: function() {
       return googleauth_1.GoogleAuth;
@@ -28190,6 +28190,13 @@ var require_src6 = __commonJS({
     } });
     Object.defineProperty(exports, "ExecutableError", { enumerable: true, get: function() {
       return pluggable_auth_client_1.ExecutableError;
+    } });
+    var externalAccountAuthorizedUserClient_1 = require_externalAccountAuthorizedUserClient();
+    Object.defineProperty(exports, "EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE", { enumerable: true, get: function() {
+      return externalAccountAuthorizedUserClient_1.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE;
+    } });
+    Object.defineProperty(exports, "ExternalAccountAuthorizedUserClient", { enumerable: true, get: function() {
+      return externalAccountAuthorizedUserClient_1.ExternalAccountAuthorizedUserClient;
     } });
     var passthrough_1 = require_passthrough();
     Object.defineProperty(exports, "PassThroughClient", { enumerable: true, get: function() {
@@ -49877,7 +49884,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-dad477f1b03882bbc86b88b5b1622a5e46f81760`;
+  const localVersion = `0.0.0-2d77d7308b6f0fe5e3db68ff737a55931f1c811a`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -50834,7 +50841,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.27.0_1526804011/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.27.0_123332788/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream, writeFile as writeFile3 } from "fs";
 import { Readable as Readable2 } from "node:stream";
@@ -50846,7 +50853,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.27.0_1526804011/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.27.0_123332788/node_modules/@google/genai/dist/node/index.mjs
 import * as fs5 from "fs/promises";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
