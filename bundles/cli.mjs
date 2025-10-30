@@ -48898,7 +48898,10 @@ var ExternalCommands = class {
         ...yarnCommand.args,
         "install",
         ...yarnCommand.legacy ? ["--frozen-lockfile", "--non-interactive"] : ["--immutable"]
-      ], { cwd: projectDir });
+      ], {
+        cwd: projectDir,
+        mode: "on-error"
+      });
       Log.info(green("  \u2713   Installed project dependencies."));
     } catch (e) {
       Log.error(e);
@@ -48913,7 +48916,8 @@ var ExternalCommands = class {
         "--frozen-lockfile",
         "--config.confirmModulesPurge=false"
       ], {
-        cwd: projectDir
+        cwd: projectDir,
+        mode: "on-error"
       });
       Log.info(green("  \u2713   Installed project dependencies."));
     } catch (e) {
@@ -49195,6 +49199,10 @@ var ReleaseAction = class {
   }
   async installDependenciesForCurrentBranch() {
     if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
+      try {
+        this.git.run(["clean", "-qdfX", "**/node_modules"]);
+      } catch {
+      }
       await ExternalCommands.invokePnpmInstall(this.projectDir);
       return;
     }
@@ -49884,7 +49892,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-2d77d7308b6f0fe5e3db68ff737a55931f1c811a`;
+  const localVersion = `0.0.0-a41a2ae61301b2a8ec47d98f73ca5309a7cea932`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

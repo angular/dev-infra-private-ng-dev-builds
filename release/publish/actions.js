@@ -172,6 +172,10 @@ export class ReleaseAction {
     }
     async installDependenciesForCurrentBranch() {
         if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
+            try {
+                this.git.run(['clean', '-qdfX', '**/node_modules']);
+            }
+            catch { }
             await ExternalCommands.invokePnpmInstall(this.projectDir);
             return;
         }

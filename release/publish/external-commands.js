@@ -86,7 +86,10 @@ export class ExternalCommands {
                 ...yarnCommand.args,
                 'install',
                 ...(yarnCommand.legacy ? ['--frozen-lockfile', '--non-interactive'] : ['--immutable']),
-            ], { cwd: projectDir });
+            ], {
+                cwd: projectDir,
+                mode: 'on-error',
+            });
             Log.info(green('  ✓   Installed project dependencies.'));
         }
         catch (e) {
@@ -103,6 +106,7 @@ export class ExternalCommands {
                 '--config.confirmModulesPurge=false',
             ], {
                 cwd: projectDir,
+                mode: 'on-error',
             });
             Log.info(green('  ✓   Installed project dependencies.'));
         }
