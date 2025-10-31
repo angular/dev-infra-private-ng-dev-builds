@@ -49892,7 +49892,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-bccbbe1222b06e78ec1e9a3a4ee774d9fbaab29f`;
+  const localVersion = `0.0.0-3d0d6246402f2f4621aeee302290f77ac2c4e397`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -50849,10 +50849,13 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.27.0_123332788/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.28.0_123332788/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
-import { createWriteStream, writeFile as writeFile3 } from "fs";
+import { createWriteStream } from "fs";
+import * as fs5 from "fs/promises";
+import { writeFile as writeFile3 } from "fs/promises";
 import { Readable as Readable2 } from "node:stream";
+import { finished } from "node:stream/promises";
 
 // node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/wrapper.mjs
 var import_stream2 = __toESM(require_stream(), 1);
@@ -50861,8 +50864,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.27.0_123332788/node_modules/@google/genai/dist/node/index.mjs
-import * as fs5 from "fs/promises";
+// node_modules/.aspect_rules_js/@google+genai@1.28.0_123332788/node_modules/@google/genai/dist/node/index.mjs
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
 function getDefaultBaseUrls() {
@@ -51286,6 +51288,27 @@ var Type;
   Type2["OBJECT"] = "OBJECT";
   Type2["NULL"] = "NULL";
 })(Type || (Type = {}));
+var Mode;
+(function(Mode2) {
+  Mode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
+  Mode2["MODE_DYNAMIC"] = "MODE_DYNAMIC";
+})(Mode || (Mode = {}));
+var AuthType;
+(function(AuthType2) {
+  AuthType2["AUTH_TYPE_UNSPECIFIED"] = "AUTH_TYPE_UNSPECIFIED";
+  AuthType2["NO_AUTH"] = "NO_AUTH";
+  AuthType2["API_KEY_AUTH"] = "API_KEY_AUTH";
+  AuthType2["HTTP_BASIC_AUTH"] = "HTTP_BASIC_AUTH";
+  AuthType2["GOOGLE_SERVICE_ACCOUNT_AUTH"] = "GOOGLE_SERVICE_ACCOUNT_AUTH";
+  AuthType2["OAUTH"] = "OAUTH";
+  AuthType2["OIDC_AUTH"] = "OIDC_AUTH";
+})(AuthType || (AuthType = {}));
+var ApiSpec;
+(function(ApiSpec2) {
+  ApiSpec2["API_SPEC_UNSPECIFIED"] = "API_SPEC_UNSPECIFIED";
+  ApiSpec2["SIMPLE_SEARCH"] = "SIMPLE_SEARCH";
+  ApiSpec2["ELASTIC_SEARCH"] = "ELASTIC_SEARCH";
+})(ApiSpec || (ApiSpec = {}));
 var HarmCategory;
 (function(HarmCategory2) {
   HarmCategory2["HARM_CATEGORY_UNSPECIFIED"] = "HARM_CATEGORY_UNSPECIFIED";
@@ -51315,35 +51338,6 @@ var HarmBlockThreshold;
   HarmBlockThreshold2["BLOCK_NONE"] = "BLOCK_NONE";
   HarmBlockThreshold2["OFF"] = "OFF";
 })(HarmBlockThreshold || (HarmBlockThreshold = {}));
-var Mode;
-(function(Mode2) {
-  Mode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
-  Mode2["MODE_DYNAMIC"] = "MODE_DYNAMIC";
-})(Mode || (Mode = {}));
-var AuthType;
-(function(AuthType2) {
-  AuthType2["AUTH_TYPE_UNSPECIFIED"] = "AUTH_TYPE_UNSPECIFIED";
-  AuthType2["NO_AUTH"] = "NO_AUTH";
-  AuthType2["API_KEY_AUTH"] = "API_KEY_AUTH";
-  AuthType2["HTTP_BASIC_AUTH"] = "HTTP_BASIC_AUTH";
-  AuthType2["GOOGLE_SERVICE_ACCOUNT_AUTH"] = "GOOGLE_SERVICE_ACCOUNT_AUTH";
-  AuthType2["OAUTH"] = "OAUTH";
-  AuthType2["OIDC_AUTH"] = "OIDC_AUTH";
-})(AuthType || (AuthType = {}));
-var ApiSpec;
-(function(ApiSpec2) {
-  ApiSpec2["API_SPEC_UNSPECIFIED"] = "API_SPEC_UNSPECIFIED";
-  ApiSpec2["SIMPLE_SEARCH"] = "SIMPLE_SEARCH";
-  ApiSpec2["ELASTIC_SEARCH"] = "ELASTIC_SEARCH";
-})(ApiSpec || (ApiSpec = {}));
-var UrlRetrievalStatus;
-(function(UrlRetrievalStatus2) {
-  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_UNSPECIFIED"] = "URL_RETRIEVAL_STATUS_UNSPECIFIED";
-  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_SUCCESS"] = "URL_RETRIEVAL_STATUS_SUCCESS";
-  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_ERROR"] = "URL_RETRIEVAL_STATUS_ERROR";
-  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_PAYWALL"] = "URL_RETRIEVAL_STATUS_PAYWALL";
-  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_UNSAFE"] = "URL_RETRIEVAL_STATUS_UNSAFE";
-})(UrlRetrievalStatus || (UrlRetrievalStatus = {}));
 var FinishReason;
 (function(FinishReason2) {
   FinishReason2["FINISH_REASON_UNSPECIFIED"] = "FINISH_REASON_UNSPECIFIED";
@@ -51378,6 +51372,14 @@ var HarmSeverity;
   HarmSeverity2["HARM_SEVERITY_MEDIUM"] = "HARM_SEVERITY_MEDIUM";
   HarmSeverity2["HARM_SEVERITY_HIGH"] = "HARM_SEVERITY_HIGH";
 })(HarmSeverity || (HarmSeverity = {}));
+var UrlRetrievalStatus;
+(function(UrlRetrievalStatus2) {
+  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_UNSPECIFIED"] = "URL_RETRIEVAL_STATUS_UNSPECIFIED";
+  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_SUCCESS"] = "URL_RETRIEVAL_STATUS_SUCCESS";
+  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_ERROR"] = "URL_RETRIEVAL_STATUS_ERROR";
+  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_PAYWALL"] = "URL_RETRIEVAL_STATUS_PAYWALL";
+  UrlRetrievalStatus2["URL_RETRIEVAL_STATUS_UNSAFE"] = "URL_RETRIEVAL_STATUS_UNSAFE";
+})(UrlRetrievalStatus || (UrlRetrievalStatus = {}));
 var BlockedReason;
 (function(BlockedReason2) {
   BlockedReason2["BLOCKED_REASON_UNSPECIFIED"] = "BLOCKED_REASON_UNSPECIFIED";
@@ -51409,21 +51411,6 @@ var MediaResolution;
   MediaResolution2["MEDIA_RESOLUTION_MEDIUM"] = "MEDIA_RESOLUTION_MEDIUM";
   MediaResolution2["MEDIA_RESOLUTION_HIGH"] = "MEDIA_RESOLUTION_HIGH";
 })(MediaResolution || (MediaResolution = {}));
-var JobState;
-(function(JobState2) {
-  JobState2["JOB_STATE_UNSPECIFIED"] = "JOB_STATE_UNSPECIFIED";
-  JobState2["JOB_STATE_QUEUED"] = "JOB_STATE_QUEUED";
-  JobState2["JOB_STATE_PENDING"] = "JOB_STATE_PENDING";
-  JobState2["JOB_STATE_RUNNING"] = "JOB_STATE_RUNNING";
-  JobState2["JOB_STATE_SUCCEEDED"] = "JOB_STATE_SUCCEEDED";
-  JobState2["JOB_STATE_FAILED"] = "JOB_STATE_FAILED";
-  JobState2["JOB_STATE_CANCELLING"] = "JOB_STATE_CANCELLING";
-  JobState2["JOB_STATE_CANCELLED"] = "JOB_STATE_CANCELLED";
-  JobState2["JOB_STATE_PAUSED"] = "JOB_STATE_PAUSED";
-  JobState2["JOB_STATE_EXPIRED"] = "JOB_STATE_EXPIRED";
-  JobState2["JOB_STATE_UPDATING"] = "JOB_STATE_UPDATING";
-  JobState2["JOB_STATE_PARTIALLY_SUCCEEDED"] = "JOB_STATE_PARTIALLY_SUCCEEDED";
-})(JobState || (JobState = {}));
 var TuningMode;
 (function(TuningMode2) {
   TuningMode2["TUNING_MODE_UNSPECIFIED"] = "TUNING_MODE_UNSPECIFIED";
@@ -51440,6 +51427,21 @@ var AdapterSize;
   AdapterSize2["ADAPTER_SIZE_SIXTEEN"] = "ADAPTER_SIZE_SIXTEEN";
   AdapterSize2["ADAPTER_SIZE_THIRTY_TWO"] = "ADAPTER_SIZE_THIRTY_TWO";
 })(AdapterSize || (AdapterSize = {}));
+var JobState;
+(function(JobState2) {
+  JobState2["JOB_STATE_UNSPECIFIED"] = "JOB_STATE_UNSPECIFIED";
+  JobState2["JOB_STATE_QUEUED"] = "JOB_STATE_QUEUED";
+  JobState2["JOB_STATE_PENDING"] = "JOB_STATE_PENDING";
+  JobState2["JOB_STATE_RUNNING"] = "JOB_STATE_RUNNING";
+  JobState2["JOB_STATE_SUCCEEDED"] = "JOB_STATE_SUCCEEDED";
+  JobState2["JOB_STATE_FAILED"] = "JOB_STATE_FAILED";
+  JobState2["JOB_STATE_CANCELLING"] = "JOB_STATE_CANCELLING";
+  JobState2["JOB_STATE_CANCELLED"] = "JOB_STATE_CANCELLED";
+  JobState2["JOB_STATE_PAUSED"] = "JOB_STATE_PAUSED";
+  JobState2["JOB_STATE_EXPIRED"] = "JOB_STATE_EXPIRED";
+  JobState2["JOB_STATE_UPDATING"] = "JOB_STATE_UPDATING";
+  JobState2["JOB_STATE_PARTIALLY_SUCCEEDED"] = "JOB_STATE_PARTIALLY_SUCCEEDED";
+})(JobState || (JobState = {}));
 var TuningTask;
 (function(TuningTask2) {
   TuningTask2["TUNING_TASK_UNSPECIFIED"] = "TUNING_TASK_UNSPECIFIED";
@@ -51559,6 +51561,11 @@ var VideoCompressionQuality;
   VideoCompressionQuality2["OPTIMIZED"] = "OPTIMIZED";
   VideoCompressionQuality2["LOSSLESS"] = "LOSSLESS";
 })(VideoCompressionQuality || (VideoCompressionQuality = {}));
+var TuningMethod;
+(function(TuningMethod2) {
+  TuningMethod2["SUPERVISED_FINE_TUNING"] = "SUPERVISED_FINE_TUNING";
+  TuningMethod2["PREFERENCE_TUNING"] = "PREFERENCE_TUNING";
+})(TuningMethod || (TuningMethod = {}));
 var FileState;
 (function(FileState2) {
   FileState2["STATE_UNSPECIFIED"] = "STATE_UNSPECIFIED";
@@ -52838,12 +52845,12 @@ function batchJobSourceToVertex(fromObject) {
 }
 function blobToMldev$4(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
-  }
   const fromData = getValueByPath(fromObject, ["data"]);
   if (fromData != null) {
     setValueByPath(toObject, ["data"], fromData);
+  }
+  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
+    throw new Error("displayName parameter is not supported in Gemini API.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -52887,12 +52894,6 @@ function candidateFromMldev$1(fromObject) {
   if (fromFinishReason != null) {
     setValueByPath(toObject, ["finishReason"], fromFinishReason);
   }
-  const fromUrlContextMetadata = getValueByPath(fromObject, [
-    "urlContextMetadata"
-  ]);
-  if (fromUrlContextMetadata != null) {
-    setValueByPath(toObject, ["urlContextMetadata"], fromUrlContextMetadata);
-  }
   const fromAvgLogprobs = getValueByPath(fromObject, ["avgLogprobs"]);
   if (fromAvgLogprobs != null) {
     setValueByPath(toObject, ["avgLogprobs"], fromAvgLogprobs);
@@ -52924,6 +52925,12 @@ function candidateFromMldev$1(fromObject) {
       });
     }
     setValueByPath(toObject, ["safetyRatings"], transformedList);
+  }
+  const fromUrlContextMetadata = getValueByPath(fromObject, [
+    "urlContextMetadata"
+  ]);
+  if (fromUrlContextMetadata != null) {
+    setValueByPath(toObject, ["urlContextMetadata"], fromUrlContextMetadata);
   }
   return toObject;
 }
@@ -53393,14 +53400,14 @@ function googleMapsToMldev$4(fromObject) {
 }
 function googleSearchToMldev$4(fromObject) {
   const toObject = {};
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
   ]);
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], fromTimeRangeFilter);
-  }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -53545,30 +53552,6 @@ function listBatchJobsResponseFromVertex(fromObject) {
 }
 function partToMldev$4(fromObject) {
   const toObject = {};
-  const fromVideoMetadata = getValueByPath(fromObject, [
-    "videoMetadata"
-  ]);
-  if (fromVideoMetadata != null) {
-    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
-  }
-  const fromThought = getValueByPath(fromObject, ["thought"]);
-  if (fromThought != null) {
-    setValueByPath(toObject, ["thought"], fromThought);
-  }
-  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
-  if (fromInlineData != null) {
-    setValueByPath(toObject, ["inlineData"], blobToMldev$4(fromInlineData));
-  }
-  const fromFileData = getValueByPath(fromObject, ["fileData"]);
-  if (fromFileData != null) {
-    setValueByPath(toObject, ["fileData"], fileDataToMldev$4(fromFileData));
-  }
-  const fromThoughtSignature = getValueByPath(fromObject, [
-    "thoughtSignature"
-  ]);
-  if (fromThoughtSignature != null) {
-    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
-  }
   const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
   if (fromFunctionCall != null) {
     setValueByPath(toObject, ["functionCall"], fromFunctionCall);
@@ -53585,26 +53568,50 @@ function partToMldev$4(fromObject) {
   if (fromExecutableCode != null) {
     setValueByPath(toObject, ["executableCode"], fromExecutableCode);
   }
+  const fromFileData = getValueByPath(fromObject, ["fileData"]);
+  if (fromFileData != null) {
+    setValueByPath(toObject, ["fileData"], fileDataToMldev$4(fromFileData));
+  }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
   ]);
   if (fromFunctionResponse != null) {
     setValueByPath(toObject, ["functionResponse"], fromFunctionResponse);
   }
+  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
+  if (fromInlineData != null) {
+    setValueByPath(toObject, ["inlineData"], blobToMldev$4(fromInlineData));
+  }
   const fromText = getValueByPath(fromObject, ["text"]);
   if (fromText != null) {
     setValueByPath(toObject, ["text"], fromText);
+  }
+  const fromThought = getValueByPath(fromObject, ["thought"]);
+  if (fromThought != null) {
+    setValueByPath(toObject, ["thought"], fromThought);
+  }
+  const fromThoughtSignature = getValueByPath(fromObject, [
+    "thoughtSignature"
+  ]);
+  if (fromThoughtSignature != null) {
+    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
+  }
+  const fromVideoMetadata = getValueByPath(fromObject, [
+    "videoMetadata"
+  ]);
+  if (fromVideoMetadata != null) {
+    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
   }
   return toObject;
 }
 function safetySettingToMldev$1(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["method"]) !== void 0) {
-    throw new Error("method parameter is not supported in Gemini API.");
-  }
   const fromCategory = getValueByPath(fromObject, ["category"]);
   if (fromCategory != null) {
     setValueByPath(toObject, ["category"], fromCategory);
+  }
+  if (getValueByPath(fromObject, ["method"]) !== void 0) {
+    throw new Error("method parameter is not supported in Gemini API.");
   }
   const fromThreshold = getValueByPath(fromObject, ["threshold"]);
   if (fromThreshold != null) {
@@ -53629,26 +53636,15 @@ function toolToMldev$4(fromObject) {
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$4(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
-  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$4(fromGoogleMaps));
-  }
-  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
-  if (fromUrlContext != null) {
-    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -53660,6 +53656,17 @@ function toolToMldev$4(fromObject) {
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
   }
+  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
+    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$4(fromGoogleSearch));
+  }
+  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
+  if (fromUrlContext != null) {
+    setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
   return toObject;
 }
 var PagedItem;
@@ -53669,6 +53676,8 @@ var PagedItem;
   PagedItem2["PAGED_ITEM_TUNING_JOBS"] = "tuningJobs";
   PagedItem2["PAGED_ITEM_FILES"] = "files";
   PagedItem2["PAGED_ITEM_CACHED_CONTENTS"] = "cachedContents";
+  PagedItem2["PAGED_ITEM_RAG_STORES"] = "ragStores";
+  PagedItem2["PAGED_ITEM_DOCUMENTS"] = "documents";
 })(PagedItem || (PagedItem = {}));
 var Pager = class {
   constructor(name, request, response, params2) {
@@ -54255,12 +54264,12 @@ var Batches = class extends BaseModule2 {
 };
 function blobToMldev$3(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
-  }
   const fromData = getValueByPath(fromObject, ["data"]);
   if (fromData != null) {
     setValueByPath(toObject, ["data"], fromData);
+  }
+  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
+    throw new Error("displayName parameter is not supported in Gemini API.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -54524,14 +54533,14 @@ function googleMapsToMldev$3(fromObject) {
 }
 function googleSearchToMldev$3(fromObject) {
   const toObject = {};
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
   ]);
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], fromTimeRangeFilter);
-  }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -54633,30 +54642,6 @@ function listCachedContentsResponseFromVertex(fromObject) {
 }
 function partToMldev$3(fromObject) {
   const toObject = {};
-  const fromVideoMetadata = getValueByPath(fromObject, [
-    "videoMetadata"
-  ]);
-  if (fromVideoMetadata != null) {
-    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
-  }
-  const fromThought = getValueByPath(fromObject, ["thought"]);
-  if (fromThought != null) {
-    setValueByPath(toObject, ["thought"], fromThought);
-  }
-  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
-  if (fromInlineData != null) {
-    setValueByPath(toObject, ["inlineData"], blobToMldev$3(fromInlineData));
-  }
-  const fromFileData = getValueByPath(fromObject, ["fileData"]);
-  if (fromFileData != null) {
-    setValueByPath(toObject, ["fileData"], fileDataToMldev$3(fromFileData));
-  }
-  const fromThoughtSignature = getValueByPath(fromObject, [
-    "thoughtSignature"
-  ]);
-  if (fromThoughtSignature != null) {
-    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
-  }
   const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
   if (fromFunctionCall != null) {
     setValueByPath(toObject, ["functionCall"], fromFunctionCall);
@@ -54673,15 +54658,39 @@ function partToMldev$3(fromObject) {
   if (fromExecutableCode != null) {
     setValueByPath(toObject, ["executableCode"], fromExecutableCode);
   }
+  const fromFileData = getValueByPath(fromObject, ["fileData"]);
+  if (fromFileData != null) {
+    setValueByPath(toObject, ["fileData"], fileDataToMldev$3(fromFileData));
+  }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
   ]);
   if (fromFunctionResponse != null) {
     setValueByPath(toObject, ["functionResponse"], fromFunctionResponse);
   }
+  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
+  if (fromInlineData != null) {
+    setValueByPath(toObject, ["inlineData"], blobToMldev$3(fromInlineData));
+  }
   const fromText = getValueByPath(fromObject, ["text"]);
   if (fromText != null) {
     setValueByPath(toObject, ["text"], fromText);
+  }
+  const fromThought = getValueByPath(fromObject, ["thought"]);
+  if (fromThought != null) {
+    setValueByPath(toObject, ["thought"], fromThought);
+  }
+  const fromThoughtSignature = getValueByPath(fromObject, [
+    "thoughtSignature"
+  ]);
+  if (fromThoughtSignature != null) {
+    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
+  }
+  const fromVideoMetadata = getValueByPath(fromObject, [
+    "videoMetadata"
+  ]);
+  if (fromVideoMetadata != null) {
+    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
   }
   return toObject;
 }
@@ -54702,26 +54711,15 @@ function toolToMldev$3(fromObject) {
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$3(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
-  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$3(fromGoogleMaps));
-  }
-  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
-  if (fromUrlContext != null) {
-    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -54732,6 +54730,17 @@ function toolToMldev$3(fromObject) {
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
+  }
+  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
+    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$3(fromGoogleSearch));
+  }
+  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
+  if (fromUrlContext != null) {
+    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   return toObject;
 }
@@ -54753,29 +54762,15 @@ function toolToVertex$2(fromObject) {
   if (fromRetrieval != null) {
     setValueByPath(toObject, ["retrieval"], fromRetrieval);
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromEnterpriseWebSearch = getValueByPath(fromObject, [
-    "enterpriseWebSearch"
-  ]);
-  if (fromEnterpriseWebSearch != null) {
-    setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
-  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
-  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
-  if (fromUrlContext != null) {
-    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -54786,6 +54781,20 @@ function toolToVertex$2(fromObject) {
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
+  }
+  const fromEnterpriseWebSearch = getValueByPath(fromObject, [
+    "enterpriseWebSearch"
+  ]);
+  if (fromEnterpriseWebSearch != null) {
+    setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
+  }
+  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
+  if (fromUrlContext != null) {
+    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   return toObject;
 }
@@ -55862,12 +55871,12 @@ var Files = class extends BaseModule2 {
 };
 function blobToMldev$2(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
-  }
   const fromData = getValueByPath(fromObject, ["data"]);
   if (fromData != null) {
     setValueByPath(toObject, ["data"], fromData);
+  }
+  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
+    throw new Error("displayName parameter is not supported in Gemini API.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -56083,14 +56092,14 @@ function googleMapsToMldev$2(fromObject) {
 }
 function googleSearchToMldev$2(fromObject) {
   const toObject = {};
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
   ]);
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], fromTimeRangeFilter);
-  }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -56492,30 +56501,6 @@ function liveServerMessageFromVertex(fromObject) {
 }
 function partToMldev$2(fromObject) {
   const toObject = {};
-  const fromVideoMetadata = getValueByPath(fromObject, [
-    "videoMetadata"
-  ]);
-  if (fromVideoMetadata != null) {
-    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
-  }
-  const fromThought = getValueByPath(fromObject, ["thought"]);
-  if (fromThought != null) {
-    setValueByPath(toObject, ["thought"], fromThought);
-  }
-  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
-  if (fromInlineData != null) {
-    setValueByPath(toObject, ["inlineData"], blobToMldev$2(fromInlineData));
-  }
-  const fromFileData = getValueByPath(fromObject, ["fileData"]);
-  if (fromFileData != null) {
-    setValueByPath(toObject, ["fileData"], fileDataToMldev$2(fromFileData));
-  }
-  const fromThoughtSignature = getValueByPath(fromObject, [
-    "thoughtSignature"
-  ]);
-  if (fromThoughtSignature != null) {
-    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
-  }
   const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
   if (fromFunctionCall != null) {
     setValueByPath(toObject, ["functionCall"], fromFunctionCall);
@@ -56532,15 +56517,39 @@ function partToMldev$2(fromObject) {
   if (fromExecutableCode != null) {
     setValueByPath(toObject, ["executableCode"], fromExecutableCode);
   }
+  const fromFileData = getValueByPath(fromObject, ["fileData"]);
+  if (fromFileData != null) {
+    setValueByPath(toObject, ["fileData"], fileDataToMldev$2(fromFileData));
+  }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
   ]);
   if (fromFunctionResponse != null) {
     setValueByPath(toObject, ["functionResponse"], fromFunctionResponse);
   }
+  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
+  if (fromInlineData != null) {
+    setValueByPath(toObject, ["inlineData"], blobToMldev$2(fromInlineData));
+  }
   const fromText = getValueByPath(fromObject, ["text"]);
   if (fromText != null) {
     setValueByPath(toObject, ["text"], fromText);
+  }
+  const fromThought = getValueByPath(fromObject, ["thought"]);
+  if (fromThought != null) {
+    setValueByPath(toObject, ["thought"], fromThought);
+  }
+  const fromThoughtSignature = getValueByPath(fromObject, [
+    "thoughtSignature"
+  ]);
+  if (fromThoughtSignature != null) {
+    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
+  }
+  const fromVideoMetadata = getValueByPath(fromObject, [
+    "videoMetadata"
+  ]);
+  if (fromVideoMetadata != null) {
+    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
   }
   return toObject;
 }
@@ -56557,16 +56566,16 @@ function sessionResumptionConfigToMldev$1(fromObject) {
 }
 function speechConfigToVertex$1(fromObject) {
   const toObject = {};
+  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
+  if (fromLanguageCode != null) {
+    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
+  }
   const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
   if (fromVoiceConfig != null) {
     setValueByPath(toObject, ["voiceConfig"], fromVoiceConfig);
   }
   if (getValueByPath(fromObject, ["multiSpeakerVoiceConfig"]) !== void 0) {
     throw new Error("multiSpeakerVoiceConfig parameter is not supported in Vertex AI.");
-  }
-  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
-  if (fromLanguageCode != null) {
-    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
   }
   return toObject;
 }
@@ -56587,26 +56596,15 @@ function toolToMldev$2(fromObject) {
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$2(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
-  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$2(fromGoogleMaps));
-  }
-  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
-  if (fromUrlContext != null) {
-    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -56617,6 +56615,17 @@ function toolToMldev$2(fromObject) {
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
+  }
+  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
+    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$2(fromGoogleSearch));
+  }
+  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
+  if (fromUrlContext != null) {
+    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   return toObject;
 }
@@ -56638,29 +56647,15 @@ function toolToVertex$1(fromObject) {
   if (fromRetrieval != null) {
     setValueByPath(toObject, ["retrieval"], fromRetrieval);
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromEnterpriseWebSearch = getValueByPath(fromObject, [
-    "enterpriseWebSearch"
-  ]);
-  if (fromEnterpriseWebSearch != null) {
-    setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
-  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
-  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
-  if (fromUrlContext != null) {
-    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -56671,6 +56666,20 @@ function toolToVertex$1(fromObject) {
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
+  }
+  const fromEnterpriseWebSearch = getValueByPath(fromObject, [
+    "enterpriseWebSearch"
+  ]);
+  if (fromEnterpriseWebSearch != null) {
+    setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
+  }
+  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
+  if (fromUrlContext != null) {
+    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   return toObject;
 }
@@ -56768,12 +56777,12 @@ function usageMetadataFromVertex(fromObject) {
 }
 function blobToMldev$1(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
-  }
   const fromData = getValueByPath(fromObject, ["data"]);
   if (fromData != null) {
     setValueByPath(toObject, ["data"], fromData);
+  }
+  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
+    throw new Error("displayName parameter is not supported in Gemini API.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -56800,12 +56809,6 @@ function candidateFromMldev(fromObject) {
   const fromFinishReason = getValueByPath(fromObject, ["finishReason"]);
   if (fromFinishReason != null) {
     setValueByPath(toObject, ["finishReason"], fromFinishReason);
-  }
-  const fromUrlContextMetadata = getValueByPath(fromObject, [
-    "urlContextMetadata"
-  ]);
-  if (fromUrlContextMetadata != null) {
-    setValueByPath(toObject, ["urlContextMetadata"], fromUrlContextMetadata);
   }
   const fromAvgLogprobs = getValueByPath(fromObject, ["avgLogprobs"]);
   if (fromAvgLogprobs != null) {
@@ -56838,6 +56841,12 @@ function candidateFromMldev(fromObject) {
       });
     }
     setValueByPath(toObject, ["safetyRatings"], transformedList);
+  }
+  const fromUrlContextMetadata = getValueByPath(fromObject, [
+    "urlContextMetadata"
+  ]);
+  if (fromUrlContextMetadata != null) {
+    setValueByPath(toObject, ["urlContextMetadata"], fromUrlContextMetadata);
   }
   return toObject;
 }
@@ -58755,14 +58764,14 @@ function googleMapsToMldev$1(fromObject) {
 }
 function googleSearchToMldev$1(fromObject) {
   const toObject = {};
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
   ]);
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], fromTimeRangeFilter);
-  }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -59053,30 +59062,6 @@ function modelFromVertex(fromObject) {
 }
 function partToMldev$1(fromObject) {
   const toObject = {};
-  const fromVideoMetadata = getValueByPath(fromObject, [
-    "videoMetadata"
-  ]);
-  if (fromVideoMetadata != null) {
-    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
-  }
-  const fromThought = getValueByPath(fromObject, ["thought"]);
-  if (fromThought != null) {
-    setValueByPath(toObject, ["thought"], fromThought);
-  }
-  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
-  if (fromInlineData != null) {
-    setValueByPath(toObject, ["inlineData"], blobToMldev$1(fromInlineData));
-  }
-  const fromFileData = getValueByPath(fromObject, ["fileData"]);
-  if (fromFileData != null) {
-    setValueByPath(toObject, ["fileData"], fileDataToMldev$1(fromFileData));
-  }
-  const fromThoughtSignature = getValueByPath(fromObject, [
-    "thoughtSignature"
-  ]);
-  if (fromThoughtSignature != null) {
-    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
-  }
   const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
   if (fromFunctionCall != null) {
     setValueByPath(toObject, ["functionCall"], fromFunctionCall);
@@ -59093,15 +59078,39 @@ function partToMldev$1(fromObject) {
   if (fromExecutableCode != null) {
     setValueByPath(toObject, ["executableCode"], fromExecutableCode);
   }
+  const fromFileData = getValueByPath(fromObject, ["fileData"]);
+  if (fromFileData != null) {
+    setValueByPath(toObject, ["fileData"], fileDataToMldev$1(fromFileData));
+  }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
   ]);
   if (fromFunctionResponse != null) {
     setValueByPath(toObject, ["functionResponse"], fromFunctionResponse);
   }
+  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
+  if (fromInlineData != null) {
+    setValueByPath(toObject, ["inlineData"], blobToMldev$1(fromInlineData));
+  }
   const fromText = getValueByPath(fromObject, ["text"]);
   if (fromText != null) {
     setValueByPath(toObject, ["text"], fromText);
+  }
+  const fromThought = getValueByPath(fromObject, ["thought"]);
+  if (fromThought != null) {
+    setValueByPath(toObject, ["thought"], fromThought);
+  }
+  const fromThoughtSignature = getValueByPath(fromObject, [
+    "thoughtSignature"
+  ]);
+  if (fromThoughtSignature != null) {
+    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
+  }
+  const fromVideoMetadata = getValueByPath(fromObject, [
+    "videoMetadata"
+  ]);
+  if (fromVideoMetadata != null) {
+    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
   }
   return toObject;
 }
@@ -59319,12 +59328,12 @@ function safetyAttributesFromVertex(fromObject) {
 }
 function safetySettingToMldev(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["method"]) !== void 0) {
-    throw new Error("method parameter is not supported in Gemini API.");
-  }
   const fromCategory = getValueByPath(fromObject, ["category"]);
   if (fromCategory != null) {
     setValueByPath(toObject, ["category"], fromCategory);
+  }
+  if (getValueByPath(fromObject, ["method"]) !== void 0) {
+    throw new Error("method parameter is not supported in Gemini API.");
   }
   const fromThreshold = getValueByPath(fromObject, ["threshold"]);
   if (fromThreshold != null) {
@@ -59424,16 +59433,16 @@ function segmentImageSourceToVertex(fromObject, parentObject) {
 }
 function speechConfigToVertex(fromObject) {
   const toObject = {};
+  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
+  if (fromLanguageCode != null) {
+    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
+  }
   const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
   if (fromVoiceConfig != null) {
     setValueByPath(toObject, ["voiceConfig"], fromVoiceConfig);
   }
   if (getValueByPath(fromObject, ["multiSpeakerVoiceConfig"]) !== void 0) {
     throw new Error("multiSpeakerVoiceConfig parameter is not supported in Vertex AI.");
-  }
-  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
-  if (fromLanguageCode != null) {
-    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
   }
   return toObject;
 }
@@ -59454,26 +59463,15 @@ function toolToMldev$1(fromObject) {
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$1(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
-  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$1(fromGoogleMaps));
-  }
-  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
-  if (fromUrlContext != null) {
-    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -59484,6 +59482,17 @@ function toolToMldev$1(fromObject) {
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
+  }
+  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
+    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$1(fromGoogleSearch));
+  }
+  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
+  if (fromUrlContext != null) {
+    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   return toObject;
 }
@@ -59505,29 +59514,15 @@ function toolToVertex(fromObject) {
   if (fromRetrieval != null) {
     setValueByPath(toObject, ["retrieval"], fromRetrieval);
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromEnterpriseWebSearch = getValueByPath(fromObject, [
-    "enterpriseWebSearch"
-  ]);
-  if (fromEnterpriseWebSearch != null) {
-    setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
-  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
-  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
-  if (fromUrlContext != null) {
-    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -59538,6 +59533,20 @@ function toolToVertex(fromObject) {
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
+  }
+  const fromEnterpriseWebSearch = getValueByPath(fromObject, [
+    "enterpriseWebSearch"
+  ]);
+  if (fromEnterpriseWebSearch != null) {
+    setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
+  }
+  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
+  if (fromUrlContext != null) {
+    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   return toObject;
 }
@@ -59641,6 +59650,18 @@ function upscaleImageAPIConfigInternalToVertex(fromObject, parentObject) {
   const fromOutputGcsUri = getValueByPath(fromObject, ["outputGcsUri"]);
   if (parentObject !== void 0 && fromOutputGcsUri != null) {
     setValueByPath(parentObject, ["parameters", "storageUri"], fromOutputGcsUri);
+  }
+  const fromSafetyFilterLevel = getValueByPath(fromObject, [
+    "safetyFilterLevel"
+  ]);
+  if (parentObject !== void 0 && fromSafetyFilterLevel != null) {
+    setValueByPath(parentObject, ["parameters", "safetySetting"], fromSafetyFilterLevel);
+  }
+  const fromPersonGeneration = getValueByPath(fromObject, [
+    "personGeneration"
+  ]);
+  if (parentObject !== void 0 && fromPersonGeneration != null) {
+    setValueByPath(parentObject, ["parameters", "personGeneration"], fromPersonGeneration);
   }
   const fromIncludeRaiReason = getValueByPath(fromObject, [
     "includeRaiReason"
@@ -59842,7 +59863,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.27.0";
+var SDK_VERSION = "1.28.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -60172,13 +60193,13 @@ var ApiClient = class {
    *
    * @param file The string path to the file to be uploaded or a Blob object.
    * @param config Optional parameters specified in the `UploadFileConfig`
-   *     interface. @see {@link UploadFileConfig}
+   *     interface. @see {@link types.UploadFileConfig}
    * @return A promise that resolves to a `File` object.
    * @throws An error if called on a Vertex AI client.
    * @throws An error if the `mimeType` is not provided and can not be inferred,
    */
   async uploadFile(file, config) {
-    var _a2;
+    var _a2, _b2;
     const fileToUpload = {};
     if (config != null) {
       fileToUpload.mimeType = config.mimeType;
@@ -60196,20 +60217,25 @@ var ApiClient = class {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
     fileToUpload.mimeType = mimeType;
-    const uploadUrl = await this.fetchUploadUrl(fileToUpload, config);
+    let fileName = "";
+    if (typeof file === "string") {
+      fileName = file.replace(/[/\\]+$/, "");
+      fileName = (_b2 = fileName.split(/[/\\]/).pop()) !== null && _b2 !== void 0 ? _b2 : "";
+    }
+    const uploadUrl = await this.fetchUploadUrl(fileToUpload, fileName, config);
     return uploader.upload(file, uploadUrl, this);
   }
   /**
    * Downloads a file asynchronously to the specified path.
    *
    * @params params - The parameters for the download request, see {@link
-   * DownloadFileParameters}
+   * types.DownloadFileParameters}
    */
   async downloadFile(params2) {
     const downloader = this.clientOptions.downloader;
     await downloader.download(params2, this);
   }
-  async fetchUploadUrl(file, config) {
+  async fetchUploadUrl(file, fileName, config) {
     var _a2;
     let httpOptions = {};
     if (config === null || config === void 0 ? void 0 : config.httpOptions) {
@@ -60217,13 +60243,7 @@ var ApiClient = class {
     } else {
       httpOptions = {
         apiVersion: "",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Goog-Upload-Protocol": "resumable",
-          "X-Goog-Upload-Command": "start",
-          "X-Goog-Upload-Header-Content-Length": `${file.sizeBytes}`,
-          "X-Goog-Upload-Header-Content-Type": `${file.mimeType}`
-        }
+        headers: Object.assign({ "Content-Type": "application/json", "X-Goog-Upload-Protocol": "resumable", "X-Goog-Upload-Command": "start", "X-Goog-Upload-Header-Content-Length": `${file.sizeBytes}`, "X-Goog-Upload-Header-Content-Type": `${file.mimeType}` }, fileName ? { "X-Goog-Upload-File-Name": fileName } : {})
       };
     }
     const body = {
@@ -62475,12 +62495,12 @@ var Operations = class extends BaseModule2 {
 };
 function blobToMldev(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
-  }
   const fromData = getValueByPath(fromObject, ["data"]);
   if (fromData != null) {
     setValueByPath(toObject, ["data"], fromData);
+  }
+  if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
+    throw new Error("displayName parameter is not supported in Gemini API.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -62572,14 +62592,14 @@ function googleMapsToMldev(fromObject) {
 }
 function googleSearchToMldev(fromObject) {
   const toObject = {};
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
   ]);
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], fromTimeRangeFilter);
-  }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -62707,30 +62727,6 @@ function liveConnectConstraintsToMldev(apiClient, fromObject) {
 }
 function partToMldev(fromObject) {
   const toObject = {};
-  const fromVideoMetadata = getValueByPath(fromObject, [
-    "videoMetadata"
-  ]);
-  if (fromVideoMetadata != null) {
-    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
-  }
-  const fromThought = getValueByPath(fromObject, ["thought"]);
-  if (fromThought != null) {
-    setValueByPath(toObject, ["thought"], fromThought);
-  }
-  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
-  if (fromInlineData != null) {
-    setValueByPath(toObject, ["inlineData"], blobToMldev(fromInlineData));
-  }
-  const fromFileData = getValueByPath(fromObject, ["fileData"]);
-  if (fromFileData != null) {
-    setValueByPath(toObject, ["fileData"], fileDataToMldev(fromFileData));
-  }
-  const fromThoughtSignature = getValueByPath(fromObject, [
-    "thoughtSignature"
-  ]);
-  if (fromThoughtSignature != null) {
-    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
-  }
   const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
   if (fromFunctionCall != null) {
     setValueByPath(toObject, ["functionCall"], fromFunctionCall);
@@ -62747,15 +62743,39 @@ function partToMldev(fromObject) {
   if (fromExecutableCode != null) {
     setValueByPath(toObject, ["executableCode"], fromExecutableCode);
   }
+  const fromFileData = getValueByPath(fromObject, ["fileData"]);
+  if (fromFileData != null) {
+    setValueByPath(toObject, ["fileData"], fileDataToMldev(fromFileData));
+  }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
   ]);
   if (fromFunctionResponse != null) {
     setValueByPath(toObject, ["functionResponse"], fromFunctionResponse);
   }
+  const fromInlineData = getValueByPath(fromObject, ["inlineData"]);
+  if (fromInlineData != null) {
+    setValueByPath(toObject, ["inlineData"], blobToMldev(fromInlineData));
+  }
   const fromText = getValueByPath(fromObject, ["text"]);
   if (fromText != null) {
     setValueByPath(toObject, ["text"], fromText);
+  }
+  const fromThought = getValueByPath(fromObject, ["thought"]);
+  if (fromThought != null) {
+    setValueByPath(toObject, ["thought"], fromThought);
+  }
+  const fromThoughtSignature = getValueByPath(fromObject, [
+    "thoughtSignature"
+  ]);
+  if (fromThoughtSignature != null) {
+    setValueByPath(toObject, ["thoughtSignature"], fromThoughtSignature);
+  }
+  const fromVideoMetadata = getValueByPath(fromObject, [
+    "videoMetadata"
+  ]);
+  if (fromVideoMetadata != null) {
+    setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
   }
   return toObject;
 }
@@ -62787,26 +62807,15 @@ function toolToMldev(fromObject) {
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
-  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev(fromGoogleMaps));
-  }
-  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
-  if (fromUrlContext != null) {
-    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -62817,6 +62826,17 @@ function toolToMldev(fromObject) {
   ]);
   if (fromCodeExecution != null) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
+  }
+  if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
+    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev(fromGoogleSearch));
+  }
+  const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
+  if (fromUrlContext != null) {
+    setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   return toObject;
 }
@@ -63087,13 +63107,17 @@ var NodeDownloader = class {
       const response = await downloadFile(params2, apiClient);
       if (response instanceof HttpResponse) {
         const writer = createWriteStream(params2.downloadPath);
-        Readable2.fromWeb(response.responseInternal.body).pipe(writer);
+        const body = Readable2.fromWeb(response.responseInternal.body);
+        body.pipe(writer);
+        await finished(writer);
       } else {
-        writeFile3(params2.downloadPath, response, { encoding: "base64" }, (error) => {
-          if (error) {
-            throw new Error(`Failed to write file to ${params2.downloadPath}: ${error}`);
-          }
-        });
+        try {
+          await writeFile3(params2.downloadPath, response, {
+            encoding: "base64"
+          });
+        } catch (error) {
+          throw new Error(`Failed to write file to ${params2.downloadPath}: ${error}`);
+        }
       }
     }
   }
@@ -63220,15 +63244,34 @@ function createTuningJobConfigToMldev(fromObject, parentObject, _rootObject) {
   if (getValueByPath(fromObject, ["labels"]) !== void 0) {
     throw new Error("labels parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["beta"]) !== void 0) {
+    throw new Error("beta parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function createTuningJobConfigToVertex(fromObject, parentObject, rootObject) {
   const toObject = {};
-  const fromValidationDataset = getValueByPath(fromObject, [
-    "validationDataset"
+  let discriminatorValidationDataset = getValueByPath(rootObject, [
+    "config",
+    "method"
   ]);
-  if (parentObject !== void 0 && fromValidationDataset != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec"], tuningValidationDatasetToVertex(fromValidationDataset));
+  if (discriminatorValidationDataset === void 0) {
+    discriminatorValidationDataset = "SUPERVISED_FINE_TUNING";
+  }
+  if (discriminatorValidationDataset === "SUPERVISED_FINE_TUNING") {
+    const fromValidationDataset = getValueByPath(fromObject, [
+      "validationDataset"
+    ]);
+    if (parentObject !== void 0 && fromValidationDataset != null) {
+      setValueByPath(parentObject, ["supervisedTuningSpec"], tuningValidationDatasetToVertex(fromValidationDataset));
+    }
+  } else if (discriminatorValidationDataset === "PREFERENCE_TUNING") {
+    const fromValidationDataset = getValueByPath(fromObject, [
+      "validationDataset"
+    ]);
+    if (parentObject !== void 0 && fromValidationDataset != null) {
+      setValueByPath(parentObject, ["preferenceOptimizationSpec"], tuningValidationDatasetToVertex(fromValidationDataset));
+    }
   }
   const fromTunedModelDisplayName = getValueByPath(fromObject, [
     "tunedModelDisplayName"
@@ -63240,25 +63283,86 @@ function createTuningJobConfigToVertex(fromObject, parentObject, rootObject) {
   if (parentObject !== void 0 && fromDescription != null) {
     setValueByPath(parentObject, ["description"], fromDescription);
   }
-  const fromEpochCount = getValueByPath(fromObject, ["epochCount"]);
-  if (parentObject !== void 0 && fromEpochCount != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "epochCount"], fromEpochCount);
-  }
-  const fromLearningRateMultiplier = getValueByPath(fromObject, [
-    "learningRateMultiplier"
+  let discriminatorEpochCount = getValueByPath(rootObject, [
+    "config",
+    "method"
   ]);
-  if (parentObject !== void 0 && fromLearningRateMultiplier != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "learningRateMultiplier"], fromLearningRateMultiplier);
+  if (discriminatorEpochCount === void 0) {
+    discriminatorEpochCount = "SUPERVISED_FINE_TUNING";
   }
-  const fromExportLastCheckpointOnly = getValueByPath(fromObject, [
-    "exportLastCheckpointOnly"
+  if (discriminatorEpochCount === "SUPERVISED_FINE_TUNING") {
+    const fromEpochCount = getValueByPath(fromObject, ["epochCount"]);
+    if (parentObject !== void 0 && fromEpochCount != null) {
+      setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "epochCount"], fromEpochCount);
+    }
+  } else if (discriminatorEpochCount === "PREFERENCE_TUNING") {
+    const fromEpochCount = getValueByPath(fromObject, ["epochCount"]);
+    if (parentObject !== void 0 && fromEpochCount != null) {
+      setValueByPath(parentObject, ["preferenceOptimizationSpec", "hyperParameters", "epochCount"], fromEpochCount);
+    }
+  }
+  let discriminatorLearningRateMultiplier = getValueByPath(rootObject, [
+    "config",
+    "method"
   ]);
-  if (parentObject !== void 0 && fromExportLastCheckpointOnly != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec", "exportLastCheckpointOnly"], fromExportLastCheckpointOnly);
+  if (discriminatorLearningRateMultiplier === void 0) {
+    discriminatorLearningRateMultiplier = "SUPERVISED_FINE_TUNING";
   }
-  const fromAdapterSize = getValueByPath(fromObject, ["adapterSize"]);
-  if (parentObject !== void 0 && fromAdapterSize != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "adapterSize"], fromAdapterSize);
+  if (discriminatorLearningRateMultiplier === "SUPERVISED_FINE_TUNING") {
+    const fromLearningRateMultiplier = getValueByPath(fromObject, [
+      "learningRateMultiplier"
+    ]);
+    if (parentObject !== void 0 && fromLearningRateMultiplier != null) {
+      setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "learningRateMultiplier"], fromLearningRateMultiplier);
+    }
+  } else if (discriminatorLearningRateMultiplier === "PREFERENCE_TUNING") {
+    const fromLearningRateMultiplier = getValueByPath(fromObject, [
+      "learningRateMultiplier"
+    ]);
+    if (parentObject !== void 0 && fromLearningRateMultiplier != null) {
+      setValueByPath(parentObject, [
+        "preferenceOptimizationSpec",
+        "hyperParameters",
+        "learningRateMultiplier"
+      ], fromLearningRateMultiplier);
+    }
+  }
+  let discriminatorExportLastCheckpointOnly = getValueByPath(rootObject, ["config", "method"]);
+  if (discriminatorExportLastCheckpointOnly === void 0) {
+    discriminatorExportLastCheckpointOnly = "SUPERVISED_FINE_TUNING";
+  }
+  if (discriminatorExportLastCheckpointOnly === "SUPERVISED_FINE_TUNING") {
+    const fromExportLastCheckpointOnly = getValueByPath(fromObject, [
+      "exportLastCheckpointOnly"
+    ]);
+    if (parentObject !== void 0 && fromExportLastCheckpointOnly != null) {
+      setValueByPath(parentObject, ["supervisedTuningSpec", "exportLastCheckpointOnly"], fromExportLastCheckpointOnly);
+    }
+  } else if (discriminatorExportLastCheckpointOnly === "PREFERENCE_TUNING") {
+    const fromExportLastCheckpointOnly = getValueByPath(fromObject, [
+      "exportLastCheckpointOnly"
+    ]);
+    if (parentObject !== void 0 && fromExportLastCheckpointOnly != null) {
+      setValueByPath(parentObject, ["preferenceOptimizationSpec", "exportLastCheckpointOnly"], fromExportLastCheckpointOnly);
+    }
+  }
+  let discriminatorAdapterSize = getValueByPath(rootObject, [
+    "config",
+    "method"
+  ]);
+  if (discriminatorAdapterSize === void 0) {
+    discriminatorAdapterSize = "SUPERVISED_FINE_TUNING";
+  }
+  if (discriminatorAdapterSize === "SUPERVISED_FINE_TUNING") {
+    const fromAdapterSize = getValueByPath(fromObject, ["adapterSize"]);
+    if (parentObject !== void 0 && fromAdapterSize != null) {
+      setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "adapterSize"], fromAdapterSize);
+    }
+  } else if (discriminatorAdapterSize === "PREFERENCE_TUNING") {
+    const fromAdapterSize = getValueByPath(fromObject, ["adapterSize"]);
+    if (parentObject !== void 0 && fromAdapterSize != null) {
+      setValueByPath(parentObject, ["preferenceOptimizationSpec", "hyperParameters", "adapterSize"], fromAdapterSize);
+    }
   }
   if (getValueByPath(fromObject, ["batchSize"]) !== void 0) {
     throw new Error("batchSize parameter is not supported in Vertex AI.");
@@ -63269,6 +63373,10 @@ function createTuningJobConfigToVertex(fromObject, parentObject, rootObject) {
   const fromLabels = getValueByPath(fromObject, ["labels"]);
   if (parentObject !== void 0 && fromLabels != null) {
     setValueByPath(parentObject, ["labels"], fromLabels);
+  }
+  const fromBeta = getValueByPath(fromObject, ["beta"]);
+  if (parentObject !== void 0 && fromBeta != null) {
+    setValueByPath(parentObject, ["preferenceOptimizationSpec", "hyperParameters", "beta"], fromBeta);
   }
   return toObject;
 }
@@ -63288,7 +63396,7 @@ function createTuningJobParametersPrivateToMldev(fromObject, rootObject) {
     "trainingDataset"
   ]);
   if (fromTrainingDataset != null) {
-    setValueByPath(toObject, ["tuningTask", "trainingData"], tuningDatasetToMldev(fromTrainingDataset));
+    tuningDatasetToMldev(fromTrainingDataset);
   }
   const fromConfig = getValueByPath(fromObject, ["config"]);
   if (fromConfig != null) {
@@ -63312,11 +63420,11 @@ function createTuningJobParametersPrivateToVertex(fromObject, rootObject) {
     "trainingDataset"
   ]);
   if (fromTrainingDataset != null) {
-    tuningDatasetToVertex(fromTrainingDataset, toObject);
+    tuningDatasetToVertex(fromTrainingDataset, toObject, rootObject);
   }
   const fromConfig = getValueByPath(fromObject, ["config"]);
   if (fromConfig != null) {
-    createTuningJobConfigToVertex(fromConfig, toObject);
+    createTuningJobConfigToVertex(fromConfig, toObject, rootObject);
   }
   return toObject;
 }
@@ -63468,17 +63576,47 @@ function tuningDatasetToMldev(fromObject, _rootObject) {
   }
   return toObject;
 }
-function tuningDatasetToVertex(fromObject, parentObject, _rootObject) {
+function tuningDatasetToVertex(fromObject, parentObject, rootObject) {
   const toObject = {};
-  const fromGcsUri = getValueByPath(fromObject, ["gcsUri"]);
-  if (parentObject !== void 0 && fromGcsUri != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec", "trainingDatasetUri"], fromGcsUri);
-  }
-  const fromVertexDatasetResource = getValueByPath(fromObject, [
-    "vertexDatasetResource"
+  let discriminatorGcsUri = getValueByPath(rootObject, [
+    "config",
+    "method"
   ]);
-  if (parentObject !== void 0 && fromVertexDatasetResource != null) {
-    setValueByPath(parentObject, ["supervisedTuningSpec", "trainingDatasetUri"], fromVertexDatasetResource);
+  if (discriminatorGcsUri === void 0) {
+    discriminatorGcsUri = "SUPERVISED_FINE_TUNING";
+  }
+  if (discriminatorGcsUri === "SUPERVISED_FINE_TUNING") {
+    const fromGcsUri = getValueByPath(fromObject, ["gcsUri"]);
+    if (parentObject !== void 0 && fromGcsUri != null) {
+      setValueByPath(parentObject, ["supervisedTuningSpec", "trainingDatasetUri"], fromGcsUri);
+    }
+  } else if (discriminatorGcsUri === "PREFERENCE_TUNING") {
+    const fromGcsUri = getValueByPath(fromObject, ["gcsUri"]);
+    if (parentObject !== void 0 && fromGcsUri != null) {
+      setValueByPath(parentObject, ["preferenceOptimizationSpec", "trainingDatasetUri"], fromGcsUri);
+    }
+  }
+  let discriminatorVertexDatasetResource = getValueByPath(rootObject, [
+    "config",
+    "method"
+  ]);
+  if (discriminatorVertexDatasetResource === void 0) {
+    discriminatorVertexDatasetResource = "SUPERVISED_FINE_TUNING";
+  }
+  if (discriminatorVertexDatasetResource === "SUPERVISED_FINE_TUNING") {
+    const fromVertexDatasetResource = getValueByPath(fromObject, [
+      "vertexDatasetResource"
+    ]);
+    if (parentObject !== void 0 && fromVertexDatasetResource != null) {
+      setValueByPath(parentObject, ["supervisedTuningSpec", "trainingDatasetUri"], fromVertexDatasetResource);
+    }
+  } else if (discriminatorVertexDatasetResource === "PREFERENCE_TUNING") {
+    const fromVertexDatasetResource = getValueByPath(fromObject, [
+      "vertexDatasetResource"
+    ]);
+    if (parentObject !== void 0 && fromVertexDatasetResource != null) {
+      setValueByPath(parentObject, ["preferenceOptimizationSpec", "trainingDatasetUri"], fromVertexDatasetResource);
+    }
   }
   if (getValueByPath(fromObject, ["examples"]) !== void 0) {
     throw new Error("examples parameter is not supported in Vertex AI.");
@@ -63596,6 +63734,12 @@ function tuningJobFromVertex(fromObject, _rootObject) {
   ]);
   if (fromSupervisedTuningSpec != null) {
     setValueByPath(toObject, ["supervisedTuningSpec"], fromSupervisedTuningSpec);
+  }
+  const fromPreferenceOptimizationSpec = getValueByPath(fromObject, [
+    "preferenceOptimizationSpec"
+  ]);
+  if (fromPreferenceOptimizationSpec != null) {
+    setValueByPath(toObject, ["preferenceOptimizationSpec"], fromPreferenceOptimizationSpec);
   }
   const fromTuningDataStats = getValueByPath(fromObject, [
     "tuningDataStats"
@@ -63914,7 +64058,7 @@ var Tunings = class extends BaseModule2 {
     let path8 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
-      const body = createTuningJobParametersPrivateToVertex(params2);
+      const body = createTuningJobParametersPrivateToVertex(params2, params2);
       path8 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
@@ -64244,6 +64388,9 @@ var GoogleGenAI = class {
       } else if ((envProject || envLocation) && envApiKey) {
         console.debug("The project/location from the environment variables will take precedence over the API key from the environment variables.");
         this.apiKey = void 0;
+      }
+      if (!this.location && !this.apiKey) {
+        this.location = "global";
       }
     }
     const baseUrl = getBaseUrl(options.httpOptions, options.vertexai, getEnv("GOOGLE_VERTEX_BASE_URL"), getEnv("GOOGLE_GEMINI_BASE_URL"));
