@@ -5,7 +5,7 @@ const require = __cjsCompatRequire(import.meta.url);
 import {
   assertValidReleaseConfig,
   getConfig
-} from "../../chunk-XJDKYQP6.mjs";
+} from "../../chunk-KFPOSREB.mjs";
 import "../../chunk-AEYI6NEN.mjs";
 import "../../chunk-UHIZKGIY.mjs";
 

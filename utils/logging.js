@@ -1,9 +1,9 @@
 import chalk from 'chalk';
-import { copyFileSync, writeFileSync } from 'fs';
+import { createWriteStream, copyFileSync } from 'fs';
 import { join } from 'path';
 import { determineRepoBaseDirFromCwd } from './repo-directory.js';
-import { appendFile } from 'fs/promises';
 import { stripVTControlCharacters } from 'util';
+import { registerCompletedFunction } from './yargs.js';
 export var LogLevel;
 (function (LogLevel) {
     LogLevel[LogLevel["SILENT"] = 0] = "SILENT";
@@ -55,36 +55,45 @@ function getLogLevel() {
     return logLevel;
 }
 const LOG_LEVEL_COLUMNS = 7;
-let logFilePath = undefined;
+let logStream = undefined;
 export async function captureLogOutputForCommand(argv) {
-    if (logFilePath !== undefined) {
+    if (logStream !== undefined) {
         return;
     }
     const repoDir = determineRepoBaseDirFromCwd();
-    logFilePath = join(repoDir, '.ng-dev.log');
-    writeFileSync(logFilePath, '');
+    const logFilePath = join(repoDir, '.ng-dev.log');
+    logStream = createWriteStream(logFilePath, { encoding: 'utf-8' });
     const now = new Date();
     const headerLine = Array(100).fill('#').join('');
     appendToLogFile(undefined, `${headerLine}\nCommand: ${argv.$0} ${argv._.join(' ')}\nRan at: ${now}\n`);
-    process.on('exit', (code) => {
-        appendToLogFile(undefined, `\n\nCommand ran in ${new Date().getTime() - now.getTime()}ms\nExit Code: ${code}\n`);
-        if (code > 1 && logFilePath) {
-            const errorLogFileName = `.ng-dev.err-${now.getTime()}.log`;
-            console.error(`Exit code: ${code}. Writing full log to ${errorLogFileName}`);
-            copyFileSync(logFilePath, join(repoDir, errorLogFileName));
+    registerCompletedFunction(async (error) => {
+        if (error instanceof Error) {
+            appendToLogFile(LogLevel.ERROR, error.message);
+            const stack = error.stack?.split('\n') ?? [];
+            for (const line of stack) {
+                appendToLogFile(LogLevel.ERROR, line);
+            }
         }
+        appendToLogFile(undefined, `\n\nCommand ran in ${new Date().getTime() - now.getTime()}ms\nExit Code: ${process.exitCode}\n`);
+        logStream.end(() => {
+            if (process.exitCode !== 0) {
+                const errorLogFileName = `.ng-dev.err-${now.getTime()}.log`;
+                console.error(`Exit code: ${process.exitCode}.\nWriting full log to ${join(repoDir, errorLogFileName)}`);
+                copyFileSync(logFilePath, join(repoDir, errorLogFileName));
+            }
+        });
     });
 }
 function appendToLogFile(logLevel, ...text) {
-    if (logFilePath === undefined) {
+    if (logStream === undefined) {
         return;
     }
     if (logLevel === undefined) {
-        appendFile(logFilePath, text.join(' '));
+        logStream.write(text.join(' ') + '\n');
         return;
     }
     const logLevelText = `${LogLevel[logLevel]}:`.padEnd(LOG_LEVEL_COLUMNS);
-    appendFile(logFilePath, stripVTControlCharacters(text
+    logStream.write(stripVTControlCharacters(text
         .join(' ')
         .split('\n')
         .map((l) => `${logLevelText} ${l}\n`)

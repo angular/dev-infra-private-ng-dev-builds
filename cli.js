@@ -14,6 +14,7 @@ import { buildAuthParser } from './auth/cli.js';
 import { buildPerfParser } from './perf/cli.js';
 import { buildAiParser } from './ai/cli.js';
 runParserWithCompletedFunctions((yargs) => {
+    process.exitCode = 0;
     return yargs
         .scriptName('ng-dev')
         .middleware(captureLogOutputForCommand, true)
