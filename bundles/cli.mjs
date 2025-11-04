@@ -1686,9 +1686,9 @@ var require_lib = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/fs/node.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/fs/node.js
 var require_node = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/fs/node.js"(exports, module) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/fs/node.js"(exports, module) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var fsModule;
@@ -1702,9 +1702,9 @@ var require_node = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/match.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/match.js
 var require_match = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/match.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/match.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.default = (ctx, rec, confidence) => ({
@@ -1715,9 +1715,9 @@ var require_match = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/ascii.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/ascii.js
 var require_ascii = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/ascii.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/ascii.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1743,9 +1743,9 @@ var require_ascii = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/utf8.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/utf8.js
 var require_utf8 = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/utf8.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/utf8.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1814,9 +1814,9 @@ var require_utf8 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/unicode.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/unicode.js
 var require_unicode = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/unicode.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/unicode.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -1913,9 +1913,9 @@ var require_unicode = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/mbcs.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/mbcs.js
 var require_mbcs = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/mbcs.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/mbcs.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -2658,9 +2658,9 @@ var require_mbcs = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/sbcs.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/sbcs.js
 var require_sbcs = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/sbcs.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/sbcs.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -7009,9 +7009,9 @@ var require_sbcs = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/iso2022.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/iso2022.js
 var require_iso2022 = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/encoding/iso2022.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/iso2022.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -7130,9 +7130,9 @@ var require_iso2022 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/utils.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/utils.js
 var require_utils = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/utils.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/utils.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.isByteArray = void 0;
@@ -7145,9 +7145,9 @@ var require_utils = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/index.js
+// node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/index.js
 var require_lib2 = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.0/node_modules/chardet/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -7280,15 +7280,25 @@ var require_lib2 = __commonJS({
         }
         if (err) {
           reject(err);
-        } else {
+        } else if (buffer) {
           resolve12((0, exports.detect)(buffer));
+        } else {
+          reject(new Error("No error and no buffer received"));
         }
       };
-      if (opts && opts.sampleSize) {
+      const sampleSize = (opts === null || opts === void 0 ? void 0 : opts.sampleSize) || 0;
+      if (sampleSize > 0) {
         fd = fs6.openSync(filepath, "r");
-        const sample = Buffer.allocUnsafe(opts.sampleSize);
-        fs6.read(fd, sample, 0, opts.sampleSize, opts.offset, (err) => {
-          handler32(err, sample);
+        let sample = Buffer.allocUnsafe(sampleSize);
+        fs6.read(fd, sample, 0, sampleSize, opts.offset, (err, bytesRead) => {
+          if (err) {
+            handler32(err, null);
+          } else {
+            if (bytesRead < sampleSize) {
+              sample = sample.subarray(0, bytesRead);
+            }
+            handler32(null, sample);
+          }
         });
         return;
       }
@@ -7299,8 +7309,11 @@ var require_lib2 = __commonJS({
       const fs6 = (0, node_1.default)();
       if (opts && opts.sampleSize) {
         const fd = fs6.openSync(filepath, "r");
-        const sample = Buffer.allocUnsafe(opts.sampleSize);
-        fs6.readSync(fd, sample, 0, opts.sampleSize, opts.offset);
+        let sample = Buffer.allocUnsafe(opts.sampleSize);
+        const bytesRead = fs6.readSync(fd, sample, 0, opts.sampleSize, opts.offset);
+        if (bytesRead < opts.sampleSize) {
+          sample = sample.subarray(0, bytesRead);
+        }
         fs6.closeSync(fd);
         return (0, exports.detect)(sample);
       }
@@ -17482,12 +17495,12 @@ var require_extend = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/package.json
+// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/package.json
 var require_package2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/package.json"(exports, module) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/package.json"(exports, module) {
     module.exports = {
       name: "gaxios",
-      version: "7.1.2",
+      version: "7.1.3",
       description: "A simple common HTTP client specifically for Google APIs and services.",
       main: "build/cjs/src/index.js",
       types: "build/cjs/src/index.d.ts",
@@ -17525,7 +17538,11 @@ var require_package2 = __commonJS({
         prelint: "cd samples; npm link ../; npm install",
         clean: "gts clean"
       },
-      repository: "googleapis/gaxios",
+      repository: {
+        type: "git",
+        directory: "packages/gaxios",
+        url: "https://github.com/googleapis/google-cloud-node-core.git"
+      },
       keywords: [
         "google"
       ],
@@ -17554,8 +17571,8 @@ var require_package2 = __commonJS({
         gts: "^6.0.0",
         "is-docker": "^3.0.0",
         jsdoc: "^4.0.0",
-        "jsdoc-fresh": "^4.0.0",
-        "jsdoc-region-tag": "^3.0.0",
+        "jsdoc-fresh": "^5.0.0",
+        "jsdoc-region-tag": "^4.0.0",
         karma: "^6.0.0",
         "karma-chrome-launcher": "^3.0.0",
         "karma-coverage": "^2.0.0",
@@ -17571,7 +17588,7 @@ var require_package2 = __commonJS({
         ncp: "^2.0.0",
         nock: "^14.0.0-beta.13",
         "null-loader": "^4.0.0",
-        "pack-n-play": "^3.0.0",
+        "pack-n-play": "^4.0.0",
         puppeteer: "^24.0.0",
         sinon: "^21.0.0",
         "stream-browserify": "^3.0.0",
@@ -17584,24 +17601,26 @@ var require_package2 = __commonJS({
       dependencies: {
         extend: "^3.0.2",
         "https-proxy-agent": "^7.0.1",
-        "node-fetch": "^3.3.2"
-      }
+        "node-fetch": "^3.3.2",
+        rimraf: "^5.0.1"
+      },
+      homepage: "https://github.com/googleapis/google-cloud-node-core/tree/main/packages/gaxios"
     };
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/util.cjs
+// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/util.cjs
 var require_util = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/util.cjs"(exports, module) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/util.cjs"(exports, module) {
     "use strict";
     var pkg = require_package2();
     module.exports = { pkg };
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/common.js
+// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/common.js
 var require_common2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/common.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/common.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -17841,9 +17860,9 @@ var require_common2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/retry.js
+// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/retry.js
 var require_retry = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/retry.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/retry.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getRetryConfig = getRetryConfig;
@@ -17946,9 +17965,9 @@ var require_retry = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js
+// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js
 var require_interceptor = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GaxiosInterceptorManager = void 0;
@@ -17958,9 +17977,9 @@ var require_interceptor = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js
+// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js
 var require_gaxios = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -17975,6 +17994,7 @@ var require_gaxios = __commonJS({
     var stream_1 = __require("stream");
     var interceptor_js_1 = require_interceptor();
     var randomUUID3 = async () => globalThis.crypto?.randomUUID() || (await import("crypto")).randomUUID();
+    var HTTP_STATUS_NO_CONTENT = 204;
     var Gaxios = class {
       agentCache = /* @__PURE__ */ new Map();
       /**
@@ -18112,14 +18132,23 @@ var require_gaxios = __commonJS({
         }
       }
       async getResponseData(opts, res) {
+        if (res.status === HTTP_STATUS_NO_CONTENT) {
+          return "";
+        }
         if (opts.maxContentLength && res.headers.has("content-length") && opts.maxContentLength < Number.parseInt(res.headers?.get("content-length") || "")) {
           throw new common_js_1.GaxiosError("Response's `Content-Length` is over the limit.", opts, Object.assign(res, { config: opts }));
         }
         switch (opts.responseType) {
           case "stream":
             return res.body;
-          case "json":
-            return res.json();
+          case "json": {
+            const data = await res.text();
+            try {
+              return JSON.parse(data);
+            } catch {
+              return data;
+            }
+          }
           case "arraybuffer":
             return res.arrayBuffer();
           case "blob":
@@ -18341,7 +18370,7 @@ var require_gaxios = __commonJS({
        * This implementation follows the spec: https://www.ietf.org/rfc/rfc2387.txt. However, recursive
        * multipart/related requests are not currently supported.
        *
-       * @param {GaxioMultipartOptions[]} multipartOptions the pieces to turn into a multipart/related body.
+       * @param {GaxiosMultipartOptions[]} multipartOptions the pieces to turn into a multipart/related body.
        * @param {string} boundary the boundary string to be placed between each part.
        */
       async *getMultipartRequest(multipartOptions, boundary) {
@@ -18422,9 +18451,9 @@ Content-Type: ${partContentType}\r
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/index.js
+// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/index.js
 var require_src2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.2_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -20356,9 +20385,9 @@ var require_json_bigint = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gcp-metadata@8.1.1_supports-color_10.2.2/node_modules/gcp-metadata/build/src/gcp-residency.js
+// node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/gcp-residency.js
 var require_gcp_residency = __commonJS({
-  "node_modules/.aspect_rules_js/gcp-metadata@8.1.1_supports-color_10.2.2/node_modules/gcp-metadata/build/src/gcp-residency.js"(exports) {
+  "node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/gcp-residency.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GCE_LINUX_BIOS_PATHS = void 0;
@@ -20411,9 +20440,9 @@ var require_gcp_residency = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.1/node_modules/google-logging-utils/build/src/colours.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/colours.js
 var require_colours = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.1/node_modules/google-logging-utils/build/src/colours.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/colours.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Colours = void 0;
@@ -20472,9 +20501,9 @@ var require_colours = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.1/node_modules/google-logging-utils/build/src/logging-utils.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/logging-utils.js
 var require_logging_utils = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.1/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -20768,9 +20797,9 @@ var require_logging_utils = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.1/node_modules/google-logging-utils/build/src/index.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/index.js
 var require_src3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.1/node_modules/google-logging-utils/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -20797,9 +20826,9 @@ var require_src3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gcp-metadata@8.1.1_supports-color_10.2.2/node_modules/gcp-metadata/build/src/index.js
+// node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/index.js
 var require_src4 = __commonJS({
-  "node_modules/.aspect_rules_js/gcp-metadata@8.1.1_supports-color_10.2.2/node_modules/gcp-metadata/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -21164,9 +21193,9 @@ var require_base64_js = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
 var require_shared = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fromArrayBufferToHex = fromArrayBufferToHex;
@@ -21179,9 +21208,9 @@ var require_shared = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
 var require_crypto = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BrowserCrypto = void 0;
@@ -21275,9 +21304,9 @@ var require_crypto = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
 var require_crypto2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.NodeCrypto = void 0;
@@ -21339,9 +21368,9 @@ var require_crypto2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
 var require_crypto3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -21603,9 +21632,9 @@ var require_ecdsa_sig_formatter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js
 var require_util2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LRUCache = void 0;
@@ -21718,12 +21747,12 @@ var require_util2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/package.json
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/package.json
 var require_package3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/package.json"(exports, module) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/package.json"(exports, module) {
     module.exports = {
       name: "google-auth-library",
-      version: "10.4.2",
+      version: "10.5.0",
       author: "Google Inc.",
       description: "Google APIs Authentication Client Library for Node.js",
       engines: {
@@ -21812,9 +21841,9 @@ var require_package3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs
 var require_shared2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.USER_AGENT = exports.PRODUCT_NAME = exports.pkg = void 0;
@@ -21827,9 +21856,9 @@ var require_shared2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
 var require_authclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AuthClient = exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports.DEFAULT_UNIVERSE = void 0;
@@ -22062,9 +22091,9 @@ var require_authclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
 var require_loginticket = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.LoginTicket = void 0;
@@ -22114,9 +22143,9 @@ var require_loginticket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
 var require_oauth2client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuth2Client = exports.ClientAuthentication = exports.CertificateFormat = exports.CodeChallengeMethod = void 0;
@@ -22795,9 +22824,9 @@ var require_oauth2client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
 var require_computeclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Compute = void 0;
@@ -22887,9 +22916,9 @@ var require_computeclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
 var require_idtokenclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IdTokenClient = void 0;
@@ -22933,9 +22962,9 @@ var require_idtokenclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
 var require_envDetect = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GCPEnv = void 0;
@@ -24213,9 +24242,9 @@ var require_src5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
 var require_jwtaccess = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.JWTAccess = void 0;
@@ -24383,9 +24412,9 @@ var require_jwtaccess = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
 var require_jwtclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.JWT = void 0;
@@ -24654,9 +24683,9 @@ var require_jwtclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
 var require_refreshclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UserRefreshClient = exports.USER_REFRESH_ACCOUNT_TYPE = void 0;
@@ -24781,9 +24810,9 @@ var require_refreshclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
 var require_impersonated = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Impersonated = exports.IMPERSONATED_ACCOUNT_TYPE = void 0;
@@ -24960,9 +24989,9 @@ var require_impersonated = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
 var require_oauth2common = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.OAuthClientAuthHandler = void 0;
@@ -25108,9 +25137,9 @@ var require_oauth2common = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
 var require_stscredentials = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.StsCredentials = void 0;
@@ -25195,9 +25224,9 @@ var require_stscredentials = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
 var require_baseexternalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.BaseExternalAccountClient = exports.CLOUD_RESOURCE_MANAGER = exports.EXTERNAL_ACCOUNT_TYPE = exports.EXPIRATION_TIME_OFFSET = void 0;
@@ -25572,9 +25601,9 @@ var require_baseexternalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
 var require_filesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.FileSubjectTokenSupplier = void 0;
@@ -25637,9 +25666,9 @@ var require_filesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
 var require_urlsubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.UrlSubjectTokenSupplier = void 0;
@@ -25694,9 +25723,9 @@ var require_urlsubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
 var require_certificatesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CertificateSubjectTokenSupplier = exports.InvalidConfigurationError = exports.CertificateSourceUnavailableError = exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
@@ -25878,9 +25907,9 @@ var require_certificatesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
 var require_identitypoolclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IdentityPoolClient = void 0;
@@ -25990,9 +26019,9 @@ var require_identitypoolclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
 var require_awsrequestsigner = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AwsRequestSigner = void 0;
@@ -26140,9 +26169,9 @@ ${credentialScope}
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
 var require_defaultawssecuritycredentialssupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DefaultAwsSecurityCredentialsSupplier = void 0;
@@ -26291,9 +26320,9 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
 var require_awsclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.AwsClient = void 0;
@@ -26405,9 +26434,9 @@ var require_awsclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
 var require_executable_response = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.InvalidSubjectTokenError = exports.InvalidMessageFieldError = exports.InvalidCodeFieldError = exports.InvalidTokenTypeFieldError = exports.InvalidExpirationTimeFieldError = exports.InvalidSuccessFieldError = exports.InvalidVersionFieldError = exports.ExecutableResponseError = exports.ExecutableResponse = void 0;
@@ -26536,9 +26565,9 @@ var require_executable_response = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
 var require_pluggable_auth_handler = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PluggableAuthHandler = exports.ExecutableError = void 0;
@@ -26677,9 +26706,9 @@ var require_pluggable_auth_handler = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
 var require_pluggable_auth_client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PluggableAuthClient = exports.ExecutableError = void 0;
@@ -26804,9 +26833,9 @@ var require_pluggable_auth_client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
 var require_externalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ExternalAccountClient = void 0;
@@ -26853,9 +26882,9 @@ var require_externalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
 var require_externalAccountAuthorizedUserClient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
@@ -27039,9 +27068,9 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
 var require_googleauth = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GoogleAuth = exports.GoogleAuthExceptionMessages = void 0;
@@ -27401,7 +27430,7 @@ var require_googleauth = __commonJS({
         if (!targetPrincipal) {
           throw new RangeError(`Cannot extract target principal from ${json.service_account_impersonation_url}`);
         }
-        const targetScopes = this.getAnyScopes() ?? [];
+        const targetScopes = (this.scopes || json.scopes || this.defaultScopes) ?? [];
         return new impersonated_1.Impersonated({
           ...json,
           sourceClient,
@@ -27829,9 +27858,9 @@ var require_googleauth = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
 var require_iam = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.IAMAuth = void 0;
@@ -27865,9 +27894,9 @@ var require_iam = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
 var require_downscopedclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DownscopedClient = exports.EXPIRATION_TIME_OFFSET = exports.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
@@ -28050,9 +28079,9 @@ var require_downscopedclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
 var require_passthrough = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.PassThroughClient = void 0;
@@ -28095,9 +28124,9 @@ var require_passthrough = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js
+// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js
 var require_src6 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.4.2_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GoogleAuth = exports.auth = exports.PassThroughClient = exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = exports.ExecutableError = exports.PluggableAuthClient = exports.DownscopedClient = exports.BaseExternalAccountClient = exports.ExternalAccountClient = exports.IdentityPoolClient = exports.AwsRequestSigner = exports.AwsClient = exports.UserRefreshClient = exports.LoginTicket = exports.ClientAuthentication = exports.OAuth2Client = exports.CodeChallengeMethod = exports.Impersonated = exports.JWT = exports.JWTAccess = exports.IdTokenClient = exports.IAMAuth = exports.GCPEnv = exports.Compute = exports.DEFAULT_UNIVERSE = exports.AuthClient = exports.gaxios = exports.gcpMetadata = void 0;
@@ -49892,7 +49921,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-8d8927cc2d4dfd47cec941ec6856cbaf4a82ecdc`;
+  const localVersion = `0.0.0-a81507a95248d35a6c255eb66a8ac521831873dd`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
@@ -50849,7 +50878,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.28.0_123332788/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.28.0_2056558101/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -50864,7 +50893,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.28.0_123332788/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.28.0_2056558101/node_modules/@google/genai/dist/node/index.mjs
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
 function getDefaultBaseUrls() {
