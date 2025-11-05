@@ -24,20 +24,18 @@ export class ServicesModule extends BaseModule {
     async printToTerminal() {
         const statuses = await this.data;
         const serviceNameMinLength = Math.max(...statuses.map((service) => service.name.length));
-        Log.info.group(bold('Service Statuses'));
+        Log.info(bold('Service Statuses'));
         for (const status of statuses) {
             const name = status.name.padEnd(serviceNameMinLength);
             if (status.status === 'passing') {
                 Log.info(`${name} ${green('✔')}`);
             }
             else {
-                Log.info.group(`${name} ${red('✘')} (Updated: ${status.lastUpdated.toLocaleString()})`);
+                Log.info(`${name} ${red('✘')} (Updated: ${status.lastUpdated.toLocaleString()})`);
                 Log.info(`  Details: ${status.description}`);
                 Log.info(`  Status URL: ${status.statusUrl}`);
-                Log.info.groupEnd();
             }
         }
-        Log.info.groupEnd();
         Log.info();
     }
     async getStatusFromStandardApi(service) {

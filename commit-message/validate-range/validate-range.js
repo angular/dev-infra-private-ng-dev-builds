@@ -31,9 +31,8 @@ export async function validateCommitRange(from, to) {
     else {
         Log.error('✘  Invalid commit message');
         errors.forEach(([header, validationErrors]) => {
-            Log.error.group(header);
+            Log.error(header);
             printValidationErrors(validationErrors);
-            Log.error.groupEnd();
         });
         process.exit(1);
     }

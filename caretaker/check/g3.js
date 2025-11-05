@@ -10,7 +10,7 @@ export class G3Module extends BaseModule {
         if (!stats) {
             return;
         }
-        Log.info.group(bold('g3 branch check'));
+        Log.info(bold('g3 branch check'));
         if (stats.files === 0 && stats.separateFiles === 0) {
             Log.info(`${stats.commits} commits between g3 and ${this.git.mainBranchName}`);
             Log.info(` ${green('✔')} No sync is needed at this time`);
@@ -26,7 +26,6 @@ export class G3Module extends BaseModule {
             Log.info(`${stats.files} files changed, ${stats.insertions} insertions(+), ${stats.deletions} ` +
                 `deletions(-) from ${stats.commits} commits will be included in the next sync`);
         }
-        Log.info.groupEnd();
         Log.info();
     }
 }

@@ -29,17 +29,9 @@ Log.debug = buildLogLevelFunction(() => console.debug, LogLevel.DEBUG, null);
 Log.log = buildLogLevelFunction(() => console.log, LogLevel.LOG, null);
 Log.warn = buildLogLevelFunction(() => console.warn, LogLevel.WARN, chalk.yellow);
 function buildLogLevelFunction(loadCommand, level, defaultColor) {
-    const loggingFunction = (...values) => {
+    return (...values) => {
         runConsoleCommand(loadCommand, level, ...values.map((v) => (typeof v === 'string' && defaultColor ? defaultColor(v) : v)));
     };
-    loggingFunction.group = (label, collapsed = false) => {
-        const command = collapsed ? console.groupCollapsed : console.group;
-        runConsoleCommand(() => command, level, defaultColor ? defaultColor(label) : label);
-    };
-    loggingFunction.groupEnd = () => {
-        runConsoleCommand(() => console.groupEnd, level);
-    };
-    return loggingFunction;
 }
 function runConsoleCommand(loadCommand, logLevel, ...text) {
     if (getLogLevel() >= logLevel) {

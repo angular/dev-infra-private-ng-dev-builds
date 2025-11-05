@@ -107,11 +107,10 @@ async function setCaretakerGroup(group, members) {
             username,
         });
     };
-    Log.debug.group(`Caretaker Group: ${fullSlug}`);
+    Log.debug(`Caretaker Group: ${fullSlug}`);
     Log.debug(`Current Membership: ${current.join(', ')}`);
     Log.debug(`New Membership:     ${members.join(', ')}`);
     Log.debug(`Removed:            ${removed.join(', ')}`);
-    Log.debug.groupEnd();
     await Promise.all(members.map(add));
     await Promise.all(removed.map(remove));
     Log.debug(green(`Successfully updated ${fullSlug}`));

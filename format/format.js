@@ -25,11 +25,10 @@ export async function checkFiles(files) {
         return 0;
     }
     if (failures.length) {
-        Log.warn.group('\nThe following files are out of format:');
+        Log.warn('\nThe following files are out of format:');
         for (const { filePath } of failures) {
             Log.warn(`  • ${filePath}`);
         }
-        Log.warn.groupEnd();
         Log.warn();
         let runFormatter = false;
         if (!process.env['CI']) {

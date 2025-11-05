@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-FEACCSZS.mjs";
+} from "./chunk-2EJA2KBM.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -67,7 +67,7 @@ import {
   runParserWithCompletedFunctions,
   underline,
   yellow
-} from "./chunk-KFPOSREB.mjs";
+} from "./chunk-6MOHFSII.mjs";
 import {
   CommitParser
 } from "./chunk-XXPOON2I.mjs";
@@ -32317,7 +32317,7 @@ var CiModule = class extends BaseModule {
   async printToTerminal() {
     const data = await this.data;
     const minLabelLength = Math.max(...data.map((result) => result.label.length));
-    Log.info.group(bold(`CI`));
+    Log.info(bold(`CI`));
     data.forEach((result) => {
       if (result.active === false) {
         Log.debug(`No active release train for ${result.name}`);
@@ -32334,7 +32334,6 @@ var CiModule = class extends BaseModule {
         Log.info(`${label} ${red("\u2718")}`);
       }
     });
-    Log.info.groupEnd();
     Log.info();
   }
 };
@@ -34890,7 +34889,7 @@ var G3Module = class extends BaseModule {
     if (!stats) {
       return;
     }
-    Log.info.group(bold("g3 branch check"));
+    Log.info(bold("g3 branch check"));
     if (stats.files === 0 && stats.separateFiles === 0) {
       Log.info(`${stats.commits} commits between g3 and ${this.git.mainBranchName}`);
       Log.info(` ${green("\u2714")} No sync is needed at this time`);
@@ -34900,7 +34899,6 @@ Note: Shared primivites code has been merged. Only more Shared Primitives code c
     } else {
       Log.info(`${stats.files} files changed, ${stats.insertions} insertions(+), ${stats.deletions} deletions(-) from ${stats.commits} commits will be included in the next sync`);
     }
-    Log.info.groupEnd();
     Log.info();
   }
 };
@@ -34962,20 +34960,18 @@ var GithubQueriesModule = class extends BaseModule {
     if (!queryResults) {
       return;
     }
-    Log.info.group(bold("Github Tasks"));
+    Log.info(bold("Github Tasks"));
     const minQueryNameLength = Math.max(...queryResults.map((result) => result.queryName.length));
     for (const queryResult of queryResults) {
       Log.info(`${queryResult.queryName.padEnd(minQueryNameLength)}  ${queryResult.count}`);
       if (queryResult.count > 0) {
-        Log.info.group(queryResult.queryUrl);
+        Log.info(queryResult.queryUrl);
         queryResult.matchedUrls.forEach((url2) => Log.info(`- ${url2}`));
         if (queryResult.count > MAX_RETURNED_ISSUES) {
           Log.info(`... ${queryResult.count - MAX_RETURNED_ISSUES} additional matches`);
         }
-        Log.info.groupEnd();
       }
     }
-    Log.info.groupEnd();
     Log.info();
   }
 };
@@ -35005,19 +35001,17 @@ var ServicesModule = class extends BaseModule {
   async printToTerminal() {
     const statuses = await this.data;
     const serviceNameMinLength = Math.max(...statuses.map((service) => service.name.length));
-    Log.info.group(bold("Service Statuses"));
+    Log.info(bold("Service Statuses"));
     for (const status of statuses) {
       const name = status.name.padEnd(serviceNameMinLength);
       if (status.status === "passing") {
         Log.info(`${name} ${green("\u2714")}`);
       } else {
-        Log.info.group(`${name} ${red("\u2718")} (Updated: ${status.lastUpdated.toLocaleString()})`);
+        Log.info(`${name} ${red("\u2718")} (Updated: ${status.lastUpdated.toLocaleString()})`);
         Log.info(`  Details: ${status.description}`);
         Log.info(`  Status URL: ${status.statusUrl}`);
-        Log.info.groupEnd();
       }
     }
-    Log.info.groupEnd();
     Log.info();
   }
   async getStatusFromStandardApi(service) {
@@ -37573,11 +37567,10 @@ async function setCaretakerGroup(group, members) {
       username
     });
   };
-  Log.debug.group(`Caretaker Group: ${fullSlug}`);
+  Log.debug(`Caretaker Group: ${fullSlug}`);
   Log.debug(`Current Membership: ${current.join(", ")}`);
   Log.debug(`New Membership:     ${members.join(", ")}`);
   Log.debug(`Removed:            ${removed.join(", ")}`);
-  Log.debug.groupEnd();
   await Promise.all(members.map(add));
   await Promise.all(removed.map(remove));
   Log.debug(green(`Successfully updated ${fullSlug}`));
@@ -37848,9 +37841,8 @@ ${commit.footer.trim()}`;
   return { valid: validateCommitAndCollectErrors(), errors, commit };
 }
 function printValidationErrors(errors, print = Log.error) {
-  print.group(`Error${errors.length === 1 ? "" : "s"}:`);
+  print(`Error${errors.length === 1 ? "" : "s"}:`);
   errors.forEach((line) => print(line));
-  print.groupEnd();
   print();
   print("The expected format for a commit is: ");
   print("<type>(<scope>): <summary>");
@@ -38255,9 +38247,8 @@ async function validateCommitRange(from, to) {
   } else {
     Log.error("\u2718  Invalid commit message");
     errors.forEach(([header, validationErrors]) => {
-      Log.error.group(header);
+      Log.error(header);
       printValidationErrors(validationErrors);
-      Log.error.groupEnd();
     });
     process.exit(1);
   }
@@ -39875,11 +39866,10 @@ async function checkFiles(files) {
     return 0;
   }
   if (failures.length) {
-    Log.warn.group("\nThe following files are out of format:");
+    Log.warn("\nThe following files are out of format:");
     for (const { filePath } of failures) {
       Log.warn(`  \u2022 ${filePath}`);
     }
-    Log.warn.groupEnd();
     Log.warn();
     let runFormatter = false;
     if (!process.env["CI"]) {
@@ -40253,9 +40243,8 @@ async function updateGeneratedFileTargets() {
       throw new Error(`Unexpected error: ${result.stderr}`);
     }
     const targets = result.stdout.trim().split(/\r?\n/).map((x) => x.replace(/_generated$/, ""));
-    Log.debug.group("Discovered Targets");
+    Log.debug("Discovered Targets");
     targets.forEach((target) => Log.debug(target));
-    Log.debug.groupEnd();
     spinner.update(`Found ${targets.length} generated file targets to update`);
     await ChildProcess.spawn(getBazelBin(), ["build", targets.join(" ")], { mode: "silent" });
     for (let idx = 0; idx < targets.length; idx++) {
@@ -40608,9 +40597,8 @@ async function printTargetBranchesForPr(prNumber) {
   }
   const target = await getTargetBranchesForPr(prNumber, config);
   Log.info(`PR has the following target label: ${target.label.name}`);
-  Log.info.group(`PR #${prNumber} will merge into:`);
+  Log.info(`PR #${prNumber} will merge into:`);
   target.branches.forEach((name) => Log.info(`- ${name}`));
-  Log.info.groupEnd();
 }
 
 // ng-dev/pr/check-target-branches/cli.js
@@ -41248,11 +41236,10 @@ async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
     Log.info(`No new conflicting PRs found after #${newPrNumber} merging`);
     process.exit(0);
   }
-  Log.error.group(`${conflicts.length} PR(s) which conflict(s) after #${newPrNumber} merges:`);
+  Log.error(`${conflicts.length} PR(s) which conflict(s) after #${newPrNumber} merges:`);
   for (const pr of conflicts) {
     Log.error(`  - #${pr.number}: ${pr.title}`);
   }
-  Log.error.groupEnd();
   process.exit(1);
 }
 
@@ -42418,7 +42405,7 @@ import { resolve as resolve4 } from "path";
 // ng-dev/pullapprove/logging.js
 function logGroup(group, conditionsToPrint, printMessageFn = Log.info) {
   const conditions = group[conditionsToPrint];
-  printMessageFn.group(`[${group.groupName}]`);
+  printMessageFn(`[${group.groupName}]`);
   if (conditions.length) {
     conditions.forEach((groupCondition) => {
       const count = groupCondition.matchedFiles.size;
@@ -42428,7 +42415,6 @@ function logGroup(group, conditionsToPrint, printMessageFn = Log.info) {
         printMessageFn(`${count} ${count === 1 ? "match" : "matches"} - ${groupCondition.expression}`);
       }
     });
-    printMessageFn.groupEnd();
   }
 }
 function logHeader(...params2) {
@@ -42655,33 +42641,26 @@ async function verify2() {
   if (groupsWithoutReviewers.length === 0) {
     Log.info("All group contain at least one reviewer user or team.");
   } else {
-    Log.info.group(`Discovered ${groupsWithoutReviewers.length} group(s) without a reviewer defined`);
+    Log.info(`Discovered ${groupsWithoutReviewers.length} group(s) without a reviewer defined`);
     groupsWithoutReviewers.forEach((g) => Log.info(g.groupName));
-    Log.info.groupEnd();
   }
   logHeader("PullApprove results by file");
-  Log.info.group(`Matched Files (${matchedFiles.length} files)`);
+  Log.info(`Matched Files (${matchedFiles.length} files)`);
   matchedFiles.forEach((file) => Log.debug(file));
-  Log.info.groupEnd();
-  Log.info.group(`Unmatched Files (${unmatchedFiles.length} files)`);
+  Log.info(`Unmatched Files (${unmatchedFiles.length} files)`);
   unmatchedFiles.forEach((file) => Log.info(file));
-  Log.info.groupEnd();
   logHeader("PullApprove results by group");
-  Log.info.group(`Groups skipped (${groupsSkipped.length} groups)`);
+  Log.info(`Groups skipped (${groupsSkipped.length} groups)`);
   groupsSkipped.forEach((group) => Log.debug(`${group.groupName}`));
-  Log.info.groupEnd();
   const matchedGroups = resultsByGroup.filter((group) => !group.unmatchedCount);
-  Log.info.group(`Matched conditions by Group (${matchedGroups.length} groups)`);
+  Log.info(`Matched conditions by Group (${matchedGroups.length} groups)`);
   matchedGroups.forEach((group) => logGroup(group, "matchedConditions", Log.debug));
-  Log.info.groupEnd();
   const unmatchedGroups = resultsByGroup.filter((group) => group.unmatchedCount);
-  Log.info.group(`Unmatched conditions by Group (${unmatchedGroups.length} groups)`);
+  Log.info(`Unmatched conditions by Group (${unmatchedGroups.length} groups)`);
   unmatchedGroups.forEach((group) => logGroup(group, "unmatchedConditions"));
-  Log.info.groupEnd();
   const unverifiableConditionsInGroups = resultsByGroup.filter((group) => group.unverifiableConditions.length > 0);
-  Log.info.group(`Unverifiable conditions by Group (${unverifiableConditionsInGroups.length} groups)`);
+  Log.info(`Unverifiable conditions by Group (${unverifiableConditionsInGroups.length} groups)`);
   unverifiableConditionsInGroups.forEach((group) => logGroup(group, "unverifiableConditions"));
-  Log.info.groupEnd();
   process.exit(overallResult ? 0 : 1);
 }
 
@@ -44588,7 +44567,7 @@ import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-701925f3795549a7ba5090cc37b72a26daf97b24`;
+  const localVersion = `0.0.0-ad99c7e6602a9a800fd6a4e615c7420786a690f9`;
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");

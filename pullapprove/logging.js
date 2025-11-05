@@ -1,7 +1,7 @@
 import { Log } from '../utils/logging.js';
 export function logGroup(group, conditionsToPrint, printMessageFn = Log.info) {
     const conditions = group[conditionsToPrint];
-    printMessageFn.group(`[${group.groupName}]`);
+    printMessageFn(`[${group.groupName}]`);
     if (conditions.length) {
         conditions.forEach((groupCondition) => {
             const count = groupCondition.matchedFiles.size;
@@ -12,7 +12,6 @@ export function logGroup(group, conditionsToPrint, printMessageFn = Log.info) {
                 printMessageFn(`${count} ${count === 1 ? 'match' : 'matches'} - ${groupCondition.expression}`);
             }
         });
-        printMessageFn.groupEnd();
     }
 }
 export function logHeader(...params) {

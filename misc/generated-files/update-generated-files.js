@@ -18,9 +18,8 @@ export async function updateGeneratedFileTargets() {
             .trim()
             .split(/\r?\n/)
             .map((x) => x.replace(/_generated$/, ''));
-        Log.debug.group('Discovered Targets');
+        Log.debug('Discovered Targets');
         targets.forEach((target) => Log.debug(target));
-        Log.debug.groupEnd();
         spinner.update(`Found ${targets.length} generated file targets to update`);
         await ChildProcess.spawn(getBazelBin(), ['build', targets.join(' ')], { mode: 'silent' });
         for (let idx = 0; idx < targets.length; idx++) {

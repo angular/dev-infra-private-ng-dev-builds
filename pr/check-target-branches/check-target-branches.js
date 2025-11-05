@@ -30,8 +30,7 @@ export async function printTargetBranchesForPr(prNumber) {
     }
     const target = await getTargetBranchesForPr(prNumber, config);
     Log.info(`PR has the following target label: ${target.label.name}`);
-    Log.info.group(`PR #${prNumber} will merge into:`);
+    Log.info(`PR #${prNumber} will merge into:`);
     target.branches.forEach((name) => Log.info(`- ${name}`));
-    Log.info.groupEnd();
 }
 //# sourceMappingURL=check-target-branches.js.map

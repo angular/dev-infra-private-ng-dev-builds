@@ -72,11 +72,10 @@ export async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
         Log.info(`No new conflicting PRs found after #${newPrNumber} merging`);
         process.exit(0);
     }
-    Log.error.group(`${conflicts.length} PR(s) which conflict(s) after #${newPrNumber} merges:`);
+    Log.error(`${conflicts.length} PR(s) which conflict(s) after #${newPrNumber} merges:`);
     for (const pr of conflicts) {
         Log.error(`  - #${pr.number}: ${pr.title}`);
     }
-    Log.error.groupEnd();
     process.exit(1);
 }
 //# sourceMappingURL=index.js.map

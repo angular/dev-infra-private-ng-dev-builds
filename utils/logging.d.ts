@@ -17,30 +17,10 @@ export declare const bold: ChalkInstance;
 export declare const blue: ChalkInstance;
 export declare const underline: ChalkInstance;
 export declare abstract class Log {
-    static info: {
-        (...values: unknown[]): void;
-        group(label: string, collapsed?: boolean): void;
-        groupEnd(): void;
-    };
-    static error: {
-        (...values: unknown[]): void;
-        group(label: string, collapsed?: boolean): void;
-        groupEnd(): void;
-    };
-    static debug: {
-        (...values: unknown[]): void;
-        group(label: string, collapsed?: boolean): void;
-        groupEnd(): void;
-    };
-    static log: {
-        (...values: unknown[]): void;
-        group(label: string, collapsed?: boolean): void;
-        groupEnd(): void;
-    };
-    static warn: {
-        (...values: unknown[]): void;
-        group(label: string, collapsed?: boolean): void;
-        groupEnd(): void;
-    };
+    static info: (...values: unknown[]) => void;
+    static error: (...values: unknown[]) => void;
+    static debug: (...values: unknown[]) => void;
+    static log: (...values: unknown[]) => void;
+    static warn: (...values: unknown[]) => void;
 }
 export declare function captureLogOutputForCommand(argv: Arguments): Promise<void>;
