@@ -5,8 +5,21 @@ import { parse as parseYaml } from 'yaml';
 import { ngDevNpmPackageName, workspaceRelativePackageJsonPath } from './constants.js';
 import { Log } from './logging.js';
 import { tryGetPackageId } from '@pnpm/dependency-path';
+import { determineRepoBaseDirFromCwd } from './repo-directory.js';
+let verified = false;
+export async function ngDevVersionMiddleware() {
+    if (verified) {
+        return;
+    }
+    await verifyNgDevToolIsUpToDate(determineRepoBaseDirFromCwd());
+    verified = true;
+}
 export async function verifyNgDevToolIsUpToDate(workspacePath) {
     const localVersion = `0.0.0-{SCM_HEAD_SHA}`;
+    if (localVersion === '0.0.0-{{BUILD_SCM_COMMIT_SHA}}') {
+        Log.debug('Skipping ng-dev version check as this is a locally generated version.');
+        return true;
+    }
     const workspacePackageJsonFile = path.join(workspacePath, workspaceRelativePackageJsonPath);
     const pnpmLockFile = path.join(workspacePath, 'pnpm-lock.yaml');
     const yarnLockFile = path.join(workspacePath, 'yarn.lock');
@@ -14,11 +27,13 @@ export async function verifyNgDevToolIsUpToDate(workspacePath) {
     const expectedVersion = isPnpmMigrated
         ? getExpectedVersionFromPnpmLock(workspacePackageJsonFile, pnpmLockFile)
         : getExpectedVersionFromYarnLock(workspacePackageJsonFile, yarnLockFile);
-    Log.debug(`Expecting the following ng-dev version: ${expectedVersion}`);
+    Log.debug('Checking ng-dev version in lockfile and in the running script:');
+    Log.debug(`  Local: ${localVersion}`);
+    Log.debug(`  Expected: ${expectedVersion}`);
     if (localVersion !== expectedVersion) {
-        Log.error('  ✘   Your locally installed version of the `ng-dev` tool is outdated and not');
-        Log.error('      matching with the version in the `package.json` file.');
-        Log.error('      Re-install the dependencies to ensure you are using the correct version.');
+        Log.warn('  ⚠   Your locally installed version of the `ng-dev` tool is outdated and not');
+        Log.warn('      matching with the version in the `package.json` file.');
+        Log.warn('      Re-install the dependencies to ensure you are using the correct version.');
         return false;
     }
     return true;

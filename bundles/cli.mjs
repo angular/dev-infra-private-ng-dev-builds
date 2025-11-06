@@ -17028,11 +17028,11 @@ var require_lib6 = __commonJS({
         stream.pipe(checker);
         stream.on("error", reject);
         checker.on("error", reject);
-        let verified;
+        let verified2;
         checker.on("verified", (s) => {
-          verified = s;
+          verified2 = s;
         });
-        checker.on("end", () => resolve8(verified));
+        checker.on("end", () => resolve8(verified2));
         checker.resume();
       });
     }
@@ -22727,8 +22727,8 @@ var require_oauth2client = __commonJS({
         if (envelope.alg === "ES256") {
           signature = formatEcdsa.joseToDer(signature, "ES256").toString("base64");
         }
-        const verified = await crypto2.verify(cert, signed, signature);
-        if (!verified) {
+        const verified2 = await crypto2.verify(cert, signed, signature);
+        if (!verified2) {
           throw new Error("Invalid token signature: " + jwt);
         }
         if (!payload.iat) {
@@ -32067,8 +32067,8 @@ var require_websocket_server = __commonJS({
             req
           };
           if (this.options.verifyClient.length === 2) {
-            this.options.verifyClient(info2, (verified, code, message, headers) => {
-              if (!verified) {
+            this.options.verifyClient(info2, (verified2, code, message, headers) => {
+              if (!verified2) {
                 return abortHandshake(socket, code || 401, message, headers);
               }
               this.completeUpgrade(
@@ -44568,18 +44568,32 @@ import * as path6 from "path";
 import * as fs3 from "fs";
 import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
+var verified = false;
+async function ngDevVersionMiddleware() {
+  if (verified) {
+    return;
+  }
+  await verifyNgDevToolIsUpToDate(determineRepoBaseDirFromCwd());
+  verified = true;
+}
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-4a9ebbb7c82d49b93dd4347659c42c633f14ad92`;
+  const localVersion = `0.0.0-7fa1ab52a99168e16ea3722e4b7313839daea490`;
+  if (localVersion === "0.0.0-7fa1ab52a99168e16ea3722e4b7313839daea490") {
+    Log.debug("Skipping ng-dev version check as this is a locally generated version.");
+    return true;
+  }
   const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
   const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
   const yarnLockFile = path6.join(workspacePath, "yarn.lock");
   const isPnpmMigrated = fs3.existsSync(pnpmLockFile) && !fs3.existsSync(yarnLockFile);
   const expectedVersion = isPnpmMigrated ? getExpectedVersionFromPnpmLock(workspacePackageJsonFile, pnpmLockFile) : getExpectedVersionFromYarnLock(workspacePackageJsonFile, yarnLockFile);
-  Log.debug(`Expecting the following ng-dev version: ${expectedVersion}`);
+  Log.debug("Checking ng-dev version in lockfile and in the running script:");
+  Log.debug(`  Local: ${localVersion}`);
+  Log.debug(`  Expected: ${expectedVersion}`);
   if (localVersion !== expectedVersion) {
-    Log.error("  \u2718   Your locally installed version of the `ng-dev` tool is outdated and not");
-    Log.error("      matching with the version in the `package.json` file.");
-    Log.error("      Re-install the dependencies to ensure you are using the correct version.");
+    Log.warn("  \u26A0   Your locally installed version of the `ng-dev` tool is outdated and not");
+    Log.warn("      matching with the version in the `package.json` file.");
+    Log.warn("      Re-install the dependencies to ensure you are using the correct version.");
     return false;
   }
   return true;
@@ -59460,7 +59474,7 @@ function buildAiParser(localYargs) {
 // ng-dev/cli.js
 runParserWithCompletedFunctions((yargs) => {
   process.exitCode = 0;
-  return yargs.scriptName("ng-dev").middleware(captureLogOutputForCommand, true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).command("ai <command>", "", buildAiParser).wrap(120).strict();
+  return yargs.scriptName("ng-dev").middleware([captureLogOutputForCommand, ngDevVersionMiddleware], true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).command("ai <command>", "", buildAiParser).wrap(120).strict();
 });
 /*! Bundled license information:
 

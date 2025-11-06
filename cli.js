@@ -10,6 +10,7 @@ import { buildPullapproveParser } from './pullapprove/cli.js';
 import { buildReleaseParser } from './release/cli.js';
 import { tsCircularDependenciesBuilder } from './ts-circular-dependencies/index.js';
 import { captureLogOutputForCommand } from './utils/logging.js';
+import { ngDevVersionMiddleware } from './utils/version-check.js';
 import { buildAuthParser } from './auth/cli.js';
 import { buildPerfParser } from './perf/cli.js';
 import { buildAiParser } from './ai/cli.js';
@@ -17,7 +18,7 @@ runParserWithCompletedFunctions((yargs) => {
     process.exitCode = 0;
     return yargs
         .scriptName('ng-dev')
-        .middleware(captureLogOutputForCommand, true)
+        .middleware([captureLogOutputForCommand, ngDevVersionMiddleware], true)
         .demandCommand()
         .recommendCommands()
         .command('auth <command>', false, buildAuthParser)
