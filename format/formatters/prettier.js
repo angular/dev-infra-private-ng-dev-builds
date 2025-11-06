@@ -11,7 +11,9 @@ export class Prettier extends Formatter {
             '**/*.{js,cjs,mjs}',
             '**/*.{ts,cts,mts}',
             '**/*.{json,json5}',
+            '**/*.md',
             '**/*.{yml,yaml}',
+            '!**/goldens/**/*.api.md',
         ];
         this.configPath = this.config['prettier']
             ? ChildProcess.spawnSync(this.binaryFilePath, [
