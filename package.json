@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-f212cc35c752cd6dd4846bcb69141e46b28b797b",
+  "version": "0.0.0-7b0cc896370708d4849b3e37167f9b47137ba22c",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -17,9 +17,9 @@
   "dependencies": {
     "@actions/core": "1.11.1",
     "@google-cloud/spanner": "8.0.0",
-    "@google/genai": "1.28.0",
-    "@inquirer/prompts": "7.9.0",
-    "@inquirer/type": "3.0.9",
+    "@google/genai": "1.29.0",
+    "@inquirer/prompts": "7.10.0",
+    "@inquirer/type": "3.0.10",
     "@octokit/auth-app": "8.1.2",
     "@octokit/core": "7.0.6",
     "@octokit/graphql-schema": "15.26.0",

@@ -1177,15 +1177,15 @@ var require_route = __commonJS({
       };
     }
     function wrapConversion(toModel, graph) {
-      const path8 = [graph[toModel].parent, toModel];
+      const path9 = [graph[toModel].parent, toModel];
       let fn = conversions[graph[toModel].parent][toModel];
       let cur = graph[toModel].parent;
       while (graph[cur].parent) {
-        path8.unshift(graph[cur].parent);
+        path9.unshift(graph[cur].parent);
         fn = link(conversions[graph[cur].parent][cur], fn);
         cur = graph[cur].parent;
       }
-      fn.conversion = path8;
+      fn.conversion = path9;
       return fn;
     }
     module.exports = function(fromModel) {
@@ -1541,9 +1541,9 @@ var require_wrap_ansi = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/mute-stream@2.0.0/node_modules/mute-stream/lib/index.js
+// node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js
 var require_lib = __commonJS({
-  "node_modules/.aspect_rules_js/mute-stream@2.0.0/node_modules/mute-stream/lib/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js"(exports, module) {
     var Stream = __require("stream");
     var MuteStream2 = class extends Stream {
       #isTTY = null;
@@ -12276,7 +12276,7 @@ var require_ejs = __commonJS({
   "node_modules/.aspect_rules_js/ejs@3.1.10/node_modules/ejs/lib/ejs.js"(exports) {
     "use strict";
     var fs6 = __require("fs");
-    var path8 = __require("path");
+    var path9 = __require("path");
     var utils = require_utils2();
     var scopeOptionWarned = false;
     var _VERSION_STRING = require_package().version;
@@ -12307,9 +12307,9 @@ var require_ejs = __commonJS({
     exports.localsName = _DEFAULT_LOCALS_NAME;
     exports.promiseImpl = new Function("return this;")().Promise;
     exports.resolveInclude = function(name, filename, isDir) {
-      var dirname6 = path8.dirname;
-      var extname2 = path8.extname;
-      var resolve8 = path8.resolve;
+      var dirname6 = path9.dirname;
+      var extname2 = path9.extname;
+      var resolve8 = path9.resolve;
       var includePath = resolve8(isDir ? filename : dirname6(filename), name);
       var ext3 = extname2(name);
       if (!ext3) {
@@ -12326,30 +12326,30 @@ var require_ejs = __commonJS({
         return filePath;
       }
     }
-    function getIncludePath(path9, options) {
+    function getIncludePath(path10, options) {
       var includePath;
       var filePath;
       var views = options.views;
-      var match3 = /^[A-Za-z]+:\\|^\//.exec(path9);
+      var match3 = /^[A-Za-z]+:\\|^\//.exec(path10);
       if (match3 && match3.length) {
-        path9 = path9.replace(/^\/*/, "");
+        path10 = path10.replace(/^\/*/, "");
         if (Array.isArray(options.root)) {
-          includePath = resolvePaths(path9, options.root);
+          includePath = resolvePaths(path10, options.root);
         } else {
-          includePath = exports.resolveInclude(path9, options.root || "/", true);
+          includePath = exports.resolveInclude(path10, options.root || "/", true);
         }
       } else {
         if (options.filename) {
-          filePath = exports.resolveInclude(path9, options.filename);
+          filePath = exports.resolveInclude(path10, options.filename);
           if (fs6.existsSync(filePath)) {
             includePath = filePath;
           }
         }
         if (!includePath && Array.isArray(views)) {
-          includePath = resolvePaths(path9, views);
+          includePath = resolvePaths(path10, views);
         }
         if (!includePath && typeof options.includer !== "function") {
-          throw new Error('Could not find the include file "' + options.escapeFunction(path9) + '"');
+          throw new Error('Could not find the include file "' + options.escapeFunction(path10) + '"');
         }
       }
       return includePath;
@@ -12408,11 +12408,11 @@ var require_ejs = __commonJS({
     function fileLoader(filePath) {
       return exports.fileLoader(filePath);
     }
-    function includeFile(path9, options) {
+    function includeFile(path10, options) {
       var opts = utils.shallowCopy(utils.createNullProtoObjWherePossible(), options);
-      opts.filename = getIncludePath(path9, opts);
+      opts.filename = getIncludePath(path10, opts);
       if (typeof options.includer === "function") {
-        var includerResult = options.includer(path9, opts.filename);
+        var includerResult = options.includer(path10, opts.filename);
         if (includerResult) {
           if (includerResult.filename) {
             opts.filename = includerResult.filename;
@@ -12647,12 +12647,12 @@ var require_ejs = __commonJS({
           throw e;
         }
         var returnedFn = opts.client ? fn : function anonymous(data) {
-          var include = function(path9, includeData) {
+          var include = function(path10, includeData) {
             var d = utils.shallowCopy(utils.createNullProtoObjWherePossible(), data);
             if (includeData) {
               d = utils.shallowCopy(d, includeData);
             }
-            return includeFile(path9, opts)(d);
+            return includeFile(path10, opts)(d);
           };
           return fn.apply(
             opts.context,
@@ -12661,10 +12661,10 @@ var require_ejs = __commonJS({
         };
         if (opts.filename && typeof Object.defineProperty === "function") {
           var filename = opts.filename;
-          var basename2 = path8.basename(filename, path8.extname(filename));
+          var basename3 = path9.basename(filename, path9.extname(filename));
           try {
             Object.defineProperty(returnedFn, "name", {
-              value: basename2,
+              value: basename3,
               writable: false,
               enumerable: false,
               configurable: true
@@ -13566,11 +13566,11 @@ var require_cjs = __commonJS({
       return (f) => f.length === len && f !== "." && f !== "..";
     };
     var defaultPlatform3 = typeof process === "object" && process ? typeof process.env === "object" && process.env && process.env.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
-    var path8 = {
+    var path9 = {
       win32: { sep: "\\" },
       posix: { sep: "/" }
     };
-    exports.sep = defaultPlatform3 === "win32" ? path8.win32.sep : path8.posix.sep;
+    exports.sep = defaultPlatform3 === "win32" ? path9.win32.sep : path9.posix.sep;
     exports.minimatch.sep = exports.sep;
     exports.GLOBSTAR = Symbol("globstar **");
     exports.minimatch.GLOBSTAR = exports.GLOBSTAR;
@@ -14464,7 +14464,7 @@ var require_folder_hash = __commonJS({
     var crypto2 = __require("crypto");
     var debug = require_src();
     var minimatch3 = require_index_cjs();
-    var path8 = __require("path");
+    var path9 = __require("path");
     var defaultOptions = {
       algo: "sha1",
       // see crypto.getHashes() for options
@@ -14511,10 +14511,10 @@ var require_folder_hash = __commonJS({
       let queueTimer = void 0;
       function hashElement2(name, dir, options, callback) {
         callback = arguments[arguments.length - 1];
-        return parseParameters(arguments).then(({ basename: basename2, dir: dir2, options: options2 }) => {
+        return parseParameters(arguments).then(({ basename: basename3, dir: dir2, options: options2 }) => {
           options2.skipMatching = true;
-          return fs6.promises.lstat(path8.join(dir2, basename2)).then((stats) => {
-            stats.name = basename2;
+          return fs6.promises.lstat(path9.join(dir2, basename3)).then((stats) => {
+            stats.name = basename3;
             return stats;
           }).then((stats) => hashElementPromise(stats, dir2, options2, true));
         }).then((result) => {
@@ -14569,7 +14569,7 @@ var require_folder_hash = __commonJS({
         runnables.forEach((run) => run());
       }
       async function hashFolderPromise(name, dir, options, isRootElement = false) {
-        const folderPath = path8.join(dir, name);
+        const folderPath = path9.join(dir, name);
         let ignoreBasenameOnce = options.ignoreBasenameOnce;
         delete options.ignoreBasenameOnce;
         if (options.skipMatching) {
@@ -14588,7 +14588,7 @@ var require_folder_hash = __commonJS({
         return hash;
       }
       function hashFilePromise(name, dir, options, isRootElement = false) {
-        const filePath = path8.join(dir, name);
+        const filePath = path9.join(dir, name);
         if (options.skipMatching) {
           log.match(`skipped '${filePath}'`);
           delete options.skipMatching;
@@ -14619,7 +14619,7 @@ var require_folder_hash = __commonJS({
         });
       }
       async function hashSymLinkPromise(name, dir, options, isRootElement = false) {
-        const target = await fs6.promises.readlink(path8.join(dir, name));
+        const target = await fs6.promises.readlink(path9.join(dir, name));
         log.symlink(`handling symbolic link ${name} -> ${target}`);
         if (options.symbolicLinks.include) {
           if (options.symbolicLinks.ignoreTargetContent) {
@@ -14652,7 +14652,7 @@ var require_folder_hash = __commonJS({
           options.ignoreBasenameOnce = true;
         }
         try {
-          const stats = await fs6.promises.stat(path8.join(dir, name));
+          const stats = await fs6.promises.stat(path9.join(dir, name));
           stats.name = name;
           const temp = await hashElementPromise(stats, dir, options, isRootElement);
           if (!options.symbolicLinks.ignoreTargetPath) {
@@ -14680,13 +14680,13 @@ var require_folder_hash = __commonJS({
           }
         }
       }
-      function ignore(name, path9, rules) {
+      function ignore(name, path10, rules) {
         if (rules.exclude) {
           if (rules.matchBasename && rules.exclude(name)) {
             log.match(`exclude basename '${name}'`);
             return true;
-          } else if (rules.matchPath && rules.exclude(path9)) {
-            log.match(`exclude path '${path9}'`);
+          } else if (rules.matchPath && rules.exclude(path10)) {
+            log.match(`exclude path '${path10}'`);
             return true;
           }
         }
@@ -14694,27 +14694,27 @@ var require_folder_hash = __commonJS({
           if (rules.matchBasename && rules.include(name)) {
             log.match(`include basename '${name}'`);
             return false;
-          } else if (rules.matchPath && rules.include(path9)) {
-            log.match(`include path '${path9}'`);
+          } else if (rules.matchPath && rules.include(path10)) {
+            log.match(`include path '${path10}'`);
             return false;
           } else {
-            log.match(`include rule failed for path '${path9}'`);
+            log.match(`include rule failed for path '${path10}'`);
             return true;
           }
         }
-        log.match(`Will not ignore unmatched '${path9}'`);
+        log.match(`Will not ignore unmatched '${path10}'`);
         return false;
       }
       return hashElement2;
     }
     function parseParameters(args) {
-      let basename2 = args[0], dir = args[1], options_ = args[2];
-      if (!isString(basename2)) {
+      let basename3 = args[0], dir = args[1], options_ = args[2];
+      if (!isString(basename3)) {
         return Promise.reject(new TypeError("First argument must be a string"));
       }
       if (!isString(dir)) {
-        dir = path8.dirname(basename2);
-        basename2 = path8.basename(basename2);
+        dir = path9.dirname(basename3);
+        basename3 = path9.basename(basename3);
         options_ = args[1];
       }
       if (!isObject(options_))
@@ -14732,7 +14732,7 @@ var require_folder_hash = __commonJS({
       options.files.include = reduceGlobPatterns(options.files.include, "include files");
       options.folders.exclude = reduceGlobPatterns(options.folders.exclude, "exclude folders");
       options.folders.include = reduceGlobPatterns(options.folders.include, "include folders");
-      return Promise.resolve(log.params({ basename: basename2, dir, options }));
+      return Promise.resolve(log.params({ basename: basename3, dir, options }));
     }
     var HashedFolder = function HashedFolder2(name, children, options, isRootElement = false) {
       this.name = name;
@@ -14881,7 +14881,7 @@ var require_polyfills = __commonJS({
       fs6.fstatSync = statFixSync(fs6.fstatSync);
       fs6.lstatSync = statFixSync(fs6.lstatSync);
       if (fs6.chmod && !fs6.lchmod) {
-        fs6.lchmod = function(path8, mode, cb) {
+        fs6.lchmod = function(path9, mode, cb) {
           if (cb)
             process.nextTick(cb);
         };
@@ -14889,7 +14889,7 @@ var require_polyfills = __commonJS({
         };
       }
       if (fs6.chown && !fs6.lchown) {
-        fs6.lchown = function(path8, uid, gid, cb) {
+        fs6.lchown = function(path9, uid, gid, cb) {
           if (cb)
             process.nextTick(cb);
         };
@@ -14960,9 +14960,9 @@ var require_polyfills = __commonJS({
         };
       }(fs6.readSync);
       function patchLchmod(fs7) {
-        fs7.lchmod = function(path8, mode, callback) {
+        fs7.lchmod = function(path9, mode, callback) {
           fs7.open(
-            path8,
+            path9,
             constants.O_WRONLY | constants.O_SYMLINK,
             mode,
             function(err, fd) {
@@ -14980,8 +14980,8 @@ var require_polyfills = __commonJS({
             }
           );
         };
-        fs7.lchmodSync = function(path8, mode) {
-          var fd = fs7.openSync(path8, constants.O_WRONLY | constants.O_SYMLINK, mode);
+        fs7.lchmodSync = function(path9, mode) {
+          var fd = fs7.openSync(path9, constants.O_WRONLY | constants.O_SYMLINK, mode);
           var threw = true;
           var ret;
           try {
@@ -15002,8 +15002,8 @@ var require_polyfills = __commonJS({
       }
       function patchLutimes(fs7) {
         if (constants.hasOwnProperty("O_SYMLINK") && fs7.futimes) {
-          fs7.lutimes = function(path8, at, mt, cb) {
-            fs7.open(path8, constants.O_SYMLINK, function(er, fd) {
+          fs7.lutimes = function(path9, at, mt, cb) {
+            fs7.open(path9, constants.O_SYMLINK, function(er, fd) {
               if (er) {
                 if (cb)
                   cb(er);
@@ -15017,8 +15017,8 @@ var require_polyfills = __commonJS({
               });
             });
           };
-          fs7.lutimesSync = function(path8, at, mt) {
-            var fd = fs7.openSync(path8, constants.O_SYMLINK);
+          fs7.lutimesSync = function(path9, at, mt) {
+            var fd = fs7.openSync(path9, constants.O_SYMLINK);
             var ret;
             var threw = true;
             try {
@@ -15154,12 +15154,12 @@ var require_legacy_streams = __commonJS({
         ReadStream,
         WriteStream
       };
-      function ReadStream(path8, options) {
+      function ReadStream(path9, options) {
         if (!(this instanceof ReadStream))
-          return new ReadStream(path8, options);
+          return new ReadStream(path9, options);
         Stream.call(this);
         var self2 = this;
-        this.path = path8;
+        this.path = path9;
         this.fd = null;
         this.readable = true;
         this.paused = false;
@@ -15205,11 +15205,11 @@ var require_legacy_streams = __commonJS({
           self2._read();
         });
       }
-      function WriteStream(path8, options) {
+      function WriteStream(path9, options) {
         if (!(this instanceof WriteStream))
-          return new WriteStream(path8, options);
+          return new WriteStream(path9, options);
         Stream.call(this);
-        this.path = path8;
+        this.path = path9;
         this.fd = null;
         this.writable = true;
         this.flags = "w";
@@ -15352,14 +15352,14 @@ var require_graceful_fs = __commonJS({
       fs7.createWriteStream = createWriteStream2;
       var fs$readFile = fs7.readFile;
       fs7.readFile = readFile6;
-      function readFile6(path8, options, cb) {
+      function readFile6(path9, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$readFile(path8, options, cb);
-        function go$readFile(path9, options2, cb2, startTime) {
-          return fs$readFile(path9, options2, function(err) {
+        return go$readFile(path9, options, cb);
+        function go$readFile(path10, options2, cb2, startTime) {
+          return fs$readFile(path10, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$readFile, [path9, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$readFile, [path10, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -15369,14 +15369,14 @@ var require_graceful_fs = __commonJS({
       }
       var fs$writeFile = fs7.writeFile;
       fs7.writeFile = writeFile5;
-      function writeFile5(path8, data, options, cb) {
+      function writeFile5(path9, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$writeFile(path8, data, options, cb);
-        function go$writeFile(path9, data2, options2, cb2, startTime) {
-          return fs$writeFile(path9, data2, options2, function(err) {
+        return go$writeFile(path9, data, options, cb);
+        function go$writeFile(path10, data2, options2, cb2, startTime) {
+          return fs$writeFile(path10, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$writeFile, [path9, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$writeFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -15387,14 +15387,14 @@ var require_graceful_fs = __commonJS({
       var fs$appendFile = fs7.appendFile;
       if (fs$appendFile)
         fs7.appendFile = appendFile;
-      function appendFile(path8, data, options, cb) {
+      function appendFile(path9, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$appendFile(path8, data, options, cb);
-        function go$appendFile(path9, data2, options2, cb2, startTime) {
-          return fs$appendFile(path9, data2, options2, function(err) {
+        return go$appendFile(path9, data, options, cb);
+        function go$appendFile(path10, data2, options2, cb2, startTime) {
+          return fs$appendFile(path10, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$appendFile, [path9, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$appendFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -15425,31 +15425,31 @@ var require_graceful_fs = __commonJS({
       var fs$readdir = fs7.readdir;
       fs7.readdir = readdir;
       var noReaddirOptionVersions = /^v[0-5]\./;
-      function readdir(path8, options, cb) {
+      function readdir(path9, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path9, options2, cb2, startTime) {
-          return fs$readdir(path9, fs$readdirCallback(
-            path9,
+        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path10, options2, cb2, startTime) {
+          return fs$readdir(path10, fs$readdirCallback(
+            path10,
             options2,
             cb2,
             startTime
           ));
-        } : function go$readdir2(path9, options2, cb2, startTime) {
-          return fs$readdir(path9, options2, fs$readdirCallback(
-            path9,
+        } : function go$readdir2(path10, options2, cb2, startTime) {
+          return fs$readdir(path10, options2, fs$readdirCallback(
+            path10,
             options2,
             cb2,
             startTime
           ));
         };
-        return go$readdir(path8, options, cb);
-        function fs$readdirCallback(path9, options2, cb2, startTime) {
+        return go$readdir(path9, options, cb);
+        function fs$readdirCallback(path10, options2, cb2, startTime) {
           return function(err, files) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
               enqueue([
                 go$readdir,
-                [path9, options2, cb2],
+                [path10, options2, cb2],
                 err,
                 startTime || Date.now(),
                 Date.now()
@@ -15520,7 +15520,7 @@ var require_graceful_fs = __commonJS({
         enumerable: true,
         configurable: true
       });
-      function ReadStream(path8, options) {
+      function ReadStream(path9, options) {
         if (this instanceof ReadStream)
           return fs$ReadStream.apply(this, arguments), this;
         else
@@ -15540,7 +15540,7 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function WriteStream(path8, options) {
+      function WriteStream(path9, options) {
         if (this instanceof WriteStream)
           return fs$WriteStream.apply(this, arguments), this;
         else
@@ -15558,22 +15558,22 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function createReadStream(path8, options) {
-        return new fs7.ReadStream(path8, options);
+      function createReadStream(path9, options) {
+        return new fs7.ReadStream(path9, options);
       }
-      function createWriteStream2(path8, options) {
-        return new fs7.WriteStream(path8, options);
+      function createWriteStream2(path9, options) {
+        return new fs7.WriteStream(path9, options);
       }
       var fs$open = fs7.open;
       fs7.open = open2;
-      function open2(path8, flags, mode, cb) {
+      function open2(path9, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
-        return go$open(path8, flags, mode, cb);
-        function go$open(path9, flags2, mode2, cb2, startTime) {
-          return fs$open(path9, flags2, mode2, function(err, fd) {
+        return go$open(path9, flags, mode, cb);
+        function go$open(path10, flags2, mode2, cb2, startTime) {
+          return fs$open(path10, flags2, mode2, function(err, fd) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$open, [path9, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$open, [path10, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -21622,7 +21622,7 @@ var require_util2 = __commonJS({
     exports.getWellKnownCertificateConfigFileLocation = getWellKnownCertificateConfigFileLocation;
     var fs6 = __require("fs");
     var os2 = __require("os");
-    var path8 = __require("path");
+    var path9 = __require("path");
     var WELL_KNOWN_CERTIFICATE_CONFIG_FILE = "certificate_config.json";
     var CLOUDSDK_CONFIG_DIRECTORY = "gcloud";
     function snakeToCamel(str) {
@@ -21715,8 +21715,8 @@ var require_util2 = __commonJS({
       }
     }
     function getWellKnownCertificateConfigFileLocation() {
-      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path8.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path8.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
-      return path8.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
+      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path9.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path9.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
+      return path9.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
     }
     function _isWindows() {
       return os2.platform().startsWith("win");
@@ -23560,7 +23560,7 @@ var require_src5 = __commonJS({
     var fs6 = _interopRequireWildcard(__require("fs"));
     var _gaxios = require_src2();
     var jws = _interopRequireWildcard(require_jws());
-    var path8 = _interopRequireWildcard(__require("path"));
+    var path9 = _interopRequireWildcard(__require("path"));
     var _util = __require("util");
     function _interopRequireWildcard(e, t) {
       if ("function" == typeof WeakMap)
@@ -23961,7 +23961,7 @@ var require_src5 = __commonJS({
               while (1)
                 switch (_context2.n) {
                   case 0:
-                    ext3 = path8.extname(keyFile);
+                    ext3 = path9.extname(keyFile);
                     _t = ext3;
                     _context2.n = _t === ".json" ? 1 : _t === ".der" ? 4 : _t === ".crt" ? 4 : _t === ".pem" ? 4 : _t === ".p12" ? 6 : _t === ".pfx" ? 6 : 7;
                     break;
@@ -27056,7 +27056,7 @@ var require_googleauth = __commonJS({
     var gaxios_1 = require_src2();
     var gcpMetadata = require_src4();
     var os2 = __require("os");
-    var path8 = __require("path");
+    var path9 = __require("path");
     var crypto_1 = require_crypto3();
     var computeclient_1 = require_computeclient();
     var idtokenclient_1 = require_idtokenclient();
@@ -27342,11 +27342,11 @@ var require_googleauth = __commonJS({
         } else {
           const home = process.env["HOME"];
           if (home) {
-            location = path8.join(home, ".config");
+            location = path9.join(home, ".config");
           }
         }
         if (location) {
-          location = path8.join(location, "gcloud", "application_default_credentials.json");
+          location = path9.join(location, "gcloud", "application_default_credentials.json");
           if (!fs6.existsSync(location)) {
             location = null;
           }
@@ -27690,7 +27690,7 @@ var require_googleauth = __commonJS({
         if (this.jsonContent) {
           return this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
         } else if (this.keyFilename) {
-          const filePath = path8.resolve(this.keyFilename);
+          const filePath = path9.resolve(this.keyFilename);
           const stream = fs6.createReadStream(filePath);
           return await this.fromStreamAsync(stream, this.clientOptions);
         } else if (this.apiKey) {
@@ -28240,7 +28240,7 @@ var require_constants = __commonJS({
 var require_node_gyp_build = __commonJS({
   "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js"(exports, module) {
     var fs6 = __require("fs");
-    var path8 = __require("path");
+    var path9 = __require("path");
     var os2 = __require("os");
     var runtimeRequire = typeof __webpack_require__ === "function" ? __non_webpack_require__ : __require;
     var vars = process.config && process.config.variables || {};
@@ -28257,25 +28257,25 @@ var require_node_gyp_build = __commonJS({
       return runtimeRequire(load3.resolve(dir));
     }
     load3.resolve = load3.path = function(dir) {
-      dir = path8.resolve(dir || ".");
+      dir = path9.resolve(dir || ".");
       try {
-        var name = runtimeRequire(path8.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
+        var name = runtimeRequire(path9.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
         if (process.env[name + "_PREBUILD"])
           dir = process.env[name + "_PREBUILD"];
       } catch (err) {
       }
       if (!prebuildsOnly) {
-        var release = getFirst(path8.join(dir, "build/Release"), matchBuild);
+        var release = getFirst(path9.join(dir, "build/Release"), matchBuild);
         if (release)
           return release;
-        var debug = getFirst(path8.join(dir, "build/Debug"), matchBuild);
+        var debug = getFirst(path9.join(dir, "build/Debug"), matchBuild);
         if (debug)
           return debug;
       }
       var prebuild = resolve8(dir);
       if (prebuild)
         return prebuild;
-      var nearby = resolve8(path8.dirname(process.execPath));
+      var nearby = resolve8(path9.dirname(process.execPath));
       if (nearby)
         return nearby;
       var target = [
@@ -28293,16 +28293,16 @@ var require_node_gyp_build = __commonJS({
       ].filter(Boolean).join(" ");
       throw new Error("No native build was found for " + target + "\n    loaded from: " + dir + "\n");
       function resolve8(dir2) {
-        var tuples = readdirSync2(path8.join(dir2, "prebuilds")).map(parseTuple);
+        var tuples = readdirSync2(path9.join(dir2, "prebuilds")).map(parseTuple);
         var tuple = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0];
         if (!tuple)
           return;
-        var prebuilds = path8.join(dir2, "prebuilds", tuple.name);
+        var prebuilds = path9.join(dir2, "prebuilds", tuple.name);
         var parsed = readdirSync2(prebuilds).map(parseTags);
         var candidates = parsed.filter(matchTags(runtime, abi));
         var winner = candidates.sort(compareTags(runtime))[0];
         if (winner)
-          return path8.join(prebuilds, winner.file);
+          return path9.join(prebuilds, winner.file);
       }
     };
     function readdirSync2(dir) {
@@ -28314,7 +28314,7 @@ var require_node_gyp_build = __commonJS({
     }
     function getFirst(dir, filter3) {
       var files = readdirSync2(dir).filter(filter3);
-      return files[0] && path8.join(dir, files[0]);
+      return files[0] && path9.join(dir, files[0]);
     }
     function matchBuild(name) {
       return /\.node$/.test(name);
@@ -35065,7 +35065,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -35084,7 +35084,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -35107,10 +35107,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -35216,7 +35216,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -35234,7 +35234,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -35246,10 +35246,10 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var import_yoctocolors_cjs = __toESM(require_yoctocolors_cjs());
 
-// node_modules/.aspect_rules_js/@inquirer+figures@1.0.14/node_modules/@inquirer/figures/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+figures@1.0.15/node_modules/@inquirer/figures/dist/esm/index.js
 import process2 from "node:process";
 function isUnicodeSupported() {
   if (process2.platform !== "win32") {
@@ -35528,7 +35528,10 @@ var specialFallbackSymbols = {
   oneNinth: "1/9",
   oneTenth: "1/10"
 };
-var mainSymbols = { ...common, ...specialMainSymbols };
+var mainSymbols = {
+  ...common,
+  ...specialMainSymbols
+};
 var fallbackSymbols = {
   ...common,
   ...specialFallbackSymbols
@@ -35538,11 +35541,10 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var esm_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: import_yoctocolors_cjs.default.blue("?"),
-    // TODO: use figure
     done: import_yoctocolors_cjs.default.green(esm_default.tick)
   },
   spinner: {
@@ -35560,7 +35562,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -35588,7 +35590,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -35619,7 +35621,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -35632,12 +35634,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -35656,7 +35658,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 var import_wrap_ansi = __toESM(require_wrap_ansi());
 function breakLines(content, width) {
@@ -35666,7 +35668,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -35755,7 +35757,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -36011,10 +36013,10 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
-// node_modules/.aspect_rules_js/@inquirer+ansi@1.0.1/node_modules/@inquirer/ansi/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+ansi@1.0.2/node_modules/@inquirer/ansi/dist/esm/index.js
 var ESC = "\x1B[";
 var cursorLeft = ESC + "G";
 var cursorHide = ESC + "?25l";
@@ -36030,7 +36032,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -36090,7 +36092,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -36105,7 +36107,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -36192,7 +36194,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@10.3.0_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@10.3.1_at_types_node_24.10.0/node_modules/@inquirer/core/dist/esm/lib/Separator.js
 var import_yoctocolors_cjs2 = __toESM(require_yoctocolors_cjs());
 var Separator = class {
   separator = import_yoctocolors_cjs2.default.dim(Array.from({ length: 15 }).join(esm_default.line));
@@ -36207,7 +36209,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@4.3.0_at_types_node_24.10.0/node_modules/@inquirer/checkbox/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@4.3.1_at_types_node_24.10.0/node_modules/@inquirer/checkbox/dist/esm/index.js
 var import_yoctocolors_cjs3 = __toESM(require_yoctocolors_cjs());
 var checkboxTheme = {
   icon: {
@@ -36395,7 +36397,7 @@ var esm_default2 = createPrompt((config, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.3_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -36404,7 +36406,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.3_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -36413,7 +36415,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.3_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -36422,7 +36424,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.3_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -36431,7 +36433,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.3_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -36440,7 +36442,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.2_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@1.0.3_at_types_node_24.10.0/node_modules/@inquirer/external-editor/dist/esm/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -36594,12 +36596,12 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@4.2.21_at_types_node_24.10.0/node_modules/@inquirer/editor/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@4.2.22_at_types_node_24.10.0/node_modules/@inquirer/editor/dist/esm/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
 var esm_default3 = createPrompt((config, done) => {
-  const { waitForUseInput = true, file: { postfix = config.postfix ?? ".txt", ...fileProps } = {}, validate = () => true } = config;
+  const { waitForUserInput = true, file: { postfix = config.postfix ?? ".txt", ...fileProps } = {}, validate = () => true } = config;
   const theme = makeTheme(editorTheme, config.theme);
   const [status, setStatus] = useState("idle");
   const [value = "", setValue] = useState(config.default);
@@ -36636,7 +36638,7 @@ var esm_default3 = createPrompt((config, done) => {
     });
   }
   useEffect((rl) => {
-    if (!waitForUseInput) {
+    if (!waitForUserInput) {
       startEditor(rl);
     }
   }, []);
@@ -36663,7 +36665,7 @@ var esm_default3 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.19_at_types_node_24.10.0/node_modules/@inquirer/confirm/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@5.1.20_at_types_node_24.10.0/node_modules/@inquirer/confirm/dist/esm/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -36709,18 +36711,31 @@ var esm_default4 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@4.2.5_at_types_node_24.10.0/node_modules/@inquirer/input/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@4.3.0_at_types_node_24.10.0/node_modules/@inquirer/input/dist/esm/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
 var esm_default5 = createPrompt((config, done) => {
-  const { required, validate = () => true, prefill = "tab" } = config;
+  const { prefill = "tab" } = config;
   const theme = makeTheme(inputTheme, config.theme);
   const [status, setStatus] = useState("idle");
   const [defaultValue = "", setDefaultValue] = useState(config.default);
   const [errorMsg, setError] = useState();
   const [value, setValue] = useState("");
   const prefix = usePrefix({ status, theme });
+  async function validate(value2) {
+    const { required, pattern, patternError = "Invalid input" } = config;
+    if (required && !value2) {
+      return "You must provide a value";
+    }
+    if (pattern && !pattern.test(value2)) {
+      return patternError;
+    }
+    if (typeof config.validate === "function") {
+      return await config.validate(value2) || "You must provide a valid value";
+    }
+    return true;
+  }
   useKeypress(async (key, rl) => {
     if (status !== "idle") {
       return;
@@ -36728,7 +36743,7 @@ var esm_default5 = createPrompt((config, done) => {
     if (isEnterKey(key)) {
       const answer = value || defaultValue;
       setStatus("loading");
-      const isValid = required && !answer ? "You must provide a value" : await validate(answer);
+      const isValid = await validate(answer);
       if (isValid === true) {
         setValue(answer);
         setStatus("done");
@@ -36739,7 +36754,7 @@ var esm_default5 = createPrompt((config, done) => {
         } else {
           rl.write(value);
         }
-        setError(isValid || "You must provide a valid value");
+        setError(isValid);
         setStatus("idle");
       }
     } else if (isBackspaceKey(key) && !value) {
@@ -36781,7 +36796,7 @@ var esm_default5 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@3.0.21_at_types_node_24.10.0/node_modules/@inquirer/number/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@3.0.22_at_types_node_24.10.0/node_modules/@inquirer/number/dist/esm/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -36862,7 +36877,7 @@ var esm_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@4.0.21_at_types_node_24.10.0/node_modules/@inquirer/expand/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@4.0.22_at_types_node_24.10.0/node_modules/@inquirer/expand/dist/esm/index.js
 var import_yoctocolors_cjs4 = __toESM(require_yoctocolors_cjs());
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -36958,7 +36973,7 @@ var esm_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.9_at_types_node_24.10.0/node_modules/@inquirer/rawlist/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@4.1.10_at_types_node_24.10.0/node_modules/@inquirer/rawlist/dist/esm/index.js
 var import_yoctocolors_cjs5 = __toESM(require_yoctocolors_cjs());
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -37068,7 +37083,7 @@ var esm_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@4.0.21_at_types_node_24.10.0/node_modules/@inquirer/password/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@4.0.22_at_types_node_24.10.0/node_modules/@inquirer/password/dist/esm/index.js
 var esm_default9 = createPrompt((config, done) => {
   const { validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -37117,7 +37132,7 @@ var esm_default9 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@3.2.0_at_types_node_24.10.0/node_modules/@inquirer/search/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@3.2.1_at_types_node_24.10.0/node_modules/@inquirer/search/dist/esm/index.js
 var import_yoctocolors_cjs6 = __toESM(require_yoctocolors_cjs());
 var searchTheme = {
   icon: { cursor: esm_default.pointer },
@@ -37288,7 +37303,7 @@ var esm_default10 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@4.4.0_at_types_node_24.10.0/node_modules/@inquirer/select/dist/esm/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@4.4.1_at_types_node_24.10.0/node_modules/@inquirer/select/dist/esm/index.js
 var import_yoctocolors_cjs7 = __toESM(require_yoctocolors_cjs());
 var selectTheme = {
   icon: { cursor: esm_default.pointer },
@@ -38051,9 +38066,9 @@ var GitClient2 = class {
    * @yields Raw commits data.
    */
   async *getRawCommits(params2 = {}) {
-    const { path: path8, from = "", to = "HEAD", format: format2 = "%B", ignore, ...restParams } = params2;
+    const { path: path9, from = "", to = "HEAD", format: format2 = "%B", ignore, ...restParams } = params2;
     const shouldNotIgnore = ignore ? (chunk2) => !ignore.test(chunk2) : () => true;
-    const args = this.formatArgs("log", `--format=${format2}%n${SCISSOR}`, [from, to].filter(Boolean).join(".."), restParams, path8 && ["--", path8]);
+    const args = this.formatArgs("log", `--format=${format2}%n${SCISSOR}`, [from, to].filter(Boolean).join(".."), restParams, path9 && ["--", path9]);
     const stdout = stdoutSpawn("git", args, {
       cwd: this.cwd
     });
@@ -40014,7 +40029,7 @@ function builder10(argv) {
   return argv.positional("projectRoot", {
     type: "string",
     normalize: true,
-    coerce: (path8) => resolve2(path8),
+    coerce: (path9) => resolve2(path9),
     demandOption: true
   });
 }
@@ -41521,8 +41536,8 @@ var PullRequestFiles = class _PullRequestFiles {
   async pullRequestHasSeparateFiles() {
     const pullRequestFiles = await this.loadPullRequestFiles();
     const separateFilePatterns = this.config.separateFilePatterns.map((p) => new Minimatch(p));
-    for (let path8 of pullRequestFiles) {
-      if (separateFilePatterns.some((p) => p.match(path8))) {
+    for (let path9 of pullRequestFiles) {
+      if (separateFilePatterns.some((p) => p.match(path9))) {
         return true;
       }
     }
@@ -43168,11 +43183,11 @@ var Changelog = class {
     const changelog = this.entries.map((entry) => entry.content).join(joinMarker);
     writeFileSync4(this.filePath, changelog, {});
   }
-  getEntriesFor(path8) {
-    if (!existsSync2(path8)) {
+  getEntriesFor(path9) {
+    if (!existsSync2(path9)) {
       return [];
     }
-    return readFileSync6(path8, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
+    return readFileSync6(path9, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
   }
 };
 function parseChangelogEntry(content) {
@@ -44577,8 +44592,8 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-f212cc35c752cd6dd4846bcb69141e46b28b797b`;
-  if (localVersion === "0.0.0-f212cc35c752cd6dd4846bcb69141e46b28b797b") {
+  const localVersion = `0.0.0-7b0cc896370708d4849b3e37167f9b47137ba22c`;
+  if (localVersion === "0.0.0-7b0cc896370708d4849b3e37167f9b47137ba22c") {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
   }
@@ -45060,8 +45075,8 @@ function getFileStatus(filePath) {
     return null;
   }
 }
-function convertPathToForwardSlash(path8) {
-  return path8.replace(/\\/g, "/");
+function convertPathToForwardSlash(path9) {
+  return path9.replace(/\\/g, "/");
 }
 
 // ng-dev/ts-circular-dependencies/parser.js
@@ -45094,21 +45109,21 @@ var Analyzer = class {
     this.unresolvedFiles = /* @__PURE__ */ new Map();
     this._ignoreTypeOnlyChecks = !!ignoreTypeOnlyChecks;
   }
-  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path8 = []) {
-    const previousIndex = path8.indexOf(sf);
+  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path9 = []) {
+    const previousIndex = path9.indexOf(sf);
     if (previousIndex !== -1) {
-      return [path8.slice(previousIndex)];
+      return [path9.slice(previousIndex)];
     }
     if (visited.has(sf)) {
       return [];
     }
-    path8.push(sf);
+    path9.push(sf);
     visited.add(sf);
     const result = [];
     for (const ref of getModuleReferences(sf, this._ignoreTypeOnlyChecks)) {
       const targetFile = this._resolveImport(ref, sf.fileName);
       if (targetFile !== null) {
-        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path8.slice()));
+        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path9.slice()));
       }
     }
     return result;
@@ -45236,23 +45251,23 @@ function compareGoldens(actual, expected) {
   });
   return { newCircularDeps, fixedCircularDeps };
 }
-function normalizeCircularDependency(path8) {
-  if (path8.length <= 1) {
-    return path8;
+function normalizeCircularDependency(path9) {
+  if (path9.length <= 1) {
+    return path9;
   }
   let indexFirstNode = 0;
-  let valueFirstNode = path8[0];
-  for (let i = 1; i < path8.length; i++) {
-    const value = path8[i];
+  let valueFirstNode = path9[0];
+  for (let i = 1; i < path9.length; i++) {
+    const value = path9[i];
     if (value.localeCompare(valueFirstNode, "en") < 0) {
       indexFirstNode = i;
       valueFirstNode = value;
     }
   }
   if (indexFirstNode === 0) {
-    return path8;
+    return path9;
   }
-  return [...path8.slice(indexFirstNode), ...path8.slice(0, indexFirstNode)];
+  return [...path9.slice(indexFirstNode), ...path9.slice(0, indexFirstNode)];
 }
 function isSameCircularDependency(actual, expected) {
   if (actual.length !== expected.length) {
@@ -45365,8 +45380,8 @@ function main(approve, config, printWarnings) {
   }
   return 1;
 }
-function getRelativePath(baseDir, path8) {
-  return convertPathToForwardSlash(relative2(baseDir, path8));
+function getRelativePath(baseDir, path9) {
+  return convertPathToForwardSlash(relative2(baseDir, path9));
 }
 function convertReferenceChainToString(chain) {
   return chain.join(" \u2192 ");
@@ -45540,7 +45555,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.28.0_2056558101/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.29.0_2056558101/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -45555,7 +45570,8 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.28.0_2056558101/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.29.0_2056558101/node_modules/@google/genai/dist/node/index.mjs
+import * as path8 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
 function getDefaultBaseUrls() {
@@ -45915,6 +45931,90 @@ function getOperationParametersToVertex(fromObject) {
   }
   return toObject;
 }
+function importFileOperationFromMldev$1(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
+  if (fromMetadata != null) {
+    setValueByPath(toObject, ["metadata"], fromMetadata);
+  }
+  const fromDone = getValueByPath(fromObject, ["done"]);
+  if (fromDone != null) {
+    setValueByPath(toObject, ["done"], fromDone);
+  }
+  const fromError = getValueByPath(fromObject, ["error"]);
+  if (fromError != null) {
+    setValueByPath(toObject, ["error"], fromError);
+  }
+  const fromResponse = getValueByPath(fromObject, ["response"]);
+  if (fromResponse != null) {
+    setValueByPath(toObject, ["response"], importFileResponseFromMldev$1(fromResponse));
+  }
+  return toObject;
+}
+function importFileResponseFromMldev$1(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  const fromParent = getValueByPath(fromObject, ["parent"]);
+  if (fromParent != null) {
+    setValueByPath(toObject, ["parent"], fromParent);
+  }
+  const fromDocumentName = getValueByPath(fromObject, ["documentName"]);
+  if (fromDocumentName != null) {
+    setValueByPath(toObject, ["documentName"], fromDocumentName);
+  }
+  return toObject;
+}
+function uploadToFileSearchStoreOperationFromMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
+  if (fromMetadata != null) {
+    setValueByPath(toObject, ["metadata"], fromMetadata);
+  }
+  const fromDone = getValueByPath(fromObject, ["done"]);
+  if (fromDone != null) {
+    setValueByPath(toObject, ["done"], fromDone);
+  }
+  const fromError = getValueByPath(fromObject, ["error"]);
+  if (fromError != null) {
+    setValueByPath(toObject, ["error"], fromError);
+  }
+  const fromResponse = getValueByPath(fromObject, ["response"]);
+  if (fromResponse != null) {
+    setValueByPath(toObject, ["response"], uploadToFileSearchStoreResponseFromMldev(fromResponse));
+  }
+  return toObject;
+}
+function uploadToFileSearchStoreResponseFromMldev(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  const fromParent = getValueByPath(fromObject, ["parent"]);
+  if (fromParent != null) {
+    setValueByPath(toObject, ["parent"], fromParent);
+  }
+  const fromDocumentName = getValueByPath(fromObject, ["documentName"]);
+  if (fromDocumentName != null) {
+    setValueByPath(toObject, ["documentName"], fromDocumentName);
+  }
+  return toObject;
+}
 function videoFromMldev$1(fromObject) {
   const toObject = {};
   const fromUri = getValueByPath(fromObject, ["uri"]);
@@ -45984,6 +46084,12 @@ var Mode;
   Mode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
   Mode2["MODE_DYNAMIC"] = "MODE_DYNAMIC";
 })(Mode || (Mode = {}));
+var ApiSpec;
+(function(ApiSpec2) {
+  ApiSpec2["API_SPEC_UNSPECIFIED"] = "API_SPEC_UNSPECIFIED";
+  ApiSpec2["SIMPLE_SEARCH"] = "SIMPLE_SEARCH";
+  ApiSpec2["ELASTIC_SEARCH"] = "ELASTIC_SEARCH";
+})(ApiSpec || (ApiSpec = {}));
 var AuthType;
 (function(AuthType2) {
   AuthType2["AUTH_TYPE_UNSPECIFIED"] = "AUTH_TYPE_UNSPECIFIED";
@@ -45994,12 +46100,25 @@ var AuthType;
   AuthType2["OAUTH"] = "OAUTH";
   AuthType2["OIDC_AUTH"] = "OIDC_AUTH";
 })(AuthType || (AuthType = {}));
-var ApiSpec;
-(function(ApiSpec2) {
-  ApiSpec2["API_SPEC_UNSPECIFIED"] = "API_SPEC_UNSPECIFIED";
-  ApiSpec2["SIMPLE_SEARCH"] = "SIMPLE_SEARCH";
-  ApiSpec2["ELASTIC_SEARCH"] = "ELASTIC_SEARCH";
-})(ApiSpec || (ApiSpec = {}));
+var HttpElementLocation;
+(function(HttpElementLocation2) {
+  HttpElementLocation2["HTTP_IN_UNSPECIFIED"] = "HTTP_IN_UNSPECIFIED";
+  HttpElementLocation2["HTTP_IN_QUERY"] = "HTTP_IN_QUERY";
+  HttpElementLocation2["HTTP_IN_HEADER"] = "HTTP_IN_HEADER";
+  HttpElementLocation2["HTTP_IN_PATH"] = "HTTP_IN_PATH";
+  HttpElementLocation2["HTTP_IN_BODY"] = "HTTP_IN_BODY";
+  HttpElementLocation2["HTTP_IN_COOKIE"] = "HTTP_IN_COOKIE";
+})(HttpElementLocation || (HttpElementLocation = {}));
+var PhishBlockThreshold;
+(function(PhishBlockThreshold2) {
+  PhishBlockThreshold2["PHISH_BLOCK_THRESHOLD_UNSPECIFIED"] = "PHISH_BLOCK_THRESHOLD_UNSPECIFIED";
+  PhishBlockThreshold2["BLOCK_LOW_AND_ABOVE"] = "BLOCK_LOW_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_MEDIUM_AND_ABOVE"] = "BLOCK_MEDIUM_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_HIGH_AND_ABOVE"] = "BLOCK_HIGH_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_HIGHER_AND_ABOVE"] = "BLOCK_HIGHER_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_VERY_HIGH_AND_ABOVE"] = "BLOCK_VERY_HIGH_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_ONLY_EXTREMELY_HIGH"] = "BLOCK_ONLY_EXTREMELY_HIGH";
+})(PhishBlockThreshold || (PhishBlockThreshold = {}));
 var HarmCategory;
 (function(HarmCategory2) {
   HarmCategory2["HARM_CATEGORY_UNSPECIFIED"] = "HARM_CATEGORY_UNSPECIFIED";
@@ -46138,6 +46257,7 @@ var TuningTask;
   TuningTask2["TUNING_TASK_UNSPECIFIED"] = "TUNING_TASK_UNSPECIFIED";
   TuningTask2["TUNING_TASK_I2V"] = "TUNING_TASK_I2V";
   TuningTask2["TUNING_TASK_T2V"] = "TUNING_TASK_T2V";
+  TuningTask2["TUNING_TASK_R2V"] = "TUNING_TASK_R2V";
 })(TuningTask || (TuningTask = {}));
 var FeatureSelectionPreference;
 (function(FeatureSelectionPreference2) {
@@ -46257,6 +46377,13 @@ var TuningMethod;
   TuningMethod2["SUPERVISED_FINE_TUNING"] = "SUPERVISED_FINE_TUNING";
   TuningMethod2["PREFERENCE_TUNING"] = "PREFERENCE_TUNING";
 })(TuningMethod || (TuningMethod = {}));
+var DocumentState;
+(function(DocumentState2) {
+  DocumentState2["STATE_UNSPECIFIED"] = "STATE_UNSPECIFIED";
+  DocumentState2["STATE_PENDING"] = "STATE_PENDING";
+  DocumentState2["STATE_ACTIVE"] = "STATE_ACTIVE";
+  DocumentState2["STATE_FAILED"] = "STATE_FAILED";
+})(DocumentState || (DocumentState = {}));
 var FileState;
 (function(FileState2) {
   FileState2["STATE_UNSPECIFIED"] = "STATE_UNSPECIFIED";
@@ -46608,11 +46735,11 @@ var GenerateVideosOperation = class _GenerateVideosOperation {
    * Instantiates an Operation of the same type as the one being called with the fields set from the API response.
    * @internal
    */
-  _fromAPIResponse({ apiResponse, isVertexAI }) {
+  _fromAPIResponse({ apiResponse, _isVertexAI }) {
     const operation = new _GenerateVideosOperation();
     let response;
     const op = apiResponse;
-    if (isVertexAI) {
+    if (_isVertexAI) {
       response = generateVideosOperationFromVertex$1(op);
     } else {
       response = generateVideosOperationFromMldev$1(op);
@@ -46626,6 +46753,25 @@ var ListTuningJobsResponse = class {
 var DeleteCachedContentResponse = class {
 };
 var ListCachedContentsResponse = class {
+};
+var ListDocumentsResponse = class {
+};
+var ListFileSearchStoresResponse = class {
+};
+var UploadToFileSearchStoreResumableResponse = class {
+};
+var ImportFileOperation = class _ImportFileOperation {
+  /**
+   * Instantiates an Operation of the same type as the one being called with the fields set from the API response.
+   * @internal
+   */
+  _fromAPIResponse({ apiResponse, _isVertexAI }) {
+    const operation = new _ImportFileOperation();
+    const op = apiResponse;
+    const response = importFileOperationFromMldev$1(op);
+    Object.assign(operation, response);
+    return operation;
+  }
 };
 var ListFilesResponse = class {
 };
@@ -46707,6 +46853,19 @@ var LiveMusicServerMessage = class {
       return this.serverContent.audioChunks[0];
     }
     return void 0;
+  }
+};
+var UploadToFileSearchStoreOperation = class _UploadToFileSearchStoreOperation {
+  /**
+   * Instantiates an Operation of the same type as the one being called with the fields set from the API response.
+   * @internal
+   */
+  _fromAPIResponse({ apiResponse, _isVertexAI }) {
+    const operation = new _UploadToFileSearchStoreOperation();
+    const op = apiResponse;
+    const response = uploadToFileSearchStoreOperationFromMldev(op);
+    Object.assign(operation, response);
+    return operation;
   }
 };
 function tModel(apiClient, model) {
@@ -47462,6 +47621,12 @@ function batchJobFromVertex(fromObject) {
   if (fromDest != null) {
     setValueByPath(toObject, ["dest"], batchJobDestinationFromVertex(tRecvBatchJobDestination(fromDest)));
   }
+  const fromCompletionStats = getValueByPath(fromObject, [
+    "completionStats"
+  ]);
+  if (fromCompletionStats != null) {
+    setValueByPath(toObject, ["completionStats"], fromCompletionStats);
+  }
   return toObject;
 }
 function batchJobSourceFromVertex(fromObject) {
@@ -48094,6 +48259,9 @@ function googleSearchToMldev$4(fromObject) {
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
+    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+  }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
   ]);
@@ -48333,13 +48501,13 @@ function toolToMldev$4(fromObject) {
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$4(fromGoogleMaps));
-  }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
     setValueByPath(toObject, ["computerUse"], fromComputerUse);
+  }
+  const fromFileSearch = getValueByPath(fromObject, ["fileSearch"]);
+  if (fromFileSearch != null) {
+    setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -48349,6 +48517,10 @@ function toolToMldev$4(fromObject) {
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$4(fromGoogleMaps));
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -48367,7 +48539,7 @@ var PagedItem;
   PagedItem2["PAGED_ITEM_TUNING_JOBS"] = "tuningJobs";
   PagedItem2["PAGED_ITEM_FILES"] = "files";
   PagedItem2["PAGED_ITEM_CACHED_CONTENTS"] = "cachedContents";
-  PagedItem2["PAGED_ITEM_RAG_STORES"] = "ragStores";
+  PagedItem2["PAGED_ITEM_FILE_SEARCH_STORES"] = "fileSearchStores";
   PagedItem2["PAGED_ITEM_DOCUMENTS"] = "documents";
 })(PagedItem || (PagedItem = {}));
 var Pager = class {
@@ -48559,7 +48731,7 @@ var Batches = class extends BaseModule2 {
       params2
     );
     const urlParams = body["_url"];
-    const path8 = formatMap("{model}:batchGenerateContent", urlParams);
+    const path9 = formatMap("{model}:batchGenerateContent", urlParams);
     const batch = body["batch"];
     const inputConfig = batch["inputConfig"];
     const requestsWrapper = inputConfig["requests"];
@@ -48580,7 +48752,7 @@ var Batches = class extends BaseModule2 {
     delete body["config"];
     delete body["_url"];
     delete body["_query"];
-    return { path: path8, body };
+    return { path: path9, body };
   }
   // Helper function to get the first GCS URI
   getGcsUri(src) {
@@ -48636,16 +48808,16 @@ var Batches = class extends BaseModule2 {
   async createInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createBatchJobParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("batchPredictionJobs", body["_url"]);
+      path9 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -48660,12 +48832,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = createBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:batchGenerateContent", body["_url"]);
+      path9 = formatMap("{model}:batchGenerateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -48690,18 +48862,18 @@ var Batches = class extends BaseModule2 {
   async createEmbeddingsInternal(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createEmbeddingsBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:asyncBatchEmbedContent", body["_url"]);
+      path9 = formatMap("{model}:asyncBatchEmbedContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -48730,16 +48902,16 @@ var Batches = class extends BaseModule2 {
   async get(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getBatchJobParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -48754,12 +48926,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = getBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("batches/{name}", body["_url"]);
+      path9 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -48787,16 +48959,16 @@ var Batches = class extends BaseModule2 {
    */
   async cancel(params2) {
     var _a, _b, _c, _d;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelBatchJobParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
+      path9 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -48805,12 +48977,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = cancelBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("batches/{name}:cancel", body["_url"]);
+      path9 = formatMap("batches/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -48822,16 +48994,16 @@ var Batches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listBatchJobsParametersToVertex(params2);
-      path8 = formatMap("batchPredictionJobs", body["_url"]);
+      path9 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -48854,12 +49026,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = listBatchJobsParametersToMldev(params2);
-      path8 = formatMap("batches", body["_url"]);
+      path9 = formatMap("batches", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -48896,16 +49068,16 @@ var Batches = class extends BaseModule2 {
   async delete(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteBatchJobParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -48926,12 +49098,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = deleteBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("batches/{name}", body["_url"]);
+      path9 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -49227,6 +49399,9 @@ function googleSearchToMldev$3(fromObject) {
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
+    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+  }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
   ]);
@@ -49408,13 +49583,13 @@ function toolToMldev$3(fromObject) {
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$3(fromGoogleMaps));
-  }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
     setValueByPath(toObject, ["computerUse"], fromComputerUse);
+  }
+  const fromFileSearch = getValueByPath(fromObject, ["fileSearch"]);
+  if (fromFileSearch != null) {
+    setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -49424,6 +49599,10 @@ function toolToMldev$3(fromObject) {
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$3(fromGoogleMaps));
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -49459,13 +49638,12 @@ function toolToVertex$2(fromObject) {
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
     setValueByPath(toObject, ["computerUse"], fromComputerUse);
+  }
+  if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
+    throw new Error("fileSearch parameter is not supported in Vertex AI.");
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -49478,6 +49656,10 @@ function toolToVertex$2(fromObject) {
   ]);
   if (fromEnterpriseWebSearch != null) {
     setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
+  }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -49574,16 +49756,16 @@ var Caches = class extends BaseModule2 {
   async create(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createCachedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("cachedContents", body["_url"]);
+      path9 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -49597,12 +49779,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = createCachedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("cachedContents", body["_url"]);
+      path9 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -49630,16 +49812,16 @@ var Caches = class extends BaseModule2 {
   async get(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getCachedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -49653,12 +49835,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = getCachedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -49686,16 +49868,16 @@ var Caches = class extends BaseModule2 {
   async delete(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteCachedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -49718,12 +49900,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = deleteCachedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -49763,16 +49945,16 @@ var Caches = class extends BaseModule2 {
   async update(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateCachedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -49786,12 +49968,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = updateCachedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -49808,16 +49990,16 @@ var Caches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listCachedContentsParametersToVertex(params2);
-      path8 = formatMap("cachedContents", body["_url"]);
+      path9 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -49840,12 +50022,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = listCachedContentsParametersToMldev(params2);
-      path8 = formatMap("cachedContents", body["_url"]);
+      path9 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -50401,18 +50583,18 @@ var Files = class extends BaseModule2 {
   async listInternal(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listFilesParametersToMldev(params2);
-      path8 = formatMap("files", body["_url"]);
+      path9 = formatMap("files", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -50438,18 +50620,18 @@ var Files = class extends BaseModule2 {
   async createInternal(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createFileParametersToMldev(params2);
-      path8 = formatMap("upload/v1beta/files", body["_url"]);
+      path9 = formatMap("upload/v1beta/files", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -50484,18 +50666,18 @@ var Files = class extends BaseModule2 {
   async get(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getFileParametersToMldev(params2);
-      path8 = formatMap("files/{file}", body["_url"]);
+      path9 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -50525,18 +50707,18 @@ var Files = class extends BaseModule2 {
   async delete(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteFileParametersToMldev(params2);
-      path8 = formatMap("files/{file}", body["_url"]);
+      path9 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -50651,6 +50833,12 @@ function generationConfigToVertex$1(fromObject) {
   if (fromModelSelectionConfig != null) {
     setValueByPath(toObject, ["modelConfig"], fromModelSelectionConfig);
   }
+  const fromResponseJsonSchema = getValueByPath(fromObject, [
+    "responseJsonSchema"
+  ]);
+  if (fromResponseJsonSchema != null) {
+    setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
+  }
   const fromAudioTimestamp = getValueByPath(fromObject, [
     "audioTimestamp"
   ]);
@@ -50696,12 +50884,6 @@ function generationConfigToVertex$1(fromObject) {
   ]);
   if (fromPresencePenalty != null) {
     setValueByPath(toObject, ["presencePenalty"], fromPresencePenalty);
-  }
-  const fromResponseJsonSchema = getValueByPath(fromObject, [
-    "responseJsonSchema"
-  ]);
-  if (fromResponseJsonSchema != null) {
-    setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
   }
   const fromResponseLogprobs = getValueByPath(fromObject, [
     "responseLogprobs"
@@ -50785,6 +50967,9 @@ function googleSearchToMldev$2(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
+    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -51293,13 +51478,13 @@ function toolToMldev$2(fromObject) {
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$2(fromGoogleMaps));
-  }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
     setValueByPath(toObject, ["computerUse"], fromComputerUse);
+  }
+  const fromFileSearch = getValueByPath(fromObject, ["fileSearch"]);
+  if (fromFileSearch != null) {
+    setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -51309,6 +51494,10 @@ function toolToMldev$2(fromObject) {
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$2(fromGoogleMaps));
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -51344,13 +51533,12 @@ function toolToVertex$1(fromObject) {
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
     setValueByPath(toObject, ["computerUse"], fromComputerUse);
+  }
+  if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
+    throw new Error("fileSearch parameter is not supported in Vertex AI.");
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -51363,6 +51551,10 @@ function toolToVertex$1(fromObject) {
   ]);
   if (fromEnterpriseWebSearch != null) {
     setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
+  }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -53307,6 +53499,12 @@ function generationConfigToVertex(fromObject) {
   if (fromModelSelectionConfig != null) {
     setValueByPath(toObject, ["modelConfig"], fromModelSelectionConfig);
   }
+  const fromResponseJsonSchema = getValueByPath(fromObject, [
+    "responseJsonSchema"
+  ]);
+  if (fromResponseJsonSchema != null) {
+    setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
+  }
   const fromAudioTimestamp = getValueByPath(fromObject, [
     "audioTimestamp"
   ]);
@@ -53352,12 +53550,6 @@ function generationConfigToVertex(fromObject) {
   ]);
   if (fromPresencePenalty != null) {
     setValueByPath(toObject, ["presencePenalty"], fromPresencePenalty);
-  }
-  const fromResponseJsonSchema = getValueByPath(fromObject, [
-    "responseJsonSchema"
-  ]);
-  if (fromResponseJsonSchema != null) {
-    setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
   }
   const fromResponseLogprobs = getValueByPath(fromObject, [
     "responseLogprobs"
@@ -53457,6 +53649,9 @@ function googleSearchToMldev$1(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
+    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -54160,13 +54355,13 @@ function toolToMldev$1(fromObject) {
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$1(fromGoogleMaps));
-  }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
     setValueByPath(toObject, ["computerUse"], fromComputerUse);
+  }
+  const fromFileSearch = getValueByPath(fromObject, ["fileSearch"]);
+  if (fromFileSearch != null) {
+    setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -54176,6 +54371,10 @@ function toolToMldev$1(fromObject) {
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$1(fromGoogleMaps));
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -54211,13 +54410,12 @@ function toolToVertex(fromObject) {
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
     setValueByPath(toObject, ["computerUse"], fromComputerUse);
+  }
+  if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
+    throw new Error("fileSearch parameter is not supported in Vertex AI.");
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -54230,6 +54428,10 @@ function toolToVertex(fromObject) {
   ]);
   if (fromEnterpriseWebSearch != null) {
     setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
+  }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -54554,7 +54756,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.28.0";
+var SDK_VERSION = "1.29.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -54667,13 +54869,13 @@ var ApiClient = class {
       throw new Error("HTTP options are not correctly set.");
     }
   }
-  constructUrl(path8, httpOptions, prependProjectLocation) {
+  constructUrl(path9, httpOptions, prependProjectLocation) {
     const urlElement = [this.getRequestUrlInternal(httpOptions)];
     if (prependProjectLocation) {
       urlElement.push(this.getBaseResourcePath());
     }
-    if (path8 !== "") {
-      urlElement.push(path8);
+    if (path9 !== "") {
+      urlElement.push(path9);
     }
     const url2 = new URL(`${urlElement.join("/")}`);
     return url2;
@@ -54878,6 +55080,15 @@ var ApiClient = class {
     await this.clientOptions.auth.addAuthHeaders(headers, url2);
     return headers;
   }
+  getFileName(file) {
+    var _a;
+    let fileName = "";
+    if (typeof file === "string") {
+      fileName = file.replace(/[/\\]+$/, "");
+      fileName = (_a = fileName.split(/[/\\]/).pop()) !== null && _a !== void 0 ? _a : "";
+    }
+    return fileName;
+  }
   /**
    * Uploads a file asynchronously using Gemini API only, this is not supported
    * in Vertex AI.
@@ -54890,7 +55101,7 @@ var ApiClient = class {
    * @throws An error if the `mimeType` is not provided and can not be inferred,
    */
   async uploadFile(file, config) {
-    var _a, _b;
+    var _a;
     const fileToUpload = {};
     if (config != null) {
       fileToUpload.mimeType = config.mimeType;
@@ -54908,13 +55119,46 @@ var ApiClient = class {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
     fileToUpload.mimeType = mimeType;
-    let fileName = "";
-    if (typeof file === "string") {
-      fileName = file.replace(/[/\\]+$/, "");
-      fileName = (_b = fileName.split(/[/\\]/).pop()) !== null && _b !== void 0 ? _b : "";
-    }
-    const uploadUrl = await this.fetchUploadUrl(fileToUpload, fileName, config);
+    const body = {
+      file: fileToUpload
+    };
+    const fileName = this.getFileName(file);
+    const path9 = formatMap("upload/v1beta/files", body["_url"]);
+    const uploadUrl = await this.fetchUploadUrl(path9, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config === null || config === void 0 ? void 0 : config.httpOptions);
     return uploader.upload(file, uploadUrl, this);
+  }
+  /**
+   * Uploads a file to a given file search store asynchronously using Gemini API only, this is not supported
+   * in Vertex AI.
+   *
+   * @param fileSearchStoreName The name of the file search store to upload the file to.
+   * @param file The string path to the file to be uploaded or a Blob object.
+   * @param config Optional parameters specified in the `UploadFileConfig`
+   *     interface. @see {@link UploadFileConfig}
+   * @return A promise that resolves to a `File` object.
+   * @throws An error if called on a Vertex AI client.
+   * @throws An error if the `mimeType` is not provided and can not be inferred,
+   */
+  async uploadFileToFileSearchStore(fileSearchStoreName, file, config) {
+    var _a;
+    const uploader = this.clientOptions.uploader;
+    const fileStat = await uploader.stat(file);
+    const sizeBytes = String(fileStat.size);
+    const mimeType = (_a = config === null || config === void 0 ? void 0 : config.mimeType) !== null && _a !== void 0 ? _a : fileStat.type;
+    if (mimeType === void 0 || mimeType === "") {
+      throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
+    }
+    const path9 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
+    const fileName = this.getFileName(file);
+    const body = {};
+    if (config === null || config === void 0 ? void 0 : config.customMetadata) {
+      body["customMetadata"] = config.customMetadata;
+    }
+    if (config === null || config === void 0 ? void 0 : config.chunkingConfig) {
+      body["chunkingConfig"] = config.chunkingConfig;
+    }
+    const uploadUrl = await this.fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, config === null || config === void 0 ? void 0 : config.httpOptions);
+    return uploader.uploadToFileSearchStore(file, uploadUrl, this);
   }
   /**
    * Downloads a file asynchronously to the specified path.
@@ -54926,22 +55170,19 @@ var ApiClient = class {
     const downloader = this.clientOptions.downloader;
     await downloader.download(params2, this);
   }
-  async fetchUploadUrl(file, fileName, config) {
+  async fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, configHttpOptions) {
     var _a;
     let httpOptions = {};
-    if (config === null || config === void 0 ? void 0 : config.httpOptions) {
-      httpOptions = config.httpOptions;
+    if (configHttpOptions) {
+      httpOptions = configHttpOptions;
     } else {
       httpOptions = {
         apiVersion: "",
-        headers: Object.assign({ "Content-Type": "application/json", "X-Goog-Upload-Protocol": "resumable", "X-Goog-Upload-Command": "start", "X-Goog-Upload-Header-Content-Length": `${file.sizeBytes}`, "X-Goog-Upload-Header-Content-Type": `${file.mimeType}` }, fileName ? { "X-Goog-Upload-File-Name": fileName } : {})
+        headers: Object.assign({ "Content-Type": "application/json", "X-Goog-Upload-Protocol": "resumable", "X-Goog-Upload-Command": "start", "X-Goog-Upload-Header-Content-Length": `${sizeBytes}`, "X-Goog-Upload-Header-Content-Type": `${mimeType}` }, fileName ? { "X-Goog-Upload-File-Name": fileName } : {})
       };
     }
-    const body = {
-      "file": file
-    };
     const httpResponse = await this.request({
-      path: formatMap("upload/v1beta/files", body["_url"]),
+      path: path9,
       body: JSON.stringify(body),
       httpMethod: "POST",
       httpOptions
@@ -55759,9 +56000,22 @@ function hasCallableTools(params2) {
   var _a, _b, _c;
   return (_c = (_b = (_a = params2.config) === null || _a === void 0 ? void 0 : _a.tools) === null || _b === void 0 ? void 0 : _b.some((tool) => isCallableTool(tool))) !== null && _c !== void 0 ? _c : false;
 }
-function hasNonCallableTools(params2) {
-  var _a, _b, _c;
-  return (_c = (_b = (_a = params2.config) === null || _a === void 0 ? void 0 : _a.tools) === null || _b === void 0 ? void 0 : _b.some((tool) => !isCallableTool(tool))) !== null && _c !== void 0 ? _c : false;
+function findAfcIncompatibleToolIndexes(params2) {
+  var _a;
+  const afcIncompatibleToolIndexes = [];
+  if (!((_a = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a === void 0 ? void 0 : _a.tools)) {
+    return afcIncompatibleToolIndexes;
+  }
+  params2.config.tools.forEach((tool, index) => {
+    if (isCallableTool(tool)) {
+      return;
+    }
+    const geminiTool = tool;
+    if (geminiTool.functionDeclarations && geminiTool.functionDeclarations.length > 0) {
+      afcIncompatibleToolIndexes.push(index);
+    }
+  });
+  return afcIncompatibleToolIndexes;
 }
 function shouldAppendAfcHistory(config) {
   var _a;
@@ -55778,8 +56032,10 @@ var Models = class extends BaseModule2 {
       if (!hasCallableTools(params2) || shouldDisableAfc(params2.config)) {
         return await this.generateContentInternal(transformedParams);
       }
-      if (hasNonCallableTools(params2)) {
-        throw new Error("Automatic function calling with CallableTools and Tools is not yet supported.");
+      const incompatibleToolIndexes = findAfcIncompatibleToolIndexes(params2);
+      if (incompatibleToolIndexes.length > 0) {
+        const formattedIndexes = incompatibleToolIndexes.map((index) => `tools[${index}]`).join(", ");
+        throw new Error(`Automatic function calling with CallableTools (or MCP objects) and basic FunctionDeclarations is not yet supported. Incompatible tools found at ${formattedIndexes}.`);
       }
       let response;
       let functionResponseContent;
@@ -55823,9 +56079,13 @@ var Models = class extends BaseModule2 {
       if (shouldDisableAfc(params2.config)) {
         const transformedParams = await this.processParamsMaybeAddMcpUsage(params2);
         return await this.generateContentStreamInternal(transformedParams);
-      } else {
-        return await this.processAfcStream(params2);
       }
+      const incompatibleToolIndexes = findAfcIncompatibleToolIndexes(params2);
+      if (incompatibleToolIndexes.length > 0) {
+        const formattedIndexes = incompatibleToolIndexes.map((index) => `tools[${index}]`).join(", ");
+        throw new Error(`Incompatible tools found at ${formattedIndexes}. Automatic function calling with CallableTools (or MCP objects) and basic FunctionDeclarations" is not yet supported.`);
+      }
+      return await this.processAfcStream(params2);
     };
     this.generateImages = async (params2) => {
       return await this.generateImagesInternal(params2).then((apiResponse) => {
@@ -56085,16 +56345,16 @@ var Models = class extends BaseModule2 {
   async generateContentInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:generateContent", body["_url"]);
+      path9 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56117,12 +56377,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:generateContent", body["_url"]);
+      path9 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56148,17 +56408,17 @@ var Models = class extends BaseModule2 {
   async generateContentStreamInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56196,13 +56456,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56264,16 +56524,16 @@ var Models = class extends BaseModule2 {
   async embedContent(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = embedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56296,12 +56556,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = embedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:batchEmbedContents", body["_url"]);
+      path9 = formatMap("{model}:batchEmbedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56330,16 +56590,16 @@ var Models = class extends BaseModule2 {
   async generateImagesInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateImagesParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56362,12 +56622,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateImagesParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56396,16 +56656,16 @@ var Models = class extends BaseModule2 {
   async editImageInternal(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = editImageParametersInternalToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56436,16 +56696,16 @@ var Models = class extends BaseModule2 {
   async upscaleImageInternal(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = upscaleImageAPIParametersInternalToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56511,16 +56771,16 @@ var Models = class extends BaseModule2 {
   async recontextImage(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = recontextImageParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56562,16 +56822,16 @@ var Models = class extends BaseModule2 {
   async segmentImage(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = segmentImageParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56601,16 +56861,16 @@ var Models = class extends BaseModule2 {
   async get(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getModelParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -56625,12 +56885,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = getModelParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -56648,16 +56908,16 @@ var Models = class extends BaseModule2 {
   async listInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listModelsParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{models_url}", body["_url"]);
+      path9 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -56680,12 +56940,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = listModelsParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{models_url}", body["_url"]);
+      path9 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -56728,16 +56988,16 @@ var Models = class extends BaseModule2 {
   async update(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateModelParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}", body["_url"]);
+      path9 = formatMap("{model}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -56752,12 +57012,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = updateModelParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -56786,16 +57046,16 @@ var Models = class extends BaseModule2 {
   async delete(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteModelParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -56818,12 +57078,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = deleteModelParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -56865,16 +57125,16 @@ var Models = class extends BaseModule2 {
   async countTokens(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = countTokensParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:countTokens", body["_url"]);
+      path9 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56897,12 +57157,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = countTokensParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:countTokens", body["_url"]);
+      path9 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56946,16 +57206,16 @@ var Models = class extends BaseModule2 {
   async computeTokens(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = computeTokensParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:computeTokens", body["_url"]);
+      path9 = formatMap("{model}:computeTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -56986,16 +57246,16 @@ var Models = class extends BaseModule2 {
   async generateVideosInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateVideosParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -57012,12 +57272,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateVideosParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -57065,7 +57325,7 @@ var Operations = class extends BaseModule2 {
       });
       return operation._fromAPIResponse({
         apiResponse: rawOperation,
-        isVertexAI: true
+        _isVertexAI: true
       });
     } else {
       const rawOperation = await this.getVideosOperationInternal({
@@ -57074,7 +57334,7 @@ var Operations = class extends BaseModule2 {
       });
       return operation._fromAPIResponse({
         apiResponse: rawOperation,
-        isVertexAI: false
+        _isVertexAI: false
       });
     }
   }
@@ -57103,7 +57363,7 @@ var Operations = class extends BaseModule2 {
       });
       return operation._fromAPIResponse({
         apiResponse: rawOperation,
-        isVertexAI: true
+        _isVertexAI: true
       });
     } else {
       const rawOperation = await this.getVideosOperationInternal({
@@ -57112,23 +57372,23 @@ var Operations = class extends BaseModule2 {
       });
       return operation._fromAPIResponse({
         apiResponse: rawOperation,
-        isVertexAI: false
+        _isVertexAI: false
       });
     }
   }
   async getVideosOperationInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getOperationParametersToVertex(params2);
-      path8 = formatMap("{operationName}", body["_url"]);
+      path9 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -57140,12 +57400,12 @@ var Operations = class extends BaseModule2 {
       return response;
     } else {
       const body = getOperationParametersToMldev(params2);
-      path8 = formatMap("{operationName}", body["_url"]);
+      path9 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -57160,16 +57420,16 @@ var Operations = class extends BaseModule2 {
   async fetchPredictVideosOperationInternal(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = fetchPredictOperationParametersToVertex(params2);
-      path8 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
+      path9 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -57285,6 +57545,9 @@ function googleSearchToMldev(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
+    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -57504,13 +57767,13 @@ function toolToMldev(fromObject) {
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev(fromGoogleMaps));
-  }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
     setValueByPath(toObject, ["computerUse"], fromComputerUse);
+  }
+  const fromFileSearch = getValueByPath(fromObject, ["fileSearch"]);
+  if (fromFileSearch != null) {
+    setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -57520,6 +57783,10 @@ function toolToMldev(fromObject) {
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+  }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev(fromGoogleMaps));
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -57703,20 +57970,20 @@ var Tokens = class extends BaseModule2 {
   async create(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("The client.tokens.create method is only supported by the Gemini Developer API.");
     } else {
       const body = createAuthTokenParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("auth_tokens", body["_url"]);
+      path9 = formatMap("auth_tokens", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       const transformedBody = convertBidiSetupToTokenSetup(body, params2.config);
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(transformedBody),
         httpMethod: "POST",
@@ -57727,6 +57994,676 @@ var Tokens = class extends BaseModule2 {
       });
       return response.then((resp) => {
         return resp;
+      });
+    }
+  }
+};
+function createFileSearchStoreConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromDisplayName = getValueByPath(fromObject, ["displayName"]);
+  if (parentObject !== void 0 && fromDisplayName != null) {
+    setValueByPath(parentObject, ["displayName"], fromDisplayName);
+  }
+  return toObject;
+}
+function createFileSearchStoreParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    createFileSearchStoreConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function deleteFileSearchStoreConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromForce = getValueByPath(fromObject, ["force"]);
+  if (parentObject !== void 0 && fromForce != null) {
+    setValueByPath(parentObject, ["_query", "force"], fromForce);
+  }
+  return toObject;
+}
+function deleteFileSearchStoreParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["_url", "name"], fromName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    deleteFileSearchStoreConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function getFileSearchStoreParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["_url", "name"], fromName);
+  }
+  return toObject;
+}
+function importFileConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromCustomMetadata = getValueByPath(fromObject, [
+    "customMetadata"
+  ]);
+  if (parentObject !== void 0 && fromCustomMetadata != null) {
+    let transformedList = fromCustomMetadata;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(parentObject, ["customMetadata"], transformedList);
+  }
+  const fromChunkingConfig = getValueByPath(fromObject, [
+    "chunkingConfig"
+  ]);
+  if (parentObject !== void 0 && fromChunkingConfig != null) {
+    setValueByPath(parentObject, ["chunkingConfig"], fromChunkingConfig);
+  }
+  return toObject;
+}
+function importFileOperationFromMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
+  if (fromMetadata != null) {
+    setValueByPath(toObject, ["metadata"], fromMetadata);
+  }
+  const fromDone = getValueByPath(fromObject, ["done"]);
+  if (fromDone != null) {
+    setValueByPath(toObject, ["done"], fromDone);
+  }
+  const fromError = getValueByPath(fromObject, ["error"]);
+  if (fromError != null) {
+    setValueByPath(toObject, ["error"], fromError);
+  }
+  const fromResponse = getValueByPath(fromObject, ["response"]);
+  if (fromResponse != null) {
+    setValueByPath(toObject, ["response"], importFileResponseFromMldev(fromResponse));
+  }
+  return toObject;
+}
+function importFileParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromFileSearchStoreName = getValueByPath(fromObject, [
+    "fileSearchStoreName"
+  ]);
+  if (fromFileSearchStoreName != null) {
+    setValueByPath(toObject, ["_url", "file_search_store_name"], fromFileSearchStoreName);
+  }
+  const fromFileName = getValueByPath(fromObject, ["fileName"]);
+  if (fromFileName != null) {
+    setValueByPath(toObject, ["fileName"], fromFileName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    importFileConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function importFileResponseFromMldev(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  const fromParent = getValueByPath(fromObject, ["parent"]);
+  if (fromParent != null) {
+    setValueByPath(toObject, ["parent"], fromParent);
+  }
+  const fromDocumentName = getValueByPath(fromObject, ["documentName"]);
+  if (fromDocumentName != null) {
+    setValueByPath(toObject, ["documentName"], fromDocumentName);
+  }
+  return toObject;
+}
+function listFileSearchStoresConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromPageSize = getValueByPath(fromObject, ["pageSize"]);
+  if (parentObject !== void 0 && fromPageSize != null) {
+    setValueByPath(parentObject, ["_query", "pageSize"], fromPageSize);
+  }
+  const fromPageToken = getValueByPath(fromObject, ["pageToken"]);
+  if (parentObject !== void 0 && fromPageToken != null) {
+    setValueByPath(parentObject, ["_query", "pageToken"], fromPageToken);
+  }
+  return toObject;
+}
+function listFileSearchStoresParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    listFileSearchStoresConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function listFileSearchStoresResponseFromMldev(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  const fromNextPageToken = getValueByPath(fromObject, [
+    "nextPageToken"
+  ]);
+  if (fromNextPageToken != null) {
+    setValueByPath(toObject, ["nextPageToken"], fromNextPageToken);
+  }
+  const fromFileSearchStores = getValueByPath(fromObject, [
+    "fileSearchStores"
+  ]);
+  if (fromFileSearchStores != null) {
+    let transformedList = fromFileSearchStores;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["fileSearchStores"], transformedList);
+  }
+  return toObject;
+}
+function uploadToFileSearchStoreConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
+  if (parentObject !== void 0 && fromMimeType != null) {
+    setValueByPath(parentObject, ["mimeType"], fromMimeType);
+  }
+  const fromDisplayName = getValueByPath(fromObject, ["displayName"]);
+  if (parentObject !== void 0 && fromDisplayName != null) {
+    setValueByPath(parentObject, ["displayName"], fromDisplayName);
+  }
+  const fromCustomMetadata = getValueByPath(fromObject, [
+    "customMetadata"
+  ]);
+  if (parentObject !== void 0 && fromCustomMetadata != null) {
+    let transformedList = fromCustomMetadata;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(parentObject, ["customMetadata"], transformedList);
+  }
+  const fromChunkingConfig = getValueByPath(fromObject, [
+    "chunkingConfig"
+  ]);
+  if (parentObject !== void 0 && fromChunkingConfig != null) {
+    setValueByPath(parentObject, ["chunkingConfig"], fromChunkingConfig);
+  }
+  return toObject;
+}
+function uploadToFileSearchStoreParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromFileSearchStoreName = getValueByPath(fromObject, [
+    "fileSearchStoreName"
+  ]);
+  if (fromFileSearchStoreName != null) {
+    setValueByPath(toObject, ["_url", "file_search_store_name"], fromFileSearchStoreName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    uploadToFileSearchStoreConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function uploadToFileSearchStoreResumableResponseFromMldev(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  return toObject;
+}
+function deleteDocumentConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromForce = getValueByPath(fromObject, ["force"]);
+  if (parentObject !== void 0 && fromForce != null) {
+    setValueByPath(parentObject, ["_query", "force"], fromForce);
+  }
+  return toObject;
+}
+function deleteDocumentParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["_url", "name"], fromName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    deleteDocumentConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function getDocumentParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["_url", "name"], fromName);
+  }
+  return toObject;
+}
+function listDocumentsConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromPageSize = getValueByPath(fromObject, ["pageSize"]);
+  if (parentObject !== void 0 && fromPageSize != null) {
+    setValueByPath(parentObject, ["_query", "pageSize"], fromPageSize);
+  }
+  const fromPageToken = getValueByPath(fromObject, ["pageToken"]);
+  if (parentObject !== void 0 && fromPageToken != null) {
+    setValueByPath(parentObject, ["_query", "pageToken"], fromPageToken);
+  }
+  return toObject;
+}
+function listDocumentsParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromParent = getValueByPath(fromObject, ["parent"]);
+  if (fromParent != null) {
+    setValueByPath(toObject, ["_url", "parent"], fromParent);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    listDocumentsConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function listDocumentsResponseFromMldev(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  const fromNextPageToken = getValueByPath(fromObject, [
+    "nextPageToken"
+  ]);
+  if (fromNextPageToken != null) {
+    setValueByPath(toObject, ["nextPageToken"], fromNextPageToken);
+  }
+  const fromDocuments = getValueByPath(fromObject, ["documents"]);
+  if (fromDocuments != null) {
+    let transformedList = fromDocuments;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["documents"], transformedList);
+  }
+  return toObject;
+}
+var Documents = class extends BaseModule2 {
+  constructor(apiClient) {
+    super();
+    this.apiClient = apiClient;
+    this.list = async (params2) => {
+      return new Pager(PagedItem.PAGED_ITEM_DOCUMENTS, (x) => this.listInternal({
+        parent: params2.parent,
+        config: x.config
+      }), await this.listInternal(params2), params2);
+    };
+  }
+  /**
+   * Gets a Document.
+   *
+   * @param params - The parameters for getting a document.
+   * @return Document.
+   */
+  async get(params2) {
+    var _a, _b;
+    let response;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = getDocumentParametersToMldev(params2);
+      path9 = formatMap("{name}", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      response = this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "GET",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json();
+      });
+      return response.then((resp) => {
+        return resp;
+      });
+    }
+  }
+  /**
+   * Deletes a Document.
+   *
+   * @param params - The parameters for deleting a document.
+   */
+  async delete(params2) {
+    var _a, _b;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = deleteDocumentParametersToMldev(params2);
+      path9 = formatMap("{name}", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      await this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "DELETE",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      });
+    }
+  }
+  /**
+   * Lists all Documents in a FileSearchStore.
+   *
+   * @param params - The parameters for listing documents.
+   * @return ListDocumentsResponse.
+   */
+  async listInternal(params2) {
+    var _a, _b;
+    let response;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = listDocumentsParametersToMldev(params2);
+      path9 = formatMap("{parent}/documents", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      response = this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "GET",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json();
+      });
+      return response.then((apiResponse) => {
+        const resp = listDocumentsResponseFromMldev(apiResponse);
+        const typedResp = new ListDocumentsResponse();
+        Object.assign(typedResp, resp);
+        return typedResp;
+      });
+    }
+  }
+};
+var FileSearchStores = class extends BaseModule2 {
+  constructor(apiClient, documents = new Documents(apiClient)) {
+    super();
+    this.apiClient = apiClient;
+    this.documents = documents;
+    this.list = async (params2 = {}) => {
+      return new Pager(PagedItem.PAGED_ITEM_FILE_SEARCH_STORES, (x) => this.listInternal(x), await this.listInternal(params2), params2);
+    };
+  }
+  /**
+   * Uploads a file asynchronously to a given File Search Store.
+   * This method is not available in Vertex AI.
+   * Supported upload sources:
+   * - Node.js: File path (string) or Blob object.
+   * - Browser: Blob object (e.g., File).
+   *
+   * @remarks
+   * The `mimeType` can be specified in the `config` parameter. If omitted:
+   *  - For file path (string) inputs, the `mimeType` will be inferred from the
+   *     file extension.
+   *  - For Blob object inputs, the `mimeType` will be set to the Blob's `type`
+   *     property.
+   *
+   * This section can contain multiple paragraphs and code examples.
+   *
+   * @param params - Optional parameters specified in the
+   *        `types.UploadToFileSearchStoreParameters` interface.
+   *         @see {@link types.UploadToFileSearchStoreParameters#config} for the optional
+   *         config in the parameters.
+   * @return A promise that resolves to a long running operation.
+   * @throws An error if called on a Vertex AI client.
+   * @throws An error if the `mimeType` is not provided and can not be inferred,
+   * the `mimeType` can be provided in the `params.config` parameter.
+   * @throws An error occurs if a suitable upload location cannot be established.
+   *
+   * @example
+   * The following code uploads a file to a given file search store.
+   *
+   * ```ts
+   * const operation = await ai.fileSearchStores.upload({fileSearchStoreName: 'fileSearchStores/foo-bar', file: 'file.txt', config: {
+   *   mimeType: 'text/plain',
+   * }});
+   * console.log(operation.name);
+   * ```
+   */
+  async uploadToFileSearchStore(params2) {
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("Vertex AI does not support uploading files to a file search store.");
+    }
+    return this.apiClient.uploadFileToFileSearchStore(params2.fileSearchStoreName, params2.file, params2.config);
+  }
+  /**
+   * Creates a File Search Store.
+   *
+   * @param params - The parameters for creating a File Search Store.
+   * @return FileSearchStore.
+   */
+  async create(params2) {
+    var _a, _b;
+    let response;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = createFileSearchStoreParametersToMldev(params2);
+      path9 = formatMap("fileSearchStores", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      response = this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "POST",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json();
+      });
+      return response.then((resp) => {
+        return resp;
+      });
+    }
+  }
+  /**
+   * Gets a File Search Store.
+   *
+   * @param params - The parameters for getting a File Search Store.
+   * @return FileSearchStore.
+   */
+  async get(params2) {
+    var _a, _b;
+    let response;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = getFileSearchStoreParametersToMldev(params2);
+      path9 = formatMap("{name}", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      response = this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "GET",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json();
+      });
+      return response.then((resp) => {
+        return resp;
+      });
+    }
+  }
+  /**
+   * Deletes a File Search Store.
+   *
+   * @param params - The parameters for deleting a File Search Store.
+   */
+  async delete(params2) {
+    var _a, _b;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = deleteFileSearchStoreParametersToMldev(params2);
+      path9 = formatMap("{name}", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      await this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "DELETE",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      });
+    }
+  }
+  /**
+   * Lists all FileSearchStore owned by the user.
+   *
+   * @param params - The parameters for listing file search stores.
+   * @return ListFileSearchStoresResponse.
+   */
+  async listInternal(params2) {
+    var _a, _b;
+    let response;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = listFileSearchStoresParametersToMldev(params2);
+      path9 = formatMap("fileSearchStores", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      response = this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "GET",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json();
+      });
+      return response.then((apiResponse) => {
+        const resp = listFileSearchStoresResponseFromMldev(apiResponse);
+        const typedResp = new ListFileSearchStoresResponse();
+        Object.assign(typedResp, resp);
+        return typedResp;
+      });
+    }
+  }
+  async uploadToFileSearchStoreInternal(params2) {
+    var _a, _b;
+    let response;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = uploadToFileSearchStoreParametersToMldev(params2);
+      path9 = formatMap("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      response = this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "POST",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json();
+      });
+      return response.then((apiResponse) => {
+        const resp = uploadToFileSearchStoreResumableResponseFromMldev(apiResponse);
+        const typedResp = new UploadToFileSearchStoreResumableResponse();
+        Object.assign(typedResp, resp);
+        return typedResp;
+      });
+    }
+  }
+  /**
+   * Imports a File from File Service to a FileSearchStore.
+   *
+   * This is a long-running operation, see aip.dev/151
+   *
+   * @param params - The parameters for importing a file to a file search store.
+   * @return ImportFileOperation.
+   */
+  async importFile(params2) {
+    var _a, _b;
+    let response;
+    let path9 = "";
+    let queryParams = {};
+    if (this.apiClient.isVertexAI()) {
+      throw new Error("This method is only supported by the Gemini Developer API.");
+    } else {
+      const body = importFileParametersToMldev(params2);
+      path9 = formatMap("{file_search_store_name}:importFile", body["_url"]);
+      queryParams = body["_query"];
+      delete body["_url"];
+      delete body["_query"];
+      response = this.apiClient.request({
+        path: path9,
+        queryParams,
+        body: JSON.stringify(body),
+        httpMethod: "POST",
+        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json();
+      });
+      return response.then((apiResponse) => {
+        const resp = importFileOperationFromMldev(apiResponse);
+        const typedResp = new ImportFileOperation();
+        Object.assign(typedResp, resp);
+        return typedResp;
       });
     }
   }
@@ -58579,16 +59516,16 @@ var Tunings = class extends BaseModule2 {
   async getInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getTuningJobParametersToVertex(params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -58609,12 +59546,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = getTuningJobParametersToMldev(params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -58638,16 +59575,16 @@ var Tunings = class extends BaseModule2 {
   async listInternal(params2) {
     var _a, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listTuningJobsParametersToVertex(params2);
-      path8 = formatMap("tuningJobs", body["_url"]);
+      path9 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -58670,12 +59607,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = listTuningJobsParametersToMldev(params2);
-      path8 = formatMap("tunedModels", body["_url"]);
+      path9 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -58711,16 +59648,16 @@ var Tunings = class extends BaseModule2 {
    */
   async cancel(params2) {
     var _a, _b, _c, _d;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelTuningJobParametersToVertex(params2);
-      path8 = formatMap("{name}:cancel", body["_url"]);
+      path9 = formatMap("{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -58729,12 +59666,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = cancelTuningJobParametersToMldev(params2);
-      path8 = formatMap("{name}:cancel", body["_url"]);
+      path9 = formatMap("{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -58746,16 +59683,16 @@ var Tunings = class extends BaseModule2 {
   async tuneInternal(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createTuningJobParametersPrivateToVertex(params2, params2);
-      path8 = formatMap("tuningJobs", body["_url"]);
+      path9 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -58781,18 +59718,18 @@ var Tunings = class extends BaseModule2 {
   async tuneMldevInternal(params2) {
     var _a, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createTuningJobParametersPrivateToMldev(params2);
-      path8 = formatMap("tunedModels", body["_url"]);
+      path9 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -58820,7 +59757,28 @@ var INITIAL_RETRY_DELAY_MS = 1e3;
 var DELAY_MULTIPLIER = 2;
 var X_GOOG_UPLOAD_STATUS_HEADER_FIELD = "x-goog-upload-status";
 async function uploadBlob(file, uploadUrl, apiClient) {
-  var _a, _b, _c;
+  var _a;
+  const response = await uploadBlobInternal(file, uploadUrl, apiClient);
+  const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
+  if (((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+    throw new Error("Failed to upload file: Upload status is not finalized.");
+  }
+  return responseJson["file"];
+}
+async function uploadBlobToFileSearchStore(file, uploadUrl, apiClient) {
+  var _a;
+  const response = await uploadBlobInternal(file, uploadUrl, apiClient);
+  const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
+  if (((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+    throw new Error("Failed to upload file: Upload status is not finalized.");
+  }
+  const resp = uploadToFileSearchStoreOperationFromMldev(responseJson);
+  const typedResp = new UploadToFileSearchStoreOperation();
+  Object.assign(typedResp, resp);
+  return typedResp;
+}
+async function uploadBlobInternal(file, uploadUrl, apiClient) {
+  var _a, _b;
   let fileSize = 0;
   let offset = 0;
   let response = new HttpResponse(new Response());
@@ -58864,11 +59822,7 @@ async function uploadBlob(file, uploadUrl, apiClient) {
       throw new Error("All content has been uploaded, but the upload status is not finalized.");
     }
   }
-  const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-  if (((_c = response === null || response === void 0 ? void 0 : response.headers) === null || _c === void 0 ? void 0 : _c[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
-    throw new Error("Failed to upload file: Upload status is not finalized.");
-  }
-  return responseJson["file"];
+  return response;
 }
 async function getBlobStat(file) {
   const fileStat = { size: file.size, type: file.type };
@@ -58894,6 +59848,13 @@ var NodeUploader = class {
       return await this.uploadFileFromPath(file, uploadUrl, apiClient);
     } else {
       return uploadBlob(file, uploadUrl, apiClient);
+    }
+  }
+  async uploadToFileSearchStore(file, uploadUrl, apiClient) {
+    if (typeof file === "string") {
+      return await this.uploadFileToFileSearchStoreFromPath(file, uploadUrl, apiClient);
+    } else {
+      return uploadBlobToFileSearchStore(file, uploadUrl, apiClient);
     }
   }
   /**
@@ -58983,12 +59944,34 @@ var NodeUploader = class {
     return mimeType;
   }
   async uploadFileFromPath(file, uploadUrl, apiClient) {
-    var _a, _b, _c;
+    var _a;
+    const response = await this.uploadFileFromPathInternal(file, uploadUrl, apiClient);
+    const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
+    if (((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+      throw new Error("Failed to upload file: Upload status is not finalized.");
+    }
+    return responseJson["file"];
+  }
+  async uploadFileToFileSearchStoreFromPath(file, uploadUrl, apiClient) {
+    var _a;
+    const response = await this.uploadFileFromPathInternal(file, uploadUrl, apiClient);
+    const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
+    if (((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+      throw new Error("Failed to upload file: Upload status is not finalized.");
+    }
+    const resp = uploadToFileSearchStoreOperationFromMldev(responseJson);
+    const typedResp = new UploadToFileSearchStoreOperation();
+    Object.assign(typedResp, resp);
+    return typedResp;
+  }
+  async uploadFileFromPathInternal(file, uploadUrl, apiClient) {
+    var _a, _b;
     let fileSize = 0;
     let offset = 0;
     let response = new HttpResponse(new Response());
     let uploadCommand = "upload";
     let fileHandle;
+    const fileName = path8.basename(file);
     try {
       fileHandle = await fs5.open(file, "r");
       if (!fileHandle) {
@@ -59019,7 +60002,8 @@ var NodeUploader = class {
               headers: {
                 "X-Goog-Upload-Command": uploadCommand,
                 "X-Goog-Upload-Offset": String(offset),
-                "Content-Length": String(bytesRead)
+                "Content-Length": String(bytesRead),
+                "X-Goog-Upload-File-Name": fileName
               }
             }
           });
@@ -59038,11 +60022,7 @@ var NodeUploader = class {
           throw new Error("All content has been uploaded, but the upload status is not finalized.");
         }
       }
-      const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-      if (((_c = response === null || response === void 0 ? void 0 : response.headers) === null || _c === void 0 ? void 0 : _c[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
-        throw new Error("Failed to upload file: Upload status is not finalized.");
-      }
-      return responseJson["file"];
+      return response;
     } finally {
       if (fileHandle) {
         await fileHandle.close();
@@ -59118,6 +60098,7 @@ var GoogleGenAI = class {
     this.operations = new Operations(this.apiClient);
     this.authTokens = new Tokens(this.apiClient);
     this.tunings = new Tunings(this.apiClient);
+    this.fileSearchStores = new FileSearchStores(this.apiClient);
   }
 };
 function getEnv(env) {
@@ -59292,7 +60273,7 @@ var import_fast_glob4 = __toESM(require_out());
 var import_cli_progress4 = __toESM(require_cli_progress());
 import { setTimeout as setTimeout2 } from "node:timers/promises";
 import { readFile as readFile5, writeFile as writeFile4 } from "node:fs/promises";
-import { basename } from "node:path";
+import { basename as basename2 } from "node:path";
 import assert2 from "node:assert";
 import { randomUUID as randomUUID2 } from "node:crypto";
 function builder30(argv) {
@@ -59403,7 +60384,7 @@ async function uploadFiles(ai, filePaths, progressBar) {
           type: "text/plain"
         }),
         config: {
-          displayName: `fix_request_${basename(filePath)}_${randomUUID2()}`
+          displayName: `fix_request_${basename2(filePath)}_${randomUUID2()}`
         }
       });
       assert2(uploadedFile.name, "File name cannot be undefined after upload.");
