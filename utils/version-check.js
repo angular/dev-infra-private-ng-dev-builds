@@ -16,7 +16,7 @@ export async function ngDevVersionMiddleware() {
 }
 export async function verifyNgDevToolIsUpToDate(workspacePath) {
     const localVersion = `0.0.0-{SCM_HEAD_SHA}`;
-    if (localVersion === '0.0.0-{{BUILD_SCM_COMMIT_SHA}}') {
+    if (!!process.env['LOCAL_NG_DEV_BUILD']) {
         Log.debug('Skipping ng-dev version check as this is a locally generated version.');
         return true;
     }
