@@ -27,19 +27,18 @@ const parseOptions = {
     noteKeywords: [NoteSections.BREAKING_CHANGE, NoteSections.DEPRECATED],
     notesPattern: (keywords) => new RegExp(`^\\s*(${keywords}): ?(.*)`),
 };
-let commitParser;
+const commitParser = new CommitParser(parseOptions);
 export const parseCommitMessage = parseInternal;
 export const parseCommitFromGitLog = parseInternal;
 function parseInternal(fullText) {
-    fullText = fullText.toString();
-    const strippedCommitMsg = fullText
+    fullText = fullText.toString().trim();
+    const commit = commitParser.parse(fullText);
+    const breakingChanges = [];
+    const deprecations = [];
+    const header = (commit.header || '')
         .replace(FIXUP_PREFIX_RE, '')
         .replace(SQUASH_PREFIX_RE, '')
         .replace(REVERT_PREFIX_RE, '');
-    commitParser ?? (commitParser = new CommitParser(parseOptions));
-    const commit = commitParser.parse(strippedCommitMsg);
-    const breakingChanges = [];
-    const deprecations = [];
     for (const note of commit.notes) {
         switch (note.title) {
             case NoteSections.BREAKING_CHANGE:
@@ -54,9 +53,10 @@ function parseInternal(fullText) {
         fullText,
         breakingChanges,
         deprecations,
+        header,
         body: commit.body || '',
         footer: commit.footer || '',
-        header: commit.header || '',
+        originalHeader: commit.header || '',
         references: commit.references,
         scope: commit['scope'] || '',
         subject: commit['subject'] || '',

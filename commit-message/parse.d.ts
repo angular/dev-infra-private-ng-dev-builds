@@ -2,6 +2,7 @@ import { CommitReference, CommitNote } from 'conventional-commits-parser';
 export interface Commit {
     fullText: string;
     header: string;
+    originalHeader: string;
     body: string;
     footer: string;
     references: CommitReference[];

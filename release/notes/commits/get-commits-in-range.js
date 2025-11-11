@@ -21,18 +21,30 @@ export function getCommitsForRangeWithDeduping(client, baseRef, headRef) {
     }
     return commits;
 }
-export function fetchCommitsForRevisionRange(client, revisionRange) {
+function fetchCommitsForRevisionRange(client, revisionRange) {
     const splitDelimiter = '-------------ɵɵ------------';
     const output = client.run([
         'log',
         `--format=${gitLogFormatForParsing}${splitDelimiter}`,
         revisionRange,
     ]);
-    return output.stdout
+    const commits = new Map();
+    output.stdout
         .split(splitDelimiter)
-        .filter((entry) => !!entry.trim())
-        .map(santizeCommitMessage)
-        .map((entry) => parseCommitFromGitLog(Buffer.from(entry, 'utf-8')));
+        .reverse()
+        .forEach((entry) => {
+        if (entry.trim() === '') {
+            return;
+        }
+        const commit = parseCommitFromGitLog(Buffer.from(santizeCommitMessage(entry), 'utf-8'));
+        if (commit.isRevert) {
+            commits.delete(commit.originalHeader.match(/^revert:? "(.*)"/i)?.[1] || '');
+        }
+        else {
+            commits.set(commit.header, commit);
+        }
+    });
+    return Array.from(commits.values()).reverse();
 }
 function santizeCommitMessage(content) {
     return content.replace(/ (@[A-z0-9]+) /g, ' `$1` ');

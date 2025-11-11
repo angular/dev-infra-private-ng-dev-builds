@@ -37726,16 +37726,15 @@ var parseOptions = {
   noteKeywords: [NoteSections.BREAKING_CHANGE, NoteSections.DEPRECATED],
   notesPattern: (keywords) => new RegExp(`^\\s*(${keywords}): ?(.*)`)
 };
-var commitParser;
+var commitParser = new CommitParser(parseOptions);
 var parseCommitMessage = parseInternal;
 var parseCommitFromGitLog = parseInternal;
 function parseInternal(fullText) {
-  fullText = fullText.toString();
-  const strippedCommitMsg = fullText.replace(FIXUP_PREFIX_RE, "").replace(SQUASH_PREFIX_RE, "").replace(REVERT_PREFIX_RE, "");
-  commitParser ?? (commitParser = new CommitParser(parseOptions));
-  const commit = commitParser.parse(strippedCommitMsg);
+  fullText = fullText.toString().trim();
+  const commit = commitParser.parse(fullText);
   const breakingChanges = [];
   const deprecations = [];
+  const header = (commit.header || "").replace(FIXUP_PREFIX_RE, "").replace(SQUASH_PREFIX_RE, "").replace(REVERT_PREFIX_RE, "");
   for (const note of commit.notes) {
     switch (note.title) {
       case NoteSections.BREAKING_CHANGE:
@@ -37750,9 +37749,10 @@ function parseInternal(fullText) {
     fullText,
     breakingChanges,
     deprecations,
+    header,
     body: commit.body || "",
     footer: commit.footer || "",
-    header: commit.header || "",
+    originalHeader: commit.header || "",
     references: commit.references,
     scope: commit["scope"] || "",
     subject: commit["subject"] || "",
@@ -43096,7 +43096,19 @@ function fetchCommitsForRevisionRange(client, revisionRange) {
     `--format=${gitLogFormatForParsing}${splitDelimiter}`,
     revisionRange
   ]);
-  return output.stdout.split(splitDelimiter).filter((entry) => !!entry.trim()).map(santizeCommitMessage).map((entry) => parseCommitFromGitLog(Buffer.from(entry, "utf-8")));
+  const commits = /* @__PURE__ */ new Map();
+  output.stdout.split(splitDelimiter).reverse().forEach((entry) => {
+    if (entry.trim() === "") {
+      return;
+    }
+    const commit = parseCommitFromGitLog(Buffer.from(santizeCommitMessage(entry), "utf-8"));
+    if (commit.isRevert) {
+      commits.delete(commit.originalHeader.match(/^revert:? "(.*)"/i)?.[1] || "");
+    } else {
+      commits.set(commit.header, commit);
+    }
+  });
+  return Array.from(commits.values()).reverse();
 }
 function santizeCommitMessage(content) {
   return content.replace(/ (@[A-z0-9]+) /g, " `$1` ");
@@ -44592,7 +44604,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-4913e6e48f2b6169fb7d3f598bd79f1c31d4b146`;
+  const localVersion = `0.0.0-b14d0b01760280c36f6fcfdd31f120a465a56501`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
