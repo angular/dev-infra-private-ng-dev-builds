@@ -44592,8 +44592,8 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-7b0cc896370708d4849b3e37167f9b47137ba22c`;
-  if (localVersion === "0.0.0-7b0cc896370708d4849b3e37167f9b47137ba22c") {
+  const localVersion = `0.0.0-1c89160e7d648659608f58420a88553438e66c23`;
+  if (localVersion === "0.0.0-1c89160e7d648659608f58420a88553438e66c23") {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
   }
@@ -45555,7 +45555,7 @@ function buildPerfParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(WorkflowsModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.29.0_2056558101/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.29.0_588272396/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -45570,7 +45570,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.29.0_2056558101/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.29.0_588272396/node_modules/@google/genai/dist/node/index.mjs
 import * as path8 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
