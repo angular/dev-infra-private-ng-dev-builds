@@ -13,6 +13,7 @@ import { captureLogOutputForCommand } from './utils/logging.js';
 import { ngDevVersionMiddleware } from './utils/version-check.js';
 import { buildAuthParser } from './auth/cli.js';
 import { buildPerfParser } from './perf/cli.js';
+import { buildConfigParser } from './config/cli.js';
 import { buildAiParser } from './ai/cli.js';
 runParserWithCompletedFunctions((yargs) => {
     process.exitCode = 0;
@@ -33,6 +34,7 @@ runParserWithCompletedFunctions((yargs) => {
         .command('ngbot <command>', false, buildNgbotParser)
         .command('perf <command>', '', buildPerfParser)
         .command('ai <command>', '', buildAiParser)
+        .command('config <command>', false, buildConfigParser)
         .wrap(120)
         .strict();
 });

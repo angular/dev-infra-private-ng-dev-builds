@@ -1,11 +1,9 @@
 import { join } from 'path';
-import glob from 'fast-glob';
-import { register } from 'tsx/esm/api';
 import { Log } from './logging.js';
 import { getCachedConfig, setCachedConfig } from './config-cache.js';
 import { determineRepoBaseDirFromCwd } from './repo-directory.js';
 import { pathToFileURL } from 'url';
-const CONFIG_FILE_PATH_MATCHER = '.ng-dev/config.{mjs,mts}';
+const CONFIG_FILE_PATH_MATCHER = '.ng-dev/config.mjs';
 const USER_CONFIG_FILE_PATH = '.ng-dev.user';
 let userConfig = null;
 export const setConfig = setCachedConfig;
@@ -19,8 +17,7 @@ export async function getConfig(baseDirOrAssertions) {
         else {
             baseDir = determineRepoBaseDirFromCwd();
         }
-        const [matchedFile] = await glob(CONFIG_FILE_PATH_MATCHER, { cwd: baseDir });
-        const configPath = join(baseDir, matchedFile);
+        const configPath = join(baseDir, CONFIG_FILE_PATH_MATCHER);
         cachedConfig = await readConfigFile(configPath);
         setCachedConfig(cachedConfig);
     }
@@ -67,7 +64,6 @@ export function assertValidCaretakerConfig(config) {
     }
 }
 async function readConfigFile(configPath, returnEmptyObjectOnError = false) {
-    const unregister = register({ tsconfig: false });
     try {
         return await import(pathToFileURL(configPath).toString());
     }
@@ -80,9 +76,6 @@ async function readConfigFile(configPath, returnEmptyObjectOnError = false) {
         Log.error(`Could not read configuration file at ${configPath}.`);
         Log.error(e);
         process.exit(1);
-    }
-    finally {
-        unregister();
     }
 }
 //# sourceMappingURL=config.js.map
