@@ -17178,9 +17178,9 @@ var require_lib7 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.3/node_modules/@pnpm/dependency-path/lib/index.js
+// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.4/node_modules/@pnpm/dependency-path/lib/index.js
 var require_lib8 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.3/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.4/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -44604,7 +44604,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-03f183578403c4a91869a4ce9b09745df9aaa5b1`;
+  const localVersion = `0.0.0-8b7bdd1861aaca5372459b2afeb71da5be3c4065`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
