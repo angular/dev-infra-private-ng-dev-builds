@@ -2206,9 +2206,9 @@ var require_cjs = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/which@5.0.0/node_modules/which/lib/index.js
+// node_modules/.aspect_rules_js/which@6.0.0/node_modules/which/lib/index.js
 var require_lib = __commonJS({
-  "node_modules/.aspect_rules_js/which@5.0.0/node_modules/which/lib/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/which@6.0.0/node_modules/which/lib/index.js"(exports, module) {
     var { isexe, sync: isexeSync } = require_cjs();
     var { join: join2, delimiter, sep: sep2, posix } = __require("path");
     var isWindows = process.platform === "win32";

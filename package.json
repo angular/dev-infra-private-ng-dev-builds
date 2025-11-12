@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-d62f4b5d1f69c8f8fd4104118462d65bbc47e271",
+  "version": "0.0.0-03f183578403c4a91869a4ce9b09745df9aaa5b1",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -67,7 +67,7 @@
     "tsx": "4.20.6",
     "typescript": "5.9.3",
     "utf-8-validate": "6.0.5",
-    "which": "5.0.0",
+    "which": "6.0.0",
     "yaml": "2.8.1",
     "yargs": "18.0.0"
   }
