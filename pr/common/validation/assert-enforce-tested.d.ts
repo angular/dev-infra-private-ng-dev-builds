@@ -33,15 +33,19 @@ export declare const enforceTestedValidation: {
                                 status: import("@octokit/graphql-schema").CheckStatusState;
                                 conclusion: import("@octokit/graphql-schema").CheckConclusionState | null;
                                 name: string;
+                                completedAt: string;
                                 state?: undefined;
                                 context?: undefined;
+                                createdAt?: undefined;
                             } | {
                                 __typename: "StatusContext";
                                 state: import("@octokit/graphql-schema").StatusState;
                                 context: string;
+                                createdAt: string;
                                 status?: undefined;
                                 conclusion?: undefined;
                                 name?: undefined;
+                                completedAt?: undefined;
                             })[];
                         };
                     } | null | undefined;

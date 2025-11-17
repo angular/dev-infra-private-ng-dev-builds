@@ -31,11 +31,13 @@ export const PR_SCHEMA = {
                                         status: graphqlTypes.custom(),
                                         conclusion: graphqlTypes.custom(),
                                         name: graphqlTypes.string,
+                                        completedAt: graphqlTypes.string,
                                     },
                                     StatusContext: {
                                         __typename: graphqlTypes.constant('StatusContext'),
                                         state: graphqlTypes.custom(),
                                         context: graphqlTypes.string,
+                                        createdAt: graphqlTypes.string,
                                     },
                                 }),
                             ],
@@ -132,25 +134,32 @@ export function getStatusesForPullRequest(pullRequest) {
             statuses: [],
         };
     }
-    const statuses = statusCheckRollup.contexts.nodes.map((context) => {
+    const statusMap = new Map();
+    statusCheckRollup.contexts.nodes
+        .sort((a, b) => {
+        const aTimestamp = Date.parse(a.completedAt || a.createdAt || '0');
+        const bTimestamp = Date.parse(b.completedAt || b.createdAt || '0');
+        return aTimestamp - bTimestamp;
+    })
+        .forEach((context) => {
         switch (context.__typename) {
             case 'CheckRun':
-                return {
+                statusMap.set(context.name, {
                     type: 'check',
                     name: context.name,
                     status: normalizeGithubCheckState(context.conclusion, context.status),
-                };
+                });
             case 'StatusContext':
-                return {
+                statusMap.set(context.context, {
                     type: 'status',
                     name: context.context,
                     status: normalizeGithubStatusState(context.state),
-                };
+                });
         }
     });
     return {
         combinedStatus: normalizeGithubStatusState(statusCheckRollup.state),
-        statuses,
+        statuses: Array.from(statusMap.values()),
     };
 }
 function normalizeGithubStatusState(state) {

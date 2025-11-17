@@ -37,15 +37,19 @@ export declare const PR_SCHEMA: {
                             status: CheckStatusState;
                             conclusion: CheckConclusionState | null;
                             name: string;
+                            completedAt: string;
                             state?: undefined;
                             context?: undefined;
+                            createdAt?: undefined;
                         } | {
                             __typename: "StatusContext";
                             state: StatusState;
                             context: string;
+                            createdAt: string;
                             status?: undefined;
                             conclusion?: undefined;
                             name?: undefined;
+                            completedAt?: undefined;
                         })[];
                     };
                 } | null | undefined;
