@@ -10010,7 +10010,7 @@ var endpoint = withDefaults(null, DEFAULTS);
 // node_modules/.aspect_rules_js/@octokit+request@10.0.6/node_modules/@octokit/request/dist-bundle/index.js
 var import_fast_content_type_parse = __toESM(require_fast_content_type_parse());
 
-// node_modules/.aspect_rules_js/@octokit+request-error@7.0.2/node_modules/@octokit/request-error/dist-src/index.js
+// node_modules/.aspect_rules_js/@octokit+request-error@7.1.0/node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
   name;
   /**
@@ -10026,7 +10026,7 @@ var RequestError = class extends Error {
    */
   response;
   constructor(message, statusCode, options) {
-    super(message);
+    super(message, { cause: options.cause });
     this.name = "HttpError";
     this.status = Number.parseInt(statusCode);
     if (Number.isNaN(this.status)) {
@@ -14437,3 +14437,8 @@ export {
   ReleasePrecheckError,
   assertPassingReleasePrechecks
 };
+/*! Bundled license information:
+
+@octokit/request-error/dist-src/index.js:
+  (* v8 ignore else -- @preserve -- Bug with vitest coverage where it sees an else branch that doesn't exist *)
+*/
