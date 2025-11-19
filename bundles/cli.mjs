@@ -50156,7 +50156,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-9f8cd2a701dc256fbebb7269502e3c78ff7de04a`;
+  const localVersion = `0.0.0-7bfb580e061a4deb0bb3fece9384f34acde4ad59`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -51198,7 +51198,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.29.1_588272396/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.30.0_588272396/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -51213,7 +51213,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.29.1_588272396/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.30.0_588272396/node_modules/@google/genai/dist/node/index.mjs
 import * as path8 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -51762,6 +51762,12 @@ var PhishBlockThreshold;
   PhishBlockThreshold2["BLOCK_VERY_HIGH_AND_ABOVE"] = "BLOCK_VERY_HIGH_AND_ABOVE";
   PhishBlockThreshold2["BLOCK_ONLY_EXTREMELY_HIGH"] = "BLOCK_ONLY_EXTREMELY_HIGH";
 })(PhishBlockThreshold || (PhishBlockThreshold = {}));
+var ThinkingLevel;
+(function(ThinkingLevel2) {
+  ThinkingLevel2["THINKING_LEVEL_UNSPECIFIED"] = "THINKING_LEVEL_UNSPECIFIED";
+  ThinkingLevel2["LOW"] = "LOW";
+  ThinkingLevel2["HIGH"] = "HIGH";
+})(ThinkingLevel || (ThinkingLevel = {}));
 var HarmCategory;
 (function(HarmCategory2) {
   HarmCategory2["HARM_CATEGORY_UNSPECIFIED"] = "HARM_CATEGORY_UNSPECIFIED";
@@ -51902,6 +51908,13 @@ var TuningTask;
   TuningTask2["TUNING_TASK_T2V"] = "TUNING_TASK_T2V";
   TuningTask2["TUNING_TASK_R2V"] = "TUNING_TASK_R2V";
 })(TuningTask || (TuningTask = {}));
+var PartMediaResolutionLevel;
+(function(PartMediaResolutionLevel2) {
+  PartMediaResolutionLevel2["MEDIA_RESOLUTION_UNSPECIFIED"] = "MEDIA_RESOLUTION_UNSPECIFIED";
+  PartMediaResolutionLevel2["MEDIA_RESOLUTION_LOW"] = "MEDIA_RESOLUTION_LOW";
+  PartMediaResolutionLevel2["MEDIA_RESOLUTION_MEDIUM"] = "MEDIA_RESOLUTION_MEDIUM";
+  PartMediaResolutionLevel2["MEDIA_RESOLUTION_HIGH"] = "MEDIA_RESOLUTION_HIGH";
+})(PartMediaResolutionLevel || (PartMediaResolutionLevel = {}));
 var FeatureSelectionPreference;
 (function(FeatureSelectionPreference2) {
   FeatureSelectionPreference2["FEATURE_SELECTION_PREFERENCE_UNSPECIFIED"] = "FEATURE_SELECTION_PREFERENCE_UNSPECIFIED";
@@ -52111,13 +52124,11 @@ var LiveMusicPlaybackControl;
   LiveMusicPlaybackControl2["STOP"] = "STOP";
   LiveMusicPlaybackControl2["RESET_CONTEXT"] = "RESET_CONTEXT";
 })(LiveMusicPlaybackControl || (LiveMusicPlaybackControl = {}));
-function createPartFromUri(uri, mimeType) {
-  return {
-    fileData: {
-      fileUri: uri,
-      mimeType
-    }
-  };
+function createPartFromUri(uri, mimeType, mediaResolution) {
+  return Object.assign({ fileData: {
+    fileUri: uri,
+    mimeType
+  } }, mediaResolution && { mediaResolution: { level: mediaResolution } });
 }
 var HttpResponse = class {
   constructor(response) {
@@ -53679,6 +53690,45 @@ function fileDataToMldev$4(fromObject) {
   }
   return toObject;
 }
+function functionCallToMldev$4(fromObject) {
+  const toObject = {};
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
+  }
+  const fromArgs = getValueByPath(fromObject, ["args"]);
+  if (fromArgs != null) {
+    setValueByPath(toObject, ["args"], fromArgs);
+  }
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
+    throw new Error("partialArgs parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
+    throw new Error("willContinue parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
+function functionCallingConfigToMldev$2(fromObject) {
+  const toObject = {};
+  const fromMode = getValueByPath(fromObject, ["mode"]);
+  if (fromMode != null) {
+    setValueByPath(toObject, ["mode"], fromMode);
+  }
+  const fromAllowedFunctionNames = getValueByPath(fromObject, [
+    "allowedFunctionNames"
+  ]);
+  if (fromAllowedFunctionNames != null) {
+    setValueByPath(toObject, ["allowedFunctionNames"], fromAllowedFunctionNames);
+  }
+  if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
+    throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
 function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
   const toObject = {};
   const fromSystemInstruction = getValueByPath(fromObject, [
@@ -53791,7 +53841,7 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
   }
   const fromToolConfig = getValueByPath(fromObject, ["toolConfig"]);
   if (parentObject !== void 0 && fromToolConfig != null) {
-    setValueByPath(parentObject, ["toolConfig"], fromToolConfig);
+    setValueByPath(parentObject, ["toolConfig"], toolConfigToMldev$2(fromToolConfig));
   }
   if (getValueByPath(fromObject, ["labels"]) !== void 0) {
     throw new Error("labels parameter is not supported in Gemini API.");
@@ -53829,7 +53879,7 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
   }
   const fromImageConfig = getValueByPath(fromObject, ["imageConfig"]);
   if (fromImageConfig != null) {
-    setValueByPath(toObject, ["imageConfig"], fromImageConfig);
+    setValueByPath(toObject, ["imageConfig"], imageConfigToMldev$1(fromImageConfig));
   }
   return toObject;
 }
@@ -53913,6 +53963,24 @@ function googleSearchToMldev$4(fromObject) {
   ]);
   if (fromTimeRangeFilter != null) {
     setValueByPath(toObject, ["timeRangeFilter"], fromTimeRangeFilter);
+  }
+  return toObject;
+}
+function imageConfigToMldev$1(fromObject) {
+  const toObject = {};
+  const fromAspectRatio = getValueByPath(fromObject, ["aspectRatio"]);
+  if (fromAspectRatio != null) {
+    setValueByPath(toObject, ["aspectRatio"], fromAspectRatio);
+  }
+  const fromImageSize = getValueByPath(fromObject, ["imageSize"]);
+  if (fromImageSize != null) {
+    setValueByPath(toObject, ["imageSize"], fromImageSize);
+  }
+  if (getValueByPath(fromObject, ["outputMimeType"]) !== void 0) {
+    throw new Error("outputMimeType parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["outputCompressionQuality"]) !== void 0) {
+    throw new Error("outputCompressionQuality parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -54057,9 +54125,11 @@ function listBatchJobsResponseFromVertex(fromObject) {
 }
 function partToMldev$4(fromObject) {
   const toObject = {};
-  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
-  if (fromFunctionCall != null) {
-    setValueByPath(toObject, ["functionCall"], fromFunctionCall);
+  const fromMediaResolution = getValueByPath(fromObject, [
+    "mediaResolution"
+  ]);
+  if (fromMediaResolution != null) {
+    setValueByPath(toObject, ["mediaResolution"], fromMediaResolution);
   }
   const fromCodeExecutionResult = getValueByPath(fromObject, [
     "codeExecutionResult"
@@ -54076,6 +54146,10 @@ function partToMldev$4(fromObject) {
   const fromFileData = getValueByPath(fromObject, ["fileData"]);
   if (fromFileData != null) {
     setValueByPath(toObject, ["fileData"], fileDataToMldev$4(fromFileData));
+  }
+  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
+  if (fromFunctionCall != null) {
+    setValueByPath(toObject, ["functionCall"], functionCallToMldev$4(fromFunctionCall));
   }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
@@ -54121,6 +54195,22 @@ function safetySettingToMldev$1(fromObject) {
   const fromThreshold = getValueByPath(fromObject, ["threshold"]);
   if (fromThreshold != null) {
     setValueByPath(toObject, ["threshold"], fromThreshold);
+  }
+  return toObject;
+}
+function toolConfigToMldev$2(fromObject) {
+  const toObject = {};
+  const fromFunctionCallingConfig = getValueByPath(fromObject, [
+    "functionCallingConfig"
+  ]);
+  if (fromFunctionCallingConfig != null) {
+    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev$2(fromFunctionCallingConfig));
+  }
+  const fromRetrievalConfig = getValueByPath(fromObject, [
+    "retrievalConfig"
+  ]);
+  if (fromRetrievalConfig != null) {
+    setValueByPath(toObject, ["retrievalConfig"], fromRetrievalConfig);
   }
   return toObject;
 }
@@ -54846,7 +54936,7 @@ function createCachedContentConfigToMldev(fromObject, parentObject) {
   }
   const fromToolConfig = getValueByPath(fromObject, ["toolConfig"]);
   if (parentObject !== void 0 && fromToolConfig != null) {
-    setValueByPath(parentObject, ["toolConfig"], fromToolConfig);
+    setValueByPath(parentObject, ["toolConfig"], toolConfigToMldev$1(fromToolConfig));
   }
   if (getValueByPath(fromObject, ["kmsKeyName"]) !== void 0) {
     throw new Error("kmsKeyName parameter is not supported in Gemini API.");
@@ -54975,6 +55065,45 @@ function fileDataToMldev$3(fromObject) {
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
     setValueByPath(toObject, ["mimeType"], fromMimeType);
+  }
+  return toObject;
+}
+function functionCallToMldev$3(fromObject) {
+  const toObject = {};
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
+  }
+  const fromArgs = getValueByPath(fromObject, ["args"]);
+  if (fromArgs != null) {
+    setValueByPath(toObject, ["args"], fromArgs);
+  }
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
+    throw new Error("partialArgs parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
+    throw new Error("willContinue parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
+function functionCallingConfigToMldev$1(fromObject) {
+  const toObject = {};
+  const fromMode = getValueByPath(fromObject, ["mode"]);
+  if (fromMode != null) {
+    setValueByPath(toObject, ["mode"], fromMode);
+  }
+  const fromAllowedFunctionNames = getValueByPath(fromObject, [
+    "allowedFunctionNames"
+  ]);
+  if (fromAllowedFunctionNames != null) {
+    setValueByPath(toObject, ["allowedFunctionNames"], fromAllowedFunctionNames);
+  }
+  if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
+    throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -55154,9 +55283,11 @@ function listCachedContentsResponseFromVertex(fromObject) {
 }
 function partToMldev$3(fromObject) {
   const toObject = {};
-  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
-  if (fromFunctionCall != null) {
-    setValueByPath(toObject, ["functionCall"], fromFunctionCall);
+  const fromMediaResolution = getValueByPath(fromObject, [
+    "mediaResolution"
+  ]);
+  if (fromMediaResolution != null) {
+    setValueByPath(toObject, ["mediaResolution"], fromMediaResolution);
   }
   const fromCodeExecutionResult = getValueByPath(fromObject, [
     "codeExecutionResult"
@@ -55173,6 +55304,10 @@ function partToMldev$3(fromObject) {
   const fromFileData = getValueByPath(fromObject, ["fileData"]);
   if (fromFileData != null) {
     setValueByPath(toObject, ["fileData"], fileDataToMldev$3(fromFileData));
+  }
+  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
+  if (fromFunctionCall != null) {
+    setValueByPath(toObject, ["functionCall"], functionCallToMldev$3(fromFunctionCall));
   }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
@@ -55203,6 +55338,22 @@ function partToMldev$3(fromObject) {
   ]);
   if (fromVideoMetadata != null) {
     setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
+  }
+  return toObject;
+}
+function toolConfigToMldev$1(fromObject) {
+  const toObject = {};
+  const fromFunctionCallingConfig = getValueByPath(fromObject, [
+    "functionCallingConfig"
+  ]);
+  if (fromFunctionCallingConfig != null) {
+    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev$1(fromFunctionCallingConfig));
+  }
+  const fromRetrievalConfig = getValueByPath(fromObject, [
+    "retrievalConfig"
+  ]);
+  if (fromRetrievalConfig != null) {
+    setValueByPath(toObject, ["retrievalConfig"], fromRetrievalConfig);
   }
   return toObject;
 }
@@ -56436,6 +56587,28 @@ function fileDataToMldev$2(fromObject) {
   }
   return toObject;
 }
+function functionCallToMldev$2(fromObject) {
+  const toObject = {};
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
+  }
+  const fromArgs = getValueByPath(fromObject, ["args"]);
+  if (fromArgs != null) {
+    setValueByPath(toObject, ["args"], fromArgs);
+  }
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
+    throw new Error("partialArgs parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
+    throw new Error("willContinue parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
 function functionDeclarationToVertex$1(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
@@ -57023,9 +57196,11 @@ function liveServerMessageFromVertex(fromObject) {
 }
 function partToMldev$2(fromObject) {
   const toObject = {};
-  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
-  if (fromFunctionCall != null) {
-    setValueByPath(toObject, ["functionCall"], fromFunctionCall);
+  const fromMediaResolution = getValueByPath(fromObject, [
+    "mediaResolution"
+  ]);
+  if (fromMediaResolution != null) {
+    setValueByPath(toObject, ["mediaResolution"], fromMediaResolution);
   }
   const fromCodeExecutionResult = getValueByPath(fromObject, [
     "codeExecutionResult"
@@ -57042,6 +57217,10 @@ function partToMldev$2(fromObject) {
   const fromFileData = getValueByPath(fromObject, ["fileData"]);
   if (fromFileData != null) {
     setValueByPath(toObject, ["fileData"], fileDataToMldev$2(fromFileData));
+  }
+  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
+  if (fromFunctionCall != null) {
+    setValueByPath(toObject, ["functionCall"], functionCallToMldev$2(fromFunctionCall));
   }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
@@ -57958,6 +58137,45 @@ function fileDataToMldev$1(fromObject) {
   }
   return toObject;
 }
+function functionCallToMldev$1(fromObject) {
+  const toObject = {};
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
+  }
+  const fromArgs = getValueByPath(fromObject, ["args"]);
+  if (fromArgs != null) {
+    setValueByPath(toObject, ["args"], fromArgs);
+  }
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
+    throw new Error("partialArgs parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
+    throw new Error("willContinue parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
+function functionCallingConfigToMldev(fromObject) {
+  const toObject = {};
+  const fromMode = getValueByPath(fromObject, ["mode"]);
+  if (fromMode != null) {
+    setValueByPath(toObject, ["mode"], fromMode);
+  }
+  const fromAllowedFunctionNames = getValueByPath(fromObject, [
+    "allowedFunctionNames"
+  ]);
+  if (fromAllowedFunctionNames != null) {
+    setValueByPath(toObject, ["allowedFunctionNames"], fromAllowedFunctionNames);
+  }
+  if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
+    throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
 function functionDeclarationToVertex(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
@@ -58105,7 +58323,7 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject) {
   }
   const fromToolConfig = getValueByPath(fromObject, ["toolConfig"]);
   if (parentObject !== void 0 && fromToolConfig != null) {
-    setValueByPath(parentObject, ["toolConfig"], fromToolConfig);
+    setValueByPath(parentObject, ["toolConfig"], toolConfigToMldev(fromToolConfig));
   }
   if (getValueByPath(fromObject, ["labels"]) !== void 0) {
     throw new Error("labels parameter is not supported in Gemini API.");
@@ -58143,7 +58361,7 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject) {
   }
   const fromImageConfig = getValueByPath(fromObject, ["imageConfig"]);
   if (fromImageConfig != null) {
-    setValueByPath(toObject, ["imageConfig"], fromImageConfig);
+    setValueByPath(toObject, ["imageConfig"], imageConfigToMldev(fromImageConfig));
   }
   return toObject;
 }
@@ -58307,7 +58525,7 @@ function generateContentConfigToVertex(apiClient, fromObject, parentObject) {
   }
   const fromImageConfig = getValueByPath(fromObject, ["imageConfig"]);
   if (fromImageConfig != null) {
-    setValueByPath(toObject, ["imageConfig"], fromImageConfig);
+    setValueByPath(toObject, ["imageConfig"], imageConfigToVertex(fromImageConfig));
   }
   return toObject;
 }
@@ -59307,6 +59525,48 @@ function googleSearchToMldev$1(fromObject) {
   }
   return toObject;
 }
+function imageConfigToMldev(fromObject) {
+  const toObject = {};
+  const fromAspectRatio = getValueByPath(fromObject, ["aspectRatio"]);
+  if (fromAspectRatio != null) {
+    setValueByPath(toObject, ["aspectRatio"], fromAspectRatio);
+  }
+  const fromImageSize = getValueByPath(fromObject, ["imageSize"]);
+  if (fromImageSize != null) {
+    setValueByPath(toObject, ["imageSize"], fromImageSize);
+  }
+  if (getValueByPath(fromObject, ["outputMimeType"]) !== void 0) {
+    throw new Error("outputMimeType parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["outputCompressionQuality"]) !== void 0) {
+    throw new Error("outputCompressionQuality parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
+function imageConfigToVertex(fromObject) {
+  const toObject = {};
+  const fromAspectRatio = getValueByPath(fromObject, ["aspectRatio"]);
+  if (fromAspectRatio != null) {
+    setValueByPath(toObject, ["aspectRatio"], fromAspectRatio);
+  }
+  const fromImageSize = getValueByPath(fromObject, ["imageSize"]);
+  if (fromImageSize != null) {
+    setValueByPath(toObject, ["imageSize"], fromImageSize);
+  }
+  const fromOutputMimeType = getValueByPath(fromObject, [
+    "outputMimeType"
+  ]);
+  if (fromOutputMimeType != null) {
+    setValueByPath(toObject, ["imageOutputOptions", "mimeType"], fromOutputMimeType);
+  }
+  const fromOutputCompressionQuality = getValueByPath(fromObject, [
+    "outputCompressionQuality"
+  ]);
+  if (fromOutputCompressionQuality != null) {
+    setValueByPath(toObject, ["imageOutputOptions", "compressionQuality"], fromOutputCompressionQuality);
+  }
+  return toObject;
+}
 function imageFromMldev(fromObject) {
   const toObject = {};
   const fromImageBytes = getValueByPath(fromObject, [
@@ -59616,9 +59876,11 @@ function modelFromVertex(fromObject) {
 }
 function partToMldev$1(fromObject) {
   const toObject = {};
-  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
-  if (fromFunctionCall != null) {
-    setValueByPath(toObject, ["functionCall"], fromFunctionCall);
+  const fromMediaResolution = getValueByPath(fromObject, [
+    "mediaResolution"
+  ]);
+  if (fromMediaResolution != null) {
+    setValueByPath(toObject, ["mediaResolution"], fromMediaResolution);
   }
   const fromCodeExecutionResult = getValueByPath(fromObject, [
     "codeExecutionResult"
@@ -59635,6 +59897,10 @@ function partToMldev$1(fromObject) {
   const fromFileData = getValueByPath(fromObject, ["fileData"]);
   if (fromFileData != null) {
     setValueByPath(toObject, ["fileData"], fileDataToMldev$1(fromFileData));
+  }
+  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
+  if (fromFunctionCall != null) {
+    setValueByPath(toObject, ["functionCall"], functionCallToMldev$1(fromFunctionCall));
   }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
@@ -59997,6 +60263,22 @@ function speechConfigToVertex(fromObject) {
   }
   if (getValueByPath(fromObject, ["multiSpeakerVoiceConfig"]) !== void 0) {
     throw new Error("multiSpeakerVoiceConfig parameter is not supported in Vertex AI.");
+  }
+  return toObject;
+}
+function toolConfigToMldev(fromObject) {
+  const toObject = {};
+  const fromFunctionCallingConfig = getValueByPath(fromObject, [
+    "functionCallingConfig"
+  ]);
+  if (fromFunctionCallingConfig != null) {
+    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev(fromFunctionCallingConfig));
+  }
+  const fromRetrievalConfig = getValueByPath(fromObject, [
+    "retrievalConfig"
+  ]);
+  if (fromRetrievalConfig != null) {
+    setValueByPath(toObject, ["retrievalConfig"], fromRetrievalConfig);
   }
   return toObject;
 }
@@ -60424,7 +60706,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.29.1";
+var SDK_VERSION = "1.30.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -61743,6 +62025,7 @@ var Models = class extends BaseModule2 {
       return response;
     };
     this.generateContentStream = async (params2) => {
+      var _a, _b, _c, _d, _e;
       this.maybeMoveToResponseJsonSchem(params2);
       if (shouldDisableAfc(params2.config)) {
         const transformedParams = await this.processParamsMaybeAddMcpUsage(params2);
@@ -61752,6 +62035,11 @@ var Models = class extends BaseModule2 {
       if (incompatibleToolIndexes.length > 0) {
         const formattedIndexes = incompatibleToolIndexes.map((index) => `tools[${index}]`).join(", ");
         throw new Error(`Incompatible tools found at ${formattedIndexes}. Automatic function calling with CallableTools (or MCP objects) and basic FunctionDeclarations" is not yet supported.`);
+      }
+      const streamFunctionCall = (_c = (_b = (_a = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a === void 0 ? void 0 : _a.toolConfig) === null || _b === void 0 ? void 0 : _b.functionCallingConfig) === null || _c === void 0 ? void 0 : _c.streamFunctionCallArguments;
+      const disableAfc = (_e = (_d = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _d === void 0 ? void 0 : _d.automaticFunctionCalling) === null || _e === void 0 ? void 0 : _e.disable;
+      if (streamFunctionCall && !disableAfc) {
+        throw new Error("Running in streaming mode with 'streamFunctionCallArguments' enabled, this feature is not compatible with automatic function calling (AFC). Please set 'config.automaticFunctionCalling.disable' to true to disable AFC or leave 'config.toolConfig.functionCallingConfig.streamFunctionCallArguments' to be undefined or set to false to disable streaming function call arguments feature.");
       }
       return await this.processAfcStream(params2);
     };
@@ -63198,6 +63486,28 @@ function fileDataToMldev(fromObject) {
   }
   return toObject;
 }
+function functionCallToMldev(fromObject) {
+  const toObject = {};
+  const fromId = getValueByPath(fromObject, ["id"]);
+  if (fromId != null) {
+    setValueByPath(toObject, ["id"], fromId);
+  }
+  const fromArgs = getValueByPath(fromObject, ["args"]);
+  if (fromArgs != null) {
+    setValueByPath(toObject, ["args"], fromArgs);
+  }
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
+    throw new Error("partialArgs parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
+    throw new Error("willContinue parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
 function googleMapsToMldev(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["authConfig"]) !== void 0) {
@@ -63349,9 +63659,11 @@ function liveConnectConstraintsToMldev(apiClient, fromObject) {
 }
 function partToMldev(fromObject) {
   const toObject = {};
-  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
-  if (fromFunctionCall != null) {
-    setValueByPath(toObject, ["functionCall"], fromFunctionCall);
+  const fromMediaResolution = getValueByPath(fromObject, [
+    "mediaResolution"
+  ]);
+  if (fromMediaResolution != null) {
+    setValueByPath(toObject, ["mediaResolution"], fromMediaResolution);
   }
   const fromCodeExecutionResult = getValueByPath(fromObject, [
     "codeExecutionResult"
@@ -63368,6 +63680,10 @@ function partToMldev(fromObject) {
   const fromFileData = getValueByPath(fromObject, ["fileData"]);
   if (fromFileData != null) {
     setValueByPath(toObject, ["fileData"], fileDataToMldev(fromFileData));
+  }
+  const fromFunctionCall = getValueByPath(fromObject, ["functionCall"]);
+  if (fromFunctionCall != null) {
+    setValueByPath(toObject, ["functionCall"], functionCallToMldev(fromFunctionCall));
   }
   const fromFunctionResponse = getValueByPath(fromObject, [
     "functionResponse"
