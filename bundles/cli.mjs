@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-7ZG4BU3H.mjs";
+} from "./chunk-3DZ5Q44R.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -66,7 +66,7 @@ import {
   runParserWithCompletedFunctions,
   underline,
   yellow
-} from "./chunk-7BZPDUNN.mjs";
+} from "./chunk-YIJAQSUO.mjs";
 import {
   CommitParser
 } from "./chunk-XXPOON2I.mjs";
@@ -50156,7 +50156,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-7bfb580e061a4deb0bb3fece9384f34acde4ad59`;
+  const localVersion = `0.0.0-930cd705eefc718f7d5c714692e5c7503e7562c1`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;

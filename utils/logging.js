@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import { styleText } from 'util';
 import { createWriteStream, copyFileSync } from 'fs';
 import { join } from 'path';
 import { determineRepoBaseDirFromCwd } from './repo-directory.js';
@@ -14,20 +14,19 @@ export var LogLevel;
     LogLevel[LogLevel["DEBUG"] = 5] = "DEBUG";
 })(LogLevel || (LogLevel = {}));
 export const DEFAULT_LOG_LEVEL = LogLevel.INFO;
-export const red = chalk.red;
-export const reset = chalk.reset;
-export const green = chalk.green;
-export const yellow = chalk.yellow;
-export const bold = chalk.bold;
-export const blue = chalk.blue;
-export const underline = chalk.underline;
+export const red = styleText.bind(null, 'red');
+export const green = styleText.bind(null, 'green');
+export const yellow = styleText.bind(null, 'yellow');
+export const bold = styleText.bind(null, 'bold');
+export const blue = styleText.bind(null, 'blue');
+export const underline = styleText.bind(null, 'underline');
 export class Log {
 }
 Log.info = buildLogLevelFunction(() => console.info, LogLevel.INFO, null);
-Log.error = buildLogLevelFunction(() => console.error, LogLevel.ERROR, chalk.red);
+Log.error = buildLogLevelFunction(() => console.error, LogLevel.ERROR, red);
 Log.debug = buildLogLevelFunction(() => console.debug, LogLevel.DEBUG, null);
 Log.log = buildLogLevelFunction(() => console.log, LogLevel.LOG, null);
-Log.warn = buildLogLevelFunction(() => console.warn, LogLevel.WARN, chalk.yellow);
+Log.warn = buildLogLevelFunction(() => console.warn, LogLevel.WARN, yellow);
 function buildLogLevelFunction(loadCommand, level, defaultColor) {
     return (...values) => {
         runConsoleCommand(loadCommand, level, ...values.map((v) => (typeof v === 'string' && defaultColor ? defaultColor(v) : v)));
