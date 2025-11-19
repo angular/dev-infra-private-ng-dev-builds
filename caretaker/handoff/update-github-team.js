@@ -1,88 +1,64 @@
 import { Prompt } from '../../utils/prompt.js';
-import { getConfig, assertValidCaretakerConfig } from '../../utils/config.js';
+import { getConfig, assertValidCaretakerConfig, assertValidGithubConfig, } from '../../utils/config.js';
 import { green, Log } from '../../utils/logging.js';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 export async function updateCaretakerTeamViaPrompt() {
-    const config = await getConfig([assertValidCaretakerConfig]);
-    const { caretakerGroup } = config.caretaker;
-    if (caretakerGroup === undefined) {
-        throw Error('`caretakerGroup` is not defined in the `caretaker` config');
-    }
+    const config = await getConfig([assertValidCaretakerConfig, assertValidGithubConfig]);
+    const caretakerGroup = `${config.github.name}-caretaker`;
+    const caretakerGroupRoster = `${config.github.name}-caretaker-roster`;
+    const caretakerGroupEmeaRoster = `${config.github.name}-caretaker-roster-emea`;
     const current = new Set(await getGroupMembers(caretakerGroup));
-    const [roster, emeaRoster] = await Promise.all([
-        getGroupMembers(`${caretakerGroup}-roster`),
-        getGroupMembers(`${caretakerGroup}-roster-emea`),
-    ]);
-    if (emeaRoster === null) {
-        Log.debug(`  Unable to retrieve members of the group: ${caretakerGroup}-roster-emea`);
+    const roster = await getGroupMembers(caretakerGroupRoster);
+    const emeaRoster = await getGroupMembers(caretakerGroupEmeaRoster);
+    if (roster.length === 0) {
+        return Log.error(`  ✘  Unable to retrieve members of the group: ${caretakerGroupRoster}`);
     }
-    if (roster === null) {
-        Log.error(`  ✘  Unable to retrieve members of the group: ${caretakerGroup}-roster`);
-        return;
-    }
-    const selectedPrimaryAndSecondary = await Prompt.checkbox({
+    const selected = new Set(await Prompt.checkbox({
         choices: roster.map((member) => ({
             value: member,
             checked: current.has(member),
         })),
-        message: 'Select 2 caretakers for the upcoming rotation (primary and secondary, http://go/ng-caretaker-schedule):',
+        message: 'Select 2 caretakers for the upcoming rotation (primary and secondary, http://go/ng-caretakers):',
         validate: (value) => {
             if (value.length !== 2) {
                 return 'Please select exactly 2 caretakers for the upcoming rotation.';
             }
             return true;
         },
-    });
-    let selectedEmea = '';
-    if (emeaRoster !== null) {
-        const emeaOptions = emeaRoster
-            .filter((m) => !selectedPrimaryAndSecondary.includes(m))
-            .map((member) => ({
-            value: member,
-            name: `${member} (EMEA)`,
-            checked: current.has(member),
-        }));
-        selectedEmea = await Prompt.select({
-            choices: emeaOptions,
+    }));
+    if (config.caretaker.hasEmeaCaretaker) {
+        selected.add(await Prompt.select({
+            choices: emeaRoster.map((value) => ({ value })),
             message: 'Select EMEA caretaker (http://go/ng-caretaker-schedule-emea)',
-        });
-        const confirmation = await Prompt.confirm({
-            default: true,
-            message: 'Are you sure?',
-        });
-        if (confirmation === false) {
-            Log.warn('  ⚠  Skipping caretaker group update.');
-            return;
-        }
+        }));
     }
-    const selectedSorted = [...selectedPrimaryAndSecondary, selectedEmea].filter((_) => !!_).sort();
-    const currentSorted = Array.from(current).sort();
-    if (JSON.stringify(selectedSorted) === JSON.stringify(currentSorted)) {
-        Log.info(green('  ✔  Caretaker group already up to date.'));
-        return;
+    if (!(await Prompt.confirm({ default: true, message: 'Are you sure?' }))) {
+        return Log.warn('  ⚠  Skipping caretaker group update.');
+    }
+    if (JSON.stringify(Array.from(selected).sort()) === JSON.stringify(Array.from(current).sort())) {
+        return Log.info(green('  ✔  Caretaker group already up to date.'));
     }
     try {
-        await setCaretakerGroup(caretakerGroup, selectedSorted);
+        await setCaretakerGroup(caretakerGroup, Array.from(selected));
     }
     catch {
-        Log.error('  ✘  Failed to update caretaker group.');
-        return;
+        return Log.error('  ✘  Failed to update caretaker group.');
     }
     Log.info(green('  ✔  Successfully updated caretaker group'));
 }
 async function getGroupMembers(group) {
     const git = await AuthenticatedGitClient.get();
     try {
-        return (await git.github.teams.listMembersInOrg({
+        return await git.github.teams
+            .listMembersInOrg({
             org: git.remoteConfig.owner,
             team_slug: group,
-        })).data
-            .filter((_) => !!_)
-            .map((member) => member.login);
+        })
+            .then(({ data }) => data.map((member) => member.login));
     }
     catch (e) {
         Log.debug(e);
-        return null;
+        return [];
     }
 }
 async function setCaretakerGroup(group, members) {

@@ -21,7 +21,7 @@ export interface CaretakerConfig {
         name: string;
         query: string;
     }[];
-    caretakerGroup?: string;
+    hasEmeaCaretaker?: true;
     g3SyncConfigPath?: string;
 }
 export declare const setConfig: typeof setCachedConfig;

@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-VDT2C4YJ.mjs";
+} from "./chunk-KAXOIXFQ.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -67,7 +67,7 @@ import {
   underline,
   wrapAnsi,
   yellow
-} from "./chunk-HMLDHN6O.mjs";
+} from "./chunk-PSRSQU72.mjs";
 import {
   CommitParser
 } from "./chunk-XXPOON2I.mjs";
@@ -41686,80 +41686,58 @@ Prompt.editor = dist_default3;
 
 // ng-dev/caretaker/handoff/update-github-team.js
 async function updateCaretakerTeamViaPrompt() {
-  const config = await getConfig([assertValidCaretakerConfig]);
-  const { caretakerGroup } = config.caretaker;
-  if (caretakerGroup === void 0) {
-    throw Error("`caretakerGroup` is not defined in the `caretaker` config");
-  }
+  const config = await getConfig([assertValidCaretakerConfig, assertValidGithubConfig]);
+  const caretakerGroup = `${config.github.name}-caretaker`;
+  const caretakerGroupRoster = `${config.github.name}-caretaker-roster`;
+  const caretakerGroupEmeaRoster = `${config.github.name}-caretaker-roster-emea`;
   const current = new Set(await getGroupMembers(caretakerGroup));
-  const [roster, emeaRoster] = await Promise.all([
-    getGroupMembers(`${caretakerGroup}-roster`),
-    getGroupMembers(`${caretakerGroup}-roster-emea`)
-  ]);
-  if (emeaRoster === null) {
-    Log.debug(`  Unable to retrieve members of the group: ${caretakerGroup}-roster-emea`);
+  const roster = await getGroupMembers(caretakerGroupRoster);
+  const emeaRoster = await getGroupMembers(caretakerGroupEmeaRoster);
+  if (roster.length === 0) {
+    return Log.error(`  \u2718  Unable to retrieve members of the group: ${caretakerGroupRoster}`);
   }
-  if (roster === null) {
-    Log.error(`  \u2718  Unable to retrieve members of the group: ${caretakerGroup}-roster`);
-    return;
-  }
-  const selectedPrimaryAndSecondary = await Prompt.checkbox({
+  const selected = new Set(await Prompt.checkbox({
     choices: roster.map((member) => ({
       value: member,
       checked: current.has(member)
     })),
-    message: "Select 2 caretakers for the upcoming rotation (primary and secondary, http://go/ng-caretaker-schedule):",
+    message: "Select 2 caretakers for the upcoming rotation (primary and secondary, http://go/ng-caretakers):",
     validate: (value) => {
       if (value.length !== 2) {
         return "Please select exactly 2 caretakers for the upcoming rotation.";
       }
       return true;
     }
-  });
-  let selectedEmea = "";
-  if (emeaRoster !== null) {
-    const emeaOptions = emeaRoster.filter((m) => !selectedPrimaryAndSecondary.includes(m)).map((member) => ({
-      value: member,
-      name: `${member} (EMEA)`,
-      checked: current.has(member)
-    }));
-    selectedEmea = await Prompt.select({
-      choices: emeaOptions,
+  }));
+  if (config.caretaker.hasEmeaCaretaker) {
+    selected.add(await Prompt.select({
+      choices: emeaRoster.map((value) => ({ value })),
       message: "Select EMEA caretaker (http://go/ng-caretaker-schedule-emea)"
-    });
-    const confirmation = await Prompt.confirm({
-      default: true,
-      message: "Are you sure?"
-    });
-    if (confirmation === false) {
-      Log.warn("  \u26A0  Skipping caretaker group update.");
-      return;
-    }
+    }));
   }
-  const selectedSorted = [...selectedPrimaryAndSecondary, selectedEmea].filter((_) => !!_).sort();
-  const currentSorted = Array.from(current).sort();
-  if (JSON.stringify(selectedSorted) === JSON.stringify(currentSorted)) {
-    Log.info(green("  \u2714  Caretaker group already up to date."));
-    return;
+  if (!await Prompt.confirm({ default: true, message: "Are you sure?" })) {
+    return Log.warn("  \u26A0  Skipping caretaker group update.");
+  }
+  if (JSON.stringify(Array.from(selected).sort()) === JSON.stringify(Array.from(current).sort())) {
+    return Log.info(green("  \u2714  Caretaker group already up to date."));
   }
   try {
-    await setCaretakerGroup(caretakerGroup, selectedSorted);
+    await setCaretakerGroup(caretakerGroup, Array.from(selected));
   } catch {
-    Log.error("  \u2718  Failed to update caretaker group.");
-    return;
+    return Log.error("  \u2718  Failed to update caretaker group.");
   }
   Log.info(green("  \u2714  Successfully updated caretaker group"));
 }
 async function getGroupMembers(group) {
   const git = await AuthenticatedGitClient.get();
   try {
-    return (await git.github.teams.listMembersInOrg({
+    return await git.github.teams.listMembersInOrg({
       org: git.remoteConfig.owner,
       team_slug: group
-    })).data.filter((_) => !!_).map((member) => member.login);
+    }).then(({ data }) => data.map((member) => member.login));
   } catch (e) {
     Log.debug(e);
-    return null;
+    return [];
   }
 }
 async function setCaretakerGroup(group, members) {
@@ -48813,7 +48791,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-a08ba6c1a326e9f18cb48aca31a0f5d1034b6b9d`;
+  const localVersion = `0.0.0-f47684669736e28fd77eab64e65b2952c8a948ee`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
