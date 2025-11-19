@@ -5657,6 +5657,7 @@ function assertValidReleaseConfig(config) {
 }
 
 export {
+  wrapAnsi,
   runParserWithCompletedFunctions,
   ChildProcess,
   determineRepoBaseDirFromCwd,
