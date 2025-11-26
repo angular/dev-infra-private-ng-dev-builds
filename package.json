@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-a004d4a84499f3fd1c79f1148f44cc01c4295c83",
+  "version": "0.0.0-edb8a50d059743b0a331704c6991e8a00e5f42c7",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
