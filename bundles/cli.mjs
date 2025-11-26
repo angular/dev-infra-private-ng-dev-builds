@@ -12691,7 +12691,7 @@ var require_scan = __commonJS({
       }
       let base = str;
       let prefix = "";
-      let glob5 = "";
+      let glob6 = "";
       if (start > 0) {
         prefix = str.slice(0, start);
         str = str.slice(start);
@@ -12699,10 +12699,10 @@ var require_scan = __commonJS({
       }
       if (base && isGlob === true && lastIndex > 0) {
         base = str.slice(0, lastIndex);
-        glob5 = str.slice(lastIndex);
+        glob6 = str.slice(lastIndex);
       } else if (isGlob === true) {
         base = "";
-        glob5 = str;
+        glob6 = str;
       } else {
         base = str;
       }
@@ -12712,8 +12712,8 @@ var require_scan = __commonJS({
         }
       }
       if (opts.unescape === true) {
-        if (glob5)
-          glob5 = utils.removeBackslashes(glob5);
+        if (glob6)
+          glob6 = utils.removeBackslashes(glob6);
         if (base && backslashes === true) {
           base = utils.removeBackslashes(base);
         }
@@ -12723,7 +12723,7 @@ var require_scan = __commonJS({
         input,
         start,
         base,
-        glob: glob5,
+        glob: glob6,
         isBrace,
         isBracket,
         isGlob,
@@ -13569,9 +13569,9 @@ var require_picomatch = __commonJS({
     var utils = require_utils3();
     var constants = require_constants2();
     var isObject = (val) => val && typeof val === "object" && !Array.isArray(val);
-    var picomatch = (glob5, options, returnState = false) => {
-      if (Array.isArray(glob5)) {
-        const fns = glob5.map((input) => picomatch(input, options, returnState));
+    var picomatch = (glob6, options, returnState = false) => {
+      if (Array.isArray(glob6)) {
+        const fns = glob6.map((input) => picomatch(input, options, returnState));
         const arrayMatcher = (str) => {
           for (const isMatch of fns) {
             const state2 = isMatch(str);
@@ -13582,13 +13582,13 @@ var require_picomatch = __commonJS({
         };
         return arrayMatcher;
       }
-      const isState = isObject(glob5) && glob5.tokens && glob5.input;
-      if (glob5 === "" || typeof glob5 !== "string" && !isState) {
+      const isState = isObject(glob6) && glob6.tokens && glob6.input;
+      if (glob6 === "" || typeof glob6 !== "string" && !isState) {
         throw new TypeError("Expected pattern to be a non-empty string");
       }
       const opts = options || {};
       const posix = utils.isWindows(options);
-      const regex = isState ? picomatch.compileRe(glob5, options) : picomatch.makeRe(glob5, options, false, true);
+      const regex = isState ? picomatch.compileRe(glob6, options) : picomatch.makeRe(glob6, options, false, true);
       const state = regex.state;
       delete regex.state;
       let isIgnored = () => false;
@@ -13597,8 +13597,8 @@ var require_picomatch = __commonJS({
         isIgnored = picomatch(opts.ignore, ignoreOpts, returnState);
       }
       const matcher = (input, returnObject = false) => {
-        const { isMatch, match: match3, output } = picomatch.test(input, regex, options, { glob: glob5, posix });
-        const result = { glob: glob5, state, regex, posix, input, output, match: match3, isMatch };
+        const { isMatch, match: match3, output } = picomatch.test(input, regex, options, { glob: glob6, posix });
+        const result = { glob: glob6, state, regex, posix, input, output, match: match3, isMatch };
         if (typeof opts.onResult === "function") {
           opts.onResult(result);
         }
@@ -13623,7 +13623,7 @@ var require_picomatch = __commonJS({
       }
       return matcher;
     };
-    picomatch.test = (input, regex, options, { glob: glob5, posix } = {}) => {
+    picomatch.test = (input, regex, options, { glob: glob6, posix } = {}) => {
       if (typeof input !== "string") {
         throw new TypeError("Expected input to be a string");
       }
@@ -13632,11 +13632,11 @@ var require_picomatch = __commonJS({
       }
       const opts = options || {};
       const format2 = opts.format || (posix ? utils.toPosixSlashes : null);
-      let match3 = input === glob5;
+      let match3 = input === glob6;
       let output = match3 && format2 ? format2(input) : input;
       if (match3 === false) {
         output = format2 ? format2(input) : input;
-        match3 = output === glob5;
+        match3 = output === glob6;
       }
       if (match3 === false || opts.capture === true) {
         if (opts.matchBase === true || opts.basename === true) {
@@ -13647,8 +13647,8 @@ var require_picomatch = __commonJS({
       }
       return { isMatch: Boolean(match3), match: match3, output };
     };
-    picomatch.matchBase = (input, glob5, options, posix = utils.isWindows(options)) => {
-      const regex = glob5 instanceof RegExp ? glob5 : picomatch.makeRe(glob5, options);
+    picomatch.matchBase = (input, glob6, options, posix = utils.isWindows(options)) => {
+      const regex = glob6 instanceof RegExp ? glob6 : picomatch.makeRe(glob6, options);
       return regex.test(path9.basename(input));
     };
     picomatch.isMatch = (str, patterns, options) => picomatch(patterns, options)(str);
@@ -13841,9 +13841,9 @@ var require_micromatch = __commonJS({
       }
       return [].concat(patterns).every((p) => picomatch(p, options)(str));
     };
-    micromatch.capture = (glob5, input, options) => {
+    micromatch.capture = (glob6, input, options) => {
       let posix = utils.isWindows(options);
-      let regex = picomatch.makeRe(String(glob5), { ...options, capture: true });
+      let regex = picomatch.makeRe(String(glob6), { ...options, capture: true });
       let match3 = regex.exec(posix ? utils.toPosixSlashes(input) : input);
       if (match3) {
         return match3.slice(1).map((v) => v === void 0 ? "" : v);
@@ -17610,9 +17610,9 @@ var require_brace_expressions = __commonJS({
     var braceEscape3 = (s) => s.replace(/[[\]\\-]/g, "\\$&");
     var regexpEscape3 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
     var rangesToString3 = (ranges) => ranges.join("");
-    var parseClass3 = (glob5, position) => {
+    var parseClass3 = (glob6, position) => {
       const pos = position;
-      if (glob5.charAt(pos) !== "[") {
+      if (glob6.charAt(pos) !== "[") {
         throw new Error("not in a brace expression");
       }
       const ranges = [];
@@ -17625,8 +17625,8 @@ var require_brace_expressions = __commonJS({
       let endPos = pos;
       let rangeStart = "";
       WHILE:
-        while (i < glob5.length) {
-          const c = glob5.charAt(i);
+        while (i < glob6.length) {
+          const c = glob6.charAt(i);
           if ((c === "!" || c === "^") && i === pos + 1) {
             negate = true;
             i++;
@@ -17646,9 +17646,9 @@ var require_brace_expressions = __commonJS({
           }
           if (c === "[" && !escaping) {
             for (const [cls, [unip, u, neg]] of Object.entries(posixClasses3)) {
-              if (glob5.startsWith(cls, i)) {
+              if (glob6.startsWith(cls, i)) {
                 if (rangeStart) {
-                  return ["$.", false, glob5.length - pos, true];
+                  return ["$.", false, glob6.length - pos, true];
                 }
                 i += cls.length;
                 if (neg)
@@ -17671,12 +17671,12 @@ var require_brace_expressions = __commonJS({
             i++;
             continue;
           }
-          if (glob5.startsWith("-]", i + 1)) {
+          if (glob6.startsWith("-]", i + 1)) {
             ranges.push(braceEscape3(c + "-"));
             i += 2;
             continue;
           }
-          if (glob5.startsWith("-", i + 1)) {
+          if (glob6.startsWith("-", i + 1)) {
             rangeStart = c;
             i += 2;
             continue;
@@ -17688,7 +17688,7 @@ var require_brace_expressions = __commonJS({
         return ["", false, 0, false];
       }
       if (!ranges.length && !negs.length) {
-        return ["$.", false, glob5.length - pos, true];
+        return ["$.", false, glob6.length - pos, true];
       }
       if (negs.length === 0 && ranges.length === 1 && /^\\?.$/.test(ranges[0]) && !negate) {
         const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
@@ -36819,9 +36819,9 @@ var posixClasses = {
 var braceEscape = (s) => s.replace(/[[\]\\-]/g, "\\$&");
 var regexpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 var rangesToString = (ranges) => ranges.join("");
-var parseClass = (glob5, position) => {
+var parseClass = (glob6, position) => {
   const pos = position;
-  if (glob5.charAt(pos) !== "[") {
+  if (glob6.charAt(pos) !== "[") {
     throw new Error("not in a brace expression");
   }
   const ranges = [];
@@ -36834,8 +36834,8 @@ var parseClass = (glob5, position) => {
   let endPos = pos;
   let rangeStart = "";
   WHILE:
-    while (i < glob5.length) {
-      const c = glob5.charAt(i);
+    while (i < glob6.length) {
+      const c = glob6.charAt(i);
       if ((c === "!" || c === "^") && i === pos + 1) {
         negate = true;
         i++;
@@ -36855,9 +36855,9 @@ var parseClass = (glob5, position) => {
       }
       if (c === "[" && !escaping) {
         for (const [cls, [unip, u, neg]] of Object.entries(posixClasses)) {
-          if (glob5.startsWith(cls, i)) {
+          if (glob6.startsWith(cls, i)) {
             if (rangeStart) {
-              return ["$.", false, glob5.length - pos, true];
+              return ["$.", false, glob6.length - pos, true];
             }
             i += cls.length;
             if (neg)
@@ -36880,12 +36880,12 @@ var parseClass = (glob5, position) => {
         i++;
         continue;
       }
-      if (glob5.startsWith("-]", i + 1)) {
+      if (glob6.startsWith("-]", i + 1)) {
         ranges.push(braceEscape(c + "-"));
         i += 2;
         continue;
       }
-      if (glob5.startsWith("-", i + 1)) {
+      if (glob6.startsWith("-", i + 1)) {
         rangeStart = c;
         i += 2;
         continue;
@@ -36897,7 +36897,7 @@ var parseClass = (glob5, position) => {
     return ["", false, 0, false];
   }
   if (!ranges.length && !negs.length) {
-    return ["$.", false, glob5.length - pos, true];
+    return ["$.", false, glob6.length - pos, true];
   }
   if (negs.length === 0 && ranges.length === 1 && /^\\?.$/.test(ranges[0]) && !negate) {
     const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
@@ -37179,16 +37179,16 @@ var AST = class _AST {
   toMMPattern() {
     if (this !== this.#root)
       return this.#root.toMMPattern();
-    const glob5 = this.toString();
+    const glob6 = this.toString();
     const [re, body, hasMagic, uflag] = this.toRegExpSource();
-    const anyMagic = hasMagic || this.#hasMagic || this.#options.nocase && !this.#options.nocaseMagicOnly && glob5.toUpperCase() !== glob5.toLowerCase();
+    const anyMagic = hasMagic || this.#hasMagic || this.#options.nocase && !this.#options.nocaseMagicOnly && glob6.toUpperCase() !== glob6.toLowerCase();
     if (!anyMagic) {
       return body;
     }
     const flags = (this.#options.nocase ? "i" : "") + (uflag ? "u" : "");
     return Object.assign(new RegExp(`^${re}$`, flags), {
       _src: re,
-      _glob: glob5
+      _glob: glob6
     });
   }
   get options() {
@@ -37348,19 +37348,19 @@ var AST = class _AST {
       return re;
     }).filter((p) => !(this.isStart() && this.isEnd()) || !!p).join("|");
   }
-  static #parseGlob(glob5, hasMagic, noEmpty = false) {
+  static #parseGlob(glob6, hasMagic, noEmpty = false) {
     let escaping = false;
     let re = "";
     let uflag = false;
-    for (let i = 0; i < glob5.length; i++) {
-      const c = glob5.charAt(i);
+    for (let i = 0; i < glob6.length; i++) {
+      const c = glob6.charAt(i);
       if (escaping) {
         escaping = false;
         re += (reSpecials.has(c) ? "\\" : "") + c;
         continue;
       }
       if (c === "\\") {
-        if (i === glob5.length - 1) {
+        if (i === glob6.length - 1) {
           re += "\\\\";
         } else {
           escaping = true;
@@ -37368,7 +37368,7 @@ var AST = class _AST {
         continue;
       }
       if (c === "[") {
-        const [src, needUflag, consumed, magic] = parseClass(glob5, i);
+        const [src, needUflag, consumed, magic] = parseClass(glob6, i);
         if (consumed) {
           re += src;
           uflag = uflag || needUflag;
@@ -37378,7 +37378,7 @@ var AST = class _AST {
         }
       }
       if (c === "*") {
-        re += noEmpty && glob5 === "*" ? starNoEmpty : star;
+        re += noEmpty && glob6 === "*" ? starNoEmpty : star;
         hasMagic = true;
         continue;
       }
@@ -37389,7 +37389,7 @@ var AST = class _AST {
       }
       re += regExpEscape(c);
     }
-    return [re, unescape(glob5), !!hasMagic, uflag];
+    return [re, unescape(glob6), !!hasMagic, uflag];
   }
 };
 
@@ -42520,9 +42520,9 @@ var posixClasses2 = {
 var braceEscape2 = (s) => s.replace(/[[\]\\-]/g, "\\$&");
 var regexpEscape2 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 var rangesToString2 = (ranges) => ranges.join("");
-var parseClass2 = (glob5, position) => {
+var parseClass2 = (glob6, position) => {
   const pos = position;
-  if (glob5.charAt(pos) !== "[") {
+  if (glob6.charAt(pos) !== "[") {
     throw new Error("not in a brace expression");
   }
   const ranges = [];
@@ -42535,8 +42535,8 @@ var parseClass2 = (glob5, position) => {
   let endPos = pos;
   let rangeStart = "";
   WHILE:
-    while (i < glob5.length) {
-      const c = glob5.charAt(i);
+    while (i < glob6.length) {
+      const c = glob6.charAt(i);
       if ((c === "!" || c === "^") && i === pos + 1) {
         negate = true;
         i++;
@@ -42556,9 +42556,9 @@ var parseClass2 = (glob5, position) => {
       }
       if (c === "[" && !escaping) {
         for (const [cls, [unip, u, neg]] of Object.entries(posixClasses2)) {
-          if (glob5.startsWith(cls, i)) {
+          if (glob6.startsWith(cls, i)) {
             if (rangeStart) {
-              return ["$.", false, glob5.length - pos, true];
+              return ["$.", false, glob6.length - pos, true];
             }
             i += cls.length;
             if (neg)
@@ -42581,12 +42581,12 @@ var parseClass2 = (glob5, position) => {
         i++;
         continue;
       }
-      if (glob5.startsWith("-]", i + 1)) {
+      if (glob6.startsWith("-]", i + 1)) {
         ranges.push(braceEscape2(c + "-"));
         i += 2;
         continue;
       }
-      if (glob5.startsWith("-", i + 1)) {
+      if (glob6.startsWith("-", i + 1)) {
         rangeStart = c;
         i += 2;
         continue;
@@ -42598,7 +42598,7 @@ var parseClass2 = (glob5, position) => {
     return ["", false, 0, false];
   }
   if (!ranges.length && !negs.length) {
-    return ["$.", false, glob5.length - pos, true];
+    return ["$.", false, glob6.length - pos, true];
   }
   if (negs.length === 0 && ranges.length === 1 && /^\\?.$/.test(ranges[0]) && !negate) {
     const r = ranges[0].length === 2 ? ranges[0].slice(-1) : ranges[0];
@@ -42877,16 +42877,16 @@ var AST2 = class _AST {
   toMMPattern() {
     if (this !== this.#root)
       return this.#root.toMMPattern();
-    const glob5 = this.toString();
+    const glob6 = this.toString();
     const [re, body, hasMagic, uflag] = this.toRegExpSource();
-    const anyMagic = hasMagic || this.#hasMagic || this.#options.nocase && !this.#options.nocaseMagicOnly && glob5.toUpperCase() !== glob5.toLowerCase();
+    const anyMagic = hasMagic || this.#hasMagic || this.#options.nocase && !this.#options.nocaseMagicOnly && glob6.toUpperCase() !== glob6.toLowerCase();
     if (!anyMagic) {
       return body;
     }
     const flags = (this.#options.nocase ? "i" : "") + (uflag ? "u" : "");
     return Object.assign(new RegExp(`^${re}$`, flags), {
       _src: re,
-      _glob: glob5
+      _glob: glob6
     });
   }
   get options() {
@@ -43046,19 +43046,19 @@ var AST2 = class _AST {
       return re;
     }).filter((p) => !(this.isStart() && this.isEnd()) || !!p).join("|");
   }
-  static #parseGlob(glob5, hasMagic, noEmpty = false) {
+  static #parseGlob(glob6, hasMagic, noEmpty = false) {
     let escaping = false;
     let re = "";
     let uflag = false;
-    for (let i = 0; i < glob5.length; i++) {
-      const c = glob5.charAt(i);
+    for (let i = 0; i < glob6.length; i++) {
+      const c = glob6.charAt(i);
       if (escaping) {
         escaping = false;
         re += (reSpecials2.has(c) ? "\\" : "") + c;
         continue;
       }
       if (c === "\\") {
-        if (i === glob5.length - 1) {
+        if (i === glob6.length - 1) {
           re += "\\\\";
         } else {
           escaping = true;
@@ -43066,7 +43066,7 @@ var AST2 = class _AST {
         continue;
       }
       if (c === "[") {
-        const [src, needUflag, consumed, magic] = parseClass2(glob5, i);
+        const [src, needUflag, consumed, magic] = parseClass2(glob6, i);
         if (consumed) {
           re += src;
           uflag = uflag || needUflag;
@@ -43076,7 +43076,7 @@ var AST2 = class _AST {
         }
       }
       if (c === "*") {
-        if (noEmpty && glob5 === "*")
+        if (noEmpty && glob6 === "*")
           re += starNoEmpty2;
         else
           re += star3;
@@ -43090,7 +43090,7 @@ var AST2 = class _AST {
       }
       re += regExpEscape3(c);
     }
-    return [re, unescape2(glob5), !!hasMagic, uflag];
+    return [re, unescape2(glob6), !!hasMagic, uflag];
   }
 };
 
@@ -46648,9 +46648,9 @@ function getOrCreateGlob(pattern) {
   if (patternCache.has(pattern)) {
     return patternCache.get(pattern);
   }
-  const glob5 = new Minimatch(pattern, { dot: false, nobrace: false });
-  patternCache.set(pattern, glob5);
-  return glob5;
+  const glob6 = new Minimatch(pattern, { dot: false, nobrace: false });
+  patternCache.set(pattern, glob6);
+  return glob6;
 }
 
 // ng-dev/pullapprove/pullapprove_arrays.js
@@ -47630,7 +47630,8 @@ var ngDevNpmPackageName = "@angular/ng-dev";
 var workspaceRelativePackageJsonPath = "package.json";
 
 // ng-dev/release/publish/actions.js
-import { promises as fs2 } from "fs";
+var import_fast_glob2 = __toESM(require_out4());
+import { existsSync as existsSync4, promises as fs2 } from "fs";
 import { join as join10 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
@@ -47832,6 +47833,18 @@ var ExternalCommands = class {
       });
     }
   }
+  static async invokeBazelUpdateAspectLockFiles(projectDir) {
+    const spinner = new Spinner("Updating Aspect lock files");
+    try {
+      await ChildProcess.spawn(getBazelBin(), ["sync", "--only=repo"], {
+        cwd: projectDir,
+        mode: "silent"
+      });
+    } catch (e) {
+      Log.debug(e);
+    }
+    spinner.success(green(" Updated Aspect `rules_js` lock files."));
+  }
 };
 
 // ng-dev/release/publish/pull-request-state.js
@@ -47962,6 +47975,12 @@ var ReleaseAction = class {
     await fs2.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
     Log.info(green(`  \u2713   Updated project version to ${pkgJson.version}`));
+    if (existsSync4(join10(this.projectDir, ".aspect"))) {
+      await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
+    }
+  }
+  getAspectLockFiles() {
+    return existsSync4(join10(this.projectDir, ".aspect")) ? [...import_fast_glob2.default.sync(".aspect/**", { cwd: this.projectDir }), "pnpm-lock.yaml"] : [];
   }
   async getLatestCommitOfBranch(branchName) {
     const { data: { commit } } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -47998,7 +48017,11 @@ var ReleaseAction = class {
     if (!await Prompt.confirm({ message: "Do you want to proceed and commit the changes?" })) {
       throw new UserAbortedReleaseActionError();
     }
-    const filesToCommit = [workspaceRelativePackageJsonPath, workspaceRelativeChangelogPath];
+    const filesToCommit = [
+      workspaceRelativePackageJsonPath,
+      workspaceRelativeChangelogPath,
+      ...this.getAspectLockFiles()
+    ];
     const commitMessage = getCommitMessageForRelease(newVersion);
     await this.createCommit(commitMessage, filesToCommit);
     if (this.git.hasUncommittedChanges()) {
@@ -48579,12 +48602,12 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 var import_semver17 = __toESM(require_semver());
 
 // ng-dev/release/publish/actions/renovate-config-updates.js
-import { existsSync as existsSync4 } from "node:fs";
+import { existsSync as existsSync5 } from "node:fs";
 import { join as join11 } from "node:path";
 import { writeFile, readFile as readFile2 } from "node:fs/promises";
 async function updateRenovateConfig(projectDir, newBranchName) {
   const renovateConfigPath = join11(projectDir, "renovate.json");
-  if (!existsSync4(renovateConfigPath)) {
+  if (!existsSync5(renovateConfigPath)) {
     Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
     return null;
   }
@@ -48791,7 +48814,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-e9013446fbd91cd764c20f3708717831d74e4a6d`;
+  const localVersion = `0.0.0-95e3a0ede6dfa1aedd34b03918ad72b18f87e5ae`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -49256,8 +49279,8 @@ function buildReleaseParser(localYargs) {
 }
 
 // ng-dev/ts-circular-dependencies/index.js
-var import_fast_glob2 = __toESM(require_out4());
-import { existsSync as existsSync6, readFileSync as readFileSync10, writeFileSync as writeFileSync5 } from "fs";
+var import_fast_glob3 = __toESM(require_out4());
+import { existsSync as existsSync7, readFileSync as readFileSync10, writeFileSync as writeFileSync5 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
@@ -49512,7 +49535,7 @@ function main(approve, config, printWarnings) {
   const analyzer = new Analyzer(resolveModule, ignoreTypeOnlyChecks);
   const cycles = [];
   const checkedNodes = /* @__PURE__ */ new WeakSet();
-  import_fast_glob2.default.globSync(globPattern, { absolute: true, ignore: ["**/node_modules/**"] }).forEach((filePath) => {
+  import_fast_glob3.default.globSync(globPattern, { absolute: true, ignore: ["**/node_modules/**"] }).forEach((filePath) => {
     const sourceFile = analyzer.getSourceFile(filePath);
     cycles.push(...analyzer.findCycles(sourceFile, checkedNodes));
   });
@@ -49548,7 +49571,7 @@ function main(approve, config, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync6(goldenFile)) {
+  if (!existsSync7(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
@@ -64753,7 +64776,7 @@ var DEFAULT_API_KEY = process.env["GEMINI_API_KEY"];
 
 // ng-dev/ai/migrate.js
 import assert from "node:assert";
-var import_fast_glob3 = __toESM(require_out4());
+var import_fast_glob4 = __toESM(require_out4());
 function builder30(argv) {
   return argv.option("prompt", {
     type: "string",
@@ -64792,7 +64815,7 @@ async function handler31(options) {
     "For internal users, see go/aistudio-apikey"
   ].join("\n"));
   const [files, prompt] = await Promise.all([
-    (0, import_fast_glob3.default)([options.files]),
+    (0, import_fast_glob4.default)([options.files]),
     readFile4(options.prompt, "utf-8")
   ]);
   if (files.length === 0) {
@@ -64888,7 +64911,7 @@ var MigrateModule = {
 };
 
 // ng-dev/ai/fix.js
-var import_fast_glob4 = __toESM(require_out4());
+var import_fast_glob5 = __toESM(require_out4());
 var import_cli_progress4 = __toESM(require_cli_progress());
 import { setTimeout as setTimeout2 } from "node:timers/promises";
 import { readFile as readFile5, writeFile as writeFile4 } from "node:fs/promises";
@@ -64940,7 +64963,7 @@ async function handler32(options) {
   await Promise.all(writeTasks);
 }
 async function fixFilesWithAI(apiKey, globPatterns, errorDescription, model, temperature) {
-  const filePaths = await (0, import_fast_glob4.default)(globPatterns, {
+  const filePaths = await (0, import_fast_glob5.default)(globPatterns, {
     onlyFiles: true,
     absolute: false
   });

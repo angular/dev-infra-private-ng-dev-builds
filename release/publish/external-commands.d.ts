@@ -15,4 +15,5 @@ export declare abstract class ExternalCommands {
     static invokeYarnInstall(projectDir: string): Promise<void>;
     static invokePnpmInstall(projectDir: string): Promise<void>;
     private static _spawnNpmScript;
+    static invokeBazelUpdateAspectLockFiles(projectDir: string): Promise<void>;
 }

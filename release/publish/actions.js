@@ -1,5 +1,6 @@
-import { promises as fs } from 'fs';
+import { existsSync, promises as fs } from 'fs';
 import { join } from 'path';
+import glob from 'fast-glob';
 import { workspaceRelativePackageJsonPath } from '../../utils/constants.js';
 import { isGithubApiError } from '../../utils/git/github.js';
 import githubMacros from '../../utils/git/github-macros.js';
@@ -38,6 +39,14 @@ export class ReleaseAction {
         pkgJson.version = newVersion.format();
         await fs.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}\n`);
         Log.info(green(`  ✓   Updated project version to ${pkgJson.version}`));
+        if (existsSync(join(this.projectDir, '.aspect'))) {
+            await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
+        }
+    }
+    getAspectLockFiles() {
+        return existsSync(join(this.projectDir, '.aspect'))
+            ? [...glob.sync('.aspect/**', { cwd: this.projectDir }), 'pnpm-lock.yaml']
+            : [];
     }
     async getLatestCommitOfBranch(branchName) {
         const { data: { commit }, } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -78,7 +87,11 @@ export class ReleaseAction {
         if (!(await Prompt.confirm({ message: 'Do you want to proceed and commit the changes?' }))) {
             throw new UserAbortedReleaseActionError();
         }
-        const filesToCommit = [workspaceRelativePackageJsonPath, workspaceRelativeChangelogPath];
+        const filesToCommit = [
+            workspaceRelativePackageJsonPath,
+            workspaceRelativeChangelogPath,
+            ...this.getAspectLockFiles(),
+        ];
         const commitMessage = getCommitMessageForRelease(newVersion);
         await this.createCommit(commitMessage, filesToCommit);
         if (this.git.hasUncommittedChanges()) {

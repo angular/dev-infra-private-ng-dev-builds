@@ -3,6 +3,7 @@ import { Spinner } from '../../utils/spinner.js';
 import { FatalReleaseActionError } from './actions-error.js';
 import { resolveYarnScriptForProject } from '../../utils/resolve-yarn-bin.js';
 import { green, Log } from '../../utils/logging.js';
+import { getBazelBin } from '../../utils/bazel-bin.js';
 export class ExternalCommands {
     static async invokeSetNpmDist(projectDir, npmDistTag, version, pnpmVersioning, options = { skipExperimentalPackages: false }) {
         try {
@@ -131,6 +132,19 @@ export class ExternalCommands {
                 cwd: projectDir,
             });
         }
+    }
+    static async invokeBazelUpdateAspectLockFiles(projectDir) {
+        const spinner = new Spinner('Updating Aspect lock files');
+        try {
+            await ChildProcess.spawn(getBazelBin(), ['sync', '--only=repo'], {
+                cwd: projectDir,
+                mode: 'silent',
+            });
+        }
+        catch (e) {
+            Log.debug(e);
+        }
+        spinner.success(green(' Updated Aspect `rules_js` lock files.'));
     }
 }
 //# sourceMappingURL=external-commands.js.map
