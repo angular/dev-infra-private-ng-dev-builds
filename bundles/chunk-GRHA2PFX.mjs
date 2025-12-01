@@ -10007,7 +10007,7 @@ function withDefaults(oldDefaults, newDefaults) {
 }
 var endpoint = withDefaults(null, DEFAULTS);
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.6/node_modules/@octokit/request/dist-bundle/index.js
+// node_modules/.aspect_rules_js/@octokit+request@10.0.7/node_modules/@octokit/request/dist-bundle/index.js
 var import_fast_content_type_parse = __toESM(require_fast_content_type_parse());
 
 // node_modules/.aspect_rules_js/@octokit+request-error@7.1.0/node_modules/@octokit/request-error/dist-src/index.js
@@ -10049,8 +10049,8 @@ var RequestError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.6/node_modules/@octokit/request/dist-bundle/index.js
-var VERSION2 = "10.0.6";
+// node_modules/.aspect_rules_js/@octokit+request@10.0.7/node_modules/@octokit/request/dist-bundle/index.js
+var VERSION2 = "10.0.7";
 var defaults_default = {
   headers: {
     "user-agent": `octokit-request.js/${VERSION2} ${getUserAgent()}`
@@ -10067,6 +10067,7 @@ function isPlainObject2(value) {
   const Ctor = Object.prototype.hasOwnProperty.call(proto, "constructor") && proto.constructor;
   return typeof Ctor === "function" && Ctor instanceof Ctor && Function.prototype.call(Ctor) === Function.prototype.call(value);
 }
+var noop = () => "";
 async function fetchWrapper(requestOptions) {
   const fetch2 = requestOptions.request?.fetch || globalThis.fetch;
   if (!fetch2) {
@@ -10168,7 +10169,7 @@ async function fetchWrapper(requestOptions) {
 async function getResponseData(response) {
   const contentType = response.headers.get("content-type");
   if (!contentType) {
-    return response.text().catch(() => "");
+    return response.text().catch(noop);
   }
   const mimetype = (0, import_fast_content_type_parse.safeParse)(contentType);
   if (isJSONResponse(mimetype)) {
@@ -10180,9 +10181,12 @@ async function getResponseData(response) {
       return text;
     }
   } else if (mimetype.type.startsWith("text/") || mimetype.parameters.charset?.toLowerCase() === "utf-8") {
-    return response.text().catch(() => "");
+    return response.text().catch(noop);
   } else {
-    return response.arrayBuffer().catch(() => new ArrayBuffer(0));
+    return response.arrayBuffer().catch(
+      /* v8 ignore next -- @preserve */
+      () => new ArrayBuffer(0)
+    );
   }
 }
 function isJSONResponse(mimetype) {
@@ -10383,16 +10387,16 @@ var createTokenAuth = function createTokenAuth2(token) {
 var VERSION4 = "7.0.6";
 
 // node_modules/.aspect_rules_js/@octokit+core@7.0.6/node_modules/@octokit/core/dist-src/index.js
-var noop = () => {
+var noop2 = () => {
 };
 var consoleWarn = console.warn.bind(console);
 var consoleError = console.error.bind(console);
 function createLogger(logger = {}) {
   if (typeof logger.debug !== "function") {
-    logger.debug = noop;
+    logger.debug = noop2;
   }
   if (typeof logger.info !== "function") {
-    logger.info = noop;
+    logger.info = noop2;
   }
   if (typeof logger.warn !== "function") {
     logger.warn = consoleWarn;
@@ -14441,4 +14445,8 @@ export {
 
 @octokit/request-error/dist-src/index.js:
   (* v8 ignore else -- @preserve -- Bug with vitest coverage where it sees an else branch that doesn't exist *)
+
+@octokit/request/dist-bundle/index.js:
+  (* v8 ignore next -- @preserve *)
+  (* v8 ignore else -- @preserve *)
 */

@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-MV7AIEAK.mjs";
+} from "./chunk-GRHA2PFX.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -24650,9 +24650,9 @@ var require_gcp_residency = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/colours.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js
 var require_colours = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/colours.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Colours = void 0;
@@ -24711,9 +24711,9 @@ var require_colours = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/logging-utils.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js
 var require_logging_utils = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -25007,9 +25007,9 @@ var require_logging_utils = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/index.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js
 var require_src3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.2/node_modules/google-logging-utils/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -48811,7 +48811,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-8ecab116ec562b65f010e3b706b0dac5f1b859cb`;
+  const localVersion = `0.0.0-eac707321ac5a964ebdd8212767ef0f45bd6a618`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -49853,7 +49853,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.30.0_588272396/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.30.0_361345965/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -49868,7 +49868,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.30.0_588272396/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.30.0_361345965/node_modules/@google/genai/dist/node/index.mjs
 import * as path8 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
