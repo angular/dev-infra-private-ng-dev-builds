@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-KAXOIXFQ.mjs";
+} from "./chunk-MV7AIEAK.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -21414,9 +21414,9 @@ var require_lib7 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.5/node_modules/@pnpm/dependency-path/lib/index.js
+// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.6/node_modules/@pnpm/dependency-path/lib/index.js
 var require_lib8 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.5/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.6/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -21490,9 +21490,6 @@ var require_lib8 = __commonJS({
       const { peersIndex: sepIndex } = indexOfDepPathSuffix(pkgId);
       if (sepIndex !== -1) {
         pkgId = pkgId.substring(0, sepIndex);
-      }
-      if (pkgId.includes(":")) {
-        pkgId = pkgId.substring(pkgId.indexOf("@", 1) + 1);
       }
       return pkgId;
     }
@@ -48814,7 +48811,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-10e7e9096fb5e1dbf195008bb561af8fadba2a4f`;
+  const localVersion = `0.0.0-8ecab116ec562b65f010e3b706b0dac5f1b859cb`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
