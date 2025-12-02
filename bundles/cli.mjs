@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-GRHA2PFX.mjs";
+} from "./chunk-AVAXRJ22.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -67,7 +67,7 @@ import {
   underline,
   wrapAnsi,
   yellow
-} from "./chunk-PSRSQU72.mjs";
+} from "./chunk-72UOJE4R.mjs";
 import {
   CommitParser
 } from "./chunk-XXPOON2I.mjs";
@@ -15737,7 +15737,7 @@ var require_partial = __commonJS({
       match(filepath) {
         const parts = filepath.split("/");
         const levels = parts.length;
-        const patterns = this._storage.filter((info2) => !info2.complete || info2.segments.length > levels);
+        const patterns = this._storage.filter((info) => !info.complete || info.segments.length > levels);
         for (const pattern of patterns) {
           const section = pattern.sections[0];
           if (!pattern.complete && levels > section.length) {
@@ -26807,13 +26807,13 @@ var require_oauth2client = __commonJS({
           },
           url: this.endpoints.tokenInfoUrl.toString()
         });
-        const info2 = Object.assign({
+        const info = Object.assign({
           expiry_date: (/* @__PURE__ */ new Date()).getTime() + data.expires_in * 1e3,
           scopes: data.scope.split(" ")
         }, data);
-        delete info2.expires_in;
-        delete info2.scope;
-        return info2;
+        delete info.expires_in;
+        delete info.scope;
+        return info;
       }
       getFederatedSignonCerts(callback) {
         if (callback) {
@@ -36294,13 +36294,13 @@ var require_websocket_server = __commonJS({
           }
         }
         if (this.options.verifyClient) {
-          const info2 = {
+          const info = {
             origin: req.headers[`${version === 8 ? "sec-websocket-origin" : "origin"}`],
             secure: !!(req.socket.authorized || req.socket.encrypted),
             req
           };
           if (this.options.verifyClient.length === 2) {
-            this.options.verifyClient(info2, (verified2, code, message, headers) => {
+            this.options.verifyClient(info, (verified2, code, message, headers) => {
               if (!verified2) {
                 return abortHandshake(socket, code || 401, message, headers);
               }
@@ -36316,7 +36316,7 @@ var require_websocket_server = __commonJS({
             });
             return;
           }
-          if (!this.options.verifyClient(info2))
+          if (!this.options.verifyClient(info))
             return abortHandshake(socket, 401);
         }
         this.completeUpgrade(extensions, key, protocols, req, socket, head, cb);
@@ -36429,9 +36429,6 @@ var require_websocket_server = __commonJS({
     }
   }
 });
-
-// ng-dev/caretaker/cli.js
-import { info } from "console";
 
 // ng-dev/utils/git/github-yargs.js
 function addGithubTokenOption(argv) {
@@ -41685,6 +41682,7 @@ Prompt.editor = dist_default3;
 async function updateCaretakerTeamViaPrompt() {
   const config = await getConfig([assertValidCaretakerConfig, assertValidGithubConfig]);
   const caretakerGroup = `${config.github.name}-caretaker`;
+  const releaserGroup = `${config.github.name}-releaser`;
   const caretakerGroupRoster = `${config.github.name}-caretaker-roster`;
   const caretakerGroupEmeaRoster = `${config.github.name}-caretaker-roster-emea`;
   const current = new Set(await getGroupMembers(caretakerGroup));
@@ -41719,7 +41717,8 @@ async function updateCaretakerTeamViaPrompt() {
     return Log.info(green("  \u2714  Caretaker group already up to date."));
   }
   try {
-    await setCaretakerGroup(caretakerGroup, Array.from(selected));
+    await setGithubTeam(caretakerGroup, Array.from(selected));
+    await setGithubTeam(releaserGroup, Array.from(selected));
   } catch {
     return Log.error("  \u2718  Failed to update caretaker group.");
   }
@@ -41737,7 +41736,7 @@ async function getGroupMembers(group) {
     return [];
   }
 }
-async function setCaretakerGroup(group, members) {
+async function setGithubTeam(group, members) {
   const git = await AuthenticatedGitClient.get();
   const fullSlug = `${git.remoteConfig.owner}/${group}`;
   const current = await getGroupMembers(group) || [];
@@ -41759,7 +41758,7 @@ async function setCaretakerGroup(group, members) {
       username
     });
   };
-  Log.debug(`Caretaker Group: ${fullSlug}`);
+  Log.debug(`Github Team: ${fullSlug}`);
   Log.debug(`Current Membership: ${current.join(", ")}`);
   Log.debug(`New Membership:     ${members.join(", ")}`);
   Log.debug(`Removed:            ${removed.join(", ")}`);
@@ -41768,11 +41767,88 @@ async function setCaretakerGroup(group, members) {
   Log.debug(green(`Successfully updated ${fullSlug}`));
 }
 
+// ng-dev/utils/git/repository-merge-mode.js
+var mergeModePropertyName = "merge-mode";
+async function getCurrentMergeMode() {
+  const git = await AuthenticatedGitClient.get();
+  const { data: properties } = await git.github.repos.customPropertiesForReposGetRepositoryValues({
+    owner: git.remoteConfig.owner,
+    repo: git.remoteConfig.name
+  });
+  const property = properties.find(({ property_name }) => property_name === mergeModePropertyName);
+  if (property === void 0) {
+    throw Error(`No repository configuration value with the key: ${mergeModePropertyName}`);
+  }
+  return property.value;
+}
+async function setRepoMergeMode(value) {
+  const currentValue = await getCurrentMergeMode();
+  if (currentValue === value) {
+    Log.debug("Skipping update of repository configuration value as it is already set to the provided value");
+    return false;
+  }
+  const git = await AuthenticatedGitClient.get();
+  const { value_type, allowed_values } = await getRepoConfigValueDefinition(mergeModePropertyName, git);
+  if (value_type !== "single_select") {
+    throw Error(`Unable to update ${mergeModePropertyName} as its type is ${value_type}, currently the only supported configuration type is single_select`);
+  }
+  if (!allowed_values.includes(value)) {
+    throw Error(`Unable to update ${mergeModePropertyName}. The value provided must use one of: ${allowed_values.join(", ")}
+But "${value}" was provided as the value`);
+  }
+  await git.github.repos.customPropertiesForReposCreateOrUpdateRepositoryValues({
+    owner: git.remoteConfig.owner,
+    repo: git.remoteConfig.name,
+    properties: [
+      {
+        property_name: mergeModePropertyName,
+        value
+      }
+    ]
+  });
+  return true;
+}
+async function getRepoConfigValueDefinition(key, git) {
+  return git.github.orgs.customPropertiesForReposGetOrganizationDefinition({
+    custom_property_name: key,
+    org: git.remoteConfig.owner
+  }).then(({ data }) => data);
+}
+
+// ng-dev/caretaker/handoff/verify-merge-mode.js
+async function verifyMergeMode(expectedMode) {
+  const mode = await getCurrentMergeMode();
+  if (mode === expectedMode) {
+    return true;
+  }
+  Log.info(`The repository merge-mode is currently ${bold(mode)} and must be reset before handoff`);
+  if (await Prompt.confirm({
+    message: `Would you like to reset this to ${expectedMode}`,
+    default: true
+  })) {
+    try {
+      await setRepoMergeMode(expectedMode);
+      Log.info(`${green("\u2714")} Successfuly set merge-mode to ${expectedMode}`);
+      return true;
+    } catch (err) {
+      Log.info(`${red("\u2718")} Failed to update merge-mode`);
+      Log.info(err);
+      return false;
+    }
+  }
+  Log.info("Aborting...");
+  return false;
+}
+
 // ng-dev/caretaker/handoff/cli.js
 function builder2(argv) {
   return addGithubTokenOption(argv);
 }
 async function handler2() {
+  const { mergeMode } = (await getConfig([assertValidGithubConfig])).github;
+  if (!await verifyMergeMode(mergeMode)) {
+    return;
+  }
   await updateCaretakerTeamViaPrompt();
 }
 var HandoffModule = {
@@ -41782,18 +41858,107 @@ var HandoffModule = {
   describe: "Run a handoff assistant to aide in moving to the next caretaker"
 };
 
+// ng-dev/caretaker/merge-mode/release.js
+async function setMergeModeRelease() {
+  try {
+    await setRepoReleaserTeamToOnlyCurrentUser();
+    await setRepoMergeMode("release");
+    Log.info(green("  \u2714  Repository is set for release"));
+  } catch (err) {
+    Log.error("  \u2718  Failed to setup of repository for release");
+    if (err instanceof Error) {
+      Log.info(err.message);
+      Log.debug(err.stack);
+      return;
+    }
+    Log.info(err);
+  }
+}
+async function setRepoReleaserTeamToOnlyCurrentUser() {
+  const git = await AuthenticatedGitClient.get();
+  const config = await getConfig([assertValidGithubConfig]);
+  const group = `${config.github.name}-releaser`;
+  const login = await git.github.users.getAuthenticated().then(({ data }) => data.login);
+  const membership = await git.github.teams.getMembershipForUserInOrg({
+    org: git.remoteConfig.owner,
+    team_slug: group,
+    username: login
+  }).then(({ data }) => data.role, () => void 0);
+  if (membership !== "maintainer") {
+    Log.info(`Unable to update membership in ${bold(group)}`);
+    Log.info(`Please reach out to dev-infra for assistance.`);
+    throw "";
+  }
+  const members = new Set(await git.github.teams.listMembersInOrg({
+    org: git.remoteConfig.owner,
+    team_slug: group
+  }).then(({ data }) => data.map(({ login: login2 }) => login2)));
+  Log.debug(`Current membership for ${group}:`);
+  for (const member of members) {
+    Log.debug(`  - ${member}`);
+  }
+  members.delete(login);
+  await Promise.all(Array.from(members).map(async (username) => {
+    if (username === login) {
+      return;
+    }
+    await git.github.teams.removeMembershipForUserInOrg({
+      org: git.remoteConfig.owner,
+      team_slug: group,
+      username
+    });
+    Log.debug(`Removed ${username} from ${group}.`);
+  }));
+}
+
+// ng-dev/caretaker/merge-mode/reset.js
+async function resetMergeMode() {
+  try {
+    const { github: { mergeMode } } = await getConfig([assertValidGithubConfig]);
+    await setRepoMergeMode(mergeMode);
+    Log.info(`${green("\u2714")} Repository has been reset to the normal mode: ${mergeMode}`);
+  } catch (err) {
+    Log.info(`${red("\u2718")} Failed to reset the merge mode of the repository`);
+    if (err instanceof Error) {
+      Log.info(err.message);
+      Log.debug(err.stack);
+      return;
+    }
+    Log.info(err);
+  }
+}
+
+// ng-dev/caretaker/merge-mode/cli.js
+async function setMergeModeBuilder(argv) {
+  return addGithubTokenOption(argv).positional("mode", {
+    type: "string",
+    choices: ["release", "reset"]
+  });
+}
+async function setMergeModeHandler({ mode }) {
+  if (mode === void 0) {
+    const currentMode = await getCurrentMergeMode();
+    Log.info(`Repository merge-mode is currently set to: ${currentMode}`);
+    return;
+  }
+  if (mode === "reset") {
+    return await resetMergeMode();
+  }
+  if (mode === "release") {
+    return await setMergeModeRelease();
+  }
+  Log.error(`Unable to set the merge mode to the provided mode: ${mode}`);
+}
+var MergeModeModule = {
+  builder: setMergeModeBuilder,
+  handler: setMergeModeHandler,
+  command: ["merge-mode [mode]"],
+  describe: "Set the repository merge mode"
+};
+
 // ng-dev/caretaker/cli.js
 function buildCaretakerParser(argv) {
-  return argv.middleware(caretakerCommandCanRun, false).command(CheckModule).command(HandoffModule);
-}
-function caretakerCommandCanRun() {
-  try {
-    getConfig([assertValidCaretakerConfig, assertValidGithubConfig]);
-  } catch {
-    info("The `caretaker` command is not enabled in this repository.");
-    info(`   To enable it, provide a caretaker config in the repository's .ng-dev/ directory`);
-    process.exit(1);
-  }
+  return argv.command(MergeModeModule).command(CheckModule).command(HandoffModule);
 }
 
 // ng-dev/commit-message/restore-commit-message/restore-commit-message.js
@@ -47661,8 +47826,8 @@ var DirectoryHash = class {
 async function analyzeAndExtendBuiltPackagesWithInfo(builtPackages, npmPackages) {
   const result = [];
   for (const pkg of builtPackages) {
-    const info2 = npmPackages.find((i) => i.name === pkg.name);
-    if (info2 === void 0) {
+    const info = npmPackages.find((i) => i.name === pkg.name);
+    if (info === void 0) {
       Log.debug(`Retrieved package information:`, npmPackages);
       Log.error(`  \u2718   Could not find package information for built package: "${pkg.name}".`);
       throw new FatalReleaseActionError();
@@ -47670,7 +47835,7 @@ async function analyzeAndExtendBuiltPackagesWithInfo(builtPackages, npmPackages)
     result.push({
       hash: await computeHashForPackageContents(pkg),
       ...pkg,
-      ...info2
+      ...info
     });
   }
   return result;
@@ -48811,7 +48976,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-eac707321ac5a964ebdd8212767ef0f45bd6a618`;
+  const localVersion = `0.0.0-18448ed104aeef3146ccb27484002bf5ed02bdf6`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -48897,7 +49062,7 @@ var ReleaseTool = class {
     Log.info();
     const { owner, name } = this._github;
     const nextBranchName = getNextBranchName(this._github);
-    if (!await this._verifyNoUncommittedChanges() || !await this._verifyRunningFromNextBranch(nextBranchName) || !await this._verifyNoShallowRepository() || !await verifyNgDevToolIsUpToDate(this._projectRoot)) {
+    if (!await this._verifyNoUncommittedChanges() || !await this._verifyRunningFromNextBranch(nextBranchName) || !await this._verifyNoShallowRepository() || !await verifyNgDevToolIsUpToDate(this._projectRoot) || !await this._verifyInReleaseMergeMode()) {
       return CompletionState.FATAL_ERROR;
     }
     if (!await this._verifyNpmLoginState()) {
@@ -48945,6 +49110,21 @@ var ReleaseTool = class {
   async _verifyNoUncommittedChanges() {
     if (this._git.hasUncommittedChanges()) {
       Log.error("  \u2718   There are changes which are not committed and should be discarded.");
+      return false;
+    }
+    return true;
+  }
+  async _verifyInReleaseMergeMode() {
+    if (this._github.requireReleaseModeForRelease !== true) {
+      Log.debug("Skipping check for release mode before merge as the repository does not have");
+      Log.debug("requireReleaseModeForRelease set to true in the GithubConfig.");
+      return true;
+    }
+    const mode = await getCurrentMergeMode();
+    if (mode !== "release") {
+      Log.error(`  \u2718   The repository merge-mode is set to ${mode} but must be set to release`);
+      Log.error("      prior to publishing releases. You can set merge-mode for release using:");
+      Log.error("      ng-dev caretaker merge-mode release");
       return false;
     }
     return true;

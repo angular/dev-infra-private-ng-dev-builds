@@ -15,6 +15,7 @@ export class GithubClient {
         this.rest = this._octokit.rest;
         this.paginate = this._octokit.paginate;
         this.checks = this._octokit.checks;
+        this.users = this._octokit.users;
     }
 }
 export class AuthenticatedGithubClient extends GithubClient {

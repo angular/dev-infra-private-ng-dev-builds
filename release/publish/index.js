@@ -1,3 +1,4 @@
+import { getCurrentMergeMode } from '../../utils/git/repository-merge-mode.js';
 import { ActiveReleaseTrains } from '../versioning/active-release-trains.js';
 import { NpmCommand } from '../versioning/npm-command.js';
 import { printActiveReleaseTrains } from '../versioning/print-active-trains.js';
@@ -32,7 +33,8 @@ export class ReleaseTool {
         if (!(await this._verifyNoUncommittedChanges()) ||
             !(await this._verifyRunningFromNextBranch(nextBranchName)) ||
             !(await this._verifyNoShallowRepository()) ||
-            !(await verifyNgDevToolIsUpToDate(this._projectRoot))) {
+            !(await verifyNgDevToolIsUpToDate(this._projectRoot)) ||
+            !(await this._verifyInReleaseMergeMode())) {
             return CompletionState.FATAL_ERROR;
         }
         if (!(await this._verifyNpmLoginState())) {
@@ -82,6 +84,21 @@ export class ReleaseTool {
     async _verifyNoUncommittedChanges() {
         if (this._git.hasUncommittedChanges()) {
             Log.error('  ✘   There are changes which are not committed and should be discarded.');
+            return false;
+        }
+        return true;
+    }
+    async _verifyInReleaseMergeMode() {
+        if (this._github.requireReleaseModeForRelease !== true) {
+            Log.debug('Skipping check for release mode before merge as the repository does not have');
+            Log.debug('requireReleaseModeForRelease set to true in the GithubConfig.');
+            return true;
+        }
+        const mode = await getCurrentMergeMode();
+        if (mode !== 'release') {
+            Log.error(`  ✘   The repository merge-mode is set to ${mode} but must be set to release`);
+            Log.error('      prior to publishing releases. You can set merge-mode for release using:');
+            Log.error('      ng-dev caretaker merge-mode release');
             return false;
         }
         return true;

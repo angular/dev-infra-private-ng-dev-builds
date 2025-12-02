@@ -17,6 +17,7 @@ export declare class ReleaseTool {
     private cleanup;
     private _promptForReleaseAction;
     private _verifyNoUncommittedChanges;
+    private _verifyInReleaseMergeMode;
     private _verifyNoShallowRepository;
     private _verifyRunningFromNextBranch;
     private _verifyNpmLoginState;

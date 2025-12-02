@@ -11,7 +11,7 @@ import {
   getConfig,
   green,
   yellow
-} from "./chunk-PSRSQU72.mjs";
+} from "./chunk-72UOJE4R.mjs";
 import {
   __commonJS,
   __require,
@@ -13376,6 +13376,7 @@ var GithubClient = class {
     this.rest = this._octokit.rest;
     this.paginate = this._octokit.paginate;
     this.checks = this._octokit.checks;
+    this.users = this._octokit.users;
   }
 };
 var AuthenticatedGithubClient = class extends GithubClient {

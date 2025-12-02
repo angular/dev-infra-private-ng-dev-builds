@@ -22,6 +22,7 @@ export declare class GithubClient {
     readonly rest: Octokit['rest'];
     readonly paginate: Octokit['paginate'];
     readonly checks: Octokit['checks'];
+    readonly users: Octokit['users'];
     constructor(_octokitOptions?: OctokitOptions | undefined);
 }
 export declare class AuthenticatedGithubClient extends GithubClient {

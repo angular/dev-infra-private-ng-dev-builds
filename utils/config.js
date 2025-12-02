@@ -53,6 +53,9 @@ export function assertValidGithubConfig(config) {
         if (config.github.owner === undefined) {
             errors.push(`"github.owner" is not defined`);
         }
+        if (config.github.mergeMode === undefined) {
+            errors.push(`"github.mergeMode" is not defined`);
+        }
     }
     if (errors.length) {
         throw new ConfigValidationError('Invalid `github` configuration', errors);
