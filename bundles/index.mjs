@@ -40,7 +40,7 @@ import {
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-AVAXRJ22.mjs";
+} from "./chunk-VWXEN242.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,

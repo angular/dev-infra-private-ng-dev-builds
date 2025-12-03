@@ -13977,110 +13977,6 @@ function checkFormatterConfig(key, config, errors) {
   }
 }
 
-// ng-dev/utils/resolve-yarn-bin.js
-var import_which = __toESM(require_lib());
-import * as fs from "fs";
-import * as path from "path";
-
-// ng-dev/utils/nodejs-errors.js
-function isNodeJSWrappedError(value, errorType) {
-  return value instanceof errorType;
-}
-
-// ng-dev/utils/resolve-yarn-bin.js
-var import_yaml = __toESM(require_dist());
-import lockfile from "@yarnpkg/lockfile";
-var yarnConfigFiles = [
-  { fileName: ".yarnrc", parse: (c) => lockfile.parse(c).object },
-  { fileName: ".yarnrc.yml", parse: (c) => (0, import_yaml.parse)(c) }
-];
-async function resolveYarnScriptForProject(projectDir) {
-  let info;
-  const yarnPathFromConfig = await getYarnPathFromConfigurationIfPresent(projectDir);
-  if (yarnPathFromConfig !== null) {
-    info = { binary: "node", args: [yarnPathFromConfig] };
-  }
-  if (!info) {
-    const yarnPathFromNpmBin = await getYarnPathFromNpmGlobalBinaries();
-    if (yarnPathFromNpmBin !== null) {
-      info = { binary: yarnPathFromNpmBin, args: [] };
-    }
-  }
-  info ?? (info = { binary: "yarn", args: [] });
-  const yarnVersion = await getYarnVersion(info);
-  if (yarnVersion && Number(yarnVersion.split(".")[0]) < 2) {
-    info.args.push("--silent");
-    info.legacy = true;
-  }
-  return info;
-}
-async function getYarnPathFromNpmGlobalBinaries() {
-  const npmGlobalBinPath = await getNpmGlobalBinPath();
-  if (npmGlobalBinPath === null) {
-    return null;
-  }
-  try {
-    return await (0, import_which.default)("yarn", { path: npmGlobalBinPath });
-  } catch (e) {
-    Log.debug("Could not find Yarn within NPM global binary directory. Error:", e);
-    return null;
-  }
-}
-async function getNpmGlobalBinPath() {
-  try {
-    return (await ChildProcess.spawn("npm", ["bin", "--global"], { mode: "silent" })).stdout.trim();
-  } catch (e) {
-    Log.debug("Could not determine NPM global binary directory. Error:", e);
-    return null;
-  }
-}
-async function getYarnPathFromConfigurationIfPresent(projectDir) {
-  const yarnRc = await findAndParseYarnConfiguration(projectDir);
-  if (yarnRc === null) {
-    return null;
-  }
-  const yarnPath = yarnRc["yarn-path"] ?? yarnRc["yarnPath"];
-  if (yarnPath === void 0) {
-    return null;
-  }
-  return path.resolve(projectDir, yarnPath);
-}
-async function getYarnVersion(info) {
-  try {
-    return (await ChildProcess.spawn(info.binary, [...info.args, "--version"], { mode: "silent" })).stdout.trim();
-  } catch (e) {
-    Log.debug("Could not determine Yarn version. Error:", e);
-    return null;
-  }
-}
-async function findAndParseYarnConfiguration(projectDir) {
-  const files = await Promise.all(yarnConfigFiles.map(async (entry) => ({
-    entry,
-    content: await readFileGracefully(path.join(projectDir, entry.fileName))
-  })));
-  const config = files.find((entry) => entry.content !== null);
-  if (config === void 0) {
-    return null;
-  }
-  try {
-    return config.entry.parse(config.content);
-  } catch (e) {
-    Log.debug(`Could not parse determined Yarn configuration file (${config.entry.fileName}).`);
-    Log.debug(`Error:`, e);
-    return null;
-  }
-}
-async function readFileGracefully(filePath) {
-  try {
-    return await fs.promises.readFile(filePath, "utf8");
-  } catch (error) {
-    if (isNodeJSWrappedError(error, Error) && error.code === "ENOENT") {
-      return null;
-    }
-    throw error;
-  }
-}
-
 // ng-dev/pr/config/index.js
 function assertValidPullRequestConfig(config) {
   const errors = [];
@@ -14387,6 +14283,110 @@ async function assertPassingReleasePrechecks(config, newVersion, builtPackagesWi
   }
 }
 
+// ng-dev/utils/resolve-yarn-bin.js
+var import_which = __toESM(require_lib());
+import * as fs from "fs";
+import * as path from "path";
+
+// ng-dev/utils/nodejs-errors.js
+function isNodeJSWrappedError(value, errorType) {
+  return value instanceof errorType;
+}
+
+// ng-dev/utils/resolve-yarn-bin.js
+var import_yaml = __toESM(require_dist());
+import lockfile from "@yarnpkg/lockfile";
+var yarnConfigFiles = [
+  { fileName: ".yarnrc", parse: (c) => lockfile.parse(c).object },
+  { fileName: ".yarnrc.yml", parse: (c) => (0, import_yaml.parse)(c) }
+];
+async function resolveYarnScriptForProject(projectDir) {
+  let info;
+  const yarnPathFromConfig = await getYarnPathFromConfigurationIfPresent(projectDir);
+  if (yarnPathFromConfig !== null) {
+    info = { binary: "node", args: [yarnPathFromConfig] };
+  }
+  if (!info) {
+    const yarnPathFromNpmBin = await getYarnPathFromNpmGlobalBinaries();
+    if (yarnPathFromNpmBin !== null) {
+      info = { binary: yarnPathFromNpmBin, args: [] };
+    }
+  }
+  info ?? (info = { binary: "yarn", args: [] });
+  const yarnVersion = await getYarnVersion(info);
+  if (yarnVersion && Number(yarnVersion.split(".")[0]) < 2) {
+    info.args.push("--silent");
+    info.legacy = true;
+  }
+  return info;
+}
+async function getYarnPathFromNpmGlobalBinaries() {
+  const npmGlobalBinPath = await getNpmGlobalBinPath();
+  if (npmGlobalBinPath === null) {
+    return null;
+  }
+  try {
+    return await (0, import_which.default)("yarn", { path: npmGlobalBinPath });
+  } catch (e) {
+    Log.debug("Could not find Yarn within NPM global binary directory. Error:", e);
+    return null;
+  }
+}
+async function getNpmGlobalBinPath() {
+  try {
+    return (await ChildProcess.spawn("npm", ["bin", "--global"], { mode: "silent" })).stdout.trim();
+  } catch (e) {
+    Log.debug("Could not determine NPM global binary directory. Error:", e);
+    return null;
+  }
+}
+async function getYarnPathFromConfigurationIfPresent(projectDir) {
+  const yarnRc = await findAndParseYarnConfiguration(projectDir);
+  if (yarnRc === null) {
+    return null;
+  }
+  const yarnPath = yarnRc["yarn-path"] ?? yarnRc["yarnPath"];
+  if (yarnPath === void 0) {
+    return null;
+  }
+  return path.resolve(projectDir, yarnPath);
+}
+async function getYarnVersion(info) {
+  try {
+    return (await ChildProcess.spawn(info.binary, [...info.args, "--version"], { mode: "silent" })).stdout.trim();
+  } catch (e) {
+    Log.debug("Could not determine Yarn version. Error:", e);
+    return null;
+  }
+}
+async function findAndParseYarnConfiguration(projectDir) {
+  const files = await Promise.all(yarnConfigFiles.map(async (entry) => ({
+    entry,
+    content: await readFileGracefully(path.join(projectDir, entry.fileName))
+  })));
+  const config = files.find((entry) => entry.content !== null);
+  if (config === void 0) {
+    return null;
+  }
+  try {
+    return config.entry.parse(config.content);
+  } catch (e) {
+    Log.debug(`Could not parse determined Yarn configuration file (${config.entry.fileName}).`);
+    Log.debug(`Error:`, e);
+    return null;
+  }
+}
+async function readFileGracefully(filePath) {
+  try {
+    return await fs.promises.readFile(filePath, "utf8");
+  } catch (error) {
+    if (isNodeJSWrappedError(error, Error) && error.code === "ENOENT") {
+      return null;
+    }
+    throw error;
+  }
+}
+
 export {
   params,
   alias,
@@ -14428,8 +14428,6 @@ export {
   COMMIT_TYPES,
   assertValidFormatConfig,
   require_dist,
-  resolveYarnScriptForProject,
-  getYarnPathFromNpmGlobalBinaries,
   assertValidPullRequestConfig,
   Label,
   targetLabels,
@@ -14440,7 +14438,8 @@ export {
   requiresLabels,
   allLabels,
   ReleasePrecheckError,
-  assertPassingReleasePrechecks
+  assertPassingReleasePrechecks,
+  resolveYarnScriptForProject
 };
 /*! Bundled license information:
 

@@ -32,7 +32,6 @@ import {
   getNextBranchName,
   getRepositoryGitUrl,
   getVersionInfoForBranch,
-  getYarnPathFromNpmGlobalBinaries,
   isGithubApiError,
   isVersionBranch,
   isVersionPublishedToNpm,
@@ -47,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-AVAXRJ22.mjs";
+} from "./chunk-VWXEN242.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -5838,7 +5837,7 @@ var require_lib2 = __commonJS({
     var detectFile = (filepath, opts = {}) => new Promise((resolve8, reject) => {
       let fd;
       const fs6 = (0, node_1.default)();
-      const handler33 = (err, buffer) => {
+      const handler32 = (err, buffer) => {
         if (fd) {
           fs6.closeSync(fd);
         }
@@ -5856,17 +5855,17 @@ var require_lib2 = __commonJS({
         let sample = Buffer.allocUnsafe(sampleSize);
         fs6.read(fd, sample, 0, sampleSize, opts.offset, (err, bytesRead) => {
           if (err) {
-            handler33(err, null);
+            handler32(err, null);
           } else {
             if (bytesRead < sampleSize) {
               sample = sample.subarray(0, bytesRead);
             }
-            handler33(null, sample);
+            handler32(null, sample);
           }
         });
         return;
       }
-      fs6.readFile(filepath, handler33);
+      fs6.readFile(filepath, handler32);
     });
     exports.detectFile = detectFile;
     var detectFileSync = (filepath, opts = {}) => {
@@ -15059,8 +15058,8 @@ var require_queue = __commonJS({
         self2.drain();
         self2.drain = noop;
       }
-      function error(handler33) {
-        errorHandler = handler33;
+      function error(handler32) {
+        errorHandler = handler32;
       }
     }
     function noop() {
@@ -20464,8 +20463,8 @@ var require_commonjs = __commonJS({
       /**
        * Alias for {@link Minipass#on}
        */
-      addListener(ev, handler33) {
-        return this.on(ev, handler33);
+      addListener(ev, handler32) {
+        return this.on(ev, handler32);
       }
       /**
        * Mostly identical to `EventEmitter.on`, with the following
@@ -20484,8 +20483,8 @@ var require_commonjs = __commonJS({
        *   cause the event to be re-emitted immediately with the error previously
        *   raised.
        */
-      on(ev, handler33) {
-        const ret = super.on(ev, handler33);
+      on(ev, handler32) {
+        const ret = super.on(ev, handler32);
         if (ev === "data") {
           this[DISCARDED] = false;
           this[DATALISTENERS]++;
@@ -20498,7 +20497,7 @@ var require_commonjs = __commonJS({
           super.emit(ev);
           this.removeAllListeners(ev);
         } else if (ev === "error" && this[EMITTED_ERROR]) {
-          const h = handler33;
+          const h = handler32;
           if (this[ASYNC])
             defer(() => h.call(this, this[EMITTED_ERROR]));
           else
@@ -20509,8 +20508,8 @@ var require_commonjs = __commonJS({
       /**
        * Alias for {@link Minipass#off}
        */
-      removeListener(ev, handler33) {
-        return this.off(ev, handler33);
+      removeListener(ev, handler32) {
+        return this.off(ev, handler32);
       }
       /**
        * Mostly identical to `EventEmitter.off`
@@ -20520,8 +20519,8 @@ var require_commonjs = __commonJS({
        * then the flow of data will stop until there is another consumer or
        * {@link Minipass#resume} is explicitly called.
        */
-      off(ev, handler33) {
-        const ret = super.off(ev, handler33);
+      off(ev, handler32) {
+        const ret = super.off(ev, handler32);
         if (ev === "data") {
           this[DATALISTENERS] = this.listeners("data").length;
           if (this[DATALISTENERS] === 0 && !this[DISCARDED] && !this[PIPES].length) {
@@ -20892,17 +20891,17 @@ var require_lib6 = __commonJS({
         this.digests = this.goodSri ? this.sri[this.algorithm] : null;
         this.optString = getOptString(this.opts?.options);
       }
-      on(ev, handler33) {
+      on(ev, handler32) {
         if (ev === "size" && this.#emittedSize) {
-          return handler33(this.#emittedSize);
+          return handler32(this.#emittedSize);
         }
         if (ev === "integrity" && this.#emittedIntegrity) {
-          return handler33(this.#emittedIntegrity);
+          return handler32(this.#emittedIntegrity);
         }
         if (ev === "verified" && this.#emittedVerified) {
-          return handler33(this.#emittedVerified);
+          return handler32(this.#emittedVerified);
         }
-        return super.on(ev, handler33);
+        return super.on(ev, handler32);
       }
       emit(ev, data) {
         if (ev === "end") {
@@ -32526,19 +32525,19 @@ var require_node_gyp_build = __commonJS({
       ].filter(Boolean).join(" ");
       throw new Error("No native build was found for " + target + "\n    loaded from: " + dir + "\n");
       function resolve8(dir2) {
-        var tuples = readdirSync2(path9.join(dir2, "prebuilds")).map(parseTuple);
+        var tuples = readdirSync(path9.join(dir2, "prebuilds")).map(parseTuple);
         var tuple = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0];
         if (!tuple)
           return;
         var prebuilds = path9.join(dir2, "prebuilds", tuple.name);
-        var parsed = readdirSync2(prebuilds).map(parseTags);
+        var parsed = readdirSync(prebuilds).map(parseTags);
         var candidates = parsed.filter(matchTags(runtime, abi));
         var winner = candidates.sort(compareTags(runtime))[0];
         if (winner)
           return path9.join(prebuilds, winner.file);
       }
     };
-    function readdirSync2(dir) {
+    function readdirSync(dir) {
       try {
         return fs6.readdirSync(dir);
       } catch (err) {
@@ -32546,7 +32545,7 @@ var require_node_gyp_build = __commonJS({
       }
     }
     function getFirst(dir, filter3) {
-      var files = readdirSync2(dir).filter(filter3);
+      var files = readdirSync(dir).filter(filter3);
       return files[0] && path9.join(dir, files[0]);
     }
     function matchBuild(name) {
@@ -34712,9 +34711,9 @@ var require_event_target = __commonJS({
        *     the listener would be automatically removed when invoked.
        * @public
        */
-      addEventListener(type, handler33, options = {}) {
+      addEventListener(type, handler32, options = {}) {
         for (const listener of this.listeners(type)) {
-          if (!options[kForOnEventAttribute] && listener[kListener] === handler33 && !listener[kForOnEventAttribute]) {
+          if (!options[kForOnEventAttribute] && listener[kListener] === handler32 && !listener[kForOnEventAttribute]) {
             return;
           }
         }
@@ -34725,7 +34724,7 @@ var require_event_target = __commonJS({
               data: isBinary ? data : data.toString()
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler32, this, event);
           };
         } else if (type === "close") {
           wrapper = function onClose(code, message) {
@@ -34735,7 +34734,7 @@ var require_event_target = __commonJS({
               wasClean: this._closeFrameReceived && this._closeFrameSent
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler32, this, event);
           };
         } else if (type === "error") {
           wrapper = function onError(error) {
@@ -34744,19 +34743,19 @@ var require_event_target = __commonJS({
               message: error.message
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler32, this, event);
           };
         } else if (type === "open") {
           wrapper = function onOpen() {
             const event = new Event("open");
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler32, this, event);
           };
         } else {
           return;
         }
         wrapper[kForOnEventAttribute] = !!options[kForOnEventAttribute];
-        wrapper[kListener] = handler33;
+        wrapper[kListener] = handler32;
         if (options.once) {
           this.once(type, wrapper);
         } else {
@@ -34770,9 +34769,9 @@ var require_event_target = __commonJS({
        * @param {(Function|Object)} handler The listener to remove
        * @public
        */
-      removeEventListener(type, handler33) {
+      removeEventListener(type, handler32) {
         for (const listener of this.listeners(type)) {
-          if (listener[kListener] === handler33 && !listener[kForOnEventAttribute]) {
+          if (listener[kListener] === handler32 && !listener[kForOnEventAttribute]) {
             this.removeListener(type, listener);
             break;
           }
@@ -35439,16 +35438,16 @@ var require_websocket = __commonJS({
           }
           return null;
         },
-        set(handler33) {
+        set(handler32) {
           for (const listener of this.listeners(method)) {
             if (listener[kForOnEventAttribute]) {
               this.removeListener(method, listener);
               break;
             }
           }
-          if (typeof handler33 !== "function")
+          if (typeof handler32 !== "function")
             return;
-          this.addEventListener(method, handler33, {
+          this.addEventListener(method, handler32, {
             [kForOnEventAttribute]: true
           });
         }
@@ -39875,15 +39874,15 @@ function useKeypress(userHandler) {
   signal.current = userHandler;
   useEffect((rl) => {
     let ignore = false;
-    const handler33 = withUpdates((_input, event) => {
+    const handler32 = withUpdates((_input, event) => {
       if (ignore)
         return;
       void signal.current(event, rl);
     });
-    rl.input.on("keypress", handler33);
+    rl.input.on("keypress", handler32);
     return () => {
       ignore = true;
-      rl.input.removeListener("keypress", handler33);
+      rl.input.removeListener("keypress", handler32);
     };
   }, []);
 }
@@ -40074,16 +40073,16 @@ var Emitter = class {
 };
 var SignalExitBase = class {
 };
-var signalExitWrap = (handler33) => {
+var signalExitWrap = (handler32) => {
   return {
     onExit(cb, opts) {
-      return handler33.onExit(cb, opts);
+      return handler32.onExit(cb, opts);
     },
     load() {
-      return handler33.load();
+      return handler32.load();
     },
     unload() {
-      return handler33.unload();
+      return handler32.unload();
     }
   };
 };
@@ -44406,10 +44405,6 @@ var BuildAndLinkCommandModule = {
   describe: "Builds the release output, registers the outputs as linked, and links via pnpm to the provided project"
 };
 
-// ng-dev/misc/update-yarn/cli.js
-import { readdirSync, unlinkSync as unlinkSync3 } from "fs";
-import { join as join4 } from "path";
-
 // ng-dev/utils/spinner.js
 import { cursorTo as cursorTo2, clearLine } from "readline";
 var IS_CI = process.env["CI"];
@@ -44490,100 +44485,12 @@ ${text}.`);
   }
 };
 
-// ng-dev/misc/update-yarn/cli.js
-async function builder11(argv) {
-  return addGithubTokenOption(argv);
-}
-var useYarnPathEnv = {
-  ...process.env,
-  YARN_IGNORE_PATH: "0"
-};
-var skipHuskyEnv = {
-  ...process.env,
-  HUSKY: "0"
-};
-async function handler11() {
-  const yarnGlobalBin = await getYarnPathFromNpmGlobalBinaries() ?? "yarn";
-  const git = await AuthenticatedGitClient.get();
-  const mainBranchName = git.mainBranchName;
-  const originalBranchOrRef = git.getCurrentBranchOrRevision();
-  if (git.hasUncommittedChanges()) {
-    Log.error("Found changes in the local repository. Make sure there are no uncommitted files.");
-    process.exitCode = 1;
-    return;
-  }
-  const spinner = new Spinner("");
-  try {
-    spinner.update(`Fetching the latest primary branch from upstream: "${mainBranchName}"`);
-    git.run(["fetch", "-q", git.getRepoGitUrl(), mainBranchName]);
-    git.checkout("FETCH_HEAD", false);
-    spinner.update("Removing previous yarn version.");
-    const yarnReleasesDir = join4(git.baseDir, ".yarn/releases");
-    readdirSync(yarnReleasesDir).forEach((file) => unlinkSync3(join4(yarnReleasesDir, file)));
-    spinner.update("Updating yarn version.");
-    ChildProcess.spawnSync(yarnGlobalBin, ["policies", "set-version", "latest"]);
-    spinner.update("Confirming the version of yarn was updated.");
-    const newYarnVersion = ChildProcess.spawnSync(yarnGlobalBin, ["-v"], {
-      env: useYarnPathEnv
-    }).stdout.trim();
-    if (git.run(["status", "--porcelain"]).stdout.length === 0) {
-      spinner.complete();
-      Log.error("Yarn already up to date");
-      process.exitCode = 0;
-      return;
-    }
-    const title = `build: update to yarn v${newYarnVersion}`;
-    const body = `Update to the latest version of yarn, ${newYarnVersion}.`;
-    const commitMessage = `${title}
-
-${body}`;
-    const branchName = `yarn-update-v${newYarnVersion}`;
-    const userFork = await git.getForkOfAuthenticatedUser();
-    const { owner: localOwner } = userFork;
-    spinner.update("Staging yarn vendoring files and creating commit");
-    git.run(["add", ".yarn/releases/**", ".yarnrc"]);
-    git.run(["commit", "-q", "--no-verify", "-m", commitMessage], { env: skipHuskyEnv });
-    spinner.update("Pushing commit changes to github.");
-    git.run([
-      "push",
-      "-q",
-      getRepositoryGitUrl(userFork, git.githubToken),
-      "--force-with-lease",
-      `HEAD:refs/heads/${branchName}`
-    ]);
-    spinner.update("Creating a PR for the changes.");
-    const { number } = (await git.github.pulls.create({
-      ...git.remoteParams,
-      title,
-      body,
-      base: mainBranchName,
-      head: `${localOwner}:${branchName}`
-    })).data;
-    spinner.complete();
-    Log.info(`Created PR #${number} to update to yarn v${newYarnVersion}`);
-  } catch (e) {
-    spinner.complete();
-    Log.error("Aborted yarn update do to errors:");
-    Log.error(e);
-    process.exitCode = 1;
-    git.checkout(originalBranchOrRef, true);
-  } finally {
-    git.checkout(originalBranchOrRef, true);
-  }
-}
-var UpdateYarnCommandModule = {
-  builder: builder11,
-  handler: handler11,
-  command: "update-yarn",
-  describe: "Automatically update the vendored yarn version in the repository and create a PR"
-};
-
 // ng-dev/utils/bazel-bin.js
-import { join as join5 } from "path";
+import { join as join4 } from "path";
 var BAZEL_BIN = void 0;
 function getBazelBin() {
   if (BAZEL_BIN === void 0) {
-    BAZEL_BIN = process.env["BAZEL"] || join5(determineRepoBaseDirFromCwd(), "node_modules/.bin/bazel");
+    BAZEL_BIN = process.env["BAZEL"] || join4(determineRepoBaseDirFromCwd(), "node_modules/.bin/bazel");
   }
   return BAZEL_BIN;
 }
@@ -44625,22 +44532,22 @@ async function updateGeneratedFileTargets() {
 }
 
 // ng-dev/misc/generated-files/cli.js
-async function builder12(argv) {
+async function builder11(argv) {
   return argv;
 }
-async function handler12() {
+async function handler11() {
   await updateGeneratedFileTargets();
 }
 var GeneratedFilesModule = {
-  builder: builder12,
-  handler: handler12,
+  builder: builder11,
+  handler: handler11,
   command: "update-generated-files",
   describe: "Automatically discover all bazel generated file targets and update them."
 };
 
 // ng-dev/misc/generate-nodejs-toolchain/cli.js
 import https from "node:https";
-function builder13(argv) {
+function builder12(argv) {
   return argv.positional("nodeJsVersion", {
     type: "string",
     demandOption: true
@@ -44652,8 +44559,8 @@ function builder13(argv) {
   });
 }
 var GeneratedNodeJsToolchainModule = {
-  builder: builder13,
-  handler: handler13,
+  builder: builder12,
+  handler: handler12,
   command: "generate-nodejs-toolchain <nodeJsVersion>",
   describe: "Generates a Bazel toolchain definition for a specific Node.js version."
 };
@@ -44695,7 +44602,7 @@ async function getNodeJsRepositories(version) {
     repositories
   };
 }
-async function handler13({ nodeJsVersion }) {
+async function handler12({ nodeJsVersion }) {
   try {
     const { version, repositories } = await getNodeJsRepositories(nodeJsVersion);
     if (!repositories?.length) {
@@ -44723,7 +44630,7 @@ ${error}`);
 
 // ng-dev/misc/cli.js
 function buildMiscParser(localYargs) {
-  return localYargs.help().strict().command(BuildAndLinkCommandModule).command(UpdateYarnCommandModule).command(GeneratedFilesModule).command(GeneratedNodeJsToolchainModule);
+  return localYargs.help().strict().command(BuildAndLinkCommandModule).command(GeneratedFilesModule).command(GeneratedNodeJsToolchainModule);
 }
 
 // ng-dev/ngbot/verify.js
@@ -44961,19 +44868,19 @@ async function printTargetBranchesForPr(prNumber) {
 }
 
 // ng-dev/pr/check-target-branches/cli.js
-function builder14(argv) {
+function builder13(argv) {
   return argv.positional("pr", {
     description: "The pull request number",
     type: "number",
     demandOption: true
   });
 }
-async function handler14({ pr }) {
+async function handler13({ pr }) {
   await printTargetBranchesForPr(pr);
 }
 var CheckTargetBranchesModule = {
-  handler: handler14,
-  builder: builder14,
+  handler: handler13,
+  builder: builder13,
   command: "check-target-branches <pr>",
   describe: "Check a PR to determine what branches it is currently targeting"
 };
@@ -45233,7 +45140,7 @@ async function checkoutToTargetBranch(prNumber, target, { pullRequest }) {
 }
 
 // ng-dev/pr/checkout/takeover.js
-import { dirname as dirname2, join as join6 } from "path";
+import { dirname as dirname2, join as join5 } from "path";
 import { fileURLToPath as fileURLToPath2 } from "url";
 var takeoverAccounts = ["angular-robot"];
 async function checkoutAsPrTakeover(prNumber, { resetGitState, pullRequest }) {
@@ -45271,7 +45178,7 @@ async function checkoutAsPrTakeover(prNumber, { resetGitState, pullRequest }) {
 }
 function getCommitMessageFilterScriptPath() {
   const bundlesDir = dirname2(fileURLToPath2(import.meta.url));
-  return join6(bundlesDir, "./pr/checkout/commit-message-filter.mjs");
+  return join5(bundlesDir, "./pr/checkout/commit-message-filter.mjs");
 }
 
 // ng-dev/pr/checkout/checkout.js
@@ -45317,7 +45224,7 @@ async function checkoutPullRequest(params2) {
 }
 
 // ng-dev/pr/checkout/cli.js
-function builder15(yargs) {
+function builder14(yargs) {
   return addGithubTokenOption(yargs).positional("pr", {
     type: "number",
     demandOption: true,
@@ -45332,12 +45239,12 @@ function builder15(yargs) {
     describe: "Check out the pull request targeting the specified base branch"
   });
 }
-async function handler15({ pr, takeover, target }) {
+async function handler14({ pr, takeover, target }) {
   await checkoutPullRequest({ pr, takeover, target });
 }
 var CheckoutCommandModule = {
-  handler: handler15,
-  builder: builder15,
+  handler: handler14,
+  builder: builder14,
   command: "checkout <pr>",
   describe: "Checkout a PR from the upstream repo"
 };
@@ -45610,7 +45517,7 @@ async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
 }
 
 // ng-dev/pr/discover-new-conflicts/cli.js
-function builder16(argv) {
+function builder15(argv) {
   return addGithubTokenOption(argv).option("date", {
     description: "Only consider PRs updated since provided date",
     defaultDescription: "30 days ago",
@@ -45618,7 +45525,7 @@ function builder16(argv) {
     default: getThirtyDaysAgoDate()
   }).positional("pr", { demandOption: true, type: "number" });
 }
-async function handler16({ pr, date }) {
+async function handler15({ pr, date }) {
   if (isNaN(date)) {
     Log.error("Unable to parse the value provided via --date flag");
     process.exit(1);
@@ -45632,8 +45539,8 @@ function getThirtyDaysAgoDate() {
   return date.getTime();
 }
 var DiscoverNewConflictsCommandModule = {
-  handler: handler16,
-  builder: builder16,
+  handler: handler15,
+  builder: builder15,
   command: "discover-new-conflicts <pr>",
   describe: "Check if a pending PR causes new conflicts for other pending PRs"
 };
@@ -46218,7 +46125,7 @@ async function loadAndValidatePullRequest({ git, config }, prNumber, validationC
 
 // ng-dev/pr/merge/strategies/autosquash-merge.js
 import { setTimeout as sleep } from "node:timers/promises";
-import { dirname as dirname3, join as join7 } from "node:path";
+import { dirname as dirname3, join as join6 } from "node:path";
 import { fileURLToPath as fileURLToPath3 } from "node:url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
   async merge(pullRequest) {
@@ -46256,7 +46163,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
 };
 function getCommitMessageFilterScriptPath2() {
   const bundlesDir = dirname3(fileURLToPath3(import.meta.url));
-  return join7(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
+  return join6(bundlesDir, "./pr/merge/strategies/commit-message-filter.mjs");
 }
 
 // ng-dev/pr/merge/strategies/api-merge.js
@@ -46634,7 +46541,7 @@ function parsePrNumber(prUrlOrNumber) {
 }
 
 // ng-dev/pr/merge/cli.js
-async function builder17(argv) {
+async function builder16(argv) {
   return addDryRunFlag(addGithubTokenOption(argv)).help().strict().positional("pr", {
     demandOption: true,
     coerce: (prUrlOrNumber) => parsePrNumber(prUrlOrNumber),
@@ -46654,12 +46561,12 @@ async function builder17(argv) {
     description: "Bypass the check for pending reviews on the pull request"
   });
 }
-async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
+async function handler16({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
   await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
 }
 var MergeCommandModule = {
-  handler: handler17,
-  builder: builder17,
+  handler: handler16,
+  builder: builder16,
   command: "merge <pr>",
   describe: "Merge a PR into its targeted branches."
 };
@@ -46741,7 +46648,7 @@ async function rebasePr(prNumber, interactive = false) {
 }
 
 // ng-dev/pr/rebase/cli.js
-function builder18(argv) {
+function builder17(argv) {
   return addGithubTokenOption(argv).positional("pr", { type: "number", demandOption: true }).option("interactive", {
     type: "boolean",
     alias: ["i"],
@@ -46749,12 +46656,12 @@ function builder18(argv) {
     describe: "Do the rebase interactively so that things can be squashed and amended"
   });
 }
-async function handler18({ pr, i }) {
+async function handler17({ pr, i }) {
   process.exitCode = await rebasePr(pr, i);
 }
 var RebaseCommandModule = {
-  handler: handler18,
-  builder: builder18,
+  handler: handler17,
+  builder: builder17,
   command: "rebase <pr>",
   describe: "Rebase a pending PR and push the rebased commits back to Github"
 };
@@ -47036,14 +46943,14 @@ function buildPullapproveParser(localYargs) {
 }
 
 // ng-dev/release/build/cli.js
-function builder19(argv) {
+function builder18(argv) {
   return argv.option("json", {
     type: "boolean",
     description: "Whether the built packages should be printed to stdout as JSON.",
     default: false
   });
 }
-async function handler19(args) {
+async function handler18(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages } = config.release;
@@ -47071,8 +46978,8 @@ async function handler19(args) {
   }
 }
 var ReleaseBuildCommandModule = {
-  builder: builder19,
-  handler: handler19,
+  builder: builder18,
+  handler: handler18,
   command: "build",
   describe: "Builds the release output for the current branch."
 };
@@ -47127,14 +47034,14 @@ async function printActiveReleaseTrains(active, config) {
 }
 
 // ng-dev/release/info/cli.js
-function builder20(argv) {
+function builder19(argv) {
   return argv.option("json", {
     type: "boolean",
     description: "Whether information should be written as JSON to stdout.",
     default: false
   });
 }
-async function handler20(argv) {
+async function handler19(argv) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   if (argv.json) {
@@ -47148,8 +47055,8 @@ async function handler20(argv) {
   await printActiveReleaseTrains(releaseTrains, config.release);
 }
 var ReleaseInfoCommandModule = {
-  builder: builder20,
-  handler: handler20,
+  builder: builder19,
+  handler: handler19,
   command: "info",
   describe: "Prints information for the current release state."
 };
@@ -47466,7 +47373,7 @@ function santizeCommitMessage(content) {
 // ng-dev/release/notes/changelog.js
 var import_semver3 = __toESM(require_semver());
 import { existsSync as existsSync2, readFileSync as readFileSync6, writeFileSync as writeFileSync4 } from "fs";
-import { join as join8 } from "path";
+import { join as join7 } from "path";
 var changelogPath = "CHANGELOG.md";
 var changelogArchivePath = "CHANGELOG_ARCHIVE.md";
 var splitMarker = "<!-- CHANGELOG SPLIT MARKER -->";
@@ -47506,8 +47413,8 @@ var Changelog = class {
   }
   constructor(git) {
     this.git = git;
-    this.filePath = join8(this.git.baseDir, changelogPath);
-    this.archiveFilePath = join8(this.git.baseDir, changelogArchivePath);
+    this.filePath = join7(this.git.baseDir, changelogPath);
+    this.archiveFilePath = join7(this.git.baseDir, changelogArchivePath);
     this._entries = void 0;
     this._archiveEntries = void 0;
   }
@@ -47638,7 +47545,7 @@ var ReleaseNotes = class _ReleaseNotes {
 };
 
 // ng-dev/release/notes/cli.js
-function builder21(argv) {
+function builder20(argv) {
   return argv.option("releaseVersion", {
     type: "string",
     default: "0.0.0",
@@ -47662,7 +47569,7 @@ function builder21(argv) {
     description: "Whether to update the changelog with the newly created entry"
   });
 }
-async function handler21({ releaseVersion, from, to, prependToChangelog, type }) {
+async function handler20({ releaseVersion, from, to, prependToChangelog, type }) {
   const git = await GitClient.get();
   const releaseNotes = await ReleaseNotes.forRange(git, releaseVersion, from, to);
   if (prependToChangelog) {
@@ -47674,8 +47581,8 @@ async function handler21({ releaseVersion, from, to, prependToChangelog, type })
   process.stdout.write(releaseNotesEntry);
 }
 var ReleaseNotesCommandModule = {
-  builder: builder21,
-  handler: handler21,
+  builder: builder20,
+  handler: handler20,
   command: "notes",
   describe: "Generate release notes"
 };
@@ -47697,7 +47604,7 @@ function readBufferFromStdinUntilClosed(input = process.stdin) {
 }
 
 // ng-dev/release/precheck/cli.js
-async function handler22() {
+async function handler21() {
   const stdin = await readBufferFromStdinUntilClosed();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -47718,7 +47625,7 @@ async function handler22() {
   }
 }
 var ReleasePrecheckCommandModule = {
-  handler: handler22,
+  handler: handler21,
   command: "precheck",
   describe: false
 };
@@ -47794,7 +47701,7 @@ var workspaceRelativePackageJsonPath = "package.json";
 // ng-dev/release/publish/actions.js
 var import_fast_glob2 = __toESM(require_out4());
 import { existsSync as existsSync4, promises as fs2 } from "fs";
-import { join as join10 } from "path";
+import { join as join9 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
 var import_semver7 = __toESM(require_semver());
@@ -48101,14 +48008,14 @@ async function gracefulCheckIfPullRequestIsMerged(git, id) {
 
 // ng-dev/release/publish/pnpm-versioning.js
 import { readFile } from "node:fs/promises";
-import { join as join9 } from "node:path";
+import { join as join8 } from "node:path";
 import { existsSync as existsSync3 } from "node:fs";
 var PnpmVersioning = class {
   async isUsingPnpm(repoPath) {
-    return existsSync3(join9(repoPath, "pnpm-lock.yaml")) && !existsSync3(join9(repoPath, "yarn.lock"));
+    return existsSync3(join8(repoPath, "pnpm-lock.yaml")) && !existsSync3(join8(repoPath, "yarn.lock"));
   }
   async getPackageSpec(repoPath) {
-    const packageJsonRaw = await readFile(join9(repoPath, "package.json"), "utf8");
+    const packageJsonRaw = await readFile(join8(repoPath, "package.json"), "utf8");
     const packageJson = JSON.parse(packageJsonRaw);
     const pnpmAllowedRange = packageJson?.engines?.["pnpm"] ?? "latest";
     return `pnpm@${pnpmAllowedRange}`;
@@ -48128,7 +48035,7 @@ var ReleaseAction = class {
     this.pnpmVersioning = new PnpmVersioning();
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
-    const pkgJsonPath = join10(this.projectDir, workspaceRelativePackageJsonPath);
+    const pkgJsonPath = join9(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs2.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
@@ -48137,12 +48044,12 @@ var ReleaseAction = class {
     await fs2.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
     Log.info(green(`  \u2713   Updated project version to ${pkgJson.version}`));
-    if (existsSync4(join10(this.projectDir, ".aspect"))) {
+    if (existsSync4(join9(this.projectDir, ".aspect"))) {
       await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
     }
   }
   getAspectLockFiles() {
-    return existsSync4(join10(this.projectDir, ".aspect")) ? [...import_fast_glob2.default.sync(".aspect/**", { cwd: this.projectDir }), "pnpm-lock.yaml"] : [];
+    return existsSync4(join9(this.projectDir, ".aspect")) ? [...import_fast_glob2.default.sync(".aspect/**", { cwd: this.projectDir }), "pnpm-lock.yaml"] : [];
   }
   async getLatestCommitOfBranch(branchName) {
     const { data: { commit } } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -48423,7 +48330,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join10(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join9(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -48765,10 +48672,10 @@ var import_semver17 = __toESM(require_semver());
 
 // ng-dev/release/publish/actions/renovate-config-updates.js
 import { existsSync as existsSync5 } from "node:fs";
-import { join as join11 } from "node:path";
+import { join as join10 } from "node:path";
 import { writeFile, readFile as readFile2 } from "node:fs/promises";
 async function updateRenovateConfig(projectDir, newBranchName) {
-  const renovateConfigPath = join11(projectDir, "renovate.json");
+  const renovateConfigPath = join10(projectDir, "renovate.json");
   if (!existsSync5(renovateConfigPath)) {
     Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
     return null;
@@ -48976,7 +48883,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-ba1885b9eb039894aafedb76db8c4c34f68a6984`;
+  const localVersion = `0.0.0-846e43dcf81038ce67c21c7fde19440e10c8d185`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -49182,10 +49089,10 @@ var ReleaseTool = class {
 };
 
 // ng-dev/release/publish/cli.js
-function builder22(argv) {
+function builder21(argv) {
   return addGithubTokenOption(argv);
 }
-async function handler23() {
+async function handler22() {
   const git = await AuthenticatedGitClient.get();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -49207,15 +49114,15 @@ async function handler23() {
   }
 }
 var ReleasePublishCommandModule = {
-  builder: builder22,
-  handler: handler23,
+  builder: builder21,
+  handler: handler22,
   command: "publish",
   describe: "Publish new releases and configure version branches."
 };
 
 // ng-dev/release/npm-dist-tag/set/cli.js
 var import_semver20 = __toESM(require_semver());
-function builder23(args) {
+function builder22(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
@@ -49230,7 +49137,7 @@ function builder23(args) {
     default: false
   });
 }
-async function handler24(args) {
+async function handler23(args) {
   const { targetVersion: rawVersion, tagName, skipExperimentalPackages } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -49267,8 +49174,8 @@ async function handler24(args) {
   Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version}`)}.`));
 }
 var ReleaseNpmDistTagSetCommand = {
-  builder: builder23,
-  handler: handler24,
+  builder: builder22,
+  handler: handler23,
   command: "set <tag-name> <target-version>",
   describe: "Sets a given NPM dist tag for all release packages."
 };
@@ -49286,7 +49193,7 @@ import url from "url";
 // ng-dev/release/stamping/env-stamp.js
 import * as fs4 from "fs";
 var import_semver21 = __toESM(require_semver());
-import { join as join13 } from "path";
+import { join as join12 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -49363,7 +49270,7 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join13(git.baseDir, "package.json");
+  const packageJsonPath = join12(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs4.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
@@ -49372,7 +49279,7 @@ function getVersionFromWorkspacePackageJson(git) {
 }
 
 // ng-dev/release/stamping/cli.js
-function builder24(args) {
+function builder23(args) {
   return args.option("mode", {
     demandOption: true,
     description: "Whether the env-stamp should be built for a snapshot or release",
@@ -49386,7 +49293,7 @@ function builder24(args) {
     description: "Working-dir relative or absolute path to an ESM script which can print additional stamping variables"
   });
 }
-async function handler25({ mode, includeVersion, additionalStampingScript }) {
+async function handler24({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
     const scriptURL = url.pathToFileURL(path7.resolve(additionalStampingScript));
@@ -49395,21 +49302,21 @@ async function handler25({ mode, includeVersion, additionalStampingScript }) {
   }
 }
 var BuildEnvStampCommand = {
-  builder: builder24,
-  handler: handler25,
+  builder: builder23,
+  handler: handler24,
   command: "build-env-stamp",
   describe: "Build the environment stamping information"
 };
 
 // ng-dev/release/npm-dist-tag/delete/cli.js
-function builder25(args) {
+function builder24(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
     description: "Name of the NPM dist tag."
   });
 }
-async function handler26(args) {
+async function handler25(args) {
   const { tagName } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -49432,8 +49339,8 @@ async function handler26(args) {
   Log.info(green(`  \u2713   Deleted "${bold(tagName)}" NPM dist tag for all packages.`));
 }
 var ReleaseNpmDistTagDeleteCommand = {
-  builder: builder25,
-  handler: handler26,
+  builder: builder24,
+  handler: handler25,
   command: "delete <tag-name>",
   describe: "Deletes a given NPM dist tag for all release packages."
 };
@@ -49462,7 +49369,7 @@ import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 }
 
 // ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync9 } from "fs";
-import { dirname as dirname4, join as join14, resolve as resolve5 } from "path";
+import { dirname as dirname4, join as join13, resolve as resolve5 } from "path";
 import ts2 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
@@ -49564,7 +49471,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join14(dirname4(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join13(dirname4(containingFilePath), specifier) : specifier;
     const stat2 = getFileStatus(importFullPath);
     if (stat2 && stat2.isFile()) {
       return importFullPath;
@@ -49577,7 +49484,7 @@ var Analyzer = class {
       }
     }
     if (stat2 && stat2.isDirectory()) {
-      return this._resolveFileSpecifier(join14(importFullPath, "index"));
+      return this._resolveFileSpecifier(join13(importFullPath, "index"));
     }
     return null;
   }
@@ -49787,31 +49694,31 @@ function convertReferenceChainToString(chain) {
 }
 
 // ng-dev/auth/login/cli.js
-async function builder26(yargs) {
+async function builder25(yargs) {
   return yargs;
 }
-async function handler27() {
+async function handler26() {
   Log.warn("ng-dev auth login has been deprecated. Authentication will be done");
   Log.warn("using TOKEN from the local environment.");
 }
 var LoginModule = {
-  handler: handler27,
-  builder: builder26,
+  handler: handler26,
+  builder: builder25,
   command: "login",
   describe: "Log into the ng-dev service"
 };
 
 // ng-dev/auth/logout/cli.js
-async function builder27(yargs) {
+async function builder26(yargs) {
   return yargs;
 }
-async function handler28() {
+async function handler27() {
   Log.warn("ng-dev auth logout has been deprecated. Authentication will be done");
   Log.warn("using local environment.");
 }
 var LogoutModule = {
-  handler: handler28,
-  builder: builder27,
+  handler: handler27,
+  builder: builder26,
   command: "logout",
   describe: "Log out of the ng-dev service"
 };
@@ -49875,7 +49782,7 @@ async function loadWorkflows(src) {
 }
 
 // ng-dev/perf/workflow/cli.js
-import { join as join15 } from "path";
+import { join as join14 } from "path";
 
 // ng-dev/perf/workflow/database.js
 import { Spanner } from "@google-cloud/spanner";
@@ -49894,7 +49801,7 @@ async function addWorkflowPerformanceResult(result) {
 }
 
 // ng-dev/perf/workflow/cli.js
-function builder28(yargs) {
+function builder27(yargs) {
   return yargs.option("config-file", {
     default: ".ng-dev/dx-perf-workflows.yml",
     type: "string",
@@ -49911,8 +49818,8 @@ function builder28(yargs) {
     description: "The commit sha to associate the measurement with, uploading it to our database"
   });
 }
-async function handler29({ configFile, list, name, commitSha }) {
-  const workflows = await loadWorkflows(join15(determineRepoBaseDirFromCwd(), configFile));
+async function handler28({ configFile, list, name, commitSha }) {
+  const workflows = await loadWorkflows(join14(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
     return;
@@ -49943,8 +49850,8 @@ async function handler29({ configFile, list, name, commitSha }) {
   }
 }
 var WorkflowsModule = {
-  handler: handler29,
-  builder: builder28,
+  handler: handler28,
+  builder: builder27,
   command: "workflows",
   describe: "Evaluate the performance of the provided workflows"
 };
@@ -49955,17 +49862,17 @@ function buildPerfParser(localYargs) {
 }
 
 // ng-dev/config/validate/portability.js
-import { join as join16 } from "path";
+import { join as join15 } from "path";
 import { tmpdir } from "os";
 import { cp, mkdtemp, rm } from "fs/promises";
 async function checkPortability() {
   Log.debug("Copying ng-dev configuration to isolated temp directory");
-  const tmpConfigDir = await mkdtemp(join16(tmpdir(), "ng-dev-config-check-"));
+  const tmpConfigDir = await mkdtemp(join15(tmpdir(), "ng-dev-config-check-"));
   const repoBaseDir = determineRepoBaseDirFromCwd();
   try {
-    await cp(join16(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
+    await cp(join15(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
     Log.debug("Validating configuration loads in isolation");
-    const baseConfigFile = join16(tmpConfigDir, "config.mjs");
+    const baseConfigFile = join15(tmpConfigDir, "config.mjs");
     const { status, stderr } = await ChildProcess.exec(`node ${baseConfigFile}`, {
       cwd: tmpConfigDir,
       mode: "silent"
@@ -50004,10 +49911,10 @@ async function checkValidity() {
 }
 
 // ng-dev/config/validate/cli.js
-async function builder29(yargs) {
+async function builder28(yargs) {
   return yargs;
 }
-async function handler30() {
+async function handler29() {
   try {
     await checkPortability();
     await checkValidity();
@@ -50022,8 +49929,8 @@ async function handler30() {
   }
 }
 var ValidateModule = {
-  handler: handler30,
-  builder: builder29,
+  handler: handler29,
+  builder: builder28,
   command: "validate",
   describe: "Validate that the configuration provided in .ng-dev/ is valid and portable"
 };
@@ -64954,7 +64861,7 @@ var DEFAULT_API_KEY = process.env["GEMINI_API_KEY"];
 // ng-dev/ai/migrate.js
 import assert from "node:assert";
 var import_fast_glob4 = __toESM(require_out4());
-function builder30(argv) {
+function builder29(argv) {
   return argv.option("prompt", {
     type: "string",
     alias: "p",
@@ -64985,7 +64892,7 @@ function builder30(argv) {
     description: "API key used when making calls to the Gemini API"
   });
 }
-async function handler31(options) {
+async function handler30(options) {
   const apiKey = options.apiKey || DEFAULT_API_KEY;
   assert(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
@@ -65081,8 +64988,8 @@ async function applyPrompt(ai, model, temperature, content, prompt) {
   return parsed.content;
 }
 var MigrateModule = {
-  builder: builder30,
-  handler: handler31,
+  builder: builder29,
+  handler: handler30,
   command: "migrate",
   describe: "Apply a prompt-based AI migration over a set of files"
 };
@@ -65095,7 +65002,7 @@ import { readFile as readFile5, writeFile as writeFile4 } from "node:fs/promises
 import { basename as basename2 } from "node:path";
 import assert2 from "node:assert";
 import { randomUUID as randomUUID2 } from "node:crypto";
-function builder31(argv) {
+function builder30(argv) {
   return argv.positional("files", {
     description: `One or more glob patterns to find target files (e.g., 'src/**/*.ts' 'test/**/*.ts').`,
     type: "string",
@@ -65123,7 +65030,7 @@ function builder31(argv) {
     description: "API key used when making calls to the Gemini API"
   });
 }
-async function handler32(options) {
+async function handler31(options) {
   const apiKey = options.apiKey || DEFAULT_API_KEY;
   assert2(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
@@ -65260,8 +65167,8 @@ function generatePrompt(errorDescription, fileNameMap) {
 `;
 }
 var FixModule = {
-  builder: builder31,
-  handler: handler32,
+  builder: builder30,
+  handler: handler31,
   command: "fix <files..>",
   describe: "Fixes errors from the specified error output"
 };
