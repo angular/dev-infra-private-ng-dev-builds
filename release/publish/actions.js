@@ -28,7 +28,6 @@ export class ReleaseAction {
         this.git = git;
         this.config = config;
         this.projectDir = projectDir;
-        this.pnpmVersioning = new PnpmVersioning();
     }
     async updateProjectVersion(newVersion, additionalUpdateFn) {
         const pkgJsonPath = join(this.projectDir, workspaceRelativePackageJsonPath);
@@ -184,7 +183,7 @@ export class ReleaseAction {
         this.git.run(['checkout', '-q', 'FETCH_HEAD', '--detach']);
     }
     async installDependenciesForCurrentBranch() {
-        if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
+        if (PnpmVersioning.isUsingPnpm(this.projectDir)) {
             try {
                 this.git.run(['clean', '-qdfX', '**/node_modules']);
             }
@@ -203,8 +202,8 @@ export class ReleaseAction {
         this.git.run(['commit', '-q', '--no-verify', '-m', message, ...files]);
     }
     async buildReleaseForCurrentBranch() {
-        const builtPackages = await ExternalCommands.invokeReleaseBuild(this.projectDir, this.pnpmVersioning);
-        const releaseInfo = await ExternalCommands.invokeReleaseInfo(this.projectDir, this.pnpmVersioning);
+        const builtPackages = await ExternalCommands.invokeReleaseBuild(this.projectDir);
+        const releaseInfo = await ExternalCommands.invokeReleaseInfo(this.projectDir);
         return analyzeAndExtendBuiltPackagesWithInfo(builtPackages, releaseInfo.npmPackages);
     }
     async stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, pullRequestTargetBranch, opts) {
@@ -221,7 +220,7 @@ export class ReleaseAction {
         await this.waitForEditsAndCreateReleaseCommit(newVersion);
         await this.installDependenciesForCurrentBranch();
         const builtPackagesWithInfo = await this.buildReleaseForCurrentBranch();
-        await ExternalCommands.invokeReleasePrecheck(this.projectDir, newVersion, builtPackagesWithInfo, this.pnpmVersioning);
+        await ExternalCommands.invokeReleasePrecheck(this.projectDir, newVersion, builtPackagesWithInfo);
         await this._verifyPackageVersions(releaseNotes.version, builtPackagesWithInfo);
         const pullRequest = await this.pushChangesToForkAndCreatePullRequest(pullRequestTargetBranch, `release-stage-${newVersion}`, `Bump version to "v${newVersion}" with changelog.`);
         Log.info(green('  ✓   Release staging pull request has been created.'));

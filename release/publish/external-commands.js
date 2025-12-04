@@ -4,8 +4,9 @@ import { FatalReleaseActionError } from './actions-error.js';
 import { resolveYarnScriptForProject } from '../../utils/resolve-yarn-bin.js';
 import { green, Log } from '../../utils/logging.js';
 import { getBazelBin } from '../../utils/bazel-bin.js';
+import { PnpmVersioning } from './pnpm-versioning.js';
 export class ExternalCommands {
-    static async invokeSetNpmDist(projectDir, npmDistTag, version, pnpmVersioning, options = { skipExperimentalPackages: false }) {
+    static async invokeSetNpmDist(projectDir, npmDistTag, version, options = { skipExperimentalPackages: false }) {
         try {
             await this._spawnNpmScript([
                 'ng-dev',
@@ -14,7 +15,7 @@ export class ExternalCommands {
                 npmDistTag,
                 version.format(),
                 `--skip-experimental-packages=${options.skipExperimentalPackages}`,
-            ], projectDir, pnpmVersioning);
+            ], projectDir);
             Log.info(green(`  ✓   Set "${npmDistTag}" NPM dist tag for all packages to v${version}.`));
         }
         catch (e) {
@@ -23,9 +24,9 @@ export class ExternalCommands {
             throw new FatalReleaseActionError();
         }
     }
-    static async invokeDeleteNpmDistTag(projectDir, npmDistTag, pnpmVersioning) {
+    static async invokeDeleteNpmDistTag(projectDir, npmDistTag) {
         try {
-            await this._spawnNpmScript(['ng-dev', 'release', 'npm-dist-tag', 'delete', npmDistTag], projectDir, pnpmVersioning);
+            await this._spawnNpmScript(['ng-dev', 'release', 'npm-dist-tag', 'delete', npmDistTag], projectDir);
             Log.info(green(`  ✓   Deleted "${npmDistTag}" NPM dist tag for all packages.`));
         }
         catch (e) {
@@ -34,10 +35,10 @@ export class ExternalCommands {
             throw new FatalReleaseActionError();
         }
     }
-    static async invokeReleaseBuild(projectDir, pnpmVersioning) {
+    static async invokeReleaseBuild(projectDir) {
         const spinner = new Spinner('Building release output. This can take a few minutes.');
         try {
-            const { stdout } = await this._spawnNpmScript(['ng-dev', 'release', 'build', '--json'], projectDir, pnpmVersioning, {
+            const { stdout } = await this._spawnNpmScript(['ng-dev', 'release', 'build', '--json'], projectDir, {
                 mode: 'silent',
             });
             spinner.complete();
@@ -51,9 +52,9 @@ export class ExternalCommands {
             throw new FatalReleaseActionError();
         }
     }
-    static async invokeReleaseInfo(projectDir, pnpmVersioning) {
+    static async invokeReleaseInfo(projectDir) {
         try {
-            const { stdout } = await this._spawnNpmScript(['ng-dev', 'release', 'info', '--json'], projectDir, pnpmVersioning, { mode: 'silent' });
+            const { stdout } = await this._spawnNpmScript(['ng-dev', 'release', 'info', '--json'], projectDir, { mode: 'silent' });
             return JSON.parse(stdout.trim());
         }
         catch (e) {
@@ -63,13 +64,13 @@ export class ExternalCommands {
             throw new FatalReleaseActionError();
         }
     }
-    static async invokeReleasePrecheck(projectDir, newVersion, builtPackagesWithInfo, pnpmVersioning) {
+    static async invokeReleasePrecheck(projectDir, newVersion, builtPackagesWithInfo) {
         const precheckStdin = {
             builtPackagesWithInfo,
             newVersion: newVersion.format(),
         };
         try {
-            await this._spawnNpmScript(['ng-dev', 'release', 'precheck'], projectDir, pnpmVersioning, {
+            await this._spawnNpmScript(['ng-dev', 'release', 'precheck'], projectDir, {
                 input: JSON.stringify(precheckStdin),
             });
             Log.info(green(`  ✓   Executed release pre-checks for ${newVersion}`));
@@ -117,10 +118,9 @@ export class ExternalCommands {
             throw new FatalReleaseActionError();
         }
     }
-    static async _spawnNpmScript(args, projectDir, pnpmVersioning, spawnOptions = {}) {
-        if (await pnpmVersioning.isUsingPnpm(projectDir)) {
-            const pnpmSpec = await pnpmVersioning.getPackageSpec(projectDir);
-            return ChildProcess.spawn('npx', ['--yes', pnpmSpec, '-s', 'run', ...args], {
+    static async _spawnNpmScript(args, projectDir, spawnOptions = {}) {
+        if (PnpmVersioning.isUsingPnpm(projectDir)) {
+            return ChildProcess.spawn('npx', ['--yes', 'pnpm', '-s', 'run', ...args], {
                 ...spawnOptions,
                 cwd: projectDir,
             });

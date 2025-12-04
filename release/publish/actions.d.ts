@@ -4,7 +4,6 @@ import { BuiltPackageWithInfo, ReleaseConfig } from '../config/index.js';
 import { ReleaseNotes } from '../notes/release-notes.js';
 import { NpmDistTag, PackageJson } from '../versioning/index.js';
 import { ActiveReleaseTrains } from '../versioning/active-release-trains.js';
-import { PnpmVersioning } from './pnpm-versioning.js';
 import { Commit } from '../../utils/git/octokit-types.js';
 export interface GithubRepo {
     owner: string;
@@ -31,7 +30,6 @@ export declare abstract class ReleaseAction {
     static isActive(_trains: ActiveReleaseTrains, _config: ReleaseConfig): Promise<boolean>;
     abstract getDescription(): Promise<string>;
     abstract perform(): Promise<void>;
-    protected pnpmVersioning: PnpmVersioning;
     constructor(active: ActiveReleaseTrains, git: AuthenticatedGitClient, config: ReleaseConfig, projectDir: string);
     protected updateProjectVersion(newVersion: semver.SemVer, additionalUpdateFn?: (pkgJson: PackageJson) => void): Promise<void>;
     protected getAspectLockFiles(): string[];

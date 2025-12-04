@@ -19586,8 +19586,8 @@ var require_graceful_fs = __commonJS({
       fs7.createReadStream = createReadStream;
       fs7.createWriteStream = createWriteStream2;
       var fs$readFile = fs7.readFile;
-      fs7.readFile = readFile6;
-      function readFile6(path9, options, cb) {
+      fs7.readFile = readFile5;
+      function readFile5(path9, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
         return go$readFile(path9, options, cb);
@@ -28057,7 +28057,7 @@ var require_src5 = __commonJS({
         });
       };
     }
-    var readFile6 = fs6.readFile ? (0, _util.promisify)(fs6.readFile) : _asyncToGenerator(_regenerator().m(function _callee() {
+    var readFile5 = fs6.readFile ? (0, _util.promisify)(fs6.readFile) : _asyncToGenerator(_regenerator().m(function _callee() {
       return _regenerator().w(function(_context) {
         while (1)
           switch (_context.n) {
@@ -28199,7 +28199,7 @@ var require_src5 = __commonJS({
                     break;
                   case 1:
                     _context2.n = 2;
-                    return readFile6(keyFile, "utf8");
+                    return readFile5(keyFile, "utf8");
                   case 2:
                     key = _context2.v;
                     body = JSON.parse(key);
@@ -28217,7 +28217,7 @@ var require_src5 = __commonJS({
                     });
                   case 4:
                     _context2.n = 5;
-                    return readFile6(keyFile, "utf8");
+                    return readFile5(keyFile, "utf8");
                   case 5:
                     _privateKey = _context2.v;
                     return _context2.a(2, {
@@ -29818,7 +29818,7 @@ var require_filesubjecttokensupplier = __commonJS({
     exports.FileSubjectTokenSupplier = void 0;
     var util_1 = __require("util");
     var fs6 = __require("fs");
-    var readFile6 = (0, util_1.promisify)(fs6.readFile ?? (() => {
+    var readFile5 = (0, util_1.promisify)(fs6.readFile ?? (() => {
     }));
     var realpath = (0, util_1.promisify)(fs6.realpath ?? (() => {
     }));
@@ -29858,7 +29858,7 @@ var require_filesubjecttokensupplier = __commonJS({
           throw err;
         }
         let subjectToken;
-        const rawText = await readFile6(parsedFilePath, { encoding: "utf8" });
+        const rawText = await readFile5(parsedFilePath, { encoding: "utf8" });
         if (this.formatType === "text") {
           subjectToken = rawText;
         } else if (this.formatType === "json" && this.subjectTokenFieldName) {
@@ -47781,9 +47781,18 @@ function getReleaseNoteCherryPickCommitMessage(newVersion) {
 // ng-dev/release/publish/constants.js
 var githubReleaseBodyLimit = 125e3;
 
+// ng-dev/release/publish/pnpm-versioning.js
+import { join as join8 } from "node:path";
+import { existsSync as existsSync3 } from "node:fs";
+var PnpmVersioning = class {
+  static isUsingPnpm(repoPath) {
+    return existsSync3(join8(repoPath, "pnpm-lock.yaml")) && !existsSync3(join8(repoPath, "yarn.lock"));
+  }
+};
+
 // ng-dev/release/publish/external-commands.js
 var ExternalCommands = class {
-  static async invokeSetNpmDist(projectDir, npmDistTag, version, pnpmVersioning, options = { skipExperimentalPackages: false }) {
+  static async invokeSetNpmDist(projectDir, npmDistTag, version, options = { skipExperimentalPackages: false }) {
     try {
       await this._spawnNpmScript([
         "ng-dev",
@@ -47792,7 +47801,7 @@ var ExternalCommands = class {
         npmDistTag,
         version.format(),
         `--skip-experimental-packages=${options.skipExperimentalPackages}`
-      ], projectDir, pnpmVersioning);
+      ], projectDir);
       Log.info(green(`  \u2713   Set "${npmDistTag}" NPM dist tag for all packages to v${version}.`));
     } catch (e) {
       Log.error(e);
@@ -47800,9 +47809,9 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeDeleteNpmDistTag(projectDir, npmDistTag, pnpmVersioning) {
+  static async invokeDeleteNpmDistTag(projectDir, npmDistTag) {
     try {
-      await this._spawnNpmScript(["ng-dev", "release", "npm-dist-tag", "delete", npmDistTag], projectDir, pnpmVersioning);
+      await this._spawnNpmScript(["ng-dev", "release", "npm-dist-tag", "delete", npmDistTag], projectDir);
       Log.info(green(`  \u2713   Deleted "${npmDistTag}" NPM dist tag for all packages.`));
     } catch (e) {
       Log.error(e);
@@ -47810,10 +47819,10 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeReleaseBuild(projectDir, pnpmVersioning) {
+  static async invokeReleaseBuild(projectDir) {
     const spinner = new Spinner("Building release output. This can take a few minutes.");
     try {
-      const { stdout } = await this._spawnNpmScript(["ng-dev", "release", "build", "--json"], projectDir, pnpmVersioning, {
+      const { stdout } = await this._spawnNpmScript(["ng-dev", "release", "build", "--json"], projectDir, {
         mode: "silent"
       });
       spinner.complete();
@@ -47826,9 +47835,9 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeReleaseInfo(projectDir, pnpmVersioning) {
+  static async invokeReleaseInfo(projectDir) {
     try {
-      const { stdout } = await this._spawnNpmScript(["ng-dev", "release", "info", "--json"], projectDir, pnpmVersioning, { mode: "silent" });
+      const { stdout } = await this._spawnNpmScript(["ng-dev", "release", "info", "--json"], projectDir, { mode: "silent" });
       return JSON.parse(stdout.trim());
     } catch (e) {
       Log.error(e);
@@ -47836,13 +47845,13 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async invokeReleasePrecheck(projectDir, newVersion, builtPackagesWithInfo, pnpmVersioning) {
+  static async invokeReleasePrecheck(projectDir, newVersion, builtPackagesWithInfo) {
     const precheckStdin = {
       builtPackagesWithInfo,
       newVersion: newVersion.format()
     };
     try {
-      await this._spawnNpmScript(["ng-dev", "release", "precheck"], projectDir, pnpmVersioning, {
+      await this._spawnNpmScript(["ng-dev", "release", "precheck"], projectDir, {
         input: JSON.stringify(precheckStdin)
       });
       Log.info(green(`  \u2713   Executed release pre-checks for ${newVersion}`));
@@ -47887,10 +47896,9 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
-  static async _spawnNpmScript(args, projectDir, pnpmVersioning, spawnOptions = {}) {
-    if (await pnpmVersioning.isUsingPnpm(projectDir)) {
-      const pnpmSpec = await pnpmVersioning.getPackageSpec(projectDir);
-      return ChildProcess.spawn("npx", ["--yes", pnpmSpec, "-s", "run", ...args], {
+  static async _spawnNpmScript(args, projectDir, spawnOptions = {}) {
+    if (PnpmVersioning.isUsingPnpm(projectDir)) {
+      return ChildProcess.spawn("npx", ["--yes", "pnpm", "-s", "run", ...args], {
         ...spawnOptions,
         cwd: projectDir
       });
@@ -48006,22 +48014,6 @@ async function gracefulCheckIfPullRequestIsMerged(git, id) {
   }
 }
 
-// ng-dev/release/publish/pnpm-versioning.js
-import { readFile } from "node:fs/promises";
-import { join as join8 } from "node:path";
-import { existsSync as existsSync3 } from "node:fs";
-var PnpmVersioning = class {
-  async isUsingPnpm(repoPath) {
-    return existsSync3(join8(repoPath, "pnpm-lock.yaml")) && !existsSync3(join8(repoPath, "yarn.lock"));
-  }
-  async getPackageSpec(repoPath) {
-    const packageJsonRaw = await readFile(join8(repoPath, "package.json"), "utf8");
-    const packageJson = JSON.parse(packageJsonRaw);
-    const pnpmAllowedRange = packageJson?.engines?.["pnpm"] ?? "latest";
-    return `pnpm@${pnpmAllowedRange}`;
-  }
-};
-
 // ng-dev/release/publish/actions.js
 var ReleaseAction = class {
   static isActive(_trains, _config) {
@@ -48032,7 +48024,6 @@ var ReleaseAction = class {
     this.git = git;
     this.config = config;
     this.projectDir = projectDir;
-    this.pnpmVersioning = new PnpmVersioning();
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
     const pkgJsonPath = join9(this.projectDir, workspaceRelativePackageJsonPath);
@@ -48181,7 +48172,7 @@ var ReleaseAction = class {
     this.git.run(["checkout", "-q", "FETCH_HEAD", "--detach"]);
   }
   async installDependenciesForCurrentBranch() {
-    if (await this.pnpmVersioning.isUsingPnpm(this.projectDir)) {
+    if (PnpmVersioning.isUsingPnpm(this.projectDir)) {
       try {
         this.git.run(["clean", "-qdfX", "**/node_modules"]);
       } catch {
@@ -48200,8 +48191,8 @@ var ReleaseAction = class {
     this.git.run(["commit", "-q", "--no-verify", "-m", message, ...files]);
   }
   async buildReleaseForCurrentBranch() {
-    const builtPackages = await ExternalCommands.invokeReleaseBuild(this.projectDir, this.pnpmVersioning);
-    const releaseInfo = await ExternalCommands.invokeReleaseInfo(this.projectDir, this.pnpmVersioning);
+    const builtPackages = await ExternalCommands.invokeReleaseBuild(this.projectDir);
+    const releaseInfo = await ExternalCommands.invokeReleaseInfo(this.projectDir);
     return analyzeAndExtendBuiltPackagesWithInfo(builtPackages, releaseInfo.npmPackages);
   }
   async stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, pullRequestTargetBranch, opts) {
@@ -48218,7 +48209,7 @@ var ReleaseAction = class {
     await this.waitForEditsAndCreateReleaseCommit(newVersion);
     await this.installDependenciesForCurrentBranch();
     const builtPackagesWithInfo = await this.buildReleaseForCurrentBranch();
-    await ExternalCommands.invokeReleasePrecheck(this.projectDir, newVersion, builtPackagesWithInfo, this.pnpmVersioning);
+    await ExternalCommands.invokeReleasePrecheck(this.projectDir, newVersion, builtPackagesWithInfo);
     await this._verifyPackageVersions(releaseNotes.version, builtPackagesWithInfo);
     const pullRequest = await this.pushChangesToForkAndCreatePullRequest(pullRequestTargetBranch, `release-stage-${newVersion}`, `Bump version to "v${newVersion}" with changelog.`);
     Log.info(green("  \u2713   Release staging pull request has been created."));
@@ -48561,14 +48552,14 @@ var CutStableAction = class extends ReleaseAction {
     await this.promptAndWaitForPullRequestMerged(pullRequest);
     await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this._getNpmDistTag(), { showAsLatestOnGitHub: true });
     if (this._train === this.active.exceptionalMinor) {
-      await ExternalCommands.invokeDeleteNpmDistTag(this.projectDir, "do-not-use-exceptional-minor", this.pnpmVersioning);
+      await ExternalCommands.invokeDeleteNpmDistTag(this.projectDir, "do-not-use-exceptional-minor");
     }
     if (this._isNewMajor) {
       const previousPatch = this.active.latest;
       const ltsTagForPatch = getLtsNpmDistTagOfMajor(previousPatch.version.major);
       await this.checkoutUpstreamBranch(previousPatch.branchName);
       await this.installDependenciesForCurrentBranch();
-      await ExternalCommands.invokeSetNpmDist(this.projectDir, ltsTagForPatch, previousPatch.version, this.pnpmVersioning, {
+      await ExternalCommands.invokeSetNpmDist(this.projectDir, ltsTagForPatch, previousPatch.version, {
         skipExperimentalPackages: true
       });
     }
@@ -48673,14 +48664,14 @@ var import_semver17 = __toESM(require_semver());
 // ng-dev/release/publish/actions/renovate-config-updates.js
 import { existsSync as existsSync5 } from "node:fs";
 import { join as join10 } from "node:path";
-import { writeFile, readFile as readFile2 } from "node:fs/promises";
+import { writeFile, readFile } from "node:fs/promises";
 async function updateRenovateConfig(projectDir, newBranchName) {
   const renovateConfigPath = join10(projectDir, "renovate.json");
   if (!existsSync5(renovateConfigPath)) {
     Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
     return null;
   }
-  const config = await readFile2(renovateConfigPath, "utf-8");
+  const config = await readFile(renovateConfigPath, "utf-8");
   const configJson = JSON.parse(config);
   const baseBranchPatterns = configJson["baseBranchPatterns"];
   if (!Array.isArray(baseBranchPatterns) || baseBranchPatterns.length !== 2) {
@@ -48827,7 +48818,7 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
     await this.updateGithubReleaseEntryToStable(this.active.latest.version);
     await this.checkoutUpstreamBranch(this.active.latest.branchName);
     await this.installDependenciesForCurrentBranch();
-    await ExternalCommands.invokeSetNpmDist(this.projectDir, "latest", this.active.latest.version, this.pnpmVersioning);
+    await ExternalCommands.invokeSetNpmDist(this.projectDir, "latest", this.active.latest.version);
   }
   async updateGithubReleaseEntryToStable(version) {
     const releaseTagName = getReleaseTagForVersion(version);
@@ -48883,7 +48874,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-181bb288c440f68991aa2d3539cfe083315ea46d`;
+  const localVersion = `0.0.0-73051ae248ba64911a8e7e66536d8c99ba07ef2a`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -49759,10 +49750,10 @@ async function runCommands(commands) {
 
 // ng-dev/perf/workflow/loader.js
 var import_yaml4 = __toESM(require_dist());
-import { readFile as readFile3 } from "fs/promises";
+import { readFile as readFile2 } from "fs/promises";
 async function loadWorkflows(src) {
   const filteredWorkflows = {};
-  const rawWorkflows = await readFile3(src, { encoding: "utf-8" });
+  const rawWorkflows = await readFile2(src, { encoding: "utf-8" });
   const workflows = (0, import_yaml4.parse)(rawWorkflows).workflows;
   for (const [name, workflow] of Object.entries(workflows)) {
     if (workflow.disabled !== true) {
@@ -64842,7 +64833,7 @@ function getApiKeyFromEnv() {
 
 // ng-dev/ai/migrate.js
 var import_cli_progress3 = __toESM(require_cli_progress());
-import { readFile as readFile4, writeFile as writeFile3 } from "fs/promises";
+import { readFile as readFile3, writeFile as writeFile3 } from "fs/promises";
 
 // ng-dev/ai/consts.js
 var DEFAULT_MODEL = "gemini-2.5-pro";
@@ -64891,7 +64882,7 @@ async function handler30(options) {
   ].join("\n"));
   const [files, prompt] = await Promise.all([
     (0, import_fast_glob4.default)([options.files]),
-    readFile4(options.prompt, "utf-8")
+    readFile3(options.prompt, "utf-8")
   ]);
   if (files.length === 0) {
     Log.error(`No files matched the pattern "${options.files}"`);
@@ -64930,7 +64921,7 @@ Done \u{1F389}`);
   }
   async function processFile(file) {
     try {
-      const content = await readFile4(file, "utf-8");
+      const content = await readFile3(file, "utf-8");
       const result = await applyPrompt(ai, options.model, options.temperature, content, prompt);
       await writeFile3(file, result);
     } catch (e) {
@@ -64989,7 +64980,7 @@ var MigrateModule = {
 var import_fast_glob5 = __toESM(require_out4());
 var import_cli_progress4 = __toESM(require_cli_progress());
 import { setTimeout as setTimeout2 } from "node:timers/promises";
-import { readFile as readFile5, writeFile as writeFile4 } from "node:fs/promises";
+import { readFile as readFile4, writeFile as writeFile4 } from "node:fs/promises";
 import { basename as basename2 } from "node:path";
 import assert2 from "node:assert";
 import { randomUUID as randomUUID2 } from "node:crypto";
@@ -65097,7 +65088,7 @@ async function uploadFiles(ai, filePaths, progressBar) {
   const uploadPromises = filePaths.map(async (filePath) => {
     try {
       const uploadedFile = await ai.files.upload({
-        file: new Blob([await readFile5(filePath, { encoding: "utf8" })], {
+        file: new Blob([await readFile4(filePath, { encoding: "utf8" })], {
           type: "text/plain"
         }),
         config: {

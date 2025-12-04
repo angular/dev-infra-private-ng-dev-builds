@@ -36,14 +36,14 @@ export class CutStableAction extends ReleaseAction {
         await this.promptAndWaitForPullRequestMerged(pullRequest);
         await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, branchName, this._getNpmDistTag(), { showAsLatestOnGitHub: true });
         if (this._train === this.active.exceptionalMinor) {
-            await ExternalCommands.invokeDeleteNpmDistTag(this.projectDir, 'do-not-use-exceptional-minor', this.pnpmVersioning);
+            await ExternalCommands.invokeDeleteNpmDistTag(this.projectDir, 'do-not-use-exceptional-minor');
         }
         if (this._isNewMajor) {
             const previousPatch = this.active.latest;
             const ltsTagForPatch = getLtsNpmDistTagOfMajor(previousPatch.version.major);
             await this.checkoutUpstreamBranch(previousPatch.branchName);
             await this.installDependenciesForCurrentBranch();
-            await ExternalCommands.invokeSetNpmDist(this.projectDir, ltsTagForPatch, previousPatch.version, this.pnpmVersioning, {
+            await ExternalCommands.invokeSetNpmDist(this.projectDir, ltsTagForPatch, previousPatch.version, {
                 skipExperimentalPackages: true,
             });
         }
