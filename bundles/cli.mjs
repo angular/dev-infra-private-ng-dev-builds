@@ -48883,7 +48883,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-a8b9ccaaa90e7471947ab11a7977bd51afbd877d`;
+  const localVersion = `0.0.0-4ea31068e12e4a49b36df5cce07eb0dcfcb12814`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -49060,15 +49060,6 @@ var ReleaseTool = class {
   }
   async _verifyNpmLoginState() {
     const registry = `NPM at the ${this._config.publishRegistry ?? "default NPM"} registry`;
-    if (this._config.publishRegistry?.includes("wombat-dressing-room.appspot.com")) {
-      Log.info("Unable to determine NPM login state for wombat proxy, requiring login now.");
-      try {
-        await NpmCommand.startInteractiveLogin(this._config.publishRegistry);
-      } catch {
-        return false;
-      }
-      return true;
-    }
     if (await NpmCommand.checkIsLoggedIn(this._config.publishRegistry)) {
       Log.debug(`Already logged into ${registry}.`);
       return true;

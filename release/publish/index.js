@@ -127,16 +127,6 @@ export class ReleaseTool {
     }
     async _verifyNpmLoginState() {
         const registry = `NPM at the ${this._config.publishRegistry ?? 'default NPM'} registry`;
-        if (this._config.publishRegistry?.includes('wombat-dressing-room.appspot.com')) {
-            Log.info('Unable to determine NPM login state for wombat proxy, requiring login now.');
-            try {
-                await NpmCommand.startInteractiveLogin(this._config.publishRegistry);
-            }
-            catch {
-                return false;
-            }
-            return true;
-        }
         if (await NpmCommand.checkIsLoggedIn(this._config.publishRegistry)) {
             Log.debug(`Already logged into ${registry}.`);
             return true;
