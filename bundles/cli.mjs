@@ -48869,7 +48869,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-16186d09f8e63f7b7f8b1ebf96e7fc24ead2b973`;
+  const localVersion = `0.0.0-5534a9f29f2b2d1475fa4059ae736d2dd0ae0c61`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -49917,7 +49917,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.30.0_2067644847/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.31.0_2067644847/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -49932,7 +49932,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.30.0_2067644847/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.31.0_2067644847/node_modules/@google/genai/dist/node/index.mjs
 import * as path8 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -51122,6 +51122,8 @@ var GenerateVideosOperation = class _GenerateVideosOperation {
   }
 };
 var ListTuningJobsResponse = class {
+};
+var CancelTuningJobResponse = class {
 };
 var DeleteCachedContentResponse = class {
 };
@@ -53161,6 +53163,9 @@ var Batches = class extends BaseModule2 {
   constructor(apiClient) {
     super();
     this.apiClient = apiClient;
+    this.list = async (params2 = {}) => {
+      return new Pager(PagedItem.PAGED_ITEM_BATCH_JOBS, (x) => this.listInternal(x), await this.listInternal(params2), params2);
+    };
     this.create = async (params2) => {
       if (this.apiClient.isVertexAI()) {
         params2.config = this.formatDestination(params2.src, params2.config);
@@ -53173,9 +53178,6 @@ var Batches = class extends BaseModule2 {
         throw new Error("Vertex AI does not support batches.createEmbeddings.");
       }
       return this.createEmbeddingsInternal(params2);
-    };
-    this.list = async (params2 = {}) => {
-      return new Pager(PagedItem.PAGED_ITEM_BATCH_JOBS, (x) => this.listInternal(x), await this.listInternal(params2), params2);
     };
   }
   // Helper function to handle inlined generate content requests
@@ -59421,11 +59423,239 @@ function videoToVertex(fromObject) {
   }
   return toObject;
 }
+function createFileSearchStoreConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromDisplayName = getValueByPath(fromObject, ["displayName"]);
+  if (parentObject !== void 0 && fromDisplayName != null) {
+    setValueByPath(parentObject, ["displayName"], fromDisplayName);
+  }
+  return toObject;
+}
+function createFileSearchStoreParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    createFileSearchStoreConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function deleteFileSearchStoreConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromForce = getValueByPath(fromObject, ["force"]);
+  if (parentObject !== void 0 && fromForce != null) {
+    setValueByPath(parentObject, ["_query", "force"], fromForce);
+  }
+  return toObject;
+}
+function deleteFileSearchStoreParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["_url", "name"], fromName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    deleteFileSearchStoreConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function getFileSearchStoreParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["_url", "name"], fromName);
+  }
+  return toObject;
+}
+function importFileConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromCustomMetadata = getValueByPath(fromObject, [
+    "customMetadata"
+  ]);
+  if (parentObject !== void 0 && fromCustomMetadata != null) {
+    let transformedList = fromCustomMetadata;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(parentObject, ["customMetadata"], transformedList);
+  }
+  const fromChunkingConfig = getValueByPath(fromObject, [
+    "chunkingConfig"
+  ]);
+  if (parentObject !== void 0 && fromChunkingConfig != null) {
+    setValueByPath(parentObject, ["chunkingConfig"], fromChunkingConfig);
+  }
+  return toObject;
+}
+function importFileOperationFromMldev(fromObject) {
+  const toObject = {};
+  const fromName = getValueByPath(fromObject, ["name"]);
+  if (fromName != null) {
+    setValueByPath(toObject, ["name"], fromName);
+  }
+  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
+  if (fromMetadata != null) {
+    setValueByPath(toObject, ["metadata"], fromMetadata);
+  }
+  const fromDone = getValueByPath(fromObject, ["done"]);
+  if (fromDone != null) {
+    setValueByPath(toObject, ["done"], fromDone);
+  }
+  const fromError = getValueByPath(fromObject, ["error"]);
+  if (fromError != null) {
+    setValueByPath(toObject, ["error"], fromError);
+  }
+  const fromResponse = getValueByPath(fromObject, ["response"]);
+  if (fromResponse != null) {
+    setValueByPath(toObject, ["response"], importFileResponseFromMldev(fromResponse));
+  }
+  return toObject;
+}
+function importFileParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromFileSearchStoreName = getValueByPath(fromObject, [
+    "fileSearchStoreName"
+  ]);
+  if (fromFileSearchStoreName != null) {
+    setValueByPath(toObject, ["_url", "file_search_store_name"], fromFileSearchStoreName);
+  }
+  const fromFileName = getValueByPath(fromObject, ["fileName"]);
+  if (fromFileName != null) {
+    setValueByPath(toObject, ["fileName"], fromFileName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    importFileConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function importFileResponseFromMldev(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  const fromParent = getValueByPath(fromObject, ["parent"]);
+  if (fromParent != null) {
+    setValueByPath(toObject, ["parent"], fromParent);
+  }
+  const fromDocumentName = getValueByPath(fromObject, ["documentName"]);
+  if (fromDocumentName != null) {
+    setValueByPath(toObject, ["documentName"], fromDocumentName);
+  }
+  return toObject;
+}
+function listFileSearchStoresConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromPageSize = getValueByPath(fromObject, ["pageSize"]);
+  if (parentObject !== void 0 && fromPageSize != null) {
+    setValueByPath(parentObject, ["_query", "pageSize"], fromPageSize);
+  }
+  const fromPageToken = getValueByPath(fromObject, ["pageToken"]);
+  if (parentObject !== void 0 && fromPageToken != null) {
+    setValueByPath(parentObject, ["_query", "pageToken"], fromPageToken);
+  }
+  return toObject;
+}
+function listFileSearchStoresParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    listFileSearchStoresConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function listFileSearchStoresResponseFromMldev(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  const fromNextPageToken = getValueByPath(fromObject, [
+    "nextPageToken"
+  ]);
+  if (fromNextPageToken != null) {
+    setValueByPath(toObject, ["nextPageToken"], fromNextPageToken);
+  }
+  const fromFileSearchStores = getValueByPath(fromObject, [
+    "fileSearchStores"
+  ]);
+  if (fromFileSearchStores != null) {
+    let transformedList = fromFileSearchStores;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["fileSearchStores"], transformedList);
+  }
+  return toObject;
+}
+function uploadToFileSearchStoreConfigToMldev(fromObject, parentObject) {
+  const toObject = {};
+  const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
+  if (parentObject !== void 0 && fromMimeType != null) {
+    setValueByPath(parentObject, ["mimeType"], fromMimeType);
+  }
+  const fromDisplayName = getValueByPath(fromObject, ["displayName"]);
+  if (parentObject !== void 0 && fromDisplayName != null) {
+    setValueByPath(parentObject, ["displayName"], fromDisplayName);
+  }
+  const fromCustomMetadata = getValueByPath(fromObject, [
+    "customMetadata"
+  ]);
+  if (parentObject !== void 0 && fromCustomMetadata != null) {
+    let transformedList = fromCustomMetadata;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(parentObject, ["customMetadata"], transformedList);
+  }
+  const fromChunkingConfig = getValueByPath(fromObject, [
+    "chunkingConfig"
+  ]);
+  if (parentObject !== void 0 && fromChunkingConfig != null) {
+    setValueByPath(parentObject, ["chunkingConfig"], fromChunkingConfig);
+  }
+  return toObject;
+}
+function uploadToFileSearchStoreParametersToMldev(fromObject) {
+  const toObject = {};
+  const fromFileSearchStoreName = getValueByPath(fromObject, [
+    "fileSearchStoreName"
+  ]);
+  if (fromFileSearchStoreName != null) {
+    setValueByPath(toObject, ["_url", "file_search_store_name"], fromFileSearchStoreName);
+  }
+  const fromConfig = getValueByPath(fromObject, ["config"]);
+  if (fromConfig != null) {
+    uploadToFileSearchStoreConfigToMldev(fromConfig, toObject);
+  }
+  return toObject;
+}
+function uploadToFileSearchStoreResumableResponseFromMldev(fromObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  return toObject;
+}
 var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.30.0";
+var SDK_VERSION = "1.31.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -59820,11 +60050,8 @@ var ApiClient = class {
     const path9 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
     const fileName = this.getFileName(file);
     const body = {};
-    if (config === null || config === void 0 ? void 0 : config.customMetadata) {
-      body["customMetadata"] = config.customMetadata;
-    }
-    if (config === null || config === void 0 ? void 0 : config.chunkingConfig) {
-      body["chunkingConfig"] = config.chunkingConfig;
+    if (config != null) {
+      uploadToFileSearchStoreConfigToMldev(config, body);
     }
     const uploadUrl = await this.fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, config === null || config === void 0 ? void 0 : config.httpOptions);
     return uploader.uploadToFileSearchStore(file, uploadUrl, this);
@@ -62701,234 +62928,6 @@ var Tokens = class extends BaseModule2 {
     }
   }
 };
-function createFileSearchStoreConfigToMldev(fromObject, parentObject) {
-  const toObject = {};
-  const fromDisplayName = getValueByPath(fromObject, ["displayName"]);
-  if (parentObject !== void 0 && fromDisplayName != null) {
-    setValueByPath(parentObject, ["displayName"], fromDisplayName);
-  }
-  return toObject;
-}
-function createFileSearchStoreParametersToMldev(fromObject) {
-  const toObject = {};
-  const fromConfig = getValueByPath(fromObject, ["config"]);
-  if (fromConfig != null) {
-    createFileSearchStoreConfigToMldev(fromConfig, toObject);
-  }
-  return toObject;
-}
-function deleteFileSearchStoreConfigToMldev(fromObject, parentObject) {
-  const toObject = {};
-  const fromForce = getValueByPath(fromObject, ["force"]);
-  if (parentObject !== void 0 && fromForce != null) {
-    setValueByPath(parentObject, ["_query", "force"], fromForce);
-  }
-  return toObject;
-}
-function deleteFileSearchStoreParametersToMldev(fromObject) {
-  const toObject = {};
-  const fromName = getValueByPath(fromObject, ["name"]);
-  if (fromName != null) {
-    setValueByPath(toObject, ["_url", "name"], fromName);
-  }
-  const fromConfig = getValueByPath(fromObject, ["config"]);
-  if (fromConfig != null) {
-    deleteFileSearchStoreConfigToMldev(fromConfig, toObject);
-  }
-  return toObject;
-}
-function getFileSearchStoreParametersToMldev(fromObject) {
-  const toObject = {};
-  const fromName = getValueByPath(fromObject, ["name"]);
-  if (fromName != null) {
-    setValueByPath(toObject, ["_url", "name"], fromName);
-  }
-  return toObject;
-}
-function importFileConfigToMldev(fromObject, parentObject) {
-  const toObject = {};
-  const fromCustomMetadata = getValueByPath(fromObject, [
-    "customMetadata"
-  ]);
-  if (parentObject !== void 0 && fromCustomMetadata != null) {
-    let transformedList = fromCustomMetadata;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return item;
-      });
-    }
-    setValueByPath(parentObject, ["customMetadata"], transformedList);
-  }
-  const fromChunkingConfig = getValueByPath(fromObject, [
-    "chunkingConfig"
-  ]);
-  if (parentObject !== void 0 && fromChunkingConfig != null) {
-    setValueByPath(parentObject, ["chunkingConfig"], fromChunkingConfig);
-  }
-  return toObject;
-}
-function importFileOperationFromMldev(fromObject) {
-  const toObject = {};
-  const fromName = getValueByPath(fromObject, ["name"]);
-  if (fromName != null) {
-    setValueByPath(toObject, ["name"], fromName);
-  }
-  const fromMetadata = getValueByPath(fromObject, ["metadata"]);
-  if (fromMetadata != null) {
-    setValueByPath(toObject, ["metadata"], fromMetadata);
-  }
-  const fromDone = getValueByPath(fromObject, ["done"]);
-  if (fromDone != null) {
-    setValueByPath(toObject, ["done"], fromDone);
-  }
-  const fromError = getValueByPath(fromObject, ["error"]);
-  if (fromError != null) {
-    setValueByPath(toObject, ["error"], fromError);
-  }
-  const fromResponse = getValueByPath(fromObject, ["response"]);
-  if (fromResponse != null) {
-    setValueByPath(toObject, ["response"], importFileResponseFromMldev(fromResponse));
-  }
-  return toObject;
-}
-function importFileParametersToMldev(fromObject) {
-  const toObject = {};
-  const fromFileSearchStoreName = getValueByPath(fromObject, [
-    "fileSearchStoreName"
-  ]);
-  if (fromFileSearchStoreName != null) {
-    setValueByPath(toObject, ["_url", "file_search_store_name"], fromFileSearchStoreName);
-  }
-  const fromFileName = getValueByPath(fromObject, ["fileName"]);
-  if (fromFileName != null) {
-    setValueByPath(toObject, ["fileName"], fromFileName);
-  }
-  const fromConfig = getValueByPath(fromObject, ["config"]);
-  if (fromConfig != null) {
-    importFileConfigToMldev(fromConfig, toObject);
-  }
-  return toObject;
-}
-function importFileResponseFromMldev(fromObject) {
-  const toObject = {};
-  const fromSdkHttpResponse = getValueByPath(fromObject, [
-    "sdkHttpResponse"
-  ]);
-  if (fromSdkHttpResponse != null) {
-    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
-  }
-  const fromParent = getValueByPath(fromObject, ["parent"]);
-  if (fromParent != null) {
-    setValueByPath(toObject, ["parent"], fromParent);
-  }
-  const fromDocumentName = getValueByPath(fromObject, ["documentName"]);
-  if (fromDocumentName != null) {
-    setValueByPath(toObject, ["documentName"], fromDocumentName);
-  }
-  return toObject;
-}
-function listFileSearchStoresConfigToMldev(fromObject, parentObject) {
-  const toObject = {};
-  const fromPageSize = getValueByPath(fromObject, ["pageSize"]);
-  if (parentObject !== void 0 && fromPageSize != null) {
-    setValueByPath(parentObject, ["_query", "pageSize"], fromPageSize);
-  }
-  const fromPageToken = getValueByPath(fromObject, ["pageToken"]);
-  if (parentObject !== void 0 && fromPageToken != null) {
-    setValueByPath(parentObject, ["_query", "pageToken"], fromPageToken);
-  }
-  return toObject;
-}
-function listFileSearchStoresParametersToMldev(fromObject) {
-  const toObject = {};
-  const fromConfig = getValueByPath(fromObject, ["config"]);
-  if (fromConfig != null) {
-    listFileSearchStoresConfigToMldev(fromConfig, toObject);
-  }
-  return toObject;
-}
-function listFileSearchStoresResponseFromMldev(fromObject) {
-  const toObject = {};
-  const fromSdkHttpResponse = getValueByPath(fromObject, [
-    "sdkHttpResponse"
-  ]);
-  if (fromSdkHttpResponse != null) {
-    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
-  }
-  const fromNextPageToken = getValueByPath(fromObject, [
-    "nextPageToken"
-  ]);
-  if (fromNextPageToken != null) {
-    setValueByPath(toObject, ["nextPageToken"], fromNextPageToken);
-  }
-  const fromFileSearchStores = getValueByPath(fromObject, [
-    "fileSearchStores"
-  ]);
-  if (fromFileSearchStores != null) {
-    let transformedList = fromFileSearchStores;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return item;
-      });
-    }
-    setValueByPath(toObject, ["fileSearchStores"], transformedList);
-  }
-  return toObject;
-}
-function uploadToFileSearchStoreConfigToMldev(fromObject, parentObject) {
-  const toObject = {};
-  const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
-  if (parentObject !== void 0 && fromMimeType != null) {
-    setValueByPath(parentObject, ["mimeType"], fromMimeType);
-  }
-  const fromDisplayName = getValueByPath(fromObject, ["displayName"]);
-  if (parentObject !== void 0 && fromDisplayName != null) {
-    setValueByPath(parentObject, ["displayName"], fromDisplayName);
-  }
-  const fromCustomMetadata = getValueByPath(fromObject, [
-    "customMetadata"
-  ]);
-  if (parentObject !== void 0 && fromCustomMetadata != null) {
-    let transformedList = fromCustomMetadata;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return item;
-      });
-    }
-    setValueByPath(parentObject, ["customMetadata"], transformedList);
-  }
-  const fromChunkingConfig = getValueByPath(fromObject, [
-    "chunkingConfig"
-  ]);
-  if (parentObject !== void 0 && fromChunkingConfig != null) {
-    setValueByPath(parentObject, ["chunkingConfig"], fromChunkingConfig);
-  }
-  return toObject;
-}
-function uploadToFileSearchStoreParametersToMldev(fromObject) {
-  const toObject = {};
-  const fromFileSearchStoreName = getValueByPath(fromObject, [
-    "fileSearchStoreName"
-  ]);
-  if (fromFileSearchStoreName != null) {
-    setValueByPath(toObject, ["_url", "file_search_store_name"], fromFileSearchStoreName);
-  }
-  const fromConfig = getValueByPath(fromObject, ["config"]);
-  if (fromConfig != null) {
-    uploadToFileSearchStoreConfigToMldev(fromConfig, toObject);
-  }
-  return toObject;
-}
-function uploadToFileSearchStoreResumableResponseFromMldev(fromObject) {
-  const toObject = {};
-  const fromSdkHttpResponse = getValueByPath(fromObject, [
-    "sdkHttpResponse"
-  ]);
-  if (fromSdkHttpResponse != null) {
-    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
-  }
-  return toObject;
-}
 function deleteDocumentConfigToMldev(fromObject, parentObject) {
   const toObject = {};
   const fromForce = getValueByPath(fromObject, ["force"]);
@@ -63012,10 +63011,7 @@ var Documents = class extends BaseModule2 {
     super();
     this.apiClient = apiClient;
     this.list = async (params2) => {
-      return new Pager(PagedItem.PAGED_ITEM_DOCUMENTS, (x) => this.listInternal({
-        parent: params2.parent,
-        config: x.config
-      }), await this.listInternal(params2), params2);
+      return new Pager(PagedItem.PAGED_ITEM_DOCUMENTS, (x) => this.listInternal({ parent: params2.parent, config: x.config }), await this.listInternal(params2), params2);
     };
   }
   /**
@@ -63079,12 +63075,6 @@ var Documents = class extends BaseModule2 {
       });
     }
   }
-  /**
-   * Lists all Documents in a FileSearchStore.
-   *
-   * @param params - The parameters for listing documents.
-   * @return ListDocumentsResponse.
-   */
   async listInternal(params2) {
     var _a, _b;
     let response;
@@ -63263,12 +63253,6 @@ var FileSearchStores = class extends BaseModule2 {
       });
     }
   }
-  /**
-   * Lists all FileSearchStore owned by the user.
-   *
-   * @param params - The parameters for listing file search stores.
-   * @return ListFileSearchStoresResponse.
-   */
   async listInternal(params2) {
     var _a, _b;
     let response;
@@ -63528,6 +63512,26 @@ function cancelTuningJobParametersToVertex(fromObject, _rootObject) {
   const fromName = getValueByPath(fromObject, ["name"]);
   if (fromName != null) {
     setValueByPath(toObject, ["_url", "name"], fromName);
+  }
+  return toObject;
+}
+function cancelTuningJobResponseFromMldev(fromObject, _rootObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
+  }
+  return toObject;
+}
+function cancelTuningJobResponseFromVertex(fromObject, _rootObject) {
+  const toObject = {};
+  const fromSdkHttpResponse = getValueByPath(fromObject, [
+    "sdkHttpResponse"
+  ]);
+  if (fromSdkHttpResponse != null) {
+    setValueByPath(toObject, ["sdkHttpResponse"], fromSdkHttpResponse);
   }
   return toObject;
 }
@@ -64176,11 +64180,11 @@ var Tunings = class extends BaseModule2 {
   constructor(apiClient) {
     super();
     this.apiClient = apiClient;
-    this.get = async (params2) => {
-      return await this.getInternal(params2);
-    };
     this.list = async (params2 = {}) => {
       return new Pager(PagedItem.PAGED_ITEM_TUNING_JOBS, (x) => this.listInternal(x), await this.listInternal(params2), params2);
+    };
+    this.get = async (params2) => {
+      return await this.getInternal(params2);
     };
     this.tune = async (params2) => {
       var _a;
@@ -64351,6 +64355,7 @@ var Tunings = class extends BaseModule2 {
    */
   async cancel(params2) {
     var _a, _b, _c, _d;
+    let response;
     let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -64359,13 +64364,27 @@ var Tunings = class extends BaseModule2 {
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
-      await this.apiClient.request({
+      response = this.apiClient.request({
         path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
         httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
+      });
+      return response.then((apiResponse) => {
+        const resp = cancelTuningJobResponseFromVertex(apiResponse);
+        const typedResp = new CancelTuningJobResponse();
+        Object.assign(typedResp, resp);
+        return typedResp;
       });
     } else {
       const body = cancelTuningJobParametersToMldev(params2);
@@ -64373,13 +64392,27 @@ var Tunings = class extends BaseModule2 {
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
-      await this.apiClient.request({
+      response = this.apiClient.request({
         path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
         httpOptions: (_c = params2.config) === null || _c === void 0 ? void 0 : _c.httpOptions,
         abortSignal: (_d = params2.config) === null || _d === void 0 ? void 0 : _d.abortSignal
+      }).then((httpResponse) => {
+        return httpResponse.json().then((jsonResponse) => {
+          const response2 = jsonResponse;
+          response2.sdkHttpResponse = {
+            headers: httpResponse.headers
+          };
+          return response2;
+        });
+      });
+      return response.then((apiResponse) => {
+        const resp = cancelTuningJobResponseFromMldev(apiResponse);
+        const typedResp = new CancelTuningJobResponse();
+        Object.assign(typedResp, resp);
+        return typedResp;
       });
     }
   }
@@ -64776,6 +64809,7 @@ var GoogleGenAI = class {
       }
     }
     this.apiVersion = options.apiVersion;
+    this.httpOptions = options.httpOptions;
     const auth = new NodeAuth({
       apiKey: this.apiKey,
       googleAuthOptions: options.googleAuthOptions
@@ -64787,7 +64821,7 @@ var GoogleGenAI = class {
       apiVersion: this.apiVersion,
       apiKey: this.apiKey,
       vertexai: this.vertexai,
-      httpOptions: options.httpOptions,
+      httpOptions: this.httpOptions,
       userAgentExtra: LANGUAGE_LABEL_PREFIX + process.version,
       uploader: new NodeUploader(),
       downloader: new NodeDownloader()
