@@ -1,8 +1,8 @@
 import { Formatter } from './base-formatter.js';
 export declare class Prettier extends Formatter {
-    name: string;
+    readonly name = "prettier";
     binaryFilePath: string;
-    defaultFileMatcher: string[];
+    matchers: string[];
     private configPath;
     actions: {
         check: {

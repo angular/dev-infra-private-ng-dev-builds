@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-VWXEN242.mjs";
+} from "./chunk-RGT6JHGX.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -44045,14 +44045,7 @@ var Formatter = class {
     return !!this.config[this.name];
   }
   getFileMatcher() {
-    return this.getFileMatcherFromConfig() || this.defaultFileMatcher;
-  }
-  getFileMatcherFromConfig() {
-    const formatterConfig = this.config[this.name];
-    if (typeof formatterConfig === "boolean") {
-      return void 0;
-    }
-    return formatterConfig.matchers;
+    return this.config[this.name] ? this.matchers : [];
   }
 };
 
@@ -44062,7 +44055,7 @@ var Buildifier = class extends Formatter {
     super(...arguments);
     this.name = "buildifier";
     this.binaryFilePath = join(this.git.baseDir, "node_modules/.bin/buildifier");
-    this.defaultFileMatcher = ["**/*.bzl", "**/*.bazel", "**/WORKSPACE", "**/BUILD"];
+    this.matchers = ["**/*.bzl", "**/*.bazel", "**/WORKSPACE", "**/BUILD"];
     this.actions = {
       check: {
         commandFlags: `${BAZEL_WARNING_FLAG} --lint=warn --mode=check --format=json`,
@@ -44095,13 +44088,15 @@ var Prettier = class extends Formatter {
     super(...arguments);
     this.name = "prettier";
     this.binaryFilePath = join2(this.git.baseDir, "node_modules/.bin/prettier");
-    this.defaultFileMatcher = [
+    this.matchers = [
       "**/*.{js,cjs,mjs}",
       "**/*.{ts,cts,mts}",
+      "**/*.{jsx,tsx}",
+      "**/*.{css,scss}",
       "**/*.{json,json5}",
-      "**/*.md",
       "**/*.{yml,yaml}",
-      "!**/goldens/**/*.api.md"
+      "**/*.md",
+      "**/*.html"
     ];
     this.configPath = this.config["prettier"] ? ChildProcess.spawnSync(this.binaryFilePath, [
       "--find-config-path",
@@ -48874,7 +48869,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-58093dc2efd7605b0e925458f2bb885db1befdb2`;
+  const localVersion = `0.0.0-16186d09f8e63f7b7f8b1ebf96e7fc24ead2b973`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;

@@ -9,18 +9,17 @@ interface FormatterActionMetadata {
 export declare abstract class Formatter {
     protected git: GitClient;
     protected config: FormatConfig;
-    abstract name: string;
+    abstract name: keyof FormatConfig;
     abstract binaryFilePath: string;
     abstract actions: {
         check: FormatterActionMetadata;
         format: FormatterActionMetadata;
     };
-    abstract defaultFileMatcher: string[];
+    abstract matchers: string[];
     constructor(git: GitClient, config: FormatConfig);
     commandFor(action: FormatterAction): string;
     callbackFor(action: FormatterAction): CallbackFunc;
     isEnabled(): boolean;
     getFileMatcher(): string[];
-    private getFileMatcherFromConfig;
 }
 export {};

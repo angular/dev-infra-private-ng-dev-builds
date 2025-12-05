@@ -7,13 +7,15 @@ export class Prettier extends Formatter {
         super(...arguments);
         this.name = 'prettier';
         this.binaryFilePath = join(this.git.baseDir, 'node_modules/.bin/prettier');
-        this.defaultFileMatcher = [
+        this.matchers = [
             '**/*.{js,cjs,mjs}',
             '**/*.{ts,cts,mts}',
+            '**/*.{jsx,tsx}',
+            '**/*.{css,scss}',
             '**/*.{json,json5}',
-            '**/*.md',
             '**/*.{yml,yaml}',
-            '!**/goldens/**/*.api.md',
+            '**/*.md',
+            '**/*.html',
         ];
         this.configPath = this.config['prettier']
             ? ChildProcess.spawnSync(this.binaryFilePath, [

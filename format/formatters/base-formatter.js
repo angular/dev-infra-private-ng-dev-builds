@@ -27,14 +27,7 @@ export class Formatter {
         return !!this.config[this.name];
     }
     getFileMatcher() {
-        return this.getFileMatcherFromConfig() || this.defaultFileMatcher;
-    }
-    getFileMatcherFromConfig() {
-        const formatterConfig = this.config[this.name];
-        if (typeof formatterConfig === 'boolean') {
-            return undefined;
-        }
-        return formatterConfig.matchers;
+        return this.config[this.name] ? this.matchers : [];
     }
 }
 //# sourceMappingURL=base-formatter.js.map

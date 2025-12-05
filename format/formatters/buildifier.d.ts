@@ -1,8 +1,8 @@
 import { Formatter } from './base-formatter.js';
 export declare class Buildifier extends Formatter {
-    name: string;
+    readonly name = "buildifier";
     binaryFilePath: string;
-    defaultFileMatcher: string[];
+    matchers: string[];
     actions: {
         check: {
             commandFlags: string;
