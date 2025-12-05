@@ -48869,7 +48869,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-5534a9f29f2b2d1475fa4059ae736d2dd0ae0c61`;
+  const localVersion = `0.0.0-339a6086940cb7f37a22ac22f823a09b03e0c620`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
