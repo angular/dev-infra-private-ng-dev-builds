@@ -63,6 +63,7 @@ export declare abstract class ReleaseAction {
     protected promptAndWaitForPullRequestMerged(pullRequest: PullRequest): Promise<void>;
     private _createGithubReleaseForVersion;
     private _getGithubChangelogUrlForRef;
+    private _getReleaseNotesCompareTag;
     protected publish(builtPackagesWithInfo: BuiltPackageWithInfo[], releaseNotes: ReleaseNotes, beforeStagingSha: string, publishBranch: string, npmDistTag: NpmDistTag, additionalOptions: {
         showAsLatestOnGitHub: boolean;
     }): Promise<void>;

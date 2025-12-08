@@ -1,4 +1,4 @@
 export function getReleaseTagForVersion(version) {
-    return version.format();
+    return `v${version.format()}`;
 }
 //# sourceMappingURL=version-tags.js.map

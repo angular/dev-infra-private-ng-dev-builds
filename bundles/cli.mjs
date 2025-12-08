@@ -47713,7 +47713,7 @@ function createExperimentalSemver(version) {
 
 // ng-dev/release/versioning/version-tags.js
 function getReleaseTagForVersion(version) {
-  return version.format();
+  return `v${version.format()}`;
 }
 
 // ng-dev/release/publish/directory-hash.js
@@ -48191,7 +48191,7 @@ var ReleaseAction = class {
     return analyzeAndExtendBuiltPackagesWithInfo(builtPackages, releaseInfo.npmPackages);
   }
   async stageVersionForBranchAndCreatePullRequest(newVersion, compareVersionForReleaseNotes, pullRequestTargetBranch, opts) {
-    const releaseNotesCompareTag = getReleaseTagForVersion(compareVersionForReleaseNotes);
+    const releaseNotesCompareTag = this._getReleaseNotesCompareTag(compareVersionForReleaseNotes);
     this.git.run([
       "fetch",
       "--force",
@@ -48264,6 +48264,22 @@ var ReleaseAction = class {
     const baseUrl = getFileContentsUrl(this.git, ref, workspaceRelativeChangelogPath);
     const urlFragment = await releaseNotes.getUrlFragmentForRelease();
     return `${baseUrl}#${urlFragment}`;
+  }
+  _getReleaseNotesCompareTag(version) {
+    const prefixedTag = getReleaseTagForVersion(version);
+    const unprefixedTag = version.version;
+    const verifyTagExists = (tag) => {
+      const args = ["ls-remote", "--exit-code", this.git.getRepoGitUrl(), `refs/tags/${tag}`];
+      return this.git.runGraceful(args).status === 0;
+    };
+    if (verifyTagExists(prefixedTag)) {
+      return prefixedTag;
+    }
+    if (verifyTagExists(unprefixedTag)) {
+      return unprefixedTag;
+    }
+    Log.error(`  \u2718   Unable to find previous tag (${prefixedTag}) for building release notes.`);
+    throw new FatalReleaseActionError();
   }
   async publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, publishBranch, npmDistTag, additionalOptions) {
     const releaseSha = await this._getAndValidateLatestCommitForPublishing(publishBranch, releaseNotes.version, beforeStagingSha);
@@ -48869,7 +48885,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-e53a3b15d4c80d8a6030992399e753878e21d57a`;
+  const localVersion = `0.0.0-a35b47ef853067bdac67f4abb5ef145c35a50c32`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
