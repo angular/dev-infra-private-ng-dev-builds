@@ -27248,9 +27248,9 @@ var require_envDetect = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/lib/data-stream.js
+// node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/data-stream.js
 var require_data_stream = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/lib/data-stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/data-stream.js"(exports, module) {
     var Buffer2 = require_safe_buffer().Buffer;
     var Stream = __require("stream");
     var util = __require("util");
@@ -27554,9 +27554,9 @@ var require_jwa = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/lib/tostring.js
+// node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/tostring.js
 var require_tostring = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/lib/tostring.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/tostring.js"(exports, module) {
     var Buffer2 = __require("buffer").Buffer;
     module.exports = function toString(obj) {
       if (typeof obj === "string")
@@ -27568,9 +27568,9 @@ var require_tostring = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/lib/sign-stream.js
+// node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/sign-stream.js
 var require_sign_stream = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/lib/sign-stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/sign-stream.js"(exports, module) {
     var Buffer2 = require_safe_buffer().Buffer;
     var DataStream = require_data_stream();
     var jwa = require_jwa();
@@ -27597,7 +27597,12 @@ var require_sign_stream = __commonJS({
       return util.format("%s.%s", securedInput, signature);
     }
     function SignStream(opts) {
-      var secret = opts.secret || opts.privateKey || opts.key;
+      var secret = opts.secret;
+      secret = secret == null ? opts.privateKey : secret;
+      secret = secret == null ? opts.key : secret;
+      if (/^hs/i.test(opts.header.alg) === true && secret == null) {
+        throw new TypeError("secret must be a string or buffer or a KeyObject");
+      }
       var secretStream = new DataStream(secret);
       this.readable = true;
       this.header = opts.header;
@@ -27638,9 +27643,9 @@ var require_sign_stream = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/lib/verify-stream.js
+// node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/verify-stream.js
 var require_verify_stream = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/lib/verify-stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/verify-stream.js"(exports, module) {
     var Buffer2 = require_safe_buffer().Buffer;
     var DataStream = require_data_stream();
     var jwa = require_jwa();
@@ -27709,7 +27714,12 @@ var require_verify_stream = __commonJS({
     }
     function VerifyStream(opts) {
       opts = opts || {};
-      var secretOrKey = opts.secret || opts.publicKey || opts.key;
+      var secretOrKey = opts.secret;
+      secretOrKey = secretOrKey == null ? opts.publicKey : secretOrKey;
+      secretOrKey = secretOrKey == null ? opts.key : secretOrKey;
+      if (/^hs/i.test(opts.algorithm) === true && secretOrKey == null) {
+        throw new TypeError("secret must be a string or buffer or a KeyObject");
+      }
       var secretStream = new DataStream(secretOrKey);
       this.readable = true;
       this.algorithm = opts.algorithm;
@@ -27748,9 +27758,9 @@ var require_verify_stream = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/index.js
+// node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/index.js
 var require_jws = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.0/node_modules/jws/index.js"(exports) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/index.js"(exports) {
     var SignStream = require_sign_stream();
     var VerifyStream = require_verify_stream();
     var ALGORITHMS = [
@@ -48885,7 +48895,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-fabf48e542781bd9f18b1dd9dddfd5053cde77ac`;
+  const localVersion = `0.0.0-4ec84059f295affa82fe766682981b8b838a057b`;
   if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -49933,7 +49943,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.31.0_2067644847/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.31.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -49948,7 +49958,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.31.0_2067644847/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.31.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
 import * as path8 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
