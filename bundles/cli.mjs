@@ -48884,7 +48884,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-a23842272507fe134f9d6b9459842dac1782f1e7`;
+var localVersion = `0.0.0-83615654901e35c6f62f8821dfc640072e5f1b0f`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49050,6 +49050,15 @@ var ReleaseTool = class {
   }
   async _verifyNpmLoginState() {
     const registry = `NPM at the ${this._config.publishRegistry ?? "default NPM"} registry`;
+    if (this._config.publishRegistry?.includes("wombat-dressing-room.appspot.com")) {
+      Log.info("Unable to determine NPM login state for wombat proxy, requiring login now.");
+      try {
+        await NpmCommand.startInteractiveLogin(this._config.publishRegistry);
+      } catch {
+        return false;
+      }
+      return true;
+    }
     if (await NpmCommand.checkIsLoggedIn(this._config.publishRegistry)) {
       Log.debug(`Already logged into ${registry}.`);
       return true;
