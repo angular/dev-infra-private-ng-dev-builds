@@ -21413,9 +21413,9 @@ var require_lib7 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.6/node_modules/@pnpm/dependency-path/lib/index.js
+// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.7/node_modules/@pnpm/dependency-path/lib/index.js
 var require_lib8 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.6/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.7/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -39304,7 +39304,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -39323,7 +39323,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -39346,10 +39346,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -39455,7 +39455,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -39473,7 +39473,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -39485,7 +39485,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.2/node_modules/@inquirer/figures/dist/index.js
@@ -39780,7 +39780,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39801,7 +39801,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39829,7 +39829,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39860,7 +39860,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39873,12 +39873,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39897,7 +39897,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
@@ -39906,7 +39906,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -39995,7 +39995,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -40251,7 +40251,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.2/node_modules/@inquirer/ansi/dist/index.js
@@ -40270,7 +40270,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -40330,7 +40330,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -40345,7 +40345,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -40432,7 +40432,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.1/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -40447,7 +40447,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.2_at_types_node_24.10.1/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -40620,7 +40620,7 @@ var dist_default2 = createPrompt((config, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.1/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -40629,7 +40629,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.1/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40638,7 +40638,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.1/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40647,7 +40647,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.1/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40656,7 +40656,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.1/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40665,7 +40665,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.1/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -40819,7 +40819,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.2_at_types_node_24.10.1/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -40888,7 +40888,7 @@ var dist_default3 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.2_at_types_node_24.10.1/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.2_at_types_node_24.10.2/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -40934,7 +40934,7 @@ var dist_default4 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.2_at_types_node_24.10.1/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -41019,7 +41019,7 @@ var dist_default5 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.2_at_types_node_24.10.1/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.2_at_types_node_24.10.2/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -41100,7 +41100,7 @@ var dist_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.2_at_types_node_24.10.1/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -41196,7 +41196,7 @@ var dist_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.0.2_at_types_node_24.10.1/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -41306,7 +41306,7 @@ var dist_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.2_at_types_node_24.10.1/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/password/dist/index.js
 var dist_default9 = createPrompt((config, done) => {
   const { validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -41355,7 +41355,7 @@ var dist_default9 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.0.2_at_types_node_24.10.1/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.0.2_at_types_node_24.10.2/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -41517,7 +41517,7 @@ var dist_default10 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.0.2_at_types_node_24.10.1/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -48884,7 +48884,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-ddf52da29b368a9c49c31033e4b2680d5c5635d0`;
+var localVersion = `0.0.0-778e3e01c7b518e37691411fb3b2c57a0b199914`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49921,7 +49921,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.31.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.32.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -49936,7 +49936,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.31.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.32.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
 import * as path8 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -52606,6 +52606,12 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
   if (fromImageConfig != null) {
     setValueByPath(toObject, ["imageConfig"], imageConfigToMldev$1(fromImageConfig));
   }
+  const fromEnableEnhancedCivicAnswers = getValueByPath(fromObject, [
+    "enableEnhancedCivicAnswers"
+  ]);
+  if (fromEnableEnhancedCivicAnswers != null) {
+    setValueByPath(toObject, ["enableEnhancedCivicAnswers"], fromEnableEnhancedCivicAnswers);
+  }
   return toObject;
 }
 function generateContentResponseFromMldev$1(fromObject) {
@@ -54877,17 +54883,17 @@ var Chat = class {
     return structuredClone(history);
   }
   processStreamResponse(streamResponse, inputContent) {
-    var _a, _b;
     return __asyncGenerator(this, arguments, function* processStreamResponse_1() {
-      var _c, e_1, _d, _e;
+      var _a, e_1, _b, _c;
+      var _d, _e;
       const outputContent = [];
       try {
-        for (var _f = true, streamResponse_1 = __asyncValues(streamResponse), streamResponse_1_1; streamResponse_1_1 = yield __await(streamResponse_1.next()), _c = streamResponse_1_1.done, !_c; _f = true) {
-          _e = streamResponse_1_1.value;
+        for (var _f = true, streamResponse_1 = __asyncValues(streamResponse), streamResponse_1_1; streamResponse_1_1 = yield __await(streamResponse_1.next()), _a = streamResponse_1_1.done, !_a; _f = true) {
+          _c = streamResponse_1_1.value;
           _f = false;
-          const chunk = _e;
+          const chunk = _c;
           if (isValidResponse(chunk)) {
-            const content = (_b = (_a = chunk.candidates) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.content;
+            const content = (_e = (_d = chunk.candidates) === null || _d === void 0 ? void 0 : _d[0]) === null || _e === void 0 ? void 0 : _e.content;
             if (content !== void 0) {
               outputContent.push(content);
             }
@@ -54898,8 +54904,8 @@ var Chat = class {
         e_1 = { error: e_1_1 };
       } finally {
         try {
-          if (!_f && !_c && (_d = streamResponse_1.return))
-            yield __await(_d.call(streamResponse_1));
+          if (!_f && !_a && (_b = streamResponse_1.return))
+            yield __await(_b.call(streamResponse_1));
         } finally {
           if (e_1)
             throw e_1.error;
@@ -55992,13 +55998,13 @@ function sessionResumptionConfigToMldev$1(fromObject) {
 }
 function speechConfigToVertex$1(fromObject) {
   const toObject = {};
-  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
-  if (fromLanguageCode != null) {
-    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
-  }
   const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
   if (fromVoiceConfig != null) {
     setValueByPath(toObject, ["voiceConfig"], fromVoiceConfig);
+  }
+  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
+  if (fromLanguageCode != null) {
+    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
   }
   if (getValueByPath(fromObject, ["multiSpeakerVoiceConfig"]) !== void 0) {
     throw new Error("multiSpeakerVoiceConfig parameter is not supported in Vertex AI.");
@@ -57088,6 +57094,12 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject) {
   if (fromImageConfig != null) {
     setValueByPath(toObject, ["imageConfig"], imageConfigToMldev(fromImageConfig));
   }
+  const fromEnableEnhancedCivicAnswers = getValueByPath(fromObject, [
+    "enableEnhancedCivicAnswers"
+  ]);
+  if (fromEnableEnhancedCivicAnswers != null) {
+    setValueByPath(toObject, ["enableEnhancedCivicAnswers"], fromEnableEnhancedCivicAnswers);
+  }
   return toObject;
 }
 function generateContentConfigToVertex(apiClient, fromObject, parentObject) {
@@ -57251,6 +57263,9 @@ function generateContentConfigToVertex(apiClient, fromObject, parentObject) {
   const fromImageConfig = getValueByPath(fromObject, ["imageConfig"]);
   if (fromImageConfig != null) {
     setValueByPath(toObject, ["imageConfig"], imageConfigToVertex(fromImageConfig));
+  }
+  if (getValueByPath(fromObject, ["enableEnhancedCivicAnswers"]) !== void 0) {
+    throw new Error("enableEnhancedCivicAnswers parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -58978,13 +58993,13 @@ function segmentImageSourceToVertex(fromObject, parentObject) {
 }
 function speechConfigToVertex(fromObject) {
   const toObject = {};
-  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
-  if (fromLanguageCode != null) {
-    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
-  }
   const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
   if (fromVoiceConfig != null) {
     setValueByPath(toObject, ["voiceConfig"], fromVoiceConfig);
+  }
+  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
+  if (fromLanguageCode != null) {
+    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
   }
   if (getValueByPath(fromObject, ["multiSpeakerVoiceConfig"]) !== void 0) {
     throw new Error("multiSpeakerVoiceConfig parameter is not supported in Vertex AI.");
@@ -59659,11 +59674,10 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.31.0";
+var SDK_VERSION = "1.32.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
-var responseLineRE = /^\s*data: (.*)(?:\n\n|\r\r|\r\n\r\n)/;
 var ApiClient = class {
   constructor(opts) {
     var _a, _b;
@@ -59895,8 +59909,8 @@ var ApiClient = class {
     });
   }
   processStreamResponse(response) {
-    var _a;
     return __asyncGenerator(this, arguments, function* processStreamResponse_1() {
+      var _a;
       const reader = (_a = response === null || response === void 0 ? void 0 : response.body) === null || _a === void 0 ? void 0 : _a.getReader();
       const decoder = new TextDecoder("utf-8");
       if (!reader) {
@@ -59904,6 +59918,8 @@ var ApiClient = class {
       }
       try {
         let buffer = "";
+        const dataPrefix = "data:";
+        const delimiters = ["\n\n", "\r\r", "\r\n\r\n"];
         while (true) {
           const { done, value } = yield __await(reader.read());
           if (done) {
@@ -59935,20 +59951,36 @@ var ApiClient = class {
             }
           }
           buffer += chunkString;
-          let match3 = buffer.match(responseLineRE);
-          while (match3) {
-            const processedChunkString = match3[1];
-            try {
-              const partialResponse = new Response(processedChunkString, {
-                headers: response === null || response === void 0 ? void 0 : response.headers,
-                status: response === null || response === void 0 ? void 0 : response.status,
-                statusText: response === null || response === void 0 ? void 0 : response.statusText
-              });
-              yield yield __await(new HttpResponse(partialResponse));
-              buffer = buffer.slice(match3[0].length);
-              match3 = buffer.match(responseLineRE);
-            } catch (e) {
-              throw new Error(`exception parsing stream chunk ${processedChunkString}. ${e}`);
+          let delimiterIndex = -1;
+          let delimiterLength = 0;
+          while (true) {
+            delimiterIndex = -1;
+            delimiterLength = 0;
+            for (const delimiter of delimiters) {
+              const index = buffer.indexOf(delimiter);
+              if (index !== -1 && (delimiterIndex === -1 || index < delimiterIndex)) {
+                delimiterIndex = index;
+                delimiterLength = delimiter.length;
+              }
+            }
+            if (delimiterIndex === -1) {
+              break;
+            }
+            const eventString = buffer.substring(0, delimiterIndex);
+            buffer = buffer.substring(delimiterIndex + delimiterLength);
+            const trimmedEvent = eventString.trim();
+            if (trimmedEvent.startsWith(dataPrefix)) {
+              const processedChunkString = trimmedEvent.substring(dataPrefix.length).trim();
+              try {
+                const partialResponse = new Response(processedChunkString, {
+                  headers: response === null || response === void 0 ? void 0 : response.headers,
+                  status: response === null || response === void 0 ? void 0 : response.status,
+                  statusText: response === null || response === void 0 ? void 0 : response.statusText
+                });
+                yield yield __await(new HttpResponse(partialResponse));
+              } catch (e) {
+                throw new Error(`exception parsing stream chunk ${processedChunkString}. ${e}`);
+              }
             }
           }
         }
@@ -60078,6 +60110,7 @@ var ApiClient = class {
     } else {
       httpOptions = {
         apiVersion: "",
+        // api-version is set in the path.
         headers: Object.assign({ "Content-Type": "application/json", "X-Goog-Upload-Protocol": "resumable", "X-Goog-Upload-Command": "start", "X-Goog-Upload-Header-Content-Length": `${sizeBytes}`, "X-Goog-Upload-Header-Content-Type": `${mimeType}` }, fileName ? { "X-Goog-Upload-File-Name": fileName } : {})
       };
     }
@@ -60192,8 +60225,8 @@ function setMcpUsageHeader(headers) {
 function isMcpCallableTool(object) {
   return object !== null && typeof object === "object" && object instanceof McpCallableTool;
 }
-function listAllTools(mcpClient, maxTools = 100) {
-  return __asyncGenerator(this, arguments, function* listAllTools_1() {
+function listAllTools(mcpClient_1) {
+  return __asyncGenerator(this, arguments, function* listAllTools_1(mcpClient, maxTools = 100) {
     let cursor = void 0;
     let numTools = 0;
     while (numTools < maxTools) {
@@ -61175,9 +61208,9 @@ var Models = class extends BaseModule2 {
     let remoteCallCount = 0;
     const afcToolsMap = await this.initAfcToolsMap(params2);
     return function(models, afcTools, params3) {
-      var _a2, _b2;
       return __asyncGenerator(this, arguments, function* () {
-        var _c2, e_1, _d, _e;
+        var _a2, e_1, _b2, _c2;
+        var _d, _e;
         while (remoteCallCount < maxRemoteCalls) {
           if (wereFunctionsCalled) {
             remoteCallCount++;
@@ -61188,14 +61221,14 @@ var Models = class extends BaseModule2 {
           const functionResponses = [];
           const responseContents = [];
           try {
-            for (var _f = true, response_1 = (e_1 = void 0, __asyncValues(response)), response_1_1; response_1_1 = yield __await(response_1.next()), _c2 = response_1_1.done, !_c2; _f = true) {
-              _e = response_1_1.value;
+            for (var _f = true, response_1 = (e_1 = void 0, __asyncValues(response)), response_1_1; response_1_1 = yield __await(response_1.next()), _a2 = response_1_1.done, !_a2; _f = true) {
+              _c2 = response_1_1.value;
               _f = false;
-              const chunk = _e;
+              const chunk = _c2;
               yield yield __await(chunk);
-              if (chunk.candidates && ((_a2 = chunk.candidates[0]) === null || _a2 === void 0 ? void 0 : _a2.content)) {
+              if (chunk.candidates && ((_d = chunk.candidates[0]) === null || _d === void 0 ? void 0 : _d.content)) {
                 responseContents.push(chunk.candidates[0].content);
-                for (const part of (_b2 = chunk.candidates[0].content.parts) !== null && _b2 !== void 0 ? _b2 : []) {
+                for (const part of (_e = chunk.candidates[0].content.parts) !== null && _e !== void 0 ? _e : []) {
                   if (remoteCallCount < maxRemoteCalls && part.functionCall) {
                     if (!part.functionCall.name) {
                       throw new Error("Function call name was not returned by the model.");
@@ -61214,8 +61247,8 @@ var Models = class extends BaseModule2 {
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (!_f && !_c2 && (_d = response_1.return))
-                yield __await(_d.call(response_1));
+              if (!_f && !_a2 && (_b2 = response_1.return))
+                yield __await(_b2.call(response_1));
             } finally {
               if (e_1)
                 throw e_1.error;
