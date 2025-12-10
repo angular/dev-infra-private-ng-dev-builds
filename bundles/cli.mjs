@@ -47700,7 +47700,6 @@ var FatalReleaseActionError = class extends Error {
 var import_semver8 = __toESM(require_semver());
 
 // ng-dev/utils/constants.js
-var ngDevNpmPackageName = "@angular/ng-dev";
 var workspaceRelativePackageJsonPath = "package.json";
 
 // ng-dev/release/publish/actions.js
@@ -48884,8 +48883,8 @@ var actions = [
 var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
-import lockfile from "@yarnpkg/lockfile";
 var import_dependency_path = __toESM(require_lib8());
+var localVersion = `0.0.0-a31900feb4f267f8459368c8f820a99996bb1d22`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -48895,16 +48894,13 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const localVersion = `0.0.0-d4f17986de97f198b59da03bf1b5fc4c78497a40`;
-  if (!!process.env["LOCAL_NG_DEV_BUILD"]) {
+  const packageJsonPath = path6.join(workspacePath, workspaceRelativePackageJsonPath);
+  const packageJson = JSON.parse(fs3.readFileSync(packageJsonPath, "utf-8"));
+  if (packageJson.name === "@angular/build-tooling") {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
   }
-  const workspacePackageJsonFile = path6.join(workspacePath, workspaceRelativePackageJsonPath);
-  const pnpmLockFile = path6.join(workspacePath, "pnpm-lock.yaml");
-  const yarnLockFile = path6.join(workspacePath, "yarn.lock");
-  const isPnpmMigrated = fs3.existsSync(pnpmLockFile) && !fs3.existsSync(yarnLockFile);
-  const expectedVersion = isPnpmMigrated ? getExpectedVersionFromPnpmLock(workspacePackageJsonFile, pnpmLockFile) : getExpectedVersionFromYarnLock(workspacePackageJsonFile, yarnLockFile);
+  const expectedVersion = await getExpectedVersionFromPnpmLockUpstream();
   Log.debug("Checking ng-dev version in lockfile and in the running script:");
   Log.debug(`  Local: ${localVersion}`);
   Log.debug(`  Expected: ${expectedVersion}`);
@@ -48916,45 +48912,27 @@ async function verifyNgDevToolIsUpToDate(workspacePath) {
   }
   return true;
 }
-function getExpectedVersionFromYarnLock(workspacePackageJsonFile, lockFilePath) {
+async function getExpectedVersionFromPnpmLockUpstream() {
+  const git = await GitClient.get();
   try {
-    const packageJson = JSON.parse(fs3.readFileSync(workspacePackageJsonFile, "utf8"));
-    if (packageJson.name === ngDevNpmPackageName) {
-      return true;
+    const { data } = await git.github.repos.getContent({
+      repo: git.remoteConfig.name,
+      owner: git.remoteConfig.owner,
+      ref: git.remoteConfig.mainBranchName,
+      mediaType: { format: "application/vnd.github.raw+json" },
+      path: "pnpm-lock.yaml"
+    });
+    if (Array.isArray(data) || data.type !== "file") {
+      throw Error(`A non-single file of content was retrieved from Github when the pnpm-lock.yaml file was requested`);
     }
-    const lockFileContent = fs3.readFileSync(lockFilePath, "utf8");
-    let lockFileObject;
-    try {
-      const lockFile = lockfile.parse(lockFileContent);
-      if (lockFile.type !== "success") {
-        throw Error("Unable to parse workspace lock file. Please ensure the file is valid.");
-      }
-      lockFileObject = lockFile.object;
-    } catch {
-      lockFileObject = (0, import_yaml3.parse)(lockFileContent);
-    }
-    const devInfraPkgVersion = packageJson?.dependencies?.[ngDevNpmPackageName] ?? packageJson?.devDependencies?.[ngDevNpmPackageName] ?? packageJson?.optionalDependencies?.[ngDevNpmPackageName];
-    return lockFileObject[`${ngDevNpmPackageName}@${devInfraPkgVersion}`].version;
-  } catch (e) {
-    Log.debug("Could not find expected ng-dev version from `yarn.lock` file:", e);
-    return null;
-  }
-}
-function getExpectedVersionFromPnpmLock(workspacePackageJsonFile, lockFilePath) {
-  try {
-    const packageJson = JSON.parse(fs3.readFileSync(workspacePackageJsonFile, "utf8"));
-    if (packageJson.name === ngDevNpmPackageName) {
-      return true;
-    }
-    const lockFileContent = fs3.readFileSync(lockFilePath, "utf8");
-    const lockFile = (0, import_yaml3.parse)(lockFileContent);
+    const lockFile = (0, import_yaml3.parse)(Buffer.from(data.content, data.encoding).toString("utf-8"));
     const importers = lockFile["importers"]["."];
     const depEntry = importers.dependencies?.["@angular/ng-dev"] ?? importers.devDependencies?.["@angular/ng-dev"] ?? importers.optionalDependencies?.["@angular/ng-dev"];
     const packageId = (0, import_dependency_path.tryGetPackageId)(depEntry.version);
     return lockFile["packages"][`@angular/ng-dev@${packageId}`].version;
   } catch (e) {
     Log.debug("Could not find expected ng-dev version from `pnpm-lock.yaml` file:", e);
-    return null;
+    return "unknown";
   }
 }
 
@@ -49367,7 +49345,7 @@ function buildReleaseParser(localYargs) {
 
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync7, readFileSync as readFileSync10, writeFileSync as writeFileSync5 } from "fs";
+import { existsSync as existsSync6, readFileSync as readFileSync10, writeFileSync as writeFileSync5 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
@@ -49658,7 +49636,7 @@ function main(approve, config, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync7(goldenFile)) {
+  if (!existsSync6(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
