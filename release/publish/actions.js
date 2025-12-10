@@ -185,14 +185,14 @@ export class ReleaseAction {
     async installDependenciesForCurrentBranch() {
         if (PnpmVersioning.isUsingPnpm(this.projectDir)) {
             try {
-                this.git.run(['clean', '-qdfX', '**/node_modules']);
+                this.git.run(['clean', '-dfX', '**/node_modules']);
             }
             catch { }
             await ExternalCommands.invokePnpmInstall(this.projectDir);
             return;
         }
         try {
-            this.git.run(['clean', '-qdfX', '**/node_modules']);
+            this.git.run(['clean', '-dfX', '**/node_modules']);
         }
         catch { }
         await ExternalCommands.invokeYarnInstall(this.projectDir);

@@ -47902,7 +47902,7 @@ var ExternalCommands = class {
   }
   static async _spawnNpmScript(args, projectDir, spawnOptions = {}) {
     if (PnpmVersioning.isUsingPnpm(projectDir)) {
-      return ChildProcess.spawn("npx", ["--yes", "pnpm", "-s", "run", ...args], {
+      return ChildProcess.spawn("npx", ["--yes", "pnpm", "run", ...args], {
         ...spawnOptions,
         cwd: projectDir
       });
@@ -48178,14 +48178,14 @@ var ReleaseAction = class {
   async installDependenciesForCurrentBranch() {
     if (PnpmVersioning.isUsingPnpm(this.projectDir)) {
       try {
-        this.git.run(["clean", "-qdfX", "**/node_modules"]);
+        this.git.run(["clean", "-dfX", "**/node_modules"]);
       } catch {
       }
       await ExternalCommands.invokePnpmInstall(this.projectDir);
       return;
     }
     try {
-      this.git.run(["clean", "-qdfX", "**/node_modules"]);
+      this.git.run(["clean", "-dfX", "**/node_modules"]);
     } catch {
     }
     await ExternalCommands.invokeYarnInstall(this.projectDir);
@@ -48884,7 +48884,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-7769f229c54aca9973a8d510ade6c42225079998`;
+var localVersion = `0.0.0-d3574e167f8736ba725a441d2ee9e987fcdf2225`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

@@ -120,7 +120,7 @@ export class ExternalCommands {
     }
     static async _spawnNpmScript(args, projectDir, spawnOptions = {}) {
         if (PnpmVersioning.isUsingPnpm(projectDir)) {
-            return ChildProcess.spawn('npx', ['--yes', 'pnpm', '-s', 'run', ...args], {
+            return ChildProcess.spawn('npx', ['--yes', 'pnpm', 'run', ...args], {
                 ...spawnOptions,
                 cwd: projectDir,
             });
