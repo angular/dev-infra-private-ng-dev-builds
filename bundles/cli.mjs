@@ -130,8 +130,8 @@ var require_cli_width = __commonJS({
 // node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js
 var require_lib = __commonJS({
   "node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js"(exports, module) {
-    var Stream = __require("stream");
-    var MuteStream2 = class extends Stream {
+    var Stream2 = __require("stream");
+    var MuteStream2 = class extends Stream2 {
       #isTTY = null;
       constructor(opts = {}) {
         super(opts);
@@ -6014,10 +6014,10 @@ var require_bom_handling = __commonJS({
 var require_merge_exports = __commonJS({
   "node_modules/.aspect_rules_js/iconv-lite@0.7.0/node_modules/iconv-lite/lib/helpers/merge-exports.js"(exports, module) {
     "use strict";
-    var hasOwn = typeof Object.hasOwn === "undefined" ? Function.call.bind(Object.prototype.hasOwnProperty) : Object.hasOwn;
+    var hasOwn2 = typeof Object.hasOwn === "undefined" ? Function.call.bind(Object.prototype.hasOwnProperty) : Object.hasOwn;
     function mergeModules(target, module2) {
       for (var key in module2) {
-        if (hasOwn(module2, key)) {
+        if (hasOwn2(module2, key)) {
           target[key] = module2[key];
         }
       }
@@ -14046,8 +14046,8 @@ var require_pattern = __commonJS({
 var require_merge2 = __commonJS({
   "node_modules/.aspect_rules_js/merge2@1.4.1/node_modules/merge2/index.js"(exports, module) {
     "use strict";
-    var Stream = __require("stream");
-    var PassThrough = Stream.PassThrough;
+    var Stream2 = __require("stream");
+    var PassThrough = Stream2.PassThrough;
     var slice = Array.prototype.slice;
     module.exports = merge2;
     function merge2() {
@@ -14910,8 +14910,8 @@ var require_queue = __commonJS({
       var errorHandler = null;
       var self2 = {
         push,
-        drain: noop,
-        saturated: noop,
+        drain: noop2,
+        saturated: noop2,
         pause,
         paused: false,
         get concurrency() {
@@ -14935,7 +14935,7 @@ var require_queue = __commonJS({
         length,
         getQueue,
         unshift,
-        empty: noop,
+        empty: noop2,
         kill,
         killAndDrain,
         error
@@ -14987,7 +14987,7 @@ var require_queue = __commonJS({
         current.context = context;
         current.release = release;
         current.value = value;
-        current.callback = done || noop;
+        current.callback = done || noop2;
         current.errorHandler = errorHandler;
         if (_running >= _concurrency || self2.paused) {
           if (queueTail) {
@@ -15008,7 +15008,7 @@ var require_queue = __commonJS({
         current.context = context;
         current.release = release;
         current.value = value;
-        current.callback = done || noop;
+        current.callback = done || noop2;
         current.errorHandler = errorHandler;
         if (_running >= _concurrency || self2.paused) {
           if (queueHead) {
@@ -15050,25 +15050,25 @@ var require_queue = __commonJS({
       function kill() {
         queueHead = null;
         queueTail = null;
-        self2.drain = noop;
+        self2.drain = noop2;
       }
       function killAndDrain() {
         queueHead = null;
         queueTail = null;
         self2.drain();
-        self2.drain = noop;
+        self2.drain = noop2;
       }
       function error(handler32) {
         errorHandler = handler32;
       }
     }
-    function noop() {
+    function noop2() {
     }
     function Task() {
       this.value = null;
-      this.callback = noop;
+      this.callback = noop2;
       this.next = null;
-      this.release = noop;
+      this.release = noop2;
       this.context = null;
       this.errorHandler = null;
       var self2 = this;
@@ -15077,7 +15077,7 @@ var require_queue = __commonJS({
         var errorHandler = self2.errorHandler;
         var val = self2.value;
         self2.value = null;
-        self2.callback = noop;
+        self2.callback = noop2;
         if (self2.errorHandler) {
           errorHandler(err, val);
         }
@@ -15113,7 +15113,7 @@ var require_queue = __commonJS({
             resolve8(result);
           });
         });
-        p.catch(noop);
+        p.catch(noop2);
         return p;
       }
       function unshift(value) {
@@ -15126,7 +15126,7 @@ var require_queue = __commonJS({
             resolve8(result);
           });
         });
-        p.catch(noop);
+        p.catch(noop2);
         return p;
       }
       function drained() {
@@ -16330,7 +16330,7 @@ var require_utils6 = __commonJS({
     "use strict";
     var regExpChars = /[|\\{}()[\]^$+*?.]/g;
     var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var hasOwn = function(obj, key) {
+    var hasOwn2 = function(obj, key) {
       return hasOwnProperty.apply(obj, [key]);
     };
     exports.escapeRegExpChars = function(string) {
@@ -16381,7 +16381,7 @@ function encode_char(c) {
       from = from || {};
       if (to !== null && to !== void 0) {
         for (var p in from) {
-          if (!hasOwn(from, p)) {
+          if (!hasOwn2(from, p)) {
             continue;
           }
           if (p === "__proto__" || p === "constructor") {
@@ -16399,7 +16399,7 @@ function encode_char(c) {
         for (var i = 0; i < list.length; i++) {
           var p = list[i];
           if (typeof from[p] != "undefined") {
-            if (!hasOwn(from, p)) {
+            if (!hasOwn2(from, p)) {
               continue;
             }
             if (p === "__proto__" || p === "constructor") {
@@ -16449,7 +16449,7 @@ function encode_char(c) {
     exports.hasOwnOnlyObject = function(obj) {
       var o = exports.createNullProtoObjWherePossible();
       for (var p in obj) {
-        if (hasOwn(obj, p)) {
+        if (hasOwn2(obj, p)) {
           o[p] = obj[p];
         }
       }
@@ -19272,7 +19272,7 @@ var require_polyfills = __commonJS({
             return ret;
           };
         } else if (fs7.futimes) {
-          fs7.lutimes = function(_a, _b, _c, cb) {
+          fs7.lutimes = function(_a2, _b, _c, cb) {
             if (cb)
               process.nextTick(cb);
           };
@@ -19382,7 +19382,7 @@ var require_polyfills = __commonJS({
 // node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/legacy-streams.js
 var require_legacy_streams = __commonJS({
   "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/legacy-streams.js"(exports, module) {
-    var Stream = __require("stream").Stream;
+    var Stream2 = __require("stream").Stream;
     module.exports = legacy;
     function legacy(fs6) {
       return {
@@ -19392,7 +19392,7 @@ var require_legacy_streams = __commonJS({
       function ReadStream(path9, options) {
         if (!(this instanceof ReadStream))
           return new ReadStream(path9, options);
-        Stream.call(this);
+        Stream2.call(this);
         var self2 = this;
         this.path = path9;
         this.fd = null;
@@ -19443,7 +19443,7 @@ var require_legacy_streams = __commonJS({
       function WriteStream(path9, options) {
         if (!(this instanceof WriteStream))
           return new WriteStream(path9, options);
-        Stream.call(this);
+        Stream2.call(this);
         this.path = path9;
         this.fd = null;
         this.writable = true;
@@ -19518,7 +19518,7 @@ var require_graceful_fs = __commonJS({
       gracefulQueue = "___graceful-fs.queue";
       previousSymbol = "___graceful-fs.previous";
     }
-    function noop() {
+    function noop2() {
     }
     function publishQueue(context, queue2) {
       Object.defineProperty(context, gracefulQueue, {
@@ -19527,7 +19527,7 @@ var require_graceful_fs = __commonJS({
         }
       });
     }
-    var debug = noop;
+    var debug = noop2;
     if (util.debuglog)
       debug = util.debuglog("gfs4");
     else if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || ""))
@@ -21617,11 +21617,11 @@ var require_lib8 = __commonJS({
 var require_extend = __commonJS({
   "node_modules/.aspect_rules_js/extend@3.0.2/node_modules/extend/index.js"(exports, module) {
     "use strict";
-    var hasOwn = Object.prototype.hasOwnProperty;
+    var hasOwn2 = Object.prototype.hasOwnProperty;
     var toStr = Object.prototype.toString;
     var defineProperty = Object.defineProperty;
     var gOPD = Object.getOwnPropertyDescriptor;
-    var isArray = function isArray2(arr) {
+    var isArray2 = function isArray3(arr) {
       if (typeof Array.isArray === "function") {
         return Array.isArray(arr);
       }
@@ -21631,15 +21631,15 @@ var require_extend = __commonJS({
       if (!obj || toStr.call(obj) !== "[object Object]") {
         return false;
       }
-      var hasOwnConstructor = hasOwn.call(obj, "constructor");
-      var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn.call(obj.constructor.prototype, "isPrototypeOf");
+      var hasOwnConstructor = hasOwn2.call(obj, "constructor");
+      var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn2.call(obj.constructor.prototype, "isPrototypeOf");
       if (obj.constructor && !hasOwnConstructor && !hasIsPrototypeOf) {
         return false;
       }
       var key;
       for (key in obj) {
       }
-      return typeof key === "undefined" || hasOwn.call(obj, key);
+      return typeof key === "undefined" || hasOwn2.call(obj, key);
     };
     var setProperty2 = function setProperty3(target, options) {
       if (defineProperty && options.name === "__proto__") {
@@ -21655,7 +21655,7 @@ var require_extend = __commonJS({
     };
     var getProperty = function getProperty2(obj, name) {
       if (name === "__proto__") {
-        if (!hasOwn.call(obj, name)) {
+        if (!hasOwn2.call(obj, name)) {
           return void 0;
         } else if (gOPD) {
           return gOPD(obj, name).value;
@@ -21684,10 +21684,10 @@ var require_extend = __commonJS({
             src = getProperty(target, name);
             copy = getProperty(options, name);
             if (target !== copy) {
-              if (deep && copy && (isPlainObject2(copy) || (copyIsArray = isArray(copy)))) {
+              if (deep && copy && (isPlainObject2(copy) || (copyIsArray = isArray2(copy)))) {
                 if (copyIsArray) {
                   copyIsArray = false;
-                  clone = src && isArray(src) ? src : [];
+                  clone = src && isArray2(src) ? src : [];
                 } else {
                   clone = src && isPlainObject2(src) ? src : {};
                 }
@@ -22193,7 +22193,7 @@ var require_gaxios = __commonJS({
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    var _a;
+    var _a2;
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Gaxios = void 0;
     var extend_1 = __importDefault(require_extend());
@@ -22256,10 +22256,10 @@ var require_gaxios = __commonJS({
           url2 = new URL(input.url);
         }
         if (input && typeof input === "object" && "headers" in input) {
-          _a.mergeHeaders(headers, input.headers);
+          _a2.mergeHeaders(headers, input.headers);
         }
         if (init) {
-          _a.mergeHeaders(headers, new Headers(init.headers));
+          _a2.mergeHeaders(headers, new Headers(init.headers));
         }
         if (typeof input === "object" && !(input instanceof URL)) {
           return this.request({ ...init, ...input, headers, url: url2 });
@@ -22277,7 +22277,7 @@ var require_gaxios = __commonJS({
         return this.#applyResponseInterceptors(this._request(prepared));
       }
       async _defaultAdapter(config) {
-        const fetchImpl = config.fetchImplementation || this.defaults.fetchImplementation || await _a.#getFetch();
+        const fetchImpl = config.fetchImplementation || this.defaults.fetchImplementation || await _a2.#getFetch();
         const preparedOpts = { ...config };
         delete preparedOpts.data;
         const res = await fetchImpl(config.url, preparedOpts);
@@ -22437,7 +22437,7 @@ var require_gaxios = __commonJS({
        */
       async #prepareRequest(options) {
         const preparedHeaders = new Headers(this.defaults.headers);
-        _a.mergeHeaders(preparedHeaders, options.headers);
+        _a2.mergeHeaders(preparedHeaders, options.headers);
         const opts = (0, extend_1.default)(true, {}, this.defaults, options);
         if (!opts.url) {
           throw new Error("URL is required.");
@@ -22500,7 +22500,7 @@ var require_gaxios = __commonJS({
         const proxy = opts.proxy || process?.env?.HTTPS_PROXY || process?.env?.https_proxy || process?.env?.HTTP_PROXY || process?.env?.http_proxy;
         if (opts.agent) {
         } else if (proxy && this.#urlMayUseProxy(opts.url, opts.noProxy)) {
-          const HttpsProxyAgent = await _a.#getProxyAgent();
+          const HttpsProxyAgent = await _a2.#getProxyAgent();
           if (this.agentCache.has(proxy)) {
             opts.agent = this.agentCache.get(proxy);
           } else {
@@ -22656,7 +22656,7 @@ Content-Type: ${partContentType}\r
       }
     };
     exports.Gaxios = Gaxios;
-    _a = Gaxios;
+    _a2 = Gaxios;
   }
 });
 
@@ -24819,11 +24819,11 @@ var require_logging_utils = __commonJS({
     }).func;
     var DebugLogBackendBase = class {
       constructor() {
-        var _a;
+        var _a2;
         this.cached = /* @__PURE__ */ new Map();
         this.filters = [];
         this.filtersSet = false;
-        let nodeFlag = (_a = process4.env[exports.env.nodeEnables]) !== null && _a !== void 0 ? _a : "*";
+        let nodeFlag = (_a2 = process4.env[exports.env.nodeEnables]) !== null && _a2 !== void 0 ? _a2 : "*";
         if (nodeFlag === "all") {
           nodeFlag = "*";
         }
@@ -24861,7 +24861,7 @@ var require_logging_utils = __commonJS({
           };
         }
         return (fields, ...args) => {
-          var _a;
+          var _a2;
           const nscolour = `${colours_1.Colours.green}${namespace}${colours_1.Colours.reset}`;
           const pid = `${colours_1.Colours.yellow}${process4.pid}${colours_1.Colours.reset}`;
           let level;
@@ -24876,7 +24876,7 @@ var require_logging_utils = __commonJS({
               level = `${colours_1.Colours.yellow}${fields.severity}${colours_1.Colours.reset}`;
               break;
             default:
-              level = (_a = fields.severity) !== null && _a !== void 0 ? _a : LogSeverity.DEFAULT;
+              level = (_a2 = fields.severity) !== null && _a2 !== void 0 ? _a2 : LogSeverity.DEFAULT;
               break;
           }
           const msg = util.formatWithOptions({ colors: colours_1.Colours.enabled }, ...args);
@@ -24910,8 +24910,8 @@ var require_logging_utils = __commonJS({
         };
       }
       setFilters() {
-        var _a;
-        const existingFilters = (_a = process4.env["NODE_DEBUG"]) !== null && _a !== void 0 ? _a : "";
+        var _a2;
+        const existingFilters = (_a2 = process4.env["NODE_DEBUG"]) !== null && _a2 !== void 0 ? _a2 : "";
         process4.env["NODE_DEBUG"] = `${existingFilters}${existingFilters ? "," : ""}${this.filters.join(",")}`;
       }
     };
@@ -24920,16 +24920,16 @@ var require_logging_utils = __commonJS({
     }
     var StructuredBackend = class extends DebugLogBackendBase {
       constructor(upstream) {
-        var _a;
+        var _a2;
         super();
-        this.upstream = (_a = upstream) !== null && _a !== void 0 ? _a : void 0;
+        this.upstream = (_a2 = upstream) !== null && _a2 !== void 0 ? _a2 : void 0;
       }
       makeLogger(namespace) {
-        var _a;
-        const debugLogger = (_a = this.upstream) === null || _a === void 0 ? void 0 : _a.makeLogger(namespace);
+        var _a2;
+        const debugLogger = (_a2 = this.upstream) === null || _a2 === void 0 ? void 0 : _a2.makeLogger(namespace);
         return (fields, ...args) => {
-          var _a2;
-          const severity = (_a2 = fields.severity) !== null && _a2 !== void 0 ? _a2 : LogSeverity.INFO;
+          var _a3;
+          const severity = (_a3 = fields.severity) !== null && _a3 !== void 0 ? _a3 : LogSeverity.INFO;
           const json = Object.assign({
             severity,
             message: util.format(...args)
@@ -24943,8 +24943,8 @@ var require_logging_utils = __commonJS({
         };
       }
       setFilters() {
-        var _a;
-        (_a = this.upstream) === null || _a === void 0 ? void 0 : _a.setFilters();
+        var _a2;
+        (_a2 = this.upstream) === null || _a2 === void 0 ? void 0 : _a2.setFilters();
       }
     };
     function getStructuredBackend(upstream) {
@@ -27252,7 +27252,7 @@ var require_envDetect = __commonJS({
 var require_data_stream = __commonJS({
   "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/data-stream.js"(exports, module) {
     var Buffer2 = require_safe_buffer().Buffer;
-    var Stream = __require("stream");
+    var Stream2 = __require("stream");
     var util = __require("util");
     function DataStream(data) {
       this.buffer = null;
@@ -27279,7 +27279,7 @@ var require_data_stream = __commonJS({
       }
       throw new TypeError("Unexpected data type (" + typeof data + ")");
     }
-    util.inherits(DataStream, Stream);
+    util.inherits(DataStream, Stream2);
     DataStream.prototype.write = function write(data) {
       this.buffer = Buffer2.concat([this.buffer, Buffer2.from(data)]);
       this.emit("data", data);
@@ -27574,7 +27574,7 @@ var require_sign_stream = __commonJS({
     var Buffer2 = require_safe_buffer().Buffer;
     var DataStream = require_data_stream();
     var jwa = require_jwa();
-    var Stream = __require("stream");
+    var Stream2 = __require("stream");
     var toString = require_tostring();
     var util = __require("util");
     function base64url(string, encoding) {
@@ -27618,7 +27618,7 @@ var require_sign_stream = __commonJS({
           this.sign();
       }.bind(this));
     }
-    util.inherits(SignStream, Stream);
+    util.inherits(SignStream, Stream2);
     SignStream.prototype.sign = function sign() {
       try {
         var signature = jwsSign({
@@ -27649,7 +27649,7 @@ var require_verify_stream = __commonJS({
     var Buffer2 = require_safe_buffer().Buffer;
     var DataStream = require_data_stream();
     var jwa = require_jwa();
-    var Stream = __require("stream");
+    var Stream2 = __require("stream");
     var toString = require_tostring();
     var util = __require("util");
     var JWS_REGEX = /^[a-zA-Z0-9\-_]+?\.[a-zA-Z0-9\-_]+?\.([a-zA-Z0-9\-_]+)?$/;
@@ -27735,7 +27735,7 @@ var require_verify_stream = __commonJS({
           this.verify();
       }.bind(this));
     }
-    util.inherits(VerifyStream, Stream);
+    util.inherits(VerifyStream, Stream2);
     VerifyStream.prototype.verify = function verify3() {
       try {
         var valid = jwsVerify(this.signature.buffer, this.algorithm, this.key.buffer);
@@ -39304,7 +39304,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -39323,7 +39323,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -39346,10 +39346,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -39455,7 +39455,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -39473,7 +39473,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -39485,7 +39485,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.2/node_modules/@inquirer/figures/dist/index.js
@@ -39780,7 +39780,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39801,7 +39801,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39829,7 +39829,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39860,7 +39860,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39873,12 +39873,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39897,7 +39897,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
@@ -39906,7 +39906,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -39995,7 +39995,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -40251,7 +40251,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.2/node_modules/@inquirer/ansi/dist/index.js
@@ -40270,7 +40270,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -40330,7 +40330,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -40345,7 +40345,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -40432,7 +40432,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.2/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.0.2_at_types_node_24.10.3/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -40447,7 +40447,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.2_at_types_node_24.10.3/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -40620,7 +40620,7 @@ var dist_default2 = createPrompt((config, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.3/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -40629,7 +40629,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.3/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40638,7 +40638,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.3/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40647,7 +40647,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.3/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40656,7 +40656,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.3/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40665,7 +40665,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.2/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.3/node_modules/@inquirer/external-editor/dist/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -40819,7 +40819,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.0.2_at_types_node_24.10.3/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -40888,7 +40888,7 @@ var dist_default3 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.2_at_types_node_24.10.2/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.2_at_types_node_24.10.3/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -40934,7 +40934,7 @@ var dist_default4 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.2_at_types_node_24.10.3/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -41019,7 +41019,7 @@ var dist_default5 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.2_at_types_node_24.10.2/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.2_at_types_node_24.10.3/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -41100,7 +41100,7 @@ var dist_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.2_at_types_node_24.10.3/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -41196,7 +41196,7 @@ var dist_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.0.2_at_types_node_24.10.3/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
 function isSelectableChoice(choice) {
@@ -41306,7 +41306,7 @@ var dist_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.2_at_types_node_24.10.3/node_modules/@inquirer/password/dist/index.js
 var dist_default9 = createPrompt((config, done) => {
   const { validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -41355,7 +41355,7 @@ var dist_default9 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.0.2_at_types_node_24.10.2/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.0.2_at_types_node_24.10.3/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -41517,7 +41517,7 @@ var dist_default10 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.0.2_at_types_node_24.10.2/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.0.2_at_types_node_24.10.3/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -48884,7 +48884,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-87832752892edb69283c95f4f999dd06b2ba9750`;
+var localVersion = `0.0.0-54e407015de8767d4245e1b8b779f058dbcc97c7`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49930,7 +49930,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.32.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.33.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -49945,8 +49945,8 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.32.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
-import * as path8 from "path";
+// node_modules/.aspect_rules_js/@google+genai@1.33.0_1232628751/node_modules/@google/genai/dist/node/index.mjs
+import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
 function getDefaultBaseUrls() {
@@ -49956,11 +49956,11 @@ function getDefaultBaseUrls() {
   };
 }
 function getBaseUrl(httpOptions, vertexai, vertexBaseUrlFromEnv, geminiBaseUrlFromEnv) {
-  var _a, _b;
+  var _a2, _b;
   if (!(httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.baseUrl)) {
     const defaultBaseUrls = getDefaultBaseUrls();
     if (vertexai) {
-      return (_a = defaultBaseUrls.vertexUrl) !== null && _a !== void 0 ? _a : vertexBaseUrlFromEnv;
+      return (_a2 = defaultBaseUrls.vertexUrl) !== null && _a2 !== void 0 ? _a2 : vertexBaseUrlFromEnv;
     } else {
       return (_b = defaultBaseUrls.geminiUrl) !== null && _b !== void 0 ? _b : geminiBaseUrlFromEnv;
     }
@@ -50546,6 +50546,8 @@ var FinishReason;
   FinishReason2["UNEXPECTED_TOOL_CALL"] = "UNEXPECTED_TOOL_CALL";
   FinishReason2["IMAGE_PROHIBITED_CONTENT"] = "IMAGE_PROHIBITED_CONTENT";
   FinishReason2["NO_IMAGE"] = "NO_IMAGE";
+  FinishReason2["IMAGE_RECITATION"] = "IMAGE_RECITATION";
+  FinishReason2["IMAGE_OTHER"] = "IMAGE_OTHER";
 })(FinishReason || (FinishReason = {}));
 var HarmProbability;
 (function(HarmProbability2) {
@@ -50801,6 +50803,12 @@ var MediaModality;
   MediaModality2["AUDIO"] = "AUDIO";
   MediaModality2["DOCUMENT"] = "DOCUMENT";
 })(MediaModality || (MediaModality = {}));
+var VadSignalType;
+(function(VadSignalType2) {
+  VadSignalType2["VAD_SIGNAL_TYPE_UNSPECIFIED"] = "VAD_SIGNAL_TYPE_UNSPECIFIED";
+  VadSignalType2["VAD_SIGNAL_TYPE_SOS"] = "VAD_SIGNAL_TYPE_SOS";
+  VadSignalType2["VAD_SIGNAL_TYPE_EOS"] = "VAD_SIGNAL_TYPE_EOS";
+})(VadSignalType || (VadSignalType = {}));
 var StartSensitivity;
 (function(StartSensitivity2) {
   StartSensitivity2["START_SENSITIVITY_UNSPECIFIED"] = "START_SENSITIVITY_UNSPECIFIED";
@@ -50899,8 +50907,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get text() {
-    var _a, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a = this.candidates) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a2, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a2 = this.candidates) === null || _a2 === void 0 ? void 0 : _a2[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -50939,8 +50947,8 @@ var GenerateContentResponse = class {
    * a warning will be logged.
    */
   get data() {
-    var _a, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a = this.candidates) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a2, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a2 = this.candidates) === null || _a2 === void 0 ? void 0 : _a2[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51009,8 +51017,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get functionCalls() {
-    var _a, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a = this.candidates) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a2, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a2 = this.candidates) === null || _a2 === void 0 ? void 0 : _a2[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51046,8 +51054,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get executableCode() {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-    if (((_d = (_c = (_b = (_a = this.candidates) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a2, _b, _c, _d, _e, _f, _g, _h, _j;
+    if (((_d = (_c = (_b = (_a2 = this.candidates) === null || _a2 === void 0 ? void 0 : _a2[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51082,8 +51090,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get codeExecutionResult() {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
-    if (((_d = (_c = (_b = (_a = this.candidates) === null || _a === void 0 ? void 0 : _a[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a2, _b, _c, _d, _e, _f, _g, _h, _j;
+    if (((_d = (_c = (_b = (_a2 = this.candidates) === null || _a2 === void 0 ? void 0 : _a2[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51178,11 +51186,11 @@ var LiveServerMessage = class {
    * parts will be returned, and a warning will be logged.
    */
   get text() {
-    var _a, _b, _c;
+    var _a2, _b, _c;
     let text = "";
     let anyTextPartFound = false;
     const nonTextParts = [];
-    for (const part of (_c = (_b = (_a = this.serverContent) === null || _a === void 0 ? void 0 : _a.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
+    for (const part of (_c = (_b = (_a2 = this.serverContent) === null || _a2 === void 0 ? void 0 : _a2.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
       for (const [fieldName, fieldValue] of Object.entries(part)) {
         if (fieldName !== "text" && fieldName !== "thought" && fieldValue !== null) {
           nonTextParts.push(fieldName);
@@ -51210,10 +51218,10 @@ var LiveServerMessage = class {
    * a warning will be logged.
    */
   get data() {
-    var _a, _b, _c;
+    var _a2, _b, _c;
     let data = "";
     const nonDataParts = [];
-    for (const part of (_c = (_b = (_a = this.serverContent) === null || _a === void 0 ? void 0 : _a.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
+    for (const part of (_c = (_b = (_a2 = this.serverContent) === null || _a2 === void 0 ? void 0 : _a2.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
       for (const [fieldName, fieldValue] of Object.entries(part)) {
         if (fieldName !== "inlineData" && fieldValue !== null) {
           nonDataParts.push(fieldName);
@@ -51610,7 +51618,7 @@ function isVideo(origin) {
   return origin !== null && origin !== void 0 && typeof origin === "object" && "uri" in origin;
 }
 function tFileName(fromName) {
-  var _a;
+  var _a2;
   let name;
   if (_isFile(fromName)) {
     name = fromName.name;
@@ -51622,7 +51630,7 @@ function tFileName(fromName) {
     }
   }
   if (isGeneratedVideo(fromName)) {
-    name = (_a = fromName.video) === null || _a === void 0 ? void 0 : _a.uri;
+    name = (_a2 = fromName.video) === null || _a2 === void 0 ? void 0 : _a2.uri;
     if (name === void 0) {
       return void 0;
     }
@@ -53026,7 +53034,7 @@ var Pager = class {
     this.init(name, response, params2);
   }
   init(name, response, params2) {
-    var _a, _b;
+    var _a2, _b;
     this.nameInternal = name;
     this.pageInternal = response[this.nameInternal] || [];
     this.sdkHttpResponseInternal = response === null || response === void 0 ? void 0 : response.sdkHttpResponse;
@@ -53043,7 +53051,7 @@ var Pager = class {
       requestParams["config"]["pageToken"] = response["nextPageToken"];
     }
     this.paramsInternal = requestParams;
-    this.pageInternalSize = (_b = (_a = requestParams["config"]) === null || _a === void 0 ? void 0 : _a["pageSize"]) !== null && _b !== void 0 ? _b : this.pageInternal.length;
+    this.pageInternalSize = (_b = (_a2 = requestParams["config"]) === null || _a2 === void 0 ? void 0 : _a2["pageSize"]) !== null && _b !== void 0 ? _b : this.pageInternal.length;
   }
   initNextPage(response) {
     this.init(this.nameInternal, response, this.paramsInternal);
@@ -53171,8 +53179,8 @@ var Pager = class {
    * Returns true if there are more pages to fetch from the API.
    */
   hasNextPage() {
-    var _a;
-    if (((_a = this.params["config"]) === null || _a === void 0 ? void 0 : _a["pageToken"]) !== void 0) {
+    var _a2;
+    if (((_a2 = this.params["config"]) === null || _a2 === void 0 ? void 0 : _a2["pageToken"]) !== void 0) {
       return true;
     }
     return false;
@@ -53282,7 +53290,7 @@ var Batches = class extends BaseModule2 {
    *
    */
   async createInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53297,7 +53305,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53336,7 +53344,7 @@ var Batches = class extends BaseModule2 {
    *
    */
   async createEmbeddingsInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53353,7 +53361,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53376,7 +53384,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53391,7 +53399,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53434,7 +53442,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async cancel(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -53448,7 +53456,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     } else {
@@ -53468,7 +53476,7 @@ var Batches = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53483,7 +53491,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -53542,7 +53550,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53557,7 +53565,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -54291,7 +54299,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async create(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54306,7 +54314,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -54347,7 +54355,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54362,7 +54370,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -54403,7 +54411,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54418,7 +54426,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -54480,7 +54488,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async update(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54495,7 +54503,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -54525,7 +54533,7 @@ var Caches = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54540,7 +54548,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -54588,6 +54596,18 @@ var Caches = class extends BaseModule2 {
     }
   }
 };
+function __rest(s, e) {
+  var t = {};
+  for (var p in s)
+    if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+      t[p] = s[p];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+      if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+        t[p[i]] = s[p[i]];
+    }
+  return t;
+}
 function __values(o) {
   var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
   if (m)
@@ -54670,11 +54690,11 @@ function __asyncValues(o) {
   }
 }
 function isValidResponse(response) {
-  var _a;
+  var _a2;
   if (response.candidates == void 0 || response.candidates.length === 0) {
     return false;
   }
-  const content = (_a = response.candidates[0]) === null || _a === void 0 ? void 0 : _a.content;
+  const content = (_a2 = response.candidates[0]) === null || _a2 === void 0 ? void 0 : _a2.content;
   if (content === void 0) {
     return false;
   }
@@ -54801,18 +54821,18 @@ var Chat = class {
    * ```
    */
   async sendMessage(params2) {
-    var _a;
+    var _a2;
     await this.sendPromise;
     const inputContent = tContent(params2.message);
     const responsePromise = this.modelsModule.generateContent({
       model: this.model,
       contents: this.getHistory(true).concat(inputContent),
-      config: (_a = params2.config) !== null && _a !== void 0 ? _a : this.config
+      config: (_a2 = params2.config) !== null && _a2 !== void 0 ? _a2 : this.config
     });
     this.sendPromise = (async () => {
-      var _a2, _b, _c;
+      var _a3, _b, _c;
       const response = await responsePromise;
-      const outputContent = (_b = (_a2 = response.candidates) === null || _a2 === void 0 ? void 0 : _a2[0]) === null || _b === void 0 ? void 0 : _b.content;
+      const outputContent = (_b = (_a3 = response.candidates) === null || _a3 === void 0 ? void 0 : _a3[0]) === null || _b === void 0 ? void 0 : _b.content;
       const fullAutomaticFunctionCallingHistory = response.automaticFunctionCallingHistory;
       const index = this.getHistory(true).length;
       let automaticFunctionCallingHistory = [];
@@ -54851,13 +54871,13 @@ var Chat = class {
    * ```
    */
   async sendMessageStream(params2) {
-    var _a;
+    var _a2;
     await this.sendPromise;
     const inputContent = tContent(params2.message);
     const streamResponse = this.modelsModule.generateContentStream({
       model: this.model,
       contents: this.getHistory(true).concat(inputContent),
-      config: (_a = params2.config) !== null && _a !== void 0 ? _a : this.config
+      config: (_a2 = params2.config) !== null && _a2 !== void 0 ? _a2 : this.config
     });
     this.sendPromise = streamResponse.then(() => void 0).catch(() => void 0);
     const response = await streamResponse;
@@ -54893,11 +54913,11 @@ var Chat = class {
   }
   processStreamResponse(streamResponse, inputContent) {
     return __asyncGenerator(this, arguments, function* processStreamResponse_1() {
-      var _a, e_1, _b, _c;
+      var _a2, e_1, _b, _c;
       var _d, _e;
       const outputContent = [];
       try {
-        for (var _f = true, streamResponse_1 = __asyncValues(streamResponse), streamResponse_1_1; streamResponse_1_1 = yield __await(streamResponse_1.next()), _a = streamResponse_1_1.done, !_a; _f = true) {
+        for (var _f = true, streamResponse_1 = __asyncValues(streamResponse), streamResponse_1_1; streamResponse_1_1 = yield __await(streamResponse_1.next()), _a2 = streamResponse_1_1.done, !_a2; _f = true) {
           _c = streamResponse_1_1.value;
           _f = false;
           const chunk = _c;
@@ -54913,7 +54933,7 @@ var Chat = class {
         e_1 = { error: e_1_1 };
       } finally {
         try {
-          if (!_f && !_a && (_b = streamResponse_1.return))
+          if (!_f && !_a2 && (_b = streamResponse_1.return))
             yield __await(_b.call(streamResponse_1));
         } finally {
           if (e_1)
@@ -55118,7 +55138,7 @@ var Files = class extends BaseModule2 {
     await this.apiClient.downloadFile(params2);
   }
   async listInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -55135,7 +55155,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -55155,7 +55175,7 @@ var Files = class extends BaseModule2 {
     }
   }
   async createInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -55172,7 +55192,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -55201,7 +55221,7 @@ var Files = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -55218,7 +55238,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -55242,7 +55262,7 @@ var Files = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -55259,7 +55279,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -55646,6 +55666,9 @@ function liveConnectConfigToMldev$1(fromObject, parentObject) {
   if (parentObject !== void 0 && fromProactivity != null) {
     setValueByPath(parentObject, ["setup", "proactivity"], fromProactivity);
   }
+  if (getValueByPath(fromObject, ["explicitVadSignal"]) !== void 0) {
+    throw new Error("explicitVadSignal parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function liveConnectConfigToVertex(fromObject, parentObject) {
@@ -55755,6 +55778,12 @@ function liveConnectConfigToVertex(fromObject, parentObject) {
   const fromProactivity = getValueByPath(fromObject, ["proactivity"]);
   if (parentObject !== void 0 && fromProactivity != null) {
     setValueByPath(parentObject, ["setup", "proactivity"], fromProactivity);
+  }
+  const fromExplicitVadSignal = getValueByPath(fromObject, [
+    "explicitVadSignal"
+  ]);
+  if (parentObject !== void 0 && fromExplicitVadSignal != null) {
+    setValueByPath(parentObject, ["setup", "explicitVadSignal"], fromExplicitVadSignal);
   }
   return toObject;
 }
@@ -55931,6 +55960,12 @@ function liveServerMessageFromVertex(fromObject) {
   ]);
   if (fromSessionResumptionUpdate != null) {
     setValueByPath(toObject, ["sessionResumptionUpdate"], fromSessionResumptionUpdate);
+  }
+  const fromVoiceActivityDetectionSignal = getValueByPath(fromObject, [
+    "voiceActivityDetectionSignal"
+  ]);
+  if (fromVoiceActivityDetectionSignal != null) {
+    setValueByPath(toObject, ["voiceActivityDetectionSignal"], fromVoiceActivityDetectionSignal);
   }
   return toObject;
 }
@@ -59683,17 +59718,17 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.32.0";
+var SDK_VERSION = "1.33.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
 var ApiClient = class {
   constructor(opts) {
-    var _a, _b;
+    var _a2, _b;
     this.clientOptions = Object.assign(Object.assign({}, opts), { project: opts.project, location: opts.location, apiKey: opts.apiKey, vertexai: opts.vertexai });
     const initHttpOptions = {};
     if (this.clientOptions.vertexai) {
-      initHttpOptions.apiVersion = (_a = this.clientOptions.apiVersion) !== null && _a !== void 0 ? _a : VERTEX_AI_API_DEFAULT_VERSION;
+      initHttpOptions.apiVersion = (_a2 = this.clientOptions.apiVersion) !== null && _a2 !== void 0 ? _a2 : VERTEX_AI_API_DEFAULT_VERSION;
       initHttpOptions.baseUrl = this.baseUrlFromProjectLocation();
       this.normalizeAuthParameters();
     } else {
@@ -59734,8 +59769,8 @@ var ApiClient = class {
     this.clientOptions.location = void 0;
   }
   isVertexAI() {
-    var _a;
-    return (_a = this.clientOptions.vertexai) !== null && _a !== void 0 ? _a : false;
+    var _a2;
+    return (_a2 = this.clientOptions.vertexai) !== null && _a2 !== void 0 ? _a2 : false;
   }
   getProject() {
     return this.clientOptions.project;
@@ -59919,8 +59954,8 @@ var ApiClient = class {
   }
   processStreamResponse(response) {
     return __asyncGenerator(this, arguments, function* processStreamResponse_1() {
-      var _a;
-      const reader = (_a = response === null || response === void 0 ? void 0 : response.body) === null || _a === void 0 ? void 0 : _a.getReader();
+      var _a2;
+      const reader = (_a2 = response === null || response === void 0 ? void 0 : response.body) === null || _a2 === void 0 ? void 0 : _a2.getReader();
       const decoder = new TextDecoder("utf-8");
       if (!reader) {
         throw new Error("Response body is empty");
@@ -60025,11 +60060,11 @@ var ApiClient = class {
     return headers;
   }
   getFileName(file) {
-    var _a;
+    var _a2;
     let fileName = "";
     if (typeof file === "string") {
       fileName = file.replace(/[/\\]+$/, "");
-      fileName = (_a = fileName.split(/[/\\]/).pop()) !== null && _a !== void 0 ? _a : "";
+      fileName = (_a2 = fileName.split(/[/\\]/).pop()) !== null && _a2 !== void 0 ? _a2 : "";
     }
     return fileName;
   }
@@ -60045,7 +60080,7 @@ var ApiClient = class {
    * @throws An error if the `mimeType` is not provided and can not be inferred,
    */
   async uploadFile(file, config) {
-    var _a;
+    var _a2;
     const fileToUpload = {};
     if (config != null) {
       fileToUpload.mimeType = config.mimeType;
@@ -60058,7 +60093,7 @@ var ApiClient = class {
     const uploader = this.clientOptions.uploader;
     const fileStat = await uploader.stat(file);
     fileToUpload.sizeBytes = String(fileStat.size);
-    const mimeType = (_a = config === null || config === void 0 ? void 0 : config.mimeType) !== null && _a !== void 0 ? _a : fileStat.type;
+    const mimeType = (_a2 = config === null || config === void 0 ? void 0 : config.mimeType) !== null && _a2 !== void 0 ? _a2 : fileStat.type;
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
@@ -60084,11 +60119,11 @@ var ApiClient = class {
    * @throws An error if the `mimeType` is not provided and can not be inferred,
    */
   async uploadFileToFileSearchStore(fileSearchStoreName, file, config) {
-    var _a;
+    var _a2;
     const uploader = this.clientOptions.uploader;
     const fileStat = await uploader.stat(file);
     const sizeBytes = String(fileStat.size);
-    const mimeType = (_a = config === null || config === void 0 ? void 0 : config.mimeType) !== null && _a !== void 0 ? _a : fileStat.type;
+    const mimeType = (_a2 = config === null || config === void 0 ? void 0 : config.mimeType) !== null && _a2 !== void 0 ? _a2 : fileStat.type;
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
@@ -60112,7 +60147,7 @@ var ApiClient = class {
     await downloader.download(params2, this);
   }
   async fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, configHttpOptions) {
-    var _a;
+    var _a2;
     let httpOptions = {};
     if (configHttpOptions) {
       httpOptions = configHttpOptions;
@@ -60132,7 +60167,7 @@ var ApiClient = class {
     if (!httpResponse || !(httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers)) {
       throw new Error("Server did not return an HttpResponse or the returned HttpResponse did not have headers.");
     }
-    const uploadUrl = (_a = httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers) === null || _a === void 0 ? void 0 : _a["x-goog-upload-url"];
+    const uploadUrl = (_a2 = httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers) === null || _a2 === void 0 ? void 0 : _a2["x-goog-upload-url"];
     if (uploadUrl === void 0) {
       throw new Error("Failed to get upload url. Server did not return the x-google-upload-url in the headers");
     }
@@ -60140,14 +60175,14 @@ var ApiClient = class {
   }
 };
 async function throwErrorIfNotOK(response) {
-  var _a;
+  var _a2;
   if (response === void 0) {
     throw new Error("response is undefined");
   }
   if (!response.ok) {
     const status = response.status;
     let errorBody;
-    if ((_a = response.headers.get("content-type")) === null || _a === void 0 ? void 0 : _a.includes("application/json")) {
+    if ((_a2 = response.headers.get("content-type")) === null || _a2 === void 0 ? void 0 : _a2.includes("application/json")) {
       errorBody = await response.json();
     } else {
       errorBody = {
@@ -60227,8 +60262,8 @@ function hasMcpToolUsage(tools) {
   return hasMcpToolUsageFromMcpToTool;
 }
 function setMcpUsageHeader(headers) {
-  var _a;
-  const existingHeader = (_a = headers[GOOGLE_API_CLIENT_HEADER]) !== null && _a !== void 0 ? _a : "";
+  var _a2;
+  const existingHeader = (_a2 = headers[GOOGLE_API_CLIENT_HEADER]) !== null && _a2 !== void 0 ? _a2 : "";
   headers[GOOGLE_API_CLIENT_HEADER] = (existingHeader + ` ${MCP_LABEL}`).trimStart();
 }
 function isMcpCallableTool(object) {
@@ -60272,7 +60307,7 @@ var McpCallableTool = class _McpCallableTool {
    *     names.
    */
   async initialize() {
-    var _a, e_1, _b, _c;
+    var _a2, e_1, _b, _c;
     if (this.mcpTools.length > 0) {
       return;
     }
@@ -60280,7 +60315,7 @@ var McpCallableTool = class _McpCallableTool {
     const mcpTools = [];
     for (const mcpClient of this.mcpClients) {
       try {
-        for (var _d = true, _e = (e_1 = void 0, __asyncValues(listAllTools(mcpClient))), _f; _f = await _e.next(), _a = _f.done, !_a; _d = true) {
+        for (var _d = true, _e = (e_1 = void 0, __asyncValues(listAllTools(mcpClient))), _f; _f = await _e.next(), _a2 = _f.done, !_a2; _d = true) {
           _c = _f.value;
           _d = false;
           const mcpTool = _c;
@@ -60295,7 +60330,7 @@ var McpCallableTool = class _McpCallableTool {
         e_1 = { error: e_1_1 };
       } finally {
         try {
-          if (!_d && !_a && (_b = _e.return))
+          if (!_d && !_a2 && (_b = _e.return))
             await _b.call(_e);
         } finally {
           if (e_1)
@@ -60391,7 +60426,7 @@ var LiveMusic = class {
        ```
       */
   async connect(params2) {
-    var _a, _b;
+    var _a2, _b;
     if (this.apiClient.isVertexAI()) {
       throw new Error("Live music is not supported for Vertex AI.");
     }
@@ -60416,7 +60451,7 @@ var LiveMusic = class {
       onmessage: (event) => {
         void handleWebSocketMessage$1(apiClient, callbacks.onmessage, event);
       },
-      onerror: (_a = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a !== void 0 ? _a : function(e) {
+      onerror: (_a2 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a2 !== void 0 ? _a2 : function(e) {
       },
       onclose: (_b = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onclose) !== null && _b !== void 0 ? _b : function(e) {
       }
@@ -60605,7 +60640,7 @@ var Live = class {
        ```
       */
   async connect(params2) {
-    var _a, _b, _c, _d, _e, _f;
+    var _a2, _b, _c, _d, _e, _f;
     if (params2.config && params2.config.httpOptions) {
       throw new Error("The Live module does not support httpOptions at request-level in LiveConnectConfig yet. Please use the client-level httpOptions configuration instead.");
     }
@@ -60641,8 +60676,8 @@ var Live = class {
     });
     const callbacks = params2.callbacks;
     const onopenAwaitedCallback = function() {
-      var _a2;
-      (_a2 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onopen) === null || _a2 === void 0 ? void 0 : _a2.call(callbacks);
+      var _a3;
+      (_a3 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onopen) === null || _a3 === void 0 ? void 0 : _a3.call(callbacks);
       onopenResolve({});
     };
     const apiClient = this.apiClient;
@@ -60651,7 +60686,7 @@ var Live = class {
       onmessage: (event) => {
         void handleWebSocketMessage(apiClient, callbacks.onmessage, event);
       },
-      onerror: (_a = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a !== void 0 ? _a : function(e) {
+      onerror: (_a2 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a2 !== void 0 ? _a2 : function(e) {
       },
       onclose: (_b = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onclose) !== null && _b !== void 0 ? _b : function(e) {
       }
@@ -60724,7 +60759,7 @@ var Session = class {
         if (!apiClient.isVertexAI()) {
           contents = contents.map((item) => contentToMldev$1(item));
         }
-      } catch (_a) {
+      } catch (_a2) {
         throw new Error(`Failed to parse client content "turns", type: '${typeof params2.turns}'`);
       }
       return {
@@ -60914,8 +60949,8 @@ function mapToHeaders(map) {
 }
 var DEFAULT_MAX_REMOTE_CALLS = 10;
 function shouldDisableAfc(config) {
-  var _a, _b, _c;
-  if ((_a = config === null || config === void 0 ? void 0 : config.automaticFunctionCalling) === null || _a === void 0 ? void 0 : _a.disable) {
+  var _a2, _b, _c;
+  if ((_a2 = config === null || config === void 0 ? void 0 : config.automaticFunctionCalling) === null || _a2 === void 0 ? void 0 : _a2.disable) {
     return true;
   }
   let callableToolsPresent = false;
@@ -60939,13 +60974,13 @@ function isCallableTool(tool) {
   return "callTool" in tool && typeof tool.callTool === "function";
 }
 function hasCallableTools(params2) {
-  var _a, _b, _c;
-  return (_c = (_b = (_a = params2.config) === null || _a === void 0 ? void 0 : _a.tools) === null || _b === void 0 ? void 0 : _b.some((tool) => isCallableTool(tool))) !== null && _c !== void 0 ? _c : false;
+  var _a2, _b, _c;
+  return (_c = (_b = (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.tools) === null || _b === void 0 ? void 0 : _b.some((tool) => isCallableTool(tool))) !== null && _c !== void 0 ? _c : false;
 }
 function findAfcIncompatibleToolIndexes(params2) {
-  var _a;
+  var _a2;
   const afcIncompatibleToolIndexes = [];
-  if (!((_a = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a === void 0 ? void 0 : _a.tools)) {
+  if (!((_a2 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a2 === void 0 ? void 0 : _a2.tools)) {
     return afcIncompatibleToolIndexes;
   }
   params2.config.tools.forEach((tool, index) => {
@@ -60960,15 +60995,15 @@ function findAfcIncompatibleToolIndexes(params2) {
   return afcIncompatibleToolIndexes;
 }
 function shouldAppendAfcHistory(config) {
-  var _a;
-  return !((_a = config === null || config === void 0 ? void 0 : config.automaticFunctionCalling) === null || _a === void 0 ? void 0 : _a.ignoreCallHistory);
+  var _a2;
+  return !((_a2 = config === null || config === void 0 ? void 0 : config.automaticFunctionCalling) === null || _a2 === void 0 ? void 0 : _a2.ignoreCallHistory);
 }
 var Models = class extends BaseModule2 {
   constructor(apiClient) {
     super();
     this.apiClient = apiClient;
     this.generateContent = async (params2) => {
-      var _a, _b, _c, _d, _e;
+      var _a2, _b, _c, _d, _e;
       const transformedParams = await this.processParamsMaybeAddMcpUsage(params2);
       this.maybeMoveToResponseJsonSchem(params2);
       if (!hasCallableTools(params2) || shouldDisableAfc(params2.config)) {
@@ -60982,7 +61017,7 @@ var Models = class extends BaseModule2 {
       let response;
       let functionResponseContent;
       const automaticFunctionCallingHistory = tContents(transformedParams.contents);
-      const maxRemoteCalls = (_c = (_b = (_a = transformedParams.config) === null || _a === void 0 ? void 0 : _a.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
+      const maxRemoteCalls = (_c = (_b = (_a2 = transformedParams.config) === null || _a2 === void 0 ? void 0 : _a2.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
       let remoteCalls = 0;
       while (remoteCalls < maxRemoteCalls) {
         response = await this.generateContentInternal(transformedParams);
@@ -61017,7 +61052,7 @@ var Models = class extends BaseModule2 {
       return response;
     };
     this.generateContentStream = async (params2) => {
-      var _a, _b, _c, _d, _e;
+      var _a2, _b, _c, _d, _e;
       this.maybeMoveToResponseJsonSchem(params2);
       if (shouldDisableAfc(params2.config)) {
         const transformedParams = await this.processParamsMaybeAddMcpUsage(params2);
@@ -61028,7 +61063,7 @@ var Models = class extends BaseModule2 {
         const formattedIndexes = incompatibleToolIndexes.map((index) => `tools[${index}]`).join(", ");
         throw new Error(`Incompatible tools found at ${formattedIndexes}. Automatic function calling with CallableTools (or MCP objects) and basic FunctionDeclarations" is not yet supported.`);
       }
-      const streamFunctionCall = (_c = (_b = (_a = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a === void 0 ? void 0 : _a.toolConfig) === null || _b === void 0 ? void 0 : _b.functionCallingConfig) === null || _c === void 0 ? void 0 : _c.streamFunctionCallArguments;
+      const streamFunctionCall = (_c = (_b = (_a2 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a2 === void 0 ? void 0 : _a2.toolConfig) === null || _b === void 0 ? void 0 : _b.functionCallingConfig) === null || _c === void 0 ? void 0 : _c.streamFunctionCallArguments;
       const disableAfc = (_e = (_d = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _d === void 0 ? void 0 : _d.automaticFunctionCalling) === null || _e === void 0 ? void 0 : _e.disable;
       if (streamFunctionCall && !disableAfc) {
         throw new Error("Running in streaming mode with 'streamFunctionCallArguments' enabled, this feature is not compatible with automatic function calling (AFC). Please set 'config.automaticFunctionCalling.disable' to true to disable AFC or leave 'config.toolConfig.functionCallingConfig.streamFunctionCallArguments' to be undefined or set to false to disable streaming function call arguments feature.");
@@ -61037,12 +61072,12 @@ var Models = class extends BaseModule2 {
     };
     this.generateImages = async (params2) => {
       return await this.generateImagesInternal(params2).then((apiResponse) => {
-        var _a;
+        var _a2;
         let positivePromptSafetyAttributes;
         const generatedImages = [];
         if (apiResponse === null || apiResponse === void 0 ? void 0 : apiResponse.generatedImages) {
           for (const generatedImage of apiResponse.generatedImages) {
-            if (generatedImage && (generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) && ((_a = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) === null || _a === void 0 ? void 0 : _a.contentType) === "Positive Prompt") {
+            if (generatedImage && (generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) && ((_a2 = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) === null || _a2 === void 0 ? void 0 : _a2.contentType) === "Positive Prompt") {
               positivePromptSafetyAttributes = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes;
             } else {
               generatedImages.push(generatedImage);
@@ -61066,7 +61101,7 @@ var Models = class extends BaseModule2 {
       });
     };
     this.list = async (params2) => {
-      var _a;
+      var _a2;
       const defaultConfig2 = {
         queryBase: true
       };
@@ -61076,7 +61111,7 @@ var Models = class extends BaseModule2 {
       };
       if (this.apiClient.isVertexAI()) {
         if (!actualParams.config.queryBase) {
-          if ((_a = actualParams.config) === null || _a === void 0 ? void 0 : _a.filter) {
+          if ((_a2 = actualParams.config) === null || _a2 === void 0 ? void 0 : _a2.filter) {
             throw new Error("Filtering tuned models list for Vertex AI is not currently supported");
           } else {
             actualParams.config.filter = "labels.tune-type:*";
@@ -61116,12 +61151,12 @@ var Models = class extends BaseModule2 {
       return await this.upscaleImageInternal(apiParams);
     };
     this.generateVideos = async (params2) => {
-      var _a, _b, _c, _d, _e, _f;
+      var _a2, _b, _c, _d, _e, _f;
       if ((params2.prompt || params2.image || params2.video) && params2.source) {
         throw new Error("Source and prompt/image/video are mutually exclusive. Please only use source.");
       }
       if (!this.apiClient.isVertexAI()) {
-        if (((_a = params2.video) === null || _a === void 0 ? void 0 : _a.uri) && ((_b = params2.video) === null || _b === void 0 ? void 0 : _b.videoBytes)) {
+        if (((_a2 = params2.video) === null || _a2 === void 0 ? void 0 : _a2.uri) && ((_b = params2.video) === null || _b === void 0 ? void 0 : _b.videoBytes)) {
           params2.video = {
             uri: params2.video.uri,
             mimeType: params2.video.mimeType
@@ -61161,8 +61196,8 @@ var Models = class extends BaseModule2 {
    * MCP tools in the parameters.
    */
   async processParamsMaybeAddMcpUsage(params2) {
-    var _a, _b, _c;
-    const tools = (_a = params2.config) === null || _a === void 0 ? void 0 : _a.tools;
+    var _a2, _b, _c;
+    const tools = (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.tools;
     if (!tools) {
       return params2;
     }
@@ -61191,9 +61226,9 @@ var Models = class extends BaseModule2 {
     return newParams;
   }
   async initAfcToolsMap(params2) {
-    var _a, _b, _c;
+    var _a2, _b, _c;
     const afcTools = /* @__PURE__ */ new Map();
-    for (const tool of (_b = (_a = params2.config) === null || _a === void 0 ? void 0 : _a.tools) !== null && _b !== void 0 ? _b : []) {
+    for (const tool of (_b = (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.tools) !== null && _b !== void 0 ? _b : []) {
       if (isCallableTool(tool)) {
         const callableTool = tool;
         const toolDeclaration = await callableTool.tool();
@@ -61211,14 +61246,14 @@ var Models = class extends BaseModule2 {
     return afcTools;
   }
   async processAfcStream(params2) {
-    var _a, _b, _c;
-    const maxRemoteCalls = (_c = (_b = (_a = params2.config) === null || _a === void 0 ? void 0 : _a.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
+    var _a2, _b, _c;
+    const maxRemoteCalls = (_c = (_b = (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
     let wereFunctionsCalled = false;
     let remoteCallCount = 0;
     const afcToolsMap = await this.initAfcToolsMap(params2);
     return function(models, afcTools, params3) {
       return __asyncGenerator(this, arguments, function* () {
-        var _a2, e_1, _b2, _c2;
+        var _a3, e_1, _b2, _c2;
         var _d, _e;
         while (remoteCallCount < maxRemoteCalls) {
           if (wereFunctionsCalled) {
@@ -61230,7 +61265,7 @@ var Models = class extends BaseModule2 {
           const functionResponses = [];
           const responseContents = [];
           try {
-            for (var _f = true, response_1 = (e_1 = void 0, __asyncValues(response)), response_1_1; response_1_1 = yield __await(response_1.next()), _a2 = response_1_1.done, !_a2; _f = true) {
+            for (var _f = true, response_1 = (e_1 = void 0, __asyncValues(response)), response_1_1; response_1_1 = yield __await(response_1.next()), _a3 = response_1_1.done, !_a3; _f = true) {
               _c2 = response_1_1.value;
               _f = false;
               const chunk = _c2;
@@ -61256,7 +61291,7 @@ var Models = class extends BaseModule2 {
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (!_f && !_a2 && (_b2 = response_1.return))
+              if (!_f && !_a3 && (_b2 = response_1.return))
                 yield __await(_b2.call(response_1));
             } finally {
               if (e_1)
@@ -61291,7 +61326,7 @@ var Models = class extends BaseModule2 {
     }(this, afcToolsMap, params2);
   }
   async generateContentInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61306,7 +61341,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61354,7 +61389,7 @@ var Models = class extends BaseModule2 {
     }
   }
   async generateContentStreamInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61370,14 +61405,14 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
       return response.then(function(apiResponse) {
         return __asyncGenerator(this, arguments, function* () {
-          var _a2, e_2, _b2, _c2;
+          var _a3, e_2, _b2, _c2;
           try {
-            for (var _d2 = true, apiResponse_1 = __asyncValues(apiResponse), apiResponse_1_1; apiResponse_1_1 = yield __await(apiResponse_1.next()), _a2 = apiResponse_1_1.done, !_a2; _d2 = true) {
+            for (var _d2 = true, apiResponse_1 = __asyncValues(apiResponse), apiResponse_1_1; apiResponse_1_1 = yield __await(apiResponse_1.next()), _a3 = apiResponse_1_1.done, !_a3; _d2 = true) {
               _c2 = apiResponse_1_1.value;
               _d2 = false;
               const chunk = _c2;
@@ -61393,7 +61428,7 @@ var Models = class extends BaseModule2 {
             e_2 = { error: e_2_1 };
           } finally {
             try {
-              if (!_d2 && !_a2 && (_b2 = apiResponse_1.return))
+              if (!_d2 && !_a3 && (_b2 = apiResponse_1.return))
                 yield __await(_b2.call(apiResponse_1));
             } finally {
               if (e_2)
@@ -61419,9 +61454,9 @@ var Models = class extends BaseModule2 {
       });
       return response.then(function(apiResponse) {
         return __asyncGenerator(this, arguments, function* () {
-          var _a2, e_3, _b2, _c2;
+          var _a3, e_3, _b2, _c2;
           try {
-            for (var _d2 = true, apiResponse_2 = __asyncValues(apiResponse), apiResponse_2_1; apiResponse_2_1 = yield __await(apiResponse_2.next()), _a2 = apiResponse_2_1.done, !_a2; _d2 = true) {
+            for (var _d2 = true, apiResponse_2 = __asyncValues(apiResponse), apiResponse_2_1; apiResponse_2_1 = yield __await(apiResponse_2.next()), _a3 = apiResponse_2_1.done, !_a3; _d2 = true) {
               _c2 = apiResponse_2_1.value;
               _d2 = false;
               const chunk = _c2;
@@ -61437,7 +61472,7 @@ var Models = class extends BaseModule2 {
             e_3 = { error: e_3_1 };
           } finally {
             try {
-              if (!_d2 && !_a2 && (_b2 = apiResponse_2.return))
+              if (!_d2 && !_a3 && (_b2 = apiResponse_2.return))
                 yield __await(_b2.call(apiResponse_2));
             } finally {
               if (e_3)
@@ -61470,7 +61505,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async embedContent(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61485,7 +61520,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61536,7 +61571,7 @@ var Models = class extends BaseModule2 {
    * Private method for generating images.
    */
   async generateImagesInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61551,7 +61586,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61602,7 +61637,7 @@ var Models = class extends BaseModule2 {
    * Private method for editing an image.
    */
   async editImageInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61617,7 +61652,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61642,7 +61677,7 @@ var Models = class extends BaseModule2 {
    * Private method for upscaling an image.
    */
   async upscaleImageInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61657,7 +61692,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61717,7 +61752,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async recontextImage(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61732,7 +61767,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -61768,7 +61803,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async segmentImage(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61783,7 +61818,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -61807,7 +61842,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61822,7 +61857,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -61854,7 +61889,7 @@ var Models = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61869,7 +61904,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61934,7 +61969,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async update(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61949,7 +61984,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -61992,7 +62027,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62007,7 +62042,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62071,7 +62106,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async countTokens(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62086,7 +62121,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62152,7 +62187,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async computeTokens(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62167,7 +62202,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62192,7 +62227,7 @@ var Models = class extends BaseModule2 {
    * Private method for generating videos.
    */
   async generateVideosInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62207,7 +62242,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -62325,7 +62360,7 @@ var Operations = class extends BaseModule2 {
     }
   }
   async getVideosOperationInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62340,7 +62375,7 @@ var Operations = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -62366,7 +62401,7 @@ var Operations = class extends BaseModule2 {
     }
   }
   async fetchPredictVideosOperationInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62381,7 +62416,7 @@ var Operations = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -62634,6 +62669,9 @@ function liveConnectConfigToMldev(fromObject, parentObject) {
   const fromProactivity = getValueByPath(fromObject, ["proactivity"]);
   if (parentObject !== void 0 && fromProactivity != null) {
     setValueByPath(parentObject, ["setup", "proactivity"], fromProactivity);
+  }
+  if (getValueByPath(fromObject, ["explicitVadSignal"]) !== void 0) {
+    throw new Error("explicitVadSignal parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -62944,7 +62982,7 @@ var Tokens = class extends BaseModule2 {
    * ```
    */
   async create(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62963,7 +63001,7 @@ var Tokens = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(transformedBody),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63067,7 +63105,7 @@ var Documents = class extends BaseModule2 {
    * @return Document.
    */
   async get(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63084,7 +63122,7 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63100,7 +63138,7 @@ var Documents = class extends BaseModule2 {
    * @param params - The parameters for deleting a document.
    */
   async delete(params2) {
-    var _a, _b;
+    var _a2, _b;
     let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -63116,13 +63154,13 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     }
   }
   async listInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63139,7 +63177,7 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63211,7 +63249,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return FileSearchStore.
    */
   async create(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63228,7 +63266,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63245,7 +63283,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return FileSearchStore.
    */
   async get(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63262,7 +63300,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63278,7 +63316,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @param params - The parameters for deleting a File Search Store.
    */
   async delete(params2) {
-    var _a, _b;
+    var _a2, _b;
     let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -63294,13 +63332,13 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     }
   }
   async listInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63317,7 +63355,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63331,7 +63369,7 @@ var FileSearchStores = class extends BaseModule2 {
     }
   }
   async uploadToFileSearchStoreInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63348,7 +63386,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63370,7 +63408,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return ImportFileOperation.
    */
   async importFile(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63387,7 +63425,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63401,6 +63439,1595 @@ var FileSearchStores = class extends BaseModule2 {
     }
   }
 };
+var uuid4Internal = function() {
+  const { crypto: crypto2 } = globalThis;
+  if (crypto2 === null || crypto2 === void 0 ? void 0 : crypto2.randomUUID) {
+    uuid4Internal = crypto2.randomUUID.bind(crypto2);
+    return crypto2.randomUUID();
+  }
+  const u8 = new Uint8Array(1);
+  const randomByte = crypto2 ? () => crypto2.getRandomValues(u8)[0] : () => Math.random() * 255 & 255;
+  return "10000000-1000-4000-8000-100000000000".replace(/[018]/g, (c) => (+c ^ randomByte() & 15 >> +c / 4).toString(16));
+};
+var uuid4 = () => uuid4Internal();
+function isAbortError(err) {
+  return typeof err === "object" && err !== null && // Spec-compliant fetch implementations
+  ("name" in err && err.name === "AbortError" || // Expo fetch
+  "message" in err && String(err.message).includes("FetchRequestCanceledException"));
+}
+var castToError = (err) => {
+  if (err instanceof Error)
+    return err;
+  if (typeof err === "object" && err !== null) {
+    try {
+      if (Object.prototype.toString.call(err) === "[object Error]") {
+        const error = new Error(err.message, err.cause ? { cause: err.cause } : {});
+        if (err.stack)
+          error.stack = err.stack;
+        if (err.cause && !error.cause)
+          error.cause = err.cause;
+        if (err.name)
+          error.name = err.name;
+        return error;
+      }
+    } catch (_a2) {
+    }
+    try {
+      return new Error(JSON.stringify(err));
+    } catch (_b) {
+    }
+  }
+  return new Error(err);
+};
+var GeminiNextGenAPIClientError = class extends Error {
+};
+var APIError = class _APIError extends GeminiNextGenAPIClientError {
+  constructor(status, error, message, headers) {
+    super(`${_APIError.makeMessage(status, error, message)}`);
+    this.status = status;
+    this.headers = headers;
+    this.error = error;
+  }
+  static makeMessage(status, error, message) {
+    const msg = (error === null || error === void 0 ? void 0 : error.message) ? typeof error.message === "string" ? error.message : JSON.stringify(error.message) : error ? JSON.stringify(error) : message;
+    if (status && msg) {
+      return `${status} ${msg}`;
+    }
+    if (status) {
+      return `${status} status code (no body)`;
+    }
+    if (msg) {
+      return msg;
+    }
+    return "(no status code or body)";
+  }
+  static generate(status, errorResponse, message, headers) {
+    if (!status || !headers) {
+      return new APIConnectionError({ message, cause: castToError(errorResponse) });
+    }
+    const error = errorResponse;
+    if (status === 400) {
+      return new BadRequestError(status, error, message, headers);
+    }
+    if (status === 401) {
+      return new AuthenticationError(status, error, message, headers);
+    }
+    if (status === 403) {
+      return new PermissionDeniedError(status, error, message, headers);
+    }
+    if (status === 404) {
+      return new NotFoundError(status, error, message, headers);
+    }
+    if (status === 409) {
+      return new ConflictError(status, error, message, headers);
+    }
+    if (status === 422) {
+      return new UnprocessableEntityError(status, error, message, headers);
+    }
+    if (status === 429) {
+      return new RateLimitError(status, error, message, headers);
+    }
+    if (status >= 500) {
+      return new InternalServerError(status, error, message, headers);
+    }
+    return new _APIError(status, error, message, headers);
+  }
+};
+var APIUserAbortError = class extends APIError {
+  constructor({ message } = {}) {
+    super(void 0, void 0, message || "Request was aborted.", void 0);
+  }
+};
+var APIConnectionError = class extends APIError {
+  constructor({ message, cause }) {
+    super(void 0, void 0, message || "Connection error.", void 0);
+    if (cause)
+      this.cause = cause;
+  }
+};
+var APIConnectionTimeoutError = class extends APIConnectionError {
+  constructor({ message } = {}) {
+    super({ message: message !== null && message !== void 0 ? message : "Request timed out." });
+  }
+};
+var BadRequestError = class extends APIError {
+};
+var AuthenticationError = class extends APIError {
+};
+var PermissionDeniedError = class extends APIError {
+};
+var NotFoundError = class extends APIError {
+};
+var ConflictError = class extends APIError {
+};
+var UnprocessableEntityError = class extends APIError {
+};
+var RateLimitError = class extends APIError {
+};
+var InternalServerError = class extends APIError {
+};
+var startsWithSchemeRegexp = /^[a-z][a-z0-9+.-]*:/i;
+var isAbsoluteURL = (url2) => {
+  return startsWithSchemeRegexp.test(url2);
+};
+var isArrayInternal = (val) => (isArrayInternal = Array.isArray, isArrayInternal(val));
+var isArray = isArrayInternal;
+var isReadonlyArrayInternal = isArray;
+var isReadonlyArray = isReadonlyArrayInternal;
+function isEmptyObj(obj) {
+  if (!obj)
+    return true;
+  for (const _k in obj)
+    return false;
+  return true;
+}
+function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
+var validatePositiveInteger = (name, n) => {
+  if (typeof n !== "number" || !Number.isInteger(n)) {
+    throw new GeminiNextGenAPIClientError(`${name} must be an integer`);
+  }
+  if (n < 0) {
+    throw new GeminiNextGenAPIClientError(`${name} must be a positive integer`);
+  }
+  return n;
+};
+var safeJSON = (text) => {
+  try {
+    return JSON.parse(text);
+  } catch (err) {
+    return void 0;
+  }
+};
+var sleep$1 = (ms) => new Promise((resolve8) => setTimeout(resolve8, ms));
+var VERSION = "0.0.1";
+function getDetectedPlatform() {
+  if (typeof Deno !== "undefined" && Deno.build != null) {
+    return "deno";
+  }
+  if (typeof EdgeRuntime !== "undefined") {
+    return "edge";
+  }
+  if (Object.prototype.toString.call(typeof globalThis.process !== "undefined" ? globalThis.process : 0) === "[object process]") {
+    return "node";
+  }
+  return "unknown";
+}
+var getPlatformProperties = () => {
+  var _a2, _b, _c, _d, _e;
+  const detectedPlatform = getDetectedPlatform();
+  if (detectedPlatform === "deno") {
+    return {
+      "X-Stainless-Lang": "js",
+      "X-Stainless-Package-Version": VERSION,
+      "X-Stainless-OS": normalizePlatform(Deno.build.os),
+      "X-Stainless-Arch": normalizeArch(Deno.build.arch),
+      "X-Stainless-Runtime": "deno",
+      "X-Stainless-Runtime-Version": typeof Deno.version === "string" ? Deno.version : (_b = (_a2 = Deno.version) === null || _a2 === void 0 ? void 0 : _a2.deno) !== null && _b !== void 0 ? _b : "unknown"
+    };
+  }
+  if (typeof EdgeRuntime !== "undefined") {
+    return {
+      "X-Stainless-Lang": "js",
+      "X-Stainless-Package-Version": VERSION,
+      "X-Stainless-OS": "Unknown",
+      "X-Stainless-Arch": `other:${EdgeRuntime}`,
+      "X-Stainless-Runtime": "edge",
+      "X-Stainless-Runtime-Version": globalThis.process.version
+    };
+  }
+  if (detectedPlatform === "node") {
+    return {
+      "X-Stainless-Lang": "js",
+      "X-Stainless-Package-Version": VERSION,
+      "X-Stainless-OS": normalizePlatform((_c = globalThis.process.platform) !== null && _c !== void 0 ? _c : "unknown"),
+      "X-Stainless-Arch": normalizeArch((_d = globalThis.process.arch) !== null && _d !== void 0 ? _d : "unknown"),
+      "X-Stainless-Runtime": "node",
+      "X-Stainless-Runtime-Version": (_e = globalThis.process.version) !== null && _e !== void 0 ? _e : "unknown"
+    };
+  }
+  const browserInfo = getBrowserInfo();
+  if (browserInfo) {
+    return {
+      "X-Stainless-Lang": "js",
+      "X-Stainless-Package-Version": VERSION,
+      "X-Stainless-OS": "Unknown",
+      "X-Stainless-Arch": "unknown",
+      "X-Stainless-Runtime": `browser:${browserInfo.browser}`,
+      "X-Stainless-Runtime-Version": browserInfo.version
+    };
+  }
+  return {
+    "X-Stainless-Lang": "js",
+    "X-Stainless-Package-Version": VERSION,
+    "X-Stainless-OS": "Unknown",
+    "X-Stainless-Arch": "unknown",
+    "X-Stainless-Runtime": "unknown",
+    "X-Stainless-Runtime-Version": "unknown"
+  };
+};
+function getBrowserInfo() {
+  if (typeof navigator === "undefined" || !navigator) {
+    return null;
+  }
+  const browserPatterns = [
+    { key: "edge", pattern: /Edge(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/ },
+    { key: "ie", pattern: /MSIE(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/ },
+    { key: "ie", pattern: /Trident(?:.*rv\:(\d+)\.(\d+)(?:\.(\d+))?)?/ },
+    { key: "chrome", pattern: /Chrome(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/ },
+    { key: "firefox", pattern: /Firefox(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/ },
+    { key: "safari", pattern: /(?:Version\W+(\d+)\.(\d+)(?:\.(\d+))?)?(?:\W+Mobile\S*)?\W+Safari/ }
+  ];
+  for (const { key, pattern } of browserPatterns) {
+    const match3 = pattern.exec(navigator.userAgent);
+    if (match3) {
+      const major = match3[1] || 0;
+      const minor = match3[2] || 0;
+      const patch = match3[3] || 0;
+      return { browser: key, version: `${major}.${minor}.${patch}` };
+    }
+  }
+  return null;
+}
+var normalizeArch = (arch) => {
+  if (arch === "x32")
+    return "x32";
+  if (arch === "x86_64" || arch === "x64")
+    return "x64";
+  if (arch === "arm")
+    return "arm";
+  if (arch === "aarch64" || arch === "arm64")
+    return "arm64";
+  if (arch)
+    return `other:${arch}`;
+  return "unknown";
+};
+var normalizePlatform = (platform) => {
+  platform = platform.toLowerCase();
+  if (platform.includes("ios"))
+    return "iOS";
+  if (platform === "android")
+    return "Android";
+  if (platform === "darwin")
+    return "MacOS";
+  if (platform === "win32")
+    return "Windows";
+  if (platform === "freebsd")
+    return "FreeBSD";
+  if (platform === "openbsd")
+    return "OpenBSD";
+  if (platform === "linux")
+    return "Linux";
+  if (platform)
+    return `Other:${platform}`;
+  return "Unknown";
+};
+var _platformHeaders;
+var getPlatformHeaders = () => {
+  return _platformHeaders !== null && _platformHeaders !== void 0 ? _platformHeaders : _platformHeaders = getPlatformProperties();
+};
+function getDefaultFetch() {
+  if (typeof fetch !== "undefined") {
+    return fetch;
+  }
+  throw new Error("`fetch` is not defined as a global; Either pass `fetch` to the client, `new GeminiNextGenAPIClient({ fetch })` or polyfill the global, `globalThis.fetch = fetch`");
+}
+function makeReadableStream(...args) {
+  const ReadableStream2 = globalThis.ReadableStream;
+  if (typeof ReadableStream2 === "undefined") {
+    throw new Error("`ReadableStream` is not defined as a global; You will need to polyfill it, `globalThis.ReadableStream = ReadableStream`");
+  }
+  return new ReadableStream2(...args);
+}
+function ReadableStreamFrom(iterable) {
+  let iter = Symbol.asyncIterator in iterable ? iterable[Symbol.asyncIterator]() : iterable[Symbol.iterator]();
+  return makeReadableStream({
+    start() {
+    },
+    async pull(controller) {
+      const { done, value } = await iter.next();
+      if (done) {
+        controller.close();
+      } else {
+        controller.enqueue(value);
+      }
+    },
+    async cancel() {
+      var _a2;
+      await ((_a2 = iter.return) === null || _a2 === void 0 ? void 0 : _a2.call(iter));
+    }
+  });
+}
+function ReadableStreamToAsyncIterable(stream) {
+  if (stream[Symbol.asyncIterator])
+    return stream;
+  const reader = stream.getReader();
+  return {
+    async next() {
+      try {
+        const result = await reader.read();
+        if (result === null || result === void 0 ? void 0 : result.done)
+          reader.releaseLock();
+        return result;
+      } catch (e) {
+        reader.releaseLock();
+        throw e;
+      }
+    },
+    async return() {
+      const cancelPromise = reader.cancel();
+      reader.releaseLock();
+      await cancelPromise;
+      return { done: true, value: void 0 };
+    },
+    [Symbol.asyncIterator]() {
+      return this;
+    }
+  };
+}
+async function CancelReadableStream(stream) {
+  var _a2, _b;
+  if (stream === null || typeof stream !== "object")
+    return;
+  if (stream[Symbol.asyncIterator]) {
+    await ((_b = (_a2 = stream[Symbol.asyncIterator]()).return) === null || _b === void 0 ? void 0 : _b.call(_a2));
+    return;
+  }
+  const reader = stream.getReader();
+  const cancelPromise = reader.cancel();
+  reader.releaseLock();
+  await cancelPromise;
+}
+var FallbackEncoder = ({ headers, body }) => {
+  return {
+    bodyHeaders: {
+      "content-type": "application/json"
+    },
+    body: JSON.stringify(body)
+  };
+};
+var checkFileSupport = () => {
+  var _a2;
+  if (typeof File === "undefined") {
+    const { process: process4 } = globalThis;
+    const isOldNode = typeof ((_a2 = process4 === null || process4 === void 0 ? void 0 : process4.versions) === null || _a2 === void 0 ? void 0 : _a2.node) === "string" && parseInt(process4.versions.node.split(".")) < 20;
+    throw new Error("`File` is not defined as a global, which is required for file uploads." + (isOldNode ? " Update to Node 20 LTS or newer, or set `globalThis.File` to `import('node:buffer').File`." : ""));
+  }
+};
+function makeFile(fileBits, fileName, options) {
+  checkFileSupport();
+  return new File(fileBits, fileName !== null && fileName !== void 0 ? fileName : "unknown_file", options);
+}
+function getName(value) {
+  return (typeof value === "object" && value !== null && ("name" in value && value.name && String(value.name) || "url" in value && value.url && String(value.url) || "filename" in value && value.filename && String(value.filename) || "path" in value && value.path && String(value.path)) || "").split(/[\\/]/).pop() || void 0;
+}
+var isAsyncIterable = (value) => value != null && typeof value === "object" && typeof value[Symbol.asyncIterator] === "function";
+var isBlobLike = (value) => value != null && typeof value === "object" && typeof value.size === "number" && typeof value.type === "string" && typeof value.text === "function" && typeof value.slice === "function" && typeof value.arrayBuffer === "function";
+var isFileLike = (value) => value != null && typeof value === "object" && typeof value.name === "string" && typeof value.lastModified === "number" && isBlobLike(value);
+var isResponseLike = (value) => value != null && typeof value === "object" && typeof value.url === "string" && typeof value.blob === "function";
+async function toFile(value, name, options) {
+  checkFileSupport();
+  value = await value;
+  if (isFileLike(value)) {
+    if (value instanceof File) {
+      return value;
+    }
+    return makeFile([await value.arrayBuffer()], value.name);
+  }
+  if (isResponseLike(value)) {
+    const blob = await value.blob();
+    name || (name = new URL(value.url).pathname.split(/[\\/]/).pop());
+    return makeFile(await getBytes(blob), name, options);
+  }
+  const parts = await getBytes(value);
+  name || (name = getName(value));
+  if (!(options === null || options === void 0 ? void 0 : options.type)) {
+    const type = parts.find((part) => typeof part === "object" && "type" in part && part.type);
+    if (typeof type === "string") {
+      options = Object.assign(Object.assign({}, options), { type });
+    }
+  }
+  return makeFile(parts, name, options);
+}
+async function getBytes(value) {
+  var _a2, e_1, _b, _c;
+  var _d;
+  let parts = [];
+  if (typeof value === "string" || ArrayBuffer.isView(value) || // includes Uint8Array, Buffer, etc.
+  value instanceof ArrayBuffer) {
+    parts.push(value);
+  } else if (isBlobLike(value)) {
+    parts.push(value instanceof Blob ? value : await value.arrayBuffer());
+  } else if (isAsyncIterable(value)) {
+    try {
+      for (var _e = true, value_1 = __asyncValues(value), value_1_1; value_1_1 = await value_1.next(), _a2 = value_1_1.done, !_a2; _e = true) {
+        _c = value_1_1.value;
+        _e = false;
+        const chunk = _c;
+        parts.push(...await getBytes(chunk));
+      }
+    } catch (e_1_1) {
+      e_1 = { error: e_1_1 };
+    } finally {
+      try {
+        if (!_e && !_a2 && (_b = value_1.return))
+          await _b.call(value_1);
+      } finally {
+        if (e_1)
+          throw e_1.error;
+      }
+    }
+  } else {
+    const constructor = (_d = value === null || value === void 0 ? void 0 : value.constructor) === null || _d === void 0 ? void 0 : _d.name;
+    throw new Error(`Unexpected data type: ${typeof value}${constructor ? `; constructor: ${constructor}` : ""}${propsForError(value)}`);
+  }
+  return parts;
+}
+function propsForError(value) {
+  if (typeof value !== "object" || value === null)
+    return "";
+  const props = Object.getOwnPropertyNames(value);
+  return `; props: [${props.map((p) => `"${p}"`).join(", ")}]`;
+}
+var APIResource = class {
+  constructor(client) {
+    this._client = client;
+  }
+};
+APIResource._key = [];
+function encodeURIPath(str) {
+  return str.replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/g, encodeURIComponent);
+}
+var EMPTY = Object.freeze(/* @__PURE__ */ Object.create(null));
+var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(statics, ...params2) {
+  if (statics.length === 1)
+    return statics[0];
+  let postPath = false;
+  const invalidSegments = [];
+  const path10 = statics.reduce((previousValue, currentValue, index) => {
+    var _a2, _b, _c;
+    if (/[?#]/.test(currentValue)) {
+      postPath = true;
+    }
+    const value = params2[index];
+    let encoded = (postPath ? encodeURIComponent : pathEncoder)("" + value);
+    if (index !== params2.length && (value == null || typeof value === "object" && // handle values from other realms
+    value.toString === ((_c = Object.getPrototypeOf((_b = Object.getPrototypeOf((_a2 = value.hasOwnProperty) !== null && _a2 !== void 0 ? _a2 : EMPTY)) !== null && _b !== void 0 ? _b : EMPTY)) === null || _c === void 0 ? void 0 : _c.toString))) {
+      encoded = value + "";
+      invalidSegments.push({
+        start: previousValue.length + currentValue.length,
+        length: encoded.length,
+        error: `Value of type ${Object.prototype.toString.call(value).slice(8, -1)} is not a valid path parameter`
+      });
+    }
+    return previousValue + currentValue + (index === params2.length ? "" : encoded);
+  }, "");
+  const pathOnly = path10.split(/[?#]/, 1)[0];
+  const invalidSegmentPattern = /(?<=^|\/)(?:\.|%2e){1,2}(?=\/|$)/gi;
+  let match3;
+  while ((match3 = invalidSegmentPattern.exec(pathOnly)) !== null) {
+    invalidSegments.push({
+      start: match3.index,
+      length: match3[0].length,
+      error: `Value "${match3[0]}" can't be safely passed as a path parameter`
+    });
+  }
+  invalidSegments.sort((a, b) => a.start - b.start);
+  if (invalidSegments.length > 0) {
+    let lastEnd = 0;
+    const underline2 = invalidSegments.reduce((acc, segment) => {
+      const spaces = " ".repeat(segment.start - lastEnd);
+      const arrows = "^".repeat(segment.length);
+      lastEnd = segment.start + segment.length;
+      return acc + spaces + arrows;
+    }, "");
+    throw new GeminiNextGenAPIClientError(`Path parameters result in path with invalid segments:
+${invalidSegments.map((e) => e.error).join("\n")}
+${path10}
+${underline2}`);
+  }
+  return path10;
+};
+var path8 = createPathTagFunction(encodeURIPath);
+var BaseInteractions = class extends APIResource {
+  create(params2, options) {
+    var _a2;
+    const { api_version = this._client.apiVersion } = params2, body = __rest(params2, ["api_version"]);
+    if ("model" in body && "agent_config" in body) {
+      throw new GeminiNextGenAPIClientError(`Invalid request: specified \`model\` and \`agent_config\`. If specifying \`model\`, use \`generation_config\`.`);
+    }
+    if ("agent" in body && "generation_config" in body) {
+      throw new GeminiNextGenAPIClientError(`Invalid request: specified \`agent\` and \`generation_config\`. If specifying \`agent\`, use \`agent_config\`.`);
+    }
+    return this._client.post(path8`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a2 = params2.stream) !== null && _a2 !== void 0 ? _a2 : false }));
+  }
+  /**
+   * Deletes the interaction by id.
+   *
+   * @example
+   * ```ts
+   * const interaction = await client.interactions.delete('id');
+   * ```
+   */
+  delete(id, params2 = {}, options) {
+    const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
+    return this._client.delete(path8`/${api_version}/interactions/${id}`, options);
+  }
+  /**
+   * Cancels an interaction by id. This only applies to background interactions that are still running.
+   *
+   * @example
+   * ```ts
+   * const interaction = await client.interactions.cancel('id');
+   * ```
+   */
+  cancel(id, params2 = {}, options) {
+    const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
+    return this._client.post(path8`/${api_version}/interactions/${id}/cancel`, options);
+  }
+  get(id, params2 = {}, options) {
+    var _a2;
+    const _b = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _b, query = __rest(_b, ["api_version"]);
+    return this._client.get(path8`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a2 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a2 !== void 0 ? _a2 : false }));
+  }
+};
+BaseInteractions._key = Object.freeze(["interactions"]);
+var Interactions = class extends BaseInteractions {
+};
+function concatBytes(buffers) {
+  let length = 0;
+  for (const buffer of buffers) {
+    length += buffer.length;
+  }
+  const output = new Uint8Array(length);
+  let index = 0;
+  for (const buffer of buffers) {
+    output.set(buffer, index);
+    index += buffer.length;
+  }
+  return output;
+}
+var encodeUTF8_;
+function encodeUTF8(str) {
+  let encoder;
+  return (encodeUTF8_ !== null && encodeUTF8_ !== void 0 ? encodeUTF8_ : (encoder = new globalThis.TextEncoder(), encodeUTF8_ = encoder.encode.bind(encoder)))(str);
+}
+var decodeUTF8_;
+function decodeUTF8(bytes) {
+  let decoder;
+  return (decodeUTF8_ !== null && decodeUTF8_ !== void 0 ? decodeUTF8_ : (decoder = new globalThis.TextDecoder(), decodeUTF8_ = decoder.decode.bind(decoder)))(bytes);
+}
+var LineDecoder = class {
+  constructor() {
+    this.buffer = new Uint8Array();
+    this.carriageReturnIndex = null;
+  }
+  decode(chunk) {
+    if (chunk == null) {
+      return [];
+    }
+    const binaryChunk = chunk instanceof ArrayBuffer ? new Uint8Array(chunk) : typeof chunk === "string" ? encodeUTF8(chunk) : chunk;
+    this.buffer = concatBytes([this.buffer, binaryChunk]);
+    const lines = [];
+    let patternIndex;
+    while ((patternIndex = findNewlineIndex(this.buffer, this.carriageReturnIndex)) != null) {
+      if (patternIndex.carriage && this.carriageReturnIndex == null) {
+        this.carriageReturnIndex = patternIndex.index;
+        continue;
+      }
+      if (this.carriageReturnIndex != null && (patternIndex.index !== this.carriageReturnIndex + 1 || patternIndex.carriage)) {
+        lines.push(decodeUTF8(this.buffer.subarray(0, this.carriageReturnIndex - 1)));
+        this.buffer = this.buffer.subarray(this.carriageReturnIndex);
+        this.carriageReturnIndex = null;
+        continue;
+      }
+      const endIndex = this.carriageReturnIndex !== null ? patternIndex.preceding - 1 : patternIndex.preceding;
+      const line = decodeUTF8(this.buffer.subarray(0, endIndex));
+      lines.push(line);
+      this.buffer = this.buffer.subarray(patternIndex.index);
+      this.carriageReturnIndex = null;
+    }
+    return lines;
+  }
+  flush() {
+    if (!this.buffer.length) {
+      return [];
+    }
+    return this.decode("\n");
+  }
+};
+LineDecoder.NEWLINE_CHARS = /* @__PURE__ */ new Set(["\n", "\r"]);
+LineDecoder.NEWLINE_REGEXP = /\r\n|[\n\r]/g;
+function findNewlineIndex(buffer, startIndex) {
+  const newline = 10;
+  const carriage = 13;
+  for (let i = startIndex !== null && startIndex !== void 0 ? startIndex : 0; i < buffer.length; i++) {
+    if (buffer[i] === newline) {
+      return { preceding: i, index: i + 1, carriage: false };
+    }
+    if (buffer[i] === carriage) {
+      return { preceding: i, index: i + 1, carriage: true };
+    }
+  }
+  return null;
+}
+function findDoubleNewlineIndex(buffer) {
+  const newline = 10;
+  const carriage = 13;
+  for (let i = 0; i < buffer.length - 1; i++) {
+    if (buffer[i] === newline && buffer[i + 1] === newline) {
+      return i + 2;
+    }
+    if (buffer[i] === carriage && buffer[i + 1] === carriage) {
+      return i + 2;
+    }
+    if (buffer[i] === carriage && buffer[i + 1] === newline && i + 3 < buffer.length && buffer[i + 2] === carriage && buffer[i + 3] === newline) {
+      return i + 4;
+    }
+  }
+  return -1;
+}
+var levelNumbers = {
+  off: 0,
+  error: 200,
+  warn: 300,
+  info: 400,
+  debug: 500
+};
+var parseLogLevel = (maybeLevel, sourceName, client) => {
+  if (!maybeLevel) {
+    return void 0;
+  }
+  if (hasOwn(levelNumbers, maybeLevel)) {
+    return maybeLevel;
+  }
+  loggerFor(client).warn(`${sourceName} was set to ${JSON.stringify(maybeLevel)}, expected one of ${JSON.stringify(Object.keys(levelNumbers))}`);
+  return void 0;
+};
+function noop() {
+}
+function makeLogFn(fnLevel, logger, logLevel) {
+  if (!logger || levelNumbers[fnLevel] > levelNumbers[logLevel]) {
+    return noop;
+  } else {
+    return logger[fnLevel].bind(logger);
+  }
+}
+var noopLogger = {
+  error: noop,
+  warn: noop,
+  info: noop,
+  debug: noop
+};
+var cachedLoggers = /* @__PURE__ */ new WeakMap();
+function loggerFor(client) {
+  var _a2;
+  const logger = client.logger;
+  const logLevel = (_a2 = client.logLevel) !== null && _a2 !== void 0 ? _a2 : "off";
+  if (!logger) {
+    return noopLogger;
+  }
+  const cachedLogger = cachedLoggers.get(logger);
+  if (cachedLogger && cachedLogger[0] === logLevel) {
+    return cachedLogger[1];
+  }
+  const levelLogger = {
+    error: makeLogFn("error", logger, logLevel),
+    warn: makeLogFn("warn", logger, logLevel),
+    info: makeLogFn("info", logger, logLevel),
+    debug: makeLogFn("debug", logger, logLevel)
+  };
+  cachedLoggers.set(logger, [logLevel, levelLogger]);
+  return levelLogger;
+}
+var formatRequestDetails = (details) => {
+  if (details.options) {
+    details.options = Object.assign({}, details.options);
+    delete details.options["headers"];
+  }
+  if (details.headers) {
+    details.headers = Object.fromEntries((details.headers instanceof Headers ? [...details.headers] : Object.entries(details.headers)).map(([name, value]) => [
+      name,
+      name.toLowerCase() === "x-goog-api-key" || name.toLowerCase() === "authorization" || name.toLowerCase() === "cookie" || name.toLowerCase() === "set-cookie" ? "***" : value
+    ]));
+  }
+  if ("retryOfRequestLogID" in details) {
+    if (details.retryOfRequestLogID) {
+      details.retryOf = details.retryOfRequestLogID;
+    }
+    delete details.retryOfRequestLogID;
+  }
+  return details;
+};
+var Stream = class _Stream {
+  constructor(iterator, controller, client) {
+    this.iterator = iterator;
+    this.controller = controller;
+    this.client = client;
+  }
+  static fromSSEResponse(response, controller, client) {
+    let consumed = false;
+    const logger = client ? loggerFor(client) : console;
+    function iterator() {
+      return __asyncGenerator(this, arguments, function* iterator_1() {
+        var _a2, e_1, _b, _c;
+        if (consumed) {
+          throw new GeminiNextGenAPIClientError("Cannot iterate over a consumed stream, use `.tee()` to split the stream.");
+        }
+        consumed = true;
+        let done = false;
+        try {
+          try {
+            for (var _d = true, _e = __asyncValues(_iterSSEMessages(response, controller)), _f; _f = yield __await(_e.next()), _a2 = _f.done, !_a2; _d = true) {
+              _c = _f.value;
+              _d = false;
+              const sse = _c;
+              if (done)
+                continue;
+              if (sse.data.startsWith("[DONE]")) {
+                done = true;
+                continue;
+              } else {
+                try {
+                  yield yield __await(JSON.parse(sse.data));
+                } catch (e) {
+                  logger.error(`Could not parse message into JSON:`, sse.data);
+                  logger.error(`From chunk:`, sse.raw);
+                  throw e;
+                }
+              }
+            }
+          } catch (e_1_1) {
+            e_1 = { error: e_1_1 };
+          } finally {
+            try {
+              if (!_d && !_a2 && (_b = _e.return))
+                yield __await(_b.call(_e));
+            } finally {
+              if (e_1)
+                throw e_1.error;
+            }
+          }
+          done = true;
+        } catch (e) {
+          if (isAbortError(e))
+            return yield __await(void 0);
+          throw e;
+        } finally {
+          if (!done)
+            controller.abort();
+        }
+      });
+    }
+    return new _Stream(iterator, controller, client);
+  }
+  /**
+   * Generates a Stream from a newline-separated ReadableStream
+   * where each item is a JSON value.
+   */
+  static fromReadableStream(readableStream, controller, client) {
+    let consumed = false;
+    function iterLines() {
+      return __asyncGenerator(this, arguments, function* iterLines_1() {
+        var _a2, e_2, _b, _c;
+        const lineDecoder = new LineDecoder();
+        const iter = ReadableStreamToAsyncIterable(readableStream);
+        try {
+          for (var _d = true, iter_1 = __asyncValues(iter), iter_1_1; iter_1_1 = yield __await(iter_1.next()), _a2 = iter_1_1.done, !_a2; _d = true) {
+            _c = iter_1_1.value;
+            _d = false;
+            const chunk = _c;
+            for (const line of lineDecoder.decode(chunk)) {
+              yield yield __await(line);
+            }
+          }
+        } catch (e_2_1) {
+          e_2 = { error: e_2_1 };
+        } finally {
+          try {
+            if (!_d && !_a2 && (_b = iter_1.return))
+              yield __await(_b.call(iter_1));
+          } finally {
+            if (e_2)
+              throw e_2.error;
+          }
+        }
+        for (const line of lineDecoder.flush()) {
+          yield yield __await(line);
+        }
+      });
+    }
+    function iterator() {
+      return __asyncGenerator(this, arguments, function* iterator_2() {
+        var _a2, e_3, _b, _c;
+        if (consumed) {
+          throw new GeminiNextGenAPIClientError("Cannot iterate over a consumed stream, use `.tee()` to split the stream.");
+        }
+        consumed = true;
+        let done = false;
+        try {
+          try {
+            for (var _d = true, _e = __asyncValues(iterLines()), _f; _f = yield __await(_e.next()), _a2 = _f.done, !_a2; _d = true) {
+              _c = _f.value;
+              _d = false;
+              const line = _c;
+              if (done)
+                continue;
+              if (line)
+                yield yield __await(JSON.parse(line));
+            }
+          } catch (e_3_1) {
+            e_3 = { error: e_3_1 };
+          } finally {
+            try {
+              if (!_d && !_a2 && (_b = _e.return))
+                yield __await(_b.call(_e));
+            } finally {
+              if (e_3)
+                throw e_3.error;
+            }
+          }
+          done = true;
+        } catch (e) {
+          if (isAbortError(e))
+            return yield __await(void 0);
+          throw e;
+        } finally {
+          if (!done)
+            controller.abort();
+        }
+      });
+    }
+    return new _Stream(iterator, controller, client);
+  }
+  [Symbol.asyncIterator]() {
+    return this.iterator();
+  }
+  /**
+   * Splits the stream into two streams which can be
+   * independently read from at different speeds.
+   */
+  tee() {
+    const left = [];
+    const right = [];
+    const iterator = this.iterator();
+    const teeIterator = (queue) => {
+      return {
+        next: () => {
+          if (queue.length === 0) {
+            const result = iterator.next();
+            left.push(result);
+            right.push(result);
+          }
+          return queue.shift();
+        }
+      };
+    };
+    return [
+      new _Stream(() => teeIterator(left), this.controller, this.client),
+      new _Stream(() => teeIterator(right), this.controller, this.client)
+    ];
+  }
+  /**
+   * Converts this stream to a newline-separated ReadableStream of
+   * JSON stringified values in the stream
+   * which can be turned back into a Stream with `Stream.fromReadableStream()`.
+   */
+  toReadableStream() {
+    const self2 = this;
+    let iter;
+    return makeReadableStream({
+      async start() {
+        iter = self2[Symbol.asyncIterator]();
+      },
+      async pull(ctrl) {
+        try {
+          const { value, done } = await iter.next();
+          if (done)
+            return ctrl.close();
+          const bytes = encodeUTF8(JSON.stringify(value) + "\n");
+          ctrl.enqueue(bytes);
+        } catch (err) {
+          ctrl.error(err);
+        }
+      },
+      async cancel() {
+        var _a2;
+        await ((_a2 = iter.return) === null || _a2 === void 0 ? void 0 : _a2.call(iter));
+      }
+    });
+  }
+};
+function _iterSSEMessages(response, controller) {
+  return __asyncGenerator(this, arguments, function* _iterSSEMessages_1() {
+    var _a2, e_4, _b, _c;
+    if (!response.body) {
+      controller.abort();
+      if (typeof globalThis.navigator !== "undefined" && globalThis.navigator.product === "ReactNative") {
+        throw new GeminiNextGenAPIClientError(`The default react-native fetch implementation does not support streaming. Please use expo/fetch: https://docs.expo.dev/versions/latest/sdk/expo/#expofetch-api`);
+      }
+      throw new GeminiNextGenAPIClientError(`Attempted to iterate over a response with no body`);
+    }
+    const sseDecoder = new SSEDecoder();
+    const lineDecoder = new LineDecoder();
+    const iter = ReadableStreamToAsyncIterable(response.body);
+    try {
+      for (var _d = true, _e = __asyncValues(iterSSEChunks(iter)), _f; _f = yield __await(_e.next()), _a2 = _f.done, !_a2; _d = true) {
+        _c = _f.value;
+        _d = false;
+        const sseChunk = _c;
+        for (const line of lineDecoder.decode(sseChunk)) {
+          const sse = sseDecoder.decode(line);
+          if (sse)
+            yield yield __await(sse);
+        }
+      }
+    } catch (e_4_1) {
+      e_4 = { error: e_4_1 };
+    } finally {
+      try {
+        if (!_d && !_a2 && (_b = _e.return))
+          yield __await(_b.call(_e));
+      } finally {
+        if (e_4)
+          throw e_4.error;
+      }
+    }
+    for (const line of lineDecoder.flush()) {
+      const sse = sseDecoder.decode(line);
+      if (sse)
+        yield yield __await(sse);
+    }
+  });
+}
+function iterSSEChunks(iterator) {
+  return __asyncGenerator(this, arguments, function* iterSSEChunks_1() {
+    var _a2, e_5, _b, _c;
+    let data = new Uint8Array();
+    try {
+      for (var _d = true, iterator_3 = __asyncValues(iterator), iterator_3_1; iterator_3_1 = yield __await(iterator_3.next()), _a2 = iterator_3_1.done, !_a2; _d = true) {
+        _c = iterator_3_1.value;
+        _d = false;
+        const chunk = _c;
+        if (chunk == null) {
+          continue;
+        }
+        const binaryChunk = chunk instanceof ArrayBuffer ? new Uint8Array(chunk) : typeof chunk === "string" ? encodeUTF8(chunk) : chunk;
+        let newData = new Uint8Array(data.length + binaryChunk.length);
+        newData.set(data);
+        newData.set(binaryChunk, data.length);
+        data = newData;
+        let patternIndex;
+        while ((patternIndex = findDoubleNewlineIndex(data)) !== -1) {
+          yield yield __await(data.slice(0, patternIndex));
+          data = data.slice(patternIndex);
+        }
+      }
+    } catch (e_5_1) {
+      e_5 = { error: e_5_1 };
+    } finally {
+      try {
+        if (!_d && !_a2 && (_b = iterator_3.return))
+          yield __await(_b.call(iterator_3));
+      } finally {
+        if (e_5)
+          throw e_5.error;
+      }
+    }
+    if (data.length > 0) {
+      yield yield __await(data);
+    }
+  });
+}
+var SSEDecoder = class {
+  constructor() {
+    this.event = null;
+    this.data = [];
+    this.chunks = [];
+  }
+  decode(line) {
+    if (line.endsWith("\r")) {
+      line = line.substring(0, line.length - 1);
+    }
+    if (!line) {
+      if (!this.event && !this.data.length)
+        return null;
+      const sse = {
+        event: this.event,
+        data: this.data.join("\n"),
+        raw: this.chunks
+      };
+      this.event = null;
+      this.data = [];
+      this.chunks = [];
+      return sse;
+    }
+    this.chunks.push(line);
+    if (line.startsWith(":")) {
+      return null;
+    }
+    let [fieldname, _, value] = partition(line, ":");
+    if (value.startsWith(" ")) {
+      value = value.substring(1);
+    }
+    if (fieldname === "event") {
+      this.event = value;
+    } else if (fieldname === "data") {
+      this.data.push(value);
+    }
+    return null;
+  }
+};
+function partition(str, delimiter) {
+  const index = str.indexOf(delimiter);
+  if (index !== -1) {
+    return [str.substring(0, index), delimiter, str.substring(index + delimiter.length)];
+  }
+  return [str, "", ""];
+}
+async function defaultParseResponse(client, props) {
+  const { response, requestLogID, retryOfRequestLogID, startTime } = props;
+  const body = await (async () => {
+    var _a2;
+    if (props.options.stream) {
+      loggerFor(client).debug("response", response.status, response.url, response.headers, response.body);
+      if (props.options.__streamClass) {
+        return props.options.__streamClass.fromSSEResponse(response, props.controller, client);
+      }
+      return Stream.fromSSEResponse(response, props.controller, client);
+    }
+    if (response.status === 204) {
+      return null;
+    }
+    if (props.options.__binaryResponse) {
+      return response;
+    }
+    const contentType = response.headers.get("content-type");
+    const mediaType = (_a2 = contentType === null || contentType === void 0 ? void 0 : contentType.split(";")[0]) === null || _a2 === void 0 ? void 0 : _a2.trim();
+    const isJSON = (mediaType === null || mediaType === void 0 ? void 0 : mediaType.includes("application/json")) || (mediaType === null || mediaType === void 0 ? void 0 : mediaType.endsWith("+json"));
+    if (isJSON) {
+      const json = await response.json();
+      return json;
+    }
+    const text = await response.text();
+    return text;
+  })();
+  loggerFor(client).debug(`[${requestLogID}] response parsed`, formatRequestDetails({
+    retryOfRequestLogID,
+    url: response.url,
+    status: response.status,
+    body,
+    durationMs: Date.now() - startTime
+  }));
+  return body;
+}
+var APIPromise = class _APIPromise extends Promise {
+  constructor(client, responsePromise, parseResponse = defaultParseResponse) {
+    super((resolve8) => {
+      resolve8(null);
+    });
+    this.responsePromise = responsePromise;
+    this.parseResponse = parseResponse;
+    this.client = client;
+  }
+  _thenUnwrap(transform) {
+    return new _APIPromise(this.client, this.responsePromise, async (client, props) => transform(await this.parseResponse(client, props), props));
+  }
+  /**
+   * Gets the raw `Response` instance instead of parsing the response
+   * data.
+   *
+   * If you want to parse the response body but still get the `Response`
+   * instance, you can use {@link withResponse()}.
+   *
+   * 👋 Getting the wrong TypeScript type for `Response`?
+   * Try setting `"moduleResolution": "NodeNext"` or add `"lib": ["DOM"]`
+   * to your `tsconfig.json`.
+   */
+  asResponse() {
+    return this.responsePromise.then((p) => p.response);
+  }
+  /**
+   * Gets the parsed response data and the raw `Response` instance.
+   *
+   * If you just want to get the raw `Response` instance without parsing it,
+   * you can use {@link asResponse()}.
+   *
+   * 👋 Getting the wrong TypeScript type for `Response`?
+   * Try setting `"moduleResolution": "NodeNext"` or add `"lib": ["DOM"]`
+   * to your `tsconfig.json`.
+   */
+  async withResponse() {
+    const [data, response] = await Promise.all([this.parse(), this.asResponse()]);
+    return { data, response };
+  }
+  parse() {
+    if (!this.parsedPromise) {
+      this.parsedPromise = this.responsePromise.then((data) => this.parseResponse(this.client, data));
+    }
+    return this.parsedPromise;
+  }
+  then(onfulfilled, onrejected) {
+    return this.parse().then(onfulfilled, onrejected);
+  }
+  catch(onrejected) {
+    return this.parse().catch(onrejected);
+  }
+  finally(onfinally) {
+    return this.parse().finally(onfinally);
+  }
+};
+var brand_privateNullableHeaders = Symbol("brand.privateNullableHeaders");
+function* iterateHeaders(headers) {
+  if (!headers)
+    return;
+  if (brand_privateNullableHeaders in headers) {
+    const { values, nulls } = headers;
+    yield* values.entries();
+    for (const name of nulls) {
+      yield [name, null];
+    }
+    return;
+  }
+  let shouldClear = false;
+  let iter;
+  if (headers instanceof Headers) {
+    iter = headers.entries();
+  } else if (isReadonlyArray(headers)) {
+    iter = headers;
+  } else {
+    shouldClear = true;
+    iter = Object.entries(headers !== null && headers !== void 0 ? headers : {});
+  }
+  for (let row of iter) {
+    const name = row[0];
+    if (typeof name !== "string")
+      throw new TypeError("expected header name to be a string");
+    const values = isReadonlyArray(row[1]) ? row[1] : [row[1]];
+    let didClear = false;
+    for (const value of values) {
+      if (value === void 0)
+        continue;
+      if (shouldClear && !didClear) {
+        didClear = true;
+        yield [name, null];
+      }
+      yield [name, value];
+    }
+  }
+}
+var buildHeaders = (newHeaders) => {
+  const targetHeaders = new Headers();
+  const nullHeaders = /* @__PURE__ */ new Set();
+  for (const headers of newHeaders) {
+    const seenHeaders = /* @__PURE__ */ new Set();
+    for (const [name, value] of iterateHeaders(headers)) {
+      const lowerName = name.toLowerCase();
+      if (!seenHeaders.has(lowerName)) {
+        targetHeaders.delete(name);
+        seenHeaders.add(lowerName);
+      }
+      if (value === null) {
+        targetHeaders.delete(name);
+        nullHeaders.add(lowerName);
+      } else {
+        targetHeaders.append(name, value);
+        nullHeaders.delete(lowerName);
+      }
+    }
+  }
+  return { [brand_privateNullableHeaders]: true, values: targetHeaders, nulls: nullHeaders };
+};
+var readEnv = (env) => {
+  var _a2, _b, _c, _d, _e, _f;
+  if (typeof globalThis.process !== "undefined") {
+    return (_c = (_b = (_a2 = globalThis.process.env) === null || _a2 === void 0 ? void 0 : _a2[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
+  }
+  if (typeof globalThis.Deno !== "undefined") {
+    return (_f = (_e = (_d = globalThis.Deno.env) === null || _d === void 0 ? void 0 : _d.get) === null || _e === void 0 ? void 0 : _e.call(_d, env)) === null || _f === void 0 ? void 0 : _f.trim();
+  }
+  return void 0;
+};
+var _a;
+var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
+  /**
+   * API Client for interfacing with the Gemini Next Gen API API.
+   *
+   * @param {string | null | undefined} [opts.apiKey=process.env['GEMINI_API_KEY'] ?? null]
+   * @param {string | undefined} [opts.apiVersion=v1beta]
+   * @param {string} [opts.baseURL=process.env['GEMINI_NEXT_GEN_API_BASE_URL'] ?? https://generativelanguage.googleapis.com] - Override the default base URL for the API.
+   * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
+   * @param {MergedRequestInit} [opts.fetchOptions] - Additional `RequestInit` options to be passed to `fetch` calls.
+   * @param {Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
+   * @param {number} [opts.maxRetries=2] - The maximum number of times the client will retry a request.
+   * @param {HeadersLike} opts.defaultHeaders - Default headers to include with every request to the API.
+   * @param {Record<string, string | undefined>} opts.defaultQuery - Default query parameters to include with every request to the API.
+   */
+  constructor(_b) {
+    var _c, _d, _e, _f, _g, _h, _j;
+    var _k = _b === void 0 ? {} : _b, { baseURL = readEnv("GEMINI_NEXT_GEN_API_BASE_URL"), apiKey = (_c = readEnv("GEMINI_API_KEY")) !== null && _c !== void 0 ? _c : null, apiVersion = "v1beta" } = _k, opts = __rest(_k, ["baseURL", "apiKey", "apiVersion"]);
+    const options = Object.assign(Object.assign({
+      apiKey,
+      apiVersion
+    }, opts), { baseURL: baseURL || `https://generativelanguage.googleapis.com` });
+    this.baseURL = options.baseURL;
+    this.timeout = (_d = options.timeout) !== null && _d !== void 0 ? _d : _BaseGeminiNextGenAPIClient.DEFAULT_TIMEOUT;
+    this.logger = (_e = options.logger) !== null && _e !== void 0 ? _e : console;
+    const defaultLogLevel = "warn";
+    this.logLevel = defaultLogLevel;
+    this.logLevel = (_g = (_f = parseLogLevel(options.logLevel, "ClientOptions.logLevel", this)) !== null && _f !== void 0 ? _f : parseLogLevel(readEnv("GEMINI_NEXT_GEN_API_LOG"), "process.env['GEMINI_NEXT_GEN_API_LOG']", this)) !== null && _g !== void 0 ? _g : defaultLogLevel;
+    this.fetchOptions = options.fetchOptions;
+    this.maxRetries = (_h = options.maxRetries) !== null && _h !== void 0 ? _h : 2;
+    this.fetch = (_j = options.fetch) !== null && _j !== void 0 ? _j : getDefaultFetch();
+    this.encoder = FallbackEncoder;
+    this._options = options;
+    this.apiKey = apiKey;
+    this.apiVersion = apiVersion;
+  }
+  /**
+   * Create a new client instance re-using the same options given to the current client with optional overriding.
+   */
+  withOptions(options) {
+    const client = new this.constructor(Object.assign(Object.assign(Object.assign({}, this._options), { baseURL: this.baseURL, maxRetries: this.maxRetries, timeout: this.timeout, logger: this.logger, logLevel: this.logLevel, fetch: this.fetch, fetchOptions: this.fetchOptions, apiKey: this.apiKey, apiVersion: this.apiVersion }), options));
+    return client;
+  }
+  /**
+   * Check whether the base URL is set to its default.
+   */
+  baseURLOverridden() {
+    return this.baseURL !== "https://generativelanguage.googleapis.com";
+  }
+  defaultQuery() {
+    return this._options.defaultQuery;
+  }
+  validateHeaders({ values, nulls }) {
+    if (this.apiKey && values.get("x-goog-api-key")) {
+      return;
+    }
+    if (nulls.has("x-goog-api-key")) {
+      return;
+    }
+    throw new Error('Could not resolve authentication method. Expected the apiKey to be set. Or for the "x-goog-api-key" headers to be explicitly omitted');
+  }
+  async authHeaders(opts) {
+    if (this.apiKey == null) {
+      return void 0;
+    }
+    return buildHeaders([{ "x-goog-api-key": this.apiKey }]);
+  }
+  /**
+   * Basic re-implementation of `qs.stringify` for primitive types.
+   */
+  stringifyQuery(query) {
+    return Object.entries(query).filter(([_, value]) => typeof value !== "undefined").map(([key, value]) => {
+      if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+        return `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+      }
+      if (value === null) {
+        return `${encodeURIComponent(key)}=`;
+      }
+      throw new GeminiNextGenAPIClientError(`Cannot stringify type ${typeof value}; Expected string, number, boolean, or null. If you need to pass nested query parameters, you can manually encode them, e.g. { query: { 'foo[key1]': value1, 'foo[key2]': value2 } }, and please open a GitHub issue requesting better support for your use case.`);
+    }).join("&");
+  }
+  getUserAgent() {
+    return `${this.constructor.name}/JS ${VERSION}`;
+  }
+  defaultIdempotencyKey() {
+    return `stainless-node-retry-${uuid4()}`;
+  }
+  makeStatusError(status, error, message, headers) {
+    return APIError.generate(status, error, message, headers);
+  }
+  buildURL(path9, query, defaultBaseURL) {
+    const baseURL = !this.baseURLOverridden() && defaultBaseURL || this.baseURL;
+    const url2 = isAbsoluteURL(path9) ? new URL(path9) : new URL(baseURL + (baseURL.endsWith("/") && path9.startsWith("/") ? path9.slice(1) : path9));
+    const defaultQuery = this.defaultQuery();
+    if (!isEmptyObj(defaultQuery)) {
+      query = Object.assign(Object.assign({}, defaultQuery), query);
+    }
+    if (typeof query === "object" && query && !Array.isArray(query)) {
+      url2.search = this.stringifyQuery(query);
+    }
+    return url2.toString();
+  }
+  /**
+   * Used as a callback for mutating the given `FinalRequestOptions` object.
+   */
+  async prepareOptions(options) {
+  }
+  /**
+   * Used as a callback for mutating the given `RequestInit` object.
+   *
+   * This is useful for cases where you want to add certain headers based off of
+   * the request properties, e.g. `method` or `url`.
+   */
+  async prepareRequest(request, { url: url2, options }) {
+  }
+  get(path9, opts) {
+    return this.methodRequest("get", path9, opts);
+  }
+  post(path9, opts) {
+    return this.methodRequest("post", path9, opts);
+  }
+  patch(path9, opts) {
+    return this.methodRequest("patch", path9, opts);
+  }
+  put(path9, opts) {
+    return this.methodRequest("put", path9, opts);
+  }
+  delete(path9, opts) {
+    return this.methodRequest("delete", path9, opts);
+  }
+  methodRequest(method, path9, opts) {
+    return this.request(Promise.resolve(opts).then((opts2) => {
+      return Object.assign({ method, path: path9 }, opts2);
+    }));
+  }
+  request(options, remainingRetries = null) {
+    return new APIPromise(this, this.makeRequest(options, remainingRetries, void 0));
+  }
+  async makeRequest(optionsInput, retriesRemaining, retryOfRequestLogID) {
+    var _b, _c, _d;
+    const options = await optionsInput;
+    const maxRetries = (_b = options.maxRetries) !== null && _b !== void 0 ? _b : this.maxRetries;
+    if (retriesRemaining == null) {
+      retriesRemaining = maxRetries;
+    }
+    await this.prepareOptions(options);
+    const { req, url: url2, timeout } = await this.buildRequest(options, {
+      retryCount: maxRetries - retriesRemaining
+    });
+    await this.prepareRequest(req, { url: url2, options });
+    const requestLogID = "log_" + (Math.random() * (1 << 24) | 0).toString(16).padStart(6, "0");
+    const retryLogStr = retryOfRequestLogID === void 0 ? "" : `, retryOf: ${retryOfRequestLogID}`;
+    const startTime = Date.now();
+    loggerFor(this).debug(`[${requestLogID}] sending request`, formatRequestDetails({
+      retryOfRequestLogID,
+      method: options.method,
+      url: url2,
+      options,
+      headers: req.headers
+    }));
+    if ((_c = options.signal) === null || _c === void 0 ? void 0 : _c.aborted) {
+      throw new APIUserAbortError();
+    }
+    const controller = new AbortController();
+    const response = await this.fetchWithTimeout(url2, req, timeout, controller).catch(castToError);
+    const headersTime = Date.now();
+    if (response instanceof globalThis.Error) {
+      const retryMessage = `retrying, ${retriesRemaining} attempts remaining`;
+      if ((_d = options.signal) === null || _d === void 0 ? void 0 : _d.aborted) {
+        throw new APIUserAbortError();
+      }
+      const isTimeout = isAbortError(response) || /timed? ?out/i.test(String(response) + ("cause" in response ? String(response.cause) : ""));
+      if (retriesRemaining) {
+        loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? "timed out" : "failed"} - ${retryMessage}`);
+        loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? "timed out" : "failed"} (${retryMessage})`, formatRequestDetails({
+          retryOfRequestLogID,
+          url: url2,
+          durationMs: headersTime - startTime,
+          message: response.message
+        }));
+        return this.retryRequest(options, retriesRemaining, retryOfRequestLogID !== null && retryOfRequestLogID !== void 0 ? retryOfRequestLogID : requestLogID);
+      }
+      loggerFor(this).info(`[${requestLogID}] connection ${isTimeout ? "timed out" : "failed"} - error; no more retries left`);
+      loggerFor(this).debug(`[${requestLogID}] connection ${isTimeout ? "timed out" : "failed"} (error; no more retries left)`, formatRequestDetails({
+        retryOfRequestLogID,
+        url: url2,
+        durationMs: headersTime - startTime,
+        message: response.message
+      }));
+      if (isTimeout) {
+        throw new APIConnectionTimeoutError();
+      }
+      throw new APIConnectionError({ cause: response });
+    }
+    const responseInfo = `[${requestLogID}${retryLogStr}] ${req.method} ${url2} ${response.ok ? "succeeded" : "failed"} with status ${response.status} in ${headersTime - startTime}ms`;
+    if (!response.ok) {
+      const shouldRetry = await this.shouldRetry(response);
+      if (retriesRemaining && shouldRetry) {
+        const retryMessage2 = `retrying, ${retriesRemaining} attempts remaining`;
+        await CancelReadableStream(response.body);
+        loggerFor(this).info(`${responseInfo} - ${retryMessage2}`);
+        loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage2})`, formatRequestDetails({
+          retryOfRequestLogID,
+          url: response.url,
+          status: response.status,
+          headers: response.headers,
+          durationMs: headersTime - startTime
+        }));
+        return this.retryRequest(options, retriesRemaining, retryOfRequestLogID !== null && retryOfRequestLogID !== void 0 ? retryOfRequestLogID : requestLogID, response.headers);
+      }
+      const retryMessage = shouldRetry ? `error; no more retries left` : `error; not retryable`;
+      loggerFor(this).info(`${responseInfo} - ${retryMessage}`);
+      const errText = await response.text().catch((err2) => castToError(err2).message);
+      const errJSON = safeJSON(errText);
+      const errMessage = errJSON ? void 0 : errText;
+      loggerFor(this).debug(`[${requestLogID}] response error (${retryMessage})`, formatRequestDetails({
+        retryOfRequestLogID,
+        url: response.url,
+        status: response.status,
+        headers: response.headers,
+        message: errMessage,
+        durationMs: Date.now() - startTime
+      }));
+      const err = this.makeStatusError(response.status, errJSON, errMessage, response.headers);
+      throw err;
+    }
+    loggerFor(this).info(responseInfo);
+    loggerFor(this).debug(`[${requestLogID}] response start`, formatRequestDetails({
+      retryOfRequestLogID,
+      url: response.url,
+      status: response.status,
+      headers: response.headers,
+      durationMs: headersTime - startTime
+    }));
+    return { response, options, controller, requestLogID, retryOfRequestLogID, startTime };
+  }
+  async fetchWithTimeout(url2, init, ms, controller) {
+    const _b = init || {}, { signal, method } = _b, options = __rest(_b, ["signal", "method"]);
+    if (signal)
+      signal.addEventListener("abort", () => controller.abort());
+    const timeout = setTimeout(() => controller.abort(), ms);
+    const isReadableBody = globalThis.ReadableStream && options.body instanceof globalThis.ReadableStream || typeof options.body === "object" && options.body !== null && Symbol.asyncIterator in options.body;
+    const fetchOptions = Object.assign(Object.assign(Object.assign({ signal: controller.signal }, isReadableBody ? { duplex: "half" } : {}), { method: "GET" }), options);
+    if (method) {
+      fetchOptions.method = method.toUpperCase();
+    }
+    try {
+      return await this.fetch.call(void 0, url2, fetchOptions);
+    } finally {
+      clearTimeout(timeout);
+    }
+  }
+  async shouldRetry(response) {
+    const shouldRetryHeader = response.headers.get("x-should-retry");
+    if (shouldRetryHeader === "true")
+      return true;
+    if (shouldRetryHeader === "false")
+      return false;
+    if (response.status === 408)
+      return true;
+    if (response.status === 409)
+      return true;
+    if (response.status === 429)
+      return true;
+    if (response.status >= 500)
+      return true;
+    return false;
+  }
+  async retryRequest(options, retriesRemaining, requestLogID, responseHeaders) {
+    var _b;
+    let timeoutMillis;
+    const retryAfterMillisHeader = responseHeaders === null || responseHeaders === void 0 ? void 0 : responseHeaders.get("retry-after-ms");
+    if (retryAfterMillisHeader) {
+      const timeoutMs = parseFloat(retryAfterMillisHeader);
+      if (!Number.isNaN(timeoutMs)) {
+        timeoutMillis = timeoutMs;
+      }
+    }
+    const retryAfterHeader = responseHeaders === null || responseHeaders === void 0 ? void 0 : responseHeaders.get("retry-after");
+    if (retryAfterHeader && !timeoutMillis) {
+      const timeoutSeconds = parseFloat(retryAfterHeader);
+      if (!Number.isNaN(timeoutSeconds)) {
+        timeoutMillis = timeoutSeconds * 1e3;
+      } else {
+        timeoutMillis = Date.parse(retryAfterHeader) - Date.now();
+      }
+    }
+    if (!(timeoutMillis && 0 <= timeoutMillis && timeoutMillis < 60 * 1e3)) {
+      const maxRetries = (_b = options.maxRetries) !== null && _b !== void 0 ? _b : this.maxRetries;
+      timeoutMillis = this.calculateDefaultRetryTimeoutMillis(retriesRemaining, maxRetries);
+    }
+    await sleep$1(timeoutMillis);
+    return this.makeRequest(options, retriesRemaining - 1, requestLogID);
+  }
+  calculateDefaultRetryTimeoutMillis(retriesRemaining, maxRetries) {
+    const initialRetryDelay = 0.5;
+    const maxRetryDelay = 8;
+    const numRetries = maxRetries - retriesRemaining;
+    const sleepSeconds = Math.min(initialRetryDelay * Math.pow(2, numRetries), maxRetryDelay);
+    const jitter = 1 - Math.random() * 0.25;
+    return sleepSeconds * jitter * 1e3;
+  }
+  async buildRequest(inputOptions, { retryCount = 0 } = {}) {
+    var _b, _c, _d;
+    const options = Object.assign({}, inputOptions);
+    const { method, path: path9, query, defaultBaseURL } = options;
+    const url2 = this.buildURL(path9, query, defaultBaseURL);
+    if ("timeout" in options)
+      validatePositiveInteger("timeout", options.timeout);
+    options.timeout = (_b = options.timeout) !== null && _b !== void 0 ? _b : this.timeout;
+    const { bodyHeaders, body } = this.buildBody({ options });
+    const reqHeaders = await this.buildHeaders({ options: inputOptions, method, bodyHeaders, retryCount });
+    const req = Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({ method, headers: reqHeaders }, options.signal && { signal: options.signal }), globalThis.ReadableStream && body instanceof globalThis.ReadableStream && { duplex: "half" }), body && { body }), (_c = this.fetchOptions) !== null && _c !== void 0 ? _c : {}), (_d = options.fetchOptions) !== null && _d !== void 0 ? _d : {});
+    return { req, url: url2, timeout: options.timeout };
+  }
+  async buildHeaders({ options, method, bodyHeaders, retryCount }) {
+    let idempotencyHeaders = {};
+    if (this.idempotencyHeader && method !== "get") {
+      if (!options.idempotencyKey)
+        options.idempotencyKey = this.defaultIdempotencyKey();
+      idempotencyHeaders[this.idempotencyHeader] = options.idempotencyKey;
+    }
+    const headers = buildHeaders([
+      idempotencyHeaders,
+      Object.assign(Object.assign({ Accept: "application/json", "User-Agent": this.getUserAgent(), "X-Stainless-Retry-Count": String(retryCount) }, options.timeout ? { "X-Stainless-Timeout": String(Math.trunc(options.timeout / 1e3)) } : {}), getPlatformHeaders()),
+      await this.authHeaders(options),
+      this._options.defaultHeaders,
+      bodyHeaders,
+      options.headers
+    ]);
+    this.validateHeaders(headers);
+    return headers.values;
+  }
+  buildBody({ options: { body, headers: rawHeaders } }) {
+    if (!body) {
+      return { bodyHeaders: void 0, body: void 0 };
+    }
+    const headers = buildHeaders([rawHeaders]);
+    if (
+      // Pass raw type verbatim
+      ArrayBuffer.isView(body) || body instanceof ArrayBuffer || body instanceof DataView || typeof body === "string" && // Preserve legacy string encoding behavior for now
+      headers.values.has("content-type") || // `Blob` is superset of `File`
+      globalThis.Blob && body instanceof globalThis.Blob || // `FormData` -> `multipart/form-data`
+      body instanceof FormData || // `URLSearchParams` -> `application/x-www-form-urlencoded`
+      body instanceof URLSearchParams || // Send chunked stream (each chunk has own `length`)
+      globalThis.ReadableStream && body instanceof globalThis.ReadableStream
+    ) {
+      return { bodyHeaders: void 0, body };
+    } else if (typeof body === "object" && (Symbol.asyncIterator in body || Symbol.iterator in body && "next" in body && typeof body.next === "function")) {
+      return { bodyHeaders: void 0, body: ReadableStreamFrom(body) };
+    } else {
+      return this.encoder({ body, headers });
+    }
+  }
+};
+BaseGeminiNextGenAPIClient.DEFAULT_TIMEOUT = 6e4;
+var GeminiNextGenAPIClient = class extends BaseGeminiNextGenAPIClient {
+  constructor() {
+    super(...arguments);
+    this.interactions = new Interactions(this);
+  }
+};
+_a = GeminiNextGenAPIClient;
+GeminiNextGenAPIClient.GeminiNextGenAPIClient = _a;
+GeminiNextGenAPIClient.GeminiNextGenAPIClientError = GeminiNextGenAPIClientError;
+GeminiNextGenAPIClient.APIError = APIError;
+GeminiNextGenAPIClient.APIConnectionError = APIConnectionError;
+GeminiNextGenAPIClient.APIConnectionTimeoutError = APIConnectionTimeoutError;
+GeminiNextGenAPIClient.APIUserAbortError = APIUserAbortError;
+GeminiNextGenAPIClient.NotFoundError = NotFoundError;
+GeminiNextGenAPIClient.ConflictError = ConflictError;
+GeminiNextGenAPIClient.RateLimitError = RateLimitError;
+GeminiNextGenAPIClient.BadRequestError = BadRequestError;
+GeminiNextGenAPIClient.AuthenticationError = AuthenticationError;
+GeminiNextGenAPIClient.InternalServerError = InternalServerError;
+GeminiNextGenAPIClient.PermissionDeniedError = PermissionDeniedError;
+GeminiNextGenAPIClient.UnprocessableEntityError = UnprocessableEntityError;
+GeminiNextGenAPIClient.toFile = toFile;
+GeminiNextGenAPIClient.Interactions = Interactions;
 var GOOGLE_API_KEY_HEADER = "x-goog-api-key";
 var REQUIRED_VERTEX_AI_SCOPE = "https://www.googleapis.com/auth/cloud-platform";
 var NodeAuth = class {
@@ -63484,7 +65111,7 @@ var NodeDownloader = class {
   }
 };
 async function downloadFile(params2, apiClient) {
-  var _a, _b, _c;
+  var _a2, _b, _c;
   const name = tFileName(params2.file);
   if (name !== void 0) {
     return await apiClient.request({
@@ -63493,7 +65120,7 @@ async function downloadFile(params2, apiClient) {
       queryParams: {
         "alt": "media"
       },
-      httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+      httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
       abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
     });
   } else if (isGeneratedVideo(params2.file)) {
@@ -64233,13 +65860,13 @@ var Tunings = class extends BaseModule2 {
       return await this.getInternal(params2);
     };
     this.tune = async (params2) => {
-      var _a;
+      var _a2;
       if (this.apiClient.isVertexAI()) {
         if (params2.baseModel.startsWith("projects/")) {
           const preTunedModel = {
             tunedModelName: params2.baseModel
           };
-          if ((_a = params2.config) === null || _a === void 0 ? void 0 : _a.preTunedModelCheckpointId) {
+          if ((_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.preTunedModelCheckpointId) {
             preTunedModel.checkpointId = params2.config.preTunedModelCheckpointId;
           }
           const paramsPrivate = Object.assign(Object.assign({}, params2), { preTunedModel });
@@ -64267,7 +65894,7 @@ var Tunings = class extends BaseModule2 {
     };
   }
   async getInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -64282,7 +65909,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -64326,7 +65953,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -64341,7 +65968,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -64400,7 +66027,7 @@ var Tunings = class extends BaseModule2 {
    * ```
    */
   async cancel(params2) {
-    var _a, _b, _c, _d;
+    var _a2, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -64415,7 +66042,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -64463,7 +66090,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async tuneInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -64478,7 +66105,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -64498,7 +66125,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async tuneMldevInternal(params2) {
-    var _a, _b;
+    var _a2, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -64515,7 +66142,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a = params2.config) === null || _a === void 0 ? void 0 : _a.httpOptions,
+        httpOptions: (_a2 = params2.config) === null || _a2 === void 0 ? void 0 : _a2.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -64539,19 +66166,19 @@ var INITIAL_RETRY_DELAY_MS = 1e3;
 var DELAY_MULTIPLIER = 2;
 var X_GOOG_UPLOAD_STATUS_HEADER_FIELD = "x-goog-upload-status";
 async function uploadBlob(file, uploadUrl, apiClient) {
-  var _a;
+  var _a2;
   const response = await uploadBlobInternal(file, uploadUrl, apiClient);
   const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-  if (((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+  if (((_a2 = response === null || response === void 0 ? void 0 : response.headers) === null || _a2 === void 0 ? void 0 : _a2[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
     throw new Error("Failed to upload file: Upload status is not finalized.");
   }
   return responseJson["file"];
 }
 async function uploadBlobToFileSearchStore(file, uploadUrl, apiClient) {
-  var _a;
+  var _a2;
   const response = await uploadBlobInternal(file, uploadUrl, apiClient);
   const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-  if (((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+  if (((_a2 = response === null || response === void 0 ? void 0 : response.headers) === null || _a2 === void 0 ? void 0 : _a2[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
     throw new Error("Failed to upload file: Upload status is not finalized.");
   }
   const resp = uploadToFileSearchStoreOperationFromMldev(responseJson);
@@ -64560,7 +66187,7 @@ async function uploadBlobToFileSearchStore(file, uploadUrl, apiClient) {
   return typedResp;
 }
 async function uploadBlobInternal(file, uploadUrl, apiClient) {
-  var _a, _b;
+  var _a2, _b;
   let fileSize = 0;
   let offset = 0;
   let response = new HttpResponse(new Response());
@@ -64589,7 +66216,7 @@ async function uploadBlobInternal(file, uploadUrl, apiClient) {
           }
         }
       });
-      if ((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) {
+      if ((_a2 = response === null || response === void 0 ? void 0 : response.headers) === null || _a2 === void 0 ? void 0 : _a2[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) {
         break;
       }
       retryCount++;
@@ -64726,19 +66353,19 @@ var NodeUploader = class {
     return mimeType;
   }
   async uploadFileFromPath(file, uploadUrl, apiClient) {
-    var _a;
+    var _a2;
     const response = await this.uploadFileFromPathInternal(file, uploadUrl, apiClient);
     const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-    if (((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+    if (((_a2 = response === null || response === void 0 ? void 0 : response.headers) === null || _a2 === void 0 ? void 0 : _a2[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
       throw new Error("Failed to upload file: Upload status is not finalized.");
     }
     return responseJson["file"];
   }
   async uploadFileToFileSearchStoreFromPath(file, uploadUrl, apiClient) {
-    var _a;
+    var _a2;
     const response = await this.uploadFileFromPathInternal(file, uploadUrl, apiClient);
     const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-    if (((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+    if (((_a2 = response === null || response === void 0 ? void 0 : response.headers) === null || _a2 === void 0 ? void 0 : _a2[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
       throw new Error("Failed to upload file: Upload status is not finalized.");
     }
     const resp = uploadToFileSearchStoreOperationFromMldev(responseJson);
@@ -64747,13 +66374,13 @@ var NodeUploader = class {
     return typedResp;
   }
   async uploadFileFromPathInternal(file, uploadUrl, apiClient) {
-    var _a, _b;
+    var _a2, _b;
     let fileSize = 0;
     let offset = 0;
     let response = new HttpResponse(new Response());
     let uploadCommand = "upload";
     let fileHandle;
-    const fileName = path8.basename(file);
+    const fileName = path$1.basename(file);
     try {
       fileHandle = await fs5.open(file, "r");
       if (!fileHandle) {
@@ -64789,7 +66416,7 @@ var NodeUploader = class {
               }
             }
           });
-          if ((_a = response === null || response === void 0 ? void 0 : response.headers) === null || _a === void 0 ? void 0 : _a[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) {
+          if ((_a2 = response === null || response === void 0 ? void 0 : response.headers) === null || _a2 === void 0 ? void 0 : _a2[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) {
             break;
           }
           retryCount++;
@@ -64814,12 +66441,33 @@ var NodeUploader = class {
 };
 var LANGUAGE_LABEL_PREFIX = "gl-node/";
 var GoogleGenAI = class {
+  get interactions() {
+    if (this._interactions !== void 0) {
+      return this._interactions;
+    }
+    console.warn("GoogleGenAI.interactions: Interactions usage is experimental and may change in future versions.");
+    if (this.vertexai) {
+      throw new Error("This version of the GenAI SDK does not support Vertex AI API for interactions.");
+    }
+    const httpOpts = this.httpOptions;
+    if (httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.extraBody) {
+      console.warn("GoogleGenAI.interactions: Client level httpOptions.extraBody is not supported by the interactions client and will be ignored.");
+    }
+    const nextGenClient = new GeminiNextGenAPIClient({
+      baseURL: this.apiClient.getBaseUrl(),
+      apiKey: this.apiKey,
+      defaultHeaders: this.apiClient.getDefaultHeaders(),
+      timeout: httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.timeout
+    });
+    this._interactions = nextGenClient.interactions;
+    return this._interactions;
+  }
   constructor(options) {
-    var _a, _b, _c, _d, _e, _f;
+    var _a2, _b, _c, _d, _e, _f;
     if ((options.project || options.location) && options.apiKey) {
       throw new Error("Project/location and API key are mutually exclusive in the client initializer.");
     }
-    this.vertexai = (_b = (_a = options.vertexai) !== null && _a !== void 0 ? _a : getBooleanEnv("GOOGLE_GENAI_USE_VERTEXAI")) !== null && _b !== void 0 ? _b : false;
+    this.vertexai = (_b = (_a2 = options.vertexai) !== null && _a2 !== void 0 ? _a2 : getBooleanEnv("GOOGLE_GENAI_USE_VERTEXAI")) !== null && _b !== void 0 ? _b : false;
     const envApiKey = getApiKeyFromEnv();
     const envProject = getEnv("GOOGLE_CLOUD_PROJECT");
     const envLocation = getEnv("GOOGLE_CLOUD_LOCATION");
@@ -64885,8 +66533,8 @@ var GoogleGenAI = class {
   }
 };
 function getEnv(env) {
-  var _a, _b, _c;
-  return (_c = (_b = (_a = process === null || process === void 0 ? void 0 : process.env) === null || _a === void 0 ? void 0 : _a[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
+  var _a2, _b, _c;
+  return (_c = (_b = (_a2 = process === null || process === void 0 ? void 0 : process.env) === null || _a2 === void 0 ? void 0 : _a2[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
 }
 function getBooleanEnv(env) {
   return stringToBoolean(getEnv(env));
