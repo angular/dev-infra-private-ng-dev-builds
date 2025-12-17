@@ -21413,9 +21413,9 @@ var require_lib7 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.7/node_modules/@pnpm/dependency-path/lib/index.js
+// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.8/node_modules/@pnpm/dependency-path/lib/index.js
 var require_lib8 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.7/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.8/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
     "use strict";
     var __importDefault = exports && exports.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -48889,7 +48889,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-75bb2b41c0c58ffc7c0b0625119b8ad3d08c2c93`;
+var localVersion = `0.0.0-0c08182c6ff075f2cb100bfbaf95811b1efe8668`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
