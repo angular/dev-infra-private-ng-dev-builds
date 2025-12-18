@@ -48705,6 +48705,7 @@ async function updateRenovateConfig(projectDir, newBranchName) {
   }
   configJson["baseBranchPatterns"] = ["main", newBranchName];
   await writeFile(renovateConfigPath, JSON.stringify(configJson, void 0, 2));
+  await formatFiles([renovateConfigPath]);
   Log.info(green(`  \u2713   Updated Renovate config.`));
   return renovateConfigPath;
 }
@@ -48889,7 +48890,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-dd5658bd720370542913e23b21d80450bac94b60`;
+var localVersion = `0.0.0-9b1d52c5b8bb5c0f7d6b4ef89b9160bd64b0cfb1`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

@@ -2,6 +2,7 @@ import { existsSync } from 'node:fs';
 import { green, Log } from '../../../utils/logging.js';
 import { join } from 'node:path';
 import { writeFile, readFile } from 'node:fs/promises';
+import { formatFiles } from '../../../format/format.js';
 export async function updateRenovateConfig(projectDir, newBranchName) {
     const renovateConfigPath = join(projectDir, 'renovate.json');
     if (!existsSync(renovateConfigPath)) {
@@ -17,6 +18,7 @@ export async function updateRenovateConfig(projectDir, newBranchName) {
     }
     configJson['baseBranchPatterns'] = ['main', newBranchName];
     await writeFile(renovateConfigPath, JSON.stringify(configJson, undefined, 2));
+    await formatFiles([renovateConfigPath]);
     Log.info(green(`  ✓   Updated Renovate config.`));
     return renovateConfigPath;
 }
