@@ -120,18 +120,16 @@ export class ExternalCommands {
     }
     static async _spawnNpmScript(args, projectDir, spawnOptions = {}) {
         if (PnpmVersioning.isUsingPnpm(projectDir)) {
-            return ChildProcess.spawn('npx', ['--yes', 'pnpm', '-s', 'run', ...args], {
+            return ChildProcess.spawn('npx', ['--yes', 'pnpm', '-s', ...args], {
                 ...spawnOptions,
                 cwd: projectDir,
             });
         }
-        else {
-            const yarnCommand = await resolveYarnScriptForProject(projectDir);
-            return ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, ...args], {
-                ...spawnOptions,
-                cwd: projectDir,
-            });
-        }
+        const yarnCommand = await resolveYarnScriptForProject(projectDir);
+        return ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, ...args], {
+            ...spawnOptions,
+            cwd: projectDir,
+        });
     }
     static async invokeBazelUpdateAspectLockFiles(projectDir) {
         const spinner = new Spinner('Updating Aspect lock files');

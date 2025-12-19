@@ -47907,17 +47907,16 @@ var ExternalCommands = class {
   }
   static async _spawnNpmScript(args, projectDir, spawnOptions = {}) {
     if (PnpmVersioning.isUsingPnpm(projectDir)) {
-      return ChildProcess.spawn("npx", ["--yes", "pnpm", "-s", "run", ...args], {
-        ...spawnOptions,
-        cwd: projectDir
-      });
-    } else {
-      const yarnCommand = await resolveYarnScriptForProject(projectDir);
-      return ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, ...args], {
+      return ChildProcess.spawn("npx", ["--yes", "pnpm", "-s", ...args], {
         ...spawnOptions,
         cwd: projectDir
       });
     }
+    const yarnCommand = await resolveYarnScriptForProject(projectDir);
+    return ChildProcess.spawn(yarnCommand.binary, [...yarnCommand.args, ...args], {
+      ...spawnOptions,
+      cwd: projectDir
+    });
   }
   static async invokeBazelUpdateAspectLockFiles(projectDir) {
     const spinner = new Spinner("Updating Aspect lock files");
@@ -48890,7 +48889,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-2b0a3018401da50c0b34a4dedde2a6fdb9e90394`;
+var localVersion = `0.0.0-419c3aae8700aef0bb7e9a35b0f8f5813b9b232d`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -66892,7 +66891,7 @@ function buildAiParser(localYargs) {
 // ng-dev/cli.js
 runParserWithCompletedFunctions((yargs) => {
   process.exitCode = 0;
-  return yargs.scriptName("ng-dev").middleware([captureLogOutputForCommand, ngDevVersionMiddleware], true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).command("ai <command>", "", buildAiParser).command("config <command>", false, buildConfigParser).wrap(120).strict();
+  return yargs.scriptName("ng-dev").middleware([captureLogOutputForCommand, ngDevVersionMiddleware], true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).command("ai <command>", "", buildAiParser).command("config <command>", false, buildConfigParser).version(localVersion).wrap(120).strict();
 });
 /*! Bundled license information:
 

@@ -6,7 +6,7 @@ import { Log } from './logging.js';
 import { tryGetPackageId } from '@pnpm/dependency-path';
 import { determineRepoBaseDirFromCwd } from './repo-directory.js';
 import { GitClient } from './git/git-client.js';
-const localVersion = `0.0.0-{SCM_HEAD_SHA}`;
+export const localVersion = `0.0.0-{SCM_HEAD_SHA}`;
 let verified = false;
 export async function ngDevVersionMiddleware() {
     if (verified) {
