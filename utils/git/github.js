@@ -1,9 +1,18 @@
 import { Octokit } from '@octokit/rest';
 import { query } from 'typed-graphqlify';
+import { Log } from '../logging';
 export class GithubClient {
     constructor(_octokitOptions) {
         this._octokitOptions = _octokitOptions;
-        this._octokit = new Octokit({ ...this._octokitOptions });
+        this._octokit = new Octokit({
+            log: {
+                debug: Log.debug,
+                error: Log.debug,
+                info: Log.debug,
+                warn: Log.debug,
+            },
+            ...this._octokitOptions,
+        });
         this.pulls = this._octokit.pulls;
         this.orgs = this._octokit.orgs;
         this.repos = this._octokit.repos;

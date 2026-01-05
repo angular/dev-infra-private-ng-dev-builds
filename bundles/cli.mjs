@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-MICOFMIF.mjs";
+} from "./chunk-ECQLBF6O.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -46492,6 +46492,13 @@ async function mergePullRequest(prNumber, flags) {
         Log.warn(`You can generate a token here: ${GITHUB_TOKEN_GENERATE_URL}`);
         return false;
       }
+      if (isGithubApiError(e) && e.status === 405 && e.message.startsWith("Repository rule violations found")) {
+        Log.error("  \u2718  Repository Rule Violation. This typically indicates that you are not");
+        Log.error("     currently a member of the expected group for merge permissions in this");
+        Log.error("     repository. Have you been placed in the expected caretaking group?");
+        Log.debug("Github API request failed: " + bold(e.message));
+        return false;
+      }
       if (isGithubApiError(e)) {
         Log.error("Github API request failed: " + bold(e.message));
         return false;
@@ -48889,7 +48896,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-1eab387dad9d95950b449f605983ea83f5edb9c8`;
+var localVersion = `0.0.0-0512a5b9381ccff00c278d7b4b6ee38e5c09654d`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
