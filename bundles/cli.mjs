@@ -32455,9 +32455,9 @@ var require_src6 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/constants.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/constants.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/constants.js"(exports, module) {
     "use strict";
     var BINARY_TYPES = ["nodebuffer", "arraybuffer", "fragments"];
     var hasBlob = typeof Blob !== "undefined";
@@ -32681,9 +32681,9 @@ var require_node_gyp_build2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/bufferutil@4.0.9/node_modules/bufferutil/fallback.js
+// node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/fallback.js
 var require_fallback = __commonJS({
-  "node_modules/.aspect_rules_js/bufferutil@4.0.9/node_modules/bufferutil/fallback.js"(exports, module) {
+  "node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/fallback.js"(exports, module) {
     "use strict";
     var mask = (source, mask2, output, offset, length) => {
       for (var i = 0; i < length; i++) {
@@ -32700,9 +32700,9 @@ var require_fallback = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/bufferutil@4.0.9/node_modules/bufferutil/index.js
+// node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/index.js
 var require_bufferutil = __commonJS({
-  "node_modules/.aspect_rules_js/bufferutil@4.0.9/node_modules/bufferutil/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/index.js"(exports, module) {
     "use strict";
     try {
       module.exports = require_node_gyp_build2()(__dirname);
@@ -32712,9 +32712,9 @@ var require_bufferutil = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/buffer-util.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/buffer-util.js
 var require_buffer_util = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/buffer-util.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/buffer-util.js"(exports, module) {
     "use strict";
     var { EMPTY_BUFFER } = require_constants4();
     var FastBuffer = Buffer[Symbol.species];
@@ -32794,9 +32794,9 @@ var require_buffer_util = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/limiter.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/limiter.js
 var require_limiter = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/limiter.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/limiter.js"(exports, module) {
     "use strict";
     var kDone = Symbol("kDone");
     var kRun = Symbol("kRun");
@@ -32845,9 +32845,9 @@ var require_limiter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/permessage-deflate.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/permessage-deflate.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports, module) {
     "use strict";
     var zlib = __require("zlib");
     var bufferUtil = require_buffer_util();
@@ -33229,9 +33229,9 @@ var require_permessage_deflate = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/utf-8-validate@6.0.5/node_modules/utf-8-validate/fallback.js
+// node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/fallback.js
 var require_fallback2 = __commonJS({
-  "node_modules/.aspect_rules_js/utf-8-validate@6.0.5/node_modules/utf-8-validate/fallback.js"(exports, module) {
+  "node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/fallback.js"(exports, module) {
     "use strict";
     function isValidUTF8(buf) {
       const len = buf.length;
@@ -33266,9 +33266,9 @@ var require_fallback2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/utf-8-validate@6.0.5/node_modules/utf-8-validate/index.js
+// node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/index.js
 var require_utf_8_validate = __commonJS({
-  "node_modules/.aspect_rules_js/utf-8-validate@6.0.5/node_modules/utf-8-validate/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/index.js"(exports, module) {
     "use strict";
     try {
       module.exports = require_node_gyp_build2()(__dirname);
@@ -33278,9 +33278,9 @@ var require_utf_8_validate = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/validation.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/validation.js
 var require_validation = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/validation.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/validation.js"(exports, module) {
     "use strict";
     var { isUtf8 } = __require("buffer");
     var { hasBlob } = require_constants4();
@@ -33479,9 +33479,9 @@ var require_validation = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/receiver.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/receiver.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/receiver.js"(exports, module) {
     "use strict";
     var { Writable } = __require("stream");
     var PerMessageDeflate = require_permessage_deflate();
@@ -34082,9 +34082,9 @@ var require_receiver = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/sender.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/sender.js
 var require_sender = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/sender.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/sender.js"(exports, module) {
     "use strict";
     var { Duplex } = __require("stream");
     var { randomFillSync } = __require("crypto");
@@ -34576,9 +34576,9 @@ var require_sender = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/event-target.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/event-target.js
 var require_event_target = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/event-target.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/event-target.js"(exports, module) {
     "use strict";
     var { kForOnEventAttribute, kListener } = require_constants4();
     var kCode = Symbol("kCode");
@@ -34805,9 +34805,9 @@ var require_event_target = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/extension.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/extension.js
 var require_extension = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/extension.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/extension.js"(exports, module) {
     "use strict";
     var { tokenChars } = require_validation();
     function push(dest, name, elem) {
@@ -34975,9 +34975,9 @@ var require_extension = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/websocket.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/websocket.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket.js"(exports, module) {
     "use strict";
     var EventEmitter = __require("events");
     var https2 = __require("https");
@@ -35887,9 +35887,9 @@ var require_websocket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/stream.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/stream.js
 var require_stream5 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/stream.js"(exports, module) {
     "use strict";
     var WebSocket2 = require_websocket();
     var { Duplex } = __require("stream");
@@ -35993,9 +35993,9 @@ var require_stream5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/subprotocol.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/subprotocol.js
 var require_subprotocol = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/subprotocol.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/subprotocol.js"(exports, module) {
     "use strict";
     var { tokenChars } = require_validation();
     function parse4(header) {
@@ -36041,9 +36041,9 @@ var require_subprotocol = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/websocket-server.js
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket-server.js
 var require_websocket_server = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/lib/websocket-server.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket-server.js"(exports, module) {
     "use strict";
     var EventEmitter = __require("events");
     var http = __require("http");
@@ -48889,7 +48889,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-111edb23027c459ddbf4e989e33f964d6ae732da`;
+var localVersion = `0.0.0-1eab387dad9d95950b449f605983ea83f5edb9c8`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49935,7 +49935,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.33.0_1129113232/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.34.0_1695458489/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -49943,14 +49943,14 @@ import { writeFile as writeFile2 } from "fs/promises";
 import { Readable as Readable2 } from "node:stream";
 import { finished } from "node:stream/promises";
 
-// node_modules/.aspect_rules_js/ws@8.18.3_2132937711/node_modules/ws/wrapper.mjs
+// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/wrapper.mjs
 var import_stream2 = __toESM(require_stream5(), 1);
 var import_receiver = __toESM(require_receiver(), 1);
 var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.33.0_1129113232/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.34.0_1695458489/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -50503,7 +50503,9 @@ var ThinkingLevel;
 (function(ThinkingLevel2) {
   ThinkingLevel2["THINKING_LEVEL_UNSPECIFIED"] = "THINKING_LEVEL_UNSPECIFIED";
   ThinkingLevel2["LOW"] = "LOW";
+  ThinkingLevel2["MEDIUM"] = "MEDIUM";
   ThinkingLevel2["HIGH"] = "HIGH";
+  ThinkingLevel2["MINIMAL"] = "MINIMAL";
 })(ThinkingLevel || (ThinkingLevel = {}));
 var HarmCategory;
 (function(HarmCategory2) {
@@ -50653,6 +50655,7 @@ var PartMediaResolutionLevel;
   PartMediaResolutionLevel2["MEDIA_RESOLUTION_LOW"] = "MEDIA_RESOLUTION_LOW";
   PartMediaResolutionLevel2["MEDIA_RESOLUTION_MEDIUM"] = "MEDIA_RESOLUTION_MEDIUM";
   PartMediaResolutionLevel2["MEDIA_RESOLUTION_HIGH"] = "MEDIA_RESOLUTION_HIGH";
+  PartMediaResolutionLevel2["MEDIA_RESOLUTION_ULTRA_HIGH"] = "MEDIA_RESOLUTION_ULTRA_HIGH";
 })(PartMediaResolutionLevel || (PartMediaResolutionLevel = {}));
 var FeatureSelectionPreference;
 (function(FeatureSelectionPreference2) {
@@ -55505,7 +55508,7 @@ function generationConfigToVertex$1(fromObject) {
   }
   const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
   if (fromSpeechConfig != null) {
-    setValueByPath(toObject, ["speechConfig"], speechConfigToVertex$1(fromSpeechConfig));
+    setValueByPath(toObject, ["speechConfig"], fromSpeechConfig);
   }
   const fromStopSequences = getValueByPath(fromObject, [
     "stopSequences"
@@ -55720,7 +55723,7 @@ function liveConnectConfigToVertex(fromObject, parentObject) {
   }
   const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
   if (parentObject !== void 0 && fromSpeechConfig != null) {
-    setValueByPath(parentObject, ["setup", "generationConfig", "speechConfig"], speechConfigToVertex$1(tLiveSpeechConfig(fromSpeechConfig)));
+    setValueByPath(parentObject, ["setup", "generationConfig", "speechConfig"], tLiveSpeechConfig(fromSpeechConfig));
   }
   const fromThinkingConfig = getValueByPath(fromObject, [
     "thinkingConfig"
@@ -56042,21 +56045,6 @@ function sessionResumptionConfigToMldev$1(fromObject) {
   }
   if (getValueByPath(fromObject, ["transparent"]) !== void 0) {
     throw new Error("transparent parameter is not supported in Gemini API.");
-  }
-  return toObject;
-}
-function speechConfigToVertex$1(fromObject) {
-  const toObject = {};
-  const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
-  if (fromVoiceConfig != null) {
-    setValueByPath(toObject, ["voiceConfig"], fromVoiceConfig);
-  }
-  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
-  if (fromLanguageCode != null) {
-    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
-  }
-  if (getValueByPath(fromObject, ["multiSpeakerVoiceConfig"]) !== void 0) {
-    throw new Error("multiSpeakerVoiceConfig parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -57295,7 +57283,7 @@ function generateContentConfigToVertex(apiClient, fromObject, parentObject) {
   }
   const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
   if (fromSpeechConfig != null) {
-    setValueByPath(toObject, ["speechConfig"], speechConfigToVertex(tSpeechConfig(fromSpeechConfig)));
+    setValueByPath(toObject, ["speechConfig"], tSpeechConfig(fromSpeechConfig));
   }
   const fromAudioTimestamp = getValueByPath(fromObject, [
     "audioTimestamp"
@@ -58240,7 +58228,7 @@ function generationConfigToVertex(fromObject) {
   }
   const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
   if (fromSpeechConfig != null) {
-    setValueByPath(toObject, ["speechConfig"], speechConfigToVertex(fromSpeechConfig));
+    setValueByPath(toObject, ["speechConfig"], fromSpeechConfig);
   }
   const fromStopSequences = getValueByPath(fromObject, [
     "stopSequences"
@@ -59040,21 +59028,6 @@ function segmentImageSourceToVertex(fromObject, parentObject) {
   }
   return toObject;
 }
-function speechConfigToVertex(fromObject) {
-  const toObject = {};
-  const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
-  if (fromVoiceConfig != null) {
-    setValueByPath(toObject, ["voiceConfig"], fromVoiceConfig);
-  }
-  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
-  if (fromLanguageCode != null) {
-    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
-  }
-  if (getValueByPath(fromObject, ["multiSpeakerVoiceConfig"]) !== void 0) {
-    throw new Error("multiSpeakerVoiceConfig parameter is not supported in Vertex AI.");
-  }
-  return toObject;
-}
 function toolConfigToMldev(fromObject) {
   const toObject = {};
   const fromFunctionCallingConfig = getValueByPath(fromObject, [
@@ -59723,7 +59696,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.33.0";
+var SDK_VERSION = "1.34.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -59782,6 +59755,11 @@ var ApiClient = class {
   }
   getLocation() {
     return this.clientOptions.location;
+  }
+  async getAuthHeaders() {
+    const headers = new Headers();
+    await this.clientOptions.auth.addAuthHeaders(headers);
+    return headers;
   }
   getApiVersion() {
     if (this.clientOptions.httpOptions && this.clientOptions.httpOptions.apiVersion !== void 0) {
@@ -64671,7 +64649,7 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
    */
   constructor(_b) {
     var _c, _d, _e, _f, _g, _h, _j;
-    var _k = _b === void 0 ? {} : _b, { baseURL = readEnv("GEMINI_NEXT_GEN_API_BASE_URL"), apiKey = (_c = readEnv("GEMINI_API_KEY")) !== null && _c !== void 0 ? _c : null, apiVersion = "v1beta" } = _k, opts = __rest(_k, ["baseURL", "apiKey", "apiVersion"]);
+    var { baseURL = readEnv("GEMINI_NEXT_GEN_API_BASE_URL"), apiKey = (_c = readEnv("GEMINI_API_KEY")) !== null && _c !== void 0 ? _c : null, apiVersion = "v1beta" } = _b, opts = __rest(_b, ["baseURL", "apiKey", "apiVersion"]);
     const options = Object.assign(Object.assign({
       apiKey,
       apiVersion
@@ -64689,6 +64667,7 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
     this._options = options;
     this.apiKey = apiKey;
     this.apiVersion = apiVersion;
+    this.clientAdapter = options.clientAdapter;
   }
   /**
    * Create a new client instance re-using the same options given to the current client with optional overriding.
@@ -64707,6 +64686,9 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
     return this._options.defaultQuery;
   }
   validateHeaders({ values, nulls }) {
+    if (values.has("authorization") || values.has("x-goog-api-key")) {
+      return;
+    }
     if (this.apiKey && values.get("x-goog-api-key")) {
       return;
     }
@@ -64716,10 +64698,17 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
     throw new Error('Could not resolve authentication method. Expected the apiKey to be set. Or for the "x-goog-api-key" headers to be explicitly omitted');
   }
   async authHeaders(opts) {
-    if (this.apiKey == null) {
+    const existingHeaders = buildHeaders([opts.headers]);
+    if (existingHeaders.values.has("authorization") || existingHeaders.values.has("x-goog-api-key")) {
       return void 0;
     }
-    return buildHeaders([{ "x-goog-api-key": this.apiKey }]);
+    if (this.apiKey) {
+      return buildHeaders([{ "x-goog-api-key": this.apiKey }]);
+    }
+    if (this.clientAdapter.isVertexAI()) {
+      return buildHeaders([await this.clientAdapter.getAuthHeaders()]);
+    }
+    return void 0;
   }
   /**
    * Basic re-implementation of `qs.stringify` for primitive types.
@@ -64757,9 +64746,14 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
     return url2.toString();
   }
   /**
-   * Used as a callback for mutating the given `FinalRequestOptions` object.
-   */
+     * Used as a callback for mutating the given `FinalRequestOptions` object.
+  
+     */
   async prepareOptions(options) {
+    if (this.clientAdapter && this.clientAdapter.isVertexAI() && !options.path.startsWith(`/${this.apiVersion}/projects/`)) {
+      const oldPath = options.path.slice(this.apiVersion.length + 1);
+      options.path = `/${this.apiVersion}/projects/${this.clientAdapter.getProject()}/locations/${this.clientAdapter.getLocation()}${oldPath}`;
+    }
   }
   /**
    * Used as a callback for mutating the given `RequestInit` object.
@@ -64976,13 +64970,14 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
         options.idempotencyKey = this.defaultIdempotencyKey();
       idempotencyHeaders[this.idempotencyHeader] = options.idempotencyKey;
     }
-    const headers = buildHeaders([
+    const authHeaders = await this.authHeaders(options);
+    let headers = buildHeaders([
       idempotencyHeaders,
       Object.assign(Object.assign({ Accept: "application/json", "User-Agent": this.getUserAgent(), "X-Stainless-Retry-Count": String(retryCount) }, options.timeout ? { "X-Stainless-Timeout": String(Math.trunc(options.timeout / 1e3)) } : {}), getPlatformHeaders()),
-      await this.authHeaders(options),
       this._options.defaultHeaders,
       bodyHeaders,
-      options.headers
+      options.headers,
+      authHeaders
     ]);
     this.validateHeaders(headers);
     return headers.values;
@@ -66451,9 +66446,6 @@ var GoogleGenAI = class {
       return this._interactions;
     }
     console.warn("GoogleGenAI.interactions: Interactions usage is experimental and may change in future versions.");
-    if (this.vertexai) {
-      throw new Error("This version of the GenAI SDK does not support Vertex AI API for interactions.");
-    }
     const httpOpts = this.httpOptions;
     if (httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.extraBody) {
       console.warn("GoogleGenAI.interactions: Client level httpOptions.extraBody is not supported by the interactions client and will be ignored.");
@@ -66461,6 +66453,8 @@ var GoogleGenAI = class {
     const nextGenClient = new GeminiNextGenAPIClient({
       baseURL: this.apiClient.getBaseUrl(),
       apiKey: this.apiKey,
+      apiVersion: this.apiClient.getApiVersion(),
+      clientAdapter: this.apiClient,
       defaultHeaders: this.apiClient.getDefaultHeaders(),
       timeout: httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.timeout
     });
