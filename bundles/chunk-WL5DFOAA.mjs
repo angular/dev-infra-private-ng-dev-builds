@@ -1,13 +1,13 @@
 
-import {createRequire as __cjsCompatRequire} from 'module';
-const require = __cjsCompatRequire(import.meta.url);
+import {createRequire as __cjsCompatRequire_ngDev} from 'module';
+const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 import {
   __commonJS,
   __esm,
   __require,
   __toESM
-} from "./chunk-UHIZKGIY.mjs";
+} from "./chunk-RZTNU4LP.mjs";
 
 // node_modules/.aspect_rules_js/web-streams-polyfill@3.3.3/node_modules/web-streams-polyfill/dist/ponyfill.es2018.js
 var require_ponyfill_es2018 = __commonJS({

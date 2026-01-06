@@ -1,10 +1,10 @@
 
-import {createRequire as __cjsCompatRequire} from 'module';
-const require = __cjsCompatRequire(import.meta.url);
+import {createRequire as __cjsCompatRequire_ngDev} from 'module';
+const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 import {
   __commonJS
-} from "./chunk-UHIZKGIY.mjs";
+} from "./chunk-RZTNU4LP.mjs";
 
 // node_modules/.aspect_rules_js/ms@2.1.3/node_modules/ms/index.js
 var require_ms = __commonJS({

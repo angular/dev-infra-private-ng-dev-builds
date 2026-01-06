@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import {createRequire as __cjsCompatRequire} from 'module';
-const require = __cjsCompatRequire(import.meta.url);
+import {createRequire as __cjsCompatRequire_ngDev} from 'module';
+const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 
 // ng-dev/pr/checkout/commit-message-filter.ts

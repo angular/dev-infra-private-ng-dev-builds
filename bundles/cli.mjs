@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
-import {createRequire as __cjsCompatRequire} from 'module';
-const require = __cjsCompatRequire(import.meta.url);
+import {createRequire as __cjsCompatRequire_ngDev} from 'module';
+const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 import {
   ActiveReleaseTrains,
@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-ECQLBF6O.mjs";
+} from "./chunk-H4EYXD2W.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -66,23 +66,23 @@ import {
   underline,
   wrapAnsi,
   yellow
-} from "./chunk-ZGJ55O2R.mjs";
+} from "./chunk-5VPDBAHJ.mjs";
 import {
   CommitParser
-} from "./chunk-XXPOON2I.mjs";
+} from "./chunk-PMGDP7TK.mjs";
 import {
   require_ms
-} from "./chunk-RFII6PNV.mjs";
+} from "./chunk-DUE35MZP.mjs";
 import {
   init_supports_color,
   supports_color_exports
-} from "./chunk-AEYI6NEN.mjs";
+} from "./chunk-EVBSN22H.mjs";
 import {
   __commonJS,
   __require,
   __toCommonJS,
   __toESM
-} from "./chunk-UHIZKGIY.mjs";
+} from "./chunk-RZTNU4LP.mjs";
 
 // node_modules/.aspect_rules_js/cli-width@4.1.0/node_modules/cli-width/index.js
 var require_cli_width = __commonJS({
@@ -22620,12 +22620,12 @@ Content-Type: ${partContentType}\r
        * @returns A proxy agent
        */
       static async #getProxyAgent() {
-        this.#proxyAgent ||= (await import("./dist-3LXLRIP6.mjs")).HttpsProxyAgent;
+        this.#proxyAgent ||= (await import("./dist-JNTNYQ5F.mjs")).HttpsProxyAgent;
         return this.#proxyAgent;
       }
       static async #getFetch() {
         const hasWindow = typeof window !== "undefined" && !!window;
-        this.#fetch ||= hasWindow ? window.fetch : (await import("./src-D2UODM55.mjs")).default;
+        this.#fetch ||= hasWindow ? window.fetch : (await import("./src-BVCFFT3T.mjs")).default;
         return this.#fetch;
       }
       /**
@@ -48896,7 +48896,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-07e25e1160f0d71ee0853731cbd2a5c33e057166`;
+var localVersion = `0.0.0-e614054e5f238080cc49b84f8ad9552cb6e148b6`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
