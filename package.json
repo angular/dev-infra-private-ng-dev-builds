@@ -1,13 +1,13 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-0512a5b9381ccff00c278d7b4b6ee38e5c09654d",
+  "version": "0.0.0-07e25e1160f0d71ee0853731cbd2a5c33e057166",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "default": "./index.js"
+      "default": "./bundles/index.mjs"
     },
     "./*": {
       "types": "./*.d.ts",
