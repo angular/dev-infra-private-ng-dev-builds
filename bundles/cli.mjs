@@ -41901,15 +41901,17 @@ async function setMergeModeRelease() {
     await setRepoReleaserTeamToOnlyCurrentUser();
     await setRepoMergeMode("release");
     Log.info(green("  \u2714  Repository is set for release"));
+    return true;
   } catch (err) {
     Log.error("  \u2718  Failed to setup of repository for release");
     if (err instanceof Error) {
       Log.info(err.message);
       Log.debug(err.stack);
-      return;
+      return false;
     }
     Log.info(err);
   }
+  return false;
 }
 async function setRepoReleaserTeamToOnlyCurrentUser() {
   const git = await AuthenticatedGitClient.get();
@@ -41954,14 +41956,16 @@ async function resetMergeMode() {
     const { github: { mergeMode } } = await getConfig([assertValidGithubConfig]);
     await setRepoMergeMode(mergeMode);
     Log.info(`${green("\u2714")} Repository has been reset to the normal mode: ${mergeMode}`);
+    return true;
   } catch (err) {
     Log.info(`${red("\u2718")} Failed to reset the merge mode of the repository`);
     if (err instanceof Error) {
       Log.info(err.message);
       Log.debug(err.stack);
-      return;
+      return false;
     }
     Log.info(err);
+    return false;
   }
 }
 
@@ -41979,10 +41983,12 @@ async function setMergeModeHandler({ mode }) {
     return;
   }
   if (mode === "reset") {
-    return await resetMergeMode();
+    await resetMergeMode();
+    return;
   }
   if (mode === "release") {
-    return await setMergeModeRelease();
+    await setMergeModeRelease();
+    return;
   }
   Log.error(`Unable to set the merge mode to the provided mode: ${mode}`);
 }
@@ -48919,7 +48925,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-0db2641ec301a653937e4fbe3b05d17c4f6f3032`;
+var localVersion = `0.0.0-2ff164a0ca60e692f3d7e1a982bde9bf3379365e`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49054,9 +49060,15 @@ var ReleaseTool = class {
     }
     const mode = await getCurrentMergeMode();
     if (mode !== "release") {
-      Log.error(`  \u2718   The repository merge-mode is set to ${mode} but must be set to release`);
-      Log.error("      prior to publishing releases. You can set merge-mode for release using:");
-      Log.error("      ng-dev caretaker merge-mode release");
+      Log.warn(`  \u26A0   The repository merge-mode is set to ${mode} but must be set to release`);
+      Log.warn("      prior to publishing releases. You can set merge-mode for release using:");
+      Log.warn("      ng-dev caretaker merge-mode release");
+      if (await Prompt.confirm({
+        message: "Would you like to move into release mode now?",
+        default: true
+      })) {
+        return setMergeModeRelease();
+      }
       return false;
     }
     return true;

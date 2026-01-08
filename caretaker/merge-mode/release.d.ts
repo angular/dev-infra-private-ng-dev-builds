@@ -1,1 +1,1 @@
-export declare function setMergeModeRelease(): Promise<void>;
+export declare function setMergeModeRelease(): Promise<boolean>;
