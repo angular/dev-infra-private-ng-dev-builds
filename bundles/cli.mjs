@@ -14889,9 +14889,9 @@ var require_reusify = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/fastq@1.19.1/node_modules/fastq/queue.js
+// node_modules/.aspect_rules_js/fastq@1.20.1/node_modules/fastq/queue.js
 var require_queue = __commonJS({
-  "node_modules/.aspect_rules_js/fastq@1.19.1/node_modules/fastq/queue.js"(exports, module) {
+  "node_modules/.aspect_rules_js/fastq@1.20.1/node_modules/fastq/queue.js"(exports, module) {
     "use strict";
     var reusify = require_reusify();
     function fastqueue(context, worker, _concurrency) {
@@ -14938,7 +14938,8 @@ var require_queue = __commonJS({
         empty: noop2,
         kill,
         killAndDrain,
-        error
+        error,
+        abort
       };
       return self2;
       function running() {
@@ -15056,6 +15057,28 @@ var require_queue = __commonJS({
         queueHead = null;
         queueTail = null;
         self2.drain();
+        self2.drain = noop2;
+      }
+      function abort() {
+        var current = queueHead;
+        queueHead = null;
+        queueTail = null;
+        while (current) {
+          var next = current.next;
+          var callback = current.callback;
+          var errorHandler2 = current.errorHandler;
+          var val = current.value;
+          var context2 = current.context;
+          current.value = null;
+          current.callback = noop2;
+          current.errorHandler = null;
+          if (errorHandler2) {
+            errorHandler2(new Error("abort"), val);
+          }
+          callback.call(context2, new Error("abort"));
+          current.release(current);
+          current = next;
+        }
         self2.drain = noop2;
       }
       function error(handler32) {
@@ -48896,7 +48919,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-87ed54ddedde42b443be7c6fe36cdaf0a907ea39`;
+var localVersion = `0.0.0-0db2641ec301a653937e4fbe3b05d17c4f6f3032`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
