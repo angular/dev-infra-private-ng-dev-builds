@@ -48925,7 +48925,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-2ff164a0ca60e692f3d7e1a982bde9bf3379365e`;
+var localVersion = `0.0.0-2f236e311ff461cb34b48f3aa87fc8f78c8ba8ee`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -48985,12 +48985,15 @@ var CompletionState;
   CompletionState2[CompletionState2["MANUALLY_ABORTED"] = 2] = "MANUALLY_ABORTED";
 })(CompletionState || (CompletionState = {}));
 var ReleaseTool = class {
-  constructor(_git, _config, _github, _projectRoot) {
+  constructor(_git, config, _github, _projectRoot, _flags) {
     this._git = _git;
-    this._config = _config;
     this._github = _github;
     this._projectRoot = _projectRoot;
     this.previousGitBranchOrRevision = this._git.getCurrentBranchOrRevision();
+    this._config = {
+      ...config,
+      publishRegistry: _flags.publishRegistry ?? config.publishRegistry
+    };
   }
   async run() {
     Log.info();
@@ -49127,14 +49130,16 @@ var ReleaseTool = class {
 
 // ng-dev/release/publish/cli.js
 function builder21(argv) {
-  return addGithubTokenOption(argv);
+  return addGithubTokenOption(argv).option("publishRegistry", {
+    type: "string"
+  });
 }
-async function handler22() {
+async function handler22(flags) {
   const git = await AuthenticatedGitClient.get();
   const config = await getConfig();
   assertValidReleaseConfig(config);
   assertValidGithubConfig(config);
-  const task = new ReleaseTool(git, config.release, config.github, git.baseDir);
+  const task = new ReleaseTool(git, config.release, config.github, git.baseDir, flags);
   const result = await task.run();
   switch (result) {
     case CompletionState.FATAL_ERROR:
