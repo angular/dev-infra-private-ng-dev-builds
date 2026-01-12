@@ -47124,7 +47124,7 @@ var ReleaseBuildCommandModule = {
   builder: builder18,
   handler: handler18,
   command: "build",
-  describe: "Builds the release output for the current branch."
+  describe: false
 };
 
 // ng-dev/release/versioning/print-active-trains.js
@@ -47201,7 +47201,7 @@ var ReleaseInfoCommandModule = {
   builder: builder19,
   handler: handler19,
   command: "info",
-  describe: "Prints information for the current release state."
+  describe: false
 };
 
 // ng-dev/release/notes/cli.js
@@ -47727,7 +47727,7 @@ var ReleaseNotesCommandModule = {
   builder: builder20,
   handler: handler20,
   command: "notes",
-  describe: "Generate release notes"
+  describe: false
 };
 
 // ng-dev/release/precheck/cli.js
@@ -49022,7 +49022,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-74db0cd6da7fe89807133854c645ed02c9980566`;
+var localVersion = `0.0.0-8ce8257f740613a7291256173e2706fb2ed8aefa`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49255,74 +49255,8 @@ async function handler22(flags) {
 var ReleasePublishCommandModule = {
   builder: builder21,
   handler: handler22,
-  command: "publish",
+  command: "$0",
   describe: "Publish new releases and configure version branches."
-};
-
-// ng-dev/release/npm-dist-tag/set/cli.js
-var import_semver20 = __toESM(require_semver());
-function builder22(args) {
-  return args.positional("tagName", {
-    type: "string",
-    demandOption: true,
-    description: "Name of the NPM dist tag."
-  }).positional("targetVersion", {
-    type: "string",
-    demandOption: true,
-    description: "Version to which the NPM dist tag should be set.\nThis version will be converted to an experimental version for experimental packages."
-  }).option("skipExperimentalPackages", {
-    type: "boolean",
-    description: "Whether the dist tag should not be set for experimental NPM packages.",
-    default: false
-  });
-}
-async function handler23(args) {
-  const { targetVersion: rawVersion, tagName, skipExperimentalPackages } = args;
-  const config = await getConfig();
-  assertValidReleaseConfig(config);
-  const { npmPackages, publishRegistry } = config.release;
-  const version = import_semver20.default.parse(rawVersion);
-  if (version === null) {
-    Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
-    process.exit(1);
-  } else if (isExperimentalSemver(version)) {
-    Log.error(`Unexpected experimental SemVer version specified. This command expects a non-experimental project SemVer version.`);
-    process.exit(1);
-  }
-  Log.debug(`Setting "${tagName}" NPM dist tag for release packages to v${version}.`);
-  const spinner = new Spinner("");
-  for (const pkg of npmPackages) {
-    if (pkg.experimental && skipExperimentalPackages) {
-      spinner.update(`Skipping "${pkg.name}" due to it being experimental.`);
-      continue;
-    }
-    spinner.update(`Setting NPM dist tag for "${pkg.name}"`);
-    const distTagVersion = pkg.experimental ? createExperimentalSemver(version) : version;
-    try {
-      await NpmCommand.setDistTagForPackage(pkg.name, tagName, distTagVersion, publishRegistry);
-      Log.debug(`Successfully set "${tagName}" NPM dist tag for "${pkg.name}".`);
-    } catch (e) {
-      spinner.complete();
-      Log.error(e);
-      Log.error(`  \u2718   An error occurred while setting the NPM dist tag for "${pkg.name}".`);
-      process.exit(1);
-    }
-  }
-  spinner.complete();
-  Log.info(green(`  \u2713   Set NPM dist tag for all release packages.`));
-  Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version}`)}.`));
-}
-var ReleaseNpmDistTagSetCommand = {
-  builder: builder22,
-  handler: handler23,
-  command: "set <tag-name> <target-version>",
-  describe: "Sets a given NPM dist tag for all release packages."
-};
-
-// ng-dev/release/set-dist-tag/cli.js
-var ReleaseSetDistTagCommand = {
-  ...ReleaseNpmDistTagSetCommand,
-  command: "set-dist-tag <tag-name> <target-version>"
 };
 
 // ng-dev/release/stamping/cli.js
@@ -49331,7 +49265,7 @@ import url from "url";
 
 // ng-dev/release/stamping/env-stamp.js
 import * as fs4 from "fs";
-var import_semver21 = __toESM(require_semver());
+var import_semver20 = __toESM(require_semver());
 import { join as join13 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
@@ -49414,11 +49348,11 @@ function getVersionFromWorkspacePackageJson(git) {
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver21.default.SemVer(packageJson.version);
+  return new import_semver20.default.SemVer(packageJson.version);
 }
 
 // ng-dev/release/stamping/cli.js
-function builder23(args) {
+function builder22(args) {
   return args.option("mode", {
     demandOption: true,
     description: "Whether the env-stamp should be built for a snapshot or release",
@@ -49432,7 +49366,7 @@ function builder23(args) {
     description: "Working-dir relative or absolute path to an ESM script which can print additional stamping variables"
   });
 }
-async function handler24({ mode, includeVersion, additionalStampingScript }) {
+async function handler23({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
     const scriptURL = url.pathToFileURL(path7.resolve(additionalStampingScript));
@@ -49441,21 +49375,21 @@ async function handler24({ mode, includeVersion, additionalStampingScript }) {
   }
 }
 var BuildEnvStampCommand = {
-  builder: builder23,
-  handler: handler24,
+  builder: builder22,
+  handler: handler23,
   command: "build-env-stamp",
-  describe: "Build the environment stamping information"
+  describe: false
 };
 
 // ng-dev/release/npm-dist-tag/delete/cli.js
-function builder24(args) {
+function builder23(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
     description: "Name of the NPM dist tag."
   });
 }
-async function handler25(args) {
+async function handler24(args) {
   const { tagName } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -49478,10 +49412,70 @@ async function handler25(args) {
   Log.info(green(`  \u2713   Deleted "${bold(tagName)}" NPM dist tag for all packages.`));
 }
 var ReleaseNpmDistTagDeleteCommand = {
-  builder: builder24,
-  handler: handler25,
+  builder: builder23,
+  handler: handler24,
   command: "delete <tag-name>",
   describe: "Deletes a given NPM dist tag for all release packages."
+};
+
+// ng-dev/release/npm-dist-tag/set/cli.js
+var import_semver21 = __toESM(require_semver());
+function builder24(args) {
+  return args.positional("tagName", {
+    type: "string",
+    demandOption: true,
+    description: "Name of the NPM dist tag."
+  }).positional("targetVersion", {
+    type: "string",
+    demandOption: true,
+    description: "Version to which the NPM dist tag should be set.\nThis version will be converted to an experimental version for experimental packages."
+  }).option("skipExperimentalPackages", {
+    type: "boolean",
+    description: "Whether the dist tag should not be set for experimental NPM packages.",
+    default: false
+  });
+}
+async function handler25(args) {
+  const { targetVersion: rawVersion, tagName, skipExperimentalPackages } = args;
+  const config = await getConfig();
+  assertValidReleaseConfig(config);
+  const { npmPackages, publishRegistry } = config.release;
+  const version = import_semver21.default.parse(rawVersion);
+  if (version === null) {
+    Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
+    process.exit(1);
+  } else if (isExperimentalSemver(version)) {
+    Log.error(`Unexpected experimental SemVer version specified. This command expects a non-experimental project SemVer version.`);
+    process.exit(1);
+  }
+  Log.debug(`Setting "${tagName}" NPM dist tag for release packages to v${version}.`);
+  const spinner = new Spinner("");
+  for (const pkg of npmPackages) {
+    if (pkg.experimental && skipExperimentalPackages) {
+      spinner.update(`Skipping "${pkg.name}" due to it being experimental.`);
+      continue;
+    }
+    spinner.update(`Setting NPM dist tag for "${pkg.name}"`);
+    const distTagVersion = pkg.experimental ? createExperimentalSemver(version) : version;
+    try {
+      await NpmCommand.setDistTagForPackage(pkg.name, tagName, distTagVersion, publishRegistry);
+      Log.debug(`Successfully set "${tagName}" NPM dist tag for "${pkg.name}".`);
+    } catch (e) {
+      spinner.complete();
+      Log.error(e);
+      Log.error(`  \u2718   An error occurred while setting the NPM dist tag for "${pkg.name}".`);
+      process.exit(1);
+    }
+  }
+  spinner.complete();
+  Log.info(green(`  \u2713   Set NPM dist tag for all release packages.`));
+  Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version}`)}.`));
+}
+var ReleaseNpmDistTagSetCommand = {
+  builder: builder24,
+  handler: handler25,
+  command: "set <tag-name> <target-version>",
+  describe: "Sets a given NPM dist tag for all release packages."
 };
 
 // ng-dev/release/npm-dist-tag/cli.js
@@ -49489,7 +49483,7 @@ function subCommandsBuilder(argv) {
   return argv.help().strict().demandCommand().command(ReleaseNpmDistTagDeleteCommand).command(ReleaseNpmDistTagSetCommand);
 }
 var ReleaseNpmDistTagCommand = {
-  describe: "Update the NPM dist tags for release packages.",
+  describe: false,
   command: "npm-dist-tag",
   builder: subCommandsBuilder,
   handler: () => {
@@ -49498,7 +49492,7 @@ var ReleaseNpmDistTagCommand = {
 
 // ng-dev/release/cli.js
 function buildReleaseParser(localYargs) {
-  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(ReleaseSetDistTagCommand).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule);
+  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule);
 }
 
 // ng-dev/ts-circular-dependencies/index.js
@@ -67029,7 +67023,7 @@ function buildAiParser(localYargs) {
 // ng-dev/cli.js
 runParserWithCompletedFunctions((yargs) => {
   process.exitCode = 0;
-  return yargs.scriptName("ng-dev").middleware([captureLogOutputForCommand, ngDevVersionMiddleware], true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release <command>", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).command("ai <command>", "", buildAiParser).command("config <command>", false, buildConfigParser).version(localVersion).wrap(120).strict();
+  return yargs.scriptName("ng-dev").middleware([captureLogOutputForCommand, ngDevVersionMiddleware], true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).command("ai <command>", "", buildAiParser).command("config <command>", false, buildConfigParser).version(localVersion).wrap(120).strict();
 });
 /*! Bundled license information:
 
