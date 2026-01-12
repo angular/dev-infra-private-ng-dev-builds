@@ -5837,7 +5837,7 @@ var require_lib2 = __commonJS({
     var detectFile = (filepath, opts = {}) => new Promise((resolve8, reject) => {
       let fd;
       const fs6 = (0, node_1.default)();
-      const handler33 = (err, buffer) => {
+      const handler32 = (err, buffer) => {
         if (fd) {
           fs6.closeSync(fd);
         }
@@ -5855,17 +5855,17 @@ var require_lib2 = __commonJS({
         let sample = Buffer.allocUnsafe(sampleSize);
         fs6.read(fd, sample, 0, sampleSize, opts.offset, (err, bytesRead) => {
           if (err) {
-            handler33(err, null);
+            handler32(err, null);
           } else {
             if (bytesRead < sampleSize) {
               sample = sample.subarray(0, bytesRead);
             }
-            handler33(null, sample);
+            handler32(null, sample);
           }
         });
         return;
       }
-      fs6.readFile(filepath, handler33);
+      fs6.readFile(filepath, handler32);
     });
     exports.detectFile = detectFile;
     var detectFileSync = (filepath, opts = {}) => {
@@ -15081,8 +15081,8 @@ var require_queue = __commonJS({
         }
         self2.drain = noop2;
       }
-      function error(handler33) {
-        errorHandler = handler33;
+      function error(handler32) {
+        errorHandler = handler32;
       }
     }
     function noop2() {
@@ -20486,8 +20486,8 @@ var require_commonjs = __commonJS({
       /**
        * Alias for {@link Minipass#on}
        */
-      addListener(ev, handler33) {
-        return this.on(ev, handler33);
+      addListener(ev, handler32) {
+        return this.on(ev, handler32);
       }
       /**
        * Mostly identical to `EventEmitter.on`, with the following
@@ -20506,8 +20506,8 @@ var require_commonjs = __commonJS({
        *   cause the event to be re-emitted immediately with the error previously
        *   raised.
        */
-      on(ev, handler33) {
-        const ret = super.on(ev, handler33);
+      on(ev, handler32) {
+        const ret = super.on(ev, handler32);
         if (ev === "data") {
           this[DISCARDED] = false;
           this[DATALISTENERS]++;
@@ -20520,7 +20520,7 @@ var require_commonjs = __commonJS({
           super.emit(ev);
           this.removeAllListeners(ev);
         } else if (ev === "error" && this[EMITTED_ERROR]) {
-          const h = handler33;
+          const h = handler32;
           if (this[ASYNC])
             defer(() => h.call(this, this[EMITTED_ERROR]));
           else
@@ -20531,8 +20531,8 @@ var require_commonjs = __commonJS({
       /**
        * Alias for {@link Minipass#off}
        */
-      removeListener(ev, handler33) {
-        return this.off(ev, handler33);
+      removeListener(ev, handler32) {
+        return this.off(ev, handler32);
       }
       /**
        * Mostly identical to `EventEmitter.off`
@@ -20542,8 +20542,8 @@ var require_commonjs = __commonJS({
        * then the flow of data will stop until there is another consumer or
        * {@link Minipass#resume} is explicitly called.
        */
-      off(ev, handler33) {
-        const ret = super.off(ev, handler33);
+      off(ev, handler32) {
+        const ret = super.off(ev, handler32);
         if (ev === "data") {
           this[DATALISTENERS] = this.listeners("data").length;
           if (this[DATALISTENERS] === 0 && !this[DISCARDED] && !this[PIPES].length) {
@@ -20914,17 +20914,17 @@ var require_lib6 = __commonJS({
         this.digests = this.goodSri ? this.sri[this.algorithm] : null;
         this.optString = getOptString(this.opts?.options);
       }
-      on(ev, handler33) {
+      on(ev, handler32) {
         if (ev === "size" && this.#emittedSize) {
-          return handler33(this.#emittedSize);
+          return handler32(this.#emittedSize);
         }
         if (ev === "integrity" && this.#emittedIntegrity) {
-          return handler33(this.#emittedIntegrity);
+          return handler32(this.#emittedIntegrity);
         }
         if (ev === "verified" && this.#emittedVerified) {
-          return handler33(this.#emittedVerified);
+          return handler32(this.#emittedVerified);
         }
-        return super.on(ev, handler33);
+        return super.on(ev, handler32);
       }
       emit(ev, data) {
         if (ev === "end") {
@@ -29974,7 +29974,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
     var util_1 = require_util2();
     var fs6 = __require("fs");
     var crypto_1 = __require("crypto");
-    var https2 = __require("https");
+    var https = __require("https");
     exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = "GOOGLE_API_CERTIFICATE_CONFIG";
     var CertificateSourceUnavailableError = class extends Error {
       constructor(message) {
@@ -30017,7 +30017,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
         if (!this.key || !this.cert) {
           throw new InvalidConfigurationError("Cannot create mTLS Agent with missing certificate or key");
         }
-        return new https2.Agent({ key: this.key, cert: this.cert });
+        return new https.Agent({ key: this.key, cert: this.cert });
       }
       /**
        * Constructs the subject token, which is the base64-encoded certificate chain.
@@ -34744,9 +34744,9 @@ var require_event_target = __commonJS({
        *     the listener would be automatically removed when invoked.
        * @public
        */
-      addEventListener(type, handler33, options = {}) {
+      addEventListener(type, handler32, options = {}) {
         for (const listener of this.listeners(type)) {
-          if (!options[kForOnEventAttribute] && listener[kListener] === handler33 && !listener[kForOnEventAttribute]) {
+          if (!options[kForOnEventAttribute] && listener[kListener] === handler32 && !listener[kForOnEventAttribute]) {
             return;
           }
         }
@@ -34757,7 +34757,7 @@ var require_event_target = __commonJS({
               data: isBinary ? data : data.toString()
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler32, this, event);
           };
         } else if (type === "close") {
           wrapper = function onClose(code, message) {
@@ -34767,7 +34767,7 @@ var require_event_target = __commonJS({
               wasClean: this._closeFrameReceived && this._closeFrameSent
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler32, this, event);
           };
         } else if (type === "error") {
           wrapper = function onError(error) {
@@ -34776,19 +34776,19 @@ var require_event_target = __commonJS({
               message: error.message
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler32, this, event);
           };
         } else if (type === "open") {
           wrapper = function onOpen() {
             const event = new Event("open");
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler32, this, event);
           };
         } else {
           return;
         }
         wrapper[kForOnEventAttribute] = !!options[kForOnEventAttribute];
-        wrapper[kListener] = handler33;
+        wrapper[kListener] = handler32;
         if (options.once) {
           this.once(type, wrapper);
         } else {
@@ -34802,9 +34802,9 @@ var require_event_target = __commonJS({
        * @param {(Function|Object)} handler The listener to remove
        * @public
        */
-      removeEventListener(type, handler33) {
+      removeEventListener(type, handler32) {
         for (const listener of this.listeners(type)) {
-          if (listener[kListener] === handler33 && !listener[kForOnEventAttribute]) {
+          if (listener[kListener] === handler32 && !listener[kForOnEventAttribute]) {
             this.removeListener(type, listener);
             break;
           }
@@ -35003,7 +35003,7 @@ var require_websocket = __commonJS({
   "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket.js"(exports, module) {
     "use strict";
     var EventEmitter = __require("events");
-    var https2 = __require("https");
+    var https = __require("https");
     var http = __require("http");
     var net = __require("net");
     var tls = __require("tls");
@@ -35471,16 +35471,16 @@ var require_websocket = __commonJS({
           }
           return null;
         },
-        set(handler33) {
+        set(handler32) {
           for (const listener of this.listeners(method)) {
             if (listener[kForOnEventAttribute]) {
               this.removeListener(method, listener);
               break;
             }
           }
-          if (typeof handler33 !== "function")
+          if (typeof handler32 !== "function")
             return;
-          this.addEventListener(method, handler33, {
+          this.addEventListener(method, handler32, {
             [kForOnEventAttribute]: true
           });
         }
@@ -35552,7 +35552,7 @@ var require_websocket = __commonJS({
       }
       const defaultPort = isSecure ? 443 : 80;
       const key = randomBytes(16).toString("base64");
-      const request = isSecure ? https2.request : http.request;
+      const request = isSecure ? https.request : http.request;
       const protocolSet = /* @__PURE__ */ new Set();
       let perMessageDeflate;
       opts.createConnection = opts.createConnection || (isSecure ? tlsConnect : netConnect);
@@ -39907,15 +39907,15 @@ function useKeypress(userHandler) {
   signal.current = userHandler;
   useEffect((rl) => {
     let ignore = false;
-    const handler33 = withUpdates((_input, event) => {
+    const handler32 = withUpdates((_input, event) => {
       if (ignore)
         return;
       void signal.current(event, rl);
     });
-    rl.input.on("keypress", handler33);
+    rl.input.on("keypress", handler32);
     return () => {
       ignore = true;
-      rl.input.removeListener("keypress", handler33);
+      rl.input.removeListener("keypress", handler32);
     };
   }, []);
 }
@@ -40106,16 +40106,16 @@ var Emitter = class {
 };
 var SignalExitBase = class {
 };
-var signalExitWrap = (handler33) => {
+var signalExitWrap = (handler32) => {
   return {
     onExit(cb, opts) {
-      return handler33.onExit(cb, opts);
+      return handler32.onExit(cb, opts);
     },
     load() {
-      return handler33.load();
+      return handler32.load();
     },
     unload() {
-      return handler33.unload();
+      return handler32.unload();
     }
   };
 };
@@ -44764,92 +44764,9 @@ var GeneratedFilesModule = {
   describe: "Automatically discover all bazel generated file targets and update them."
 };
 
-// ng-dev/misc/generate-nodejs-toolchain/cli.js
-import https from "node:https";
-function builder13(argv) {
-  return argv.positional("nodeJsVersion", {
-    type: "string",
-    demandOption: true
-  }).check(({ nodeJsVersion }) => {
-    if (!/^\d+\.\d+\.\d+$/.test(nodeJsVersion)) {
-      throw new Error(`Invalid version format "${nodeJsVersion}". Expected X.Y.Z (Example: 22.11.0)`);
-    }
-    return true;
-  });
-}
-var GeneratedNodeJsToolchainModule = {
-  builder: builder13,
-  handler: handler13,
-  command: "generate-nodejs-toolchain <nodeJsVersion>",
-  describe: "Generates a Bazel toolchain definition for a specific Node.js version."
-};
-var REPOSITORY_TYPES2 = {
-  "darwin-arm64.tar.gz": "darwin_arm64",
-  "darwin-x64.tar.gz": "darwin_amd64",
-  "linux-x64.tar.xz": "linux_amd64",
-  "linux-arm64.tar.xz": "linux_arm64",
-  "linux-s390x.tar.xz": "linux_s390x",
-  "win-x64.zip": "windows_amd64",
-  "linux-ppc64le.tar.xz": "linux_ppc64le"
-};
-function getText(url2) {
-  return new Promise((resolve8, reject) => {
-    const request = https.get(url2, (res) => {
-      if (res.statusCode !== 200) {
-        return reject(new Error(`Failed to get ${url2}. Status Code: ${res.statusCode ?? "unknown"}`));
-      }
-      const body = [];
-      res.on("data", (chunk) => body.push(chunk));
-      res.on("end", () => resolve8(body.join("")));
-    });
-    request.on("error", (err) => reject(err));
-  });
-}
-async function getNodeJsRepositories2(version) {
-  const text = await getText(`https://nodejs.org/dist/v${version}/SHASUMS256.txt`);
-  const repositories = text.split("\n").filter(Boolean).map((line) => {
-    const [sha, filename] = line.trim().split(/\s+/);
-    if (!filename) {
-      return void 0;
-    }
-    const fileTypeSuffix = filename.replace(/^node-v[\d.]+-/, "");
-    const type = REPOSITORY_TYPES2[fileTypeSuffix];
-    return type ? { filename, sha, type } : void 0;
-  }).filter((repo) => repo !== void 0);
-  return {
-    version,
-    repositories
-  };
-}
-async function handler13({ nodeJsVersion }) {
-  try {
-    const { version, repositories } = await getNodeJsRepositories2(nodeJsVersion);
-    if (!repositories?.length) {
-      Log.error(`  \u2718   Could not find any downloadable files for Node.js version ${version}. Please check if the version exists and has published binaries at https://nodejs.org/dist/v${version}/`);
-      process.exit(1);
-    }
-    const [majorVersion] = version.split(".");
-    console.log(`nodejs_register_toolchains(`);
-    console.log(`    name = "node${majorVersion}",`);
-    console.log(`    node_repositories = {`);
-    for (const { filename, sha, type } of repositories) {
-      const strippedFilename = filename.replace(/(\.tar)?\.[^.]+$/, "");
-      console.log(`        "${version}-${type}": ("${filename}", "${strippedFilename}", "${sha}"),`);
-    }
-    console.log(`    },`);
-    console.log(`    node_version = "${version}",`);
-    console.log(`)
-`);
-  } catch (error) {
-    Log.error(`  \u2718  Aborted due to an error:
-${error}`);
-    process.exit(1);
-  }
-}
-
 // ng-dev/misc/cli.js
 function buildMiscParser(localYargs) {
-  return localYargs.help().strict().command(SyncModuleBazelModule).command(BuildAndLinkCommandModule).command(GeneratedFilesModule).command(GeneratedNodeJsToolchainModule);
+  return localYargs.help().strict().command(SyncModuleBazelModule).command(BuildAndLinkCommandModule).command(GeneratedFilesModule);
 }
 
 // ng-dev/ngbot/verify.js
@@ -45087,19 +45004,19 @@ async function printTargetBranchesForPr(prNumber) {
 }
 
 // ng-dev/pr/check-target-branches/cli.js
-function builder14(argv) {
+function builder13(argv) {
   return argv.positional("pr", {
     description: "The pull request number",
     type: "number",
     demandOption: true
   });
 }
-async function handler14({ pr }) {
+async function handler13({ pr }) {
   await printTargetBranchesForPr(pr);
 }
 var CheckTargetBranchesModule = {
-  handler: handler14,
-  builder: builder14,
+  handler: handler13,
+  builder: builder13,
   command: "check-target-branches <pr>",
   describe: "Check a PR to determine what branches it is currently targeting"
 };
@@ -45443,7 +45360,7 @@ async function checkoutPullRequest(params2) {
 }
 
 // ng-dev/pr/checkout/cli.js
-function builder15(yargs) {
+function builder14(yargs) {
   return addGithubTokenOption(yargs).positional("pr", {
     type: "number",
     demandOption: true,
@@ -45458,12 +45375,12 @@ function builder15(yargs) {
     describe: "Check out the pull request targeting the specified base branch"
   });
 }
-async function handler15({ pr, takeover, target }) {
+async function handler14({ pr, takeover, target }) {
   await checkoutPullRequest({ pr, takeover, target });
 }
 var CheckoutCommandModule = {
-  handler: handler15,
-  builder: builder15,
+  handler: handler14,
+  builder: builder14,
   command: "checkout <pr>",
   describe: "Checkout a PR from the upstream repo"
 };
@@ -45736,7 +45653,7 @@ async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
 }
 
 // ng-dev/pr/discover-new-conflicts/cli.js
-function builder16(argv) {
+function builder15(argv) {
   return addGithubTokenOption(argv).option("date", {
     description: "Only consider PRs updated since provided date",
     defaultDescription: "30 days ago",
@@ -45744,7 +45661,7 @@ function builder16(argv) {
     default: getThirtyDaysAgoDate()
   }).positional("pr", { demandOption: true, type: "number" });
 }
-async function handler16({ pr, date }) {
+async function handler15({ pr, date }) {
   if (isNaN(date)) {
     Log.error("Unable to parse the value provided via --date flag");
     process.exit(1);
@@ -45758,8 +45675,8 @@ function getThirtyDaysAgoDate() {
   return date.getTime();
 }
 var DiscoverNewConflictsCommandModule = {
-  handler: handler16,
-  builder: builder16,
+  handler: handler15,
+  builder: builder15,
   command: "discover-new-conflicts <pr>",
   describe: "Check if a pending PR causes new conflicts for other pending PRs"
 };
@@ -46767,7 +46684,7 @@ function parsePrNumber(prUrlOrNumber) {
 }
 
 // ng-dev/pr/merge/cli.js
-async function builder17(argv) {
+async function builder16(argv) {
   return addDryRunFlag(addGithubTokenOption(argv)).help().strict().positional("pr", {
     demandOption: true,
     coerce: (prUrlOrNumber) => parsePrNumber(prUrlOrNumber),
@@ -46787,12 +46704,12 @@ async function builder17(argv) {
     description: "Bypass the check for pending reviews on the pull request"
   });
 }
-async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
+async function handler16({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
   await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
 }
 var MergeCommandModule = {
-  handler: handler17,
-  builder: builder17,
+  handler: handler16,
+  builder: builder16,
   command: "merge <pr>",
   describe: "Merge a PR into its targeted branches."
 };
@@ -46874,7 +46791,7 @@ async function rebasePr(prNumber, interactive = false) {
 }
 
 // ng-dev/pr/rebase/cli.js
-function builder18(argv) {
+function builder17(argv) {
   return addGithubTokenOption(argv).positional("pr", { type: "number", demandOption: true }).option("interactive", {
     type: "boolean",
     alias: ["i"],
@@ -46882,12 +46799,12 @@ function builder18(argv) {
     describe: "Do the rebase interactively so that things can be squashed and amended"
   });
 }
-async function handler18({ pr, i }) {
+async function handler17({ pr, i }) {
   process.exitCode = await rebasePr(pr, i);
 }
 var RebaseCommandModule = {
-  handler: handler18,
-  builder: builder18,
+  handler: handler17,
+  builder: builder17,
   command: "rebase <pr>",
   describe: "Rebase a pending PR and push the rebased commits back to Github"
 };
@@ -47169,14 +47086,14 @@ function buildPullapproveParser(localYargs) {
 }
 
 // ng-dev/release/build/cli.js
-function builder19(argv) {
+function builder18(argv) {
   return argv.option("json", {
     type: "boolean",
     description: "Whether the built packages should be printed to stdout as JSON.",
     default: false
   });
 }
-async function handler19(args) {
+async function handler18(args) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const { npmPackages } = config.release;
@@ -47204,8 +47121,8 @@ async function handler19(args) {
   }
 }
 var ReleaseBuildCommandModule = {
-  builder: builder19,
-  handler: handler19,
+  builder: builder18,
+  handler: handler18,
   command: "build",
   describe: "Builds the release output for the current branch."
 };
@@ -47260,14 +47177,14 @@ async function printActiveReleaseTrains(active, config) {
 }
 
 // ng-dev/release/info/cli.js
-function builder20(argv) {
+function builder19(argv) {
   return argv.option("json", {
     type: "boolean",
     description: "Whether information should be written as JSON to stdout.",
     default: false
   });
 }
-async function handler20(argv) {
+async function handler19(argv) {
   const config = await getConfig();
   assertValidReleaseConfig(config);
   if (argv.json) {
@@ -47281,8 +47198,8 @@ async function handler20(argv) {
   await printActiveReleaseTrains(releaseTrains, config.release);
 }
 var ReleaseInfoCommandModule = {
-  builder: builder20,
-  handler: handler20,
+  builder: builder19,
+  handler: handler19,
   command: "info",
   describe: "Prints information for the current release state."
 };
@@ -47771,7 +47688,7 @@ var ReleaseNotes = class _ReleaseNotes {
 };
 
 // ng-dev/release/notes/cli.js
-function builder21(argv) {
+function builder20(argv) {
   return argv.option("releaseVersion", {
     type: "string",
     default: "0.0.0",
@@ -47795,7 +47712,7 @@ function builder21(argv) {
     description: "Whether to update the changelog with the newly created entry"
   });
 }
-async function handler21({ releaseVersion, from, to, prependToChangelog, type }) {
+async function handler20({ releaseVersion, from, to, prependToChangelog, type }) {
   const git = await GitClient.get();
   const releaseNotes = await ReleaseNotes.forRange(git, releaseVersion, from, to);
   if (prependToChangelog) {
@@ -47807,8 +47724,8 @@ async function handler21({ releaseVersion, from, to, prependToChangelog, type })
   process.stdout.write(releaseNotesEntry);
 }
 var ReleaseNotesCommandModule = {
-  builder: builder21,
-  handler: handler21,
+  builder: builder20,
+  handler: handler20,
   command: "notes",
   describe: "Generate release notes"
 };
@@ -47830,7 +47747,7 @@ function readBufferFromStdinUntilClosed(input = process.stdin) {
 }
 
 // ng-dev/release/precheck/cli.js
-async function handler22() {
+async function handler21() {
   const stdin = await readBufferFromStdinUntilClosed();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -47851,7 +47768,7 @@ async function handler22() {
   }
 }
 var ReleasePrecheckCommandModule = {
-  handler: handler22,
+  handler: handler21,
   command: "precheck",
   describe: false
 };
@@ -49105,7 +49022,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-3ec78dc98edefbf3a324b84d093e66577ea30b29`;
+var localVersion = `0.0.0-287bb82a632e7ba5e6c9bb9da4ac937af40c3008`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49309,12 +49226,12 @@ var ReleaseTool = class {
 };
 
 // ng-dev/release/publish/cli.js
-function builder22(argv) {
+function builder21(argv) {
   return addGithubTokenOption(argv).option("publishRegistry", {
     type: "string"
   });
 }
-async function handler23(flags) {
+async function handler22(flags) {
   const git = await AuthenticatedGitClient.get();
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -49336,15 +49253,15 @@ async function handler23(flags) {
   }
 }
 var ReleasePublishCommandModule = {
-  builder: builder22,
-  handler: handler23,
+  builder: builder21,
+  handler: handler22,
   command: "publish",
   describe: "Publish new releases and configure version branches."
 };
 
 // ng-dev/release/npm-dist-tag/set/cli.js
 var import_semver20 = __toESM(require_semver());
-function builder23(args) {
+function builder22(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
@@ -49359,7 +49276,7 @@ function builder23(args) {
     default: false
   });
 }
-async function handler24(args) {
+async function handler23(args) {
   const { targetVersion: rawVersion, tagName, skipExperimentalPackages } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -49396,8 +49313,8 @@ async function handler24(args) {
   Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version}`)}.`));
 }
 var ReleaseNpmDistTagSetCommand = {
-  builder: builder23,
-  handler: handler24,
+  builder: builder22,
+  handler: handler23,
   command: "set <tag-name> <target-version>",
   describe: "Sets a given NPM dist tag for all release packages."
 };
@@ -49501,7 +49418,7 @@ function getVersionFromWorkspacePackageJson(git) {
 }
 
 // ng-dev/release/stamping/cli.js
-function builder24(args) {
+function builder23(args) {
   return args.option("mode", {
     demandOption: true,
     description: "Whether the env-stamp should be built for a snapshot or release",
@@ -49515,7 +49432,7 @@ function builder24(args) {
     description: "Working-dir relative or absolute path to an ESM script which can print additional stamping variables"
   });
 }
-async function handler25({ mode, includeVersion, additionalStampingScript }) {
+async function handler24({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
     const scriptURL = url.pathToFileURL(path7.resolve(additionalStampingScript));
@@ -49524,21 +49441,21 @@ async function handler25({ mode, includeVersion, additionalStampingScript }) {
   }
 }
 var BuildEnvStampCommand = {
-  builder: builder24,
-  handler: handler25,
+  builder: builder23,
+  handler: handler24,
   command: "build-env-stamp",
   describe: "Build the environment stamping information"
 };
 
 // ng-dev/release/npm-dist-tag/delete/cli.js
-function builder25(args) {
+function builder24(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
     description: "Name of the NPM dist tag."
   });
 }
-async function handler26(args) {
+async function handler25(args) {
   const { tagName } = args;
   const config = await getConfig();
   assertValidReleaseConfig(config);
@@ -49561,8 +49478,8 @@ async function handler26(args) {
   Log.info(green(`  \u2713   Deleted "${bold(tagName)}" NPM dist tag for all packages.`));
 }
 var ReleaseNpmDistTagDeleteCommand = {
-  builder: builder25,
-  handler: handler26,
+  builder: builder24,
+  handler: handler25,
   command: "delete <tag-name>",
   describe: "Deletes a given NPM dist tag for all release packages."
 };
@@ -49916,31 +49833,31 @@ function convertReferenceChainToString(chain) {
 }
 
 // ng-dev/auth/login/cli.js
-async function builder26(yargs) {
+async function builder25(yargs) {
   return yargs;
 }
-async function handler27() {
+async function handler26() {
   Log.warn("ng-dev auth login has been deprecated. Authentication will be done");
   Log.warn("using TOKEN from the local environment.");
 }
 var LoginModule = {
-  handler: handler27,
-  builder: builder26,
+  handler: handler26,
+  builder: builder25,
   command: "login",
   describe: "Log into the ng-dev service"
 };
 
 // ng-dev/auth/logout/cli.js
-async function builder27(yargs) {
+async function builder26(yargs) {
   return yargs;
 }
-async function handler28() {
+async function handler27() {
   Log.warn("ng-dev auth logout has been deprecated. Authentication will be done");
   Log.warn("using local environment.");
 }
 var LogoutModule = {
-  handler: handler28,
-  builder: builder27,
+  handler: handler27,
+  builder: builder26,
   command: "logout",
   describe: "Log out of the ng-dev service"
 };
@@ -50023,7 +49940,7 @@ async function addWorkflowPerformanceResult(result) {
 }
 
 // ng-dev/perf/workflow/cli.js
-function builder28(yargs) {
+function builder27(yargs) {
   return yargs.option("config-file", {
     default: ".ng-dev/dx-perf-workflows.yml",
     type: "string",
@@ -50040,7 +49957,7 @@ function builder28(yargs) {
     description: "The commit sha to associate the measurement with, uploading it to our database"
   });
 }
-async function handler29({ configFile, list, name, commitSha }) {
+async function handler28({ configFile, list, name, commitSha }) {
   const workflows = await loadWorkflows(join15(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
@@ -50072,8 +49989,8 @@ async function handler29({ configFile, list, name, commitSha }) {
   }
 }
 var WorkflowsModule = {
-  handler: handler29,
-  builder: builder28,
+  handler: handler28,
+  builder: builder27,
   command: "workflows",
   describe: "Evaluate the performance of the provided workflows"
 };
@@ -50133,10 +50050,10 @@ async function checkValidity() {
 }
 
 // ng-dev/config/validate/cli.js
-async function builder29(yargs) {
+async function builder28(yargs) {
   return yargs;
 }
-async function handler30() {
+async function handler29() {
   try {
     await checkPortability();
     await checkValidity();
@@ -50151,8 +50068,8 @@ async function handler30() {
   }
 }
 var ValidateModule = {
-  handler: handler30,
-  builder: builder29,
+  handler: handler29,
+  builder: builder28,
   command: "validate",
   describe: "Validate that the configuration provided in .ng-dev/ is valid and portable"
 };
@@ -66792,7 +66709,7 @@ var DEFAULT_API_KEY = process.env["GEMINI_API_KEY"];
 // ng-dev/ai/migrate.js
 import assert from "node:assert";
 var import_fast_glob4 = __toESM(require_out4());
-function builder30(argv) {
+function builder29(argv) {
   return argv.option("prompt", {
     type: "string",
     alias: "p",
@@ -66823,7 +66740,7 @@ function builder30(argv) {
     description: "API key used when making calls to the Gemini API"
   });
 }
-async function handler31(options) {
+async function handler30(options) {
   const apiKey = options.apiKey || DEFAULT_API_KEY;
   assert(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
@@ -66919,8 +66836,8 @@ async function applyPrompt(ai, model, temperature, content, prompt) {
   return parsed.content;
 }
 var MigrateModule = {
-  builder: builder30,
-  handler: handler31,
+  builder: builder29,
+  handler: handler30,
   command: "migrate",
   describe: "Apply a prompt-based AI migration over a set of files"
 };
@@ -66933,7 +66850,7 @@ import { readFile as readFile4, writeFile as writeFile4 } from "node:fs/promises
 import { basename as basename2 } from "node:path";
 import assert2 from "node:assert";
 import { randomUUID as randomUUID2 } from "node:crypto";
-function builder31(argv) {
+function builder30(argv) {
   return argv.positional("files", {
     description: `One or more glob patterns to find target files (e.g., 'src/**/*.ts' 'test/**/*.ts').`,
     type: "string",
@@ -66961,7 +66878,7 @@ function builder31(argv) {
     description: "API key used when making calls to the Gemini API"
   });
 }
-async function handler32(options) {
+async function handler31(options) {
   const apiKey = options.apiKey || DEFAULT_API_KEY;
   assert2(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
@@ -67098,8 +67015,8 @@ function generatePrompt(errorDescription, fileNameMap) {
 `;
 }
 var FixModule = {
-  builder: builder31,
-  handler: handler32,
+  builder: builder30,
+  handler: handler31,
   command: "fix <files..>",
   describe: "Fixes errors from the specified error output"
 };
