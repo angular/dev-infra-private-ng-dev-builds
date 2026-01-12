@@ -44398,6 +44398,7 @@ var PNPM_INTEGRITY_REGEXP = /pnpm_version_integrity = ".*?"/;
 var TS_VERSION_REGEXP = /ts_version(?:_from)? = ".*?"/;
 var TS_INTEGRITY_REGEXP = /ts_integrity = ".*?"/;
 var NODE_VERSION_REGEXP = /node_version = "(.*?)"/;
+var NODE_VERSION_FROM_NVMRC_REGEXP = /node_version_from_nvmrc = ".*?"/;
 var NODE_REPOSITORIES_REGEXP = /node_repositories = \{[\s\S]*?\}/;
 async function getNpmPackageIntegrity(pkg, version) {
   const response = await fetch(`https://registry.npmjs.org/${pkg}/${version}`);
@@ -44429,17 +44430,20 @@ function updateVersionAndIntegrity(content, version, integrity, versionRegExp, i
     ${integrityKey} = "${integrity}"`);
 }
 async function processNodeToolchainArgs(args, nvmrcVersion) {
-  const useVersionFromNvm = args.includes("node_version_from_nvmrc");
   const versionMatch = args.match(NODE_VERSION_REGEXP);
   let effectiveVersion = versionMatch?.[1];
-  if (useVersionFromNvm) {
+  if (effectiveVersion === nvmrcVersion) {
+    return args;
+  }
+  if (effectiveVersion) {
+    args = args.replace(NODE_VERSION_REGEXP, `node_version = "${nvmrcVersion}"`);
+    effectiveVersion = nvmrcVersion;
+  } else if (NODE_VERSION_FROM_NVMRC_REGEXP.test(args)) {
     if (!nvmrcVersion) {
       throw new Error("node_version_from_nvmrc used but .nvmrc not found");
     }
     effectiveVersion = nvmrcVersion;
-  } else if (effectiveVersion && effectiveVersion !== nvmrcVersion) {
-    args = args.replace(NODE_VERSION_REGEXP, `node_version = "${nvmrcVersion}"`);
-    effectiveVersion = nvmrcVersion;
+    args = args.replace(NODE_VERSION_FROM_NVMRC_REGEXP, `node_version = "${nvmrcVersion}"`);
   }
   if (!effectiveVersion) {
     return args;
@@ -49101,7 +49105,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-977bc9d747d9ddfe610fc96009212dd14c645ef6`;
+var localVersion = `0.0.0-3ec78dc98edefbf3a324b84d093e66577ea30b29`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
