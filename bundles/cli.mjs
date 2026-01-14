@@ -41851,10 +41851,7 @@ async function setRepoMergeMode(value) {
     return false;
   }
   const git = await AuthenticatedGitClient.get();
-  const { value_type, allowed_values } = await getRepoConfigValueDefinition(mergeModePropertyName, git);
-  if (value_type !== "single_select") {
-    throw Error(`Unable to update ${mergeModePropertyName} as its type is ${value_type}, currently the only supported configuration type is single_select`);
-  }
+  const allowed_values = ["team-only", "caretaker-only", "release"];
   if (!allowed_values.includes(value)) {
     throw Error(`Unable to update ${mergeModePropertyName}. The value provided must use one of: ${allowed_values.join(", ")}
 But "${value}" was provided as the value`);
@@ -41870,12 +41867,6 @@ But "${value}" was provided as the value`);
     ]
   });
   return true;
-}
-async function getRepoConfigValueDefinition(key, git) {
-  return git.github.orgs.customPropertiesForReposGetOrganizationDefinition({
-    custom_property_name: key,
-    org: git.remoteConfig.owner
-  }).then(({ data }) => data);
 }
 
 // ng-dev/caretaker/handoff/verify-merge-mode.js
@@ -49048,7 +49039,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-1ce250a660eca5f613794a32cbae6d0f7a449918`;
+var localVersion = `0.0.0-b816685b6260ab760f1a24fc6f79db9bd1cb4921`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
