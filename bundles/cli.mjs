@@ -5964,9 +5964,9 @@ var require_safer = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/lib/bom-handling.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/bom-handling.js
 var require_bom_handling = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/lib/bom-handling.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/bom-handling.js"(exports) {
     "use strict";
     var BOMChar = "\uFEFF";
     exports.PrependBOM = PrependBOMWrapper;
@@ -6010,9 +6010,9 @@ var require_bom_handling = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/lib/helpers/merge-exports.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/helpers/merge-exports.js
 var require_merge_exports = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/lib/helpers/merge-exports.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/helpers/merge-exports.js"(exports, module) {
     "use strict";
     var hasOwn2 = typeof Object.hasOwn === "undefined" ? Function.call.bind(Object.prototype.hasOwnProperty) : Object.hasOwn;
     function mergeModules(target, module2) {
@@ -6026,9 +6026,9 @@ var require_merge_exports = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/internal.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/internal.js
 var require_internal = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/internal.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/internal.js"(exports, module) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     module.exports = {
@@ -6207,9 +6207,9 @@ var require_internal = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/utf32.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf32.js
 var require_utf32 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/utf32.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf32.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports._utf32 = Utf32Codec;
@@ -6444,9 +6444,9 @@ var require_utf32 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/utf16.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf16.js
 var require_utf16 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/utf16.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf16.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports.utf16be = Utf16BECodec;
@@ -6593,9 +6593,9 @@ var require_utf16 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/utf7.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf7.js
 var require_utf7 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/utf7.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf7.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports.utf7 = Utf7Codec;
@@ -6811,9 +6811,9 @@ var require_utf7 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/sbcs-codec.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-codec.js
 var require_sbcs_codec = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/sbcs-codec.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-codec.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports._sbcs = SBCSCodec;
@@ -6873,9 +6873,9 @@ var require_sbcs_codec = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/sbcs-data.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data.js
 var require_sbcs_data = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/sbcs-data.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data.js"(exports, module) {
     "use strict";
     module.exports = {
       // Not supported by iconv, not sure why.
@@ -7026,9 +7026,9 @@ var require_sbcs_data = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/sbcs-data-generated.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data-generated.js
 var require_sbcs_data_generated = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/sbcs-data-generated.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data-generated.js"(exports, module) {
     "use strict";
     module.exports = {
       "437": "cp437",
@@ -7481,9 +7481,9 @@ var require_sbcs_data_generated = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/dbcs-codec.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-codec.js
 var require_dbcs_codec = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/dbcs-codec.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-codec.js"(exports) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     exports._dbcs = DBCSCodec;
@@ -7945,9 +7945,9 @@ var require_dbcs_codec = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/shiftjis.json
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/shiftjis.json
 var require_shiftjis = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/shiftjis.json"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/shiftjis.json"(exports, module) {
     module.exports = [
       ["0", "\0", 128],
       ["a1", "\uFF61", 62],
@@ -8076,9 +8076,9 @@ var require_shiftjis = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/eucjp.json
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/eucjp.json
 var require_eucjp = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/eucjp.json"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/eucjp.json"(exports, module) {
     module.exports = [
       ["0", "\0", 127],
       ["8ea1", "\uFF61", 62],
@@ -8264,9 +8264,9 @@ var require_eucjp = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/cp936.json
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp936.json
 var require_cp936 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/cp936.json"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp936.json"(exports, module) {
     module.exports = [
       ["0", "\0", 127, "\u20AC"],
       ["8140", "\u4E02\u4E04\u4E05\u4E06\u4E0F\u4E12\u4E17\u4E1F\u4E20\u4E21\u4E23\u4E26\u4E29\u4E2E\u4E2F\u4E31\u4E33\u4E35\u4E37\u4E3C\u4E40\u4E41\u4E42\u4E44\u4E46\u4E4A\u4E51\u4E55\u4E57\u4E5A\u4E5B\u4E62\u4E63\u4E64\u4E65\u4E67\u4E68\u4E6A", 5, "\u4E72\u4E74", 9, "\u4E7F", 6, "\u4E87\u4E8A"],
@@ -8534,9 +8534,9 @@ var require_cp936 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/gbk-added.json
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gbk-added.json
 var require_gbk_added = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/gbk-added.json"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gbk-added.json"(exports, module) {
     module.exports = [
       ["a140", "\uE4C6", 62],
       ["a180", "\uE505", 32],
@@ -8596,16 +8596,16 @@ var require_gbk_added = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json
 var require_gb18030_ranges = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json"(exports, module) {
     module.exports = { uChars: [128, 165, 169, 178, 184, 216, 226, 235, 238, 244, 248, 251, 253, 258, 276, 284, 300, 325, 329, 334, 364, 463, 465, 467, 469, 471, 473, 475, 477, 506, 594, 610, 712, 716, 730, 930, 938, 962, 970, 1026, 1104, 1106, 8209, 8215, 8218, 8222, 8231, 8241, 8244, 8246, 8252, 8365, 8452, 8454, 8458, 8471, 8482, 8556, 8570, 8596, 8602, 8713, 8720, 8722, 8726, 8731, 8737, 8740, 8742, 8748, 8751, 8760, 8766, 8777, 8781, 8787, 8802, 8808, 8816, 8854, 8858, 8870, 8896, 8979, 9322, 9372, 9548, 9588, 9616, 9622, 9634, 9652, 9662, 9672, 9676, 9680, 9702, 9735, 9738, 9793, 9795, 11906, 11909, 11913, 11917, 11928, 11944, 11947, 11951, 11956, 11960, 11964, 11979, 12284, 12292, 12312, 12319, 12330, 12351, 12436, 12447, 12535, 12543, 12586, 12842, 12850, 12964, 13200, 13215, 13218, 13253, 13263, 13267, 13270, 13384, 13428, 13727, 13839, 13851, 14617, 14703, 14801, 14816, 14964, 15183, 15471, 15585, 16471, 16736, 17208, 17325, 17330, 17374, 17623, 17997, 18018, 18212, 18218, 18301, 18318, 18760, 18811, 18814, 18820, 18823, 18844, 18848, 18872, 19576, 19620, 19738, 19887, 40870, 59244, 59336, 59367, 59413, 59417, 59423, 59431, 59437, 59443, 59452, 59460, 59478, 59493, 63789, 63866, 63894, 63976, 63986, 64016, 64018, 64021, 64025, 64034, 64037, 64042, 65074, 65093, 65107, 65112, 65127, 65132, 65375, 65510, 65536], gbChars: [0, 36, 38, 45, 50, 81, 89, 95, 96, 100, 103, 104, 105, 109, 126, 133, 148, 172, 175, 179, 208, 306, 307, 308, 309, 310, 311, 312, 313, 341, 428, 443, 544, 545, 558, 741, 742, 749, 750, 805, 819, 820, 7922, 7924, 7925, 7927, 7934, 7943, 7944, 7945, 7950, 8062, 8148, 8149, 8152, 8164, 8174, 8236, 8240, 8262, 8264, 8374, 8380, 8381, 8384, 8388, 8390, 8392, 8393, 8394, 8396, 8401, 8406, 8416, 8419, 8424, 8437, 8439, 8445, 8482, 8485, 8496, 8521, 8603, 8936, 8946, 9046, 9050, 9063, 9066, 9076, 9092, 9100, 9108, 9111, 9113, 9131, 9162, 9164, 9218, 9219, 11329, 11331, 11334, 11336, 11346, 11361, 11363, 11366, 11370, 11372, 11375, 11389, 11682, 11686, 11687, 11692, 11694, 11714, 11716, 11723, 11725, 11730, 11736, 11982, 11989, 12102, 12336, 12348, 12350, 12384, 12393, 12395, 12397, 12510, 12553, 12851, 12962, 12973, 13738, 13823, 13919, 13933, 14080, 14298, 14585, 14698, 15583, 15847, 16318, 16434, 16438, 16481, 16729, 17102, 17122, 17315, 17320, 17402, 17418, 17859, 17909, 17911, 17915, 17916, 17936, 17939, 17961, 18664, 18703, 18814, 18962, 19043, 33469, 33470, 33471, 33484, 33485, 33490, 33497, 33501, 33505, 33513, 33520, 33536, 33550, 37845, 37921, 37948, 38029, 38038, 38064, 38065, 38066, 38069, 38075, 38076, 38078, 39108, 39109, 39113, 39114, 39115, 39116, 39265, 39394, 189e3] };
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/cp949.json
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp949.json
 var require_cp949 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/cp949.json"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp949.json"(exports, module) {
     module.exports = [
       ["0", "\0", 127],
       ["8141", "\uAC02\uAC03\uAC05\uAC06\uAC0B", 4, "\uAC18\uAC1E\uAC1F\uAC21\uAC22\uAC23\uAC25", 6, "\uAC2E\uAC32\uAC33\uAC34"],
@@ -8882,9 +8882,9 @@ var require_cp949 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/cp950.json
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp950.json
 var require_cp950 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/cp950.json"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp950.json"(exports, module) {
     module.exports = [
       ["0", "\0", 127],
       ["a140", "\u3000\uFF0C\u3001\u3002\uFF0E\u2027\uFF1B\uFF1A\uFF1F\uFF01\uFE30\u2026\u2025\uFE50\uFE51\uFE52\xB7\uFE54\uFE55\uFE56\uFE57\uFF5C\u2013\uFE31\u2014\uFE33\u2574\uFE34\uFE4F\uFF08\uFF09\uFE35\uFE36\uFF5B\uFF5D\uFE37\uFE38\u3014\u3015\uFE39\uFE3A\u3010\u3011\uFE3B\uFE3C\u300A\u300B\uFE3D\uFE3E\u3008\u3009\uFE3F\uFE40\u300C\u300D\uFE41\uFE42\u300E\u300F\uFE43\uFE44\uFE59\uFE5A"],
@@ -9065,9 +9065,9 @@ var require_cp950 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/big5-added.json
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/big5-added.json
 var require_big5_added = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/tables/big5-added.json"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/big5-added.json"(exports, module) {
     module.exports = [
       ["8740", "\u43F0\u4C32\u4603\u45A6\u4578\u{27267}\u4D77\u45B3\u{27CB1}\u4CE2\u{27CC5}\u3B95\u4736\u4744\u4C47\u4C40\u{242BF}\u{23617}\u{27352}\u{26E8B}\u{270D2}\u4C57\u{2A351}\u474F\u45DA\u4C85\u{27C6C}\u4D07\u4AA4\u46A1\u{26B23}\u7225\u{25A54}\u{21A63}\u{23E06}\u{23F61}\u664D\u56FB"],
       ["8767", "\u7D95\u591D\u{28BB9}\u3DF4\u9734\u{27BEF}\u5BDB\u{21D5E}\u5AA4\u3625\u{29EB0}\u5AD1\u5BB7\u5CFC\u676E\u8593\u{29945}\u7461\u749D\u3875\u{21D53}\u{2369E}\u{26021}\u3EEC"],
@@ -9193,9 +9193,9 @@ var require_big5_added = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/dbcs-data.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-data.js
 var require_dbcs_data = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/dbcs-data.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-data.js"(exports, module) {
     "use strict";
     module.exports = {
       // == Japanese/ShiftJIS ====================================================
@@ -9440,9 +9440,9 @@ var require_dbcs_data = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/index.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/index.js
 var require_encodings = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/encodings/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/index.js"(exports, module) {
     "use strict";
     var mergeModules = require_merge_exports();
     var modules = [
@@ -9465,9 +9465,9 @@ var require_encodings = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/lib/streams.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/streams.js
 var require_streams = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/lib/streams.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/streams.js"(exports, module) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     module.exports = function(streamModule) {
@@ -9566,62 +9566,61 @@ var require_streams = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/lib/index.js
+// node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/index.js
 var require_lib3 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.1/node_modules/iconv-lite/lib/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/index.js"(exports, module) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     var bomHandling = require_bom_handling();
     var mergeModules = require_merge_exports();
-    var iconv2 = module.exports;
-    iconv2.encodings = null;
-    iconv2.defaultCharUnicode = "\uFFFD";
-    iconv2.defaultCharSingleByte = "?";
-    iconv2.encode = function encode(str, encoding, options) {
+    module.exports.encodings = null;
+    module.exports.defaultCharUnicode = "\uFFFD";
+    module.exports.defaultCharSingleByte = "?";
+    module.exports.encode = function encode(str, encoding, options) {
       str = "" + (str || "");
-      var encoder = iconv2.getEncoder(encoding, options);
+      var encoder = module.exports.getEncoder(encoding, options);
       var res = encoder.write(str);
       var trail = encoder.end();
       return trail && trail.length > 0 ? Buffer2.concat([res, trail]) : res;
     };
-    iconv2.decode = function decode(buf, encoding, options) {
+    module.exports.decode = function decode(buf, encoding, options) {
       if (typeof buf === "string") {
-        if (!iconv2.skipDecodeWarning) {
+        if (!module.exports.skipDecodeWarning) {
           console.error("Iconv-lite warning: decode()-ing strings is deprecated. Refer to https://github.com/ashtuchkin/iconv-lite/wiki/Use-Buffers-when-decoding");
-          iconv2.skipDecodeWarning = true;
+          module.exports.skipDecodeWarning = true;
         }
         buf = Buffer2.from("" + (buf || ""), "binary");
       }
-      var decoder = iconv2.getDecoder(encoding, options);
+      var decoder = module.exports.getDecoder(encoding, options);
       var res = decoder.write(buf);
       var trail = decoder.end();
       return trail ? res + trail : res;
     };
-    iconv2.encodingExists = function encodingExists(enc) {
+    module.exports.encodingExists = function encodingExists(enc) {
       try {
-        iconv2.getCodec(enc);
+        module.exports.getCodec(enc);
         return true;
       } catch (e) {
         return false;
       }
     };
-    iconv2.toEncoding = iconv2.encode;
-    iconv2.fromEncoding = iconv2.decode;
-    iconv2._codecDataCache = { __proto__: null };
-    iconv2.getCodec = function getCodec(encoding) {
-      if (!iconv2.encodings) {
+    module.exports.toEncoding = module.exports.encode;
+    module.exports.fromEncoding = module.exports.decode;
+    module.exports._codecDataCache = { __proto__: null };
+    module.exports.getCodec = function getCodec(encoding) {
+      if (!module.exports.encodings) {
         var raw = require_encodings();
-        iconv2.encodings = { __proto__: null };
-        mergeModules(iconv2.encodings, raw);
+        module.exports.encodings = { __proto__: null };
+        mergeModules(module.exports.encodings, raw);
       }
-      var enc = iconv2._canonicalizeEncoding(encoding);
+      var enc = module.exports._canonicalizeEncoding(encoding);
       var codecOptions = {};
       while (true) {
-        var codec = iconv2._codecDataCache[enc];
+        var codec = module.exports._codecDataCache[enc];
         if (codec) {
           return codec;
         }
-        var codecDef = iconv2.encodings[enc];
+        var codecDef = module.exports.encodings[enc];
         switch (typeof codecDef) {
           case "string":
             enc = codecDef;
@@ -9639,47 +9638,47 @@ var require_lib3 = __commonJS({
             if (!codecOptions.encodingName) {
               codecOptions.encodingName = enc;
             }
-            codec = new codecDef(codecOptions, iconv2);
-            iconv2._codecDataCache[codecOptions.encodingName] = codec;
+            codec = new codecDef(codecOptions, module.exports);
+            module.exports._codecDataCache[codecOptions.encodingName] = codec;
             return codec;
           default:
             throw new Error("Encoding not recognized: '" + encoding + "' (searched as: '" + enc + "')");
         }
       }
     };
-    iconv2._canonicalizeEncoding = function(encoding) {
+    module.exports._canonicalizeEncoding = function(encoding) {
       return ("" + encoding).toLowerCase().replace(/:\d{4}$|[^0-9a-z]/g, "");
     };
-    iconv2.getEncoder = function getEncoder(encoding, options) {
-      var codec = iconv2.getCodec(encoding);
+    module.exports.getEncoder = function getEncoder(encoding, options) {
+      var codec = module.exports.getCodec(encoding);
       var encoder = new codec.encoder(options, codec);
       if (codec.bomAware && options && options.addBOM) {
         encoder = new bomHandling.PrependBOM(encoder, options);
       }
       return encoder;
     };
-    iconv2.getDecoder = function getDecoder(encoding, options) {
-      var codec = iconv2.getCodec(encoding);
+    module.exports.getDecoder = function getDecoder(encoding, options) {
+      var codec = module.exports.getCodec(encoding);
       var decoder = new codec.decoder(options, codec);
       if (codec.bomAware && !(options && options.stripBOM === false)) {
         decoder = new bomHandling.StripBOM(decoder, options);
       }
       return decoder;
     };
-    iconv2.enableStreamingAPI = function enableStreamingAPI(streamModule2) {
-      if (iconv2.supportsStreams) {
+    module.exports.enableStreamingAPI = function enableStreamingAPI(streamModule2) {
+      if (module.exports.supportsStreams) {
         return;
       }
       var streams = require_streams()(streamModule2);
-      iconv2.IconvLiteEncoderStream = streams.IconvLiteEncoderStream;
-      iconv2.IconvLiteDecoderStream = streams.IconvLiteDecoderStream;
-      iconv2.encodeStream = function encodeStream(encoding, options) {
-        return new iconv2.IconvLiteEncoderStream(iconv2.getEncoder(encoding, options), options);
+      module.exports.IconvLiteEncoderStream = streams.IconvLiteEncoderStream;
+      module.exports.IconvLiteDecoderStream = streams.IconvLiteDecoderStream;
+      module.exports.encodeStream = function encodeStream(encoding, options) {
+        return new module.exports.IconvLiteEncoderStream(module.exports.getEncoder(encoding, options), options);
       };
-      iconv2.decodeStream = function decodeStream(encoding, options) {
-        return new iconv2.IconvLiteDecoderStream(iconv2.getDecoder(encoding, options), options);
+      module.exports.decodeStream = function decodeStream(encoding, options) {
+        return new module.exports.IconvLiteDecoderStream(module.exports.getDecoder(encoding, options), options);
       };
-      iconv2.supportsStreams = true;
+      module.exports.supportsStreams = true;
     };
     var streamModule;
     try {
@@ -9687,9 +9686,9 @@ var require_lib3 = __commonJS({
     } catch (e) {
     }
     if (streamModule && streamModule.Transform) {
-      iconv2.enableStreamingAPI(streamModule);
+      module.exports.enableStreamingAPI(streamModule);
     } else {
-      iconv2.encodeStream = iconv2.decodeStream = function() {
+      module.exports.encodeStream = module.exports.decodeStream = function() {
         throw new Error("iconv-lite Streaming API is not enabled. Use iconv.enableStreamingAPI(require('stream')); to enable it.");
       };
     }
@@ -32478,9 +32477,9 @@ var require_src6 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/constants.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/constants.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/constants.js"(exports, module) {
     "use strict";
     var BINARY_TYPES = ["nodebuffer", "arraybuffer", "fragments"];
     var hasBlob = typeof Blob !== "undefined";
@@ -32488,6 +32487,7 @@ var require_constants4 = __commonJS({
       BINARY_TYPES.push("blob");
     module.exports = {
       BINARY_TYPES,
+      CLOSE_TIMEOUT: 3e4,
       EMPTY_BUFFER: Buffer.alloc(0),
       GUID: "258EAFA5-E914-47DA-95CA-C5AB0DC85B11",
       hasBlob,
@@ -32735,9 +32735,9 @@ var require_bufferutil = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/buffer-util.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/buffer-util.js
 var require_buffer_util = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/buffer-util.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/buffer-util.js"(exports, module) {
     "use strict";
     var { EMPTY_BUFFER } = require_constants4();
     var FastBuffer = Buffer[Symbol.species];
@@ -32817,9 +32817,9 @@ var require_buffer_util = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/limiter.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/limiter.js
 var require_limiter = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/limiter.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/limiter.js"(exports, module) {
     "use strict";
     var kDone = Symbol("kDone");
     var kRun = Symbol("kRun");
@@ -32868,9 +32868,9 @@ var require_limiter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/permessage-deflate.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports, module) {
     "use strict";
     var zlib = __require("zlib");
     var bufferUtil = require_buffer_util();
@@ -33301,9 +33301,9 @@ var require_utf_8_validate = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/validation.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/validation.js
 var require_validation = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/validation.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/validation.js"(exports, module) {
     "use strict";
     var { isUtf8 } = __require("buffer");
     var { hasBlob } = require_constants4();
@@ -33502,9 +33502,9 @@ var require_validation = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/receiver.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/receiver.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/receiver.js"(exports, module) {
     "use strict";
     var { Writable } = __require("stream");
     var PerMessageDeflate = require_permessage_deflate();
@@ -34105,9 +34105,9 @@ var require_receiver = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/sender.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/sender.js
 var require_sender = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/sender.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/sender.js"(exports, module) {
     "use strict";
     var { Duplex } = __require("stream");
     var { randomFillSync } = __require("crypto");
@@ -34599,9 +34599,9 @@ var require_sender = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/event-target.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/event-target.js
 var require_event_target = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/event-target.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/event-target.js"(exports, module) {
     "use strict";
     var { kForOnEventAttribute, kListener } = require_constants4();
     var kCode = Symbol("kCode");
@@ -34828,9 +34828,9 @@ var require_event_target = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/extension.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/extension.js
 var require_extension = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/extension.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/extension.js"(exports, module) {
     "use strict";
     var { tokenChars } = require_validation();
     function push(dest, name, elem) {
@@ -34998,9 +34998,9 @@ var require_extension = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket.js"(exports, module) {
     "use strict";
     var EventEmitter = __require("events");
     var https = __require("https");
@@ -35016,6 +35016,7 @@ var require_websocket = __commonJS({
     var { isBlob } = require_validation();
     var {
       BINARY_TYPES,
+      CLOSE_TIMEOUT,
       EMPTY_BUFFER,
       GUID,
       kForOnEventAttribute,
@@ -35029,7 +35030,6 @@ var require_websocket = __commonJS({
     } = require_event_target();
     var { format: format2, parse: parse4 } = require_extension();
     var { toBuffer } = require_buffer_util();
-    var closeTimeout = 30 * 1e3;
     var kAborted = Symbol("kAborted");
     var protocolVersions = [8, 13];
     var readyStates = ["CONNECTING", "OPEN", "CLOSING", "CLOSED"];
@@ -35075,6 +35075,7 @@ var require_websocket = __commonJS({
           initAsClient(this, address, protocols, options);
         } else {
           this._autoPong = options.autoPong;
+          this._closeTimeout = options.closeTimeout;
           this._isServer = true;
         }
       }
@@ -35493,6 +35494,7 @@ var require_websocket = __commonJS({
       const opts = {
         allowSynchronousEvents: true,
         autoPong: true,
+        closeTimeout: CLOSE_TIMEOUT,
         protocolVersion: protocolVersions[1],
         maxPayload: 100 * 1024 * 1024,
         skipUTF8Validation: false,
@@ -35510,6 +35512,7 @@ var require_websocket = __commonJS({
         port: void 0
       };
       websocket._autoPong = opts.autoPong;
+      websocket._closeTimeout = opts.closeTimeout;
       if (!protocolVersions.includes(opts.protocolVersion)) {
         throw new RangeError(
           `Unsupported protocol version: ${opts.protocolVersion} (supported versions: ${protocolVersions.join(", ")})`
@@ -35864,7 +35867,7 @@ var require_websocket = __commonJS({
     function setCloseTimer(websocket) {
       websocket._closeTimer = setTimeout(
         websocket._socket.destroy.bind(websocket._socket),
-        closeTimeout
+        websocket._closeTimeout
       );
     }
     function socketOnClose() {
@@ -35873,8 +35876,8 @@ var require_websocket = __commonJS({
       this.removeListener("data", socketOnData);
       this.removeListener("end", socketOnEnd);
       websocket._readyState = WebSocket2.CLOSING;
-      let chunk;
-      if (!this._readableState.endEmitted && !websocket._closeFrameReceived && !websocket._receiver._writableState.errorEmitted && (chunk = websocket._socket.read()) !== null) {
+      if (!this._readableState.endEmitted && !websocket._closeFrameReceived && !websocket._receiver._writableState.errorEmitted && this._readableState.length !== 0) {
+        const chunk = this.read(this._readableState.length);
         websocket._receiver.write(chunk);
       }
       websocket._receiver.end();
@@ -35910,9 +35913,9 @@ var require_websocket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/stream.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/stream.js
 var require_stream5 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/stream.js"(exports, module) {
     "use strict";
     var WebSocket2 = require_websocket();
     var { Duplex } = __require("stream");
@@ -36016,9 +36019,9 @@ var require_stream5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/subprotocol.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/subprotocol.js
 var require_subprotocol = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/subprotocol.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/subprotocol.js"(exports, module) {
     "use strict";
     var { tokenChars } = require_validation();
     function parse4(header) {
@@ -36064,9 +36067,9 @@ var require_subprotocol = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket-server.js
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket-server.js
 var require_websocket_server = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/lib/websocket-server.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket-server.js"(exports, module) {
     "use strict";
     var EventEmitter = __require("events");
     var http = __require("http");
@@ -36076,7 +36079,7 @@ var require_websocket_server = __commonJS({
     var PerMessageDeflate = require_permessage_deflate();
     var subprotocol = require_subprotocol();
     var WebSocket2 = require_websocket();
-    var { GUID, kWebSocket } = require_constants4();
+    var { CLOSE_TIMEOUT, GUID, kWebSocket } = require_constants4();
     var keyRegex = /^[+/0-9A-Za-z]{22}==$/;
     var RUNNING = 0;
     var CLOSING = 1;
@@ -36095,6 +36098,9 @@ var require_websocket_server = __commonJS({
        *     pending connections
        * @param {Boolean} [options.clientTracking=true] Specifies whether or not to
        *     track clients
+       * @param {Number} [options.closeTimeout=30000] Duration in milliseconds to
+       *     wait for the closing handshake to finish after `websocket.close()` is
+       *     called
        * @param {Function} [options.handleProtocols] A hook to handle protocols
        * @param {String} [options.host] The hostname where to bind the server
        * @param {Number} [options.maxPayload=104857600] The maximum allowed message
@@ -36123,6 +36129,7 @@ var require_websocket_server = __commonJS({
           perMessageDeflate: false,
           handleProtocols: null,
           clientTracking: true,
+          closeTimeout: CLOSE_TIMEOUT,
           verifyClient: null,
           noServer: false,
           backlog: null,
@@ -39327,7 +39334,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -39346,7 +39353,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -39369,10 +39376,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -39478,7 +39485,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -39496,7 +39503,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -39508,10 +39515,10 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
-// node_modules/.aspect_rules_js/@inquirer+figures@2.0.2/node_modules/@inquirer/figures/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+figures@2.0.3/node_modules/@inquirer/figures/dist/index.js
 import process2 from "node:process";
 function isUnicodeSupported() {
   if (process2.platform !== "win32") {
@@ -39803,7 +39810,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39824,7 +39831,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39852,7 +39859,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39883,7 +39890,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39896,12 +39903,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39920,7 +39927,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
@@ -39929,7 +39936,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -40018,7 +40025,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -40274,10 +40281,10 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
-// node_modules/.aspect_rules_js/@inquirer+ansi@2.0.2/node_modules/@inquirer/ansi/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+ansi@2.0.3/node_modules/@inquirer/ansi/dist/index.js
 var ESC = "\x1B[";
 var cursorLeft = ESC + "G";
 var cursorHide = ESC + "?25l";
@@ -40293,7 +40300,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -40353,7 +40360,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -40368,7 +40375,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -40455,7 +40462,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.0_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -40470,7 +40477,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.3_at_types_node_24.10.4/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -40643,7 +40650,7 @@ var dist_default2 = createPrompt((config, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -40652,7 +40659,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40661,7 +40668,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40670,7 +40677,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40679,7 +40686,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40688,7 +40695,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.2_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -40842,7 +40849,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.3_at_types_node_24.10.4/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -40911,7 +40918,7 @@ var dist_default3 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.3_at_types_node_24.10.4/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.4_at_types_node_24.10.4/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -40957,7 +40964,7 @@ var dist_default4 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.3_at_types_node_24.10.4/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -41042,7 +41049,7 @@ var dist_default5 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.3_at_types_node_24.10.4/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.4_at_types_node_24.10.4/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -41123,7 +41130,7 @@ var dist_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.3_at_types_node_24.10.4/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -41219,9 +41226,14 @@ var dist_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.1.0_at_types_node_24.10.4/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.0_at_types_node_24.10.4/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
+var rawlistTheme = {
+  style: {
+    description: (text) => styleText5("cyan", text)
+  }
+};
 function isSelectableChoice(choice) {
   return choice != null && !Separator.isSeparator(choice);
 }
@@ -41245,7 +41257,8 @@ function normalizeChoices3(choices) {
       value: choice.value,
       name,
       short: choice.short ?? name,
-      key: choice.key ?? String(index)
+      key: choice.key ?? String(index),
+      description: choice.description
     };
   });
 }
@@ -41268,7 +41281,7 @@ var dist_default8 = createPrompt((config, done) => {
     return defaultChoice?.key ?? "";
   });
   const [errorMsg, setError] = useState();
-  const theme = makeTheme(config.theme);
+  const theme = makeTheme(rawlistTheme, config.theme);
   const prefix = usePrefix({ status, theme });
   const bounds = useMemo(() => {
     const first = choices.findIndex(isSelectableChoice);
@@ -41280,11 +41293,11 @@ var dist_default8 = createPrompt((config, done) => {
   }, [choices]);
   useKeypress((key, rl) => {
     if (isEnterKey(key)) {
-      const [selectedChoice] = getSelectedChoice(value, choices);
-      if (isSelectableChoice(selectedChoice)) {
-        setValue(selectedChoice.short);
+      const [selectedChoice2] = getSelectedChoice(value, choices);
+      if (isSelectableChoice(selectedChoice2)) {
+        setValue(selectedChoice2.short);
         setStatus("done");
-        done(selectedChoice.value);
+        done(selectedChoice2.value);
       } else if (value === "") {
         setError("Please input a value");
       } else {
@@ -41292,8 +41305,8 @@ var dist_default8 = createPrompt((config, done) => {
       }
     } else if (isUpKey(key) || isDownKey(key)) {
       rl.clearLine(0);
-      const [selectedChoice, active] = getSelectedChoice(value, choices);
-      if (!selectedChoice) {
+      const [selectedChoice2, active] = getSelectedChoice(value, choices);
+      if (!selectedChoice2) {
         const firstChoice = isDownKey(key) ? choices.find(isSelectableChoice) : choices.findLast(isSelectableChoice);
         setValue(firstChoice.key);
       } else if (loop || isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
@@ -41318,7 +41331,7 @@ var dist_default8 = createPrompt((config, done) => {
       return ` ${choice.separator}`;
     }
     const line = `  ${choice.key}) ${choice.name}`;
-    if (choice.key === value.toLowerCase()) {
+    if (choice.key === value) {
       return theme.style.highlight(line);
     }
     return line;
@@ -41327,13 +41340,18 @@ var dist_default8 = createPrompt((config, done) => {
   if (errorMsg) {
     error = theme.style.error(errorMsg);
   }
+  const [selectedChoice] = getSelectedChoice(value, choices);
+  let description = "";
+  if (!errorMsg && selectedChoice?.description) {
+    description = theme.style.description(selectedChoice.description);
+  }
   return [
     `${prefix} ${message} ${value}`,
-    [choicesStr, error].filter(Boolean).join("\n")
+    [choicesStr, error, description].filter(Boolean).join("\n")
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.3_at_types_node_24.10.4/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/password/dist/index.js
 var dist_default9 = createPrompt((config, done) => {
   const { validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -41382,7 +41400,7 @@ var dist_default9 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.0.3_at_types_node_24.10.4/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.1.0_at_types_node_24.10.4/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -41428,6 +41446,7 @@ var dist_default10 = createPrompt((config, done) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [searchError, setSearchError] = useState();
+  const defaultApplied = useRef(false);
   const prefix = usePrefix({ status, theme });
   const bounds = useMemo(() => {
     const first = searchResults.findIndex(isSelectable2);
@@ -41445,9 +41464,16 @@ var dist_default10 = createPrompt((config, done) => {
           signal: controller.signal
         });
         if (!controller.signal.aborted) {
-          setActive(void 0);
+          const normalized = normalizeChoices4(results);
+          let initialActive;
+          if (!defaultApplied.current && "default" in config) {
+            const defaultIndex = normalized.findIndex((item) => isSelectable2(item) && item.value === config.default);
+            initialActive = defaultIndex === -1 ? void 0 : defaultIndex;
+            defaultApplied.current = true;
+          }
+          setActive(initialActive);
           setSearchError(void 0);
-          setSearchResults(normalizeChoices4(results));
+          setSearchResults(normalized);
           setStatus("idle");
         }
       } catch (error2) {
@@ -41544,7 +41570,7 @@ var dist_default10 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.0.3_at_types_node_24.10.4/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -49022,7 +49048,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-8ce8257f740613a7291256173e2706fb2ed8aefa`;
+var localVersion = `0.0.0-b44c3df56a8970caca621e7adfcba7fafc5283fa`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -50073,7 +50099,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.34.0_1695458489/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.34.0_45321690/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -50081,14 +50107,14 @@ import { writeFile as writeFile2 } from "fs/promises";
 import { Readable as Readable2 } from "node:stream";
 import { finished } from "node:stream/promises";
 
-// node_modules/.aspect_rules_js/ws@8.18.3_1527948970/node_modules/ws/wrapper.mjs
+// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/wrapper.mjs
 var import_stream2 = __toESM(require_stream5(), 1);
 var import_receiver = __toESM(require_receiver(), 1);
 var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.34.0_1695458489/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.34.0_45321690/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
