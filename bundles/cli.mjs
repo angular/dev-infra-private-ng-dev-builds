@@ -39334,7 +39334,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -39353,7 +39353,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -39376,10 +39376,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -39485,7 +39485,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -39503,7 +39503,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -39515,7 +39515,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.3/node_modules/@inquirer/figures/dist/index.js
@@ -39810,7 +39810,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39831,7 +39831,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39859,7 +39859,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39890,7 +39890,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39903,12 +39903,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39927,7 +39927,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
@@ -39936,7 +39936,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -40025,7 +40025,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -40281,7 +40281,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.3/node_modules/@inquirer/ansi/dist/index.js
@@ -40300,7 +40300,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -40360,7 +40360,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -40375,7 +40375,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -40462,7 +40462,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.4/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -40477,7 +40477,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -40650,7 +40650,7 @@ var dist_default2 = createPrompt((config, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -40659,7 +40659,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40668,7 +40668,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40677,7 +40677,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40686,7 +40686,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40695,7 +40695,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.4/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -40849,7 +40849,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -40918,7 +40918,7 @@ var dist_default3 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.4_at_types_node_24.10.4/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.4_at_types_node_24.10.8/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -40964,7 +40964,7 @@ var dist_default4 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -41049,7 +41049,7 @@ var dist_default5 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.4_at_types_node_24.10.4/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.4_at_types_node_24.10.8/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -41130,7 +41130,7 @@ var dist_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -41226,7 +41226,7 @@ var dist_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.0_at_types_node_24.10.4/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.0_at_types_node_24.10.8/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
 var rawlistTheme = {
@@ -41351,7 +41351,7 @@ var dist_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/password/dist/index.js
 var dist_default9 = createPrompt((config, done) => {
   const { validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -41400,7 +41400,7 @@ var dist_default9 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.1.0_at_types_node_24.10.4/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.1.0_at_types_node_24.10.8/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -41570,7 +41570,7 @@ var dist_default10 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.0.4_at_types_node_24.10.4/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -49039,7 +49039,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-b816685b6260ab760f1a24fc6f79db9bd1cb4921`;
+var localVersion = `0.0.0-782ecd33953f8e44978c74de33b1a60b2408897e`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -50090,7 +50090,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.34.0_45321690/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.35.0_45321690/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs5 from "fs/promises";
@@ -50105,7 +50105,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.34.0_45321690/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.35.0_45321690/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -50614,11 +50614,6 @@ var Type;
   Type2["OBJECT"] = "OBJECT";
   Type2["NULL"] = "NULL";
 })(Type || (Type = {}));
-var Mode;
-(function(Mode2) {
-  Mode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
-  Mode2["MODE_DYNAMIC"] = "MODE_DYNAMIC";
-})(Mode || (Mode = {}));
 var ApiSpec;
 (function(ApiSpec2) {
   ApiSpec2["API_SPEC_UNSPECIFIED"] = "API_SPEC_UNSPECIFIED";
@@ -50654,6 +50649,25 @@ var PhishBlockThreshold;
   PhishBlockThreshold2["BLOCK_VERY_HIGH_AND_ABOVE"] = "BLOCK_VERY_HIGH_AND_ABOVE";
   PhishBlockThreshold2["BLOCK_ONLY_EXTREMELY_HIGH"] = "BLOCK_ONLY_EXTREMELY_HIGH";
 })(PhishBlockThreshold || (PhishBlockThreshold = {}));
+var Behavior;
+(function(Behavior2) {
+  Behavior2["UNSPECIFIED"] = "UNSPECIFIED";
+  Behavior2["BLOCKING"] = "BLOCKING";
+  Behavior2["NON_BLOCKING"] = "NON_BLOCKING";
+})(Behavior || (Behavior = {}));
+var DynamicRetrievalConfigMode;
+(function(DynamicRetrievalConfigMode2) {
+  DynamicRetrievalConfigMode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
+  DynamicRetrievalConfigMode2["MODE_DYNAMIC"] = "MODE_DYNAMIC";
+})(DynamicRetrievalConfigMode || (DynamicRetrievalConfigMode = {}));
+var FunctionCallingConfigMode;
+(function(FunctionCallingConfigMode2) {
+  FunctionCallingConfigMode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
+  FunctionCallingConfigMode2["AUTO"] = "AUTO";
+  FunctionCallingConfigMode2["ANY"] = "ANY";
+  FunctionCallingConfigMode2["NONE"] = "NONE";
+  FunctionCallingConfigMode2["VALIDATED"] = "VALIDATED";
+})(FunctionCallingConfigMode || (FunctionCallingConfigMode = {}));
 var ThinkingLevel;
 (function(ThinkingLevel2) {
   ThinkingLevel2["THINKING_LEVEL_UNSPECIFIED"] = "THINKING_LEVEL_UNSPECIFIED";
@@ -50819,30 +50833,11 @@ var FeatureSelectionPreference;
   FeatureSelectionPreference2["BALANCED"] = "BALANCED";
   FeatureSelectionPreference2["PRIORITIZE_COST"] = "PRIORITIZE_COST";
 })(FeatureSelectionPreference || (FeatureSelectionPreference = {}));
-var Behavior;
-(function(Behavior2) {
-  Behavior2["UNSPECIFIED"] = "UNSPECIFIED";
-  Behavior2["BLOCKING"] = "BLOCKING";
-  Behavior2["NON_BLOCKING"] = "NON_BLOCKING";
-})(Behavior || (Behavior = {}));
-var DynamicRetrievalConfigMode;
-(function(DynamicRetrievalConfigMode2) {
-  DynamicRetrievalConfigMode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
-  DynamicRetrievalConfigMode2["MODE_DYNAMIC"] = "MODE_DYNAMIC";
-})(DynamicRetrievalConfigMode || (DynamicRetrievalConfigMode = {}));
 var Environment;
 (function(Environment2) {
   Environment2["ENVIRONMENT_UNSPECIFIED"] = "ENVIRONMENT_UNSPECIFIED";
   Environment2["ENVIRONMENT_BROWSER"] = "ENVIRONMENT_BROWSER";
 })(Environment || (Environment = {}));
-var FunctionCallingConfigMode;
-(function(FunctionCallingConfigMode2) {
-  FunctionCallingConfigMode2["MODE_UNSPECIFIED"] = "MODE_UNSPECIFIED";
-  FunctionCallingConfigMode2["AUTO"] = "AUTO";
-  FunctionCallingConfigMode2["ANY"] = "ANY";
-  FunctionCallingConfigMode2["NONE"] = "NONE";
-  FunctionCallingConfigMode2["VALIDATED"] = "VALIDATED";
-})(FunctionCallingConfigMode || (FunctionCallingConfigMode = {}));
 var SafetyFilterLevel;
 (function(SafetyFilterLevel2) {
   SafetyFilterLevel2["BLOCK_LOW_AND_ABOVE"] = "BLOCK_LOW_AND_ABOVE";
@@ -50949,6 +50944,7 @@ var FileSource;
   FileSource2["SOURCE_UNSPECIFIED"] = "SOURCE_UNSPECIFIED";
   FileSource2["UPLOADED"] = "UPLOADED";
   FileSource2["GENERATED"] = "GENERATED";
+  FileSource2["REGISTERED"] = "REGISTERED";
 })(FileSource || (FileSource = {}));
 var TurnCompleteReason;
 (function(TurnCompleteReason2) {
@@ -52619,15 +52615,15 @@ function functionCallToMldev$4(fromObject) {
 }
 function functionCallingConfigToMldev$2(fromObject) {
   const toObject = {};
-  const fromMode = getValueByPath(fromObject, ["mode"]);
-  if (fromMode != null) {
-    setValueByPath(toObject, ["mode"], fromMode);
-  }
   const fromAllowedFunctionNames = getValueByPath(fromObject, [
     "allowedFunctionNames"
   ]);
   if (fromAllowedFunctionNames != null) {
     setValueByPath(toObject, ["allowedFunctionNames"], fromAllowedFunctionNames);
+  }
+  const fromMode = getValueByPath(fromObject, ["mode"]);
+  if (fromMode != null) {
+    setValueByPath(toObject, ["mode"], fromMode);
   }
   if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
     throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
@@ -52887,6 +52883,9 @@ function imageConfigToMldev$1(fromObject) {
   if (fromImageSize != null) {
     setValueByPath(toObject, ["imageSize"], fromImageSize);
   }
+  if (getValueByPath(fromObject, ["personGeneration"]) !== void 0) {
+    throw new Error("personGeneration parameter is not supported in Gemini API.");
+  }
   if (getValueByPath(fromObject, ["outputMimeType"]) !== void 0) {
     throw new Error("outputMimeType parameter is not supported in Gemini API.");
   }
@@ -53111,42 +53110,24 @@ function safetySettingToMldev$1(fromObject) {
 }
 function toolConfigToMldev$2(fromObject) {
   const toObject = {};
-  const fromFunctionCallingConfig = getValueByPath(fromObject, [
-    "functionCallingConfig"
-  ]);
-  if (fromFunctionCallingConfig != null) {
-    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev$2(fromFunctionCallingConfig));
-  }
   const fromRetrievalConfig = getValueByPath(fromObject, [
     "retrievalConfig"
   ]);
   if (fromRetrievalConfig != null) {
     setValueByPath(toObject, ["retrievalConfig"], fromRetrievalConfig);
   }
+  const fromFunctionCallingConfig = getValueByPath(fromObject, [
+    "functionCallingConfig"
+  ]);
+  if (fromFunctionCallingConfig != null) {
+    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev$2(fromFunctionCallingConfig));
+  }
   return toObject;
 }
 function toolToMldev$4(fromObject) {
   const toObject = {};
-  const fromFunctionDeclarations = getValueByPath(fromObject, [
-    "functionDeclarations"
-  ]);
-  if (fromFunctionDeclarations != null) {
-    let transformedList = fromFunctionDeclarations;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return item;
-      });
-    }
-    setValueByPath(toObject, ["functionDeclarations"], transformedList);
-  }
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
-  }
-  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
-    "googleSearchRetrieval"
-  ]);
-  if (fromGoogleSearchRetrieval != null) {
-    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -53165,6 +53146,18 @@ function toolToMldev$4(fromObject) {
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
   }
+  const fromFunctionDeclarations = getValueByPath(fromObject, [
+    "functionDeclarations"
+  ]);
+  if (fromFunctionDeclarations != null) {
+    let transformedList = fromFunctionDeclarations;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["functionDeclarations"], transformedList);
+  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$4(fromGoogleMaps));
@@ -53172,6 +53165,12 @@ function toolToMldev$4(fromObject) {
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$4(fromGoogleSearch));
+  }
+  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
+    "googleSearchRetrieval"
+  ]);
+  if (fromGoogleSearchRetrieval != null) {
+    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -54003,15 +54002,15 @@ function functionCallToMldev$3(fromObject) {
 }
 function functionCallingConfigToMldev$1(fromObject) {
   const toObject = {};
-  const fromMode = getValueByPath(fromObject, ["mode"]);
-  if (fromMode != null) {
-    setValueByPath(toObject, ["mode"], fromMode);
-  }
   const fromAllowedFunctionNames = getValueByPath(fromObject, [
     "allowedFunctionNames"
   ]);
   if (fromAllowedFunctionNames != null) {
     setValueByPath(toObject, ["allowedFunctionNames"], fromAllowedFunctionNames);
+  }
+  const fromMode = getValueByPath(fromObject, ["mode"]);
+  if (fromMode != null) {
+    setValueByPath(toObject, ["mode"], fromMode);
   }
   if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
     throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
@@ -54020,9 +54019,6 @@ function functionCallingConfigToMldev$1(fromObject) {
 }
 function functionDeclarationToVertex$2(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
-    throw new Error("behavior parameter is not supported in Vertex AI.");
-  }
   const fromDescription = getValueByPath(fromObject, ["description"]);
   if (fromDescription != null) {
     setValueByPath(toObject, ["description"], fromDescription);
@@ -54050,6 +54046,9 @@ function functionDeclarationToVertex$2(fromObject) {
   ]);
   if (fromResponseJsonSchema != null) {
     setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
+  }
+  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
+    throw new Error("behavior parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -54254,42 +54253,24 @@ function partToMldev$3(fromObject) {
 }
 function toolConfigToMldev$1(fromObject) {
   const toObject = {};
-  const fromFunctionCallingConfig = getValueByPath(fromObject, [
-    "functionCallingConfig"
-  ]);
-  if (fromFunctionCallingConfig != null) {
-    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev$1(fromFunctionCallingConfig));
-  }
   const fromRetrievalConfig = getValueByPath(fromObject, [
     "retrievalConfig"
   ]);
   if (fromRetrievalConfig != null) {
     setValueByPath(toObject, ["retrievalConfig"], fromRetrievalConfig);
   }
+  const fromFunctionCallingConfig = getValueByPath(fromObject, [
+    "functionCallingConfig"
+  ]);
+  if (fromFunctionCallingConfig != null) {
+    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev$1(fromFunctionCallingConfig));
+  }
   return toObject;
 }
 function toolToMldev$3(fromObject) {
   const toObject = {};
-  const fromFunctionDeclarations = getValueByPath(fromObject, [
-    "functionDeclarations"
-  ]);
-  if (fromFunctionDeclarations != null) {
-    let transformedList = fromFunctionDeclarations;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return item;
-      });
-    }
-    setValueByPath(toObject, ["functionDeclarations"], transformedList);
-  }
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
-  }
-  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
-    "googleSearchRetrieval"
-  ]);
-  if (fromGoogleSearchRetrieval != null) {
-    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -54308,6 +54289,18 @@ function toolToMldev$3(fromObject) {
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
   }
+  const fromFunctionDeclarations = getValueByPath(fromObject, [
+    "functionDeclarations"
+  ]);
+  if (fromFunctionDeclarations != null) {
+    let transformedList = fromFunctionDeclarations;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["functionDeclarations"], transformedList);
+  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$3(fromGoogleMaps));
@@ -54315,6 +54308,12 @@ function toolToMldev$3(fromObject) {
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$3(fromGoogleSearch));
+  }
+  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
+    "googleSearchRetrieval"
+  ]);
+  if (fromGoogleSearchRetrieval != null) {
+    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -54324,27 +54323,9 @@ function toolToMldev$3(fromObject) {
 }
 function toolToVertex$2(fromObject) {
   const toObject = {};
-  const fromFunctionDeclarations = getValueByPath(fromObject, [
-    "functionDeclarations"
-  ]);
-  if (fromFunctionDeclarations != null) {
-    let transformedList = fromFunctionDeclarations;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return functionDeclarationToVertex$2(item);
-      });
-    }
-    setValueByPath(toObject, ["functionDeclarations"], transformedList);
-  }
   const fromRetrieval = getValueByPath(fromObject, ["retrieval"]);
   if (fromRetrieval != null) {
     setValueByPath(toObject, ["retrieval"], fromRetrieval);
-  }
-  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
-    "googleSearchRetrieval"
-  ]);
-  if (fromGoogleSearchRetrieval != null) {
-    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -54365,6 +54346,18 @@ function toolToVertex$2(fromObject) {
   if (fromEnterpriseWebSearch != null) {
     setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
   }
+  const fromFunctionDeclarations = getValueByPath(fromObject, [
+    "functionDeclarations"
+  ]);
+  if (fromFunctionDeclarations != null) {
+    let transformedList = fromFunctionDeclarations;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return functionDeclarationToVertex$2(item);
+      });
+    }
+    setValueByPath(toObject, ["functionDeclarations"], transformedList);
+  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
@@ -54372,6 +54365,12 @@ function toolToVertex$2(fromObject) {
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
+  }
+  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
+    "googleSearchRetrieval"
+  ]);
+  if (fromGoogleSearchRetrieval != null) {
+    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -55534,9 +55533,6 @@ function functionCallToMldev$2(fromObject) {
 }
 function functionDeclarationToVertex$1(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
-    throw new Error("behavior parameter is not supported in Vertex AI.");
-  }
   const fromDescription = getValueByPath(fromObject, ["description"]);
   if (fromDescription != null) {
     setValueByPath(toObject, ["description"], fromDescription);
@@ -55564,6 +55560,9 @@ function functionDeclarationToVertex$1(fromObject) {
   ]);
   if (fromResponseJsonSchema != null) {
     setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
+  }
+  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
+    throw new Error("behavior parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -56205,26 +56204,8 @@ function sessionResumptionConfigToMldev$1(fromObject) {
 }
 function toolToMldev$2(fromObject) {
   const toObject = {};
-  const fromFunctionDeclarations = getValueByPath(fromObject, [
-    "functionDeclarations"
-  ]);
-  if (fromFunctionDeclarations != null) {
-    let transformedList = fromFunctionDeclarations;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return item;
-      });
-    }
-    setValueByPath(toObject, ["functionDeclarations"], transformedList);
-  }
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
-  }
-  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
-    "googleSearchRetrieval"
-  ]);
-  if (fromGoogleSearchRetrieval != null) {
-    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -56243,6 +56224,18 @@ function toolToMldev$2(fromObject) {
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
   }
+  const fromFunctionDeclarations = getValueByPath(fromObject, [
+    "functionDeclarations"
+  ]);
+  if (fromFunctionDeclarations != null) {
+    let transformedList = fromFunctionDeclarations;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["functionDeclarations"], transformedList);
+  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$2(fromGoogleMaps));
@@ -56250,6 +56243,12 @@ function toolToMldev$2(fromObject) {
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$2(fromGoogleSearch));
+  }
+  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
+    "googleSearchRetrieval"
+  ]);
+  if (fromGoogleSearchRetrieval != null) {
+    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -56259,27 +56258,9 @@ function toolToMldev$2(fromObject) {
 }
 function toolToVertex$1(fromObject) {
   const toObject = {};
-  const fromFunctionDeclarations = getValueByPath(fromObject, [
-    "functionDeclarations"
-  ]);
-  if (fromFunctionDeclarations != null) {
-    let transformedList = fromFunctionDeclarations;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return functionDeclarationToVertex$1(item);
-      });
-    }
-    setValueByPath(toObject, ["functionDeclarations"], transformedList);
-  }
   const fromRetrieval = getValueByPath(fromObject, ["retrieval"]);
   if (fromRetrieval != null) {
     setValueByPath(toObject, ["retrieval"], fromRetrieval);
-  }
-  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
-    "googleSearchRetrieval"
-  ]);
-  if (fromGoogleSearchRetrieval != null) {
-    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -56300,6 +56281,18 @@ function toolToVertex$1(fromObject) {
   if (fromEnterpriseWebSearch != null) {
     setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
   }
+  const fromFunctionDeclarations = getValueByPath(fromObject, [
+    "functionDeclarations"
+  ]);
+  if (fromFunctionDeclarations != null) {
+    let transformedList = fromFunctionDeclarations;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return functionDeclarationToVertex$1(item);
+      });
+    }
+    setValueByPath(toObject, ["functionDeclarations"], transformedList);
+  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
@@ -56307,6 +56300,12 @@ function toolToVertex$1(fromObject) {
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
+  }
+  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
+    "googleSearchRetrieval"
+  ]);
+  if (fromGoogleSearchRetrieval != null) {
+    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -57084,15 +57083,15 @@ function functionCallToMldev$1(fromObject) {
 }
 function functionCallingConfigToMldev(fromObject) {
   const toObject = {};
-  const fromMode = getValueByPath(fromObject, ["mode"]);
-  if (fromMode != null) {
-    setValueByPath(toObject, ["mode"], fromMode);
-  }
   const fromAllowedFunctionNames = getValueByPath(fromObject, [
     "allowedFunctionNames"
   ]);
   if (fromAllowedFunctionNames != null) {
     setValueByPath(toObject, ["allowedFunctionNames"], fromAllowedFunctionNames);
+  }
+  const fromMode = getValueByPath(fromObject, ["mode"]);
+  if (fromMode != null) {
+    setValueByPath(toObject, ["mode"], fromMode);
   }
   if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
     throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
@@ -57101,9 +57100,6 @@ function functionCallingConfigToMldev(fromObject) {
 }
 function functionDeclarationToVertex(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
-    throw new Error("behavior parameter is not supported in Vertex AI.");
-  }
   const fromDescription = getValueByPath(fromObject, ["description"]);
   if (fromDescription != null) {
     setValueByPath(toObject, ["description"], fromDescription);
@@ -57131,6 +57127,9 @@ function functionDeclarationToVertex(fromObject) {
   ]);
   if (fromResponseJsonSchema != null) {
     setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
+  }
+  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
+    throw new Error("behavior parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -58467,6 +58466,9 @@ function imageConfigToMldev(fromObject) {
   if (fromImageSize != null) {
     setValueByPath(toObject, ["imageSize"], fromImageSize);
   }
+  if (getValueByPath(fromObject, ["personGeneration"]) !== void 0) {
+    throw new Error("personGeneration parameter is not supported in Gemini API.");
+  }
   if (getValueByPath(fromObject, ["outputMimeType"]) !== void 0) {
     throw new Error("outputMimeType parameter is not supported in Gemini API.");
   }
@@ -58484,6 +58486,12 @@ function imageConfigToVertex(fromObject) {
   const fromImageSize = getValueByPath(fromObject, ["imageSize"]);
   if (fromImageSize != null) {
     setValueByPath(toObject, ["imageSize"], fromImageSize);
+  }
+  const fromPersonGeneration = getValueByPath(fromObject, [
+    "personGeneration"
+  ]);
+  if (fromPersonGeneration != null) {
+    setValueByPath(toObject, ["personGeneration"], fromPersonGeneration);
   }
   const fromOutputMimeType = getValueByPath(fromObject, [
     "outputMimeType"
@@ -59185,42 +59193,24 @@ function segmentImageSourceToVertex(fromObject, parentObject) {
 }
 function toolConfigToMldev(fromObject) {
   const toObject = {};
-  const fromFunctionCallingConfig = getValueByPath(fromObject, [
-    "functionCallingConfig"
-  ]);
-  if (fromFunctionCallingConfig != null) {
-    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev(fromFunctionCallingConfig));
-  }
   const fromRetrievalConfig = getValueByPath(fromObject, [
     "retrievalConfig"
   ]);
   if (fromRetrievalConfig != null) {
     setValueByPath(toObject, ["retrievalConfig"], fromRetrievalConfig);
   }
+  const fromFunctionCallingConfig = getValueByPath(fromObject, [
+    "functionCallingConfig"
+  ]);
+  if (fromFunctionCallingConfig != null) {
+    setValueByPath(toObject, ["functionCallingConfig"], functionCallingConfigToMldev(fromFunctionCallingConfig));
+  }
   return toObject;
 }
 function toolToMldev$1(fromObject) {
   const toObject = {};
-  const fromFunctionDeclarations = getValueByPath(fromObject, [
-    "functionDeclarations"
-  ]);
-  if (fromFunctionDeclarations != null) {
-    let transformedList = fromFunctionDeclarations;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return item;
-      });
-    }
-    setValueByPath(toObject, ["functionDeclarations"], transformedList);
-  }
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
-  }
-  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
-    "googleSearchRetrieval"
-  ]);
-  if (fromGoogleSearchRetrieval != null) {
-    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -59239,6 +59229,18 @@ function toolToMldev$1(fromObject) {
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
   }
+  const fromFunctionDeclarations = getValueByPath(fromObject, [
+    "functionDeclarations"
+  ]);
+  if (fromFunctionDeclarations != null) {
+    let transformedList = fromFunctionDeclarations;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["functionDeclarations"], transformedList);
+  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$1(fromGoogleMaps));
@@ -59246,6 +59248,12 @@ function toolToMldev$1(fromObject) {
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$1(fromGoogleSearch));
+  }
+  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
+    "googleSearchRetrieval"
+  ]);
+  if (fromGoogleSearchRetrieval != null) {
+    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -59255,27 +59263,9 @@ function toolToMldev$1(fromObject) {
 }
 function toolToVertex(fromObject) {
   const toObject = {};
-  const fromFunctionDeclarations = getValueByPath(fromObject, [
-    "functionDeclarations"
-  ]);
-  if (fromFunctionDeclarations != null) {
-    let transformedList = fromFunctionDeclarations;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return functionDeclarationToVertex(item);
-      });
-    }
-    setValueByPath(toObject, ["functionDeclarations"], transformedList);
-  }
   const fromRetrieval = getValueByPath(fromObject, ["retrieval"]);
   if (fromRetrieval != null) {
     setValueByPath(toObject, ["retrieval"], fromRetrieval);
-  }
-  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
-    "googleSearchRetrieval"
-  ]);
-  if (fromGoogleSearchRetrieval != null) {
-    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -59296,6 +59286,18 @@ function toolToVertex(fromObject) {
   if (fromEnterpriseWebSearch != null) {
     setValueByPath(toObject, ["enterpriseWebSearch"], fromEnterpriseWebSearch);
   }
+  const fromFunctionDeclarations = getValueByPath(fromObject, [
+    "functionDeclarations"
+  ]);
+  if (fromFunctionDeclarations != null) {
+    let transformedList = fromFunctionDeclarations;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return functionDeclarationToVertex(item);
+      });
+    }
+    setValueByPath(toObject, ["functionDeclarations"], transformedList);
+  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
@@ -59303,6 +59305,12 @@ function toolToVertex(fromObject) {
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
+  }
+  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
+    "googleSearchRetrieval"
+  ]);
+  if (fromGoogleSearchRetrieval != null) {
+    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -59851,7 +59859,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.34.0";
+var SDK_VERSION = "1.35.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -61877,7 +61885,7 @@ var Models = class extends BaseModule2 {
    * console.log(response1?.generatedImages?.[0]?.image?.imageBytes);
    *
    * const response2 = await ai.models.recontextImage({
-   *  model: 'virtual-try-on-preview-08-04',
+   *  model: 'virtual-try-on-001',
    *  source: {
    *    personImage: personImage,
    *    productImages: [productImage],
@@ -62898,26 +62906,8 @@ function sessionResumptionConfigToMldev(fromObject) {
 }
 function toolToMldev(fromObject) {
   const toObject = {};
-  const fromFunctionDeclarations = getValueByPath(fromObject, [
-    "functionDeclarations"
-  ]);
-  if (fromFunctionDeclarations != null) {
-    let transformedList = fromFunctionDeclarations;
-    if (Array.isArray(transformedList)) {
-      transformedList = transformedList.map((item) => {
-        return item;
-      });
-    }
-    setValueByPath(toObject, ["functionDeclarations"], transformedList);
-  }
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
     throw new Error("retrieval parameter is not supported in Gemini API.");
-  }
-  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
-    "googleSearchRetrieval"
-  ]);
-  if (fromGoogleSearchRetrieval != null) {
-    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -62936,6 +62926,18 @@ function toolToMldev(fromObject) {
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
     throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
   }
+  const fromFunctionDeclarations = getValueByPath(fromObject, [
+    "functionDeclarations"
+  ]);
+  if (fromFunctionDeclarations != null) {
+    let transformedList = fromFunctionDeclarations;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["functionDeclarations"], transformedList);
+  }
   const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev(fromGoogleMaps));
@@ -62943,6 +62945,12 @@ function toolToMldev(fromObject) {
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev(fromGoogleSearch));
+  }
+  const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
+    "googleSearchRetrieval"
+  ]);
+  if (fromGoogleSearchRetrieval != null) {
+    setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
