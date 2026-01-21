@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-H4EYXD2W.mjs";
+} from "./chunk-E2WI2HX4.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -66,7 +66,7 @@ import {
   underline,
   wrapAnsi,
   yellow
-} from "./chunk-5VPDBAHJ.mjs";
+} from "./chunk-L66KKQHG.mjs";
 import {
   CommitParser
 } from "./chunk-PMGDP7TK.mjs";
@@ -39306,8 +39306,68 @@ var ServicesModule = class extends BaseModule {
   }
 };
 
+// ng-dev/utils/git/repository-merge-mode.js
+var mergeModePropertyName = "merge-mode";
+var MergeMode;
+(function(MergeMode2) {
+  MergeMode2["TEAM_ONLY"] = "team-only";
+  MergeMode2["CARETAKER_ONLY"] = "caretaker-only";
+  MergeMode2["RELEASE"] = "release";
+})(MergeMode || (MergeMode = {}));
+var mergeModes = Object.values(MergeMode);
+async function getCurrentMergeMode() {
+  const git = await AuthenticatedGitClient.get();
+  const { data: properties } = await git.github.repos.customPropertiesForReposGetRepositoryValues({
+    owner: git.remoteConfig.owner,
+    repo: git.remoteConfig.name
+  });
+  const property = properties.find(({ property_name }) => property_name === mergeModePropertyName);
+  if (property === void 0) {
+    throw Error(`No repository configuration value with the key: ${mergeModePropertyName}`);
+  }
+  return property.value;
+}
+async function setRepoMergeMode(value) {
+  const currentValue = await getCurrentMergeMode();
+  if (currentValue === value) {
+    Log.debug("Skipping update of repository configuration value as it is already set to the provided value");
+    return false;
+  }
+  const git = await AuthenticatedGitClient.get();
+  if (!mergeModes.includes(value)) {
+    throw Error(`Unable to update ${mergeModePropertyName}. The value provided must use one of: ${mergeModes.join(", ")}
+But "${value}" was provided as the value`);
+  }
+  await git.github.repos.customPropertiesForReposCreateOrUpdateRepositoryValues({
+    owner: git.remoteConfig.owner,
+    repo: git.remoteConfig.name,
+    properties: [
+      {
+        property_name: mergeModePropertyName,
+        value
+      }
+    ]
+  });
+  return true;
+}
+
+// ng-dev/caretaker/check/repo-status.js
+var RepoStatusModule = class extends BaseModule {
+  async retrieveData() {
+    return {
+      mergeMode: await getCurrentMergeMode()
+    };
+  }
+  async printToTerminal() {
+    const data = await this.data;
+    Log.info(bold("Current Repository Settings"));
+    Log.info(`Merge mode: ${bold(data.mergeMode)}`);
+    Log.info();
+  }
+};
+
 // ng-dev/caretaker/check/check.js
-var moduleList = [GithubQueriesModule, ServicesModule, CiModule, G3Module];
+var moduleList = [RepoStatusModule, GithubQueriesModule, ServicesModule, CiModule, G3Module];
 async function checkServiceStatuses() {
   const config = await getConfig();
   assertValidCaretakerConfig(config);
@@ -41830,45 +41890,6 @@ async function setGithubTeam(group, members) {
   Log.debug(green(`Successfully updated ${fullSlug}`));
 }
 
-// ng-dev/utils/git/repository-merge-mode.js
-var mergeModePropertyName = "merge-mode";
-async function getCurrentMergeMode() {
-  const git = await AuthenticatedGitClient.get();
-  const { data: properties } = await git.github.repos.customPropertiesForReposGetRepositoryValues({
-    owner: git.remoteConfig.owner,
-    repo: git.remoteConfig.name
-  });
-  const property = properties.find(({ property_name }) => property_name === mergeModePropertyName);
-  if (property === void 0) {
-    throw Error(`No repository configuration value with the key: ${mergeModePropertyName}`);
-  }
-  return property.value;
-}
-async function setRepoMergeMode(value) {
-  const currentValue = await getCurrentMergeMode();
-  if (currentValue === value) {
-    Log.debug("Skipping update of repository configuration value as it is already set to the provided value");
-    return false;
-  }
-  const git = await AuthenticatedGitClient.get();
-  const allowed_values = ["team-only", "caretaker-only", "release"];
-  if (!allowed_values.includes(value)) {
-    throw Error(`Unable to update ${mergeModePropertyName}. The value provided must use one of: ${allowed_values.join(", ")}
-But "${value}" was provided as the value`);
-  }
-  await git.github.repos.customPropertiesForReposCreateOrUpdateRepositoryValues({
-    owner: git.remoteConfig.owner,
-    repo: git.remoteConfig.name,
-    properties: [
-      {
-        property_name: mergeModePropertyName,
-        value
-      }
-    ]
-  });
-  return true;
-}
-
 // ng-dev/caretaker/handoff/verify-merge-mode.js
 async function verifyMergeMode(expectedMode) {
   const mode = await getCurrentMergeMode();
@@ -41916,7 +41937,7 @@ var HandoffModule = {
 async function setMergeModeRelease() {
   try {
     await setRepoReleaserTeamToOnlyCurrentUser();
-    await setRepoMergeMode("release");
+    await setRepoMergeMode(MergeMode.RELEASE);
     Log.info(green("  \u2714  Repository is set for release"));
     return true;
   } catch (err) {
@@ -49039,7 +49060,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-10a5e48e536213de45eb6b9dc7b04553972eb631`;
+var localVersion = `0.0.0-4431005663fe2aea89fadf9f878a34da91a90ba2`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

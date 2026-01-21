@@ -1,9 +1,10 @@
 import { Assertions, MultipleAssertions } from './config-assertions.js';
 import { setCachedConfig } from './config-cache.js';
+import { MergeMode } from './git/repository-merge-mode.js';
 export type NgDevConfig<T = {}> = T & {
     __isNgDevConfigObject: boolean;
 };
-export type RepositoryMergeModes = 'team-only' | 'caretaker-only';
+export type RepositoryMergeMode = Extract<MergeMode, 'team-only' | 'caretaker-only'>;
 export interface GithubConfig {
     owner: string;
     name: string;
@@ -11,7 +12,7 @@ export interface GithubConfig {
     useSsh?: boolean;
     private?: boolean;
     useNgDevAuthService?: boolean;
-    mergeMode: RepositoryMergeModes;
+    mergeMode: RepositoryMergeMode;
     requireReleaseModeForRelease?: true;
 }
 export interface GoogleSyncConfig {

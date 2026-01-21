@@ -1,2 +1,2 @@
-import { RepositoryMergeModes } from '../../utils/config';
-export declare function verifyMergeMode(expectedMode: RepositoryMergeModes): Promise<boolean>;
+import { MergeMode } from '../../utils/git/repository-merge-mode';
+export declare function verifyMergeMode(expectedMode: MergeMode): Promise<boolean>;
