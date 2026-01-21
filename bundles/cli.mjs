@@ -49039,7 +49039,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-8d7bdf76c5a620e365ca7d4c6bb5393e362f9f62`;
+var localVersion = `0.0.0-048ccc3933aa71b83831bbb7c3463ef601386386`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49911,8 +49911,8 @@ async function runCommands(commands) {
   if (!commands || commands.length === 0) {
     return;
   }
-  for (let cmd of commands) {
-    await ChildProcess.exec(cmd, { mode: "silent" });
+  for (const cmd of commands) {
+    await ChildProcess.exec(cmd, { mode: "on-error" });
   }
 }
 
