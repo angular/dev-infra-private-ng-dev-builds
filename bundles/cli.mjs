@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-E2WI2HX4.mjs";
+} from "./chunk-M7CFQJ2K.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -66,7 +66,7 @@ import {
   underline,
   wrapAnsi,
   yellow
-} from "./chunk-L66KKQHG.mjs";
+} from "./chunk-BPT5VOWG.mjs";
 import {
   CommitParser
 } from "./chunk-PMGDP7TK.mjs";
@@ -39308,12 +39308,14 @@ var ServicesModule = class extends BaseModule {
 
 // ng-dev/utils/git/repository-merge-mode.js
 var mergeModePropertyName = "merge-mode";
-var MergeMode;
-(function(MergeMode2) {
-  MergeMode2["TEAM_ONLY"] = "team-only";
-  MergeMode2["CARETAKER_ONLY"] = "caretaker-only";
-  MergeMode2["RELEASE"] = "release";
-})(MergeMode || (MergeMode = {}));
+var RepositoryMergeMode = {
+  TEAM_ONLY: "team-only",
+  CARETAKER_ONLY: "caretaker-only"
+};
+var MergeMode = {
+  ...RepositoryMergeMode,
+  RELEASE: "release"
+};
 var mergeModes = Object.values(MergeMode);
 async function getCurrentMergeMode() {
   const git = await AuthenticatedGitClient.get();
@@ -49060,7 +49062,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs3 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-0545ab623ac05419aac01abdb0aefe967bbcd8a1`;
+var localVersion = `0.0.0-71907fee0c48eec1d465dc1e54fe6b3ffc767145`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

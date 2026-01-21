@@ -1,10 +1,9 @@
 import { Assertions, MultipleAssertions } from './config-assertions.js';
 import { setCachedConfig } from './config-cache.js';
-import { MergeMode } from './git/repository-merge-mode.js';
+import { RepositoryMergeMode } from './git/repository-merge-mode.js';
 export type NgDevConfig<T = {}> = T & {
     __isNgDevConfigObject: boolean;
 };
-export type RepositoryMergeMode = Extract<MergeMode, 'team-only' | 'caretaker-only'>;
 export interface GithubConfig {
     owner: string;
     name: string;
