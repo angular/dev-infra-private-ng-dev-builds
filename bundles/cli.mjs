@@ -86,9 +86,9 @@ import {
 
 // node_modules/.aspect_rules_js/cli-width@4.1.0/node_modules/cli-width/index.js
 var require_cli_width = __commonJS({
-  "node_modules/.aspect_rules_js/cli-width@4.1.0/node_modules/cli-width/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-width@4.1.0/node_modules/cli-width/index.js"(exports2, module2) {
     "use strict";
-    module.exports = cliWidth2;
+    module2.exports = cliWidth2;
     function normalizeOpts(options) {
       const defaultOpts = {
         defaultWidth: 0,
@@ -129,7 +129,7 @@ var require_cli_width = __commonJS({
 
 // node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js
 var require_lib = __commonJS({
-  "node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js"(exports2, module2) {
     var Stream2 = __require("stream");
     var MuteStream2 = class extends Stream2 {
       #isTTY = null;
@@ -245,18 +245,18 @@ var require_lib = __commonJS({
         return this.#proxy("close", ...args);
       }
     };
-    module.exports = MuteStream2;
+    module2.exports = MuteStream2;
   }
 });
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/fs/node.js
 var require_node = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/fs/node.js"(exports, module) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/fs/node.js"(exports2, module2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var fsModule;
-    exports.default = () => {
-      if (typeof module === "object" && typeof module.exports === "object") {
+    exports2.default = () => {
+      if (typeof module2 === "object" && typeof module2.exports === "object") {
         fsModule = fsModule ? fsModule : __require("fs");
         return fsModule;
       }
@@ -267,10 +267,10 @@ var require_node = __commonJS({
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/match.js
 var require_match = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/match.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/match.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.default = (ctx, rec, confidence) => ({
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.default = (ctx, rec, confidence) => ({
       confidence,
       name: rec.name(ctx),
       lang: rec.language ? rec.language() : void 0
@@ -280,12 +280,12 @@ var require_match = __commonJS({
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/ascii.js
 var require_ascii = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/ascii.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/ascii.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var match_1 = __importDefault(require_match());
     var Ascii = class {
       name() {
@@ -302,18 +302,18 @@ var require_ascii = __commonJS({
         return (0, match_1.default)(det, this, 100);
       }
     };
-    exports.default = Ascii;
+    exports2.default = Ascii;
   }
 });
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/utf8.js
 var require_utf8 = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/utf8.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/utf8.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var match_1 = __importDefault(require_match());
     var Utf8 = class {
       name() {
@@ -373,19 +373,19 @@ var require_utf8 = __commonJS({
         return (0, match_1.default)(det, this, confidence);
       }
     };
-    exports.default = Utf8;
+    exports2.default = Utf8;
   }
 });
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/unicode.js
 var require_unicode = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/unicode.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/unicode.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UTF_32LE = exports.UTF_32BE = exports.UTF_16LE = exports.UTF_16BE = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.UTF_32LE = exports2.UTF_32BE = exports2.UTF_16LE = exports2.UTF_16BE = void 0;
     var match_1 = __importDefault(require_match());
     var UTF_16BE = class {
       name() {
@@ -399,7 +399,7 @@ var require_unicode = __commonJS({
         return null;
       }
     };
-    exports.UTF_16BE = UTF_16BE;
+    exports2.UTF_16BE = UTF_16BE;
     var UTF_16LE = class {
       name() {
         return "UTF-16LE";
@@ -415,7 +415,7 @@ var require_unicode = __commonJS({
         return null;
       }
     };
-    exports.UTF_16LE = UTF_16LE;
+    exports2.UTF_16LE = UTF_16LE;
     var UTF_32 = class {
       name() {
         return "UTF-32";
@@ -463,7 +463,7 @@ var require_unicode = __commonJS({
         return (input[index + 0] & 255) << 24 | (input[index + 1] & 255) << 16 | (input[index + 2] & 255) << 8 | input[index + 3] & 255;
       }
     };
-    exports.UTF_32BE = UTF_32BE;
+    exports2.UTF_32BE = UTF_32BE;
     var UTF_32LE = class extends UTF_32 {
       name() {
         return "UTF-32LE";
@@ -472,19 +472,19 @@ var require_unicode = __commonJS({
         return (input[index + 3] & 255) << 24 | (input[index + 2] & 255) << 16 | (input[index + 1] & 255) << 8 | input[index + 0] & 255;
       }
     };
-    exports.UTF_32LE = UTF_32LE;
+    exports2.UTF_32LE = UTF_32LE;
   }
 });
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/mbcs.js
 var require_mbcs = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/mbcs.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/mbcs.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.gb_18030 = exports.euc_kr = exports.euc_jp = exports.big5 = exports.sjis = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.gb_18030 = exports2.euc_kr = exports2.euc_jp = exports2.big5 = exports2.sjis = void 0;
     var match_1 = __importDefault(require_match());
     function binarySearch(arr, searchValue) {
       const find = (arr2, searchValue2, left, right) => {
@@ -670,7 +670,7 @@ var require_mbcs = __commonJS({
         return true;
       }
     };
-    exports.sjis = sjis;
+    exports2.sjis = sjis;
     var big5 = class extends mbcs {
       constructor() {
         super(...arguments);
@@ -796,7 +796,7 @@ var require_mbcs = __commonJS({
         return true;
       }
     };
-    exports.big5 = big5;
+    exports2.big5 = big5;
     function eucNextChar(iter, det) {
       iter.index = iter.nextIndex;
       iter.error = false;
@@ -950,7 +950,7 @@ var require_mbcs = __commonJS({
         return "ja";
       }
     };
-    exports.euc_jp = euc_jp;
+    exports2.euc_jp = euc_jp;
     var euc_kr = class extends mbcs {
       constructor() {
         super(...arguments);
@@ -1065,7 +1065,7 @@ var require_mbcs = __commonJS({
         return "ko";
       }
     };
-    exports.euc_kr = euc_kr;
+    exports2.euc_kr = euc_kr;
     var gb_18030 = class extends mbcs {
       constructor() {
         super(...arguments);
@@ -1217,19 +1217,19 @@ var require_mbcs = __commonJS({
         return iter.done == false;
       }
     };
-    exports.gb_18030 = gb_18030;
+    exports2.gb_18030 = gb_18030;
   }
 });
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/sbcs.js
 var require_sbcs = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/sbcs.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/sbcs.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.KOI8_R = exports.windows_1256 = exports.windows_1251 = exports.ISO_8859_9 = exports.ISO_8859_8 = exports.ISO_8859_7 = exports.ISO_8859_6 = exports.ISO_8859_5 = exports.ISO_8859_2 = exports.ISO_8859_1 = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.KOI8_R = exports2.windows_1256 = exports2.windows_1251 = exports2.ISO_8859_9 = exports2.ISO_8859_8 = exports2.ISO_8859_7 = exports2.ISO_8859_6 = exports2.ISO_8859_5 = exports2.ISO_8859_2 = exports2.ISO_8859_1 = void 0;
     var match_1 = __importDefault(require_match());
     var N_GRAM_MASK = 16777215;
     var NGramParser = class {
@@ -2270,7 +2270,7 @@ var require_sbcs = __commonJS({
         return input && input.c1Bytes ? "windows-1252" : "ISO-8859-1";
       }
     };
-    exports.ISO_8859_1 = ISO_8859_1;
+    exports2.ISO_8859_1 = ISO_8859_1;
     var ISO_8859_2 = class extends sbcs {
       byteMap() {
         return [
@@ -2804,7 +2804,7 @@ var require_sbcs = __commonJS({
         return det && det.c1Bytes ? "windows-1250" : "ISO-8859-2";
       }
     };
-    exports.ISO_8859_2 = ISO_8859_2;
+    exports2.ISO_8859_2 = ISO_8859_2;
     var ISO_8859_5 = class extends sbcs {
       byteMap() {
         return [
@@ -3141,7 +3141,7 @@ var require_sbcs = __commonJS({
         return "ru";
       }
     };
-    exports.ISO_8859_5 = ISO_8859_5;
+    exports2.ISO_8859_5 = ISO_8859_5;
     var ISO_8859_6 = class extends sbcs {
       byteMap() {
         return [
@@ -3478,7 +3478,7 @@ var require_sbcs = __commonJS({
         return "ar";
       }
     };
-    exports.ISO_8859_6 = ISO_8859_6;
+    exports2.ISO_8859_6 = ISO_8859_6;
     var ISO_8859_7 = class extends sbcs {
       byteMap() {
         return [
@@ -3815,7 +3815,7 @@ var require_sbcs = __commonJS({
         return "el";
       }
     };
-    exports.ISO_8859_7 = ISO_8859_7;
+    exports2.ISO_8859_7 = ISO_8859_7;
     var ISO_8859_8 = class extends sbcs {
       byteMap() {
         return [
@@ -4220,7 +4220,7 @@ var require_sbcs = __commonJS({
         return "he";
       }
     };
-    exports.ISO_8859_8 = ISO_8859_8;
+    exports2.ISO_8859_8 = ISO_8859_8;
     var ISO_8859_9 = class extends sbcs {
       byteMap() {
         return [
@@ -4557,7 +4557,7 @@ var require_sbcs = __commonJS({
         return "tr";
       }
     };
-    exports.ISO_8859_9 = ISO_8859_9;
+    exports2.ISO_8859_9 = ISO_8859_9;
     var windows_1251 = class extends sbcs {
       byteMap() {
         return [
@@ -4894,7 +4894,7 @@ var require_sbcs = __commonJS({
         return "ru";
       }
     };
-    exports.windows_1251 = windows_1251;
+    exports2.windows_1251 = windows_1251;
     var windows_1256 = class extends sbcs {
       byteMap() {
         return [
@@ -5231,7 +5231,7 @@ var require_sbcs = __commonJS({
         return "ar";
       }
     };
-    exports.windows_1256 = windows_1256;
+    exports2.windows_1256 = windows_1256;
     var KOI8_R = class extends sbcs {
       byteMap() {
         return [
@@ -5568,19 +5568,19 @@ var require_sbcs = __commonJS({
         return "ru";
       }
     };
-    exports.KOI8_R = KOI8_R;
+    exports2.KOI8_R = KOI8_R;
   }
 });
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/iso2022.js
 var require_iso2022 = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/iso2022.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/encoding/iso2022.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ISO_2022_CN = exports.ISO_2022_KR = exports.ISO_2022_JP = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ISO_2022_CN = exports2.ISO_2022_KR = exports2.ISO_2022_JP = void 0;
     var match_1 = __importDefault(require_match());
     var ISO_2022 = class {
       constructor() {
@@ -5651,7 +5651,7 @@ var require_iso2022 = __commonJS({
         return "ja";
       }
     };
-    exports.ISO_2022_JP = ISO_2022_JP;
+    exports2.ISO_2022_JP = ISO_2022_JP;
     var ISO_2022_KR = class extends ISO_2022 {
       constructor() {
         super(...arguments);
@@ -5664,7 +5664,7 @@ var require_iso2022 = __commonJS({
         return "kr";
       }
     };
-    exports.ISO_2022_KR = ISO_2022_KR;
+    exports2.ISO_2022_KR = ISO_2022_KR;
     var ISO_2022_CN = class extends ISO_2022 {
       constructor() {
         super(...arguments);
@@ -5689,30 +5689,30 @@ var require_iso2022 = __commonJS({
         return "zh";
       }
     };
-    exports.ISO_2022_CN = ISO_2022_CN;
+    exports2.ISO_2022_CN = ISO_2022_CN;
   }
 });
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/utils.js
 var require_utils = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/utils.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/utils.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isByteArray = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.isByteArray = void 0;
     var isByteArray = (input) => {
       if (input == null || typeof input != "object")
         return false;
       return isFinite(input.length) && input.length >= 0;
     };
-    exports.isByteArray = isByteArray;
+    exports2.isByteArray = isByteArray;
   }
 });
 
 // node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/index.js
 var require_lib2 = __commonJS({
-  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/chardet@2.1.1/node_modules/chardet/lib/index.js"(exports2) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
         k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -5727,12 +5727,12 @@ var require_lib2 = __commonJS({
         k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -5756,11 +5756,11 @@ var require_lib2 = __commonJS({
         return result;
       };
     }();
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.detectFileSync = exports.detectFile = exports.analyse = exports.detect = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.detectFileSync = exports2.detectFile = exports2.analyse = exports2.detect = void 0;
     var node_1 = __importDefault(require_node());
     var ascii_1 = __importDefault(require_ascii());
     var utf8_1 = __importDefault(require_utf8());
@@ -5796,10 +5796,10 @@ var require_lib2 = __commonJS({
       new ascii_1.default()
     ];
     var detect2 = (buffer) => {
-      const matches = (0, exports.analyse)(buffer);
+      const matches = (0, exports2.analyse)(buffer);
       return matches.length > 0 ? matches[0].name : null;
     };
-    exports.detect = detect2;
+    exports2.detect = detect2;
     var analyse = (buffer) => {
       if (!(0, utils_1.isByteArray)(buffer)) {
         throw new Error("Input must be a byte array, e.g. Buffer or Uint8Array");
@@ -5833,27 +5833,27 @@ var require_lib2 = __commonJS({
       });
       return matches;
     };
-    exports.analyse = analyse;
+    exports2.analyse = analyse;
     var detectFile = (filepath, opts = {}) => new Promise((resolve8, reject) => {
       let fd;
-      const fs6 = (0, node_1.default)();
+      const fs7 = (0, node_1.default)();
       const handler32 = (err, buffer) => {
         if (fd) {
-          fs6.closeSync(fd);
+          fs7.closeSync(fd);
         }
         if (err) {
           reject(err);
         } else if (buffer) {
-          resolve8((0, exports.detect)(buffer));
+          resolve8((0, exports2.detect)(buffer));
         } else {
           reject(new Error("No error and no buffer received"));
         }
       };
       const sampleSize = (opts === null || opts === void 0 ? void 0 : opts.sampleSize) || 0;
       if (sampleSize > 0) {
-        fd = fs6.openSync(filepath, "r");
+        fd = fs7.openSync(filepath, "r");
         let sample = Buffer.allocUnsafe(sampleSize);
-        fs6.read(fd, sample, 0, sampleSize, opts.offset, (err, bytesRead) => {
+        fs7.read(fd, sample, 0, sampleSize, opts.offset, (err, bytesRead) => {
           if (err) {
             handler32(err, null);
           } else {
@@ -5865,36 +5865,36 @@ var require_lib2 = __commonJS({
         });
         return;
       }
-      fs6.readFile(filepath, handler32);
+      fs7.readFile(filepath, handler32);
     });
-    exports.detectFile = detectFile;
+    exports2.detectFile = detectFile;
     var detectFileSync = (filepath, opts = {}) => {
-      const fs6 = (0, node_1.default)();
+      const fs7 = (0, node_1.default)();
       if (opts && opts.sampleSize) {
-        const fd = fs6.openSync(filepath, "r");
+        const fd = fs7.openSync(filepath, "r");
         let sample = Buffer.allocUnsafe(opts.sampleSize);
-        const bytesRead = fs6.readSync(fd, sample, 0, opts.sampleSize, opts.offset);
+        const bytesRead = fs7.readSync(fd, sample, 0, opts.sampleSize, opts.offset);
         if (bytesRead < opts.sampleSize) {
           sample = sample.subarray(0, bytesRead);
         }
-        fs6.closeSync(fd);
-        return (0, exports.detect)(sample);
+        fs7.closeSync(fd);
+        return (0, exports2.detect)(sample);
       }
-      return (0, exports.detect)(fs6.readFileSync(filepath));
+      return (0, exports2.detect)(fs7.readFileSync(filepath));
     };
-    exports.detectFileSync = detectFileSync;
-    exports.default = {
-      analyse: exports.analyse,
-      detect: exports.detect,
-      detectFileSync: exports.detectFileSync,
-      detectFile: exports.detectFile
+    exports2.detectFileSync = detectFileSync;
+    exports2.default = {
+      analyse: exports2.analyse,
+      detect: exports2.detect,
+      detectFileSync: exports2.detectFileSync,
+      detectFile: exports2.detectFile
     };
   }
 });
 
 // node_modules/.aspect_rules_js/safer-buffer@2.1.2/node_modules/safer-buffer/safer.js
 var require_safer = __commonJS({
-  "node_modules/.aspect_rules_js/safer-buffer@2.1.2/node_modules/safer-buffer/safer.js"(exports, module) {
+  "node_modules/.aspect_rules_js/safer-buffer@2.1.2/node_modules/safer-buffer/safer.js"(exports2, module2) {
     "use strict";
     var buffer = __require("buffer");
     var Buffer2 = buffer.Buffer;
@@ -5960,16 +5960,16 @@ var require_safer = __commonJS({
         safer.constants.MAX_STRING_LENGTH = safer.kStringMaxLength;
       }
     }
-    module.exports = safer;
+    module2.exports = safer;
   }
 });
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/bom-handling.js
 var require_bom_handling = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/bom-handling.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/bom-handling.js"(exports2) {
     "use strict";
     var BOMChar = "\uFEFF";
-    exports.PrependBOM = PrependBOMWrapper;
+    exports2.PrependBOM = PrependBOMWrapper;
     function PrependBOMWrapper(encoder, options) {
       this.encoder = encoder;
       this.addBOM = true;
@@ -5984,7 +5984,7 @@ var require_bom_handling = __commonJS({
     PrependBOMWrapper.prototype.end = function() {
       return this.encoder.end();
     };
-    exports.StripBOM = StripBOMWrapper;
+    exports2.StripBOM = StripBOMWrapper;
     function StripBOMWrapper(decoder, options) {
       this.decoder = decoder;
       this.pass = false;
@@ -6012,26 +6012,26 @@ var require_bom_handling = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/helpers/merge-exports.js
 var require_merge_exports = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/helpers/merge-exports.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/helpers/merge-exports.js"(exports2, module2) {
     "use strict";
-    var hasOwn2 = typeof Object.hasOwn === "undefined" ? Function.call.bind(Object.prototype.hasOwnProperty) : Object.hasOwn;
-    function mergeModules(target, module2) {
-      for (var key in module2) {
-        if (hasOwn2(module2, key)) {
-          target[key] = module2[key];
+    var hasOwn3 = typeof Object.hasOwn === "undefined" ? Function.call.bind(Object.prototype.hasOwnProperty) : Object.hasOwn;
+    function mergeModules(target, module3) {
+      for (var key in module3) {
+        if (hasOwn3(module3, key)) {
+          target[key] = module3[key];
         }
       }
     }
-    module.exports = mergeModules;
+    module2.exports = mergeModules;
   }
 });
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/internal.js
 var require_internal = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/internal.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/internal.js"(exports2, module2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
-    module.exports = {
+    module2.exports = {
       // Encodings
       utf8: { type: "_internal", bomAware: true },
       cesu8: { type: "_internal", bomAware: true },
@@ -6209,19 +6209,19 @@ var require_internal = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf32.js
 var require_utf32 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf32.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf32.js"(exports2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
-    exports._utf32 = Utf32Codec;
+    exports2._utf32 = Utf32Codec;
     function Utf32Codec(codecOptions, iconv2) {
       this.iconv = iconv2;
       this.bomAware = true;
       this.isLE = codecOptions.isLE;
     }
-    exports.utf32le = { type: "_utf32", isLE: true };
-    exports.utf32be = { type: "_utf32", isLE: false };
-    exports.ucs4le = "utf32le";
-    exports.ucs4be = "utf32be";
+    exports2.utf32le = { type: "_utf32", isLE: true };
+    exports2.utf32be = { type: "_utf32", isLE: false };
+    exports2.ucs4le = "utf32le";
+    exports2.ucs4be = "utf32be";
     Utf32Codec.prototype.encoder = Utf32Encoder;
     Utf32Codec.prototype.decoder = Utf32Decoder;
     function Utf32Encoder(options, codec) {
@@ -6336,8 +6336,8 @@ var require_utf32 = __commonJS({
     Utf32Decoder.prototype.end = function() {
       this.overflow.length = 0;
     };
-    exports.utf32 = Utf32AutoCodec;
-    exports.ucs4 = "utf32";
+    exports2.utf32 = Utf32AutoCodec;
+    exports2.ucs4 = "utf32";
     function Utf32AutoCodec(options, iconv2) {
       this.iconv = iconv2;
     }
@@ -6446,10 +6446,10 @@ var require_utf32 = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf16.js
 var require_utf16 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf16.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf16.js"(exports2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
-    exports.utf16be = Utf16BECodec;
+    exports2.utf16be = Utf16BECodec;
     function Utf16BECodec() {
     }
     Utf16BECodec.prototype.encoder = Utf16BEEncoder;
@@ -6494,7 +6494,7 @@ var require_utf16 = __commonJS({
     Utf16BEDecoder.prototype.end = function() {
       this.overflowByte = -1;
     };
-    exports.utf16 = Utf16Codec;
+    exports2.utf16 = Utf16Codec;
     function Utf16Codec(codecOptions, iconv2) {
       this.iconv = iconv2;
     }
@@ -6595,11 +6595,11 @@ var require_utf16 = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf7.js
 var require_utf7 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf7.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/utf7.js"(exports2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
-    exports.utf7 = Utf7Codec;
-    exports.unicode11utf7 = "utf7";
+    exports2.utf7 = Utf7Codec;
+    exports2.unicode11utf7 = "utf7";
     function Utf7Codec(codecOptions, iconv2) {
       this.iconv = iconv2;
     }
@@ -6682,7 +6682,7 @@ var require_utf7 = __commonJS({
       this.base64Accum = "";
       return res;
     };
-    exports.utf7imap = Utf7IMAPCodec;
+    exports2.utf7imap = Utf7IMAPCodec;
     function Utf7IMAPCodec(codecOptions, iconv2) {
       this.iconv = iconv2;
     }
@@ -6813,10 +6813,10 @@ var require_utf7 = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-codec.js
 var require_sbcs_codec = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-codec.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-codec.js"(exports2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
-    exports._sbcs = SBCSCodec;
+    exports2._sbcs = SBCSCodec;
     function SBCSCodec(codecOptions, iconv2) {
       if (!codecOptions) {
         throw new Error("SBCS codec is called without the data.");
@@ -6875,9 +6875,9 @@ var require_sbcs_codec = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data.js
 var require_sbcs_data = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data.js"(exports2, module2) {
     "use strict";
-    module.exports = {
+    module2.exports = {
       // Not supported by iconv, not sure why.
       10029: "maccenteuro",
       maccenteuro: {
@@ -7028,9 +7028,9 @@ var require_sbcs_data = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data-generated.js
 var require_sbcs_data_generated = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data-generated.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/sbcs-data-generated.js"(exports2, module2) {
     "use strict";
-    module.exports = {
+    module2.exports = {
       "437": "cp437",
       "737": "cp737",
       "775": "cp775",
@@ -7483,10 +7483,10 @@ var require_sbcs_data_generated = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-codec.js
 var require_dbcs_codec = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-codec.js"(exports) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-codec.js"(exports2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
-    exports._dbcs = DBCSCodec;
+    exports2._dbcs = DBCSCodec;
     var UNASSIGNED = -1;
     var GB18030_CODE = -2;
     var SEQ_START = -10;
@@ -7947,8 +7947,8 @@ var require_dbcs_codec = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/shiftjis.json
 var require_shiftjis = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/shiftjis.json"(exports, module) {
-    module.exports = [
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/shiftjis.json"(exports2, module2) {
+    module2.exports = [
       ["0", "\0", 128],
       ["a1", "\uFF61", 62],
       ["8140", "\u3000\u3001\u3002\uFF0C\uFF0E\u30FB\uFF1A\uFF1B\uFF1F\uFF01\u309B\u309C\xB4\uFF40\xA8\uFF3E\uFFE3\uFF3F\u30FD\u30FE\u309D\u309E\u3003\u4EDD\u3005\u3006\u3007\u30FC\u2015\u2010\uFF0F\uFF3C\uFF5E\u2225\uFF5C\u2026\u2025\u2018\u2019\u201C\u201D\uFF08\uFF09\u3014\u3015\uFF3B\uFF3D\uFF5B\uFF5D\u3008", 9, "\uFF0B\uFF0D\xB1\xD7"],
@@ -8078,8 +8078,8 @@ var require_shiftjis = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/eucjp.json
 var require_eucjp = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/eucjp.json"(exports, module) {
-    module.exports = [
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/eucjp.json"(exports2, module2) {
+    module2.exports = [
       ["0", "\0", 127],
       ["8ea1", "\uFF61", 62],
       ["a1a1", "\u3000\u3001\u3002\uFF0C\uFF0E\u30FB\uFF1A\uFF1B\uFF1F\uFF01\u309B\u309C\xB4\uFF40\xA8\uFF3E\uFFE3\uFF3F\u30FD\u30FE\u309D\u309E\u3003\u4EDD\u3005\u3006\u3007\u30FC\u2015\u2010\uFF0F\uFF3C\uFF5E\u2225\uFF5C\u2026\u2025\u2018\u2019\u201C\u201D\uFF08\uFF09\u3014\u3015\uFF3B\uFF3D\uFF5B\uFF5D\u3008", 9, "\uFF0B\uFF0D\xB1\xD7\xF7\uFF1D\u2260\uFF1C\uFF1E\u2266\u2267\u221E\u2234\u2642\u2640\xB0\u2032\u2033\u2103\uFFE5\uFF04\uFFE0\uFFE1\uFF05\uFF03\uFF06\uFF0A\uFF20\xA7\u2606\u2605\u25CB\u25CF\u25CE\u25C7"],
@@ -8266,8 +8266,8 @@ var require_eucjp = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp936.json
 var require_cp936 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp936.json"(exports, module) {
-    module.exports = [
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp936.json"(exports2, module2) {
+    module2.exports = [
       ["0", "\0", 127, "\u20AC"],
       ["8140", "\u4E02\u4E04\u4E05\u4E06\u4E0F\u4E12\u4E17\u4E1F\u4E20\u4E21\u4E23\u4E26\u4E29\u4E2E\u4E2F\u4E31\u4E33\u4E35\u4E37\u4E3C\u4E40\u4E41\u4E42\u4E44\u4E46\u4E4A\u4E51\u4E55\u4E57\u4E5A\u4E5B\u4E62\u4E63\u4E64\u4E65\u4E67\u4E68\u4E6A", 5, "\u4E72\u4E74", 9, "\u4E7F", 6, "\u4E87\u4E8A"],
       ["8180", "\u4E90\u4E96\u4E97\u4E99\u4E9C\u4E9D\u4E9E\u4EA3\u4EAA\u4EAF\u4EB0\u4EB1\u4EB4\u4EB6\u4EB7\u4EB8\u4EB9\u4EBC\u4EBD\u4EBE\u4EC8\u4ECC\u4ECF\u4ED0\u4ED2\u4EDA\u4EDB\u4EDC\u4EE0\u4EE2\u4EE6\u4EE7\u4EE9\u4EED\u4EEE\u4EEF\u4EF1\u4EF4\u4EF8\u4EF9\u4EFA\u4EFC\u4EFE\u4F00\u4F02", 6, "\u4F0B\u4F0C\u4F12", 4, "\u4F1C\u4F1D\u4F21\u4F23\u4F28\u4F29\u4F2C\u4F2D\u4F2E\u4F31\u4F33\u4F35\u4F37\u4F39\u4F3B\u4F3E", 4, "\u4F44\u4F45\u4F47", 5, "\u4F52\u4F54\u4F56\u4F61\u4F62\u4F66\u4F68\u4F6A\u4F6B\u4F6D\u4F6E\u4F71\u4F72\u4F75\u4F77\u4F78\u4F79\u4F7A\u4F7D\u4F80\u4F81\u4F82\u4F85\u4F86\u4F87\u4F8A\u4F8C\u4F8E\u4F90\u4F92\u4F93\u4F95\u4F96\u4F98\u4F99\u4F9A\u4F9C\u4F9E\u4F9F\u4FA1\u4FA2"],
@@ -8536,8 +8536,8 @@ var require_cp936 = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gbk-added.json
 var require_gbk_added = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gbk-added.json"(exports, module) {
-    module.exports = [
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gbk-added.json"(exports2, module2) {
+    module2.exports = [
       ["a140", "\uE4C6", 62],
       ["a180", "\uE505", 32],
       ["a240", "\uE526", 62],
@@ -8598,15 +8598,15 @@ var require_gbk_added = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json
 var require_gb18030_ranges = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json"(exports, module) {
-    module.exports = { uChars: [128, 165, 169, 178, 184, 216, 226, 235, 238, 244, 248, 251, 253, 258, 276, 284, 300, 325, 329, 334, 364, 463, 465, 467, 469, 471, 473, 475, 477, 506, 594, 610, 712, 716, 730, 930, 938, 962, 970, 1026, 1104, 1106, 8209, 8215, 8218, 8222, 8231, 8241, 8244, 8246, 8252, 8365, 8452, 8454, 8458, 8471, 8482, 8556, 8570, 8596, 8602, 8713, 8720, 8722, 8726, 8731, 8737, 8740, 8742, 8748, 8751, 8760, 8766, 8777, 8781, 8787, 8802, 8808, 8816, 8854, 8858, 8870, 8896, 8979, 9322, 9372, 9548, 9588, 9616, 9622, 9634, 9652, 9662, 9672, 9676, 9680, 9702, 9735, 9738, 9793, 9795, 11906, 11909, 11913, 11917, 11928, 11944, 11947, 11951, 11956, 11960, 11964, 11979, 12284, 12292, 12312, 12319, 12330, 12351, 12436, 12447, 12535, 12543, 12586, 12842, 12850, 12964, 13200, 13215, 13218, 13253, 13263, 13267, 13270, 13384, 13428, 13727, 13839, 13851, 14617, 14703, 14801, 14816, 14964, 15183, 15471, 15585, 16471, 16736, 17208, 17325, 17330, 17374, 17623, 17997, 18018, 18212, 18218, 18301, 18318, 18760, 18811, 18814, 18820, 18823, 18844, 18848, 18872, 19576, 19620, 19738, 19887, 40870, 59244, 59336, 59367, 59413, 59417, 59423, 59431, 59437, 59443, 59452, 59460, 59478, 59493, 63789, 63866, 63894, 63976, 63986, 64016, 64018, 64021, 64025, 64034, 64037, 64042, 65074, 65093, 65107, 65112, 65127, 65132, 65375, 65510, 65536], gbChars: [0, 36, 38, 45, 50, 81, 89, 95, 96, 100, 103, 104, 105, 109, 126, 133, 148, 172, 175, 179, 208, 306, 307, 308, 309, 310, 311, 312, 313, 341, 428, 443, 544, 545, 558, 741, 742, 749, 750, 805, 819, 820, 7922, 7924, 7925, 7927, 7934, 7943, 7944, 7945, 7950, 8062, 8148, 8149, 8152, 8164, 8174, 8236, 8240, 8262, 8264, 8374, 8380, 8381, 8384, 8388, 8390, 8392, 8393, 8394, 8396, 8401, 8406, 8416, 8419, 8424, 8437, 8439, 8445, 8482, 8485, 8496, 8521, 8603, 8936, 8946, 9046, 9050, 9063, 9066, 9076, 9092, 9100, 9108, 9111, 9113, 9131, 9162, 9164, 9218, 9219, 11329, 11331, 11334, 11336, 11346, 11361, 11363, 11366, 11370, 11372, 11375, 11389, 11682, 11686, 11687, 11692, 11694, 11714, 11716, 11723, 11725, 11730, 11736, 11982, 11989, 12102, 12336, 12348, 12350, 12384, 12393, 12395, 12397, 12510, 12553, 12851, 12962, 12973, 13738, 13823, 13919, 13933, 14080, 14298, 14585, 14698, 15583, 15847, 16318, 16434, 16438, 16481, 16729, 17102, 17122, 17315, 17320, 17402, 17418, 17859, 17909, 17911, 17915, 17916, 17936, 17939, 17961, 18664, 18703, 18814, 18962, 19043, 33469, 33470, 33471, 33484, 33485, 33490, 33497, 33501, 33505, 33513, 33520, 33536, 33550, 37845, 37921, 37948, 38029, 38038, 38064, 38065, 38066, 38069, 38075, 38076, 38078, 39108, 39109, 39113, 39114, 39115, 39116, 39265, 39394, 189e3] };
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/gb18030-ranges.json"(exports2, module2) {
+    module2.exports = { uChars: [128, 165, 169, 178, 184, 216, 226, 235, 238, 244, 248, 251, 253, 258, 276, 284, 300, 325, 329, 334, 364, 463, 465, 467, 469, 471, 473, 475, 477, 506, 594, 610, 712, 716, 730, 930, 938, 962, 970, 1026, 1104, 1106, 8209, 8215, 8218, 8222, 8231, 8241, 8244, 8246, 8252, 8365, 8452, 8454, 8458, 8471, 8482, 8556, 8570, 8596, 8602, 8713, 8720, 8722, 8726, 8731, 8737, 8740, 8742, 8748, 8751, 8760, 8766, 8777, 8781, 8787, 8802, 8808, 8816, 8854, 8858, 8870, 8896, 8979, 9322, 9372, 9548, 9588, 9616, 9622, 9634, 9652, 9662, 9672, 9676, 9680, 9702, 9735, 9738, 9793, 9795, 11906, 11909, 11913, 11917, 11928, 11944, 11947, 11951, 11956, 11960, 11964, 11979, 12284, 12292, 12312, 12319, 12330, 12351, 12436, 12447, 12535, 12543, 12586, 12842, 12850, 12964, 13200, 13215, 13218, 13253, 13263, 13267, 13270, 13384, 13428, 13727, 13839, 13851, 14617, 14703, 14801, 14816, 14964, 15183, 15471, 15585, 16471, 16736, 17208, 17325, 17330, 17374, 17623, 17997, 18018, 18212, 18218, 18301, 18318, 18760, 18811, 18814, 18820, 18823, 18844, 18848, 18872, 19576, 19620, 19738, 19887, 40870, 59244, 59336, 59367, 59413, 59417, 59423, 59431, 59437, 59443, 59452, 59460, 59478, 59493, 63789, 63866, 63894, 63976, 63986, 64016, 64018, 64021, 64025, 64034, 64037, 64042, 65074, 65093, 65107, 65112, 65127, 65132, 65375, 65510, 65536], gbChars: [0, 36, 38, 45, 50, 81, 89, 95, 96, 100, 103, 104, 105, 109, 126, 133, 148, 172, 175, 179, 208, 306, 307, 308, 309, 310, 311, 312, 313, 341, 428, 443, 544, 545, 558, 741, 742, 749, 750, 805, 819, 820, 7922, 7924, 7925, 7927, 7934, 7943, 7944, 7945, 7950, 8062, 8148, 8149, 8152, 8164, 8174, 8236, 8240, 8262, 8264, 8374, 8380, 8381, 8384, 8388, 8390, 8392, 8393, 8394, 8396, 8401, 8406, 8416, 8419, 8424, 8437, 8439, 8445, 8482, 8485, 8496, 8521, 8603, 8936, 8946, 9046, 9050, 9063, 9066, 9076, 9092, 9100, 9108, 9111, 9113, 9131, 9162, 9164, 9218, 9219, 11329, 11331, 11334, 11336, 11346, 11361, 11363, 11366, 11370, 11372, 11375, 11389, 11682, 11686, 11687, 11692, 11694, 11714, 11716, 11723, 11725, 11730, 11736, 11982, 11989, 12102, 12336, 12348, 12350, 12384, 12393, 12395, 12397, 12510, 12553, 12851, 12962, 12973, 13738, 13823, 13919, 13933, 14080, 14298, 14585, 14698, 15583, 15847, 16318, 16434, 16438, 16481, 16729, 17102, 17122, 17315, 17320, 17402, 17418, 17859, 17909, 17911, 17915, 17916, 17936, 17939, 17961, 18664, 18703, 18814, 18962, 19043, 33469, 33470, 33471, 33484, 33485, 33490, 33497, 33501, 33505, 33513, 33520, 33536, 33550, 37845, 37921, 37948, 38029, 38038, 38064, 38065, 38066, 38069, 38075, 38076, 38078, 39108, 39109, 39113, 39114, 39115, 39116, 39265, 39394, 189e3] };
   }
 });
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp949.json
 var require_cp949 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp949.json"(exports, module) {
-    module.exports = [
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp949.json"(exports2, module2) {
+    module2.exports = [
       ["0", "\0", 127],
       ["8141", "\uAC02\uAC03\uAC05\uAC06\uAC0B", 4, "\uAC18\uAC1E\uAC1F\uAC21\uAC22\uAC23\uAC25", 6, "\uAC2E\uAC32\uAC33\uAC34"],
       ["8161", "\uAC35\uAC36\uAC37\uAC3A\uAC3B\uAC3D\uAC3E\uAC3F\uAC41", 9, "\uAC4C\uAC4E", 5, "\uAC55"],
@@ -8884,8 +8884,8 @@ var require_cp949 = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp950.json
 var require_cp950 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp950.json"(exports, module) {
-    module.exports = [
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/cp950.json"(exports2, module2) {
+    module2.exports = [
       ["0", "\0", 127],
       ["a140", "\u3000\uFF0C\u3001\u3002\uFF0E\u2027\uFF1B\uFF1A\uFF1F\uFF01\uFE30\u2026\u2025\uFE50\uFE51\uFE52\xB7\uFE54\uFE55\uFE56\uFE57\uFF5C\u2013\uFE31\u2014\uFE33\u2574\uFE34\uFE4F\uFF08\uFF09\uFE35\uFE36\uFF5B\uFF5D\uFE37\uFE38\u3014\u3015\uFE39\uFE3A\u3010\u3011\uFE3B\uFE3C\u300A\u300B\uFE3D\uFE3E\u3008\u3009\uFE3F\uFE40\u300C\u300D\uFE41\uFE42\u300E\u300F\uFE43\uFE44\uFE59\uFE5A"],
       ["a1a1", "\uFE5B\uFE5C\uFE5D\uFE5E\u2018\u2019\u201C\u201D\u301D\u301E\u2035\u2032\uFF03\uFF06\uFF0A\u203B\xA7\u3003\u25CB\u25CF\u25B3\u25B2\u25CE\u2606\u2605\u25C7\u25C6\u25A1\u25A0\u25BD\u25BC\u32A3\u2105\xAF\uFFE3\uFF3F\u02CD\uFE49\uFE4A\uFE4D\uFE4E\uFE4B\uFE4C\uFE5F\uFE60\uFE61\uFF0B\uFF0D\xD7\xF7\xB1\u221A\uFF1C\uFF1E\uFF1D\u2266\u2267\u2260\u221E\u2252\u2261\uFE62", 4, "\uFF5E\u2229\u222A\u22A5\u2220\u221F\u22BF\u33D2\u33D1\u222B\u222E\u2235\u2234\u2640\u2642\u2295\u2299\u2191\u2193\u2190\u2192\u2196\u2197\u2199\u2198\u2225\u2223\uFF0F"],
@@ -9067,8 +9067,8 @@ var require_cp950 = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/big5-added.json
 var require_big5_added = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/big5-added.json"(exports, module) {
-    module.exports = [
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/tables/big5-added.json"(exports2, module2) {
+    module2.exports = [
       ["8740", "\u43F0\u4C32\u4603\u45A6\u4578\u{27267}\u4D77\u45B3\u{27CB1}\u4CE2\u{27CC5}\u3B95\u4736\u4744\u4C47\u4C40\u{242BF}\u{23617}\u{27352}\u{26E8B}\u{270D2}\u4C57\u{2A351}\u474F\u45DA\u4C85\u{27C6C}\u4D07\u4AA4\u46A1\u{26B23}\u7225\u{25A54}\u{21A63}\u{23E06}\u{23F61}\u664D\u56FB"],
       ["8767", "\u7D95\u591D\u{28BB9}\u3DF4\u9734\u{27BEF}\u5BDB\u{21D5E}\u5AA4\u3625\u{29EB0}\u5AD1\u5BB7\u5CFC\u676E\u8593\u{29945}\u7461\u749D\u3875\u{21D53}\u{2369E}\u{26021}\u3EEC"],
       ["87a1", "\u{258DE}\u3AF5\u7AFC\u9F97\u{24161}\u{2890D}\u{231EA}\u{20A8A}\u{2325E}\u430A\u8484\u9F96\u942F\u4930\u8613\u5896\u974A\u9218\u79D0\u7A32\u6660\u6A29\u889D\u744C\u7BC5\u6782\u7A2C\u524F\u9046\u34E6\u73C4\u{25DB9}\u74C6\u9FC7\u57B3\u492F\u544C\u4131\u{2368E}\u5818\u7A72\u{27B65}\u8B8F\u46AE\u{26E88}\u4181\u{25D99}\u7BAE\u{224BC}\u9FC8\u{224C1}\u{224C9}\u{224CC}\u9FC9\u8504\u{235BB}\u40B4\u9FCA\u44E1\u{2ADFF}\u62C1\u706E\u9FCB"],
@@ -9195,9 +9195,9 @@ var require_big5_added = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-data.js
 var require_dbcs_data = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-data.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/dbcs-data.js"(exports2, module2) {
     "use strict";
-    module.exports = {
+    module2.exports = {
       // == Japanese/ShiftJIS ====================================================
       // All japanese encodings are based on JIS X set of standards:
       // JIS X 0201 - Single-byte encoding of ASCII + ¥ + Kana chars at 0xA1-0xDF.
@@ -9442,7 +9442,7 @@ var require_dbcs_data = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/index.js
 var require_encodings = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/encodings/index.js"(exports2, module2) {
     "use strict";
     var mergeModules = require_merge_exports();
     var modules = [
@@ -9457,20 +9457,20 @@ var require_encodings = __commonJS({
       require_dbcs_data()
     ];
     for (i = 0; i < modules.length; i++) {
-      module = modules[i];
-      mergeModules(exports, module);
+      module2 = modules[i];
+      mergeModules(exports2, module2);
     }
-    var module;
+    var module2;
     var i;
   }
 });
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/streams.js
 var require_streams = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/streams.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/streams.js"(exports2, module2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
-    module.exports = function(streamModule) {
+    module2.exports = function(streamModule) {
       var Transform = streamModule.Transform;
       function IconvLiteEncoderStream(conv, options) {
         this.conv = conv;
@@ -9568,59 +9568,59 @@ var require_streams = __commonJS({
 
 // node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/index.js
 var require_lib3 = __commonJS({
-  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/iconv-lite@0.7.2/node_modules/iconv-lite/lib/index.js"(exports2, module2) {
     "use strict";
     var Buffer2 = require_safer().Buffer;
     var bomHandling = require_bom_handling();
     var mergeModules = require_merge_exports();
-    module.exports.encodings = null;
-    module.exports.defaultCharUnicode = "\uFFFD";
-    module.exports.defaultCharSingleByte = "?";
-    module.exports.encode = function encode(str, encoding, options) {
+    module2.exports.encodings = null;
+    module2.exports.defaultCharUnicode = "\uFFFD";
+    module2.exports.defaultCharSingleByte = "?";
+    module2.exports.encode = function encode(str, encoding, options) {
       str = "" + (str || "");
-      var encoder = module.exports.getEncoder(encoding, options);
+      var encoder = module2.exports.getEncoder(encoding, options);
       var res = encoder.write(str);
       var trail = encoder.end();
       return trail && trail.length > 0 ? Buffer2.concat([res, trail]) : res;
     };
-    module.exports.decode = function decode(buf, encoding, options) {
+    module2.exports.decode = function decode(buf, encoding, options) {
       if (typeof buf === "string") {
-        if (!module.exports.skipDecodeWarning) {
+        if (!module2.exports.skipDecodeWarning) {
           console.error("Iconv-lite warning: decode()-ing strings is deprecated. Refer to https://github.com/ashtuchkin/iconv-lite/wiki/Use-Buffers-when-decoding");
-          module.exports.skipDecodeWarning = true;
+          module2.exports.skipDecodeWarning = true;
         }
         buf = Buffer2.from("" + (buf || ""), "binary");
       }
-      var decoder = module.exports.getDecoder(encoding, options);
+      var decoder = module2.exports.getDecoder(encoding, options);
       var res = decoder.write(buf);
       var trail = decoder.end();
       return trail ? res + trail : res;
     };
-    module.exports.encodingExists = function encodingExists(enc) {
+    module2.exports.encodingExists = function encodingExists(enc) {
       try {
-        module.exports.getCodec(enc);
+        module2.exports.getCodec(enc);
         return true;
       } catch (e) {
         return false;
       }
     };
-    module.exports.toEncoding = module.exports.encode;
-    module.exports.fromEncoding = module.exports.decode;
-    module.exports._codecDataCache = { __proto__: null };
-    module.exports.getCodec = function getCodec(encoding) {
-      if (!module.exports.encodings) {
+    module2.exports.toEncoding = module2.exports.encode;
+    module2.exports.fromEncoding = module2.exports.decode;
+    module2.exports._codecDataCache = { __proto__: null };
+    module2.exports.getCodec = function getCodec(encoding) {
+      if (!module2.exports.encodings) {
         var raw = require_encodings();
-        module.exports.encodings = { __proto__: null };
-        mergeModules(module.exports.encodings, raw);
+        module2.exports.encodings = { __proto__: null };
+        mergeModules(module2.exports.encodings, raw);
       }
-      var enc = module.exports._canonicalizeEncoding(encoding);
+      var enc = module2.exports._canonicalizeEncoding(encoding);
       var codecOptions = {};
       while (true) {
-        var codec = module.exports._codecDataCache[enc];
+        var codec = module2.exports._codecDataCache[enc];
         if (codec) {
           return codec;
         }
-        var codecDef = module.exports.encodings[enc];
+        var codecDef = module2.exports.encodings[enc];
         switch (typeof codecDef) {
           case "string":
             enc = codecDef;
@@ -9638,47 +9638,47 @@ var require_lib3 = __commonJS({
             if (!codecOptions.encodingName) {
               codecOptions.encodingName = enc;
             }
-            codec = new codecDef(codecOptions, module.exports);
-            module.exports._codecDataCache[codecOptions.encodingName] = codec;
+            codec = new codecDef(codecOptions, module2.exports);
+            module2.exports._codecDataCache[codecOptions.encodingName] = codec;
             return codec;
           default:
             throw new Error("Encoding not recognized: '" + encoding + "' (searched as: '" + enc + "')");
         }
       }
     };
-    module.exports._canonicalizeEncoding = function(encoding) {
+    module2.exports._canonicalizeEncoding = function(encoding) {
       return ("" + encoding).toLowerCase().replace(/:\d{4}$|[^0-9a-z]/g, "");
     };
-    module.exports.getEncoder = function getEncoder(encoding, options) {
-      var codec = module.exports.getCodec(encoding);
+    module2.exports.getEncoder = function getEncoder(encoding, options) {
+      var codec = module2.exports.getCodec(encoding);
       var encoder = new codec.encoder(options, codec);
       if (codec.bomAware && options && options.addBOM) {
         encoder = new bomHandling.PrependBOM(encoder, options);
       }
       return encoder;
     };
-    module.exports.getDecoder = function getDecoder(encoding, options) {
-      var codec = module.exports.getCodec(encoding);
+    module2.exports.getDecoder = function getDecoder(encoding, options) {
+      var codec = module2.exports.getCodec(encoding);
       var decoder = new codec.decoder(options, codec);
       if (codec.bomAware && !(options && options.stripBOM === false)) {
         decoder = new bomHandling.StripBOM(decoder, options);
       }
       return decoder;
     };
-    module.exports.enableStreamingAPI = function enableStreamingAPI(streamModule2) {
-      if (module.exports.supportsStreams) {
+    module2.exports.enableStreamingAPI = function enableStreamingAPI(streamModule2) {
+      if (module2.exports.supportsStreams) {
         return;
       }
       var streams = require_streams()(streamModule2);
-      module.exports.IconvLiteEncoderStream = streams.IconvLiteEncoderStream;
-      module.exports.IconvLiteDecoderStream = streams.IconvLiteDecoderStream;
-      module.exports.encodeStream = function encodeStream(encoding, options) {
-        return new module.exports.IconvLiteEncoderStream(module.exports.getEncoder(encoding, options), options);
+      module2.exports.IconvLiteEncoderStream = streams.IconvLiteEncoderStream;
+      module2.exports.IconvLiteDecoderStream = streams.IconvLiteDecoderStream;
+      module2.exports.encodeStream = function encodeStream(encoding, options) {
+        return new module2.exports.IconvLiteEncoderStream(module2.exports.getEncoder(encoding, options), options);
       };
-      module.exports.decodeStream = function decodeStream(encoding, options) {
-        return new module.exports.IconvLiteDecoderStream(module.exports.getDecoder(encoding, options), options);
+      module2.exports.decodeStream = function decodeStream(encoding, options) {
+        return new module2.exports.IconvLiteDecoderStream(module2.exports.getDecoder(encoding, options), options);
       };
-      module.exports.supportsStreams = true;
+      module2.exports.supportsStreams = true;
     };
     var streamModule;
     try {
@@ -9686,9 +9686,9 @@ var require_lib3 = __commonJS({
     } catch (e) {
     }
     if (streamModule && streamModule.Transform) {
-      module.exports.enableStreamingAPI(streamModule);
+      module2.exports.enableStreamingAPI(streamModule);
     } else {
-      module.exports.encodeStream = module.exports.decodeStream = function() {
+      module2.exports.encodeStream = module2.exports.decodeStream = function() {
         throw new Error("iconv-lite Streaming API is not enabled. Use iconv.enableStreamingAPI(require('stream')); to enable it.");
       };
     }
@@ -9700,7 +9700,7 @@ var require_lib3 = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/eta.js
 var require_eta = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/eta.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/eta.js"(exports2, module2) {
     var ETA = class {
       constructor(length, initTime, initValue) {
         this.etaBufferLength = length || 100;
@@ -9741,13 +9741,13 @@ var require_eta = __commonJS({
         }
       }
     };
-    module.exports = ETA;
+    module2.exports = ETA;
   }
 });
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/terminal.js
 var require_terminal = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/terminal.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/terminal.js"(exports2, module2) {
     var _readline = __require("readline");
     var Terminal = class {
       constructor(outputStream) {
@@ -9860,15 +9860,15 @@ var require_terminal = __commonJS({
         return this.stream.columns || (this.stream.isTTY ? 80 : 200);
       }
     };
-    module.exports = Terminal;
+    module2.exports = Terminal;
   }
 });
 
 // node_modules/.aspect_rules_js/ansi-regex@5.0.1/node_modules/ansi-regex/index.js
 var require_ansi_regex = __commonJS({
-  "node_modules/.aspect_rules_js/ansi-regex@5.0.1/node_modules/ansi-regex/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ansi-regex@5.0.1/node_modules/ansi-regex/index.js"(exports2, module2) {
     "use strict";
-    module.exports = ({ onlyFirst = false } = {}) => {
+    module2.exports = ({ onlyFirst = false } = {}) => {
       const pattern = [
         "[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]+)*|[a-zA-Z\\d]+(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)",
         "(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))"
@@ -9880,16 +9880,16 @@ var require_ansi_regex = __commonJS({
 
 // node_modules/.aspect_rules_js/strip-ansi@6.0.1/node_modules/strip-ansi/index.js
 var require_strip_ansi = __commonJS({
-  "node_modules/.aspect_rules_js/strip-ansi@6.0.1/node_modules/strip-ansi/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/strip-ansi@6.0.1/node_modules/strip-ansi/index.js"(exports2, module2) {
     "use strict";
     var ansiRegex = require_ansi_regex();
-    module.exports = (string) => typeof string === "string" ? string.replace(ansiRegex(), "") : string;
+    module2.exports = (string) => typeof string === "string" ? string.replace(ansiRegex(), "") : string;
   }
 });
 
 // node_modules/.aspect_rules_js/is-fullwidth-code-point@3.0.0/node_modules/is-fullwidth-code-point/index.js
 var require_is_fullwidth_code_point = __commonJS({
-  "node_modules/.aspect_rules_js/is-fullwidth-code-point@3.0.0/node_modules/is-fullwidth-code-point/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/is-fullwidth-code-point@3.0.0/node_modules/is-fullwidth-code-point/index.js"(exports2, module2) {
     "use strict";
     var isFullwidthCodePoint = (codePoint) => {
       if (Number.isNaN(codePoint)) {
@@ -9915,16 +9915,16 @@ var require_is_fullwidth_code_point = __commonJS({
       }
       return false;
     };
-    module.exports = isFullwidthCodePoint;
-    module.exports.default = isFullwidthCodePoint;
+    module2.exports = isFullwidthCodePoint;
+    module2.exports.default = isFullwidthCodePoint;
   }
 });
 
 // node_modules/.aspect_rules_js/emoji-regex@8.0.0/node_modules/emoji-regex/index.js
 var require_emoji_regex = __commonJS({
-  "node_modules/.aspect_rules_js/emoji-regex@8.0.0/node_modules/emoji-regex/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/emoji-regex@8.0.0/node_modules/emoji-regex/index.js"(exports2, module2) {
     "use strict";
-    module.exports = function() {
+    module2.exports = function() {
       return /\uD83C\uDFF4\uDB40\uDC67\uDB40\uDC62(?:\uDB40\uDC65\uDB40\uDC6E\uDB40\uDC67|\uDB40\uDC73\uDB40\uDC63\uDB40\uDC74|\uDB40\uDC77\uDB40\uDC6C\uDB40\uDC73)\uDB40\uDC7F|\uD83D\uDC68(?:\uD83C\uDFFC\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68\uD83C\uDFFB|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFF\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFE])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFE\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFD])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFD\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB\uDFFC])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\u200D(?:\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D)?\uD83D\uDC68|(?:\uD83D[\uDC68\uDC69])\u200D(?:\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67]))|\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67])|(?:\uD83D[\uDC68\uDC69])\u200D(?:\uD83D[\uDC66\uDC67])|[\u2695\u2696\u2708]\uFE0F|\uD83D[\uDC66\uDC67]|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|(?:\uD83C\uDFFB\u200D[\u2695\u2696\u2708]|\uD83C\uDFFF\u200D[\u2695\u2696\u2708]|\uD83C\uDFFE\u200D[\u2695\u2696\u2708]|\uD83C\uDFFD\u200D[\u2695\u2696\u2708]|\uD83C\uDFFC\u200D[\u2695\u2696\u2708])\uFE0F|\uD83C\uDFFB\u200D(?:\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C[\uDFFB-\uDFFF])|(?:\uD83E\uDDD1\uD83C\uDFFB\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFC\u200D\uD83E\uDD1D\u200D\uD83D\uDC69)\uD83C\uDFFB|\uD83E\uDDD1(?:\uD83C\uDFFF\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1(?:\uD83C[\uDFFB-\uDFFF])|\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1)|(?:\uD83E\uDDD1\uD83C\uDFFE\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFF\u200D\uD83E\uDD1D\u200D(?:\uD83D[\uDC68\uDC69]))(?:\uD83C[\uDFFB-\uDFFE])|(?:\uD83E\uDDD1\uD83C\uDFFC\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFD\u200D\uD83E\uDD1D\u200D\uD83D\uDC69)(?:\uD83C[\uDFFB\uDFFC])|\uD83D\uDC69(?:\uD83C\uDFFE\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB-\uDFFD\uDFFF])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFC\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB\uDFFD-\uDFFF])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFB\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFC-\uDFFF])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFD\u200D(?:\uD83E\uDD1D\u200D\uD83D\uDC68(?:\uD83C[\uDFFB\uDFFC\uDFFE\uDFFF])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\u200D(?:\u2764\uFE0F\u200D(?:\uD83D\uDC8B\u200D(?:\uD83D[\uDC68\uDC69])|\uD83D[\uDC68\uDC69])|\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD])|\uD83C\uDFFF\u200D(?:\uD83C[\uDF3E\uDF73\uDF93\uDFA4\uDFA8\uDFEB\uDFED]|\uD83D[\uDCBB\uDCBC\uDD27\uDD2C\uDE80\uDE92]|\uD83E[\uDDAF-\uDDB3\uDDBC\uDDBD]))|\uD83D\uDC69\u200D\uD83D\uDC69\u200D(?:\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67]))|(?:\uD83E\uDDD1\uD83C\uDFFD\u200D\uD83E\uDD1D\u200D\uD83E\uDDD1|\uD83D\uDC69\uD83C\uDFFE\u200D\uD83E\uDD1D\u200D\uD83D\uDC69)(?:\uD83C[\uDFFB-\uDFFD])|\uD83D\uDC69\u200D\uD83D\uDC66\u200D\uD83D\uDC66|\uD83D\uDC69\u200D\uD83D\uDC69\u200D(?:\uD83D[\uDC66\uDC67])|(?:\uD83D\uDC41\uFE0F\u200D\uD83D\uDDE8|\uD83D\uDC69(?:\uD83C\uDFFF\u200D[\u2695\u2696\u2708]|\uD83C\uDFFE\u200D[\u2695\u2696\u2708]|\uD83C\uDFFC\u200D[\u2695\u2696\u2708]|\uD83C\uDFFB\u200D[\u2695\u2696\u2708]|\uD83C\uDFFD\u200D[\u2695\u2696\u2708]|\u200D[\u2695\u2696\u2708])|(?:(?:\u26F9|\uD83C[\uDFCB\uDFCC]|\uD83D\uDD75)\uFE0F|\uD83D\uDC6F|\uD83E[\uDD3C\uDDDE\uDDDF])\u200D[\u2640\u2642]|(?:\u26F9|\uD83C[\uDFCB\uDFCC]|\uD83D\uDD75)(?:\uD83C[\uDFFB-\uDFFF])\u200D[\u2640\u2642]|(?:\uD83C[\uDFC3\uDFC4\uDFCA]|\uD83D[\uDC6E\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6]|\uD83E[\uDD26\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD6-\uDDDD])(?:(?:\uD83C[\uDFFB-\uDFFF])\u200D[\u2640\u2642]|\u200D[\u2640\u2642])|\uD83C\uDFF4\u200D\u2620)\uFE0F|\uD83D\uDC69\u200D\uD83D\uDC67\u200D(?:\uD83D[\uDC66\uDC67])|\uD83C\uDFF3\uFE0F\u200D\uD83C\uDF08|\uD83D\uDC15\u200D\uD83E\uDDBA|\uD83D\uDC69\u200D\uD83D\uDC66|\uD83D\uDC69\u200D\uD83D\uDC67|\uD83C\uDDFD\uD83C\uDDF0|\uD83C\uDDF4\uD83C\uDDF2|\uD83C\uDDF6\uD83C\uDDE6|[#\*0-9]\uFE0F\u20E3|\uD83C\uDDE7(?:\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEF\uDDF1-\uDDF4\uDDF6-\uDDF9\uDDFB\uDDFC\uDDFE\uDDFF])|\uD83C\uDDF9(?:\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDED\uDDEF-\uDDF4\uDDF7\uDDF9\uDDFB\uDDFC\uDDFF])|\uD83C\uDDEA(?:\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDED\uDDF7-\uDDFA])|\uD83E\uDDD1(?:\uD83C[\uDFFB-\uDFFF])|\uD83C\uDDF7(?:\uD83C[\uDDEA\uDDF4\uDDF8\uDDFA\uDDFC])|\uD83D\uDC69(?:\uD83C[\uDFFB-\uDFFF])|\uD83C\uDDF2(?:\uD83C[\uDDE6\uDDE8-\uDDED\uDDF0-\uDDFF])|\uD83C\uDDE6(?:\uD83C[\uDDE8-\uDDEC\uDDEE\uDDF1\uDDF2\uDDF4\uDDF6-\uDDFA\uDDFC\uDDFD\uDDFF])|\uD83C\uDDF0(?:\uD83C[\uDDEA\uDDEC-\uDDEE\uDDF2\uDDF3\uDDF5\uDDF7\uDDFC\uDDFE\uDDFF])|\uD83C\uDDED(?:\uD83C[\uDDF0\uDDF2\uDDF3\uDDF7\uDDF9\uDDFA])|\uD83C\uDDE9(?:\uD83C[\uDDEA\uDDEC\uDDEF\uDDF0\uDDF2\uDDF4\uDDFF])|\uD83C\uDDFE(?:\uD83C[\uDDEA\uDDF9])|\uD83C\uDDEC(?:\uD83C[\uDDE6\uDDE7\uDDE9-\uDDEE\uDDF1-\uDDF3\uDDF5-\uDDFA\uDDFC\uDDFE])|\uD83C\uDDF8(?:\uD83C[\uDDE6-\uDDEA\uDDEC-\uDDF4\uDDF7-\uDDF9\uDDFB\uDDFD-\uDDFF])|\uD83C\uDDEB(?:\uD83C[\uDDEE-\uDDF0\uDDF2\uDDF4\uDDF7])|\uD83C\uDDF5(?:\uD83C[\uDDE6\uDDEA-\uDDED\uDDF0-\uDDF3\uDDF7-\uDDF9\uDDFC\uDDFE])|\uD83C\uDDFB(?:\uD83C[\uDDE6\uDDE8\uDDEA\uDDEC\uDDEE\uDDF3\uDDFA])|\uD83C\uDDF3(?:\uD83C[\uDDE6\uDDE8\uDDEA-\uDDEC\uDDEE\uDDF1\uDDF4\uDDF5\uDDF7\uDDFA\uDDFF])|\uD83C\uDDE8(?:\uD83C[\uDDE6\uDDE8\uDDE9\uDDEB-\uDDEE\uDDF0-\uDDF5\uDDF7\uDDFA-\uDDFF])|\uD83C\uDDF1(?:\uD83C[\uDDE6-\uDDE8\uDDEE\uDDF0\uDDF7-\uDDFB\uDDFE])|\uD83C\uDDFF(?:\uD83C[\uDDE6\uDDF2\uDDFC])|\uD83C\uDDFC(?:\uD83C[\uDDEB\uDDF8])|\uD83C\uDDFA(?:\uD83C[\uDDE6\uDDEC\uDDF2\uDDF3\uDDF8\uDDFE\uDDFF])|\uD83C\uDDEE(?:\uD83C[\uDDE8-\uDDEA\uDDF1-\uDDF4\uDDF6-\uDDF9])|\uD83C\uDDEF(?:\uD83C[\uDDEA\uDDF2\uDDF4\uDDF5])|(?:\uD83C[\uDFC3\uDFC4\uDFCA]|\uD83D[\uDC6E\uDC71\uDC73\uDC77\uDC81\uDC82\uDC86\uDC87\uDE45-\uDE47\uDE4B\uDE4D\uDE4E\uDEA3\uDEB4-\uDEB6]|\uD83E[\uDD26\uDD37-\uDD39\uDD3D\uDD3E\uDDB8\uDDB9\uDDCD-\uDDCF\uDDD6-\uDDDD])(?:\uD83C[\uDFFB-\uDFFF])|(?:\u26F9|\uD83C[\uDFCB\uDFCC]|\uD83D\uDD75)(?:\uD83C[\uDFFB-\uDFFF])|(?:[\u261D\u270A-\u270D]|\uD83C[\uDF85\uDFC2\uDFC7]|\uD83D[\uDC42\uDC43\uDC46-\uDC50\uDC66\uDC67\uDC6B-\uDC6D\uDC70\uDC72\uDC74-\uDC76\uDC78\uDC7C\uDC83\uDC85\uDCAA\uDD74\uDD7A\uDD90\uDD95\uDD96\uDE4C\uDE4F\uDEC0\uDECC]|\uD83E[\uDD0F\uDD18-\uDD1C\uDD1E\uDD1F\uDD30-\uDD36\uDDB5\uDDB6\uDDBB\uDDD2-\uDDD5])(?:\uD83C[\uDFFB-\uDFFF])|(?:[\u231A\u231B\u23E9-\u23EC\u23F0\u23F3\u25FD\u25FE\u2614\u2615\u2648-\u2653\u267F\u2693\u26A1\u26AA\u26AB\u26BD\u26BE\u26C4\u26C5\u26CE\u26D4\u26EA\u26F2\u26F3\u26F5\u26FA\u26FD\u2705\u270A\u270B\u2728\u274C\u274E\u2753-\u2755\u2757\u2795-\u2797\u27B0\u27BF\u2B1B\u2B1C\u2B50\u2B55]|\uD83C[\uDC04\uDCCF\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01\uDE1A\uDE2F\uDE32-\uDE36\uDE38-\uDE3A\uDE50\uDE51\uDF00-\uDF20\uDF2D-\uDF35\uDF37-\uDF7C\uDF7E-\uDF93\uDFA0-\uDFCA\uDFCF-\uDFD3\uDFE0-\uDFF0\uDFF4\uDFF8-\uDFFF]|\uD83D[\uDC00-\uDC3E\uDC40\uDC42-\uDCFC\uDCFF-\uDD3D\uDD4B-\uDD4E\uDD50-\uDD67\uDD7A\uDD95\uDD96\uDDA4\uDDFB-\uDE4F\uDE80-\uDEC5\uDECC\uDED0-\uDED2\uDED5\uDEEB\uDEEC\uDEF4-\uDEFA\uDFE0-\uDFEB]|\uD83E[\uDD0D-\uDD3A\uDD3C-\uDD45\uDD47-\uDD71\uDD73-\uDD76\uDD7A-\uDDA2\uDDA5-\uDDAA\uDDAE-\uDDCA\uDDCD-\uDDFF\uDE70-\uDE73\uDE78-\uDE7A\uDE80-\uDE82\uDE90-\uDE95])|(?:[#\*0-9\xA9\xAE\u203C\u2049\u2122\u2139\u2194-\u2199\u21A9\u21AA\u231A\u231B\u2328\u23CF\u23E9-\u23F3\u23F8-\u23FA\u24C2\u25AA\u25AB\u25B6\u25C0\u25FB-\u25FE\u2600-\u2604\u260E\u2611\u2614\u2615\u2618\u261D\u2620\u2622\u2623\u2626\u262A\u262E\u262F\u2638-\u263A\u2640\u2642\u2648-\u2653\u265F\u2660\u2663\u2665\u2666\u2668\u267B\u267E\u267F\u2692-\u2697\u2699\u269B\u269C\u26A0\u26A1\u26AA\u26AB\u26B0\u26B1\u26BD\u26BE\u26C4\u26C5\u26C8\u26CE\u26CF\u26D1\u26D3\u26D4\u26E9\u26EA\u26F0-\u26F5\u26F7-\u26FA\u26FD\u2702\u2705\u2708-\u270D\u270F\u2712\u2714\u2716\u271D\u2721\u2728\u2733\u2734\u2744\u2747\u274C\u274E\u2753-\u2755\u2757\u2763\u2764\u2795-\u2797\u27A1\u27B0\u27BF\u2934\u2935\u2B05-\u2B07\u2B1B\u2B1C\u2B50\u2B55\u3030\u303D\u3297\u3299]|\uD83C[\uDC04\uDCCF\uDD70\uDD71\uDD7E\uDD7F\uDD8E\uDD91-\uDD9A\uDDE6-\uDDFF\uDE01\uDE02\uDE1A\uDE2F\uDE32-\uDE3A\uDE50\uDE51\uDF00-\uDF21\uDF24-\uDF93\uDF96\uDF97\uDF99-\uDF9B\uDF9E-\uDFF0\uDFF3-\uDFF5\uDFF7-\uDFFF]|\uD83D[\uDC00-\uDCFD\uDCFF-\uDD3D\uDD49-\uDD4E\uDD50-\uDD67\uDD6F\uDD70\uDD73-\uDD7A\uDD87\uDD8A-\uDD8D\uDD90\uDD95\uDD96\uDDA4\uDDA5\uDDA8\uDDB1\uDDB2\uDDBC\uDDC2-\uDDC4\uDDD1-\uDDD3\uDDDC-\uDDDE\uDDE1\uDDE3\uDDE8\uDDEF\uDDF3\uDDFA-\uDE4F\uDE80-\uDEC5\uDECB-\uDED2\uDED5\uDEE0-\uDEE5\uDEE9\uDEEB\uDEEC\uDEF0\uDEF3-\uDEFA\uDFE0-\uDFEB]|\uD83E[\uDD0D-\uDD3A\uDD3C-\uDD45\uDD47-\uDD71\uDD73-\uDD76\uDD7A-\uDDA2\uDDA5-\uDDAA\uDDAE-\uDDCA\uDDCD-\uDDFF\uDE70-\uDE73\uDE78-\uDE7A\uDE80-\uDE82\uDE90-\uDE95])\uFE0F|(?:[\u261D\u26F9\u270A-\u270D]|\uD83C[\uDF85\uDFC2-\uDFC4\uDFC7\uDFCA-\uDFCC]|\uD83D[\uDC42\uDC43\uDC46-\uDC50\uDC66-\uDC78\uDC7C\uDC81-\uDC83\uDC85-\uDC87\uDC8F\uDC91\uDCAA\uDD74\uDD75\uDD7A\uDD90\uDD95\uDD96\uDE45-\uDE47\uDE4B-\uDE4F\uDEA3\uDEB4-\uDEB6\uDEC0\uDECC]|\uD83E[\uDD0F\uDD18-\uDD1F\uDD26\uDD30-\uDD39\uDD3C-\uDD3E\uDDB5\uDDB6\uDDB8\uDDB9\uDDBB\uDDCD-\uDDCF\uDDD1-\uDDDD])/g;
     };
   }
@@ -9932,7 +9932,7 @@ var require_emoji_regex = __commonJS({
 
 // node_modules/.aspect_rules_js/string-width@4.2.3/node_modules/string-width/index.js
 var require_string_width = __commonJS({
-  "node_modules/.aspect_rules_js/string-width@4.2.3/node_modules/string-width/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/string-width@4.2.3/node_modules/string-width/index.js"(exports2, module2) {
     "use strict";
     var stripAnsi = require_strip_ansi();
     var isFullwidthCodePoint = require_is_fullwidth_code_point();
@@ -9962,15 +9962,15 @@ var require_string_width = __commonJS({
       }
       return width;
     };
-    module.exports = stringWidth;
-    module.exports.default = stringWidth;
+    module2.exports = stringWidth;
+    module2.exports.default = stringWidth;
   }
 });
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-value.js
 var require_format_value = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-value.js"(exports, module) {
-    module.exports = function formatValue(v, options, type) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-value.js"(exports2, module2) {
+    module2.exports = function formatValue(v, options, type) {
       if (options.autopadding !== true) {
         return v;
       }
@@ -9989,8 +9989,8 @@ var require_format_value = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-bar.js
 var require_format_bar = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-bar.js"(exports, module) {
-    module.exports = function formatBar(progress, options) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-bar.js"(exports2, module2) {
+    module2.exports = function formatBar(progress, options) {
       const completeSize = Math.round(progress * options.barsize);
       const incompleteSize = options.barsize - completeSize;
       return options.barCompleteString.substr(0, completeSize) + options.barGlue + options.barIncompleteString.substr(0, incompleteSize);
@@ -10000,8 +10000,8 @@ var require_format_bar = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-time.js
 var require_format_time = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-time.js"(exports, module) {
-    module.exports = function formatTime(t, options, roundToMultipleOf) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/format-time.js"(exports2, module2) {
+    module2.exports = function formatTime(t, options, roundToMultipleOf) {
       function round(input) {
         if (roundToMultipleOf) {
           return roundToMultipleOf * Math.round(input / roundToMultipleOf);
@@ -10027,12 +10027,12 @@ var require_format_time = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/formatter.js
 var require_formatter = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/formatter.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/formatter.js"(exports2, module2) {
     var _stringWidth = require_string_width();
     var _defaultFormatValue = require_format_value();
     var _defaultFormatBar = require_format_bar();
     var _defaultFormatTime = require_format_time();
-    module.exports = function defaultFormatter(options, params2, payload) {
+    module2.exports = function defaultFormatter(options, params2, payload) {
       let s = options.format;
       const formatTime = options.formatTime || _defaultFormatTime;
       const formatValue = options.formatValue || _defaultFormatValue;
@@ -10076,7 +10076,7 @@ var require_formatter = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/options.js
 var require_options = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/options.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/options.js"(exports2, module2) {
     function mergeOption(v, defaultValue) {
       if (typeof v === "undefined" || v === null) {
         return defaultValue;
@@ -10084,7 +10084,7 @@ var require_options = __commonJS({
         return v;
       }
     }
-    module.exports = {
+    module2.exports = {
       // set global options
       parse: function parse4(rawOptions, preset) {
         const options = {};
@@ -10130,13 +10130,13 @@ var require_options = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/generic-bar.js
 var require_generic_bar = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/generic-bar.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/generic-bar.js"(exports2, module2) {
     var _ETA = require_eta();
     var _Terminal = require_terminal();
     var _formatter = require_formatter();
     var _options = require_options();
     var _EventEmitter = __require("events");
-    module.exports = class GenericBar extends _EventEmitter {
+    module2.exports = class GenericBar extends _EventEmitter {
       constructor(options) {
         super();
         this.options = _options.assignDerivedOptions(options);
@@ -10257,10 +10257,10 @@ var require_generic_bar = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/single-bar.js
 var require_single_bar = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/single-bar.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/single-bar.js"(exports2, module2) {
     var _GenericBar = require_generic_bar();
     var _options = require_options();
-    module.exports = class SingleBar extends _GenericBar {
+    module2.exports = class SingleBar extends _GenericBar {
       constructor(options, preset) {
         super(_options.parse(options, preset));
         this.timer = null;
@@ -10345,12 +10345,12 @@ var require_single_bar = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/multi-bar.js
 var require_multi_bar = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/multi-bar.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/multi-bar.js"(exports2, module2) {
     var _Terminal = require_terminal();
     var _BarElement = require_generic_bar();
     var _options = require_options();
     var _EventEmitter = __require("events");
-    module.exports = class MultiBar extends _EventEmitter {
+    module2.exports = class MultiBar extends _EventEmitter {
       constructor(options, preset) {
         super();
         this.bars = [];
@@ -10483,8 +10483,8 @@ var require_multi_bar = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/legacy.js
 var require_legacy = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/legacy.js"(exports, module) {
-    module.exports = {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/legacy.js"(exports2, module2) {
+    module2.exports = {
       format: "progress [{bar}] {percentage}% | ETA: {eta}s | {value}/{total}",
       barCompleteChar: "=",
       barIncompleteChar: "-"
@@ -10494,8 +10494,8 @@ var require_legacy = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/shades-classic.js
 var require_shades_classic = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/shades-classic.js"(exports, module) {
-    module.exports = {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/shades-classic.js"(exports2, module2) {
+    module2.exports = {
       format: " {bar} {percentage}% | ETA: {eta}s | {value}/{total}",
       barCompleteChar: "\u2588",
       barIncompleteChar: "\u2591"
@@ -10505,8 +10505,8 @@ var require_shades_classic = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/shades-grey.js
 var require_shades_grey = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/shades-grey.js"(exports, module) {
-    module.exports = {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/shades-grey.js"(exports2, module2) {
+    module2.exports = {
       format: " \x1B[90m{bar}\x1B[0m {percentage}% | ETA: {eta}s | {value}/{total}",
       barCompleteChar: "\u2588",
       barIncompleteChar: "\u2591"
@@ -10516,8 +10516,8 @@ var require_shades_grey = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/rect.js
 var require_rect = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/rect.js"(exports, module) {
-    module.exports = {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/rect.js"(exports2, module2) {
+    module2.exports = {
       format: " {bar}\u25A0 {percentage}% | ETA: {eta}s | {value}/{total}",
       barCompleteChar: "\u25A0",
       barIncompleteChar: " "
@@ -10527,12 +10527,12 @@ var require_rect = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/index.js
 var require_presets = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/presets/index.js"(exports2, module2) {
     var _legacy = require_legacy();
     var _shades_classic = require_shades_classic();
     var _shades_grey = require_shades_grey();
     var _rect = require_rect();
-    module.exports = {
+    module2.exports = {
       legacy: _legacy,
       shades_classic: _shades_classic,
       shades_grey: _shades_grey,
@@ -10543,7 +10543,7 @@ var require_presets = __commonJS({
 
 // node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/cli-progress.js
 var require_cli_progress = __commonJS({
-  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/cli-progress.js"(exports, module) {
+  "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/cli-progress.js"(exports2, module2) {
     var _SingleBar = require_single_bar();
     var _MultiBar = require_multi_bar();
     var _Presets = require_presets();
@@ -10551,7 +10551,7 @@ var require_cli_progress = __commonJS({
     var _defaultFormatValue = require_format_value();
     var _defaultFormatBar = require_format_bar();
     var _defaultFormatTime = require_format_time();
-    module.exports = {
+    module2.exports = {
       Bar: _SingleBar,
       SingleBar: _SingleBar,
       MultiBar: _MultiBar,
@@ -10568,9 +10568,9 @@ var require_cli_progress = __commonJS({
 
 // node_modules/.aspect_rules_js/balanced-match@1.0.2/node_modules/balanced-match/index.js
 var require_balanced_match = __commonJS({
-  "node_modules/.aspect_rules_js/balanced-match@1.0.2/node_modules/balanced-match/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/balanced-match@1.0.2/node_modules/balanced-match/index.js"(exports2, module2) {
     "use strict";
-    module.exports = balanced2;
+    module2.exports = balanced2;
     function balanced2(a, b, str) {
       if (a instanceof RegExp)
         a = maybeMatch2(a, str);
@@ -10628,9 +10628,9 @@ var require_balanced_match = __commonJS({
 
 // node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js"(exports2, module2) {
     var balanced2 = require_balanced_match();
-    module.exports = expandTop;
+    module2.exports = expandTop;
     var escSlash2 = "\0SLASH" + Math.random() + "\0";
     var escOpen2 = "\0OPEN" + Math.random() + "\0";
     var escClose2 = "\0CLOSE" + Math.random() + "\0";
@@ -10779,14 +10779,14 @@ var require_brace_expansion = __commonJS({
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/array.js
 var require_array = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/array.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/array.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.splitWhen = exports.flatten = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.splitWhen = exports2.flatten = void 0;
     function flatten(items) {
       return items.reduce((collection, item) => [].concat(collection, item), []);
     }
-    exports.flatten = flatten;
+    exports2.flatten = flatten;
     function splitWhen(items, predicate) {
       const result = [[]];
       let groupIndex = 0;
@@ -10800,29 +10800,29 @@ var require_array = __commonJS({
       }
       return result;
     }
-    exports.splitWhen = splitWhen;
+    exports2.splitWhen = splitWhen;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/errno.js
 var require_errno = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/errno.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/errno.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isEnoentCodeError = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.isEnoentCodeError = void 0;
     function isEnoentCodeError(error) {
       return error.code === "ENOENT";
     }
-    exports.isEnoentCodeError = isEnoentCodeError;
+    exports2.isEnoentCodeError = isEnoentCodeError;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/fs.js
 var require_fs = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/fs.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/fs.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.createDirentFromStats = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createDirentFromStats = void 0;
     var DirentFromStats = class {
       constructor(name, stats) {
         this.name = name;
@@ -10838,18 +10838,18 @@ var require_fs = __commonJS({
     function createDirentFromStats(name, stats) {
       return new DirentFromStats(name, stats);
     }
-    exports.createDirentFromStats = createDirentFromStats;
+    exports2.createDirentFromStats = createDirentFromStats;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/path.js
 var require_path = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/path.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/path.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.convertPosixPathToPattern = exports.convertWindowsPathToPattern = exports.convertPathToPattern = exports.escapePosixPath = exports.escapeWindowsPath = exports.escape = exports.removeLeadingDotSegment = exports.makeAbsolute = exports.unixify = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.convertPosixPathToPattern = exports2.convertWindowsPathToPattern = exports2.convertPathToPattern = exports2.escapePosixPath = exports2.escapeWindowsPath = exports2.escape = exports2.removeLeadingDotSegment = exports2.makeAbsolute = exports2.unixify = void 0;
     var os2 = __require("os");
-    var path9 = __require("path");
+    var path10 = __require("path");
     var IS_WINDOWS_PLATFORM = os2.platform() === "win32";
     var LEADING_DOT_SEGMENT_CHARACTERS_COUNT = 2;
     var POSIX_UNESCAPED_GLOB_SYMBOLS_RE = /(\\?)([()*?[\]{|}]|^!|[!+@](?=\()|\\(?![!()*+?@[\]{|}]))/g;
@@ -10859,11 +10859,11 @@ var require_path = __commonJS({
     function unixify(filepath) {
       return filepath.replace(/\\/g, "/");
     }
-    exports.unixify = unixify;
+    exports2.unixify = unixify;
     function makeAbsolute(cwd, filepath) {
-      return path9.resolve(cwd, filepath);
+      return path10.resolve(cwd, filepath);
     }
-    exports.makeAbsolute = makeAbsolute;
+    exports2.makeAbsolute = makeAbsolute;
     function removeLeadingDotSegment(entry) {
       if (entry.charAt(0) === ".") {
         const secondCharactery = entry.charAt(1);
@@ -10873,32 +10873,32 @@ var require_path = __commonJS({
       }
       return entry;
     }
-    exports.removeLeadingDotSegment = removeLeadingDotSegment;
-    exports.escape = IS_WINDOWS_PLATFORM ? escapeWindowsPath : escapePosixPath;
+    exports2.removeLeadingDotSegment = removeLeadingDotSegment;
+    exports2.escape = IS_WINDOWS_PLATFORM ? escapeWindowsPath : escapePosixPath;
     function escapeWindowsPath(pattern) {
       return pattern.replace(WINDOWS_UNESCAPED_GLOB_SYMBOLS_RE, "\\$2");
     }
-    exports.escapeWindowsPath = escapeWindowsPath;
+    exports2.escapeWindowsPath = escapeWindowsPath;
     function escapePosixPath(pattern) {
       return pattern.replace(POSIX_UNESCAPED_GLOB_SYMBOLS_RE, "\\$2");
     }
-    exports.escapePosixPath = escapePosixPath;
-    exports.convertPathToPattern = IS_WINDOWS_PLATFORM ? convertWindowsPathToPattern : convertPosixPathToPattern;
+    exports2.escapePosixPath = escapePosixPath;
+    exports2.convertPathToPattern = IS_WINDOWS_PLATFORM ? convertWindowsPathToPattern : convertPosixPathToPattern;
     function convertWindowsPathToPattern(filepath) {
       return escapeWindowsPath(filepath).replace(DOS_DEVICE_PATH_RE, "//$1").replace(WINDOWS_BACKSLASHES_RE, "/");
     }
-    exports.convertWindowsPathToPattern = convertWindowsPathToPattern;
+    exports2.convertWindowsPathToPattern = convertWindowsPathToPattern;
     function convertPosixPathToPattern(filepath) {
       return escapePosixPath(filepath);
     }
-    exports.convertPosixPathToPattern = convertPosixPathToPattern;
+    exports2.convertPosixPathToPattern = convertPosixPathToPattern;
   }
 });
 
 // node_modules/.aspect_rules_js/is-extglob@2.1.1/node_modules/is-extglob/index.js
 var require_is_extglob = __commonJS({
-  "node_modules/.aspect_rules_js/is-extglob@2.1.1/node_modules/is-extglob/index.js"(exports, module) {
-    module.exports = function isExtglob(str) {
+  "node_modules/.aspect_rules_js/is-extglob@2.1.1/node_modules/is-extglob/index.js"(exports2, module2) {
+    module2.exports = function isExtglob(str) {
       if (typeof str !== "string" || str === "") {
         return false;
       }
@@ -10915,7 +10915,7 @@ var require_is_extglob = __commonJS({
 
 // node_modules/.aspect_rules_js/is-glob@4.0.3/node_modules/is-glob/index.js
 var require_is_glob = __commonJS({
-  "node_modules/.aspect_rules_js/is-glob@4.0.3/node_modules/is-glob/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/is-glob@4.0.3/node_modules/is-glob/index.js"(exports2, module2) {
     var isExtglob = require_is_extglob();
     var chars = { "{": "}", "(": ")", "[": "]" };
     var strictCheck = function(str) {
@@ -11028,7 +11028,7 @@ var require_is_glob = __commonJS({
       }
       return false;
     };
-    module.exports = function isGlob(str, options) {
+    module2.exports = function isGlob(str, options) {
       if (typeof str !== "string" || str === "") {
         return false;
       }
@@ -11046,7 +11046,7 @@ var require_is_glob = __commonJS({
 
 // node_modules/.aspect_rules_js/glob-parent@5.1.2/node_modules/glob-parent/index.js
 var require_glob_parent = __commonJS({
-  "node_modules/.aspect_rules_js/glob-parent@5.1.2/node_modules/glob-parent/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/glob-parent@5.1.2/node_modules/glob-parent/index.js"(exports2, module2) {
     "use strict";
     var isGlob = require_is_glob();
     var pathPosixDirname = __require("path").posix.dirname;
@@ -11056,7 +11056,7 @@ var require_glob_parent = __commonJS({
     var enclosure = /[\{\[].*[\}\]]$/;
     var globby = /(^|[^\\])([\{\[]|\([^\)]+$)/;
     var escaped = /\\([\!\*\?\|\[\]\(\)\{\}])/g;
-    module.exports = function globParent(str, opts) {
+    module2.exports = function globParent(str, opts) {
       var options = Object.assign({ flipBackslashes: true }, opts);
       if (options.flipBackslashes && isWin32 && str.indexOf(slash) < 0) {
         str = str.replace(backslash, slash);
@@ -11075,9 +11075,9 @@ var require_glob_parent = __commonJS({
 
 // node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/utils.js
 var require_utils2 = __commonJS({
-  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/utils.js"(exports) {
+  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/utils.js"(exports2) {
     "use strict";
-    exports.isInteger = (num) => {
+    exports2.isInteger = (num) => {
       if (typeof num === "number") {
         return Number.isInteger(num);
       }
@@ -11086,15 +11086,15 @@ var require_utils2 = __commonJS({
       }
       return false;
     };
-    exports.find = (node, type) => node.nodes.find((node2) => node2.type === type);
-    exports.exceedsLimit = (min, max, step = 1, limit) => {
+    exports2.find = (node, type) => node.nodes.find((node2) => node2.type === type);
+    exports2.exceedsLimit = (min, max, step = 1, limit) => {
       if (limit === false)
         return false;
-      if (!exports.isInteger(min) || !exports.isInteger(max))
+      if (!exports2.isInteger(min) || !exports2.isInteger(max))
         return false;
       return (Number(max) - Number(min)) / Number(step) >= limit;
     };
-    exports.escapeNode = (block, n = 0, type) => {
+    exports2.escapeNode = (block, n = 0, type) => {
       const node = block.nodes[n];
       if (!node)
         return;
@@ -11105,7 +11105,7 @@ var require_utils2 = __commonJS({
         }
       }
     };
-    exports.encloseBrace = (node) => {
+    exports2.encloseBrace = (node) => {
       if (node.type !== "brace")
         return false;
       if (node.commas >> 0 + node.ranges >> 0 === 0) {
@@ -11114,7 +11114,7 @@ var require_utils2 = __commonJS({
       }
       return false;
     };
-    exports.isInvalidBrace = (block) => {
+    exports2.isInvalidBrace = (block) => {
       if (block.type !== "brace")
         return false;
       if (block.invalid === true || block.dollar)
@@ -11129,20 +11129,20 @@ var require_utils2 = __commonJS({
       }
       return false;
     };
-    exports.isOpenOrClose = (node) => {
+    exports2.isOpenOrClose = (node) => {
       if (node.type === "open" || node.type === "close") {
         return true;
       }
       return node.open === true || node.close === true;
     };
-    exports.reduce = (nodes) => nodes.reduce((acc, node) => {
+    exports2.reduce = (nodes) => nodes.reduce((acc, node) => {
       if (node.type === "text")
         acc.push(node.value);
       if (node.type === "range")
         node.type = "text";
       return acc;
     }, []);
-    exports.flatten = (...args) => {
+    exports2.flatten = (...args) => {
       const result = [];
       const flat = (arr) => {
         for (let i = 0; i < arr.length; i++) {
@@ -11165,16 +11165,16 @@ var require_utils2 = __commonJS({
 
 // node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/stringify.js
 var require_stringify = __commonJS({
-  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/stringify.js"(exports, module) {
+  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/stringify.js"(exports2, module2) {
     "use strict";
-    var utils = require_utils2();
-    module.exports = (ast, options = {}) => {
+    var utils2 = require_utils2();
+    module2.exports = (ast, options = {}) => {
       const stringify = (node, parent = {}) => {
-        const invalidBlock = options.escapeInvalid && utils.isInvalidBrace(parent);
+        const invalidBlock = options.escapeInvalid && utils2.isInvalidBrace(parent);
         const invalidNode = node.invalid === true && options.escapeInvalid === true;
         let output = "";
         if (node.value) {
-          if ((invalidBlock || invalidNode) && utils.isOpenOrClose(node)) {
+          if ((invalidBlock || invalidNode) && utils2.isOpenOrClose(node)) {
             return "\\" + node.value;
           }
           return node.value;
@@ -11196,9 +11196,9 @@ var require_stringify = __commonJS({
 
 // node_modules/.aspect_rules_js/is-number@7.0.0/node_modules/is-number/index.js
 var require_is_number = __commonJS({
-  "node_modules/.aspect_rules_js/is-number@7.0.0/node_modules/is-number/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/is-number@7.0.0/node_modules/is-number/index.js"(exports2, module2) {
     "use strict";
-    module.exports = function(num) {
+    module2.exports = function(num) {
       if (typeof num === "number") {
         return num - num === 0;
       }
@@ -11212,7 +11212,7 @@ var require_is_number = __commonJS({
 
 // node_modules/.aspect_rules_js/to-regex-range@5.0.1/node_modules/to-regex-range/index.js
 var require_to_regex_range = __commonJS({
-  "node_modules/.aspect_rules_js/to-regex-range@5.0.1/node_modules/to-regex-range/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/to-regex-range@5.0.1/node_modules/to-regex-range/index.js"(exports2, module2) {
     "use strict";
     var isNumber = require_is_number();
     var toRegexRange = (min, max, options) => {
@@ -11418,13 +11418,13 @@ var require_to_regex_range = __commonJS({
     }
     toRegexRange.cache = {};
     toRegexRange.clearCache = () => toRegexRange.cache = {};
-    module.exports = toRegexRange;
+    module2.exports = toRegexRange;
   }
 });
 
 // node_modules/.aspect_rules_js/fill-range@7.1.1/node_modules/fill-range/index.js
 var require_fill_range = __commonJS({
-  "node_modules/.aspect_rules_js/fill-range@7.1.1/node_modules/fill-range/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/fill-range@7.1.1/node_modules/fill-range/index.js"(exports2, module2) {
     "use strict";
     var util = __require("util");
     var toRegexRange = require_to_regex_range();
@@ -11624,19 +11624,19 @@ var require_fill_range = __commonJS({
       }
       return fillLetters(start, end, Math.max(Math.abs(step), 1), opts);
     };
-    module.exports = fill;
+    module2.exports = fill;
   }
 });
 
 // node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/compile.js
 var require_compile = __commonJS({
-  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/compile.js"(exports, module) {
+  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/compile.js"(exports2, module2) {
     "use strict";
     var fill = require_fill_range();
-    var utils = require_utils2();
-    var compile = (ast, options = {}) => {
+    var utils2 = require_utils2();
+    var compile2 = (ast, options = {}) => {
       const walk = (node, parent = {}) => {
-        const invalidBlock = utils.isInvalidBrace(parent);
+        const invalidBlock = utils2.isInvalidBrace(parent);
         const invalidNode = node.invalid === true && options.escapeInvalid === true;
         const invalid = invalidBlock === true || invalidNode === true;
         const prefix = options.escapeInvalid === true ? "\\" : "";
@@ -11661,7 +11661,7 @@ var require_compile = __commonJS({
           return node.value;
         }
         if (node.nodes && node.ranges > 0) {
-          const args = utils.reduce(node.nodes);
+          const args = utils2.reduce(node.nodes);
           const range2 = fill(...args, { ...options, wrap: false, toRegex: true, strictZeros: true });
           if (range2.length !== 0) {
             return args.length > 1 && range2.length > 1 ? `(${range2})` : range2;
@@ -11676,17 +11676,17 @@ var require_compile = __commonJS({
       };
       return walk(ast);
     };
-    module.exports = compile;
+    module2.exports = compile2;
   }
 });
 
 // node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/expand.js
 var require_expand = __commonJS({
-  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/expand.js"(exports, module) {
+  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/expand.js"(exports2, module2) {
     "use strict";
     var fill = require_fill_range();
     var stringify = require_stringify();
-    var utils = require_utils2();
+    var utils2 = require_utils2();
     var append = (queue = "", stash = "", enclose = false) => {
       const result = [];
       queue = [].concat(queue);
@@ -11694,7 +11694,7 @@ var require_expand = __commonJS({
       if (!stash.length)
         return queue;
       if (!queue.length) {
-        return enclose ? utils.flatten(stash).map((ele) => `{${ele}}`) : stash;
+        return enclose ? utils2.flatten(stash).map((ele) => `{${ele}}`) : stash;
       }
       for (const item of queue) {
         if (Array.isArray(item)) {
@@ -11709,7 +11709,7 @@ var require_expand = __commonJS({
           }
         }
       }
-      return utils.flatten(result);
+      return utils2.flatten(result);
     };
     var expand3 = (ast, options = {}) => {
       const rangeLimit = options.rangeLimit === void 0 ? 1e3 : options.rangeLimit;
@@ -11730,8 +11730,8 @@ var require_expand = __commonJS({
           return;
         }
         if (node.nodes && node.ranges > 0) {
-          const args = utils.reduce(node.nodes);
-          if (utils.exceedsLimit(...args, options.step, rangeLimit)) {
+          const args = utils2.reduce(node.nodes);
+          if (utils2.exceedsLimit(...args, options.step, rangeLimit)) {
             throw new RangeError("expanded array length exceeds range limit. Use options.rangeLimit to increase or disable the limit.");
           }
           let range2 = fill(...args, options);
@@ -11742,7 +11742,7 @@ var require_expand = __commonJS({
           node.nodes = [];
           return;
         }
-        const enclose = utils.encloseBrace(node);
+        const enclose = utils2.encloseBrace(node);
         let queue = node.queue;
         let block = node;
         while (block.type !== "brace" && block.type !== "root" && block.parent) {
@@ -11771,17 +11771,17 @@ var require_expand = __commonJS({
         }
         return queue;
       };
-      return utils.flatten(walk(ast));
+      return utils2.flatten(walk(ast));
     };
-    module.exports = expand3;
+    module2.exports = expand3;
   }
 });
 
 // node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/constants.js
 var require_constants = __commonJS({
-  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/constants.js"(exports, module) {
+  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/constants.js"(exports2, module2) {
     "use strict";
-    module.exports = {
+    module2.exports = {
       MAX_LENGTH: 1e4,
       // Digits
       CHAR_0: "0",
@@ -11880,7 +11880,7 @@ var require_constants = __commonJS({
 
 // node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/parse.js
 var require_parse = __commonJS({
-  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/parse.js"(exports, module) {
+  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/lib/parse.js"(exports2, module2) {
     "use strict";
     var stringify = require_stringify();
     var {
@@ -12116,16 +12116,16 @@ var require_parse = __commonJS({
       push({ type: "eos" });
       return ast;
     };
-    module.exports = parse4;
+    module2.exports = parse4;
   }
 });
 
 // node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/index.js
 var require_braces = __commonJS({
-  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/braces@3.0.3/node_modules/braces/index.js"(exports2, module2) {
     "use strict";
     var stringify = require_stringify();
-    var compile = require_compile();
+    var compile2 = require_compile();
     var expand3 = require_expand();
     var parse4 = require_parse();
     var braces = (input, options = {}) => {
@@ -12158,7 +12158,7 @@ var require_braces = __commonJS({
       if (typeof input === "string") {
         input = braces.parse(input, options);
       }
-      return compile(input, options);
+      return compile2(input, options);
     };
     braces.expand = (input, options = {}) => {
       if (typeof input === "string") {
@@ -12179,15 +12179,15 @@ var require_braces = __commonJS({
       }
       return options.expand !== true ? braces.compile(input, options) : braces.expand(input, options);
     };
-    module.exports = braces;
+    module2.exports = braces;
   }
 });
 
 // node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/constants.js
 var require_constants2 = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/constants.js"(exports, module) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/constants.js"(exports2, module2) {
     "use strict";
-    var path9 = __require("path");
+    var path10 = __require("path");
     var WIN_SLASH = "\\\\/";
     var WIN_NO_SLASH = `[^${WIN_SLASH}]`;
     var DOT_LITERAL = "\\.";
@@ -12252,7 +12252,7 @@ var require_constants2 = __commonJS({
       word: "A-Za-z0-9_",
       xdigit: "A-Fa-f0-9"
     };
-    module.exports = {
+    module2.exports = {
       MAX_LENGTH: 1024 * 64,
       POSIX_REGEX_SOURCE,
       // regular expressions
@@ -12357,7 +12357,7 @@ var require_constants2 = __commonJS({
       /* | */
       CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279,
       /* \uFEFF */
-      SEP: path9.sep,
+      SEP: path10.sep,
       /**
        * Create EXTGLOB_CHARS
        */
@@ -12382,9 +12382,9 @@ var require_constants2 = __commonJS({
 
 // node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/utils.js
 var require_utils3 = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/utils.js"(exports) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/utils.js"(exports2) {
     "use strict";
-    var path9 = __require("path");
+    var path10 = __require("path");
     var win32 = process.platform === "win32";
     var {
       REGEX_BACKSLASH,
@@ -12392,38 +12392,38 @@ var require_utils3 = __commonJS({
       REGEX_SPECIAL_CHARS,
       REGEX_SPECIAL_CHARS_GLOBAL
     } = require_constants2();
-    exports.isObject = (val) => val !== null && typeof val === "object" && !Array.isArray(val);
-    exports.hasRegexChars = (str) => REGEX_SPECIAL_CHARS.test(str);
-    exports.isRegexChar = (str) => str.length === 1 && exports.hasRegexChars(str);
-    exports.escapeRegex = (str) => str.replace(REGEX_SPECIAL_CHARS_GLOBAL, "\\$1");
-    exports.toPosixSlashes = (str) => str.replace(REGEX_BACKSLASH, "/");
-    exports.removeBackslashes = (str) => {
+    exports2.isObject = (val) => val !== null && typeof val === "object" && !Array.isArray(val);
+    exports2.hasRegexChars = (str) => REGEX_SPECIAL_CHARS.test(str);
+    exports2.isRegexChar = (str) => str.length === 1 && exports2.hasRegexChars(str);
+    exports2.escapeRegex = (str) => str.replace(REGEX_SPECIAL_CHARS_GLOBAL, "\\$1");
+    exports2.toPosixSlashes = (str) => str.replace(REGEX_BACKSLASH, "/");
+    exports2.removeBackslashes = (str) => {
       return str.replace(REGEX_REMOVE_BACKSLASH, (match3) => {
         return match3 === "\\" ? "" : match3;
       });
     };
-    exports.supportsLookbehinds = () => {
+    exports2.supportsLookbehinds = () => {
       const segs = process.version.slice(1).split(".").map(Number);
       if (segs.length === 3 && segs[0] >= 9 || segs[0] === 8 && segs[1] >= 10) {
         return true;
       }
       return false;
     };
-    exports.isWindows = (options) => {
+    exports2.isWindows = (options) => {
       if (options && typeof options.windows === "boolean") {
         return options.windows;
       }
-      return win32 === true || path9.sep === "\\";
+      return win32 === true || path10.sep === "\\";
     };
-    exports.escapeLast = (input, char, lastIdx) => {
+    exports2.escapeLast = (input, char, lastIdx) => {
       const idx = input.lastIndexOf(char, lastIdx);
       if (idx === -1)
         return input;
       if (input[idx - 1] === "\\")
-        return exports.escapeLast(input, char, idx - 1);
+        return exports2.escapeLast(input, char, idx - 1);
       return `${input.slice(0, idx)}\\${input.slice(idx)}`;
     };
-    exports.removePrefix = (input, state = {}) => {
+    exports2.removePrefix = (input, state = {}) => {
       let output = input;
       if (output.startsWith("./")) {
         output = output.slice(2);
@@ -12431,7 +12431,7 @@ var require_utils3 = __commonJS({
       }
       return output;
     };
-    exports.wrapOutput = (input, state = {}, options = {}) => {
+    exports2.wrapOutput = (input, state = {}, options = {}) => {
       const prepend = options.contains ? "" : "^";
       const append = options.contains ? "" : "$";
       let output = `${prepend}(?:${input})${append}`;
@@ -12445,9 +12445,9 @@ var require_utils3 = __commonJS({
 
 // node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/scan.js
 var require_scan = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/scan.js"(exports, module) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/scan.js"(exports2, module2) {
     "use strict";
-    var utils = require_utils3();
+    var utils2 = require_utils3();
     var {
       CHAR_ASTERISK,
       /* * */
@@ -12711,9 +12711,9 @@ var require_scan = __commonJS({
       }
       if (opts.unescape === true) {
         if (glob6)
-          glob6 = utils.removeBackslashes(glob6);
+          glob6 = utils2.removeBackslashes(glob6);
         if (base && backslashes === true) {
-          base = utils.removeBackslashes(base);
+          base = utils2.removeBackslashes(base);
         }
       }
       const state = {
@@ -12772,16 +12772,16 @@ var require_scan = __commonJS({
       }
       return state;
     };
-    module.exports = scan;
+    module2.exports = scan;
   }
 });
 
 // node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/parse.js
 var require_parse2 = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/parse.js"(exports, module) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/parse.js"(exports2, module2) {
     "use strict";
     var constants = require_constants2();
-    var utils = require_utils3();
+    var utils2 = require_utils3();
     var {
       MAX_LENGTH,
       POSIX_REGEX_SOURCE,
@@ -12798,7 +12798,7 @@ var require_parse2 = __commonJS({
       try {
         new RegExp(value);
       } catch (ex) {
-        return args.map((v) => utils.escapeRegex(v)).join("..");
+        return args.map((v) => utils2.escapeRegex(v)).join("..");
       }
       return value;
     };
@@ -12819,7 +12819,7 @@ var require_parse2 = __commonJS({
       const bos = { type: "bos", value: "", output: opts.prepend || "" };
       const tokens = [bos];
       const capture = opts.capture ? "" : "?:";
-      const win32 = utils.isWindows(options);
+      const win32 = utils2.isWindows(options);
       const PLATFORM_CHARS = constants.globChars(win32);
       const EXTGLOB_CHARS = constants.extglobChars(PLATFORM_CHARS);
       const {
@@ -12865,7 +12865,7 @@ var require_parse2 = __commonJS({
         globstar: false,
         tokens
       };
-      input = utils.removePrefix(input, state);
+      input = utils2.removePrefix(input, state);
       len = input.length;
       const extglobs = [];
       const braces = [];
@@ -13005,7 +13005,7 @@ var require_parse2 = __commonJS({
           state.output = input;
           return state;
         }
-        state.output = utils.wrapOutput(output, state, options);
+        state.output = utils2.wrapOutput(output, state, options);
         return state;
       }
       while (!eos()) {
@@ -13081,7 +13081,7 @@ var require_parse2 = __commonJS({
           continue;
         }
         if (state.quotes === 1 && value !== '"') {
-          value = utils.escapeRegex(value);
+          value = utils2.escapeRegex(value);
           prev.value += value;
           append({ value });
           continue;
@@ -13142,10 +13142,10 @@ var require_parse2 = __commonJS({
           }
           prev.value += value;
           append({ value });
-          if (opts.literalBrackets === false || utils.hasRegexChars(prevValue)) {
+          if (opts.literalBrackets === false || utils2.hasRegexChars(prevValue)) {
             continue;
           }
-          const escaped = utils.escapeRegex(prev.value);
+          const escaped = utils2.escapeRegex(prev.value);
           state.output = state.output.slice(0, -prev.value.length);
           if (opts.literalBrackets === true) {
             state.output += escaped;
@@ -13262,7 +13262,7 @@ var require_parse2 = __commonJS({
           if (prev && prev.type === "paren") {
             const next = peek();
             let output = value;
-            if (next === "<" && !utils.supportsLookbehinds()) {
+            if (next === "<" && !utils2.supportsLookbehinds()) {
               throw new Error("Node.js v10 or higher is required for regex lookbehinds");
             }
             if (prev.value === "(" && !/[!=<:]/.test(next) || next === "<" && !/<([!=]|\w+>)/.test(remaining())) {
@@ -13455,19 +13455,19 @@ var require_parse2 = __commonJS({
       while (state.brackets > 0) {
         if (opts.strictBrackets === true)
           throw new SyntaxError(syntaxError("closing", "]"));
-        state.output = utils.escapeLast(state.output, "[");
+        state.output = utils2.escapeLast(state.output, "[");
         decrement("brackets");
       }
       while (state.parens > 0) {
         if (opts.strictBrackets === true)
           throw new SyntaxError(syntaxError("closing", ")"));
-        state.output = utils.escapeLast(state.output, "(");
+        state.output = utils2.escapeLast(state.output, "(");
         decrement("parens");
       }
       while (state.braces > 0) {
         if (opts.strictBrackets === true)
           throw new SyntaxError(syntaxError("closing", "}"));
-        state.output = utils.escapeLast(state.output, "{");
+        state.output = utils2.escapeLast(state.output, "{");
         decrement("braces");
       }
       if (opts.strictSlashes !== true && (prev.type === "star" || prev.type === "bracket")) {
@@ -13492,7 +13492,7 @@ var require_parse2 = __commonJS({
         throw new SyntaxError(`Input length: ${len}, exceeds maximum allowed length: ${max}`);
       }
       input = REPLACEMENTS[input] || input;
-      const win32 = utils.isWindows(options);
+      const win32 = utils2.isWindows(options);
       const {
         DOT_LITERAL,
         SLASH_LITERAL,
@@ -13546,25 +13546,25 @@ var require_parse2 = __commonJS({
           }
         }
       };
-      const output = utils.removePrefix(input, state);
+      const output = utils2.removePrefix(input, state);
       let source = create(output);
       if (source && opts.strictSlashes !== true) {
         source += `${SLASH_LITERAL}?`;
       }
       return source;
     };
-    module.exports = parse4;
+    module2.exports = parse4;
   }
 });
 
 // node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/picomatch.js
 var require_picomatch = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/picomatch.js"(exports, module) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/picomatch.js"(exports2, module2) {
     "use strict";
-    var path9 = __require("path");
+    var path10 = __require("path");
     var scan = require_scan();
     var parse4 = require_parse2();
-    var utils = require_utils3();
+    var utils2 = require_utils3();
     var constants = require_constants2();
     var isObject = (val) => val && typeof val === "object" && !Array.isArray(val);
     var picomatch = (glob6, options, returnState = false) => {
@@ -13585,7 +13585,7 @@ var require_picomatch = __commonJS({
         throw new TypeError("Expected pattern to be a non-empty string");
       }
       const opts = options || {};
-      const posix = utils.isWindows(options);
+      const posix = utils2.isWindows(options);
       const regex = isState ? picomatch.compileRe(glob6, options) : picomatch.makeRe(glob6, options, false, true);
       const state = regex.state;
       delete regex.state;
@@ -13629,7 +13629,7 @@ var require_picomatch = __commonJS({
         return { isMatch: false, output: "" };
       }
       const opts = options || {};
-      const format2 = opts.format || (posix ? utils.toPosixSlashes : null);
+      const format2 = opts.format || (posix ? utils2.toPosixSlashes : null);
       let match3 = input === glob6;
       let output = match3 && format2 ? format2(input) : input;
       if (match3 === false) {
@@ -13645,9 +13645,9 @@ var require_picomatch = __commonJS({
       }
       return { isMatch: Boolean(match3), match: match3, output };
     };
-    picomatch.matchBase = (input, glob6, options, posix = utils.isWindows(options)) => {
+    picomatch.matchBase = (input, glob6, options, posix = utils2.isWindows(options)) => {
       const regex = glob6 instanceof RegExp ? glob6 : picomatch.makeRe(glob6, options);
-      return regex.test(path9.basename(input));
+      return regex.test(path10.basename(input));
     };
     picomatch.isMatch = (str, patterns, options) => picomatch(patterns, options)(str);
     picomatch.parse = (pattern, options) => {
@@ -13697,26 +13697,26 @@ var require_picomatch = __commonJS({
       }
     };
     picomatch.constants = constants;
-    module.exports = picomatch;
+    module2.exports = picomatch;
   }
 });
 
 // node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/index.js
 var require_picomatch2 = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/index.js"(exports2, module2) {
     "use strict";
-    module.exports = require_picomatch();
+    module2.exports = require_picomatch();
   }
 });
 
 // node_modules/.aspect_rules_js/micromatch@4.0.8/node_modules/micromatch/index.js
 var require_micromatch = __commonJS({
-  "node_modules/.aspect_rules_js/micromatch@4.0.8/node_modules/micromatch/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/micromatch@4.0.8/node_modules/micromatch/index.js"(exports2, module2) {
     "use strict";
     var util = __require("util");
     var braces = require_braces();
     var picomatch = require_picomatch2();
-    var utils = require_utils3();
+    var utils2 = require_utils3();
     var isEmptyString = (v) => v === "" || v === "./";
     var hasBraces = (v) => {
       const index = v.indexOf("{");
@@ -13804,7 +13804,7 @@ var require_micromatch = __commonJS({
       return micromatch.isMatch(str, pattern, { ...options, contains: true });
     };
     micromatch.matchKeys = (obj, patterns, options) => {
-      if (!utils.isObject(obj)) {
+      if (!utils2.isObject(obj)) {
         throw new TypeError("Expected the first argument to be an object");
       }
       let keys = micromatch(Object.keys(obj), patterns, options);
@@ -13840,9 +13840,9 @@ var require_micromatch = __commonJS({
       return [].concat(patterns).every((p) => picomatch(p, options)(str));
     };
     micromatch.capture = (glob6, input, options) => {
-      let posix = utils.isWindows(options);
+      let posix = utils2.isWindows(options);
       let regex = picomatch.makeRe(String(glob6), { ...options, capture: true });
-      let match3 = regex.exec(posix ? utils.toPosixSlashes(input) : input);
+      let match3 = regex.exec(posix ? utils2.toPosixSlashes(input) : input);
       if (match3) {
         return match3.slice(1).map((v) => v === void 0 ? "" : v);
       }
@@ -13872,17 +13872,17 @@ var require_micromatch = __commonJS({
       return micromatch.braces(pattern, { ...options, expand: true });
     };
     micromatch.hasBraces = hasBraces;
-    module.exports = micromatch;
+    module2.exports = micromatch;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/pattern.js
 var require_pattern = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/pattern.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/pattern.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isAbsolute = exports.partitionAbsoluteAndRelative = exports.removeDuplicateSlashes = exports.matchAny = exports.convertPatternsToRe = exports.makeRe = exports.getPatternParts = exports.expandBraceExpansion = exports.expandPatternsWithBraceExpansion = exports.isAffectDepthOfReadingPattern = exports.endsWithSlashGlobStar = exports.hasGlobStar = exports.getBaseDirectory = exports.isPatternRelatedToParentDirectory = exports.getPatternsOutsideCurrentDirectory = exports.getPatternsInsideCurrentDirectory = exports.getPositivePatterns = exports.getNegativePatterns = exports.isPositivePattern = exports.isNegativePattern = exports.convertToNegativePattern = exports.convertToPositivePattern = exports.isDynamicPattern = exports.isStaticPattern = void 0;
-    var path9 = __require("path");
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.isAbsolute = exports2.partitionAbsoluteAndRelative = exports2.removeDuplicateSlashes = exports2.matchAny = exports2.convertPatternsToRe = exports2.makeRe = exports2.getPatternParts = exports2.expandBraceExpansion = exports2.expandPatternsWithBraceExpansion = exports2.isAffectDepthOfReadingPattern = exports2.endsWithSlashGlobStar = exports2.hasGlobStar = exports2.getBaseDirectory = exports2.isPatternRelatedToParentDirectory = exports2.getPatternsOutsideCurrentDirectory = exports2.getPatternsInsideCurrentDirectory = exports2.getPositivePatterns = exports2.getNegativePatterns = exports2.isPositivePattern = exports2.isNegativePattern = exports2.convertToNegativePattern = exports2.convertToPositivePattern = exports2.isDynamicPattern = exports2.isStaticPattern = void 0;
+    var path10 = __require("path");
     var globParent = require_glob_parent();
     var micromatch = require_micromatch();
     var GLOBSTAR3 = "**";
@@ -13896,7 +13896,7 @@ var require_pattern = __commonJS({
     function isStaticPattern(pattern, options = {}) {
       return !isDynamicPattern(pattern, options);
     }
-    exports.isStaticPattern = isStaticPattern;
+    exports2.isStaticPattern = isStaticPattern;
     function isDynamicPattern(pattern, options = {}) {
       if (pattern === "") {
         return false;
@@ -13915,7 +13915,7 @@ var require_pattern = __commonJS({
       }
       return false;
     }
-    exports.isDynamicPattern = isDynamicPattern;
+    exports2.isDynamicPattern = isDynamicPattern;
     function hasBraceExpansion(pattern) {
       const openingBraceIndex = pattern.indexOf("{");
       if (openingBraceIndex === -1) {
@@ -13931,68 +13931,68 @@ var require_pattern = __commonJS({
     function convertToPositivePattern(pattern) {
       return isNegativePattern(pattern) ? pattern.slice(1) : pattern;
     }
-    exports.convertToPositivePattern = convertToPositivePattern;
+    exports2.convertToPositivePattern = convertToPositivePattern;
     function convertToNegativePattern(pattern) {
       return "!" + pattern;
     }
-    exports.convertToNegativePattern = convertToNegativePattern;
+    exports2.convertToNegativePattern = convertToNegativePattern;
     function isNegativePattern(pattern) {
       return pattern.startsWith("!") && pattern[1] !== "(";
     }
-    exports.isNegativePattern = isNegativePattern;
+    exports2.isNegativePattern = isNegativePattern;
     function isPositivePattern(pattern) {
       return !isNegativePattern(pattern);
     }
-    exports.isPositivePattern = isPositivePattern;
+    exports2.isPositivePattern = isPositivePattern;
     function getNegativePatterns(patterns) {
       return patterns.filter(isNegativePattern);
     }
-    exports.getNegativePatterns = getNegativePatterns;
+    exports2.getNegativePatterns = getNegativePatterns;
     function getPositivePatterns(patterns) {
       return patterns.filter(isPositivePattern);
     }
-    exports.getPositivePatterns = getPositivePatterns;
+    exports2.getPositivePatterns = getPositivePatterns;
     function getPatternsInsideCurrentDirectory(patterns) {
       return patterns.filter((pattern) => !isPatternRelatedToParentDirectory(pattern));
     }
-    exports.getPatternsInsideCurrentDirectory = getPatternsInsideCurrentDirectory;
+    exports2.getPatternsInsideCurrentDirectory = getPatternsInsideCurrentDirectory;
     function getPatternsOutsideCurrentDirectory(patterns) {
       return patterns.filter(isPatternRelatedToParentDirectory);
     }
-    exports.getPatternsOutsideCurrentDirectory = getPatternsOutsideCurrentDirectory;
+    exports2.getPatternsOutsideCurrentDirectory = getPatternsOutsideCurrentDirectory;
     function isPatternRelatedToParentDirectory(pattern) {
       return pattern.startsWith("..") || pattern.startsWith("./..");
     }
-    exports.isPatternRelatedToParentDirectory = isPatternRelatedToParentDirectory;
+    exports2.isPatternRelatedToParentDirectory = isPatternRelatedToParentDirectory;
     function getBaseDirectory(pattern) {
       return globParent(pattern, { flipBackslashes: false });
     }
-    exports.getBaseDirectory = getBaseDirectory;
+    exports2.getBaseDirectory = getBaseDirectory;
     function hasGlobStar(pattern) {
       return pattern.includes(GLOBSTAR3);
     }
-    exports.hasGlobStar = hasGlobStar;
+    exports2.hasGlobStar = hasGlobStar;
     function endsWithSlashGlobStar(pattern) {
       return pattern.endsWith("/" + GLOBSTAR3);
     }
-    exports.endsWithSlashGlobStar = endsWithSlashGlobStar;
+    exports2.endsWithSlashGlobStar = endsWithSlashGlobStar;
     function isAffectDepthOfReadingPattern(pattern) {
-      const basename3 = path9.basename(pattern);
+      const basename3 = path10.basename(pattern);
       return endsWithSlashGlobStar(pattern) || isStaticPattern(basename3);
     }
-    exports.isAffectDepthOfReadingPattern = isAffectDepthOfReadingPattern;
+    exports2.isAffectDepthOfReadingPattern = isAffectDepthOfReadingPattern;
     function expandPatternsWithBraceExpansion(patterns) {
       return patterns.reduce((collection, pattern) => {
         return collection.concat(expandBraceExpansion(pattern));
       }, []);
     }
-    exports.expandPatternsWithBraceExpansion = expandPatternsWithBraceExpansion;
+    exports2.expandPatternsWithBraceExpansion = expandPatternsWithBraceExpansion;
     function expandBraceExpansion(pattern) {
       const patterns = micromatch.braces(pattern, { expand: true, nodupes: true, keepEscaping: true });
       patterns.sort((a, b) => a.length - b.length);
       return patterns.filter((pattern2) => pattern2 !== "");
     }
-    exports.expandBraceExpansion = expandBraceExpansion;
+    exports2.expandBraceExpansion = expandBraceExpansion;
     function getPatternParts(pattern, options) {
       let { parts } = micromatch.scan(pattern, Object.assign(Object.assign({}, options), { parts: true }));
       if (parts.length === 0) {
@@ -14004,23 +14004,23 @@ var require_pattern = __commonJS({
       }
       return parts;
     }
-    exports.getPatternParts = getPatternParts;
+    exports2.getPatternParts = getPatternParts;
     function makeRe3(pattern, options) {
       return micromatch.makeRe(pattern, options);
     }
-    exports.makeRe = makeRe3;
+    exports2.makeRe = makeRe3;
     function convertPatternsToRe(patterns, options) {
       return patterns.map((pattern) => makeRe3(pattern, options));
     }
-    exports.convertPatternsToRe = convertPatternsToRe;
+    exports2.convertPatternsToRe = convertPatternsToRe;
     function matchAny(entry, patternsRe) {
       return patternsRe.some((patternRe) => patternRe.test(entry));
     }
-    exports.matchAny = matchAny;
+    exports2.matchAny = matchAny;
     function removeDuplicateSlashes(pattern) {
       return pattern.replace(DOUBLE_SLASH_RE, "/");
     }
-    exports.removeDuplicateSlashes = removeDuplicateSlashes;
+    exports2.removeDuplicateSlashes = removeDuplicateSlashes;
     function partitionAbsoluteAndRelative(patterns) {
       const absolute = [];
       const relative3 = [];
@@ -14033,22 +14033,22 @@ var require_pattern = __commonJS({
       }
       return [absolute, relative3];
     }
-    exports.partitionAbsoluteAndRelative = partitionAbsoluteAndRelative;
+    exports2.partitionAbsoluteAndRelative = partitionAbsoluteAndRelative;
     function isAbsolute3(pattern) {
-      return path9.isAbsolute(pattern);
+      return path10.isAbsolute(pattern);
     }
-    exports.isAbsolute = isAbsolute3;
+    exports2.isAbsolute = isAbsolute3;
   }
 });
 
 // node_modules/.aspect_rules_js/merge2@1.4.1/node_modules/merge2/index.js
 var require_merge2 = __commonJS({
-  "node_modules/.aspect_rules_js/merge2@1.4.1/node_modules/merge2/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/merge2@1.4.1/node_modules/merge2/index.js"(exports2, module2) {
     "use strict";
     var Stream2 = __require("stream");
     var PassThrough = Stream2.PassThrough;
     var slice = Array.prototype.slice;
-    module.exports = merge2;
+    module2.exports = merge2;
     function merge2() {
       const streamsQueue = [];
       const args = slice.call(arguments);
@@ -14162,10 +14162,10 @@ var require_merge2 = __commonJS({
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/stream.js
 var require_stream = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/stream.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/stream.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.merge = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.merge = void 0;
     var merge2 = require_merge2();
     function merge(streams) {
       const mergedStream = merge2(streams);
@@ -14176,7 +14176,7 @@ var require_stream = __commonJS({
       mergedStream.once("end", () => propagateCloseEventToSources(streams));
       return mergedStream;
     }
-    exports.merge = merge;
+    exports2.merge = merge;
     function propagateCloseEventToSources(streams) {
       streams.forEach((stream) => stream.emit("close"));
     }
@@ -14185,58 +14185,58 @@ var require_stream = __commonJS({
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/string.js
 var require_string = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/string.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/string.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isEmpty = exports.isString = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.isEmpty = exports2.isString = void 0;
     function isString(input) {
       return typeof input === "string";
     }
-    exports.isString = isString;
+    exports2.isString = isString;
     function isEmpty(input) {
       return input === "";
     }
-    exports.isEmpty = isEmpty;
+    exports2.isEmpty = isEmpty;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/index.js
 var require_utils4 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/index.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/index.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.string = exports.stream = exports.pattern = exports.path = exports.fs = exports.errno = exports.array = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.string = exports2.stream = exports2.pattern = exports2.path = exports2.fs = exports2.errno = exports2.array = void 0;
     var array = require_array();
-    exports.array = array;
+    exports2.array = array;
     var errno = require_errno();
-    exports.errno = errno;
-    var fs6 = require_fs();
-    exports.fs = fs6;
-    var path9 = require_path();
-    exports.path = path9;
+    exports2.errno = errno;
+    var fs7 = require_fs();
+    exports2.fs = fs7;
+    var path10 = require_path();
+    exports2.path = path10;
     var pattern = require_pattern();
-    exports.pattern = pattern;
+    exports2.pattern = pattern;
     var stream = require_stream();
-    exports.stream = stream;
+    exports2.stream = stream;
     var string = require_string();
-    exports.string = string;
+    exports2.string = string;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/managers/tasks.js
 var require_tasks = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/managers/tasks.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/managers/tasks.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.convertPatternGroupToTask = exports.convertPatternGroupsToTasks = exports.groupPatternsByBaseDirectory = exports.getNegativePatternsAsPositive = exports.getPositivePatterns = exports.convertPatternsToTasks = exports.generate = void 0;
-    var utils = require_utils4();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.convertPatternGroupToTask = exports2.convertPatternGroupsToTasks = exports2.groupPatternsByBaseDirectory = exports2.getNegativePatternsAsPositive = exports2.getPositivePatterns = exports2.convertPatternsToTasks = exports2.generate = void 0;
+    var utils2 = require_utils4();
     function generate(input, settings) {
       const patterns = processPatterns(input, settings);
       const ignore = processPatterns(settings.ignore, settings);
       const positivePatterns = getPositivePatterns(patterns);
       const negativePatterns = getNegativePatternsAsPositive(patterns, ignore);
-      const staticPatterns = positivePatterns.filter((pattern) => utils.pattern.isStaticPattern(pattern, settings));
-      const dynamicPatterns = positivePatterns.filter((pattern) => utils.pattern.isDynamicPattern(pattern, settings));
+      const staticPatterns = positivePatterns.filter((pattern) => utils2.pattern.isStaticPattern(pattern, settings));
+      const dynamicPatterns = positivePatterns.filter((pattern) => utils2.pattern.isDynamicPattern(pattern, settings));
       const staticTasks = convertPatternsToTasks(
         staticPatterns,
         negativePatterns,
@@ -14251,21 +14251,21 @@ var require_tasks = __commonJS({
       );
       return staticTasks.concat(dynamicTasks);
     }
-    exports.generate = generate;
+    exports2.generate = generate;
     function processPatterns(input, settings) {
       let patterns = input;
       if (settings.braceExpansion) {
-        patterns = utils.pattern.expandPatternsWithBraceExpansion(patterns);
+        patterns = utils2.pattern.expandPatternsWithBraceExpansion(patterns);
       }
       if (settings.baseNameMatch) {
         patterns = patterns.map((pattern) => pattern.includes("/") ? pattern : `**/${pattern}`);
       }
-      return patterns.map((pattern) => utils.pattern.removeDuplicateSlashes(pattern));
+      return patterns.map((pattern) => utils2.pattern.removeDuplicateSlashes(pattern));
     }
     function convertPatternsToTasks(positive, negative, dynamic) {
       const tasks = [];
-      const patternsOutsideCurrentDirectory = utils.pattern.getPatternsOutsideCurrentDirectory(positive);
-      const patternsInsideCurrentDirectory = utils.pattern.getPatternsInsideCurrentDirectory(positive);
+      const patternsOutsideCurrentDirectory = utils2.pattern.getPatternsOutsideCurrentDirectory(positive);
+      const patternsInsideCurrentDirectory = utils2.pattern.getPatternsInsideCurrentDirectory(positive);
       const outsideCurrentDirectoryGroup = groupPatternsByBaseDirectory(patternsOutsideCurrentDirectory);
       const insideCurrentDirectoryGroup = groupPatternsByBaseDirectory(patternsInsideCurrentDirectory);
       tasks.push(...convertPatternGroupsToTasks(outsideCurrentDirectoryGroup, negative, dynamic));
@@ -14276,21 +14276,21 @@ var require_tasks = __commonJS({
       }
       return tasks;
     }
-    exports.convertPatternsToTasks = convertPatternsToTasks;
+    exports2.convertPatternsToTasks = convertPatternsToTasks;
     function getPositivePatterns(patterns) {
-      return utils.pattern.getPositivePatterns(patterns);
+      return utils2.pattern.getPositivePatterns(patterns);
     }
-    exports.getPositivePatterns = getPositivePatterns;
+    exports2.getPositivePatterns = getPositivePatterns;
     function getNegativePatternsAsPositive(patterns, ignore) {
-      const negative = utils.pattern.getNegativePatterns(patterns).concat(ignore);
-      const positive = negative.map(utils.pattern.convertToPositivePattern);
+      const negative = utils2.pattern.getNegativePatterns(patterns).concat(ignore);
+      const positive = negative.map(utils2.pattern.convertToPositivePattern);
       return positive;
     }
-    exports.getNegativePatternsAsPositive = getNegativePatternsAsPositive;
+    exports2.getNegativePatternsAsPositive = getNegativePatternsAsPositive;
     function groupPatternsByBaseDirectory(patterns) {
       const group = {};
       return patterns.reduce((collection, pattern) => {
-        const base = utils.pattern.getBaseDirectory(pattern);
+        const base = utils2.pattern.getBaseDirectory(pattern);
         if (base in collection) {
           collection[base].push(pattern);
         } else {
@@ -14299,34 +14299,34 @@ var require_tasks = __commonJS({
         return collection;
       }, group);
     }
-    exports.groupPatternsByBaseDirectory = groupPatternsByBaseDirectory;
+    exports2.groupPatternsByBaseDirectory = groupPatternsByBaseDirectory;
     function convertPatternGroupsToTasks(positive, negative, dynamic) {
       return Object.keys(positive).map((base) => {
         return convertPatternGroupToTask(base, positive[base], negative, dynamic);
       });
     }
-    exports.convertPatternGroupsToTasks = convertPatternGroupsToTasks;
+    exports2.convertPatternGroupsToTasks = convertPatternGroupsToTasks;
     function convertPatternGroupToTask(base, positive, negative, dynamic) {
       return {
         dynamic,
         positive,
         negative,
         base,
-        patterns: [].concat(positive, negative.map(utils.pattern.convertToNegativePattern))
+        patterns: [].concat(positive, negative.map(utils2.pattern.convertToNegativePattern))
       };
     }
-    exports.convertPatternGroupToTask = convertPatternGroupToTask;
+    exports2.convertPatternGroupToTask = convertPatternGroupToTask;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/providers/async.js
 var require_async = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/providers/async.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/providers/async.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.read = void 0;
-    function read(path9, settings, callback) {
-      settings.fs.lstat(path9, (lstatError, lstat) => {
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.read = void 0;
+    function read(path10, settings, callback) {
+      settings.fs.lstat(path10, (lstatError, lstat) => {
         if (lstatError !== null) {
           callFailureCallback(callback, lstatError);
           return;
@@ -14335,7 +14335,7 @@ var require_async = __commonJS({
           callSuccessCallback(callback, lstat);
           return;
         }
-        settings.fs.stat(path9, (statError, stat2) => {
+        settings.fs.stat(path10, (statError, stat2) => {
           if (statError !== null) {
             if (settings.throwErrorOnBrokenSymbolicLink) {
               callFailureCallback(callback, statError);
@@ -14351,7 +14351,7 @@ var require_async = __commonJS({
         });
       });
     }
-    exports.read = read;
+    exports2.read = read;
     function callFailureCallback(callback, error) {
       callback(error);
     }
@@ -14363,17 +14363,17 @@ var require_async = __commonJS({
 
 // node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/providers/sync.js
 var require_sync = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/providers/sync.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/providers/sync.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.read = void 0;
-    function read(path9, settings) {
-      const lstat = settings.fs.lstatSync(path9);
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.read = void 0;
+    function read(path10, settings) {
+      const lstat = settings.fs.lstatSync(path10);
       if (!lstat.isSymbolicLink() || !settings.followSymbolicLink) {
         return lstat;
       }
       try {
-        const stat2 = settings.fs.statSync(path9);
+        const stat2 = settings.fs.statSync(path10);
         if (settings.markSymbolicLink) {
           stat2.isSymbolicLink = () => true;
         }
@@ -14385,44 +14385,44 @@ var require_sync = __commonJS({
         throw error;
       }
     }
-    exports.read = read;
+    exports2.read = read;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/adapters/fs.js
 var require_fs2 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/adapters/fs.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/adapters/fs.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.createFileSystemAdapter = exports.FILE_SYSTEM_ADAPTER = void 0;
-    var fs6 = __require("fs");
-    exports.FILE_SYSTEM_ADAPTER = {
-      lstat: fs6.lstat,
-      stat: fs6.stat,
-      lstatSync: fs6.lstatSync,
-      statSync: fs6.statSync
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createFileSystemAdapter = exports2.FILE_SYSTEM_ADAPTER = void 0;
+    var fs7 = __require("fs");
+    exports2.FILE_SYSTEM_ADAPTER = {
+      lstat: fs7.lstat,
+      stat: fs7.stat,
+      lstatSync: fs7.lstatSync,
+      statSync: fs7.statSync
     };
     function createFileSystemAdapter(fsMethods) {
       if (fsMethods === void 0) {
-        return exports.FILE_SYSTEM_ADAPTER;
+        return exports2.FILE_SYSTEM_ADAPTER;
       }
-      return Object.assign(Object.assign({}, exports.FILE_SYSTEM_ADAPTER), fsMethods);
+      return Object.assign(Object.assign({}, exports2.FILE_SYSTEM_ADAPTER), fsMethods);
     }
-    exports.createFileSystemAdapter = createFileSystemAdapter;
+    exports2.createFileSystemAdapter = createFileSystemAdapter;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/settings.js
 var require_settings = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/settings.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/settings.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var fs6 = require_fs2();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var fs7 = require_fs2();
     var Settings = class {
       constructor(_options = {}) {
         this._options = _options;
         this.followSymbolicLink = this._getValue(this._options.followSymbolicLink, true);
-        this.fs = fs6.createFileSystemAdapter(this._options.fs);
+        this.fs = fs7.createFileSystemAdapter(this._options.fs);
         this.markSymbolicLink = this._getValue(this._options.markSymbolicLink, false);
         this.throwErrorOnBrokenSymbolicLink = this._getValue(this._options.throwErrorOnBrokenSymbolicLink, true);
       }
@@ -14430,33 +14430,33 @@ var require_settings = __commonJS({
         return option !== null && option !== void 0 ? option : value;
       }
     };
-    exports.default = Settings;
+    exports2.default = Settings;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/index.js
 var require_out = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/index.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.statSync = exports.stat = exports.Settings = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.statSync = exports2.stat = exports2.Settings = void 0;
     var async = require_async();
     var sync = require_sync();
     var settings_1 = require_settings();
-    exports.Settings = settings_1.default;
-    function stat2(path9, optionsOrSettingsOrCallback, callback) {
+    exports2.Settings = settings_1.default;
+    function stat2(path10, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
-        async.read(path9, getSettings(), optionsOrSettingsOrCallback);
+        async.read(path10, getSettings(), optionsOrSettingsOrCallback);
         return;
       }
-      async.read(path9, getSettings(optionsOrSettingsOrCallback), callback);
+      async.read(path10, getSettings(optionsOrSettingsOrCallback), callback);
     }
-    exports.stat = stat2;
-    function statSync2(path9, optionsOrSettings) {
+    exports2.stat = stat2;
+    function statSync2(path10, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
-      return sync.read(path9, settings);
+      return sync.read(path10, settings);
     }
-    exports.statSync = statSync2;
+    exports2.statSync = statSync2;
     function getSettings(settingsOrOptions = {}) {
       if (settingsOrOptions instanceof settings_1.default) {
         return settingsOrOptions;
@@ -14468,9 +14468,9 @@ var require_out = __commonJS({
 
 // node_modules/.aspect_rules_js/queue-microtask@1.2.3/node_modules/queue-microtask/index.js
 var require_queue_microtask = __commonJS({
-  "node_modules/.aspect_rules_js/queue-microtask@1.2.3/node_modules/queue-microtask/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/queue-microtask@1.2.3/node_modules/queue-microtask/index.js"(exports2, module2) {
     var promise;
-    module.exports = typeof queueMicrotask === "function" ? queueMicrotask.bind(typeof window !== "undefined" ? window : global) : (cb) => (promise || (promise = Promise.resolve())).then(cb).catch((err) => setTimeout(() => {
+    module2.exports = typeof queueMicrotask === "function" ? queueMicrotask.bind(typeof window !== "undefined" ? window : global) : (cb) => (promise || (promise = Promise.resolve())).then(cb).catch((err) => setTimeout(() => {
       throw err;
     }, 0));
   }
@@ -14478,8 +14478,8 @@ var require_queue_microtask = __commonJS({
 
 // node_modules/.aspect_rules_js/run-parallel@1.2.0/node_modules/run-parallel/index.js
 var require_run_parallel = __commonJS({
-  "node_modules/.aspect_rules_js/run-parallel@1.2.0/node_modules/run-parallel/index.js"(exports, module) {
-    module.exports = runParallel;
+  "node_modules/.aspect_rules_js/run-parallel@1.2.0/node_modules/run-parallel/index.js"(exports2, module2) {
+    module2.exports = runParallel;
     var queueMicrotask2 = require_queue_microtask();
     function runParallel(tasks, cb) {
       let results, pending, keys;
@@ -14531,10 +14531,10 @@ var require_run_parallel = __commonJS({
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/constants.js
 var require_constants3 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/constants.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/constants.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.IS_SUPPORT_READDIR_WITH_FILE_TYPES = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.IS_SUPPORT_READDIR_WITH_FILE_TYPES = void 0;
     var NODE_PROCESS_VERSION_PARTS = process.versions.node.split(".");
     if (NODE_PROCESS_VERSION_PARTS[0] === void 0 || NODE_PROCESS_VERSION_PARTS[1] === void 0) {
       throw new Error(`Unexpected behavior. The 'process.versions.node' variable has invalid value: ${process.versions.node}`);
@@ -14545,16 +14545,16 @@ var require_constants3 = __commonJS({
     var SUPPORTED_MINOR_VERSION = 10;
     var IS_MATCHED_BY_MAJOR = MAJOR_VERSION > SUPPORTED_MAJOR_VERSION;
     var IS_MATCHED_BY_MAJOR_AND_MINOR = MAJOR_VERSION === SUPPORTED_MAJOR_VERSION && MINOR_VERSION >= SUPPORTED_MINOR_VERSION;
-    exports.IS_SUPPORT_READDIR_WITH_FILE_TYPES = IS_MATCHED_BY_MAJOR || IS_MATCHED_BY_MAJOR_AND_MINOR;
+    exports2.IS_SUPPORT_READDIR_WITH_FILE_TYPES = IS_MATCHED_BY_MAJOR || IS_MATCHED_BY_MAJOR_AND_MINOR;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/utils/fs.js
 var require_fs3 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/utils/fs.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/utils/fs.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.createDirentFromStats = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createDirentFromStats = void 0;
     var DirentFromStats = class {
       constructor(name, stats) {
         this.name = name;
@@ -14570,47 +14570,47 @@ var require_fs3 = __commonJS({
     function createDirentFromStats(name, stats) {
       return new DirentFromStats(name, stats);
     }
-    exports.createDirentFromStats = createDirentFromStats;
+    exports2.createDirentFromStats = createDirentFromStats;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/utils/index.js
 var require_utils5 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/utils/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/utils/index.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.fs = void 0;
-    var fs6 = require_fs3();
-    exports.fs = fs6;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.fs = void 0;
+    var fs7 = require_fs3();
+    exports2.fs = fs7;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/common.js
 var require_common = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/common.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/common.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.joinPathSegments = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.joinPathSegments = void 0;
     function joinPathSegments(a, b, separator) {
       if (a.endsWith(separator)) {
         return a + b;
       }
       return a + separator + b;
     }
-    exports.joinPathSegments = joinPathSegments;
+    exports2.joinPathSegments = joinPathSegments;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/async.js
 var require_async2 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/async.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/async.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.readdir = exports.readdirWithFileTypes = exports.read = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.readdir = exports2.readdirWithFileTypes = exports2.read = void 0;
     var fsStat = require_out();
     var rpl = require_run_parallel();
     var constants_1 = require_constants3();
-    var utils = require_utils5();
+    var utils2 = require_utils5();
     var common2 = require_common();
     function read(directory, settings, callback) {
       if (!settings.stats && constants_1.IS_SUPPORT_READDIR_WITH_FILE_TYPES) {
@@ -14619,7 +14619,7 @@ var require_async2 = __commonJS({
       }
       readdir(directory, settings, callback);
     }
-    exports.read = read;
+    exports2.read = read;
     function readdirWithFileTypes(directory, settings, callback) {
       settings.fs.readdir(directory, { withFileTypes: true }, (readdirError, dirents) => {
         if (readdirError !== null) {
@@ -14645,7 +14645,7 @@ var require_async2 = __commonJS({
         });
       });
     }
-    exports.readdirWithFileTypes = readdirWithFileTypes;
+    exports2.readdirWithFileTypes = readdirWithFileTypes;
     function makeRplTaskEntry(entry, settings) {
       return (done) => {
         if (!entry.dirent.isSymbolicLink()) {
@@ -14661,7 +14661,7 @@ var require_async2 = __commonJS({
             done(null, entry);
             return;
           }
-          entry.dirent = utils.fs.createDirentFromStats(entry.name, stats);
+          entry.dirent = utils2.fs.createDirentFromStats(entry.name, stats);
           done(null, entry);
         });
       };
@@ -14673,17 +14673,17 @@ var require_async2 = __commonJS({
           return;
         }
         const tasks = names.map((name) => {
-          const path9 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
+          const path10 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
           return (done) => {
-            fsStat.stat(path9, settings.fsStatSettings, (error, stats) => {
+            fsStat.stat(path10, settings.fsStatSettings, (error, stats) => {
               if (error !== null) {
                 done(error);
                 return;
               }
               const entry = {
                 name,
-                path: path9,
-                dirent: utils.fs.createDirentFromStats(name, stats)
+                path: path10,
+                dirent: utils2.fs.createDirentFromStats(name, stats)
               };
               if (settings.stats) {
                 entry.stats = stats;
@@ -14701,7 +14701,7 @@ var require_async2 = __commonJS({
         });
       });
     }
-    exports.readdir = readdir;
+    exports2.readdir = readdir;
     function callFailureCallback(callback, error) {
       callback(error);
     }
@@ -14713,13 +14713,13 @@ var require_async2 = __commonJS({
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/sync.js
 var require_sync2 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/sync.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/providers/sync.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.readdir = exports.readdirWithFileTypes = exports.read = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.readdir = exports2.readdirWithFileTypes = exports2.read = void 0;
     var fsStat = require_out();
     var constants_1 = require_constants3();
-    var utils = require_utils5();
+    var utils2 = require_utils5();
     var common2 = require_common();
     function read(directory, settings) {
       if (!settings.stats && constants_1.IS_SUPPORT_READDIR_WITH_FILE_TYPES) {
@@ -14727,7 +14727,7 @@ var require_sync2 = __commonJS({
       }
       return readdir(directory, settings);
     }
-    exports.read = read;
+    exports2.read = read;
     function readdirWithFileTypes(directory, settings) {
       const dirents = settings.fs.readdirSync(directory, { withFileTypes: true });
       return dirents.map((dirent) => {
@@ -14739,7 +14739,7 @@ var require_sync2 = __commonJS({
         if (entry.dirent.isSymbolicLink() && settings.followSymbolicLinks) {
           try {
             const stats = settings.fs.statSync(entry.path);
-            entry.dirent = utils.fs.createDirentFromStats(entry.name, stats);
+            entry.dirent = utils2.fs.createDirentFromStats(entry.name, stats);
           } catch (error) {
             if (settings.throwErrorOnBrokenSymbolicLink) {
               throw error;
@@ -14749,7 +14749,7 @@ var require_sync2 = __commonJS({
         return entry;
       });
     }
-    exports.readdirWithFileTypes = readdirWithFileTypes;
+    exports2.readdirWithFileTypes = readdirWithFileTypes;
     function readdir(directory, settings) {
       const names = settings.fs.readdirSync(directory);
       return names.map((name) => {
@@ -14758,7 +14758,7 @@ var require_sync2 = __commonJS({
         const entry = {
           name,
           path: entryPath,
-          dirent: utils.fs.createDirentFromStats(name, stats)
+          dirent: utils2.fs.createDirentFromStats(name, stats)
         };
         if (settings.stats) {
           entry.stats = stats;
@@ -14766,49 +14766,49 @@ var require_sync2 = __commonJS({
         return entry;
       });
     }
-    exports.readdir = readdir;
+    exports2.readdir = readdir;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/adapters/fs.js
 var require_fs4 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/adapters/fs.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/adapters/fs.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.createFileSystemAdapter = exports.FILE_SYSTEM_ADAPTER = void 0;
-    var fs6 = __require("fs");
-    exports.FILE_SYSTEM_ADAPTER = {
-      lstat: fs6.lstat,
-      stat: fs6.stat,
-      lstatSync: fs6.lstatSync,
-      statSync: fs6.statSync,
-      readdir: fs6.readdir,
-      readdirSync: fs6.readdirSync
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createFileSystemAdapter = exports2.FILE_SYSTEM_ADAPTER = void 0;
+    var fs7 = __require("fs");
+    exports2.FILE_SYSTEM_ADAPTER = {
+      lstat: fs7.lstat,
+      stat: fs7.stat,
+      lstatSync: fs7.lstatSync,
+      statSync: fs7.statSync,
+      readdir: fs7.readdir,
+      readdirSync: fs7.readdirSync
     };
     function createFileSystemAdapter(fsMethods) {
       if (fsMethods === void 0) {
-        return exports.FILE_SYSTEM_ADAPTER;
+        return exports2.FILE_SYSTEM_ADAPTER;
       }
-      return Object.assign(Object.assign({}, exports.FILE_SYSTEM_ADAPTER), fsMethods);
+      return Object.assign(Object.assign({}, exports2.FILE_SYSTEM_ADAPTER), fsMethods);
     }
-    exports.createFileSystemAdapter = createFileSystemAdapter;
+    exports2.createFileSystemAdapter = createFileSystemAdapter;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/settings.js
 var require_settings2 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/settings.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/settings.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var path9 = __require("path");
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var path10 = __require("path");
     var fsStat = require_out();
-    var fs6 = require_fs4();
+    var fs7 = require_fs4();
     var Settings = class {
       constructor(_options = {}) {
         this._options = _options;
         this.followSymbolicLinks = this._getValue(this._options.followSymbolicLinks, false);
-        this.fs = fs6.createFileSystemAdapter(this._options.fs);
-        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path9.sep);
+        this.fs = fs7.createFileSystemAdapter(this._options.fs);
+        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path10.sep);
         this.stats = this._getValue(this._options.stats, false);
         this.throwErrorOnBrokenSymbolicLink = this._getValue(this._options.throwErrorOnBrokenSymbolicLink, true);
         this.fsStatSettings = new fsStat.Settings({
@@ -14821,33 +14821,33 @@ var require_settings2 = __commonJS({
         return option !== null && option !== void 0 ? option : value;
       }
     };
-    exports.default = Settings;
+    exports2.default = Settings;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/index.js
 var require_out2 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/index.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Settings = exports.scandirSync = exports.scandir = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Settings = exports2.scandirSync = exports2.scandir = void 0;
     var async = require_async2();
     var sync = require_sync2();
     var settings_1 = require_settings2();
-    exports.Settings = settings_1.default;
-    function scandir(path9, optionsOrSettingsOrCallback, callback) {
+    exports2.Settings = settings_1.default;
+    function scandir(path10, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
-        async.read(path9, getSettings(), optionsOrSettingsOrCallback);
+        async.read(path10, getSettings(), optionsOrSettingsOrCallback);
         return;
       }
-      async.read(path9, getSettings(optionsOrSettingsOrCallback), callback);
+      async.read(path10, getSettings(optionsOrSettingsOrCallback), callback);
     }
-    exports.scandir = scandir;
-    function scandirSync(path9, optionsOrSettings) {
+    exports2.scandir = scandir;
+    function scandirSync(path10, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
-      return sync.read(path9, settings);
+      return sync.read(path10, settings);
     }
-    exports.scandirSync = scandirSync;
+    exports2.scandirSync = scandirSync;
     function getSettings(settingsOrOptions = {}) {
       if (settingsOrOptions instanceof settings_1.default) {
         return settingsOrOptions;
@@ -14859,7 +14859,7 @@ var require_out2 = __commonJS({
 
 // node_modules/.aspect_rules_js/reusify@1.1.0/node_modules/reusify/reusify.js
 var require_reusify = __commonJS({
-  "node_modules/.aspect_rules_js/reusify@1.1.0/node_modules/reusify/reusify.js"(exports, module) {
+  "node_modules/.aspect_rules_js/reusify@1.1.0/node_modules/reusify/reusify.js"(exports2, module2) {
     "use strict";
     function reusify(Constructor) {
       var head = new Constructor();
@@ -14884,13 +14884,13 @@ var require_reusify = __commonJS({
         release
       };
     }
-    module.exports = reusify;
+    module2.exports = reusify;
   }
 });
 
 // node_modules/.aspect_rules_js/fastq@1.20.1/node_modules/fastq/queue.js
 var require_queue = __commonJS({
-  "node_modules/.aspect_rules_js/fastq@1.20.1/node_modules/fastq/queue.js"(exports, module) {
+  "node_modules/.aspect_rules_js/fastq@1.20.1/node_modules/fastq/queue.js"(exports2, module2) {
     "use strict";
     var reusify = require_reusify();
     function fastqueue(context, worker, _concurrency) {
@@ -15170,32 +15170,32 @@ var require_queue = __commonJS({
         return p;
       }
     }
-    module.exports = fastqueue;
-    module.exports.promise = queueAsPromised;
+    module2.exports = fastqueue;
+    module2.exports.promise = queueAsPromised;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/common.js
 var require_common2 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/common.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/common.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.joinPathSegments = exports.replacePathSegmentSeparator = exports.isAppliedFilter = exports.isFatalError = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.joinPathSegments = exports2.replacePathSegmentSeparator = exports2.isAppliedFilter = exports2.isFatalError = void 0;
     function isFatalError(settings, error) {
       if (settings.errorFilter === null) {
         return true;
       }
       return !settings.errorFilter(error);
     }
-    exports.isFatalError = isFatalError;
+    exports2.isFatalError = isFatalError;
     function isAppliedFilter(filter3, value) {
       return filter3 === null || filter3(value);
     }
-    exports.isAppliedFilter = isAppliedFilter;
+    exports2.isAppliedFilter = isAppliedFilter;
     function replacePathSegmentSeparator(filepath, separator) {
       return filepath.split(/[/\\]/).join(separator);
     }
-    exports.replacePathSegmentSeparator = replacePathSegmentSeparator;
+    exports2.replacePathSegmentSeparator = replacePathSegmentSeparator;
     function joinPathSegments(a, b, separator) {
       if (a === "") {
         return b;
@@ -15205,15 +15205,15 @@ var require_common2 = __commonJS({
       }
       return a + separator + b;
     }
-    exports.joinPathSegments = joinPathSegments;
+    exports2.joinPathSegments = joinPathSegments;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/reader.js
 var require_reader = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/reader.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/reader.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var common2 = require_common2();
     var Reader = class {
       constructor(_root, _settings) {
@@ -15222,15 +15222,15 @@ var require_reader = __commonJS({
         this._root = common2.replacePathSegmentSeparator(_root, _settings.pathSegmentSeparator);
       }
     };
-    exports.default = Reader;
+    exports2.default = Reader;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/async.js
 var require_async3 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/async.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/async.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var events_1 = __require("events");
     var fsScandir = require_out2();
     var fastq = require_queue();
@@ -15325,15 +15325,15 @@ var require_async3 = __commonJS({
         this._emitter.emit("entry", entry);
       }
     };
-    exports.default = AsyncReader;
+    exports2.default = AsyncReader;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/async.js
 var require_async4 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/async.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/async.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var async_1 = require_async3();
     var AsyncProvider = class {
       constructor(_root, _settings) {
@@ -15355,7 +15355,7 @@ var require_async4 = __commonJS({
         this._reader.read();
       }
     };
-    exports.default = AsyncProvider;
+    exports2.default = AsyncProvider;
     function callFailureCallback(callback, error) {
       callback(error);
     }
@@ -15367,9 +15367,9 @@ var require_async4 = __commonJS({
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/stream.js
 var require_stream2 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/stream.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/stream.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var stream_1 = __require("stream");
     var async_1 = require_async3();
     var StreamProvider = class {
@@ -15402,15 +15402,15 @@ var require_stream2 = __commonJS({
         return this._stream;
       }
     };
-    exports.default = StreamProvider;
+    exports2.default = StreamProvider;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/sync.js
 var require_sync3 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/sync.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/readers/sync.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var fsScandir = require_out2();
     var common2 = require_common2();
     var reader_1 = require_reader();
@@ -15466,15 +15466,15 @@ var require_sync3 = __commonJS({
         this._storage.push(entry);
       }
     };
-    exports.default = SyncReader;
+    exports2.default = SyncReader;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/sync.js
 var require_sync4 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/sync.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/providers/sync.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var sync_1 = require_sync3();
     var SyncProvider = class {
       constructor(_root, _settings) {
@@ -15486,16 +15486,16 @@ var require_sync4 = __commonJS({
         return this._reader.read();
       }
     };
-    exports.default = SyncProvider;
+    exports2.default = SyncProvider;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/settings.js
 var require_settings3 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/settings.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/settings.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var path9 = __require("path");
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var path10 = __require("path");
     var fsScandir = require_out2();
     var Settings = class {
       constructor(_options = {}) {
@@ -15505,7 +15505,7 @@ var require_settings3 = __commonJS({
         this.deepFilter = this._getValue(this._options.deepFilter, null);
         this.entryFilter = this._getValue(this._options.entryFilter, null);
         this.errorFilter = this._getValue(this._options.errorFilter, null);
-        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path9.sep);
+        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path10.sep);
         this.fsScandirSettings = new fsScandir.Settings({
           followSymbolicLinks: this._options.followSymbolicLinks,
           fs: this._options.fs,
@@ -15518,21 +15518,21 @@ var require_settings3 = __commonJS({
         return option !== null && option !== void 0 ? option : value;
       }
     };
-    exports.default = Settings;
+    exports2.default = Settings;
   }
 });
 
 // node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/index.js
 var require_out3 = __commonJS({
-  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/index.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Settings = exports.walkStream = exports.walkSync = exports.walk = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Settings = exports2.walkStream = exports2.walkSync = exports2.walk = void 0;
     var async_1 = require_async4();
     var stream_1 = require_stream2();
     var sync_1 = require_sync4();
     var settings_1 = require_settings3();
-    exports.Settings = settings_1.default;
+    exports2.Settings = settings_1.default;
     function walk(directory, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
         new async_1.default(directory, getSettings()).read(optionsOrSettingsOrCallback);
@@ -15540,19 +15540,19 @@ var require_out3 = __commonJS({
       }
       new async_1.default(directory, getSettings(optionsOrSettingsOrCallback)).read(callback);
     }
-    exports.walk = walk;
+    exports2.walk = walk;
     function walkSync(directory, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
       const provider = new sync_1.default(directory, settings);
       return provider.read();
     }
-    exports.walkSync = walkSync;
+    exports2.walkSync = walkSync;
     function walkStream(directory, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
       const provider = new stream_1.default(directory, settings);
       return provider.read();
     }
-    exports.walkStream = walkStream;
+    exports2.walkStream = walkStream;
     function getSettings(settingsOrOptions = {}) {
       if (settingsOrOptions instanceof settings_1.default) {
         return settingsOrOptions;
@@ -15564,12 +15564,12 @@ var require_out3 = __commonJS({
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/reader.js
 var require_reader2 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/reader.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/reader.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var path9 = __require("path");
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var path10 = __require("path");
     var fsStat = require_out();
-    var utils = require_utils4();
+    var utils2 = require_utils4();
     var Reader = class {
       constructor(_settings) {
         this._settings = _settings;
@@ -15580,13 +15580,13 @@ var require_reader2 = __commonJS({
         });
       }
       _getFullEntryPath(filepath) {
-        return path9.resolve(this._settings.cwd, filepath);
+        return path10.resolve(this._settings.cwd, filepath);
       }
       _makeEntry(stats, pattern) {
         const entry = {
           name: pattern,
           path: pattern,
-          dirent: utils.fs.createDirentFromStats(pattern, stats)
+          dirent: utils2.fs.createDirentFromStats(pattern, stats)
         };
         if (this._settings.stats) {
           entry.stats = stats;
@@ -15594,18 +15594,18 @@ var require_reader2 = __commonJS({
         return entry;
       }
       _isFatalError(error) {
-        return !utils.errno.isEnoentCodeError(error) && !this._settings.suppressErrors;
+        return !utils2.errno.isEnoentCodeError(error) && !this._settings.suppressErrors;
       }
     };
-    exports.default = Reader;
+    exports2.default = Reader;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/stream.js
 var require_stream3 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/stream.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/stream.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var stream_1 = __require("stream");
     var fsStat = require_out();
     var fsWalk = require_out3();
@@ -15654,15 +15654,15 @@ var require_stream3 = __commonJS({
         });
       }
     };
-    exports.default = ReaderStream;
+    exports2.default = ReaderStream;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/async.js
 var require_async5 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/async.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/async.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var fsWalk = require_out3();
     var reader_1 = require_reader2();
     var stream_1 = require_stream3();
@@ -15693,16 +15693,16 @@ var require_async5 = __commonJS({
         });
       }
     };
-    exports.default = ReaderAsync;
+    exports2.default = ReaderAsync;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/matchers/matcher.js
 var require_matcher = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/matchers/matcher.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/matchers/matcher.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var utils = require_utils4();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var utils2 = require_utils4();
     var Matcher = class {
       constructor(_patterns, _settings, _micromatchOptions) {
         this._patterns = _patterns;
@@ -15724,9 +15724,9 @@ var require_matcher = __commonJS({
         }
       }
       _getPatternSegments(pattern) {
-        const parts = utils.pattern.getPatternParts(pattern, this._micromatchOptions);
+        const parts = utils2.pattern.getPatternParts(pattern, this._micromatchOptions);
         return parts.map((part) => {
-          const dynamic = utils.pattern.isDynamicPattern(part, this._settings);
+          const dynamic = utils2.pattern.isDynamicPattern(part, this._settings);
           if (!dynamic) {
             return {
               dynamic: false,
@@ -15736,23 +15736,23 @@ var require_matcher = __commonJS({
           return {
             dynamic: true,
             pattern: part,
-            patternRe: utils.pattern.makeRe(part, this._micromatchOptions)
+            patternRe: utils2.pattern.makeRe(part, this._micromatchOptions)
           };
         });
       }
       _splitSegmentsIntoSections(segments) {
-        return utils.array.splitWhen(segments, (segment) => segment.dynamic && utils.pattern.hasGlobStar(segment.pattern));
+        return utils2.array.splitWhen(segments, (segment) => segment.dynamic && utils2.pattern.hasGlobStar(segment.pattern));
       }
     };
-    exports.default = Matcher;
+    exports2.default = Matcher;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/matchers/partial.js
 var require_partial = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/matchers/partial.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/matchers/partial.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var matcher_1 = require_matcher();
     var PartialMatcher = class extends matcher_1.default {
       match(filepath) {
@@ -15781,16 +15781,16 @@ var require_partial = __commonJS({
         return false;
       }
     };
-    exports.default = PartialMatcher;
+    exports2.default = PartialMatcher;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/deep.js
 var require_deep = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/deep.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/deep.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var utils = require_utils4();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var utils2 = require_utils4();
     var partial_1 = require_partial();
     var DeepFilter = class {
       constructor(_settings, _micromatchOptions) {
@@ -15806,8 +15806,8 @@ var require_deep = __commonJS({
         return new partial_1.default(patterns, this._settings, this._micromatchOptions);
       }
       _getNegativePatternsRe(patterns) {
-        const affectDepthOfReadingPatterns = patterns.filter(utils.pattern.isAffectDepthOfReadingPattern);
-        return utils.pattern.convertPatternsToRe(affectDepthOfReadingPatterns, this._micromatchOptions);
+        const affectDepthOfReadingPatterns = patterns.filter(utils2.pattern.isAffectDepthOfReadingPattern);
+        return utils2.pattern.convertPatternsToRe(affectDepthOfReadingPatterns, this._micromatchOptions);
       }
       _filter(basePath, entry, matcher, negativeRe) {
         if (this._isSkippedByDeep(basePath, entry.path)) {
@@ -15816,7 +15816,7 @@ var require_deep = __commonJS({
         if (this._isSkippedSymbolicLink(entry)) {
           return false;
         }
-        const filepath = utils.path.removeLeadingDotSegment(entry.path);
+        const filepath = utils2.path.removeLeadingDotSegment(entry.path);
         if (this._isSkippedByPositivePatterns(filepath, matcher)) {
           return false;
         }
@@ -15843,19 +15843,19 @@ var require_deep = __commonJS({
         return !this._settings.baseNameMatch && !matcher.match(entryPath);
       }
       _isSkippedByNegativePatterns(entryPath, patternsRe) {
-        return !utils.pattern.matchAny(entryPath, patternsRe);
+        return !utils2.pattern.matchAny(entryPath, patternsRe);
       }
     };
-    exports.default = DeepFilter;
+    exports2.default = DeepFilter;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/entry.js
 var require_entry = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/entry.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/entry.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var utils = require_utils4();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var utils2 = require_utils4();
     var EntryFilter = class {
       constructor(_settings, _micromatchOptions) {
         this._settings = _settings;
@@ -15863,20 +15863,20 @@ var require_entry = __commonJS({
         this.index = /* @__PURE__ */ new Map();
       }
       getFilter(positive, negative) {
-        const [absoluteNegative, relativeNegative] = utils.pattern.partitionAbsoluteAndRelative(negative);
+        const [absoluteNegative, relativeNegative] = utils2.pattern.partitionAbsoluteAndRelative(negative);
         const patterns = {
           positive: {
-            all: utils.pattern.convertPatternsToRe(positive, this._micromatchOptions)
+            all: utils2.pattern.convertPatternsToRe(positive, this._micromatchOptions)
           },
           negative: {
-            absolute: utils.pattern.convertPatternsToRe(absoluteNegative, Object.assign(Object.assign({}, this._micromatchOptions), { dot: true })),
-            relative: utils.pattern.convertPatternsToRe(relativeNegative, Object.assign(Object.assign({}, this._micromatchOptions), { dot: true }))
+            absolute: utils2.pattern.convertPatternsToRe(absoluteNegative, Object.assign(Object.assign({}, this._micromatchOptions), { dot: true })),
+            relative: utils2.pattern.convertPatternsToRe(relativeNegative, Object.assign(Object.assign({}, this._micromatchOptions), { dot: true }))
           }
         };
         return (entry) => this._filter(entry, patterns);
       }
       _filter(entry, patterns) {
-        const filepath = utils.path.removeLeadingDotSegment(entry.path);
+        const filepath = utils2.path.removeLeadingDotSegment(entry.path);
         if (this._settings.unique && this._isDuplicateEntry(filepath)) {
           return false;
         }
@@ -15920,30 +15920,30 @@ var require_entry = __commonJS({
         if (patternsRe.length === 0) {
           return false;
         }
-        const fullpath = utils.path.makeAbsolute(this._settings.cwd, filepath);
+        const fullpath = utils2.path.makeAbsolute(this._settings.cwd, filepath);
         return this._isMatchToPatterns(fullpath, patternsRe, isDirectory);
       }
       _isMatchToPatterns(filepath, patternsRe, isDirectory) {
         if (patternsRe.length === 0) {
           return false;
         }
-        const isMatched = utils.pattern.matchAny(filepath, patternsRe);
+        const isMatched = utils2.pattern.matchAny(filepath, patternsRe);
         if (!isMatched && isDirectory) {
-          return utils.pattern.matchAny(filepath + "/", patternsRe);
+          return utils2.pattern.matchAny(filepath + "/", patternsRe);
         }
         return isMatched;
       }
     };
-    exports.default = EntryFilter;
+    exports2.default = EntryFilter;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/error.js
 var require_error = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/error.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/filters/error.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var utils = require_utils4();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var utils2 = require_utils4();
     var ErrorFilter = class {
       constructor(_settings) {
         this._settings = _settings;
@@ -15952,19 +15952,19 @@ var require_error = __commonJS({
         return (error) => this._isNonFatalError(error);
       }
       _isNonFatalError(error) {
-        return utils.errno.isEnoentCodeError(error) || this._settings.suppressErrors;
+        return utils2.errno.isEnoentCodeError(error) || this._settings.suppressErrors;
       }
     };
-    exports.default = ErrorFilter;
+    exports2.default = ErrorFilter;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/transformers/entry.js
 var require_entry2 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/transformers/entry.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/transformers/entry.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var utils = require_utils4();
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var utils2 = require_utils4();
     var EntryTransformer = class {
       constructor(_settings) {
         this._settings = _settings;
@@ -15975,8 +15975,8 @@ var require_entry2 = __commonJS({
       _transform(entry) {
         let filepath = entry.path;
         if (this._settings.absolute) {
-          filepath = utils.path.makeAbsolute(this._settings.cwd, filepath);
-          filepath = utils.path.unixify(filepath);
+          filepath = utils2.path.makeAbsolute(this._settings.cwd, filepath);
+          filepath = utils2.path.unixify(filepath);
         }
         if (this._settings.markDirectories && entry.dirent.isDirectory()) {
           filepath += "/";
@@ -15987,16 +15987,16 @@ var require_entry2 = __commonJS({
         return Object.assign(Object.assign({}, entry), { path: filepath });
       }
     };
-    exports.default = EntryTransformer;
+    exports2.default = EntryTransformer;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/provider.js
 var require_provider = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/provider.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/provider.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var path9 = __require("path");
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    var path10 = __require("path");
     var deep_1 = require_deep();
     var entry_1 = require_entry();
     var error_1 = require_error();
@@ -16010,7 +16010,7 @@ var require_provider = __commonJS({
         this.entryTransformer = new entry_2.default(this._settings);
       }
       _getRootDirectory(task) {
-        return path9.resolve(this._settings.cwd, task.base);
+        return path10.resolve(this._settings.cwd, task.base);
       }
       _getReaderOptions(task) {
         const basePath = task.base === "." ? "" : task.base;
@@ -16041,15 +16041,15 @@ var require_provider = __commonJS({
         };
       }
     };
-    exports.default = Provider;
+    exports2.default = Provider;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/async.js
 var require_async6 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/async.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/async.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var async_1 = require_async5();
     var provider_1 = require_provider();
     var ProviderAsync = class extends provider_1.default {
@@ -16070,15 +16070,15 @@ var require_async6 = __commonJS({
         return this._reader.static(task.patterns, options);
       }
     };
-    exports.default = ProviderAsync;
+    exports2.default = ProviderAsync;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/stream.js
 var require_stream4 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/stream.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/stream.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var stream_1 = __require("stream");
     var stream_2 = require_stream3();
     var provider_1 = require_provider();
@@ -16104,15 +16104,15 @@ var require_stream4 = __commonJS({
         return this._reader.static(task.patterns, options);
       }
     };
-    exports.default = ProviderStream;
+    exports2.default = ProviderStream;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/sync.js
 var require_sync5 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/sync.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/sync.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var fsStat = require_out();
     var fsWalk = require_out3();
     var reader_1 = require_reader2();
@@ -16152,15 +16152,15 @@ var require_sync5 = __commonJS({
         return this._statSync(filepath, this._fsStatSettings);
       }
     };
-    exports.default = ReaderSync;
+    exports2.default = ReaderSync;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/sync.js
 var require_sync6 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/sync.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/sync.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var sync_1 = require_sync5();
     var provider_1 = require_provider();
     var ProviderSync = class extends provider_1.default {
@@ -16181,26 +16181,26 @@ var require_sync6 = __commonJS({
         return this._reader.static(task.patterns, options);
       }
     };
-    exports.default = ProviderSync;
+    exports2.default = ProviderSync;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/settings.js
 var require_settings4 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/settings.js"(exports) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/settings.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DEFAULT_FILE_SYSTEM_ADAPTER = void 0;
-    var fs6 = __require("fs");
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.DEFAULT_FILE_SYSTEM_ADAPTER = void 0;
+    var fs7 = __require("fs");
     var os2 = __require("os");
     var CPU_COUNT = Math.max(os2.cpus().length, 1);
-    exports.DEFAULT_FILE_SYSTEM_ADAPTER = {
-      lstat: fs6.lstat,
-      lstatSync: fs6.lstatSync,
-      stat: fs6.stat,
-      statSync: fs6.statSync,
-      readdir: fs6.readdir,
-      readdirSync: fs6.readdirSync
+    exports2.DEFAULT_FILE_SYSTEM_ADAPTER = {
+      lstat: fs7.lstat,
+      lstatSync: fs7.lstatSync,
+      stat: fs7.stat,
+      statSync: fs7.statSync,
+      readdir: fs7.readdir,
+      readdirSync: fs7.readdirSync
     };
     var Settings = class {
       constructor(_options = {}) {
@@ -16238,28 +16238,28 @@ var require_settings4 = __commonJS({
         return option === void 0 ? value : option;
       }
       _getFileSystemMethods(methods = {}) {
-        return Object.assign(Object.assign({}, exports.DEFAULT_FILE_SYSTEM_ADAPTER), methods);
+        return Object.assign(Object.assign({}, exports2.DEFAULT_FILE_SYSTEM_ADAPTER), methods);
       }
     };
-    exports.default = Settings;
+    exports2.default = Settings;
   }
 });
 
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/index.js
 var require_out4 = __commonJS({
-  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/index.js"(exports2, module2) {
     "use strict";
     var taskManager = require_tasks();
     var async_1 = require_async6();
     var stream_1 = require_stream4();
     var sync_1 = require_sync6();
     var settings_1 = require_settings4();
-    var utils = require_utils4();
+    var utils2 = require_utils4();
     async function FastGlob(source, options) {
       assertPatternsInput(source);
       const works = getWorks(source, async_1.default, options);
       const result = await Promise.all(works);
-      return utils.array.flatten(result);
+      return utils2.array.flatten(result);
     }
     (function(FastGlob2) {
       FastGlob2.glob = FastGlob2;
@@ -16269,13 +16269,13 @@ var require_out4 = __commonJS({
       function sync(source, options) {
         assertPatternsInput(source);
         const works = getWorks(source, sync_1.default, options);
-        return utils.array.flatten(works);
+        return utils2.array.flatten(works);
       }
       FastGlob2.sync = sync;
       function stream(source, options) {
         assertPatternsInput(source);
         const works = getWorks(source, stream_1.default, options);
-        return utils.stream.merge(works);
+        return utils2.stream.merge(works);
       }
       FastGlob2.stream = stream;
       function generateTasks(source, options) {
@@ -16288,29 +16288,29 @@ var require_out4 = __commonJS({
       function isDynamicPattern(source, options) {
         assertPatternsInput(source);
         const settings = new settings_1.default(options);
-        return utils.pattern.isDynamicPattern(source, settings);
+        return utils2.pattern.isDynamicPattern(source, settings);
       }
       FastGlob2.isDynamicPattern = isDynamicPattern;
       function escapePath(source) {
         assertPatternsInput(source);
-        return utils.path.escape(source);
+        return utils2.path.escape(source);
       }
       FastGlob2.escapePath = escapePath;
       function convertPathToPattern(source) {
         assertPatternsInput(source);
-        return utils.path.convertPathToPattern(source);
+        return utils2.path.convertPathToPattern(source);
       }
       FastGlob2.convertPathToPattern = convertPathToPattern;
       let posix;
       (function(posix2) {
         function escapePath2(source) {
           assertPatternsInput(source);
-          return utils.path.escapePosixPath(source);
+          return utils2.path.escapePosixPath(source);
         }
         posix2.escapePath = escapePath2;
         function convertPathToPattern2(source) {
           assertPatternsInput(source);
-          return utils.path.convertPosixPathToPattern(source);
+          return utils2.path.convertPosixPathToPattern(source);
         }
         posix2.convertPathToPattern = convertPathToPattern2;
       })(posix = FastGlob2.posix || (FastGlob2.posix = {}));
@@ -16318,12 +16318,12 @@ var require_out4 = __commonJS({
       (function(win322) {
         function escapePath2(source) {
           assertPatternsInput(source);
-          return utils.path.escapeWindowsPath(source);
+          return utils2.path.escapeWindowsPath(source);
         }
         win322.escapePath = escapePath2;
         function convertPathToPattern2(source) {
           assertPatternsInput(source);
-          return utils.path.convertWindowsPathToPattern(source);
+          return utils2.path.convertWindowsPathToPattern(source);
         }
         win322.convertPathToPattern = convertPathToPattern2;
       })(win32 = FastGlob2.win32 || (FastGlob2.win32 = {}));
@@ -16337,746 +16337,18 @@ var require_out4 = __commonJS({
     }
     function assertPatternsInput(input) {
       const source = [].concat(input);
-      const isValidSource = source.every((item) => utils.string.isString(item) && !utils.string.isEmpty(item));
+      const isValidSource = source.every((item) => utils2.string.isString(item) && !utils2.string.isEmpty(item));
       if (!isValidSource) {
         throw new TypeError("Patterns must be a string (non empty) or an array of strings");
       }
     }
-    module.exports = FastGlob;
-  }
-});
-
-// node_modules/.aspect_rules_js/ejs@3.1.10/node_modules/ejs/lib/utils.js
-var require_utils6 = __commonJS({
-  "node_modules/.aspect_rules_js/ejs@3.1.10/node_modules/ejs/lib/utils.js"(exports) {
-    "use strict";
-    var regExpChars = /[|\\{}()[\]^$+*?.]/g;
-    var hasOwnProperty = Object.prototype.hasOwnProperty;
-    var hasOwn2 = function(obj, key) {
-      return hasOwnProperty.apply(obj, [key]);
-    };
-    exports.escapeRegExpChars = function(string) {
-      if (!string) {
-        return "";
-      }
-      return String(string).replace(regExpChars, "\\$&");
-    };
-    var _ENCODE_HTML_RULES = {
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&#34;",
-      "'": "&#39;"
-    };
-    var _MATCH_HTML = /[&<>'"]/g;
-    function encode_char(c) {
-      return _ENCODE_HTML_RULES[c] || c;
-    }
-    var escapeFuncStr = `var _ENCODE_HTML_RULES = {
-      "&": "&amp;"
-    , "<": "&lt;"
-    , ">": "&gt;"
-    , '"': "&#34;"
-    , "'": "&#39;"
-    }
-  , _MATCH_HTML = /[&<>'"]/g;
-function encode_char(c) {
-  return _ENCODE_HTML_RULES[c] || c;
-};
-`;
-    exports.escapeXML = function(markup) {
-      return markup == void 0 ? "" : String(markup).replace(_MATCH_HTML, encode_char);
-    };
-    function escapeXMLToString() {
-      return Function.prototype.toString.call(this) + ";\n" + escapeFuncStr;
-    }
-    try {
-      if (typeof Object.defineProperty === "function") {
-        Object.defineProperty(exports.escapeXML, "toString", { value: escapeXMLToString });
-      } else {
-        exports.escapeXML.toString = escapeXMLToString;
-      }
-    } catch (err) {
-      console.warn("Unable to set escapeXML.toString (is the Function prototype frozen?)");
-    }
-    exports.shallowCopy = function(to, from) {
-      from = from || {};
-      if (to !== null && to !== void 0) {
-        for (var p in from) {
-          if (!hasOwn2(from, p)) {
-            continue;
-          }
-          if (p === "__proto__" || p === "constructor") {
-            continue;
-          }
-          to[p] = from[p];
-        }
-      }
-      return to;
-    };
-    exports.shallowCopyFromList = function(to, from, list) {
-      list = list || [];
-      from = from || {};
-      if (to !== null && to !== void 0) {
-        for (var i = 0; i < list.length; i++) {
-          var p = list[i];
-          if (typeof from[p] != "undefined") {
-            if (!hasOwn2(from, p)) {
-              continue;
-            }
-            if (p === "__proto__" || p === "constructor") {
-              continue;
-            }
-            to[p] = from[p];
-          }
-        }
-      }
-      return to;
-    };
-    exports.cache = {
-      _data: {},
-      set: function(key, val) {
-        this._data[key] = val;
-      },
-      get: function(key) {
-        return this._data[key];
-      },
-      remove: function(key) {
-        delete this._data[key];
-      },
-      reset: function() {
-        this._data = {};
-      }
-    };
-    exports.hyphenToCamel = function(str) {
-      return str.replace(/-[a-z]/g, function(match3) {
-        return match3[1].toUpperCase();
-      });
-    };
-    exports.createNullProtoObjWherePossible = function() {
-      if (typeof Object.create == "function") {
-        return function() {
-          return /* @__PURE__ */ Object.create(null);
-        };
-      }
-      if (!({ __proto__: null } instanceof Object)) {
-        return function() {
-          return { __proto__: null };
-        };
-      }
-      return function() {
-        return {};
-      };
-    }();
-    exports.hasOwnOnlyObject = function(obj) {
-      var o = exports.createNullProtoObjWherePossible();
-      for (var p in obj) {
-        if (hasOwn2(obj, p)) {
-          o[p] = obj[p];
-        }
-      }
-      return o;
-    };
-  }
-});
-
-// node_modules/.aspect_rules_js/ejs@3.1.10/node_modules/ejs/package.json
-var require_package = __commonJS({
-  "node_modules/.aspect_rules_js/ejs@3.1.10/node_modules/ejs/package.json"(exports, module) {
-    module.exports = {
-      name: "ejs",
-      description: "Embedded JavaScript templates",
-      keywords: [
-        "template",
-        "engine",
-        "ejs"
-      ],
-      version: "3.1.10",
-      author: "Matthew Eernisse <mde@fleegix.org> (http://fleegix.org)",
-      license: "Apache-2.0",
-      bin: {
-        ejs: "./bin/cli.js"
-      },
-      main: "./lib/ejs.js",
-      jsdelivr: "ejs.min.js",
-      unpkg: "ejs.min.js",
-      repository: {
-        type: "git",
-        url: "git://github.com/mde/ejs.git"
-      },
-      bugs: "https://github.com/mde/ejs/issues",
-      homepage: "https://github.com/mde/ejs",
-      dependencies: {
-        jake: "^10.8.5"
-      },
-      devDependencies: {
-        browserify: "^16.5.1",
-        eslint: "^6.8.0",
-        "git-directory-deploy": "^1.5.1",
-        jsdoc: "^4.0.2",
-        "lru-cache": "^4.0.1",
-        mocha: "^10.2.0",
-        "uglify-js": "^3.3.16"
-      },
-      engines: {
-        node: ">=0.10.0"
-      },
-      scripts: {
-        test: "npx jake test"
-      }
-    };
-  }
-});
-
-// node_modules/.aspect_rules_js/ejs@3.1.10/node_modules/ejs/lib/ejs.js
-var require_ejs = __commonJS({
-  "node_modules/.aspect_rules_js/ejs@3.1.10/node_modules/ejs/lib/ejs.js"(exports) {
-    "use strict";
-    var fs6 = __require("fs");
-    var path9 = __require("path");
-    var utils = require_utils6();
-    var scopeOptionWarned = false;
-    var _VERSION_STRING = require_package().version;
-    var _DEFAULT_OPEN_DELIMITER = "<";
-    var _DEFAULT_CLOSE_DELIMITER = ">";
-    var _DEFAULT_DELIMITER = "%";
-    var _DEFAULT_LOCALS_NAME = "locals";
-    var _NAME = "ejs";
-    var _REGEX_STRING = "(<%%|%%>|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)";
-    var _OPTS_PASSABLE_WITH_DATA = [
-      "delimiter",
-      "scope",
-      "context",
-      "debug",
-      "compileDebug",
-      "client",
-      "_with",
-      "rmWhitespace",
-      "strict",
-      "filename",
-      "async"
-    ];
-    var _OPTS_PASSABLE_WITH_DATA_EXPRESS = _OPTS_PASSABLE_WITH_DATA.concat("cache");
-    var _BOM = /^\uFEFF/;
-    var _JS_IDENTIFIER = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/;
-    exports.cache = utils.cache;
-    exports.fileLoader = fs6.readFileSync;
-    exports.localsName = _DEFAULT_LOCALS_NAME;
-    exports.promiseImpl = new Function("return this;")().Promise;
-    exports.resolveInclude = function(name, filename, isDir) {
-      var dirname6 = path9.dirname;
-      var extname2 = path9.extname;
-      var resolve8 = path9.resolve;
-      var includePath = resolve8(isDir ? filename : dirname6(filename), name);
-      var ext3 = extname2(name);
-      if (!ext3) {
-        includePath += ".ejs";
-      }
-      return includePath;
-    };
-    function resolvePaths(name, paths) {
-      var filePath;
-      if (paths.some(function(v) {
-        filePath = exports.resolveInclude(name, v, true);
-        return fs6.existsSync(filePath);
-      })) {
-        return filePath;
-      }
-    }
-    function getIncludePath(path10, options) {
-      var includePath;
-      var filePath;
-      var views = options.views;
-      var match3 = /^[A-Za-z]+:\\|^\//.exec(path10);
-      if (match3 && match3.length) {
-        path10 = path10.replace(/^\/*/, "");
-        if (Array.isArray(options.root)) {
-          includePath = resolvePaths(path10, options.root);
-        } else {
-          includePath = exports.resolveInclude(path10, options.root || "/", true);
-        }
-      } else {
-        if (options.filename) {
-          filePath = exports.resolveInclude(path10, options.filename);
-          if (fs6.existsSync(filePath)) {
-            includePath = filePath;
-          }
-        }
-        if (!includePath && Array.isArray(views)) {
-          includePath = resolvePaths(path10, views);
-        }
-        if (!includePath && typeof options.includer !== "function") {
-          throw new Error('Could not find the include file "' + options.escapeFunction(path10) + '"');
-        }
-      }
-      return includePath;
-    }
-    function handleCache(options, template) {
-      var func;
-      var filename = options.filename;
-      var hasTemplate = arguments.length > 1;
-      if (options.cache) {
-        if (!filename) {
-          throw new Error("cache option requires a filename");
-        }
-        func = exports.cache.get(filename);
-        if (func) {
-          return func;
-        }
-        if (!hasTemplate) {
-          template = fileLoader(filename).toString().replace(_BOM, "");
-        }
-      } else if (!hasTemplate) {
-        if (!filename) {
-          throw new Error("Internal EJS error: no file name or template provided");
-        }
-        template = fileLoader(filename).toString().replace(_BOM, "");
-      }
-      func = exports.compile(template, options);
-      if (options.cache) {
-        exports.cache.set(filename, func);
-      }
-      return func;
-    }
-    function tryHandleCache(options, data, cb) {
-      var result;
-      if (!cb) {
-        if (typeof exports.promiseImpl == "function") {
-          return new exports.promiseImpl(function(resolve8, reject) {
-            try {
-              result = handleCache(options)(data);
-              resolve8(result);
-            } catch (err) {
-              reject(err);
-            }
-          });
-        } else {
-          throw new Error("Please provide a callback function");
-        }
-      } else {
-        try {
-          result = handleCache(options)(data);
-        } catch (err) {
-          return cb(err);
-        }
-        cb(null, result);
-      }
-    }
-    function fileLoader(filePath) {
-      return exports.fileLoader(filePath);
-    }
-    function includeFile(path10, options) {
-      var opts = utils.shallowCopy(utils.createNullProtoObjWherePossible(), options);
-      opts.filename = getIncludePath(path10, opts);
-      if (typeof options.includer === "function") {
-        var includerResult = options.includer(path10, opts.filename);
-        if (includerResult) {
-          if (includerResult.filename) {
-            opts.filename = includerResult.filename;
-          }
-          if (includerResult.template) {
-            return handleCache(opts, includerResult.template);
-          }
-        }
-      }
-      return handleCache(opts);
-    }
-    function rethrow(err, str, flnm, lineno, esc) {
-      var lines = str.split("\n");
-      var start = Math.max(lineno - 3, 0);
-      var end = Math.min(lines.length, lineno + 3);
-      var filename = esc(flnm);
-      var context = lines.slice(start, end).map(function(line, i) {
-        var curr = i + start + 1;
-        return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
-      }).join("\n");
-      err.path = filename;
-      err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
-      throw err;
-    }
-    function stripSemi(str) {
-      return str.replace(/;(\s*$)/, "$1");
-    }
-    exports.compile = function compile(template, opts) {
-      var templ;
-      if (opts && opts.scope) {
-        if (!scopeOptionWarned) {
-          console.warn("`scope` option is deprecated and will be removed in EJS 3");
-          scopeOptionWarned = true;
-        }
-        if (!opts.context) {
-          opts.context = opts.scope;
-        }
-        delete opts.scope;
-      }
-      templ = new Template(template, opts);
-      return templ.compile();
-    };
-    exports.render = function(template, d, o) {
-      var data = d || utils.createNullProtoObjWherePossible();
-      var opts = o || utils.createNullProtoObjWherePossible();
-      if (arguments.length == 2) {
-        utils.shallowCopyFromList(opts, data, _OPTS_PASSABLE_WITH_DATA);
-      }
-      return handleCache(opts, template)(data);
-    };
-    exports.renderFile = function() {
-      var args = Array.prototype.slice.call(arguments);
-      var filename = args.shift();
-      var cb;
-      var opts = { filename };
-      var data;
-      var viewOpts;
-      if (typeof arguments[arguments.length - 1] == "function") {
-        cb = args.pop();
-      }
-      if (args.length) {
-        data = args.shift();
-        if (args.length) {
-          utils.shallowCopy(opts, args.pop());
-        } else {
-          if (data.settings) {
-            if (data.settings.views) {
-              opts.views = data.settings.views;
-            }
-            if (data.settings["view cache"]) {
-              opts.cache = true;
-            }
-            viewOpts = data.settings["view options"];
-            if (viewOpts) {
-              utils.shallowCopy(opts, viewOpts);
-            }
-          }
-          utils.shallowCopyFromList(opts, data, _OPTS_PASSABLE_WITH_DATA_EXPRESS);
-        }
-        opts.filename = filename;
-      } else {
-        data = utils.createNullProtoObjWherePossible();
-      }
-      return tryHandleCache(opts, data, cb);
-    };
-    exports.Template = Template;
-    exports.clearCache = function() {
-      exports.cache.reset();
-    };
-    function Template(text, optsParam) {
-      var opts = utils.hasOwnOnlyObject(optsParam);
-      var options = utils.createNullProtoObjWherePossible();
-      this.templateText = text;
-      this.mode = null;
-      this.truncate = false;
-      this.currentLine = 1;
-      this.source = "";
-      options.client = opts.client || false;
-      options.escapeFunction = opts.escape || opts.escapeFunction || utils.escapeXML;
-      options.compileDebug = opts.compileDebug !== false;
-      options.debug = !!opts.debug;
-      options.filename = opts.filename;
-      options.openDelimiter = opts.openDelimiter || exports.openDelimiter || _DEFAULT_OPEN_DELIMITER;
-      options.closeDelimiter = opts.closeDelimiter || exports.closeDelimiter || _DEFAULT_CLOSE_DELIMITER;
-      options.delimiter = opts.delimiter || exports.delimiter || _DEFAULT_DELIMITER;
-      options.strict = opts.strict || false;
-      options.context = opts.context;
-      options.cache = opts.cache || false;
-      options.rmWhitespace = opts.rmWhitespace;
-      options.root = opts.root;
-      options.includer = opts.includer;
-      options.outputFunctionName = opts.outputFunctionName;
-      options.localsName = opts.localsName || exports.localsName || _DEFAULT_LOCALS_NAME;
-      options.views = opts.views;
-      options.async = opts.async;
-      options.destructuredLocals = opts.destructuredLocals;
-      options.legacyInclude = typeof opts.legacyInclude != "undefined" ? !!opts.legacyInclude : true;
-      if (options.strict) {
-        options._with = false;
-      } else {
-        options._with = typeof opts._with != "undefined" ? opts._with : true;
-      }
-      this.opts = options;
-      this.regex = this.createRegex();
-    }
-    Template.modes = {
-      EVAL: "eval",
-      ESCAPED: "escaped",
-      RAW: "raw",
-      COMMENT: "comment",
-      LITERAL: "literal"
-    };
-    Template.prototype = {
-      createRegex: function() {
-        var str = _REGEX_STRING;
-        var delim = utils.escapeRegExpChars(this.opts.delimiter);
-        var open2 = utils.escapeRegExpChars(this.opts.openDelimiter);
-        var close = utils.escapeRegExpChars(this.opts.closeDelimiter);
-        str = str.replace(/%/g, delim).replace(/</g, open2).replace(/>/g, close);
-        return new RegExp(str);
-      },
-      compile: function() {
-        var src;
-        var fn;
-        var opts = this.opts;
-        var prepended = "";
-        var appended = "";
-        var escapeFn = opts.escapeFunction;
-        var ctor;
-        var sanitizedFilename = opts.filename ? JSON.stringify(opts.filename) : "undefined";
-        if (!this.source) {
-          this.generateSource();
-          prepended += '  var __output = "";\n  function __append(s) { if (s !== undefined && s !== null) __output += s }\n';
-          if (opts.outputFunctionName) {
-            if (!_JS_IDENTIFIER.test(opts.outputFunctionName)) {
-              throw new Error("outputFunctionName is not a valid JS identifier.");
-            }
-            prepended += "  var " + opts.outputFunctionName + " = __append;\n";
-          }
-          if (opts.localsName && !_JS_IDENTIFIER.test(opts.localsName)) {
-            throw new Error("localsName is not a valid JS identifier.");
-          }
-          if (opts.destructuredLocals && opts.destructuredLocals.length) {
-            var destructuring = "  var __locals = (" + opts.localsName + " || {}),\n";
-            for (var i = 0; i < opts.destructuredLocals.length; i++) {
-              var name = opts.destructuredLocals[i];
-              if (!_JS_IDENTIFIER.test(name)) {
-                throw new Error("destructuredLocals[" + i + "] is not a valid JS identifier.");
-              }
-              if (i > 0) {
-                destructuring += ",\n  ";
-              }
-              destructuring += name + " = __locals." + name;
-            }
-            prepended += destructuring + ";\n";
-          }
-          if (opts._with !== false) {
-            prepended += "  with (" + opts.localsName + " || {}) {\n";
-            appended += "  }\n";
-          }
-          appended += "  return __output;\n";
-          this.source = prepended + this.source + appended;
-        }
-        if (opts.compileDebug) {
-          src = "var __line = 1\n  , __lines = " + JSON.stringify(this.templateText) + "\n  , __filename = " + sanitizedFilename + ";\ntry {\n" + this.source + "} catch (e) {\n  rethrow(e, __lines, __filename, __line, escapeFn);\n}\n";
-        } else {
-          src = this.source;
-        }
-        if (opts.client) {
-          src = "escapeFn = escapeFn || " + escapeFn.toString() + ";\n" + src;
-          if (opts.compileDebug) {
-            src = "rethrow = rethrow || " + rethrow.toString() + ";\n" + src;
-          }
-        }
-        if (opts.strict) {
-          src = '"use strict";\n' + src;
-        }
-        if (opts.debug) {
-          console.log(src);
-        }
-        if (opts.compileDebug && opts.filename) {
-          src = src + "\n//# sourceURL=" + sanitizedFilename + "\n";
-        }
-        try {
-          if (opts.async) {
-            try {
-              ctor = new Function("return (async function(){}).constructor;")();
-            } catch (e) {
-              if (e instanceof SyntaxError) {
-                throw new Error("This environment does not support async/await");
-              } else {
-                throw e;
-              }
-            }
-          } else {
-            ctor = Function;
-          }
-          fn = new ctor(opts.localsName + ", escapeFn, include, rethrow", src);
-        } catch (e) {
-          if (e instanceof SyntaxError) {
-            if (opts.filename) {
-              e.message += " in " + opts.filename;
-            }
-            e.message += " while compiling ejs\n\n";
-            e.message += "If the above error is not helpful, you may want to try EJS-Lint:\n";
-            e.message += "https://github.com/RyanZim/EJS-Lint";
-            if (!opts.async) {
-              e.message += "\n";
-              e.message += "Or, if you meant to create an async function, pass `async: true` as an option.";
-            }
-          }
-          throw e;
-        }
-        var returnedFn = opts.client ? fn : function anonymous(data) {
-          var include = function(path10, includeData) {
-            var d = utils.shallowCopy(utils.createNullProtoObjWherePossible(), data);
-            if (includeData) {
-              d = utils.shallowCopy(d, includeData);
-            }
-            return includeFile(path10, opts)(d);
-          };
-          return fn.apply(
-            opts.context,
-            [data || utils.createNullProtoObjWherePossible(), escapeFn, include, rethrow]
-          );
-        };
-        if (opts.filename && typeof Object.defineProperty === "function") {
-          var filename = opts.filename;
-          var basename3 = path9.basename(filename, path9.extname(filename));
-          try {
-            Object.defineProperty(returnedFn, "name", {
-              value: basename3,
-              writable: false,
-              enumerable: false,
-              configurable: true
-            });
-          } catch (e) {
-          }
-        }
-        return returnedFn;
-      },
-      generateSource: function() {
-        var opts = this.opts;
-        if (opts.rmWhitespace) {
-          this.templateText = this.templateText.replace(/[\r\n]+/g, "\n").replace(/^\s+|\s+$/gm, "");
-        }
-        this.templateText = this.templateText.replace(/[ \t]*<%_/gm, "<%_").replace(/_%>[ \t]*/gm, "_%>");
-        var self2 = this;
-        var matches = this.parseTemplateText();
-        var d = this.opts.delimiter;
-        var o = this.opts.openDelimiter;
-        var c = this.opts.closeDelimiter;
-        if (matches && matches.length) {
-          matches.forEach(function(line, index) {
-            var closing;
-            if (line.indexOf(o + d) === 0 && line.indexOf(o + d + d) !== 0) {
-              closing = matches[index + 2];
-              if (!(closing == d + c || closing == "-" + d + c || closing == "_" + d + c)) {
-                throw new Error('Could not find matching close tag for "' + line + '".');
-              }
-            }
-            self2.scanLine(line);
-          });
-        }
-      },
-      parseTemplateText: function() {
-        var str = this.templateText;
-        var pat = this.regex;
-        var result = pat.exec(str);
-        var arr = [];
-        var firstPos;
-        while (result) {
-          firstPos = result.index;
-          if (firstPos !== 0) {
-            arr.push(str.substring(0, firstPos));
-            str = str.slice(firstPos);
-          }
-          arr.push(result[0]);
-          str = str.slice(result[0].length);
-          result = pat.exec(str);
-        }
-        if (str) {
-          arr.push(str);
-        }
-        return arr;
-      },
-      _addOutput: function(line) {
-        if (this.truncate) {
-          line = line.replace(/^(?:\r\n|\r|\n)/, "");
-          this.truncate = false;
-        }
-        if (!line) {
-          return line;
-        }
-        line = line.replace(/\\/g, "\\\\");
-        line = line.replace(/\n/g, "\\n");
-        line = line.replace(/\r/g, "\\r");
-        line = line.replace(/"/g, '\\"');
-        this.source += '    ; __append("' + line + '")\n';
-      },
-      scanLine: function(line) {
-        var self2 = this;
-        var d = this.opts.delimiter;
-        var o = this.opts.openDelimiter;
-        var c = this.opts.closeDelimiter;
-        var newLineCount = 0;
-        newLineCount = line.split("\n").length - 1;
-        switch (line) {
-          case o + d:
-          case o + d + "_":
-            this.mode = Template.modes.EVAL;
-            break;
-          case o + d + "=":
-            this.mode = Template.modes.ESCAPED;
-            break;
-          case o + d + "-":
-            this.mode = Template.modes.RAW;
-            break;
-          case o + d + "#":
-            this.mode = Template.modes.COMMENT;
-            break;
-          case o + d + d:
-            this.mode = Template.modes.LITERAL;
-            this.source += '    ; __append("' + line.replace(o + d + d, o + d) + '")\n';
-            break;
-          case d + d + c:
-            this.mode = Template.modes.LITERAL;
-            this.source += '    ; __append("' + line.replace(d + d + c, d + c) + '")\n';
-            break;
-          case d + c:
-          case "-" + d + c:
-          case "_" + d + c:
-            if (this.mode == Template.modes.LITERAL) {
-              this._addOutput(line);
-            }
-            this.mode = null;
-            this.truncate = line.indexOf("-") === 0 || line.indexOf("_") === 0;
-            break;
-          default:
-            if (this.mode) {
-              switch (this.mode) {
-                case Template.modes.EVAL:
-                case Template.modes.ESCAPED:
-                case Template.modes.RAW:
-                  if (line.lastIndexOf("//") > line.lastIndexOf("\n")) {
-                    line += "\n";
-                  }
-              }
-              switch (this.mode) {
-                case Template.modes.EVAL:
-                  this.source += "    ; " + line + "\n";
-                  break;
-                case Template.modes.ESCAPED:
-                  this.source += "    ; __append(escapeFn(" + stripSemi(line) + "))\n";
-                  break;
-                case Template.modes.RAW:
-                  this.source += "    ; __append(" + stripSemi(line) + ")\n";
-                  break;
-                case Template.modes.COMMENT:
-                  break;
-                case Template.modes.LITERAL:
-                  this._addOutput(line);
-                  break;
-              }
-            } else {
-              this._addOutput(line);
-            }
-        }
-        if (self2.opts.compileDebug && newLineCount) {
-          this.currentLine += newLineCount;
-          this.source += "    ; __line = " + this.currentLine + "\n";
-        }
-      }
-    };
-    exports.escapeXML = utils.escapeXML;
-    exports.__express = exports.renderFile;
-    exports.VERSION = _VERSION_STRING;
-    exports.name = _NAME;
-    if (typeof window != "undefined") {
-      window.ejs = exports;
-    }
+    module2.exports = FastGlob;
   }
 });
 
 // node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/common.js
 var require_common3 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/common.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/common.js"(exports2, module2) {
     function setup(env) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
@@ -17247,19 +16519,19 @@ var require_common3 = __commonJS({
       createDebug.enable(createDebug.load());
       return createDebug;
     }
-    module.exports = setup;
+    module2.exports = setup;
   }
 });
 
 // node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/browser.js
 var require_browser = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/browser.js"(exports, module) {
-    exports.formatArgs = formatArgs2;
-    exports.save = save;
-    exports.load = load3;
-    exports.useColors = useColors;
-    exports.storage = localstorage();
-    exports.destroy = /* @__PURE__ */ (() => {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/browser.js"(exports2, module2) {
+    exports2.formatArgs = formatArgs2;
+    exports2.save = save;
+    exports2.load = load3;
+    exports2.useColors = useColors;
+    exports2.storage = localstorage();
+    exports2.destroy = /* @__PURE__ */ (() => {
       let warned = false;
       return () => {
         if (!warned) {
@@ -17268,7 +16540,7 @@ var require_browser = __commonJS({
         }
       };
     })();
-    exports.colors = [
+    exports2.colors = [
       "#0000CC",
       "#0000FF",
       "#0033CC",
@@ -17361,7 +16633,7 @@ var require_browser = __commonJS({
       typeof navigator !== "undefined" && navigator.userAgent && navigator.userAgent.toLowerCase().match(/applewebkit\/(\d+)/);
     }
     function formatArgs2(args) {
-      args[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args[0] + (this.useColors ? "%c " : " ") + "+" + module.exports.humanize(this.diff);
+      args[0] = (this.useColors ? "%c" : "") + this.namespace + (this.useColors ? " %c" : " ") + args[0] + (this.useColors ? "%c " : " ") + "+" + module2.exports.humanize(this.diff);
       if (!this.useColors) {
         return;
       }
@@ -17380,14 +16652,14 @@ var require_browser = __commonJS({
       });
       args.splice(lastC, 0, c);
     }
-    exports.log = console.debug || console.log || (() => {
+    exports2.log = console.debug || console.log || (() => {
     });
     function save(namespaces) {
       try {
         if (namespaces) {
-          exports.storage.setItem("debug", namespaces);
+          exports2.storage.setItem("debug", namespaces);
         } else {
-          exports.storage.removeItem("debug");
+          exports2.storage.removeItem("debug");
         }
       } catch (error) {
       }
@@ -17395,7 +16667,7 @@ var require_browser = __commonJS({
     function load3() {
       let r;
       try {
-        r = exports.storage.getItem("debug");
+        r = exports2.storage.getItem("debug");
       } catch (error) {
       }
       if (!r && typeof process !== "undefined" && "env" in process) {
@@ -17409,8 +16681,8 @@ var require_browser = __commonJS({
       } catch (error) {
       }
     }
-    module.exports = require_common3()(exports);
-    var { formatters } = module.exports;
+    module2.exports = require_common3()(exports2);
+    var { formatters } = module2.exports;
     formatters.j = function(v) {
       try {
         return JSON.stringify(v);
@@ -17423,25 +16695,25 @@ var require_browser = __commonJS({
 
 // node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/node.js
 var require_node2 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/node.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/node.js"(exports2, module2) {
     var tty = __require("tty");
     var util = __require("util");
-    exports.init = init;
-    exports.log = log;
-    exports.formatArgs = formatArgs2;
-    exports.save = save;
-    exports.load = load3;
-    exports.useColors = useColors;
-    exports.destroy = util.deprecate(
+    exports2.init = init;
+    exports2.log = log;
+    exports2.formatArgs = formatArgs2;
+    exports2.save = save;
+    exports2.load = load3;
+    exports2.useColors = useColors;
+    exports2.destroy = util.deprecate(
       () => {
       },
       "Instance method `debug.destroy()` is deprecated and no longer does anything. It will be removed in the next major version of `debug`."
     );
-    exports.colors = [6, 2, 3, 4, 5, 1];
+    exports2.colors = [6, 2, 3, 4, 5, 1];
     try {
       const supportsColor = (init_supports_color(), __toCommonJS(supports_color_exports));
       if (supportsColor && (supportsColor.stderr || supportsColor).level >= 2) {
-        exports.colors = [
+        exports2.colors = [
           20,
           21,
           26,
@@ -17522,7 +16794,7 @@ var require_node2 = __commonJS({
       }
     } catch (error) {
     }
-    exports.inspectOpts = Object.keys(process.env).filter((key) => {
+    exports2.inspectOpts = Object.keys(process.env).filter((key) => {
       return /^debug_/i.test(key);
     }).reduce((obj, key) => {
       const prop = key.substring(6).toLowerCase().replace(/_([a-z])/g, (_, k) => {
@@ -17542,7 +16814,7 @@ var require_node2 = __commonJS({
       return obj;
     }, {});
     function useColors() {
-      return "colors" in exports.inspectOpts ? Boolean(exports.inspectOpts.colors) : tty.isatty(process.stderr.fd);
+      return "colors" in exports2.inspectOpts ? Boolean(exports2.inspectOpts.colors) : tty.isatty(process.stderr.fd);
     }
     function formatArgs2(args) {
       const { namespace: name, useColors: useColors2 } = this;
@@ -17551,19 +16823,19 @@ var require_node2 = __commonJS({
         const colorCode = "\x1B[3" + (c < 8 ? c : "8;5;" + c);
         const prefix = `  ${colorCode};1m${name} \x1B[0m`;
         args[0] = prefix + args[0].split("\n").join("\n" + prefix);
-        args.push(colorCode + "m+" + module.exports.humanize(this.diff) + "\x1B[0m");
+        args.push(colorCode + "m+" + module2.exports.humanize(this.diff) + "\x1B[0m");
       } else {
         args[0] = getDate() + name + " " + args[0];
       }
     }
     function getDate() {
-      if (exports.inspectOpts.hideDate) {
+      if (exports2.inspectOpts.hideDate) {
         return "";
       }
       return (/* @__PURE__ */ new Date()).toISOString() + " ";
     }
     function log(...args) {
-      return process.stderr.write(util.formatWithOptions(exports.inspectOpts, ...args) + "\n");
+      return process.stderr.write(util.formatWithOptions(exports2.inspectOpts, ...args) + "\n");
     }
     function save(namespaces) {
       if (namespaces) {
@@ -17577,13 +16849,13 @@ var require_node2 = __commonJS({
     }
     function init(debug) {
       debug.inspectOpts = {};
-      const keys = Object.keys(exports.inspectOpts);
+      const keys = Object.keys(exports2.inspectOpts);
       for (let i = 0; i < keys.length; i++) {
-        debug.inspectOpts[keys[i]] = exports.inspectOpts[keys[i]];
+        debug.inspectOpts[keys[i]] = exports2.inspectOpts[keys[i]];
       }
     }
-    module.exports = require_common3()(exports);
-    var { formatters } = module.exports;
+    module2.exports = require_common3()(exports2);
+    var { formatters } = module2.exports;
     formatters.o = function(v) {
       this.inspectOpts.colors = this.useColors;
       return util.inspect(v, this.inspectOpts).split("\n").map((str) => str.trim()).join(" ");
@@ -17597,21 +16869,21 @@ var require_node2 = __commonJS({
 
 // node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/index.js
 var require_src = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color_10.2.2/node_modules/debug/src/index.js"(exports2, module2) {
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
-      module.exports = require_browser();
+      module2.exports = require_browser();
     } else {
-      module.exports = require_node2();
+      module2.exports = require_node2();
     }
   }
 });
 
 // node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/brace-expressions.js
 var require_brace_expressions = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/brace-expressions.js"(exports) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/brace-expressions.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.parseClass = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.parseClass = void 0;
     var posixClasses3 = {
       "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
       "[:alpha:]": ["\\p{L}\\p{Nl}", true],
@@ -17720,45 +16992,45 @@ var require_brace_expressions = __commonJS({
       const comb = ranges.length && negs.length ? "(" + sranges + "|" + snegs + ")" : ranges.length ? sranges : snegs;
       return [comb, uflag, endPos - pos, true];
     };
-    exports.parseClass = parseClass3;
+    exports2.parseClass = parseClass3;
   }
 });
 
 // node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/escape.js
 var require_escape = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/escape.js"(exports) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/escape.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.escape = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.escape = void 0;
     var escape3 = (s, { windowsPathsNoEscape = false } = {}) => {
       return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
     };
-    exports.escape = escape3;
+    exports2.escape = escape3;
   }
 });
 
 // node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/unescape.js
 var require_unescape = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/unescape.js"(exports) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/unescape.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.unescape = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.unescape = void 0;
     var unescape3 = (s, { windowsPathsNoEscape = false } = {}) => {
       return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
     };
-    exports.unescape = unescape3;
+    exports2.unescape = unescape3;
   }
 });
 
 // node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index.js
 var require_cjs = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index.js"(exports) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.unescape = exports.escape = exports.Minimatch = exports.match = exports.makeRe = exports.braceExpand = exports.defaults = exports.filter = exports.GLOBSTAR = exports.sep = exports.minimatch = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.unescape = exports2.escape = exports2.Minimatch = exports2.match = exports2.makeRe = exports2.braceExpand = exports2.defaults = exports2.filter = exports2.GLOBSTAR = exports2.sep = exports2.minimatch = void 0;
     var brace_expansion_1 = __importDefault(require_brace_expansion());
     var brace_expressions_js_1 = require_brace_expressions();
     var escape_js_1 = require_escape();
@@ -17770,8 +17042,8 @@ var require_cjs = __commonJS({
       }
       return new Minimatch3(pattern, options).match(p);
     };
-    exports.minimatch = minimatch3;
-    exports.default = exports.minimatch;
+    exports2.minimatch = minimatch3;
+    exports2.default = exports2.minimatch;
     var starDotExtRE3 = /^\*+([^+@!?\*\[\(]*)$/;
     var starDotExtTest3 = (ext4) => (f) => !f.startsWith(".") && f.endsWith(ext4);
     var starDotExtTestDot3 = (ext4) => (f) => f.endsWith(ext4);
@@ -17823,14 +17095,14 @@ var require_cjs = __commonJS({
       return (f) => f.length === len && f !== "." && f !== "..";
     };
     var defaultPlatform3 = typeof process === "object" && process ? typeof process.env === "object" && process.env && process.env.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
-    var path9 = {
+    var path10 = {
       win32: { sep: "\\" },
       posix: { sep: "/" }
     };
-    exports.sep = defaultPlatform3 === "win32" ? path9.win32.sep : path9.posix.sep;
-    exports.minimatch.sep = exports.sep;
-    exports.GLOBSTAR = Symbol("globstar **");
-    exports.minimatch.GLOBSTAR = exports.GLOBSTAR;
+    exports2.sep = defaultPlatform3 === "win32" ? path10.win32.sep : path10.posix.sep;
+    exports2.minimatch.sep = exports2.sep;
+    exports2.GLOBSTAR = Symbol("globstar **");
+    exports2.minimatch.GLOBSTAR = exports2.GLOBSTAR;
     var plTypes = {
       "!": { open: "(?:(?!(?:", close: "))[^/]*?)" },
       "?": { open: "(?:", close: ")?" },
@@ -17848,15 +17120,15 @@ var require_cjs = __commonJS({
     }, {});
     var reSpecials3 = charSet("().*{}+?[]^$\\!");
     var addPatternStartSet = charSet("[.(");
-    var filter3 = (pattern, options = {}) => (p) => (0, exports.minimatch)(p, pattern, options);
-    exports.filter = filter3;
-    exports.minimatch.filter = exports.filter;
+    var filter3 = (pattern, options = {}) => (p) => (0, exports2.minimatch)(p, pattern, options);
+    exports2.filter = filter3;
+    exports2.minimatch.filter = exports2.filter;
     var ext3 = (a, b = {}) => Object.assign({}, a, b);
     var defaults3 = (def) => {
       if (!def || typeof def !== "object" || !Object.keys(def).length) {
-        return exports.minimatch;
+        return exports2.minimatch;
       }
-      const orig = exports.minimatch;
+      const orig = exports2.minimatch;
       const m = (p, pattern, options = {}) => orig(p, pattern, ext3(def, options));
       return Object.assign(m, {
         Minimatch: class Minimatch extends orig.Minimatch {
@@ -17875,11 +17147,11 @@ var require_cjs = __commonJS({
         braceExpand: (pattern, options = {}) => orig.braceExpand(pattern, ext3(def, options)),
         match: (list, pattern, options = {}) => orig.match(list, pattern, ext3(def, options)),
         sep: orig.sep,
-        GLOBSTAR: exports.GLOBSTAR
+        GLOBSTAR: exports2.GLOBSTAR
       });
     };
-    exports.defaults = defaults3;
-    exports.minimatch.defaults = exports.defaults;
+    exports2.defaults = defaults3;
+    exports2.minimatch.defaults = exports2.defaults;
     var braceExpand3 = (pattern, options = {}) => {
       assertValidPattern3(pattern);
       if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
@@ -17887,8 +17159,8 @@ var require_cjs = __commonJS({
       }
       return (0, brace_expansion_1.default)(pattern);
     };
-    exports.braceExpand = braceExpand3;
-    exports.minimatch.braceExpand = exports.braceExpand;
+    exports2.braceExpand = braceExpand3;
+    exports2.minimatch.braceExpand = exports2.braceExpand;
     var MAX_PATTERN_LENGTH3 = 1024 * 64;
     var assertValidPattern3 = (pattern) => {
       if (typeof pattern !== "string") {
@@ -17899,8 +17171,8 @@ var require_cjs = __commonJS({
       }
     };
     var makeRe3 = (pattern, options = {}) => new Minimatch3(pattern, options).makeRe();
-    exports.makeRe = makeRe3;
-    exports.minimatch.makeRe = exports.makeRe;
+    exports2.makeRe = makeRe3;
+    exports2.minimatch.makeRe = exports2.makeRe;
     var match3 = (list, pattern, options = {}) => {
       const mm = new Minimatch3(pattern, options);
       list = list.filter((f) => mm.match(f));
@@ -17909,8 +17181,8 @@ var require_cjs = __commonJS({
       }
       return list;
     };
-    exports.match = match3;
-    exports.minimatch.match = exports.match;
+    exports2.match = match3;
+    exports2.minimatch.match = exports2.match;
     var globUnescape = (s) => s.replace(/\\(.)/g, "$1");
     var globMagic3 = /[?*]|[+@!]\(.*?\)|\[|\]/;
     var regExpEscape5 = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
@@ -18306,7 +17578,7 @@ var require_cjs = __commonJS({
           if (p === false) {
             return false;
           }
-          if (p === exports.GLOBSTAR) {
+          if (p === exports2.GLOBSTAR) {
             this.debug("GLOBSTAR", [pattern, p, f]);
             var fr = fi;
             var pr = pi + 1;
@@ -18363,13 +17635,13 @@ var require_cjs = __commonJS({
         }
       }
       braceExpand() {
-        return (0, exports.braceExpand)(this.pattern, this.options);
+        return (0, exports2.braceExpand)(this.pattern, this.options);
       }
       parse(pattern) {
         assertValidPattern3(pattern);
         const options = this.options;
         if (pattern === "**")
-          return exports.GLOBSTAR;
+          return exports2.GLOBSTAR;
         if (pattern === "")
           return "";
         let m;
@@ -18599,27 +17871,27 @@ var require_cjs = __commonJS({
         const twoStar = options.noglobstar ? star5 : options.dot ? twoStarDot3 : twoStarNoDot3;
         const flags = options.nocase ? "i" : "";
         let re = set.map((pattern) => {
-          const pp = pattern.map((p) => typeof p === "string" ? regExpEscape5(p) : p === exports.GLOBSTAR ? exports.GLOBSTAR : p._src);
+          const pp = pattern.map((p) => typeof p === "string" ? regExpEscape5(p) : p === exports2.GLOBSTAR ? exports2.GLOBSTAR : p._src);
           pp.forEach((p, i) => {
             const next = pp[i + 1];
             const prev = pp[i - 1];
-            if (p !== exports.GLOBSTAR || prev === exports.GLOBSTAR) {
+            if (p !== exports2.GLOBSTAR || prev === exports2.GLOBSTAR) {
               return;
             }
             if (prev === void 0) {
-              if (next !== void 0 && next !== exports.GLOBSTAR) {
+              if (next !== void 0 && next !== exports2.GLOBSTAR) {
                 pp[i + 1] = "(?:\\/|" + twoStar + "\\/)?" + next;
               } else {
                 pp[i] = twoStar;
               }
             } else if (next === void 0) {
               pp[i - 1] = prev + "(?:\\/|" + twoStar + ")?";
-            } else if (next !== exports.GLOBSTAR) {
+            } else if (next !== exports2.GLOBSTAR) {
               pp[i - 1] = prev + "(?:\\/|\\/" + twoStar + "\\/)" + next;
-              pp[i + 1] = exports.GLOBSTAR;
+              pp[i + 1] = exports2.GLOBSTAR;
             }
           });
-          return pp.filter((p) => p !== exports.GLOBSTAR).join("/");
+          return pp.filter((p) => p !== exports2.GLOBSTAR).join("/");
         }).join("|");
         re = "^(?:" + re + ")$";
         if (this.negate)
@@ -18685,43 +17957,43 @@ var require_cjs = __commonJS({
         return this.negate;
       }
       static defaults(def) {
-        return exports.minimatch.defaults(def).Minimatch;
+        return exports2.minimatch.defaults(def).Minimatch;
       }
     };
-    exports.Minimatch = Minimatch3;
+    exports2.Minimatch = Minimatch3;
     var escape_js_2 = require_escape();
-    Object.defineProperty(exports, "escape", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "escape", { enumerable: true, get: function() {
       return escape_js_2.escape;
     } });
     var unescape_js_2 = require_unescape();
-    Object.defineProperty(exports, "unescape", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "unescape", { enumerable: true, get: function() {
       return unescape_js_2.unescape;
     } });
-    exports.minimatch.Minimatch = Minimatch3;
-    exports.minimatch.escape = escape_js_1.escape;
-    exports.minimatch.unescape = unescape_js_1.unescape;
+    exports2.minimatch.Minimatch = Minimatch3;
+    exports2.minimatch.escape = escape_js_1.escape;
+    exports2.minimatch.unescape = unescape_js_1.unescape;
   }
 });
 
 // node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index-cjs.js
 var require_index_cjs = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index-cjs.js"(exports, module) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index-cjs.js"(exports2, module2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     var index_js_1 = __importDefault(require_cjs());
-    module.exports = Object.assign(index_js_1.default, { default: index_js_1.default, minimatch: index_js_1.default });
+    module2.exports = Object.assign(index_js_1.default, { default: index_js_1.default, minimatch: index_js_1.default });
   }
 });
 
 // node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color_10.2.2/node_modules/folder-hash/index.js
 var require_folder_hash = __commonJS({
-  "node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color_10.2.2/node_modules/folder-hash/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color_10.2.2/node_modules/folder-hash/index.js"(exports2, module2) {
     var crypto2 = __require("crypto");
     var debug = require_src();
     var minimatch3 = require_index_cjs();
-    var path9 = __require("path");
+    var path10 = __require("path");
     var defaultOptions = {
       algo: "sha1",
       // see crypto.getHashes() for options
@@ -18763,14 +18035,14 @@ var require_folder_hash = __commonJS({
       queue: debug("fhash:queue"),
       glob: debug("fhash:glob")
     };
-    function prep(fs6) {
+    function prep(fs7) {
       let queue = [];
       let queueTimer = void 0;
       function hashElement2(name, dir, options, callback) {
         callback = arguments[arguments.length - 1];
         return parseParameters(arguments).then(({ basename: basename3, dir: dir2, options: options2 }) => {
           options2.skipMatching = true;
-          return fs6.promises.lstat(path9.join(dir2, basename3)).then((stats) => {
+          return fs7.promises.lstat(path10.join(dir2, basename3)).then((stats) => {
             stats.name = basename3;
             return stats;
           }).then((stats) => hashElementPromise(stats, dir2, options2, true));
@@ -18826,7 +18098,7 @@ var require_folder_hash = __commonJS({
         runnables.forEach((run) => run());
       }
       async function hashFolderPromise(name, dir, options, isRootElement = false) {
-        const folderPath = path9.join(dir, name);
+        const folderPath = path10.join(dir, name);
         let ignoreBasenameOnce = options.ignoreBasenameOnce;
         delete options.ignoreBasenameOnce;
         if (options.skipMatching) {
@@ -18835,7 +18107,7 @@ var require_folder_hash = __commonJS({
         } else if (ignore(name, folderPath, options.folders)) {
           return void 0;
         }
-        const files = await fs6.promises.readdir(folderPath, { withFileTypes: true });
+        const files = await fs7.promises.readdir(folderPath, { withFileTypes: true });
         const children = await Promise.all(
           files.sort((a, b) => a.name.localeCompare(b.name)).map((child) => hashElementPromise(child, folderPath, options))
         );
@@ -18845,7 +18117,7 @@ var require_folder_hash = __commonJS({
         return hash;
       }
       function hashFilePromise(name, dir, options, isRootElement = false) {
-        const filePath = path9.join(dir, name);
+        const filePath = path10.join(dir, name);
         if (options.skipMatching) {
           log.match(`skipped '${filePath}'`);
           delete options.skipMatching;
@@ -18861,7 +18133,7 @@ var require_folder_hash = __commonJS({
             } else {
               hash.update(name);
             }
-            const f = fs6.createReadStream(filePath);
+            const f = fs7.createReadStream(filePath);
             f.on("error", (err) => {
               reject(err);
             });
@@ -18876,7 +18148,7 @@ var require_folder_hash = __commonJS({
         });
       }
       async function hashSymLinkPromise(name, dir, options, isRootElement = false) {
-        const target = await fs6.promises.readlink(path9.join(dir, name));
+        const target = await fs7.promises.readlink(path10.join(dir, name));
         log.symlink(`handling symbolic link ${name} -> ${target}`);
         if (options.symbolicLinks.include) {
           if (options.symbolicLinks.ignoreTargetContent) {
@@ -18909,7 +18181,7 @@ var require_folder_hash = __commonJS({
           options.ignoreBasenameOnce = true;
         }
         try {
-          const stats = await fs6.promises.stat(path9.join(dir, name));
+          const stats = await fs7.promises.stat(path10.join(dir, name));
           stats.name = name;
           const temp = await hashElementPromise(stats, dir, options, isRootElement);
           if (!options.symbolicLinks.ignoreTargetPath) {
@@ -18937,13 +18209,13 @@ var require_folder_hash = __commonJS({
           }
         }
       }
-      function ignore(name, path10, rules) {
+      function ignore(name, path11, rules) {
         if (rules.exclude) {
           if (rules.matchBasename && rules.exclude(name)) {
             log.match(`exclude basename '${name}'`);
             return true;
-          } else if (rules.matchPath && rules.exclude(path10)) {
-            log.match(`exclude path '${path10}'`);
+          } else if (rules.matchPath && rules.exclude(path11)) {
+            log.match(`exclude path '${path11}'`);
             return true;
           }
         }
@@ -18951,15 +18223,15 @@ var require_folder_hash = __commonJS({
           if (rules.matchBasename && rules.include(name)) {
             log.match(`include basename '${name}'`);
             return false;
-          } else if (rules.matchPath && rules.include(path10)) {
-            log.match(`include path '${path10}'`);
+          } else if (rules.matchPath && rules.include(path11)) {
+            log.match(`include path '${path11}'`);
             return false;
           } else {
-            log.match(`include rule failed for path '${path10}'`);
+            log.match(`include rule failed for path '${path11}'`);
             return true;
           }
         }
-        log.match(`Will not ignore unmatched '${path10}'`);
+        log.match(`Will not ignore unmatched '${path11}'`);
         return false;
       }
       return hashElement2;
@@ -18970,8 +18242,8 @@ var require_folder_hash = __commonJS({
         return Promise.reject(new TypeError("First argument must be a string"));
       }
       if (!isString(dir)) {
-        dir = path9.dirname(basename3);
-        basename3 = path9.basename(basename3);
+        dir = path10.dirname(basename3);
+        basename3 = path10.basename(basename3);
         options_ = args[1];
       }
       if (!isObject(options_))
@@ -19060,7 +18332,7 @@ ${padding}]`;
         return (param) => regex.test(param);
       }
     }
-    module.exports = {
+    module2.exports = {
       defaults: defaultOptions,
       hashElement: prep(__require("fs")),
       // exposed for testing
@@ -19072,22 +18344,22 @@ ${padding}]`;
 
 // node_modules/.aspect_rules_js/@pnpm+crypto.polyfill@1000.1.0/node_modules/@pnpm/crypto.polyfill/lib/index.js
 var require_lib4 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+crypto.polyfill@1000.1.0/node_modules/@pnpm/crypto.polyfill/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@pnpm+crypto.polyfill@1000.1.0/node_modules/@pnpm/crypto.polyfill/lib/index.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.hash = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.hash = void 0;
     var crypto_1 = __importDefault(__require("crypto"));
-    exports.hash = // @ts-expect-error -- crypto.hash is supported in Node 21.7.0+, 20.12.0+
+    exports2.hash = // @ts-expect-error -- crypto.hash is supported in Node 21.7.0+, 20.12.0+
     crypto_1.default.hash ?? ((algorithm, data, outputEncoding) => crypto_1.default.createHash(algorithm).update(data).digest(outputEncoding));
   }
 });
 
 // node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/polyfills.js
 var require_polyfills = __commonJS({
-  "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/polyfills.js"(exports, module) {
+  "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/polyfills.js"(exports2, module2) {
     var constants = __require("constants");
     var origCwd = process.cwd;
     var cwd = null;
@@ -19111,57 +18383,57 @@ var require_polyfills = __commonJS({
         Object.setPrototypeOf(process.chdir, chdir);
     }
     var chdir;
-    module.exports = patch;
-    function patch(fs6) {
+    module2.exports = patch;
+    function patch(fs7) {
       if (constants.hasOwnProperty("O_SYMLINK") && process.version.match(/^v0\.6\.[0-2]|^v0\.5\./)) {
-        patchLchmod(fs6);
+        patchLchmod(fs7);
       }
-      if (!fs6.lutimes) {
-        patchLutimes(fs6);
+      if (!fs7.lutimes) {
+        patchLutimes(fs7);
       }
-      fs6.chown = chownFix(fs6.chown);
-      fs6.fchown = chownFix(fs6.fchown);
-      fs6.lchown = chownFix(fs6.lchown);
-      fs6.chmod = chmodFix(fs6.chmod);
-      fs6.fchmod = chmodFix(fs6.fchmod);
-      fs6.lchmod = chmodFix(fs6.lchmod);
-      fs6.chownSync = chownFixSync(fs6.chownSync);
-      fs6.fchownSync = chownFixSync(fs6.fchownSync);
-      fs6.lchownSync = chownFixSync(fs6.lchownSync);
-      fs6.chmodSync = chmodFixSync(fs6.chmodSync);
-      fs6.fchmodSync = chmodFixSync(fs6.fchmodSync);
-      fs6.lchmodSync = chmodFixSync(fs6.lchmodSync);
-      fs6.stat = statFix(fs6.stat);
-      fs6.fstat = statFix(fs6.fstat);
-      fs6.lstat = statFix(fs6.lstat);
-      fs6.statSync = statFixSync(fs6.statSync);
-      fs6.fstatSync = statFixSync(fs6.fstatSync);
-      fs6.lstatSync = statFixSync(fs6.lstatSync);
-      if (fs6.chmod && !fs6.lchmod) {
-        fs6.lchmod = function(path9, mode, cb) {
+      fs7.chown = chownFix(fs7.chown);
+      fs7.fchown = chownFix(fs7.fchown);
+      fs7.lchown = chownFix(fs7.lchown);
+      fs7.chmod = chmodFix(fs7.chmod);
+      fs7.fchmod = chmodFix(fs7.fchmod);
+      fs7.lchmod = chmodFix(fs7.lchmod);
+      fs7.chownSync = chownFixSync(fs7.chownSync);
+      fs7.fchownSync = chownFixSync(fs7.fchownSync);
+      fs7.lchownSync = chownFixSync(fs7.lchownSync);
+      fs7.chmodSync = chmodFixSync(fs7.chmodSync);
+      fs7.fchmodSync = chmodFixSync(fs7.fchmodSync);
+      fs7.lchmodSync = chmodFixSync(fs7.lchmodSync);
+      fs7.stat = statFix(fs7.stat);
+      fs7.fstat = statFix(fs7.fstat);
+      fs7.lstat = statFix(fs7.lstat);
+      fs7.statSync = statFixSync(fs7.statSync);
+      fs7.fstatSync = statFixSync(fs7.fstatSync);
+      fs7.lstatSync = statFixSync(fs7.lstatSync);
+      if (fs7.chmod && !fs7.lchmod) {
+        fs7.lchmod = function(path10, mode, cb) {
           if (cb)
             process.nextTick(cb);
         };
-        fs6.lchmodSync = function() {
+        fs7.lchmodSync = function() {
         };
       }
-      if (fs6.chown && !fs6.lchown) {
-        fs6.lchown = function(path9, uid, gid, cb) {
+      if (fs7.chown && !fs7.lchown) {
+        fs7.lchown = function(path10, uid, gid, cb) {
           if (cb)
             process.nextTick(cb);
         };
-        fs6.lchownSync = function() {
+        fs7.lchownSync = function() {
         };
       }
       if (platform === "win32") {
-        fs6.rename = typeof fs6.rename !== "function" ? fs6.rename : function(fs$rename) {
+        fs7.rename = typeof fs7.rename !== "function" ? fs7.rename : function(fs$rename) {
           function rename(from, to, cb) {
             var start = Date.now();
             var backoff = 0;
             fs$rename(from, to, function CB(er) {
               if (er && (er.code === "EACCES" || er.code === "EPERM" || er.code === "EBUSY") && Date.now() - start < 6e4) {
                 setTimeout(function() {
-                  fs6.stat(to, function(stater, st) {
+                  fs7.stat(to, function(stater, st) {
                     if (stater && stater.code === "ENOENT")
                       fs$rename(from, to, CB);
                     else
@@ -19179,9 +18451,9 @@ var require_polyfills = __commonJS({
           if (Object.setPrototypeOf)
             Object.setPrototypeOf(rename, fs$rename);
           return rename;
-        }(fs6.rename);
+        }(fs7.rename);
       }
-      fs6.read = typeof fs6.read !== "function" ? fs6.read : function(fs$read) {
+      fs7.read = typeof fs7.read !== "function" ? fs7.read : function(fs$read) {
         function read(fd, buffer, offset, length, position, callback_) {
           var callback;
           if (callback_ && typeof callback_ === "function") {
@@ -19189,23 +18461,23 @@ var require_polyfills = __commonJS({
             callback = function(er, _, __) {
               if (er && er.code === "EAGAIN" && eagCounter < 10) {
                 eagCounter++;
-                return fs$read.call(fs6, fd, buffer, offset, length, position, callback);
+                return fs$read.call(fs7, fd, buffer, offset, length, position, callback);
               }
               callback_.apply(this, arguments);
             };
           }
-          return fs$read.call(fs6, fd, buffer, offset, length, position, callback);
+          return fs$read.call(fs7, fd, buffer, offset, length, position, callback);
         }
         if (Object.setPrototypeOf)
           Object.setPrototypeOf(read, fs$read);
         return read;
-      }(fs6.read);
-      fs6.readSync = typeof fs6.readSync !== "function" ? fs6.readSync : /* @__PURE__ */ function(fs$readSync) {
+      }(fs7.read);
+      fs7.readSync = typeof fs7.readSync !== "function" ? fs7.readSync : /* @__PURE__ */ function(fs$readSync) {
         return function(fd, buffer, offset, length, position) {
           var eagCounter = 0;
           while (true) {
             try {
-              return fs$readSync.call(fs6, fd, buffer, offset, length, position);
+              return fs$readSync.call(fs7, fd, buffer, offset, length, position);
             } catch (er) {
               if (er.code === "EAGAIN" && eagCounter < 10) {
                 eagCounter++;
@@ -19215,11 +18487,11 @@ var require_polyfills = __commonJS({
             }
           }
         };
-      }(fs6.readSync);
-      function patchLchmod(fs7) {
-        fs7.lchmod = function(path9, mode, callback) {
-          fs7.open(
-            path9,
+      }(fs7.readSync);
+      function patchLchmod(fs8) {
+        fs8.lchmod = function(path10, mode, callback) {
+          fs8.open(
+            path10,
             constants.O_WRONLY | constants.O_SYMLINK,
             mode,
             function(err, fd) {
@@ -19228,8 +18500,8 @@ var require_polyfills = __commonJS({
                   callback(err);
                 return;
               }
-              fs7.fchmod(fd, mode, function(err2) {
-                fs7.close(fd, function(err22) {
+              fs8.fchmod(fd, mode, function(err2) {
+                fs8.close(fd, function(err22) {
                   if (callback)
                     callback(err2 || err22);
                 });
@@ -19237,68 +18509,68 @@ var require_polyfills = __commonJS({
             }
           );
         };
-        fs7.lchmodSync = function(path9, mode) {
-          var fd = fs7.openSync(path9, constants.O_WRONLY | constants.O_SYMLINK, mode);
+        fs8.lchmodSync = function(path10, mode) {
+          var fd = fs8.openSync(path10, constants.O_WRONLY | constants.O_SYMLINK, mode);
           var threw = true;
           var ret;
           try {
-            ret = fs7.fchmodSync(fd, mode);
+            ret = fs8.fchmodSync(fd, mode);
             threw = false;
           } finally {
             if (threw) {
               try {
-                fs7.closeSync(fd);
+                fs8.closeSync(fd);
               } catch (er) {
               }
             } else {
-              fs7.closeSync(fd);
+              fs8.closeSync(fd);
             }
           }
           return ret;
         };
       }
-      function patchLutimes(fs7) {
-        if (constants.hasOwnProperty("O_SYMLINK") && fs7.futimes) {
-          fs7.lutimes = function(path9, at, mt, cb) {
-            fs7.open(path9, constants.O_SYMLINK, function(er, fd) {
+      function patchLutimes(fs8) {
+        if (constants.hasOwnProperty("O_SYMLINK") && fs8.futimes) {
+          fs8.lutimes = function(path10, at, mt, cb) {
+            fs8.open(path10, constants.O_SYMLINK, function(er, fd) {
               if (er) {
                 if (cb)
                   cb(er);
                 return;
               }
-              fs7.futimes(fd, at, mt, function(er2) {
-                fs7.close(fd, function(er22) {
+              fs8.futimes(fd, at, mt, function(er2) {
+                fs8.close(fd, function(er22) {
                   if (cb)
                     cb(er2 || er22);
                 });
               });
             });
           };
-          fs7.lutimesSync = function(path9, at, mt) {
-            var fd = fs7.openSync(path9, constants.O_SYMLINK);
+          fs8.lutimesSync = function(path10, at, mt) {
+            var fd = fs8.openSync(path10, constants.O_SYMLINK);
             var ret;
             var threw = true;
             try {
-              ret = fs7.futimesSync(fd, at, mt);
+              ret = fs8.futimesSync(fd, at, mt);
               threw = false;
             } finally {
               if (threw) {
                 try {
-                  fs7.closeSync(fd);
+                  fs8.closeSync(fd);
                 } catch (er) {
                 }
               } else {
-                fs7.closeSync(fd);
+                fs8.closeSync(fd);
               }
             }
             return ret;
           };
-        } else if (fs7.futimes) {
-          fs7.lutimes = function(_a2, _b, _c, cb) {
+        } else if (fs8.futimes) {
+          fs8.lutimes = function(_a2, _b, _c, cb) {
             if (cb)
               process.nextTick(cb);
           };
-          fs7.lutimesSync = function() {
+          fs8.lutimesSync = function() {
           };
         }
       }
@@ -19306,7 +18578,7 @@ var require_polyfills = __commonJS({
         if (!orig)
           return orig;
         return function(target, mode, cb) {
-          return orig.call(fs6, target, mode, function(er) {
+          return orig.call(fs7, target, mode, function(er) {
             if (chownErOk(er))
               er = null;
             if (cb)
@@ -19319,7 +18591,7 @@ var require_polyfills = __commonJS({
           return orig;
         return function(target, mode) {
           try {
-            return orig.call(fs6, target, mode);
+            return orig.call(fs7, target, mode);
           } catch (er) {
             if (!chownErOk(er))
               throw er;
@@ -19330,7 +18602,7 @@ var require_polyfills = __commonJS({
         if (!orig)
           return orig;
         return function(target, uid, gid, cb) {
-          return orig.call(fs6, target, uid, gid, function(er) {
+          return orig.call(fs7, target, uid, gid, function(er) {
             if (chownErOk(er))
               er = null;
             if (cb)
@@ -19343,7 +18615,7 @@ var require_polyfills = __commonJS({
           return orig;
         return function(target, uid, gid) {
           try {
-            return orig.call(fs6, target, uid, gid);
+            return orig.call(fs7, target, uid, gid);
           } catch (er) {
             if (!chownErOk(er))
               throw er;
@@ -19368,14 +18640,14 @@ var require_polyfills = __commonJS({
             if (cb)
               cb.apply(this, arguments);
           }
-          return options ? orig.call(fs6, target, options, callback) : orig.call(fs6, target, callback);
+          return options ? orig.call(fs7, target, options, callback) : orig.call(fs7, target, callback);
         };
       }
       function statFixSync(orig) {
         if (!orig)
           return orig;
         return function(target, options) {
-          var stats = options ? orig.call(fs6, target, options) : orig.call(fs6, target);
+          var stats = options ? orig.call(fs7, target, options) : orig.call(fs7, target);
           if (stats) {
             if (stats.uid < 0)
               stats.uid += 4294967296;
@@ -19403,20 +18675,20 @@ var require_polyfills = __commonJS({
 
 // node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/legacy-streams.js
 var require_legacy_streams = __commonJS({
-  "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/legacy-streams.js"(exports, module) {
+  "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/legacy-streams.js"(exports2, module2) {
     var Stream2 = __require("stream").Stream;
-    module.exports = legacy;
-    function legacy(fs6) {
+    module2.exports = legacy;
+    function legacy(fs7) {
       return {
         ReadStream,
         WriteStream
       };
-      function ReadStream(path9, options) {
+      function ReadStream(path10, options) {
         if (!(this instanceof ReadStream))
-          return new ReadStream(path9, options);
+          return new ReadStream(path10, options);
         Stream2.call(this);
         var self2 = this;
-        this.path = path9;
+        this.path = path10;
         this.fd = null;
         this.readable = true;
         this.paused = false;
@@ -19451,7 +18723,7 @@ var require_legacy_streams = __commonJS({
           });
           return;
         }
-        fs6.open(this.path, this.flags, this.mode, function(err, fd) {
+        fs7.open(this.path, this.flags, this.mode, function(err, fd) {
           if (err) {
             self2.emit("error", err);
             self2.readable = false;
@@ -19462,11 +18734,11 @@ var require_legacy_streams = __commonJS({
           self2._read();
         });
       }
-      function WriteStream(path9, options) {
+      function WriteStream(path10, options) {
         if (!(this instanceof WriteStream))
-          return new WriteStream(path9, options);
+          return new WriteStream(path10, options);
         Stream2.call(this);
-        this.path = path9;
+        this.path = path10;
         this.fd = null;
         this.writable = true;
         this.flags = "w";
@@ -19491,7 +18763,7 @@ var require_legacy_streams = __commonJS({
         this.busy = false;
         this._queue = [];
         if (this.fd === null) {
-          this._open = fs6.open;
+          this._open = fs7.open;
           this._queue.push([this._open, this.path, this.flags, this.mode, void 0]);
           this.flush();
         }
@@ -19502,9 +18774,9 @@ var require_legacy_streams = __commonJS({
 
 // node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/clone.js
 var require_clone = __commonJS({
-  "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/clone.js"(exports, module) {
+  "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/clone.js"(exports2, module2) {
     "use strict";
-    module.exports = clone;
+    module2.exports = clone;
     var getPrototypeOf = Object.getPrototypeOf || function(obj) {
       return obj.__proto__;
     };
@@ -19525,8 +18797,8 @@ var require_clone = __commonJS({
 
 // node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/graceful-fs.js
 var require_graceful_fs = __commonJS({
-  "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/graceful-fs.js"(exports, module) {
-    var fs6 = __require("fs");
+  "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/graceful-fs.js"(exports2, module2) {
+    var fs7 = __require("fs");
     var polyfills = require_polyfills();
     var legacy = require_legacy_streams();
     var clone = require_clone();
@@ -19558,12 +18830,12 @@ var require_graceful_fs = __commonJS({
         m = "GFS4: " + m.split(/\n/).join("\nGFS4: ");
         console.error(m);
       };
-    if (!fs6[gracefulQueue]) {
+    if (!fs7[gracefulQueue]) {
       queue = global[gracefulQueue] || [];
-      publishQueue(fs6, queue);
-      fs6.close = function(fs$close) {
+      publishQueue(fs7, queue);
+      fs7.close = function(fs$close) {
         function close(fd, cb) {
-          return fs$close.call(fs6, fd, function(err) {
+          return fs$close.call(fs7, fd, function(err) {
             if (!err) {
               resetQueue();
             }
@@ -19575,48 +18847,48 @@ var require_graceful_fs = __commonJS({
           value: fs$close
         });
         return close;
-      }(fs6.close);
-      fs6.closeSync = function(fs$closeSync) {
+      }(fs7.close);
+      fs7.closeSync = function(fs$closeSync) {
         function closeSync(fd) {
-          fs$closeSync.apply(fs6, arguments);
+          fs$closeSync.apply(fs7, arguments);
           resetQueue();
         }
         Object.defineProperty(closeSync, previousSymbol, {
           value: fs$closeSync
         });
         return closeSync;
-      }(fs6.closeSync);
+      }(fs7.closeSync);
       if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || "")) {
         process.on("exit", function() {
-          debug(fs6[gracefulQueue]);
-          __require("assert").equal(fs6[gracefulQueue].length, 0);
+          debug(fs7[gracefulQueue]);
+          __require("assert").equal(fs7[gracefulQueue].length, 0);
         });
       }
     }
     var queue;
     if (!global[gracefulQueue]) {
-      publishQueue(global, fs6[gracefulQueue]);
+      publishQueue(global, fs7[gracefulQueue]);
     }
-    module.exports = patch(clone(fs6));
-    if (process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !fs6.__patched) {
-      module.exports = patch(fs6);
-      fs6.__patched = true;
+    module2.exports = patch(clone(fs7));
+    if (process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !fs7.__patched) {
+      module2.exports = patch(fs7);
+      fs7.__patched = true;
     }
-    function patch(fs7) {
-      polyfills(fs7);
-      fs7.gracefulify = patch;
-      fs7.createReadStream = createReadStream;
-      fs7.createWriteStream = createWriteStream2;
-      var fs$readFile = fs7.readFile;
-      fs7.readFile = readFile5;
-      function readFile5(path9, options, cb) {
+    function patch(fs8) {
+      polyfills(fs8);
+      fs8.gracefulify = patch;
+      fs8.createReadStream = createReadStream;
+      fs8.createWriteStream = createWriteStream2;
+      var fs$readFile = fs8.readFile;
+      fs8.readFile = readFile5;
+      function readFile5(path10, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$readFile(path9, options, cb);
-        function go$readFile(path10, options2, cb2, startTime) {
-          return fs$readFile(path10, options2, function(err) {
+        return go$readFile(path10, options, cb);
+        function go$readFile(path11, options2, cb2, startTime) {
+          return fs$readFile(path11, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$readFile, [path10, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$readFile, [path11, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -19624,16 +18896,16 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      var fs$writeFile = fs7.writeFile;
-      fs7.writeFile = writeFile5;
-      function writeFile5(path9, data, options, cb) {
+      var fs$writeFile = fs8.writeFile;
+      fs8.writeFile = writeFile5;
+      function writeFile5(path10, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$writeFile(path9, data, options, cb);
-        function go$writeFile(path10, data2, options2, cb2, startTime) {
-          return fs$writeFile(path10, data2, options2, function(err) {
+        return go$writeFile(path10, data, options, cb);
+        function go$writeFile(path11, data2, options2, cb2, startTime) {
+          return fs$writeFile(path11, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$writeFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$writeFile, [path11, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -19641,17 +18913,17 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      var fs$appendFile = fs7.appendFile;
+      var fs$appendFile = fs8.appendFile;
       if (fs$appendFile)
-        fs7.appendFile = appendFile;
-      function appendFile(path9, data, options, cb) {
+        fs8.appendFile = appendFile;
+      function appendFile(path10, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$appendFile(path9, data, options, cb);
-        function go$appendFile(path10, data2, options2, cb2, startTime) {
-          return fs$appendFile(path10, data2, options2, function(err) {
+        return go$appendFile(path10, data, options, cb);
+        function go$appendFile(path11, data2, options2, cb2, startTime) {
+          return fs$appendFile(path11, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$appendFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$appendFile, [path11, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -19659,9 +18931,9 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      var fs$copyFile = fs7.copyFile;
+      var fs$copyFile = fs8.copyFile;
       if (fs$copyFile)
-        fs7.copyFile = copyFile;
+        fs8.copyFile = copyFile;
       function copyFile(src, dest, flags, cb) {
         if (typeof flags === "function") {
           cb = flags;
@@ -19679,34 +18951,34 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      var fs$readdir = fs7.readdir;
-      fs7.readdir = readdir;
+      var fs$readdir = fs8.readdir;
+      fs8.readdir = readdir;
       var noReaddirOptionVersions = /^v[0-5]\./;
-      function readdir(path9, options, cb) {
+      function readdir(path10, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path10, options2, cb2, startTime) {
-          return fs$readdir(path10, fs$readdirCallback(
-            path10,
+        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path11, options2, cb2, startTime) {
+          return fs$readdir(path11, fs$readdirCallback(
+            path11,
             options2,
             cb2,
             startTime
           ));
-        } : function go$readdir2(path10, options2, cb2, startTime) {
-          return fs$readdir(path10, options2, fs$readdirCallback(
-            path10,
+        } : function go$readdir2(path11, options2, cb2, startTime) {
+          return fs$readdir(path11, options2, fs$readdirCallback(
+            path11,
             options2,
             cb2,
             startTime
           ));
         };
-        return go$readdir(path9, options, cb);
-        function fs$readdirCallback(path10, options2, cb2, startTime) {
+        return go$readdir(path10, options, cb);
+        function fs$readdirCallback(path11, options2, cb2, startTime) {
           return function(err, files) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
               enqueue([
                 go$readdir,
-                [path10, options2, cb2],
+                [path11, options2, cb2],
                 err,
                 startTime || Date.now(),
                 Date.now()
@@ -19721,21 +18993,21 @@ var require_graceful_fs = __commonJS({
         }
       }
       if (process.version.substr(0, 4) === "v0.8") {
-        var legStreams = legacy(fs7);
+        var legStreams = legacy(fs8);
         ReadStream = legStreams.ReadStream;
         WriteStream = legStreams.WriteStream;
       }
-      var fs$ReadStream = fs7.ReadStream;
+      var fs$ReadStream = fs8.ReadStream;
       if (fs$ReadStream) {
         ReadStream.prototype = Object.create(fs$ReadStream.prototype);
         ReadStream.prototype.open = ReadStream$open;
       }
-      var fs$WriteStream = fs7.WriteStream;
+      var fs$WriteStream = fs8.WriteStream;
       if (fs$WriteStream) {
         WriteStream.prototype = Object.create(fs$WriteStream.prototype);
         WriteStream.prototype.open = WriteStream$open;
       }
-      Object.defineProperty(fs7, "ReadStream", {
+      Object.defineProperty(fs8, "ReadStream", {
         get: function() {
           return ReadStream;
         },
@@ -19745,7 +19017,7 @@ var require_graceful_fs = __commonJS({
         enumerable: true,
         configurable: true
       });
-      Object.defineProperty(fs7, "WriteStream", {
+      Object.defineProperty(fs8, "WriteStream", {
         get: function() {
           return WriteStream;
         },
@@ -19756,7 +19028,7 @@ var require_graceful_fs = __commonJS({
         configurable: true
       });
       var FileReadStream = ReadStream;
-      Object.defineProperty(fs7, "FileReadStream", {
+      Object.defineProperty(fs8, "FileReadStream", {
         get: function() {
           return FileReadStream;
         },
@@ -19767,7 +19039,7 @@ var require_graceful_fs = __commonJS({
         configurable: true
       });
       var FileWriteStream = WriteStream;
-      Object.defineProperty(fs7, "FileWriteStream", {
+      Object.defineProperty(fs8, "FileWriteStream", {
         get: function() {
           return FileWriteStream;
         },
@@ -19777,7 +19049,7 @@ var require_graceful_fs = __commonJS({
         enumerable: true,
         configurable: true
       });
-      function ReadStream(path9, options) {
+      function ReadStream(path10, options) {
         if (this instanceof ReadStream)
           return fs$ReadStream.apply(this, arguments), this;
         else
@@ -19797,7 +19069,7 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function WriteStream(path9, options) {
+      function WriteStream(path10, options) {
         if (this instanceof WriteStream)
           return fs$WriteStream.apply(this, arguments), this;
         else
@@ -19815,22 +19087,22 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function createReadStream(path9, options) {
-        return new fs7.ReadStream(path9, options);
+      function createReadStream(path10, options) {
+        return new fs8.ReadStream(path10, options);
       }
-      function createWriteStream2(path9, options) {
-        return new fs7.WriteStream(path9, options);
+      function createWriteStream2(path10, options) {
+        return new fs8.WriteStream(path10, options);
       }
-      var fs$open = fs7.open;
-      fs7.open = open2;
-      function open2(path9, flags, mode, cb) {
+      var fs$open = fs8.open;
+      fs8.open = open2;
+      function open2(path10, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
-        return go$open(path9, flags, mode, cb);
-        function go$open(path10, flags2, mode2, cb2, startTime) {
-          return fs$open(path10, flags2, mode2, function(err, fd) {
+        return go$open(path10, flags, mode, cb);
+        function go$open(path11, flags2, mode2, cb2, startTime) {
+          return fs$open(path11, flags2, mode2, function(err, fd) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$open, [path10, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$open, [path11, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -19838,20 +19110,20 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      return fs7;
+      return fs8;
     }
     function enqueue(elem) {
       debug("ENQUEUE", elem[0].name, elem[1]);
-      fs6[gracefulQueue].push(elem);
+      fs7[gracefulQueue].push(elem);
       retry();
     }
     var retryTimer;
     function resetQueue() {
       var now = Date.now();
-      for (var i = 0; i < fs6[gracefulQueue].length; ++i) {
-        if (fs6[gracefulQueue][i].length > 2) {
-          fs6[gracefulQueue][i][3] = now;
-          fs6[gracefulQueue][i][4] = now;
+      for (var i = 0; i < fs7[gracefulQueue].length; ++i) {
+        if (fs7[gracefulQueue][i].length > 2) {
+          fs7[gracefulQueue][i][3] = now;
+          fs7[gracefulQueue][i][4] = now;
         }
       }
       retry();
@@ -19859,9 +19131,9 @@ var require_graceful_fs = __commonJS({
     function retry() {
       clearTimeout(retryTimer);
       retryTimer = void 0;
-      if (fs6[gracefulQueue].length === 0)
+      if (fs7[gracefulQueue].length === 0)
         return;
-      var elem = fs6[gracefulQueue].shift();
+      var elem = fs7[gracefulQueue].shift();
       var fn = elem[0];
       var args = elem[1];
       var err = elem[2];
@@ -19883,7 +19155,7 @@ var require_graceful_fs = __commonJS({
           debug("RETRY", fn.name, args);
           fn.apply(null, args.concat([startTime]));
         } else {
-          fs6[gracefulQueue].push(elem);
+          fs7[gracefulQueue].push(elem);
         }
       }
       if (retryTimer === void 0) {
@@ -19895,9 +19167,9 @@ var require_graceful_fs = __commonJS({
 
 // node_modules/.aspect_rules_js/@pnpm+graceful-fs@1000.0.1/node_modules/@pnpm/graceful-fs/lib/index.js
 var require_lib5 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+graceful-fs@1000.0.1/node_modules/@pnpm/graceful-fs/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@pnpm+graceful-fs@1000.0.1/node_modules/@pnpm/graceful-fs/lib/index.js"(exports2) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
         k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -19912,12 +19184,12 @@ var require_lib5 = __commonJS({
         k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || function(mod) {
+    var __importStar = exports2 && exports2.__importStar || function(mod) {
       if (mod && mod.__esModule)
         return mod;
       var result = {};
@@ -19929,13 +19201,13 @@ var require_lib5 = __commonJS({
       __setModuleDefault(result, mod);
       return result;
     };
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
+    Object.defineProperty(exports2, "__esModule", { value: true });
     var util_1 = __importStar(__require("util"));
     var graceful_fs_1 = __importDefault(require_graceful_fs());
-    exports.default = {
+    exports2.default = {
       copyFile: (0, util_1.promisify)(graceful_fs_1.default.copyFile),
       copyFileSync: withEagainRetry(graceful_fs_1.default.copyFileSync),
       createReadStream: graceful_fs_1.default.createReadStream,
@@ -19976,13 +19248,13 @@ var require_lib5 = __commonJS({
 
 // node_modules/.aspect_rules_js/minipass@7.1.2/node_modules/minipass/dist/commonjs/index.js
 var require_commonjs = __commonJS({
-  "node_modules/.aspect_rules_js/minipass@7.1.2/node_modules/minipass/dist/commonjs/index.js"(exports) {
+  "node_modules/.aspect_rules_js/minipass@7.1.2/node_modules/minipass/dist/commonjs/index.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Minipass = exports.isWritable = exports.isReadable = exports.isStream = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Minipass = exports2.isWritable = exports2.isReadable = exports2.isStream = void 0;
     var proc = typeof process === "object" && process ? process : {
       stdout: null,
       stderr: null
@@ -19990,13 +19262,13 @@ var require_commonjs = __commonJS({
     var node_events_1 = __require("node:events");
     var node_stream_1 = __importDefault(__require("node:stream"));
     var node_string_decoder_1 = __require("node:string_decoder");
-    var isStream = (s) => !!s && typeof s === "object" && (s instanceof Minipass || s instanceof node_stream_1.default || (0, exports.isReadable)(s) || (0, exports.isWritable)(s));
-    exports.isStream = isStream;
+    var isStream = (s) => !!s && typeof s === "object" && (s instanceof Minipass || s instanceof node_stream_1.default || (0, exports2.isReadable)(s) || (0, exports2.isWritable)(s));
+    exports2.isStream = isStream;
     var isReadable = (s) => !!s && typeof s === "object" && s instanceof node_events_1.EventEmitter && typeof s.pipe === "function" && // node core Writable streams have a pipe() method, but it throws
     s.pipe !== node_stream_1.default.Writable.prototype.pipe;
-    exports.isReadable = isReadable;
+    exports2.isReadable = isReadable;
     var isWritable = (s) => !!s && typeof s === "object" && s instanceof node_events_1.EventEmitter && typeof s.write === "function" && typeof s.end === "function";
-    exports.isWritable = isWritable;
+    exports2.isWritable = isWritable;
     var EOF = Symbol("EOF");
     var MAYBE_EMIT_END = Symbol("maybeEmitEnd");
     var EMITTED_END = Symbol("emittedEnd");
@@ -20859,16 +20131,16 @@ var require_commonjs = __commonJS({
        * @deprecated
        */
       static get isStream() {
-        return exports.isStream;
+        return exports2.isStream;
       }
     };
-    exports.Minipass = Minipass;
+    exports2.Minipass = Minipass;
   }
 });
 
 // node_modules/.aspect_rules_js/ssri@10.0.5/node_modules/ssri/lib/index.js
 var require_lib6 = __commonJS({
-  "node_modules/.aspect_rules_js/ssri@10.0.5/node_modules/ssri/lib/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ssri@10.0.5/node_modules/ssri/lib/index.js"(exports2, module2) {
     "use strict";
     var crypto2 = __require("crypto");
     var { Minipass } = require_commonjs();
@@ -21141,7 +20413,7 @@ var require_lib6 = __commonJS({
         return null;
       }
     };
-    module.exports.parse = parse4;
+    module2.exports.parse = parse4;
     function parse4(sri, opts) {
       if (!sri) {
         return null;
@@ -21173,7 +20445,7 @@ var require_lib6 = __commonJS({
       }, new Integrity());
       return hashes.isEmpty() ? null : hashes;
     }
-    module.exports.stringify = stringify;
+    module2.exports.stringify = stringify;
     function stringify(obj, opts) {
       if (obj.algorithm && obj.digest) {
         return Hash.prototype.toString.call(obj, opts);
@@ -21183,7 +20455,7 @@ var require_lib6 = __commonJS({
         return Integrity.prototype.toString.call(obj, opts);
       }
     }
-    module.exports.fromHex = fromHex;
+    module2.exports.fromHex = fromHex;
     function fromHex(hexDigest, algorithm, opts) {
       const optString = getOptString(opts?.options);
       return parse4(
@@ -21191,7 +20463,7 @@ var require_lib6 = __commonJS({
         opts
       );
     }
-    module.exports.fromData = fromData;
+    module2.exports.fromData = fromData;
     function fromData(data, opts) {
       const algorithms = opts?.algorithms || [...DEFAULT_ALGORITHMS];
       const optString = getOptString(opts?.options);
@@ -21211,7 +20483,7 @@ var require_lib6 = __commonJS({
         return acc;
       }, new Integrity());
     }
-    module.exports.fromStream = fromStream;
+    module2.exports.fromStream = fromStream;
     function fromStream(stream, opts) {
       const istream = integrityStream(opts);
       return new Promise((resolve8, reject) => {
@@ -21226,7 +20498,7 @@ var require_lib6 = __commonJS({
         istream.resume();
       });
     }
-    module.exports.checkData = checkData;
+    module2.exports.checkData = checkData;
     function checkData(data, sri, opts) {
       sri = parse4(sri, opts);
       if (!sri || !Object.keys(sri).length) {
@@ -21267,7 +20539,7 @@ var require_lib6 = __commonJS({
         throw err;
       }
     }
-    module.exports.checkStream = checkStream;
+    module2.exports.checkStream = checkStream;
     function checkStream(stream, sri, opts) {
       opts = opts || /* @__PURE__ */ Object.create(null);
       opts.integrity = sri;
@@ -21293,11 +20565,11 @@ var require_lib6 = __commonJS({
         checker.resume();
       });
     }
-    module.exports.integrityStream = integrityStream;
+    module2.exports.integrityStream = integrityStream;
     function integrityStream(opts = /* @__PURE__ */ Object.create(null)) {
       return new IntegrityStream(opts);
     }
-    module.exports.create = createIntegrity;
+    module2.exports.create = createIntegrity;
     function createIntegrity(opts) {
       const algorithms = opts?.algorithms || [...DEFAULT_ALGORITHMS];
       const optString = getOptString(opts?.options);
@@ -21354,9 +20626,9 @@ var require_lib6 = __commonJS({
 
 // node_modules/.aspect_rules_js/@pnpm+crypto.hash@1000.2.1/node_modules/@pnpm/crypto.hash/lib/index.js
 var require_lib7 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+crypto.hash@1000.2.1/node_modules/@pnpm/crypto.hash/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@pnpm+crypto.hash@1000.2.1/node_modules/@pnpm/crypto.hash/lib/index.js"(exports2) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
         k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -21371,12 +20643,12 @@ var require_lib7 = __commonJS({
         k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || function(mod) {
+    var __importStar = exports2 && exports2.__importStar || function(mod) {
       if (mod && mod.__esModule)
         return mod;
       var result = {};
@@ -21388,17 +20660,17 @@ var require_lib7 = __commonJS({
       __setModuleDefault(result, mod);
       return result;
     };
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.createShortHash = createShortHash;
-    exports.createHexHash = createHexHash;
-    exports.createHash = createHash;
-    exports.createHashFromMultipleFiles = createHashFromMultipleFiles;
-    exports.createHashFromFile = createHashFromFile;
-    exports.createHexHashFromFile = createHexHashFromFile;
-    exports.getTarballIntegrity = getTarballIntegrity;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createShortHash = createShortHash;
+    exports2.createHexHash = createHexHash;
+    exports2.createHash = createHash;
+    exports2.createHashFromMultipleFiles = createHashFromMultipleFiles;
+    exports2.createHashFromFile = createHashFromFile;
+    exports2.createHexHashFromFile = createHexHashFromFile;
+    exports2.getTarballIntegrity = getTarballIntegrity;
     var crypto2 = __importStar(require_lib4());
     var fs_1 = __importDefault(__require("fs"));
     var graceful_fs_1 = __importDefault(require_lib5());
@@ -21437,23 +20709,23 @@ var require_lib7 = __commonJS({
 
 // node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.8/node_modules/@pnpm/dependency-path/lib/index.js
 var require_lib8 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.8/node_modules/@pnpm/dependency-path/lib/index.js"(exports) {
+  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.8/node_modules/@pnpm/dependency-path/lib/index.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.isAbsolute = isAbsolute3;
-    exports.indexOfDepPathSuffix = indexOfDepPathSuffix;
-    exports.parseDepPath = parseDepPath;
-    exports.removeSuffix = removeSuffix;
-    exports.getPkgIdWithPatchHash = getPkgIdWithPatchHash;
-    exports.tryGetPackageId = tryGetPackageId2;
-    exports.getRegistryByPackageName = getRegistryByPackageName;
-    exports.refToRelative = refToRelative;
-    exports.parse = parse4;
-    exports.depPathToFilename = depPathToFilename;
-    exports.createPeerDepGraphHash = createPeerDepGraphHash;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.isAbsolute = isAbsolute3;
+    exports2.indexOfDepPathSuffix = indexOfDepPathSuffix;
+    exports2.parseDepPath = parseDepPath;
+    exports2.removeSuffix = removeSuffix;
+    exports2.getPkgIdWithPatchHash = getPkgIdWithPatchHash;
+    exports2.tryGetPackageId = tryGetPackageId2;
+    exports2.getRegistryByPackageName = getRegistryByPackageName;
+    exports2.refToRelative = refToRelative;
+    exports2.parse = parse4;
+    exports2.depPathToFilename = depPathToFilename;
+    exports2.createPeerDepGraphHash = createPeerDepGraphHash;
     var crypto_hash_1 = require_lib7();
     var semver_1 = __importDefault(require_semver());
     function isAbsolute3(dependencyPath) {
@@ -21637,9 +20909,9 @@ var require_lib8 = __commonJS({
 
 // node_modules/.aspect_rules_js/extend@3.0.2/node_modules/extend/index.js
 var require_extend = __commonJS({
-  "node_modules/.aspect_rules_js/extend@3.0.2/node_modules/extend/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/extend@3.0.2/node_modules/extend/index.js"(exports2, module2) {
     "use strict";
-    var hasOwn2 = Object.prototype.hasOwnProperty;
+    var hasOwn3 = Object.prototype.hasOwnProperty;
     var toStr = Object.prototype.toString;
     var defineProperty = Object.defineProperty;
     var gOPD = Object.getOwnPropertyDescriptor;
@@ -21653,15 +20925,15 @@ var require_extend = __commonJS({
       if (!obj || toStr.call(obj) !== "[object Object]") {
         return false;
       }
-      var hasOwnConstructor = hasOwn2.call(obj, "constructor");
-      var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn2.call(obj.constructor.prototype, "isPrototypeOf");
+      var hasOwnConstructor = hasOwn3.call(obj, "constructor");
+      var hasIsPrototypeOf = obj.constructor && obj.constructor.prototype && hasOwn3.call(obj.constructor.prototype, "isPrototypeOf");
       if (obj.constructor && !hasOwnConstructor && !hasIsPrototypeOf) {
         return false;
       }
       var key;
       for (key in obj) {
       }
-      return typeof key === "undefined" || hasOwn2.call(obj, key);
+      return typeof key === "undefined" || hasOwn3.call(obj, key);
     };
     var setProperty2 = function setProperty3(target, options) {
       if (defineProperty && options.name === "__proto__") {
@@ -21677,7 +20949,7 @@ var require_extend = __commonJS({
     };
     var getProperty = function getProperty2(obj, name) {
       if (name === "__proto__") {
-        if (!hasOwn2.call(obj, name)) {
+        if (!hasOwn3.call(obj, name)) {
           return void 0;
         } else if (gOPD) {
           return gOPD(obj, name).value;
@@ -21685,7 +20957,7 @@ var require_extend = __commonJS({
       }
       return obj[name];
     };
-    module.exports = function extend() {
+    module2.exports = function extend() {
       var options, name, src, copy, copyIsArray, clone;
       var target = arguments[0];
       var i = 1;
@@ -21727,9 +20999,9 @@ var require_extend = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/package.json
-var require_package2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/package.json"(exports, module) {
-    module.exports = {
+var require_package = __commonJS({
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/package.json"(exports2, module2) {
+    module2.exports = {
       name: "gaxios",
       version: "7.1.3",
       description: "A simple common HTTP client specifically for Google APIs and services.",
@@ -21842,27 +21114,27 @@ var require_package2 = __commonJS({
 
 // node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/util.cjs
 var require_util = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/util.cjs"(exports, module) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/util.cjs"(exports2, module2) {
     "use strict";
-    var pkg = require_package2();
-    module.exports = { pkg };
+    var pkg = require_package();
+    module2.exports = { pkg };
   }
 });
 
 // node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/common.js
 var require_common4 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/common.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/common.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GaxiosError = exports.GAXIOS_ERROR_SYMBOL = void 0;
-    exports.defaultErrorRedactor = defaultErrorRedactor;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GaxiosError = exports2.GAXIOS_ERROR_SYMBOL = void 0;
+    exports2.defaultErrorRedactor = defaultErrorRedactor;
     var extend_1 = __importDefault(require_extend());
     var util_cjs_1 = __importDefault(require_util());
     var pkg = util_cjs_1.default.pkg;
-    exports.GAXIOS_ERROR_SYMBOL = Symbol.for(`${pkg.name}-gaxios-error`);
+    exports2.GAXIOS_ERROR_SYMBOL = Symbol.for(`${pkg.name}-gaxios-error`);
     var GaxiosError = class _GaxiosError extends Error {
       config;
       response;
@@ -21916,7 +21188,7 @@ var require_common4 = __commonJS({
        * @see {@link https://stackoverflow.com/questions/46618852/require-and-instanceof}
        * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/@@hasInstance#reverting_to_default_instanceof_behavior}
        */
-      [exports.GAXIOS_ERROR_SYMBOL] = pkg.version;
+      [exports2.GAXIOS_ERROR_SYMBOL] = pkg.version;
       /**
        * Support `instanceof` operator for `GaxiosError` across builds/duplicated files.
        *
@@ -21924,7 +21196,7 @@ var require_common4 = __commonJS({
        * @see {@link GaxiosError[GAXIOS_ERROR_SYMBOL]}
        */
       static [Symbol.hasInstance](instance) {
-        if (instance && typeof instance === "object" && exports.GAXIOS_ERROR_SYMBOL in instance && instance[exports.GAXIOS_ERROR_SYMBOL] === pkg.version) {
+        if (instance && typeof instance === "object" && exports2.GAXIOS_ERROR_SYMBOL in instance && instance[exports2.GAXIOS_ERROR_SYMBOL] === pkg.version) {
           return true;
         }
         return Function.prototype[Symbol.hasInstance].call(_GaxiosError, instance);
@@ -22010,7 +21282,7 @@ var require_common4 = __commonJS({
         };
       }
     };
-    exports.GaxiosError = GaxiosError;
+    exports2.GaxiosError = GaxiosError;
     function translateData(responseType, data) {
       switch (responseType) {
         case "stream":
@@ -22093,10 +21365,10 @@ var require_common4 = __commonJS({
 
 // node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/retry.js
 var require_retry = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/retry.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/retry.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.getRetryConfig = getRetryConfig;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.getRetryConfig = getRetryConfig;
     async function getRetryConfig(err) {
       let config = getConfig2(err);
       if (!err || !err.config || !config && !err.config.retry) {
@@ -22198,26 +21470,26 @@ var require_retry = __commonJS({
 
 // node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js
 var require_interceptor = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GaxiosInterceptorManager = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GaxiosInterceptorManager = void 0;
     var GaxiosInterceptorManager = class extends Set {
     };
-    exports.GaxiosInterceptorManager = GaxiosInterceptorManager;
+    exports2.GaxiosInterceptorManager = GaxiosInterceptorManager;
   }
 });
 
 // node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js
 var require_gaxios = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js"(exports2) {
     "use strict";
-    var __importDefault = exports && exports.__importDefault || function(mod) {
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
     var _a2;
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Gaxios = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Gaxios = void 0;
     var extend_1 = __importDefault(require_extend());
     var https_1 = __require("https");
     var common_js_1 = require_common4();
@@ -22677,16 +21949,16 @@ Content-Type: ${partContentType}\r
         return base;
       }
     };
-    exports.Gaxios = Gaxios;
+    exports2.Gaxios = Gaxios;
     _a2 = Gaxios;
   }
 });
 
 // node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/index.js
 var require_src2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color_10.2.2/node_modules/gaxios/build/cjs/src/index.js"(exports2) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
         k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -22701,33 +21973,33 @@ var require_src2 = __commonJS({
         k2 = k;
       o[k2] = m[k];
     });
-    var __exportStar = exports && exports.__exportStar || function(m, exports2) {
+    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
       for (var p in m)
-        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p))
-          __createBinding(exports2, m, p);
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p))
+          __createBinding(exports3, m, p);
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.instance = exports.Gaxios = exports.GaxiosError = void 0;
-    exports.request = request;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.instance = exports2.Gaxios = exports2.GaxiosError = void 0;
+    exports2.request = request;
     var gaxios_js_1 = require_gaxios();
-    Object.defineProperty(exports, "Gaxios", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "Gaxios", { enumerable: true, get: function() {
       return gaxios_js_1.Gaxios;
     } });
     var common_js_1 = require_common4();
-    Object.defineProperty(exports, "GaxiosError", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "GaxiosError", { enumerable: true, get: function() {
       return common_js_1.GaxiosError;
     } });
-    __exportStar(require_interceptor(), exports);
-    exports.instance = new gaxios_js_1.Gaxios();
+    __exportStar(require_interceptor(), exports2);
+    exports2.instance = new gaxios_js_1.Gaxios();
     async function request(opts) {
-      return exports.instance.request(opts);
+      return exports2.instance.request(opts);
     }
   }
 });
 
 // node_modules/.aspect_rules_js/bignumber.js@9.3.1/node_modules/bignumber.js/bignumber.js
 var require_bignumber = __commonJS({
-  "node_modules/.aspect_rules_js/bignumber.js@9.3.1/node_modules/bignumber.js/bignumber.js"(exports, module) {
+  "node_modules/.aspect_rules_js/bignumber.js@9.3.1/node_modules/bignumber.js/bignumber.js"(exports2, module2) {
     (function(globalObject) {
       "use strict";
       var BigNumber, isNumeric = /^-?(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?$/i, mathceil = Math.ceil, mathfloor = Math.floor, bignumberError = "[BigNumber Error] ", tooManyDigits = bignumberError + "Number primitive has more than 15 significant digits: ", BASE = 1e14, LOG_BASE = 14, MAX_SAFE_INTEGER = 9007199254740991, POWS_TEN = [1, 10, 100, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10, 1e11, 1e12, 1e13], SQRT_BASE = 1e7, MAX = 1e9;
@@ -24194,23 +23466,23 @@ var require_bignumber = __commonJS({
         define(function() {
           return BigNumber;
         });
-      } else if (typeof module != "undefined" && module.exports) {
-        module.exports = BigNumber;
+      } else if (typeof module2 != "undefined" && module2.exports) {
+        module2.exports = BigNumber;
       } else {
         if (!globalObject) {
           globalObject = typeof self != "undefined" && self ? self : window;
         }
         globalObject.BigNumber = BigNumber;
       }
-    })(exports);
+    })(exports2);
   }
 });
 
 // node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/lib/stringify.js
 var require_stringify2 = __commonJS({
-  "node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/lib/stringify.js"(exports, module) {
+  "node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/lib/stringify.js"(exports2, module2) {
     var BigNumber = require_bignumber();
-    var JSON2 = module.exports;
+    var JSON2 = module2.exports;
     (function() {
       "use strict";
       function f(n) {
@@ -24318,7 +23590,7 @@ var require_stringify2 = __commonJS({
 
 // node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/lib/parse.js
 var require_parse3 = __commonJS({
-  "node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/lib/parse.js"(exports, module) {
+  "node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/lib/parse.js"(exports2, module2) {
     var BigNumber = null;
     var suspectProtoRx = /(?:_|\\u005[Ff])(?:_|\\u005[Ff])(?:p|\\u0070)(?:r|\\u0072)(?:o|\\u006[Ff])(?:t|\\u0074)(?:o|\\u006[Ff])(?:_|\\u005[Ff])(?:_|\\u005[Ff])/;
     var suspectConstructorRx = /(?:c|\\u0063)(?:o|\\u006[Ff])(?:n|\\u006[Ee])(?:s|\\u0073)(?:t|\\u0074)(?:r|\\u0072)(?:u|\\u0075)(?:c|\\u0063)(?:t|\\u0074)(?:o|\\u006[Ff])(?:r|\\u0072)/;
@@ -24596,40 +23868,40 @@ var require_parse3 = __commonJS({
         }({ "": result }, "") : result;
       };
     };
-    module.exports = json_parse;
+    module2.exports = json_parse;
   }
 });
 
 // node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/index.js
 var require_json_bigint = __commonJS({
-  "node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/json-bigint@1.0.0/node_modules/json-bigint/index.js"(exports2, module2) {
     var json_stringify = require_stringify2().stringify;
     var json_parse = require_parse3();
-    module.exports = function(options) {
+    module2.exports = function(options) {
       return {
         parse: json_parse(options),
         stringify: json_stringify
       };
     };
-    module.exports.parse = json_parse();
-    module.exports.stringify = json_stringify;
+    module2.exports.parse = json_parse();
+    module2.exports.stringify = json_stringify;
   }
 });
 
 // node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/gcp-residency.js
 var require_gcp_residency = __commonJS({
-  "node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/gcp-residency.js"(exports) {
+  "node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/gcp-residency.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GCE_LINUX_BIOS_PATHS = void 0;
-    exports.isGoogleCloudServerless = isGoogleCloudServerless;
-    exports.isGoogleComputeEngineLinux = isGoogleComputeEngineLinux;
-    exports.isGoogleComputeEngineMACAddress = isGoogleComputeEngineMACAddress;
-    exports.isGoogleComputeEngine = isGoogleComputeEngine;
-    exports.detectGCPResidency = detectGCPResidency;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GCE_LINUX_BIOS_PATHS = void 0;
+    exports2.isGoogleCloudServerless = isGoogleCloudServerless;
+    exports2.isGoogleComputeEngineLinux = isGoogleComputeEngineLinux;
+    exports2.isGoogleComputeEngineMACAddress = isGoogleComputeEngineMACAddress;
+    exports2.isGoogleComputeEngine = isGoogleComputeEngine;
+    exports2.detectGCPResidency = detectGCPResidency;
     var fs_1 = __require("fs");
     var os_1 = __require("os");
-    exports.GCE_LINUX_BIOS_PATHS = {
+    exports2.GCE_LINUX_BIOS_PATHS = {
       BIOS_DATE: "/sys/class/dmi/id/bios_date",
       BIOS_VENDOR: "/sys/class/dmi/id/bios_vendor"
     };
@@ -24642,8 +23914,8 @@ var require_gcp_residency = __commonJS({
       if ((0, os_1.platform)() !== "linux")
         return false;
       try {
-        (0, fs_1.statSync)(exports.GCE_LINUX_BIOS_PATHS.BIOS_DATE);
-        const biosVendor = (0, fs_1.readFileSync)(exports.GCE_LINUX_BIOS_PATHS.BIOS_VENDOR, "utf8");
+        (0, fs_1.statSync)(exports2.GCE_LINUX_BIOS_PATHS.BIOS_DATE);
+        const biosVendor = (0, fs_1.readFileSync)(exports2.GCE_LINUX_BIOS_PATHS.BIOS_VENDOR, "utf8");
         return /Google/.test(biosVendor);
       } catch {
         return false;
@@ -24673,10 +23945,10 @@ var require_gcp_residency = __commonJS({
 
 // node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js
 var require_colours = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Colours = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Colours = void 0;
     var Colours = class _Colours {
       /**
        * @param stream The stream (e.g. process.stderr)
@@ -24715,7 +23987,7 @@ var require_colours = __commonJS({
         }
       }
     };
-    exports.Colours = Colours;
+    exports2.Colours = Colours;
     Colours.enabled = false;
     Colours.reset = "";
     Colours.bright = "";
@@ -24734,9 +24006,9 @@ var require_colours = __commonJS({
 
 // node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js
 var require_logging_utils = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js"(exports2) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
         k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -24751,12 +24023,12 @@ var require_logging_utils = __commonJS({
         k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -24780,13 +24052,13 @@ var require_logging_utils = __commonJS({
         return result;
       };
     }();
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.env = exports.DebugLogBackendBase = exports.placeholder = exports.AdhocDebugLogger = exports.LogSeverity = void 0;
-    exports.getNodeBackend = getNodeBackend;
-    exports.getDebugBackend = getDebugBackend;
-    exports.getStructuredBackend = getStructuredBackend;
-    exports.setBackend = setBackend;
-    exports.log = log;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.env = exports2.DebugLogBackendBase = exports2.placeholder = exports2.AdhocDebugLogger = exports2.LogSeverity = void 0;
+    exports2.getNodeBackend = getNodeBackend;
+    exports2.getDebugBackend = getDebugBackend;
+    exports2.getStructuredBackend = getStructuredBackend;
+    exports2.setBackend = setBackend;
+    exports2.log = log;
     var events_1 = __require("events");
     var process4 = __importStar(__require("process"));
     var util = __importStar(__require("util"));
@@ -24798,7 +24070,7 @@ var require_logging_utils = __commonJS({
       LogSeverity2["INFO"] = "INFO";
       LogSeverity2["WARNING"] = "WARNING";
       LogSeverity2["ERROR"] = "ERROR";
-    })(LogSeverity || (exports.LogSeverity = LogSeverity = {}));
+    })(LogSeverity || (exports2.LogSeverity = LogSeverity = {}));
     var AdhocDebugLogger = class extends events_1.EventEmitter {
       /**
        * @param upstream The backend will pass a function that will be
@@ -24836,8 +24108,8 @@ var require_logging_utils = __commonJS({
         this.invoke({ severity }, ...args);
       }
     };
-    exports.AdhocDebugLogger = AdhocDebugLogger;
-    exports.placeholder = new AdhocDebugLogger("", () => {
+    exports2.AdhocDebugLogger = AdhocDebugLogger;
+    exports2.placeholder = new AdhocDebugLogger("", () => {
     }).func;
     var DebugLogBackendBase = class {
       constructor() {
@@ -24845,7 +24117,7 @@ var require_logging_utils = __commonJS({
         this.cached = /* @__PURE__ */ new Map();
         this.filters = [];
         this.filtersSet = false;
-        let nodeFlag = (_a2 = process4.env[exports.env.nodeEnables]) !== null && _a2 !== void 0 ? _a2 : "*";
+        let nodeFlag = (_a2 = process4.env[exports2.env.nodeEnables]) !== null && _a2 !== void 0 ? _a2 : "*";
         if (nodeFlag === "all") {
           nodeFlag = "*";
         }
@@ -24868,7 +24140,7 @@ var require_logging_utils = __commonJS({
         }
       }
     };
-    exports.DebugLogBackendBase = DebugLogBackendBase;
+    exports2.DebugLogBackendBase = DebugLogBackendBase;
     var NodeBackend = class extends DebugLogBackendBase {
       constructor() {
         super(...arguments);
@@ -24972,7 +24244,7 @@ var require_logging_utils = __commonJS({
     function getStructuredBackend(upstream) {
       return new StructuredBackend(upstream);
     }
-    exports.env = {
+    exports2.env = {
       /**
        * Filter wildcards specific to the Node syntax, and similar to the built-in
        * utils.debuglog() environment variable. If missing, disables logging.
@@ -24987,13 +24259,13 @@ var require_logging_utils = __commonJS({
     }
     function log(namespace, parent) {
       if (!cachedBackend) {
-        const enablesFlag = process4.env[exports.env.nodeEnables];
+        const enablesFlag = process4.env[exports2.env.nodeEnables];
         if (!enablesFlag) {
-          return exports.placeholder;
+          return exports2.placeholder;
         }
       }
       if (!namespace) {
-        return exports.placeholder;
+        return exports2.placeholder;
       }
       if (parent) {
         namespace = `${parent.instance.namespace}:${namespace}`;
@@ -25003,7 +24275,7 @@ var require_logging_utils = __commonJS({
         return existing.func;
       }
       if (cachedBackend === null) {
-        return exports.placeholder;
+        return exports2.placeholder;
       } else if (cachedBackend === void 0) {
         cachedBackend = getNodeBackend();
       }
@@ -25030,9 +24302,9 @@ var require_logging_utils = __commonJS({
 
 // node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js
 var require_src3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js"(exports2) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
         k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -25047,21 +24319,21 @@ var require_src3 = __commonJS({
         k2 = k;
       o[k2] = m[k];
     });
-    var __exportStar = exports && exports.__exportStar || function(m, exports2) {
+    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
       for (var p in m)
-        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p))
-          __createBinding(exports2, m, p);
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p))
+          __createBinding(exports3, m, p);
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    __exportStar(require_logging_utils(), exports);
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    __exportStar(require_logging_utils(), exports2);
   }
 });
 
 // node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/index.js
 var require_src4 = __commonJS({
-  "node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color_10.2.2/node_modules/gcp-metadata/build/src/index.js"(exports2) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
         k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -25076,12 +24348,12 @@ var require_src4 = __commonJS({
         k2 = k;
       o[k2] = m[k];
     });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
+    var __setModuleDefault = exports2 && exports2.__setModuleDefault || (Object.create ? function(o, v) {
       Object.defineProperty(o, "default", { enumerable: true, value: v });
     } : function(o, v) {
       o["default"] = v;
     });
-    var __importStar = exports && exports.__importStar || /* @__PURE__ */ function() {
+    var __importStar = exports2 && exports2.__importStar || /* @__PURE__ */ function() {
       var ownKeys = function(o) {
         ownKeys = Object.getOwnPropertyNames || function(o2) {
           var ar = [];
@@ -25105,34 +24377,34 @@ var require_src4 = __commonJS({
         return result;
       };
     }();
-    var __exportStar = exports && exports.__exportStar || function(m, exports2) {
+    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
       for (var p in m)
-        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p))
-          __createBinding(exports2, m, p);
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p))
+          __createBinding(exports3, m, p);
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.gcpResidencyCache = exports.METADATA_SERVER_DETECTION = exports.HEADERS = exports.HEADER_VALUE = exports.HEADER_NAME = exports.SECONDARY_HOST_ADDRESS = exports.HOST_ADDRESS = exports.BASE_PATH = void 0;
-    exports.instance = instance;
-    exports.project = project;
-    exports.universe = universe;
-    exports.bulk = bulk;
-    exports.isAvailable = isAvailable;
-    exports.resetIsAvailableCache = resetIsAvailableCache;
-    exports.getGCPResidency = getGCPResidency;
-    exports.setGCPResidency = setGCPResidency;
-    exports.requestTimeout = requestTimeout;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.gcpResidencyCache = exports2.METADATA_SERVER_DETECTION = exports2.HEADERS = exports2.HEADER_VALUE = exports2.HEADER_NAME = exports2.SECONDARY_HOST_ADDRESS = exports2.HOST_ADDRESS = exports2.BASE_PATH = void 0;
+    exports2.instance = instance;
+    exports2.project = project;
+    exports2.universe = universe;
+    exports2.bulk = bulk;
+    exports2.isAvailable = isAvailable;
+    exports2.resetIsAvailableCache = resetIsAvailableCache;
+    exports2.getGCPResidency = getGCPResidency;
+    exports2.setGCPResidency = setGCPResidency;
+    exports2.requestTimeout = requestTimeout;
     var gaxios_1 = require_src2();
     var jsonBigint = require_json_bigint();
     var gcp_residency_1 = require_gcp_residency();
     var logger = __importStar(require_src3());
-    exports.BASE_PATH = "/computeMetadata/v1";
-    exports.HOST_ADDRESS = "http://169.254.169.254";
-    exports.SECONDARY_HOST_ADDRESS = "http://metadata.google.internal.";
-    exports.HEADER_NAME = "Metadata-Flavor";
-    exports.HEADER_VALUE = "Google";
-    exports.HEADERS = Object.freeze({ [exports.HEADER_NAME]: exports.HEADER_VALUE });
+    exports2.BASE_PATH = "/computeMetadata/v1";
+    exports2.HOST_ADDRESS = "http://169.254.169.254";
+    exports2.SECONDARY_HOST_ADDRESS = "http://metadata.google.internal.";
+    exports2.HEADER_NAME = "Metadata-Flavor";
+    exports2.HEADER_VALUE = "Google";
+    exports2.HEADERS = Object.freeze({ [exports2.HEADER_NAME]: exports2.HEADER_VALUE });
     var log = logger.log("gcp-metadata");
-    exports.METADATA_SERVER_DETECTION = Object.freeze({
+    exports2.METADATA_SERVER_DETECTION = Object.freeze({
       "assume-present": "don't try to ping the metadata server, but assume it's present",
       none: "don't try to ping the metadata server, but don't try to use it either",
       "bios-only": "treat the result of a BIOS probe as canonical (don't fall back to pinging)",
@@ -25140,12 +24412,12 @@ var require_src4 = __commonJS({
     });
     function getBaseUrl2(baseUrl) {
       if (!baseUrl) {
-        baseUrl = process.env.GCE_METADATA_IP || process.env.GCE_METADATA_HOST || exports.HOST_ADDRESS;
+        baseUrl = process.env.GCE_METADATA_IP || process.env.GCE_METADATA_HOST || exports2.HOST_ADDRESS;
       }
       if (!/^https?:\/\//.test(baseUrl)) {
         baseUrl = `http://${baseUrl}`;
       }
-      return new URL(exports.BASE_PATH, baseUrl).href;
+      return new URL(exports2.BASE_PATH, baseUrl).href;
     }
     function validate(options) {
       Object.keys(options).forEach((key) => {
@@ -25162,7 +24434,7 @@ var require_src4 = __commonJS({
       });
     }
     async function metadataAccessor(type, options = {}, noResponseRetries = 3, fastFail = false) {
-      const headers = new Headers(exports.HEADERS);
+      const headers = new Headers(exports2.HEADERS);
       let metadataKey = "";
       let params2 = {};
       if (typeof type === "object") {
@@ -25197,9 +24469,9 @@ var require_src4 = __commonJS({
       log.info("instance request %j", req);
       const res = await requestMethod(req);
       log.info("instance metadata is %s", res.data);
-      const metadataFlavor = res.headers.get(exports.HEADER_NAME);
-      if (metadataFlavor !== exports.HEADER_VALUE) {
-        throw new RangeError(`Invalid response from metadata service: incorrect ${exports.HEADER_NAME} header. Expected '${exports.HEADER_VALUE}', got ${metadataFlavor ? `'${metadataFlavor}'` : "no header"}`);
+      const metadataFlavor = res.headers.get(exports2.HEADER_NAME);
+      if (metadataFlavor !== exports2.HEADER_VALUE) {
+        throw new RangeError(`Invalid response from metadata service: incorrect ${exports2.HEADER_NAME} header. Expected '${exports2.HEADER_VALUE}', got ${metadataFlavor ? `'${metadataFlavor}'` : "no header"}`);
       }
       if (typeof res.data === "string") {
         try {
@@ -25212,7 +24484,7 @@ var require_src4 = __commonJS({
     async function fastFailMetadataRequest(options) {
       const secondaryOptions = {
         ...options,
-        url: options.url?.toString().replace(getBaseUrl2(), getBaseUrl2(exports.SECONDARY_HOST_ADDRESS))
+        url: options.url?.toString().replace(getBaseUrl2(), getBaseUrl2(exports2.SECONDARY_HOST_ADDRESS))
       };
       const r1 = (0, gaxios_1.request)(options);
       const r2 = (0, gaxios_1.request)(secondaryOptions);
@@ -25245,8 +24517,8 @@ var require_src4 = __commonJS({
     async function isAvailable() {
       if (process.env.METADATA_SERVER_DETECTION) {
         const value = process.env.METADATA_SERVER_DETECTION.trim().toLocaleLowerCase();
-        if (!(value in exports.METADATA_SERVER_DETECTION)) {
-          throw new RangeError(`Unknown \`METADATA_SERVER_DETECTION\` env variable. Got \`${value}\`, but it should be \`${Object.keys(exports.METADATA_SERVER_DETECTION).join("`, `")}\`, or unset`);
+        if (!(value in exports2.METADATA_SERVER_DETECTION)) {
+          throw new RangeError(`Unknown \`METADATA_SERVER_DETECTION\` env variable. Got \`${value}\`, but it should be \`${Object.keys(exports2.METADATA_SERVER_DETECTION).join("`, `")}\`, or unset`);
         }
         switch (value) {
           case "assume-present":
@@ -25305,30 +24577,30 @@ var require_src4 = __commonJS({
     function resetIsAvailableCache() {
       cachedIsAvailableResponse = void 0;
     }
-    exports.gcpResidencyCache = null;
+    exports2.gcpResidencyCache = null;
     function getGCPResidency() {
-      if (exports.gcpResidencyCache === null) {
+      if (exports2.gcpResidencyCache === null) {
         setGCPResidency();
       }
-      return exports.gcpResidencyCache;
+      return exports2.gcpResidencyCache;
     }
     function setGCPResidency(value = null) {
-      exports.gcpResidencyCache = value !== null ? value : (0, gcp_residency_1.detectGCPResidency)();
+      exports2.gcpResidencyCache = value !== null ? value : (0, gcp_residency_1.detectGCPResidency)();
     }
     function requestTimeout() {
       return getGCPResidency() ? 0 : 3e3;
     }
-    __exportStar(require_gcp_residency(), exports);
+    __exportStar(require_gcp_residency(), exports2);
   }
 });
 
 // node_modules/.aspect_rules_js/base64-js@1.5.1/node_modules/base64-js/index.js
 var require_base64_js = __commonJS({
-  "node_modules/.aspect_rules_js/base64-js@1.5.1/node_modules/base64-js/index.js"(exports) {
+  "node_modules/.aspect_rules_js/base64-js@1.5.1/node_modules/base64-js/index.js"(exports2) {
     "use strict";
-    exports.byteLength = byteLength;
-    exports.toByteArray = toByteArray;
-    exports.fromByteArray = fromByteArray;
+    exports2.byteLength = byteLength;
+    exports2.toByteArray = toByteArray;
+    exports2.fromByteArray = fromByteArray;
     var lookup = [];
     var revLookup = [];
     var Arr = typeof Uint8Array !== "undefined" ? Uint8Array : Array;
@@ -25426,10 +24698,10 @@ var require_base64_js = __commonJS({
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
 var require_shared = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.fromArrayBufferToHex = fromArrayBufferToHex;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.fromArrayBufferToHex = fromArrayBufferToHex;
     function fromArrayBufferToHex(arrayBuffer) {
       const byteArray = Array.from(new Uint8Array(arrayBuffer));
       return byteArray.map((byte) => {
@@ -25441,10 +24713,10 @@ var require_shared = __commonJS({
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
 var require_crypto = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.BrowserCrypto = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.BrowserCrypto = void 0;
     var base64js = require_base64_js();
     var shared_1 = require_shared();
     var BrowserCrypto = class _BrowserCrypto {
@@ -25531,16 +24803,16 @@ var require_crypto = __commonJS({
         return window.crypto.subtle.sign("HMAC", cryptoKey, enc.encode(msg));
       }
     };
-    exports.BrowserCrypto = BrowserCrypto;
+    exports2.BrowserCrypto = BrowserCrypto;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
 var require_crypto2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.NodeCrypto = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.NodeCrypto = void 0;
     var crypto2 = __require("crypto");
     var NodeCrypto = class {
       async sha256DigestBase64(str) {
@@ -25589,7 +24861,7 @@ var require_crypto2 = __commonJS({
         return toArrayBuffer(crypto2.createHmac("sha256", cryptoKey).update(msg).digest());
       }
     };
-    exports.NodeCrypto = NodeCrypto;
+    exports2.NodeCrypto = NodeCrypto;
     function toArrayBuffer(buffer) {
       return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
     }
@@ -25601,9 +24873,9 @@ var require_crypto2 = __commonJS({
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
 var require_crypto3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports2) {
     "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
         k2 = k;
       var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -25618,17 +24890,17 @@ var require_crypto3 = __commonJS({
         k2 = k;
       o[k2] = m[k];
     });
-    var __exportStar = exports && exports.__exportStar || function(m, exports2) {
+    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
       for (var p in m)
-        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p))
-          __createBinding(exports2, m, p);
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p))
+          __createBinding(exports3, m, p);
     };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.createCrypto = createCrypto;
-    exports.hasBrowserCrypto = hasBrowserCrypto;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.createCrypto = createCrypto;
+    exports2.hasBrowserCrypto = hasBrowserCrypto;
     var crypto_1 = require_crypto();
     var crypto_2 = require_crypto2();
-    __exportStar(require_shared(), exports);
+    __exportStar(require_shared(), exports2);
     function createCrypto() {
       if (hasBrowserCrypto()) {
         return new crypto_1.BrowserCrypto();
@@ -25643,7 +24915,7 @@ var require_crypto3 = __commonJS({
 
 // node_modules/.aspect_rules_js/safe-buffer@5.2.1/node_modules/safe-buffer/index.js
 var require_safe_buffer = __commonJS({
-  "node_modules/.aspect_rules_js/safe-buffer@5.2.1/node_modules/safe-buffer/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/safe-buffer@5.2.1/node_modules/safe-buffer/index.js"(exports2, module2) {
     var buffer = __require("buffer");
     var Buffer2 = buffer.Buffer;
     function copyProps(src, dst) {
@@ -25652,10 +24924,10 @@ var require_safe_buffer = __commonJS({
       }
     }
     if (Buffer2.from && Buffer2.alloc && Buffer2.allocUnsafe && Buffer2.allocUnsafeSlow) {
-      module.exports = buffer;
+      module2.exports = buffer;
     } else {
-      copyProps(buffer, exports);
-      exports.Buffer = SafeBuffer;
+      copyProps(buffer, exports2);
+      exports2.Buffer = SafeBuffer;
     }
     function SafeBuffer(arg, encodingOrOffset, length) {
       return Buffer2(arg, encodingOrOffset, length);
@@ -25701,7 +24973,7 @@ var require_safe_buffer = __commonJS({
 
 // node_modules/.aspect_rules_js/ecdsa-sig-formatter@1.0.11/node_modules/ecdsa-sig-formatter/src/param-bytes-for-alg.js
 var require_param_bytes_for_alg = __commonJS({
-  "node_modules/.aspect_rules_js/ecdsa-sig-formatter@1.0.11/node_modules/ecdsa-sig-formatter/src/param-bytes-for-alg.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ecdsa-sig-formatter@1.0.11/node_modules/ecdsa-sig-formatter/src/param-bytes-for-alg.js"(exports2, module2) {
     "use strict";
     function getParamSize(keySize) {
       var result = (keySize / 8 | 0) + (keySize % 8 === 0 ? 0 : 1);
@@ -25719,13 +24991,13 @@ var require_param_bytes_for_alg = __commonJS({
       }
       throw new Error('Unknown algorithm "' + alg + '"');
     }
-    module.exports = getParamBytesForAlg;
+    module2.exports = getParamBytesForAlg;
   }
 });
 
 // node_modules/.aspect_rules_js/ecdsa-sig-formatter@1.0.11/node_modules/ecdsa-sig-formatter/src/ecdsa-sig-formatter.js
 var require_ecdsa_sig_formatter = __commonJS({
-  "node_modules/.aspect_rules_js/ecdsa-sig-formatter@1.0.11/node_modules/ecdsa-sig-formatter/src/ecdsa-sig-formatter.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ecdsa-sig-formatter@1.0.11/node_modules/ecdsa-sig-formatter/src/ecdsa-sig-formatter.js"(exports2, module2) {
     "use strict";
     var Buffer2 = require_safe_buffer().Buffer;
     var getParamBytesForAlg = require_param_bytes_for_alg();
@@ -25856,7 +25128,7 @@ var require_ecdsa_sig_formatter = __commonJS({
       }
       return dst;
     }
-    module.exports = {
+    module2.exports = {
       derToJose,
       joseToDer
     };
@@ -25865,18 +25137,18 @@ var require_ecdsa_sig_formatter = __commonJS({
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js
 var require_util2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.LRUCache = void 0;
-    exports.snakeToCamel = snakeToCamel;
-    exports.originalOrCamelOptions = originalOrCamelOptions;
-    exports.removeUndefinedValuesInObject = removeUndefinedValuesInObject;
-    exports.isValidFile = isValidFile;
-    exports.getWellKnownCertificateConfigFileLocation = getWellKnownCertificateConfigFileLocation;
-    var fs6 = __require("fs");
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.LRUCache = void 0;
+    exports2.snakeToCamel = snakeToCamel;
+    exports2.originalOrCamelOptions = originalOrCamelOptions;
+    exports2.removeUndefinedValuesInObject = removeUndefinedValuesInObject;
+    exports2.isValidFile = isValidFile;
+    exports2.getWellKnownCertificateConfigFileLocation = getWellKnownCertificateConfigFileLocation;
+    var fs7 = __require("fs");
     var os2 = __require("os");
-    var path9 = __require("path");
+    var path10 = __require("path");
     var WELL_KNOWN_CERTIFICATE_CONFIG_FILE = "certificate_config.json";
     var CLOUDSDK_CONFIG_DIRECTORY = "gcloud";
     function snakeToCamel(str) {
@@ -25951,7 +25223,7 @@ var require_util2 = __commonJS({
         }
       }
     };
-    exports.LRUCache = LRUCache;
+    exports2.LRUCache = LRUCache;
     function removeUndefinedValuesInObject(object) {
       Object.entries(object).forEach(([key, value]) => {
         if (value === void 0 || value === "undefined") {
@@ -25962,15 +25234,15 @@ var require_util2 = __commonJS({
     }
     async function isValidFile(filePath) {
       try {
-        const stats = await fs6.promises.lstat(filePath);
+        const stats = await fs7.promises.lstat(filePath);
         return stats.isFile();
       } catch (e) {
         return false;
       }
     }
     function getWellKnownCertificateConfigFileLocation() {
-      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path9.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path9.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
-      return path9.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
+      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path10.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path10.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
+      return path10.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
     }
     function _isWindows() {
       return os2.platform().startsWith("win");
@@ -25979,9 +25251,9 @@ var require_util2 = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/package.json
-var require_package3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/package.json"(exports, module) {
-    module.exports = {
+var require_package2 = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/package.json"(exports2, module2) {
+    module2.exports = {
       name: "google-auth-library",
       version: "10.5.0",
       author: "Google Inc.",
@@ -26074,32 +25346,32 @@ var require_package3 = __commonJS({
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs
 var require_shared2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.USER_AGENT = exports.PRODUCT_NAME = exports.pkg = void 0;
-    var pkg = require_package3();
-    exports.pkg = pkg;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.USER_AGENT = exports2.PRODUCT_NAME = exports2.pkg = void 0;
+    var pkg = require_package2();
+    exports2.pkg = pkg;
     var PRODUCT_NAME = "google-api-nodejs-client";
-    exports.PRODUCT_NAME = PRODUCT_NAME;
+    exports2.PRODUCT_NAME = PRODUCT_NAME;
     var USER_AGENT = `${PRODUCT_NAME}/${pkg.version}`;
-    exports.USER_AGENT = USER_AGENT;
+    exports2.USER_AGENT = USER_AGENT;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
 var require_authclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AuthClient = exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports.DEFAULT_UNIVERSE = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.AuthClient = exports2.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports2.DEFAULT_UNIVERSE = void 0;
     var events_1 = __require("events");
     var gaxios_1 = require_src2();
     var util_1 = require_util2();
     var google_logging_utils_1 = require_src3();
     var shared_cjs_1 = require_shared2();
-    exports.DEFAULT_UNIVERSE = "googleapis.com";
-    exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = 5 * 60 * 1e3;
+    exports2.DEFAULT_UNIVERSE = "googleapis.com";
+    exports2.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = 5 * 60 * 1e3;
     var AuthClient = class _AuthClient extends events_1.EventEmitter {
       apiKey;
       projectId;
@@ -26113,9 +25385,9 @@ var require_authclient = __commonJS({
        */
       transporter;
       credentials = {};
-      eagerRefreshThresholdMillis = exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS;
+      eagerRefreshThresholdMillis = exports2.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS;
       forceRefreshOnFailure = false;
-      universeDomain = exports.DEFAULT_UNIVERSE;
+      universeDomain = exports2.DEFAULT_UNIVERSE;
       /**
        * Symbols that can be added to GaxiosOptions to specify the method name that is
        * making an RPC call, for logging purposes, as well as a string ID that can be
@@ -26130,7 +25402,7 @@ var require_authclient = __commonJS({
         this.projectId = options.get("project_id") ?? null;
         this.quotaProjectId = options.get("quota_project_id");
         this.credentials = options.get("credentials") ?? {};
-        this.universeDomain = options.get("universe_domain") ?? exports.DEFAULT_UNIVERSE;
+        this.universeDomain = options.get("universe_domain") ?? exports2.DEFAULT_UNIVERSE;
         this.transporter = opts.transporter ?? new gaxios_1.Gaxios(opts.transporterOptions);
         if (options.get("useAuthRequestParameters") !== false) {
           this.transporter.interceptors.request.add(_AuthClient.DEFAULT_REQUEST_INTERCEPTOR);
@@ -26318,16 +25590,16 @@ var require_authclient = __commonJS({
         };
       }
     };
-    exports.AuthClient = AuthClient;
+    exports2.AuthClient = AuthClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
 var require_loginticket = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.LoginTicket = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.LoginTicket = void 0;
     var LoginTicket = class {
       envelope;
       payload;
@@ -26370,16 +25642,16 @@ var require_loginticket = __commonJS({
         return { envelope: this.getEnvelope(), payload: this.getPayload() };
       }
     };
-    exports.LoginTicket = LoginTicket;
+    exports2.LoginTicket = LoginTicket;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
 var require_oauth2client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.OAuth2Client = exports.ClientAuthentication = exports.CertificateFormat = exports.CodeChallengeMethod = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.OAuth2Client = exports2.ClientAuthentication = exports2.CertificateFormat = exports2.CodeChallengeMethod = void 0;
     var gaxios_1 = require_src2();
     var querystring = __require("querystring");
     var stream = __require("stream");
@@ -26392,18 +25664,18 @@ var require_oauth2client = __commonJS({
     (function(CodeChallengeMethod2) {
       CodeChallengeMethod2["Plain"] = "plain";
       CodeChallengeMethod2["S256"] = "S256";
-    })(CodeChallengeMethod || (exports.CodeChallengeMethod = CodeChallengeMethod = {}));
+    })(CodeChallengeMethod || (exports2.CodeChallengeMethod = CodeChallengeMethod = {}));
     var CertificateFormat;
     (function(CertificateFormat2) {
       CertificateFormat2["PEM"] = "PEM";
       CertificateFormat2["JWK"] = "JWK";
-    })(CertificateFormat || (exports.CertificateFormat = CertificateFormat = {}));
+    })(CertificateFormat || (exports2.CertificateFormat = CertificateFormat = {}));
     var ClientAuthentication;
     (function(ClientAuthentication2) {
       ClientAuthentication2["ClientSecretPost"] = "ClientSecretPost";
       ClientAuthentication2["ClientSecretBasic"] = "ClientSecretBasic";
       ClientAuthentication2["None"] = "None";
-    })(ClientAuthentication || (exports.ClientAuthentication = ClientAuthentication = {}));
+    })(ClientAuthentication || (exports2.ClientAuthentication = ClientAuthentication = {}));
     var OAuth2Client = class _OAuth2Client extends authclient_1.AuthClient {
       redirectUri;
       certificateCache = {};
@@ -27051,16 +26323,16 @@ var require_oauth2client = __commonJS({
         return expiryDate ? expiryDate <= (/* @__PURE__ */ new Date()).getTime() + this.eagerRefreshThresholdMillis : false;
       }
     };
-    exports.OAuth2Client = OAuth2Client;
+    exports2.OAuth2Client = OAuth2Client;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
 var require_computeclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Compute = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Compute = void 0;
     var gaxios_1 = require_src2();
     var gcpMetadata = require_src4();
     var oauth2client_1 = require_oauth2client();
@@ -27143,16 +26415,16 @@ var require_computeclient = __commonJS({
         }
       }
     };
-    exports.Compute = Compute;
+    exports2.Compute = Compute;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
 var require_idtokenclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.IdTokenClient = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.IdTokenClient = void 0;
     var oauth2client_1 = require_oauth2client();
     var IdTokenClient = class extends oauth2client_1.OAuth2Client {
       targetAudience;
@@ -27189,18 +26461,18 @@ var require_idtokenclient = __commonJS({
         }
       }
     };
-    exports.IdTokenClient = IdTokenClient;
+    exports2.IdTokenClient = IdTokenClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
 var require_envDetect = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GCPEnv = void 0;
-    exports.clear = clear;
-    exports.getEnv = getEnv2;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GCPEnv = void 0;
+    exports2.clear = clear;
+    exports2.getEnv = getEnv2;
     var gcpMetadata = require_src4();
     var GCPEnv;
     (function(GCPEnv2) {
@@ -27211,7 +26483,7 @@ var require_envDetect = __commonJS({
       GCPEnv2["CLOUD_RUN"] = "CLOUD_RUN";
       GCPEnv2["CLOUD_RUN_JOBS"] = "CLOUD_RUN_JOBS";
       GCPEnv2["NONE"] = "NONE";
-    })(GCPEnv || (exports.GCPEnv = GCPEnv = {}));
+    })(GCPEnv || (exports2.GCPEnv = GCPEnv = {}));
     var envPromise;
     function clear() {
       envPromise = void 0;
@@ -27272,7 +26544,7 @@ var require_envDetect = __commonJS({
 
 // node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/data-stream.js
 var require_data_stream = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/data-stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/data-stream.js"(exports2, module2) {
     var Buffer2 = require_safe_buffer().Buffer;
     var Stream2 = __require("stream");
     var util = __require("util");
@@ -27314,17 +26586,17 @@ var require_data_stream = __commonJS({
       this.writable = false;
       this.readable = false;
     };
-    module.exports = DataStream;
+    module2.exports = DataStream;
   }
 });
 
 // node_modules/.aspect_rules_js/buffer-equal-constant-time@1.0.1/node_modules/buffer-equal-constant-time/index.js
 var require_buffer_equal_constant_time = __commonJS({
-  "node_modules/.aspect_rules_js/buffer-equal-constant-time@1.0.1/node_modules/buffer-equal-constant-time/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/buffer-equal-constant-time@1.0.1/node_modules/buffer-equal-constant-time/index.js"(exports2, module2) {
     "use strict";
     var Buffer2 = __require("buffer").Buffer;
     var SlowBuffer = __require("buffer").SlowBuffer;
-    module.exports = bufferEq;
+    module2.exports = bufferEq;
     function bufferEq(a, b) {
       if (!Buffer2.isBuffer(a) || !Buffer2.isBuffer(b)) {
         return false;
@@ -27354,7 +26626,7 @@ var require_buffer_equal_constant_time = __commonJS({
 
 // node_modules/.aspect_rules_js/jwa@2.0.1/node_modules/jwa/index.js
 var require_jwa = __commonJS({
-  "node_modules/.aspect_rules_js/jwa@2.0.1/node_modules/jwa/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jwa@2.0.1/node_modules/jwa/index.js"(exports2, module2) {
     var Buffer2 = require_safe_buffer().Buffer;
     var crypto2 = __require("crypto");
     var formatEcdsa = require_ecdsa_sig_formatter();
@@ -27548,7 +26820,7 @@ var require_jwa = __commonJS({
         return signature === "";
       };
     }
-    module.exports = function jwa(algorithm) {
+    module2.exports = function jwa(algorithm) {
       var signerFactories = {
         hs: createHmacSigner,
         rs: createKeySigner,
@@ -27578,9 +26850,9 @@ var require_jwa = __commonJS({
 
 // node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/tostring.js
 var require_tostring = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/tostring.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/tostring.js"(exports2, module2) {
     var Buffer2 = __require("buffer").Buffer;
-    module.exports = function toString(obj) {
+    module2.exports = function toString(obj) {
       if (typeof obj === "string")
         return obj;
       if (typeof obj === "number" || Buffer2.isBuffer(obj))
@@ -27592,7 +26864,7 @@ var require_tostring = __commonJS({
 
 // node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/sign-stream.js
 var require_sign_stream = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/sign-stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/sign-stream.js"(exports2, module2) {
     var Buffer2 = require_safe_buffer().Buffer;
     var DataStream = require_data_stream();
     var jwa = require_jwa();
@@ -27661,13 +26933,13 @@ var require_sign_stream = __commonJS({
       }
     };
     SignStream.sign = jwsSign;
-    module.exports = SignStream;
+    module2.exports = SignStream;
   }
 });
 
 // node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/verify-stream.js
 var require_verify_stream = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/verify-stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/lib/verify-stream.js"(exports2, module2) {
     var Buffer2 = require_safe_buffer().Buffer;
     var DataStream = require_data_stream();
     var jwa = require_jwa();
@@ -27776,13 +27048,13 @@ var require_verify_stream = __commonJS({
     VerifyStream.decode = jwsDecode;
     VerifyStream.isValid = isValidJws;
     VerifyStream.verify = jwsVerify;
-    module.exports = VerifyStream;
+    module2.exports = VerifyStream;
   }
 });
 
 // node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/index.js
 var require_jws = __commonJS({
-  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/index.js"(exports) {
+  "node_modules/.aspect_rules_js/jws@4.0.1/node_modules/jws/index.js"(exports2) {
     var SignStream = require_sign_stream();
     var VerifyStream = require_verify_stream();
     var ALGORITHMS = [
@@ -27799,15 +27071,15 @@ var require_jws = __commonJS({
       "ES384",
       "ES512"
     ];
-    exports.ALGORITHMS = ALGORITHMS;
-    exports.sign = SignStream.sign;
-    exports.verify = VerifyStream.verify;
-    exports.decode = VerifyStream.decode;
-    exports.isValid = VerifyStream.isValid;
-    exports.createSign = function createSign(opts) {
+    exports2.ALGORITHMS = ALGORITHMS;
+    exports2.sign = SignStream.sign;
+    exports2.verify = VerifyStream.verify;
+    exports2.decode = VerifyStream.decode;
+    exports2.isValid = VerifyStream.isValid;
+    exports2.createSign = function createSign(opts) {
       return new SignStream(opts);
     };
-    exports.createVerify = function createVerify(opts) {
+    exports2.createVerify = function createVerify(opts) {
       return new VerifyStream(opts);
     };
   }
@@ -27815,16 +27087,16 @@ var require_jws = __commonJS({
 
 // node_modules/.aspect_rules_js/gtoken@8.0.0_supports-color_10.2.2/node_modules/gtoken/build/cjs/src/index.cjs
 var require_src5 = __commonJS({
-  "node_modules/.aspect_rules_js/gtoken@8.0.0_supports-color_10.2.2/node_modules/gtoken/build/cjs/src/index.cjs"(exports) {
+  "node_modules/.aspect_rules_js/gtoken@8.0.0_supports-color_10.2.2/node_modules/gtoken/build/cjs/src/index.cjs"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", {
+    Object.defineProperty(exports2, "__esModule", {
       value: true
     });
-    exports.GoogleToken = void 0;
-    var fs6 = _interopRequireWildcard(__require("fs"));
+    exports2.GoogleToken = void 0;
+    var fs7 = _interopRequireWildcard(__require("fs"));
     var _gaxios = require_src2();
     var jws = _interopRequireWildcard(require_jws());
-    var path9 = _interopRequireWildcard(__require("path"));
+    var path10 = _interopRequireWildcard(__require("path"));
     var _util = __require("util");
     function _interopRequireWildcard(e, t) {
       if ("function" == typeof WeakMap)
@@ -28089,7 +27361,7 @@ var require_src5 = __commonJS({
         });
       };
     }
-    var readFile5 = fs6.readFile ? (0, _util.promisify)(fs6.readFile) : _asyncToGenerator(_regenerator().m(function _callee() {
+    var readFile5 = fs7.readFile ? (0, _util.promisify)(fs7.readFile) : _asyncToGenerator(_regenerator().m(function _callee() {
       return _regenerator().w(function(_context) {
         while (1)
           switch (_context.n) {
@@ -28116,7 +27388,7 @@ var require_src5 = __commonJS({
     }(_wrapNativeSuper(Error));
     var _inFlightRequest = /* @__PURE__ */ new WeakMap();
     var _GoogleToken_brand = /* @__PURE__ */ new WeakSet();
-    var GoogleToken = exports.GoogleToken = function() {
+    var GoogleToken = exports2.GoogleToken = function() {
       function GoogleToken2(_options) {
         _classCallCheck(this, GoogleToken2);
         _classPrivateMethodInitSpec(this, _GoogleToken_brand);
@@ -28225,7 +27497,7 @@ var require_src5 = __commonJS({
               while (1)
                 switch (_context2.n) {
                   case 0:
-                    ext3 = path9.extname(keyFile);
+                    ext3 = path10.extname(keyFile);
                     _t = ext3;
                     _context2.n = _t === ".json" ? 1 : _t === ".der" ? 4 : _t === ".crt" ? 4 : _t === ".pem" ? 4 : _t === ".p12" ? 6 : _t === ".pfx" ? 6 : 7;
                     break;
@@ -28485,10 +27757,10 @@ var require_src5 = __commonJS({
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
 var require_jwtaccess = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.JWTAccess = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.JWTAccess = void 0;
     var jws = require_jws();
     var util_1 = require_util2();
     var DEFAULT_HEADER = {
@@ -28649,16 +27921,16 @@ var require_jwtaccess = __commonJS({
         });
       }
     };
-    exports.JWTAccess = JWTAccess;
+    exports2.JWTAccess = JWTAccess;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
 var require_jwtclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.JWT = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.JWT = void 0;
     var gtoken_1 = require_src5();
     var jwtaccess_1 = require_jwtaccess();
     var oauth2client_1 = require_oauth2client();
@@ -28920,19 +28192,19 @@ var require_jwtclient = __commonJS({
         throw new Error("A key or a keyFile must be provided to getCredentials.");
       }
     };
-    exports.JWT = JWT;
+    exports2.JWT = JWT;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
 var require_refreshclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UserRefreshClient = exports.USER_REFRESH_ACCOUNT_TYPE = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.UserRefreshClient = exports2.USER_REFRESH_ACCOUNT_TYPE = void 0;
     var oauth2client_1 = require_oauth2client();
     var authclient_1 = require_authclient();
-    exports.USER_REFRESH_ACCOUNT_TYPE = "authorized_user";
+    exports2.USER_REFRESH_ACCOUNT_TYPE = "authorized_user";
     var UserRefreshClient = class _UserRefreshClient extends oauth2client_1.OAuth2Client {
       // TODO: refactor tests to make this private
       // In a future gts release, the _propertyName rule will be lifted.
@@ -29047,20 +28319,20 @@ var require_refreshclient = __commonJS({
         return client;
       }
     };
-    exports.UserRefreshClient = UserRefreshClient;
+    exports2.UserRefreshClient = UserRefreshClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
 var require_impersonated = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Impersonated = exports.IMPERSONATED_ACCOUNT_TYPE = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Impersonated = exports2.IMPERSONATED_ACCOUNT_TYPE = void 0;
     var oauth2client_1 = require_oauth2client();
     var gaxios_1 = require_src2();
     var util_1 = require_util2();
-    exports.IMPERSONATED_ACCOUNT_TYPE = "impersonated_service_account";
+    exports2.IMPERSONATED_ACCOUNT_TYPE = "impersonated_service_account";
     var Impersonated = class _Impersonated extends oauth2client_1.OAuth2Client {
       sourceClient;
       targetPrincipal;
@@ -29226,17 +28498,17 @@ var require_impersonated = __commonJS({
         return res.data.token;
       }
     };
-    exports.Impersonated = Impersonated;
+    exports2.Impersonated = Impersonated;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
 var require_oauth2common = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.OAuthClientAuthHandler = void 0;
-    exports.getErrorFromOAuthErrorResponse = getErrorFromOAuthErrorResponse;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.OAuthClientAuthHandler = void 0;
+    exports2.getErrorFromOAuthErrorResponse = getErrorFromOAuthErrorResponse;
     var gaxios_1 = require_src2();
     var crypto_1 = require_crypto3();
     var METHODS_SUPPORTING_REQUEST_BODY = ["PUT", "POST", "PATCH"];
@@ -29345,7 +28617,7 @@ var require_oauth2common = __commonJS({
         };
       }
     };
-    exports.OAuthClientAuthHandler = OAuthClientAuthHandler;
+    exports2.OAuthClientAuthHandler = OAuthClientAuthHandler;
     function getErrorFromOAuthErrorResponse(resp, err) {
       const errorCode = resp.error;
       const errorDescription = resp.error_description;
@@ -29380,10 +28652,10 @@ var require_oauth2common = __commonJS({
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
 var require_stscredentials = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.StsCredentials = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.StsCredentials = void 0;
     var gaxios_1 = require_src2();
     var authclient_1 = require_authclient();
     var oauth2common_1 = require_oauth2common();
@@ -29461,16 +28733,16 @@ var require_stscredentials = __commonJS({
         }
       }
     };
-    exports.StsCredentials = StsCredentials;
+    exports2.StsCredentials = StsCredentials;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
 var require_baseexternalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.BaseExternalAccountClient = exports.CLOUD_RESOURCE_MANAGER = exports.EXTERNAL_ACCOUNT_TYPE = exports.EXPIRATION_TIME_OFFSET = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.BaseExternalAccountClient = exports2.CLOUD_RESOURCE_MANAGER = exports2.EXTERNAL_ACCOUNT_TYPE = exports2.EXPIRATION_TIME_OFFSET = void 0;
     var gaxios_1 = require_src2();
     var stream = __require("stream");
     var authclient_1 = require_authclient();
@@ -29481,9 +28753,9 @@ var require_baseexternalclient = __commonJS({
     var STS_REQUEST_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:access_token";
     var DEFAULT_OAUTH_SCOPE = "https://www.googleapis.com/auth/cloud-platform";
     var DEFAULT_TOKEN_LIFESPAN = 3600;
-    exports.EXPIRATION_TIME_OFFSET = 5 * 60 * 1e3;
-    exports.EXTERNAL_ACCOUNT_TYPE = "external_account";
-    exports.CLOUD_RESOURCE_MANAGER = "https://cloudresourcemanager.googleapis.com/v1/projects/";
+    exports2.EXPIRATION_TIME_OFFSET = 5 * 60 * 1e3;
+    exports2.EXTERNAL_ACCOUNT_TYPE = "external_account";
+    exports2.CLOUD_RESOURCE_MANAGER = "https://cloudresourcemanager.googleapis.com/v1/projects/";
     var WORKFORCE_AUDIENCE_PATTERN = "//iam\\.googleapis\\.com/locations/[^/]+/workforcePools/[^/]+/providers/.+";
     var DEFAULT_TOKEN_URL = "https://sts.{universeDomain}/v1/token";
     var BaseExternalAccountClient = class _BaseExternalAccountClient extends authclient_1.AuthClient {
@@ -29528,8 +28800,8 @@ var require_baseexternalclient = __commonJS({
         super(options);
         const opts = (0, util_1.originalOrCamelOptions)(options);
         const type = opts.get("type");
-        if (type && type !== exports.EXTERNAL_ACCOUNT_TYPE) {
-          throw new Error(`Expected "${exports.EXTERNAL_ACCOUNT_TYPE}" type but received "${options.type}"`);
+        if (type && type !== exports2.EXTERNAL_ACCOUNT_TYPE) {
+          throw new Error(`Expected "${exports2.EXTERNAL_ACCOUNT_TYPE}" type but received "${options.type}"`);
         }
         const clientId = opts.get("client_id");
         const clientSecret = opts.get("client_secret");
@@ -29838,23 +29110,23 @@ var require_baseexternalclient = __commonJS({
         return this.tokenUrl;
       }
     };
-    exports.BaseExternalAccountClient = BaseExternalAccountClient;
+    exports2.BaseExternalAccountClient = BaseExternalAccountClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
 var require_filesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.FileSubjectTokenSupplier = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.FileSubjectTokenSupplier = void 0;
     var util_1 = __require("util");
-    var fs6 = __require("fs");
-    var readFile5 = (0, util_1.promisify)(fs6.readFile ?? (() => {
+    var fs7 = __require("fs");
+    var readFile5 = (0, util_1.promisify)(fs7.readFile ?? (() => {
     }));
-    var realpath = (0, util_1.promisify)(fs6.realpath ?? (() => {
+    var realpath = (0, util_1.promisify)(fs7.realpath ?? (() => {
     }));
-    var lstat = (0, util_1.promisify)(fs6.lstat ?? (() => {
+    var lstat = (0, util_1.promisify)(fs7.lstat ?? (() => {
     }));
     var FileSubjectTokenSupplier = class {
       filePath;
@@ -29903,16 +29175,16 @@ var require_filesubjecttokensupplier = __commonJS({
         return subjectToken;
       }
     };
-    exports.FileSubjectTokenSupplier = FileSubjectTokenSupplier;
+    exports2.FileSubjectTokenSupplier = FileSubjectTokenSupplier;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
 var require_urlsubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.UrlSubjectTokenSupplier = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.UrlSubjectTokenSupplier = void 0;
     var authclient_1 = require_authclient();
     var UrlSubjectTokenSupplier = class {
       url;
@@ -29960,35 +29232,35 @@ var require_urlsubjecttokensupplier = __commonJS({
         return subjectToken;
       }
     };
-    exports.UrlSubjectTokenSupplier = UrlSubjectTokenSupplier;
+    exports2.UrlSubjectTokenSupplier = UrlSubjectTokenSupplier;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
 var require_certificatesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.CertificateSubjectTokenSupplier = exports.InvalidConfigurationError = exports.CertificateSourceUnavailableError = exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.CertificateSubjectTokenSupplier = exports2.InvalidConfigurationError = exports2.CertificateSourceUnavailableError = exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
     var util_1 = require_util2();
-    var fs6 = __require("fs");
+    var fs7 = __require("fs");
     var crypto_1 = __require("crypto");
     var https = __require("https");
-    exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = "GOOGLE_API_CERTIFICATE_CONFIG";
+    exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = "GOOGLE_API_CERTIFICATE_CONFIG";
     var CertificateSourceUnavailableError = class extends Error {
       constructor(message) {
         super(message);
         this.name = "CertificateSourceUnavailableError";
       }
     };
-    exports.CertificateSourceUnavailableError = CertificateSourceUnavailableError;
+    exports2.CertificateSourceUnavailableError = CertificateSourceUnavailableError;
     var InvalidConfigurationError = class extends Error {
       constructor(message) {
         super(message);
         this.name = "InvalidConfigurationError";
       }
     };
-    exports.InvalidConfigurationError = InvalidConfigurationError;
+    exports2.InvalidConfigurationError = InvalidConfigurationError;
     var CertificateSubjectTokenSupplier = class {
       certificateConfigPath;
       trustChainPath;
@@ -30044,18 +29316,18 @@ var require_certificatesubjecttokensupplier = __commonJS({
           }
           throw new CertificateSourceUnavailableError(`Provided certificate config path is invalid: ${overridePath}`);
         }
-        const envPath = process.env[exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE];
+        const envPath = process.env[exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE];
         if (envPath) {
           if (await (0, util_1.isValidFile)(envPath)) {
             return envPath;
           }
-          throw new CertificateSourceUnavailableError(`Path from environment variable "${exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE}" is invalid: ${envPath}`);
+          throw new CertificateSourceUnavailableError(`Path from environment variable "${exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE}" is invalid: ${envPath}`);
         }
         const wellKnownPath = (0, util_1.getWellKnownCertificateConfigFileLocation)();
         if (await (0, util_1.isValidFile)(wellKnownPath)) {
           return wellKnownPath;
         }
-        throw new CertificateSourceUnavailableError(`Could not find certificate configuration file. Searched override path, the "${exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE}" env var, and the gcloud path (${wellKnownPath}).`);
+        throw new CertificateSourceUnavailableError(`Could not find certificate configuration file. Searched override path, the "${exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE}" env var, and the gcloud path (${wellKnownPath}).`);
       }
       /**
        * Reads and parses the certificate config JSON file to extract the certificate and key paths.
@@ -30065,7 +29337,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
         const configPath = this.certificateConfigPath;
         let fileContents;
         try {
-          fileContents = await fs6.promises.readFile(configPath, "utf8");
+          fileContents = await fs7.promises.readFile(configPath, "utf8");
         } catch (err) {
           throw new CertificateSourceUnavailableError(`Failed to read certificate config file at: ${configPath}`);
         }
@@ -30090,14 +29362,14 @@ var require_certificatesubjecttokensupplier = __commonJS({
       async #getKeyAndCert(certPath, keyPath) {
         let cert, key;
         try {
-          cert = await fs6.promises.readFile(certPath);
+          cert = await fs7.promises.readFile(certPath);
           new crypto_1.X509Certificate(cert);
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
           throw new CertificateSourceUnavailableError(`Failed to read certificate file at ${certPath}: ${message}`);
         }
         try {
-          key = await fs6.promises.readFile(keyPath);
+          key = await fs7.promises.readFile(keyPath);
           (0, crypto_1.createPrivateKey)(key);
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
@@ -30116,7 +29388,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
           return JSON.stringify([leafCert.raw.toString("base64")]);
         }
         try {
-          const chainPems = await fs6.promises.readFile(this.trustChainPath, "utf8");
+          const chainPems = await fs7.promises.readFile(this.trustChainPath, "utf8");
           const pemBlocks = chainPems.match(/-----BEGIN CERTIFICATE-----[^-]+-----END CERTIFICATE-----/g) ?? [];
           const chainCerts = pemBlocks.map((pem, index) => {
             try {
@@ -30144,16 +29416,16 @@ var require_certificatesubjecttokensupplier = __commonJS({
         }
       }
     };
-    exports.CertificateSubjectTokenSupplier = CertificateSubjectTokenSupplier;
+    exports2.CertificateSubjectTokenSupplier = CertificateSubjectTokenSupplier;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
 var require_identitypoolclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.IdentityPoolClient = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.IdentityPoolClient = void 0;
     var baseexternalclient_1 = require_baseexternalclient();
     var util_1 = require_util2();
     var filesubjecttokensupplier_1 = require_filesubjecttokensupplier();
@@ -30256,16 +29528,16 @@ var require_identitypoolclient = __commonJS({
         return subjectToken;
       }
     };
-    exports.IdentityPoolClient = IdentityPoolClient;
+    exports2.IdentityPoolClient = IdentityPoolClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
 var require_awsrequestsigner = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AwsRequestSigner = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.AwsRequestSigner = void 0;
     var gaxios_1 = require_src2();
     var crypto_1 = require_crypto3();
     var AWS_ALGORITHM = "AWS4-HMAC-SHA256";
@@ -30346,7 +29618,7 @@ var require_awsrequestsigner = __commonJS({
         return awsSignedReq;
       }
     };
-    exports.AwsRequestSigner = AwsRequestSigner;
+    exports2.AwsRequestSigner = AwsRequestSigner;
     async function sign(crypto2, key, msg) {
       return await crypto2.signWithHmacSha256(key, msg);
     }
@@ -30412,10 +29684,10 @@ ${credentialScope}
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
 var require_defaultawssecuritycredentialssupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DefaultAwsSecurityCredentialsSupplier = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.DefaultAwsSecurityCredentialsSupplier = void 0;
     var authclient_1 = require_authclient();
     var DefaultAwsSecurityCredentialsSupplier = class {
       regionUrl;
@@ -30557,16 +29829,16 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
         return null;
       }
     };
-    exports.DefaultAwsSecurityCredentialsSupplier = DefaultAwsSecurityCredentialsSupplier;
+    exports2.DefaultAwsSecurityCredentialsSupplier = DefaultAwsSecurityCredentialsSupplier;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
 var require_awsclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.AwsClient = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.AwsClient = void 0;
     var awsrequestsigner_1 = require_awsrequestsigner();
     var baseexternalclient_1 = require_baseexternalclient();
     var defaultawssecuritycredentialssupplier_1 = require_defaultawssecuritycredentialssupplier();
@@ -30671,16 +29943,16 @@ var require_awsclient = __commonJS({
         }));
       }
     };
-    exports.AwsClient = AwsClient;
+    exports2.AwsClient = AwsClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
 var require_executable_response = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.InvalidSubjectTokenError = exports.InvalidMessageFieldError = exports.InvalidCodeFieldError = exports.InvalidTokenTypeFieldError = exports.InvalidExpirationTimeFieldError = exports.InvalidSuccessFieldError = exports.InvalidVersionFieldError = exports.ExecutableResponseError = exports.ExecutableResponse = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.InvalidSubjectTokenError = exports2.InvalidMessageFieldError = exports2.InvalidCodeFieldError = exports2.InvalidTokenTypeFieldError = exports2.InvalidExpirationTimeFieldError = exports2.InvalidSuccessFieldError = exports2.InvalidVersionFieldError = exports2.ExecutableResponseError = exports2.ExecutableResponse = void 0;
     var SAML_SUBJECT_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:saml2";
     var OIDC_SUBJECT_TOKEN_TYPE1 = "urn:ietf:params:oauth:token-type:id_token";
     var OIDC_SUBJECT_TOKEN_TYPE2 = "urn:ietf:params:oauth:token-type:jwt";
@@ -30774,47 +30046,47 @@ var require_executable_response = __commonJS({
         return this.expirationTime !== void 0 && this.expirationTime < Math.round(Date.now() / 1e3);
       }
     };
-    exports.ExecutableResponse = ExecutableResponse;
+    exports2.ExecutableResponse = ExecutableResponse;
     var ExecutableResponseError = class extends Error {
       constructor(message) {
         super(message);
         Object.setPrototypeOf(this, new.target.prototype);
       }
     };
-    exports.ExecutableResponseError = ExecutableResponseError;
+    exports2.ExecutableResponseError = ExecutableResponseError;
     var InvalidVersionFieldError = class extends ExecutableResponseError {
     };
-    exports.InvalidVersionFieldError = InvalidVersionFieldError;
+    exports2.InvalidVersionFieldError = InvalidVersionFieldError;
     var InvalidSuccessFieldError = class extends ExecutableResponseError {
     };
-    exports.InvalidSuccessFieldError = InvalidSuccessFieldError;
+    exports2.InvalidSuccessFieldError = InvalidSuccessFieldError;
     var InvalidExpirationTimeFieldError = class extends ExecutableResponseError {
     };
-    exports.InvalidExpirationTimeFieldError = InvalidExpirationTimeFieldError;
+    exports2.InvalidExpirationTimeFieldError = InvalidExpirationTimeFieldError;
     var InvalidTokenTypeFieldError = class extends ExecutableResponseError {
     };
-    exports.InvalidTokenTypeFieldError = InvalidTokenTypeFieldError;
+    exports2.InvalidTokenTypeFieldError = InvalidTokenTypeFieldError;
     var InvalidCodeFieldError = class extends ExecutableResponseError {
     };
-    exports.InvalidCodeFieldError = InvalidCodeFieldError;
+    exports2.InvalidCodeFieldError = InvalidCodeFieldError;
     var InvalidMessageFieldError = class extends ExecutableResponseError {
     };
-    exports.InvalidMessageFieldError = InvalidMessageFieldError;
+    exports2.InvalidMessageFieldError = InvalidMessageFieldError;
     var InvalidSubjectTokenError = class extends ExecutableResponseError {
     };
-    exports.InvalidSubjectTokenError = InvalidSubjectTokenError;
+    exports2.InvalidSubjectTokenError = InvalidSubjectTokenError;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
 var require_pluggable_auth_handler = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PluggableAuthHandler = exports.ExecutableError = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.PluggableAuthHandler = exports2.ExecutableError = void 0;
     var executable_response_1 = require_executable_response();
     var childProcess = __require("child_process");
-    var fs6 = __require("fs");
+    var fs7 = __require("fs");
     var ExecutableError = class extends Error {
       /**
        * The exit code returned by the executable.
@@ -30826,7 +30098,7 @@ var require_pluggable_auth_handler = __commonJS({
         Object.setPrototypeOf(this, new.target.prototype);
       }
     };
-    exports.ExecutableError = ExecutableError;
+    exports2.ExecutableError = ExecutableError;
     var PluggableAuthHandler = class _PluggableAuthHandler {
       commandComponents;
       timeoutMillis;
@@ -30899,14 +30171,14 @@ var require_pluggable_auth_handler = __commonJS({
         }
         let filePath;
         try {
-          filePath = await fs6.promises.realpath(this.outputFile);
+          filePath = await fs7.promises.realpath(this.outputFile);
         } catch {
           return void 0;
         }
-        if (!(await fs6.promises.lstat(filePath)).isFile()) {
+        if (!(await fs7.promises.lstat(filePath)).isFile()) {
           return void 0;
         }
-        const responseString = await fs6.promises.readFile(filePath, {
+        const responseString = await fs7.promises.readFile(filePath, {
           encoding: "utf8"
         });
         if (responseString === "") {
@@ -30943,21 +30215,21 @@ var require_pluggable_auth_handler = __commonJS({
         return components;
       }
     };
-    exports.PluggableAuthHandler = PluggableAuthHandler;
+    exports2.PluggableAuthHandler = PluggableAuthHandler;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
 var require_pluggable_auth_client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PluggableAuthClient = exports.ExecutableError = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.PluggableAuthClient = exports2.ExecutableError = void 0;
     var baseexternalclient_1 = require_baseexternalclient();
     var executable_response_1 = require_executable_response();
     var pluggable_auth_handler_1 = require_pluggable_auth_handler();
     var pluggable_auth_handler_2 = require_pluggable_auth_handler();
-    Object.defineProperty(exports, "ExecutableError", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "ExecutableError", { enumerable: true, get: function() {
       return pluggable_auth_handler_2.ExecutableError;
     } });
     var DEFAULT_EXECUTABLE_TIMEOUT_MILLIS = 30 * 1e3;
@@ -31070,16 +30342,16 @@ var require_pluggable_auth_client = __commonJS({
         return executableResponse.subjectToken;
       }
     };
-    exports.PluggableAuthClient = PluggableAuthClient;
+    exports2.PluggableAuthClient = PluggableAuthClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
 var require_externalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ExternalAccountClient = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ExternalAccountClient = void 0;
     var baseexternalclient_1 = require_baseexternalclient();
     var identitypoolclient_1 = require_identitypoolclient();
     var awsclient_1 = require_awsclient();
@@ -31119,22 +30391,22 @@ var require_externalclient = __commonJS({
         }
       }
     };
-    exports.ExternalAccountClient = ExternalAccountClient;
+    exports2.ExternalAccountClient = ExternalAccountClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
 var require_externalAccountAuthorizedUserClient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ExternalAccountAuthorizedUserClient = exports2.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
     var authclient_1 = require_authclient();
     var oauth2common_1 = require_oauth2common();
     var gaxios_1 = require_src2();
     var stream = __require("stream");
     var baseexternalclient_1 = require_baseexternalclient();
-    exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = "external_account_authorized_user";
+    exports2.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = "external_account_authorized_user";
     var DEFAULT_TOKEN_URL = "https://sts.{universeDomain}/v1/oauthtoken";
     var ExternalAccountAuthorizedUserHandler = class _ExternalAccountAuthorizedUserHandler extends oauth2common_1.OAuthClientAuthHandler {
       #tokenRefreshEndpoint;
@@ -31305,22 +30577,22 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
         return credentials.expiry_date ? now >= credentials.expiry_date - this.eagerRefreshThresholdMillis : false;
       }
     };
-    exports.ExternalAccountAuthorizedUserClient = ExternalAccountAuthorizedUserClient;
+    exports2.ExternalAccountAuthorizedUserClient = ExternalAccountAuthorizedUserClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
 var require_googleauth = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GoogleAuth = exports.GoogleAuthExceptionMessages = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GoogleAuth = exports2.GoogleAuthExceptionMessages = void 0;
     var child_process_1 = __require("child_process");
-    var fs6 = __require("fs");
+    var fs7 = __require("fs");
     var gaxios_1 = require_src2();
     var gcpMetadata = require_src4();
     var os2 = __require("os");
-    var path9 = __require("path");
+    var path10 = __require("path");
     var crypto_1 = require_crypto3();
     var computeclient_1 = require_computeclient();
     var idtokenclient_1 = require_idtokenclient();
@@ -31333,7 +30605,7 @@ var require_googleauth = __commonJS({
     var authclient_1 = require_authclient();
     var externalAccountAuthorizedUserClient_1 = require_externalAccountAuthorizedUserClient();
     var util_1 = require_util2();
-    exports.GoogleAuthExceptionMessages = {
+    exports2.GoogleAuthExceptionMessages = {
       API_KEY_WITH_CREDENTIALS: "API Keys and Credentials are mutually exclusive authentication methods and cannot be used together.",
       NO_PROJECT_ID_FOUND: "Unable to detect a Project Id in the current environment. \nTo learn more about authentication and Google APIs, visit: \nhttps://cloud.google.com/docs/authentication/getting-started",
       NO_CREDENTIALS_FOUND: "Unable to find credentials in current environment. \nTo learn more about authentication and Google APIs, visit: \nhttps://cloud.google.com/docs/authentication/getting-started",
@@ -31392,7 +30664,7 @@ var require_googleauth = __commonJS({
         this.jsonContent = opts.credentials || null;
         this.apiKey = opts.apiKey || this.clientOptions.apiKey || null;
         if (this.apiKey && (this.jsonContent || this.clientOptions.credentials)) {
-          throw new RangeError(exports.GoogleAuthExceptionMessages.API_KEY_WITH_CREDENTIALS);
+          throw new RangeError(exports2.GoogleAuthExceptionMessages.API_KEY_WITH_CREDENTIALS);
         }
         if (opts.universeDomain) {
           this.clientOptions.universeDomain = opts.universeDomain;
@@ -31425,7 +30697,7 @@ var require_googleauth = __commonJS({
         try {
           return await this.getProjectId();
         } catch (e) {
-          if (e instanceof Error && e.message === exports.GoogleAuthExceptionMessages.NO_PROJECT_ID_FOUND) {
+          if (e instanceof Error && e.message === exports2.GoogleAuthExceptionMessages.NO_PROJECT_ID_FOUND) {
             return null;
           } else {
             throw e;
@@ -31454,7 +30726,7 @@ var require_googleauth = __commonJS({
           this._cachedProjectId = projectId;
           return projectId;
         } else {
-          throw new Error(exports.GoogleAuthExceptionMessages.NO_PROJECT_ID_FOUND);
+          throw new Error(exports2.GoogleAuthExceptionMessages.NO_PROJECT_ID_FOUND);
         }
       }
       async getProjectIdAsync() {
@@ -31551,7 +30823,7 @@ var require_googleauth = __commonJS({
           options.scopes = this.getAnyScopes();
           return await this.#prepareAndCacheClient(new computeclient_1.Compute(options));
         }
-        throw new Error(exports.GoogleAuthExceptionMessages.NO_ADC_FOUND);
+        throw new Error(exports2.GoogleAuthExceptionMessages.NO_ADC_FOUND);
       }
       async #prepareAndCacheClient(credential, quotaProjectIdOverride = process.env["GOOGLE_CLOUD_QUOTA_PROJECT"] || null) {
         const projectId = await this.getProjectIdOptional();
@@ -31606,12 +30878,12 @@ var require_googleauth = __commonJS({
         } else {
           const home = process.env["HOME"];
           if (home) {
-            location = path9.join(home, ".config");
+            location = path10.join(home, ".config");
           }
         }
         if (location) {
-          location = path9.join(location, "gcloud", "application_default_credentials.json");
-          if (!fs6.existsSync(location)) {
+          location = path10.join(location, "gcloud", "application_default_credentials.json");
+          if (!fs7.existsSync(location)) {
             location = null;
           }
         }
@@ -31632,8 +30904,8 @@ var require_googleauth = __commonJS({
           throw new Error("The file path is invalid.");
         }
         try {
-          filePath = fs6.realpathSync(filePath);
-          if (!fs6.lstatSync(filePath).isFile()) {
+          filePath = fs7.realpathSync(filePath);
+          if (!fs7.lstatSync(filePath).isFile()) {
             throw new Error();
           }
         } catch (err) {
@@ -31642,7 +30914,7 @@ var require_googleauth = __commonJS({
           }
           throw err;
         }
-        const readStream = fs6.createReadStream(filePath);
+        const readStream = fs7.createReadStream(filePath);
         return this.fromStream(readStream, options);
       }
       /**
@@ -31932,7 +31204,7 @@ var require_googleauth = __commonJS({
           ]);
           return { client_email, universe_domain };
         }
-        throw new Error(exports.GoogleAuthExceptionMessages.NO_CREDENTIALS_FOUND);
+        throw new Error(exports2.GoogleAuthExceptionMessages.NO_CREDENTIALS_FOUND);
       }
       /**
        * Automatically obtain an {@link AuthClient `AuthClient`} based on the
@@ -31954,8 +31226,8 @@ var require_googleauth = __commonJS({
         if (this.jsonContent) {
           return this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
         } else if (this.keyFilename) {
-          const filePath = path9.resolve(this.keyFilename);
-          const stream = fs6.createReadStream(filePath);
+          const filePath = path10.resolve(this.keyFilename);
+          const stream = fs7.createReadStream(filePath);
           return await this.fromStreamAsync(stream, this.clientOptions);
         } else if (this.apiKey) {
           const client = await this.fromAPIKey(this.apiKey, this.clientOptions);
@@ -32095,16 +31367,16 @@ var require_googleauth = __commonJS({
         return res.data.signedBlob;
       }
     };
-    exports.GoogleAuth = GoogleAuth2;
+    exports2.GoogleAuth = GoogleAuth2;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
 var require_iam = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.IAMAuth = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.IAMAuth = void 0;
     var IAMAuth = class {
       selector;
       token;
@@ -32131,16 +31403,16 @@ var require_iam = __commonJS({
         };
       }
     };
-    exports.IAMAuth = IAMAuth;
+    exports2.IAMAuth = IAMAuth;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
 var require_downscopedclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.DownscopedClient = exports.EXPIRATION_TIME_OFFSET = exports.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.DownscopedClient = exports2.EXPIRATION_TIME_OFFSET = exports2.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
     var gaxios_1 = require_src2();
     var stream = __require("stream");
     var authclient_1 = require_authclient();
@@ -32148,8 +31420,8 @@ var require_downscopedclient = __commonJS({
     var STS_GRANT_TYPE = "urn:ietf:params:oauth:grant-type:token-exchange";
     var STS_REQUEST_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:access_token";
     var STS_SUBJECT_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:access_token";
-    exports.MAX_ACCESS_BOUNDARY_RULES_COUNT = 10;
-    exports.EXPIRATION_TIME_OFFSET = 5 * 60 * 1e3;
+    exports2.MAX_ACCESS_BOUNDARY_RULES_COUNT = 10;
+    exports2.EXPIRATION_TIME_OFFSET = 5 * 60 * 1e3;
     var DownscopedClient = class extends authclient_1.AuthClient {
       authClient;
       credentialAccessBoundary;
@@ -32181,8 +31453,8 @@ var require_downscopedclient = __commonJS({
         }
         if (this.credentialAccessBoundary.accessBoundary.accessBoundaryRules.length === 0) {
           throw new Error("At least one access boundary rule needs to be defined.");
-        } else if (this.credentialAccessBoundary.accessBoundary.accessBoundaryRules.length > exports.MAX_ACCESS_BOUNDARY_RULES_COUNT) {
-          throw new Error(`The provided access boundary has more than ${exports.MAX_ACCESS_BOUNDARY_RULES_COUNT} access boundary rules.`);
+        } else if (this.credentialAccessBoundary.accessBoundary.accessBoundaryRules.length > exports2.MAX_ACCESS_BOUNDARY_RULES_COUNT) {
+          throw new Error(`The provided access boundary has more than ${exports2.MAX_ACCESS_BOUNDARY_RULES_COUNT} access boundary rules.`);
         }
         for (const rule of this.credentialAccessBoundary.accessBoundary.accessBoundaryRules) {
           if (rule.availablePermissions.length === 0) {
@@ -32316,16 +31588,16 @@ var require_downscopedclient = __commonJS({
         return downscopedAccessToken.expiry_date ? now >= downscopedAccessToken.expiry_date - this.eagerRefreshThresholdMillis : false;
       }
     };
-    exports.DownscopedClient = DownscopedClient;
+    exports2.DownscopedClient = DownscopedClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
 var require_passthrough = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.PassThroughClient = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.PassThroughClient = void 0;
     var authclient_1 = require_authclient();
     var PassThroughClient = class extends authclient_1.AuthClient {
       /**
@@ -32361,131 +31633,131 @@ var require_passthrough = __commonJS({
         return new Headers();
       }
     };
-    exports.PassThroughClient = PassThroughClient;
+    exports2.PassThroughClient = PassThroughClient;
   }
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js
 var require_src6 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.GoogleAuth = exports.auth = exports.PassThroughClient = exports.ExternalAccountAuthorizedUserClient = exports.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = exports.ExecutableError = exports.PluggableAuthClient = exports.DownscopedClient = exports.BaseExternalAccountClient = exports.ExternalAccountClient = exports.IdentityPoolClient = exports.AwsRequestSigner = exports.AwsClient = exports.UserRefreshClient = exports.LoginTicket = exports.ClientAuthentication = exports.OAuth2Client = exports.CodeChallengeMethod = exports.Impersonated = exports.JWT = exports.JWTAccess = exports.IdTokenClient = exports.IAMAuth = exports.GCPEnv = exports.Compute = exports.DEFAULT_UNIVERSE = exports.AuthClient = exports.gaxios = exports.gcpMetadata = void 0;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GoogleAuth = exports2.auth = exports2.PassThroughClient = exports2.ExternalAccountAuthorizedUserClient = exports2.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = exports2.ExecutableError = exports2.PluggableAuthClient = exports2.DownscopedClient = exports2.BaseExternalAccountClient = exports2.ExternalAccountClient = exports2.IdentityPoolClient = exports2.AwsRequestSigner = exports2.AwsClient = exports2.UserRefreshClient = exports2.LoginTicket = exports2.ClientAuthentication = exports2.OAuth2Client = exports2.CodeChallengeMethod = exports2.Impersonated = exports2.JWT = exports2.JWTAccess = exports2.IdTokenClient = exports2.IAMAuth = exports2.GCPEnv = exports2.Compute = exports2.DEFAULT_UNIVERSE = exports2.AuthClient = exports2.gaxios = exports2.gcpMetadata = void 0;
     var googleauth_1 = require_googleauth();
-    Object.defineProperty(exports, "GoogleAuth", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "GoogleAuth", { enumerable: true, get: function() {
       return googleauth_1.GoogleAuth;
     } });
-    exports.gcpMetadata = require_src4();
-    exports.gaxios = require_src2();
+    exports2.gcpMetadata = require_src4();
+    exports2.gaxios = require_src2();
     var authclient_1 = require_authclient();
-    Object.defineProperty(exports, "AuthClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "AuthClient", { enumerable: true, get: function() {
       return authclient_1.AuthClient;
     } });
-    Object.defineProperty(exports, "DEFAULT_UNIVERSE", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "DEFAULT_UNIVERSE", { enumerable: true, get: function() {
       return authclient_1.DEFAULT_UNIVERSE;
     } });
     var computeclient_1 = require_computeclient();
-    Object.defineProperty(exports, "Compute", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "Compute", { enumerable: true, get: function() {
       return computeclient_1.Compute;
     } });
     var envDetect_1 = require_envDetect();
-    Object.defineProperty(exports, "GCPEnv", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "GCPEnv", { enumerable: true, get: function() {
       return envDetect_1.GCPEnv;
     } });
     var iam_1 = require_iam();
-    Object.defineProperty(exports, "IAMAuth", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "IAMAuth", { enumerable: true, get: function() {
       return iam_1.IAMAuth;
     } });
     var idtokenclient_1 = require_idtokenclient();
-    Object.defineProperty(exports, "IdTokenClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "IdTokenClient", { enumerable: true, get: function() {
       return idtokenclient_1.IdTokenClient;
     } });
     var jwtaccess_1 = require_jwtaccess();
-    Object.defineProperty(exports, "JWTAccess", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "JWTAccess", { enumerable: true, get: function() {
       return jwtaccess_1.JWTAccess;
     } });
     var jwtclient_1 = require_jwtclient();
-    Object.defineProperty(exports, "JWT", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "JWT", { enumerable: true, get: function() {
       return jwtclient_1.JWT;
     } });
     var impersonated_1 = require_impersonated();
-    Object.defineProperty(exports, "Impersonated", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "Impersonated", { enumerable: true, get: function() {
       return impersonated_1.Impersonated;
     } });
     var oauth2client_1 = require_oauth2client();
-    Object.defineProperty(exports, "CodeChallengeMethod", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "CodeChallengeMethod", { enumerable: true, get: function() {
       return oauth2client_1.CodeChallengeMethod;
     } });
-    Object.defineProperty(exports, "OAuth2Client", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "OAuth2Client", { enumerable: true, get: function() {
       return oauth2client_1.OAuth2Client;
     } });
-    Object.defineProperty(exports, "ClientAuthentication", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "ClientAuthentication", { enumerable: true, get: function() {
       return oauth2client_1.ClientAuthentication;
     } });
     var loginticket_1 = require_loginticket();
-    Object.defineProperty(exports, "LoginTicket", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "LoginTicket", { enumerable: true, get: function() {
       return loginticket_1.LoginTicket;
     } });
     var refreshclient_1 = require_refreshclient();
-    Object.defineProperty(exports, "UserRefreshClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "UserRefreshClient", { enumerable: true, get: function() {
       return refreshclient_1.UserRefreshClient;
     } });
     var awsclient_1 = require_awsclient();
-    Object.defineProperty(exports, "AwsClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "AwsClient", { enumerable: true, get: function() {
       return awsclient_1.AwsClient;
     } });
     var awsrequestsigner_1 = require_awsrequestsigner();
-    Object.defineProperty(exports, "AwsRequestSigner", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "AwsRequestSigner", { enumerable: true, get: function() {
       return awsrequestsigner_1.AwsRequestSigner;
     } });
     var identitypoolclient_1 = require_identitypoolclient();
-    Object.defineProperty(exports, "IdentityPoolClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "IdentityPoolClient", { enumerable: true, get: function() {
       return identitypoolclient_1.IdentityPoolClient;
     } });
     var externalclient_1 = require_externalclient();
-    Object.defineProperty(exports, "ExternalAccountClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "ExternalAccountClient", { enumerable: true, get: function() {
       return externalclient_1.ExternalAccountClient;
     } });
     var baseexternalclient_1 = require_baseexternalclient();
-    Object.defineProperty(exports, "BaseExternalAccountClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "BaseExternalAccountClient", { enumerable: true, get: function() {
       return baseexternalclient_1.BaseExternalAccountClient;
     } });
     var downscopedclient_1 = require_downscopedclient();
-    Object.defineProperty(exports, "DownscopedClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "DownscopedClient", { enumerable: true, get: function() {
       return downscopedclient_1.DownscopedClient;
     } });
     var pluggable_auth_client_1 = require_pluggable_auth_client();
-    Object.defineProperty(exports, "PluggableAuthClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "PluggableAuthClient", { enumerable: true, get: function() {
       return pluggable_auth_client_1.PluggableAuthClient;
     } });
-    Object.defineProperty(exports, "ExecutableError", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "ExecutableError", { enumerable: true, get: function() {
       return pluggable_auth_client_1.ExecutableError;
     } });
     var externalAccountAuthorizedUserClient_1 = require_externalAccountAuthorizedUserClient();
-    Object.defineProperty(exports, "EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE", { enumerable: true, get: function() {
       return externalAccountAuthorizedUserClient_1.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE;
     } });
-    Object.defineProperty(exports, "ExternalAccountAuthorizedUserClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "ExternalAccountAuthorizedUserClient", { enumerable: true, get: function() {
       return externalAccountAuthorizedUserClient_1.ExternalAccountAuthorizedUserClient;
     } });
     var passthrough_1 = require_passthrough();
-    Object.defineProperty(exports, "PassThroughClient", { enumerable: true, get: function() {
+    Object.defineProperty(exports2, "PassThroughClient", { enumerable: true, get: function() {
       return passthrough_1.PassThroughClient;
     } });
     var auth = new googleauth_1.GoogleAuth();
-    exports.auth = auth;
+    exports2.auth = auth;
   }
 });
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/constants.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/constants.js"(exports2, module2) {
     "use strict";
     var BINARY_TYPES = ["nodebuffer", "arraybuffer", "fragments"];
     var hasBlob = typeof Blob !== "undefined";
     if (hasBlob)
       BINARY_TYPES.push("blob");
-    module.exports = {
+    module2.exports = {
       BINARY_TYPES,
       CLOSE_TIMEOUT: 3e4,
       EMPTY_BUFFER: Buffer.alloc(0),
@@ -32503,9 +31775,9 @@ var require_constants4 = __commonJS({
 
 // node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js
 var require_node_gyp_build = __commonJS({
-  "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js"(exports, module) {
-    var fs6 = __require("fs");
-    var path9 = __require("path");
+  "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js"(exports2, module2) {
+    var fs7 = __require("fs");
+    var path10 = __require("path");
     var os2 = __require("os");
     var runtimeRequire = typeof __webpack_require__ === "function" ? __non_webpack_require__ : __require;
     var vars = process.config && process.config.variables || {};
@@ -32517,30 +31789,30 @@ var require_node_gyp_build = __commonJS({
     var libc = process.env.LIBC || (isAlpine(platform) ? "musl" : "glibc");
     var armv = process.env.ARM_VERSION || (arch === "arm64" ? "8" : vars.arm_version) || "";
     var uv = (process.versions.uv || "").split(".")[0];
-    module.exports = load3;
+    module2.exports = load3;
     function load3(dir) {
       return runtimeRequire(load3.resolve(dir));
     }
     load3.resolve = load3.path = function(dir) {
-      dir = path9.resolve(dir || ".");
+      dir = path10.resolve(dir || ".");
       try {
-        var name = runtimeRequire(path9.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
+        var name = runtimeRequire(path10.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
         if (process.env[name + "_PREBUILD"])
           dir = process.env[name + "_PREBUILD"];
       } catch (err) {
       }
       if (!prebuildsOnly) {
-        var release = getFirst(path9.join(dir, "build/Release"), matchBuild);
+        var release = getFirst(path10.join(dir, "build/Release"), matchBuild);
         if (release)
           return release;
-        var debug = getFirst(path9.join(dir, "build/Debug"), matchBuild);
+        var debug = getFirst(path10.join(dir, "build/Debug"), matchBuild);
         if (debug)
           return debug;
       }
       var prebuild = resolve8(dir);
       if (prebuild)
         return prebuild;
-      var nearby = resolve8(path9.dirname(process.execPath));
+      var nearby = resolve8(path10.dirname(process.execPath));
       if (nearby)
         return nearby;
       var target = [
@@ -32558,28 +31830,28 @@ var require_node_gyp_build = __commonJS({
       ].filter(Boolean).join(" ");
       throw new Error("No native build was found for " + target + "\n    loaded from: " + dir + "\n");
       function resolve8(dir2) {
-        var tuples = readdirSync(path9.join(dir2, "prebuilds")).map(parseTuple);
+        var tuples = readdirSync(path10.join(dir2, "prebuilds")).map(parseTuple);
         var tuple = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0];
         if (!tuple)
           return;
-        var prebuilds = path9.join(dir2, "prebuilds", tuple.name);
+        var prebuilds = path10.join(dir2, "prebuilds", tuple.name);
         var parsed = readdirSync(prebuilds).map(parseTags);
         var candidates = parsed.filter(matchTags(runtime, abi));
         var winner = candidates.sort(compareTags(runtime))[0];
         if (winner)
-          return path9.join(prebuilds, winner.file);
+          return path10.join(prebuilds, winner.file);
       }
     };
     function readdirSync(dir) {
       try {
-        return fs6.readdirSync(dir);
+        return fs7.readdirSync(dir);
       } catch (err) {
         return [];
       }
     }
     function getFirst(dir, filter3) {
       var files = readdirSync(dir).filter(filter3);
-      return files[0] && path9.join(dir, files[0]);
+      return files[0] && path10.join(dir, files[0]);
     }
     function matchBuild(name) {
       return /\.node$/.test(name);
@@ -32681,7 +31953,7 @@ var require_node_gyp_build = __commonJS({
       return typeof window !== "undefined" && window.process && window.process.type === "renderer";
     }
     function isAlpine(platform2) {
-      return platform2 === "linux" && fs6.existsSync("/etc/alpine-release");
+      return platform2 === "linux" && fs7.existsSync("/etc/alpine-release");
     }
     load3.parseTags = parseTags;
     load3.matchTags = matchTags;
@@ -32694,19 +31966,19 @@ var require_node_gyp_build = __commonJS({
 
 // node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/index.js
 var require_node_gyp_build2 = __commonJS({
-  "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/index.js"(exports2, module2) {
     var runtimeRequire = typeof __webpack_require__ === "function" ? __non_webpack_require__ : __require;
     if (typeof runtimeRequire.addon === "function") {
-      module.exports = runtimeRequire.addon.bind(runtimeRequire);
+      module2.exports = runtimeRequire.addon.bind(runtimeRequire);
     } else {
-      module.exports = require_node_gyp_build();
+      module2.exports = require_node_gyp_build();
     }
   }
 });
 
 // node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/fallback.js
 var require_fallback = __commonJS({
-  "node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/fallback.js"(exports, module) {
+  "node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/fallback.js"(exports2, module2) {
     "use strict";
     var mask = (source, mask2, output, offset, length) => {
       for (var i = 0; i < length; i++) {
@@ -32719,25 +31991,25 @@ var require_fallback = __commonJS({
         buffer[i] ^= mask2[i & 3];
       }
     };
-    module.exports = { mask, unmask };
+    module2.exports = { mask, unmask };
   }
 });
 
 // node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/index.js
 var require_bufferutil = __commonJS({
-  "node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/index.js"(exports2, module2) {
     "use strict";
     try {
-      module.exports = require_node_gyp_build2()(__dirname);
+      module2.exports = require_node_gyp_build2()(__dirname);
     } catch (e) {
-      module.exports = require_fallback();
+      module2.exports = require_fallback();
     }
   }
 });
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/buffer-util.js
 var require_buffer_util = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/buffer-util.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/buffer-util.js"(exports2, module2) {
     "use strict";
     var { EMPTY_BUFFER } = require_constants4();
     var FastBuffer = Buffer[Symbol.species];
@@ -32789,7 +32061,7 @@ var require_buffer_util = __commonJS({
       }
       return buf;
     }
-    module.exports = {
+    module2.exports = {
       concat,
       mask: _mask,
       toArrayBuffer,
@@ -32799,13 +32071,13 @@ var require_buffer_util = __commonJS({
     if (!process.env.WS_NO_BUFFER_UTIL) {
       try {
         const bufferUtil = require_bufferutil();
-        module.exports.mask = function(source, mask, output, offset, length) {
+        module2.exports.mask = function(source, mask, output, offset, length) {
           if (length < 48)
             _mask(source, mask, output, offset, length);
           else
             bufferUtil.mask(source, mask, output, offset, length);
         };
-        module.exports.unmask = function(buffer, mask) {
+        module2.exports.unmask = function(buffer, mask) {
           if (buffer.length < 32)
             _unmask(buffer, mask);
           else
@@ -32819,7 +32091,7 @@ var require_buffer_util = __commonJS({
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/limiter.js
 var require_limiter = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/limiter.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/limiter.js"(exports2, module2) {
     "use strict";
     var kDone = Symbol("kDone");
     var kRun = Symbol("kRun");
@@ -32864,13 +32136,13 @@ var require_limiter = __commonJS({
         }
       }
     };
-    module.exports = Limiter;
+    module2.exports = Limiter;
   }
 });
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports2, module2) {
     "use strict";
     var zlib = __require("zlib");
     var bufferUtil = require_buffer_util();
@@ -33223,7 +32495,7 @@ var require_permessage_deflate = __commonJS({
         });
       }
     };
-    module.exports = PerMessageDeflate;
+    module2.exports = PerMessageDeflate;
     function deflateOnData(chunk) {
       this[kBuffers].push(chunk);
       this[kTotalLength] += chunk.length;
@@ -33254,7 +32526,7 @@ var require_permessage_deflate = __commonJS({
 
 // node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/fallback.js
 var require_fallback2 = __commonJS({
-  "node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/fallback.js"(exports, module) {
+  "node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/fallback.js"(exports2, module2) {
     "use strict";
     function isValidUTF8(buf) {
       const len = buf.length;
@@ -33285,25 +32557,25 @@ var require_fallback2 = __commonJS({
       }
       return true;
     }
-    module.exports = isValidUTF8;
+    module2.exports = isValidUTF8;
   }
 });
 
 // node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/index.js
 var require_utf_8_validate = __commonJS({
-  "node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/utf-8-validate@6.0.6/node_modules/utf-8-validate/index.js"(exports2, module2) {
     "use strict";
     try {
-      module.exports = require_node_gyp_build2()(__dirname);
+      module2.exports = require_node_gyp_build2()(__dirname);
     } catch (e) {
-      module.exports = require_fallback2();
+      module2.exports = require_fallback2();
     }
   }
 });
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/validation.js
 var require_validation = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/validation.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/validation.js"(exports2, module2) {
     "use strict";
     var { isUtf8 } = __require("buffer");
     var { hasBlob } = require_constants4();
@@ -33480,20 +32752,20 @@ var require_validation = __commonJS({
     function isBlob(value) {
       return hasBlob && typeof value === "object" && typeof value.arrayBuffer === "function" && typeof value.type === "string" && typeof value.stream === "function" && (value[Symbol.toStringTag] === "Blob" || value[Symbol.toStringTag] === "File");
     }
-    module.exports = {
+    module2.exports = {
       isBlob,
       isValidStatusCode,
       isValidUTF8: _isValidUTF8,
       tokenChars
     };
     if (isUtf8) {
-      module.exports.isValidUTF8 = function(buf) {
+      module2.exports.isValidUTF8 = function(buf) {
         return buf.length < 24 ? _isValidUTF8(buf) : isUtf8(buf);
       };
     } else if (!process.env.WS_NO_UTF_8_VALIDATE) {
       try {
         const isValidUTF8 = require_utf_8_validate();
-        module.exports.isValidUTF8 = function(buf) {
+        module2.exports.isValidUTF8 = function(buf) {
           return buf.length < 32 ? _isValidUTF8(buf) : isValidUTF8(buf);
         };
       } catch (e) {
@@ -33504,7 +32776,7 @@ var require_validation = __commonJS({
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/receiver.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/receiver.js"(exports2, module2) {
     "use strict";
     var { Writable } = __require("stream");
     var PerMessageDeflate = require_permessage_deflate();
@@ -34101,13 +33373,13 @@ var require_receiver = __commonJS({
         return err;
       }
     };
-    module.exports = Receiver2;
+    module2.exports = Receiver2;
   }
 });
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/sender.js
 var require_sender = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/sender.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/sender.js"(exports2, module2) {
     "use strict";
     var { Duplex } = __require("stream");
     var { randomFillSync } = __require("crypto");
@@ -34581,7 +33853,7 @@ var require_sender = __commonJS({
         }
       }
     };
-    module.exports = Sender2;
+    module2.exports = Sender2;
     function callCallbacks(sender, err, cb) {
       if (typeof cb === "function")
         cb(err);
@@ -34601,7 +33873,7 @@ var require_sender = __commonJS({
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/event-target.js
 var require_event_target = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/event-target.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/event-target.js"(exports2, module2) {
     "use strict";
     var { kForOnEventAttribute, kListener } = require_constants4();
     var kCode = Symbol("kCode");
@@ -34811,7 +34083,7 @@ var require_event_target = __commonJS({
         }
       }
     };
-    module.exports = {
+    module2.exports = {
       CloseEvent,
       ErrorEvent,
       Event,
@@ -34830,7 +34102,7 @@ var require_event_target = __commonJS({
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/extension.js
 var require_extension = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/extension.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/extension.js"(exports2, module2) {
     "use strict";
     var { tokenChars } = require_validation();
     function push(dest, name, elem) {
@@ -34994,13 +34266,13 @@ var require_extension = __commonJS({
         }).join(", ");
       }).join(", ");
     }
-    module.exports = { format: format2, parse: parse4 };
+    module2.exports = { format: format2, parse: parse4 };
   }
 });
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket.js"(exports2, module2) {
     "use strict";
     var EventEmitter = __require("events");
     var https = __require("https");
@@ -35489,7 +34761,7 @@ var require_websocket = __commonJS({
     });
     WebSocket2.prototype.addEventListener = addEventListener;
     WebSocket2.prototype.removeEventListener = removeEventListener;
-    module.exports = WebSocket2;
+    module2.exports = WebSocket2;
     function initAsClient(websocket, address, protocols, options) {
       const opts = {
         allowSynchronousEvents: true,
@@ -35915,7 +35187,7 @@ var require_websocket = __commonJS({
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/stream.js
 var require_stream5 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/stream.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/stream.js"(exports2, module2) {
     "use strict";
     var WebSocket2 = require_websocket();
     var { Duplex } = __require("stream");
@@ -36015,13 +35287,13 @@ var require_stream5 = __commonJS({
       duplex.on("error", duplexOnError);
       return duplex;
     }
-    module.exports = createWebSocketStream2;
+    module2.exports = createWebSocketStream2;
   }
 });
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/subprotocol.js
 var require_subprotocol = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/subprotocol.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/subprotocol.js"(exports2, module2) {
     "use strict";
     var { tokenChars } = require_validation();
     function parse4(header) {
@@ -36063,13 +35335,13 @@ var require_subprotocol = __commonJS({
       protocols.add(protocol);
       return protocols;
     }
-    module.exports = { parse: parse4 };
+    module2.exports = { parse: parse4 };
   }
 });
 
 // node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket-server.js
 var require_websocket_server = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket-server.js"(exports, module) {
+  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket-server.js"(exports2, module2) {
     "use strict";
     var EventEmitter = __require("events");
     var http = __require("http");
@@ -36426,7 +35698,7 @@ var require_websocket_server = __commonJS({
         cb(ws, req);
       }
     };
-    module.exports = WebSocketServer2;
+    module2.exports = WebSocketServer2;
     function addListeners(server, map) {
       for (const event of Object.keys(map))
         server.on(event, map[event]);
@@ -39375,10 +38647,10 @@ async function checkServiceStatuses() {
   assertValidCaretakerConfig(config);
   assertValidGithubConfig(config);
   const git = await AuthenticatedGitClient.get();
-  const caretakerCheckModules = moduleList.map((module) => new module(git, config));
-  await Promise.all(caretakerCheckModules.map((module) => module.data));
-  for (const module of caretakerCheckModules) {
-    await module.printToTerminal();
+  const caretakerCheckModules = moduleList.map((module2) => new module2(git, config));
+  await Promise.all(caretakerCheckModules.map((module2) => module2.data));
+  for (const module2 of caretakerCheckModules) {
+    await module2.printToTerminal();
   }
 }
 
@@ -39459,10 +38731,10 @@ function createStore(rl) {
 function withHooks(rl, cb) {
   const store = createStore(rl);
   return hookStorage.run(store, () => {
-    function cycle(render2) {
+    function cycle(render) {
       store.handleChange = () => {
         store.index = 0;
-        render2();
+        render();
       };
       store.handleChange();
     }
@@ -42491,9 +41763,9 @@ var GitClient2 = class {
    * @yields Raw commits data.
    */
   async *getRawCommits(params2 = {}) {
-    const { path: path9, from = "", to = "HEAD", format: format2 = "%B", ignore, ...restParams } = params2;
+    const { path: path10, from = "", to = "HEAD", format: format2 = "%B", ignore, ...restParams } = params2;
     const shouldNotIgnore = ignore ? (chunk2) => !ignore.test(chunk2) : () => true;
-    const args = this.formatArgs("log", `--format=${format2}%n${SCISSOR}`, [from, to].filter(Boolean).join(".."), restParams, path9 && ["--", path9]);
+    const args = this.formatArgs("log", `--format=${format2}%n${SCISSOR}`, [from, to].filter(Boolean).join(".."), restParams, path10 && ["--", path10]);
     const stdout = stdoutSpawn("git", args, {
       cwd: this.cwd
     });
@@ -44629,7 +43901,7 @@ function builder11(argv) {
   return argv.positional("projectRoot", {
     type: "string",
     normalize: true,
-    coerce: (path9) => resolve2(path9),
+    coerce: (path10) => resolve2(path10),
     demandOption: true
   });
 }
@@ -45968,8 +45240,8 @@ var PullRequestFiles = class _PullRequestFiles {
   async pullRequestHasSeparateFiles() {
     const pullRequestFiles = await this.loadPullRequestFiles();
     const separateFilePatterns = this.config.separateFilePatterns.map((p) => new Minimatch(p));
-    for (let path9 of pullRequestFiles) {
-      if (separateFilePatterns.some((p) => p.match(path9))) {
+    for (let path10 of pullRequestFiles) {
+      if (separateFilePatterns.some((p) => p.match(path10))) {
         return true;
       }
     }
@@ -47247,8 +46519,684 @@ var ReleaseInfoCommandModule = {
 // ng-dev/release/notes/cli.js
 var import_semver5 = __toESM(require_semver());
 
+// node_modules/.aspect_rules_js/ejs@4.0.1/node_modules/ejs/lib/esm/ejs.js
+import fs2 from "node:fs";
+import path6 from "node:path";
+
+// node_modules/.aspect_rules_js/ejs@4.0.1/node_modules/ejs/lib/esm/utils.js
+var utils = {};
+var regExpChars = /[|\\{}()[\]^$+*?.]/g;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var hasOwn = function(obj, key) {
+  return hasOwnProperty.apply(obj, [key]);
+};
+utils.escapeRegExpChars = function(string) {
+  if (!string) {
+    return "";
+  }
+  return String(string).replace(regExpChars, "\\$&");
+};
+var _ENCODE_HTML_RULES = {
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&#34;",
+  "'": "&#39;"
+};
+var _MATCH_HTML = /[&<>'"]/g;
+function encode_char(c) {
+  return _ENCODE_HTML_RULES[c] || c;
+}
+var escapeFuncStr = `var _ENCODE_HTML_RULES = {
+      "&": "&amp;"
+    , "<": "&lt;"
+    , ">": "&gt;"
+    , '"': "&#34;"
+    , "'": "&#39;"
+    }
+  , _MATCH_HTML = /[&<>'"]/g;
+function encode_char(c) {
+  return _ENCODE_HTML_RULES[c] || c;
+};
+`;
+utils.escapeXML = function(markup) {
+  return markup == void 0 ? "" : String(markup).replace(_MATCH_HTML, encode_char);
+};
+function escapeXMLToString() {
+  return Function.prototype.toString.call(this) + ";\n" + escapeFuncStr;
+}
+try {
+  if (typeof Object.defineProperty === "function") {
+    Object.defineProperty(utils.escapeXML, "toString", { value: escapeXMLToString });
+  } else {
+    utils.escapeXML.toString = escapeXMLToString;
+  }
+} catch (err) {
+  console.warn("Unable to set escapeXML.toString (is the Function prototype frozen?)");
+}
+utils.shallowCopy = function(to, from) {
+  from = from || {};
+  if (to !== null && to !== void 0) {
+    for (var p in from) {
+      if (!hasOwn(from, p)) {
+        continue;
+      }
+      if (p === "__proto__" || p === "constructor") {
+        continue;
+      }
+      to[p] = from[p];
+    }
+  }
+  return to;
+};
+utils.shallowCopyFromList = function(to, from, list) {
+  list = list || [];
+  from = from || {};
+  if (to !== null && to !== void 0) {
+    for (var i = 0; i < list.length; i++) {
+      var p = list[i];
+      if (typeof from[p] != "undefined") {
+        if (!hasOwn(from, p)) {
+          continue;
+        }
+        if (p === "__proto__" || p === "constructor") {
+          continue;
+        }
+        to[p] = from[p];
+      }
+    }
+  }
+  return to;
+};
+utils.cache = {
+  _data: {},
+  set: function(key, val) {
+    this._data[key] = val;
+  },
+  get: function(key) {
+    return this._data[key];
+  },
+  remove: function(key) {
+    delete this._data[key];
+  },
+  reset: function() {
+    this._data = {};
+  }
+};
+utils.hyphenToCamel = function(str) {
+  return str.replace(/-[a-z]/g, function(match3) {
+    return match3[1].toUpperCase();
+  });
+};
+utils.createNullProtoObjWherePossible = function() {
+  if (typeof Object.create == "function") {
+    return function() {
+      return /* @__PURE__ */ Object.create(null);
+    };
+  }
+  if (!({ __proto__: null } instanceof Object)) {
+    return function() {
+      return { __proto__: null };
+    };
+  }
+  return function() {
+    return {};
+  };
+}();
+utils.hasOwnOnlyObject = function(obj) {
+  var o = utils.createNullProtoObjWherePossible();
+  for (var p in obj) {
+    if (hasOwn(obj, p)) {
+      o[p] = obj[p];
+    }
+  }
+  return o;
+};
+if (typeof exports != "undefined") {
+  module.exports = utils;
+}
+var utils_default = utils;
+
+// node_modules/.aspect_rules_js/ejs@4.0.1/node_modules/ejs/lib/esm/ejs.js
+var DECLARATION_KEYWORD = "let";
+var ejs = {};
+var _DEFAULT_OPEN_DELIMITER = "<";
+var _DEFAULT_CLOSE_DELIMITER = ">";
+var _DEFAULT_DELIMITER = "%";
+var _DEFAULT_LOCALS_NAME = "locals";
+var _REGEX_STRING = "(<%%|%%>|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)";
+var _OPTS_PASSABLE_WITH_DATA = [
+  "delimiter",
+  "scope",
+  "context",
+  "debug",
+  "compileDebug",
+  "client",
+  "_with",
+  "rmWhitespace",
+  "strict",
+  "filename",
+  "async"
+];
+var _OPTS_PASSABLE_WITH_DATA_EXPRESS = _OPTS_PASSABLE_WITH_DATA.concat("cache");
+var _BOM = /^\uFEFF/;
+var _JS_IDENTIFIER = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/;
+ejs.cache = utils_default.cache;
+ejs.fileLoader = fs2.readFileSync;
+ejs.localsName = _DEFAULT_LOCALS_NAME;
+ejs.promiseImpl = new Function("return this;")().Promise;
+ejs.resolveInclude = function(name, filename, isDir) {
+  let dirname6 = path6.dirname;
+  let extname2 = path6.extname;
+  let resolve8 = path6.resolve;
+  let includePath = resolve8(isDir ? filename : dirname6(filename), name);
+  let ext3 = extname2(name);
+  if (!ext3) {
+    includePath += ".ejs";
+  }
+  return includePath;
+};
+function resolvePaths(name, paths) {
+  let filePath;
+  if (paths.some(function(v) {
+    filePath = ejs.resolveInclude(name, v, true);
+    return fs2.existsSync(filePath);
+  })) {
+    return filePath;
+  }
+}
+function getIncludePath(path10, options) {
+  let includePath;
+  let filePath;
+  let views = options.views;
+  let match3 = /^[A-Za-z]+:\\|^\//.exec(path10);
+  if (match3 && match3.length) {
+    path10 = path10.replace(/^\/*/, "");
+    if (Array.isArray(options.root)) {
+      includePath = resolvePaths(path10, options.root);
+    } else {
+      includePath = ejs.resolveInclude(path10, options.root || "/", true);
+    }
+  } else {
+    if (options.filename) {
+      filePath = ejs.resolveInclude(path10, options.filename);
+      if (fs2.existsSync(filePath)) {
+        includePath = filePath;
+      }
+    }
+    if (!includePath && Array.isArray(views)) {
+      includePath = resolvePaths(path10, views);
+    }
+    if (!includePath && typeof options.includer !== "function") {
+      throw new Error('Could not find the include file "' + options.escapeFunction(path10) + '"');
+    }
+  }
+  return includePath;
+}
+function handleCache(options, template) {
+  let func;
+  let filename = options.filename;
+  let hasTemplate = arguments.length > 1;
+  if (options.cache) {
+    if (!filename) {
+      throw new Error("cache option requires a filename");
+    }
+    func = ejs.cache.get(filename);
+    if (func) {
+      return func;
+    }
+    if (!hasTemplate) {
+      template = fileLoader(filename).toString().replace(_BOM, "");
+    }
+  } else if (!hasTemplate) {
+    if (!filename) {
+      throw new Error("Internal EJS error: no file name or template provided");
+    }
+    template = fileLoader(filename).toString().replace(_BOM, "");
+  }
+  func = ejs.compile(template, options);
+  if (options.cache) {
+    ejs.cache.set(filename, func);
+  }
+  return func;
+}
+function tryHandleCache(options, data, cb) {
+  let result;
+  if (!cb) {
+    if (typeof ejs.promiseImpl == "function") {
+      return new ejs.promiseImpl(function(resolve8, reject) {
+        try {
+          result = handleCache(options)(data);
+          resolve8(result);
+        } catch (err) {
+          reject(err);
+        }
+      });
+    } else {
+      throw new Error("Please provide a callback function");
+    }
+  } else {
+    try {
+      result = handleCache(options)(data);
+    } catch (err) {
+      return cb(err);
+    }
+    cb(null, result);
+  }
+}
+function fileLoader(filePath) {
+  return ejs.fileLoader(filePath);
+}
+function includeFile(path10, options) {
+  let opts = utils_default.shallowCopy(utils_default.createNullProtoObjWherePossible(), options);
+  opts.filename = getIncludePath(path10, opts);
+  if (typeof options.includer === "function") {
+    let includerResult = options.includer(path10, opts.filename);
+    if (includerResult) {
+      if (includerResult.filename) {
+        opts.filename = includerResult.filename;
+      }
+      if (includerResult.template) {
+        return handleCache(opts, includerResult.template);
+      }
+    }
+  }
+  return handleCache(opts);
+}
+function rethrow(err, str, flnm, lineno, esc) {
+  let lines = str.split("\n");
+  let start = Math.max(lineno - 3, 0);
+  let end = Math.min(lines.length, lineno + 3);
+  let filename = esc(flnm);
+  let context = lines.slice(start, end).map(function(line, i) {
+    let curr = i + start + 1;
+    return (curr == lineno ? " >> " : "    ") + curr + "| " + line;
+  }).join("\n");
+  err.path = filename;
+  err.message = (filename || "ejs") + ":" + lineno + "\n" + context + "\n\n" + err.message;
+  throw err;
+}
+function stripSemi(str) {
+  return str.replace(/;(\s*$)/, "$1");
+}
+ejs.compile = function compile(template, opts) {
+  let templ;
+  if (opts && opts.scope) {
+    console.warn("`scope` option is deprecated and will be removed in future EJS");
+    if (!opts.context) {
+      opts.context = opts.scope;
+    }
+    delete opts.scope;
+  }
+  templ = new Template(template, opts);
+  return templ.compile();
+};
+ejs.render = function(template, d, o) {
+  let data = d || utils_default.createNullProtoObjWherePossible();
+  let opts = o || utils_default.createNullProtoObjWherePossible();
+  if (arguments.length == 2) {
+    utils_default.shallowCopyFromList(opts, data, _OPTS_PASSABLE_WITH_DATA);
+  }
+  return handleCache(opts, template)(data);
+};
+ejs.renderFile = function() {
+  let args = Array.prototype.slice.call(arguments);
+  let filename = args.shift();
+  let cb;
+  let opts = { filename };
+  let data;
+  let viewOpts;
+  if (typeof arguments[arguments.length - 1] == "function") {
+    cb = args.pop();
+  }
+  if (args.length) {
+    data = args.shift();
+    if (args.length) {
+      utils_default.shallowCopy(opts, args.pop());
+    } else {
+      if (data.settings) {
+        if (data.settings.views) {
+          opts.views = data.settings.views;
+        }
+        if (data.settings["view cache"]) {
+          opts.cache = true;
+        }
+        viewOpts = data.settings["view options"];
+        if (viewOpts) {
+          utils_default.shallowCopy(opts, viewOpts);
+        }
+      }
+      utils_default.shallowCopyFromList(opts, data, _OPTS_PASSABLE_WITH_DATA_EXPRESS);
+    }
+    opts.filename = filename;
+  } else {
+    data = utils_default.createNullProtoObjWherePossible();
+  }
+  return tryHandleCache(opts, data, cb);
+};
+ejs.Template = Template;
+ejs.clearCache = function() {
+  ejs.cache.reset();
+};
+function Template(text, optsParam) {
+  let opts = utils_default.hasOwnOnlyObject(optsParam);
+  let options = utils_default.createNullProtoObjWherePossible();
+  this.templateText = text;
+  this.mode = null;
+  this.truncate = false;
+  this.currentLine = 1;
+  this.source = "";
+  options.client = opts.client || false;
+  options.escapeFunction = opts.escape || opts.escapeFunction || utils_default.escapeXML;
+  options.compileDebug = opts.compileDebug !== false;
+  options.debug = !!opts.debug;
+  options.filename = opts.filename;
+  options.openDelimiter = opts.openDelimiter || ejs.openDelimiter || _DEFAULT_OPEN_DELIMITER;
+  options.closeDelimiter = opts.closeDelimiter || ejs.closeDelimiter || _DEFAULT_CLOSE_DELIMITER;
+  options.delimiter = opts.delimiter || ejs.delimiter || _DEFAULT_DELIMITER;
+  options.strict = opts.strict || false;
+  options.context = opts.context;
+  options.cache = opts.cache || false;
+  options.rmWhitespace = opts.rmWhitespace;
+  options.root = opts.root;
+  options.includer = opts.includer;
+  options.outputFunctionName = opts.outputFunctionName;
+  options.localsName = opts.localsName || ejs.localsName || _DEFAULT_LOCALS_NAME;
+  options.views = opts.views;
+  options.async = opts.async;
+  options.destructuredLocals = opts.destructuredLocals;
+  options.legacyInclude = typeof opts.legacyInclude != "undefined" ? !!opts.legacyInclude : true;
+  if (options.strict) {
+    options._with = false;
+  } else {
+    options._with = typeof opts._with != "undefined" ? opts._with : true;
+  }
+  this.opts = options;
+  this.regex = this.createRegex();
+}
+Template.modes = {
+  EVAL: "eval",
+  ESCAPED: "escaped",
+  RAW: "raw",
+  COMMENT: "comment",
+  LITERAL: "literal"
+};
+Template.prototype = {
+  createRegex: function() {
+    let str = _REGEX_STRING;
+    let delim = utils_default.escapeRegExpChars(this.opts.delimiter);
+    let open2 = utils_default.escapeRegExpChars(this.opts.openDelimiter);
+    let close = utils_default.escapeRegExpChars(this.opts.closeDelimiter);
+    str = str.replace(/%/g, delim).replace(/</g, open2).replace(/>/g, close);
+    return new RegExp(str);
+  },
+  compile: function() {
+    let src;
+    let fn;
+    let opts = this.opts;
+    let prepended = "";
+    let appended = "";
+    let escapeFn = opts.escapeFunction;
+    let ctor;
+    let sanitizedFilename = opts.filename ? JSON.stringify(opts.filename) : "undefined";
+    if (!this.source) {
+      this.generateSource();
+      prepended += `  ${DECLARATION_KEYWORD} __output = "";
+  function __append(s) { if (s !== undefined && s !== null) __output += s }
+`;
+      if (opts.outputFunctionName) {
+        if (!_JS_IDENTIFIER.test(opts.outputFunctionName)) {
+          throw new Error("outputFunctionName is not a valid JS identifier.");
+        }
+        prepended += `  ${DECLARATION_KEYWORD} ` + opts.outputFunctionName + " = __append;\n";
+      }
+      if (opts.localsName && !_JS_IDENTIFIER.test(opts.localsName)) {
+        throw new Error("localsName is not a valid JS identifier.");
+      }
+      if (opts.destructuredLocals && opts.destructuredLocals.length) {
+        let destructuring = `  ${DECLARATION_KEYWORD} __locals = (` + opts.localsName + " || {}),\n";
+        for (let i = 0; i < opts.destructuredLocals.length; i++) {
+          let name = opts.destructuredLocals[i];
+          if (!_JS_IDENTIFIER.test(name)) {
+            throw new Error("destructuredLocals[" + i + "] is not a valid JS identifier.");
+          }
+          if (i > 0) {
+            destructuring += ",\n  ";
+          }
+          destructuring += name + " = __locals." + name;
+        }
+        prepended += destructuring + ";\n";
+      }
+      if (opts._with !== false) {
+        prepended += "  with (" + opts.localsName + " || {}) {\n";
+        appended += "  }\n";
+      }
+      appended += "  return __output;\n";
+      this.source = prepended + this.source + appended;
+    }
+    if (opts.compileDebug) {
+      src = `${DECLARATION_KEYWORD} __line = 1
+  , __lines = ` + JSON.stringify(this.templateText) + "\n  , __filename = " + sanitizedFilename + ";\ntry {\n" + this.source + "} catch (e) {\n  rethrow(e, __lines, __filename, __line, escapeFn);\n}\n";
+    } else {
+      src = this.source;
+    }
+    if (opts.client) {
+      src = "escapeFn = escapeFn || " + escapeFn.toString() + ";\n" + src;
+      if (opts.compileDebug) {
+        src = "rethrow = rethrow || " + rethrow.toString() + ";\n" + src;
+      }
+    }
+    if (opts.strict) {
+      src = '"use strict";\n' + src;
+    }
+    if (opts.debug) {
+      console.log(src);
+    }
+    if (opts.compileDebug && opts.filename) {
+      src = src + "\n//# sourceURL=" + sanitizedFilename + "\n";
+    }
+    try {
+      if (opts.async) {
+        try {
+          ctor = new Function("return (async function(){}).constructor;")();
+        } catch (e) {
+          if (e instanceof SyntaxError) {
+            throw new Error("This environment does not support async/await");
+          } else {
+            throw e;
+          }
+        }
+      } else {
+        ctor = Function;
+      }
+      fn = new ctor(opts.localsName + ", escapeFn, include, rethrow", src);
+    } catch (e) {
+      if (e instanceof SyntaxError) {
+        if (opts.filename) {
+          e.message += " in " + opts.filename;
+        }
+        e.message += " while compiling ejs\n\n";
+        e.message += "If the above error is not helpful, you may want to try EJS-Lint:\n";
+        e.message += "https://github.com/RyanZim/EJS-Lint";
+        if (!opts.async) {
+          e.message += "\n";
+          e.message += "Or, if you meant to create an async function, pass `async: true` as an option.";
+        }
+      }
+      throw e;
+    }
+    let returnedFn = opts.client ? fn : function anonymous(data) {
+      let include = function(path10, includeData) {
+        let d = utils_default.shallowCopy(utils_default.createNullProtoObjWherePossible(), data);
+        if (includeData) {
+          d = utils_default.shallowCopy(d, includeData);
+        }
+        return includeFile(path10, opts)(d);
+      };
+      return fn.apply(
+        opts.context,
+        [data || utils_default.createNullProtoObjWherePossible(), escapeFn, include, rethrow]
+      );
+    };
+    if (opts.filename && typeof Object.defineProperty === "function") {
+      let filename = opts.filename;
+      let basename3 = path6.basename(filename, path6.extname(filename));
+      try {
+        Object.defineProperty(returnedFn, "name", {
+          value: basename3,
+          writable: false,
+          enumerable: false,
+          configurable: true
+        });
+      } catch (e) {
+      }
+    }
+    return returnedFn;
+  },
+  generateSource: function() {
+    let opts = this.opts;
+    if (opts.rmWhitespace) {
+      this.templateText = this.templateText.replace(/[\r\n]+/g, "\n").replace(/^\s+|\s+$/gm, "");
+    }
+    this.templateText = this.templateText.replace(/[ \t]*<%_/gm, "<%_").replace(/_%>[ \t]*/gm, "_%>");
+    let self2 = this;
+    let matches = this.parseTemplateText();
+    let d = this.opts.delimiter;
+    let o = this.opts.openDelimiter;
+    let c = this.opts.closeDelimiter;
+    if (matches && matches.length) {
+      matches.forEach(function(line, index) {
+        let closing;
+        if (line.indexOf(o + d) === 0 && line.indexOf(o + d + d) !== 0) {
+          closing = matches[index + 2];
+          if (!(closing == d + c || closing == "-" + d + c || closing == "_" + d + c)) {
+            throw new Error('Could not find matching close tag for "' + line + '".');
+          }
+        }
+        self2.scanLine(line);
+      });
+    }
+  },
+  parseTemplateText: function() {
+    let str = this.templateText;
+    let pat = this.regex;
+    let result = pat.exec(str);
+    let arr = [];
+    let firstPos;
+    while (result) {
+      firstPos = result.index;
+      if (firstPos !== 0) {
+        arr.push(str.substring(0, firstPos));
+        str = str.slice(firstPos);
+      }
+      arr.push(result[0]);
+      str = str.slice(result[0].length);
+      result = pat.exec(str);
+    }
+    if (str) {
+      arr.push(str);
+    }
+    return arr;
+  },
+  _addOutput: function(line) {
+    if (this.truncate) {
+      line = line.replace(/^(?:\r\n|\r|\n)/, "");
+      this.truncate = false;
+    }
+    if (!line) {
+      return line;
+    }
+    line = line.replace(/\\/g, "\\\\");
+    line = line.replace(/\n/g, "\\n");
+    line = line.replace(/\r/g, "\\r");
+    line = line.replace(/"/g, '\\"');
+    this.source += '    ; __append("' + line + '")\n';
+  },
+  scanLine: function(line) {
+    let self2 = this;
+    let d = this.opts.delimiter;
+    let o = this.opts.openDelimiter;
+    let c = this.opts.closeDelimiter;
+    let newLineCount = 0;
+    newLineCount = line.split("\n").length - 1;
+    switch (line) {
+      case o + d:
+      case o + d + "_":
+        this.mode = Template.modes.EVAL;
+        break;
+      case o + d + "=":
+        this.mode = Template.modes.ESCAPED;
+        break;
+      case o + d + "-":
+        this.mode = Template.modes.RAW;
+        break;
+      case o + d + "#":
+        this.mode = Template.modes.COMMENT;
+        break;
+      case o + d + d:
+        this.mode = Template.modes.LITERAL;
+        this.source += '    ; __append("' + line.replace(o + d + d, o + d) + '")\n';
+        break;
+      case d + d + c:
+        this.mode = Template.modes.LITERAL;
+        this.source += '    ; __append("' + line.replace(d + d + c, d + c) + '")\n';
+        break;
+      case d + c:
+      case "-" + d + c:
+      case "_" + d + c:
+        if (this.mode == Template.modes.LITERAL) {
+          this._addOutput(line);
+        }
+        this.mode = null;
+        this.truncate = line.indexOf("-") === 0 || line.indexOf("_") === 0;
+        break;
+      default:
+        if (this.mode) {
+          switch (this.mode) {
+            case Template.modes.EVAL:
+            case Template.modes.ESCAPED:
+            case Template.modes.RAW:
+              if (line.lastIndexOf("//") > line.lastIndexOf("\n")) {
+                line += "\n";
+              }
+          }
+          switch (this.mode) {
+            case Template.modes.EVAL:
+              this.source += "    ; " + line + "\n";
+              break;
+            case Template.modes.ESCAPED:
+              this.source += "    ; __append(escapeFn(" + stripSemi(line) + "))\n";
+              break;
+            case Template.modes.RAW:
+              this.source += "    ; __append(" + stripSemi(line) + ")\n";
+              break;
+            case Template.modes.COMMENT:
+              break;
+            case Template.modes.LITERAL:
+              this._addOutput(line);
+              break;
+          }
+        } else {
+          this._addOutput(line);
+        }
+    }
+    if (self2.opts.compileDebug && newLineCount) {
+      this.currentLine += newLineCount;
+      this.source += "    ; __line = " + this.currentLine + "\n";
+    }
+  }
+};
+ejs.escapeXML = utils_default.escapeXML;
+ejs.__express = ejs.renderFile;
+if (typeof window != "undefined") {
+  window.ejs = ejs;
+}
+if (typeof module != "undefined") {
+  module.exports = ejs;
+}
+var ejs_default = ejs;
+
 // ng-dev/release/notes/release-notes.js
-var import_ejs = __toESM(require_ejs());
 var import_semver4 = __toESM(require_semver());
 
 // ng-dev/release/notes/context.js
@@ -47634,11 +47582,11 @@ var Changelog = class {
     const changelog = this.entries.map((entry) => entry.content).join(joinMarker);
     writeFileSync5(this.filePath, changelog, {});
   }
-  getEntriesFor(path9) {
-    if (!existsSync2(path9)) {
+  getEntriesFor(path10) {
+    if (!existsSync2(path10)) {
       return [];
     }
-    return readFileSync7(path9, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
+    return readFileSync7(path10, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
   }
 };
 function parseChangelogEntry(content) {
@@ -47671,12 +47619,12 @@ var ReleaseNotes = class _ReleaseNotes {
     this.git = git;
   }
   async getGithubReleaseEntry() {
-    return (0, import_ejs.render)(github_release_default, await this.generateRenderContext(), {
+    return ejs_default.render(github_release_default, await this.generateRenderContext(), {
       rmWhitespace: true
     });
   }
   async getChangelogEntry() {
-    return (0, import_ejs.render)(changelog_default, await this.generateRenderContext(), { rmWhitespace: true });
+    return ejs_default.render(changelog_default, await this.generateRenderContext(), { rmWhitespace: true });
   }
   async prependEntryToChangelogFile() {
     if (import_semver4.default.prerelease(this.version) === null) {
@@ -47882,7 +47830,7 @@ var workspaceRelativePackageJsonPath = "package.json";
 
 // ng-dev/release/publish/actions.js
 var import_fast_glob2 = __toESM(require_out4());
-import { existsSync as existsSync4, promises as fs2 } from "fs";
+import { existsSync as existsSync4, promises as fs3 } from "fs";
 import { join as join10 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
@@ -48208,12 +48156,12 @@ var ReleaseAction = class {
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
     const pkgJsonPath = join10(this.projectDir, workspaceRelativePackageJsonPath);
-    const pkgJson = JSON.parse(await fs2.readFile(pkgJsonPath, "utf8"));
+    const pkgJson = JSON.parse(await fs3.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
     }
     pkgJson.version = newVersion.format();
-    await fs2.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
+    await fs3.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
     Log.info(green(`  \u2713   Updated project version to ${pkgJson.version}`));
     if (existsSync4(join10(this.projectDir, ".aspect"))) {
@@ -48518,7 +48466,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version, packages) {
     const experimentalVersion = createExperimentalSemver(version);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs2.readFile(join10(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join10(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -49059,10 +49007,10 @@ var actions = [
 
 // ng-dev/utils/version-check.js
 var import_yaml3 = __toESM(require_dist());
-import * as path6 from "path";
-import * as fs3 from "fs";
+import * as path7 from "path";
+import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-a70caf64f73cf12a0ec8b94234f65f12431719b9`;
+var localVersion = `0.0.0-33559e9b33e7fd914732d7f458d198920d94f6d4`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49072,8 +49020,8 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const packageJsonPath = path6.join(workspacePath, workspaceRelativePackageJsonPath);
-  const packageJson = JSON.parse(fs3.readFileSync(packageJsonPath, "utf-8"));
+  const packageJsonPath = path7.join(workspacePath, workspaceRelativePackageJsonPath);
+  const packageJson = JSON.parse(fs4.readFileSync(packageJsonPath, "utf-8"));
   if (packageJson.name === "@angular/build-tooling") {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
     return true;
@@ -49300,11 +49248,11 @@ var ReleasePublishCommandModule = {
 };
 
 // ng-dev/release/stamping/cli.js
-import path7 from "path";
+import path8 from "path";
 import url from "url";
 
 // ng-dev/release/stamping/env-stamp.js
-import * as fs4 from "fs";
+import * as fs5 from "fs";
 var import_semver20 = __toESM(require_semver());
 import { join as join13 } from "path";
 async function printEnvStamp(mode, includeVersion) {
@@ -49384,7 +49332,7 @@ function getCurrentGitUser(git) {
 }
 function getVersionFromWorkspacePackageJson(git) {
   const packageJsonPath = join13(git.baseDir, "package.json");
-  const packageJson = JSON.parse(fs4.readFileSync(packageJsonPath, "utf8"));
+  const packageJson = JSON.parse(fs5.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
@@ -49409,7 +49357,7 @@ function builder22(args) {
 async function handler23({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
-    const scriptURL = url.pathToFileURL(path7.resolve(additionalStampingScript));
+    const scriptURL = url.pathToFileURL(path8.resolve(additionalStampingScript));
     const stampingExports = await import(scriptURL.toString());
     await stampingExports.default(mode);
   }
@@ -49554,8 +49502,8 @@ function getFileStatus(filePath) {
     return null;
   }
 }
-function convertPathToForwardSlash(path9) {
-  return path9.replace(/\\/g, "/");
+function convertPathToForwardSlash(path10) {
+  return path10.replace(/\\/g, "/");
 }
 
 // ng-dev/ts-circular-dependencies/parser.js
@@ -49588,21 +49536,21 @@ var Analyzer = class {
     this.unresolvedFiles = /* @__PURE__ */ new Map();
     this._ignoreTypeOnlyChecks = !!ignoreTypeOnlyChecks;
   }
-  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path9 = []) {
-    const previousIndex = path9.indexOf(sf);
+  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path10 = []) {
+    const previousIndex = path10.indexOf(sf);
     if (previousIndex !== -1) {
-      return [path9.slice(previousIndex)];
+      return [path10.slice(previousIndex)];
     }
     if (visited.has(sf)) {
       return [];
     }
-    path9.push(sf);
+    path10.push(sf);
     visited.add(sf);
     const result = [];
     for (const ref of getModuleReferences(sf, this._ignoreTypeOnlyChecks)) {
       const targetFile = this._resolveImport(ref, sf.fileName);
       if (targetFile !== null) {
-        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path9.slice()));
+        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path10.slice()));
       }
     }
     return result;
@@ -49730,23 +49678,23 @@ function compareGoldens(actual, expected) {
   });
   return { newCircularDeps, fixedCircularDeps };
 }
-function normalizeCircularDependency(path9) {
-  if (path9.length <= 1) {
-    return path9;
+function normalizeCircularDependency(path10) {
+  if (path10.length <= 1) {
+    return path10;
   }
   let indexFirstNode = 0;
-  let valueFirstNode = path9[0];
-  for (let i = 1; i < path9.length; i++) {
-    const value = path9[i];
+  let valueFirstNode = path10[0];
+  for (let i = 1; i < path10.length; i++) {
+    const value = path10[i];
     if (value.localeCompare(valueFirstNode, "en") < 0) {
       indexFirstNode = i;
       valueFirstNode = value;
     }
   }
   if (indexFirstNode === 0) {
-    return path9;
+    return path10;
   }
-  return [...path9.slice(indexFirstNode), ...path9.slice(0, indexFirstNode)];
+  return [...path10.slice(indexFirstNode), ...path10.slice(0, indexFirstNode)];
 }
 function isSameCircularDependency(actual, expected) {
   if (actual.length !== expected.length) {
@@ -49859,8 +49807,8 @@ function main(approve, config, printWarnings) {
   }
   return 1;
 }
-function getRelativePath(baseDir, path9) {
-  return convertPathToForwardSlash(relative2(baseDir, path9));
+function getRelativePath(baseDir, path10) {
+  return convertPathToForwardSlash(relative2(baseDir, path10));
 }
 function convertReferenceChainToString(chain) {
   return chain.join(" \u2192 ");
@@ -50116,7 +50064,7 @@ function buildConfigParser(localYargs) {
 // node_modules/.aspect_rules_js/@google+genai@1.35.0_45321690/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
-import * as fs5 from "fs/promises";
+import * as fs6 from "fs/promises";
 import { writeFile as writeFile2 } from "fs/promises";
 import { Readable as Readable2 } from "node:stream";
 import { finished } from "node:stream/promises";
@@ -53400,7 +53348,7 @@ var Batches = class extends BaseModule2 {
       params2
     );
     const urlParams = body["_url"];
-    const path9 = formatMap("{model}:batchGenerateContent", urlParams);
+    const path10 = formatMap("{model}:batchGenerateContent", urlParams);
     const batch = body["batch"];
     const inputConfig = batch["inputConfig"];
     const requestsWrapper = inputConfig["requests"];
@@ -53421,7 +53369,7 @@ var Batches = class extends BaseModule2 {
     delete body["config"];
     delete body["_url"];
     delete body["_query"];
-    return { path: path9, body };
+    return { path: path10, body };
   }
   // Helper function to get the first GCS URI
   getGcsUri(src) {
@@ -53477,16 +53425,16 @@ var Batches = class extends BaseModule2 {
   async createInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs", body["_url"]);
+      path10 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53501,12 +53449,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = createBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:batchGenerateContent", body["_url"]);
+      path10 = formatMap("{model}:batchGenerateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53531,18 +53479,18 @@ var Batches = class extends BaseModule2 {
   async createEmbeddingsInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createEmbeddingsBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:asyncBatchEmbedContent", body["_url"]);
+      path10 = formatMap("{model}:asyncBatchEmbedContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53571,16 +53519,16 @@ var Batches = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path10 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53595,12 +53543,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = getBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}", body["_url"]);
+      path10 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53628,16 +53576,16 @@ var Batches = class extends BaseModule2 {
    */
   async cancel(params2) {
     var _a2, _b, _c, _d;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
+      path10 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53646,12 +53594,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = cancelBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}:cancel", body["_url"]);
+      path10 = formatMap("batches/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53663,16 +53611,16 @@ var Batches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listBatchJobsParametersToVertex(params2);
-      path9 = formatMap("batchPredictionJobs", body["_url"]);
+      path10 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53695,12 +53643,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = listBatchJobsParametersToMldev(params2);
-      path9 = formatMap("batches", body["_url"]);
+      path10 = formatMap("batches", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53737,16 +53685,16 @@ var Batches = class extends BaseModule2 {
   async delete(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path10 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -53767,12 +53715,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = deleteBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}", body["_url"]);
+      path10 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -54486,16 +54434,16 @@ var Caches = class extends BaseModule2 {
   async create(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path10 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -54509,12 +54457,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = createCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path10 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -54542,16 +54490,16 @@ var Caches = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -54565,12 +54513,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = getCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -54598,16 +54546,16 @@ var Caches = class extends BaseModule2 {
   async delete(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -54630,12 +54578,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = deleteCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -54675,16 +54623,16 @@ var Caches = class extends BaseModule2 {
   async update(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -54698,12 +54646,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = updateCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -54720,16 +54668,16 @@ var Caches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listCachedContentsParametersToVertex(params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path10 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -54752,12 +54700,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = listCachedContentsParametersToMldev(params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path10 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -55325,18 +55273,18 @@ var Files = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listFilesParametersToMldev(params2);
-      path9 = formatMap("files", body["_url"]);
+      path10 = formatMap("files", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -55362,18 +55310,18 @@ var Files = class extends BaseModule2 {
   async createInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createFileParametersToMldev(params2);
-      path9 = formatMap("upload/v1beta/files", body["_url"]);
+      path10 = formatMap("upload/v1beta/files", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -55408,18 +55356,18 @@ var Files = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getFileParametersToMldev(params2);
-      path9 = formatMap("files/{file}", body["_url"]);
+      path10 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -55449,18 +55397,18 @@ var Files = class extends BaseModule2 {
   async delete(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteFileParametersToMldev(params2);
-      path9 = formatMap("files/{file}", body["_url"]);
+      path10 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -59999,13 +59947,13 @@ var ApiClient = class {
       throw new Error("HTTP options are not correctly set.");
     }
   }
-  constructUrl(path9, httpOptions, prependProjectLocation) {
+  constructUrl(path10, httpOptions, prependProjectLocation) {
     const urlElement = [this.getRequestUrlInternal(httpOptions)];
     if (prependProjectLocation) {
       urlElement.push(this.getBaseResourcePath());
     }
-    if (path9 !== "") {
-      urlElement.push(path9);
+    if (path10 !== "") {
+      urlElement.push(path10);
     }
     const url2 = new URL(`${urlElement.join("/")}`);
     return url2;
@@ -60271,8 +60219,8 @@ var ApiClient = class {
       file: fileToUpload
     };
     const fileName = this.getFileName(file);
-    const path9 = formatMap("upload/v1beta/files", body["_url"]);
-    const uploadUrl = await this.fetchUploadUrl(path9, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config === null || config === void 0 ? void 0 : config.httpOptions);
+    const path10 = formatMap("upload/v1beta/files", body["_url"]);
+    const uploadUrl = await this.fetchUploadUrl(path10, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config === null || config === void 0 ? void 0 : config.httpOptions);
     return uploader.upload(file, uploadUrl, this);
   }
   /**
@@ -60296,13 +60244,13 @@ var ApiClient = class {
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
-    const path9 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
+    const path10 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
     const fileName = this.getFileName(file);
     const body = {};
     if (config != null) {
       uploadToFileSearchStoreConfigToMldev(config, body);
     }
-    const uploadUrl = await this.fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, config === null || config === void 0 ? void 0 : config.httpOptions);
+    const uploadUrl = await this.fetchUploadUrl(path10, sizeBytes, mimeType, fileName, body, config === null || config === void 0 ? void 0 : config.httpOptions);
     return uploader.uploadToFileSearchStore(file, uploadUrl, this);
   }
   /**
@@ -60315,7 +60263,7 @@ var ApiClient = class {
     const downloader = this.clientOptions.downloader;
     await downloader.download(params2, this);
   }
-  async fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, configHttpOptions) {
+  async fetchUploadUrl(path10, sizeBytes, mimeType, fileName, body, configHttpOptions) {
     var _a2;
     let httpOptions = {};
     if (configHttpOptions) {
@@ -60328,7 +60276,7 @@ var ApiClient = class {
       };
     }
     const httpResponse = await this.request({
-      path: path9,
+      path: path10,
       body: JSON.stringify(body),
       httpMethod: "POST",
       httpOptions
@@ -61497,16 +61445,16 @@ var Models = class extends BaseModule2 {
   async generateContentInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:generateContent", body["_url"]);
+      path10 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61529,12 +61477,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:generateContent", body["_url"]);
+      path10 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61560,17 +61508,17 @@ var Models = class extends BaseModule2 {
   async generateContentStreamInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path10 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61608,13 +61556,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path10 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61676,16 +61624,16 @@ var Models = class extends BaseModule2 {
   async embedContent(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = embedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61708,12 +61656,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = embedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:batchEmbedContents", body["_url"]);
+      path10 = formatMap("{model}:batchEmbedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61742,16 +61690,16 @@ var Models = class extends BaseModule2 {
   async generateImagesInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateImagesParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61774,12 +61722,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateImagesParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61808,16 +61756,16 @@ var Models = class extends BaseModule2 {
   async editImageInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = editImageParametersInternalToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61848,16 +61796,16 @@ var Models = class extends BaseModule2 {
   async upscaleImageInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = upscaleImageAPIParametersInternalToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61923,16 +61871,16 @@ var Models = class extends BaseModule2 {
   async recontextImage(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = recontextImageParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61974,16 +61922,16 @@ var Models = class extends BaseModule2 {
   async segmentImage(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = segmentImageParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62013,16 +61961,16 @@ var Models = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -62037,12 +61985,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = getModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -62060,16 +62008,16 @@ var Models = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listModelsParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{models_url}", body["_url"]);
+      path10 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -62092,12 +62040,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = listModelsParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{models_url}", body["_url"]);
+      path10 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -62140,16 +62088,16 @@ var Models = class extends BaseModule2 {
   async update(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}", body["_url"]);
+      path10 = formatMap("{model}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -62164,12 +62112,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = updateModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -62198,16 +62146,16 @@ var Models = class extends BaseModule2 {
   async delete(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -62230,12 +62178,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = deleteModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -62277,16 +62225,16 @@ var Models = class extends BaseModule2 {
   async countTokens(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = countTokensParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:countTokens", body["_url"]);
+      path10 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62309,12 +62257,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = countTokensParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:countTokens", body["_url"]);
+      path10 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62358,16 +62306,16 @@ var Models = class extends BaseModule2 {
   async computeTokens(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = computeTokensParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:computeTokens", body["_url"]);
+      path10 = formatMap("{model}:computeTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62398,16 +62346,16 @@ var Models = class extends BaseModule2 {
   async generateVideosInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateVideosParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path10 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62424,12 +62372,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateVideosParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path10 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62531,16 +62479,16 @@ var Operations = class extends BaseModule2 {
   async getVideosOperationInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getOperationParametersToVertex(params2);
-      path9 = formatMap("{operationName}", body["_url"]);
+      path10 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -62552,12 +62500,12 @@ var Operations = class extends BaseModule2 {
       return response;
     } else {
       const body = getOperationParametersToMldev(params2);
-      path9 = formatMap("{operationName}", body["_url"]);
+      path10 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -62572,16 +62520,16 @@ var Operations = class extends BaseModule2 {
   async fetchPredictVideosOperationInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = fetchPredictOperationParametersToVertex(params2);
-      path9 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
+      path10 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63153,20 +63101,20 @@ var Tokens = class extends BaseModule2 {
   async create(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("The client.tokens.create method is only supported by the Gemini Developer API.");
     } else {
       const body = createAuthTokenParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("auth_tokens", body["_url"]);
+      path10 = formatMap("auth_tokens", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       const transformedBody = convertBidiSetupToTokenSetup(body, params2.config);
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(transformedBody),
         httpMethod: "POST",
@@ -63276,18 +63224,18 @@ var Documents = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getDocumentParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63308,18 +63256,18 @@ var Documents = class extends BaseModule2 {
    */
   async delete(params2) {
     var _a2, _b;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteDocumentParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -63331,18 +63279,18 @@ var Documents = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listDocumentsParametersToMldev(params2);
-      path9 = formatMap("{parent}/documents", body["_url"]);
+      path10 = formatMap("{parent}/documents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63420,18 +63368,18 @@ var FileSearchStores = class extends BaseModule2 {
   async create(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createFileSearchStoreParametersToMldev(params2);
-      path9 = formatMap("fileSearchStores", body["_url"]);
+      path10 = formatMap("fileSearchStores", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63454,18 +63402,18 @@ var FileSearchStores = class extends BaseModule2 {
   async get(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getFileSearchStoreParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63486,18 +63434,18 @@ var FileSearchStores = class extends BaseModule2 {
    */
   async delete(params2) {
     var _a2, _b;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteFileSearchStoreParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -63509,18 +63457,18 @@ var FileSearchStores = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listFileSearchStoresParametersToMldev(params2);
-      path9 = formatMap("fileSearchStores", body["_url"]);
+      path10 = formatMap("fileSearchStores", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63540,18 +63488,18 @@ var FileSearchStores = class extends BaseModule2 {
   async uploadToFileSearchStoreInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = uploadToFileSearchStoreParametersToMldev(params2);
-      path9 = formatMap("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
+      path10 = formatMap("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63579,18 +63527,18 @@ var FileSearchStores = class extends BaseModule2 {
   async importFile(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = importFileParametersToMldev(params2);
-      path9 = formatMap("{file_search_store_name}:importFile", body["_url"]);
+      path10 = formatMap("{file_search_store_name}:importFile", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63750,7 +63698,7 @@ function isEmptyObj(obj) {
     return false;
   return true;
 }
-function hasOwn(obj, key) {
+function hasOwn2(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
 }
 var validatePositiveInteger = (name, n) => {
@@ -64069,12 +64017,12 @@ function encodeURIPath(str) {
   return str.replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/g, encodeURIComponent);
 }
 var EMPTY = Object.freeze(/* @__PURE__ */ Object.create(null));
-var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(statics, ...params2) {
+var createPathTagFunction = (pathEncoder = encodeURIPath) => function path10(statics, ...params2) {
   if (statics.length === 1)
     return statics[0];
   let postPath = false;
   const invalidSegments = [];
-  const path10 = statics.reduce((previousValue, currentValue, index) => {
+  const path11 = statics.reduce((previousValue, currentValue, index) => {
     var _a2, _b, _c;
     if (/[?#]/.test(currentValue)) {
       postPath = true;
@@ -64092,7 +64040,7 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(stat
     }
     return previousValue + currentValue + (index === params2.length ? "" : encoded);
   }, "");
-  const pathOnly = path10.split(/[?#]/, 1)[0];
+  const pathOnly = path11.split(/[?#]/, 1)[0];
   const invalidSegmentPattern = /(?<=^|\/)(?:\.|%2e){1,2}(?=\/|$)/gi;
   let match3;
   while ((match3 = invalidSegmentPattern.exec(pathOnly)) !== null) {
@@ -64113,12 +64061,12 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(stat
     }, "");
     throw new GeminiNextGenAPIClientError(`Path parameters result in path with invalid segments:
 ${invalidSegments.map((e) => e.error).join("\n")}
-${path10}
+${path11}
 ${underline2}`);
   }
-  return path10;
+  return path11;
 };
-var path8 = createPathTagFunction(encodeURIPath);
+var path9 = createPathTagFunction(encodeURIPath);
 var BaseInteractions = class extends APIResource {
   create(params2, options) {
     var _a2;
@@ -64129,7 +64077,7 @@ var BaseInteractions = class extends APIResource {
     if ("agent" in body && "generation_config" in body) {
       throw new GeminiNextGenAPIClientError(`Invalid request: specified \`agent\` and \`generation_config\`. If specifying \`agent\`, use \`agent_config\`.`);
     }
-    return this._client.post(path8`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a2 = params2.stream) !== null && _a2 !== void 0 ? _a2 : false }));
+    return this._client.post(path9`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a2 = params2.stream) !== null && _a2 !== void 0 ? _a2 : false }));
   }
   /**
    * Deletes the interaction by id.
@@ -64141,7 +64089,7 @@ var BaseInteractions = class extends APIResource {
    */
   delete(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.delete(path8`/${api_version}/interactions/${id}`, options);
+    return this._client.delete(path9`/${api_version}/interactions/${id}`, options);
   }
   /**
    * Cancels an interaction by id. This only applies to background interactions that are still running.
@@ -64153,12 +64101,12 @@ var BaseInteractions = class extends APIResource {
    */
   cancel(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.post(path8`/${api_version}/interactions/${id}/cancel`, options);
+    return this._client.post(path9`/${api_version}/interactions/${id}/cancel`, options);
   }
   get(id, params2 = {}, options) {
     var _a2;
     const _b = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _b, query = __rest(_b, ["api_version"]);
-    return this._client.get(path8`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a2 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a2 !== void 0 ? _a2 : false }));
+    return this._client.get(path9`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a2 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a2 !== void 0 ? _a2 : false }));
   }
 };
 BaseInteractions._key = Object.freeze(["interactions"]);
@@ -64268,7 +64216,7 @@ var parseLogLevel = (maybeLevel, sourceName, client) => {
   if (!maybeLevel) {
     return void 0;
   }
-  if (hasOwn(levelNumbers, maybeLevel)) {
+  if (hasOwn2(levelNumbers, maybeLevel)) {
     return maybeLevel;
   }
   loggerFor(client).warn(`${sourceName} was set to ${JSON.stringify(maybeLevel)}, expected one of ${JSON.stringify(Object.keys(levelNumbers))}`);
@@ -64919,9 +64867,9 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
   makeStatusError(status, error, message, headers) {
     return APIError.generate(status, error, message, headers);
   }
-  buildURL(path9, query, defaultBaseURL) {
+  buildURL(path10, query, defaultBaseURL) {
     const baseURL = !this.baseURLOverridden() && defaultBaseURL || this.baseURL;
-    const url2 = isAbsoluteURL(path9) ? new URL(path9) : new URL(baseURL + (baseURL.endsWith("/") && path9.startsWith("/") ? path9.slice(1) : path9));
+    const url2 = isAbsoluteURL(path10) ? new URL(path10) : new URL(baseURL + (baseURL.endsWith("/") && path10.startsWith("/") ? path10.slice(1) : path10));
     const defaultQuery = this.defaultQuery();
     if (!isEmptyObj(defaultQuery)) {
       query = Object.assign(Object.assign({}, defaultQuery), query);
@@ -64949,24 +64897,24 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
    */
   async prepareRequest(request, { url: url2, options }) {
   }
-  get(path9, opts) {
-    return this.methodRequest("get", path9, opts);
+  get(path10, opts) {
+    return this.methodRequest("get", path10, opts);
   }
-  post(path9, opts) {
-    return this.methodRequest("post", path9, opts);
+  post(path10, opts) {
+    return this.methodRequest("post", path10, opts);
   }
-  patch(path9, opts) {
-    return this.methodRequest("patch", path9, opts);
+  patch(path10, opts) {
+    return this.methodRequest("patch", path10, opts);
   }
-  put(path9, opts) {
-    return this.methodRequest("put", path9, opts);
+  put(path10, opts) {
+    return this.methodRequest("put", path10, opts);
   }
-  delete(path9, opts) {
-    return this.methodRequest("delete", path9, opts);
+  delete(path10, opts) {
+    return this.methodRequest("delete", path10, opts);
   }
-  methodRequest(method, path9, opts) {
+  methodRequest(method, path10, opts) {
     return this.request(Promise.resolve(opts).then((opts2) => {
-      return Object.assign({ method, path: path9 }, opts2);
+      return Object.assign({ method, path: path10 }, opts2);
     }));
   }
   request(options, remainingRetries = null) {
@@ -65139,8 +65087,8 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
   async buildRequest(inputOptions, { retryCount = 0 } = {}) {
     var _b, _c, _d;
     const options = Object.assign({}, inputOptions);
-    const { method, path: path9, query, defaultBaseURL } = options;
-    const url2 = this.buildURL(path9, query, defaultBaseURL);
+    const { method, path: path10, query, defaultBaseURL } = options;
+    const url2 = this.buildURL(path10, query, defaultBaseURL);
     if ("timeout" in options)
       validatePositiveInteger("timeout", options.timeout);
     options.timeout = (_b = options.timeout) !== null && _b !== void 0 ? _b : this.timeout;
@@ -66082,16 +66030,16 @@ var Tunings = class extends BaseModule2 {
   async getInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getTuningJobParametersToVertex(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -66112,12 +66060,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = getTuningJobParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -66141,16 +66089,16 @@ var Tunings = class extends BaseModule2 {
   async listInternal(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listTuningJobsParametersToVertex(params2);
-      path9 = formatMap("tuningJobs", body["_url"]);
+      path10 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -66173,12 +66121,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = listTuningJobsParametersToMldev(params2);
-      path9 = formatMap("tunedModels", body["_url"]);
+      path10 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -66215,16 +66163,16 @@ var Tunings = class extends BaseModule2 {
   async cancel(params2) {
     var _a2, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelTuningJobParametersToVertex(params2);
-      path9 = formatMap("{name}:cancel", body["_url"]);
+      path10 = formatMap("{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -66247,12 +66195,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = cancelTuningJobParametersToMldev(params2);
-      path9 = formatMap("{name}:cancel", body["_url"]);
+      path10 = formatMap("{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -66278,16 +66226,16 @@ var Tunings = class extends BaseModule2 {
   async tuneInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createTuningJobParametersPrivateToVertex(params2, params2);
-      path9 = formatMap("tuningJobs", body["_url"]);
+      path10 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -66313,18 +66261,18 @@ var Tunings = class extends BaseModule2 {
   async tuneMldevInternal(params2) {
     var _a2, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createTuningJobParametersPrivateToMldev(params2);
-      path9 = formatMap("tunedModels", body["_url"]);
+      path10 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -66430,7 +66378,7 @@ var NodeUploader = class {
   async stat(file) {
     const fileStat = { size: 0, type: void 0 };
     if (typeof file === "string") {
-      const originalStat = await fs5.stat(file);
+      const originalStat = await fs6.stat(file);
       fileStat.size = originalStat.size;
       fileStat.type = this.inferMimeType(file);
       return fileStat;
@@ -66568,7 +66516,7 @@ var NodeUploader = class {
     let fileHandle;
     const fileName = path$1.basename(file);
     try {
-      fileHandle = await fs5.open(file, "r");
+      fileHandle = await fs6.open(file, "r");
       if (!fileHandle) {
         throw new Error(`Failed to open file`);
       }
@@ -67121,20 +67069,19 @@ queue-microtask/index.js:
 run-parallel/index.js:
   (*! run-parallel. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
 
-ejs/lib/ejs.js:
-  (**
-   * @file Embedded JavaScript templating engine. {@link http://ejs.co}
-   * @author Matthew Eernisse <mde@fleegix.org>
-   * @author Tiancheng "Timothy" Gu <timothygu99@gmail.com>
-   * @project EJS
-   * @license {@link http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0}
-   *)
-
 safe-buffer/index.js:
   (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
 
 gtoken/build/cjs/src/index.cjs:
   (*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE *)
+
+ejs/lib/esm/ejs.js:
+  (**
+   * @file Embedded JavaScript templating engine. {@link http://ejs.co}
+   * @author Matthew Eernisse <mde@fleegix.org>
+   * @project EJS
+   * @license {@link http://www.apache.org/licenses/LICENSE-2.0 Apache License, Version 2.0}
+   *)
 
 @google/genai/dist/node/index.mjs:
   (**
