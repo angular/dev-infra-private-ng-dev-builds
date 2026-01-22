@@ -20707,9 +20707,9 @@ var require_lib7 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.8/node_modules/@pnpm/dependency-path/lib/index.js
+// node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.9/node_modules/@pnpm/dependency-path/lib/index.js
 var require_lib8 = __commonJS({
-  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.8/node_modules/@pnpm/dependency-path/lib/index.js"(exports2) {
+  "node_modules/.aspect_rules_js/@pnpm+dependency-path@1001.1.9/node_modules/@pnpm/dependency-path/lib/index.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -38668,7 +38668,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -38687,7 +38687,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -38710,10 +38710,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -38819,7 +38819,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -38837,7 +38837,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -38849,7 +38849,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.3/node_modules/@inquirer/figures/dist/index.js
@@ -39144,7 +39144,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39165,7 +39165,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39193,7 +39193,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39224,7 +39224,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39237,12 +39237,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39261,7 +39261,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
@@ -39270,7 +39270,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -39359,7 +39359,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -39615,7 +39615,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.3/node_modules/@inquirer/ansi/dist/index.js
@@ -39634,7 +39634,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -39694,7 +39694,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -39709,7 +39709,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -39796,7 +39796,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.8/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -39811,7 +39811,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -39984,7 +39984,7 @@ var dist_default2 = createPrompt((config, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.9/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -39993,7 +39993,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.9/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40002,7 +40002,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.9/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40011,7 +40011,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.9/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40020,7 +40020,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.9/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40029,7 +40029,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.8/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.9/node_modules/@inquirer/external-editor/dist/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -40183,7 +40183,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
@@ -40252,7 +40252,7 @@ var dist_default3 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.4_at_types_node_24.10.8/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.4_at_types_node_24.10.9/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -40298,7 +40298,7 @@ var dist_default4 = createPrompt((config, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -40383,7 +40383,7 @@ var dist_default5 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.4_at_types_node_24.10.8/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.4_at_types_node_24.10.9/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -40464,7 +40464,7 @@ var dist_default6 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -40560,7 +40560,7 @@ var dist_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.0_at_types_node_24.10.8/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.0_at_types_node_24.10.9/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
 var rawlistTheme = {
@@ -40685,7 +40685,7 @@ var dist_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/password/dist/index.js
 var dist_default9 = createPrompt((config, done) => {
   const { validate = () => true } = config;
   const theme = makeTheme(config.theme);
@@ -40734,7 +40734,7 @@ var dist_default9 = createPrompt((config, done) => {
   return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.1.0_at_types_node_24.10.8/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.1.0_at_types_node_24.10.9/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -40904,7 +40904,7 @@ var dist_default10 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.0.4_at_types_node_24.10.8/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -49010,7 +49010,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-4ef5c54f3f71004c2f4cbe9df4abc462e8faba54`;
+var localVersion = `0.0.0-f61cab48315bd8e1a8224c284ca6176bf8456b27`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -50061,7 +50061,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.35.0_45321690/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.38.0_45321690/node_modules/@google/genai/dist/node/index.mjs
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs6 from "fs/promises";
@@ -50076,7 +50076,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.35.0_45321690/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.38.0_45321690/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -50797,6 +50797,10 @@ var PartMediaResolutionLevel;
   PartMediaResolutionLevel2["MEDIA_RESOLUTION_HIGH"] = "MEDIA_RESOLUTION_HIGH";
   PartMediaResolutionLevel2["MEDIA_RESOLUTION_ULTRA_HIGH"] = "MEDIA_RESOLUTION_ULTRA_HIGH";
 })(PartMediaResolutionLevel || (PartMediaResolutionLevel = {}));
+var ResourceScope;
+(function(ResourceScope2) {
+  ResourceScope2["COLLECTION"] = "COLLECTION";
+})(ResourceScope || (ResourceScope = {}));
 var FeatureSelectionPreference;
 (function(FeatureSelectionPreference2) {
   FeatureSelectionPreference2["FEATURE_SELECTION_PREFERENCE_UNSPECIFIED"] = "FEATURE_SELECTION_PREFERENCE_UNSPECIFIED";
@@ -50939,6 +50943,12 @@ var VadSignalType;
   VadSignalType2["VAD_SIGNAL_TYPE_SOS"] = "VAD_SIGNAL_TYPE_SOS";
   VadSignalType2["VAD_SIGNAL_TYPE_EOS"] = "VAD_SIGNAL_TYPE_EOS";
 })(VadSignalType || (VadSignalType = {}));
+var VoiceActivityType;
+(function(VoiceActivityType2) {
+  VoiceActivityType2["TYPE_UNSPECIFIED"] = "TYPE_UNSPECIFIED";
+  VoiceActivityType2["ACTIVITY_START"] = "ACTIVITY_START";
+  VoiceActivityType2["ACTIVITY_END"] = "ACTIVITY_END";
+})(VoiceActivityType || (VoiceActivityType = {}));
 var StartSensitivity;
 (function(StartSensitivity2) {
   StartSensitivity2["START_SENSITIVITY_UNSPECIFIED"] = "START_SENSITIVITY_UNSPECIFIED";
@@ -52758,6 +52768,9 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
   ]);
   if (fromEnableEnhancedCivicAnswers != null) {
     setValueByPath(toObject, ["enableEnhancedCivicAnswers"], fromEnableEnhancedCivicAnswers);
+  }
+  if (getValueByPath(fromObject, ["modelArmorConfig"]) !== void 0) {
+    throw new Error("modelArmorConfig parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -56100,6 +56113,12 @@ function liveServerMessageFromVertex(fromObject) {
   if (fromVoiceActivityDetectionSignal != null) {
     setValueByPath(toObject, ["voiceActivityDetectionSignal"], fromVoiceActivityDetectionSignal);
   }
+  const fromVoiceActivity = getValueByPath(fromObject, [
+    "voiceActivity"
+  ]);
+  if (fromVoiceActivity != null) {
+    setValueByPath(toObject, ["voiceActivity"], voiceActivityFromVertex(fromVoiceActivity));
+  }
   return toObject;
 }
 function partToMldev$2(fromObject) {
@@ -56373,6 +56392,14 @@ function usageMetadataFromVertex(fromObject) {
   const fromTrafficType = getValueByPath(fromObject, ["trafficType"]);
   if (fromTrafficType != null) {
     setValueByPath(toObject, ["trafficType"], fromTrafficType);
+  }
+  return toObject;
+}
+function voiceActivityFromVertex(fromObject) {
+  const toObject = {};
+  const fromVoiceActivityType = getValueByPath(fromObject, ["type"]);
+  if (fromVoiceActivityType != null) {
+    setValueByPath(toObject, ["voiceActivityType"], fromVoiceActivityType);
   }
   return toObject;
 }
@@ -57262,6 +57289,9 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject) {
   if (fromEnableEnhancedCivicAnswers != null) {
     setValueByPath(toObject, ["enableEnhancedCivicAnswers"], fromEnableEnhancedCivicAnswers);
   }
+  if (getValueByPath(fromObject, ["modelArmorConfig"]) !== void 0) {
+    throw new Error("modelArmorConfig parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function generateContentConfigToVertex(apiClient, fromObject, parentObject) {
@@ -57428,6 +57458,12 @@ function generateContentConfigToVertex(apiClient, fromObject, parentObject) {
   }
   if (getValueByPath(fromObject, ["enableEnhancedCivicAnswers"]) !== void 0) {
     throw new Error("enableEnhancedCivicAnswers parameter is not supported in Vertex AI.");
+  }
+  const fromModelArmorConfig = getValueByPath(fromObject, [
+    "modelArmorConfig"
+  ]);
+  if (parentObject !== void 0 && fromModelArmorConfig != null) {
+    setValueByPath(parentObject, ["modelArmorConfig"], fromModelArmorConfig);
   }
   return toObject;
 }
@@ -59830,21 +59866,51 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.35.0";
+var SDK_VERSION = "1.38.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
 var ApiClient = class {
   constructor(opts) {
-    var _a2, _b;
-    this.clientOptions = Object.assign(Object.assign({}, opts), { project: opts.project, location: opts.location, apiKey: opts.apiKey, vertexai: opts.vertexai });
+    var _a2, _b, _c;
+    this.clientOptions = Object.assign({}, opts);
+    this.customBaseUrl = (_a2 = opts.httpOptions) === null || _a2 === void 0 ? void 0 : _a2.baseUrl;
+    if (this.clientOptions.vertexai) {
+      if (this.clientOptions.project && this.clientOptions.location) {
+        this.clientOptions.apiKey = void 0;
+      } else if (this.clientOptions.apiKey) {
+        this.clientOptions.project = void 0;
+        this.clientOptions.location = void 0;
+      }
+    }
     const initHttpOptions = {};
     if (this.clientOptions.vertexai) {
-      initHttpOptions.apiVersion = (_a2 = this.clientOptions.apiVersion) !== null && _a2 !== void 0 ? _a2 : VERTEX_AI_API_DEFAULT_VERSION;
-      initHttpOptions.baseUrl = this.baseUrlFromProjectLocation();
-      this.normalizeAuthParameters();
+      if (!this.clientOptions.location && !this.clientOptions.apiKey && !this.customBaseUrl) {
+        this.clientOptions.location = "global";
+      }
+      const hasSufficientAuth = this.clientOptions.project && this.clientOptions.location || this.clientOptions.apiKey;
+      if (!hasSufficientAuth && !this.customBaseUrl) {
+        throw new Error("Authentication is not set up. Please provide either a project and location, or an API key, or a custom base URL.");
+      }
+      const hasConstructorAuth = opts.project && opts.location || !!opts.apiKey;
+      if (this.customBaseUrl && !hasConstructorAuth) {
+        initHttpOptions.baseUrl = this.customBaseUrl;
+        this.clientOptions.project = void 0;
+        this.clientOptions.location = void 0;
+      } else if (this.clientOptions.apiKey || this.clientOptions.location === "global") {
+        initHttpOptions.baseUrl = "https://aiplatform.googleapis.com/";
+      } else if (this.clientOptions.project && this.clientOptions.location) {
+        initHttpOptions.baseUrl = `https://${this.clientOptions.location}-aiplatform.googleapis.com/`;
+      }
+      initHttpOptions.apiVersion = (_b = this.clientOptions.apiVersion) !== null && _b !== void 0 ? _b : VERTEX_AI_API_DEFAULT_VERSION;
     } else {
-      initHttpOptions.apiVersion = (_b = this.clientOptions.apiVersion) !== null && _b !== void 0 ? _b : GOOGLE_AI_API_DEFAULT_VERSION;
+      if (!this.clientOptions.apiKey) {
+        throw new ApiError({
+          message: "API key must be set when using the Gemini API.",
+          status: 403
+        });
+      }
+      initHttpOptions.apiVersion = (_c = this.clientOptions.apiVersion) !== null && _c !== void 0 ? _c : GOOGLE_AI_API_DEFAULT_VERSION;
       initHttpOptions.baseUrl = `https://generativelanguage.googleapis.com/`;
     }
     initHttpOptions.headers = this.getDefaultHeaders();
@@ -59852,33 +59918,6 @@ var ApiClient = class {
     if (opts.httpOptions) {
       this.clientOptions.httpOptions = this.patchHttpOptions(initHttpOptions, opts.httpOptions);
     }
-  }
-  /**
-   * Determines the base URL for Vertex AI based on project and location.
-   * Uses the global endpoint if location is 'global' or if project/location
-   * are not specified (implying API key usage).
-   * @private
-   */
-  baseUrlFromProjectLocation() {
-    if (this.clientOptions.project && this.clientOptions.location && this.clientOptions.location !== "global") {
-      return `https://${this.clientOptions.location}-aiplatform.googleapis.com/`;
-    }
-    return `https://aiplatform.googleapis.com/`;
-  }
-  /**
-   * Normalizes authentication parameters for Vertex AI.
-   * If project and location are provided, API key is cleared.
-   * If project and location are not provided (implying API key usage),
-   * project and location are cleared.
-   * @private
-   */
-  normalizeAuthParameters() {
-    if (this.clientOptions.project && this.clientOptions.location) {
-      this.clientOptions.apiKey = void 0;
-      return;
-    }
-    this.clientOptions.project = void 0;
-    this.clientOptions.location = void 0;
   }
   isVertexAI() {
     var _a2;
@@ -59889,6 +59928,9 @@ var ApiClient = class {
   }
   getLocation() {
     return this.clientOptions.location;
+  }
+  getCustomBaseUrl() {
+    return this.customBaseUrl;
   }
   async getAuthHeaders() {
     const headers = new Headers();
@@ -59958,7 +60000,10 @@ var ApiClient = class {
     const url2 = new URL(`${urlElement.join("/")}`);
     return url2;
   }
-  shouldPrependVertexProjectPath(request) {
+  shouldPrependVertexProjectPath(request, httpOptions) {
+    if (httpOptions.baseUrl && httpOptions.baseUrlResourceScope === ResourceScope.COLLECTION) {
+      return false;
+    }
     if (this.clientOptions.apiKey) {
       return false;
     }
@@ -59978,7 +60023,7 @@ var ApiClient = class {
     if (request.httpOptions) {
       patchedHttpOptions = this.patchHttpOptions(this.clientOptions.httpOptions, request.httpOptions);
     }
-    const prependProjectLocation = this.shouldPrependVertexProjectPath(request);
+    const prependProjectLocation = this.shouldPrependVertexProjectPath(request, patchedHttpOptions);
     const url2 = this.constructUrl(request.path, patchedHttpOptions, prependProjectLocation);
     if (request.queryParams) {
       for (const [key, value] of Object.entries(request.queryParams)) {
@@ -60012,7 +60057,7 @@ var ApiClient = class {
     if (request.httpOptions) {
       patchedHttpOptions = this.patchHttpOptions(this.clientOptions.httpOptions, request.httpOptions);
     }
-    const prependProjectLocation = this.shouldPrependVertexProjectPath(request);
+    const prependProjectLocation = this.shouldPrependVertexProjectPath(request, patchedHttpOptions);
     const url2 = this.constructUrl(request.path, patchedHttpOptions, prependProjectLocation);
     if (!url2.searchParams.has("alt") || url2.searchParams.get("alt") !== "sse") {
       url2.searchParams.set("alt", "sse");
@@ -60770,8 +60815,16 @@ var Live = class {
     }
     const headers = mapToHeaders(clientHeaders);
     if (this.apiClient.isVertexAI()) {
-      url2 = `${websocketBaseUrl}/ws/google.cloud.aiplatform.${apiVersion}.LlmBidiService/BidiGenerateContent`;
-      await this.auth.addAuthHeaders(headers, url2);
+      const project = this.apiClient.getProject();
+      const location = this.apiClient.getLocation();
+      const apiKey = this.apiClient.getApiKey();
+      const hasStandardAuth = !!project && !!location || !!apiKey;
+      if (this.apiClient.getCustomBaseUrl() && !hasStandardAuth) {
+        url2 = websocketBaseUrl;
+      } else {
+        url2 = `${websocketBaseUrl}/ws/google.cloud.aiplatform.${apiVersion}.LlmBidiService/BidiGenerateContent`;
+        await this.auth.addAuthHeaders(headers, url2);
+      }
     } else {
       const apiKey = this.apiClient.getApiKey();
       let method = "BidiGenerateContent";
@@ -60815,7 +60868,9 @@ var Live = class {
     if (this.apiClient.isVertexAI() && transformedModel.startsWith("publishers/")) {
       const project = this.apiClient.getProject();
       const location = this.apiClient.getLocation();
-      transformedModel = `projects/${project}/locations/${location}/` + transformedModel;
+      if (project && location) {
+        transformedModel = `projects/${project}/locations/${location}/` + transformedModel;
+      }
     }
     let clientMessage = {};
     if (this.apiClient.isVertexAI() && ((_c = params2.config) === null || _c === void 0 ? void 0 : _c.responseModalities) === void 0) {
@@ -66607,6 +66662,9 @@ var GoogleGenAI = class {
     this.apiKey = (_c = options.apiKey) !== null && _c !== void 0 ? _c : envApiKey;
     this.project = (_d = options.project) !== null && _d !== void 0 ? _d : envProject;
     this.location = (_e = options.location) !== null && _e !== void 0 ? _e : envLocation;
+    if (!this.vertexai && !this.apiKey) {
+      throw new Error("API key must be set when using the Gemini API.");
+    }
     if (options.vertexai) {
       if ((_f = options.googleAuthOptions) === null || _f === void 0 ? void 0 : _f.credentials) {
         console.debug("The user provided Google Cloud credentials will take precedence over the API key from the environment variable.");
