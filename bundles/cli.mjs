@@ -48031,7 +48031,7 @@ var ExternalCommands = class {
   }
   static async _spawnNpmScript(args, projectDir, spawnOptions = {}) {
     if (PnpmVersioning.isUsingPnpm(projectDir)) {
-      return ChildProcess.spawn("pnpm", args, {
+      return ChildProcess.spawn("pnpm", ["-s", ...args], {
         ...spawnOptions,
         cwd: projectDir
       });
@@ -49013,7 +49013,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-540c2b5b041901f8b27a0b15b14f2db9b0aa8cda`;
+var localVersion = `0.0.0-a38ba21de078ce63bc878498a9354fe55a6eb3e3`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
