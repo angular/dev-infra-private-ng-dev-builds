@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-M7CFQJ2K.mjs";
+} from "./chunk-BZKO77AS.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -64,9 +64,8 @@ import {
   red,
   runParserWithCompletedFunctions,
   underline,
-  wrapAnsi,
   yellow
-} from "./chunk-BPT5VOWG.mjs";
+} from "./chunk-ZTI2LCA3.mjs";
 import {
   CommitParser
 } from "./chunk-PMGDP7TK.mjs";
@@ -38671,7 +38670,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -38690,7 +38689,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -38713,10 +38712,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -38822,7 +38821,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -38840,7 +38839,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -38852,7 +38851,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.3/node_modules/@inquirer/figures/dist/index.js
@@ -39147,7 +39146,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39168,7 +39167,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39196,7 +39195,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39227,7 +39226,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39240,12 +39239,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39264,8 +39263,347 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
+
+// node_modules/.aspect_rules_js/fast-string-truncated-width@3.0.3/node_modules/fast-string-truncated-width/dist/utils.js
+var getCodePointsLength = /* @__PURE__ */ (() => {
+  const SURROGATE_PAIR_RE = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+  return (input) => {
+    let surrogatePairsNr = 0;
+    SURROGATE_PAIR_RE.lastIndex = 0;
+    while (SURROGATE_PAIR_RE.test(input)) {
+      surrogatePairsNr += 1;
+    }
+    return input.length - surrogatePairsNr;
+  };
+})();
+var isFullWidth = (x) => {
+  return x === 12288 || x >= 65281 && x <= 65376 || x >= 65504 && x <= 65510;
+};
+var isWideNotCJKTNotEmoji = (x) => {
+  return x === 8987 || x === 9001 || x >= 12272 && x <= 12287 || x >= 12289 && x <= 12350 || x >= 12441 && x <= 12543 || x >= 12549 && x <= 12591 || x >= 12593 && x <= 12686 || x >= 12688 && x <= 12771 || x >= 12783 && x <= 12830 || x >= 12832 && x <= 12871 || x >= 12880 && x <= 19903 || x >= 65040 && x <= 65049 || x >= 65072 && x <= 65106 || x >= 65108 && x <= 65126 || x >= 65128 && x <= 65131 || x >= 127488 && x <= 127490 || x >= 127504 && x <= 127547 || x >= 127552 && x <= 127560 || x >= 131072 && x <= 196605 || x >= 196608 && x <= 262141;
+};
+
+// node_modules/.aspect_rules_js/fast-string-truncated-width@3.0.3/node_modules/fast-string-truncated-width/dist/index.js
+var ANSI_RE = /[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]|\u001b\]8;[^;]*;.*?(?:\u0007|\u001b\u005c)/y;
+var CONTROL_RE = /[\x00-\x08\x0A-\x1F\x7F-\x9F]{1,1000}/y;
+var CJKT_WIDE_RE = /(?:(?![\uFF61-\uFF9F\uFF00-\uFFEF])[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}\p{Script=Tangut}]){1,1000}/yu;
+var TAB_RE = /\t{1,1000}/y;
+var EMOJI_RE = new RegExp("[\\u{1F1E6}-\\u{1F1FF}]{2}|\\u{1F3F4}[\\u{E0061}-\\u{E007A}]{2}[\\u{E0030}-\\u{E0039}\\u{E0061}-\\u{E007A}]{1,3}\\u{E007F}|(?:\\p{Emoji}\\uFE0F\\u20E3?|\\p{Emoji_Modifier_Base}\\p{Emoji_Modifier}?|\\p{Emoji_Presentation})(?:\\u200D(?:\\p{Emoji_Modifier_Base}\\p{Emoji_Modifier}?|\\p{Emoji_Presentation}|\\p{Emoji}\\uFE0F\\u20E3?))*", "yu");
+var LATIN_RE = /(?:[\x20-\x7E\xA0-\xFF](?!\uFE0F)){1,1000}/y;
+var MODIFIER_RE = new RegExp("\\p{M}+", "gu");
+var NO_TRUNCATION = { limit: Infinity, ellipsis: "" };
+var getStringTruncatedWidth = (input, truncationOptions = {}, widthOptions = {}) => {
+  const LIMIT = truncationOptions.limit ?? Infinity;
+  const ELLIPSIS = truncationOptions.ellipsis ?? "";
+  const ELLIPSIS_WIDTH = truncationOptions?.ellipsisWidth ?? (ELLIPSIS ? getStringTruncatedWidth(ELLIPSIS, NO_TRUNCATION, widthOptions).width : 0);
+  const ANSI_WIDTH = 0;
+  const CONTROL_WIDTH = widthOptions.controlWidth ?? 0;
+  const TAB_WIDTH = widthOptions.tabWidth ?? 8;
+  const EMOJI_WIDTH = widthOptions.emojiWidth ?? 2;
+  const FULL_WIDTH_WIDTH = 2;
+  const REGULAR_WIDTH = widthOptions.regularWidth ?? 1;
+  const WIDE_WIDTH = widthOptions.wideWidth ?? FULL_WIDTH_WIDTH;
+  const PARSE_BLOCKS = [
+    [LATIN_RE, REGULAR_WIDTH],
+    [ANSI_RE, ANSI_WIDTH],
+    [CONTROL_RE, CONTROL_WIDTH],
+    [TAB_RE, TAB_WIDTH],
+    [EMOJI_RE, EMOJI_WIDTH],
+    [CJKT_WIDE_RE, WIDE_WIDTH]
+  ];
+  let indexPrev = 0;
+  let index = 0;
+  let length = input.length;
+  let lengthExtra = 0;
+  let truncationEnabled = false;
+  let truncationIndex = length;
+  let truncationLimit = Math.max(0, LIMIT - ELLIPSIS_WIDTH);
+  let unmatchedStart = 0;
+  let unmatchedEnd = 0;
+  let width = 0;
+  let widthExtra = 0;
+  outer:
+    while (true) {
+      if (unmatchedEnd > unmatchedStart || index >= length && index > indexPrev) {
+        const unmatched = input.slice(unmatchedStart, unmatchedEnd) || input.slice(indexPrev, index);
+        lengthExtra = 0;
+        for (const char of unmatched.replaceAll(MODIFIER_RE, "")) {
+          const codePoint = char.codePointAt(0) || 0;
+          if (isFullWidth(codePoint)) {
+            widthExtra = FULL_WIDTH_WIDTH;
+          } else if (isWideNotCJKTNotEmoji(codePoint)) {
+            widthExtra = WIDE_WIDTH;
+          } else {
+            widthExtra = REGULAR_WIDTH;
+          }
+          if (width + widthExtra > truncationLimit) {
+            truncationIndex = Math.min(truncationIndex, Math.max(unmatchedStart, indexPrev) + lengthExtra);
+          }
+          if (width + widthExtra > LIMIT) {
+            truncationEnabled = true;
+            break outer;
+          }
+          lengthExtra += char.length;
+          width += widthExtra;
+        }
+        unmatchedStart = unmatchedEnd = 0;
+      }
+      if (index >= length) {
+        break outer;
+      }
+      for (let i = 0, l = PARSE_BLOCKS.length; i < l; i++) {
+        const [BLOCK_RE, BLOCK_WIDTH] = PARSE_BLOCKS[i];
+        BLOCK_RE.lastIndex = index;
+        if (BLOCK_RE.test(input)) {
+          lengthExtra = BLOCK_RE === CJKT_WIDE_RE ? getCodePointsLength(input.slice(index, BLOCK_RE.lastIndex)) : BLOCK_RE === EMOJI_RE ? 1 : BLOCK_RE.lastIndex - index;
+          widthExtra = lengthExtra * BLOCK_WIDTH;
+          if (width + widthExtra > truncationLimit) {
+            truncationIndex = Math.min(truncationIndex, index + Math.floor((truncationLimit - width) / BLOCK_WIDTH));
+          }
+          if (width + widthExtra > LIMIT) {
+            truncationEnabled = true;
+            break outer;
+          }
+          width += widthExtra;
+          unmatchedStart = indexPrev;
+          unmatchedEnd = index;
+          index = indexPrev = BLOCK_RE.lastIndex;
+          continue outer;
+        }
+      }
+      index += 1;
+    }
+  return {
+    width: truncationEnabled ? truncationLimit : width,
+    index: truncationEnabled ? truncationIndex : length,
+    truncated: truncationEnabled,
+    ellipsed: truncationEnabled && LIMIT >= ELLIPSIS_WIDTH
+  };
+};
+var dist_default2 = getStringTruncatedWidth;
+
+// node_modules/.aspect_rules_js/fast-string-width@3.0.2/node_modules/fast-string-width/dist/index.js
+var NO_TRUNCATION2 = {
+  limit: Infinity,
+  ellipsis: "",
+  ellipsisWidth: 0
+};
+var fastStringWidth = (input, options = {}) => {
+  return dist_default2(input, NO_TRUNCATION2, options).width;
+};
+var dist_default3 = fastStringWidth;
+
+// node_modules/.aspect_rules_js/fast-wrap-ansi@0.2.0/node_modules/fast-wrap-ansi/lib/main.js
+var ESC = "\x1B";
+var CSI = "\x9B";
+var END_CODE = 39;
+var ANSI_ESCAPE_BELL = "\x07";
+var ANSI_CSI = "[";
+var ANSI_OSC = "]";
+var ANSI_SGR_TERMINATOR = "m";
+var ANSI_ESCAPE_LINK = `${ANSI_OSC}8;;`;
+var GROUP_REGEX = new RegExp(`(?:\\${ANSI_CSI}(?<code>\\d+)m|\\${ANSI_ESCAPE_LINK}(?<uri>.*)${ANSI_ESCAPE_BELL})`, "y");
+var getClosingCode = (openingCode) => {
+  if (openingCode >= 30 && openingCode <= 37)
+    return 39;
+  if (openingCode >= 90 && openingCode <= 97)
+    return 39;
+  if (openingCode >= 40 && openingCode <= 47)
+    return 49;
+  if (openingCode >= 100 && openingCode <= 107)
+    return 49;
+  if (openingCode === 1 || openingCode === 2)
+    return 22;
+  if (openingCode === 3)
+    return 23;
+  if (openingCode === 4)
+    return 24;
+  if (openingCode === 7)
+    return 27;
+  if (openingCode === 8)
+    return 28;
+  if (openingCode === 9)
+    return 29;
+  if (openingCode === 0)
+    return 0;
+  return void 0;
+};
+var wrapAnsiCode = (code) => `${ESC}${ANSI_CSI}${code}${ANSI_SGR_TERMINATOR}`;
+var wrapAnsiHyperlink = (url3) => `${ESC}${ANSI_ESCAPE_LINK}${url3}${ANSI_ESCAPE_BELL}`;
+var wrapWord = (rows, word, columns) => {
+  const characters = word[Symbol.iterator]();
+  let isInsideEscape = false;
+  let isInsideLinkEscape = false;
+  let lastRow = rows.at(-1);
+  let visible = lastRow === void 0 ? 0 : dist_default3(lastRow);
+  let currentCharacter = characters.next();
+  let nextCharacter = characters.next();
+  let rawCharacterIndex = 0;
+  while (!currentCharacter.done) {
+    const character = currentCharacter.value;
+    const characterLength = dist_default3(character);
+    if (visible + characterLength <= columns) {
+      rows[rows.length - 1] += character;
+    } else {
+      rows.push(character);
+      visible = 0;
+    }
+    if (character === ESC || character === CSI) {
+      isInsideEscape = true;
+      isInsideLinkEscape = word.startsWith(ANSI_ESCAPE_LINK, rawCharacterIndex + 1);
+    }
+    if (isInsideEscape) {
+      if (isInsideLinkEscape) {
+        if (character === ANSI_ESCAPE_BELL) {
+          isInsideEscape = false;
+          isInsideLinkEscape = false;
+        }
+      } else if (character === ANSI_SGR_TERMINATOR) {
+        isInsideEscape = false;
+      }
+    } else {
+      visible += characterLength;
+      if (visible === columns && !nextCharacter.done) {
+        rows.push("");
+        visible = 0;
+      }
+    }
+    currentCharacter = nextCharacter;
+    nextCharacter = characters.next();
+    rawCharacterIndex += character.length;
+  }
+  lastRow = rows.at(-1);
+  if (!visible && lastRow !== void 0 && lastRow.length && rows.length > 1) {
+    rows[rows.length - 2] += rows.pop();
+  }
+};
+var stringVisibleTrimSpacesRight = (string4) => {
+  const words = string4.split(" ");
+  let last = words.length;
+  while (last) {
+    if (dist_default3(words[last - 1])) {
+      break;
+    }
+    last--;
+  }
+  if (last === words.length) {
+    return string4;
+  }
+  return words.slice(0, last).join(" ") + words.slice(last).join("");
+};
+var exec = (string4, columns, options = {}) => {
+  if (options.trim !== false && string4.trim() === "") {
+    return "";
+  }
+  let returnValue = "";
+  let escapeCode;
+  let escapeUrl;
+  const words = string4.split(" ");
+  let rows = [""];
+  let rowLength = 0;
+  for (let index = 0; index < words.length; index++) {
+    const word = words[index];
+    if (options.trim !== false) {
+      const row = rows.at(-1) ?? "";
+      const trimmed = row.trimStart();
+      if (row.length !== trimmed.length) {
+        rows[rows.length - 1] = trimmed;
+        rowLength = dist_default3(trimmed);
+      }
+    }
+    if (index !== 0) {
+      if (rowLength >= columns && (options.wordWrap === false || options.trim === false)) {
+        rows.push("");
+        rowLength = 0;
+      }
+      if (rowLength || options.trim === false) {
+        rows[rows.length - 1] += " ";
+        rowLength++;
+      }
+    }
+    const wordLength = dist_default3(word);
+    if (options.hard && wordLength > columns) {
+      const remainingColumns = columns - rowLength;
+      const breaksStartingThisLine = 1 + Math.floor((wordLength - remainingColumns - 1) / columns);
+      const breaksStartingNextLine = Math.floor((wordLength - 1) / columns);
+      if (breaksStartingNextLine < breaksStartingThisLine) {
+        rows.push("");
+      }
+      wrapWord(rows, word, columns);
+      rowLength = dist_default3(rows.at(-1) ?? "");
+      continue;
+    }
+    if (rowLength + wordLength > columns && rowLength && wordLength) {
+      if (options.wordWrap === false && rowLength < columns) {
+        wrapWord(rows, word, columns);
+        rowLength = dist_default3(rows.at(-1) ?? "");
+        continue;
+      }
+      rows.push("");
+      rowLength = 0;
+    }
+    if (rowLength + wordLength > columns && options.wordWrap === false) {
+      wrapWord(rows, word, columns);
+      rowLength = dist_default3(rows.at(-1) ?? "");
+      continue;
+    }
+    rows[rows.length - 1] += word;
+    rowLength += wordLength;
+  }
+  if (options.trim !== false) {
+    rows = rows.map((row) => stringVisibleTrimSpacesRight(row));
+  }
+  const preString = rows.join("\n");
+  let inSurrogate = false;
+  for (let i = 0; i < preString.length; i++) {
+    const character = preString[i];
+    returnValue += character;
+    if (!inSurrogate) {
+      inSurrogate = character >= "\uD800" && character <= "\uDBFF";
+      if (inSurrogate) {
+        continue;
+      }
+    } else {
+      inSurrogate = false;
+    }
+    if (character === ESC || character === CSI) {
+      GROUP_REGEX.lastIndex = i + 1;
+      const groupsResult = GROUP_REGEX.exec(preString);
+      const groups = groupsResult?.groups;
+      if (groups?.code !== void 0) {
+        const code = Number.parseFloat(groups.code);
+        escapeCode = code === END_CODE ? void 0 : code;
+      } else if (groups?.uri !== void 0) {
+        escapeUrl = groups.uri.length === 0 ? void 0 : groups.uri;
+      }
+    }
+    if (preString[i + 1] === "\n") {
+      if (escapeUrl) {
+        returnValue += wrapAnsiHyperlink("");
+      }
+      const closingCode = escapeCode ? getClosingCode(escapeCode) : void 0;
+      if (escapeCode && closingCode) {
+        returnValue += wrapAnsiCode(closingCode);
+      }
+    } else if (character === "\n") {
+      if (escapeCode && getClosingCode(escapeCode)) {
+        returnValue += wrapAnsiCode(escapeCode);
+      }
+      if (escapeUrl) {
+        returnValue += wrapAnsiHyperlink(escapeUrl);
+      }
+    }
+  }
+  return returnValue;
+};
+var CRLF_OR_LF = /\r?\n/;
+function wrapAnsi(string4, columns, options) {
+  return String(string4).normalize().split(CRLF_OR_LF).map((line) => exec(line, columns, options)).join("\n");
+}
+
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/utils.js
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
 }
@@ -39273,7 +39611,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -39362,7 +39700,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -39618,26 +39956,26 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.3/node_modules/@inquirer/ansi/dist/index.js
-var ESC = "\x1B[";
-var cursorLeft = ESC + "G";
-var cursorHide = ESC + "?25l";
-var cursorShow = ESC + "?25h";
-var cursorUp = (rows = 1) => rows > 0 ? `${ESC}${rows}A` : "";
-var cursorDown = (rows = 1) => rows > 0 ? `${ESC}${rows}B` : "";
+var ESC2 = "\x1B[";
+var cursorLeft = ESC2 + "G";
+var cursorHide = ESC2 + "?25l";
+var cursorShow = ESC2 + "?25h";
+var cursorUp = (rows = 1) => rows > 0 ? `${ESC2}${rows}A` : "";
+var cursorDown = (rows = 1) => rows > 0 ? `${ESC2}${rows}B` : "";
 var cursorTo = (x, y) => {
   if (typeof y === "number" && !Number.isNaN(y)) {
-    return `${ESC}${y + 1};${x + 1}H`;
+    return `${ESC2}${y + 1};${x + 1}H`;
   }
-  return `${ESC}${x + 1}G`;
+  return `${ESC2}${x + 1}G`;
 };
-var eraseLine = ESC + "2K";
+var eraseLine = ESC2 + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -39697,7 +40035,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -39712,7 +40050,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/create-prompt.js
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
   let result = [];
@@ -39799,7 +40137,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.1_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.3_at_types_node_24.10.9/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -39814,7 +40152,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.0.6_at_types_node_24.10.9/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -39873,7 +40211,7 @@ function normalizeChoices(choices) {
     return normalizedChoice;
   });
 }
-var dist_default2 = createPrompt((config2, done) => {
+var dist_default4 = createPrompt((config2, done) => {
   const { pageSize = 7, loop = true, required: required2, validate = () => true } = config2;
   const shortcuts = { all: "a", invert: "i", ...config2.shortcuts };
   const theme = makeTheme(checkboxTheme, config2.theme);
@@ -40186,11 +40524,11 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.0.6_at_types_node_24.10.9/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep"
 };
-var dist_default3 = createPrompt((config2, done) => {
+var dist_default5 = createPrompt((config2, done) => {
   const { waitForUserInput = true, file: { postfix = config2.postfix ?? ".txt", ...fileProps } = {}, validate = () => true } = config2;
   const theme = makeTheme(editorTheme, config2.theme);
   const [status, setStatus] = useState("idle");
@@ -40255,7 +40593,7 @@ var dist_default3 = createPrompt((config2, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error48];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.4_at_types_node_24.10.9/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.6_at_types_node_24.10.9/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -40267,7 +40605,7 @@ function getBooleanValue(value, defaultValue) {
 function boolToString(value) {
   return value ? "Yes" : "No";
 }
-var dist_default4 = createPrompt((config2, done) => {
+var dist_default6 = createPrompt((config2, done) => {
   const { transformer = boolToString } = config2;
   const [status, setStatus] = useState("idle");
   const [value, setValue] = useState("");
@@ -40301,15 +40639,15 @@ var dist_default4 = createPrompt((config2, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.6_at_types_node_24.10.9/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
-var dist_default5 = createPrompt((config2, done) => {
+var dist_default7 = createPrompt((config2, done) => {
   const { prefill = "tab" } = config2;
   const theme = makeTheme(inputTheme, config2.theme);
   const [status, setStatus] = useState("idle");
-  const [defaultValue = "", setDefaultValue] = useState(config2.default);
+  const [defaultValue, setDefaultValue] = useState(String(config2.default ?? ""));
   const [errorMsg, setError] = useState();
   const [value, setValue] = useState("");
   const prefix = usePrefix({ status, theme });
@@ -40348,9 +40686,9 @@ var dist_default5 = createPrompt((config2, done) => {
         setStatus("idle");
       }
     } else if (isBackspaceKey(key) && !value) {
-      setDefaultValue(void 0);
+      setDefaultValue("");
     } else if (isTabKey(key) && !value) {
-      setDefaultValue(void 0);
+      setDefaultValue("");
       rl.clearLine(0);
       rl.write(defaultValue);
       setValue(defaultValue);
@@ -40386,7 +40724,7 @@ var dist_default5 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.4_at_types_node_24.10.9/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.6_at_types_node_24.10.9/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -40403,7 +40741,7 @@ function validateNumber(value, { min, max, step }) {
   }
   return true;
 }
-var dist_default6 = createPrompt((config2, done) => {
+var dist_default8 = createPrompt((config2, done) => {
   const { validate = () => true, min = -Infinity, max = Infinity, step = 1, required: required2 = false } = config2;
   const theme = makeTheme(config2.theme);
   const [status, setStatus] = useState("idle");
@@ -40467,7 +40805,7 @@ var dist_default6 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.6_at_types_node_24.10.9/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -40488,7 +40826,7 @@ var helpChoice = {
   name: "Help, list all options",
   value: void 0
 };
-var dist_default7 = createPrompt((config2, done) => {
+var dist_default9 = createPrompt((config2, done) => {
   const { default: defaultKey = "h" } = config2;
   const choices = useMemo(() => normalizeChoices2(config2.choices), [config2.choices]);
   const [status, setStatus] = useState("idle");
@@ -40563,7 +40901,7 @@ var dist_default7 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.0_at_types_node_24.10.9/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.2_at_types_node_24.10.9/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
 var rawlistTheme = {
@@ -40609,7 +40947,7 @@ function getSelectedChoice(input, choices) {
   }
   return selectedChoice ? [selectedChoice, choices.indexOf(selectedChoice)] : [void 0, void 0];
 }
-var dist_default8 = createPrompt((config2, done) => {
+var dist_default10 = createPrompt((config2, done) => {
   const { loop = true } = config2;
   const choices = useMemo(() => normalizeChoices3(config2.choices), [config2.choices]);
   const [status, setStatus] = useState("idle");
@@ -40688,8 +41026,8 @@ var dist_default8 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/password/dist/index.js
-var dist_default9 = createPrompt((config2, done) => {
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.6_at_types_node_24.10.9/node_modules/@inquirer/password/dist/index.js
+var dist_default11 = createPrompt((config2, done) => {
   const { validate = () => true } = config2;
   const theme = makeTheme(config2.theme);
   const [status, setStatus] = useState("idle");
@@ -40737,7 +41075,7 @@ var dist_default9 = createPrompt((config2, done) => {
   return [[prefix, message, config2.mask ? formattedValue : helpTip].join(" "), error48];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.1.0_at_types_node_24.10.9/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.1.2_at_types_node_24.10.9/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -40776,7 +41114,7 @@ function normalizeChoices4(choices) {
     return normalizedChoice;
   });
 }
-var dist_default10 = createPrompt((config2, done) => {
+var dist_default12 = createPrompt((config2, done) => {
   const { pageSize = 7, validate = () => true } = config2;
   const theme = makeTheme(searchTheme, config2.theme);
   const [status, setStatus] = useState("loading");
@@ -40907,7 +41245,7 @@ var dist_default10 = createPrompt((config2, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.0.4_at_types_node_24.10.9/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.0.6_at_types_node_24.10.9/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -40948,7 +41286,7 @@ function normalizeChoices5(choices) {
     return normalizedChoice;
   });
 }
-var dist_default11 = createPrompt((config2, done) => {
+var dist_default13 = createPrompt((config2, done) => {
   const { loop = true, pageSize = 7 } = config2;
   const theme = makeTheme(selectTheme, config2.theme);
   const { keybindings } = theme;
@@ -41071,12 +41409,12 @@ Prompt.confirm = (_config, _context) => {
     default: false,
     ..._config
   };
-  return dist_default4(config2, _context);
+  return dist_default6(config2, _context);
 };
-Prompt.input = dist_default5;
-Prompt.checkbox = dist_default2;
-Prompt.select = dist_default11;
-Prompt.editor = dist_default3;
+Prompt.input = dist_default7;
+Prompt.checkbox = dist_default4;
+Prompt.select = dist_default13;
+Prompt.editor = dist_default5;
 
 // ng-dev/caretaker/handoff/update-github-team.js
 async function updateCaretakerTeamViaPrompt() {
@@ -49013,7 +49351,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-fef5908013cbbc844ea95746d37958e2685c08e7`;
+var localVersion = `0.0.0-0edcf22f9ce677699274f2d399325f99d3d56e81`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
