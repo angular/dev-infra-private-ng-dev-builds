@@ -45212,10 +45212,10 @@ var Validation4 = class extends PullRequestValidation {
     }
     const hasSeparateSyncFiles = await PullRequestFiles.create(gitClient, prNumber, g3SyncConfigWithMatchers.config).pullRequestHasSeparateFiles();
     if (diffStats.separateFiles > 0 && !hasSeparateSyncFiles) {
-      throw this._createError(`This PR cannot be merged as Shared Primitives code has already been merged. Primitives and Framework code must be merged and synced separately. Try again after a g3sync has finished.`);
+      Log.warn(`Note: framework code and shared primitives code have both been merged. This is a little more risky. So be careful.`);
     }
     if (diffStats.files > 0 && diffStats.separateFiles === 0 && hasSeparateSyncFiles) {
-      throw this._createError(`This PR cannot be merged as Angular framework code has already been merged. Primitives and Framework code must be merged and synced separately. Try again after a g3sync has finished.`);
+      Log.warn(`Note: framework code and shared primitives code have both been merged. This is a little more risky. So be careful.`);
     }
   }
 };
@@ -49013,7 +49013,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-a38ba21de078ce63bc878498a9354fe55a6eb3e3`;
+var localVersion = `0.0.0-fef5908013cbbc844ea95746d37958e2685c08e7`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
