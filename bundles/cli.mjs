@@ -44882,10 +44882,21 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
     resetGitState: () => {
       return git.checkout(previousBranchOrRevision, true);
     },
-    pushToUpstreamCommand: `git push ${pr.headRef.repository.url} HEAD:${headRefName} ${forceWithLeaseFlag}`,
+    pushToUpstreamCommand: `git push ${upstreamUrlToPush(pr.headRef.repository.url)} HEAD:${headRefName} ${forceWithLeaseFlag}`,
     resetGitStateCommand: `git rebase --abort && git reset --hard && git checkout ${previousBranchOrRevision}`,
     pullRequest: pr
   };
+}
+function upstreamUrlToPush(repoUrl) {
+  const pushToUpstreamUrl = new URL(repoUrl);
+  if (process.env["GITHUB_TOKEN"]) {
+    pushToUpstreamUrl.password = "$GITHUB_TOKEN";
+    pushToUpstreamUrl.username = "x-access-token";
+  } else if (process.env["TOKEN"]) {
+    pushToUpstreamUrl.password = "$TOKEN";
+    pushToUpstreamUrl.username = "x-access-token";
+  }
+  return pushToUpstreamUrl.href;
 }
 
 // ng-dev/pr/checkout/target.js
@@ -49351,7 +49362,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-f5aa1f4cb454fceb88de784c72d358c547a35e27`;
+var localVersion = `0.0.0-7c08ac2a4f396bad752829fba09dbaefbcded9fc`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
