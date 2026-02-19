@@ -47674,6 +47674,13 @@ var changelog_default = `
 # <%- version %><% if (title) { %> "<%- title %>"<% } %> (<%- dateStamp %>)
 
 <%_
+const commitsInChangelog = commits.filter(includeInReleaseNotes());
+if (commitsInChangelog.length === 0) {
+_%>
+
+No user facing changes in this release
+<%_
+}
 const breakingChanges = commits.filter(hasBreakingChanges);
 if (breakingChanges.length) {
 _%>
@@ -47717,7 +47724,6 @@ _%>
 _%>
 
 <%_
-const commitsInChangelog = commits.filter(includeInReleaseNotes());
 for (const group of asCommitGroups(commitsInChangelog)) {
 _%>
 
@@ -47741,6 +47747,11 @@ _%>
 var github_release_default = `
 <%_
 const commitsInChangelog = commits.filter(includeInReleaseNotes());
+if (commitsInChangelog.length === 0) {
+_%>
+No user facing changes in this release
+<%_ 
+}
 for (const group of asCommitGroups(commitsInChangelog)) {
 _%>
 
@@ -49362,7 +49373,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-300402997d97d50374b56e5f896e1965ac04f868`;
+var localVersion = `0.0.0-e006a332028a4c3cb24e9d92437fac7ae99e2ed5`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
