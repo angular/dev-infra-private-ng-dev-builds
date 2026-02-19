@@ -1,4 +1,4 @@
-import { CheckConclusionState, CheckStatusState, MergeableState, PullRequestState, StatusState, CommentAuthorAssociation, IssueState } from '@octokit/graphql-schema';
+import type { CheckConclusionState, CheckStatusState, MergeableState, PullRequestState, StatusState, CommentAuthorAssociation, IssueState } from '@octokit/graphql-schema';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 export declare enum PullRequestStatus {
     PASSING = 0,
