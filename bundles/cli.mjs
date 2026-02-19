@@ -49362,7 +49362,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-7c08ac2a4f396bad752829fba09dbaefbcded9fc`;
+var localVersion = `0.0.0-c231d87cc1e09e7541f9d0dbdd1fb4296a11d3ce`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
