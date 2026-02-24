@@ -10566,217 +10566,6 @@ var require_cli_progress = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/balanced-match@1.0.2/node_modules/balanced-match/index.js
-var require_balanced_match = __commonJS({
-  "node_modules/.aspect_rules_js/balanced-match@1.0.2/node_modules/balanced-match/index.js"(exports2, module2) {
-    "use strict";
-    module2.exports = balanced2;
-    function balanced2(a, b, str) {
-      if (a instanceof RegExp)
-        a = maybeMatch2(a, str);
-      if (b instanceof RegExp)
-        b = maybeMatch2(b, str);
-      var r = range2(a, b, str);
-      return r && {
-        start: r[0],
-        end: r[1],
-        pre: str.slice(0, r[0]),
-        body: str.slice(r[0] + a.length, r[1]),
-        post: str.slice(r[1] + b.length)
-      };
-    }
-    function maybeMatch2(reg, str) {
-      var m = str.match(reg);
-      return m ? m[0] : null;
-    }
-    balanced2.range = range2;
-    function range2(a, b, str) {
-      var begs, beg, left, right, result;
-      var ai = str.indexOf(a);
-      var bi = str.indexOf(b, ai + 1);
-      var i = ai;
-      if (ai >= 0 && bi > 0) {
-        if (a === b) {
-          return [ai, bi];
-        }
-        begs = [];
-        left = str.length;
-        while (i >= 0 && !result) {
-          if (i == ai) {
-            begs.push(i);
-            ai = str.indexOf(a, i + 1);
-          } else if (begs.length == 1) {
-            result = [begs.pop(), bi];
-          } else {
-            beg = begs.pop();
-            if (beg < left) {
-              left = beg;
-              right = bi;
-            }
-            bi = str.indexOf(b, i + 1);
-          }
-          i = ai < bi && ai >= 0 ? ai : bi;
-        }
-        if (begs.length) {
-          result = [left, right];
-        }
-      }
-      return result;
-    }
-  }
-});
-
-// node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js
-var require_brace_expansion = __commonJS({
-  "node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js"(exports2, module2) {
-    var balanced2 = require_balanced_match();
-    module2.exports = expandTop;
-    var escSlash2 = "\0SLASH" + Math.random() + "\0";
-    var escOpen2 = "\0OPEN" + Math.random() + "\0";
-    var escClose2 = "\0CLOSE" + Math.random() + "\0";
-    var escComma2 = "\0COMMA" + Math.random() + "\0";
-    var escPeriod2 = "\0PERIOD" + Math.random() + "\0";
-    function numeric2(str) {
-      return parseInt(str, 10) == str ? parseInt(str, 10) : str.charCodeAt(0);
-    }
-    function escapeBraces2(str) {
-      return str.split("\\\\").join(escSlash2).split("\\{").join(escOpen2).split("\\}").join(escClose2).split("\\,").join(escComma2).split("\\.").join(escPeriod2);
-    }
-    function unescapeBraces2(str) {
-      return str.split(escSlash2).join("\\").split(escOpen2).join("{").split(escClose2).join("}").split(escComma2).join(",").split(escPeriod2).join(".");
-    }
-    function parseCommaParts2(str) {
-      if (!str)
-        return [""];
-      var parts = [];
-      var m = balanced2("{", "}", str);
-      if (!m)
-        return str.split(",");
-      var pre = m.pre;
-      var body = m.body;
-      var post = m.post;
-      var p = pre.split(",");
-      p[p.length - 1] += "{" + body + "}";
-      var postParts = parseCommaParts2(post);
-      if (post.length) {
-        p[p.length - 1] += postParts.shift();
-        p.push.apply(p, postParts);
-      }
-      parts.push.apply(parts, p);
-      return parts;
-    }
-    function expandTop(str) {
-      if (!str)
-        return [];
-      if (str.substr(0, 2) === "{}") {
-        str = "\\{\\}" + str.substr(2);
-      }
-      return expand3(escapeBraces2(str), true).map(unescapeBraces2);
-    }
-    function embrace2(str) {
-      return "{" + str + "}";
-    }
-    function isPadded2(el) {
-      return /^-?0\d/.test(el);
-    }
-    function lte2(i, y) {
-      return i <= y;
-    }
-    function gte2(i, y) {
-      return i >= y;
-    }
-    function expand3(str, isTop) {
-      var expansions = [];
-      var m = balanced2("{", "}", str);
-      if (!m)
-        return [str];
-      var pre = m.pre;
-      var post = m.post.length ? expand3(m.post, false) : [""];
-      if (/\$$/.test(m.pre)) {
-        for (var k = 0; k < post.length; k++) {
-          var expansion = pre + "{" + m.body + "}" + post[k];
-          expansions.push(expansion);
-        }
-      } else {
-        var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
-        var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
-        var isSequence = isNumericSequence || isAlphaSequence;
-        var isOptions = m.body.indexOf(",") >= 0;
-        if (!isSequence && !isOptions) {
-          if (m.post.match(/,(?!,).*\}/)) {
-            str = m.pre + "{" + m.body + escClose2 + m.post;
-            return expand3(str);
-          }
-          return [str];
-        }
-        var n;
-        if (isSequence) {
-          n = m.body.split(/\.\./);
-        } else {
-          n = parseCommaParts2(m.body);
-          if (n.length === 1) {
-            n = expand3(n[0], false).map(embrace2);
-            if (n.length === 1) {
-              return post.map(function(p) {
-                return m.pre + n[0] + p;
-              });
-            }
-          }
-        }
-        var N;
-        if (isSequence) {
-          var x = numeric2(n[0]);
-          var y = numeric2(n[1]);
-          var width = Math.max(n[0].length, n[1].length);
-          var incr = n.length == 3 ? Math.abs(numeric2(n[2])) : 1;
-          var test = lte2;
-          var reverse = y < x;
-          if (reverse) {
-            incr *= -1;
-            test = gte2;
-          }
-          var pad = n.some(isPadded2);
-          N = [];
-          for (var i = x; test(i, y); i += incr) {
-            var c;
-            if (isAlphaSequence) {
-              c = String.fromCharCode(i);
-              if (c === "\\")
-                c = "";
-            } else {
-              c = String(i);
-              if (pad) {
-                var need = width - c.length;
-                if (need > 0) {
-                  var z2 = new Array(need + 1).join("0");
-                  if (i < 0)
-                    c = "-" + z2 + c.slice(1);
-                  else
-                    c = z2 + c;
-                }
-              }
-            }
-            N.push(c);
-          }
-        } else {
-          N = [];
-          for (var j = 0; j < n.length; j++) {
-            N.push.apply(N, expand3(n[j], false));
-          }
-        }
-        for (var j = 0; j < N.length; j++) {
-          for (var k = 0; k < post.length; k++) {
-            var expansion = pre + N[j] + post[k];
-            if (!isTop || isSequence || expansion)
-              expansions.push(expansion);
-          }
-        }
-      }
-      return expansions;
-    }
-  }
-});
-
 // node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/array.js
 var require_array = __commonJS({
   "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/utils/array.js"(exports2) {
@@ -11249,12 +11038,12 @@ var require_to_regex_range = __commonJS({
         }
         return `(?:${result})`;
       }
-      let isPadded2 = hasPadding(min) || hasPadding(max);
+      let isPadded3 = hasPadding(min) || hasPadding(max);
       let state = { min, max, a, b };
       let positives = [];
       let negatives = [];
-      if (isPadded2) {
-        state.isPadded = isPadded2;
+      if (isPadded3) {
+        state.isPadded = isPadded3;
         state.maxLen = String(state.max).length;
       }
       if (a < 0) {
@@ -11556,21 +11345,21 @@ var require_fill_range = __commonJS({
       }
       let parts = { negatives: [], positives: [] };
       let push = (num) => parts[num < 0 ? "negatives" : "positives"].push(Math.abs(num));
-      let range2 = [];
+      let range3 = [];
       let index = 0;
       while (descending ? a >= b : a <= b) {
         if (options.toRegex === true && step > 1) {
           push(a);
         } else {
-          range2.push(pad(format2(a, index), maxLen, toNumber));
+          range3.push(pad(format2(a, index), maxLen, toNumber));
         }
         a = descending ? a - step : a + step;
         index++;
       }
       if (options.toRegex === true) {
-        return step > 1 ? toSequence(parts, options, maxLen) : toRegex(range2, null, { wrap: false, ...options });
+        return step > 1 ? toSequence(parts, options, maxLen) : toRegex(range3, null, { wrap: false, ...options });
       }
-      return range2;
+      return range3;
     };
     var fillLetters = (start, end, step = 1, options = {}) => {
       if (!isNumber(start) && start.length > 1 || !isNumber(end) && end.length > 1) {
@@ -11585,17 +11374,17 @@ var require_fill_range = __commonJS({
       if (options.toRegex && step === 1) {
         return toRange(min, max, false, options);
       }
-      let range2 = [];
+      let range3 = [];
       let index = 0;
       while (descending ? a >= b : a <= b) {
-        range2.push(format2(a, index));
+        range3.push(format2(a, index));
         a = descending ? a - step : a + step;
         index++;
       }
       if (options.toRegex === true) {
-        return toRegex(range2, null, { wrap: false, options });
+        return toRegex(range3, null, { wrap: false, options });
       }
-      return range2;
+      return range3;
     };
     var fill = (start, end, step, options = {}) => {
       if (end == null && isValidValue(start)) {
@@ -11662,9 +11451,9 @@ var require_compile = __commonJS({
         }
         if (node.nodes && node.ranges > 0) {
           const args = utils2.reduce(node.nodes);
-          const range2 = fill(...args, { ...options, wrap: false, toRegex: true, strictZeros: true });
-          if (range2.length !== 0) {
-            return args.length > 1 && range2.length > 1 ? `(${range2})` : range2;
+          const range3 = fill(...args, { ...options, wrap: false, toRegex: true, strictZeros: true });
+          if (range3.length !== 0) {
+            return args.length > 1 && range3.length > 1 ? `(${range3})` : range3;
           }
         }
         if (node.nodes) {
@@ -11734,11 +11523,11 @@ var require_expand = __commonJS({
           if (utils2.exceedsLimit(...args, options.step, rangeLimit)) {
             throw new RangeError("expanded array length exceeds range limit. Use options.rangeLimit to increase or disable the limit.");
           }
-          let range2 = fill(...args, options);
-          if (range2.length === 0) {
-            range2 = stringify(node, options);
+          let range3 = fill(...args, options);
+          if (range3.length === 0) {
+            range3 = stringify(node, options);
           }
-          q.push(append(q.pop(), range2));
+          q.push(append(q.pop(), range3));
           node.nodes = [];
           return;
         }
@@ -13178,17 +12967,17 @@ var require_parse2 = __commonJS({
           let output = ")";
           if (brace.dots === true) {
             const arr = tokens.slice();
-            const range2 = [];
+            const range3 = [];
             for (let i = arr.length - 1; i >= 0; i--) {
               tokens.pop();
               if (arr[i].type === "brace") {
                 break;
               }
               if (arr[i].type !== "dots") {
-                range2.unshift(arr[i].value);
+                range3.unshift(arr[i].value);
               }
             }
-            output = expandRange(range2, opts);
+            output = expandRange(range3, opts);
             state.backtrack = true;
           }
           if (brace.comma !== true && brace.dots !== true) {
@@ -16874,6 +16663,217 @@ var require_src = __commonJS({
       module2.exports = require_browser();
     } else {
       module2.exports = require_node2();
+    }
+  }
+});
+
+// node_modules/.aspect_rules_js/balanced-match@1.0.2/node_modules/balanced-match/index.js
+var require_balanced_match = __commonJS({
+  "node_modules/.aspect_rules_js/balanced-match@1.0.2/node_modules/balanced-match/index.js"(exports2, module2) {
+    "use strict";
+    module2.exports = balanced3;
+    function balanced3(a, b, str) {
+      if (a instanceof RegExp)
+        a = maybeMatch3(a, str);
+      if (b instanceof RegExp)
+        b = maybeMatch3(b, str);
+      var r = range3(a, b, str);
+      return r && {
+        start: r[0],
+        end: r[1],
+        pre: str.slice(0, r[0]),
+        body: str.slice(r[0] + a.length, r[1]),
+        post: str.slice(r[1] + b.length)
+      };
+    }
+    function maybeMatch3(reg, str) {
+      var m = str.match(reg);
+      return m ? m[0] : null;
+    }
+    balanced3.range = range3;
+    function range3(a, b, str) {
+      var begs, beg, left, right, result;
+      var ai = str.indexOf(a);
+      var bi = str.indexOf(b, ai + 1);
+      var i = ai;
+      if (ai >= 0 && bi > 0) {
+        if (a === b) {
+          return [ai, bi];
+        }
+        begs = [];
+        left = str.length;
+        while (i >= 0 && !result) {
+          if (i == ai) {
+            begs.push(i);
+            ai = str.indexOf(a, i + 1);
+          } else if (begs.length == 1) {
+            result = [begs.pop(), bi];
+          } else {
+            beg = begs.pop();
+            if (beg < left) {
+              left = beg;
+              right = bi;
+            }
+            bi = str.indexOf(b, i + 1);
+          }
+          i = ai < bi && ai >= 0 ? ai : bi;
+        }
+        if (begs.length) {
+          result = [left, right];
+        }
+      }
+      return result;
+    }
+  }
+});
+
+// node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js
+var require_brace_expansion = __commonJS({
+  "node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js"(exports2, module2) {
+    var balanced3 = require_balanced_match();
+    module2.exports = expandTop;
+    var escSlash3 = "\0SLASH" + Math.random() + "\0";
+    var escOpen3 = "\0OPEN" + Math.random() + "\0";
+    var escClose3 = "\0CLOSE" + Math.random() + "\0";
+    var escComma3 = "\0COMMA" + Math.random() + "\0";
+    var escPeriod3 = "\0PERIOD" + Math.random() + "\0";
+    function numeric3(str) {
+      return parseInt(str, 10) == str ? parseInt(str, 10) : str.charCodeAt(0);
+    }
+    function escapeBraces3(str) {
+      return str.split("\\\\").join(escSlash3).split("\\{").join(escOpen3).split("\\}").join(escClose3).split("\\,").join(escComma3).split("\\.").join(escPeriod3);
+    }
+    function unescapeBraces3(str) {
+      return str.split(escSlash3).join("\\").split(escOpen3).join("{").split(escClose3).join("}").split(escComma3).join(",").split(escPeriod3).join(".");
+    }
+    function parseCommaParts3(str) {
+      if (!str)
+        return [""];
+      var parts = [];
+      var m = balanced3("{", "}", str);
+      if (!m)
+        return str.split(",");
+      var pre = m.pre;
+      var body = m.body;
+      var post = m.post;
+      var p = pre.split(",");
+      p[p.length - 1] += "{" + body + "}";
+      var postParts = parseCommaParts3(post);
+      if (post.length) {
+        p[p.length - 1] += postParts.shift();
+        p.push.apply(p, postParts);
+      }
+      parts.push.apply(parts, p);
+      return parts;
+    }
+    function expandTop(str) {
+      if (!str)
+        return [];
+      if (str.substr(0, 2) === "{}") {
+        str = "\\{\\}" + str.substr(2);
+      }
+      return expand3(escapeBraces3(str), true).map(unescapeBraces3);
+    }
+    function embrace3(str) {
+      return "{" + str + "}";
+    }
+    function isPadded3(el) {
+      return /^-?0\d/.test(el);
+    }
+    function lte3(i, y) {
+      return i <= y;
+    }
+    function gte3(i, y) {
+      return i >= y;
+    }
+    function expand3(str, isTop) {
+      var expansions = [];
+      var m = balanced3("{", "}", str);
+      if (!m)
+        return [str];
+      var pre = m.pre;
+      var post = m.post.length ? expand3(m.post, false) : [""];
+      if (/\$$/.test(m.pre)) {
+        for (var k = 0; k < post.length; k++) {
+          var expansion = pre + "{" + m.body + "}" + post[k];
+          expansions.push(expansion);
+        }
+      } else {
+        var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
+        var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
+        var isSequence = isNumericSequence || isAlphaSequence;
+        var isOptions = m.body.indexOf(",") >= 0;
+        if (!isSequence && !isOptions) {
+          if (m.post.match(/,(?!,).*\}/)) {
+            str = m.pre + "{" + m.body + escClose3 + m.post;
+            return expand3(str);
+          }
+          return [str];
+        }
+        var n;
+        if (isSequence) {
+          n = m.body.split(/\.\./);
+        } else {
+          n = parseCommaParts3(m.body);
+          if (n.length === 1) {
+            n = expand3(n[0], false).map(embrace3);
+            if (n.length === 1) {
+              return post.map(function(p) {
+                return m.pre + n[0] + p;
+              });
+            }
+          }
+        }
+        var N;
+        if (isSequence) {
+          var x = numeric3(n[0]);
+          var y = numeric3(n[1]);
+          var width = Math.max(n[0].length, n[1].length);
+          var incr = n.length == 3 ? Math.abs(numeric3(n[2])) : 1;
+          var test = lte3;
+          var reverse = y < x;
+          if (reverse) {
+            incr *= -1;
+            test = gte3;
+          }
+          var pad = n.some(isPadded3);
+          N = [];
+          for (var i = x; test(i, y); i += incr) {
+            var c;
+            if (isAlphaSequence) {
+              c = String.fromCharCode(i);
+              if (c === "\\")
+                c = "";
+            } else {
+              c = String(i);
+              if (pad) {
+                var need = width - c.length;
+                if (need > 0) {
+                  var z2 = new Array(need + 1).join("0");
+                  if (i < 0)
+                    c = "-" + z2 + c.slice(1);
+                  else
+                    c = z2 + c;
+                }
+              }
+            }
+            N.push(c);
+          }
+        } else {
+          N = [];
+          for (var j = 0; j < n.length; j++) {
+            N.push.apply(N, expand3(n[j], false));
+          }
+        }
+        for (var j = 0; j < N.length; j++) {
+          for (var k = 0; k < post.length; k++) {
+            var expansion = pre + N[j] + post[k];
+            if (!isTop || isSequence || expansion)
+              expansions.push(expansion);
+          }
+        }
+      }
+      return expansions;
     }
   }
 });
@@ -42344,10 +42344,220 @@ function buildCommitMessageParser(localYargs) {
 // ng-dev/format/run-commands-parallel.js
 var import_cli_progress = __toESM(require_cli_progress());
 
-// node_modules/.aspect_rules_js/minimatch@9.0.5/node_modules/minimatch/dist/esm/index.js
-var import_brace_expansion2 = __toESM(require_brace_expansion());
+// node_modules/.aspect_rules_js/balanced-match@4.0.3/node_modules/balanced-match/dist/esm/index.js
+var balanced2 = (a, b, str) => {
+  const ma = a instanceof RegExp ? maybeMatch2(a, str) : a;
+  const mb = b instanceof RegExp ? maybeMatch2(b, str) : b;
+  const r = ma !== null && mb != null && range2(ma, mb, str);
+  return r && {
+    start: r[0],
+    end: r[1],
+    pre: str.slice(0, r[0]),
+    body: str.slice(r[0] + ma.length, r[1]),
+    post: str.slice(r[1] + mb.length)
+  };
+};
+var maybeMatch2 = (reg, str) => {
+  const m = str.match(reg);
+  return m ? m[0] : null;
+};
+var range2 = (a, b, str) => {
+  let begs, beg, left, right = void 0, result;
+  let ai = str.indexOf(a);
+  let bi = str.indexOf(b, ai + 1);
+  let i = ai;
+  if (ai >= 0 && bi > 0) {
+    if (a === b) {
+      return [ai, bi];
+    }
+    begs = [];
+    left = str.length;
+    while (i >= 0 && !result) {
+      if (i === ai) {
+        begs.push(i);
+        ai = str.indexOf(a, i + 1);
+      } else if (begs.length === 1) {
+        const r = begs.pop();
+        if (r !== void 0)
+          result = [r, bi];
+      } else {
+        beg = begs.pop();
+        if (beg !== void 0 && beg < left) {
+          left = beg;
+          right = bi;
+        }
+        bi = str.indexOf(b, i + 1);
+      }
+      i = ai < bi && ai >= 0 ? ai : bi;
+    }
+    if (begs.length && right !== void 0) {
+      result = [left, right];
+    }
+  }
+  return result;
+};
 
-// node_modules/.aspect_rules_js/minimatch@9.0.5/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/brace-expansion@5.0.2/node_modules/brace-expansion/dist/esm/index.js
+var escSlash2 = "\0SLASH" + Math.random() + "\0";
+var escOpen2 = "\0OPEN" + Math.random() + "\0";
+var escClose2 = "\0CLOSE" + Math.random() + "\0";
+var escComma2 = "\0COMMA" + Math.random() + "\0";
+var escPeriod2 = "\0PERIOD" + Math.random() + "\0";
+var escSlashPattern2 = new RegExp(escSlash2, "g");
+var escOpenPattern2 = new RegExp(escOpen2, "g");
+var escClosePattern2 = new RegExp(escClose2, "g");
+var escCommaPattern2 = new RegExp(escComma2, "g");
+var escPeriodPattern2 = new RegExp(escPeriod2, "g");
+var slashPattern2 = /\\\\/g;
+var openPattern2 = /\\{/g;
+var closePattern2 = /\\}/g;
+var commaPattern2 = /\\,/g;
+var periodPattern2 = /\\./g;
+var EXPANSION_MAX2 = 1e5;
+function numeric2(str) {
+  return !isNaN(str) ? parseInt(str, 10) : str.charCodeAt(0);
+}
+function escapeBraces2(str) {
+  return str.replace(slashPattern2, escSlash2).replace(openPattern2, escOpen2).replace(closePattern2, escClose2).replace(commaPattern2, escComma2).replace(periodPattern2, escPeriod2);
+}
+function unescapeBraces2(str) {
+  return str.replace(escSlashPattern2, "\\").replace(escOpenPattern2, "{").replace(escClosePattern2, "}").replace(escCommaPattern2, ",").replace(escPeriodPattern2, ".");
+}
+function parseCommaParts2(str) {
+  if (!str) {
+    return [""];
+  }
+  const parts = [];
+  const m = balanced2("{", "}", str);
+  if (!m) {
+    return str.split(",");
+  }
+  const { pre, body, post } = m;
+  const p = pre.split(",");
+  p[p.length - 1] += "{" + body + "}";
+  const postParts = parseCommaParts2(post);
+  if (post.length) {
+    ;
+    p[p.length - 1] += postParts.shift();
+    p.push.apply(p, postParts);
+  }
+  parts.push.apply(parts, p);
+  return parts;
+}
+function expand2(str, options = {}) {
+  if (!str) {
+    return [];
+  }
+  const { max = EXPANSION_MAX2 } = options;
+  if (str.slice(0, 2) === "{}") {
+    str = "\\{\\}" + str.slice(2);
+  }
+  return expand_2(escapeBraces2(str), max, true).map(unescapeBraces2);
+}
+function embrace2(str) {
+  return "{" + str + "}";
+}
+function isPadded2(el) {
+  return /^-?0\d/.test(el);
+}
+function lte2(i, y) {
+  return i <= y;
+}
+function gte2(i, y) {
+  return i >= y;
+}
+function expand_2(str, max, isTop) {
+  const expansions = [];
+  const m = balanced2("{", "}", str);
+  if (!m)
+    return [str];
+  const pre = m.pre;
+  const post = m.post.length ? expand_2(m.post, max, false) : [""];
+  if (/\$$/.test(m.pre)) {
+    for (let k = 0; k < post.length && k < max; k++) {
+      const expansion = pre + "{" + m.body + "}" + post[k];
+      expansions.push(expansion);
+    }
+  } else {
+    const isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
+    const isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
+    const isSequence = isNumericSequence || isAlphaSequence;
+    const isOptions = m.body.indexOf(",") >= 0;
+    if (!isSequence && !isOptions) {
+      if (m.post.match(/,(?!,).*\}/)) {
+        str = m.pre + "{" + m.body + escClose2 + m.post;
+        return expand_2(str, max, true);
+      }
+      return [str];
+    }
+    let n;
+    if (isSequence) {
+      n = m.body.split(/\.\./);
+    } else {
+      n = parseCommaParts2(m.body);
+      if (n.length === 1 && n[0] !== void 0) {
+        n = expand_2(n[0], max, false).map(embrace2);
+        if (n.length === 1) {
+          return post.map((p) => m.pre + n[0] + p);
+        }
+      }
+    }
+    let N;
+    if (isSequence && n[0] !== void 0 && n[1] !== void 0) {
+      const x = numeric2(n[0]);
+      const y = numeric2(n[1]);
+      const width = Math.max(n[0].length, n[1].length);
+      let incr = n.length === 3 && n[2] !== void 0 ? Math.abs(numeric2(n[2])) : 1;
+      let test = lte2;
+      const reverse = y < x;
+      if (reverse) {
+        incr *= -1;
+        test = gte2;
+      }
+      const pad = n.some(isPadded2);
+      N = [];
+      for (let i = x; test(i, y); i += incr) {
+        let c;
+        if (isAlphaSequence) {
+          c = String.fromCharCode(i);
+          if (c === "\\") {
+            c = "";
+          }
+        } else {
+          c = String(i);
+          if (pad) {
+            const need = width - c.length;
+            if (need > 0) {
+              const z2 = new Array(need + 1).join("0");
+              if (i < 0) {
+                c = "-" + z2 + c.slice(1);
+              } else {
+                c = z2 + c;
+              }
+            }
+          }
+        }
+        N.push(c);
+      }
+    } else {
+      N = [];
+      for (let j = 0; j < n.length; j++) {
+        N.push.apply(N, expand_2(n[j], max, false));
+      }
+    }
+    for (let j = 0; j < N.length; j++) {
+      for (let k = 0; k < post.length && expansions.length < max; k++) {
+        const expansion = pre + N[j] + post[k];
+        if (!isTop || isSequence || expansion) {
+          expansions.push(expansion);
+        }
+      }
+    }
+  }
+  return expansions;
+}
+
+// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH2 = 1024 * 64;
 var assertValidPattern2 = (pattern) => {
   if (typeof pattern !== "string") {
@@ -42358,7 +42568,7 @@ var assertValidPattern2 = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@9.0.5/node_modules/minimatch/dist/esm/brace-expressions.js
+// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/brace-expressions.js
 var posixClasses2 = {
   "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
   "[:alpha:]": ["\\p{L}\\p{Nl}", true],
@@ -42468,12 +42678,15 @@ var parseClass2 = (glob7, position) => {
   return [comb, uflag, endPos - pos, true];
 };
 
-// node_modules/.aspect_rules_js/minimatch@9.0.5/node_modules/minimatch/dist/esm/unescape.js
-var unescape2 = (s, { windowsPathsNoEscape = false } = {}) => {
-  return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
+// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/unescape.js
+var unescape2 = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
+  if (magicalBraces) {
+    return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
+  }
+  return windowsPathsNoEscape ? s.replace(/\[([^\/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\{}])\]/g, "$1$2").replace(/\\([^\/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@9.0.5/node_modules/minimatch/dist/esm/ast.js
+// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/ast.js
 var types3 = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
 var isExtglobType2 = (c) => types3.has(c);
 var startNoTraversal2 = "(?!(?:^|/)\\.\\.?(?:$|/))";
@@ -42824,7 +43037,7 @@ var AST2 = class _AST {
     if (this.#root === this)
       this.#fillNegs();
     if (!this.type) {
-      const noEmpty = this.isStart() && this.isEnd();
+      const noEmpty = this.isStart() && this.isEnd() && !this.#parts.some((s) => typeof s !== "string");
       const src = this.#parts.map((p) => {
         const [re, _, hasMagic, uflag] = typeof p === "string" ? _AST.#parseGlob(p, this.#hasMagic, noEmpty) : p.toRegExpSource(allowDot);
         this.#hasMagic = this.#hasMagic || hasMagic;
@@ -42908,12 +43121,23 @@ var AST2 = class _AST {
     let escaping = false;
     let re = "";
     let uflag = false;
+    let inStar = false;
     for (let i = 0; i < glob7.length; i++) {
       const c = glob7.charAt(i);
       if (escaping) {
         escaping = false;
         re += (reSpecials2.has(c) ? "\\" : "") + c;
         continue;
+      }
+      if (c === "*") {
+        if (inStar)
+          continue;
+        inStar = true;
+        re += noEmpty && /^[*]+$/.test(glob7) ? starNoEmpty2 : star3;
+        hasMagic = true;
+        continue;
+      } else {
+        inStar = false;
       }
       if (c === "\\") {
         if (i === glob7.length - 1) {
@@ -42933,14 +43157,6 @@ var AST2 = class _AST {
           continue;
         }
       }
-      if (c === "*") {
-        if (noEmpty && glob7 === "*")
-          re += starNoEmpty2;
-        else
-          re += star3;
-        hasMagic = true;
-        continue;
-      }
       if (c === "?") {
         re += qmark3;
         hasMagic = true;
@@ -42952,12 +43168,15 @@ var AST2 = class _AST {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@9.0.5/node_modules/minimatch/dist/esm/escape.js
-var escape2 = (s, { windowsPathsNoEscape = false } = {}) => {
+// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/escape.js
+var escape2 = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
+  if (magicalBraces) {
+    return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
+  }
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// node_modules/.aspect_rules_js/minimatch@9.0.5/node_modules/minimatch/dist/esm/index.js
+// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/index.js
 var minimatch2 = (p, pattern, options = {}) => {
   assertValidPattern2(pattern);
   if (!options.nocomment && pattern.charAt(0) === "#") {
@@ -43073,7 +43292,7 @@ var braceExpand2 = (pattern, options = {}) => {
   if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
     return [pattern];
   }
-  return (0, import_brace_expansion2.default)(pattern);
+  return expand2(pattern, { max: options.braceExpandMax });
 };
 minimatch2.braceExpand = braceExpand2;
 var makeRe2 = (pattern, options = {}) => new Minimatch2(pattern, options).makeRe();
@@ -43114,7 +43333,8 @@ var Minimatch2 = class {
     this.pattern = pattern;
     this.platform = options.platform || defaultPlatform2;
     this.isWindows = this.platform === "win32";
-    this.windowsPathsNoEscape = !!options.windowsPathsNoEscape || options.allowWindowsEscape === false;
+    const awe = "allowWindowsEscape";
+    this.windowsPathsNoEscape = !!options.windowsPathsNoEscape || options[awe] === false;
     if (this.windowsPathsNoEscape) {
       this.pattern = this.pattern.replace(/\\/g, "/");
     }
@@ -43171,7 +43391,10 @@ var Minimatch2 = class {
         const isUNC = s[0] === "" && s[1] === "" && (s[2] === "?" || !globMagic2.test(s[2])) && !globMagic2.test(s[3]);
         const isDrive = /^[a-z]:/i.test(s[0]);
         if (isUNC) {
-          return [...s.slice(0, 4), ...s.slice(4).map((ss) => this.parse(ss))];
+          return [
+            ...s.slice(0, 4),
+            ...s.slice(4).map((ss) => this.parse(ss))
+          ];
         } else if (isDrive) {
           return [s[0], ...s.slice(1).map((ss) => this.parse(ss))];
         }
@@ -43452,7 +43675,10 @@ var Minimatch2 = class {
       const fdi = fileUNC ? 3 : fileDrive ? 0 : void 0;
       const pdi = patternUNC ? 3 : patternDrive ? 0 : void 0;
       if (typeof fdi === "number" && typeof pdi === "number") {
-        const [fd, pd] = [file2[fdi], pattern[pdi]];
+        const [fd, pd] = [
+          file2[fdi],
+          pattern[pdi]
+        ];
         if (fd.toLowerCase() === pd.toLowerCase()) {
           pattern[pdi] = fd;
           if (pdi > fdi) {
@@ -43594,16 +43820,27 @@ var Minimatch2 = class {
             pp[i] = twoStar;
           }
         } else if (next === void 0) {
-          pp[i - 1] = prev + "(?:\\/|" + twoStar + ")?";
+          pp[i - 1] = prev + "(?:\\/|\\/" + twoStar + ")?";
         } else if (next !== GLOBSTAR2) {
           pp[i - 1] = prev + "(?:\\/|\\/" + twoStar + "\\/)" + next;
           pp[i + 1] = GLOBSTAR2;
         }
       });
-      return pp.filter((p) => p !== GLOBSTAR2).join("/");
+      const filtered = pp.filter((p) => p !== GLOBSTAR2);
+      if (this.partial && filtered.length >= 1) {
+        const prefixes = [];
+        for (let i = 1; i <= filtered.length; i++) {
+          prefixes.push(filtered.slice(0, i).join("/"));
+        }
+        return "(?:" + prefixes.join("|") + ")";
+      }
+      return filtered.join("/");
     }).join("|");
     const [open2, close] = set2.length > 1 ? ["(?:", ")"] : ["", ""];
     re = "^" + open2 + re + close + "$";
+    if (this.partial) {
+      re = "^(?:\\/|" + open2 + re.slice(1, -1) + close + ")$";
+    }
     if (this.negate)
       re = "^(?!" + re + ").+$";
     try {
@@ -43685,7 +43922,7 @@ function arrayDiffer(array2, ...values) {
   return array2.filter((element) => !rest.has(element));
 }
 
-// node_modules/.aspect_rules_js/multimatch@7.0.0/node_modules/multimatch/index.js
+// node_modules/.aspect_rules_js/multimatch@8.0.0/node_modules/multimatch/index.js
 function multimatch(list, patterns, options = {}) {
   list = [list].flat();
   patterns = [patterns].flat();
@@ -49373,7 +49610,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-e006a332028a4c3cb24e9d92437fac7ae99e2ed5`;
+var localVersion = `0.0.0-0cdc5dad70894b959c1f80f22afd784dc6b128a8`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
