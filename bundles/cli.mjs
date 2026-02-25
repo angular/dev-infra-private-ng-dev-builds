@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-ISVDVJGU.mjs";
+} from "./chunk-HWMRKQMP.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -65,7 +65,7 @@ import {
   runParserWithCompletedFunctions,
   underline,
   yellow
-} from "./chunk-ZTI2LCA3.mjs";
+} from "./chunk-WPUQDYAV.mjs";
 import {
   CommitParser
 } from "./chunk-PMGDP7TK.mjs";
@@ -19247,9 +19247,9 @@ var require_lib5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/minipass@7.1.2/node_modules/minipass/dist/commonjs/index.js
+// node_modules/.aspect_rules_js/minipass@7.1.3/node_modules/minipass/dist/commonjs/index.js
 var require_commonjs = __commonJS({
-  "node_modules/.aspect_rules_js/minipass@7.1.2/node_modules/minipass/dist/commonjs/index.js"(exports2) {
+  "node_modules/.aspect_rules_js/minipass@7.1.3/node_modules/minipass/dist/commonjs/index.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -19339,7 +19339,7 @@ var require_commonjs = __commonJS({
       }
       constructor(src, dest, opts) {
         super(src, dest, opts);
-        this.proxyErrors = (er) => dest.emit("error", er);
+        this.proxyErrors = (er) => this.dest.emit("error", er);
         src.on("error", this.proxyErrors);
       }
     };
@@ -20053,6 +20053,8 @@ var require_commonjs = __commonJS({
           return: stop,
           [Symbol.asyncIterator]() {
             return this;
+          },
+          [Symbol.asyncDispose]: async () => {
           }
         };
       }
@@ -20088,6 +20090,8 @@ var require_commonjs = __commonJS({
           return: stop,
           [Symbol.iterator]() {
             return this;
+          },
+          [Symbol.dispose]: () => {
           }
         };
       }
@@ -36190,7 +36194,7 @@ var CiModule = class extends BaseModule {
 // ng-dev/utils/g3.js
 import path2 from "path";
 
-// node_modules/.aspect_rules_js/balanced-match@4.0.3/node_modules/balanced-match/dist/esm/index.js
+// node_modules/.aspect_rules_js/balanced-match@4.0.4/node_modules/balanced-match/dist/esm/index.js
 var balanced = (a, b, str) => {
   const ma = a instanceof RegExp ? maybeMatch(a, str) : a;
   const mb = b instanceof RegExp ? maybeMatch(b, str) : b;
@@ -36243,7 +36247,7 @@ var range = (a, b, str) => {
   return result;
 };
 
-// node_modules/.aspect_rules_js/brace-expansion@5.0.2/node_modules/brace-expansion/dist/esm/index.js
+// node_modules/.aspect_rules_js/brace-expansion@5.0.3/node_modules/brace-expansion/dist/esm/index.js
 var escSlash = "\0SLASH" + Math.random() + "\0";
 var escOpen = "\0OPEN" + Math.random() + "\0";
 var escClose = "\0CLOSE" + Math.random() + "\0";
@@ -48409,7 +48413,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-c69b5bccf6661668b2c160f63c02b42f4f400d5a`;
+var localVersion = `0.0.0-16c5f6e199e3e1b67ae5a62385d36366bb9a429d`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49460,7 +49464,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.42.0_1604815109/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.42.0_1468532058/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
@@ -49476,7 +49480,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.42.0_1604815109/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.42.0_1468532058/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;

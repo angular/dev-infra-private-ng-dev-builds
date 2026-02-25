@@ -11,7 +11,7 @@ import {
   getConfig,
   green,
   yellow
-} from "./chunk-ZTI2LCA3.mjs";
+} from "./chunk-WPUQDYAV.mjs";
 import {
   __commonJS,
   __require,
@@ -9658,7 +9658,7 @@ function Collection() {
 }
 var before_after_hook_default = { Singular, Collection };
 
-// node_modules/.aspect_rules_js/@octokit+endpoint@11.0.2/node_modules/@octokit/endpoint/dist-bundle/index.js
+// node_modules/.aspect_rules_js/@octokit+endpoint@11.0.3/node_modules/@octokit/endpoint/dist-bundle/index.js
 var VERSION = "0.0.0-development";
 var userAgent = `octokit-endpoint.js/${VERSION} ${getUserAgent()}`;
 var DEFAULTS = {
@@ -9798,7 +9798,7 @@ function isKeyOperator(operator) {
 function getValues(context, operator, key, modifier) {
   var value = context[key], result = [];
   if (isDefined(value) && value !== "") {
-    if (typeof value === "string" || typeof value === "number" || typeof value === "boolean") {
+    if (typeof value === "string" || typeof value === "number" || typeof value === "bigint" || typeof value === "boolean") {
       value = value.toString();
       if (modifier && modifier !== "*") {
         value = value.substring(0, parseInt(modifier, 10));
@@ -9976,8 +9976,103 @@ function withDefaults(oldDefaults, newDefaults) {
 }
 var endpoint = withDefaults(null, DEFAULTS);
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.7/node_modules/@octokit/request/dist-bundle/index.js
+// node_modules/.aspect_rules_js/@octokit+request@10.0.8/node_modules/@octokit/request/dist-bundle/index.js
 var import_fast_content_type_parse = __toESM(require_fast_content_type_parse());
+
+// node_modules/.aspect_rules_js/json-with-bigint@3.5.3/node_modules/json-with-bigint/json-with-bigint.js
+var noiseValue = /^-?\d+n+$/;
+var originalStringify = JSON.stringify;
+var originalParse = JSON.parse;
+var JSONStringify = (value, replacer, space) => {
+  if ("rawJSON" in JSON) {
+    return originalStringify(
+      value,
+      (key, value2) => {
+        if (typeof value2 === "bigint")
+          return JSON.rawJSON(value2.toString());
+        if (typeof replacer === "function")
+          return replacer(key, value2);
+        if (Array.isArray(replacer) && replacer.includes(key))
+          return value2;
+        return value2;
+      },
+      space
+    );
+  }
+  if (!value)
+    return originalStringify(value, replacer, space);
+  const bigInts = /([\[:])?"(-?\d+)n"($|([\\n]|\s)*(\s|[\\n])*[,\}\]])/g;
+  const noise = /([\[:])?("-?\d+n+)n("$|"([\\n]|\s)*(\s|[\\n])*[,\}\]])/g;
+  const convertedToCustomJSON = originalStringify(
+    value,
+    (key, value2) => {
+      const isNoise = typeof value2 === "string" && Boolean(value2.match(noiseValue));
+      if (isNoise)
+        return value2.toString() + "n";
+      if (typeof value2 === "bigint")
+        return value2.toString() + "n";
+      if (typeof replacer === "function")
+        return replacer(key, value2);
+      if (Array.isArray(replacer) && replacer.includes(key))
+        return value2;
+      return value2;
+    },
+    space
+  );
+  const processedJSON = convertedToCustomJSON.replace(bigInts, "$1$2$3");
+  const denoisedJSON = processedJSON.replace(noise, "$1$2$3");
+  return denoisedJSON;
+};
+var isContextSourceSupported = () => JSON.parse("1", (_, __, context) => !!context && context.source === "1");
+var JSONParseV2 = (text, reviver) => {
+  const intRegex = /^-?\d+$/;
+  return JSON.parse(text, (key, value, context) => {
+    const isBigNumber = typeof value === "number" && (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER);
+    const isInt = intRegex.test(context.source);
+    const isBigInt = isBigNumber && isInt;
+    if (isBigInt)
+      return BigInt(context.source);
+    if (typeof reviver !== "function")
+      return value;
+    return reviver(key, value, context);
+  });
+};
+var JSONParse = (text, reviver) => {
+  if (!text)
+    return originalParse(text, reviver);
+  if (isContextSourceSupported())
+    return JSONParseV2(text, reviver);
+  const MAX_INT = Number.MAX_SAFE_INTEGER.toString();
+  const MAX_DIGITS = MAX_INT.length;
+  const stringsOrLargeNumbers = /"(?:\\.|[^"])*"|-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?/g;
+  const noiseValueWithQuotes = /^"-?\d+n+"$/;
+  const customFormat = /^-?\d+n$/;
+  const serializedData = text.replace(
+    stringsOrLargeNumbers,
+    (text2, digits, fractional, exponential) => {
+      const isString = text2[0] === '"';
+      const isNoise = isString && Boolean(text2.match(noiseValueWithQuotes));
+      if (isNoise)
+        return text2.substring(0, text2.length - 1) + 'n"';
+      const isFractionalOrExponential = fractional || exponential;
+      const isLessThanMaxSafeInt = digits && (digits.length < MAX_DIGITS || digits.length === MAX_DIGITS && digits <= MAX_INT);
+      if (isString || isFractionalOrExponential || isLessThanMaxSafeInt)
+        return text2;
+      return '"' + text2 + 'n"';
+    }
+  );
+  return originalParse(serializedData, (key, value, context) => {
+    const isCustomFormatBigInt = typeof value === "string" && Boolean(value.match(customFormat));
+    if (isCustomFormatBigInt)
+      return BigInt(value.substring(0, value.length - 1));
+    const isNoiseValue = typeof value === "string" && Boolean(value.match(noiseValue));
+    if (isNoiseValue)
+      return value.substring(0, value.length - 1);
+    if (typeof reviver !== "function")
+      return value;
+    return reviver(key, value, context);
+  });
+};
 
 // node_modules/.aspect_rules_js/@octokit+request-error@7.1.0/node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
@@ -10018,8 +10113,8 @@ var RequestError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.7/node_modules/@octokit/request/dist-bundle/index.js
-var VERSION2 = "10.0.7";
+// node_modules/.aspect_rules_js/@octokit+request@10.0.8/node_modules/@octokit/request/dist-bundle/index.js
+var VERSION2 = "10.0.8";
 var defaults_default = {
   headers: {
     "user-agent": `octokit-request.js/${VERSION2} ${getUserAgent()}`
@@ -10046,7 +10141,7 @@ async function fetchWrapper(requestOptions) {
   }
   const log = requestOptions.request?.log || console;
   const parseSuccessResponseBody = requestOptions.request?.parseSuccessResponseBody !== false;
-  const body = isPlainObject2(requestOptions.body) || Array.isArray(requestOptions.body) ? JSON.stringify(requestOptions.body) : requestOptions.body;
+  const body = isPlainObject2(requestOptions.body) || Array.isArray(requestOptions.body) ? JSONStringify(requestOptions.body) : requestOptions.body;
   const requestHeaders = Object.fromEntries(
     Object.entries(requestOptions.headers).map(([name, value]) => [
       name,
@@ -10145,7 +10240,7 @@ async function getResponseData(response) {
     let text = "";
     try {
       text = await response.text();
-      return JSON.parse(text);
+      return JSONParse(text);
     } catch (err) {
       return text;
     }
