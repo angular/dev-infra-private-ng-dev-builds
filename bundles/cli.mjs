@@ -47457,100 +47457,15 @@ var NpmCommand = class {
   }
 };
 
+// ng-dev/release/publish/external-commands.js
+import { existsSync as existsSync4 } from "fs";
+import { join as join10 } from "path";
+
 // ng-dev/release/publish/actions-error.js
 var UserAbortedReleaseActionError = class extends Error {
 };
 var FatalReleaseActionError = class extends Error {
 };
-
-// ng-dev/release/publish/actions/configure-next-as-major.js
-var import_semver8 = __toESM(require_semver());
-
-// ng-dev/utils/constants.js
-var workspaceRelativePackageJsonPath = "package.json";
-
-// ng-dev/release/publish/actions.js
-var import_fast_glob2 = __toESM(require_out4());
-import { existsSync as existsSync4, promises as fs3 } from "fs";
-import { join as join10 } from "path";
-
-// ng-dev/release/versioning/experimental-versions.js
-var import_semver7 = __toESM(require_semver());
-function isExperimentalSemver(version2) {
-  return version2.major === 0 && version2.minor >= 100;
-}
-function createExperimentalSemver(version2) {
-  version2 = new import_semver7.default.SemVer(version2);
-  const experimentalVersion = new import_semver7.default.SemVer(version2.format());
-  experimentalVersion.major = 0;
-  experimentalVersion.minor = version2.major * 100 + version2.minor;
-  return new import_semver7.default.SemVer(experimentalVersion.format());
-}
-
-// ng-dev/release/versioning/version-tags.js
-function getReleaseTagForVersion(version2) {
-  return `v${version2.format()}`;
-}
-
-// ng-dev/release/publish/directory-hash.js
-var import_folder_hash = __toESM(require_folder_hash());
-var DirectoryHash = class {
-  static async compute(dirPath) {
-    return (await (0, import_folder_hash.hashElement)(dirPath, {})).hash;
-  }
-};
-
-// ng-dev/release/publish/built-package-info.js
-async function analyzeAndExtendBuiltPackagesWithInfo(builtPackages, npmPackages) {
-  const result = [];
-  for (const pkg of builtPackages) {
-    const info = npmPackages.find((i) => i.name === pkg.name);
-    if (info === void 0) {
-      Log.debug(`Retrieved package information:`, npmPackages);
-      Log.error(`  \u2718   Could not find package information for built package: "${pkg.name}".`);
-      throw new FatalReleaseActionError();
-    }
-    result.push({
-      hash: await computeHashForPackageContents(pkg),
-      ...pkg,
-      ...info
-    });
-  }
-  return result;
-}
-async function assertIntegrityOfBuiltPackages(builtPackagesWithInfo) {
-  const modifiedPackages = [];
-  for (const pkg of builtPackagesWithInfo) {
-    if (await computeHashForPackageContents(pkg) !== pkg.hash) {
-      modifiedPackages.push(pkg.name);
-    }
-  }
-  if (modifiedPackages.length > 0) {
-    Log.error(`  \u2718   Release output has been modified locally since it was built.`);
-    Log.error(`      The following packages changed: ${modifiedPackages.join(", ")}`);
-    throw new FatalReleaseActionError();
-  }
-}
-async function computeHashForPackageContents(pkg) {
-  return DirectoryHash.compute(pkg.outputPath);
-}
-
-// ng-dev/release/publish/commit-message.js
-function getCommitMessageForRelease(newVersion) {
-  return `release: cut the v${newVersion} release`;
-}
-function getCommitMessageForExceptionalNextVersionBump(newVersion) {
-  return `release: bump the next branch to v${newVersion}`;
-}
-function getCommitMessageForNextBranchMajorSwitch(newVersion) {
-  return `release: switch the next branch to v${newVersion}`;
-}
-function getReleaseNoteCherryPickCommitMessage(newVersion) {
-  return `docs: release notes for the v${newVersion} release`;
-}
-
-// ng-dev/release/publish/constants.js
-var githubReleaseBodyLimit = 125e3;
 
 // ng-dev/release/publish/pnpm-versioning.js
 import { join as join9 } from "node:path";
@@ -47632,6 +47547,25 @@ var ExternalCommands = class {
       throw new FatalReleaseActionError();
     }
   }
+  static async invokeNvmInstall(projectDir, quiet = false) {
+    if (!existsSync4(join10(projectDir, ".nvmrc"))) {
+      return;
+    }
+    try {
+      await ChildProcess.spawn("nvm", ["install"], {
+        cwd: projectDir,
+        mode: "on-error"
+      });
+      if (!quiet) {
+        const { stdout: nodeVersion } = await ChildProcess.spawn("node", ["--version"]);
+        Log.info(green(`  \u2713   Set node version to ${nodeVersion}.`));
+      }
+    } catch (e) {
+      Log.error(e);
+      Log.error("  \u2718   An error occurred while installing Node.js via nvm.");
+      throw new FatalReleaseActionError();
+    }
+  }
   static async invokeYarnInstall(projectDir) {
     const yarnCommand = await resolveYarnScriptForProject(projectDir);
     try {
@@ -47693,6 +47627,95 @@ var ExternalCommands = class {
     spinner.success(green(" Updated Aspect `rules_js` lock files."));
   }
 };
+
+// ng-dev/release/publish/actions/configure-next-as-major.js
+var import_semver8 = __toESM(require_semver());
+
+// ng-dev/utils/constants.js
+var workspaceRelativePackageJsonPath = "package.json";
+
+// ng-dev/release/publish/actions.js
+var import_fast_glob2 = __toESM(require_out4());
+import { existsSync as existsSync5, promises as fs3 } from "fs";
+import { join as join11 } from "path";
+
+// ng-dev/release/versioning/experimental-versions.js
+var import_semver7 = __toESM(require_semver());
+function isExperimentalSemver(version2) {
+  return version2.major === 0 && version2.minor >= 100;
+}
+function createExperimentalSemver(version2) {
+  version2 = new import_semver7.default.SemVer(version2);
+  const experimentalVersion = new import_semver7.default.SemVer(version2.format());
+  experimentalVersion.major = 0;
+  experimentalVersion.minor = version2.major * 100 + version2.minor;
+  return new import_semver7.default.SemVer(experimentalVersion.format());
+}
+
+// ng-dev/release/versioning/version-tags.js
+function getReleaseTagForVersion(version2) {
+  return `v${version2.format()}`;
+}
+
+// ng-dev/release/publish/directory-hash.js
+var import_folder_hash = __toESM(require_folder_hash());
+var DirectoryHash = class {
+  static async compute(dirPath) {
+    return (await (0, import_folder_hash.hashElement)(dirPath, {})).hash;
+  }
+};
+
+// ng-dev/release/publish/built-package-info.js
+async function analyzeAndExtendBuiltPackagesWithInfo(builtPackages, npmPackages) {
+  const result = [];
+  for (const pkg of builtPackages) {
+    const info = npmPackages.find((i) => i.name === pkg.name);
+    if (info === void 0) {
+      Log.debug(`Retrieved package information:`, npmPackages);
+      Log.error(`  \u2718   Could not find package information for built package: "${pkg.name}".`);
+      throw new FatalReleaseActionError();
+    }
+    result.push({
+      hash: await computeHashForPackageContents(pkg),
+      ...pkg,
+      ...info
+    });
+  }
+  return result;
+}
+async function assertIntegrityOfBuiltPackages(builtPackagesWithInfo) {
+  const modifiedPackages = [];
+  for (const pkg of builtPackagesWithInfo) {
+    if (await computeHashForPackageContents(pkg) !== pkg.hash) {
+      modifiedPackages.push(pkg.name);
+    }
+  }
+  if (modifiedPackages.length > 0) {
+    Log.error(`  \u2718   Release output has been modified locally since it was built.`);
+    Log.error(`      The following packages changed: ${modifiedPackages.join(", ")}`);
+    throw new FatalReleaseActionError();
+  }
+}
+async function computeHashForPackageContents(pkg) {
+  return DirectoryHash.compute(pkg.outputPath);
+}
+
+// ng-dev/release/publish/commit-message.js
+function getCommitMessageForRelease(newVersion) {
+  return `release: cut the v${newVersion} release`;
+}
+function getCommitMessageForExceptionalNextVersionBump(newVersion) {
+  return `release: bump the next branch to v${newVersion}`;
+}
+function getCommitMessageForNextBranchMajorSwitch(newVersion) {
+  return `release: switch the next branch to v${newVersion}`;
+}
+function getReleaseNoteCherryPickCommitMessage(newVersion) {
+  return `docs: release notes for the v${newVersion} release`;
+}
+
+// ng-dev/release/publish/constants.js
+var githubReleaseBodyLimit = 125e3;
 
 // ng-dev/release/publish/pull-request-state.js
 async function isPullRequestMerged(api, id) {
@@ -47796,7 +47819,7 @@ var ReleaseAction = class {
     this.projectDir = projectDir;
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
-    const pkgJsonPath = join10(this.projectDir, workspaceRelativePackageJsonPath);
+    const pkgJsonPath = join11(this.projectDir, workspaceRelativePackageJsonPath);
     const pkgJson = JSON.parse(await fs3.readFile(pkgJsonPath, "utf8"));
     if (additionalUpdateFn !== void 0) {
       additionalUpdateFn(pkgJson);
@@ -47805,12 +47828,12 @@ var ReleaseAction = class {
     await fs3.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
     Log.info(green(`  \u2713   Updated project version to ${pkgJson.version}`));
-    if (existsSync4(join10(this.projectDir, ".aspect"))) {
+    if (existsSync5(join11(this.projectDir, ".aspect"))) {
       await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
     }
   }
   getAspectLockFiles() {
-    return existsSync4(join10(this.projectDir, ".aspect")) ? [...import_fast_glob2.default.sync(".aspect/**", { cwd: this.projectDir }), "pnpm-lock.yaml"] : [];
+    return existsSync5(join11(this.projectDir, ".aspect")) ? [...import_fast_glob2.default.sync(".aspect/**", { cwd: this.projectDir }), "pnpm-lock.yaml"] : [];
   }
   async getLatestCommitOfBranch(branchName) {
     const { data: { commit } } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -47947,6 +47970,7 @@ var ReleaseAction = class {
         this.git.run(["clean", "-qdfX", "**/node_modules"]);
       } catch {
       }
+      await ExternalCommands.invokeNvmInstall(this.projectDir);
       await ExternalCommands.invokePnpmInstall(this.projectDir);
       return;
     }
@@ -47954,6 +47978,7 @@ var ReleaseAction = class {
       this.git.run(["clean", "-qdfX", "**/node_modules"]);
     } catch {
     }
+    await ExternalCommands.invokeNvmInstall(this.projectDir);
     await ExternalCommands.invokeYarnInstall(this.projectDir);
   }
   async createCommit(message, files) {
@@ -48107,7 +48132,7 @@ var ReleaseAction = class {
   async _verifyPackageVersions(version2, packages) {
     const experimentalVersion = createExperimentalSemver(version2);
     for (const pkg of packages) {
-      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join10(pkg.outputPath, "package.json"), "utf8"));
+      const { version: packageJsonVersion } = JSON.parse(await fs3.readFile(join11(pkg.outputPath, "package.json"), "utf8"));
       const expectedVersion = pkg.experimental ? experimentalVersion : version2;
       const mismatchesVersion = expectedVersion.compare(packageJsonVersion) !== 0;
       if (mismatchesVersion) {
@@ -48448,12 +48473,12 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 var import_semver17 = __toESM(require_semver());
 
 // ng-dev/release/publish/actions/renovate-config-updates.js
-import { existsSync as existsSync5 } from "node:fs";
-import { join as join11 } from "node:path";
+import { existsSync as existsSync6 } from "node:fs";
+import { join as join12 } from "node:path";
 import { writeFile, readFile } from "node:fs/promises";
 async function updateRenovateConfig(projectDir, newBranchName) {
-  const renovateConfigPath = join11(projectDir, "renovate.json");
-  if (!existsSync5(renovateConfigPath)) {
+  const renovateConfigPath = join12(projectDir, "renovate.json");
+  if (!existsSync6(renovateConfigPath)) {
     Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
     return null;
   }
@@ -48651,7 +48676,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-4b8f9c22c9a8780d3f8162ffb6ffdedce37ae5e2`;
+var localVersion = `0.0.0-ecf3adcf1cb85a0ecd32a3b5a1712ce946aa798a`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -48757,6 +48782,7 @@ var ReleaseTool = class {
   }
   async cleanup() {
     this._git.checkout(this.previousGitBranchOrRevision, true);
+    await ExternalCommands.invokeNvmInstall(this._projectRoot, true);
     await NpmCommand.logout(this._config.publishRegistry);
   }
   async _promptForReleaseAction(activeTrains) {
@@ -48895,7 +48921,7 @@ import url from "url";
 // ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
 var import_semver20 = __toESM(require_semver());
-import { join as join13 } from "path";
+import { join as join14 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -48972,7 +48998,7 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join13(git.baseDir, "package.json");
+  const packageJsonPath = join14(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs5.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
@@ -49126,12 +49152,12 @@ function buildReleaseParser(localYargs) {
 
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync6, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
+import { existsSync as existsSync7, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync10 } from "fs";
-import { dirname as dirname4, join as join14, resolve as resolve5 } from "path";
+import { dirname as dirname4, join as join15, resolve as resolve5 } from "path";
 import ts2 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
@@ -49233,7 +49259,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join14(dirname4(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join15(dirname4(containingFilePath), specifier) : specifier;
     const stat2 = getFileStatus(importFullPath);
     if (stat2 && stat2.isFile()) {
       return importFullPath;
@@ -49246,7 +49272,7 @@ var Analyzer = class {
       }
     }
     if (stat2 && stat2.isDirectory()) {
-      return this._resolveFileSpecifier(join14(importFullPath, "index"));
+      return this._resolveFileSpecifier(join15(importFullPath, "index"));
     }
     return null;
   }
@@ -49417,7 +49443,7 @@ function main(approve, config2, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync6(goldenFile)) {
+  if (!existsSync7(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
@@ -49544,7 +49570,7 @@ async function loadWorkflows(src) {
 }
 
 // ng-dev/perf/workflow/cli.js
-import { join as join15 } from "path";
+import { join as join16 } from "path";
 
 // ng-dev/perf/workflow/database.js
 import { Spanner } from "@google-cloud/spanner";
@@ -49581,7 +49607,7 @@ function builder27(yargs) {
   });
 }
 async function handler28({ configFile, list, name, commitSha }) {
-  const workflows = await loadWorkflows(join15(determineRepoBaseDirFromCwd(), configFile));
+  const workflows = await loadWorkflows(join16(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
     return;
@@ -49624,17 +49650,17 @@ function buildPerfParser(localYargs) {
 }
 
 // ng-dev/config/validate/portability.js
-import { join as join16 } from "path";
+import { join as join17 } from "path";
 import { tmpdir } from "os";
 import { cp, mkdtemp, rm } from "fs/promises";
 async function checkPortability() {
   Log.debug("Copying ng-dev configuration to isolated temp directory");
-  const tmpConfigDir = await mkdtemp(join16(tmpdir(), "ng-dev-config-check-"));
+  const tmpConfigDir = await mkdtemp(join17(tmpdir(), "ng-dev-config-check-"));
   const repoBaseDir = determineRepoBaseDirFromCwd();
   try {
-    await cp(join16(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
+    await cp(join17(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
     Log.debug("Validating configuration loads in isolation");
-    const baseConfigFile = join16(tmpConfigDir, "config.mjs");
+    const baseConfigFile = join17(tmpConfigDir, "config.mjs");
     const { status, stderr } = await ChildProcess.exec(`node ${baseConfigFile}`, {
       cwd: tmpConfigDir,
       mode: "silent"
@@ -80796,7 +80822,7 @@ config(en_default());
 var import_fast_glob6 = __toESM(require_out4());
 var import_yaml5 = __toESM(require_dist());
 import { readFile as readFile5 } from "node:fs/promises";
-import { join as join17, basename as basename3 } from "node:path";
+import { join as join18, basename as basename3 } from "node:path";
 var skillFrontmatterSchema = external_exports.object({
   name: external_exports.string().min(1).max(64).regex(/^[a-z0-9-]+$/, "Name must only contain lowercase alphanumeric characters and hyphens").refine((val) => !val.startsWith("-") && !val.endsWith("-") && !val.includes("--"), "Name must not start/end with hyphens or contain consecutive hyphens"),
   description: external_exports.string().min(1).max(1024),
@@ -80807,7 +80833,7 @@ var skillFrontmatterSchema = external_exports.object({
 });
 async function validateSkills(repoRoot) {
   let errorCount = 0;
-  const skillFiles = await (0, import_fast_glob6.default)("**/SKILL.md", { cwd: join17(repoRoot, "skills"), absolute: true });
+  const skillFiles = await (0, import_fast_glob6.default)("**/SKILL.md", { cwd: join18(repoRoot, "skills"), absolute: true });
   if (skillFiles.length === 0) {
     Log.info(` ${yellow("\u26A0")}  No skills found in skills/ directory.`);
     return { results: [], exitCode: 0 };
@@ -80816,13 +80842,13 @@ async function validateSkills(repoRoot) {
   const validationResults = await Promise.all(skillFiles.map(validateSkill));
   for (const result of validationResults.sort((a, b) => a.failures.length - b.failures.length)) {
     if (result.failures.length > 0) {
-      Log.info(` ${red("\u2718")}  ${bold(result.name)} (${join17("skills", result.name, "SKILL.md")})`);
+      Log.info(` ${red("\u2718")}  ${bold(result.name)} (${join18("skills", result.name, "SKILL.md")})`);
       result.failures.forEach((failure) => {
         Log.info(`  -  ${failure}`);
         errorCount++;
       });
     } else {
-      Log.info(` ${green("\u2714")}  ${bold(result.name)} (${join17("skills", result.name, "SKILL.md")})`);
+      Log.info(` ${green("\u2714")}  ${bold(result.name)} (${join18("skills", result.name, "SKILL.md")})`);
     }
   }
   Log.info();
@@ -80835,7 +80861,7 @@ async function validateSkills(repoRoot) {
   }
 }
 async function validateSkill(filePath) {
-  const name = basename3(join17(filePath, ".."));
+  const name = basename3(join18(filePath, ".."));
   const failures = [];
   try {
     const content = await readFile5(filePath, { encoding: "utf8" });

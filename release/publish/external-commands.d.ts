@@ -11,6 +11,8 @@ export declare abstract class ExternalCommands {
     static invokeReleaseBuild(projectDir: string): Promise<ReleaseBuildJsonStdout>;
     static invokeReleaseInfo(projectDir: string): Promise<ReleaseInfoJsonStdout>;
     static invokeReleasePrecheck(projectDir: string, newVersion: semver.SemVer, builtPackagesWithInfo: BuiltPackageWithInfo[]): Promise<void>;
+    static invokeNvmInstall(projectDir: string): Promise<void>;
+    static invokeNvmInstall(projectDir: string, quiet: boolean): Promise<void>;
     static invokeYarnInstall(projectDir: string): Promise<void>;
     static invokePnpmInstall(projectDir: string): Promise<void>;
     private static _spawnNpmScript;
