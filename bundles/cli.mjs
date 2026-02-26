@@ -18566,7 +18566,7 @@ var require_polyfills = __commonJS({
             return ret;
           };
         } else if (fs8.futimes) {
-          fs8.lutimes = function(_a3, _b, _c, cb) {
+          fs8.lutimes = function(_a4, _b, _c, cb) {
             if (cb)
               process.nextTick(cb);
           };
@@ -21799,7 +21799,7 @@ var require_gaxios = __commonJS({
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    var _a3;
+    var _a4;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Gaxios = void 0;
     var extend_1 = __importDefault(require_extend());
@@ -21862,10 +21862,10 @@ var require_gaxios = __commonJS({
           url3 = new URL(input.url);
         }
         if (input && typeof input === "object" && "headers" in input) {
-          _a3.mergeHeaders(headers, input.headers);
+          _a4.mergeHeaders(headers, input.headers);
         }
         if (init) {
-          _a3.mergeHeaders(headers, new Headers(init.headers));
+          _a4.mergeHeaders(headers, new Headers(init.headers));
         }
         if (typeof input === "object" && !(input instanceof URL)) {
           return this.request({ ...init, ...input, headers, url: url3 });
@@ -21883,7 +21883,7 @@ var require_gaxios = __commonJS({
         return this.#applyResponseInterceptors(this._request(prepared));
       }
       async _defaultAdapter(config2) {
-        const fetchImpl = config2.fetchImplementation || this.defaults.fetchImplementation || await _a3.#getFetch();
+        const fetchImpl = config2.fetchImplementation || this.defaults.fetchImplementation || await _a4.#getFetch();
         const preparedOpts = { ...config2 };
         delete preparedOpts.data;
         const res = await fetchImpl(config2.url, preparedOpts);
@@ -22043,7 +22043,7 @@ var require_gaxios = __commonJS({
        */
       async #prepareRequest(options) {
         const preparedHeaders = new Headers(this.defaults.headers);
-        _a3.mergeHeaders(preparedHeaders, options.headers);
+        _a4.mergeHeaders(preparedHeaders, options.headers);
         const opts = (0, extend_1.default)(true, {}, this.defaults, options);
         if (!opts.url) {
           throw new Error("URL is required.");
@@ -22106,7 +22106,7 @@ var require_gaxios = __commonJS({
         const proxy = opts.proxy || process?.env?.HTTPS_PROXY || process?.env?.https_proxy || process?.env?.HTTP_PROXY || process?.env?.http_proxy;
         if (opts.agent) {
         } else if (proxy && this.#urlMayUseProxy(opts.url, opts.noProxy)) {
-          const HttpsProxyAgent = await _a3.#getProxyAgent();
+          const HttpsProxyAgent = await _a4.#getProxyAgent();
           if (this.agentCache.has(proxy)) {
             opts.agent = this.agentCache.get(proxy);
           } else {
@@ -22262,7 +22262,7 @@ Content-Type: ${partContentType}\r
       }
     };
     exports2.Gaxios = Gaxios;
-    _a3 = Gaxios;
+    _a4 = Gaxios;
   }
 });
 
@@ -24425,11 +24425,11 @@ var require_logging_utils = __commonJS({
     }).func;
     var DebugLogBackendBase = class {
       constructor() {
-        var _a3;
+        var _a4;
         this.cached = /* @__PURE__ */ new Map();
         this.filters = [];
         this.filtersSet = false;
-        let nodeFlag = (_a3 = process5.env[exports2.env.nodeEnables]) !== null && _a3 !== void 0 ? _a3 : "*";
+        let nodeFlag = (_a4 = process5.env[exports2.env.nodeEnables]) !== null && _a4 !== void 0 ? _a4 : "*";
         if (nodeFlag === "all") {
           nodeFlag = "*";
         }
@@ -24467,7 +24467,7 @@ var require_logging_utils = __commonJS({
           };
         }
         return (fields, ...args) => {
-          var _a3;
+          var _a4;
           const nscolour = `${colours_1.Colours.green}${namespace}${colours_1.Colours.reset}`;
           const pid = `${colours_1.Colours.yellow}${process5.pid}${colours_1.Colours.reset}`;
           let level;
@@ -24482,7 +24482,7 @@ var require_logging_utils = __commonJS({
               level = `${colours_1.Colours.yellow}${fields.severity}${colours_1.Colours.reset}`;
               break;
             default:
-              level = (_a3 = fields.severity) !== null && _a3 !== void 0 ? _a3 : LogSeverity.DEFAULT;
+              level = (_a4 = fields.severity) !== null && _a4 !== void 0 ? _a4 : LogSeverity.DEFAULT;
               break;
           }
           const msg = util.formatWithOptions({ colors: colours_1.Colours.enabled }, ...args);
@@ -24516,8 +24516,8 @@ var require_logging_utils = __commonJS({
         };
       }
       setFilters() {
-        var _a3;
-        const existingFilters = (_a3 = process5.env["NODE_DEBUG"]) !== null && _a3 !== void 0 ? _a3 : "";
+        var _a4;
+        const existingFilters = (_a4 = process5.env["NODE_DEBUG"]) !== null && _a4 !== void 0 ? _a4 : "";
         process5.env["NODE_DEBUG"] = `${existingFilters}${existingFilters ? "," : ""}${this.filters.join(",")}`;
       }
     };
@@ -24526,16 +24526,16 @@ var require_logging_utils = __commonJS({
     }
     var StructuredBackend = class extends DebugLogBackendBase {
       constructor(upstream) {
-        var _a3;
+        var _a4;
         super();
-        this.upstream = (_a3 = upstream) !== null && _a3 !== void 0 ? _a3 : void 0;
+        this.upstream = (_a4 = upstream) !== null && _a4 !== void 0 ? _a4 : void 0;
       }
       makeLogger(namespace) {
-        var _a3;
-        const debugLogger = (_a3 = this.upstream) === null || _a3 === void 0 ? void 0 : _a3.makeLogger(namespace);
+        var _a4;
+        const debugLogger = (_a4 = this.upstream) === null || _a4 === void 0 ? void 0 : _a4.makeLogger(namespace);
         return (fields, ...args) => {
-          var _a4;
-          const severity = (_a4 = fields.severity) !== null && _a4 !== void 0 ? _a4 : LogSeverity.INFO;
+          var _a5;
+          const severity = (_a5 = fields.severity) !== null && _a5 !== void 0 ? _a5 : LogSeverity.INFO;
           const json2 = Object.assign({
             severity,
             message: util.format(...args)
@@ -24549,8 +24549,8 @@ var require_logging_utils = __commonJS({
         };
       }
       setFilters() {
-        var _a3;
-        (_a3 = this.upstream) === null || _a3 === void 0 ? void 0 : _a3.setFilters();
+        var _a4;
+        (_a4 = this.upstream) === null || _a4 === void 0 ? void 0 : _a4.setFilters();
       }
     };
     function getStructuredBackend(upstream) {
@@ -36407,7 +36407,7 @@ function expand_(str, max, isTop) {
   return expansions;
 }
 
-// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -36418,7 +36418,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/brace-expressions.js
+// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/brace-expressions.js
 var posixClasses = {
   "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
   "[:alpha:]": ["\\p{L}\\p{Nl}", true],
@@ -36528,7 +36528,7 @@ var parseClass = (glob7, position) => {
   return [comb, uflag, endPos - pos, true];
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/unescape.js
+// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/unescape.js
 var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
@@ -36536,9 +36536,57 @@ var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) 
   return windowsPathsNoEscape ? s.replace(/\[([^\/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\{}])\]/g, "$1$2").replace(/\\([^\/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/ast.js
+// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/ast.js
+var _a;
 var types2 = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
 var isExtglobType = (c) => types2.has(c);
+var isExtglobAST = (c) => isExtglobType(c.type);
+var adoptionMap = /* @__PURE__ */ new Map([
+  ["!", ["@"]],
+  ["?", ["?", "@"]],
+  ["@", ["@"]],
+  ["*", ["*", "+", "?", "@"]],
+  ["+", ["+", "@"]]
+]);
+var adoptionWithSpaceMap = /* @__PURE__ */ new Map([
+  ["!", ["?"]],
+  ["@", ["?"]],
+  ["+", ["?", "*"]]
+]);
+var adoptionAnyMap = /* @__PURE__ */ new Map([
+  ["!", ["?", "@"]],
+  ["?", ["?", "@"]],
+  ["@", ["?", "@"]],
+  ["*", ["*", "+", "?", "@"]],
+  ["+", ["+", "@", "?", "*"]]
+]);
+var usurpMap = /* @__PURE__ */ new Map([
+  ["!", /* @__PURE__ */ new Map([["!", "@"]])],
+  [
+    "?",
+    /* @__PURE__ */ new Map([
+      ["*", "*"],
+      ["+", "*"]
+    ])
+  ],
+  [
+    "@",
+    /* @__PURE__ */ new Map([
+      ["!", "!"],
+      ["?", "?"],
+      ["@", "@"],
+      ["*", "*"],
+      ["+", "+"]
+    ])
+  ],
+  [
+    "+",
+    /* @__PURE__ */ new Map([
+      ["?", "*"],
+      ["*", "*"]
+    ])
+  ]
+]);
 var startNoTraversal = "(?!(?:^|/)\\.\\.?(?:$|/))";
 var startNoDot = "(?!\\.)";
 var addPatternStart = /* @__PURE__ */ new Set(["[", "."]);
@@ -36548,7 +36596,8 @@ var regExpEscape = (s) => s.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 var qmark = "[^/]";
 var star = qmark + "*?";
 var starNoEmpty = qmark + "+?";
-var AST = class _AST {
+var ID = 0;
+var AST = class {
   type;
   #root;
   #hasMagic;
@@ -36563,6 +36612,22 @@ var AST = class _AST {
   // set to true if it's an extglob with no children
   // (which really means one child of '')
   #emptyExt = false;
+  id = ++ID;
+  get depth() {
+    return (this.#parent?.depth ?? -1) + 1;
+  }
+  [Symbol.for("nodejs.util.inspect.custom")]() {
+    return {
+      "@@type": "AST",
+      id: this.id,
+      type: this.type,
+      root: this.#root.id,
+      parent: this.#parent?.id,
+      depth: this.depth,
+      partsLength: this.#parts.length,
+      parts: this.#parts
+    };
+  }
   constructor(type, parent, options = {}) {
     this.type = type;
     if (type)
@@ -36628,7 +36693,7 @@ var AST = class _AST {
     for (const p of parts) {
       if (p === "")
         continue;
-      if (typeof p !== "string" && !(p instanceof _AST && p.#parent === this)) {
+      if (typeof p !== "string" && !(p instanceof _a && p.#parent === this)) {
         throw new Error("invalid part: " + p);
       }
       this.#parts.push(p);
@@ -36653,7 +36718,7 @@ var AST = class _AST {
     const p = this.#parent;
     for (let i = 0; i < this.#parentIndex; i++) {
       const pp = p.#parts[i];
-      if (!(pp instanceof _AST && pp.type === "!")) {
+      if (!(pp instanceof _a && pp.type === "!")) {
         return false;
       }
     }
@@ -36678,13 +36743,14 @@ var AST = class _AST {
       this.push(part.clone(this));
   }
   clone(parent) {
-    const c = new _AST(this.type, parent);
+    const c = new _a(this.type, parent);
     for (const p of this.#parts) {
       c.copyIn(p);
     }
     return c;
   }
-  static #parseAST(str, ast, pos, opt) {
+  static #parseAST(str, ast, pos, opt, extDepth) {
+    const maxDepth = opt.maxExtglobRecursion ?? 2;
     let escaping = false;
     let inBrace = false;
     let braceStart = -1;
@@ -36716,11 +36782,12 @@ var AST = class _AST {
           acc2 += c;
           continue;
         }
-        if (!opt.noext && isExtglobType(c) && str.charAt(i2) === "(") {
+        const doRecurse = !opt.noext && isExtglobType(c) && str.charAt(i2) === "(" && extDepth <= maxDepth;
+        if (doRecurse) {
           ast.push(acc2);
           acc2 = "";
-          const ext2 = new _AST(c, ast);
-          i2 = _AST.#parseAST(str, ext2, i2, opt);
+          const ext2 = new _a(c, ast);
+          i2 = _a.#parseAST(str, ext2, i2, opt, extDepth + 1);
           ast.push(ext2);
           continue;
         }
@@ -36730,7 +36797,7 @@ var AST = class _AST {
       return i2;
     }
     let i = pos + 1;
-    let part = new _AST(null, ast);
+    let part = new _a(null, ast);
     const parts = [];
     let acc = "";
     while (i < str.length) {
@@ -36757,19 +36824,22 @@ var AST = class _AST {
         acc += c;
         continue;
       }
-      if (isExtglobType(c) && str.charAt(i) === "(") {
+      const doRecurse = !opt.noext && isExtglobType(c) && str.charAt(i) === "(" && /* c8 ignore start - the maxDepth is sufficient here */
+      (extDepth <= maxDepth || ast && ast.#canAdoptType(c));
+      if (doRecurse) {
+        const depthAdd = ast && ast.#canAdoptType(c) ? 0 : 1;
         part.push(acc);
         acc = "";
-        const ext2 = new _AST(c, part);
+        const ext2 = new _a(c, part);
         part.push(ext2);
-        i = _AST.#parseAST(str, ext2, i, opt);
+        i = _a.#parseAST(str, ext2, i, opt, extDepth + depthAdd);
         continue;
       }
       if (c === "|") {
         part.push(acc);
         acc = "";
         parts.push(part);
-        part = new _AST(null, ast);
+        part = new _a(null, ast);
         continue;
       }
       if (c === ")") {
@@ -36788,9 +36858,71 @@ var AST = class _AST {
     ast.#parts = [str.substring(pos - 1)];
     return i;
   }
+  #canAdoptWithSpace(child) {
+    return this.#canAdopt(child, adoptionWithSpaceMap);
+  }
+  #canAdopt(child, map2 = adoptionMap) {
+    if (!child || typeof child !== "object" || child.type !== null || child.#parts.length !== 1 || this.type === null) {
+      return false;
+    }
+    const gc = child.#parts[0];
+    if (!gc || typeof gc !== "object" || gc.type === null) {
+      return false;
+    }
+    return this.#canAdoptType(gc.type, map2);
+  }
+  #canAdoptType(c, map2 = adoptionAnyMap) {
+    return !!map2.get(this.type)?.includes(c);
+  }
+  #adoptWithSpace(child, index) {
+    const gc = child.#parts[0];
+    const blank = new _a(null, gc, this.options);
+    blank.#parts.push("");
+    gc.push(blank);
+    this.#adopt(child, index);
+  }
+  #adopt(child, index) {
+    const gc = child.#parts[0];
+    this.#parts.splice(index, 1, ...gc.#parts);
+    for (const p of gc.#parts) {
+      if (typeof p === "object")
+        p.#parent = this;
+    }
+    this.#toString = void 0;
+  }
+  #canUsurpType(c) {
+    const m = usurpMap.get(this.type);
+    return !!m?.has(c);
+  }
+  #canUsurp(child) {
+    if (!child || typeof child !== "object" || child.type !== null || child.#parts.length !== 1 || this.type === null || this.#parts.length !== 1) {
+      return false;
+    }
+    const gc = child.#parts[0];
+    if (!gc || typeof gc !== "object" || gc.type === null) {
+      return false;
+    }
+    return this.#canUsurpType(gc.type);
+  }
+  #usurp(child) {
+    const m = usurpMap.get(this.type);
+    const gc = child.#parts[0];
+    const nt = m?.get(gc.type);
+    if (!nt)
+      return false;
+    this.#parts = gc.#parts;
+    for (const p of this.#parts) {
+      if (typeof p === "object") {
+        p.#parent = this;
+      }
+    }
+    this.type = nt;
+    this.#toString = void 0;
+    this.#emptyExt = false;
+  }
   static fromGlob(pattern, options = {}) {
-    const ast = new _AST(null, void 0, options);
-    _AST.#parseAST(pattern, ast, 0, options);
+    const ast = new _a(null, void 0, options);
+    _a.#parseAST(pattern, ast, 0, options, 0);
     return ast;
   }
   // returns the regular expression if there's magic, or the unescaped
@@ -36884,12 +37016,14 @@ var AST = class _AST {
   // or start or whatever) and prepend ^ or / at the Regexp construction.
   toRegExpSource(allowDot) {
     const dot = allowDot ?? !!this.#options.dot;
-    if (this.#root === this)
+    if (this.#root === this) {
+      this.#flatten();
       this.#fillNegs();
-    if (!this.type) {
+    }
+    if (!isExtglobAST(this)) {
       const noEmpty = this.isStart() && this.isEnd() && !this.#parts.some((s) => typeof s !== "string");
       const src = this.#parts.map((p) => {
-        const [re, _, hasMagic, uflag] = typeof p === "string" ? _AST.#parseGlob(p, this.#hasMagic, noEmpty) : p.toRegExpSource(allowDot);
+        const [re, _, hasMagic, uflag] = typeof p === "string" ? _a.#parseGlob(p, this.#hasMagic, noEmpty) : p.toRegExpSource(allowDot);
         this.#hasMagic = this.#hasMagic || hasMagic;
         this.#uflag = this.#uflag || uflag;
         return re;
@@ -36928,9 +37062,10 @@ var AST = class _AST {
     let body = this.#partsToRegExp(dot);
     if (this.isStart() && this.isEnd() && !body && this.type !== "!") {
       const s = this.toString();
-      this.#parts = [s];
-      this.type = null;
-      this.#hasMagic = void 0;
+      const me = this;
+      me.#parts = [s];
+      me.type = null;
+      me.#hasMagic = void 0;
       return [s, unescape(this.toString()), false, false];
     }
     let bodyDotAllowed = !repeated || allowDot || dot || !startNoDot ? "" : this.#partsToRegExp(true);
@@ -36956,6 +37091,38 @@ var AST = class _AST {
       this.#hasMagic = !!this.#hasMagic,
       this.#uflag
     ];
+  }
+  #flatten() {
+    if (!isExtglobAST(this)) {
+      for (const p of this.#parts) {
+        if (typeof p === "object") {
+          p.#flatten();
+        }
+      }
+    } else {
+      let iterations = 0;
+      let done = false;
+      do {
+        done = true;
+        for (let i = 0; i < this.#parts.length; i++) {
+          const c = this.#parts[i];
+          if (typeof c === "object") {
+            c.#flatten();
+            if (this.#canAdopt(c)) {
+              done = false;
+              this.#adopt(c, i);
+            } else if (this.#canAdoptWithSpace(c)) {
+              done = false;
+              this.#adoptWithSpace(c, i);
+            } else if (this.#canUsurp(c)) {
+              done = false;
+              this.#usurp(c);
+            }
+          }
+        }
+      } while (!done && ++iterations < 10);
+    }
+    this.#toString = void 0;
   }
   #partsToRegExp(dot) {
     return this.#parts.map((p) => {
@@ -37017,8 +37184,9 @@ var AST = class _AST {
     return [re, unescape(glob7), !!hasMagic, uflag];
   }
 };
+_a = AST;
 
-// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/escape.js
+// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/escape.js
 var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
@@ -37026,7 +37194,7 @@ var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) =
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.2/node_modules/minimatch/dist/esm/index.js
+// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/index.js
 var minimatch = (p, pattern, options = {}) => {
   assertValidPattern(pattern);
   if (!options.nocomment && pattern.charAt(0) === "#") {
@@ -37175,11 +37343,13 @@ var Minimatch = class {
   isWindows;
   platform;
   windowsNoMagicRoot;
+  maxGlobstarRecursion;
   regexp;
   constructor(pattern, options = {}) {
     assertValidPattern(pattern);
     options = options || {};
     this.options = options;
+    this.maxGlobstarRecursion = options.maxGlobstarRecursion ?? 200;
     this.pattern = pattern;
     this.platform = options.platform || defaultPlatform;
     this.isWindows = this.platform === "win32";
@@ -37516,7 +37686,8 @@ var Minimatch = class {
   // out of pattern, then that's fine, as long as all
   // the parts match.
   matchOne(file2, pattern, partial2 = false) {
-    const options = this.options;
+    let fileStartIndex = 0;
+    let patternStartIndex = 0;
     if (this.isWindows) {
       const fileDrive = typeof file2[0] === "string" && /^[a-z]:$/i.test(file2[0]);
       const fileUNC = !fileDrive && file2[0] === "" && file2[1] === "" && file2[2] === "?" && /^[a-z]:$/i.test(file2[3]);
@@ -37531,11 +37702,8 @@ var Minimatch = class {
         ];
         if (fd.toLowerCase() === pd.toLowerCase()) {
           pattern[pdi] = fd;
-          if (pdi > fdi) {
-            pattern = pattern.slice(pdi);
-          } else if (fdi > pdi) {
-            file2 = file2.slice(fdi);
-          }
+          patternStartIndex = pdi;
+          fileStartIndex = fdi;
         }
       }
     }
@@ -37543,49 +37711,119 @@ var Minimatch = class {
     if (optimizationLevel >= 2) {
       file2 = this.levelTwoFileOptimize(file2);
     }
-    this.debug("matchOne", this, { file: file2, pattern });
-    this.debug("matchOne", file2.length, pattern.length);
-    for (var fi = 0, pi = 0, fl = file2.length, pl = pattern.length; fi < fl && pi < pl; fi++, pi++) {
-      this.debug("matchOne loop");
-      var p = pattern[pi];
-      var f = file2[fi];
-      this.debug(pattern, p, f);
-      if (p === false) {
+    if (pattern.includes(GLOBSTAR)) {
+      return this.#matchGlobstar(file2, pattern, partial2, fileStartIndex, patternStartIndex);
+    }
+    return this.#matchOne(file2, pattern, partial2, fileStartIndex, patternStartIndex);
+  }
+  #matchGlobstar(file2, pattern, partial2, fileIndex, patternIndex) {
+    const firstgs = pattern.indexOf(GLOBSTAR, patternIndex);
+    const lastgs = pattern.lastIndexOf(GLOBSTAR);
+    const [head, body, tail] = [
+      pattern.slice(patternIndex, firstgs),
+      pattern.slice(firstgs + 1, lastgs),
+      pattern.slice(lastgs + 1)
+    ];
+    if (head.length) {
+      const fileHead = file2.slice(fileIndex, fileIndex + head.length);
+      if (!this.#matchOne(fileHead, head, partial2, 0, 0)) {
         return false;
       }
-      if (p === GLOBSTAR) {
-        this.debug("GLOBSTAR", [pattern, p, f]);
-        var fr = fi;
-        var pr = pi + 1;
-        if (pr === pl) {
-          this.debug("** at the end");
-          for (; fi < fl; fi++) {
-            if (file2[fi] === "." || file2[fi] === ".." || !options.dot && file2[fi].charAt(0) === ".")
-              return false;
-          }
-          return true;
+      fileIndex += head.length;
+      patternIndex += head.length;
+    }
+    let fileTailMatch = 0;
+    if (tail.length) {
+      if (tail.length + fileIndex > file2.length)
+        return false;
+      let tailStart = file2.length - tail.length;
+      if (this.#matchOne(file2, tail, partial2, tailStart, 0)) {
+        fileTailMatch = tail.length;
+      } else {
+        if (file2[file2.length - 1] !== "" || fileIndex + tail.length === file2.length) {
+          return false;
         }
-        while (fr < fl) {
-          var swallowee = file2[fr];
-          this.debug("\nglobstar while", file2, fr, pattern, pr, swallowee);
-          if (this.matchOne(file2.slice(fr), pattern.slice(pr), partial2)) {
-            this.debug("globstar found match!", fr, fl, swallowee);
-            return true;
-          } else {
-            if (swallowee === "." || swallowee === ".." || !options.dot && swallowee.charAt(0) === ".") {
-              this.debug("dot detected!", file2, fr, pattern, pr);
-              break;
-            }
-            this.debug("globstar swallow a segment, and continue");
-            fr++;
-          }
+        tailStart--;
+        if (!this.#matchOne(file2, tail, partial2, tailStart, 0)) {
+          return false;
         }
-        if (partial2) {
-          this.debug("\n>>> no match, partial?", file2, fr, pattern, pr);
-          if (fr === fl) {
-            return true;
-          }
+        fileTailMatch = tail.length + 1;
+      }
+    }
+    if (!body.length) {
+      let sawSome = !!fileTailMatch;
+      for (let i2 = fileIndex; i2 < file2.length - fileTailMatch; i2++) {
+        const f = String(file2[i2]);
+        sawSome = true;
+        if (f === "." || f === ".." || !this.options.dot && f.startsWith(".")) {
+          return false;
         }
+      }
+      return sawSome;
+    }
+    const bodySegments = [[[], 0]];
+    let currentBody = bodySegments[0];
+    let nonGsParts = 0;
+    const nonGsPartsSums = [0];
+    for (const b of body) {
+      if (b === GLOBSTAR) {
+        nonGsPartsSums.push(nonGsParts);
+        currentBody = [[], 0];
+        bodySegments.push(currentBody);
+      } else {
+        currentBody[0].push(b);
+        nonGsParts++;
+      }
+    }
+    let i = bodySegments.length - 1;
+    const fileLength = file2.length - fileTailMatch;
+    for (const b of bodySegments) {
+      b[1] = fileLength - (nonGsPartsSums[i--] + b[0].length);
+    }
+    return !!this.#matchGlobStarBodySections(file2, bodySegments, fileIndex, 0, partial2, 0, !!fileTailMatch);
+  }
+  // return false for "nope, not matching"
+  // return null for "not matching, cannot keep trying"
+  #matchGlobStarBodySections(file2, bodySegments, fileIndex, bodyIndex, partial2, globStarDepth, sawTail) {
+    const bs = bodySegments[bodyIndex];
+    if (!bs) {
+      for (let i = fileIndex; i < file2.length; i++) {
+        sawTail = true;
+        const f = file2[i];
+        if (f === "." || f === ".." || !this.options.dot && f.startsWith(".")) {
+          return false;
+        }
+      }
+      return sawTail;
+    }
+    const [body, after] = bs;
+    while (fileIndex <= after) {
+      const m = this.#matchOne(file2.slice(0, fileIndex + body.length), body, partial2, fileIndex, 0);
+      if (m && globStarDepth < this.maxGlobstarRecursion) {
+        const sub = this.#matchGlobStarBodySections(file2, bodySegments, fileIndex + body.length, bodyIndex + 1, partial2, globStarDepth + 1, sawTail);
+        if (sub !== false) {
+          return sub;
+        }
+      }
+      const f = file2[fileIndex];
+      if (f === "." || f === ".." || !this.options.dot && f.startsWith(".")) {
+        return false;
+      }
+      fileIndex++;
+    }
+    return null;
+  }
+  #matchOne(file2, pattern, partial2, fileIndex, patternIndex) {
+    let fi;
+    let pi;
+    let pl;
+    let fl;
+    for (fi = fileIndex, pi = patternIndex, fl = file2.length, pl = pattern.length; fi < fl && pi < pl; fi++, pi++) {
+      this.debug("matchOne loop");
+      let p = pattern[pi];
+      let f = file2[fi];
+      this.debug(pattern, p, f);
+      if (p === false || p === GLOBSTAR) {
         return false;
       }
       let hit;
@@ -48413,7 +48651,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-130797efc2a4a60c1127c9656b0892ddb045134f`;
+var localVersion = `0.0.0-767671bb3742b9a208824f4d333e8843b586a7f8`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49491,11 +49729,11 @@ function getDefaultBaseUrls() {
   };
 }
 function getBaseUrl(httpOptions, vertexai, vertexBaseUrlFromEnv, geminiBaseUrlFromEnv) {
-  var _a3, _b;
+  var _a4, _b;
   if (!(httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.baseUrl)) {
     const defaultBaseUrls = getDefaultBaseUrls();
     if (vertexai) {
-      return (_a3 = defaultBaseUrls.vertexUrl) !== null && _a3 !== void 0 ? _a3 : vertexBaseUrlFromEnv;
+      return (_a4 = defaultBaseUrls.vertexUrl) !== null && _a4 !== void 0 ? _a4 : vertexBaseUrlFromEnv;
     } else {
       return (_b = defaultBaseUrls.geminiUrl) !== null && _b !== void 0 ? _b : geminiBaseUrlFromEnv;
     }
@@ -50457,8 +50695,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get text() {
-    var _a3, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a3 = this.candidates) === null || _a3 === void 0 ? void 0 : _a3[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a4, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -50497,8 +50735,8 @@ var GenerateContentResponse = class {
    * a warning will be logged.
    */
   get data() {
-    var _a3, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a3 = this.candidates) === null || _a3 === void 0 ? void 0 : _a3[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a4, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -50567,8 +50805,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get functionCalls() {
-    var _a3, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a3 = this.candidates) === null || _a3 === void 0 ? void 0 : _a3[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a4, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -50604,8 +50842,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get executableCode() {
-    var _a3, _b, _c, _d, _e, _f, _g, _h, _j;
-    if (((_d = (_c = (_b = (_a3 = this.candidates) === null || _a3 === void 0 ? void 0 : _a3[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a4, _b, _c, _d, _e, _f, _g, _h, _j;
+    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -50640,8 +50878,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get codeExecutionResult() {
-    var _a3, _b, _c, _d, _e, _f, _g, _h, _j;
-    if (((_d = (_c = (_b = (_a3 = this.candidates) === null || _a3 === void 0 ? void 0 : _a3[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a4, _b, _c, _d, _e, _f, _g, _h, _j;
+    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -50738,11 +50976,11 @@ var LiveServerMessage = class {
    * parts will be returned, and a warning will be logged.
    */
   get text() {
-    var _a3, _b, _c;
+    var _a4, _b, _c;
     let text = "";
     let anyTextPartFound = false;
     const nonTextParts = [];
-    for (const part of (_c = (_b = (_a3 = this.serverContent) === null || _a3 === void 0 ? void 0 : _a3.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
+    for (const part of (_c = (_b = (_a4 = this.serverContent) === null || _a4 === void 0 ? void 0 : _a4.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
       for (const [fieldName, fieldValue] of Object.entries(part)) {
         if (fieldName !== "text" && fieldName !== "thought" && fieldValue !== null) {
           nonTextParts.push(fieldName);
@@ -50770,10 +51008,10 @@ var LiveServerMessage = class {
    * a warning will be logged.
    */
   get data() {
-    var _a3, _b, _c;
+    var _a4, _b, _c;
     let data = "";
     const nonDataParts = [];
-    for (const part of (_c = (_b = (_a3 = this.serverContent) === null || _a3 === void 0 ? void 0 : _a3.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
+    for (const part of (_c = (_b = (_a4 = this.serverContent) === null || _a4 === void 0 ? void 0 : _a4.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
       for (const [fieldName, fieldValue] of Object.entries(part)) {
         if (fieldName !== "inlineData" && fieldValue !== null) {
           nonDataParts.push(fieldName);
@@ -51170,7 +51408,7 @@ function isVideo(origin) {
   return origin !== null && origin !== void 0 && typeof origin === "object" && "uri" in origin;
 }
 function tFileName(fromName) {
-  var _a3;
+  var _a4;
   let name;
   if (_isFile(fromName)) {
     name = fromName.name;
@@ -51182,7 +51420,7 @@ function tFileName(fromName) {
     }
   }
   if (isGeneratedVideo(fromName)) {
-    name = (_a3 = fromName.video) === null || _a3 === void 0 ? void 0 : _a3.uri;
+    name = (_a4 = fromName.video) === null || _a4 === void 0 ? void 0 : _a4.uri;
     if (name === void 0) {
       return void 0;
     }
@@ -52599,7 +52837,7 @@ var Pager = class {
     this.init(name, response, params2);
   }
   init(name, response, params2) {
-    var _a3, _b;
+    var _a4, _b;
     this.nameInternal = name;
     this.pageInternal = response[this.nameInternal] || [];
     this.sdkHttpResponseInternal = response === null || response === void 0 ? void 0 : response.sdkHttpResponse;
@@ -52616,7 +52854,7 @@ var Pager = class {
       requestParams["config"]["pageToken"] = response["nextPageToken"];
     }
     this.paramsInternal = requestParams;
-    this.pageInternalSize = (_b = (_a3 = requestParams["config"]) === null || _a3 === void 0 ? void 0 : _a3["pageSize"]) !== null && _b !== void 0 ? _b : this.pageInternal.length;
+    this.pageInternalSize = (_b = (_a4 = requestParams["config"]) === null || _a4 === void 0 ? void 0 : _a4["pageSize"]) !== null && _b !== void 0 ? _b : this.pageInternal.length;
   }
   initNextPage(response) {
     this.init(this.nameInternal, response, this.paramsInternal);
@@ -52744,8 +52982,8 @@ var Pager = class {
    * Returns true if there are more pages to fetch from the API.
    */
   hasNextPage() {
-    var _a3;
-    if (((_a3 = this.params["config"]) === null || _a3 === void 0 ? void 0 : _a3["pageToken"]) !== void 0) {
+    var _a4;
+    if (((_a4 = this.params["config"]) === null || _a4 === void 0 ? void 0 : _a4["pageToken"]) !== void 0) {
       return true;
     }
     return false;
@@ -52855,7 +53093,7 @@ var Batches = class extends BaseModule2 {
    *
    */
   async createInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -52870,7 +53108,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -52909,7 +53147,7 @@ var Batches = class extends BaseModule2 {
    *
    */
   async createEmbeddingsInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -52926,7 +53164,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -52949,7 +53187,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -52964,7 +53202,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53007,7 +53245,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async cancel(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -53021,7 +53259,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     } else {
@@ -53041,7 +53279,7 @@ var Batches = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53056,7 +53294,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -53115,7 +53353,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53130,7 +53368,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -53864,7 +54102,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async create(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53879,7 +54117,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53920,7 +54158,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53935,7 +54173,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53976,7 +54214,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -53991,7 +54229,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -54053,7 +54291,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async update(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54068,7 +54306,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -54098,7 +54336,7 @@ var Caches = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54113,7 +54351,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -54255,11 +54493,11 @@ function __asyncValues(o) {
   }
 }
 function isValidResponse(response) {
-  var _a3;
+  var _a4;
   if (response.candidates == void 0 || response.candidates.length === 0) {
     return false;
   }
-  const content = (_a3 = response.candidates[0]) === null || _a3 === void 0 ? void 0 : _a3.content;
+  const content = (_a4 = response.candidates[0]) === null || _a4 === void 0 ? void 0 : _a4.content;
   if (content === void 0) {
     return false;
   }
@@ -54386,18 +54624,18 @@ var Chat = class {
    * ```
    */
   async sendMessage(params2) {
-    var _a3;
+    var _a4;
     await this.sendPromise;
     const inputContent = tContent(params2.message);
     const responsePromise = this.modelsModule.generateContent({
       model: this.model,
       contents: this.getHistory(true).concat(inputContent),
-      config: (_a3 = params2.config) !== null && _a3 !== void 0 ? _a3 : this.config
+      config: (_a4 = params2.config) !== null && _a4 !== void 0 ? _a4 : this.config
     });
     this.sendPromise = (async () => {
-      var _a4, _b, _c;
+      var _a5, _b, _c;
       const response = await responsePromise;
-      const outputContent = (_b = (_a4 = response.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content;
+      const outputContent = (_b = (_a5 = response.candidates) === null || _a5 === void 0 ? void 0 : _a5[0]) === null || _b === void 0 ? void 0 : _b.content;
       const fullAutomaticFunctionCallingHistory = response.automaticFunctionCallingHistory;
       const index = this.getHistory(true).length;
       let automaticFunctionCallingHistory = [];
@@ -54436,13 +54674,13 @@ var Chat = class {
    * ```
    */
   async sendMessageStream(params2) {
-    var _a3;
+    var _a4;
     await this.sendPromise;
     const inputContent = tContent(params2.message);
     const streamResponse = this.modelsModule.generateContentStream({
       model: this.model,
       contents: this.getHistory(true).concat(inputContent),
-      config: (_a3 = params2.config) !== null && _a3 !== void 0 ? _a3 : this.config
+      config: (_a4 = params2.config) !== null && _a4 !== void 0 ? _a4 : this.config
     });
     this.sendPromise = streamResponse.then(() => void 0).catch(() => void 0);
     const response = await streamResponse;
@@ -54478,11 +54716,11 @@ var Chat = class {
   }
   processStreamResponse(streamResponse, inputContent) {
     return __asyncGenerator(this, arguments, function* processStreamResponse_1() {
-      var _a3, e_1, _b, _c;
+      var _a4, e_1, _b, _c;
       var _d, _e;
       const outputContent = [];
       try {
-        for (var _f = true, streamResponse_1 = __asyncValues(streamResponse), streamResponse_1_1; streamResponse_1_1 = yield __await(streamResponse_1.next()), _a3 = streamResponse_1_1.done, !_a3; _f = true) {
+        for (var _f = true, streamResponse_1 = __asyncValues(streamResponse), streamResponse_1_1; streamResponse_1_1 = yield __await(streamResponse_1.next()), _a4 = streamResponse_1_1.done, !_a4; _f = true) {
           _c = streamResponse_1_1.value;
           _f = false;
           const chunk = _c;
@@ -54498,7 +54736,7 @@ var Chat = class {
         e_1 = { error: e_1_1 };
       } finally {
         try {
-          if (!_f && !_a3 && (_b = streamResponse_1.return))
+          if (!_f && !_a4 && (_b = streamResponse_1.return))
             yield __await(_b.call(streamResponse_1));
         } finally {
           if (e_1)
@@ -54741,7 +54979,7 @@ var Files = class extends BaseModule2 {
     return this.registerFilesInternal(params2);
   }
   async listInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54758,7 +54996,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -54778,7 +55016,7 @@ var Files = class extends BaseModule2 {
     }
   }
   async createInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54795,7 +55033,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -54824,7 +55062,7 @@ var Files = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54841,7 +55079,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -54865,7 +55103,7 @@ var Files = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54882,7 +55120,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -54902,7 +55140,7 @@ var Files = class extends BaseModule2 {
     }
   }
   async registerFilesInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -54919,7 +55157,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -59481,9 +59719,9 @@ var DEFAULT_RETRY_HTTP_STATUS_CODES = [
 ];
 var ApiClient = class {
   constructor(opts) {
-    var _a3, _b, _c;
+    var _a4, _b, _c;
     this.clientOptions = Object.assign({}, opts);
-    this.customBaseUrl = (_a3 = opts.httpOptions) === null || _a3 === void 0 ? void 0 : _a3.baseUrl;
+    this.customBaseUrl = (_a4 = opts.httpOptions) === null || _a4 === void 0 ? void 0 : _a4.baseUrl;
     if (this.clientOptions.vertexai) {
       if (this.clientOptions.project && this.clientOptions.location) {
         this.clientOptions.apiKey = void 0;
@@ -59529,8 +59767,8 @@ var ApiClient = class {
     }
   }
   isVertexAI() {
-    var _a3;
-    return (_a3 = this.clientOptions.vertexai) !== null && _a3 !== void 0 ? _a3 : false;
+    var _a4;
+    return (_a4 = this.clientOptions.vertexai) !== null && _a4 !== void 0 ? _a4 : false;
   }
   getProject() {
     return this.clientOptions.project;
@@ -59725,8 +59963,8 @@ var ApiClient = class {
   }
   processStreamResponse(response) {
     return __asyncGenerator(this, arguments, function* processStreamResponse_1() {
-      var _a3;
-      const reader = (_a3 = response === null || response === void 0 ? void 0 : response.body) === null || _a3 === void 0 ? void 0 : _a3.getReader();
+      var _a4;
+      const reader = (_a4 = response === null || response === void 0 ? void 0 : response.body) === null || _a4 === void 0 ? void 0 : _a4.getReader();
       const decoder = new TextDecoder("utf-8");
       if (!reader) {
         throw new Error("Response body is empty");
@@ -59805,7 +60043,7 @@ var ApiClient = class {
     });
   }
   async apiCall(url3, requestInit) {
-    var _a3;
+    var _a4;
     if (!this.clientOptions.httpOptions || !this.clientOptions.httpOptions.retryOptions) {
       return fetch(url3, requestInit);
     }
@@ -59822,7 +60060,7 @@ var ApiClient = class {
     };
     return (0, import_p_retry.default)(runFetch, {
       // Retry attempts is one less than the number of total attempts.
-      retries: ((_a3 = retryOptions.attempts) !== null && _a3 !== void 0 ? _a3 : DEFAULT_RETRY_ATTEMPTS) - 1
+      retries: ((_a4 = retryOptions.attempts) !== null && _a4 !== void 0 ? _a4 : DEFAULT_RETRY_ATTEMPTS) - 1
     });
   }
   getDefaultHeaders() {
@@ -59847,11 +60085,11 @@ var ApiClient = class {
     return headers;
   }
   getFileName(file2) {
-    var _a3;
+    var _a4;
     let fileName = "";
     if (typeof file2 === "string") {
       fileName = file2.replace(/[/\\]+$/, "");
-      fileName = (_a3 = fileName.split(/[/\\]/).pop()) !== null && _a3 !== void 0 ? _a3 : "";
+      fileName = (_a4 = fileName.split(/[/\\]/).pop()) !== null && _a4 !== void 0 ? _a4 : "";
     }
     return fileName;
   }
@@ -59867,7 +60105,7 @@ var ApiClient = class {
    * @throws An error if the `mimeType` is not provided and can not be inferred,
    */
   async uploadFile(file2, config2) {
-    var _a3;
+    var _a4;
     const fileToUpload = {};
     if (config2 != null) {
       fileToUpload.mimeType = config2.mimeType;
@@ -59880,7 +60118,7 @@ var ApiClient = class {
     const uploader = this.clientOptions.uploader;
     const fileStat = await uploader.stat(file2);
     fileToUpload.sizeBytes = String(fileStat.size);
-    const mimeType = (_a3 = config2 === null || config2 === void 0 ? void 0 : config2.mimeType) !== null && _a3 !== void 0 ? _a3 : fileStat.type;
+    const mimeType = (_a4 = config2 === null || config2 === void 0 ? void 0 : config2.mimeType) !== null && _a4 !== void 0 ? _a4 : fileStat.type;
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
@@ -59906,11 +60144,11 @@ var ApiClient = class {
    * @throws An error if the `mimeType` is not provided and can not be inferred,
    */
   async uploadFileToFileSearchStore(fileSearchStoreName, file2, config2) {
-    var _a3;
+    var _a4;
     const uploader = this.clientOptions.uploader;
     const fileStat = await uploader.stat(file2);
     const sizeBytes = String(fileStat.size);
-    const mimeType = (_a3 = config2 === null || config2 === void 0 ? void 0 : config2.mimeType) !== null && _a3 !== void 0 ? _a3 : fileStat.type;
+    const mimeType = (_a4 = config2 === null || config2 === void 0 ? void 0 : config2.mimeType) !== null && _a4 !== void 0 ? _a4 : fileStat.type;
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
@@ -59934,7 +60172,7 @@ var ApiClient = class {
     await downloader.download(params2, this);
   }
   async fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, configHttpOptions) {
-    var _a3;
+    var _a4;
     let httpOptions = {};
     if (configHttpOptions) {
       httpOptions = configHttpOptions;
@@ -59954,7 +60192,7 @@ var ApiClient = class {
     if (!httpResponse || !(httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers)) {
       throw new Error("Server did not return an HttpResponse or the returned HttpResponse did not have headers.");
     }
-    const uploadUrl = (_a3 = httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers) === null || _a3 === void 0 ? void 0 : _a3["x-goog-upload-url"];
+    const uploadUrl = (_a4 = httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers) === null || _a4 === void 0 ? void 0 : _a4["x-goog-upload-url"];
     if (uploadUrl === void 0) {
       throw new Error("Failed to get upload url. Server did not return the x-google-upload-url in the headers");
     }
@@ -59962,14 +60200,14 @@ var ApiClient = class {
   }
 };
 async function throwErrorIfNotOK(response) {
-  var _a3;
+  var _a4;
   if (response === void 0) {
     throw new Error("response is undefined");
   }
   if (!response.ok) {
     const status = response.status;
     let errorBody;
-    if ((_a3 = response.headers.get("content-type")) === null || _a3 === void 0 ? void 0 : _a3.includes("application/json")) {
+    if ((_a4 = response.headers.get("content-type")) === null || _a4 === void 0 ? void 0 : _a4.includes("application/json")) {
       errorBody = await response.json();
     } else {
       errorBody = {
@@ -60049,8 +60287,8 @@ function hasMcpToolUsage(tools) {
   return hasMcpToolUsageFromMcpToTool;
 }
 function setMcpUsageHeader(headers) {
-  var _a3;
-  const existingHeader = (_a3 = headers[GOOGLE_API_CLIENT_HEADER]) !== null && _a3 !== void 0 ? _a3 : "";
+  var _a4;
+  const existingHeader = (_a4 = headers[GOOGLE_API_CLIENT_HEADER]) !== null && _a4 !== void 0 ? _a4 : "";
   headers[GOOGLE_API_CLIENT_HEADER] = (existingHeader + ` ${MCP_LABEL}`).trimStart();
 }
 function isMcpCallableTool(object2) {
@@ -60094,7 +60332,7 @@ var McpCallableTool = class _McpCallableTool {
    *     names.
    */
   async initialize() {
-    var _a3, e_1, _b, _c;
+    var _a4, e_1, _b, _c;
     if (this.mcpTools.length > 0) {
       return;
     }
@@ -60102,7 +60340,7 @@ var McpCallableTool = class _McpCallableTool {
     const mcpTools = [];
     for (const mcpClient of this.mcpClients) {
       try {
-        for (var _d = true, _e = (e_1 = void 0, __asyncValues(listAllTools(mcpClient))), _f; _f = await _e.next(), _a3 = _f.done, !_a3; _d = true) {
+        for (var _d = true, _e = (e_1 = void 0, __asyncValues(listAllTools(mcpClient))), _f; _f = await _e.next(), _a4 = _f.done, !_a4; _d = true) {
           _c = _f.value;
           _d = false;
           const mcpTool = _c;
@@ -60117,7 +60355,7 @@ var McpCallableTool = class _McpCallableTool {
         e_1 = { error: e_1_1 };
       } finally {
         try {
-          if (!_d && !_a3 && (_b = _e.return))
+          if (!_d && !_a4 && (_b = _e.return))
             await _b.call(_e);
         } finally {
           if (e_1)
@@ -60213,7 +60451,7 @@ var LiveMusic = class {
        ```
       */
   async connect(params2) {
-    var _a3, _b;
+    var _a4, _b;
     if (this.apiClient.isVertexAI()) {
       throw new Error("Live music is not supported for Vertex AI.");
     }
@@ -60238,7 +60476,7 @@ var LiveMusic = class {
       onmessage: (event) => {
         void handleWebSocketMessage$1(apiClient, callbacks.onmessage, event);
       },
-      onerror: (_a3 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a3 !== void 0 ? _a3 : function(e) {
+      onerror: (_a4 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a4 !== void 0 ? _a4 : function(e) {
       },
       onclose: (_b = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onclose) !== null && _b !== void 0 ? _b : function(e) {
       }
@@ -60427,7 +60665,7 @@ var Live = class {
        ```
       */
   async connect(params2) {
-    var _a3, _b, _c, _d, _e, _f;
+    var _a4, _b, _c, _d, _e, _f;
     if (params2.config && params2.config.httpOptions) {
       throw new Error("The Live module does not support httpOptions at request-level in LiveConnectConfig yet. Please use the client-level httpOptions configuration instead.");
     }
@@ -60471,8 +60709,8 @@ var Live = class {
     });
     const callbacks = params2.callbacks;
     const onopenAwaitedCallback = function() {
-      var _a4;
-      (_a4 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onopen) === null || _a4 === void 0 ? void 0 : _a4.call(callbacks);
+      var _a5;
+      (_a5 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onopen) === null || _a5 === void 0 ? void 0 : _a5.call(callbacks);
       onopenResolve({});
     };
     const apiClient = this.apiClient;
@@ -60481,7 +60719,7 @@ var Live = class {
       onmessage: (event) => {
         void handleWebSocketMessage(apiClient, callbacks.onmessage, event);
       },
-      onerror: (_a3 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a3 !== void 0 ? _a3 : function(e) {
+      onerror: (_a4 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a4 !== void 0 ? _a4 : function(e) {
       },
       onclose: (_b = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onclose) !== null && _b !== void 0 ? _b : function(e) {
       }
@@ -60556,7 +60794,7 @@ var Session = class {
         if (!apiClient.isVertexAI()) {
           contents = contents.map((item) => contentToMldev$1(item));
         }
-      } catch (_a3) {
+      } catch (_a4) {
         throw new Error(`Failed to parse client content "turns", type: '${typeof params2.turns}'`);
       }
       return {
@@ -60746,8 +60984,8 @@ function mapToHeaders(map2) {
 }
 var DEFAULT_MAX_REMOTE_CALLS = 10;
 function shouldDisableAfc(config2) {
-  var _a3, _b, _c;
-  if ((_a3 = config2 === null || config2 === void 0 ? void 0 : config2.automaticFunctionCalling) === null || _a3 === void 0 ? void 0 : _a3.disable) {
+  var _a4, _b, _c;
+  if ((_a4 = config2 === null || config2 === void 0 ? void 0 : config2.automaticFunctionCalling) === null || _a4 === void 0 ? void 0 : _a4.disable) {
     return true;
   }
   let callableToolsPresent = false;
@@ -60771,13 +61009,13 @@ function isCallableTool(tool) {
   return "callTool" in tool && typeof tool.callTool === "function";
 }
 function hasCallableTools(params2) {
-  var _a3, _b, _c;
-  return (_c = (_b = (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.tools) === null || _b === void 0 ? void 0 : _b.some((tool) => isCallableTool(tool))) !== null && _c !== void 0 ? _c : false;
+  var _a4, _b, _c;
+  return (_c = (_b = (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.tools) === null || _b === void 0 ? void 0 : _b.some((tool) => isCallableTool(tool))) !== null && _c !== void 0 ? _c : false;
 }
 function findAfcIncompatibleToolIndexes(params2) {
-  var _a3;
+  var _a4;
   const afcIncompatibleToolIndexes = [];
-  if (!((_a3 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a3 === void 0 ? void 0 : _a3.tools)) {
+  if (!((_a4 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a4 === void 0 ? void 0 : _a4.tools)) {
     return afcIncompatibleToolIndexes;
   }
   params2.config.tools.forEach((tool, index) => {
@@ -60792,8 +61030,8 @@ function findAfcIncompatibleToolIndexes(params2) {
   return afcIncompatibleToolIndexes;
 }
 function shouldAppendAfcHistory(config2) {
-  var _a3;
-  return !((_a3 = config2 === null || config2 === void 0 ? void 0 : config2.automaticFunctionCalling) === null || _a3 === void 0 ? void 0 : _a3.ignoreCallHistory);
+  var _a4;
+  return !((_a4 = config2 === null || config2 === void 0 ? void 0 : config2.automaticFunctionCalling) === null || _a4 === void 0 ? void 0 : _a4.ignoreCallHistory);
 }
 var Models = class extends BaseModule2 {
   constructor(apiClient) {
@@ -60817,7 +61055,7 @@ var Models = class extends BaseModule2 {
       }
     };
     this.generateContent = async (params2) => {
-      var _a3, _b, _c, _d, _e;
+      var _a4, _b, _c, _d, _e;
       const transformedParams = await this.processParamsMaybeAddMcpUsage(params2);
       this.maybeMoveToResponseJsonSchem(params2);
       if (!hasCallableTools(params2) || shouldDisableAfc(params2.config)) {
@@ -60831,7 +61069,7 @@ var Models = class extends BaseModule2 {
       let response;
       let functionResponseContent;
       const automaticFunctionCallingHistory = tContents(transformedParams.contents);
-      const maxRemoteCalls = (_c = (_b = (_a3 = transformedParams.config) === null || _a3 === void 0 ? void 0 : _a3.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
+      const maxRemoteCalls = (_c = (_b = (_a4 = transformedParams.config) === null || _a4 === void 0 ? void 0 : _a4.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
       let remoteCalls = 0;
       while (remoteCalls < maxRemoteCalls) {
         response = await this.generateContentInternal(transformedParams);
@@ -60866,7 +61104,7 @@ var Models = class extends BaseModule2 {
       return response;
     };
     this.generateContentStream = async (params2) => {
-      var _a3, _b, _c, _d, _e;
+      var _a4, _b, _c, _d, _e;
       this.maybeMoveToResponseJsonSchem(params2);
       if (shouldDisableAfc(params2.config)) {
         const transformedParams = await this.processParamsMaybeAddMcpUsage(params2);
@@ -60877,7 +61115,7 @@ var Models = class extends BaseModule2 {
         const formattedIndexes = incompatibleToolIndexes.map((index) => `tools[${index}]`).join(", ");
         throw new Error(`Incompatible tools found at ${formattedIndexes}. Automatic function calling with CallableTools (or MCP objects) and basic FunctionDeclarations" is not yet supported.`);
       }
-      const streamFunctionCall = (_c = (_b = (_a3 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a3 === void 0 ? void 0 : _a3.toolConfig) === null || _b === void 0 ? void 0 : _b.functionCallingConfig) === null || _c === void 0 ? void 0 : _c.streamFunctionCallArguments;
+      const streamFunctionCall = (_c = (_b = (_a4 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a4 === void 0 ? void 0 : _a4.toolConfig) === null || _b === void 0 ? void 0 : _b.functionCallingConfig) === null || _c === void 0 ? void 0 : _c.streamFunctionCallArguments;
       const disableAfc = (_e = (_d = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _d === void 0 ? void 0 : _d.automaticFunctionCalling) === null || _e === void 0 ? void 0 : _e.disable;
       if (streamFunctionCall && !disableAfc) {
         throw new Error("Running in streaming mode with 'streamFunctionCallArguments' enabled, this feature is not compatible with automatic function calling (AFC). Please set 'config.automaticFunctionCalling.disable' to true to disable AFC or leave 'config.toolConfig.functionCallingConfig.streamFunctionCallArguments' to be undefined or set to false to disable streaming function call arguments feature.");
@@ -60886,12 +61124,12 @@ var Models = class extends BaseModule2 {
     };
     this.generateImages = async (params2) => {
       return await this.generateImagesInternal(params2).then((apiResponse) => {
-        var _a3;
+        var _a4;
         let positivePromptSafetyAttributes;
         const generatedImages = [];
         if (apiResponse === null || apiResponse === void 0 ? void 0 : apiResponse.generatedImages) {
           for (const generatedImage of apiResponse.generatedImages) {
-            if (generatedImage && (generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) && ((_a3 = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) === null || _a3 === void 0 ? void 0 : _a3.contentType) === "Positive Prompt") {
+            if (generatedImage && (generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) && ((_a4 = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) === null || _a4 === void 0 ? void 0 : _a4.contentType) === "Positive Prompt") {
               positivePromptSafetyAttributes = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes;
             } else {
               generatedImages.push(generatedImage);
@@ -60915,7 +61153,7 @@ var Models = class extends BaseModule2 {
       });
     };
     this.list = async (params2) => {
-      var _a3;
+      var _a4;
       const defaultConfig2 = {
         queryBase: true
       };
@@ -60925,7 +61163,7 @@ var Models = class extends BaseModule2 {
       };
       if (this.apiClient.isVertexAI()) {
         if (!actualParams.config.queryBase) {
-          if ((_a3 = actualParams.config) === null || _a3 === void 0 ? void 0 : _a3.filter) {
+          if ((_a4 = actualParams.config) === null || _a4 === void 0 ? void 0 : _a4.filter) {
             throw new Error("Filtering tuned models list for Vertex AI is not currently supported");
           } else {
             actualParams.config.filter = "labels.tune-type:*";
@@ -60965,12 +61203,12 @@ var Models = class extends BaseModule2 {
       return await this.upscaleImageInternal(apiParams);
     };
     this.generateVideos = async (params2) => {
-      var _a3, _b, _c, _d, _e, _f;
+      var _a4, _b, _c, _d, _e, _f;
       if ((params2.prompt || params2.image || params2.video) && params2.source) {
         throw new Error("Source and prompt/image/video are mutually exclusive. Please only use source.");
       }
       if (!this.apiClient.isVertexAI()) {
-        if (((_a3 = params2.video) === null || _a3 === void 0 ? void 0 : _a3.uri) && ((_b = params2.video) === null || _b === void 0 ? void 0 : _b.videoBytes)) {
+        if (((_a4 = params2.video) === null || _a4 === void 0 ? void 0 : _a4.uri) && ((_b = params2.video) === null || _b === void 0 ? void 0 : _b.videoBytes)) {
           params2.video = {
             uri: params2.video.uri,
             mimeType: params2.video.mimeType
@@ -61010,8 +61248,8 @@ var Models = class extends BaseModule2 {
    * MCP tools in the parameters.
    */
   async processParamsMaybeAddMcpUsage(params2) {
-    var _a3, _b, _c;
-    const tools = (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.tools;
+    var _a4, _b, _c;
+    const tools = (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.tools;
     if (!tools) {
       return params2;
     }
@@ -61040,9 +61278,9 @@ var Models = class extends BaseModule2 {
     return newParams;
   }
   async initAfcToolsMap(params2) {
-    var _a3, _b, _c;
+    var _a4, _b, _c;
     const afcTools = /* @__PURE__ */ new Map();
-    for (const tool of (_b = (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.tools) !== null && _b !== void 0 ? _b : []) {
+    for (const tool of (_b = (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.tools) !== null && _b !== void 0 ? _b : []) {
       if (isCallableTool(tool)) {
         const callableTool = tool;
         const toolDeclaration = await callableTool.tool();
@@ -61060,14 +61298,14 @@ var Models = class extends BaseModule2 {
     return afcTools;
   }
   async processAfcStream(params2) {
-    var _a3, _b, _c;
-    const maxRemoteCalls = (_c = (_b = (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
+    var _a4, _b, _c;
+    const maxRemoteCalls = (_c = (_b = (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
     let wereFunctionsCalled = false;
     let remoteCallCount = 0;
     const afcToolsMap = await this.initAfcToolsMap(params2);
     return function(models, afcTools, params3) {
       return __asyncGenerator(this, arguments, function* () {
-        var _a4, e_1, _b2, _c2;
+        var _a5, e_1, _b2, _c2;
         var _d, _e;
         while (remoteCallCount < maxRemoteCalls) {
           if (wereFunctionsCalled) {
@@ -61079,7 +61317,7 @@ var Models = class extends BaseModule2 {
           const functionResponses = [];
           const responseContents = [];
           try {
-            for (var _f = true, response_1 = (e_1 = void 0, __asyncValues(response)), response_1_1; response_1_1 = yield __await(response_1.next()), _a4 = response_1_1.done, !_a4; _f = true) {
+            for (var _f = true, response_1 = (e_1 = void 0, __asyncValues(response)), response_1_1; response_1_1 = yield __await(response_1.next()), _a5 = response_1_1.done, !_a5; _f = true) {
               _c2 = response_1_1.value;
               _f = false;
               const chunk = _c2;
@@ -61105,7 +61343,7 @@ var Models = class extends BaseModule2 {
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (!_f && !_a4 && (_b2 = response_1.return))
+              if (!_f && !_a5 && (_b2 = response_1.return))
                 yield __await(_b2.call(response_1));
             } finally {
               if (e_1)
@@ -61140,7 +61378,7 @@ var Models = class extends BaseModule2 {
     }(this, afcToolsMap, params2);
   }
   async generateContentInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61155,7 +61393,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61203,7 +61441,7 @@ var Models = class extends BaseModule2 {
     }
   }
   async generateContentStreamInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61219,14 +61457,14 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
       return response.then(function(apiResponse) {
         return __asyncGenerator(this, arguments, function* () {
-          var _a4, e_2, _b2, _c2;
+          var _a5, e_2, _b2, _c2;
           try {
-            for (var _d2 = true, apiResponse_1 = __asyncValues(apiResponse), apiResponse_1_1; apiResponse_1_1 = yield __await(apiResponse_1.next()), _a4 = apiResponse_1_1.done, !_a4; _d2 = true) {
+            for (var _d2 = true, apiResponse_1 = __asyncValues(apiResponse), apiResponse_1_1; apiResponse_1_1 = yield __await(apiResponse_1.next()), _a5 = apiResponse_1_1.done, !_a5; _d2 = true) {
               _c2 = apiResponse_1_1.value;
               _d2 = false;
               const chunk = _c2;
@@ -61242,7 +61480,7 @@ var Models = class extends BaseModule2 {
             e_2 = { error: e_2_1 };
           } finally {
             try {
-              if (!_d2 && !_a4 && (_b2 = apiResponse_1.return))
+              if (!_d2 && !_a5 && (_b2 = apiResponse_1.return))
                 yield __await(_b2.call(apiResponse_1));
             } finally {
               if (e_2)
@@ -61268,9 +61506,9 @@ var Models = class extends BaseModule2 {
       });
       return response.then(function(apiResponse) {
         return __asyncGenerator(this, arguments, function* () {
-          var _a4, e_3, _b2, _c2;
+          var _a5, e_3, _b2, _c2;
           try {
-            for (var _d2 = true, apiResponse_2 = __asyncValues(apiResponse), apiResponse_2_1; apiResponse_2_1 = yield __await(apiResponse_2.next()), _a4 = apiResponse_2_1.done, !_a4; _d2 = true) {
+            for (var _d2 = true, apiResponse_2 = __asyncValues(apiResponse), apiResponse_2_1; apiResponse_2_1 = yield __await(apiResponse_2.next()), _a5 = apiResponse_2_1.done, !_a5; _d2 = true) {
               _c2 = apiResponse_2_1.value;
               _d2 = false;
               const chunk = _c2;
@@ -61286,7 +61524,7 @@ var Models = class extends BaseModule2 {
             e_3 = { error: e_3_1 };
           } finally {
             try {
-              if (!_d2 && !_a4 && (_b2 = apiResponse_2.return))
+              if (!_d2 && !_a5 && (_b2 = apiResponse_2.return))
                 yield __await(_b2.call(apiResponse_2));
             } finally {
               if (e_3)
@@ -61319,7 +61557,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async embedContentInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61335,7 +61573,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61386,7 +61624,7 @@ var Models = class extends BaseModule2 {
    * Private method for generating images.
    */
   async generateImagesInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61401,7 +61639,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61452,7 +61690,7 @@ var Models = class extends BaseModule2 {
    * Private method for editing an image.
    */
   async editImageInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61467,7 +61705,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61492,7 +61730,7 @@ var Models = class extends BaseModule2 {
    * Private method for upscaling an image.
    */
   async upscaleImageInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61507,7 +61745,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61567,7 +61805,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async recontextImage(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61582,7 +61820,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -61618,7 +61856,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async segmentImage(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61633,7 +61871,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -61657,7 +61895,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61672,7 +61910,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -61704,7 +61942,7 @@ var Models = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61719,7 +61957,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61784,7 +62022,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async update(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61799,7 +62037,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -61842,7 +62080,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61857,7 +62095,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -61921,7 +62159,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async countTokens(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -61936,7 +62174,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62002,7 +62240,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async computeTokens(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62017,7 +62255,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62042,7 +62280,7 @@ var Models = class extends BaseModule2 {
    * Private method for generating videos.
    */
   async generateVideosInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62057,7 +62295,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -62175,7 +62413,7 @@ var Operations = class extends BaseModule2 {
     }
   }
   async getVideosOperationInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62190,7 +62428,7 @@ var Operations = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -62216,7 +62454,7 @@ var Operations = class extends BaseModule2 {
     }
   }
   async fetchPredictVideosOperationInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62231,7 +62469,7 @@ var Operations = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -62797,7 +63035,7 @@ var Tokens = class extends BaseModule2 {
    * ```
    */
   async create(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62816,7 +63054,7 @@ var Tokens = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(transformedBody),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -62920,7 +63158,7 @@ var Documents = class extends BaseModule2 {
    * @return Document.
    */
   async get(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62937,7 +63175,7 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -62953,7 +63191,7 @@ var Documents = class extends BaseModule2 {
    * @param params - The parameters for deleting a document.
    */
   async delete(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -62969,13 +63207,13 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     }
   }
   async listInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -62992,7 +63230,7 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63064,7 +63302,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return FileSearchStore.
    */
   async create(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63081,7 +63319,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63098,7 +63336,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return FileSearchStore.
    */
   async get(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63115,7 +63353,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63131,7 +63369,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @param params - The parameters for deleting a File Search Store.
    */
   async delete(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -63147,13 +63385,13 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     }
   }
   async listInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63170,7 +63408,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63184,7 +63422,7 @@ var FileSearchStores = class extends BaseModule2 {
     }
   }
   async uploadToFileSearchStoreInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63201,7 +63439,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63223,7 +63461,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return ImportFileOperation.
    */
   async importFile(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -63240,7 +63478,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63285,7 +63523,7 @@ var castToError = (err) => {
           error48.name = err.name;
         return error48;
       }
-    } catch (_a3) {
+    } catch (_a4) {
     }
     try {
       return new Error(JSON.stringify(err));
@@ -63430,7 +63668,7 @@ function getDetectedPlatform() {
   return "unknown";
 }
 var getPlatformProperties = () => {
-  var _a3, _b, _c, _d, _e;
+  var _a4, _b, _c, _d, _e;
   const detectedPlatform = getDetectedPlatform();
   if (detectedPlatform === "deno") {
     return {
@@ -63439,7 +63677,7 @@ var getPlatformProperties = () => {
       "X-Stainless-OS": normalizePlatform(Deno.build.os),
       "X-Stainless-Arch": normalizeArch(Deno.build.arch),
       "X-Stainless-Runtime": "deno",
-      "X-Stainless-Runtime-Version": typeof Deno.version === "string" ? Deno.version : (_b = (_a3 = Deno.version) === null || _a3 === void 0 ? void 0 : _a3.deno) !== null && _b !== void 0 ? _b : "unknown"
+      "X-Stainless-Runtime-Version": typeof Deno.version === "string" ? Deno.version : (_b = (_a4 = Deno.version) === null || _a4 === void 0 ? void 0 : _a4.deno) !== null && _b !== void 0 ? _b : "unknown"
     };
   }
   if (typeof EdgeRuntime !== "undefined") {
@@ -63569,8 +63807,8 @@ function ReadableStreamFrom(iterable) {
       }
     },
     async cancel() {
-      var _a3;
-      await ((_a3 = iter.return) === null || _a3 === void 0 ? void 0 : _a3.call(iter));
+      var _a4;
+      await ((_a4 = iter.return) === null || _a4 === void 0 ? void 0 : _a4.call(iter));
     }
   });
 }
@@ -63602,11 +63840,11 @@ function ReadableStreamToAsyncIterable(stream) {
   };
 }
 async function CancelReadableStream(stream) {
-  var _a3, _b;
+  var _a4, _b;
   if (stream === null || typeof stream !== "object")
     return;
   if (stream[Symbol.asyncIterator]) {
-    await ((_b = (_a3 = stream[Symbol.asyncIterator]()).return) === null || _b === void 0 ? void 0 : _b.call(_a3));
+    await ((_b = (_a4 = stream[Symbol.asyncIterator]()).return) === null || _b === void 0 ? void 0 : _b.call(_a4));
     return;
   }
   const reader = stream.getReader();
@@ -63623,10 +63861,10 @@ var FallbackEncoder = ({ headers, body }) => {
   };
 };
 var checkFileSupport = () => {
-  var _a3;
+  var _a4;
   if (typeof File === "undefined") {
     const { process: process5 } = globalThis;
-    const isOldNode = typeof ((_a3 = process5 === null || process5 === void 0 ? void 0 : process5.versions) === null || _a3 === void 0 ? void 0 : _a3.node) === "string" && parseInt(process5.versions.node.split(".")) < 20;
+    const isOldNode = typeof ((_a4 = process5 === null || process5 === void 0 ? void 0 : process5.versions) === null || _a4 === void 0 ? void 0 : _a4.node) === "string" && parseInt(process5.versions.node.split(".")) < 20;
     throw new Error("`File` is not defined as a global, which is required for file uploads." + (isOldNode ? " Update to Node 20 LTS or newer, or set `globalThis.File` to `import('node:buffer').File`." : ""));
   }
 };
@@ -63666,7 +63904,7 @@ async function toFile(value, name, options) {
   return makeFile(parts, name, options);
 }
 async function getBytes(value) {
-  var _a3, e_1, _b, _c;
+  var _a4, e_1, _b, _c;
   var _d;
   let parts = [];
   if (typeof value === "string" || ArrayBuffer.isView(value) || // includes Uint8Array, Buffer, etc.
@@ -63676,7 +63914,7 @@ async function getBytes(value) {
     parts.push(value instanceof Blob ? value : await value.arrayBuffer());
   } else if (isAsyncIterable(value)) {
     try {
-      for (var _e = true, value_1 = __asyncValues(value), value_1_1; value_1_1 = await value_1.next(), _a3 = value_1_1.done, !_a3; _e = true) {
+      for (var _e = true, value_1 = __asyncValues(value), value_1_1; value_1_1 = await value_1.next(), _a4 = value_1_1.done, !_a4; _e = true) {
         _c = value_1_1.value;
         _e = false;
         const chunk = _c;
@@ -63686,7 +63924,7 @@ async function getBytes(value) {
       e_1 = { error: e_1_1 };
     } finally {
       try {
-        if (!_e && !_a3 && (_b = value_1.return))
+        if (!_e && !_a4 && (_b = value_1.return))
           await _b.call(value_1);
       } finally {
         if (e_1)
@@ -63721,14 +63959,14 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(stat
   let postPath = false;
   const invalidSegments = [];
   const path10 = statics.reduce((previousValue, currentValue, index) => {
-    var _a3, _b, _c;
+    var _a4, _b, _c;
     if (/[?#]/.test(currentValue)) {
       postPath = true;
     }
     const value = params2[index];
     let encoded = (postPath ? encodeURIComponent : pathEncoder)("" + value);
     if (index !== params2.length && (value == null || typeof value === "object" && // handle values from other realms
-    value.toString === ((_c = Object.getPrototypeOf((_b = Object.getPrototypeOf((_a3 = value.hasOwnProperty) !== null && _a3 !== void 0 ? _a3 : EMPTY)) !== null && _b !== void 0 ? _b : EMPTY)) === null || _c === void 0 ? void 0 : _c.toString))) {
+    value.toString === ((_c = Object.getPrototypeOf((_b = Object.getPrototypeOf((_a4 = value.hasOwnProperty) !== null && _a4 !== void 0 ? _a4 : EMPTY)) !== null && _b !== void 0 ? _b : EMPTY)) === null || _c === void 0 ? void 0 : _c.toString))) {
       encoded = value + "";
       invalidSegments.push({
         start: previousValue.length + currentValue.length,
@@ -63767,7 +64005,7 @@ ${underline2}`);
 var path8 = createPathTagFunction(encodeURIPath);
 var BaseInteractions = class extends APIResource {
   create(params2, options) {
-    var _a3;
+    var _a4;
     const { api_version = this._client.apiVersion } = params2, body = __rest(params2, ["api_version"]);
     if ("model" in body && "agent_config" in body) {
       throw new GeminiNextGenAPIClientError(`Invalid request: specified \`model\` and \`agent_config\`. If specifying \`model\`, use \`generation_config\`.`);
@@ -63775,7 +64013,7 @@ var BaseInteractions = class extends APIResource {
     if ("agent" in body && "generation_config" in body) {
       throw new GeminiNextGenAPIClientError(`Invalid request: specified \`agent\` and \`generation_config\`. If specifying \`agent\`, use \`agent_config\`.`);
     }
-    return this._client.post(path8`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a3 = params2.stream) !== null && _a3 !== void 0 ? _a3 : false }));
+    return this._client.post(path8`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a4 = params2.stream) !== null && _a4 !== void 0 ? _a4 : false }));
   }
   /**
    * Deletes the interaction by id.
@@ -63806,9 +64044,9 @@ var BaseInteractions = class extends APIResource {
     return this._client.post(path8`/${api_version}/interactions/${id}/cancel`, options);
   }
   get(id, params2 = {}, options) {
-    var _a3;
+    var _a4;
     const _b = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _b, query = __rest(_b, ["api_version"]);
-    return this._client.get(path8`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a3 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a3 !== void 0 ? _a3 : false }));
+    return this._client.get(path8`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a4 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a4 !== void 0 ? _a4 : false }));
   }
 };
 BaseInteractions._key = Object.freeze(["interactions"]);
@@ -63941,9 +64179,9 @@ var noopLogger = {
 };
 var cachedLoggers = /* @__PURE__ */ new WeakMap();
 function loggerFor(client) {
-  var _a3;
+  var _a4;
   const logger = client.logger;
-  const logLevel = (_a3 = client.logLevel) !== null && _a3 !== void 0 ? _a3 : "off";
+  const logLevel = (_a4 = client.logLevel) !== null && _a4 !== void 0 ? _a4 : "off";
   if (!logger) {
     return noopLogger;
   }
@@ -63990,7 +64228,7 @@ var Stream = class _Stream {
     const logger = client ? loggerFor(client) : console;
     function iterator() {
       return __asyncGenerator(this, arguments, function* iterator_1() {
-        var _a3, e_1, _b, _c;
+        var _a4, e_1, _b, _c;
         if (consumed) {
           throw new GeminiNextGenAPIClientError("Cannot iterate over a consumed stream, use `.tee()` to split the stream.");
         }
@@ -63998,7 +64236,7 @@ var Stream = class _Stream {
         let done = false;
         try {
           try {
-            for (var _d = true, _e = __asyncValues(_iterSSEMessages(response, controller)), _f; _f = yield __await(_e.next()), _a3 = _f.done, !_a3; _d = true) {
+            for (var _d = true, _e = __asyncValues(_iterSSEMessages(response, controller)), _f; _f = yield __await(_e.next()), _a4 = _f.done, !_a4; _d = true) {
               _c = _f.value;
               _d = false;
               const sse = _c;
@@ -64021,7 +64259,7 @@ var Stream = class _Stream {
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (!_d && !_a3 && (_b = _e.return))
+              if (!_d && !_a4 && (_b = _e.return))
                 yield __await(_b.call(_e));
             } finally {
               if (e_1)
@@ -64049,11 +64287,11 @@ var Stream = class _Stream {
     let consumed = false;
     function iterLines() {
       return __asyncGenerator(this, arguments, function* iterLines_1() {
-        var _a3, e_2, _b, _c;
+        var _a4, e_2, _b, _c;
         const lineDecoder = new LineDecoder();
         const iter = ReadableStreamToAsyncIterable(readableStream);
         try {
-          for (var _d = true, iter_1 = __asyncValues(iter), iter_1_1; iter_1_1 = yield __await(iter_1.next()), _a3 = iter_1_1.done, !_a3; _d = true) {
+          for (var _d = true, iter_1 = __asyncValues(iter), iter_1_1; iter_1_1 = yield __await(iter_1.next()), _a4 = iter_1_1.done, !_a4; _d = true) {
             _c = iter_1_1.value;
             _d = false;
             const chunk = _c;
@@ -64065,7 +64303,7 @@ var Stream = class _Stream {
           e_2 = { error: e_2_1 };
         } finally {
           try {
-            if (!_d && !_a3 && (_b = iter_1.return))
+            if (!_d && !_a4 && (_b = iter_1.return))
               yield __await(_b.call(iter_1));
           } finally {
             if (e_2)
@@ -64079,7 +64317,7 @@ var Stream = class _Stream {
     }
     function iterator() {
       return __asyncGenerator(this, arguments, function* iterator_2() {
-        var _a3, e_3, _b, _c;
+        var _a4, e_3, _b, _c;
         if (consumed) {
           throw new GeminiNextGenAPIClientError("Cannot iterate over a consumed stream, use `.tee()` to split the stream.");
         }
@@ -64087,7 +64325,7 @@ var Stream = class _Stream {
         let done = false;
         try {
           try {
-            for (var _d = true, _e = __asyncValues(iterLines()), _f; _f = yield __await(_e.next()), _a3 = _f.done, !_a3; _d = true) {
+            for (var _d = true, _e = __asyncValues(iterLines()), _f; _f = yield __await(_e.next()), _a4 = _f.done, !_a4; _d = true) {
               _c = _f.value;
               _d = false;
               const line = _c;
@@ -64100,7 +64338,7 @@ var Stream = class _Stream {
             e_3 = { error: e_3_1 };
           } finally {
             try {
-              if (!_d && !_a3 && (_b = _e.return))
+              if (!_d && !_a4 && (_b = _e.return))
                 yield __await(_b.call(_e));
             } finally {
               if (e_3)
@@ -64172,15 +64410,15 @@ var Stream = class _Stream {
         }
       },
       async cancel() {
-        var _a3;
-        await ((_a3 = iter.return) === null || _a3 === void 0 ? void 0 : _a3.call(iter));
+        var _a4;
+        await ((_a4 = iter.return) === null || _a4 === void 0 ? void 0 : _a4.call(iter));
       }
     });
   }
 };
 function _iterSSEMessages(response, controller) {
   return __asyncGenerator(this, arguments, function* _iterSSEMessages_1() {
-    var _a3, e_4, _b, _c;
+    var _a4, e_4, _b, _c;
     if (!response.body) {
       controller.abort();
       if (typeof globalThis.navigator !== "undefined" && globalThis.navigator.product === "ReactNative") {
@@ -64192,7 +64430,7 @@ function _iterSSEMessages(response, controller) {
     const lineDecoder = new LineDecoder();
     const iter = ReadableStreamToAsyncIterable(response.body);
     try {
-      for (var _d = true, _e = __asyncValues(iterSSEChunks(iter)), _f; _f = yield __await(_e.next()), _a3 = _f.done, !_a3; _d = true) {
+      for (var _d = true, _e = __asyncValues(iterSSEChunks(iter)), _f; _f = yield __await(_e.next()), _a4 = _f.done, !_a4; _d = true) {
         _c = _f.value;
         _d = false;
         const sseChunk = _c;
@@ -64206,7 +64444,7 @@ function _iterSSEMessages(response, controller) {
       e_4 = { error: e_4_1 };
     } finally {
       try {
-        if (!_d && !_a3 && (_b = _e.return))
+        if (!_d && !_a4 && (_b = _e.return))
           yield __await(_b.call(_e));
       } finally {
         if (e_4)
@@ -64222,10 +64460,10 @@ function _iterSSEMessages(response, controller) {
 }
 function iterSSEChunks(iterator) {
   return __asyncGenerator(this, arguments, function* iterSSEChunks_1() {
-    var _a3, e_5, _b, _c;
+    var _a4, e_5, _b, _c;
     let data = new Uint8Array();
     try {
-      for (var _d = true, iterator_3 = __asyncValues(iterator), iterator_3_1; iterator_3_1 = yield __await(iterator_3.next()), _a3 = iterator_3_1.done, !_a3; _d = true) {
+      for (var _d = true, iterator_3 = __asyncValues(iterator), iterator_3_1; iterator_3_1 = yield __await(iterator_3.next()), _a4 = iterator_3_1.done, !_a4; _d = true) {
         _c = iterator_3_1.value;
         _d = false;
         const chunk = _c;
@@ -64247,7 +64485,7 @@ function iterSSEChunks(iterator) {
       e_5 = { error: e_5_1 };
     } finally {
       try {
-        if (!_d && !_a3 && (_b = iterator_3.return))
+        if (!_d && !_a4 && (_b = iterator_3.return))
           yield __await(_b.call(iterator_3));
       } finally {
         if (e_5)
@@ -64308,7 +64546,7 @@ function partition(str, delimiter) {
 async function defaultParseResponse(client, props) {
   const { response, requestLogID, retryOfRequestLogID, startTime } = props;
   const body = await (async () => {
-    var _a3;
+    var _a4;
     if (props.options.stream) {
       loggerFor(client).debug("response", response.status, response.url, response.headers, response.body);
       if (props.options.__streamClass) {
@@ -64323,7 +64561,7 @@ async function defaultParseResponse(client, props) {
       return response;
     }
     const contentType = response.headers.get("content-type");
-    const mediaType = (_a3 = contentType === null || contentType === void 0 ? void 0 : contentType.split(";")[0]) === null || _a3 === void 0 ? void 0 : _a3.trim();
+    const mediaType = (_a4 = contentType === null || contentType === void 0 ? void 0 : contentType.split(";")[0]) === null || _a4 === void 0 ? void 0 : _a4.trim();
     const isJSON = (mediaType === null || mediaType === void 0 ? void 0 : mediaType.includes("application/json")) || (mediaType === null || mediaType === void 0 ? void 0 : mediaType.endsWith("+json"));
     if (isJSON) {
       const contentLength = response.headers.get("content-length");
@@ -64463,16 +64701,16 @@ var buildHeaders = (newHeaders) => {
   return { [brand_privateNullableHeaders]: true, values: targetHeaders, nulls: nullHeaders };
 };
 var readEnv = (env) => {
-  var _a3, _b, _c, _d, _e, _f;
+  var _a4, _b, _c, _d, _e, _f;
   if (typeof globalThis.process !== "undefined") {
-    return (_c = (_b = (_a3 = globalThis.process.env) === null || _a3 === void 0 ? void 0 : _a3[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
+    return (_c = (_b = (_a4 = globalThis.process.env) === null || _a4 === void 0 ? void 0 : _a4[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
   }
   if (typeof globalThis.Deno !== "undefined") {
     return (_f = (_e = (_d = globalThis.Deno.env) === null || _d === void 0 ? void 0 : _d.get) === null || _e === void 0 ? void 0 : _e.call(_d, env)) === null || _f === void 0 ? void 0 : _f.trim();
   }
   return void 0;
 };
-var _a;
+var _a2;
 var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
   /**
    * API Client for interfacing with the Gemini Next Gen API API.
@@ -64860,8 +65098,8 @@ var GeminiNextGenAPIClient = class extends BaseGeminiNextGenAPIClient {
     this.interactions = new Interactions(this);
   }
 };
-_a = GeminiNextGenAPIClient;
-GeminiNextGenAPIClient.GeminiNextGenAPIClient = _a;
+_a2 = GeminiNextGenAPIClient;
+GeminiNextGenAPIClient.GeminiNextGenAPIClient = _a2;
 GeminiNextGenAPIClient.GeminiNextGenAPIClientError = GeminiNextGenAPIClientError;
 GeminiNextGenAPIClient.APIError = APIError;
 GeminiNextGenAPIClient.APIConnectionError = APIConnectionError;
@@ -64960,7 +65198,7 @@ var NodeDownloader = class {
   }
 };
 async function downloadFile(params2, apiClient) {
-  var _a3, _b, _c;
+  var _a4, _b, _c;
   const name = tFileName(params2.file);
   if (name !== void 0) {
     return await apiClient.request({
@@ -64969,7 +65207,7 @@ async function downloadFile(params2, apiClient) {
       queryParams: {
         "alt": "media"
       },
-      httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+      httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
       abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
     });
   } else if (isGeneratedVideo(params2.file)) {
@@ -65848,13 +66086,13 @@ var Tunings = class extends BaseModule2 {
       return await this.getInternal(params2);
     };
     this.tune = async (params2) => {
-      var _a3;
+      var _a4;
       if (this.apiClient.isVertexAI()) {
         if (params2.baseModel.startsWith("projects/")) {
           const preTunedModel = {
             tunedModelName: params2.baseModel
           };
-          if ((_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.preTunedModelCheckpointId) {
+          if ((_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.preTunedModelCheckpointId) {
             preTunedModel.checkpointId = params2.config.preTunedModelCheckpointId;
           }
           const paramsPrivate = Object.assign(Object.assign({}, params2), { preTunedModel });
@@ -65882,7 +66120,7 @@ var Tunings = class extends BaseModule2 {
     };
   }
   async getInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -65897,7 +66135,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -65941,7 +66179,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -65956,7 +66194,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -66015,7 +66253,7 @@ var Tunings = class extends BaseModule2 {
    * ```
    */
   async cancel(params2) {
-    var _a3, _b, _c, _d;
+    var _a4, _b, _c, _d;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -66030,7 +66268,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -66078,7 +66316,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async tuneInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -66093,7 +66331,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -66113,7 +66351,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async tuneMldevInternal(params2) {
-    var _a3, _b;
+    var _a4, _b;
     let response;
     let path9 = "";
     let queryParams = {};
@@ -66130,7 +66368,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a3 = params2.config) === null || _a3 === void 0 ? void 0 : _a3.httpOptions,
+        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -66154,19 +66392,19 @@ var INITIAL_RETRY_DELAY_MS = 1e3;
 var DELAY_MULTIPLIER = 2;
 var X_GOOG_UPLOAD_STATUS_HEADER_FIELD = "x-goog-upload-status";
 async function uploadBlob(file2, uploadUrl, apiClient) {
-  var _a3;
+  var _a4;
   const response = await uploadBlobInternal(file2, uploadUrl, apiClient);
   const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-  if (((_a3 = response === null || response === void 0 ? void 0 : response.headers) === null || _a3 === void 0 ? void 0 : _a3[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+  if (((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
     throw new Error("Failed to upload file: Upload status is not finalized.");
   }
   return responseJson["file"];
 }
 async function uploadBlobToFileSearchStore(file2, uploadUrl, apiClient) {
-  var _a3;
+  var _a4;
   const response = await uploadBlobInternal(file2, uploadUrl, apiClient);
   const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-  if (((_a3 = response === null || response === void 0 ? void 0 : response.headers) === null || _a3 === void 0 ? void 0 : _a3[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+  if (((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
     throw new Error("Failed to upload file: Upload status is not finalized.");
   }
   const resp = uploadToFileSearchStoreOperationFromMldev(responseJson);
@@ -66175,7 +66413,7 @@ async function uploadBlobToFileSearchStore(file2, uploadUrl, apiClient) {
   return typedResp;
 }
 async function uploadBlobInternal(file2, uploadUrl, apiClient) {
-  var _a3, _b;
+  var _a4, _b;
   let fileSize = 0;
   let offset = 0;
   let response = new HttpResponse(new Response());
@@ -66204,7 +66442,7 @@ async function uploadBlobInternal(file2, uploadUrl, apiClient) {
           }
         }
       });
-      if ((_a3 = response === null || response === void 0 ? void 0 : response.headers) === null || _a3 === void 0 ? void 0 : _a3[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) {
+      if ((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) {
         break;
       }
       retryCount++;
@@ -66341,19 +66579,19 @@ var NodeUploader = class {
     return mimeType;
   }
   async uploadFileFromPath(file2, uploadUrl, apiClient) {
-    var _a3;
+    var _a4;
     const response = await this.uploadFileFromPathInternal(file2, uploadUrl, apiClient);
     const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-    if (((_a3 = response === null || response === void 0 ? void 0 : response.headers) === null || _a3 === void 0 ? void 0 : _a3[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+    if (((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
       throw new Error("Failed to upload file: Upload status is not finalized.");
     }
     return responseJson["file"];
   }
   async uploadFileToFileSearchStoreFromPath(file2, uploadUrl, apiClient) {
-    var _a3;
+    var _a4;
     const response = await this.uploadFileFromPathInternal(file2, uploadUrl, apiClient);
     const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-    if (((_a3 = response === null || response === void 0 ? void 0 : response.headers) === null || _a3 === void 0 ? void 0 : _a3[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+    if (((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
       throw new Error("Failed to upload file: Upload status is not finalized.");
     }
     const resp = uploadToFileSearchStoreOperationFromMldev(responseJson);
@@ -66362,7 +66600,7 @@ var NodeUploader = class {
     return typedResp;
   }
   async uploadFileFromPathInternal(file2, uploadUrl, apiClient) {
-    var _a3, _b;
+    var _a4, _b;
     let fileSize = 0;
     let offset = 0;
     let response = new HttpResponse(new Response());
@@ -66404,7 +66642,7 @@ var NodeUploader = class {
               }
             }
           });
-          if ((_a3 = response === null || response === void 0 ? void 0 : response.headers) === null || _a3 === void 0 ? void 0 : _a3[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) {
+          if ((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) {
             break;
           }
           retryCount++;
@@ -66461,7 +66699,7 @@ var NodeFiles = class extends Files {
 var LANGUAGE_LABEL_PREFIX = "gl-node/";
 var GoogleGenAI = class {
   get interactions() {
-    var _a3;
+    var _a4;
     if (this._interactions !== void 0) {
       return this._interactions;
     }
@@ -66477,17 +66715,17 @@ var GoogleGenAI = class {
       clientAdapter: this.apiClient,
       defaultHeaders: this.apiClient.getDefaultHeaders(),
       timeout: httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.timeout,
-      maxRetries: (_a3 = httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.retryOptions) === null || _a3 === void 0 ? void 0 : _a3.attempts
+      maxRetries: (_a4 = httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.retryOptions) === null || _a4 === void 0 ? void 0 : _a4.attempts
     });
     this._interactions = nextGenClient.interactions;
     return this._interactions;
   }
   constructor(options) {
-    var _a3, _b, _c, _d, _e, _f;
+    var _a4, _b, _c, _d, _e, _f;
     if ((options.project || options.location) && options.apiKey) {
       throw new Error("Project/location and API key are mutually exclusive in the client initializer.");
     }
-    this.vertexai = (_b = (_a3 = options.vertexai) !== null && _a3 !== void 0 ? _a3 : getBooleanEnv("GOOGLE_GENAI_USE_VERTEXAI")) !== null && _b !== void 0 ? _b : false;
+    this.vertexai = (_b = (_a4 = options.vertexai) !== null && _a4 !== void 0 ? _a4 : getBooleanEnv("GOOGLE_GENAI_USE_VERTEXAI")) !== null && _b !== void 0 ? _b : false;
     const envApiKey = getApiKeyFromEnv();
     const envProject = getEnv("GOOGLE_CLOUD_PROJECT");
     const envLocation = getEnv("GOOGLE_CLOUD_LOCATION");
@@ -66556,8 +66794,8 @@ var GoogleGenAI = class {
   }
 };
 function getEnv(env) {
-  var _a3, _b, _c;
-  return (_c = (_b = (_a3 = process === null || process === void 0 ? void 0 : process.env) === null || _a3 === void 0 ? void 0 : _a3[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
+  var _a4, _b, _c;
+  return (_c = (_b = (_a4 = process === null || process === void 0 ? void 0 : process.env) === null || _a4 === void 0 ? void 0 : _a4[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
 }
 function getBooleanEnv(env) {
   return stringToBoolean(getEnv(env));
@@ -67455,10 +67693,10 @@ function $constructor(name, initializer3, params2) {
   }
   Object.defineProperty(Definition, "name", { value: name });
   function _(def) {
-    var _a3;
+    var _a4;
     const inst = params2?.Parent ? new Definition() : this;
     init(inst, def);
-    (_a3 = inst._zod).deferred ?? (_a3.deferred = []);
+    (_a4 = inst._zod).deferred ?? (_a4.deferred = []);
     for (const fn of inst._zod.deferred) {
       fn();
     }
@@ -68055,8 +68293,8 @@ function aborted(x, startIndex = 0) {
 }
 function prefixIssues(path9, issues) {
   return issues.map((iss) => {
-    var _a3;
-    (_a3 = iss).path ?? (_a3.path = []);
+    var _a4;
+    (_a4 = iss).path ?? (_a4.path = []);
     iss.path.unshift(path9);
     return iss;
   });
@@ -68241,7 +68479,7 @@ function formatError(error48, mapper = (issue2) => issue2.message) {
 function treeifyError(error48, mapper = (issue2) => issue2.message) {
   const result = { errors: [] };
   const processError = (error49, path9 = []) => {
-    var _a3, _b;
+    var _a4, _b;
     for (const issue2 of error49.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
         issue2.errors.map((issues) => processError({ issues }, issue2.path));
@@ -68262,7 +68500,7 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
           const terminal = i === fullpath.length - 1;
           if (typeof el === "string") {
             curr.properties ?? (curr.properties = {});
-            (_a3 = curr.properties)[el] ?? (_a3[el] = { errors: [] });
+            (_a4 = curr.properties)[el] ?? (_a4[el] = { errors: [] });
             curr = curr.properties[el];
           } else {
             curr.items ?? (curr.items = []);
@@ -68556,10 +68794,10 @@ var sha512_base64url = fixedBase64url(86);
 
 // node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/checks.js
 var $ZodCheck = $constructor("$ZodCheck", (inst, def) => {
-  var _a3;
+  var _a4;
   inst._zod ?? (inst._zod = {});
   inst._zod.def = def;
-  (_a3 = inst._zod).onattach ?? (_a3.onattach = []);
+  (_a4 = inst._zod).onattach ?? (_a4.onattach = []);
 });
 var numericOriginMap = {
   number: "number",
@@ -68625,8 +68863,8 @@ var $ZodCheckGreaterThan = $constructor("$ZodCheckGreaterThan", (inst, def) => {
 var $ZodCheckMultipleOf = $constructor("$ZodCheckMultipleOf", (inst, def) => {
   $ZodCheck.init(inst, def);
   inst._zod.onattach.push((inst2) => {
-    var _a3;
-    (_a3 = inst2._zod.bag).multipleOf ?? (_a3.multipleOf = def.value);
+    var _a4;
+    (_a4 = inst2._zod.bag).multipleOf ?? (_a4.multipleOf = def.value);
   });
   inst._zod.check = (payload) => {
     if (typeof payload.value !== typeof def.value)
@@ -68759,9 +68997,9 @@ var $ZodCheckBigIntFormat = $constructor("$ZodCheckBigIntFormat", (inst, def) =>
   };
 });
 var $ZodCheckMaxSize = $constructor("$ZodCheckMaxSize", (inst, def) => {
-  var _a3;
+  var _a4;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
+  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.size !== void 0;
   });
@@ -68787,9 +69025,9 @@ var $ZodCheckMaxSize = $constructor("$ZodCheckMaxSize", (inst, def) => {
   };
 });
 var $ZodCheckMinSize = $constructor("$ZodCheckMinSize", (inst, def) => {
-  var _a3;
+  var _a4;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
+  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.size !== void 0;
   });
@@ -68815,9 +69053,9 @@ var $ZodCheckMinSize = $constructor("$ZodCheckMinSize", (inst, def) => {
   };
 });
 var $ZodCheckSizeEquals = $constructor("$ZodCheckSizeEquals", (inst, def) => {
-  var _a3;
+  var _a4;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
+  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.size !== void 0;
   });
@@ -68845,9 +69083,9 @@ var $ZodCheckSizeEquals = $constructor("$ZodCheckSizeEquals", (inst, def) => {
   };
 });
 var $ZodCheckMaxLength = $constructor("$ZodCheckMaxLength", (inst, def) => {
-  var _a3;
+  var _a4;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
+  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.length !== void 0;
   });
@@ -68874,9 +69112,9 @@ var $ZodCheckMaxLength = $constructor("$ZodCheckMaxLength", (inst, def) => {
   };
 });
 var $ZodCheckMinLength = $constructor("$ZodCheckMinLength", (inst, def) => {
-  var _a3;
+  var _a4;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
+  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.length !== void 0;
   });
@@ -68903,9 +69141,9 @@ var $ZodCheckMinLength = $constructor("$ZodCheckMinLength", (inst, def) => {
   };
 });
 var $ZodCheckLengthEquals = $constructor("$ZodCheckLengthEquals", (inst, def) => {
-  var _a3;
+  var _a4;
   $ZodCheck.init(inst, def);
-  (_a3 = inst._zod.def).when ?? (_a3.when = (payload) => {
+  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.length !== void 0;
   });
@@ -68934,7 +69172,7 @@ var $ZodCheckLengthEquals = $constructor("$ZodCheckLengthEquals", (inst, def) =>
   };
 });
 var $ZodCheckStringFormat = $constructor("$ZodCheckStringFormat", (inst, def) => {
-  var _a3, _b;
+  var _a4, _b;
   $ZodCheck.init(inst, def);
   inst._zod.onattach.push((inst2) => {
     const bag = inst2._zod.bag;
@@ -68945,7 +69183,7 @@ var $ZodCheckStringFormat = $constructor("$ZodCheckStringFormat", (inst, def) =>
     }
   });
   if (def.pattern)
-    (_a3 = inst._zod).check ?? (_a3.check = (payload) => {
+    (_a4 = inst._zod).check ?? (_a4.check = (payload) => {
       def.pattern.lastIndex = 0;
       if (def.pattern.test(payload.value))
         return;
@@ -69147,7 +69385,7 @@ var version = {
 
 // node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/schemas.js
 var $ZodType = $constructor("$ZodType", (inst, def) => {
-  var _a3;
+  var _a4;
   inst ?? (inst = {});
   inst._zod.def = def;
   inst._zod.bag = inst._zod.bag || {};
@@ -69162,7 +69400,7 @@ var $ZodType = $constructor("$ZodType", (inst, def) => {
     }
   }
   if (checks.length === 0) {
-    (_a3 = inst._zod).deferred ?? (_a3.deferred = []);
+    (_a4 = inst._zod).deferred ?? (_a4.deferred = []);
     inst._zod.deferred?.push(() => {
       inst._zod.run = inst._zod.parse;
     });
@@ -76693,7 +76931,7 @@ function yo_default() {
 }
 
 // node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/registries.js
-var _a2;
+var _a3;
 var $output = Symbol("ZodOutput");
 var $input = Symbol("ZodInput");
 var $ZodRegistry = class {
@@ -76739,7 +76977,7 @@ var $ZodRegistry = class {
 function registry() {
   return new $ZodRegistry();
 }
-(_a2 = globalThis).__zod_globalRegistry ?? (_a2.__zod_globalRegistry = registry());
+(_a3 = globalThis).__zod_globalRegistry ?? (_a3.__zod_globalRegistry = registry());
 var globalRegistry = globalThis.__zod_globalRegistry;
 
 // node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/api.js
@@ -77691,7 +77929,7 @@ function initializeContext(params2) {
   };
 }
 function process4(schema, ctx, _params = { path: [], schemaPath: [] }) {
-  var _a3;
+  var _a4;
   const def = schema._zod.def;
   const seen = ctx.seen.get(schema);
   if (seen) {
@@ -77739,7 +77977,7 @@ function process4(schema, ctx, _params = { path: [], schemaPath: [] }) {
     delete result.schema.default;
   }
   if (ctx.io === "input" && result.schema._prefault)
-    (_a3 = result.schema).default ?? (_a3.default = result.schema._prefault);
+    (_a4 = result.schema).default ?? (_a4.default = result.schema._prefault);
   delete result.schema._prefault;
   const _result = ctx.seen.get(schema);
   return _result.schema;
