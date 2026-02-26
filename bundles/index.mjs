@@ -36,11 +36,12 @@ import {
   isVersionPublishedToNpm,
   managedLabels,
   mergeLabels,
+  miscLabels,
   priorityLabels,
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-HWMRKQMP.mjs";
+} from "./chunk-B3FTBJHO.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -109,6 +110,7 @@ export {
   isVersionPublishedToNpm,
   managedLabels,
   mergeLabels,
+  miscLabels,
   priorityLabels,
   red,
   requiresLabels,

@@ -14286,6 +14286,32 @@ var requiresLabels = createTypedObject(RequiresLabel)({
   }
 });
 
+// ng-dev/pr/common/labels/misc.js
+var MiscLabel = class extends Label {
+};
+var miscLabels = createTypedObject(MiscLabel)({
+  FEATURE: {
+    name: "feature",
+    description: "Label used to distinguish feature request from other issues"
+  },
+  GOOD_FIRST_ISSUE: {
+    name: "good first issue",
+    description: "Label noting a good first issue to be worked on by a community member"
+  },
+  HELP_WANTED: {
+    name: "help wanted",
+    description: "Label noting an issue which the team is looking for contribution from the community to fix"
+  },
+  RENOVATE_MANAGED: {
+    name: "renovate managed",
+    description: "Label noting that a pull request will automatically be managed and rebased by renovate"
+  },
+  GEMINI_TRIAGED: {
+    name: "gemini-triaged",
+    description: "Label noting that an issue has been triaged by gemini"
+  }
+});
+
 // ng-dev/pr/common/labels/feature.js
 var FeatureLabel = class extends Label {
 };
@@ -14316,7 +14342,8 @@ var allLabels = {
   ...targetLabels,
   ...priorityLabels,
   ...featureLabels,
-  ...requiresLabels
+  ...requiresLabels,
+  ...miscLabels
 };
 
 // ng-dev/release/precheck/index.js
@@ -14497,6 +14524,7 @@ export {
   mergeLabels,
   priorityLabels,
   requiresLabels,
+  miscLabels,
   allLabels,
   ReleasePrecheckError,
   assertPassingReleasePrechecks,

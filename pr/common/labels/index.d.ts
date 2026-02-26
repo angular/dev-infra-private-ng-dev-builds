@@ -5,6 +5,7 @@ import { targetLabels } from './target.js';
 import { priorityLabels } from './priority.js';
 import { requiresLabels } from './requires.js';
 import { Label, LabelParams } from './base.js';
+import { miscLabels } from './misc.js';
 export declare const allLabels: {
     [x: string]: {
         repositories: import("./base.js").ManagedRepositories[];
@@ -32,6 +33,12 @@ export declare const allLabels: {
         color: string | undefined;
         readonly params: LabelParams;
     } | import("./target.js").TargetLabel | {
+        repositories: import("./base.js").ManagedRepositories[];
+        name: string;
+        description: string;
+        color: string | undefined;
+        readonly params: LabelParams;
+    } | {
         repositories: import("./base.js").ManagedRepositories[];
         name: string;
         description: string;
@@ -81,6 +88,12 @@ export declare const allLabels: {
         description: string;
         color: string | undefined;
         readonly params: LabelParams;
+    } | {
+        repositories: import("./base.js").ManagedRepositories[];
+        name: string;
+        description: string;
+        color: string | undefined;
+        readonly params: LabelParams;
     };
     [x: symbol]: {
         repositories: import("./base.js").ManagedRepositories[];
@@ -119,7 +132,13 @@ export declare const allLabels: {
         description: string;
         color: string | undefined;
         readonly params: LabelParams;
+    } | {
+        repositories: import("./base.js").ManagedRepositories[];
+        name: string;
+        description: string;
+        color: string | undefined;
+        readonly params: LabelParams;
     };
 };
-export { managedLabels, actionLabels, mergeLabels, targetLabels, priorityLabels, requiresLabels };
+export { managedLabels, actionLabels, mergeLabels, targetLabels, priorityLabels, requiresLabels, miscLabels, };
 export { Label };
