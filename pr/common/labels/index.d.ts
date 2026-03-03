@@ -14,12 +14,6 @@ export declare const allLabels: {
         color: string | undefined;
         readonly params: LabelParams;
     } | {
-        repositories: import("./base.js").ManagedRepositories[];
-        name: string;
-        description: string;
-        color: string | undefined;
-        readonly params: LabelParams;
-    } | {
         commitCheck: (c: import("../../../commit-message/parse.js").Commit) => boolean;
         repositories: import("./base.js").ManagedRepositories[];
         name: string;
@@ -58,12 +52,6 @@ export declare const allLabels: {
         color: string | undefined;
         readonly params: LabelParams;
     } | {
-        repositories: import("./base.js").ManagedRepositories[];
-        name: string;
-        description: string;
-        color: string | undefined;
-        readonly params: LabelParams;
-    } | {
         commitCheck: (c: import("../../../commit-message/parse.js").Commit) => boolean;
         repositories: import("./base.js").ManagedRepositories[];
         name: string;
@@ -96,12 +84,6 @@ export declare const allLabels: {
         readonly params: LabelParams;
     };
     [x: symbol]: {
-        repositories: import("./base.js").ManagedRepositories[];
-        name: string;
-        description: string;
-        color: string | undefined;
-        readonly params: LabelParams;
-    } | {
         repositories: import("./base.js").ManagedRepositories[];
         name: string;
         description: string;
