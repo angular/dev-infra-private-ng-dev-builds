@@ -47552,7 +47552,7 @@ var ExternalCommands = class {
       return;
     }
     try {
-      await ChildProcess.spawn("nvm", ["install"], {
+      await ChildProcess.spawn(". ~/.nvm/nvm.sh && nvm install", [], {
         cwd: projectDir,
         mode: "on-error"
       });
@@ -48676,7 +48676,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-61f9fe81614db102d95bb9bcb9909a304c6e6d10`;
+var localVersion = `0.0.0-96ee0da006f9e289e34fe4b2d5b54d3bfbb9f517`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
