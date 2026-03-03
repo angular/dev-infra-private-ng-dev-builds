@@ -303,11 +303,14 @@ function ansiRegex({ onlyFirst = false } = {}) {
   return new RegExp(pattern, onlyFirst ? void 0 : "g");
 }
 
-// node_modules/.aspect_rules_js/strip-ansi@7.1.2/node_modules/strip-ansi/index.js
+// node_modules/.aspect_rules_js/strip-ansi@7.2.0/node_modules/strip-ansi/index.js
 var regex = ansiRegex();
 function stripAnsi(string) {
   if (typeof string !== "string") {
     throw new TypeError(`Expected a \`string\`, got \`${typeof string}\``);
+  }
+  if (!string.includes("\x1B") && !string.includes("\x9B")) {
+    return string;
   }
   return string.replace(regex, "");
 }

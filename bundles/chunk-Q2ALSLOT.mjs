@@ -11,7 +11,7 @@ import {
   getConfig,
   green,
   yellow
-} from "./chunk-WPUQDYAV.mjs";
+} from "./chunk-F5VM5PF4.mjs";
 import {
   __commonJS,
   __require,
@@ -9979,10 +9979,14 @@ var endpoint = withDefaults(null, DEFAULTS);
 // node_modules/.aspect_rules_js/@octokit+request@10.0.8/node_modules/@octokit/request/dist-bundle/index.js
 var import_fast_content_type_parse = __toESM(require_fast_content_type_parse());
 
-// node_modules/.aspect_rules_js/json-with-bigint@3.5.3/node_modules/json-with-bigint/json-with-bigint.js
+// node_modules/.aspect_rules_js/json-with-bigint@3.5.7/node_modules/json-with-bigint/json-with-bigint.js
+var intRegex = /^-?\d+$/;
 var noiseValue = /^-?\d+n+$/;
 var originalStringify = JSON.stringify;
 var originalParse = JSON.parse;
+var customFormat = /^-?\d+n$/;
+var bigIntsStringify = /([\[:])?"(-?\d+)n"($|([\\n]|\s)*(\s|[\\n])*[,\}\]])/g;
+var noiseStringify = /([\[:])?("-?\d+n+)n("$|"([\\n]|\s)*(\s|[\\n])*[,\}\]])/g;
 var JSONStringify = (value, replacer, space) => {
   if ("rawJSON" in JSON) {
     return originalStringify(
@@ -10001,8 +10005,6 @@ var JSONStringify = (value, replacer, space) => {
   }
   if (!value)
     return originalStringify(value, replacer, space);
-  const bigInts = /([\[:])?"(-?\d+)n"($|([\\n]|\s)*(\s|[\\n])*[,\}\]])/g;
-  const noise = /([\[:])?("-?\d+n+)n("$|"([\\n]|\s)*(\s|[\\n])*[,\}\]])/g;
   const convertedToCustomJSON = originalStringify(
     value,
     (key, value2) => {
@@ -10019,16 +10021,29 @@ var JSONStringify = (value, replacer, space) => {
     },
     space
   );
-  const processedJSON = convertedToCustomJSON.replace(bigInts, "$1$2$3");
-  const denoisedJSON = processedJSON.replace(noise, "$1$2$3");
+  const processedJSON = convertedToCustomJSON.replace(
+    bigIntsStringify,
+    "$1$2$3"
+  );
+  const denoisedJSON = processedJSON.replace(noiseStringify, "$1$2$3");
   return denoisedJSON;
 };
 var isContextSourceSupported = () => JSON.parse("1", (_, __, context) => !!context && context.source === "1");
+var convertMarkedBigIntsReviver = (key, value, context, userReviver) => {
+  const isCustomFormatBigInt = typeof value === "string" && value.match(customFormat);
+  if (isCustomFormatBigInt)
+    return BigInt(value.slice(0, -1));
+  const isNoiseValue = typeof value === "string" && value.match(noiseValue);
+  if (isNoiseValue)
+    return value.slice(0, -1);
+  if (typeof userReviver !== "function")
+    return value;
+  return userReviver(key, value, context);
+};
 var JSONParseV2 = (text, reviver) => {
-  const intRegex = /^-?\d+$/;
   return JSON.parse(text, (key, value, context) => {
     const isBigNumber = typeof value === "number" && (value > Number.MAX_SAFE_INTEGER || value < Number.MIN_SAFE_INTEGER);
-    const isInt = intRegex.test(context.source);
+    const isInt = context && intRegex.test(context.source);
     const isBigInt = isBigNumber && isInt;
     if (isBigInt)
       return BigInt(context.source);
@@ -10037,16 +10052,15 @@ var JSONParseV2 = (text, reviver) => {
     return reviver(key, value, context);
   });
 };
+var MAX_INT = Number.MAX_SAFE_INTEGER.toString();
+var MAX_DIGITS = MAX_INT.length;
+var stringsOrLargeNumbers = /"(?:\\.|[^"])*"|-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?/g;
+var noiseValueWithQuotes = /^"-?\d+n+"$/;
 var JSONParse = (text, reviver) => {
   if (!text)
     return originalParse(text, reviver);
   if (isContextSourceSupported())
     return JSONParseV2(text, reviver);
-  const MAX_INT = Number.MAX_SAFE_INTEGER.toString();
-  const MAX_DIGITS = MAX_INT.length;
-  const stringsOrLargeNumbers = /"(?:\\.|[^"])*"|-?(0|[1-9][0-9]*)(\.[0-9]+)?([eE][+-]?[0-9]+)?/g;
-  const noiseValueWithQuotes = /^"-?\d+n+"$/;
-  const customFormat = /^-?\d+n$/;
   const serializedData = text.replace(
     stringsOrLargeNumbers,
     (text2, digits, fractional, exponential) => {
@@ -10061,17 +10075,10 @@ var JSONParse = (text, reviver) => {
       return '"' + text2 + 'n"';
     }
   );
-  return originalParse(serializedData, (key, value, context) => {
-    const isCustomFormatBigInt = typeof value === "string" && Boolean(value.match(customFormat));
-    if (isCustomFormatBigInt)
-      return BigInt(value.substring(0, value.length - 1));
-    const isNoiseValue = typeof value === "string" && Boolean(value.match(noiseValue));
-    if (isNoiseValue)
-      return value.substring(0, value.length - 1);
-    if (typeof reviver !== "function")
-      return value;
-    return reviver(key, value, context);
-  });
+  return originalParse(
+    serializedData,
+    (key, value, context) => convertMarkedBigIntsReviver(key, value, context, reviver)
+  );
 };
 
 // node_modules/.aspect_rules_js/@octokit+request-error@7.1.0/node_modules/@octokit/request-error/dist-src/index.js

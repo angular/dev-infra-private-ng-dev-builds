@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-B3FTBJHO.mjs";
+} from "./chunk-Q2ALSLOT.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -65,7 +65,7 @@ import {
   runParserWithCompletedFunctions,
   underline,
   yellow
-} from "./chunk-WPUQDYAV.mjs";
+} from "./chunk-F5VM5PF4.mjs";
 import {
   CommitParser
 } from "./chunk-PMGDP7TK.mjs";
@@ -25008,9 +25008,9 @@ var require_base64_js = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
 var require_shared = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.fromArrayBufferToHex = fromArrayBufferToHex;
@@ -25023,9 +25023,9 @@ var require_shared = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
 var require_crypto = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BrowserCrypto = void 0;
@@ -25061,7 +25061,7 @@ var require_crypto = __commonJS({
         const dataArray = new TextEncoder().encode(data);
         const signatureArray = base64js.toByteArray(_BrowserCrypto.padBase64(signature));
         const cryptoKey = await window.crypto.subtle.importKey("jwk", pubkey, algo, true, ["verify"]);
-        const result = await window.crypto.subtle.verify(algo, cryptoKey, signatureArray, dataArray);
+        const result = await window.crypto.subtle.verify(algo, cryptoKey, Buffer.from(signatureArray), dataArray);
         return result;
       }
       async sign(privateKey, data) {
@@ -25119,9 +25119,9 @@ var require_crypto = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
 var require_crypto2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.NodeCrypto = void 0;
@@ -25175,7 +25175,12 @@ var require_crypto2 = __commonJS({
     };
     exports2.NodeCrypto = NodeCrypto;
     function toArrayBuffer(buffer) {
-      return buffer.buffer.slice(buffer.byteOffset, buffer.byteOffset + buffer.byteLength);
+      const ab = new ArrayBuffer(buffer.length);
+      const view = new Uint8Array(ab);
+      for (let i = 0; i < buffer.length; ++i) {
+        view[i] = buffer[i];
+      }
+      return ab;
     }
     function toBuffer(arrayBuffer) {
       return Buffer.from(arrayBuffer);
@@ -25183,9 +25188,9 @@ var require_crypto2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
 var require_crypto3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -25447,9 +25452,9 @@ var require_ecdsa_sig_formatter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js
 var require_util2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/util.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.LRUCache = void 0;
@@ -25562,12 +25567,12 @@ var require_util2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/package.json
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/package.json
 var require_package2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/package.json"(exports2, module2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/package.json"(exports2, module2) {
     module2.exports = {
       name: "google-auth-library",
-      version: "10.5.0",
+      version: "10.6.1",
       author: "Google Inc.",
       description: "Google APIs Authentication Client Library for Node.js",
       engines: {
@@ -25575,7 +25580,11 @@ var require_package2 = __commonJS({
       },
       main: "./build/src/index.js",
       types: "./build/src/index.d.ts",
-      repository: "googleapis/google-auth-library-nodejs.git",
+      repository: {
+        type: "git",
+        directory: "packages/google-auth-library-nodejs",
+        url: "https://github.com/googleapis/google-cloud-node-core.git"
+      },
       keywords: [
         "google",
         "api",
@@ -25586,10 +25595,9 @@ var require_package2 = __commonJS({
       dependencies: {
         "base64-js": "^1.3.0",
         "ecdsa-sig-formatter": "^1.0.11",
-        gaxios: "^7.0.0",
-        "gcp-metadata": "^8.0.0",
-        "google-logging-utils": "^1.0.0",
-        gtoken: "^8.0.0",
+        gaxios: "7.1.3",
+        "gcp-metadata": "8.1.2",
+        "google-logging-utils": "1.1.3",
         jws: "^4.0.0"
       },
       devDependencies: {
@@ -25597,15 +25605,15 @@ var require_package2 = __commonJS({
         "@types/jws": "^3.1.0",
         "@types/mocha": "^10.0.10",
         "@types/mv": "^2.1.0",
-        "@types/ncp": "^2.0.1",
-        "@types/node": "^22.0.0",
-        "@types/sinon": "^17.0.0",
+        "@types/ncp": "^2.0.8",
+        "@types/node": "^24.0.0",
+        "@types/sinon": "^21.0.0",
         "assert-rejects": "^1.0.0",
-        c8: "^10.0.0",
-        codecov: "^3.0.2",
-        gts: "^6.0.0",
+        c8: "^10.1.3",
+        codecov: "^3.8.3",
+        gts: "^6.0.2",
         "is-docker": "^3.0.0",
-        jsdoc: "^4.0.0",
+        jsdoc: "^4.0.4",
         "jsdoc-fresh": "^5.0.0",
         "jsdoc-region-tag": "^4.0.0",
         karma: "^6.0.0",
@@ -25620,13 +25628,13 @@ var require_package2 = __commonJS({
         mv: "^2.1.1",
         ncp: "^2.0.0",
         nock: "^14.0.5",
-        "null-loader": "^4.0.0",
+        "null-loader": "^4.0.1",
         puppeteer: "^24.0.0",
         sinon: "^21.0.0",
-        "ts-loader": "^8.0.0",
-        typescript: "5.8.2",
-        webpack: "^5.21.2",
-        "webpack-cli": "^4.0.0"
+        "ts-loader": "^9.5.2",
+        typescript: "5.8.3",
+        webpack: "^5.97.1",
+        "webpack-cli": "^6.0.1"
       },
       files: [
         "build/src",
@@ -25651,14 +25659,15 @@ var require_package2 = __commonJS({
         "predocs-test": "npm run docs",
         prelint: "cd samples; npm link ../; npm install"
       },
-      license: "Apache-2.0"
+      license: "Apache-2.0",
+      homepage: "https://github.com/googleapis/google-cloud-node-core/tree/main/packages/google-auth-library-nodejs"
     };
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs
 var require_shared2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.USER_AGENT = exports2.PRODUCT_NAME = exports2.pkg = void 0;
@@ -25671,9 +25680,9 @@ var require_shared2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
 var require_authclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.AuthClient = exports2.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports2.DEFAULT_UNIVERSE = void 0;
@@ -25906,9 +25915,9 @@ var require_authclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
 var require_loginticket = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.LoginTicket = void 0;
@@ -25958,9 +25967,9 @@ var require_loginticket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
 var require_oauth2client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.OAuth2Client = exports2.ClientAuthentication = exports2.CertificateFormat = exports2.CodeChallengeMethod = void 0;
@@ -26639,9 +26648,9 @@ var require_oauth2client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
 var require_computeclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Compute = void 0;
@@ -26731,9 +26740,9 @@ var require_computeclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
 var require_idtokenclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IdTokenClient = void 0;
@@ -26777,9 +26786,9 @@ var require_idtokenclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
 var require_envDetect = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GCPEnv = void 0;
@@ -27397,679 +27406,420 @@ var require_jws = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gtoken@8.0.0_supports-color_10.2.2/node_modules/gtoken/build/cjs/src/index.cjs
-var require_src5 = __commonJS({
-  "node_modules/.aspect_rules_js/gtoken@8.0.0_supports-color_10.2.2/node_modules/gtoken/build/cjs/src/index.cjs"(exports2) {
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/jwsSign.js
+var require_jwsSign = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/jwsSign.js"(exports2) {
     "use strict";
-    Object.defineProperty(exports2, "__esModule", {
-      value: true
-    });
-    exports2.GoogleToken = void 0;
-    var fs7 = _interopRequireWildcard(__require("fs"));
-    var _gaxios = require_src2();
-    var jws = _interopRequireWildcard(require_jws());
-    var path9 = _interopRequireWildcard(__require("path"));
-    var _util = __require("util");
-    function _interopRequireWildcard(e, t) {
-      if ("function" == typeof WeakMap)
-        var r = /* @__PURE__ */ new WeakMap(), n = /* @__PURE__ */ new WeakMap();
-      return (_interopRequireWildcard = function _interopRequireWildcard2(e2, t2) {
-        if (!t2 && e2 && e2.__esModule)
-          return e2;
-        var o, i, f = { __proto__: null, "default": e2 };
-        if (null === e2 || "object" != _typeof(e2) && "function" != typeof e2)
-          return f;
-        if (o = t2 ? n : r) {
-          if (o.has(e2))
-            return o.get(e2);
-          o.set(e2, f);
-        }
-        for (var _t3 in e2)
-          "default" !== _t3 && {}.hasOwnProperty.call(e2, _t3) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e2, _t3)) && (i.get || i.set) ? o(f, _t3, i) : f[_t3] = e2[_t3]);
-        return f;
-      })(e, t);
-    }
-    function _typeof(o) {
-      "@babel/helpers - typeof";
-      return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function(o2) {
-        return typeof o2;
-      } : function(o2) {
-        return o2 && "function" == typeof Symbol && o2.constructor === Symbol && o2 !== Symbol.prototype ? "symbol" : typeof o2;
-      }, _typeof(o);
-    }
-    function _classPrivateMethodInitSpec(e, a) {
-      _checkPrivateRedeclaration(e, a), a.add(e);
-    }
-    function _classPrivateFieldInitSpec(e, t, a) {
-      _checkPrivateRedeclaration(e, t), t.set(e, a);
-    }
-    function _checkPrivateRedeclaration(e, t) {
-      if (t.has(e))
-        throw new TypeError("Cannot initialize the same private elements twice on an object");
-    }
-    function _classPrivateFieldSet(s, a, r) {
-      return s.set(_assertClassBrand(s, a), r), r;
-    }
-    function _classPrivateFieldGet(s, a) {
-      return s.get(_assertClassBrand(s, a));
-    }
-    function _assertClassBrand(e, t, n) {
-      if ("function" == typeof e ? e === t : e.has(t))
-        return arguments.length < 3 ? t : n;
-      throw new TypeError("Private element is not present on this object");
-    }
-    function _defineProperties(e, r) {
-      for (var t = 0; t < r.length; t++) {
-        var o = r[t];
-        o.enumerable = o.enumerable || false, o.configurable = true, "value" in o && (o.writable = true), Object.defineProperty(e, _toPropertyKey(o.key), o);
-      }
-    }
-    function _createClass(e, r, t) {
-      return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: false }), e;
-    }
-    function _classCallCheck(a, n) {
-      if (!(a instanceof n))
-        throw new TypeError("Cannot call a class as a function");
-    }
-    function _callSuper(t, o, e) {
-      return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e));
-    }
-    function _possibleConstructorReturn(t, e) {
-      if (e && ("object" == _typeof(e) || "function" == typeof e))
-        return e;
-      if (void 0 !== e)
-        throw new TypeError("Derived constructors may only return object or undefined");
-      return _assertThisInitialized(t);
-    }
-    function _assertThisInitialized(e) {
-      if (void 0 === e)
-        throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-      return e;
-    }
-    function _inherits(t, e) {
-      if ("function" != typeof e && null !== e)
-        throw new TypeError("Super expression must either be null or a function");
-      t.prototype = Object.create(e && e.prototype, { constructor: { value: t, writable: true, configurable: true } }), Object.defineProperty(t, "prototype", { writable: false }), e && _setPrototypeOf(t, e);
-    }
-    function _wrapNativeSuper(t) {
-      var r = "function" == typeof Map ? /* @__PURE__ */ new Map() : void 0;
-      return _wrapNativeSuper = function _wrapNativeSuper2(t2) {
-        if (null === t2 || !_isNativeFunction(t2))
-          return t2;
-        if ("function" != typeof t2)
-          throw new TypeError("Super expression must either be null or a function");
-        if (void 0 !== r) {
-          if (r.has(t2))
-            return r.get(t2);
-          r.set(t2, Wrapper);
-        }
-        function Wrapper() {
-          return _construct(t2, arguments, _getPrototypeOf(this).constructor);
-        }
-        return Wrapper.prototype = Object.create(t2.prototype, { constructor: { value: Wrapper, enumerable: false, writable: true, configurable: true } }), _setPrototypeOf(Wrapper, t2);
-      }, _wrapNativeSuper(t);
-    }
-    function _construct(t, e, r) {
-      if (_isNativeReflectConstruct())
-        return Reflect.construct.apply(null, arguments);
-      var o = [null];
-      o.push.apply(o, e);
-      var p = new (t.bind.apply(t, o))();
-      return r && _setPrototypeOf(p, r.prototype), p;
-    }
-    function _isNativeReflectConstruct() {
-      try {
-        var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function() {
-        }));
-      } catch (t2) {
-      }
-      return (_isNativeReflectConstruct = function _isNativeReflectConstruct2() {
-        return !!t;
-      })();
-    }
-    function _isNativeFunction(t) {
-      try {
-        return -1 !== Function.toString.call(t).indexOf("[native code]");
-      } catch (n) {
-        return "function" == typeof t;
-      }
-    }
-    function _setPrototypeOf(t, e) {
-      return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function(t2, e2) {
-        return t2.__proto__ = e2, t2;
-      }, _setPrototypeOf(t, e);
-    }
-    function _getPrototypeOf(t) {
-      return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function(t2) {
-        return t2.__proto__ || Object.getPrototypeOf(t2);
-      }, _getPrototypeOf(t);
-    }
-    function _defineProperty(e, r, t) {
-      return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e;
-    }
-    function _toPropertyKey(t) {
-      var i = _toPrimitive(t, "string");
-      return "symbol" == _typeof(i) ? i : i + "";
-    }
-    function _toPrimitive(t, r) {
-      if ("object" != _typeof(t) || !t)
-        return t;
-      var e = t[Symbol.toPrimitive];
-      if (void 0 !== e) {
-        var i = e.call(t, r || "default");
-        if ("object" != _typeof(i))
-          return i;
-        throw new TypeError("@@toPrimitive must return a primitive value.");
-      }
-      return ("string" === r ? String : Number)(t);
-    }
-    function _regenerator() {
-      var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag";
-      function i(r2, n2, o2, i2) {
-        var c2 = n2 && n2.prototype instanceof Generator ? n2 : Generator, u2 = Object.create(c2.prototype);
-        return _regeneratorDefine2(u2, "_invoke", function(r3, n3, o3) {
-          var i3, c3, u3, f2 = 0, p = o3 || [], y = false, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d2(t2, r4) {
-            return i3 = t2, c3 = 0, u3 = e, G.n = r4, a;
-          } };
-          function d(r4, n4) {
-            for (c3 = r4, u3 = n4, t = 0; !y && f2 && !o4 && t < p.length; t++) {
-              var o4, i4 = p[t], d2 = G.p, l = i4[2];
-              r4 > 3 ? (o4 = l === n4) && (u3 = i4[(c3 = i4[4]) ? 5 : (c3 = 3, 3)], i4[4] = i4[5] = e) : i4[0] <= d2 && ((o4 = r4 < 2 && d2 < i4[1]) ? (c3 = 0, G.v = n4, G.n = i4[1]) : d2 < l && (o4 = r4 < 3 || i4[0] > n4 || n4 > l) && (i4[4] = r4, i4[5] = n4, G.n = l, c3 = 0));
-            }
-            if (o4 || r4 > 1)
-              return a;
-            throw y = true, n4;
-          }
-          return function(o4, p2, l) {
-            if (f2 > 1)
-              throw TypeError("Generator is already running");
-            for (y && 1 === p2 && d(p2, l), c3 = p2, u3 = l; (t = c3 < 2 ? e : u3) || !y; ) {
-              i3 || (c3 ? c3 < 3 ? (c3 > 1 && (G.n = -1), d(c3, u3)) : G.n = u3 : G.v = u3);
-              try {
-                if (f2 = 2, i3) {
-                  if (c3 || (o4 = "next"), t = i3[o4]) {
-                    if (!(t = t.call(i3, u3)))
-                      throw TypeError("iterator result is not an object");
-                    if (!t.done)
-                      return t;
-                    u3 = t.value, c3 < 2 && (c3 = 0);
-                  } else
-                    1 === c3 && (t = i3["return"]) && t.call(i3), c3 < 2 && (u3 = TypeError("The iterator does not provide a '" + o4 + "' method"), c3 = 1);
-                  i3 = e;
-                } else if ((t = (y = G.n < 0) ? u3 : r3.call(n3, G)) !== a)
-                  break;
-              } catch (t2) {
-                i3 = e, c3 = 1, u3 = t2;
-              } finally {
-                f2 = 1;
-              }
-            }
-            return { value: t, done: y };
-          };
-        }(r2, o2, i2), true), u2;
-      }
-      var a = {};
-      function Generator() {
-      }
-      function GeneratorFunction() {
-      }
-      function GeneratorFunctionPrototype() {
-      }
-      t = Object.getPrototypeOf;
-      var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function() {
-        return this;
-      }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c);
-      function f(e2) {
-        return Object.setPrototypeOf ? Object.setPrototypeOf(e2, GeneratorFunctionPrototype) : (e2.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e2, o, "GeneratorFunction")), e2.prototype = Object.create(u), e2;
-      }
-      return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function() {
-        return this;
-      }), _regeneratorDefine2(u, "toString", function() {
-        return "[object Generator]";
-      }), (_regenerator = function _regenerator2() {
-        return { w: i, m: f };
-      })();
-    }
-    function _regeneratorDefine2(e, r, n, t) {
-      var i = Object.defineProperty;
-      try {
-        i({}, "", {});
-      } catch (e2) {
-        i = 0;
-      }
-      _regeneratorDefine2 = function _regeneratorDefine(e2, r2, n2, t2) {
-        if (r2)
-          i ? i(e2, r2, { value: n2, enumerable: !t2, configurable: !t2, writable: !t2 }) : e2[r2] = n2;
-        else {
-          var o = function o2(r3, n3) {
-            _regeneratorDefine2(e2, r3, function(e3) {
-              return this._invoke(r3, n3, e3);
-            });
-          };
-          o("next", 0), o("throw", 1), o("return", 2);
-        }
-      }, _regeneratorDefine2(e, r, n, t);
-    }
-    function asyncGeneratorStep(n, t, e, r, o, a, c) {
-      try {
-        var i = n[a](c), u = i.value;
-      } catch (n2) {
-        return void e(n2);
-      }
-      i.done ? t(u) : Promise.resolve(u).then(r, o);
-    }
-    function _asyncToGenerator(n) {
-      return function() {
-        var t = this, e = arguments;
-        return new Promise(function(r, o) {
-          var a = n.apply(t, e);
-          function _next(n2) {
-            asyncGeneratorStep(a, r, o, _next, _throw, "next", n2);
-          }
-          function _throw(n2) {
-            asyncGeneratorStep(a, r, o, _next, _throw, "throw", n2);
-          }
-          _next(void 0);
-        });
-      };
-    }
-    var readFile6 = fs7.readFile ? (0, _util.promisify)(fs7.readFile) : _asyncToGenerator(_regenerator().m(function _callee() {
-      return _regenerator().w(function(_context) {
-        while (1)
-          switch (_context.n) {
-            case 0:
-              throw new ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
-            case 1:
-              return _context.a(2);
-          }
-      }, _callee);
-    }));
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.buildPayloadForJwsSign = buildPayloadForJwsSign;
+    exports2.getJwsSign = getJwsSign;
+    var jws_1 = require_jws();
+    var ALG_RS256 = "RS256";
     var GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
-    var GOOGLE_REVOKE_TOKEN_URL = "https://oauth2.googleapis.com/revoke?token=";
-    var ErrorWithCode = function(_Error) {
-      function ErrorWithCode2(message, code) {
-        var _this;
-        _classCallCheck(this, ErrorWithCode2);
-        _this = _callSuper(this, ErrorWithCode2, [message]);
-        _defineProperty(_this, "code", void 0);
-        _this.code = code;
-        return _this;
-      }
-      _inherits(ErrorWithCode2, _Error);
-      return _createClass(ErrorWithCode2);
-    }(_wrapNativeSuper(Error));
-    var _inFlightRequest = /* @__PURE__ */ new WeakMap();
-    var _GoogleToken_brand = /* @__PURE__ */ new WeakSet();
-    var GoogleToken = exports2.GoogleToken = function() {
-      function GoogleToken2(_options) {
-        _classCallCheck(this, GoogleToken2);
-        _classPrivateMethodInitSpec(this, _GoogleToken_brand);
-        _defineProperty(this, "expiresAt", void 0);
-        _defineProperty(this, "key", void 0);
-        _defineProperty(this, "keyFile", void 0);
-        _defineProperty(this, "iss", void 0);
-        _defineProperty(this, "sub", void 0);
-        _defineProperty(this, "scope", void 0);
-        _defineProperty(this, "rawToken", void 0);
-        _defineProperty(this, "tokenExpires", void 0);
-        _defineProperty(this, "email", void 0);
-        _defineProperty(this, "additionalClaims", void 0);
-        _defineProperty(this, "eagerRefreshThresholdMillis", void 0);
-        _defineProperty(this, "transporter", {
-          request: function request(opts) {
-            return (0, _gaxios.request)(opts);
-          }
-        });
-        _classPrivateFieldInitSpec(this, _inFlightRequest, void 0);
-        _assertClassBrand(_GoogleToken_brand, this, _configure).call(this, _options);
-      }
-      return _createClass(GoogleToken2, [{
-        key: "accessToken",
-        get: function get() {
-          return this.rawToken ? this.rawToken.access_token : void 0;
-        }
-      }, {
-        key: "idToken",
-        get: function get() {
-          return this.rawToken ? this.rawToken.id_token : void 0;
-        }
-      }, {
-        key: "tokenType",
-        get: function get() {
-          return this.rawToken ? this.rawToken.token_type : void 0;
-        }
-      }, {
-        key: "refreshToken",
-        get: function get() {
-          return this.rawToken ? this.rawToken.refresh_token : void 0;
-        }
-      }, {
-        key: "hasExpired",
-        value: function hasExpired() {
-          var now = (/* @__PURE__ */ new Date()).getTime();
-          if (this.rawToken && this.expiresAt) {
-            return now >= this.expiresAt;
-          } else {
-            return true;
-          }
-        }
-        /**
-         * Returns whether the token will expire within eagerRefreshThresholdMillis
-         *
-         * @return true if the token will be expired within eagerRefreshThresholdMillis, false otherwise.
-         */
-      }, {
-        key: "isTokenExpiring",
-        value: function isTokenExpiring() {
-          var _this$eagerRefreshThr;
-          var now = (/* @__PURE__ */ new Date()).getTime();
-          var eagerRefreshThresholdMillis = (_this$eagerRefreshThr = this.eagerRefreshThresholdMillis) !== null && _this$eagerRefreshThr !== void 0 ? _this$eagerRefreshThr : 0;
-          if (this.rawToken && this.expiresAt) {
-            return this.expiresAt <= now + eagerRefreshThresholdMillis;
-          } else {
-            return true;
-          }
-        }
-        /**
-         * Returns a cached token or retrieves a new one from Google.
-         *
-         * @param callback The callback function.
-         */
-      }, {
-        key: "getToken",
-        value: function getToken(callback) {
-          var opts = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-          if (_typeof(callback) === "object") {
-            opts = callback;
-            callback = void 0;
-          }
-          opts = Object.assign({
-            forceRefresh: false
-          }, opts);
-          if (callback) {
-            var cb = callback;
-            _assertClassBrand(_GoogleToken_brand, this, _getTokenAsync).call(this, opts).then(function(t) {
-              return cb(null, t);
-            }, callback);
-            return;
-          }
-          return _assertClassBrand(_GoogleToken_brand, this, _getTokenAsync).call(this, opts);
-        }
-        /**
-         * Given a keyFile, extract the key and client email if available
-         * @param keyFile Path to a json, pem, or p12 file that contains the key.
-         * @returns an object with privateKey and clientEmail properties
-         */
-      }, {
-        key: "getCredentials",
-        value: function() {
-          var _getCredentials = _asyncToGenerator(_regenerator().m(function _callee2(keyFile) {
-            var ext2, key, body, privateKey, clientEmail, _privateKey, _t;
-            return _regenerator().w(function(_context2) {
-              while (1)
-                switch (_context2.n) {
-                  case 0:
-                    ext2 = path9.extname(keyFile);
-                    _t = ext2;
-                    _context2.n = _t === ".json" ? 1 : _t === ".der" ? 4 : _t === ".crt" ? 4 : _t === ".pem" ? 4 : _t === ".p12" ? 6 : _t === ".pfx" ? 6 : 7;
-                    break;
-                  case 1:
-                    _context2.n = 2;
-                    return readFile6(keyFile, "utf8");
-                  case 2:
-                    key = _context2.v;
-                    body = JSON.parse(key);
-                    privateKey = body.private_key;
-                    clientEmail = body.client_email;
-                    if (!(!privateKey || !clientEmail)) {
-                      _context2.n = 3;
-                      break;
-                    }
-                    throw new ErrorWithCode("private_key and client_email are required.", "MISSING_CREDENTIALS");
-                  case 3:
-                    return _context2.a(2, {
-                      privateKey,
-                      clientEmail
-                    });
-                  case 4:
-                    _context2.n = 5;
-                    return readFile6(keyFile, "utf8");
-                  case 5:
-                    _privateKey = _context2.v;
-                    return _context2.a(2, {
-                      privateKey: _privateKey
-                    });
-                  case 6:
-                    throw new ErrorWithCode("*.p12 certificates are not supported after v6.1.2. Consider utilizing *.json format or converting *.p12 to *.pem using the OpenSSL CLI.", "UNKNOWN_CERTIFICATE_TYPE");
-                  case 7:
-                    throw new ErrorWithCode("Unknown certificate type. Type is determined based on file extension. Current supported extensions are *.json, and *.pem.", "UNKNOWN_CERTIFICATE_TYPE");
-                  case 8:
-                    return _context2.a(2);
-                }
-            }, _callee2);
-          }));
-          function getCredentials(_x) {
-            return _getCredentials.apply(this, arguments);
-          }
-          return getCredentials;
-        }()
-      }, {
-        key: "revokeToken",
-        value: function revokeToken(callback) {
-          if (callback) {
-            _assertClassBrand(_GoogleToken_brand, this, _revokeTokenAsync).call(this).then(function() {
-              return callback();
-            }, callback);
-            return;
-          }
-          return _assertClassBrand(_GoogleToken_brand, this, _revokeTokenAsync).call(this);
-        }
-      }]);
-    }();
-    function _getTokenAsync(_x2) {
-      return _getTokenAsync2.apply(this, arguments);
+    function buildPayloadForJwsSign(tokenOptions) {
+      const iat = Math.floor((/* @__PURE__ */ new Date()).getTime() / 1e3);
+      const payload = {
+        iss: tokenOptions.iss,
+        scope: tokenOptions.scope,
+        aud: GOOGLE_TOKEN_URL,
+        exp: iat + 3600,
+        iat,
+        sub: tokenOptions.sub,
+        ...tokenOptions.additionalClaims
+      };
+      return payload;
     }
-    function _getTokenAsync2() {
-      _getTokenAsync2 = _asyncToGenerator(_regenerator().m(function _callee3(opts) {
-        return _regenerator().w(function(_context3) {
-          while (1)
-            switch (_context3.n) {
-              case 0:
-                if (!(_classPrivateFieldGet(_inFlightRequest, this) && !opts.forceRefresh)) {
-                  _context3.n = 1;
-                  break;
-                }
-                return _context3.a(2, _classPrivateFieldGet(_inFlightRequest, this));
-              case 1:
-                _context3.p = 1;
-                _context3.n = 2;
-                return _classPrivateFieldSet(_inFlightRequest, this, _assertClassBrand(_GoogleToken_brand, this, _getTokenAsyncInner).call(this, opts));
-              case 2:
-                return _context3.a(2, _context3.v);
-              case 3:
-                _context3.p = 3;
-                _classPrivateFieldSet(_inFlightRequest, this, void 0);
-                return _context3.f(3);
-              case 4:
-                return _context3.a(2);
-            }
-        }, _callee3, this, [[1, , 3, 4]]);
-      }));
-      return _getTokenAsync2.apply(this, arguments);
-    }
-    function _getTokenAsyncInner(_x3) {
-      return _getTokenAsyncInner2.apply(this, arguments);
-    }
-    function _getTokenAsyncInner2() {
-      _getTokenAsyncInner2 = _asyncToGenerator(_regenerator().m(function _callee4(opts) {
-        var creds;
-        return _regenerator().w(function(_context4) {
-          while (1)
-            switch (_context4.n) {
-              case 0:
-                if (!(this.isTokenExpiring() === false && opts.forceRefresh === false)) {
-                  _context4.n = 1;
-                  break;
-                }
-                return _context4.a(2, Promise.resolve(this.rawToken));
-              case 1:
-                if (!(!this.key && !this.keyFile)) {
-                  _context4.n = 2;
-                  break;
-                }
-                throw new Error("No key or keyFile set.");
-              case 2:
-                if (!(!this.key && this.keyFile)) {
-                  _context4.n = 4;
-                  break;
-                }
-                _context4.n = 3;
-                return this.getCredentials(this.keyFile);
-              case 3:
-                creds = _context4.v;
-                this.key = creds.privateKey;
-                this.iss = creds.clientEmail || this.iss;
-                if (!creds.clientEmail) {
-                  _assertClassBrand(_GoogleToken_brand, this, _ensureEmail).call(this);
-                }
-              case 4:
-                return _context4.a(2, _assertClassBrand(_GoogleToken_brand, this, _requestToken).call(this));
-            }
-        }, _callee4, this);
-      }));
-      return _getTokenAsyncInner2.apply(this, arguments);
-    }
-    function _ensureEmail() {
-      if (!this.iss) {
-        throw new ErrorWithCode("email is required.", "MISSING_CREDENTIALS");
-      }
-    }
-    function _revokeTokenAsync() {
-      return _revokeTokenAsync2.apply(this, arguments);
-    }
-    function _revokeTokenAsync2() {
-      _revokeTokenAsync2 = _asyncToGenerator(_regenerator().m(function _callee5() {
-        var url3;
-        return _regenerator().w(function(_context5) {
-          while (1)
-            switch (_context5.n) {
-              case 0:
-                if (this.accessToken) {
-                  _context5.n = 1;
-                  break;
-                }
-                throw new Error("No token to revoke.");
-              case 1:
-                url3 = GOOGLE_REVOKE_TOKEN_URL + this.accessToken;
-                _context5.n = 2;
-                return this.transporter.request({
-                  url: url3,
-                  retry: true
-                });
-              case 2:
-                _assertClassBrand(_GoogleToken_brand, this, _configure).call(this, {
-                  email: this.iss,
-                  sub: this.sub,
-                  key: this.key,
-                  keyFile: this.keyFile,
-                  scope: this.scope,
-                  additionalClaims: this.additionalClaims
-                });
-              case 3:
-                return _context5.a(2);
-            }
-        }, _callee5, this);
-      }));
-      return _revokeTokenAsync2.apply(this, arguments);
-    }
-    function _configure() {
-      var options = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
-      this.keyFile = options.keyFile;
-      this.key = options.key;
-      this.rawToken = void 0;
-      this.iss = options.email || options.iss;
-      this.sub = options.sub;
-      this.additionalClaims = options.additionalClaims;
-      if (_typeof(options.scope) === "object") {
-        this.scope = options.scope.join(" ");
-      } else {
-        this.scope = options.scope;
-      }
-      this.eagerRefreshThresholdMillis = options.eagerRefreshThresholdMillis;
-      if (options.transporter) {
-        this.transporter = options.transporter;
-      }
-    }
-    function _requestToken() {
-      return _requestToken2.apply(this, arguments);
-    }
-    function _requestToken2() {
-      _requestToken2 = _asyncToGenerator(_regenerator().m(function _callee6() {
-        var iat, additionalClaims, payload, signedJWT, r, _response, _response2, body, desc, _t2;
-        return _regenerator().w(function(_context6) {
-          while (1)
-            switch (_context6.n) {
-              case 0:
-                iat = Math.floor((/* @__PURE__ */ new Date()).getTime() / 1e3);
-                additionalClaims = this.additionalClaims || {};
-                payload = Object.assign({
-                  iss: this.iss,
-                  scope: this.scope,
-                  aud: GOOGLE_TOKEN_URL,
-                  exp: iat + 3600,
-                  iat,
-                  sub: this.sub
-                }, additionalClaims);
-                signedJWT = jws.sign({
-                  header: {
-                    alg: "RS256"
-                  },
-                  payload,
-                  secret: this.key
-                });
-                _context6.p = 1;
-                _context6.n = 2;
-                return this.transporter.request({
-                  method: "POST",
-                  url: GOOGLE_TOKEN_URL,
-                  data: new URLSearchParams({
-                    grant_type: "urn:ietf:params:oauth:grant-type:jwt-bearer",
-                    assertion: signedJWT
-                  }),
-                  responseType: "json",
-                  retryConfig: {
-                    httpMethodsToRetry: ["POST"]
-                  }
-                });
-              case 2:
-                r = _context6.v;
-                this.rawToken = r.data;
-                this.expiresAt = r.data.expires_in === null || r.data.expires_in === void 0 ? void 0 : (iat + r.data.expires_in) * 1e3;
-                return _context6.a(2, this.rawToken);
-              case 3:
-                _context6.p = 3;
-                _t2 = _context6.v;
-                this.rawToken = void 0;
-                this.tokenExpires = void 0;
-                body = _t2.response && (_response = _t2.response) !== null && _response !== void 0 && _response.data ? (_response2 = _t2.response) === null || _response2 === void 0 ? void 0 : _response2.data : {};
-                if (body.error) {
-                  desc = body.error_description ? ": ".concat(body.error_description) : "";
-                  _t2.message = "".concat(body.error).concat(desc);
-                }
-                throw _t2;
-              case 4:
-                return _context6.a(2);
-            }
-        }, _callee6, this, [[1, 3]]);
-      }));
-      return _requestToken2.apply(this, arguments);
+    function getJwsSign(tokenOptions) {
+      const payload = buildPayloadForJwsSign(tokenOptions);
+      return (0, jws_1.sign)({
+        header: { alg: ALG_RS256 },
+        payload,
+        secret: tokenOptions.key
+      });
     }
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/getToken.js
+var require_getToken = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/getToken.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.getToken = getToken;
+    var jwsSign_1 = require_jwsSign();
+    var GOOGLE_TOKEN_URL = "https://oauth2.googleapis.com/token";
+    var GOOGLE_GRANT_TYPE = "urn:ietf:params:oauth:grant-type:jwt-bearer";
+    var generateRequestOptions = (tokenOptions) => {
+      return {
+        method: "POST",
+        url: GOOGLE_TOKEN_URL,
+        data: new URLSearchParams({
+          grant_type: GOOGLE_GRANT_TYPE,
+          // Grant type for JWT
+          assertion: (0, jwsSign_1.getJwsSign)(tokenOptions)
+        }),
+        responseType: "json",
+        retryConfig: {
+          httpMethodsToRetry: ["POST"]
+        }
+      };
+    };
+    async function getToken(tokenOptions) {
+      if (!tokenOptions.transporter) {
+        throw new Error("No transporter set.");
+      }
+      try {
+        const gaxiosOptions = generateRequestOptions(tokenOptions);
+        const response = await tokenOptions.transporter.request(gaxiosOptions);
+        return response.data;
+      } catch (e) {
+        const err = e;
+        const errorData = err.response?.data;
+        if (errorData?.error) {
+          err.message = `${errorData.error}: ${errorData.error_description}`;
+        }
+        throw err;
+      }
+    }
+  }
+});
+
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/errorWithCode.js
+var require_errorWithCode = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/errorWithCode.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.ErrorWithCode = void 0;
+    var ErrorWithCode = class extends Error {
+      code;
+      constructor(message, code) {
+        super(message);
+        this.code = code;
+      }
+    };
+    exports2.ErrorWithCode = ErrorWithCode;
+  }
+});
+
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/getCredentials.js
+var require_getCredentials = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/getCredentials.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.getCredentials = getCredentials;
+    var path9 = __require("path");
+    var fs7 = __require("fs");
+    var util_1 = __require("util");
+    var errorWithCode_1 = require_errorWithCode();
+    var readFile6 = fs7.readFile ? (0, util_1.promisify)(fs7.readFile) : async () => {
+      throw new errorWithCode_1.ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
+    };
+    var ExtensionFiles;
+    (function(ExtensionFiles2) {
+      ExtensionFiles2["JSON"] = ".json";
+      ExtensionFiles2["DER"] = ".der";
+      ExtensionFiles2["CRT"] = ".crt";
+      ExtensionFiles2["PEM"] = ".pem";
+      ExtensionFiles2["P12"] = ".p12";
+      ExtensionFiles2["PFX"] = ".pfx";
+    })(ExtensionFiles || (ExtensionFiles = {}));
+    var JsonCredentialsProvider = class {
+      keyFilePath;
+      constructor(keyFilePath) {
+        this.keyFilePath = keyFilePath;
+      }
+      /**
+       * Reads a JSON key file and extracts the private key and client email.
+       * @returns A promise that resolves with the credentials.
+       */
+      async getCredentials() {
+        const key = await readFile6(this.keyFilePath, "utf8");
+        let body;
+        try {
+          body = JSON.parse(key);
+        } catch (error48) {
+          const err = error48;
+          throw new Error(`Invalid JSON key file: ${err.message}`);
+        }
+        const privateKey = body.private_key;
+        const clientEmail = body.client_email;
+        if (!privateKey || !clientEmail) {
+          throw new errorWithCode_1.ErrorWithCode("private_key and client_email are required.", "MISSING_CREDENTIALS");
+        }
+        return { privateKey, clientEmail };
+      }
+    };
+    var PemCredentialsProvider = class {
+      keyFilePath;
+      constructor(keyFilePath) {
+        this.keyFilePath = keyFilePath;
+      }
+      /**
+       * Reads a PEM-like key file.
+       * @returns A promise that resolves with the private key.
+       */
+      async getCredentials() {
+        const privateKey = await readFile6(this.keyFilePath, "utf8");
+        return { privateKey };
+      }
+    };
+    var P12CredentialsProvider = class {
+      /**
+       * Throws an error as P12/PFX certificates are not supported.
+       * @returns A promise that rejects with an error.
+       */
+      async getCredentials() {
+        throw new errorWithCode_1.ErrorWithCode("*.p12 certificates are not supported after v6.1.2. Consider utilizing *.json format or converting *.p12 to *.pem using the OpenSSL CLI.", "UNKNOWN_CERTIFICATE_TYPE");
+      }
+    };
+    var CredentialsProviderFactory = class {
+      /**
+       * Creates a credential provider based on the key file extension.
+       * @param keyFilePath The path to the key file.
+       * @returns An instance of a class that implements ICredentialsProvider.
+       */
+      static create(keyFilePath) {
+        const keyFileExtension = path9.extname(keyFilePath);
+        switch (keyFileExtension) {
+          case ExtensionFiles.JSON:
+            return new JsonCredentialsProvider(keyFilePath);
+          case ExtensionFiles.DER:
+          case ExtensionFiles.CRT:
+          case ExtensionFiles.PEM:
+            return new PemCredentialsProvider(keyFilePath);
+          case ExtensionFiles.P12:
+          case ExtensionFiles.PFX:
+            return new P12CredentialsProvider();
+          default:
+            throw new errorWithCode_1.ErrorWithCode("Unknown certificate type. Type is determined based on file extension. Current supported extensions are *.json, and *.pem.", "UNKNOWN_CERTIFICATE_TYPE");
+        }
+      }
+    };
+    async function getCredentials(keyFilePath) {
+      const provider = CredentialsProviderFactory.create(keyFilePath);
+      return provider.getCredentials();
+    }
+  }
+});
+
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/tokenHandler.js
+var require_tokenHandler = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/tokenHandler.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.TokenHandler = void 0;
+    var getToken_1 = require_getToken();
+    var getCredentials_1 = require_getCredentials();
+    var TokenHandler = class {
+      /** The cached access token. */
+      token;
+      /** The expiration time of the cached access token. */
+      tokenExpiresAt;
+      /** A promise for an in-flight token request. */
+      inFlightRequest;
+      tokenOptions;
+      /**
+       * Creates an instance of TokenHandler.
+       * @param tokenOptions The options for fetching tokens.
+       * @param transporter The transporter to use for making requests.
+       */
+      constructor(tokenOptions) {
+        this.tokenOptions = tokenOptions;
+      }
+      /**
+       * Processes the credentials, loading them from a key file if necessary.
+       * This method is called before any token request.
+       */
+      async processCredentials() {
+        if (!this.tokenOptions.key && !this.tokenOptions.keyFile) {
+          throw new Error("No key or keyFile set.");
+        }
+        if (!this.tokenOptions.key && this.tokenOptions.keyFile) {
+          const credentials = await (0, getCredentials_1.getCredentials)(this.tokenOptions.keyFile);
+          this.tokenOptions.key = credentials.privateKey;
+          this.tokenOptions.email = credentials.clientEmail;
+        }
+      }
+      /**
+       * Checks if the cached token is expired or close to expiring.
+       * @returns True if the token is expiring, false otherwise.
+       */
+      isTokenExpiring() {
+        if (!this.token || !this.tokenExpiresAt) {
+          return true;
+        }
+        const now = (/* @__PURE__ */ new Date()).getTime();
+        const eagerRefreshThresholdMillis = this.tokenOptions.eagerRefreshThresholdMillis ?? 0;
+        return this.tokenExpiresAt <= now + eagerRefreshThresholdMillis;
+      }
+      /**
+       * Returns whether the token has completely expired.
+       *
+       * @returns true if the token has expired, false otherwise.
+       */
+      hasExpired() {
+        const now = (/* @__PURE__ */ new Date()).getTime();
+        if (this.token && this.tokenExpiresAt) {
+          const now2 = (/* @__PURE__ */ new Date()).getTime();
+          return now2 >= this.tokenExpiresAt;
+        }
+        return true;
+      }
+      /**
+       * Fetches an access token, using a cached one if available and not expired.
+       * @param forceRefresh If true, forces a new token to be fetched.
+       * @returns A promise that resolves with the token data.
+       */
+      async getToken(forceRefresh) {
+        await this.processCredentials();
+        if (this.inFlightRequest && !forceRefresh) {
+          return this.inFlightRequest;
+        }
+        if (this.token && !this.isTokenExpiring() && !forceRefresh) {
+          return this.token;
+        }
+        try {
+          this.inFlightRequest = (0, getToken_1.getToken)(this.tokenOptions);
+          const token = await this.inFlightRequest;
+          this.token = token;
+          this.tokenExpiresAt = (/* @__PURE__ */ new Date()).getTime() + (token.expires_in ?? 0) * 1e3;
+          return token;
+        } finally {
+          this.inFlightRequest = void 0;
+        }
+      }
+    };
+    exports2.TokenHandler = TokenHandler;
+  }
+});
+
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/revokeToken.js
+var require_revokeToken = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/revokeToken.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.revokeToken = revokeToken;
+    var GOOGLE_REVOKE_TOKEN_URL = "https://oauth2.googleapis.com/revoke?token=";
+    var DEFAULT_RETRY_VALUE = true;
+    async function revokeToken(accessToken, transporter) {
+      const url3 = GOOGLE_REVOKE_TOKEN_URL + accessToken;
+      return await transporter.request({
+        url: url3,
+        retry: DEFAULT_RETRY_VALUE
+      });
+    }
+  }
+});
+
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/googleToken.js
+var require_googleToken = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/gtoken/googleToken.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GoogleToken = void 0;
+    var gaxios_1 = require_src2();
+    var tokenHandler_1 = require_tokenHandler();
+    var revokeToken_1 = require_revokeToken();
+    var GoogleToken = class {
+      /** The configuration options for this token instance. */
+      tokenOptions;
+      /** The handler for token fetching and caching logic. */
+      tokenHandler;
+      /**
+       * Create a GoogleToken.
+       *
+       * @param options  Configuration object.
+       */
+      constructor(options) {
+        this.tokenOptions = options || {};
+        this.tokenOptions.transporter = this.tokenOptions.transporter || {
+          request: (opts) => (0, gaxios_1.request)(opts)
+        };
+        if (!this.tokenOptions.iss) {
+          this.tokenOptions.iss = this.tokenOptions.email;
+        }
+        if (typeof this.tokenOptions.scope === "object") {
+          this.tokenOptions.scope = this.tokenOptions.scope.join(" ");
+        }
+        this.tokenHandler = new tokenHandler_1.TokenHandler(this.tokenOptions);
+      }
+      get expiresAt() {
+        return this.tokenHandler.tokenExpiresAt;
+      }
+      /**
+       * The most recent access token obtained by this client.
+       */
+      get accessToken() {
+        return this.tokenHandler.token?.access_token;
+      }
+      /**
+       * The most recent ID token obtained by this client.
+       */
+      get idToken() {
+        return this.tokenHandler.token?.id_token;
+      }
+      /**
+       * The token type of the most recent access token.
+       */
+      get tokenType() {
+        return this.tokenHandler.token?.token_type;
+      }
+      /**
+       * The refresh token for the current credentials.
+       */
+      get refreshToken() {
+        return this.tokenHandler.token?.refresh_token;
+      }
+      /**
+       * A boolean indicating if the current token has expired.
+       */
+      hasExpired() {
+        return this.tokenHandler.hasExpired();
+      }
+      /**
+       * A boolean indicating if the current token is expiring soon,
+       * based on the `eagerRefreshThresholdMillis` option.
+       */
+      isTokenExpiring() {
+        return this.tokenHandler.isTokenExpiring();
+      }
+      getToken(callbackOrOptions, opts = { forceRefresh: false }) {
+        let callback;
+        if (typeof callbackOrOptions === "function") {
+          callback = callbackOrOptions;
+        } else if (typeof callbackOrOptions === "object") {
+          opts = callbackOrOptions;
+        }
+        const promise2 = this.tokenHandler.getToken(opts.forceRefresh ?? false);
+        if (callback) {
+          promise2.then((token) => callback(null, token), callback);
+        }
+        return promise2;
+      }
+      revokeToken(callback) {
+        if (!this.accessToken) {
+          return Promise.reject(new Error("No token to revoke."));
+        }
+        const promise2 = (0, revokeToken_1.revokeToken)(this.accessToken, this.tokenOptions.transporter);
+        if (callback) {
+          promise2.then(() => callback(), callback);
+        }
+        this.tokenHandler = new tokenHandler_1.TokenHandler(this.tokenOptions);
+      }
+      /**
+       * Returns the configuration options for this token instance.
+       */
+      get googleTokenOptions() {
+        return this.tokenOptions;
+      }
+    };
+    exports2.GoogleToken = GoogleToken;
+  }
+});
+
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
 var require_jwtaccess = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.JWTAccess = void 0;
@@ -28237,13 +27987,14 @@ var require_jwtaccess = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
 var require_jwtclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.JWT = void 0;
-    var gtoken_1 = require_src5();
+    var googleToken_1 = require_googleToken();
+    var getCredentials_1 = require_getCredentials();
     var jwtaccess_1 = require_jwtaccess();
     var oauth2client_1 = require_oauth2client();
     var authclient_1 = require_authclient();
@@ -28340,7 +28091,7 @@ var require_jwtclient = __commonJS({
        * @param targetAudience the audience for the fetched ID token.
        */
       async fetchIdToken(targetAudience) {
-        const gtoken = new gtoken_1.GoogleToken({
+        const gtoken = new googleToken_1.GoogleToken({
           iss: this.email,
           sub: this.subject,
           scope: this.scopes || this.defaultScopes,
@@ -28390,8 +28141,8 @@ var require_jwtclient = __commonJS({
         }
         this.credentials = result.tokens;
         this.credentials.refresh_token = "jwt-placeholder";
-        this.key = this.gtoken.key;
-        this.email = this.gtoken.iss;
+        this.key = this.gtoken.googleTokenOptions?.key;
+        this.email = this.gtoken.googleTokenOptions?.iss;
         return result.tokens;
       }
       /**
@@ -28418,7 +28169,7 @@ var require_jwtclient = __commonJS({
        */
       createGToken() {
         if (!this.gtoken) {
-          this.gtoken = new gtoken_1.GoogleToken({
+          this.gtoken = new googleToken_1.GoogleToken({
             iss: this.email,
             sub: this.subject,
             scope: this.scopes || this.defaultScopes,
@@ -28498,7 +28249,7 @@ var require_jwtclient = __commonJS({
           return { private_key: this.key, client_email: this.email };
         } else if (this.keyFile) {
           const gtoken = this.createGToken();
-          const creds = await gtoken.getCredentials(this.keyFile);
+          const creds = await (0, getCredentials_1.getCredentials)(this.keyFile);
           return { private_key: creds.privateKey, client_email: creds.clientEmail };
         }
         throw new Error("A key or a keyFile must be provided to getCredentials.");
@@ -28508,9 +28259,9 @@ var require_jwtclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
 var require_refreshclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.UserRefreshClient = exports2.USER_REFRESH_ACCOUNT_TYPE = void 0;
@@ -28562,7 +28313,8 @@ var require_refreshclient = __commonJS({
             grant_type: "refresh_token",
             refresh_token: this._refreshToken,
             target_audience: targetAudience
-          })
+          }),
+          responseType: "json"
         };
         authclient_1.AuthClient.setMethodName(opts, "fetchIdToken");
         const res = await this.transporter.request(opts);
@@ -28635,9 +28387,9 @@ var require_refreshclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
 var require_impersonated = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Impersonated = exports2.IMPERSONATED_ACCOUNT_TYPE = void 0;
@@ -28814,9 +28566,9 @@ var require_impersonated = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
 var require_oauth2common = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.OAuthClientAuthHandler = void 0;
@@ -28962,9 +28714,9 @@ var require_oauth2common = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
 var require_stscredentials = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.StsCredentials = void 0;
@@ -29024,7 +28776,8 @@ var require_stscredentials = __commonJS({
           url: this.#tokenExchangeEndpoint.toString(),
           method: "POST",
           headers,
-          data: new URLSearchParams((0, util_1.removeUndefinedValuesInObject)(values))
+          data: new URLSearchParams((0, util_1.removeUndefinedValuesInObject)(values)),
+          responseType: "json"
         };
         authclient_1.AuthClient.setMethodName(opts, "exchangeToken");
         this.applyClientAuthenticationOptions(opts);
@@ -29049,9 +28802,9 @@ var require_stscredentials = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
 var require_baseexternalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BaseExternalAccountClient = exports2.CLOUD_RESOURCE_MANAGER = exports2.EXTERNAL_ACCOUNT_TYPE = exports2.EXPIRATION_TIME_OFFSET = void 0;
@@ -29242,7 +28995,8 @@ var require_baseexternalclient = __commonJS({
           const opts = {
             ..._BaseExternalAccountClient.RETRY_CONFIG,
             headers,
-            url: `${this.cloudResourceManagerURL.toString()}${projectNumber}`
+            url: `${this.cloudResourceManagerURL.toString()}${projectNumber}`,
+            responseType: "json"
           };
           authclient_1.AuthClient.setMethodName(opts, "getProjectId");
           const response = await this.transporter.request(opts);
@@ -29381,7 +29135,8 @@ var require_baseexternalclient = __commonJS({
           data: {
             scope: this.getScopesArray(),
             lifetime: this.serviceAccountImpersonationLifetime + "s"
-          }
+          },
+          responseType: "json"
         };
         authclient_1.AuthClient.setMethodName(opts, "getImpersonatedAccessToken");
         const response = await this.transporter.request(opts);
@@ -29426,9 +29181,9 @@ var require_baseexternalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
 var require_filesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FileSubjectTokenSupplier = void 0;
@@ -29491,9 +29246,9 @@ var require_filesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
 var require_urlsubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.UrlSubjectTokenSupplier = void 0;
@@ -29527,7 +29282,8 @@ var require_urlsubjecttokensupplier = __commonJS({
           ...this.additionalGaxiosOptions,
           url: this.url,
           method: "GET",
-          headers: this.headers
+          headers: this.headers,
+          responseType: this.formatType
         };
         authclient_1.AuthClient.setMethodName(opts, "getSubjectToken");
         let subjectToken;
@@ -29548,9 +29304,9 @@ var require_urlsubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
 var require_certificatesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CertificateSubjectTokenSupplier = exports2.InvalidConfigurationError = exports2.CertificateSourceUnavailableError = exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
@@ -29732,9 +29488,9 @@ var require_certificatesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
 var require_identitypoolclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IdentityPoolClient = void 0;
@@ -29844,9 +29600,9 @@ var require_identitypoolclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
 var require_awsrequestsigner = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.AwsRequestSigner = void 0;
@@ -29994,9 +29750,9 @@ ${credentialScope}
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
 var require_defaultawssecuritycredentialssupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.DefaultAwsSecurityCredentialsSupplier = void 0;
@@ -30042,6 +29798,7 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
           ...this.additionalGaxiosOptions,
           url: this.regionUrl,
           method: "GET",
+          responseType: "text",
           headers: metadataHeaders
         };
         authclient_1.AuthClient.setMethodName(opts, "getAwsRegion");
@@ -30082,6 +29839,7 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
           ...this.additionalGaxiosOptions,
           url: this.imdsV2SessionTokenUrl,
           method: "PUT",
+          responseType: "text",
           headers: { "x-aws-ec2-metadata-token-ttl-seconds": "300" }
         };
         authclient_1.AuthClient.setMethodName(opts, "#getImdsV2SessionToken");
@@ -30102,6 +29860,7 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
           ...this.additionalGaxiosOptions,
           url: this.securityCredentialsUrl,
           method: "GET",
+          responseType: "text",
           headers
         };
         authclient_1.AuthClient.setMethodName(opts, "#getAwsRoleName");
@@ -30121,7 +29880,8 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
         const opts = {
           ...this.additionalGaxiosOptions,
           url: `${this.securityCredentialsUrl}/${roleName}`,
-          headers
+          headers,
+          responseType: "json"
         };
         authclient_1.AuthClient.setMethodName(opts, "#retrieveAwsSecurityCredentials");
         const response = await transporter.request(opts);
@@ -30145,9 +29905,9 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
 var require_awsclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.AwsClient = void 0;
@@ -30259,9 +30019,9 @@ var require_awsclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
 var require_executable_response = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.InvalidSubjectTokenError = exports2.InvalidMessageFieldError = exports2.InvalidCodeFieldError = exports2.InvalidTokenTypeFieldError = exports2.InvalidExpirationTimeFieldError = exports2.InvalidSuccessFieldError = exports2.InvalidVersionFieldError = exports2.ExecutableResponseError = exports2.ExecutableResponse = void 0;
@@ -30390,9 +30150,9 @@ var require_executable_response = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
 var require_pluggable_auth_handler = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.PluggableAuthHandler = exports2.ExecutableError = void 0;
@@ -30531,9 +30291,9 @@ var require_pluggable_auth_handler = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
 var require_pluggable_auth_client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.PluggableAuthClient = exports2.ExecutableError = void 0;
@@ -30658,9 +30418,9 @@ var require_pluggable_auth_client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
 var require_externalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ExternalAccountClient = void 0;
@@ -30707,9 +30467,9 @@ var require_externalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
 var require_externalAccountAuthorizedUserClient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ExternalAccountAuthorizedUserClient = exports2.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
@@ -30751,7 +30511,8 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
           data: new URLSearchParams({
             grant_type: "refresh_token",
             refresh_token: refreshToken
-          })
+          }),
+          responseType: "json"
         };
         authclient_1.AuthClient.setMethodName(opts, "refreshToken");
         this.applyClientAuthenticationOptions(opts);
@@ -30893,9 +30654,9 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
 var require_googleauth = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleAuth = exports2.GoogleAuthExceptionMessages = void 0;
@@ -31683,9 +31444,9 @@ var require_googleauth = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
 var require_iam = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IAMAuth = void 0;
@@ -31719,9 +31480,9 @@ var require_iam = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
 var require_downscopedclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.DownscopedClient = exports2.EXPIRATION_TIME_OFFSET = exports2.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
@@ -31904,9 +31665,9 @@ var require_downscopedclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
 var require_passthrough = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.PassThroughClient = void 0;
@@ -31949,10 +31710,30 @@ var require_passthrough = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js
-var require_src6 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.5.0_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js"(exports2) {
+// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js
+var require_src5 = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color_10.2.2/node_modules/google-auth-library/build/src/index.js"(exports2) {
     "use strict";
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
+      }
+      Object.defineProperty(o, k2, desc);
+    } : function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      o[k2] = m[k];
+    });
+    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
+      for (var p in m)
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p))
+          __createBinding(exports3, m, p);
+    };
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleAuth = exports2.auth = exports2.PassThroughClient = exports2.ExternalAccountAuthorizedUserClient = exports2.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = exports2.ExecutableError = exports2.PluggableAuthClient = exports2.DownscopedClient = exports2.BaseExternalAccountClient = exports2.ExternalAccountClient = exports2.IdentityPoolClient = exports2.AwsRequestSigner = exports2.AwsClient = exports2.UserRefreshClient = exports2.LoginTicket = exports2.ClientAuthentication = exports2.OAuth2Client = exports2.CodeChallengeMethod = exports2.Impersonated = exports2.JWT = exports2.JWTAccess = exports2.IdTokenClient = exports2.IAMAuth = exports2.GCPEnv = exports2.Compute = exports2.DEFAULT_UNIVERSE = exports2.AuthClient = exports2.gaxios = exports2.gcpMetadata = void 0;
     var googleauth_1 = require_googleauth();
@@ -32056,6 +31837,7 @@ var require_src6 = __commonJS({
     Object.defineProperty(exports2, "PassThroughClient", { enumerable: true, get: function() {
       return passthrough_1.PassThroughClient;
     } });
+    __exportStar(require_googleToken(), exports2);
     var auth = new googleauth_1.GoogleAuth();
     exports2.auth = auth;
   }
@@ -36247,7 +36029,7 @@ var range = (a, b, str) => {
   return result;
 };
 
-// node_modules/.aspect_rules_js/brace-expansion@5.0.3/node_modules/brace-expansion/dist/esm/index.js
+// node_modules/.aspect_rules_js/brace-expansion@5.0.4/node_modules/brace-expansion/dist/esm/index.js
 var escSlash = "\0SLASH" + Math.random() + "\0";
 var escOpen = "\0OPEN" + Math.random() + "\0";
 var escClose = "\0CLOSE" + Math.random() + "\0";
@@ -36262,7 +36044,7 @@ var slashPattern = /\\\\/g;
 var openPattern = /\\{/g;
 var closePattern = /\\}/g;
 var commaPattern = /\\,/g;
-var periodPattern = /\\./g;
+var periodPattern = /\\\./g;
 var EXPANSION_MAX = 1e5;
 function numeric(str) {
   return !isNaN(str) ? parseInt(str, 10) : str.charCodeAt(0);
@@ -48676,7 +48458,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-96ee0da006f9e289e34fe4b2d5b54d3bfbb9f517`;
+var localVersion = `0.0.0-aa8e4d0303e0d48337a2d84ac421663638b4db67`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49728,9 +49510,9 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.42.0_1468532058/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.42.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
-var import_google_auth_library = __toESM(require_src6(), 1);
+var import_google_auth_library = __toESM(require_src5(), 1);
 import { createWriteStream } from "fs";
 import * as fs6 from "fs/promises";
 import { writeFile as writeFile2 } from "fs/promises";
@@ -49744,7 +49526,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.42.0_1468532058/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.42.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -80972,9 +80754,6 @@ run-parallel/index.js:
 
 safe-buffer/index.js:
   (*! safe-buffer. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> *)
-
-gtoken/build/cjs/src/index.cjs:
-  (*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE *)
 
 ejs/lib/esm/ejs.js:
   (**
