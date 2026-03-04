@@ -68,7 +68,7 @@ import {
 } from "./chunk-F5VM5PF4.mjs";
 import {
   CommitParser
-} from "./chunk-PMGDP7TK.mjs";
+} from "./chunk-LCSKEA2T.mjs";
 import {
   require_ms
 } from "./chunk-DUE35MZP.mjs";
@@ -9750,8 +9750,8 @@ var require_terminal = __commonJS({
   "node_modules/.aspect_rules_js/cli-progress@3.12.0/node_modules/cli-progress/lib/terminal.js"(exports2, module2) {
     var _readline = __require("readline");
     var Terminal = class {
-      constructor(outputStream) {
-        this.stream = outputStream;
+      constructor(outputStream2) {
+        this.stream = outputStream2;
         this.linewrap = true;
         this.dy = 0;
       }
@@ -10961,7 +10961,7 @@ var require_stringify = __commonJS({
       const stringify = (node, parent = {}) => {
         const invalidBlock = options.escapeInvalid && utils2.isInvalidBrace(parent);
         const invalidNode = node.invalid === true && options.escapeInvalid === true;
-        let output = "";
+        let output2 = "";
         if (node.value) {
           if ((invalidBlock || invalidNode) && utils2.isOpenOrClose(node)) {
             return "\\" + node.value;
@@ -10973,10 +10973,10 @@ var require_stringify = __commonJS({
         }
         if (node.nodes) {
           for (const child of node.nodes) {
-            output += stringify(child);
+            output2 += stringify(child);
           }
         }
-        return output;
+        return output2;
       };
       return stringify(ast);
     };
@@ -11429,7 +11429,7 @@ var require_compile = __commonJS({
         const invalidNode = node.invalid === true && options.escapeInvalid === true;
         const invalid = invalidBlock === true || invalidNode === true;
         const prefix = options.escapeInvalid === true ? "\\" : "";
-        let output = "";
+        let output2 = "";
         if (node.isOpen === true) {
           return prefix + node.value;
         }
@@ -11458,10 +11458,10 @@ var require_compile = __commonJS({
         }
         if (node.nodes) {
           for (const child of node.nodes) {
-            output += walk(child, node);
+            output2 += walk(child, node);
           }
         }
-        return output;
+        return output2;
       };
       return walk(ast);
     };
@@ -11918,23 +11918,23 @@ var require_braces = __commonJS({
     var expand2 = require_expand();
     var parse7 = require_parse();
     var braces = (input, options = {}) => {
-      let output = [];
+      let output2 = [];
       if (Array.isArray(input)) {
         for (const pattern of input) {
           const result = braces.create(pattern, options);
           if (Array.isArray(result)) {
-            output.push(...result);
+            output2.push(...result);
           } else {
-            output.push(result);
+            output2.push(result);
           }
         }
       } else {
-        output = [].concat(braces.create(input, options));
+        output2 = [].concat(braces.create(input, options));
       }
       if (options && options.expand === true && options.nodupes === true) {
-        output = [...new Set(output)];
+        output2 = [...new Set(output2)];
       }
-      return output;
+      return output2;
     };
     braces.parse = (input, options = {}) => parse7(input, options);
     braces.stringify = (input, options = {}) => {
@@ -12213,21 +12213,21 @@ var require_utils3 = __commonJS({
       return `${input.slice(0, idx)}\\${input.slice(idx)}`;
     };
     exports2.removePrefix = (input, state = {}) => {
-      let output = input;
-      if (output.startsWith("./")) {
-        output = output.slice(2);
+      let output2 = input;
+      if (output2.startsWith("./")) {
+        output2 = output2.slice(2);
         state.prefix = "./";
       }
-      return output;
+      return output2;
     };
     exports2.wrapOutput = (input, state = {}, options = {}) => {
       const prepend = options.contains ? "" : "^";
       const append = options.contains ? "" : "$";
-      let output = `${prepend}(?:${input})${append}`;
+      let output2 = `${prepend}(?:${input})${append}`;
       if (state.negated === true) {
-        output = `(?:^(?!${output}).*$)`;
+        output2 = `(?:^(?!${output2}).*$)`;
       }
-      return output;
+      return output2;
     };
   }
 });
@@ -12726,14 +12726,14 @@ var require_parse2 = __commonJS({
         token.prev = prev;
         token.parens = state.parens;
         token.output = state.output;
-        const output = (opts.capture ? "(" : "") + token.open;
+        const output2 = (opts.capture ? "(" : "") + token.open;
         increment("parens");
         push({ type, value: value2, output: state.output ? "" : ONE_CHAR });
-        push({ type: "paren", extglob: true, value: advance(), output });
+        push({ type: "paren", extglob: true, value: advance(), output: output2 });
         extglobs.push(token);
       };
       const extglobClose = (token) => {
-        let output = token.close + (opts.capture ? ")" : "");
+        let output2 = token.close + (opts.capture ? ")" : "");
         let rest;
         if (token.type === "negate") {
           let extglobStar = star3;
@@ -12741,22 +12741,22 @@ var require_parse2 = __commonJS({
             extglobStar = globstar(opts);
           }
           if (extglobStar !== star3 || eos() || /^\)+$/.test(remaining())) {
-            output = token.close = `)$))${extglobStar}`;
+            output2 = token.close = `)$))${extglobStar}`;
           }
           if (token.inner.includes("*") && (rest = remaining()) && /^\.[^\\/.]+$/.test(rest)) {
             const expression = parse7(rest, { ...options, fastpaths: false }).output;
-            output = token.close = `)${expression})${extglobStar})`;
+            output2 = token.close = `)${expression})${extglobStar})`;
           }
           if (token.prev.type === "bos") {
             state.negatedExtglob = true;
           }
         }
-        push({ type: "paren", extglob: true, value, output });
+        push({ type: "paren", extglob: true, value, output: output2 });
         decrement("parens");
       };
       if (opts.fastpaths !== false && !/(^[*!]|[/()[\]{}"])/.test(input)) {
         let backslashes = false;
-        let output = input.replace(REGEX_SPECIAL_CHARS_BACKREF, (m, esc2, chars, first, rest, index) => {
+        let output2 = input.replace(REGEX_SPECIAL_CHARS_BACKREF, (m, esc2, chars, first, rest, index) => {
           if (first === "\\") {
             backslashes = true;
             return m;
@@ -12783,18 +12783,18 @@ var require_parse2 = __commonJS({
         });
         if (backslashes === true) {
           if (opts.unescape === true) {
-            output = output.replace(/\\/g, "");
+            output2 = output2.replace(/\\/g, "");
           } else {
-            output = output.replace(/\\+/g, (m) => {
+            output2 = output2.replace(/\\+/g, (m) => {
               return m.length % 2 === 0 ? "\\\\" : m ? "\\" : "";
             });
           }
         }
-        if (output === input && opts.contains === true) {
+        if (output2 === input && opts.contains === true) {
           state.output = input;
           return state;
         }
-        state.output = utils2.wrapOutput(output, state, options);
+        state.output = utils2.wrapOutput(output2, state, options);
         return state;
       }
       while (!eos()) {
@@ -12964,7 +12964,7 @@ var require_parse2 = __commonJS({
             push({ type: "text", value, output: value });
             continue;
           }
-          let output = ")";
+          let output2 = ")";
           if (brace.dots === true) {
             const arr = tokens.slice();
             const range2 = [];
@@ -12977,20 +12977,20 @@ var require_parse2 = __commonJS({
                 range2.unshift(arr[i].value);
               }
             }
-            output = expandRange(range2, opts);
+            output2 = expandRange(range2, opts);
             state.backtrack = true;
           }
           if (brace.comma !== true && brace.dots !== true) {
             const out = state.output.slice(0, brace.outputIndex);
             const toks = state.tokens.slice(brace.tokensIndex);
             brace.value = brace.output = "\\{";
-            value = output = "\\}";
+            value = output2 = "\\}";
             state.output = out;
             for (const t of toks) {
               state.output += t.output || t.value;
             }
           }
-          push({ type: "brace", value, output });
+          push({ type: "brace", value, output: output2 });
           decrement("braces");
           braces.pop();
           continue;
@@ -13003,13 +13003,13 @@ var require_parse2 = __commonJS({
           continue;
         }
         if (value === ",") {
-          let output = value;
+          let output2 = value;
           const brace = braces[braces.length - 1];
           if (brace && stack[stack.length - 1] === "braces") {
             brace.comma = true;
-            output = "|";
+            output2 = "|";
           }
-          push({ type: "comma", value, output });
+          push({ type: "comma", value, output: output2 });
           continue;
         }
         if (value === "/") {
@@ -13050,14 +13050,14 @@ var require_parse2 = __commonJS({
           }
           if (prev && prev.type === "paren") {
             const next = peek();
-            let output = value;
+            let output2 = value;
             if (next === "<" && !utils2.supportsLookbehinds()) {
               throw new Error("Node.js v10 or higher is required for regex lookbehinds");
             }
             if (prev.value === "(" && !/[!=<:]/.test(next) || next === "<" && !/<([!=]|\w+>)/.test(remaining())) {
-              output = `\\${value}`;
+              output2 = `\\${value}`;
             }
-            push({ type: "text", value, output });
+            push({ type: "text", value, output: output2 });
             continue;
           }
           if (opts.dot !== true && (prev.type === "slash" || prev.type === "bos")) {
@@ -13335,8 +13335,8 @@ var require_parse2 = __commonJS({
           }
         }
       };
-      const output = utils2.removePrefix(input, state);
-      let source = create(output);
+      const output2 = utils2.removePrefix(input, state);
+      let source = create(output2);
       if (source && opts.strictSlashes !== true) {
         source += `${SLASH_LITERAL}?`;
       }
@@ -13384,8 +13384,8 @@ var require_picomatch = __commonJS({
         isIgnored = picomatch(opts.ignore, ignoreOpts, returnState);
       }
       const matcher = (input, returnObject = false) => {
-        const { isMatch, match: match2, output } = picomatch.test(input, regex, options, { glob: glob7, posix });
-        const result = { glob: glob7, state, regex, posix, input, output, match: match2, isMatch };
+        const { isMatch, match: match2, output: output2 } = picomatch.test(input, regex, options, { glob: glob7, posix });
+        const result = { glob: glob7, state, regex, posix, input, output: output2, match: match2, isMatch };
         if (typeof opts.onResult === "function") {
           opts.onResult(result);
         }
@@ -13420,19 +13420,19 @@ var require_picomatch = __commonJS({
       const opts = options || {};
       const format2 = opts.format || (posix ? utils2.toPosixSlashes : null);
       let match2 = input === glob7;
-      let output = match2 && format2 ? format2(input) : input;
+      let output2 = match2 && format2 ? format2(input) : input;
       if (match2 === false) {
-        output = format2 ? format2(input) : input;
-        match2 = output === glob7;
+        output2 = format2 ? format2(input) : input;
+        match2 = output2 === glob7;
       }
       if (match2 === false || opts.capture === true) {
         if (opts.matchBase === true || opts.basename === true) {
           match2 = picomatch.matchBase(input, regex, options, posix);
         } else {
-          match2 = regex.exec(output);
+          match2 = regex.exec(output2);
         }
       }
-      return { isMatch: Boolean(match2), match: match2, output };
+      return { isMatch: Boolean(match2), match: match2, output: output2 };
     };
     picomatch.matchBase = (input, glob7, options, posix = utils2.isWindows(options)) => {
       const regex = glob7 instanceof RegExp ? glob7 : picomatch.makeRe(glob7, options);
@@ -24976,12 +24976,12 @@ var require_base64_js = __commonJS({
     }
     function encodeChunk(uint8, start, end) {
       var tmp;
-      var output = [];
+      var output2 = [];
       for (var i2 = start; i2 < end; i2 += 3) {
         tmp = (uint8[i2] << 16 & 16711680) + (uint8[i2 + 1] << 8 & 65280) + (uint8[i2 + 2] & 255);
-        output.push(tripletToBase64(tmp));
+        output2.push(tripletToBase64(tmp));
       }
-      return output.join("");
+      return output2.join("");
     }
     function fromByteArray(uint8) {
       var tmp;
@@ -30202,12 +30202,12 @@ var require_pluggable_auth_handler = __commonJS({
           const child = childProcess.spawn(this.commandComponents[0], this.commandComponents.slice(1), {
             env: { ...process.env, ...Object.fromEntries(envMap) }
           });
-          let output = "";
+          let output2 = "";
           child.stdout.on("data", (data) => {
-            output += data;
+            output2 += data;
           });
           child.stderr.on("data", (err) => {
-            output += err;
+            output2 += err;
           });
           const timeout = setTimeout(() => {
             child.removeAllListeners();
@@ -30218,17 +30218,17 @@ var require_pluggable_auth_handler = __commonJS({
             clearTimeout(timeout);
             if (code === 0) {
               try {
-                const responseJson = JSON.parse(output);
+                const responseJson = JSON.parse(output2);
                 const response = new executable_response_1.ExecutableResponse(responseJson);
                 return resolve8(response);
               } catch (error48) {
                 if (error48 instanceof executable_response_1.ExecutableResponseError) {
                   return reject(error48);
                 }
-                return reject(new executable_response_1.ExecutableResponseError(`The executable returned an invalid response: ${output}`));
+                return reject(new executable_response_1.ExecutableResponseError(`The executable returned an invalid response: ${output2}`));
               }
             } else {
-              return reject(new ExecutableError(output, code.toString()));
+              return reject(new ExecutableError(output2, code.toString()));
             }
           });
         });
@@ -32074,9 +32074,9 @@ var require_node_gyp_build2 = __commonJS({
 var require_fallback = __commonJS({
   "node_modules/.aspect_rules_js/bufferutil@4.1.0/node_modules/bufferutil/fallback.js"(exports2, module2) {
     "use strict";
-    var mask = (source, mask2, output, offset, length) => {
+    var mask = (source, mask2, output2, offset, length) => {
       for (var i = 0; i < length; i++) {
-        output[offset + i] = source[i] ^ mask2[i & 3];
+        output2[offset + i] = source[i] ^ mask2[i & 3];
       }
     };
     var unmask = (buffer, mask2) => {
@@ -32124,9 +32124,9 @@ var require_buffer_util = __commonJS({
       }
       return target;
     }
-    function _mask(source, mask, output, offset, length) {
+    function _mask(source, mask, output2, offset, length) {
       for (let i = 0; i < length; i++) {
-        output[offset + i] = source[i] ^ mask[i & 3];
+        output2[offset + i] = source[i] ^ mask[i & 3];
       }
     }
     function _unmask(buffer, mask) {
@@ -32165,11 +32165,11 @@ var require_buffer_util = __commonJS({
     if (!process.env.WS_NO_BUFFER_UTIL) {
       try {
         const bufferUtil = require_bufferutil();
-        module2.exports.mask = function(source, mask, output, offset, length) {
+        module2.exports.mask = function(source, mask, output2, offset, length) {
           if (length < 48)
-            _mask(source, mask, output, offset, length);
+            _mask(source, mask, output2, offset, length);
           else
-            bufferUtil.mask(source, mask, output, offset, length);
+            bufferUtil.mask(source, mask, output2, offset, length);
         };
         module2.exports.unmask = function(buffer, mask) {
           if (buffer.length < 32)
@@ -36189,7 +36189,7 @@ function expand_(str, max, isTop) {
   return expansions;
 }
 
-// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/minimatch@10.2.4/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -36200,7 +36200,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/brace-expressions.js
+// node_modules/.aspect_rules_js/minimatch@10.2.4/node_modules/minimatch/dist/esm/brace-expressions.js
 var posixClasses = {
   "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
   "[:alpha:]": ["\\p{L}\\p{Nl}", true],
@@ -36310,7 +36310,7 @@ var parseClass = (glob7, position) => {
   return [comb, uflag, endPos - pos, true];
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/unescape.js
+// node_modules/.aspect_rules_js/minimatch@10.2.4/node_modules/minimatch/dist/esm/unescape.js
 var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/\[([^\/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\])\]/g, "$1$2").replace(/\\([^\/])/g, "$1");
@@ -36318,7 +36318,7 @@ var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) 
   return windowsPathsNoEscape ? s.replace(/\[([^\/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^\/\\{}])\]/g, "$1$2").replace(/\\([^\/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/ast.js
+// node_modules/.aspect_rules_js/minimatch@10.2.4/node_modules/minimatch/dist/esm/ast.js
 var _a;
 var types2 = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
 var isExtglobType = (c) => types2.has(c);
@@ -36968,7 +36968,7 @@ var AST = class {
 };
 _a = AST;
 
-// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/escape.js
+// node_modules/.aspect_rules_js/minimatch@10.2.4/node_modules/minimatch/dist/esm/escape.js
 var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
@@ -36976,7 +36976,7 @@ var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) =
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.3/node_modules/minimatch/dist/esm/index.js
+// node_modules/.aspect_rules_js/minimatch@10.2.4/node_modules/minimatch/dist/esm/index.js
 var minimatch = (p, pattern, options = {}) => {
   assertValidPattern(pattern);
   if (!options.nocomment && pattern.charAt(0) === "#") {
@@ -37501,7 +37501,11 @@ var Minimatch = class {
   #matchGlobstar(file2, pattern, partial2, fileIndex, patternIndex) {
     const firstgs = pattern.indexOf(GLOBSTAR, patternIndex);
     const lastgs = pattern.lastIndexOf(GLOBSTAR);
-    const [head, body, tail] = [
+    const [head, body, tail] = partial2 ? [
+      pattern.slice(patternIndex, firstgs),
+      pattern.slice(firstgs + 1),
+      []
+    ] : [
       pattern.slice(patternIndex, firstgs),
       pattern.slice(firstgs + 1, lastgs),
       pattern.slice(lastgs + 1)
@@ -37541,7 +37545,7 @@ var Minimatch = class {
           return false;
         }
       }
-      return sawSome;
+      return partial2 || sawSome;
     }
     const bodySegments = [[[], 0]];
     let currentBody = bodySegments[0];
@@ -37593,7 +37597,7 @@ var Minimatch = class {
       }
       fileIndex++;
     }
-    return null;
+    return partial2 || null;
   }
   #matchOne(file2, pattern, partial2, fileIndex, patternIndex) {
     let fi;
@@ -39015,7 +39019,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -39034,7 +39038,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -39057,10 +39061,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -39166,7 +39170,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -39184,7 +39188,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -39196,7 +39200,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.3/node_modules/@inquirer/figures/dist/index.js
@@ -39491,7 +39495,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39512,7 +39516,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39523,14 +39527,14 @@ function isPlainObject(value) {
   return Object.getPrototypeOf(value) === proto;
 }
 function deepMerge(...objects) {
-  const output = {};
+  const output2 = {};
   for (const obj of objects) {
     for (const [key, value] of Object.entries(obj)) {
-      const prevValue = output[key];
-      output[key] = isPlainObject(prevValue) && isPlainObject(value) ? deepMerge(prevValue, value) : value;
+      const prevValue = output2[key];
+      output2[key] = isPlainObject(prevValue) && isPlainObject(value) ? deepMerge(prevValue, value) : value;
     }
   }
-  return output;
+  return output2;
 }
 function makeTheme(...themes) {
   const themesToMerge = [
@@ -39540,7 +39544,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39571,7 +39575,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39584,12 +39588,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39608,7 +39612,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 
 // node_modules/.aspect_rules_js/fast-string-truncated-width@3.0.3/node_modules/fast-string-truncated-width/dist/utils.js
@@ -39948,7 +39952,7 @@ function wrapAnsi(string4, columns, options) {
   return String(string4).normalize().split(CRLF_OR_LF).map((line) => exec(line, columns, options)).join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/utils.js
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
 }
@@ -39956,7 +39960,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -40045,7 +40049,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -40301,7 +40305,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.3/node_modules/@inquirer/ansi/dist/index.js
@@ -40320,7 +40324,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC2 + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -40353,15 +40357,15 @@ var ScreenManager = class {
     if (rawPromptLine.length % width === 0) {
       content += "\n";
     }
-    let output = content + (bottomContent ? "\n" + bottomContent : "");
+    let output2 = content + (bottomContent ? "\n" + bottomContent : "");
     const promptLineUpDiff = Math.floor(rawPromptLine.length / width) - this.cursorPos.rows;
     const bottomContentHeight = promptLineUpDiff + (bottomContent ? height(bottomContent) : 0);
     if (bottomContentHeight > 0)
-      output += cursorUp(bottomContentHeight);
-    output += cursorTo(this.cursorPos.cols);
-    this.write(cursorDown(this.extraLinesUnderPrompt) + eraseLines(this.height) + output);
+      output2 += cursorUp(bottomContentHeight);
+    output2 += cursorTo(this.cursorPos.cols);
+    this.write(cursorDown(this.extraLinesUnderPrompt) + eraseLines(this.height) + output2);
     this.extraLinesUnderPrompt = bottomContentHeight;
-    this.height = height(output);
+    this.height = height(output2);
   }
   checkCursorPos() {
     const cursorPos = this.rl.getCursorPos();
@@ -40372,15 +40376,15 @@ var ScreenManager = class {
   }
   done({ clearContent }) {
     this.rl.setPrompt("");
-    let output = cursorDown(this.extraLinesUnderPrompt);
-    output += clearContent ? eraseLines(this.height) : "\n";
-    output += cursorShow;
-    this.write(output);
+    let output2 = cursorDown(this.extraLinesUnderPrompt);
+    output2 += clearContent ? eraseLines(this.height) : "\n";
+    output2 += cursorShow;
+    this.write(output2);
     this.rl.close();
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -40395,7 +40399,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var nativeSetImmediate = globalThis.setImmediate;
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
@@ -40418,13 +40422,13 @@ function createPrompt(view) {
   const prompt = (config2, context = {}) => {
     const { input = process.stdin, signal } = context;
     const cleanups = /* @__PURE__ */ new Set();
-    const output = new import_mute_stream.default();
-    output.pipe(context.output ?? process.stdout);
-    output.mute();
+    const output2 = new import_mute_stream.default();
+    output2.pipe(context.output ?? process.stdout);
+    output2.mute();
     const rl = readline2.createInterface({
       terminal: true,
       input,
-      output
+      output: output2
     });
     const screen = new ScreenManager(rl);
     const { promise: promise2, resolve: resolve8, reject } = PromisePolyfill.withResolver();
@@ -40484,14 +40488,14 @@ function createPrompt(view) {
       }).finally(() => {
         cleanups.forEach((cleanup) => cleanup());
         screen.done({ clearContent: Boolean(context.clearPromptOnDone) });
-        output.end();
+        output2.end();
       }).then(() => promise2), { cancel });
     });
   };
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.10.13/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_at_types_node_24.11.0/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -40506,7 +40510,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.1.0_at_types_node_24.10.13/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.1.0_at_types_node_24.11.0/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -40696,7 +40700,7 @@ var dist_default4 = createPrompt((config2, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.13/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.11.0/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -40705,7 +40709,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.13/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.11.0/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40714,7 +40718,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.13/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.11.0/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40723,7 +40727,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.13/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.11.0/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40732,7 +40736,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.13/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.11.0/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40741,7 +40745,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.10.13/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_at_types_node_24.11.0/node_modules/@inquirer/external-editor/dist/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -40895,7 +40899,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.8_at_types_node_24.10.13/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.0.8_at_types_node_24.11.0/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep",
   style: {
@@ -40965,7 +40969,7 @@ var dist_default5 = createPrompt((config2, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error48];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.8_at_types_node_24.10.13/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.8_at_types_node_24.11.0/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -41011,7 +41015,7 @@ var dist_default6 = createPrompt((config2, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.8_at_types_node_24.10.13/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.8_at_types_node_24.11.0/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -41096,7 +41100,7 @@ var dist_default7 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.8_at_types_node_24.10.13/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.8_at_types_node_24.11.0/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -41177,7 +41181,7 @@ var dist_default8 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.8_at_types_node_24.10.13/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.8_at_types_node_24.11.0/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -41273,7 +41277,7 @@ var dist_default9 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.4_at_types_node_24.10.13/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.4_at_types_node_24.11.0/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
 var rawlistTheme = {
@@ -41398,7 +41402,7 @@ var dist_default10 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.8_at_types_node_24.10.13/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.8_at_types_node_24.11.0/node_modules/@inquirer/password/dist/index.js
 var passwordTheme = {
   style: {
     maskedText: "[input is masked]"
@@ -41452,7 +41456,7 @@ var dist_default11 = createPrompt((config2, done) => {
   return [[prefix, message, config2.mask ? formattedValue : helpTip].join(" "), error48];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.1.4_at_types_node_24.10.13/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.1.4_at_types_node_24.11.0/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -41622,7 +41626,7 @@ var dist_default12 = createPrompt((config2, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.1.0_at_types_node_24.10.13/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.1.0_at_types_node_24.11.0/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -42371,46 +42375,41 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/git-raw-commits@5.0.0_902920757/node_modules/git-raw-commits/src/index.js
+// node_modules/.aspect_rules_js/git-raw-commits@5.0.1_902950517/node_modules/git-raw-commits/src/index.js
 import { Readable } from "stream";
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_902920757/node_modules/@conventional-changelog/git-client/dist/utils.js
-import { spawn as spawnChild } from "child_process";
-function catchProcessError(child) {
-  return new Promise((resolve8) => {
-    let stderr = "";
-    let error48 = null;
-    child.stderr.on("data", (chunk) => {
-      stderr += chunk.toString();
-    });
-    child.on("error", (err) => {
-      error48 = err;
-    });
-    child.on("close", () => {
-      if (stderr) {
-        error48 = new Error(stderr);
-      }
-      resolve8(error48);
-    });
-  });
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902950517/node_modules/@conventional-changelog/git-client/dist/utils.js
+function formatArgs(...args) {
+  return args.reduce((finalArgs, arg) => {
+    if (arg) {
+      finalArgs.push(String(arg));
+    }
+    return finalArgs;
+  }, []);
 }
-async function* stdoutSpawn(cmd, args, options) {
-  const child = spawnChild(cmd, args, options);
-  const errorPromise = catchProcessError(child);
-  yield* child.stdout;
-  const error48 = await errorPromise;
-  if (error48) {
-    throw error48;
-  }
+function toArray(value) {
+  return Array.isArray(value) ? value : [value];
 }
-async function spawn2(cmd, args, options) {
-  const stdout = stdoutSpawn(cmd, args, options);
-  let chunk;
-  const output = [];
-  for await (chunk of stdout) {
-    output.push(chunk);
+
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902950517/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+import { spawn as spawn2 } from "child_process";
+
+// node_modules/.aspect_rules_js/@simple-libs+stream-utils@1.2.0/node_modules/@simple-libs/stream-utils/dist/index.js
+async function toArray2(iterable) {
+  const result = [];
+  for await (const item of iterable) {
+    result.push(item);
   }
-  return Buffer.concat(output);
+  return result;
+}
+async function concatBufferStream(iterable) {
+  return Buffer.concat(await toArray2(iterable));
+}
+async function firstFromStream(stream) {
+  for await (const tag of stream) {
+    return tag;
+  }
+  return null;
 }
 async function* splitStream(stream, separator) {
   let chunk;
@@ -42428,53 +42427,58 @@ async function* splitStream(stream, separator) {
     yield buffer;
   }
 }
-function formatKeyValue(key, value) {
-  return `${key.length === 1 ? "-" : "--"}${key.replace(/[A-Z]/g, "-$&").toLowerCase()}${value ? `=${value}` : ""}`;
+
+// node_modules/.aspect_rules_js/@simple-libs+child-process-utils@1.0.2/node_modules/@simple-libs/child-process-utils/dist/index.js
+async function exitCode(process5) {
+  if (process5.exitCode !== null) {
+    return process5.exitCode;
+  }
+  return new Promise((resolve8) => process5.once("close", resolve8));
 }
-function formatParams(params2) {
-  const args = [];
-  let key;
-  let value;
-  let arrayValue;
-  for (key in params2) {
-    value = params2[key];
-    if (value === true) {
-      args.push(formatKeyValue(key));
-    } else if (value === false) {
-      args.push(formatKeyValue(`no-${key}`));
-    } else if (Array.isArray(value)) {
-      for (arrayValue of value) {
-        args.push(formatKeyValue(key, arrayValue));
+async function catchProcessError(process5) {
+  let error48 = new Error("Process exited with non-zero code");
+  let stderr = "";
+  process5.on("error", (err) => {
+    error48 = err;
+  });
+  if (process5.stderr) {
+    let chunk;
+    for await (chunk of process5.stderr) {
+      stderr += chunk.toString();
+    }
+  }
+  const code = await exitCode(process5);
+  if (stderr) {
+    error48 = new Error(stderr);
+  }
+  return code ? error48 : null;
+}
+async function* outputStream(process5) {
+  const { stdout } = process5;
+  const errorPromise = catchProcessError(process5);
+  if (stdout) {
+    stdout.on("error", (err) => {
+      if (err.name === "AbortError" && process5.exitCode === null) {
+        process5.kill("SIGKILL");
       }
-    } else if (value) {
-      args.push(formatKeyValue(key, value));
-    }
+    });
+    yield* stdout;
   }
-  return args;
+  const error48 = await errorPromise;
+  if (error48) {
+    throw error48;
+  }
 }
-function formatArgs(...args) {
-  const finalArgs = [];
-  for (const arg of args) {
-    if (!arg) {
-      continue;
-    }
-    if (Array.isArray(arg)) {
-      finalArgs.push(...formatArgs(...arg));
-    } else if (typeof arg === "object" && !(arg instanceof RegExp)) {
-      finalArgs.push(...formatParams(arg));
-    } else {
-      finalArgs.push(String(arg));
-    }
-  }
-  return finalArgs;
+function output(process5) {
+  return concatBufferStream(outputStream(process5));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_902920757/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902950517/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var GitClient2 = class {
   cwd;
   debug;
-  constructor(cwd, debug = false) {
+  constructor(cwd, debug) {
     this.cwd = cwd;
     this.debug = debug;
   }
@@ -42486,6 +42490,38 @@ var GitClient2 = class {
     return finalArgs;
   }
   /**
+   * Raw exec method to run git commands.
+   * @param args
+   * @returns Stdout string output of the command.
+   */
+  async exec(...args) {
+    return (await output(spawn2("git", this.formatArgs(...args), {
+      cwd: this.cwd
+    }))).toString().trim();
+  }
+  /**
+   * Raw exec method to run git commands with stream output.
+   * @param args
+   * @returns Stdout stream of the command.
+   */
+  execStream(...args) {
+    return outputStream(spawn2("git", this.formatArgs(...args), {
+      cwd: this.cwd
+    }));
+  }
+  /**
+   * Initialize a new git repository.
+   * @returns Boolean result.
+   */
+  async init() {
+    try {
+      await this.exec("init");
+      return true;
+    } catch {
+      return false;
+    }
+  }
+  /**
    * Get raw commits stream.
    * @param params
    * @param params.path - Read commits from specific path.
@@ -42495,12 +42531,9 @@ var GitClient2 = class {
    * @yields Raw commits data.
    */
   async *getRawCommits(params2 = {}) {
-    const { path: path9, from = "", to = "HEAD", format: format2 = "%B", ignore, ...restParams } = params2;
+    const { path: path9, from = "", to = "HEAD", format: format2 = "%B", ignore, reverse, merges, since } = params2;
     const shouldNotIgnore = ignore ? (chunk2) => !ignore.test(chunk2) : () => true;
-    const args = this.formatArgs("log", `--format=${format2}%n${SCISSOR}`, [from, to].filter(Boolean).join(".."), restParams, path9 && ["--", path9]);
-    const stdout = stdoutSpawn("git", args, {
-      cwd: this.cwd
-    });
+    const stdout = this.execStream("log", `--format=${format2}%n${SCISSOR}`, since && `--since=${since instanceof Date ? since.toISOString() : since}`, reverse && "--reverse", merges && "--merges", merges === false && "--no-merges", [from, to].filter(Boolean).join(".."), ...path9 ? ["--", ...toArray(path9)] : []);
     const commitsStream = splitStream(stdout, `${SCISSOR}
 `);
     let chunk;
@@ -42512,15 +42545,13 @@ var GitClient2 = class {
   }
   /**
    * Get tags stream.
-   * @param params - Additional git params.
+   * @param params
    * @yields Tags
    */
   async *getTags(params2 = {}) {
+    const { path: path9, from = "", to = "HEAD", since } = params2;
     const tagRegex = /tag:\s*(.+?)[,)]/gi;
-    const args = this.formatArgs("log", "--decorate", "--no-color", "--date-order", params2);
-    const stdout = stdoutSpawn("git", args, {
-      cwd: this.cwd
-    });
+    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", since && `--since=${since instanceof Date ? since.toISOString() : since}`, [from, to].filter(Boolean).join(".."), ...path9 ? ["--", ...toArray(path9)] : []);
     let chunk;
     let matches;
     let tag;
@@ -42533,39 +42564,31 @@ var GitClient2 = class {
   }
   /**
    * Get last tag.
-   * @param params - Additional git params.
+   * @param params
    * @returns Last tag, `null` if not found.
    */
-  async getLastTag(params2 = {}) {
-    return (await this.getTags(params2).next()).value || null;
+  async getLastTag(params2) {
+    return firstFromStream(this.getTags(params2));
   }
   /**
    * Check file is ignored via .gitignore.
    * @param file - Path to target file.
-   * @param params - Additional git params.
    * @returns Boolean value.
    */
-  async checkIgnore(file2, params2 = {}) {
-    const args = this.formatArgs("check-ignore", file2, params2);
+  async checkIgnore(file2) {
     try {
-      await spawn2("git", args, {
-        cwd: this.cwd
-      });
+      await this.exec("check-ignore", "--", file2);
       return true;
-    } catch (err) {
+    } catch {
       return false;
     }
   }
   /**
    * Add files to git index.
    * @param files - Files to stage.
-   * @param params - Additional git params.
    */
-  async add(files, params2 = {}) {
-    const args = this.formatArgs("add", files, params2);
-    await spawn2("git", args, {
-      cwd: this.cwd
-    });
+  async add(files) {
+    await this.exec("add", "--", ...toArray(files));
   }
   /**
    * Commit changes.
@@ -42573,14 +42596,12 @@ var GitClient2 = class {
    * @param params.verify
    * @param params.sign
    * @param params.files
+   * @param params.allowEmpty
    * @param params.message
    */
   async commit(params2) {
-    const { verify: verify3 = true, sign = false, files = [], message, ...restParams } = params2;
-    const args = this.formatArgs("commit", !verify3 && "--no-verify", sign && "-S", files, "-m", message, restParams);
-    await spawn2("git", args, {
-      cwd: this.cwd
-    });
+    const { verify: verify3 = true, sign = false, files = [], allowEmpty = false, message } = params2;
+    await this.exec("commit", !verify3 && "--no-verify", sign && "-S", allowEmpty && "--allow-empty", "-m", message, "--", ...files);
   }
   /**
    * Create a tag for the current commit.
@@ -42590,44 +42611,106 @@ var GitClient2 = class {
    * @param params.message
    */
   async tag(params2) {
-    let { sign = false, name, message, ...restParams } = params2;
+    let { sign = false, name, message } = params2;
     if (sign) {
       message = "";
     }
-    const args = this.formatArgs("tag", sign && "-s", message && "-a", name, message && ["-m", message], restParams);
-    await spawn2("git", args, {
-      cwd: this.cwd
-    });
+    await this.exec("tag", sign && "-s", message && "-a", ...message ? ["-m", message] : [], "--", name);
   }
   /**
    * Get current branch name.
-   * @param params - Additional git params.
    * @returns Current branch name.
    */
-  async getCurrentBranch(params2 = {}) {
-    const args = this.formatArgs("rev-parse", "--abbrev-ref", "HEAD", params2);
-    const branch = (await spawn2("git", args, {
-      cwd: this.cwd
-    })).toString().trim();
+  async getCurrentBranch() {
+    const branch = await this.exec("rev-parse", "--abbrev-ref", "HEAD");
+    return branch;
+  }
+  /**
+   * Get default branch name.
+   * @returns Default branch name.
+   */
+  async getDefaultBranch() {
+    const branch = (await this.exec("rev-parse", "--abbrev-ref", "origin/HEAD")).replace(/^origin\//, "");
     return branch;
   }
   /**
    * Push changes to remote.
    * @param branch
-   * @param params - Additional git params.
+   * @param params
+   * @param params.verify
    */
   async push(branch, params2 = {}) {
-    const args = this.formatArgs("push", "--follow-tags", "origin", branch, params2);
-    await spawn2("git", args, {
-      cwd: this.cwd
-    });
+    const { verify: verify3 = true, tags = false, followTags = false, force = false } = params2;
+    await this.exec("push", followTags && "--follow-tags", tags && "--tags", !verify3 && "--no-verify", force && "--force", "origin", "--", branch);
+  }
+  /**
+   * Verify rev exists.
+   * @param rev
+   * @param safe - If `true`, will not throw error if rev not found.
+   * @returns Target hash.
+   */
+  async verify(rev, safe) {
+    let git = this.exec("rev-parse", "--verify", rev);
+    if (safe) {
+      git = git.catch(() => "");
+    }
+    return await git;
+  }
+  /**
+   * Get config value by key.
+   * @param key - Config key.
+   * @returns Config value.
+   */
+  async getConfig(key) {
+    return await this.exec("config", "--get", "--", key);
+  }
+  /**
+   * Set config value by key.
+   * @param key - Config key.
+   * @param value - Config value.
+   */
+  async setConfig(key, value) {
+    await this.exec("config", "--", key, value);
+  }
+  /**
+   * Fetch changes from remote.
+   * @param params
+   */
+  async fetch(params2 = {}) {
+    const { prune = false, unshallow = false, tags = false, all = false, remote, branch } = params2;
+    await this.exec("fetch", prune && "--prune", unshallow && "--unshallow", tags && "--tags", all && "--all", ...remote && branch ? [
+      "--",
+      remote,
+      branch
+    ] : []);
+  }
+  /**
+   * Create a new branch.
+   * @param branch - Branch name.
+   */
+  async createBranch(branch) {
+    await this.exec("checkout", "-b", branch);
+  }
+  /**
+   * Delete a branch.
+   * @param branch - Branch name.
+   */
+  async deleteBranch(branch) {
+    await this.exec("branch", "-D", "--", branch);
+  }
+  /**
+   * Checkout a branch.
+   * @param branch - Branch name.
+   */
+  async checkout(branch) {
+    await this.exec("checkout", branch);
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@1.0.1_902920757/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902950517/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
 var import_semver = __toESM(require_semver());
 
-// node_modules/.aspect_rules_js/git-raw-commits@5.0.0_902920757/node_modules/git-raw-commits/src/index.js
+// node_modules/.aspect_rules_js/git-raw-commits@5.0.1_902950517/node_modules/git-raw-commits/src/index.js
 function getFinalOptions(options = {}) {
   const finalOptions = {
     cwd: process.cwd(),
@@ -42635,7 +42718,8 @@ function getFinalOptions(options = {}) {
   };
   if (options.debug) {
     finalOptions.debug = (args) => {
-      options.debug("Your git-log command is:\ngit " + args.join(" "));
+      options.debug(`Your git-log command is:
+git ${args.join(" ")}`);
     };
   }
   return finalOptions;
@@ -46901,13 +46985,13 @@ function getCommitsForRangeWithDeduping(client, baseRef, headRef) {
 }
 function fetchCommitsForRevisionRange(client, revisionRange) {
   const splitDelimiter = "-------------\u0275\u0275------------";
-  const output = client.run([
+  const output2 = client.run([
     "log",
     `--format=${gitLogFormatForParsing}${splitDelimiter}`,
     revisionRange
   ]);
   const commits = /* @__PURE__ */ new Map();
-  output.stdout.split(splitDelimiter).reverse().forEach((entry) => {
+  output2.stdout.split(splitDelimiter).reverse().forEach((entry) => {
     if (entry.trim() === "") {
       return;
     }
@@ -48458,7 +48542,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-59cac838004e689afe6e654c719cc808929e37c2`;
+var localVersion = `0.0.0-0357e5f126c74e7c811c96a52f1e341610903532`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49510,7 +49594,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.42.0_181604741/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.43.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
 var import_google_auth_library = __toESM(require_src5(), 1);
 import { createWriteStream } from "fs";
@@ -49526,7 +49610,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.42.0_181604741/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.43.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -50035,6 +50119,16 @@ var Type;
   Type2["OBJECT"] = "OBJECT";
   Type2["NULL"] = "NULL";
 })(Type || (Type = {}));
+var PhishBlockThreshold;
+(function(PhishBlockThreshold2) {
+  PhishBlockThreshold2["PHISH_BLOCK_THRESHOLD_UNSPECIFIED"] = "PHISH_BLOCK_THRESHOLD_UNSPECIFIED";
+  PhishBlockThreshold2["BLOCK_LOW_AND_ABOVE"] = "BLOCK_LOW_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_MEDIUM_AND_ABOVE"] = "BLOCK_MEDIUM_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_HIGH_AND_ABOVE"] = "BLOCK_HIGH_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_HIGHER_AND_ABOVE"] = "BLOCK_HIGHER_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_VERY_HIGH_AND_ABOVE"] = "BLOCK_VERY_HIGH_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_ONLY_EXTREMELY_HIGH"] = "BLOCK_ONLY_EXTREMELY_HIGH";
+})(PhishBlockThreshold || (PhishBlockThreshold = {}));
 var ApiSpec;
 (function(ApiSpec2) {
   ApiSpec2["API_SPEC_UNSPECIFIED"] = "API_SPEC_UNSPECIFIED";
@@ -50060,16 +50154,6 @@ var HttpElementLocation;
   HttpElementLocation2["HTTP_IN_BODY"] = "HTTP_IN_BODY";
   HttpElementLocation2["HTTP_IN_COOKIE"] = "HTTP_IN_COOKIE";
 })(HttpElementLocation || (HttpElementLocation = {}));
-var PhishBlockThreshold;
-(function(PhishBlockThreshold2) {
-  PhishBlockThreshold2["PHISH_BLOCK_THRESHOLD_UNSPECIFIED"] = "PHISH_BLOCK_THRESHOLD_UNSPECIFIED";
-  PhishBlockThreshold2["BLOCK_LOW_AND_ABOVE"] = "BLOCK_LOW_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_MEDIUM_AND_ABOVE"] = "BLOCK_MEDIUM_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_HIGH_AND_ABOVE"] = "BLOCK_HIGH_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_HIGHER_AND_ABOVE"] = "BLOCK_HIGHER_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_VERY_HIGH_AND_ABOVE"] = "BLOCK_VERY_HIGH_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_ONLY_EXTREMELY_HIGH"] = "BLOCK_ONLY_EXTREMELY_HIGH";
-})(PhishBlockThreshold || (PhishBlockThreshold = {}));
 var Behavior;
 (function(Behavior2) {
   Behavior2["UNSPECIFIED"] = "UNSPECIFIED";
@@ -50263,6 +50347,12 @@ var Environment;
   Environment2["ENVIRONMENT_UNSPECIFIED"] = "ENVIRONMENT_UNSPECIFIED";
   Environment2["ENVIRONMENT_BROWSER"] = "ENVIRONMENT_BROWSER";
 })(Environment || (Environment = {}));
+var ProminentPeople;
+(function(ProminentPeople2) {
+  ProminentPeople2["PROMINENT_PEOPLE_UNSPECIFIED"] = "PROMINENT_PEOPLE_UNSPECIFIED";
+  ProminentPeople2["ALLOW_PROMINENT_PEOPLE"] = "ALLOW_PROMINENT_PEOPLE";
+  ProminentPeople2["BLOCK_PROMINENT_PEOPLE"] = "BLOCK_PROMINENT_PEOPLE";
+})(ProminentPeople || (ProminentPeople = {}));
 var EmbeddingApiType;
 (function(EmbeddingApiType2) {
   EmbeddingApiType2["PREDICT"] = "PREDICT";
@@ -51750,15 +51840,15 @@ function candidateFromMldev$1(fromObject) {
   if (fromFinishReason != null) {
     setValueByPath(toObject, ["finishReason"], fromFinishReason);
   }
-  const fromAvgLogprobs = getValueByPath(fromObject, ["avgLogprobs"]);
-  if (fromAvgLogprobs != null) {
-    setValueByPath(toObject, ["avgLogprobs"], fromAvgLogprobs);
-  }
   const fromGroundingMetadata = getValueByPath(fromObject, [
     "groundingMetadata"
   ]);
   if (fromGroundingMetadata != null) {
     setValueByPath(toObject, ["groundingMetadata"], fromGroundingMetadata);
+  }
+  const fromAvgLogprobs = getValueByPath(fromObject, ["avgLogprobs"]);
+  if (fromAvgLogprobs != null) {
+    setValueByPath(toObject, ["avgLogprobs"], fromAvgLogprobs);
   }
   const fromIndex = getValueByPath(fromObject, ["index"]);
   if (fromIndex != null) {
@@ -52304,6 +52394,10 @@ function googleMapsToMldev$4(fromObject) {
 }
 function googleSearchToMldev$4(fromObject) {
   const toObject = {};
+  const fromSearchTypes = getValueByPath(fromObject, ["searchTypes"]);
+  if (fromSearchTypes != null) {
+    setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
+  }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
@@ -52330,6 +52424,9 @@ function imageConfigToMldev$1(fromObject) {
   }
   if (getValueByPath(fromObject, ["personGeneration"]) !== void 0) {
     throw new Error("personGeneration parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["prominentPeople"]) !== void 0) {
+    throw new Error("prominentPeople parameter is not supported in Gemini API.");
   }
   if (getValueByPath(fromObject, ["outputMimeType"]) !== void 0) {
     throw new Error("outputMimeType parameter is not supported in Gemini API.");
@@ -52586,6 +52683,10 @@ function toolToMldev$4(fromObject) {
   if (fromFileSearch != null) {
     setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$4(fromGoogleSearch));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -52611,10 +52712,6 @@ function toolToMldev$4(fromObject) {
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$4(fromGoogleMaps));
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$4(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
@@ -52624,6 +52721,16 @@ function toolToMldev$4(fromObject) {
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
+  const fromMcpServers = getValueByPath(fromObject, ["mcpServers"]);
+  if (fromMcpServers != null) {
+    let transformedList = fromMcpServers;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["mcpServers"], transformedList);
   }
   return toObject;
 }
@@ -53530,6 +53637,10 @@ function googleMapsToMldev$3(fromObject) {
 }
 function googleSearchToMldev$3(fromObject) {
   const toObject = {};
+  const fromSearchTypes = getValueByPath(fromObject, ["searchTypes"]);
+  if (fromSearchTypes != null) {
+    setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
+  }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
@@ -53729,6 +53840,10 @@ function toolToMldev$3(fromObject) {
   if (fromFileSearch != null) {
     setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$3(fromGoogleSearch));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -53754,10 +53869,6 @@ function toolToMldev$3(fromObject) {
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$3(fromGoogleMaps));
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$3(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
@@ -53767,6 +53878,16 @@ function toolToMldev$3(fromObject) {
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
+  const fromMcpServers = getValueByPath(fromObject, ["mcpServers"]);
+  if (fromMcpServers != null) {
+    let transformedList = fromMcpServers;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["mcpServers"], transformedList);
   }
   return toObject;
 }
@@ -53782,6 +53903,10 @@ function toolToVertex$2(fromObject) {
   }
   if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
     throw new Error("fileSearch parameter is not supported in Vertex AI.");
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -53811,10 +53936,6 @@ function toolToVertex$2(fromObject) {
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
@@ -53824,6 +53945,9 @@ function toolToVertex$2(fromObject) {
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
+  if (getValueByPath(fromObject, ["mcpServers"]) !== void 0) {
+    throw new Error("mcpServers parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -55224,6 +55348,10 @@ function googleMapsToMldev$2(fromObject) {
 }
 function googleSearchToMldev$2(fromObject) {
   const toObject = {};
+  const fromSearchTypes = getValueByPath(fromObject, ["searchTypes"]);
+  if (fromSearchTypes != null) {
+    setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
+  }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
@@ -55739,6 +55867,10 @@ function toolToMldev$2(fromObject) {
   if (fromFileSearch != null) {
     setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$2(fromGoogleSearch));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -55764,10 +55896,6 @@ function toolToMldev$2(fromObject) {
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$2(fromGoogleMaps));
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$2(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
@@ -55777,6 +55905,16 @@ function toolToMldev$2(fromObject) {
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
+  const fromMcpServers = getValueByPath(fromObject, ["mcpServers"]);
+  if (fromMcpServers != null) {
+    let transformedList = fromMcpServers;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["mcpServers"], transformedList);
   }
   return toObject;
 }
@@ -55792,6 +55930,10 @@ function toolToVertex$1(fromObject) {
   }
   if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
     throw new Error("fileSearch parameter is not supported in Vertex AI.");
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -55821,10 +55963,6 @@ function toolToVertex$1(fromObject) {
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
@@ -55834,6 +55972,9 @@ function toolToVertex$1(fromObject) {
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
+  if (getValueByPath(fromObject, ["mcpServers"]) !== void 0) {
+    throw new Error("mcpServers parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -55972,15 +56113,15 @@ function candidateFromMldev(fromObject, rootObject) {
   if (fromFinishReason != null) {
     setValueByPath(toObject, ["finishReason"], fromFinishReason);
   }
-  const fromAvgLogprobs = getValueByPath(fromObject, ["avgLogprobs"]);
-  if (fromAvgLogprobs != null) {
-    setValueByPath(toObject, ["avgLogprobs"], fromAvgLogprobs);
-  }
   const fromGroundingMetadata = getValueByPath(fromObject, [
     "groundingMetadata"
   ]);
   if (fromGroundingMetadata != null) {
     setValueByPath(toObject, ["groundingMetadata"], fromGroundingMetadata);
+  }
+  const fromAvgLogprobs = getValueByPath(fromObject, ["avgLogprobs"]);
+  if (fromAvgLogprobs != null) {
+    setValueByPath(toObject, ["avgLogprobs"], fromAvgLogprobs);
   }
   const fromIndex = getValueByPath(fromObject, ["index"]);
   if (fromIndex != null) {
@@ -58089,6 +58230,10 @@ function googleMapsToMldev$1(fromObject, _rootObject) {
 }
 function googleSearchToMldev$1(fromObject, _rootObject) {
   const toObject = {};
+  const fromSearchTypes = getValueByPath(fromObject, ["searchTypes"]);
+  if (fromSearchTypes != null) {
+    setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
+  }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
@@ -58116,6 +58261,9 @@ function imageConfigToMldev(fromObject, _rootObject) {
   if (getValueByPath(fromObject, ["personGeneration"]) !== void 0) {
     throw new Error("personGeneration parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["prominentPeople"]) !== void 0) {
+    throw new Error("prominentPeople parameter is not supported in Gemini API.");
+  }
   if (getValueByPath(fromObject, ["outputMimeType"]) !== void 0) {
     throw new Error("outputMimeType parameter is not supported in Gemini API.");
   }
@@ -58139,6 +58287,12 @@ function imageConfigToVertex(fromObject, _rootObject) {
   ]);
   if (fromPersonGeneration != null) {
     setValueByPath(toObject, ["personGeneration"], fromPersonGeneration);
+  }
+  const fromProminentPeople = getValueByPath(fromObject, [
+    "prominentPeople"
+  ]);
+  if (fromProminentPeople != null) {
+    setValueByPath(toObject, ["prominentPeople"], fromProminentPeople);
   }
   const fromOutputMimeType = getValueByPath(fromObject, [
     "outputMimeType"
@@ -58867,6 +59021,10 @@ function toolToMldev$1(fromObject, rootObject) {
   if (fromFileSearch != null) {
     setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$1(fromGoogleSearch));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -58892,10 +59050,6 @@ function toolToMldev$1(fromObject, rootObject) {
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$1(fromGoogleMaps));
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$1(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
@@ -58905,6 +59059,16 @@ function toolToMldev$1(fromObject, rootObject) {
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
+  const fromMcpServers = getValueByPath(fromObject, ["mcpServers"]);
+  if (fromMcpServers != null) {
+    let transformedList = fromMcpServers;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["mcpServers"], transformedList);
   }
   return toObject;
 }
@@ -58920,6 +59084,10 @@ function toolToVertex(fromObject, rootObject) {
   }
   if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
     throw new Error("fileSearch parameter is not supported in Vertex AI.");
+  }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
   }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
@@ -58949,10 +59117,6 @@ function toolToVertex(fromObject, rootObject) {
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
@@ -58962,6 +59126,9 @@ function toolToVertex(fromObject, rootObject) {
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
+  if (getValueByPath(fromObject, ["mcpServers"]) !== void 0) {
+    throw new Error("mcpServers parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -59506,7 +59673,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.42.0";
+var SDK_VERSION = "1.43.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -60061,22 +60228,22 @@ function includeExtraBodyToRequestInit(requestInit, extraBody) {
     }
   }
   function deepMerge2(target, source) {
-    const output = Object.assign({}, target);
+    const output2 = Object.assign({}, target);
     for (const key in source) {
       if (Object.prototype.hasOwnProperty.call(source, key)) {
         const sourceValue = source[key];
-        const targetValue = output[key];
+        const targetValue = output2[key];
         if (sourceValue && typeof sourceValue === "object" && !Array.isArray(sourceValue) && targetValue && typeof targetValue === "object" && !Array.isArray(targetValue)) {
-          output[key] = deepMerge2(targetValue, sourceValue);
+          output2[key] = deepMerge2(targetValue, sourceValue);
         } else {
           if (targetValue && sourceValue && typeof targetValue !== typeof sourceValue) {
             console.warn(`includeExtraBodyToRequestInit:deepMerge: Type mismatch for key "${key}". Original type: ${typeof targetValue}, New type: ${typeof sourceValue}. Overwriting.`);
           }
-          output[key] = sourceValue;
+          output2[key] = sourceValue;
         }
       }
     }
-    return output;
+    return output2;
   }
   const mergedBody = deepMerge2(currentBodyObject, extraBody);
   requestInit.body = JSON.stringify(mergedBody);
@@ -62409,6 +62576,10 @@ function googleMapsToMldev(fromObject) {
 }
 function googleSearchToMldev(fromObject) {
   const toObject = {};
+  const fromSearchTypes = getValueByPath(fromObject, ["searchTypes"]);
+  if (fromSearchTypes != null) {
+    setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
+  }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
     throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
@@ -62632,6 +62803,10 @@ function toolToMldev(fromObject) {
   if (fromFileSearch != null) {
     setValueByPath(toObject, ["fileSearch"], fromFileSearch);
   }
+  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
+  if (fromGoogleSearch != null) {
+    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev(fromGoogleSearch));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -62657,10 +62832,6 @@ function toolToMldev(fromObject) {
   if (fromGoogleMaps != null) {
     setValueByPath(toObject, ["googleMaps"], googleMapsToMldev(fromGoogleMaps));
   }
-  const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
-  if (fromGoogleSearch != null) {
-    setValueByPath(toObject, ["googleSearch"], googleSearchToMldev(fromGoogleSearch));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
@@ -62670,6 +62841,16 @@ function toolToMldev(fromObject) {
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
+  }
+  const fromMcpServers = getValueByPath(fromObject, ["mcpServers"]);
+  if (fromMcpServers != null) {
+    let transformedList = fromMcpServers;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["mcpServers"], transformedList);
   }
   return toObject;
 }
@@ -63785,13 +63966,16 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(stat
     return previousValue + currentValue + (index === params2.length ? "" : encoded);
   }, "");
   const pathOnly = path10.split(/[?#]/, 1)[0];
-  const invalidSegmentPattern = /(?<=^|\/)(?:\.|%2e){1,2}(?=\/|$)/gi;
+  const invalidSegmentPattern = /(^|\/)(?:\.|%2e){1,2}(?=\/|$)/gi;
   let match2;
   while ((match2 = invalidSegmentPattern.exec(pathOnly)) !== null) {
+    const hasLeadingSlash = match2[0].startsWith("/");
+    const offset = hasLeadingSlash ? 1 : 0;
+    const cleanMatch = hasLeadingSlash ? match2[0].slice(1) : match2[0];
     invalidSegments.push({
-      start: match2.index,
-      length: match2[0].length,
-      error: `Value "${match2[0]}" can't be safely passed as a path parameter`
+      start: match2.index + offset,
+      length: cleanMatch.length,
+      error: `Value "${cleanMatch}" can't be safely passed as a path parameter`
     });
   }
   invalidSegments.sort((a, b) => a.start - b.start);
@@ -63865,13 +64049,13 @@ function concatBytes(buffers) {
   for (const buffer of buffers) {
     length += buffer.length;
   }
-  const output = new Uint8Array(length);
+  const output2 = new Uint8Array(length);
   let index = 0;
   for (const buffer of buffers) {
-    output.set(buffer, index);
+    output2.set(buffer, index);
     index += buffer.length;
   }
-  return output;
+  return output2;
 }
 var encodeUTF8_;
 function encodeUTF8(str) {
@@ -70685,9 +70869,9 @@ var $ZodTransform = $constructor("$ZodTransform", (inst, def) => {
     }
     const _out = def.transform(payload.value, payload);
     if (ctx.async) {
-      const output = _out instanceof Promise ? _out : Promise.resolve(_out);
-      return output.then((output2) => {
-        payload.value = output2;
+      const output2 = _out instanceof Promise ? _out : Promise.resolve(_out);
+      return output2.then((output3) => {
+        payload.value = output3;
         return payload;
       });
     }
@@ -71100,12 +71284,12 @@ var $ZodFunction = $constructor("$ZodFunction", (inst, def) => {
       output: inst._def.output
     });
   };
-  inst.output = (output) => {
+  inst.output = (output2) => {
     const F = inst.constructor;
     return new F({
       type: "function",
       input: inst._def.input,
-      output
+      output: output2
     });
   };
   return inst;
@@ -79789,14 +79973,14 @@ var ZodTransform = $constructor("ZodTransform", (inst, def) => {
         payload.issues.push(util_exports.issue(_issue));
       }
     };
-    const output = def.transform(payload.value, payload);
-    if (output instanceof Promise) {
-      return output.then((output2) => {
-        payload.value = output2;
+    const output2 = def.transform(payload.value, payload);
+    if (output2 instanceof Promise) {
+      return output2.then((output3) => {
+        payload.value = output3;
         return payload;
       });
     }
-    payload.value = output;
+    payload.value = output2;
     return payload;
   };
 });

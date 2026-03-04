@@ -3,10 +3,13 @@ import {createRequire as __cjsCompatRequire_ngDev} from 'module';
 const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/regex.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.3.0/node_modules/conventional-commits-parser/dist/regex.js
 var nomatchRegex = /(?!.*)/;
+function escape(string) {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 function join(parts, joiner) {
-  return parts.map((val) => val.trim()).filter(Boolean).join(joiner);
+  return parts.map((val) => escape(val.trim())).filter(Boolean).join(joiner);
 }
 function getNotesRegex(noteKeywords, notesPattern) {
   if (!noteKeywords) {
@@ -45,7 +48,7 @@ function getParserRegexes(options = {}) {
   };
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/utils.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.3.0/node_modules/conventional-commits-parser/dist/utils.js
 var SCISSOR = "------------------------ >8 ------------------------";
 function trimNewLines(input) {
   const matches = input.match(/[^\r\n]/);
@@ -85,7 +88,7 @@ function assignMatchedCorrespondence(target, matches, correspondence) {
   return target;
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/options.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.3.0/node_modules/conventional-commits-parser/dist/options.js
 var defaultOptions = {
   noteKeywords: ["BREAKING CHANGE", "BREAKING-CHANGE"],
   issuePrefixes: ["#"],
@@ -106,12 +109,12 @@ var defaultOptions = {
     "scope",
     "subject"
   ],
-  revertPattern: /^Revert\s"([\s\S]*)"\s*This reverts commit (\w*)\./,
+  revertPattern: /^Revert\s"([\s\S]*)"\s*This reverts commit (\w*)\.?/,
   revertCorrespondence: ["header", "hash"],
   fieldPattern: /^-(.*?)-$/
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/CommitParser.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.3.0/node_modules/conventional-commits-parser/dist/CommitParser.js
 function createCommitObject(initialData = {}) {
   return {
     merge: null,
@@ -364,6 +367,15 @@ var CommitParser = class {
     commit.notes.forEach((note) => {
       note.text = trimNewLines(note.text);
     });
+    const referencesSet = /* @__PURE__ */ new Set();
+    commit.references = commit.references.filter((reference) => {
+      const uid = `${reference.action} ${reference.raw}`.toLocaleLowerCase();
+      const ok = !referencesSet.has(uid);
+      if (ok) {
+        referencesSet.add(uid);
+      }
+      return ok;
+    });
   }
   /**
    * Parse commit message string into an object.
@@ -405,7 +417,7 @@ var CommitParser = class {
   }
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.2.1/node_modules/conventional-commits-parser/dist/stream.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@6.3.0/node_modules/conventional-commits-parser/dist/stream.js
 import { Transform } from "stream";
 function parseCommits(options = {}) {
   const warnOption = options.warn;
