@@ -11,6 +11,7 @@ export interface NpmPackage {
         version: string;
         message: string;
     };
+    snapshotRepo?: string;
 }
 export interface ReleaseConfig {
     publishRegistry?: string;

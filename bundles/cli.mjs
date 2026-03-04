@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-PELL5AHH.mjs";
+} from "./chunk-34WCNHIG.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -65,7 +65,7 @@ import {
   runParserWithCompletedFunctions,
   underline,
   yellow
-} from "./chunk-WTYCKKHM.mjs";
+} from "./chunk-YN3IWAKJ.mjs";
 import {
   CommitParser
 } from "./chunk-LCSKEA2T.mjs";
@@ -22706,7 +22706,7 @@ var require_bignumber = __commonJS({
             return arr.reverse();
           }
           return function(str, baseIn, baseOut, sign, callerIsToString) {
-            var alphabet, d, e, k, r, x, xc, y, i = str.indexOf("."), dp = DECIMAL_PLACES, rm2 = ROUNDING_MODE;
+            var alphabet, d, e, k, r, x, xc, y, i = str.indexOf("."), dp = DECIMAL_PLACES, rm3 = ROUNDING_MODE;
             if (i >= 0) {
               k = POW_PRECISION;
               POW_PRECISION = 0;
@@ -22734,7 +22734,7 @@ var require_bignumber = __commonJS({
               x.c = xc;
               x.e = e;
               x.s = sign;
-              x = div(x, y, dp, rm2, baseOut);
+              x = div(x, y, dp, rm3, baseOut);
               xc = x.c;
               r = x.r;
               e = x.e;
@@ -22743,7 +22743,7 @@ var require_bignumber = __commonJS({
             i = xc[d];
             k = baseOut / 2;
             r = r || d < 0 || xc[d + 1] != null;
-            r = rm2 < 4 ? (i != null || r) && (rm2 == 0 || rm2 == (x.s < 0 ? 3 : 2)) : i > k || i == k && (rm2 == 4 || r || rm2 == 6 && xc[d - 1] & 1 || rm2 == (x.s < 0 ? 8 : 7));
+            r = rm3 < 4 ? (i != null || r) && (rm3 == 0 || rm3 == (x.s < 0 ? 3 : 2)) : i > k || i == k && (rm3 == 4 || r || rm3 == 6 && xc[d - 1] & 1 || rm3 == (x.s < 0 ? 8 : 7));
             if (d < 1 || !xc[0]) {
               str = r ? toFixedPoint(alphabet.charAt(1), -dp, alphabet.charAt(0)) : alphabet.charAt(0);
             } else {
@@ -22805,7 +22805,7 @@ var require_bignumber = __commonJS({
             for (; !a[0] && a.length > 1; a.splice(0, 1))
               ;
           }
-          return function(x, y, dp, rm2, base) {
+          return function(x, y, dp, rm3, base) {
             var cmp, e, i, more, n, prod, prodL, q, qc, rem, remL, rem0, xi, xL, yc0, yL, yz, s = x.s == y.s ? 1 : -1, xc = x.c, yc = y.c;
             if (!xc || !xc[0] || !yc || !yc[0]) {
               return new BigNumber2(
@@ -22911,7 +22911,7 @@ var require_bignumber = __commonJS({
             if (base == BASE) {
               for (i = 1, s = qc[0]; s >= 10; s /= 10, i++)
                 ;
-              round(q, dp + (q.e = i + e * LOG_BASE - 1) + 1, rm2, more);
+              round(q, dp + (q.e = i + e * LOG_BASE - 1) + 1, rm3, more);
             } else {
               q.e = e;
               q.r = +more;
@@ -22919,12 +22919,12 @@ var require_bignumber = __commonJS({
             return q;
           };
         }();
-        function format2(n, i, rm2, id) {
+        function format2(n, i, rm3, id) {
           var c0, e, ne, len, str;
-          if (rm2 == null)
-            rm2 = ROUNDING_MODE;
+          if (rm3 == null)
+            rm3 = ROUNDING_MODE;
           else
-            intCheck(rm2, 0, 8);
+            intCheck(rm3, 0, 8);
           if (!n.c)
             return n.toString();
           c0 = n.c[0];
@@ -22933,7 +22933,7 @@ var require_bignumber = __commonJS({
             str = coeffToString(n.c);
             str = id == 1 || id == 2 && (ne <= TO_EXP_NEG || ne >= TO_EXP_POS) ? toExponential(str, ne) : toFixedPoint(str, ne, "0");
           } else {
-            n = round(new BigNumber2(n), i, rm2);
+            n = round(new BigNumber2(n), i, rm3);
             e = n.e;
             str = coeffToString(n.c);
             len = str.length;
@@ -23014,7 +23014,7 @@ var require_bignumber = __commonJS({
             x.c = x.e = null;
           };
         }();
-        function round(x, sd, rm2, r) {
+        function round(x, sd, rm3, r) {
           var d, i, j, k, n, ni, rd, xc = x.c, pows10 = POWS_TEN;
           if (xc) {
             out: {
@@ -23052,8 +23052,8 @@ var require_bignumber = __commonJS({
               // The expression  n % pows10[d - j - 1]  returns all digits of n to the right
               // of the digit at j, e.g. if n is 908714 and j is 2, the expression gives 714.
               xc[ni + 1] != null || (j < 0 ? n : n % pows10[d - j - 1]);
-              r = rm2 < 4 ? (rd || r) && (rm2 == 0 || rm2 == (x.s < 0 ? 3 : 2)) : rd > 5 || rd == 5 && (rm2 == 4 || r || rm2 == 6 && // Check whether the digit to the left of the rounding digit is odd.
-              (i > 0 ? j > 0 ? n / pows10[d - j] : 0 : xc[ni - 1]) % 10 & 1 || rm2 == (x.s < 0 ? 8 : 7));
+              r = rm3 < 4 ? (rd || r) && (rm3 == 0 || rm3 == (x.s < 0 ? 3 : 2)) : rd > 5 || rd == 5 && (rm3 == 4 || r || rm3 == 6 && // Check whether the digit to the left of the rounding digit is odd.
+              (i > 0 ? j > 0 ? n / pows10[d - j] : 0 : xc[ni - 1]) % 10 & 1 || rm3 == (x.s < 0 ? 8 : 7));
               if (sd < 1 || !xc[0]) {
                 xc.length = 0;
                 if (r) {
@@ -23125,15 +23125,15 @@ var require_bignumber = __commonJS({
         P.comparedTo = function(y, b) {
           return compare(this, new BigNumber2(y, b));
         };
-        P.decimalPlaces = P.dp = function(dp, rm2) {
+        P.decimalPlaces = P.dp = function(dp, rm3) {
           var c, n, v, x = this;
           if (dp != null) {
             intCheck(dp, 0, MAX);
-            if (rm2 == null)
-              rm2 = ROUNDING_MODE;
+            if (rm3 == null)
+              rm3 = ROUNDING_MODE;
             else
-              intCheck(rm2, 0, 8);
-            return round(new BigNumber2(x), dp + x.e + 1, rm2);
+              intCheck(rm3, 0, 8);
+            return round(new BigNumber2(x), dp + x.e + 1, rm3);
           }
           if (!(c = x.c))
             return null;
@@ -23232,13 +23232,13 @@ var require_bignumber = __commonJS({
             y = ONE.div(y);
           return m ? y.mod(m) : k ? round(y, POW_PRECISION, ROUNDING_MODE, more) : y;
         };
-        P.integerValue = function(rm2) {
+        P.integerValue = function(rm3) {
           var n = new BigNumber2(this);
-          if (rm2 == null)
-            rm2 = ROUNDING_MODE;
+          if (rm3 == null)
+            rm3 = ROUNDING_MODE;
           else
-            intCheck(rm2, 0, 8);
-          return round(n, n.e + 1, rm2);
+            intCheck(rm3, 0, 8);
+          return round(n, n.e + 1, rm3);
         };
         P.isEqualTo = P.eq = function(y, b) {
           return compare(this, new BigNumber2(y, b)) === 0;
@@ -23478,15 +23478,15 @@ var require_bignumber = __commonJS({
           }
           return normalise(y, xc, ye);
         };
-        P.precision = P.sd = function(sd, rm2) {
+        P.precision = P.sd = function(sd, rm3) {
           var c, n, v, x = this;
           if (sd != null && sd !== !!sd) {
             intCheck(sd, 1, MAX);
-            if (rm2 == null)
-              rm2 = ROUNDING_MODE;
+            if (rm3 == null)
+              rm3 = ROUNDING_MODE;
             else
-              intCheck(rm2, 0, 8);
-            return round(new BigNumber2(x), sd, rm2);
+              intCheck(rm3, 0, 8);
+            return round(new BigNumber2(x), sd, rm3);
           }
           if (!(c = x.c))
             return null;
@@ -23563,36 +23563,36 @@ var require_bignumber = __commonJS({
           }
           return round(r, r.e + DECIMAL_PLACES + 1, ROUNDING_MODE, m);
         };
-        P.toExponential = function(dp, rm2) {
+        P.toExponential = function(dp, rm3) {
           if (dp != null) {
             intCheck(dp, 0, MAX);
             dp++;
           }
-          return format2(this, dp, rm2, 1);
+          return format2(this, dp, rm3, 1);
         };
-        P.toFixed = function(dp, rm2) {
+        P.toFixed = function(dp, rm3) {
           if (dp != null) {
             intCheck(dp, 0, MAX);
             dp = dp + this.e + 1;
           }
-          return format2(this, dp, rm2);
+          return format2(this, dp, rm3);
         };
-        P.toFormat = function(dp, rm2, format3) {
+        P.toFormat = function(dp, rm3, format3) {
           var str, x = this;
           if (format3 == null) {
-            if (dp != null && rm2 && typeof rm2 == "object") {
-              format3 = rm2;
-              rm2 = null;
+            if (dp != null && rm3 && typeof rm3 == "object") {
+              format3 = rm3;
+              rm3 = null;
             } else if (dp && typeof dp == "object") {
               format3 = dp;
-              dp = rm2 = null;
+              dp = rm3 = null;
             } else {
               format3 = FORMAT;
             }
           } else if (typeof format3 != "object") {
             throw Error(bignumberError + "Argument not an object: " + format3);
           }
-          str = x.toFixed(dp, rm2);
+          str = x.toFixed(dp, rm3);
           if (x.c) {
             var i, arr = str.split("."), g1 = +format3.groupSize, g2 = +format3.secondaryGroupSize, groupSeparator = format3.groupSeparator || "", intPart = arr[0], fractionPart = arr[1], isNeg = x.s < 0, intDigits = isNeg ? intPart.slice(1) : intPart, len = intDigits.length;
             if (g2) {
@@ -23665,10 +23665,10 @@ var require_bignumber = __commonJS({
         P.toNumber = function() {
           return +valueOf(this);
         };
-        P.toPrecision = function(sd, rm2) {
+        P.toPrecision = function(sd, rm3) {
           if (sd != null)
             intCheck(sd, 1, MAX);
-          return format2(this, sd, rm2, 2);
+          return format2(this, sd, rm3, 2);
         };
         P.toString = function(b) {
           var str, n = this, s = n.s, e = n.e;
@@ -48460,7 +48460,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-69c47f0acf46b27f9f9d0fe33d2815387485a500`;
+var localVersion = `0.0.0-e4dcda13e469f50a6bd92667e2ded8b98173bf2c`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -48698,6 +48698,151 @@ var ReleasePublishCommandModule = {
   describe: "Publish new releases and configure version branches."
 };
 
+// ng-dev/release/snapshot-publish/snapshots.js
+import { existsSync as existsSync7, cpSync } from "fs";
+import { rm } from "fs/promises";
+import { join as join14 } from "path";
+import { tmpdir } from "os";
+var SnapshotPublisher = class _SnapshotPublisher {
+  constructor(flags, git, config2) {
+    this.flags = flags;
+    this.git = git;
+    this.config = config2;
+    this.branchName = this.git.getCurrentBranchOrRevision();
+    this.commitSha = this.git.run(["rev-parse", "--short", "HEAD"]).stdout.trim();
+    this.commitAuthor = this.git.run(["--no-pager", "show", "-s", '--format="%an <%ae>"', "HEAD"]).stdout.trim();
+    this.commitMessage = this.git.run(["log", "--oneline", "-n", "1"]).stdout.trim();
+    this.snapshotCommitMessage = `${this.branchName} - ${this.commitMessage}`;
+  }
+  static async run(flags) {
+    const git = await AuthenticatedGitClient.get();
+    const config2 = await getConfig([assertValidReleaseConfig, assertValidGithubConfig]);
+    const publisher = new _SnapshotPublisher(flags, git, config2);
+    await publisher.run();
+  }
+  async run() {
+    try {
+      const artifacts = await this.getSnapshotArtifacts();
+      const snapshots = await this.prepareSnapshotRepos(artifacts);
+      await this.publishSnapshots(snapshots);
+      await Promise.all(snapshots.map(({ dir }) => rm(dir, { recursive: true, force: true })));
+    } catch (e) {
+      if (typeof e === "number") {
+        process.exit(e);
+      }
+      Log.error(e);
+      process.exit(1);
+    }
+  }
+  async getSnapshotArtifacts() {
+    const packagesWithSnapshots = this.config.release.npmPackages.filter((pkg) => pkg.snapshotRepo);
+    if (packagesWithSnapshots.length === 0) {
+      Log.info(`  ${yellow("\u26A0")} No packages configured with a snapshot repo, exiting.`);
+      throw 0;
+    }
+    Log.info(bold(`Building snapshot packages`));
+    const builtPackages = await BuildWorker.invokeBuild();
+    if (builtPackages === null || builtPackages.length === 0) {
+      Log.error(`  \u2718   No release packages have been built. Please ensure that the`);
+      Log.error(`      build script is configured correctly in ".ng-dev".`);
+      throw 1;
+    }
+    const artifacts = packagesWithSnapshots.map((pkg) => {
+      const builtPkg = builtPackages.find((b) => b.name === pkg.name);
+      if (!builtPkg) {
+        Log.error(`  \u2718   Snapshot expected for ${pkg.name}, but no build artifacts exist for it.`);
+        return null;
+      }
+      return {
+        ...builtPkg,
+        snapshotRepo: pkg.snapshotRepo
+      };
+    });
+    if (artifacts.some((artifact) => artifact === null)) {
+      Log.error(`  \u2718   Snapshot expected for all packages, but no build artifacts exist for some of them.`);
+      throw 1;
+    }
+    return artifacts;
+  }
+  async prepareSnapshotRepos(artifacts) {
+    Log.info(bold(`Preparing snapshot repositories`));
+    return Promise.all(artifacts.map(async (pkg) => {
+      const packageRepo = pkg.snapshotRepo;
+      const owner = this.config.github.owner;
+      const url3 = `https://github.com/${owner}/${packageRepo}.git`;
+      const tmpRepoDir = join14(tmpdir(), "ng-snapshot-publishing", packageRepo);
+      if (existsSync7(tmpRepoDir)) {
+        await rm(tmpRepoDir, { recursive: true, force: true });
+      }
+      const branchExistsInRemote = this.git.runGraceful(["ls-remote", "--heads", url3, "--", this.branchName]).stdout.trim() !== "";
+      Log.info(`Cloning ${url3} into ${tmpRepoDir}..`);
+      if (branchExistsInRemote) {
+        Log.debug(`Branch ${this.branchName} already exists. Cloning that branch.`);
+        this.git.run(["clone", url3, tmpRepoDir, "--depth", "1", "--branch", this.branchName]);
+      } else {
+        Log.debug(`Branch ${this.branchName} does not exist on ${packageRepo} yet.`);
+        Log.debug(`Cloning default branch and creating branch '${this.branchName}' on top of it.`);
+        this.git.run(["clone", url3, tmpRepoDir, "--depth", "1"]);
+        this.git.run(["checkout", "-b", this.branchName], { cwd: tmpRepoDir });
+      }
+      await Promise.all(this.git.run(["ls-files"], { cwd: tmpRepoDir }).stdout.trim().split("\n").filter((filePath) => filePath !== "").map((filePath) => rm(join14(tmpRepoDir, filePath), { force: true })));
+      cpSync(pkg.outputPath, tmpRepoDir, { recursive: true });
+      this.git.run(["add", "-A"], { cwd: tmpRepoDir });
+      this.git.run(["commit", "--author", this.commitAuthor, "-m", this.snapshotCommitMessage], {
+        cwd: tmpRepoDir
+      });
+      return {
+        url: url3,
+        dir: tmpRepoDir,
+        name: pkg.name
+      };
+    }));
+  }
+  async publishSnapshots(snapshots) {
+    Log.info(bold(`Publishing snapshots to GitHub...`));
+    for (const { name, dir, url: url3 } of snapshots) {
+      if (this.flags.skipNonAffectedSnapshots) {
+        const requiresPublish = this.git.runGraceful(["diff-index", "--quiet", "-I", "0\\.0\\.0-[a-f0-9]+", "HEAD", "--"], { cwd: dir }).status !== 0;
+        if (!requiresPublish) {
+          Log.info(`  ${yellow("\u26A0")} Skipping snapshot publish for ${name} as no changes occurred between this and the previous commit.`);
+          continue;
+        }
+      }
+      if (this.flags.dryRun) {
+        Log.info(`  ${green("\u2714")} Dry run: Publish package artifacts for ${name}#${this.commitSha} to ${url3}#${this.branchName}`);
+      } else {
+        this.git.run([
+          "push",
+          addTokenToGitHttpsUrl(url3, this.git.githubToken),
+          "--force",
+          "--",
+          this.branchName
+        ], { cwd: dir });
+        Log.info(`  ${green("\u2714")} Published package artifacts for ${name}#${this.commitSha} to ${url3}#${this.branchName}`);
+      }
+    }
+  }
+};
+
+// ng-dev/release/snapshot-publish/cli.js
+function builder22(argv) {
+  return addGithubTokenOption(argv).option("skip-non-affected-snapshots", {
+    type: "boolean",
+    description: "Whether to skip publishing snapshots for packages that are not affected by the current changes.",
+    default: false
+  }).option("dry-run", {
+    type: "boolean",
+    description: "Whether to perform a dry run.",
+    default: false
+  });
+}
+var ReleasePublishSnapshotsCommandModule = {
+  builder: builder22,
+  handler: SnapshotPublisher.run,
+  command: "publish-snapshots",
+  describe: false
+};
+
 // ng-dev/release/stamping/cli.js
 import path7 from "path";
 import url from "url";
@@ -48705,7 +48850,7 @@ import url from "url";
 // ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
 var import_semver20 = __toESM(require_semver());
-import { join as join14 } from "path";
+import { join as join15 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -48782,7 +48927,7 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join14(git.baseDir, "package.json");
+  const packageJsonPath = join15(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs5.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
@@ -48791,7 +48936,7 @@ function getVersionFromWorkspacePackageJson(git) {
 }
 
 // ng-dev/release/stamping/cli.js
-function builder22(args) {
+function builder23(args) {
   return args.option("mode", {
     demandOption: true,
     description: "Whether the env-stamp should be built for a snapshot or release",
@@ -48814,14 +48959,14 @@ async function handler23({ mode, includeVersion, additionalStampingScript }) {
   }
 }
 var BuildEnvStampCommand = {
-  builder: builder22,
+  builder: builder23,
   handler: handler23,
   command: "build-env-stamp",
   describe: false
 };
 
 // ng-dev/release/npm-dist-tag/delete/cli.js
-function builder23(args) {
+function builder24(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
@@ -48851,7 +48996,7 @@ async function handler24(args) {
   Log.info(green(`  \u2713   Deleted "${bold(tagName)}" NPM dist tag for all packages.`));
 }
 var ReleaseNpmDistTagDeleteCommand = {
-  builder: builder23,
+  builder: builder24,
   handler: handler24,
   command: "delete <tag-name>",
   describe: "Deletes a given NPM dist tag for all release packages."
@@ -48859,7 +49004,7 @@ var ReleaseNpmDistTagDeleteCommand = {
 
 // ng-dev/release/npm-dist-tag/set/cli.js
 var import_semver21 = __toESM(require_semver());
-function builder24(args) {
+function builder25(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
@@ -48911,7 +49056,7 @@ async function handler25(args) {
   Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version2}`)}.`));
 }
 var ReleaseNpmDistTagSetCommand = {
-  builder: builder24,
+  builder: builder25,
   handler: handler25,
   command: "set <tag-name> <target-version>",
   describe: "Sets a given NPM dist tag for all release packages."
@@ -48931,17 +49076,17 @@ var ReleaseNpmDistTagCommand = {
 
 // ng-dev/release/cli.js
 function buildReleaseParser(localYargs) {
-  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule);
+  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule).command(ReleasePublishSnapshotsCommandModule);
 }
 
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync7, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
+import { existsSync as existsSync8, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync10 } from "fs";
-import { dirname as dirname4, join as join15, resolve as resolve5 } from "path";
+import { dirname as dirname4, join as join16, resolve as resolve5 } from "path";
 import ts2 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
@@ -49043,7 +49188,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join15(dirname4(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join16(dirname4(containingFilePath), specifier) : specifier;
     const stat2 = getFileStatus(importFullPath);
     if (stat2 && stat2.isFile()) {
       return importFullPath;
@@ -49056,7 +49201,7 @@ var Analyzer = class {
       }
     }
     if (stat2 && stat2.isDirectory()) {
-      return this._resolveFileSpecifier(join15(importFullPath, "index"));
+      return this._resolveFileSpecifier(join16(importFullPath, "index"));
     }
     return null;
   }
@@ -49227,7 +49372,7 @@ function main(approve, config2, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync7(goldenFile)) {
+  if (!existsSync8(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
@@ -49266,7 +49411,7 @@ function convertReferenceChainToString(chain) {
 }
 
 // ng-dev/auth/login/cli.js
-async function builder25(yargs) {
+async function builder26(yargs) {
   return yargs;
 }
 async function handler26() {
@@ -49275,13 +49420,13 @@ async function handler26() {
 }
 var LoginModule = {
   handler: handler26,
-  builder: builder25,
+  builder: builder26,
   command: "login",
   describe: "Log into the ng-dev service"
 };
 
 // ng-dev/auth/logout/cli.js
-async function builder26(yargs) {
+async function builder27(yargs) {
   return yargs;
 }
 async function handler27() {
@@ -49290,7 +49435,7 @@ async function handler27() {
 }
 var LogoutModule = {
   handler: handler27,
-  builder: builder26,
+  builder: builder27,
   command: "logout",
   describe: "Log out of the ng-dev service"
 };
@@ -49354,7 +49499,7 @@ async function loadWorkflows(src) {
 }
 
 // ng-dev/perf/workflow/cli.js
-import { join as join16 } from "path";
+import { join as join17 } from "path";
 
 // ng-dev/perf/workflow/database.js
 import { Spanner } from "@google-cloud/spanner";
@@ -49373,7 +49518,7 @@ async function addWorkflowPerformanceResult(result) {
 }
 
 // ng-dev/perf/workflow/cli.js
-function builder27(yargs) {
+function builder28(yargs) {
   return yargs.option("config-file", {
     default: ".ng-dev/dx-perf-workflows.yml",
     type: "string",
@@ -49391,7 +49536,7 @@ function builder27(yargs) {
   });
 }
 async function handler28({ configFile, list, name, commitSha }) {
-  const workflows = await loadWorkflows(join16(determineRepoBaseDirFromCwd(), configFile));
+  const workflows = await loadWorkflows(join17(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
     return;
@@ -49423,7 +49568,7 @@ async function handler28({ configFile, list, name, commitSha }) {
 }
 var WorkflowsModule = {
   handler: handler28,
-  builder: builder27,
+  builder: builder28,
   command: "workflows",
   describe: "Evaluate the performance of the provided workflows"
 };
@@ -49434,17 +49579,17 @@ function buildPerfParser(localYargs) {
 }
 
 // ng-dev/config/validate/portability.js
-import { join as join17 } from "path";
-import { tmpdir } from "os";
-import { cp, mkdtemp, rm } from "fs/promises";
+import { join as join18 } from "path";
+import { tmpdir as tmpdir2 } from "os";
+import { cp, mkdtemp, rm as rm2 } from "fs/promises";
 async function checkPortability() {
   Log.debug("Copying ng-dev configuration to isolated temp directory");
-  const tmpConfigDir = await mkdtemp(join17(tmpdir(), "ng-dev-config-check-"));
+  const tmpConfigDir = await mkdtemp(join18(tmpdir2(), "ng-dev-config-check-"));
   const repoBaseDir = determineRepoBaseDirFromCwd();
   try {
-    await cp(join17(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
+    await cp(join18(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
     Log.debug("Validating configuration loads in isolation");
-    const baseConfigFile = join17(tmpConfigDir, "config.mjs");
+    const baseConfigFile = join18(tmpConfigDir, "config.mjs");
     const { status, stderr } = await ChildProcess.exec(`node ${baseConfigFile}`, {
       cwd: tmpConfigDir,
       mode: "silent"
@@ -49455,7 +49600,7 @@ async function checkPortability() {
   } catch (err) {
     throw err;
   } finally {
-    await rm(tmpConfigDir, { recursive: true, maxRetries: 3 });
+    await rm2(tmpConfigDir, { recursive: true, maxRetries: 3 });
   }
 }
 
@@ -49483,7 +49628,7 @@ async function checkValidity() {
 }
 
 // ng-dev/config/validate/cli.js
-async function builder28(yargs) {
+async function builder29(yargs) {
   return yargs;
 }
 async function handler29() {
@@ -49502,7 +49647,7 @@ async function handler29() {
 }
 var ValidateModule = {
   handler: handler29,
-  builder: builder28,
+  builder: builder29,
   command: "validate",
   describe: "Validate that the configuration provided in .ng-dev/ is valid and portable"
 };
@@ -66737,7 +66882,7 @@ var DEFAULT_API_KEY = process.env["GEMINI_API_KEY"];
 // ng-dev/ai/migrate.js
 import assert from "node:assert";
 var import_fast_glob4 = __toESM(require_out4());
-function builder29(argv) {
+function builder30(argv) {
   return argv.option("prompt", {
     type: "string",
     alias: "p",
@@ -66864,7 +67009,7 @@ async function applyPrompt(ai, model, temperature, content, prompt) {
   return parsed.content;
 }
 var MigrateModule = {
-  builder: builder29,
+  builder: builder30,
   handler: handler30,
   command: "migrate",
   describe: "Apply a prompt-based AI migration over a set of files"
@@ -66878,7 +67023,7 @@ import { readFile as readFile4, writeFile as writeFile4 } from "node:fs/promises
 import { basename as basename2 } from "node:path";
 import assert2 from "node:assert";
 import { randomUUID as randomUUID2 } from "node:crypto";
-function builder30(argv) {
+function builder31(argv) {
   return argv.positional("files", {
     description: `One or more glob patterns to find target files (e.g., 'src/**/*.ts' 'test/**/*.ts').`,
     type: "string",
@@ -67043,7 +67188,7 @@ function generatePrompt(errorDescription, fileNameMap) {
 `;
 }
 var FixModule = {
-  builder: builder30,
+  builder: builder31,
   handler: handler31,
   command: "fix <files..>",
   describe: "Fixes errors from the specified error output"
@@ -80706,7 +80851,7 @@ config(en_default());
 var import_fast_glob6 = __toESM(require_out4());
 var import_yaml5 = __toESM(require_dist());
 import { readFile as readFile5 } from "node:fs/promises";
-import { join as join18, basename as basename3 } from "node:path";
+import { join as join19, basename as basename3 } from "node:path";
 var skillFrontmatterSchema = external_exports.object({
   name: external_exports.string().min(1).max(64).regex(/^[a-z0-9-]+$/, "Name must only contain lowercase alphanumeric characters and hyphens").refine((val) => !val.startsWith("-") && !val.endsWith("-") && !val.includes("--"), "Name must not start/end with hyphens or contain consecutive hyphens"),
   description: external_exports.string().min(1).max(1024),
@@ -80717,7 +80862,7 @@ var skillFrontmatterSchema = external_exports.object({
 });
 async function validateSkills(repoRoot) {
   let errorCount = 0;
-  const skillFiles = await (0, import_fast_glob6.default)("**/SKILL.md", { cwd: join18(repoRoot, "skills"), absolute: true });
+  const skillFiles = await (0, import_fast_glob6.default)("**/SKILL.md", { cwd: join19(repoRoot, "skills"), absolute: true });
   if (skillFiles.length === 0) {
     Log.info(` ${yellow("\u26A0")}  No skills found in skills/ directory.`);
     return { results: [], exitCode: 0 };
@@ -80726,13 +80871,13 @@ async function validateSkills(repoRoot) {
   const validationResults = await Promise.all(skillFiles.map(validateSkill));
   for (const result of validationResults.sort((a, b) => a.failures.length - b.failures.length)) {
     if (result.failures.length > 0) {
-      Log.info(` ${red("\u2718")}  ${bold(result.name)} (${join18("skills", result.name, "SKILL.md")})`);
+      Log.info(` ${red("\u2718")}  ${bold(result.name)} (${join19("skills", result.name, "SKILL.md")})`);
       result.failures.forEach((failure) => {
         Log.info(`  -  ${failure}`);
         errorCount++;
       });
     } else {
-      Log.info(` ${green("\u2714")}  ${bold(result.name)} (${join18("skills", result.name, "SKILL.md")})`);
+      Log.info(` ${green("\u2714")}  ${bold(result.name)} (${join19("skills", result.name, "SKILL.md")})`);
     }
   }
   Log.info();
@@ -80745,7 +80890,7 @@ async function validateSkills(repoRoot) {
   }
 }
 async function validateSkill(filePath) {
-  const name = basename3(join18(filePath, ".."));
+  const name = basename3(join19(filePath, ".."));
   const failures = [];
   try {
     const content = await readFile5(filePath, { encoding: "utf8" });
@@ -80778,7 +80923,7 @@ async function validateSkill(filePath) {
 }
 
 // ng-dev/ai/skills/cli.js
-async function builder31(yargs) {
+async function builder32(yargs) {
   return yargs.option("base-dir", {
     type: "string",
     default: determineRepoBaseDirFromCwd(),
@@ -80792,7 +80937,7 @@ async function handler32({ baseDir }) {
 var SkillsModule = {
   command: "skills validate",
   describe: "Validate agent skills in the repository",
-  builder: builder31,
+  builder: builder32,
   handler: handler32
 };
 
