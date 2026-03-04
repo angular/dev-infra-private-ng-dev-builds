@@ -29,5 +29,5 @@ export type CommitFields = typeof commitFields;
 export declare const commitFieldsAsFormat: (fields: CommitFields) => string;
 export declare const gitLogFormatForParsing: string;
 export declare const parseCommitMessage: (fullText: string) => Commit;
-export declare const parseCommitFromGitLog: (fullText: Buffer) => CommitFromGitLog;
+export declare function parseCommitFromGitLog(fullText: string): CommitFromGitLog;
 export {};
