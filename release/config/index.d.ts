@@ -7,6 +7,10 @@ export interface BuiltPackage {
 export interface NpmPackage {
     name: string;
     experimental?: boolean;
+    deprecated?: {
+        version: string;
+        message: string;
+    };
 }
 export interface ReleaseConfig {
     publishRegistry?: string;

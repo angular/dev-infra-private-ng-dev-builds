@@ -67,6 +67,7 @@ export declare abstract class ReleaseAction {
     protected publish(builtPackagesWithInfo: BuiltPackageWithInfo[], releaseNotes: ReleaseNotes, beforeStagingSha: string, publishBranch: string, npmDistTag: NpmDistTag, additionalOptions: {
         showAsLatestOnGitHub: boolean;
     }): Promise<void>;
+    private _deprecatePackagesOnNpm;
     private _publishBuiltPackageToNpm;
     private _getAndValidateLatestCommitForPublishing;
     private _verifyPackageVersions;

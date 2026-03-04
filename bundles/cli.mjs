@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-NBNAZLGW.mjs";
+} from "./chunk-PELL5AHH.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -65,7 +65,7 @@ import {
   runParserWithCompletedFunctions,
   underline,
   yellow
-} from "./chunk-F5VM5PF4.mjs";
+} from "./chunk-WTYCKKHM.mjs";
 import {
   CommitParser
 } from "./chunk-LCSKEA2T.mjs";
@@ -47277,6 +47277,13 @@ var NpmCommand = class {
     }
     await ChildProcess.spawn("npm", args, { cwd: packagePath, mode: "silent" });
   }
+  static async deprecate(packageName, version2, message, registryUrl) {
+    const args = ["deprecate", `${packageName}@"${version2}"`, `"${message}"`];
+    if (registryUrl !== void 0) {
+      args.push("--registry", registryUrl);
+    }
+    await ChildProcess.spawn("npm", args, { mode: "silent" });
+  }
   static async setDistTagForPackage(packageName, distTag, version2, registryUrl) {
     const args = ["dist-tag", "add", `${packageName}@${version2}`, distTag];
     if (registryUrl !== void 0) {
@@ -47954,7 +47961,28 @@ var ReleaseAction = class {
     for (const pkg of builtPackagesWithInfo) {
       await this._publishBuiltPackageToNpm(pkg, npmDistTag);
     }
+    await this._deprecatePackagesOnNpm(builtPackagesWithInfo);
     Log.info(green("  \u2713   Published all packages successfully"));
+  }
+  async _deprecatePackagesOnNpm(builtPackagesWithInfo) {
+    for (const pkg of builtPackagesWithInfo) {
+      if (!pkg.deprecated) {
+        continue;
+      }
+      Log.debug(`Starting deprecation of "${pkg.name}".`);
+      const spinner = new Spinner(`Deprecating "${pkg.name}"`);
+      const { version: version2, message } = pkg.deprecated;
+      try {
+        await NpmCommand.deprecate(pkg.name, version2, message, this.config.publishRegistry);
+        spinner.complete();
+        Log.info(green(`  \u2713   Successfully deprecated "${pkg.name}@${version2}"`));
+      } catch (e) {
+        spinner.complete();
+        Log.error(e);
+        Log.error(`  \u2718   An error occurred while deprecating "${pkg.name}@${version2}".`);
+        throw new FatalReleaseActionError();
+      }
+    }
   }
   async _publishBuiltPackageToNpm(pkg, npmDistTag) {
     Log.debug(`Starting publish of "${pkg.name}".`);
@@ -47962,7 +47990,7 @@ var ReleaseAction = class {
     try {
       await NpmCommand.publish(pkg.outputPath, npmDistTag, this.config.publishRegistry);
       spinner.complete();
-      Log.info(green(`  \u2713   Successfully published "${pkg.name}.`));
+      Log.info(green(`  \u2713   Successfully published "${pkg.name}".`));
     } catch (e) {
       spinner.complete();
       Log.error(e);
@@ -48542,7 +48570,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-0357e5f126c74e7c811c96a52f1e341610903532`;
+var localVersion = `0.0.0-153cb4797250a059dddcf0469b0b13cea116b965`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
