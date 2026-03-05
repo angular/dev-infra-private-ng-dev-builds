@@ -17,5 +17,8 @@ export declare enum ManagedRepositories {
     COMPONENTS = "components",
     ANGULAR = "angular",
     ANGULAR_CLI = "angular-cli",
-    DEV_INFRA = "dev-infra"
+    DEV_INFRA = "dev-infra",
+    RULES_ANGULAR = "rules_angular",
+    RULES_BROWSERS = "rules_browsers",
+    RULES_SASS = "rules_sass"
 }
