@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-491fa7fc1803683748875b2b89d85700aca2b1f4",
+  "version": "0.0.0-6659b1f41126deb6e18657797e70c76a770cef49",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -41,7 +41,7 @@
     "@types/which": "3.0.4",
     "@types/yargs": "17.0.35",
     "@types/yarnpkg__lockfile": "1.1.9",
-    "@conventional-changelog/git-client": "1.0.1",
+    "@conventional-changelog/git-client": "2.6.0",
     "@yarnpkg/lockfile": "1.1.0",
     "bufferutil": "4.1.0",
     "cli-progress": "3.12.0",
