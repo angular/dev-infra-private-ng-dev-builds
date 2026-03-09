@@ -45984,11 +45984,11 @@ var ReleaseInfoCommandModule = {
 // ng-dev/release/notes/cli.js
 var import_semver5 = __toESM(require_semver());
 
-// node_modules/.aspect_rules_js/ejs@4.0.1/node_modules/ejs/lib/esm/ejs.js
+// node_modules/.aspect_rules_js/ejs@5.0.1/node_modules/ejs/lib/esm/ejs.js
 import fs2 from "node:fs";
 import path5 from "node:path";
 
-// node_modules/.aspect_rules_js/ejs@4.0.1/node_modules/ejs/lib/esm/utils.js
+// node_modules/.aspect_rules_js/ejs@5.0.1/node_modules/ejs/lib/esm/utils.js
 var utils = {};
 var regExpChars = /[|\\{}()[\]^$+*?.]/g;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -46122,7 +46122,7 @@ if (typeof exports != "undefined") {
 }
 var utils_default = utils;
 
-// node_modules/.aspect_rules_js/ejs@4.0.1/node_modules/ejs/lib/esm/ejs.js
+// node_modules/.aspect_rules_js/ejs@5.0.1/node_modules/ejs/lib/esm/ejs.js
 var DECLARATION_KEYWORD = "let";
 var ejs = {};
 var _DEFAULT_OPEN_DELIMITER = "<";
@@ -46136,7 +46136,6 @@ var _OPTS_PASSABLE_WITH_DATA = [
   "context",
   "debug",
   "compileDebug",
-  "client",
   "_with",
   "rmWhitespace",
   "strict",
@@ -46351,7 +46350,6 @@ function Template(text, optsParam) {
   this.truncate = false;
   this.currentLine = 1;
   this.source = "";
-  options.client = opts.client || false;
   options.escapeFunction = opts.escape || opts.escapeFunction || utils_default.escapeXML;
   options.compileDebug = opts.compileDebug !== false;
   options.debug = !!opts.debug;
@@ -46445,12 +46443,6 @@ Template.prototype = {
     } else {
       src = this.source;
     }
-    if (opts.client) {
-      src = "escapeFn = escapeFn || " + escapeFn.toString() + ";\n" + src;
-      if (opts.compileDebug) {
-        src = "rethrow = rethrow || " + rethrow.toString() + ";\n" + src;
-      }
-    }
     if (opts.strict) {
       src = '"use strict";\n' + src;
     }
@@ -46490,7 +46482,7 @@ Template.prototype = {
       }
       throw e;
     }
-    let returnedFn = opts.client ? fn : function anonymous(data) {
+    let returnedFn = function anonymous(data) {
       let include = function(path9, includeData) {
         let d = utils_default.shallowCopy(utils_default.createNullProtoObjWherePossible(), data);
         if (includeData) {
@@ -46523,12 +46515,16 @@ Template.prototype = {
     if (opts.rmWhitespace) {
       this.templateText = this.templateText.replace(/[\r\n]+/g, "\n").replace(/^\s+|\s+$/gm, "");
     }
-    this.templateText = this.templateText.replace(/[ \t]*<%_/gm, "<%_").replace(/_%>[ \t]*/gm, "_%>");
     let self2 = this;
-    let matches = this.parseTemplateText();
     let d = this.opts.delimiter;
     let o = this.opts.openDelimiter;
     let c = this.opts.closeDelimiter;
+    let openWhitespaceSlurpTag = utils_default.escapeRegExpChars(o + d + "_");
+    let closeWhitespaceSlurpTag = utils_default.escapeRegExpChars("_" + d + c);
+    let openWhitespaceSlurpReplacement = o + d + "_";
+    let closeWhitespaceSlurpReplacement = "_" + d + c;
+    this.templateText = this.templateText.replace(new RegExp("[ \\t]*" + openWhitespaceSlurpTag, "gm"), openWhitespaceSlurpReplacement).replace(new RegExp(closeWhitespaceSlurpTag + "[ \\t]*", "gm"), closeWhitespaceSlurpReplacement);
+    let matches = this.parseTemplateText();
     if (matches && matches.length) {
       matches.forEach(function(line, index) {
         let closing;
@@ -48539,7 +48535,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-42cdb151b217e714c6e85a41ef3d2adddf8321d3`;
+var localVersion = `0.0.0-028320f7a1ccc4ec9adf1023433a9abf2247fe7f`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

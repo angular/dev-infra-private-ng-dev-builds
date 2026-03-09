@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-42cdb151b217e714c6e85a41ef3d2adddf8321d3",
+  "version": "0.0.0-028320f7a1ccc4ec9adf1023433a9abf2247fe7f",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -47,7 +47,7 @@
     "cli-progress": "3.12.0",
     "conventional-commits-filter": "5.0.0",
     "conventional-commits-parser": "6.3.0",
-    "ejs": "4.0.1",
+    "ejs": "5.0.1",
     "encoding": "0.1.13",
     "fast-glob": "3.3.3",
     "firebase": "12.10.0",
