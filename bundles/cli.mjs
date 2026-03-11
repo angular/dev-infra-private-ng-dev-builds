@@ -47395,7 +47395,10 @@ var ExternalCommands = class {
         mode: "on-error"
       });
       if (!quiet) {
-        const { stdout: nodeVersion } = await ChildProcess.spawn("node", ["--version"]);
+        const { stdout: nodeVersion } = await ChildProcess.spawn("node", ["--version"], {
+          mode: "silent",
+          cwd: projectDir
+        });
         Log.info(green(`  \u2713   Set node version to ${nodeVersion}.`));
       }
     } catch (e) {
@@ -48535,7 +48538,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-9f1bfdc42c4c768865f091286719b087c32b9661`;
+var localVersion = `0.0.0-a84b05cc48579b0a567fbafde11203864c6af8be`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
