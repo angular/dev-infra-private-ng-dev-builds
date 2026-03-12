@@ -9,6 +9,7 @@ interface SnapshotRepo {
     dir: string;
     url: string;
     name: string;
+    containsChanges: boolean;
 }
 export declare class SnapshotPublisher {
     protected readonly flags: SnapshotPublishOptions;

@@ -16878,9 +16878,9 @@ var require_brace_expansion = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/brace-expressions.js
+// node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/brace-expressions.js
 var require_brace_expressions = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/brace-expressions.js"(exports2) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/brace-expressions.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.parseClass = void 0;
@@ -16996,9 +16996,9 @@ var require_brace_expressions = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/escape.js
+// node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/escape.js
 var require_escape = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/escape.js"(exports2) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/escape.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.escape = void 0;
@@ -17009,9 +17009,9 @@ var require_escape = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/unescape.js
+// node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/unescape.js
 var require_unescape = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/unescape.js"(exports2) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/unescape.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.unescape = void 0;
@@ -17022,9 +17022,9 @@ var require_unescape = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index.js
+// node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/index.js
 var require_cjs = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index.js"(exports2) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/index.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -17204,6 +17204,7 @@ var require_cjs = __commonJS({
       platform;
       windowsNoMagicRoot;
       regexp;
+      maxGlobstarRecursion;
       constructor(pattern, options = {}) {
         assertValidPattern2(pattern);
         options = options || {};
@@ -17224,6 +17225,7 @@ var require_cjs = __commonJS({
         this.partial = !!options.partial;
         this.nocase = !!this.options.nocase;
         this.windowsNoMagicRoot = options.windowsNoMagicRoot !== void 0 ? options.windowsNoMagicRoot : !!(this.isWindows && this.nocase);
+        this.maxGlobstarRecursion = options.maxGlobstarRecursion !== void 0 ? options.maxGlobstarRecursion : 200;
         this.globSet = [];
         this.globParts = [];
         this.set = [];
@@ -17539,7 +17541,6 @@ var require_cjs = __commonJS({
       // out of pattern, then that's fine, as long as all
       // the parts match.
       matchOne(file2, pattern, partial2 = false) {
-        const options = this.options;
         if (this.isWindows) {
           const fileUNC = file2[0] === "" && file2[1] === "" && file2[2] === "?" && typeof file2[3] === "string" && /^[a-z]:$/i.test(file2[3]);
           const patternUNC = pattern[0] === "" && pattern[1] === "" && pattern[2] === "?" && typeof pattern[3] === "string" && /^[a-z]:$/i.test(pattern[3]);
@@ -17570,47 +17571,127 @@ var require_cjs = __commonJS({
         }
         this.debug("matchOne", this, { file: file2, pattern });
         this.debug("matchOne", file2.length, pattern.length);
-        for (var fi = 0, pi = 0, fl = file2.length, pl = pattern.length; fi < fl && pi < pl; fi++, pi++) {
-          this.debug("matchOne loop");
-          var p = pattern[pi];
-          var f = file2[fi];
-          this.debug(pattern, p, f);
-          if (p === false) {
+        if (pattern.indexOf(exports2.GLOBSTAR) !== -1) {
+          return this._matchGlobstar(file2, pattern, partial2, 0, 0);
+        }
+        return this._matchOne(file2, pattern, partial2, 0, 0);
+      }
+      _matchGlobstar(file2, pattern, partial2, fileIndex, patternIndex) {
+        let firstgs = -1;
+        for (let i = patternIndex; i < pattern.length; i++) {
+          if (pattern[i] === exports2.GLOBSTAR) {
+            firstgs = i;
+            break;
+          }
+        }
+        let lastgs = -1;
+        for (let i = pattern.length - 1; i >= 0; i--) {
+          if (pattern[i] === exports2.GLOBSTAR) {
+            lastgs = i;
+            break;
+          }
+        }
+        const head = pattern.slice(patternIndex, firstgs);
+        const body = partial2 ? pattern.slice(firstgs + 1) : pattern.slice(firstgs + 1, lastgs);
+        const tail = partial2 ? [] : pattern.slice(lastgs + 1);
+        if (head.length) {
+          const fileHead = file2.slice(fileIndex, fileIndex + head.length);
+          if (!this._matchOne(fileHead, head, partial2, 0, 0)) {
             return false;
           }
-          if (p === exports2.GLOBSTAR) {
-            this.debug("GLOBSTAR", [pattern, p, f]);
-            var fr = fi;
-            var pr = pi + 1;
-            if (pr === pl) {
-              this.debug("** at the end");
-              for (; fi < fl; fi++) {
-                if (file2[fi] === "." || file2[fi] === ".." || !options.dot && file2[fi].charAt(0) === ".")
-                  return false;
-              }
-              return true;
+          fileIndex += head.length;
+        }
+        let fileTailMatch = 0;
+        if (tail.length) {
+          if (tail.length + fileIndex > file2.length)
+            return false;
+          const tailStart = file2.length - tail.length;
+          if (this._matchOne(file2, tail, partial2, tailStart, 0)) {
+            fileTailMatch = tail.length;
+          } else {
+            if (file2[file2.length - 1] !== "" || fileIndex + tail.length === file2.length) {
+              return false;
             }
-            while (fr < fl) {
-              var swallowee = file2[fr];
-              this.debug("\nglobstar while", file2, fr, pattern, pr, swallowee);
-              if (this.matchOne(file2.slice(fr), pattern.slice(pr), partial2)) {
-                this.debug("globstar found match!", fr, fl, swallowee);
-                return true;
-              } else {
-                if (swallowee === "." || swallowee === ".." || !options.dot && swallowee.charAt(0) === ".") {
-                  this.debug("dot detected!", file2, fr, pattern, pr);
-                  break;
-                }
-                this.debug("globstar swallow a segment, and continue");
-                fr++;
-              }
+            if (!this._matchOne(file2, tail, partial2, tailStart - 1, 0)) {
+              return false;
             }
-            if (partial2) {
-              this.debug("\n>>> no match, partial?", file2, fr, pattern, pr);
-              if (fr === fl) {
-                return true;
-              }
+            fileTailMatch = tail.length + 1;
+          }
+        }
+        if (!body.length) {
+          let sawSome = !!fileTailMatch;
+          for (let i = fileIndex; i < file2.length - fileTailMatch; i++) {
+            const f = String(file2[i]);
+            sawSome = true;
+            if (f === "." || f === ".." || !this.options.dot && f.startsWith(".")) {
+              return false;
             }
+          }
+          return partial2 || sawSome;
+        }
+        const bodySegments = [[[], 0]];
+        let currentBody = bodySegments[0];
+        let nonGsParts = 0;
+        const nonGsPartsSums = [0];
+        for (const b of body) {
+          if (b === exports2.GLOBSTAR) {
+            nonGsPartsSums.push(nonGsParts);
+            currentBody = [[], 0];
+            bodySegments.push(currentBody);
+          } else {
+            currentBody[0].push(b);
+            nonGsParts++;
+          }
+        }
+        let idx = bodySegments.length - 1;
+        const fileLength = file2.length - fileTailMatch;
+        for (const b of bodySegments) {
+          b[1] = fileLength - (nonGsPartsSums[idx--] + b[0].length);
+        }
+        return !!this._matchGlobStarBodySections(file2, bodySegments, fileIndex, 0, partial2, 0, !!fileTailMatch);
+      }
+      // return false for "nope, not matching"
+      // return null for "not matching, cannot keep trying"
+      _matchGlobStarBodySections(file2, bodySegments, fileIndex, bodyIndex, partial2, globStarDepth, sawTail) {
+        const bs = bodySegments[bodyIndex];
+        if (!bs) {
+          for (let i = fileIndex; i < file2.length; i++) {
+            sawTail = true;
+            const f = file2[i];
+            if (f === "." || f === ".." || !this.options.dot && f.startsWith(".")) {
+              return false;
+            }
+          }
+          return sawTail;
+        }
+        const [body, after] = bs;
+        while (fileIndex <= after) {
+          const m = this._matchOne(file2.slice(0, fileIndex + body.length), body, partial2, fileIndex, 0);
+          if (m && globStarDepth < this.maxGlobstarRecursion) {
+            const sub = this._matchGlobStarBodySections(file2, bodySegments, fileIndex + body.length, bodyIndex + 1, partial2, globStarDepth + 1, sawTail);
+            if (sub !== false) {
+              return sub;
+            }
+          }
+          const f = file2[fileIndex];
+          if (f === "." || f === ".." || !this.options.dot && f.startsWith(".")) {
+            return false;
+          }
+          fileIndex++;
+        }
+        return partial2 || null;
+      }
+      _matchOne(file2, pattern, partial2, fileIndex, patternIndex) {
+        let fi;
+        let pi;
+        let fl;
+        let pl;
+        for (fi = fileIndex, pi = patternIndex, fl = file2.length, pl = pattern.length; fi < fl && pi < pl; fi++, pi++) {
+          this.debug("matchOne loop");
+          const p = pattern[pi];
+          const f = file2[fi];
+          this.debug(pattern, p, f);
+          if (p === false || p === exports2.GLOBSTAR) {
             return false;
           }
           let hit;
@@ -17715,6 +17796,8 @@ var require_cjs = __commonJS({
             case "@":
             case "!":
               this.debug("%s	%s %s %j <-- stateChar", pattern, i, re, c);
+              if (c === "*" && stateChar === "*")
+                continue;
               this.debug("call clearStateChar %j", stateChar);
               clearStateChar();
               stateChar = c;
@@ -17975,9 +18058,9 @@ var require_cjs = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index-cjs.js
+// node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/index-cjs.js
 var require_index_cjs = __commonJS({
-  "node_modules/.aspect_rules_js/minimatch@7.4.6/node_modules/minimatch/dist/cjs/index-cjs.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/minimatch@7.4.9/node_modules/minimatch/dist/cjs/index-cjs.js"(exports2, module2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -17987,9 +18070,9 @@ var require_index_cjs = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color@10.2.2/node_modules/folder-hash/index.js
+// node_modules/.aspect_rules_js/folder-hash@4.1.2_supports-color@10.2.2/node_modules/folder-hash/index.js
 var require_folder_hash = __commonJS({
-  "node_modules/.aspect_rules_js/folder-hash@4.1.1_supports-color@10.2.2/node_modules/folder-hash/index.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/folder-hash@4.1.2_supports-color@10.2.2/node_modules/folder-hash/index.js"(exports2, module2) {
     var crypto2 = __require("crypto");
     var debug = require_src();
     var minimatch2 = require_index_cjs();
@@ -22309,6 +22392,1004 @@ var require_src2 = __commonJS({
   }
 });
 
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/package.json
+var require_package2 = __commonJS({
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/package.json"(exports2, module2) {
+    module2.exports = {
+      name: "gaxios",
+      version: "7.1.4",
+      description: "A simple common HTTP client specifically for Google APIs and services.",
+      main: "build/cjs/src/index.js",
+      types: "build/cjs/src/index.d.ts",
+      files: [
+        "build/"
+      ],
+      exports: {
+        ".": {
+          import: {
+            types: "./build/esm/src/index.d.ts",
+            default: "./build/esm/src/index.js"
+          },
+          require: {
+            types: "./build/cjs/src/index.d.ts",
+            default: "./build/cjs/src/index.js"
+          }
+        }
+      },
+      scripts: {
+        lint: "gts check --no-inline-config",
+        test: "c8 mocha build/esm/test",
+        "presystem-test": "npm run compile",
+        "system-test": "mocha build/esm/system-test --timeout 80000",
+        compile: "tsc -b ./tsconfig.json ./tsconfig.cjs.json && node utils/enable-esm.mjs",
+        fix: "gts fix",
+        prepare: "npm run compile",
+        pretest: "npm run compile",
+        webpack: "webpack",
+        "prebrowser-test": "npm run compile",
+        "browser-test": "node build/browser-test/browser-test-runner.js",
+        docs: "jsdoc -c .jsdoc.js",
+        "docs-test": "linkinator docs",
+        "predocs-test": "npm run docs",
+        "samples-test": "cd samples/ && npm link ../ && npm test && cd ../",
+        prelint: "cd samples; npm link ../; npm install",
+        clean: "gts clean"
+      },
+      repository: {
+        type: "git",
+        directory: "packages/gaxios",
+        url: "https://github.com/googleapis/google-cloud-node-core.git"
+      },
+      keywords: [
+        "google"
+      ],
+      engines: {
+        node: ">=18"
+      },
+      author: "Google, LLC",
+      license: "Apache-2.0",
+      devDependencies: {
+        "@babel/plugin-proposal-private-methods": "^7.18.6",
+        "@types/cors": "^2.8.6",
+        "@types/express": "^5.0.0",
+        "@types/extend": "^3.0.1",
+        "@types/mocha": "^10.0.10",
+        "@types/multiparty": "4.2.1",
+        "@types/mv": "^2.1.0",
+        "@types/ncp": "^2.0.8",
+        "@types/node": "^22.13.1",
+        "@types/sinon": "^17.0.3",
+        "@types/tmp": "^0.2.6",
+        assert: "^2.0.0",
+        browserify: "^17.0.0",
+        c8: "^10.1.3",
+        cors: "^2.8.5",
+        express: "^5.0.0",
+        gts: "^6.0.2",
+        "is-docker": "^3.0.0",
+        jsdoc: "^4.0.4",
+        "jsdoc-fresh": "^5.0.0",
+        "jsdoc-region-tag": "^4.0.0",
+        karma: "^6.0.0",
+        "karma-chrome-launcher": "^3.0.0",
+        "karma-coverage": "^2.0.0",
+        "karma-firefox-launcher": "^2.0.0",
+        "karma-mocha": "^2.0.0",
+        "karma-remap-coverage": "^0.1.5",
+        "karma-sourcemap-loader": "^0.4.0",
+        "karma-webpack": "^5.0.1",
+        linkinator: "^6.1.2",
+        mocha: "^11.1.0",
+        multiparty: "^4.2.1",
+        mv: "^2.1.1",
+        ncp: "^2.0.0",
+        nock: "^14.0.5",
+        "null-loader": "^4.0.1",
+        "pack-n-play": "^4.0.0",
+        puppeteer: "^24.0.0",
+        sinon: "^21.0.0",
+        "stream-browserify": "^3.0.0",
+        tmp: "0.2.5",
+        "ts-loader": "^9.5.2",
+        typescript: "5.8.3",
+        webpack: "^5.97.1",
+        "webpack-cli": "^6.0.1"
+      },
+      dependencies: {
+        extend: "^3.0.2",
+        "https-proxy-agent": "^7.0.1",
+        "node-fetch": "^3.3.2"
+      },
+      homepage: "https://github.com/googleapis/google-cloud-node-core/tree/main/packages/gaxios"
+    };
+  }
+});
+
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/util.cjs
+var require_util2 = __commonJS({
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/util.cjs"(exports2, module2) {
+    "use strict";
+    var pkg = require_package2();
+    module2.exports = { pkg };
+  }
+});
+
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/common.js
+var require_common5 = __commonJS({
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/common.js"(exports2) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GaxiosError = exports2.GAXIOS_ERROR_SYMBOL = void 0;
+    exports2.defaultErrorRedactor = defaultErrorRedactor;
+    var extend_1 = __importDefault(require_extend());
+    var util_cjs_1 = __importDefault(require_util2());
+    var pkg = util_cjs_1.default.pkg;
+    exports2.GAXIOS_ERROR_SYMBOL = Symbol.for(`${pkg.name}-gaxios-error`);
+    var GaxiosError = class _GaxiosError extends Error {
+      config;
+      response;
+      /**
+       * An error code.
+       * Can be a system error code, DOMException error name, or any error's 'code' property where it is a `string`.
+       *
+       * It is only a `number` when the cause is sourced from an API-level error (AIP-193).
+       *
+       * @see {@link https://nodejs.org/api/errors.html#errorcode error.code}
+       * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/DOMException#error_names DOMException#error_names}
+       * @see {@link https://google.aip.dev/193#http11json-representation AIP-193}
+       *
+       * @example
+       * 'ECONNRESET'
+       *
+       * @example
+       * 'TimeoutError'
+       *
+       * @example
+       * 500
+       */
+      code;
+      /**
+       * An HTTP Status code.
+       * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Response/status Response#status}
+       *
+       * @example
+       * 500
+       */
+      status;
+      /**
+       * @deprecated use {@link GaxiosError.cause} instead.
+       *
+       * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause Error#cause}
+       *
+       * @privateRemarks
+       *
+       * We will want to remove this property later as the modern `cause` property is better suited
+       * for displaying and relaying nested errors. Keeping this here makes the resulting
+       * error log larger than it needs to be.
+       *
+       */
+      error;
+      /**
+       * Support `instanceof` operator for `GaxiosError` across builds/duplicated files.
+       *
+       * @see {@link GAXIOS_ERROR_SYMBOL}
+       * @see {@link GaxiosError[Symbol.hasInstance]}
+       * @see {@link https://github.com/microsoft/TypeScript/issues/13965#issuecomment-278570200}
+       * @see {@link https://stackoverflow.com/questions/46618852/require-and-instanceof}
+       * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/@@hasInstance#reverting_to_default_instanceof_behavior}
+       */
+      [exports2.GAXIOS_ERROR_SYMBOL] = pkg.version;
+      /**
+       * Support `instanceof` operator for `GaxiosError` across builds/duplicated files.
+       *
+       * @see {@link GAXIOS_ERROR_SYMBOL}
+       * @see {@link GaxiosError[GAXIOS_ERROR_SYMBOL]}
+       */
+      static [Symbol.hasInstance](instance) {
+        if (instance && typeof instance === "object" && exports2.GAXIOS_ERROR_SYMBOL in instance && instance[exports2.GAXIOS_ERROR_SYMBOL] === pkg.version) {
+          return true;
+        }
+        return Function.prototype[Symbol.hasInstance].call(_GaxiosError, instance);
+      }
+      constructor(message, config2, response, cause) {
+        super(message, { cause });
+        this.config = config2;
+        this.response = response;
+        this.error = cause instanceof Error ? cause : void 0;
+        this.config = (0, extend_1.default)(true, {}, config2);
+        if (this.response) {
+          this.response.config = (0, extend_1.default)(true, {}, this.response.config);
+        }
+        if (this.response) {
+          try {
+            this.response.data = translateData(
+              this.config.responseType,
+              // workaround for `node-fetch`'s `.data` deprecation...
+              this.response?.bodyUsed ? this.response?.data : void 0
+            );
+          } catch {
+          }
+          this.status = this.response.status;
+        }
+        if (cause instanceof DOMException) {
+          this.code = cause.name;
+        } else if (cause && typeof cause === "object" && "code" in cause && (typeof cause.code === "string" || typeof cause.code === "number")) {
+          this.code = cause.code;
+        }
+      }
+      /**
+       * An AIP-193 conforming error extractor.
+       *
+       * @see {@link https://google.aip.dev/193#http11json-representation AIP-193}
+       *
+       * @internal
+       * @expiremental
+       *
+       * @param res the response object
+       * @returns the extracted error information
+       */
+      static extractAPIErrorFromResponse(res, defaultErrorMessage = "The request failed") {
+        let message = defaultErrorMessage;
+        if (typeof res.data === "string") {
+          message = res.data;
+        }
+        if (res.data && typeof res.data === "object" && "error" in res.data && res.data.error && !res.ok) {
+          if (typeof res.data.error === "string") {
+            return {
+              message: res.data.error,
+              code: res.status,
+              status: res.statusText
+            };
+          }
+          if (typeof res.data.error === "object") {
+            message = "message" in res.data.error && typeof res.data.error.message === "string" ? res.data.error.message : message;
+            const status = "status" in res.data.error && typeof res.data.error.status === "string" ? res.data.error.status : res.statusText;
+            const code = "code" in res.data.error && typeof res.data.error.code === "number" ? res.data.error.code : res.status;
+            if ("errors" in res.data.error && Array.isArray(res.data.error.errors)) {
+              const errorMessages = [];
+              for (const e of res.data.error.errors) {
+                if (typeof e === "object" && "message" in e && typeof e.message === "string") {
+                  errorMessages.push(e.message);
+                }
+              }
+              return Object.assign({
+                message: errorMessages.join("\n") || message,
+                code,
+                status
+              }, res.data.error);
+            }
+            return Object.assign({
+              message,
+              code,
+              status
+            }, res.data.error);
+          }
+        }
+        return {
+          message,
+          code: res.status,
+          status: res.statusText
+        };
+      }
+    };
+    exports2.GaxiosError = GaxiosError;
+    function translateData(responseType, data) {
+      switch (responseType) {
+        case "stream":
+          return data;
+        case "json":
+          return JSON.parse(JSON.stringify(data));
+        case "arraybuffer":
+          return JSON.parse(Buffer.from(data).toString("utf8"));
+        case "blob":
+          return JSON.parse(data.text());
+        default:
+          return data;
+      }
+    }
+    function defaultErrorRedactor(data) {
+      const REDACT = "<<REDACTED> - See `errorRedactor` option in `gaxios` for configuration>.";
+      function redactHeaders(headers) {
+        if (!headers)
+          return;
+        headers.forEach((_, key) => {
+          if (/^authentication$/i.test(key) || /^authorization$/i.test(key) || /secret/i.test(key))
+            headers.set(key, REDACT);
+        });
+      }
+      function redactString(obj, key) {
+        if (typeof obj === "object" && obj !== null && typeof obj[key] === "string") {
+          const text = obj[key];
+          if (/grant_type=/i.test(text) || /assertion=/i.test(text) || /secret/i.test(text)) {
+            obj[key] = REDACT;
+          }
+        }
+      }
+      function redactObject(obj) {
+        if (!obj || typeof obj !== "object") {
+          return;
+        } else if (obj instanceof FormData || obj instanceof URLSearchParams || // support `node-fetch` FormData/URLSearchParams
+        "forEach" in obj && "set" in obj) {
+          obj.forEach((_, key) => {
+            if (["grant_type", "assertion"].includes(key) || /secret/.test(key)) {
+              obj.set(key, REDACT);
+            }
+          });
+        } else {
+          if ("grant_type" in obj) {
+            obj["grant_type"] = REDACT;
+          }
+          if ("assertion" in obj) {
+            obj["assertion"] = REDACT;
+          }
+          if ("client_secret" in obj) {
+            obj["client_secret"] = REDACT;
+          }
+        }
+      }
+      if (data.config) {
+        redactHeaders(data.config.headers);
+        redactString(data.config, "data");
+        redactObject(data.config.data);
+        redactString(data.config, "body");
+        redactObject(data.config.body);
+        if (data.config.url.searchParams.has("token")) {
+          data.config.url.searchParams.set("token", REDACT);
+        }
+        if (data.config.url.searchParams.has("client_secret")) {
+          data.config.url.searchParams.set("client_secret", REDACT);
+        }
+      }
+      if (data.response) {
+        defaultErrorRedactor({ config: data.response.config });
+        redactHeaders(data.response.headers);
+        if (data.response.bodyUsed) {
+          redactString(data.response, "data");
+          redactObject(data.response.data);
+        }
+      }
+      return data;
+    }
+  }
+});
+
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/retry.js
+var require_retry4 = __commonJS({
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/retry.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.getRetryConfig = getRetryConfig;
+    async function getRetryConfig(err) {
+      let config2 = getConfig2(err);
+      if (!err || !err.config || !config2 && !err.config.retry) {
+        return { shouldRetry: false };
+      }
+      config2 = config2 || {};
+      config2.currentRetryAttempt = config2.currentRetryAttempt || 0;
+      config2.retry = config2.retry === void 0 || config2.retry === null ? 3 : config2.retry;
+      config2.httpMethodsToRetry = config2.httpMethodsToRetry || [
+        "GET",
+        "HEAD",
+        "PUT",
+        "OPTIONS",
+        "DELETE"
+      ];
+      config2.noResponseRetries = config2.noResponseRetries === void 0 || config2.noResponseRetries === null ? 2 : config2.noResponseRetries;
+      config2.retryDelayMultiplier = config2.retryDelayMultiplier ? config2.retryDelayMultiplier : 2;
+      config2.timeOfFirstRequest = config2.timeOfFirstRequest ? config2.timeOfFirstRequest : Date.now();
+      config2.totalTimeout = config2.totalTimeout ? config2.totalTimeout : Number.MAX_SAFE_INTEGER;
+      config2.maxRetryDelay = config2.maxRetryDelay ? config2.maxRetryDelay : Number.MAX_SAFE_INTEGER;
+      const retryRanges = [
+        // https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
+        // 1xx - Retry (Informational, request still processing)
+        // 2xx - Do not retry (Success)
+        // 3xx - Do not retry (Redirect)
+        // 4xx - Do not retry (Client errors)
+        // 408 - Retry ("Request Timeout")
+        // 429 - Retry ("Too Many Requests")
+        // 5xx - Retry (Server errors)
+        [100, 199],
+        [408, 408],
+        [429, 429],
+        [500, 599]
+      ];
+      config2.statusCodesToRetry = config2.statusCodesToRetry || retryRanges;
+      err.config.retryConfig = config2;
+      const shouldRetryFn = config2.shouldRetry || shouldRetryRequest;
+      if (!await shouldRetryFn(err)) {
+        return { shouldRetry: false, config: err.config };
+      }
+      const delay = getNextRetryDelay(config2);
+      err.config.retryConfig.currentRetryAttempt += 1;
+      const backoff = config2.retryBackoff ? config2.retryBackoff(err, delay) : new Promise((resolve8) => {
+        setTimeout(resolve8, delay);
+      });
+      if (config2.onRetryAttempt) {
+        await config2.onRetryAttempt(err);
+      }
+      await backoff;
+      return { shouldRetry: true, config: err.config };
+    }
+    function shouldRetryRequest(err) {
+      const config2 = getConfig2(err);
+      if (err.config.signal?.aborted && err.code !== "TimeoutError" || err.code === "AbortError") {
+        return false;
+      }
+      if (!config2 || config2.retry === 0) {
+        return false;
+      }
+      if (!err.response && (config2.currentRetryAttempt || 0) >= config2.noResponseRetries) {
+        return false;
+      }
+      if (!config2.httpMethodsToRetry || !config2.httpMethodsToRetry.includes(err.config.method?.toUpperCase() || "GET")) {
+        return false;
+      }
+      if (err.response && err.response.status) {
+        let isInRange = false;
+        for (const [min, max] of config2.statusCodesToRetry) {
+          const status = err.response.status;
+          if (status >= min && status <= max) {
+            isInRange = true;
+            break;
+          }
+        }
+        if (!isInRange) {
+          return false;
+        }
+      }
+      config2.currentRetryAttempt = config2.currentRetryAttempt || 0;
+      if (config2.currentRetryAttempt >= config2.retry) {
+        return false;
+      }
+      return true;
+    }
+    function getConfig2(err) {
+      if (err && err.config && err.config.retryConfig) {
+        return err.config.retryConfig;
+      }
+      return;
+    }
+    function getNextRetryDelay(config2) {
+      const retryDelay = config2.currentRetryAttempt ? 0 : config2.retryDelay ?? 100;
+      const calculatedDelay = retryDelay + (Math.pow(config2.retryDelayMultiplier, config2.currentRetryAttempt) - 1) / 2 * 1e3;
+      const maxAllowableDelay = config2.totalTimeout - (Date.now() - config2.timeOfFirstRequest);
+      return Math.min(calculatedDelay, maxAllowableDelay, config2.maxRetryDelay);
+    }
+  }
+});
+
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js
+var require_interceptor2 = __commonJS({
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js"(exports2) {
+    "use strict";
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.GaxiosInterceptorManager = void 0;
+    var GaxiosInterceptorManager = class extends Set {
+    };
+    exports2.GaxiosInterceptorManager = GaxiosInterceptorManager;
+  }
+});
+
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js
+var require_gaxios2 = __commonJS({
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js"(exports2) {
+    "use strict";
+    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+      return mod && mod.__esModule ? mod : { "default": mod };
+    };
+    var _a4;
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.Gaxios = void 0;
+    var extend_1 = __importDefault(require_extend());
+    var https_1 = __require("https");
+    var common_js_1 = require_common5();
+    var retry_js_1 = require_retry4();
+    var stream_1 = __require("stream");
+    var interceptor_js_1 = require_interceptor2();
+    var randomUUID3 = async () => globalThis.crypto?.randomUUID() || (await import("crypto")).randomUUID();
+    var HTTP_STATUS_NO_CONTENT = 204;
+    var Gaxios = class {
+      agentCache = /* @__PURE__ */ new Map();
+      /**
+       * Default HTTP options that will be used for every HTTP request.
+       */
+      defaults;
+      /**
+       * Interceptors
+       */
+      interceptors;
+      /**
+       * The Gaxios class is responsible for making HTTP requests.
+       * @param defaults The default set of options to be used for this instance.
+       */
+      constructor(defaults2) {
+        this.defaults = defaults2 || {};
+        this.interceptors = {
+          request: new interceptor_js_1.GaxiosInterceptorManager(),
+          response: new interceptor_js_1.GaxiosInterceptorManager()
+        };
+      }
+      /**
+       * A {@link fetch `fetch`} compliant API for {@link Gaxios}.
+       *
+       * @remarks
+       *
+       * This is useful as a drop-in replacement for `fetch` API usage.
+       *
+       * @example
+       *
+       * ```ts
+       * const gaxios = new Gaxios();
+       * const myFetch: typeof fetch = (...args) => gaxios.fetch(...args);
+       * await myFetch('https://example.com');
+       * ```
+       *
+       * @param args `fetch` API or `Gaxios#request` parameters
+       * @returns the {@link Response} with Gaxios-added properties
+       */
+      fetch(...args) {
+        const input = args[0];
+        const init = args[1];
+        let url3 = void 0;
+        const headers = new Headers();
+        if (typeof input === "string") {
+          url3 = new URL(input);
+        } else if (input instanceof URL) {
+          url3 = input;
+        } else if (input && input.url) {
+          url3 = new URL(input.url);
+        }
+        if (input && typeof input === "object" && "headers" in input) {
+          _a4.mergeHeaders(headers, input.headers);
+        }
+        if (init) {
+          _a4.mergeHeaders(headers, new Headers(init.headers));
+        }
+        if (typeof input === "object" && !(input instanceof URL)) {
+          return this.request({ ...init, ...input, headers, url: url3 });
+        } else {
+          return this.request({ ...init, headers, url: url3 });
+        }
+      }
+      /**
+       * Perform an HTTP request with the given options.
+       * @param opts Set of HTTP options that will be used for this HTTP request.
+       */
+      async request(opts = {}) {
+        let prepared = await this.#prepareRequest(opts);
+        prepared = await this.#applyRequestInterceptors(prepared);
+        return this.#applyResponseInterceptors(this._request(prepared));
+      }
+      async _defaultAdapter(config2) {
+        const fetchImpl = config2.fetchImplementation || this.defaults.fetchImplementation || await _a4.#getFetch();
+        const preparedOpts = { ...config2 };
+        delete preparedOpts.data;
+        const res = await fetchImpl(config2.url, preparedOpts);
+        const data = await this.getResponseData(config2, res);
+        if (!Object.getOwnPropertyDescriptor(res, "data")?.configurable) {
+          Object.defineProperties(res, {
+            data: {
+              configurable: true,
+              writable: true,
+              enumerable: true,
+              value: data
+            }
+          });
+        }
+        return Object.assign(res, { config: config2, data });
+      }
+      /**
+       * Internal, retryable version of the `request` method.
+       * @param opts Set of HTTP options that will be used for this HTTP request.
+       */
+      async _request(opts) {
+        try {
+          let translatedResponse;
+          if (opts.adapter) {
+            translatedResponse = await opts.adapter(opts, this._defaultAdapter.bind(this));
+          } else {
+            translatedResponse = await this._defaultAdapter(opts);
+          }
+          if (!opts.validateStatus(translatedResponse.status)) {
+            if (opts.responseType === "stream") {
+              const response = [];
+              for await (const chunk of translatedResponse.data) {
+                response.push(chunk);
+              }
+              translatedResponse.data = response.toString();
+            }
+            const errorInfo = common_js_1.GaxiosError.extractAPIErrorFromResponse(translatedResponse, `Request failed with status code ${translatedResponse.status}`);
+            throw new common_js_1.GaxiosError(errorInfo?.message, opts, translatedResponse, errorInfo);
+          }
+          return translatedResponse;
+        } catch (e) {
+          let err;
+          if (e instanceof common_js_1.GaxiosError) {
+            err = e;
+          } else if (e instanceof Error) {
+            err = new common_js_1.GaxiosError(e.message, opts, void 0, e);
+          } else {
+            err = new common_js_1.GaxiosError("Unexpected Gaxios Error", opts, void 0, e);
+          }
+          const { shouldRetry, config: config2 } = await (0, retry_js_1.getRetryConfig)(err);
+          if (shouldRetry && config2) {
+            err.config.retryConfig.currentRetryAttempt = config2.retryConfig.currentRetryAttempt;
+            opts.retryConfig = err.config?.retryConfig;
+            this.#appendTimeoutToSignal(opts);
+            return this._request(opts);
+          }
+          if (opts.errorRedactor) {
+            opts.errorRedactor(err);
+          }
+          throw err;
+        }
+      }
+      async getResponseData(opts, res) {
+        if (res.status === HTTP_STATUS_NO_CONTENT) {
+          return "";
+        }
+        if (opts.maxContentLength && res.headers.has("content-length") && opts.maxContentLength < Number.parseInt(res.headers?.get("content-length") || "")) {
+          throw new common_js_1.GaxiosError("Response's `Content-Length` is over the limit.", opts, Object.assign(res, { config: opts }));
+        }
+        switch (opts.responseType) {
+          case "stream":
+            return res.body;
+          case "json": {
+            const data = await res.text();
+            try {
+              return JSON.parse(data);
+            } catch {
+              return data;
+            }
+          }
+          case "arraybuffer":
+            return res.arrayBuffer();
+          case "blob":
+            return res.blob();
+          case "text":
+            return res.text();
+          default:
+            return this.getResponseDataFromContentType(res);
+        }
+      }
+      #urlMayUseProxy(url3, noProxy = []) {
+        const candidate = new URL(url3);
+        const noProxyList = [...noProxy];
+        const noProxyEnvList = (process.env.NO_PROXY ?? process.env.no_proxy)?.split(",") || [];
+        for (const rule of noProxyEnvList) {
+          noProxyList.push(rule.trim());
+        }
+        for (const rule of noProxyList) {
+          if (rule instanceof RegExp) {
+            if (rule.test(candidate.toString())) {
+              return false;
+            }
+          } else if (rule instanceof URL) {
+            if (rule.origin === candidate.origin) {
+              return false;
+            }
+          } else if (rule.startsWith("*.") || rule.startsWith(".")) {
+            const cleanedRule = rule.replace(/^\*\./, ".");
+            if (candidate.hostname.endsWith(cleanedRule)) {
+              return false;
+            }
+          } else if (rule === candidate.origin || rule === candidate.hostname || rule === candidate.href) {
+            return false;
+          }
+        }
+        return true;
+      }
+      /**
+       * Applies the request interceptors. The request interceptors are applied after the
+       * call to prepareRequest is completed.
+       *
+       * @param {GaxiosOptionsPrepared} options The current set of options.
+       *
+       * @returns {Promise<GaxiosOptionsPrepared>} Promise that resolves to the set of options or response after interceptors are applied.
+       */
+      async #applyRequestInterceptors(options) {
+        let promiseChain = Promise.resolve(options);
+        for (const interceptor of this.interceptors.request.values()) {
+          if (interceptor) {
+            promiseChain = promiseChain.then(interceptor.resolved, interceptor.rejected);
+          }
+        }
+        return promiseChain;
+      }
+      /**
+       * Applies the response interceptors. The response interceptors are applied after the
+       * call to request is made.
+       *
+       * @param {GaxiosOptionsPrepared} options The current set of options.
+       *
+       * @returns {Promise<GaxiosOptionsPrepared>} Promise that resolves to the set of options or response after interceptors are applied.
+       */
+      async #applyResponseInterceptors(response) {
+        let promiseChain = Promise.resolve(response);
+        for (const interceptor of this.interceptors.response.values()) {
+          if (interceptor) {
+            promiseChain = promiseChain.then(interceptor.resolved, interceptor.rejected);
+          }
+        }
+        return promiseChain;
+      }
+      /**
+       * Validates the options, merges them with defaults, and prepare request.
+       *
+       * @param options The original options passed from the client.
+       * @returns Prepared options, ready to make a request
+       */
+      async #prepareRequest(options) {
+        const preparedHeaders = new Headers(this.defaults.headers);
+        _a4.mergeHeaders(preparedHeaders, options.headers);
+        const opts = (0, extend_1.default)(true, {}, this.defaults, options);
+        if (!opts.url) {
+          throw new Error("URL is required.");
+        }
+        if (opts.baseURL) {
+          opts.url = new URL(opts.url, opts.baseURL);
+        }
+        opts.url = new URL(opts.url);
+        if (opts.params) {
+          if (opts.paramsSerializer) {
+            let additionalQueryParams = opts.paramsSerializer(opts.params);
+            if (additionalQueryParams.startsWith("?")) {
+              additionalQueryParams = additionalQueryParams.slice(1);
+            }
+            const prefix = opts.url.toString().includes("?") ? "&" : "?";
+            opts.url = opts.url + prefix + additionalQueryParams;
+          } else {
+            const url3 = opts.url instanceof URL ? opts.url : new URL(opts.url);
+            for (const [key, value] of new URLSearchParams(opts.params)) {
+              url3.searchParams.append(key, value);
+            }
+            opts.url = url3;
+          }
+        }
+        if (typeof options.maxContentLength === "number") {
+          opts.size = options.maxContentLength;
+        }
+        if (typeof options.maxRedirects === "number") {
+          opts.follow = options.maxRedirects;
+        }
+        const shouldDirectlyPassData = typeof opts.data === "string" || opts.data instanceof ArrayBuffer || opts.data instanceof Blob || // Node 18 does not have a global `File` object
+        globalThis.File && opts.data instanceof File || opts.data instanceof FormData || opts.data instanceof stream_1.Readable || opts.data instanceof ReadableStream || opts.data instanceof String || opts.data instanceof URLSearchParams || ArrayBuffer.isView(opts.data) || // `Buffer` (Node.js), `DataView`, `TypedArray`
+        /**
+         * @deprecated `node-fetch` or another third-party's request types
+         */
+        ["Blob", "File", "FormData"].includes(opts.data?.constructor?.name || "");
+        if (opts.multipart?.length) {
+          const boundary = await randomUUID3();
+          preparedHeaders.set("content-type", `multipart/related; boundary=${boundary}`);
+          opts.body = stream_1.Readable.from(this.getMultipartRequest(opts.multipart, boundary));
+        } else if (shouldDirectlyPassData) {
+          opts.body = opts.data;
+        } else if (typeof opts.data === "object") {
+          if (preparedHeaders.get("Content-Type") === "application/x-www-form-urlencoded") {
+            opts.body = opts.paramsSerializer ? opts.paramsSerializer(opts.data) : new URLSearchParams(opts.data);
+          } else {
+            if (!preparedHeaders.has("content-type")) {
+              preparedHeaders.set("content-type", "application/json");
+            }
+            opts.body = JSON.stringify(opts.data);
+          }
+        } else if (opts.data) {
+          opts.body = opts.data;
+        }
+        opts.validateStatus = opts.validateStatus || this.validateStatus;
+        opts.responseType = opts.responseType || "unknown";
+        if (!preparedHeaders.has("accept") && opts.responseType === "json") {
+          preparedHeaders.set("accept", "application/json");
+        }
+        const proxy = opts.proxy || process?.env?.HTTPS_PROXY || process?.env?.https_proxy || process?.env?.HTTP_PROXY || process?.env?.http_proxy;
+        if (opts.agent) {
+        } else if (proxy && this.#urlMayUseProxy(opts.url, opts.noProxy)) {
+          const HttpsProxyAgent = await _a4.#getProxyAgent();
+          if (this.agentCache.has(proxy)) {
+            opts.agent = this.agentCache.get(proxy);
+          } else {
+            opts.agent = new HttpsProxyAgent(proxy, {
+              cert: opts.cert,
+              key: opts.key
+            });
+            this.agentCache.set(proxy, opts.agent);
+          }
+        } else if (opts.cert && opts.key) {
+          if (this.agentCache.has(opts.key)) {
+            opts.agent = this.agentCache.get(opts.key);
+          } else {
+            opts.agent = new https_1.Agent({
+              cert: opts.cert,
+              key: opts.key
+            });
+            this.agentCache.set(opts.key, opts.agent);
+          }
+        }
+        if (typeof opts.errorRedactor !== "function" && opts.errorRedactor !== false) {
+          opts.errorRedactor = common_js_1.defaultErrorRedactor;
+        }
+        if (opts.body && !("duplex" in opts)) {
+          opts.duplex = "half";
+        }
+        this.#appendTimeoutToSignal(opts);
+        return Object.assign(opts, {
+          headers: preparedHeaders,
+          url: opts.url instanceof URL ? opts.url : new URL(opts.url)
+        });
+      }
+      #appendTimeoutToSignal(opts) {
+        if (opts.timeout) {
+          const timeoutSignal = AbortSignal.timeout(opts.timeout);
+          if (opts.signal && !opts.signal.aborted) {
+            opts.signal = AbortSignal.any([opts.signal, timeoutSignal]);
+          } else {
+            opts.signal = timeoutSignal;
+          }
+        }
+      }
+      /**
+       * By default, throw for any non-2xx status code
+       * @param status status code from the HTTP response
+       */
+      validateStatus(status) {
+        return status >= 200 && status < 300;
+      }
+      /**
+       * Attempts to parse a response by looking at the Content-Type header.
+       * @param {Response} response the HTTP response.
+       * @returns a promise that resolves to the response data.
+       */
+      async getResponseDataFromContentType(response) {
+        let contentType = response.headers.get("Content-Type");
+        if (contentType === null) {
+          return response.text();
+        }
+        contentType = contentType.toLowerCase();
+        if (contentType.includes("application/json")) {
+          let data = await response.text();
+          try {
+            data = JSON.parse(data);
+          } catch {
+          }
+          return data;
+        } else if (contentType.match(/^text\//)) {
+          return response.text();
+        } else {
+          return response.blob();
+        }
+      }
+      /**
+       * Creates an async generator that yields the pieces of a multipart/related request body.
+       * This implementation follows the spec: https://www.ietf.org/rfc/rfc2387.txt. However, recursive
+       * multipart/related requests are not currently supported.
+       *
+       * @param {GaxiosMultipartOptions[]} multipartOptions the pieces to turn into a multipart/related body.
+       * @param {string} boundary the boundary string to be placed between each part.
+       */
+      async *getMultipartRequest(multipartOptions, boundary) {
+        const finale = `--${boundary}--`;
+        for (const currentPart of multipartOptions) {
+          const partContentType = currentPart.headers.get("Content-Type") || "application/octet-stream";
+          const preamble = `--${boundary}\r
+Content-Type: ${partContentType}\r
+\r
+`;
+          yield preamble;
+          if (typeof currentPart.content === "string") {
+            yield currentPart.content;
+          } else {
+            yield* currentPart.content;
+          }
+          yield "\r\n";
+        }
+        yield finale;
+      }
+      /**
+       * A cache for the lazily-loaded proxy agent.
+       *
+       * Should use {@link Gaxios[#getProxyAgent]} to retrieve.
+       */
+      // using `import` to dynamically import the types here
+      static #proxyAgent;
+      /**
+       * A cache for the lazily-loaded fetch library.
+       *
+       * Should use {@link Gaxios[#getFetch]} to retrieve.
+       */
+      //
+      static #fetch;
+      /**
+       * Imports, caches, and returns a proxy agent - if not already imported
+       *
+       * @returns A proxy agent
+       */
+      static async #getProxyAgent() {
+        this.#proxyAgent ||= (await import("./dist-LZZCTTKZ.mjs")).HttpsProxyAgent;
+        return this.#proxyAgent;
+      }
+      static async #getFetch() {
+        const hasWindow = typeof window !== "undefined" && !!window;
+        this.#fetch ||= hasWindow ? window.fetch : (await import("./src-BVCFFT3T.mjs")).default;
+        return this.#fetch;
+      }
+      /**
+       * Merges headers.
+       * If the base headers do not exist a new `Headers` object will be returned.
+       *
+       * @remarks
+       *
+       * Using this utility can be helpful when the headers are not known to exist:
+       * - if they exist as `Headers`, that instance will be used
+       *   - it improves performance and allows users to use their existing references to their `Headers`
+       * - if they exist in another form (`HeadersInit`), they will be used to create a new `Headers` object
+       * - if the base headers do not exist a new `Headers` object will be created
+       *
+       * @param base headers to append/overwrite to
+       * @param append headers to append/overwrite with
+       * @returns the base headers instance with merged `Headers`
+       */
+      static mergeHeaders(base, ...append) {
+        base = base instanceof Headers ? base : new Headers(base);
+        for (const headers of append) {
+          const add = headers instanceof Headers ? headers : new Headers(headers);
+          add.forEach((value, key) => {
+            key === "set-cookie" ? base.append(key, value) : base.set(key, value);
+          });
+        }
+        return base;
+      }
+    };
+    exports2.Gaxios = Gaxios;
+    _a4 = Gaxios;
+  }
+});
+
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/index.js
+var require_src3 = __commonJS({
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/index.js"(exports2) {
+    "use strict";
+    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      var desc = Object.getOwnPropertyDescriptor(m, k);
+      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+        desc = { enumerable: true, get: function() {
+          return m[k];
+        } };
+      }
+      Object.defineProperty(o, k2, desc);
+    } : function(o, m, k, k2) {
+      if (k2 === void 0)
+        k2 = k;
+      o[k2] = m[k];
+    });
+    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
+      for (var p in m)
+        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p))
+          __createBinding(exports3, m, p);
+    };
+    Object.defineProperty(exports2, "__esModule", { value: true });
+    exports2.instance = exports2.Gaxios = exports2.GaxiosError = void 0;
+    exports2.request = request;
+    var gaxios_js_1 = require_gaxios2();
+    Object.defineProperty(exports2, "Gaxios", { enumerable: true, get: function() {
+      return gaxios_js_1.Gaxios;
+    } });
+    var common_js_1 = require_common5();
+    Object.defineProperty(exports2, "GaxiosError", { enumerable: true, get: function() {
+      return common_js_1.GaxiosError;
+    } });
+    __exportStar(require_interceptor2(), exports2);
+    exports2.instance = new gaxios_js_1.Gaxios();
+    async function request(opts) {
+      return exports2.instance.request(opts);
+    }
+  }
+});
+
 // node_modules/.aspect_rules_js/bignumber.js@9.3.1/node_modules/bignumber.js/bignumber.js
 var require_bignumber = __commonJS({
   "node_modules/.aspect_rules_js/bignumber.js@9.3.1/node_modules/bignumber.js/bignumber.js"(exports2, module2) {
@@ -24613,7 +25694,7 @@ var require_logging_utils = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js
-var require_src3 = __commonJS({
+var require_src4 = __commonJS({
   "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
@@ -24642,7 +25723,7 @@ var require_src3 = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color@10.2.2/node_modules/gcp-metadata/build/src/index.js
-var require_src4 = __commonJS({
+var require_src5 = __commonJS({
   "node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color@10.2.2/node_modules/gcp-metadata/build/src/index.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
@@ -24705,10 +25786,10 @@ var require_src4 = __commonJS({
     exports2.getGCPResidency = getGCPResidency;
     exports2.setGCPResidency = setGCPResidency;
     exports2.requestTimeout = requestTimeout;
-    var gaxios_1 = require_src2();
+    var gaxios_1 = require_src3();
     var jsonBigint = require_json_bigint();
     var gcp_residency_1 = require_gcp_residency();
-    var logger = __importStar(require_src3());
+    var logger = __importStar(require_src4());
     exports2.BASE_PATH = "/computeMetadata/v1";
     exports2.HOST_ADDRESS = "http://169.254.169.254";
     exports2.SECONDARY_HOST_ADDRESS = "http://metadata.google.internal.";
@@ -25453,7 +26534,7 @@ var require_ecdsa_sig_formatter = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/util.js
-var require_util2 = __commonJS({
+var require_util3 = __commonJS({
   "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/util.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
@@ -25568,7 +26649,7 @@ var require_util2 = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/package.json
-var require_package2 = __commonJS({
+var require_package3 = __commonJS({
   "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/package.json"(exports2, module2) {
     module2.exports = {
       name: "google-auth-library",
@@ -25671,7 +26752,7 @@ var require_shared2 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.USER_AGENT = exports2.PRODUCT_NAME = exports2.pkg = void 0;
-    var pkg = require_package2();
+    var pkg = require_package3();
     exports2.pkg = pkg;
     var PRODUCT_NAME = "google-api-nodejs-client";
     exports2.PRODUCT_NAME = PRODUCT_NAME;
@@ -25688,8 +26769,8 @@ var require_authclient = __commonJS({
     exports2.AuthClient = exports2.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports2.DEFAULT_UNIVERSE = void 0;
     var events_1 = __require("events");
     var gaxios_1 = require_src2();
-    var util_1 = require_util2();
-    var google_logging_utils_1 = require_src3();
+    var util_1 = require_util3();
+    var google_logging_utils_1 = require_src4();
     var shared_cjs_1 = require_shared2();
     exports2.DEFAULT_UNIVERSE = "googleapis.com";
     exports2.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = 5 * 60 * 1e3;
@@ -25977,7 +27058,7 @@ var require_oauth2client = __commonJS({
     var querystring = __require("querystring");
     var stream = __require("stream");
     var formatEcdsa = require_ecdsa_sig_formatter();
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     var crypto_1 = require_crypto3();
     var authclient_1 = require_authclient();
     var loginticket_1 = require_loginticket();
@@ -26655,7 +27736,7 @@ var require_computeclient = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Compute = void 0;
     var gaxios_1 = require_src2();
-    var gcpMetadata = require_src4();
+    var gcpMetadata = require_src5();
     var oauth2client_1 = require_oauth2client();
     var Compute = class extends oauth2client_1.OAuth2Client {
       serviceAccountEmail;
@@ -26794,7 +27875,7 @@ var require_envDetect = __commonJS({
     exports2.GCPEnv = void 0;
     exports2.clear = clear;
     exports2.getEnv = getEnv2;
-    var gcpMetadata = require_src4();
+    var gcpMetadata = require_src5();
     var GCPEnv;
     (function(GCPEnv2) {
       GCPEnv2["APP_ENGINE"] = "APP_ENGINE";
@@ -27824,7 +28905,7 @@ var require_jwtaccess = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.JWTAccess = void 0;
     var jws = require_jws();
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     var DEFAULT_HEADER = {
       alg: "RS256",
       typ: "JWT"
@@ -28395,7 +29476,7 @@ var require_impersonated = __commonJS({
     exports2.Impersonated = exports2.IMPERSONATED_ACCOUNT_TYPE = void 0;
     var oauth2client_1 = require_oauth2client();
     var gaxios_1 = require_src2();
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     exports2.IMPERSONATED_ACCOUNT_TYPE = "impersonated_service_account";
     var Impersonated = class _Impersonated extends oauth2client_1.OAuth2Client {
       sourceClient;
@@ -28723,7 +29804,7 @@ var require_stscredentials = __commonJS({
     var gaxios_1 = require_src2();
     var authclient_1 = require_authclient();
     var oauth2common_1 = require_oauth2common();
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     var StsCredentials = class _StsCredentials extends oauth2common_1.OAuthClientAuthHandler {
       #tokenExchangeEndpoint;
       /**
@@ -28812,7 +29893,7 @@ var require_baseexternalclient = __commonJS({
     var stream = __require("stream");
     var authclient_1 = require_authclient();
     var sts = require_stscredentials();
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     var shared_cjs_1 = require_shared2();
     var STS_GRANT_TYPE = "urn:ietf:params:oauth:grant-type:token-exchange";
     var STS_REQUEST_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:access_token";
@@ -29310,7 +30391,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CertificateSubjectTokenSupplier = exports2.InvalidConfigurationError = exports2.CertificateSourceUnavailableError = exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     var fs7 = __require("fs");
     var crypto_1 = __require("crypto");
     var https = __require("https");
@@ -29495,7 +30576,7 @@ var require_identitypoolclient = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IdentityPoolClient = void 0;
     var baseexternalclient_1 = require_baseexternalclient();
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     var filesubjecttokensupplier_1 = require_filesubjecttokensupplier();
     var urlsubjecttokensupplier_1 = require_urlsubjecttokensupplier();
     var certificatesubjecttokensupplier_1 = require_certificatesubjecttokensupplier();
@@ -29914,7 +30995,7 @@ var require_awsclient = __commonJS({
     var awsrequestsigner_1 = require_awsrequestsigner();
     var baseexternalclient_1 = require_baseexternalclient();
     var defaultawssecuritycredentialssupplier_1 = require_defaultawssecuritycredentialssupplier();
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     var gaxios_1 = require_src2();
     var AwsClient = class _AwsClient extends baseexternalclient_1.BaseExternalAccountClient {
       environmentId;
@@ -30663,7 +31744,7 @@ var require_googleauth = __commonJS({
     var child_process_1 = __require("child_process");
     var fs7 = __require("fs");
     var gaxios_1 = require_src2();
-    var gcpMetadata = require_src4();
+    var gcpMetadata = require_src5();
     var os2 = __require("os");
     var path9 = __require("path");
     var crypto_1 = require_crypto3();
@@ -30677,7 +31758,7 @@ var require_googleauth = __commonJS({
     var baseexternalclient_1 = require_baseexternalclient();
     var authclient_1 = require_authclient();
     var externalAccountAuthorizedUserClient_1 = require_externalAccountAuthorizedUserClient();
-    var util_1 = require_util2();
+    var util_1 = require_util3();
     exports2.GoogleAuthExceptionMessages = {
       API_KEY_WITH_CREDENTIALS: "API Keys and Credentials are mutually exclusive authentication methods and cannot be used together.",
       NO_PROJECT_ID_FOUND: "Unable to detect a Project Id in the current environment. \nTo learn more about authentication and Google APIs, visit: \nhttps://cloud.google.com/docs/authentication/getting-started",
@@ -31711,7 +32792,7 @@ var require_passthrough = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/index.js
-var require_src5 = __commonJS({
+var require_src6 = __commonJS({
   "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/index.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
@@ -31740,7 +32821,7 @@ var require_src5 = __commonJS({
     Object.defineProperty(exports2, "GoogleAuth", { enumerable: true, get: function() {
       return googleauth_1.GoogleAuth;
     } });
-    exports2.gcpMetadata = require_src4();
+    exports2.gcpMetadata = require_src5();
     exports2.gaxios = require_src2();
     var authclient_1 = require_authclient();
     Object.defineProperty(exports2, "AuthClient", { enumerable: true, get: function() {
@@ -39019,7 +40100,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -39038,7 +40119,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -39061,10 +40142,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -39170,7 +40251,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-state.js
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -39188,7 +40269,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -39200,7 +40281,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.3/node_modules/@inquirer/figures/dist/index.js
@@ -39495,7 +40576,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39516,7 +40597,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39544,7 +40625,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39575,7 +40656,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39588,12 +40669,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39612,7 +40693,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 
 // node_modules/.aspect_rules_js/fast-string-truncated-width@3.0.3/node_modules/fast-string-truncated-width/dist/utils.js
@@ -39952,7 +41033,7 @@ function wrapAnsi(string4, columns, options) {
   return String(string4).normalize().split(CRLF_OR_LF).map((line) => exec(line, columns, options)).join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/utils.js
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
 }
@@ -39960,7 +41041,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -40049,7 +41130,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -40305,7 +41386,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.3/node_modules/@inquirer/ansi/dist/index.js
@@ -40324,7 +41405,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC2 + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -40384,7 +41465,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -40399,7 +41480,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var nativeSetImmediate = globalThis.setImmediate;
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
@@ -40495,7 +41576,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.11.0/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.5_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -40510,7 +41591,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.1.0_@types+node@24.11.0/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.1.0_@types+node@24.12.0/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -40700,7 +41781,7 @@ var dist_default4 = createPrompt((config2, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.11.0/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
 import { spawn, spawnSync } from "child_process";
@@ -40709,7 +41790,7 @@ import path3 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.11.0/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
 var CreateFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40718,7 +41799,7 @@ var CreateFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.11.0/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40727,7 +41808,7 @@ var LaunchEditorError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.11.0/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
 var ReadFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40736,7 +41817,7 @@ var ReadFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.11.0/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
   originalError;
   constructor(originalError) {
@@ -40745,7 +41826,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.11.0/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.3_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/index.js
 function editAsync(text = "", callback, fileOptions) {
   const editor = new ExternalEditor(text, fileOptions);
   editor.runAsync((err, result) => {
@@ -40899,7 +41980,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.8_@types+node@24.11.0/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.0.8_@types+node@24.12.0/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep",
   style: {
@@ -40969,7 +42050,7 @@ var dist_default5 = createPrompt((config2, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error48];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.8_@types+node@24.11.0/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.8_@types+node@24.12.0/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -41015,7 +42096,7 @@ var dist_default6 = createPrompt((config2, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.8_@types+node@24.11.0/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.8_@types+node@24.12.0/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -41100,7 +42181,7 @@ var dist_default7 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.8_@types+node@24.11.0/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.8_@types+node@24.12.0/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -41181,7 +42262,7 @@ var dist_default8 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.8_@types+node@24.11.0/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.8_@types+node@24.12.0/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -41277,7 +42358,7 @@ var dist_default9 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.4_@types+node@24.11.0/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.4_@types+node@24.12.0/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
 var rawlistTheme = {
@@ -41402,7 +42483,7 @@ var dist_default10 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.8_@types+node@24.11.0/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.8_@types+node@24.12.0/node_modules/@inquirer/password/dist/index.js
 var passwordTheme = {
   style: {
     maskedText: "[input is masked]"
@@ -41456,7 +42537,7 @@ var dist_default11 = createPrompt((config2, done) => {
   return [[prefix, message, config2.mask ? formattedValue : helpTip].join(" "), error48];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.1.4_@types+node@24.11.0/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.1.4_@types+node@24.12.0/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -41626,7 +42707,7 @@ var dist_default12 = createPrompt((config2, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.1.0_@types+node@24.11.0/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.1.0_@types+node@24.12.0/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -43146,7 +44227,7 @@ function buildFormatParser(localYargs) {
 }
 
 // ng-dev/misc/sync-module-bazel/cli.js
-import { readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "node:fs";
+import { existsSync as existsSync2, readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "node:fs";
 import { join as join3 } from "node:path";
 
 // ng-dev/misc/sync-module-bazel/sync-module-bazel.js
@@ -43287,32 +44368,35 @@ async function builder10(argv) {
   return argv;
 }
 async function handler10() {
-  const rootDir = determineRepoBaseDirFromCwd();
+  const rootDir = process.cwd();
   const packageJsonPath = join3(rootDir, "package.json");
   const moduleBazelPath = join3(rootDir, "MODULE.bazel");
-  const nvmrcPath = join3(rootDir, ".nvmrc");
+  let nvmrcPath = join3(rootDir, ".nvmrc");
+  if (!existsSync2(nvmrcPath)) {
+    nvmrcPath = join3(determineRepoBaseDirFromCwd(), ".nvmrc");
+  }
   const packageJson = JSON.parse(readFileSync4(packageJsonPath, "utf8"));
   const pnpmVersion = packageJson.engines?.pnpm;
-  const tsVersion = packageJson.dependencies?.typescript || packageJson.devDependencies?.typescript;
+  const tsVersion = packageJson.dependencies?.typescript || packageJson.devDependencies?.typescript || packageJson.dependencies?.["typescript-local"]?.replace("npm:typescript@", "");
   let nvmrcVersion;
   try {
     nvmrcVersion = readFileSync4(nvmrcPath, "utf8").trim().replace(/^v/, "");
   } catch {
   }
-  if (!pnpmVersion) {
-    throw new Error("Could find engines.pnpm in package.json");
-  }
-  if (!tsVersion) {
-    throw new Error("Could not find typescript in dependencies or devDependencies in package.json");
-  }
   const originalBazelContent = readFileSync4(moduleBazelPath, "utf8");
   let moduleBazelContent = originalBazelContent;
-  moduleBazelContent = await syncPnpm(moduleBazelContent, pnpmVersion);
-  moduleBazelContent = await syncTypeScript(moduleBazelContent, tsVersion);
-  moduleBazelContent = await syncNodeJs(moduleBazelContent, nvmrcVersion);
+  if (pnpmVersion) {
+    moduleBazelContent = await syncPnpm(moduleBazelContent, pnpmVersion);
+  }
+  if (tsVersion) {
+    moduleBazelContent = await syncTypeScript(moduleBazelContent, tsVersion);
+  }
+  if (nvmrcVersion) {
+    moduleBazelContent = await syncNodeJs(moduleBazelContent, nvmrcVersion);
+  }
   if (originalBazelContent !== moduleBazelContent) {
     writeFileSync4(moduleBazelPath, moduleBazelContent);
-    await formatFiles(["MODULE.bazel"]);
+    await formatFiles([moduleBazelPath]);
     ChildProcess.spawnSync("pnpm", ["bazel", "mod", "deps", "--lockfile_mode=update"], {
       suppressErrorOnFailingExitCode: true
     });
@@ -46975,7 +48059,7 @@ function santizeCommitMessage(content) {
 
 // ng-dev/release/notes/changelog.js
 var import_semver3 = __toESM(require_semver());
-import { existsSync as existsSync2, readFileSync as readFileSync7, writeFileSync as writeFileSync5 } from "fs";
+import { existsSync as existsSync3, readFileSync as readFileSync7, writeFileSync as writeFileSync5 } from "fs";
 import { join as join8 } from "path";
 var changelogPath = "CHANGELOG.md";
 var changelogArchivePath = "CHANGELOG_ARCHIVE.md";
@@ -47055,7 +48139,7 @@ var Changelog = class {
     writeFileSync5(this.filePath, changelog, {});
   }
   getEntriesFor(path9) {
-    if (!existsSync2(path9)) {
+    if (!existsSync3(path9)) {
       return [];
     }
     return readFileSync7(path9, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
@@ -47296,7 +48380,7 @@ var NpmCommand = class {
 };
 
 // ng-dev/release/publish/external-commands.js
-import { existsSync as existsSync4 } from "fs";
+import { existsSync as existsSync5 } from "fs";
 import { join as join10 } from "path";
 
 // ng-dev/release/publish/actions-error.js
@@ -47307,10 +48391,10 @@ var FatalReleaseActionError = class extends Error {
 
 // ng-dev/release/publish/pnpm-versioning.js
 import { join as join9 } from "node:path";
-import { existsSync as existsSync3 } from "node:fs";
+import { existsSync as existsSync4 } from "node:fs";
 var PnpmVersioning = class {
   static isUsingPnpm(repoPath) {
-    return existsSync3(join9(repoPath, "pnpm-lock.yaml")) && !existsSync3(join9(repoPath, "yarn.lock"));
+    return existsSync4(join9(repoPath, "pnpm-lock.yaml")) && !existsSync4(join9(repoPath, "yarn.lock"));
   }
 };
 
@@ -47386,7 +48470,7 @@ var ExternalCommands = class {
     }
   }
   static async invokeNvmInstall(projectDir, quiet = false) {
-    if (!existsSync4(join10(projectDir, ".nvmrc"))) {
+    if (!existsSync5(join10(projectDir, ".nvmrc"))) {
       return;
     }
     try {
@@ -47477,7 +48561,7 @@ var workspaceRelativePackageJsonPath = "package.json";
 
 // ng-dev/release/publish/actions.js
 var import_fast_glob2 = __toESM(require_out4());
-import { existsSync as existsSync5, promises as fs3 } from "fs";
+import { existsSync as existsSync6, promises as fs3 } from "fs";
 import { join as join11 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
@@ -47669,12 +48753,12 @@ var ReleaseAction = class {
     await fs3.writeFile(pkgJsonPath, `${JSON.stringify(pkgJson, null, 2)}
 `);
     Log.info(green(`  \u2713   Updated project version to ${pkgJson.version}`));
-    if (existsSync5(join11(this.projectDir, ".aspect"))) {
+    if (existsSync6(join11(this.projectDir, ".aspect"))) {
       await ExternalCommands.invokeBazelUpdateAspectLockFiles(this.projectDir);
     }
   }
   getAspectLockFiles() {
-    return existsSync5(join11(this.projectDir, ".aspect")) ? [...import_fast_glob2.default.sync(".aspect/**", { cwd: this.projectDir }), "pnpm-lock.yaml"] : [];
+    return existsSync6(join11(this.projectDir, ".aspect")) ? [...import_fast_glob2.default.sync(".aspect/**", { cwd: this.projectDir }), "pnpm-lock.yaml"] : [];
   }
   async getLatestCommitOfBranch(branchName) {
     const { data: { commit } } = await this.git.github.repos.getBranch({ ...this.git.remoteParams, branch: branchName });
@@ -48335,12 +49419,12 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 var import_semver17 = __toESM(require_semver());
 
 // ng-dev/release/publish/actions/renovate-config-updates.js
-import { existsSync as existsSync6 } from "node:fs";
+import { existsSync as existsSync7 } from "node:fs";
 import { join as join12 } from "node:path";
 import { writeFile, readFile } from "node:fs/promises";
 async function updateRenovateConfig(projectDir, newBranchName) {
   const renovateConfigPath = join12(projectDir, "renovate.json");
-  if (!existsSync6(renovateConfigPath)) {
+  if (!existsSync7(renovateConfigPath)) {
     Log.warn(`  \u2718   Skipped updating Renovate config as it was not found.`);
     return null;
   }
@@ -48538,7 +49622,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-a84b05cc48579b0a567fbafde11203864c6af8be`;
+var localVersion = `0.0.0-632c25fe29b0ca5cc8dbfdaf4f454a3c637d96d9`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -48777,7 +49861,7 @@ var ReleasePublishCommandModule = {
 };
 
 // ng-dev/release/snapshot-publish/snapshots.js
-import { existsSync as existsSync7, cpSync } from "fs";
+import { existsSync as existsSync8, cpSync } from "fs";
 import { rm } from "fs/promises";
 import { join as join14 } from "path";
 import { tmpdir } from "os";
@@ -48849,7 +49933,7 @@ var SnapshotPublisher = class _SnapshotPublisher {
       const owner = this.config.github.owner;
       const url3 = `https://github.com/${owner}/${packageRepo}.git`;
       const tmpRepoDir = join14(tmpdir(), "ng-snapshot-publishing", packageRepo);
-      if (existsSync7(tmpRepoDir)) {
+      if (existsSync8(tmpRepoDir)) {
         await rm(tmpRepoDir, { recursive: true, force: true });
       }
       const branchExistsInRemote = this.git.runGraceful(["ls-remote", "--heads", url3, "--", this.branchName]).stdout.trim() !== "";
@@ -48866,25 +49950,24 @@ var SnapshotPublisher = class _SnapshotPublisher {
       await Promise.all(this.git.run(["ls-files"], { cwd: tmpRepoDir }).stdout.trim().split("\n").filter((filePath) => filePath !== "").map((filePath) => rm(join14(tmpRepoDir, filePath), { force: true })));
       cpSync(pkg.outputPath, tmpRepoDir, { recursive: true });
       this.git.run(["add", "-A"], { cwd: tmpRepoDir });
+      const containsChanges = this.git.runGraceful(["diff-index", "--quiet", "-I", "0\\.0\\.0-[a-f0-9]+", "HEAD", "--"], { cwd: tmpRepoDir }).status === 1;
       this.git.run(["commit", "--author", this.commitAuthor, "-m", this.snapshotCommitMessage], {
         cwd: tmpRepoDir
       });
       return {
         url: url3,
         dir: tmpRepoDir,
-        name: pkg.name
+        name: pkg.name,
+        containsChanges
       };
     }));
   }
   async publishSnapshots(snapshots) {
     Log.info(bold(`Publishing snapshots to GitHub...`));
-    for (const { name, dir, url: url3 } of snapshots) {
-      if (this.flags.skipNonAffectedSnapshots) {
-        const requiresPublish = this.git.runGraceful(["diff-index", "--quiet", "-I", "0\\.0\\.0-[a-f0-9]+", "HEAD", "--"], { cwd: dir }).status !== 0;
-        if (!requiresPublish) {
-          Log.info(`  ${yellow("\u26A0")} Skipping snapshot publish for ${name} as no changes occurred between this and the previous commit.`);
-          continue;
-        }
+    for (const { name, dir, url: url3, containsChanges } of snapshots) {
+      if (this.flags.skipNonAffectedSnapshots && !containsChanges) {
+        Log.info(`  ${yellow("\u26A0")} Skipping snapshot publish for ${name} as no changes occurred between this and the previous commit.`);
+        continue;
       }
       if (this.flags.dryRun) {
         Log.info(`  ${green("\u2714")} Dry run: Publish package artifacts for ${name}#${this.commitSha} to ${url3}#${this.branchName}`);
@@ -49159,7 +50242,7 @@ function buildReleaseParser(localYargs) {
 
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync8, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
+import { existsSync as existsSync9, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
@@ -49450,7 +50533,7 @@ function main(approve, config2, printWarnings) {
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync8(goldenFile)) {
+  if (!existsSync9(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
@@ -49735,9 +50818,9 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.43.0_181604741/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.44.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
-var import_google_auth_library = __toESM(require_src5(), 1);
+var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
 import * as fs6 from "fs/promises";
 import { writeFile as writeFile2 } from "fs/promises";
@@ -49751,7 +50834,7 @@ var import_sender = __toESM(require_sender(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.43.0_181604741/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.44.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -50270,12 +51353,6 @@ var PhishBlockThreshold;
   PhishBlockThreshold2["BLOCK_VERY_HIGH_AND_ABOVE"] = "BLOCK_VERY_HIGH_AND_ABOVE";
   PhishBlockThreshold2["BLOCK_ONLY_EXTREMELY_HIGH"] = "BLOCK_ONLY_EXTREMELY_HIGH";
 })(PhishBlockThreshold || (PhishBlockThreshold = {}));
-var ApiSpec;
-(function(ApiSpec2) {
-  ApiSpec2["API_SPEC_UNSPECIFIED"] = "API_SPEC_UNSPECIFIED";
-  ApiSpec2["SIMPLE_SEARCH"] = "SIMPLE_SEARCH";
-  ApiSpec2["ELASTIC_SEARCH"] = "ELASTIC_SEARCH";
-})(ApiSpec || (ApiSpec = {}));
 var AuthType;
 (function(AuthType2) {
   AuthType2["AUTH_TYPE_UNSPECIFIED"] = "AUTH_TYPE_UNSPECIFIED";
@@ -50295,6 +51372,12 @@ var HttpElementLocation;
   HttpElementLocation2["HTTP_IN_BODY"] = "HTTP_IN_BODY";
   HttpElementLocation2["HTTP_IN_COOKIE"] = "HTTP_IN_COOKIE";
 })(HttpElementLocation || (HttpElementLocation = {}));
+var ApiSpec;
+(function(ApiSpec2) {
+  ApiSpec2["API_SPEC_UNSPECIFIED"] = "API_SPEC_UNSPECIFIED";
+  ApiSpec2["SIMPLE_SEARCH"] = "SIMPLE_SEARCH";
+  ApiSpec2["ELASTIC_SEARCH"] = "ELASTIC_SEARCH";
+})(ApiSpec || (ApiSpec = {}));
 var Behavior;
 (function(Behavior2) {
   Behavior2["UNSPECIFIED"] = "UNSPECIFIED";
@@ -50322,6 +51405,12 @@ var ThinkingLevel;
   ThinkingLevel2["HIGH"] = "HIGH";
   ThinkingLevel2["MINIMAL"] = "MINIMAL";
 })(ThinkingLevel || (ThinkingLevel = {}));
+var PersonGeneration;
+(function(PersonGeneration2) {
+  PersonGeneration2["DONT_ALLOW"] = "DONT_ALLOW";
+  PersonGeneration2["ALLOW_ADULT"] = "ALLOW_ADULT";
+  PersonGeneration2["ALLOW_ALL"] = "ALLOW_ALL";
+})(PersonGeneration || (PersonGeneration = {}));
 var HarmCategory;
 (function(HarmCategory2) {
   HarmCategory2["HARM_CATEGORY_UNSPECIFIED"] = "HARM_CATEGORY_UNSPECIFIED";
@@ -50410,6 +51499,8 @@ var TrafficType;
 (function(TrafficType2) {
   TrafficType2["TRAFFIC_TYPE_UNSPECIFIED"] = "TRAFFIC_TYPE_UNSPECIFIED";
   TrafficType2["ON_DEMAND"] = "ON_DEMAND";
+  TrafficType2["ON_DEMAND_PRIORITY"] = "ON_DEMAND_PRIORITY";
+  TrafficType2["ON_DEMAND_FLEX"] = "ON_DEMAND_FLEX";
   TrafficType2["PROVISIONED_THROUGHPUT"] = "PROVISIONED_THROUGHPUT";
 })(TrafficType || (TrafficType = {}));
 var Modality;
@@ -50457,6 +51548,36 @@ var JobState;
   JobState2["JOB_STATE_UPDATING"] = "JOB_STATE_UPDATING";
   JobState2["JOB_STATE_PARTIALLY_SUCCEEDED"] = "JOB_STATE_PARTIALLY_SUCCEEDED";
 })(JobState || (JobState = {}));
+var TuningJobState;
+(function(TuningJobState2) {
+  TuningJobState2["TUNING_JOB_STATE_UNSPECIFIED"] = "TUNING_JOB_STATE_UNSPECIFIED";
+  TuningJobState2["TUNING_JOB_STATE_WAITING_FOR_QUOTA"] = "TUNING_JOB_STATE_WAITING_FOR_QUOTA";
+  TuningJobState2["TUNING_JOB_STATE_PROCESSING_DATASET"] = "TUNING_JOB_STATE_PROCESSING_DATASET";
+  TuningJobState2["TUNING_JOB_STATE_WAITING_FOR_CAPACITY"] = "TUNING_JOB_STATE_WAITING_FOR_CAPACITY";
+  TuningJobState2["TUNING_JOB_STATE_TUNING"] = "TUNING_JOB_STATE_TUNING";
+  TuningJobState2["TUNING_JOB_STATE_POST_PROCESSING"] = "TUNING_JOB_STATE_POST_PROCESSING";
+})(TuningJobState || (TuningJobState = {}));
+var AggregationMetric;
+(function(AggregationMetric2) {
+  AggregationMetric2["AGGREGATION_METRIC_UNSPECIFIED"] = "AGGREGATION_METRIC_UNSPECIFIED";
+  AggregationMetric2["AVERAGE"] = "AVERAGE";
+  AggregationMetric2["MODE"] = "MODE";
+  AggregationMetric2["STANDARD_DEVIATION"] = "STANDARD_DEVIATION";
+  AggregationMetric2["VARIANCE"] = "VARIANCE";
+  AggregationMetric2["MINIMUM"] = "MINIMUM";
+  AggregationMetric2["MAXIMUM"] = "MAXIMUM";
+  AggregationMetric2["MEDIAN"] = "MEDIAN";
+  AggregationMetric2["PERCENTILE_P90"] = "PERCENTILE_P90";
+  AggregationMetric2["PERCENTILE_P95"] = "PERCENTILE_P95";
+  AggregationMetric2["PERCENTILE_P99"] = "PERCENTILE_P99";
+})(AggregationMetric || (AggregationMetric = {}));
+var PairwiseChoice;
+(function(PairwiseChoice2) {
+  PairwiseChoice2["PAIRWISE_CHOICE_UNSPECIFIED"] = "PAIRWISE_CHOICE_UNSPECIFIED";
+  PairwiseChoice2["BASELINE"] = "BASELINE";
+  PairwiseChoice2["CANDIDATE"] = "CANDIDATE";
+  PairwiseChoice2["TIE"] = "TIE";
+})(PairwiseChoice || (PairwiseChoice = {}));
 var TuningTask;
 (function(TuningTask2) {
   TuningTask2["TUNING_TASK_UNSPECIFIED"] = "TUNING_TASK_UNSPECIFIED";
@@ -50506,12 +51627,6 @@ var SafetyFilterLevel;
   SafetyFilterLevel2["BLOCK_ONLY_HIGH"] = "BLOCK_ONLY_HIGH";
   SafetyFilterLevel2["BLOCK_NONE"] = "BLOCK_NONE";
 })(SafetyFilterLevel || (SafetyFilterLevel = {}));
-var PersonGeneration;
-(function(PersonGeneration2) {
-  PersonGeneration2["DONT_ALLOW"] = "DONT_ALLOW";
-  PersonGeneration2["ALLOW_ADULT"] = "ALLOW_ADULT";
-  PersonGeneration2["ALLOW_ALL"] = "ALLOW_ALL";
-})(PersonGeneration || (PersonGeneration = {}));
 var ImagePromptLanguage;
 (function(ImagePromptLanguage2) {
   ImagePromptLanguage2["auto"] = "auto";
@@ -51677,6 +52792,32 @@ function tJobState(state) {
 function tIsVertexEmbedContentModel(model) {
   return model.includes("gemini") && model !== "gemini-embedding-001" || model.includes("maas");
 }
+function authConfigToMldev$4(fromObject) {
+  const toObject = {};
+  const fromApiKey = getValueByPath(fromObject, ["apiKey"]);
+  if (fromApiKey != null) {
+    setValueByPath(toObject, ["apiKey"], fromApiKey);
+  }
+  if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
+    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["authType"]) !== void 0) {
+    throw new Error("authType parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
+    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
+    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
+    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
+    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
 function batchJobDestinationFromMldev(fromObject) {
   const toObject = {};
   const fromFileName = getValueByPath(fromObject, ["responsesFile"]);
@@ -52524,8 +53665,9 @@ function getBatchJobParametersToVertex(apiClient, fromObject) {
 }
 function googleMapsToMldev$4(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["authConfig"]) !== void 0) {
-    throw new Error("authConfig parameter is not supported in Gemini API.");
+  const fromAuthConfig = getValueByPath(fromObject, ["authConfig"]);
+  if (fromAuthConfig != null) {
+    setValueByPath(toObject, ["authConfig"], authConfigToMldev$4(fromAuthConfig));
   }
   const fromEnableWidget = getValueByPath(fromObject, ["enableWidget"]);
   if (fromEnableWidget != null) {
@@ -52539,11 +53681,11 @@ function googleSearchToMldev$4(fromObject) {
   if (fromSearchTypes != null) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
-  }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
     throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -52574,6 +53716,9 @@ function imageConfigToMldev$1(fromObject) {
   }
   if (getValueByPath(fromObject, ["outputCompressionQuality"]) !== void 0) {
     throw new Error("outputCompressionQuality parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["imageOutputOptions"]) !== void 0) {
+    throw new Error("imageOutputOptions parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -52828,6 +53973,10 @@ function toolToMldev$4(fromObject) {
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$4(fromGoogleSearch));
   }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$4(fromGoogleMaps));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -52849,15 +53998,14 @@ function toolToMldev$4(fromObject) {
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$4(fromGoogleMaps));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
+  }
+  if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
+    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -53468,6 +54616,32 @@ var Batches = class extends BaseModule2 {
     }
   }
 };
+function authConfigToMldev$3(fromObject) {
+  const toObject = {};
+  const fromApiKey = getValueByPath(fromObject, ["apiKey"]);
+  if (fromApiKey != null) {
+    setValueByPath(toObject, ["apiKey"], fromApiKey);
+  }
+  if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
+    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["authType"]) !== void 0) {
+    throw new Error("authType parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
+    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
+    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
+    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
+    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
 function blobToMldev$3(fromObject) {
   const toObject = {};
   const fromData = getValueByPath(fromObject, ["data"]);
@@ -53767,8 +54941,9 @@ function getCachedContentParametersToVertex(apiClient, fromObject) {
 }
 function googleMapsToMldev$3(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["authConfig"]) !== void 0) {
-    throw new Error("authConfig parameter is not supported in Gemini API.");
+  const fromAuthConfig = getValueByPath(fromObject, ["authConfig"]);
+  if (fromAuthConfig != null) {
+    setValueByPath(toObject, ["authConfig"], authConfigToMldev$3(fromAuthConfig));
   }
   const fromEnableWidget = getValueByPath(fromObject, ["enableWidget"]);
   if (fromEnableWidget != null) {
@@ -53782,11 +54957,11 @@ function googleSearchToMldev$3(fromObject) {
   if (fromSearchTypes != null) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
-  }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
     throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -53985,6 +55160,10 @@ function toolToMldev$3(fromObject) {
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$3(fromGoogleSearch));
   }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$3(fromGoogleMaps));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -54006,15 +55185,14 @@ function toolToMldev$3(fromObject) {
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$3(fromGoogleMaps));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
+  }
+  if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
+    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -54049,6 +55227,10 @@ function toolToVertex$2(fromObject) {
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
   }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -54073,15 +55255,17 @@ function toolToVertex$2(fromObject) {
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
+  }
+  const fromParallelAiSearch = getValueByPath(fromObject, [
+    "parallelAiSearch"
+  ]);
+  if (fromParallelAiSearch != null) {
+    setValueByPath(toObject, ["parallelAiSearch"], fromParallelAiSearch);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -55244,6 +56428,32 @@ var Files = class extends BaseModule2 {
     }
   }
 };
+function authConfigToMldev$2(fromObject) {
+  const toObject = {};
+  const fromApiKey = getValueByPath(fromObject, ["apiKey"]);
+  if (fromApiKey != null) {
+    setValueByPath(toObject, ["apiKey"], fromApiKey);
+  }
+  if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
+    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["authType"]) !== void 0) {
+    throw new Error("authType parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
+    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
+    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
+    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
+    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
 function blobToMldev$2(fromObject) {
   const toObject = {};
   const fromData = getValueByPath(fromObject, ["data"]);
@@ -55478,8 +56688,9 @@ function generationConfigToVertex$1(fromObject) {
 }
 function googleMapsToMldev$2(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["authConfig"]) !== void 0) {
-    throw new Error("authConfig parameter is not supported in Gemini API.");
+  const fromAuthConfig = getValueByPath(fromObject, ["authConfig"]);
+  if (fromAuthConfig != null) {
+    setValueByPath(toObject, ["authConfig"], authConfigToMldev$2(fromAuthConfig));
   }
   const fromEnableWidget = getValueByPath(fromObject, ["enableWidget"]);
   if (fromEnableWidget != null) {
@@ -55493,11 +56704,11 @@ function googleSearchToMldev$2(fromObject) {
   if (fromSearchTypes != null) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
-  }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
     throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -56012,6 +57223,10 @@ function toolToMldev$2(fromObject) {
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$2(fromGoogleSearch));
   }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$2(fromGoogleMaps));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -56033,15 +57248,14 @@ function toolToMldev$2(fromObject) {
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$2(fromGoogleMaps));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
+  }
+  if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
+    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -56076,6 +57290,10 @@ function toolToVertex$1(fromObject) {
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
   }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -56100,15 +57318,17 @@ function toolToVertex$1(fromObject) {
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
+  }
+  const fromParallelAiSearch = getValueByPath(fromObject, [
+    "parallelAiSearch"
+  ]);
+  if (fromParallelAiSearch != null) {
+    setValueByPath(toObject, ["parallelAiSearch"], fromParallelAiSearch);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -56216,6 +57436,32 @@ function voiceActivityFromVertex(fromObject) {
   const fromVoiceActivityType = getValueByPath(fromObject, ["type"]);
   if (fromVoiceActivityType != null) {
     setValueByPath(toObject, ["voiceActivityType"], fromVoiceActivityType);
+  }
+  return toObject;
+}
+function authConfigToMldev$1(fromObject, _rootObject) {
+  const toObject = {};
+  const fromApiKey = getValueByPath(fromObject, ["apiKey"]);
+  if (fromApiKey != null) {
+    setValueByPath(toObject, ["apiKey"], fromApiKey);
+  }
+  if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
+    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["authType"]) !== void 0) {
+    throw new Error("authType parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
+    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
+    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
+    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
+    throw new Error("oidcConfig parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -58358,10 +59604,11 @@ function getModelParametersToVertex(apiClient, fromObject, _rootObject) {
   }
   return toObject;
 }
-function googleMapsToMldev$1(fromObject, _rootObject) {
+function googleMapsToMldev$1(fromObject, rootObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["authConfig"]) !== void 0) {
-    throw new Error("authConfig parameter is not supported in Gemini API.");
+  const fromAuthConfig = getValueByPath(fromObject, ["authConfig"]);
+  if (fromAuthConfig != null) {
+    setValueByPath(toObject, ["authConfig"], authConfigToMldev$1(fromAuthConfig));
   }
   const fromEnableWidget = getValueByPath(fromObject, ["enableWidget"]);
   if (fromEnableWidget != null) {
@@ -58375,11 +59622,11 @@ function googleSearchToMldev$1(fromObject, _rootObject) {
   if (fromSearchTypes != null) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
-  }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
     throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -58410,6 +59657,9 @@ function imageConfigToMldev(fromObject, _rootObject) {
   }
   if (getValueByPath(fromObject, ["outputCompressionQuality"]) !== void 0) {
     throw new Error("outputCompressionQuality parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["imageOutputOptions"]) !== void 0) {
+    throw new Error("imageOutputOptions parameter is not supported in Gemini API.");
   }
   return toObject;
 }
@@ -58446,6 +59696,12 @@ function imageConfigToVertex(fromObject, _rootObject) {
   ]);
   if (fromOutputCompressionQuality != null) {
     setValueByPath(toObject, ["imageOutputOptions", "compressionQuality"], fromOutputCompressionQuality);
+  }
+  const fromImageOutputOptions = getValueByPath(fromObject, [
+    "imageOutputOptions"
+  ]);
+  if (fromImageOutputOptions != null) {
+    setValueByPath(toObject, ["imageOutputOptions"], fromImageOutputOptions);
   }
   return toObject;
 }
@@ -59166,6 +60422,10 @@ function toolToMldev$1(fromObject, rootObject) {
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev$1(fromGoogleSearch));
   }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$1(fromGoogleMaps));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -59187,15 +60447,14 @@ function toolToMldev$1(fromObject, rootObject) {
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev$1(fromGoogleMaps));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
+  }
+  if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
+    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -59230,6 +60489,10 @@ function toolToVertex(fromObject, rootObject) {
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], fromGoogleSearch);
   }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -59254,15 +60517,17 @@ function toolToVertex(fromObject, rootObject) {
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], fromGoogleMaps);
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
+  }
+  const fromParallelAiSearch = getValueByPath(fromObject, [
+    "parallelAiSearch"
+  ]);
+  if (fromParallelAiSearch != null) {
+    setValueByPath(toObject, ["parallelAiSearch"], fromParallelAiSearch);
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -59814,7 +61079,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.43.0";
+var SDK_VERSION = "1.44.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -59868,10 +61133,7 @@ var ApiClient = class {
       initHttpOptions.apiVersion = (_b = this.clientOptions.apiVersion) !== null && _b !== void 0 ? _b : VERTEX_AI_API_DEFAULT_VERSION;
     } else {
       if (!this.clientOptions.apiKey) {
-        throw new ApiError({
-          message: "API key must be set when using the Gemini API.",
-          status: 403
-        });
+        console.warn("API key should be set when using the Gemini API.");
       }
       initHttpOptions.apiVersion = (_c = this.clientOptions.apiVersion) !== null && _c !== void 0 ? _c : GOOGLE_AI_API_DEFAULT_VERSION;
       initHttpOptions.baseUrl = `https://generativelanguage.googleapis.com/`;
@@ -62596,6 +63858,32 @@ var Operations = class extends BaseModule2 {
     }
   }
 };
+function authConfigToMldev(fromObject) {
+  const toObject = {};
+  const fromApiKey = getValueByPath(fromObject, ["apiKey"]);
+  if (fromApiKey != null) {
+    setValueByPath(toObject, ["apiKey"], fromApiKey);
+  }
+  if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
+    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["authType"]) !== void 0) {
+    throw new Error("authType parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
+    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
+    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
+    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
+    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
 function blobToMldev(fromObject) {
   const toObject = {};
   const fromData = getValueByPath(fromObject, ["data"]);
@@ -62706,8 +63994,9 @@ function functionCallToMldev(fromObject) {
 }
 function googleMapsToMldev(fromObject) {
   const toObject = {};
-  if (getValueByPath(fromObject, ["authConfig"]) !== void 0) {
-    throw new Error("authConfig parameter is not supported in Gemini API.");
+  const fromAuthConfig = getValueByPath(fromObject, ["authConfig"]);
+  if (fromAuthConfig != null) {
+    setValueByPath(toObject, ["authConfig"], authConfigToMldev(fromAuthConfig));
   }
   const fromEnableWidget = getValueByPath(fromObject, ["enableWidget"]);
   if (fromEnableWidget != null) {
@@ -62721,11 +64010,11 @@ function googleSearchToMldev(fromObject) {
   if (fromSearchTypes != null) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
-  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
-  }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
     throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+  }
+  if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
+    throw new Error("excludeDomains parameter is not supported in Gemini API.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -62948,6 +64237,10 @@ function toolToMldev(fromObject) {
   if (fromGoogleSearch != null) {
     setValueByPath(toObject, ["googleSearch"], googleSearchToMldev(fromGoogleSearch));
   }
+  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
+  if (fromGoogleMaps != null) {
+    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev(fromGoogleMaps));
+  }
   const fromCodeExecution = getValueByPath(fromObject, [
     "codeExecution"
   ]);
@@ -62969,15 +64262,14 @@ function toolToMldev(fromObject) {
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
   }
-  const fromGoogleMaps = getValueByPath(fromObject, ["googleMaps"]);
-  if (fromGoogleMaps != null) {
-    setValueByPath(toObject, ["googleMaps"], googleMapsToMldev(fromGoogleMaps));
-  }
   const fromGoogleSearchRetrieval = getValueByPath(fromObject, [
     "googleSearchRetrieval"
   ]);
   if (fromGoogleSearchRetrieval != null) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
+  }
+  if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
+    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -63784,132 +65076,6 @@ var safeJSON = (text) => {
   }
 };
 var sleep$1 = (ms) => new Promise((resolve8) => setTimeout(resolve8, ms));
-var VERSION = "0.0.1";
-function getDetectedPlatform() {
-  if (typeof Deno !== "undefined" && Deno.build != null) {
-    return "deno";
-  }
-  if (typeof EdgeRuntime !== "undefined") {
-    return "edge";
-  }
-  if (Object.prototype.toString.call(typeof globalThis.process !== "undefined" ? globalThis.process : 0) === "[object process]") {
-    return "node";
-  }
-  return "unknown";
-}
-var getPlatformProperties = () => {
-  var _a4, _b, _c, _d, _e;
-  const detectedPlatform = getDetectedPlatform();
-  if (detectedPlatform === "deno") {
-    return {
-      "X-Stainless-Lang": "js",
-      "X-Stainless-Package-Version": VERSION,
-      "X-Stainless-OS": normalizePlatform(Deno.build.os),
-      "X-Stainless-Arch": normalizeArch(Deno.build.arch),
-      "X-Stainless-Runtime": "deno",
-      "X-Stainless-Runtime-Version": typeof Deno.version === "string" ? Deno.version : (_b = (_a4 = Deno.version) === null || _a4 === void 0 ? void 0 : _a4.deno) !== null && _b !== void 0 ? _b : "unknown"
-    };
-  }
-  if (typeof EdgeRuntime !== "undefined") {
-    return {
-      "X-Stainless-Lang": "js",
-      "X-Stainless-Package-Version": VERSION,
-      "X-Stainless-OS": "Unknown",
-      "X-Stainless-Arch": `other:${EdgeRuntime}`,
-      "X-Stainless-Runtime": "edge",
-      "X-Stainless-Runtime-Version": globalThis.process.version
-    };
-  }
-  if (detectedPlatform === "node") {
-    return {
-      "X-Stainless-Lang": "js",
-      "X-Stainless-Package-Version": VERSION,
-      "X-Stainless-OS": normalizePlatform((_c = globalThis.process.platform) !== null && _c !== void 0 ? _c : "unknown"),
-      "X-Stainless-Arch": normalizeArch((_d = globalThis.process.arch) !== null && _d !== void 0 ? _d : "unknown"),
-      "X-Stainless-Runtime": "node",
-      "X-Stainless-Runtime-Version": (_e = globalThis.process.version) !== null && _e !== void 0 ? _e : "unknown"
-    };
-  }
-  const browserInfo = getBrowserInfo();
-  if (browserInfo) {
-    return {
-      "X-Stainless-Lang": "js",
-      "X-Stainless-Package-Version": VERSION,
-      "X-Stainless-OS": "Unknown",
-      "X-Stainless-Arch": "unknown",
-      "X-Stainless-Runtime": `browser:${browserInfo.browser}`,
-      "X-Stainless-Runtime-Version": browserInfo.version
-    };
-  }
-  return {
-    "X-Stainless-Lang": "js",
-    "X-Stainless-Package-Version": VERSION,
-    "X-Stainless-OS": "Unknown",
-    "X-Stainless-Arch": "unknown",
-    "X-Stainless-Runtime": "unknown",
-    "X-Stainless-Runtime-Version": "unknown"
-  };
-};
-function getBrowserInfo() {
-  if (typeof navigator === "undefined" || !navigator) {
-    return null;
-  }
-  const browserPatterns = [
-    { key: "edge", pattern: /Edge(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/ },
-    { key: "ie", pattern: /MSIE(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/ },
-    { key: "ie", pattern: /Trident(?:.*rv\:(\d+)\.(\d+)(?:\.(\d+))?)?/ },
-    { key: "chrome", pattern: /Chrome(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/ },
-    { key: "firefox", pattern: /Firefox(?:\W+(\d+)\.(\d+)(?:\.(\d+))?)?/ },
-    { key: "safari", pattern: /(?:Version\W+(\d+)\.(\d+)(?:\.(\d+))?)?(?:\W+Mobile\S*)?\W+Safari/ }
-  ];
-  for (const { key, pattern } of browserPatterns) {
-    const match2 = pattern.exec(navigator.userAgent);
-    if (match2) {
-      const major = match2[1] || 0;
-      const minor = match2[2] || 0;
-      const patch = match2[3] || 0;
-      return { browser: key, version: `${major}.${minor}.${patch}` };
-    }
-  }
-  return null;
-}
-var normalizeArch = (arch) => {
-  if (arch === "x32")
-    return "x32";
-  if (arch === "x86_64" || arch === "x64")
-    return "x64";
-  if (arch === "arm")
-    return "arm";
-  if (arch === "aarch64" || arch === "arm64")
-    return "arm64";
-  if (arch)
-    return `other:${arch}`;
-  return "unknown";
-};
-var normalizePlatform = (platform) => {
-  platform = platform.toLowerCase();
-  if (platform.includes("ios"))
-    return "iOS";
-  if (platform === "android")
-    return "Android";
-  if (platform === "darwin")
-    return "MacOS";
-  if (platform === "win32")
-    return "Windows";
-  if (platform === "freebsd")
-    return "FreeBSD";
-  if (platform === "openbsd")
-    return "OpenBSD";
-  if (platform === "linux")
-    return "Linux";
-  if (platform)
-    return `Other:${platform}`;
-  return "Unknown";
-};
-var _platformHeaders;
-var getPlatformHeaders = () => {
-  return _platformHeaders !== null && _platformHeaders !== void 0 ? _platformHeaders : _platformHeaders = getPlatformProperties();
-};
 function getDefaultFetch() {
   if (typeof fetch !== "undefined") {
     return fetch;
@@ -63990,6 +65156,7 @@ var FallbackEncoder = ({ headers, body }) => {
     body: JSON.stringify(body)
   };
 };
+var VERSION = "0.0.1";
 var checkFileSupport = () => {
   var _a4;
   if (typeof File === "undefined") {
@@ -64212,8 +65379,10 @@ var LineDecoder = class {
   constructor() {
     this.buffer = new Uint8Array();
     this.carriageReturnIndex = null;
+    this.searchIndex = 0;
   }
   decode(chunk) {
+    var _a4;
     if (chunk == null) {
       return [];
     }
@@ -64221,7 +65390,7 @@ var LineDecoder = class {
     this.buffer = concatBytes([this.buffer, binaryChunk]);
     const lines = [];
     let patternIndex;
-    while ((patternIndex = findNewlineIndex(this.buffer, this.carriageReturnIndex)) != null) {
+    while ((patternIndex = findNewlineIndex(this.buffer, (_a4 = this.carriageReturnIndex) !== null && _a4 !== void 0 ? _a4 : this.searchIndex)) != null) {
       if (patternIndex.carriage && this.carriageReturnIndex == null) {
         this.carriageReturnIndex = patternIndex.index;
         continue;
@@ -64230,6 +65399,7 @@ var LineDecoder = class {
         lines.push(decodeUTF8(this.buffer.subarray(0, this.carriageReturnIndex - 1)));
         this.buffer = this.buffer.subarray(this.carriageReturnIndex);
         this.carriageReturnIndex = null;
+        this.searchIndex = 0;
         continue;
       }
       const endIndex = this.carriageReturnIndex !== null ? patternIndex.preceding - 1 : patternIndex.preceding;
@@ -64237,7 +65407,9 @@ var LineDecoder = class {
       lines.push(line);
       this.buffer = this.buffer.subarray(patternIndex.index);
       this.carriageReturnIndex = null;
+      this.searchIndex = 0;
     }
+    this.searchIndex = Math.max(0, this.buffer.length - 1);
     return lines;
   }
   flush() {
@@ -64252,31 +65424,22 @@ LineDecoder.NEWLINE_REGEXP = /\r\n|[\n\r]/g;
 function findNewlineIndex(buffer, startIndex) {
   const newline = 10;
   const carriage = 13;
-  for (let i = startIndex !== null && startIndex !== void 0 ? startIndex : 0; i < buffer.length; i++) {
-    if (buffer[i] === newline) {
-      return { preceding: i, index: i + 1, carriage: false };
-    }
-    if (buffer[i] === carriage) {
-      return { preceding: i, index: i + 1, carriage: true };
-    }
+  const start = startIndex !== null && startIndex !== void 0 ? startIndex : 0;
+  const nextNewline = buffer.indexOf(newline, start);
+  const nextCarriage = buffer.indexOf(carriage, start);
+  if (nextNewline === -1 && nextCarriage === -1) {
+    return null;
   }
-  return null;
-}
-function findDoubleNewlineIndex(buffer) {
-  const newline = 10;
-  const carriage = 13;
-  for (let i = 0; i < buffer.length - 1; i++) {
-    if (buffer[i] === newline && buffer[i + 1] === newline) {
-      return i + 2;
-    }
-    if (buffer[i] === carriage && buffer[i + 1] === carriage) {
-      return i + 2;
-    }
-    if (buffer[i] === carriage && buffer[i + 1] === newline && i + 3 < buffer.length && buffer[i + 2] === carriage && buffer[i + 3] === newline) {
-      return i + 4;
-    }
+  let i;
+  if (nextNewline !== -1 && nextCarriage !== -1) {
+    i = Math.min(nextNewline, nextCarriage);
+  } else {
+    i = nextNewline !== -1 ? nextNewline : nextCarriage;
   }
-  return -1;
+  if (buffer[i] === newline) {
+    return { preceding: i, index: i + 1, carriage: false };
+  }
+  return { preceding: i, index: i + 1, carriage: true };
 }
 var levelNumbers = {
   off: 0,
@@ -64563,7 +65726,7 @@ function _iterSSEMessages(response, controller) {
     const lineDecoder = new LineDecoder();
     const iter = ReadableStreamToAsyncIterable(response.body);
     try {
-      for (var _d = true, _e = __asyncValues(iterSSEChunks(iter)), _f; _f = yield __await(_e.next()), _a4 = _f.done, !_a4; _d = true) {
+      for (var _d = true, _e = __asyncValues(iterBinaryChunks(iter)), _f; _f = yield __await(_e.next()), _a4 = _f.done, !_a4; _d = true) {
         _c = _f.value;
         _d = false;
         const sseChunk = _c;
@@ -64591,10 +65754,9 @@ function _iterSSEMessages(response, controller) {
     }
   });
 }
-function iterSSEChunks(iterator) {
-  return __asyncGenerator(this, arguments, function* iterSSEChunks_1() {
+function iterBinaryChunks(iterator) {
+  return __asyncGenerator(this, arguments, function* iterBinaryChunks_1() {
     var _a4, e_5, _b, _c;
-    let data = new Uint8Array();
     try {
       for (var _d = true, iterator_3 = __asyncValues(iterator), iterator_3_1; iterator_3_1 = yield __await(iterator_3.next()), _a4 = iterator_3_1.done, !_a4; _d = true) {
         _c = iterator_3_1.value;
@@ -64604,15 +65766,7 @@ function iterSSEChunks(iterator) {
           continue;
         }
         const binaryChunk = chunk instanceof ArrayBuffer ? new Uint8Array(chunk) : typeof chunk === "string" ? encodeUTF8(chunk) : chunk;
-        let newData = new Uint8Array(data.length + binaryChunk.length);
-        newData.set(data);
-        newData.set(binaryChunk, data.length);
-        data = newData;
-        let patternIndex;
-        while ((patternIndex = findDoubleNewlineIndex(data)) !== -1) {
-          yield yield __await(data.slice(0, patternIndex));
-          data = data.slice(patternIndex);
-        }
+        yield yield __await(binaryChunk);
       }
     } catch (e_5_1) {
       e_5 = { error: e_5_1 };
@@ -64624,9 +65778,6 @@ function iterSSEChunks(iterator) {
         if (e_5)
           throw e_5.error;
       }
-    }
-    if (data.length > 0) {
-      yield yield __await(data);
     }
   });
 }
@@ -65185,7 +66336,7 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
     const authHeaders = await this.authHeaders(options);
     let headers = buildHeaders([
       idempotencyHeaders,
-      Object.assign(Object.assign({ Accept: "application/json", "User-Agent": this.getUserAgent(), "X-Stainless-Retry-Count": String(retryCount) }, options.timeout ? { "X-Stainless-Timeout": String(Math.trunc(options.timeout / 1e3)) } : {}), getPlatformHeaders()),
+      { Accept: "application/json", "User-Agent": this.getUserAgent() },
       this._options.defaultHeaders,
       bodyHeaders,
       options.headers,
@@ -66132,9 +67283,27 @@ function tuningJobFromVertex(fromObject, _rootObject) {
   if (fromCustomBaseModel != null) {
     setValueByPath(toObject, ["customBaseModel"], fromCustomBaseModel);
   }
+  const fromEvaluateDatasetRuns = getValueByPath(fromObject, [
+    "evaluateDatasetRuns"
+  ]);
+  if (fromEvaluateDatasetRuns != null) {
+    let transformedList = fromEvaluateDatasetRuns;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return item;
+      });
+    }
+    setValueByPath(toObject, ["evaluateDatasetRuns"], transformedList);
+  }
   const fromExperiment = getValueByPath(fromObject, ["experiment"]);
   if (fromExperiment != null) {
     setValueByPath(toObject, ["experiment"], fromExperiment);
+  }
+  const fromFullFineTuningSpec = getValueByPath(fromObject, [
+    "fullFineTuningSpec"
+  ]);
+  if (fromFullFineTuningSpec != null) {
+    setValueByPath(toObject, ["fullFineTuningSpec"], fromFullFineTuningSpec);
   }
   const fromLabels = getValueByPath(fromObject, ["labels"]);
   if (fromLabels != null) {
@@ -66159,6 +67328,12 @@ function tuningJobFromVertex(fromObject, _rootObject) {
   ]);
   if (fromTunedModelDisplayName != null) {
     setValueByPath(toObject, ["tunedModelDisplayName"], fromTunedModelDisplayName);
+  }
+  const fromTuningJobState = getValueByPath(fromObject, [
+    "tuningJobState"
+  ]);
+  if (fromTuningJobState != null) {
+    setValueByPath(toObject, ["tuningJobState"], fromTuningJobState);
   }
   const fromVeoTuningSpec = getValueByPath(fromObject, [
     "veoTuningSpec"
@@ -66866,7 +68041,7 @@ var GoogleGenAI = class {
     this.project = (_d = options.project) !== null && _d !== void 0 ? _d : envProject;
     this.location = (_e = options.location) !== null && _e !== void 0 ? _e : envLocation;
     if (!this.vertexai && !this.apiKey) {
-      throw new Error("API key must be set when using the Gemini API.");
+      console.warn("API key should be set when using the Gemini API.");
     }
     if (options.vertexai) {
       if ((_f = options.googleAuthOptions) === null || _f === void 0 ? void 0 : _f.credentials) {
