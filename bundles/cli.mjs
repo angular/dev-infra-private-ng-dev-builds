@@ -49622,7 +49622,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-632c25fe29b0ca5cc8dbfdaf4f454a3c637d96d9`;
+var localVersion = `0.0.0-78a182cbe4ef4d14ff76f4b5c93ea63898e85360`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49951,9 +49951,13 @@ var SnapshotPublisher = class _SnapshotPublisher {
       cpSync(pkg.outputPath, tmpRepoDir, { recursive: true });
       this.git.run(["add", "-A"], { cwd: tmpRepoDir });
       const containsChanges = this.git.runGraceful(["diff-index", "--quiet", "-I", "0\\.0\\.0-[a-f0-9]+", "HEAD", "--"], { cwd: tmpRepoDir }).status === 1;
-      this.git.run(["commit", "--author", this.commitAuthor, "-m", this.snapshotCommitMessage], {
-        cwd: tmpRepoDir
-      });
+      this.git.run([
+        "commit",
+        "--author",
+        this.commitAuthor,
+        "-m",
+        `"${this.snapshotCommitMessage.replace(/"/g, '\\"')}"`
+      ], { cwd: tmpRepoDir });
       return {
         url: url3,
         dir: tmpRepoDir,
