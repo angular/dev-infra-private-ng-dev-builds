@@ -44387,7 +44387,7 @@ async function handler10() {
   }
   const packageJson = JSON.parse(readFileSync4(packageJsonPath, "utf8"));
   const pnpmVersion = packageJson.engines?.pnpm;
-  const tsVersion = packageJson.dependencies?.typescript || packageJson.devDependencies?.typescript || packageJson.dependencies?.["typescript-local"]?.replace("npm:typescript@", "");
+  const tsVersion = packageJson.dependencies?.typescript || packageJson.devDependencies?.typescript;
   let nvmrcVersion;
   try {
     nvmrcVersion = readFileSync4(nvmrcPath, "utf8").trim().replace(/^v/, "");
@@ -49622,7 +49622,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-4f33c8ce7cb41c429e16499e6172f6f215e1d234`;
+var localVersion = `0.0.0-9f2c9ffd1fa9a63ca0c7d3ac464b9791b13078a9`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

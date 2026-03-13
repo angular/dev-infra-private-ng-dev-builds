@@ -5,7 +5,6 @@ export interface PackageJson {
     };
     dependencies?: {
         typescript?: string;
-        'typescript-local'?: string;
     };
     devDependencies?: {
         typescript?: string;
