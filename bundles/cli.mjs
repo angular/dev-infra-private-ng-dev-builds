@@ -49622,7 +49622,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-9f2c9ffd1fa9a63ca0c7d3ac464b9791b13078a9`;
+var localVersion = `0.0.0-7cc2bddcfe55480b6f92521570da915aa71d1787`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49953,6 +49953,7 @@ var SnapshotPublisher = class _SnapshotPublisher {
       const containsChanges = this.git.runGraceful(["diff-index", "--quiet", "-I", "0\\.0\\.0-[a-f0-9]+", "HEAD", "--"], { cwd: tmpRepoDir }).status === 1;
       this.git.run([
         "commit",
+        "--allow-empty",
         "--author",
         this.commitAuthor,
         "-m",
