@@ -44228,7 +44228,7 @@ function buildFormatParser(localYargs) {
 
 // ng-dev/misc/sync-module-bazel/cli.js
 import { existsSync as existsSync2, readFileSync as readFileSync4, writeFileSync as writeFileSync4 } from "node:fs";
-import { join as join3 } from "node:path";
+import { join as join4 } from "node:path";
 
 // ng-dev/misc/sync-module-bazel/sync-module-bazel.js
 var REPOSITORY_TYPES = {
@@ -44363,17 +44363,27 @@ async function syncNodeJs(content, nvmrcVersion) {
   return parts.join("");
 }
 
+// ng-dev/utils/bazel-bin.js
+import { join as join3 } from "path";
+var BAZEL_BIN = void 0;
+function getBazelBin() {
+  if (BAZEL_BIN === void 0) {
+    BAZEL_BIN = process.env["BAZEL"] || join3(determineRepoBaseDirFromCwd(), "node_modules/.bin/bazel");
+  }
+  return BAZEL_BIN;
+}
+
 // ng-dev/misc/sync-module-bazel/cli.js
 async function builder10(argv) {
   return argv;
 }
 async function handler10() {
   const rootDir = process.cwd();
-  const packageJsonPath = join3(rootDir, "package.json");
-  const moduleBazelPath = join3(rootDir, "MODULE.bazel");
-  let nvmrcPath = join3(rootDir, ".nvmrc");
+  const packageJsonPath = join4(rootDir, "package.json");
+  const moduleBazelPath = join4(rootDir, "MODULE.bazel");
+  let nvmrcPath = join4(rootDir, ".nvmrc");
   if (!existsSync2(nvmrcPath)) {
-    nvmrcPath = join3(determineRepoBaseDirFromCwd(), ".nvmrc");
+    nvmrcPath = join4(determineRepoBaseDirFromCwd(), ".nvmrc");
   }
   const packageJson = JSON.parse(readFileSync4(packageJsonPath, "utf8"));
   const pnpmVersion = packageJson.engines?.pnpm;
@@ -44397,7 +44407,7 @@ async function handler10() {
   if (originalBazelContent !== moduleBazelContent) {
     writeFileSync4(moduleBazelPath, moduleBazelContent);
     await formatFiles([moduleBazelPath]);
-    ChildProcess.spawnSync("pnpm", ["bazel", "mod", "deps", "--lockfile_mode=update"], {
+    ChildProcess.spawnSync(getBazelBin(), ["mod", "deps", "--lockfile_mode=update"], {
       suppressErrorOnFailingExitCode: true
     });
   }
@@ -44414,7 +44424,7 @@ import { lstatSync } from "fs";
 import { resolve as resolve2 } from "path";
 
 // ng-dev/release/build/index.js
-import { dirname, join as join4 } from "path";
+import { dirname, join as join5 } from "path";
 import { fileURLToPath } from "url";
 import { fork } from "child_process";
 var BuildWorker = class {
@@ -44431,7 +44441,7 @@ var BuildWorker = class {
 };
 function getBuildWorkerScriptPath() {
   const bundlesDir = dirname(fileURLToPath(import.meta.url));
-  return join4(bundlesDir, "./release/build/build-worker.mjs");
+  return join5(bundlesDir, "./release/build/build-worker.mjs");
 }
 
 // ng-dev/misc/build-and-link/cli.js
@@ -44553,16 +44563,6 @@ ${text}.`);
     }
   }
 };
-
-// ng-dev/utils/bazel-bin.js
-import { join as join5 } from "path";
-var BAZEL_BIN = void 0;
-function getBazelBin() {
-  if (BAZEL_BIN === void 0) {
-    BAZEL_BIN = process.env["BAZEL"] || join5(determineRepoBaseDirFromCwd(), "node_modules/.bin/bazel");
-  }
-  return BAZEL_BIN;
-}
 
 // ng-dev/misc/generated-files/update-generated-files.js
 async function updateGeneratedFileTargets() {
@@ -49622,7 +49622,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-78a182cbe4ef4d14ff76f4b5c93ea63898e85360`;
+var localVersion = `0.0.0-4f33c8ce7cb41c429e16499e6172f6f215e1d234`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
