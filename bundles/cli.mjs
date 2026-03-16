@@ -49622,7 +49622,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-a2bf852754aa688cead849d3678cbf7f860c1f4c`;
+var localVersion = `0.0.0-5339bccb54784b00b391de47fc9b13e897949f26`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49950,7 +49950,17 @@ var SnapshotPublisher = class _SnapshotPublisher {
       await Promise.all(this.git.run(["ls-files"], { cwd: tmpRepoDir }).stdout.trim().split("\n").filter((filePath) => filePath !== "").map((filePath) => rm(join14(tmpRepoDir, filePath), { force: true })));
       cpSync(pkg.outputPath, tmpRepoDir, { recursive: true });
       this.git.run(["add", "-A"], { cwd: tmpRepoDir });
-      const containsChanges = this.git.runGraceful(["diff-index", "--quiet", "-I", "0\\.0\\.0-[a-f0-9]+", "HEAD", "--"], { cwd: tmpRepoDir }).status === 1;
+      const containsChanges = this.git.runGraceful([
+        "diff-index",
+        "--quiet",
+        "-I",
+        "0\\.0\\.0-[a-f0-9]+",
+        "HEAD",
+        "--",
+        ".",
+        ":(exclude)**/MODULE.bazel.lock",
+        ":(exclude)**/package-lock.json"
+      ], { cwd: tmpRepoDir }).status === 1;
       this.git.run([
         "commit",
         "--allow-empty",
