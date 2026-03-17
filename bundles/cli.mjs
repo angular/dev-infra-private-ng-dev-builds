@@ -49622,7 +49622,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-0c9cddc9853934bdf85834239f56ad0e83e61d8f`;
+var localVersion = `0.0.0-b55a8a5d502f2cae0ddd96896452aac4b87bee74`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49865,6 +49865,7 @@ import { existsSync as existsSync8, cpSync } from "fs";
 import { rm } from "fs/promises";
 import { join as join14 } from "path";
 import { tmpdir } from "os";
+var PATHS_TO_EXCLUDE = ["**/MODULE.bazel.lock", "**/package-lock.json", "**/pubspec.lock"];
 var SnapshotPublisher = class _SnapshotPublisher {
   constructor(flags, git, config2) {
     this.flags = flags;
@@ -49958,8 +49959,7 @@ var SnapshotPublisher = class _SnapshotPublisher {
         "HEAD",
         "--",
         ".",
-        ":(exclude)**/MODULE.bazel.lock",
-        ":(exclude)**/package-lock.json"
+        ...PATHS_TO_EXCLUDE.map((p) => `:(exclude)${p}`)
       ], { cwd: tmpRepoDir }).status === 1;
       this.git.run([
         "commit",
