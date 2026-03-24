@@ -48623,7 +48623,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-929d4f41b31d9a28786a98665fee143a31a7ed16`;
+var localVersion = `0.0.0-b9bca459f29f61177a829e69089730415c95ccde`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -48866,7 +48866,14 @@ import { existsSync as existsSync8, cpSync } from "fs";
 import { rm } from "fs/promises";
 import { join as join14 } from "path";
 import { tmpdir } from "os";
-var PATHS_TO_EXCLUDE = ["**/MODULE.bazel.lock", "**/package-lock.json", "**/pubspec.lock"];
+var PATHS_TO_EXCLUDE = [
+  "MODULE.bazel.lock",
+  "**/MODULE.bazel.lock",
+  "pnpm-lock.yaml",
+  "**/pnpm-lock.yaml",
+  "pubspec.lock",
+  "**/pubspec.lock"
+];
 var SnapshotPublisher = class _SnapshotPublisher {
   constructor(flags, git, config2) {
     this.flags = flags;
