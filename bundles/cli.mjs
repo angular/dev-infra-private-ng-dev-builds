@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-PZCO3UAP.mjs";
+} from "./chunk-GLEWX2LH.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -21393,12 +21393,12 @@ var require_extend = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/package.json
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/package.json
 var require_package = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/package.json"(exports2, module2) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/package.json"(exports2, module2) {
     module2.exports = {
       name: "gaxios",
-      version: "7.1.3",
+      version: "7.1.4",
       description: "A simple common HTTP client specifically for Google APIs and services.",
       main: "build/cjs/src/index.js",
       types: "build/cjs/src/index.d.ts",
@@ -21457,18 +21457,18 @@ var require_package = __commonJS({
         "@types/mocha": "^10.0.10",
         "@types/multiparty": "4.2.1",
         "@types/mv": "^2.1.0",
-        "@types/ncp": "^2.0.1",
-        "@types/node": "^22.0.0",
-        "@types/sinon": "^17.0.0",
-        "@types/tmp": "0.2.6",
+        "@types/ncp": "^2.0.8",
+        "@types/node": "^22.13.1",
+        "@types/sinon": "^17.0.3",
+        "@types/tmp": "^0.2.6",
         assert: "^2.0.0",
         browserify: "^17.0.0",
-        c8: "^10.0.0",
+        c8: "^10.1.3",
         cors: "^2.8.5",
         express: "^5.0.0",
-        gts: "^6.0.0",
+        gts: "^6.0.2",
         "is-docker": "^3.0.0",
-        jsdoc: "^4.0.0",
+        jsdoc: "^4.0.4",
         "jsdoc-fresh": "^5.0.0",
         "jsdoc-region-tag": "^4.0.0",
         karma: "^6.0.0",
@@ -21484,41 +21484,40 @@ var require_package = __commonJS({
         multiparty: "^4.2.1",
         mv: "^2.1.1",
         ncp: "^2.0.0",
-        nock: "^14.0.0-beta.13",
-        "null-loader": "^4.0.0",
+        nock: "^14.0.5",
+        "null-loader": "^4.0.1",
         "pack-n-play": "^4.0.0",
         puppeteer: "^24.0.0",
         sinon: "^21.0.0",
         "stream-browserify": "^3.0.0",
         tmp: "0.2.5",
         "ts-loader": "^9.5.2",
-        typescript: "^5.8.3",
-        webpack: "^5.35.0",
+        typescript: "5.8.3",
+        webpack: "^5.97.1",
         "webpack-cli": "^6.0.1"
       },
       dependencies: {
         extend: "^3.0.2",
         "https-proxy-agent": "^7.0.1",
-        "node-fetch": "^3.3.2",
-        rimraf: "^5.0.1"
+        "node-fetch": "^3.3.2"
       },
       homepage: "https://github.com/googleapis/google-cloud-node-core/tree/main/packages/gaxios"
     };
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/util.cjs
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/util.cjs
 var require_util = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/util.cjs"(exports2, module2) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/util.cjs"(exports2, module2) {
     "use strict";
     var pkg = require_package();
     module2.exports = { pkg };
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/common.js
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/common.js
 var require_common4 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/common.js"(exports2) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/common.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -21758,9 +21757,9 @@ var require_common4 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/retry.js
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/retry.js
 var require_retry3 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/retry.js"(exports2) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/retry.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getRetryConfig = getRetryConfig;
@@ -21863,9 +21862,9 @@ var require_retry3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js
 var require_interceptor = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js"(exports2) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GaxiosInterceptorManager = void 0;
@@ -21875,9 +21874,9 @@ var require_interceptor = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js
 var require_gaxios = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js"(exports2) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js"(exports2) {
     "use strict";
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
@@ -22349,9 +22348,9 @@ Content-Type: ${partContentType}\r
   }
 });
 
-// node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/index.js
+// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/index.js
 var require_src2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.3_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/index.js"(exports2) {
+  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/index.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -22385,1004 +22384,6 @@ var require_src2 = __commonJS({
       return common_js_1.GaxiosError;
     } });
     __exportStar(require_interceptor(), exports2);
-    exports2.instance = new gaxios_js_1.Gaxios();
-    async function request(opts) {
-      return exports2.instance.request(opts);
-    }
-  }
-});
-
-// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/package.json
-var require_package2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/package.json"(exports2, module2) {
-    module2.exports = {
-      name: "gaxios",
-      version: "7.1.4",
-      description: "A simple common HTTP client specifically for Google APIs and services.",
-      main: "build/cjs/src/index.js",
-      types: "build/cjs/src/index.d.ts",
-      files: [
-        "build/"
-      ],
-      exports: {
-        ".": {
-          import: {
-            types: "./build/esm/src/index.d.ts",
-            default: "./build/esm/src/index.js"
-          },
-          require: {
-            types: "./build/cjs/src/index.d.ts",
-            default: "./build/cjs/src/index.js"
-          }
-        }
-      },
-      scripts: {
-        lint: "gts check --no-inline-config",
-        test: "c8 mocha build/esm/test",
-        "presystem-test": "npm run compile",
-        "system-test": "mocha build/esm/system-test --timeout 80000",
-        compile: "tsc -b ./tsconfig.json ./tsconfig.cjs.json && node utils/enable-esm.mjs",
-        fix: "gts fix",
-        prepare: "npm run compile",
-        pretest: "npm run compile",
-        webpack: "webpack",
-        "prebrowser-test": "npm run compile",
-        "browser-test": "node build/browser-test/browser-test-runner.js",
-        docs: "jsdoc -c .jsdoc.js",
-        "docs-test": "linkinator docs",
-        "predocs-test": "npm run docs",
-        "samples-test": "cd samples/ && npm link ../ && npm test && cd ../",
-        prelint: "cd samples; npm link ../; npm install",
-        clean: "gts clean"
-      },
-      repository: {
-        type: "git",
-        directory: "packages/gaxios",
-        url: "https://github.com/googleapis/google-cloud-node-core.git"
-      },
-      keywords: [
-        "google"
-      ],
-      engines: {
-        node: ">=18"
-      },
-      author: "Google, LLC",
-      license: "Apache-2.0",
-      devDependencies: {
-        "@babel/plugin-proposal-private-methods": "^7.18.6",
-        "@types/cors": "^2.8.6",
-        "@types/express": "^5.0.0",
-        "@types/extend": "^3.0.1",
-        "@types/mocha": "^10.0.10",
-        "@types/multiparty": "4.2.1",
-        "@types/mv": "^2.1.0",
-        "@types/ncp": "^2.0.8",
-        "@types/node": "^22.13.1",
-        "@types/sinon": "^17.0.3",
-        "@types/tmp": "^0.2.6",
-        assert: "^2.0.0",
-        browserify: "^17.0.0",
-        c8: "^10.1.3",
-        cors: "^2.8.5",
-        express: "^5.0.0",
-        gts: "^6.0.2",
-        "is-docker": "^3.0.0",
-        jsdoc: "^4.0.4",
-        "jsdoc-fresh": "^5.0.0",
-        "jsdoc-region-tag": "^4.0.0",
-        karma: "^6.0.0",
-        "karma-chrome-launcher": "^3.0.0",
-        "karma-coverage": "^2.0.0",
-        "karma-firefox-launcher": "^2.0.0",
-        "karma-mocha": "^2.0.0",
-        "karma-remap-coverage": "^0.1.5",
-        "karma-sourcemap-loader": "^0.4.0",
-        "karma-webpack": "^5.0.1",
-        linkinator: "^6.1.2",
-        mocha: "^11.1.0",
-        multiparty: "^4.2.1",
-        mv: "^2.1.1",
-        ncp: "^2.0.0",
-        nock: "^14.0.5",
-        "null-loader": "^4.0.1",
-        "pack-n-play": "^4.0.0",
-        puppeteer: "^24.0.0",
-        sinon: "^21.0.0",
-        "stream-browserify": "^3.0.0",
-        tmp: "0.2.5",
-        "ts-loader": "^9.5.2",
-        typescript: "5.8.3",
-        webpack: "^5.97.1",
-        "webpack-cli": "^6.0.1"
-      },
-      dependencies: {
-        extend: "^3.0.2",
-        "https-proxy-agent": "^7.0.1",
-        "node-fetch": "^3.3.2"
-      },
-      homepage: "https://github.com/googleapis/google-cloud-node-core/tree/main/packages/gaxios"
-    };
-  }
-});
-
-// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/util.cjs
-var require_util2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/util.cjs"(exports2, module2) {
-    "use strict";
-    var pkg = require_package2();
-    module2.exports = { pkg };
-  }
-});
-
-// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/common.js
-var require_common5 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/common.js"(exports2) {
-    "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
-      return mod && mod.__esModule ? mod : { "default": mod };
-    };
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.GaxiosError = exports2.GAXIOS_ERROR_SYMBOL = void 0;
-    exports2.defaultErrorRedactor = defaultErrorRedactor;
-    var extend_1 = __importDefault(require_extend());
-    var util_cjs_1 = __importDefault(require_util2());
-    var pkg = util_cjs_1.default.pkg;
-    exports2.GAXIOS_ERROR_SYMBOL = Symbol.for(`${pkg.name}-gaxios-error`);
-    var GaxiosError = class _GaxiosError extends Error {
-      config;
-      response;
-      /**
-       * An error code.
-       * Can be a system error code, DOMException error name, or any error's 'code' property where it is a `string`.
-       *
-       * It is only a `number` when the cause is sourced from an API-level error (AIP-193).
-       *
-       * @see {@link https://nodejs.org/api/errors.html#errorcode error.code}
-       * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/DOMException#error_names DOMException#error_names}
-       * @see {@link https://google.aip.dev/193#http11json-representation AIP-193}
-       *
-       * @example
-       * 'ECONNRESET'
-       *
-       * @example
-       * 'TimeoutError'
-       *
-       * @example
-       * 500
-       */
-      code;
-      /**
-       * An HTTP Status code.
-       * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Response/status Response#status}
-       *
-       * @example
-       * 500
-       */
-      status;
-      /**
-       * @deprecated use {@link GaxiosError.cause} instead.
-       *
-       * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error/cause Error#cause}
-       *
-       * @privateRemarks
-       *
-       * We will want to remove this property later as the modern `cause` property is better suited
-       * for displaying and relaying nested errors. Keeping this here makes the resulting
-       * error log larger than it needs to be.
-       *
-       */
-      error;
-      /**
-       * Support `instanceof` operator for `GaxiosError` across builds/duplicated files.
-       *
-       * @see {@link GAXIOS_ERROR_SYMBOL}
-       * @see {@link GaxiosError[Symbol.hasInstance]}
-       * @see {@link https://github.com/microsoft/TypeScript/issues/13965#issuecomment-278570200}
-       * @see {@link https://stackoverflow.com/questions/46618852/require-and-instanceof}
-       * @see {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/@@hasInstance#reverting_to_default_instanceof_behavior}
-       */
-      [exports2.GAXIOS_ERROR_SYMBOL] = pkg.version;
-      /**
-       * Support `instanceof` operator for `GaxiosError` across builds/duplicated files.
-       *
-       * @see {@link GAXIOS_ERROR_SYMBOL}
-       * @see {@link GaxiosError[GAXIOS_ERROR_SYMBOL]}
-       */
-      static [Symbol.hasInstance](instance) {
-        if (instance && typeof instance === "object" && exports2.GAXIOS_ERROR_SYMBOL in instance && instance[exports2.GAXIOS_ERROR_SYMBOL] === pkg.version) {
-          return true;
-        }
-        return Function.prototype[Symbol.hasInstance].call(_GaxiosError, instance);
-      }
-      constructor(message, config2, response, cause) {
-        super(message, { cause });
-        this.config = config2;
-        this.response = response;
-        this.error = cause instanceof Error ? cause : void 0;
-        this.config = (0, extend_1.default)(true, {}, config2);
-        if (this.response) {
-          this.response.config = (0, extend_1.default)(true, {}, this.response.config);
-        }
-        if (this.response) {
-          try {
-            this.response.data = translateData(
-              this.config.responseType,
-              // workaround for `node-fetch`'s `.data` deprecation...
-              this.response?.bodyUsed ? this.response?.data : void 0
-            );
-          } catch {
-          }
-          this.status = this.response.status;
-        }
-        if (cause instanceof DOMException) {
-          this.code = cause.name;
-        } else if (cause && typeof cause === "object" && "code" in cause && (typeof cause.code === "string" || typeof cause.code === "number")) {
-          this.code = cause.code;
-        }
-      }
-      /**
-       * An AIP-193 conforming error extractor.
-       *
-       * @see {@link https://google.aip.dev/193#http11json-representation AIP-193}
-       *
-       * @internal
-       * @expiremental
-       *
-       * @param res the response object
-       * @returns the extracted error information
-       */
-      static extractAPIErrorFromResponse(res, defaultErrorMessage = "The request failed") {
-        let message = defaultErrorMessage;
-        if (typeof res.data === "string") {
-          message = res.data;
-        }
-        if (res.data && typeof res.data === "object" && "error" in res.data && res.data.error && !res.ok) {
-          if (typeof res.data.error === "string") {
-            return {
-              message: res.data.error,
-              code: res.status,
-              status: res.statusText
-            };
-          }
-          if (typeof res.data.error === "object") {
-            message = "message" in res.data.error && typeof res.data.error.message === "string" ? res.data.error.message : message;
-            const status = "status" in res.data.error && typeof res.data.error.status === "string" ? res.data.error.status : res.statusText;
-            const code = "code" in res.data.error && typeof res.data.error.code === "number" ? res.data.error.code : res.status;
-            if ("errors" in res.data.error && Array.isArray(res.data.error.errors)) {
-              const errorMessages = [];
-              for (const e of res.data.error.errors) {
-                if (typeof e === "object" && "message" in e && typeof e.message === "string") {
-                  errorMessages.push(e.message);
-                }
-              }
-              return Object.assign({
-                message: errorMessages.join("\n") || message,
-                code,
-                status
-              }, res.data.error);
-            }
-            return Object.assign({
-              message,
-              code,
-              status
-            }, res.data.error);
-          }
-        }
-        return {
-          message,
-          code: res.status,
-          status: res.statusText
-        };
-      }
-    };
-    exports2.GaxiosError = GaxiosError;
-    function translateData(responseType, data) {
-      switch (responseType) {
-        case "stream":
-          return data;
-        case "json":
-          return JSON.parse(JSON.stringify(data));
-        case "arraybuffer":
-          return JSON.parse(Buffer.from(data).toString("utf8"));
-        case "blob":
-          return JSON.parse(data.text());
-        default:
-          return data;
-      }
-    }
-    function defaultErrorRedactor(data) {
-      const REDACT = "<<REDACTED> - See `errorRedactor` option in `gaxios` for configuration>.";
-      function redactHeaders(headers) {
-        if (!headers)
-          return;
-        headers.forEach((_, key) => {
-          if (/^authentication$/i.test(key) || /^authorization$/i.test(key) || /secret/i.test(key))
-            headers.set(key, REDACT);
-        });
-      }
-      function redactString(obj, key) {
-        if (typeof obj === "object" && obj !== null && typeof obj[key] === "string") {
-          const text = obj[key];
-          if (/grant_type=/i.test(text) || /assertion=/i.test(text) || /secret/i.test(text)) {
-            obj[key] = REDACT;
-          }
-        }
-      }
-      function redactObject(obj) {
-        if (!obj || typeof obj !== "object") {
-          return;
-        } else if (obj instanceof FormData || obj instanceof URLSearchParams || // support `node-fetch` FormData/URLSearchParams
-        "forEach" in obj && "set" in obj) {
-          obj.forEach((_, key) => {
-            if (["grant_type", "assertion"].includes(key) || /secret/.test(key)) {
-              obj.set(key, REDACT);
-            }
-          });
-        } else {
-          if ("grant_type" in obj) {
-            obj["grant_type"] = REDACT;
-          }
-          if ("assertion" in obj) {
-            obj["assertion"] = REDACT;
-          }
-          if ("client_secret" in obj) {
-            obj["client_secret"] = REDACT;
-          }
-        }
-      }
-      if (data.config) {
-        redactHeaders(data.config.headers);
-        redactString(data.config, "data");
-        redactObject(data.config.data);
-        redactString(data.config, "body");
-        redactObject(data.config.body);
-        if (data.config.url.searchParams.has("token")) {
-          data.config.url.searchParams.set("token", REDACT);
-        }
-        if (data.config.url.searchParams.has("client_secret")) {
-          data.config.url.searchParams.set("client_secret", REDACT);
-        }
-      }
-      if (data.response) {
-        defaultErrorRedactor({ config: data.response.config });
-        redactHeaders(data.response.headers);
-        if (data.response.bodyUsed) {
-          redactString(data.response, "data");
-          redactObject(data.response.data);
-        }
-      }
-      return data;
-    }
-  }
-});
-
-// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/retry.js
-var require_retry4 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/retry.js"(exports2) {
-    "use strict";
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.getRetryConfig = getRetryConfig;
-    async function getRetryConfig(err) {
-      let config2 = getConfig2(err);
-      if (!err || !err.config || !config2 && !err.config.retry) {
-        return { shouldRetry: false };
-      }
-      config2 = config2 || {};
-      config2.currentRetryAttempt = config2.currentRetryAttempt || 0;
-      config2.retry = config2.retry === void 0 || config2.retry === null ? 3 : config2.retry;
-      config2.httpMethodsToRetry = config2.httpMethodsToRetry || [
-        "GET",
-        "HEAD",
-        "PUT",
-        "OPTIONS",
-        "DELETE"
-      ];
-      config2.noResponseRetries = config2.noResponseRetries === void 0 || config2.noResponseRetries === null ? 2 : config2.noResponseRetries;
-      config2.retryDelayMultiplier = config2.retryDelayMultiplier ? config2.retryDelayMultiplier : 2;
-      config2.timeOfFirstRequest = config2.timeOfFirstRequest ? config2.timeOfFirstRequest : Date.now();
-      config2.totalTimeout = config2.totalTimeout ? config2.totalTimeout : Number.MAX_SAFE_INTEGER;
-      config2.maxRetryDelay = config2.maxRetryDelay ? config2.maxRetryDelay : Number.MAX_SAFE_INTEGER;
-      const retryRanges = [
-        // https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
-        // 1xx - Retry (Informational, request still processing)
-        // 2xx - Do not retry (Success)
-        // 3xx - Do not retry (Redirect)
-        // 4xx - Do not retry (Client errors)
-        // 408 - Retry ("Request Timeout")
-        // 429 - Retry ("Too Many Requests")
-        // 5xx - Retry (Server errors)
-        [100, 199],
-        [408, 408],
-        [429, 429],
-        [500, 599]
-      ];
-      config2.statusCodesToRetry = config2.statusCodesToRetry || retryRanges;
-      err.config.retryConfig = config2;
-      const shouldRetryFn = config2.shouldRetry || shouldRetryRequest;
-      if (!await shouldRetryFn(err)) {
-        return { shouldRetry: false, config: err.config };
-      }
-      const delay = getNextRetryDelay(config2);
-      err.config.retryConfig.currentRetryAttempt += 1;
-      const backoff = config2.retryBackoff ? config2.retryBackoff(err, delay) : new Promise((resolve8) => {
-        setTimeout(resolve8, delay);
-      });
-      if (config2.onRetryAttempt) {
-        await config2.onRetryAttempt(err);
-      }
-      await backoff;
-      return { shouldRetry: true, config: err.config };
-    }
-    function shouldRetryRequest(err) {
-      const config2 = getConfig2(err);
-      if (err.config.signal?.aborted && err.code !== "TimeoutError" || err.code === "AbortError") {
-        return false;
-      }
-      if (!config2 || config2.retry === 0) {
-        return false;
-      }
-      if (!err.response && (config2.currentRetryAttempt || 0) >= config2.noResponseRetries) {
-        return false;
-      }
-      if (!config2.httpMethodsToRetry || !config2.httpMethodsToRetry.includes(err.config.method?.toUpperCase() || "GET")) {
-        return false;
-      }
-      if (err.response && err.response.status) {
-        let isInRange = false;
-        for (const [min, max] of config2.statusCodesToRetry) {
-          const status = err.response.status;
-          if (status >= min && status <= max) {
-            isInRange = true;
-            break;
-          }
-        }
-        if (!isInRange) {
-          return false;
-        }
-      }
-      config2.currentRetryAttempt = config2.currentRetryAttempt || 0;
-      if (config2.currentRetryAttempt >= config2.retry) {
-        return false;
-      }
-      return true;
-    }
-    function getConfig2(err) {
-      if (err && err.config && err.config.retryConfig) {
-        return err.config.retryConfig;
-      }
-      return;
-    }
-    function getNextRetryDelay(config2) {
-      const retryDelay = config2.currentRetryAttempt ? 0 : config2.retryDelay ?? 100;
-      const calculatedDelay = retryDelay + (Math.pow(config2.retryDelayMultiplier, config2.currentRetryAttempt) - 1) / 2 * 1e3;
-      const maxAllowableDelay = config2.totalTimeout - (Date.now() - config2.timeOfFirstRequest);
-      return Math.min(calculatedDelay, maxAllowableDelay, config2.maxRetryDelay);
-    }
-  }
-});
-
-// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js
-var require_interceptor2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/interceptor.js"(exports2) {
-    "use strict";
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.GaxiosInterceptorManager = void 0;
-    var GaxiosInterceptorManager = class extends Set {
-    };
-    exports2.GaxiosInterceptorManager = GaxiosInterceptorManager;
-  }
-});
-
-// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js
-var require_gaxios2 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/gaxios.js"(exports2) {
-    "use strict";
-    var __importDefault = exports2 && exports2.__importDefault || function(mod) {
-      return mod && mod.__esModule ? mod : { "default": mod };
-    };
-    var _a4;
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.Gaxios = void 0;
-    var extend_1 = __importDefault(require_extend());
-    var https_1 = __require("https");
-    var common_js_1 = require_common5();
-    var retry_js_1 = require_retry4();
-    var stream_1 = __require("stream");
-    var interceptor_js_1 = require_interceptor2();
-    var randomUUID3 = async () => globalThis.crypto?.randomUUID() || (await import("crypto")).randomUUID();
-    var HTTP_STATUS_NO_CONTENT = 204;
-    var Gaxios = class {
-      agentCache = /* @__PURE__ */ new Map();
-      /**
-       * Default HTTP options that will be used for every HTTP request.
-       */
-      defaults;
-      /**
-       * Interceptors
-       */
-      interceptors;
-      /**
-       * The Gaxios class is responsible for making HTTP requests.
-       * @param defaults The default set of options to be used for this instance.
-       */
-      constructor(defaults2) {
-        this.defaults = defaults2 || {};
-        this.interceptors = {
-          request: new interceptor_js_1.GaxiosInterceptorManager(),
-          response: new interceptor_js_1.GaxiosInterceptorManager()
-        };
-      }
-      /**
-       * A {@link fetch `fetch`} compliant API for {@link Gaxios}.
-       *
-       * @remarks
-       *
-       * This is useful as a drop-in replacement for `fetch` API usage.
-       *
-       * @example
-       *
-       * ```ts
-       * const gaxios = new Gaxios();
-       * const myFetch: typeof fetch = (...args) => gaxios.fetch(...args);
-       * await myFetch('https://example.com');
-       * ```
-       *
-       * @param args `fetch` API or `Gaxios#request` parameters
-       * @returns the {@link Response} with Gaxios-added properties
-       */
-      fetch(...args) {
-        const input = args[0];
-        const init = args[1];
-        let url3 = void 0;
-        const headers = new Headers();
-        if (typeof input === "string") {
-          url3 = new URL(input);
-        } else if (input instanceof URL) {
-          url3 = input;
-        } else if (input && input.url) {
-          url3 = new URL(input.url);
-        }
-        if (input && typeof input === "object" && "headers" in input) {
-          _a4.mergeHeaders(headers, input.headers);
-        }
-        if (init) {
-          _a4.mergeHeaders(headers, new Headers(init.headers));
-        }
-        if (typeof input === "object" && !(input instanceof URL)) {
-          return this.request({ ...init, ...input, headers, url: url3 });
-        } else {
-          return this.request({ ...init, headers, url: url3 });
-        }
-      }
-      /**
-       * Perform an HTTP request with the given options.
-       * @param opts Set of HTTP options that will be used for this HTTP request.
-       */
-      async request(opts = {}) {
-        let prepared = await this.#prepareRequest(opts);
-        prepared = await this.#applyRequestInterceptors(prepared);
-        return this.#applyResponseInterceptors(this._request(prepared));
-      }
-      async _defaultAdapter(config2) {
-        const fetchImpl = config2.fetchImplementation || this.defaults.fetchImplementation || await _a4.#getFetch();
-        const preparedOpts = { ...config2 };
-        delete preparedOpts.data;
-        const res = await fetchImpl(config2.url, preparedOpts);
-        const data = await this.getResponseData(config2, res);
-        if (!Object.getOwnPropertyDescriptor(res, "data")?.configurable) {
-          Object.defineProperties(res, {
-            data: {
-              configurable: true,
-              writable: true,
-              enumerable: true,
-              value: data
-            }
-          });
-        }
-        return Object.assign(res, { config: config2, data });
-      }
-      /**
-       * Internal, retryable version of the `request` method.
-       * @param opts Set of HTTP options that will be used for this HTTP request.
-       */
-      async _request(opts) {
-        try {
-          let translatedResponse;
-          if (opts.adapter) {
-            translatedResponse = await opts.adapter(opts, this._defaultAdapter.bind(this));
-          } else {
-            translatedResponse = await this._defaultAdapter(opts);
-          }
-          if (!opts.validateStatus(translatedResponse.status)) {
-            if (opts.responseType === "stream") {
-              const response = [];
-              for await (const chunk of translatedResponse.data) {
-                response.push(chunk);
-              }
-              translatedResponse.data = response.toString();
-            }
-            const errorInfo = common_js_1.GaxiosError.extractAPIErrorFromResponse(translatedResponse, `Request failed with status code ${translatedResponse.status}`);
-            throw new common_js_1.GaxiosError(errorInfo?.message, opts, translatedResponse, errorInfo);
-          }
-          return translatedResponse;
-        } catch (e) {
-          let err;
-          if (e instanceof common_js_1.GaxiosError) {
-            err = e;
-          } else if (e instanceof Error) {
-            err = new common_js_1.GaxiosError(e.message, opts, void 0, e);
-          } else {
-            err = new common_js_1.GaxiosError("Unexpected Gaxios Error", opts, void 0, e);
-          }
-          const { shouldRetry, config: config2 } = await (0, retry_js_1.getRetryConfig)(err);
-          if (shouldRetry && config2) {
-            err.config.retryConfig.currentRetryAttempt = config2.retryConfig.currentRetryAttempt;
-            opts.retryConfig = err.config?.retryConfig;
-            this.#appendTimeoutToSignal(opts);
-            return this._request(opts);
-          }
-          if (opts.errorRedactor) {
-            opts.errorRedactor(err);
-          }
-          throw err;
-        }
-      }
-      async getResponseData(opts, res) {
-        if (res.status === HTTP_STATUS_NO_CONTENT) {
-          return "";
-        }
-        if (opts.maxContentLength && res.headers.has("content-length") && opts.maxContentLength < Number.parseInt(res.headers?.get("content-length") || "")) {
-          throw new common_js_1.GaxiosError("Response's `Content-Length` is over the limit.", opts, Object.assign(res, { config: opts }));
-        }
-        switch (opts.responseType) {
-          case "stream":
-            return res.body;
-          case "json": {
-            const data = await res.text();
-            try {
-              return JSON.parse(data);
-            } catch {
-              return data;
-            }
-          }
-          case "arraybuffer":
-            return res.arrayBuffer();
-          case "blob":
-            return res.blob();
-          case "text":
-            return res.text();
-          default:
-            return this.getResponseDataFromContentType(res);
-        }
-      }
-      #urlMayUseProxy(url3, noProxy = []) {
-        const candidate = new URL(url3);
-        const noProxyList = [...noProxy];
-        const noProxyEnvList = (process.env.NO_PROXY ?? process.env.no_proxy)?.split(",") || [];
-        for (const rule of noProxyEnvList) {
-          noProxyList.push(rule.trim());
-        }
-        for (const rule of noProxyList) {
-          if (rule instanceof RegExp) {
-            if (rule.test(candidate.toString())) {
-              return false;
-            }
-          } else if (rule instanceof URL) {
-            if (rule.origin === candidate.origin) {
-              return false;
-            }
-          } else if (rule.startsWith("*.") || rule.startsWith(".")) {
-            const cleanedRule = rule.replace(/^\*\./, ".");
-            if (candidate.hostname.endsWith(cleanedRule)) {
-              return false;
-            }
-          } else if (rule === candidate.origin || rule === candidate.hostname || rule === candidate.href) {
-            return false;
-          }
-        }
-        return true;
-      }
-      /**
-       * Applies the request interceptors. The request interceptors are applied after the
-       * call to prepareRequest is completed.
-       *
-       * @param {GaxiosOptionsPrepared} options The current set of options.
-       *
-       * @returns {Promise<GaxiosOptionsPrepared>} Promise that resolves to the set of options or response after interceptors are applied.
-       */
-      async #applyRequestInterceptors(options) {
-        let promiseChain = Promise.resolve(options);
-        for (const interceptor of this.interceptors.request.values()) {
-          if (interceptor) {
-            promiseChain = promiseChain.then(interceptor.resolved, interceptor.rejected);
-          }
-        }
-        return promiseChain;
-      }
-      /**
-       * Applies the response interceptors. The response interceptors are applied after the
-       * call to request is made.
-       *
-       * @param {GaxiosOptionsPrepared} options The current set of options.
-       *
-       * @returns {Promise<GaxiosOptionsPrepared>} Promise that resolves to the set of options or response after interceptors are applied.
-       */
-      async #applyResponseInterceptors(response) {
-        let promiseChain = Promise.resolve(response);
-        for (const interceptor of this.interceptors.response.values()) {
-          if (interceptor) {
-            promiseChain = promiseChain.then(interceptor.resolved, interceptor.rejected);
-          }
-        }
-        return promiseChain;
-      }
-      /**
-       * Validates the options, merges them with defaults, and prepare request.
-       *
-       * @param options The original options passed from the client.
-       * @returns Prepared options, ready to make a request
-       */
-      async #prepareRequest(options) {
-        const preparedHeaders = new Headers(this.defaults.headers);
-        _a4.mergeHeaders(preparedHeaders, options.headers);
-        const opts = (0, extend_1.default)(true, {}, this.defaults, options);
-        if (!opts.url) {
-          throw new Error("URL is required.");
-        }
-        if (opts.baseURL) {
-          opts.url = new URL(opts.url, opts.baseURL);
-        }
-        opts.url = new URL(opts.url);
-        if (opts.params) {
-          if (opts.paramsSerializer) {
-            let additionalQueryParams = opts.paramsSerializer(opts.params);
-            if (additionalQueryParams.startsWith("?")) {
-              additionalQueryParams = additionalQueryParams.slice(1);
-            }
-            const prefix = opts.url.toString().includes("?") ? "&" : "?";
-            opts.url = opts.url + prefix + additionalQueryParams;
-          } else {
-            const url3 = opts.url instanceof URL ? opts.url : new URL(opts.url);
-            for (const [key, value] of new URLSearchParams(opts.params)) {
-              url3.searchParams.append(key, value);
-            }
-            opts.url = url3;
-          }
-        }
-        if (typeof options.maxContentLength === "number") {
-          opts.size = options.maxContentLength;
-        }
-        if (typeof options.maxRedirects === "number") {
-          opts.follow = options.maxRedirects;
-        }
-        const shouldDirectlyPassData = typeof opts.data === "string" || opts.data instanceof ArrayBuffer || opts.data instanceof Blob || // Node 18 does not have a global `File` object
-        globalThis.File && opts.data instanceof File || opts.data instanceof FormData || opts.data instanceof stream_1.Readable || opts.data instanceof ReadableStream || opts.data instanceof String || opts.data instanceof URLSearchParams || ArrayBuffer.isView(opts.data) || // `Buffer` (Node.js), `DataView`, `TypedArray`
-        /**
-         * @deprecated `node-fetch` or another third-party's request types
-         */
-        ["Blob", "File", "FormData"].includes(opts.data?.constructor?.name || "");
-        if (opts.multipart?.length) {
-          const boundary = await randomUUID3();
-          preparedHeaders.set("content-type", `multipart/related; boundary=${boundary}`);
-          opts.body = stream_1.Readable.from(this.getMultipartRequest(opts.multipart, boundary));
-        } else if (shouldDirectlyPassData) {
-          opts.body = opts.data;
-        } else if (typeof opts.data === "object") {
-          if (preparedHeaders.get("Content-Type") === "application/x-www-form-urlencoded") {
-            opts.body = opts.paramsSerializer ? opts.paramsSerializer(opts.data) : new URLSearchParams(opts.data);
-          } else {
-            if (!preparedHeaders.has("content-type")) {
-              preparedHeaders.set("content-type", "application/json");
-            }
-            opts.body = JSON.stringify(opts.data);
-          }
-        } else if (opts.data) {
-          opts.body = opts.data;
-        }
-        opts.validateStatus = opts.validateStatus || this.validateStatus;
-        opts.responseType = opts.responseType || "unknown";
-        if (!preparedHeaders.has("accept") && opts.responseType === "json") {
-          preparedHeaders.set("accept", "application/json");
-        }
-        const proxy = opts.proxy || process?.env?.HTTPS_PROXY || process?.env?.https_proxy || process?.env?.HTTP_PROXY || process?.env?.http_proxy;
-        if (opts.agent) {
-        } else if (proxy && this.#urlMayUseProxy(opts.url, opts.noProxy)) {
-          const HttpsProxyAgent = await _a4.#getProxyAgent();
-          if (this.agentCache.has(proxy)) {
-            opts.agent = this.agentCache.get(proxy);
-          } else {
-            opts.agent = new HttpsProxyAgent(proxy, {
-              cert: opts.cert,
-              key: opts.key
-            });
-            this.agentCache.set(proxy, opts.agent);
-          }
-        } else if (opts.cert && opts.key) {
-          if (this.agentCache.has(opts.key)) {
-            opts.agent = this.agentCache.get(opts.key);
-          } else {
-            opts.agent = new https_1.Agent({
-              cert: opts.cert,
-              key: opts.key
-            });
-            this.agentCache.set(opts.key, opts.agent);
-          }
-        }
-        if (typeof opts.errorRedactor !== "function" && opts.errorRedactor !== false) {
-          opts.errorRedactor = common_js_1.defaultErrorRedactor;
-        }
-        if (opts.body && !("duplex" in opts)) {
-          opts.duplex = "half";
-        }
-        this.#appendTimeoutToSignal(opts);
-        return Object.assign(opts, {
-          headers: preparedHeaders,
-          url: opts.url instanceof URL ? opts.url : new URL(opts.url)
-        });
-      }
-      #appendTimeoutToSignal(opts) {
-        if (opts.timeout) {
-          const timeoutSignal = AbortSignal.timeout(opts.timeout);
-          if (opts.signal && !opts.signal.aborted) {
-            opts.signal = AbortSignal.any([opts.signal, timeoutSignal]);
-          } else {
-            opts.signal = timeoutSignal;
-          }
-        }
-      }
-      /**
-       * By default, throw for any non-2xx status code
-       * @param status status code from the HTTP response
-       */
-      validateStatus(status) {
-        return status >= 200 && status < 300;
-      }
-      /**
-       * Attempts to parse a response by looking at the Content-Type header.
-       * @param {Response} response the HTTP response.
-       * @returns a promise that resolves to the response data.
-       */
-      async getResponseDataFromContentType(response) {
-        let contentType = response.headers.get("Content-Type");
-        if (contentType === null) {
-          return response.text();
-        }
-        contentType = contentType.toLowerCase();
-        if (contentType.includes("application/json")) {
-          let data = await response.text();
-          try {
-            data = JSON.parse(data);
-          } catch {
-          }
-          return data;
-        } else if (contentType.match(/^text\//)) {
-          return response.text();
-        } else {
-          return response.blob();
-        }
-      }
-      /**
-       * Creates an async generator that yields the pieces of a multipart/related request body.
-       * This implementation follows the spec: https://www.ietf.org/rfc/rfc2387.txt. However, recursive
-       * multipart/related requests are not currently supported.
-       *
-       * @param {GaxiosMultipartOptions[]} multipartOptions the pieces to turn into a multipart/related body.
-       * @param {string} boundary the boundary string to be placed between each part.
-       */
-      async *getMultipartRequest(multipartOptions, boundary) {
-        const finale = `--${boundary}--`;
-        for (const currentPart of multipartOptions) {
-          const partContentType = currentPart.headers.get("Content-Type") || "application/octet-stream";
-          const preamble = `--${boundary}\r
-Content-Type: ${partContentType}\r
-\r
-`;
-          yield preamble;
-          if (typeof currentPart.content === "string") {
-            yield currentPart.content;
-          } else {
-            yield* currentPart.content;
-          }
-          yield "\r\n";
-        }
-        yield finale;
-      }
-      /**
-       * A cache for the lazily-loaded proxy agent.
-       *
-       * Should use {@link Gaxios[#getProxyAgent]} to retrieve.
-       */
-      // using `import` to dynamically import the types here
-      static #proxyAgent;
-      /**
-       * A cache for the lazily-loaded fetch library.
-       *
-       * Should use {@link Gaxios[#getFetch]} to retrieve.
-       */
-      //
-      static #fetch;
-      /**
-       * Imports, caches, and returns a proxy agent - if not already imported
-       *
-       * @returns A proxy agent
-       */
-      static async #getProxyAgent() {
-        this.#proxyAgent ||= (await import("./dist-LZZCTTKZ.mjs")).HttpsProxyAgent;
-        return this.#proxyAgent;
-      }
-      static async #getFetch() {
-        const hasWindow = typeof window !== "undefined" && !!window;
-        this.#fetch ||= hasWindow ? window.fetch : (await import("./src-BVCFFT3T.mjs")).default;
-        return this.#fetch;
-      }
-      /**
-       * Merges headers.
-       * If the base headers do not exist a new `Headers` object will be returned.
-       *
-       * @remarks
-       *
-       * Using this utility can be helpful when the headers are not known to exist:
-       * - if they exist as `Headers`, that instance will be used
-       *   - it improves performance and allows users to use their existing references to their `Headers`
-       * - if they exist in another form (`HeadersInit`), they will be used to create a new `Headers` object
-       * - if the base headers do not exist a new `Headers` object will be created
-       *
-       * @param base headers to append/overwrite to
-       * @param append headers to append/overwrite with
-       * @returns the base headers instance with merged `Headers`
-       */
-      static mergeHeaders(base, ...append) {
-        base = base instanceof Headers ? base : new Headers(base);
-        for (const headers of append) {
-          const add = headers instanceof Headers ? headers : new Headers(headers);
-          add.forEach((value, key) => {
-            key === "set-cookie" ? base.append(key, value) : base.set(key, value);
-          });
-        }
-        return base;
-      }
-    };
-    exports2.Gaxios = Gaxios;
-    _a4 = Gaxios;
-  }
-});
-
-// node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/index.js
-var require_src3 = __commonJS({
-  "node_modules/.aspect_rules_js/gaxios@7.1.4_supports-color@10.2.2/node_modules/gaxios/build/cjs/src/index.js"(exports2) {
-    "use strict";
-    var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      var desc = Object.getOwnPropertyDescriptor(m, k);
-      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-        desc = { enumerable: true, get: function() {
-          return m[k];
-        } };
-      }
-      Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
-      for (var p in m)
-        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports3, p))
-          __createBinding(exports3, m, p);
-    };
-    Object.defineProperty(exports2, "__esModule", { value: true });
-    exports2.instance = exports2.Gaxios = exports2.GaxiosError = void 0;
-    exports2.request = request;
-    var gaxios_js_1 = require_gaxios2();
-    Object.defineProperty(exports2, "Gaxios", { enumerable: true, get: function() {
-      return gaxios_js_1.Gaxios;
-    } });
-    var common_js_1 = require_common5();
-    Object.defineProperty(exports2, "GaxiosError", { enumerable: true, get: function() {
-      return common_js_1.GaxiosError;
-    } });
-    __exportStar(require_interceptor2(), exports2);
     exports2.instance = new gaxios_js_1.Gaxios();
     async function request(opts) {
       return exports2.instance.request(opts);
@@ -25694,7 +24695,7 @@ var require_logging_utils = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js
-var require_src4 = __commonJS({
+var require_src3 = __commonJS({
   "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
@@ -25723,7 +24724,7 @@ var require_src4 = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color@10.2.2/node_modules/gcp-metadata/build/src/index.js
-var require_src5 = __commonJS({
+var require_src4 = __commonJS({
   "node_modules/.aspect_rules_js/gcp-metadata@8.1.2_supports-color@10.2.2/node_modules/gcp-metadata/build/src/index.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
@@ -25786,10 +24787,10 @@ var require_src5 = __commonJS({
     exports2.getGCPResidency = getGCPResidency;
     exports2.setGCPResidency = setGCPResidency;
     exports2.requestTimeout = requestTimeout;
-    var gaxios_1 = require_src3();
+    var gaxios_1 = require_src2();
     var jsonBigint = require_json_bigint();
     var gcp_residency_1 = require_gcp_residency();
-    var logger = __importStar(require_src4());
+    var logger = __importStar(require_src3());
     exports2.BASE_PATH = "/computeMetadata/v1";
     exports2.HOST_ADDRESS = "http://169.254.169.254";
     exports2.SECONDARY_HOST_ADDRESS = "http://metadata.google.internal.";
@@ -26089,9 +25090,9 @@ var require_base64_js = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js
 var require_shared = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/shared.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.fromArrayBufferToHex = fromArrayBufferToHex;
@@ -26104,9 +25105,9 @@ var require_shared = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js
 var require_crypto = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/browser/crypto.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BrowserCrypto = void 0;
@@ -26200,9 +25201,9 @@ var require_crypto = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js
 var require_crypto2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/node/crypto.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.NodeCrypto = void 0;
@@ -26269,9 +25270,9 @@ var require_crypto2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js
 var require_crypto3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/crypto/crypto.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -26533,9 +25534,9 @@ var require_ecdsa_sig_formatter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/util.js
-var require_util3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/util.js"(exports2) {
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/util.js
+var require_util2 = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/util.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.LRUCache = void 0;
@@ -26648,12 +25649,12 @@ var require_util3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/package.json
-var require_package3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/package.json"(exports2, module2) {
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/package.json
+var require_package2 = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/package.json"(exports2, module2) {
     module2.exports = {
       name: "google-auth-library",
-      version: "10.6.1",
+      version: "10.6.2",
       author: "Google Inc.",
       description: "Google APIs Authentication Client Library for Node.js",
       engines: {
@@ -26676,7 +25677,7 @@ var require_package3 = __commonJS({
       dependencies: {
         "base64-js": "^1.3.0",
         "ecdsa-sig-formatter": "^1.0.11",
-        gaxios: "7.1.3",
+        gaxios: "^7.1.4",
         "gcp-metadata": "8.1.2",
         "google-logging-utils": "1.1.3",
         jws: "^4.0.0"
@@ -26746,13 +25747,13 @@ var require_package3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/shared.cjs
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/shared.cjs
 var require_shared2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/shared.cjs"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.USER_AGENT = exports2.PRODUCT_NAME = exports2.pkg = void 0;
-    var pkg = require_package3();
+    var pkg = require_package2();
     exports2.pkg = pkg;
     var PRODUCT_NAME = "google-api-nodejs-client";
     exports2.PRODUCT_NAME = PRODUCT_NAME;
@@ -26761,16 +25762,16 @@ var require_shared2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js
 var require_authclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/authclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.AuthClient = exports2.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = exports2.DEFAULT_UNIVERSE = void 0;
     var events_1 = __require("events");
     var gaxios_1 = require_src2();
-    var util_1 = require_util3();
-    var google_logging_utils_1 = require_src4();
+    var util_1 = require_util2();
+    var google_logging_utils_1 = require_src3();
     var shared_cjs_1 = require_shared2();
     exports2.DEFAULT_UNIVERSE = "googleapis.com";
     exports2.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = 5 * 60 * 1e3;
@@ -26996,9 +25997,9 @@ var require_authclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js
 var require_loginticket = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/loginticket.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.LoginTicket = void 0;
@@ -27048,9 +26049,9 @@ var require_loginticket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js
 var require_oauth2client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/oauth2client.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.OAuth2Client = exports2.ClientAuthentication = exports2.CertificateFormat = exports2.CodeChallengeMethod = void 0;
@@ -27058,7 +26059,7 @@ var require_oauth2client = __commonJS({
     var querystring = __require("querystring");
     var stream = __require("stream");
     var formatEcdsa = require_ecdsa_sig_formatter();
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     var crypto_1 = require_crypto3();
     var authclient_1 = require_authclient();
     var loginticket_1 = require_loginticket();
@@ -27729,14 +26730,14 @@ var require_oauth2client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js
 var require_computeclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/computeclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Compute = void 0;
     var gaxios_1 = require_src2();
-    var gcpMetadata = require_src5();
+    var gcpMetadata = require_src4();
     var oauth2client_1 = require_oauth2client();
     var Compute = class extends oauth2client_1.OAuth2Client {
       serviceAccountEmail;
@@ -27821,9 +26822,9 @@ var require_computeclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js
 var require_idtokenclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/idtokenclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IdTokenClient = void 0;
@@ -27867,15 +26868,15 @@ var require_idtokenclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js
 var require_envDetect = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/envDetect.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GCPEnv = void 0;
     exports2.clear = clear;
     exports2.getEnv = getEnv2;
-    var gcpMetadata = require_src5();
+    var gcpMetadata = require_src4();
     var GCPEnv;
     (function(GCPEnv2) {
       GCPEnv2["APP_ENGINE"] = "APP_ENGINE";
@@ -28487,9 +27488,9 @@ var require_jws = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/jwsSign.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/jwsSign.js
 var require_jwsSign = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/jwsSign.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/jwsSign.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.buildPayloadForJwsSign = buildPayloadForJwsSign;
@@ -28521,9 +27522,9 @@ var require_jwsSign = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/getToken.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/getToken.js
 var require_getToken = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/getToken.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/getToken.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getToken = getToken;
@@ -28565,9 +27566,9 @@ var require_getToken = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/errorWithCode.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/errorWithCode.js
 var require_errorWithCode = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/errorWithCode.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/errorWithCode.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ErrorWithCode = void 0;
@@ -28582,9 +27583,9 @@ var require_errorWithCode = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/getCredentials.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/getCredentials.js
 var require_getCredentials = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/getCredentials.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/getCredentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getCredentials = getCredentials;
@@ -28683,9 +27684,9 @@ var require_getCredentials = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/tokenHandler.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/tokenHandler.js
 var require_tokenHandler = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/tokenHandler.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/tokenHandler.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.TokenHandler = void 0;
@@ -28774,9 +27775,9 @@ var require_tokenHandler = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/revokeToken.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/revokeToken.js
 var require_revokeToken = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/revokeToken.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/revokeToken.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.revokeToken = revokeToken;
@@ -28792,9 +27793,9 @@ var require_revokeToken = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/googleToken.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/googleToken.js
 var require_googleToken = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/googleToken.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/gtoken/googleToken.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleToken = void 0;
@@ -28898,14 +27899,14 @@ var require_googleToken = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js
 var require_jwtaccess = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/jwtaccess.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.JWTAccess = void 0;
     var jws = require_jws();
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     var DEFAULT_HEADER = {
       alg: "RS256",
       typ: "JWT"
@@ -29068,9 +28069,9 @@ var require_jwtaccess = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js
 var require_jwtclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/jwtclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.JWT = void 0;
@@ -29340,9 +28341,9 @@ var require_jwtclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js
 var require_refreshclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/refreshclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.UserRefreshClient = exports2.USER_REFRESH_ACCOUNT_TYPE = void 0;
@@ -29468,15 +28469,15 @@ var require_refreshclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js
 var require_impersonated = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/impersonated.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Impersonated = exports2.IMPERSONATED_ACCOUNT_TYPE = void 0;
     var oauth2client_1 = require_oauth2client();
     var gaxios_1 = require_src2();
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     exports2.IMPERSONATED_ACCOUNT_TYPE = "impersonated_service_account";
     var Impersonated = class _Impersonated extends oauth2client_1.OAuth2Client {
       sourceClient;
@@ -29647,9 +28648,9 @@ var require_impersonated = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js
 var require_oauth2common = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/oauth2common.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.OAuthClientAuthHandler = void 0;
@@ -29795,16 +28796,16 @@ var require_oauth2common = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js
 var require_stscredentials = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/stscredentials.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.StsCredentials = void 0;
     var gaxios_1 = require_src2();
     var authclient_1 = require_authclient();
     var oauth2common_1 = require_oauth2common();
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     var StsCredentials = class _StsCredentials extends oauth2common_1.OAuthClientAuthHandler {
       #tokenExchangeEndpoint;
       /**
@@ -29883,9 +28884,9 @@ var require_stscredentials = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js
 var require_baseexternalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/baseexternalclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.BaseExternalAccountClient = exports2.CLOUD_RESOURCE_MANAGER = exports2.EXTERNAL_ACCOUNT_TYPE = exports2.EXPIRATION_TIME_OFFSET = void 0;
@@ -29893,7 +28894,7 @@ var require_baseexternalclient = __commonJS({
     var stream = __require("stream");
     var authclient_1 = require_authclient();
     var sts = require_stscredentials();
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     var shared_cjs_1 = require_shared2();
     var STS_GRANT_TYPE = "urn:ietf:params:oauth:grant-type:token-exchange";
     var STS_REQUEST_TOKEN_TYPE = "urn:ietf:params:oauth:token-type:access_token";
@@ -30262,9 +29263,9 @@ var require_baseexternalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js
 var require_filesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/filesubjecttokensupplier.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.FileSubjectTokenSupplier = void 0;
@@ -30327,9 +29328,9 @@ var require_filesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js
 var require_urlsubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/urlsubjecttokensupplier.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.UrlSubjectTokenSupplier = void 0;
@@ -30385,13 +29386,13 @@ var require_urlsubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js
 var require_certificatesubjecttokensupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/certificatesubjecttokensupplier.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.CertificateSubjectTokenSupplier = exports2.InvalidConfigurationError = exports2.CertificateSourceUnavailableError = exports2.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     var fs7 = __require("fs");
     var crypto_1 = __require("crypto");
     var https = __require("https");
@@ -30569,14 +29570,14 @@ var require_certificatesubjecttokensupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js
 var require_identitypoolclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/identitypoolclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IdentityPoolClient = void 0;
     var baseexternalclient_1 = require_baseexternalclient();
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     var filesubjecttokensupplier_1 = require_filesubjecttokensupplier();
     var urlsubjecttokensupplier_1 = require_urlsubjecttokensupplier();
     var certificatesubjecttokensupplier_1 = require_certificatesubjecttokensupplier();
@@ -30681,9 +29682,9 @@ var require_identitypoolclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js
 var require_awsrequestsigner = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/awsrequestsigner.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.AwsRequestSigner = void 0;
@@ -30831,9 +29832,9 @@ ${credentialScope}
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js
 var require_defaultawssecuritycredentialssupplier = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/defaultawssecuritycredentialssupplier.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.DefaultAwsSecurityCredentialsSupplier = void 0;
@@ -30986,16 +29987,16 @@ var require_defaultawssecuritycredentialssupplier = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js
 var require_awsclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/awsclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.AwsClient = void 0;
     var awsrequestsigner_1 = require_awsrequestsigner();
     var baseexternalclient_1 = require_baseexternalclient();
     var defaultawssecuritycredentialssupplier_1 = require_defaultawssecuritycredentialssupplier();
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     var gaxios_1 = require_src2();
     var AwsClient = class _AwsClient extends baseexternalclient_1.BaseExternalAccountClient {
       environmentId;
@@ -31100,9 +30101,9 @@ var require_awsclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js
 var require_executable_response = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/executable-response.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.InvalidSubjectTokenError = exports2.InvalidMessageFieldError = exports2.InvalidCodeFieldError = exports2.InvalidTokenTypeFieldError = exports2.InvalidExpirationTimeFieldError = exports2.InvalidSuccessFieldError = exports2.InvalidVersionFieldError = exports2.ExecutableResponseError = exports2.ExecutableResponse = void 0;
@@ -31231,9 +30232,9 @@ var require_executable_response = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js
 var require_pluggable_auth_handler = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-handler.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.PluggableAuthHandler = exports2.ExecutableError = void 0;
@@ -31372,9 +30373,9 @@ var require_pluggable_auth_handler = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js
 var require_pluggable_auth_client = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/pluggable-auth-client.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.PluggableAuthClient = exports2.ExecutableError = void 0;
@@ -31499,9 +30500,9 @@ var require_pluggable_auth_client = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js
 var require_externalclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/externalclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ExternalAccountClient = void 0;
@@ -31548,9 +30549,9 @@ var require_externalclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js
 var require_externalAccountAuthorizedUserClient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/externalAccountAuthorizedUserClient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.ExternalAccountAuthorizedUserClient = exports2.EXTERNAL_ACCOUNT_AUTHORIZED_USER_TYPE = void 0;
@@ -31735,16 +30736,16 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js
 var require_googleauth = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/googleauth.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.GoogleAuth = exports2.GoogleAuthExceptionMessages = void 0;
     var child_process_1 = __require("child_process");
     var fs7 = __require("fs");
     var gaxios_1 = require_src2();
-    var gcpMetadata = require_src5();
+    var gcpMetadata = require_src4();
     var os2 = __require("os");
     var path9 = __require("path");
     var crypto_1 = require_crypto3();
@@ -31758,7 +30759,7 @@ var require_googleauth = __commonJS({
     var baseexternalclient_1 = require_baseexternalclient();
     var authclient_1 = require_authclient();
     var externalAccountAuthorizedUserClient_1 = require_externalAccountAuthorizedUserClient();
-    var util_1 = require_util3();
+    var util_1 = require_util2();
     exports2.GoogleAuthExceptionMessages = {
       API_KEY_WITH_CREDENTIALS: "API Keys and Credentials are mutually exclusive authentication methods and cannot be used together.",
       NO_PROJECT_ID_FOUND: "Unable to detect a Project Id in the current environment. \nTo learn more about authentication and Google APIs, visit: \nhttps://cloud.google.com/docs/authentication/getting-started",
@@ -32525,9 +31526,9 @@ var require_googleauth = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/iam.js
 var require_iam = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/iam.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.IAMAuth = void 0;
@@ -32561,9 +31562,9 @@ var require_iam = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js
 var require_downscopedclient = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/downscopedclient.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.DownscopedClient = exports2.EXPIRATION_TIME_OFFSET = exports2.MAX_ACCESS_BOUNDARY_RULES_COUNT = void 0;
@@ -32746,9 +31747,9 @@ var require_downscopedclient = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js
 var require_passthrough = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports2) {
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/auth/passthrough.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.PassThroughClient = void 0;
@@ -32791,9 +31792,9 @@ var require_passthrough = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/index.js
-var require_src6 = __commonJS({
-  "node_modules/.aspect_rules_js/google-auth-library@10.6.1_supports-color@10.2.2/node_modules/google-auth-library/build/src/index.js"(exports2) {
+// node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/index.js
+var require_src5 = __commonJS({
+  "node_modules/.aspect_rules_js/google-auth-library@10.6.2_supports-color@10.2.2/node_modules/google-auth-library/build/src/index.js"(exports2) {
     "use strict";
     var __createBinding = exports2 && exports2.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -32821,7 +31822,7 @@ var require_src6 = __commonJS({
     Object.defineProperty(exports2, "GoogleAuth", { enumerable: true, get: function() {
       return googleauth_1.GoogleAuth;
     } });
-    exports2.gcpMetadata = require_src5();
+    exports2.gcpMetadata = require_src4();
     exports2.gaxios = require_src2();
     var authclient_1 = require_authclient();
     Object.defineProperty(exports2, "AuthClient", { enumerable: true, get: function() {
@@ -32924,9 +31925,9 @@ var require_src6 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/constants.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/constants.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/constants.js"(exports2, module2) {
     "use strict";
     var BINARY_TYPES = ["nodebuffer", "arraybuffer", "fragments"];
     var hasBlob = typeof Blob !== "undefined";
@@ -33059,9 +32060,9 @@ var require_node_gyp_build = __commonJS({
     }
     function parseTags(file2) {
       var arr = file2.split(".");
-      var extension = arr.pop();
+      var extension2 = arr.pop();
       var tags = { file: file2, specificity: 0 };
-      if (extension !== "node")
+      if (extension2 !== "node")
         return;
       for (var i = 0; i < arr.length; i++) {
         var tag = arr[i];
@@ -33182,9 +32183,9 @@ var require_bufferutil = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/buffer-util.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/buffer-util.js
 var require_buffer_util = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/buffer-util.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/buffer-util.js"(exports2, module2) {
     "use strict";
     var { EMPTY_BUFFER } = require_constants4();
     var FastBuffer = Buffer[Symbol.species];
@@ -33264,9 +32265,9 @@ var require_buffer_util = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/limiter.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/limiter.js
 var require_limiter = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/limiter.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/limiter.js"(exports2, module2) {
     "use strict";
     var kDone = Symbol("kDone");
     var kRun = Symbol("kRun");
@@ -33315,9 +32316,9 @@ var require_limiter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/permessage-deflate.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports2, module2) {
     "use strict";
     var zlib = __require("zlib");
     var bufferUtil = require_buffer_util();
@@ -33331,7 +32332,7 @@ var require_permessage_deflate = __commonJS({
     var kBuffers = Symbol("buffers");
     var kError = Symbol("error");
     var zlibLimiter;
-    var PerMessageDeflate = class {
+    var PerMessageDeflate2 = class {
       /**
        * Creates a PerMessageDeflate instance.
        *
@@ -33342,6 +32343,9 @@ var require_permessage_deflate = __commonJS({
        *     acknowledge disabling of client context takeover
        * @param {Number} [options.concurrencyLimit=10] The number of concurrent
        *     calls to zlib
+       * @param {Boolean} [options.isServer=false] Create the instance in either
+       *     server or client mode
+       * @param {Number} [options.maxPayload=0] The maximum allowed message length
        * @param {(Boolean|Number)} [options.serverMaxWindowBits] Request/confirm the
        *     use of a custom server window size
        * @param {Boolean} [options.serverNoContextTakeover=false] Request/accept
@@ -33352,15 +32356,12 @@ var require_permessage_deflate = __commonJS({
        *     deflate
        * @param {Object} [options.zlibInflateOptions] Options to pass to zlib on
        *     inflate
-       * @param {Boolean} [isServer=false] Create the instance in either server or
-       *     client mode
-       * @param {Number} [maxPayload=0] The maximum allowed message length
        */
-      constructor(options, isServer, maxPayload) {
-        this._maxPayload = maxPayload | 0;
+      constructor(options) {
         this._options = options || {};
         this._threshold = this._options.threshold !== void 0 ? this._options.threshold : 1024;
-        this._isServer = !!isServer;
+        this._maxPayload = this._options.maxPayload | 0;
+        this._isServer = !!this._options.isServer;
         this._deflate = null;
         this._inflate = null;
         this.params = null;
@@ -33670,7 +32671,7 @@ var require_permessage_deflate = __commonJS({
         });
       }
     };
-    module2.exports = PerMessageDeflate;
+    module2.exports = PerMessageDeflate2;
     function deflateOnData(chunk) {
       this[kBuffers].push(chunk);
       this[kTotalLength] += chunk.length;
@@ -33748,9 +32749,9 @@ var require_utf_8_validate = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/validation.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/validation.js
 var require_validation = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/validation.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/validation.js"(exports2, module2) {
     "use strict";
     var { isUtf8 } = __require("buffer");
     var { hasBlob } = require_constants4();
@@ -33949,12 +32950,12 @@ var require_validation = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/receiver.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/receiver.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/receiver.js"(exports2, module2) {
     "use strict";
     var { Writable } = __require("stream");
-    var PerMessageDeflate = require_permessage_deflate();
+    var PerMessageDeflate2 = require_permessage_deflate();
     var {
       BINARY_TYPES,
       EMPTY_BUFFER,
@@ -34124,7 +33125,7 @@ var require_receiver = __commonJS({
           return;
         }
         const compressed = (buf[0] & 64) === 64;
-        if (compressed && !this._extensions[PerMessageDeflate.extensionName]) {
+        if (compressed && !this._extensions[PerMessageDeflate2.extensionName]) {
           const error48 = this.createError(
             RangeError,
             "RSV1 must be clear",
@@ -34374,7 +33375,7 @@ var require_receiver = __commonJS({
        * @private
        */
       decompress(data, cb) {
-        const perMessageDeflate = this._extensions[PerMessageDeflate.extensionName];
+        const perMessageDeflate = this._extensions[PerMessageDeflate2.extensionName];
         perMessageDeflate.decompress(data, this._fin, (err, buf) => {
           if (err)
             return cb(err);
@@ -34552,13 +33553,13 @@ var require_receiver = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/sender.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/sender.js
 var require_sender = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/sender.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/sender.js"(exports2, module2) {
     "use strict";
     var { Duplex } = __require("stream");
     var { randomFillSync } = __require("crypto");
-    var PerMessageDeflate = require_permessage_deflate();
+    var PerMessageDeflate2 = require_permessage_deflate();
     var { EMPTY_BUFFER, kWebSocket, NOOP } = require_constants4();
     var { isBlob, isValidStatusCode } = require_validation();
     var { mask: applyMask, toBuffer } = require_buffer_util();
@@ -34845,7 +33846,7 @@ var require_sender = __commonJS({
        * @public
        */
       send(data, options, cb) {
-        const perMessageDeflate = this._extensions[PerMessageDeflate.extensionName];
+        const perMessageDeflate = this._extensions[PerMessageDeflate2.extensionName];
         let opcode = options.binary ? 2 : 1;
         let rsv1 = options.compress;
         let byteLength;
@@ -34970,7 +33971,7 @@ var require_sender = __commonJS({
           this.sendFrame(_Sender.frame(data, options), cb);
           return;
         }
-        const perMessageDeflate = this._extensions[PerMessageDeflate.extensionName];
+        const perMessageDeflate = this._extensions[PerMessageDeflate2.extensionName];
         this._bufferedBytes += options[kByteLength];
         this._state = DEFLATING;
         perMessageDeflate.compress(data, options.fin, (_, buf) => {
@@ -35046,9 +34047,9 @@ var require_sender = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/event-target.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/event-target.js
 var require_event_target = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/event-target.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/event-target.js"(exports2, module2) {
     "use strict";
     var { kForOnEventAttribute, kListener } = require_constants4();
     var kCode = Symbol("kCode");
@@ -35275,9 +34276,9 @@ var require_event_target = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/extension.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/extension.js
 var require_extension = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/extension.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/extension.js"(exports2, module2) {
     "use strict";
     var { tokenChars } = require_validation();
     function push(dest, name, elem) {
@@ -35425,12 +34426,12 @@ var require_extension = __commonJS({
       return offers;
     }
     function format2(extensions) {
-      return Object.keys(extensions).map((extension) => {
-        let configurations = extensions[extension];
+      return Object.keys(extensions).map((extension2) => {
+        let configurations = extensions[extension2];
         if (!Array.isArray(configurations))
           configurations = [configurations];
         return configurations.map((params2) => {
-          return [extension].concat(
+          return [extension2].concat(
             Object.keys(params2).map((k) => {
               let values = params2[k];
               if (!Array.isArray(values))
@@ -35445,9 +34446,9 @@ var require_extension = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/websocket.js"(exports2, module2) {
     "use strict";
     var EventEmitter = __require("events");
     var https = __require("https");
@@ -35457,7 +34458,7 @@ var require_websocket = __commonJS({
     var { randomBytes, createHash } = __require("crypto");
     var { Duplex, Readable: Readable2 } = __require("stream");
     var { URL: URL2 } = __require("url");
-    var PerMessageDeflate = require_permessage_deflate();
+    var PerMessageDeflate2 = require_permessage_deflate();
     var Receiver2 = require_receiver();
     var Sender2 = require_sender();
     var { isBlob } = require_validation();
@@ -35671,8 +34672,8 @@ var require_websocket = __commonJS({
           this.emit("close", this._closeCode, this._closeMessage);
           return;
         }
-        if (this._extensions[PerMessageDeflate.extensionName]) {
-          this._extensions[PerMessageDeflate.extensionName].cleanup();
+        if (this._extensions[PerMessageDeflate2.extensionName]) {
+          this._extensions[PerMessageDeflate2.extensionName].cleanup();
         }
         this._receiver.removeAllListeners();
         this._readyState = _WebSocket.CLOSED;
@@ -35842,7 +34843,7 @@ var require_websocket = __commonJS({
           fin: true,
           ...options
         };
-        if (!this._extensions[PerMessageDeflate.extensionName]) {
+        if (!this._extensions[PerMessageDeflate2.extensionName]) {
           opts.compress = false;
         }
         this._sender.send(data || EMPTY_BUFFER, opts, cb);
@@ -35971,7 +34972,7 @@ var require_websocket = __commonJS({
       } else {
         try {
           parsedUrl = new URL2(address);
-        } catch (e) {
+        } catch {
           throw new SyntaxError(`Invalid URL: ${address}`);
         }
       }
@@ -36019,13 +35020,13 @@ var require_websocket = __commonJS({
       opts.path = parsedUrl.pathname + parsedUrl.search;
       opts.timeout = opts.handshakeTimeout;
       if (opts.perMessageDeflate) {
-        perMessageDeflate = new PerMessageDeflate(
-          opts.perMessageDeflate !== true ? opts.perMessageDeflate : {},
-          false,
-          opts.maxPayload
-        );
+        perMessageDeflate = new PerMessageDeflate2({
+          ...opts.perMessageDeflate,
+          isServer: false,
+          maxPayload: opts.maxPayload
+        });
         opts.headers["Sec-WebSocket-Extensions"] = format2({
-          [PerMessageDeflate.extensionName]: perMessageDeflate.offer()
+          [PerMessageDeflate2.extensionName]: perMessageDeflate.offer()
         });
       }
       if (protocols.length) {
@@ -36172,19 +35173,19 @@ var require_websocket = __commonJS({
             return;
           }
           const extensionNames = Object.keys(extensions);
-          if (extensionNames.length !== 1 || extensionNames[0] !== PerMessageDeflate.extensionName) {
+          if (extensionNames.length !== 1 || extensionNames[0] !== PerMessageDeflate2.extensionName) {
             const message = "Server indicated an extension that was not requested";
             abortHandshake(websocket, socket, message);
             return;
           }
           try {
-            perMessageDeflate.accept(extensions[PerMessageDeflate.extensionName]);
+            perMessageDeflate.accept(extensions[PerMessageDeflate2.extensionName]);
           } catch (err) {
             const message = "Invalid Sec-WebSocket-Extensions header";
             abortHandshake(websocket, socket, message);
             return;
           }
-          websocket._extensions[PerMessageDeflate.extensionName] = perMessageDeflate;
+          websocket._extensions[PerMessageDeflate2.extensionName] = perMessageDeflate;
         }
         websocket.setSocket(socket, head, {
           allowSynchronousEvents: opts.allowSynchronousEvents,
@@ -36360,9 +35361,9 @@ var require_websocket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/stream.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/stream.js
 var require_stream5 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/stream.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/stream.js"(exports2, module2) {
     "use strict";
     var WebSocket2 = require_websocket();
     var { Duplex } = __require("stream");
@@ -36466,9 +35467,9 @@ var require_stream5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/subprotocol.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/subprotocol.js
 var require_subprotocol = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/subprotocol.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/subprotocol.js"(exports2, module2) {
     "use strict";
     var { tokenChars } = require_validation();
     function parse7(header) {
@@ -36514,17 +35515,17 @@ var require_subprotocol = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket-server.js
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/websocket-server.js
 var require_websocket_server = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/lib/websocket-server.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/websocket-server.js"(exports2, module2) {
     "use strict";
     var EventEmitter = __require("events");
     var http = __require("http");
     var { Duplex } = __require("stream");
     var { createHash } = __require("crypto");
-    var extension = require_extension();
-    var PerMessageDeflate = require_permessage_deflate();
-    var subprotocol = require_subprotocol();
+    var extension2 = require_extension();
+    var PerMessageDeflate2 = require_permessage_deflate();
+    var subprotocol2 = require_subprotocol();
     var WebSocket2 = require_websocket();
     var { CLOSE_TIMEOUT, GUID, kWebSocket } = require_constants4();
     var keyRegex = /^[+/0-9A-Za-z]{22}==$/;
@@ -36752,7 +35753,7 @@ var require_websocket_server = __commonJS({
         let protocols = /* @__PURE__ */ new Set();
         if (secWebSocketProtocol !== void 0) {
           try {
-            protocols = subprotocol.parse(secWebSocketProtocol);
+            protocols = subprotocol2.parse(secWebSocketProtocol);
           } catch (err) {
             const message = "Invalid Sec-WebSocket-Protocol header";
             abortHandshakeOrEmitwsClientError(this, req, socket, 400, message);
@@ -36762,16 +35763,16 @@ var require_websocket_server = __commonJS({
         const secWebSocketExtensions = req.headers["sec-websocket-extensions"];
         const extensions = {};
         if (this.options.perMessageDeflate && secWebSocketExtensions !== void 0) {
-          const perMessageDeflate = new PerMessageDeflate(
-            this.options.perMessageDeflate,
-            true,
-            this.options.maxPayload
-          );
+          const perMessageDeflate = new PerMessageDeflate2({
+            ...this.options.perMessageDeflate,
+            isServer: true,
+            maxPayload: this.options.maxPayload
+          });
           try {
-            const offers = extension.parse(secWebSocketExtensions);
-            if (offers[PerMessageDeflate.extensionName]) {
-              perMessageDeflate.accept(offers[PerMessageDeflate.extensionName]);
-              extensions[PerMessageDeflate.extensionName] = perMessageDeflate;
+            const offers = extension2.parse(secWebSocketExtensions);
+            if (offers[PerMessageDeflate2.extensionName]) {
+              perMessageDeflate.accept(offers[PerMessageDeflate2.extensionName]);
+              extensions[PerMessageDeflate2.extensionName] = perMessageDeflate;
             }
           } catch (err) {
             const message = "Invalid or unacceptable Sec-WebSocket-Extensions header";
@@ -36845,10 +35846,10 @@ var require_websocket_server = __commonJS({
             ws._protocol = protocol;
           }
         }
-        if (extensions[PerMessageDeflate.extensionName]) {
-          const params2 = extensions[PerMessageDeflate.extensionName].params;
-          const value = extension.format({
-            [PerMessageDeflate.extensionName]: [params2]
+        if (extensions[PerMessageDeflate2.extensionName]) {
+          const params2 = extensions[PerMessageDeflate2.extensionName].params;
+          const value = extension2.format({
+            [PerMessageDeflate2.extensionName]: [params2]
           });
           headers.push(`Sec-WebSocket-Extensions: ${value}`);
           ws._extensions = extensions;
@@ -49622,7 +48623,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-56ab9ee58ce4c81f32d0f2661474d5d7fdf83db8`;
+var localVersion = `0.0.0-929d4f41b31d9a28786a98665fee143a31a7ed16`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -50369,8 +49370,8 @@ var Analyzer = class {
     if (stat2 && stat2.isFile()) {
       return importFullPath;
     }
-    for (const extension of this.extensions) {
-      const pathWithExtension = `${importFullPath}.${extension}`;
+    for (const extension2 of this.extensions) {
+      const pathWithExtension = `${importFullPath}.${extension2}`;
       const withExtensionStat = getFileStatus(pathWithExtension);
       if (withExtensionStat?.isFile()) {
         return pathWithExtension;
@@ -50835,17 +49836,20 @@ function buildConfigParser(localYargs) {
 
 // node_modules/.aspect_rules_js/@google+genai@1.46.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
-var import_google_auth_library = __toESM(require_src6(), 1);
+var import_google_auth_library = __toESM(require_src5(), 1);
 import { createWriteStream } from "fs";
 import * as fs6 from "fs/promises";
 import { writeFile as writeFile2 } from "fs/promises";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
 
-// node_modules/.aspect_rules_js/ws@8.19.0_1527948970/node_modules/ws/wrapper.mjs
+// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/wrapper.mjs
 var import_stream = __toESM(require_stream5(), 1);
+var import_extension = __toESM(require_extension(), 1);
+var import_permessage_deflate = __toESM(require_permessage_deflate(), 1);
 var import_receiver = __toESM(require_receiver(), 1);
 var import_sender = __toESM(require_sender(), 1);
+var import_subprotocol = __toESM(require_subprotocol(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
