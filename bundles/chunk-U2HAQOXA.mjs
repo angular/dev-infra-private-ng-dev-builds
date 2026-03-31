@@ -2263,9 +2263,9 @@ var require_lib = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/identity.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/identity.js
 var require_identity = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/identity.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/identity.js"(exports) {
     "use strict";
     var ALIAS = Symbol.for("yaml.alias");
     var DOC = Symbol.for("yaml.document");
@@ -2320,9 +2320,9 @@ var require_identity = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/visit.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/visit.js
 var require_visit = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/visit.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/visit.js"(exports) {
     "use strict";
     var identity = require_identity();
     var BREAK = Symbol("break visit");
@@ -2478,9 +2478,9 @@ var require_visit = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/directives.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/directives.js
 var require_directives = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/directives.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/directives.js"(exports) {
     "use strict";
     var identity = require_identity();
     var visit = require_visit();
@@ -2649,9 +2649,9 @@ var require_directives = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/anchors.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/anchors.js
 var require_anchors = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/anchors.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/anchors.js"(exports) {
     "use strict";
     var identity = require_identity();
     var visit = require_visit();
@@ -2719,9 +2719,9 @@ var require_anchors = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/applyReviver.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/applyReviver.js
 var require_applyReviver = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/applyReviver.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/applyReviver.js"(exports) {
     "use strict";
     function applyReviver(reviver, obj, key, val) {
       if (val && typeof val === "object") {
@@ -2769,9 +2769,9 @@ var require_applyReviver = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/toJS.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/toJS.js
 var require_toJS = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/toJS.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/toJS.js"(exports) {
     "use strict";
     var identity = require_identity();
     function toJS(value, arg, ctx) {
@@ -2799,9 +2799,9 @@ var require_toJS = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Node.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Node.js
 var require_Node = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Node.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Node.js"(exports) {
     "use strict";
     var applyReviver = require_applyReviver();
     var identity = require_identity();
@@ -2840,9 +2840,9 @@ var require_Node = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Alias.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Alias.js
 var require_Alias = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Alias.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Alias.js"(exports) {
     "use strict";
     var anchors = require_anchors();
     var visit = require_visit();
@@ -2954,9 +2954,9 @@ var require_Alias = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Scalar.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Scalar.js
 var require_Scalar = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Scalar.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Scalar.js"(exports) {
     "use strict";
     var identity = require_identity();
     var Node = require_Node();
@@ -2984,9 +2984,9 @@ var require_Scalar = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/createNode.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/createNode.js
 var require_createNode = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/createNode.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/createNode.js"(exports) {
     "use strict";
     var Alias = require_Alias();
     var identity = require_identity();
@@ -3059,9 +3059,9 @@ var require_createNode = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Collection.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Collection.js
 var require_Collection = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Collection.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Collection.js"(exports) {
     "use strict";
     var createNode = require_createNode();
     var identity = require_identity();
@@ -3202,9 +3202,9 @@ var require_Collection = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyComment.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyComment.js
 var require_stringifyComment = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyComment.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyComment.js"(exports) {
     "use strict";
     var stringifyComment = (str) => str.replace(/^(?!$)(?: $)?/gm, "#");
     function indentComment(comment, indent) {
@@ -3219,9 +3219,9 @@ var require_stringifyComment = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/foldFlowLines.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/foldFlowLines.js
 var require_foldFlowLines = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/foldFlowLines.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/foldFlowLines.js"(exports) {
     "use strict";
     var FOLD_FLOW = "flow";
     var FOLD_BLOCK = "block";
@@ -3355,9 +3355,9 @@ ${indent}${text.slice(fold + 1, end2)}`;
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyString.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyString.js
 var require_stringifyString = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyString.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyString.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     var foldFlowLines = require_foldFlowLines();
@@ -3638,9 +3638,9 @@ ${indent}`);
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringify.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringify.js
 var require_stringify = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringify.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringify.js"(exports) {
     "use strict";
     var anchors = require_anchors();
     var identity = require_identity();
@@ -3663,6 +3663,7 @@ var require_stringify = __commonJS({
         nullStr: "null",
         simpleKeys: false,
         singleQuote: null,
+        trailingComma: false,
         trueStr: "true",
         verifyAliasOrder: true
       }, doc.schema.toStringOptions, options);
@@ -3761,9 +3762,9 @@ ${ctx.indent}${str}`;
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyPair.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyPair.js
 var require_stringifyPair = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyPair.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyPair.js"(exports) {
     "use strict";
     var identity = require_identity();
     var Scalar = require_Scalar();
@@ -3894,9 +3895,9 @@ ${ctx.indent}`;
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/log.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/log.js
 var require_log = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/log.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/log.js"(exports) {
     "use strict";
     var node_process = __require("process");
     function debug2(logLevel, ...messages) {
@@ -3916,9 +3917,9 @@ var require_log = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/merge.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/merge.js
 var require_merge = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/merge.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/merge.js"(exports) {
     "use strict";
     var identity = require_identity();
     var Scalar = require_Scalar();
@@ -3973,9 +3974,9 @@ var require_merge = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/addPairToJSMap.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/addPairToJSMap.js
 var require_addPairToJSMap = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/addPairToJSMap.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/addPairToJSMap.js"(exports) {
     "use strict";
     var log = require_log();
     var merge2 = require_merge();
@@ -4037,9 +4038,9 @@ var require_addPairToJSMap = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Pair.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Pair.js
 var require_Pair = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/Pair.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/Pair.js"(exports) {
     "use strict";
     var createNode = require_createNode();
     var stringifyPair = require_stringifyPair();
@@ -4077,9 +4078,9 @@ var require_Pair = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyCollection.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyCollection.js
 var require_stringifyCollection = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyCollection.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyCollection.js"(exports) {
     "use strict";
     var identity = require_identity();
     var stringify = require_stringify();
@@ -4180,12 +4181,19 @@ ${indent}${line}` : "\n";
         if (comment)
           reqNewline = true;
         let str = stringify.stringify(item, itemCtx, () => comment = null);
-        if (i < items.length - 1)
+        reqNewline || (reqNewline = lines.length > linesAtValue || str.includes("\n"));
+        if (i < items.length - 1) {
           str += ",";
+        } else if (ctx.options.trailingComma) {
+          if (ctx.options.lineWidth > 0) {
+            reqNewline || (reqNewline = lines.reduce((sum, line) => sum + line.length + 2, 2) + (str.length + 2) > ctx.options.lineWidth);
+          }
+          if (reqNewline) {
+            str += ",";
+          }
+        }
         if (comment)
           str += stringifyComment.lineComment(str, itemIndent, commentString(comment));
-        if (!reqNewline && (lines.length > linesAtValue || str.includes("\n")))
-          reqNewline = true;
         lines.push(str);
         linesAtValue = lines.length;
       }
@@ -4221,9 +4229,9 @@ ${indent}${end}`;
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/YAMLMap.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/YAMLMap.js
 var require_YAMLMap = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/YAMLMap.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/YAMLMap.js"(exports) {
     "use strict";
     var stringifyCollection = require_stringifyCollection();
     var addPairToJSMap = require_addPairToJSMap();
@@ -4365,9 +4373,9 @@ var require_YAMLMap = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/common/map.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/common/map.js
 var require_map = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/common/map.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/common/map.js"(exports) {
     "use strict";
     var identity = require_identity();
     var YAMLMap = require_YAMLMap();
@@ -4387,9 +4395,9 @@ var require_map = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/YAMLSeq.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/YAMLSeq.js
 var require_YAMLSeq = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/nodes/YAMLSeq.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/nodes/YAMLSeq.js"(exports) {
     "use strict";
     var createNode = require_createNode();
     var stringifyCollection = require_stringifyCollection();
@@ -4503,9 +4511,9 @@ var require_YAMLSeq = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/common/seq.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/common/seq.js
 var require_seq = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/common/seq.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/common/seq.js"(exports) {
     "use strict";
     var identity = require_identity();
     var YAMLSeq = require_YAMLSeq();
@@ -4525,9 +4533,9 @@ var require_seq = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/common/string.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/common/string.js
 var require_string = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/common/string.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/common/string.js"(exports) {
     "use strict";
     var stringifyString = require_stringifyString();
     var string = {
@@ -4544,9 +4552,9 @@ var require_string = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/common/null.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/common/null.js
 var require_null = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/common/null.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/common/null.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     var nullTag = {
@@ -4562,9 +4570,9 @@ var require_null = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/core/bool.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/core/bool.js
 var require_bool = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/core/bool.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/core/bool.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     var boolTag = {
@@ -4586,9 +4594,9 @@ var require_bool = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyNumber.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyNumber.js
 var require_stringifyNumber = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyNumber.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyNumber.js"(exports) {
     "use strict";
     function stringifyNumber({ format, minFractionDigits, tag, value }) {
       if (typeof value === "bigint")
@@ -4613,9 +4621,9 @@ var require_stringifyNumber = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/core/float.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/core/float.js
 var require_float = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/core/float.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/core/float.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     var stringifyNumber = require_stringifyNumber();
@@ -4659,9 +4667,9 @@ var require_float = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/core/int.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/core/int.js
 var require_int = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/core/int.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/core/int.js"(exports) {
     "use strict";
     var stringifyNumber = require_stringifyNumber();
     var intIdentify = (value) => typeof value === "bigint" || Number.isInteger(value);
@@ -4704,9 +4712,9 @@ var require_int = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/core/schema.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/core/schema.js
 var require_schema = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/core/schema.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/core/schema.js"(exports) {
     "use strict";
     var map = require_map();
     var _null = require_null();
@@ -4732,9 +4740,9 @@ var require_schema = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/json/schema.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/json/schema.js
 var require_schema2 = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/json/schema.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/json/schema.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     var map = require_map();
@@ -4799,9 +4807,9 @@ var require_schema2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/binary.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/binary.js
 var require_binary = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/binary.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/binary.js"(exports) {
     "use strict";
     var node_buffer = __require("buffer");
     var Scalar = require_Scalar();
@@ -4865,9 +4873,9 @@ var require_binary = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/pairs.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/pairs.js
 var require_pairs = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/pairs.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/pairs.js"(exports) {
     "use strict";
     var identity = require_identity();
     var Pair = require_Pair();
@@ -4943,9 +4951,9 @@ ${cn.comment}` : item.comment;
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/omap.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/omap.js
 var require_omap = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/omap.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/omap.js"(exports) {
     "use strict";
     var identity = require_identity();
     var toJS = require_toJS();
@@ -5021,9 +5029,9 @@ var require_omap = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/bool.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/bool.js
 var require_bool2 = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/bool.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/bool.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     function boolStringify({ value, source }, ctx) {
@@ -5053,9 +5061,9 @@ var require_bool2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/float.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/float.js
 var require_float2 = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/float.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/float.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     var stringifyNumber = require_stringifyNumber();
@@ -5102,9 +5110,9 @@ var require_float2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/int.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/int.js
 var require_int2 = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/int.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/int.js"(exports) {
     "use strict";
     var stringifyNumber = require_stringifyNumber();
     var intIdentify = (value) => typeof value === "bigint" || Number.isInteger(value);
@@ -5181,9 +5189,9 @@ var require_int2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/set.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/set.js
 var require_set = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/set.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/set.js"(exports) {
     "use strict";
     var identity = require_identity();
     var Pair = require_Pair();
@@ -5270,9 +5278,9 @@ var require_set = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js
 var require_timestamp = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/timestamp.js"(exports) {
     "use strict";
     var stringifyNumber = require_stringifyNumber();
     function parseSexagesimal(str, asBigInt) {
@@ -5358,9 +5366,9 @@ var require_timestamp = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/schema.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/schema.js
 var require_schema3 = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/yaml-1.1/schema.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/yaml-1.1/schema.js"(exports) {
     "use strict";
     var map = require_map();
     var _null = require_null();
@@ -5402,9 +5410,9 @@ var require_schema3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/tags.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/tags.js
 var require_tags = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/tags.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/tags.js"(exports) {
     "use strict";
     var map = require_map();
     var _null = require_null();
@@ -5496,9 +5504,9 @@ var require_tags = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/Schema.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/Schema.js
 var require_Schema = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/schema/Schema.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/schema/Schema.js"(exports) {
     "use strict";
     var identity = require_identity();
     var map = require_map();
@@ -5528,9 +5536,9 @@ var require_Schema = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyDocument.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyDocument.js
 var require_stringifyDocument = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/stringify/stringifyDocument.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/stringify/stringifyDocument.js"(exports) {
     "use strict";
     var identity = require_identity();
     var stringify = require_stringify();
@@ -5608,9 +5616,9 @@ var require_stringifyDocument = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/Document.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/Document.js
 var require_Document = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/doc/Document.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/doc/Document.js"(exports) {
     "use strict";
     var Alias = require_Alias();
     var Collection2 = require_Collection();
@@ -5917,9 +5925,9 @@ var require_Document = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/errors.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/errors.js
 var require_errors = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/errors.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/errors.js"(exports) {
     "use strict";
     var YAMLError = class extends Error {
       constructor(name, pos, code, message) {
@@ -5982,9 +5990,9 @@ ${pointer}
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-props.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-props.js
 var require_resolve_props = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-props.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-props.js"(exports) {
     "use strict";
     function resolveProps(tokens, { flow, indicator, next, offset, onError, parentIndent, startOnNewline }) {
       let spaceBefore = false;
@@ -6115,9 +6123,9 @@ var require_resolve_props = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/util-contains-newline.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/util-contains-newline.js
 var require_util_contains_newline = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/util-contains-newline.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/util-contains-newline.js"(exports) {
     "use strict";
     function containsNewline(key) {
       if (!key)
@@ -6157,9 +6165,9 @@ var require_util_contains_newline = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/util-flow-indent-check.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/util-flow-indent-check.js
 var require_util_flow_indent_check = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/util-flow-indent-check.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/util-flow-indent-check.js"(exports) {
     "use strict";
     var utilContainsNewline = require_util_contains_newline();
     function flowIndentCheck(indent, fc, onError) {
@@ -6175,9 +6183,9 @@ var require_util_flow_indent_check = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/util-map-includes.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/util-map-includes.js
 var require_util_map_includes = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/util-map-includes.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/util-map-includes.js"(exports) {
     "use strict";
     var identity = require_identity();
     function mapIncludes(ctx, items, search) {
@@ -6191,9 +6199,9 @@ var require_util_map_includes = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-block-map.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-block-map.js
 var require_resolve_block_map = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-block-map.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-block-map.js"(exports) {
     "use strict";
     var Pair = require_Pair();
     var YAMLMap = require_YAMLMap();
@@ -6299,9 +6307,9 @@ var require_resolve_block_map = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-block-seq.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-block-seq.js
 var require_resolve_block_seq = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-block-seq.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-block-seq.js"(exports) {
     "use strict";
     var YAMLSeq = require_YAMLSeq();
     var resolveProps = require_resolve_props();
@@ -6350,9 +6358,9 @@ var require_resolve_block_seq = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-end.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-end.js
 var require_resolve_end = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-end.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-end.js"(exports) {
     "use strict";
     function resolveEnd(end, offset, reqSpace, onError) {
       let comment = "";
@@ -6393,9 +6401,9 @@ var require_resolve_end = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-flow-collection.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-flow-collection.js
 var require_resolve_flow_collection = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-flow-collection.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-flow-collection.js"(exports) {
     "use strict";
     var identity = require_identity();
     var Pair = require_Pair();
@@ -6588,9 +6596,9 @@ var require_resolve_flow_collection = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/compose-collection.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/compose-collection.js
 var require_compose_collection = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/compose-collection.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/compose-collection.js"(exports) {
     "use strict";
     var identity = require_identity();
     var Scalar = require_Scalar();
@@ -6653,9 +6661,9 @@ var require_compose_collection = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-block-scalar.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-block-scalar.js
 var require_resolve_block_scalar = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-block-scalar.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-block-scalar.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     function resolveBlockScalar(ctx, scalar, onError) {
@@ -6834,9 +6842,9 @@ var require_resolve_block_scalar = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-flow-scalar.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-flow-scalar.js
 var require_resolve_flow_scalar = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/resolve-flow-scalar.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/resolve-flow-scalar.js"(exports) {
     "use strict";
     var Scalar = require_Scalar();
     var resolveEnd = require_resolve_end();
@@ -7051,9 +7059,9 @@ var require_resolve_flow_scalar = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/compose-scalar.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/compose-scalar.js
 var require_compose_scalar = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/compose-scalar.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/compose-scalar.js"(exports) {
     "use strict";
     var identity = require_identity();
     var Scalar = require_Scalar();
@@ -7132,9 +7140,9 @@ var require_compose_scalar = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/util-empty-scalar-position.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/util-empty-scalar-position.js
 var require_util_empty_scalar_position = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/util-empty-scalar-position.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/util-empty-scalar-position.js"(exports) {
     "use strict";
     function emptyScalarPosition(offset, before, pos) {
       if (before) {
@@ -7162,9 +7170,9 @@ var require_util_empty_scalar_position = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/compose-node.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/compose-node.js
 var require_compose_node = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/compose-node.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/compose-node.js"(exports) {
     "use strict";
     var Alias = require_Alias();
     var identity = require_identity();
@@ -7195,17 +7203,22 @@ var require_compose_node = __commonJS({
         case "block-map":
         case "block-seq":
         case "flow-collection":
-          node = composeCollection.composeCollection(CN, ctx, token, props, onError);
-          if (anchor)
-            node.anchor = anchor.source.substring(1);
+          try {
+            node = composeCollection.composeCollection(CN, ctx, token, props, onError);
+            if (anchor)
+              node.anchor = anchor.source.substring(1);
+          } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            onError(token, "RESOURCE_EXHAUSTION", message);
+          }
           break;
         default: {
           const message = token.type === "error" ? token.message : `Unsupported token (type: ${token.type})`;
           onError(token, "UNEXPECTED_TOKEN", message);
-          node = composeEmptyNode(ctx, token.offset, void 0, null, props, onError);
           isSrcToken = false;
         }
       }
+      node ?? (node = composeEmptyNode(ctx, token.offset, void 0, null, props, onError));
       if (anchor && node.anchor === "")
         onError(anchor, "BAD_ALIAS", "Anchor cannot be an empty string");
       if (atKey && ctx.options.stringKeys && (!identity.isScalar(node) || typeof node.value !== "string" || node.tag && node.tag !== "tag:yaml.org,2002:str")) {
@@ -7263,9 +7276,9 @@ var require_compose_node = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/compose-doc.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/compose-doc.js
 var require_compose_doc = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/compose-doc.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/compose-doc.js"(exports) {
     "use strict";
     var Document = require_Document();
     var composeNode = require_compose_node();
@@ -7306,9 +7319,9 @@ var require_compose_doc = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/composer.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/composer.js
 var require_composer = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/compose/composer.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/compose/composer.js"(exports) {
     "use strict";
     var node_process = __require("process");
     var directives = require_directives();
@@ -7512,9 +7525,9 @@ ${end.comment}` : end.comment;
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/cst-scalar.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/cst-scalar.js
 var require_cst_scalar = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/cst-scalar.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/cst-scalar.js"(exports) {
     "use strict";
     var resolveBlockScalar = require_resolve_block_scalar();
     var resolveFlowScalar = require_resolve_flow_scalar();
@@ -7697,9 +7710,9 @@ var require_cst_scalar = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/cst-stringify.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/cst-stringify.js
 var require_cst_stringify = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/cst-stringify.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/cst-stringify.js"(exports) {
     "use strict";
     var stringify = (cst) => "type" in cst ? stringifyToken(cst) : stringifyItem(cst);
     function stringifyToken(token) {
@@ -7758,9 +7771,9 @@ var require_cst_stringify = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/cst-visit.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/cst-visit.js
 var require_cst_visit = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/cst-visit.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/cst-visit.js"(exports) {
     "use strict";
     var BREAK = Symbol("break visit");
     var SKIP = Symbol("skip children");
@@ -7820,9 +7833,9 @@ var require_cst_visit = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/cst.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/cst.js
 var require_cst = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/cst.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/cst.js"(exports) {
     "use strict";
     var cstScalar = require_cst_scalar();
     var cstStringify = require_cst_stringify();
@@ -7922,9 +7935,9 @@ var require_cst = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/lexer.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/lexer.js
 var require_lexer = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/lexer.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/lexer.js"(exports) {
     "use strict";
     var cst = require_cst();
     function isEmpty(ch) {
@@ -8497,9 +8510,9 @@ var require_lexer = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/line-counter.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/line-counter.js
 var require_line_counter = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/line-counter.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/line-counter.js"(exports) {
     "use strict";
     var LineCounter = class {
       constructor() {
@@ -8528,9 +8541,9 @@ var require_line_counter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/parser.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/parser.js
 var require_parser = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/parse/parser.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/parse/parser.js"(exports) {
     "use strict";
     var node_process = __require("process");
     var cst = require_cst();
@@ -9392,9 +9405,9 @@ var require_parser = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/public-api.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/public-api.js
 var require_public_api = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/public-api.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/public-api.js"(exports) {
     "use strict";
     var composer = require_composer();
     var Document = require_Document();
@@ -9489,9 +9502,9 @@ var require_public_api = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/index.js
+// node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/index.js
 var require_dist = __commonJS({
-  "node_modules/.aspect_rules_js/yaml@2.8.2/node_modules/yaml/dist/index.js"(exports) {
+  "node_modules/.aspect_rules_js/yaml@2.8.3/node_modules/yaml/dist/index.js"(exports) {
     "use strict";
     var composer = require_composer();
     var Document = require_Document();

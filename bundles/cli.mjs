@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-GLEWX2LH.mjs";
+} from "./chunk-U2HAQOXA.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -68,7 +68,7 @@ import {
 } from "./chunk-YN3IWAKJ.mjs";
 import {
   CommitParser
-} from "./chunk-LCSKEA2T.mjs";
+} from "./chunk-VWFPSUIZ.mjs";
 import {
   require_ms
 } from "./chunk-DUE35MZP.mjs";
@@ -42458,7 +42458,7 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902950517/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902980308/node_modules/@conventional-changelog/git-client/dist/utils.js
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -42471,7 +42471,7 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902950517/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902980308/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn as spawn2 } from "child_process";
 
 // node_modules/.aspect_rules_js/@simple-libs+stream-utils@1.2.0/node_modules/@simple-libs/stream-utils/dist/index.js
@@ -42553,7 +42553,7 @@ function output(process5) {
   return concatBufferStream(outputStream(process5));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902950517/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902980308/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var GitClient2 = class {
   cwd;
@@ -42787,7 +42787,7 @@ var GitClient2 = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902950517/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902980308/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
 var import_semver = __toESM(require_semver());
 
 // ng-dev/commit-message/utils.js
@@ -48623,7 +48623,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-b9bca459f29f61177a829e69089730415c95ccde`;
+var localVersion = `0.0.0-cd14b15be53503f132d389eeb20e98c7dc9280e4`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49841,7 +49841,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.46.0_181604741/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.47.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
 var import_google_auth_library = __toESM(require_src5(), 1);
 import { createWriteStream } from "fs";
@@ -49860,7 +49860,7 @@ var import_subprotocol = __toESM(require_subprotocol(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.46.0_181604741/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.47.0_181604741/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -50369,16 +50369,11 @@ var Type;
   Type2["OBJECT"] = "OBJECT";
   Type2["NULL"] = "NULL";
 })(Type || (Type = {}));
-var PhishBlockThreshold;
-(function(PhishBlockThreshold2) {
-  PhishBlockThreshold2["PHISH_BLOCK_THRESHOLD_UNSPECIFIED"] = "PHISH_BLOCK_THRESHOLD_UNSPECIFIED";
-  PhishBlockThreshold2["BLOCK_LOW_AND_ABOVE"] = "BLOCK_LOW_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_MEDIUM_AND_ABOVE"] = "BLOCK_MEDIUM_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_HIGH_AND_ABOVE"] = "BLOCK_HIGH_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_HIGHER_AND_ABOVE"] = "BLOCK_HIGHER_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_VERY_HIGH_AND_ABOVE"] = "BLOCK_VERY_HIGH_AND_ABOVE";
-  PhishBlockThreshold2["BLOCK_ONLY_EXTREMELY_HIGH"] = "BLOCK_ONLY_EXTREMELY_HIGH";
-})(PhishBlockThreshold || (PhishBlockThreshold = {}));
+var Environment;
+(function(Environment2) {
+  Environment2["ENVIRONMENT_UNSPECIFIED"] = "ENVIRONMENT_UNSPECIFIED";
+  Environment2["ENVIRONMENT_BROWSER"] = "ENVIRONMENT_BROWSER";
+})(Environment || (Environment = {}));
 var AuthType;
 (function(AuthType2) {
   AuthType2["AUTH_TYPE_UNSPECIFIED"] = "AUTH_TYPE_UNSPECIFIED";
@@ -50404,6 +50399,16 @@ var ApiSpec;
   ApiSpec2["SIMPLE_SEARCH"] = "SIMPLE_SEARCH";
   ApiSpec2["ELASTIC_SEARCH"] = "ELASTIC_SEARCH";
 })(ApiSpec || (ApiSpec = {}));
+var PhishBlockThreshold;
+(function(PhishBlockThreshold2) {
+  PhishBlockThreshold2["PHISH_BLOCK_THRESHOLD_UNSPECIFIED"] = "PHISH_BLOCK_THRESHOLD_UNSPECIFIED";
+  PhishBlockThreshold2["BLOCK_LOW_AND_ABOVE"] = "BLOCK_LOW_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_MEDIUM_AND_ABOVE"] = "BLOCK_MEDIUM_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_HIGH_AND_ABOVE"] = "BLOCK_HIGH_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_HIGHER_AND_ABOVE"] = "BLOCK_HIGHER_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_VERY_HIGH_AND_ABOVE"] = "BLOCK_VERY_HIGH_AND_ABOVE";
+  PhishBlockThreshold2["BLOCK_ONLY_EXTREMELY_HIGH"] = "BLOCK_ONLY_EXTREMELY_HIGH";
+})(PhishBlockThreshold || (PhishBlockThreshold = {}));
 var Behavior;
 (function(Behavior2) {
   Behavior2["UNSPECIFIED"] = "UNSPECIFIED";
@@ -50426,10 +50431,10 @@ var FunctionCallingConfigMode;
 var ThinkingLevel;
 (function(ThinkingLevel2) {
   ThinkingLevel2["THINKING_LEVEL_UNSPECIFIED"] = "THINKING_LEVEL_UNSPECIFIED";
+  ThinkingLevel2["MINIMAL"] = "MINIMAL";
   ThinkingLevel2["LOW"] = "LOW";
   ThinkingLevel2["MEDIUM"] = "MEDIUM";
   ThinkingLevel2["HIGH"] = "HIGH";
-  ThinkingLevel2["MINIMAL"] = "MINIMAL";
 })(ThinkingLevel || (ThinkingLevel = {}));
 var PersonGeneration;
 (function(PersonGeneration2) {
@@ -50437,6 +50442,12 @@ var PersonGeneration;
   PersonGeneration2["ALLOW_ADULT"] = "ALLOW_ADULT";
   PersonGeneration2["ALLOW_ALL"] = "ALLOW_ALL";
 })(PersonGeneration || (PersonGeneration = {}));
+var ProminentPeople;
+(function(ProminentPeople2) {
+  ProminentPeople2["PROMINENT_PEOPLE_UNSPECIFIED"] = "PROMINENT_PEOPLE_UNSPECIFIED";
+  ProminentPeople2["ALLOW_PROMINENT_PEOPLE"] = "ALLOW_PROMINENT_PEOPLE";
+  ProminentPeople2["BLOCK_PROMINENT_PEOPLE"] = "BLOCK_PROMINENT_PEOPLE";
+})(ProminentPeople || (ProminentPeople = {}));
 var HarmCategory;
 (function(HarmCategory2) {
   HarmCategory2["HARM_CATEGORY_UNSPECIFIED"] = "HARM_CATEGORY_UNSPECIFIED";
@@ -50536,6 +50547,17 @@ var Modality;
   Modality2["IMAGE"] = "IMAGE";
   Modality2["AUDIO"] = "AUDIO";
 })(Modality || (Modality = {}));
+var ModelStage;
+(function(ModelStage2) {
+  ModelStage2["MODEL_STAGE_UNSPECIFIED"] = "MODEL_STAGE_UNSPECIFIED";
+  ModelStage2["UNSTABLE_EXPERIMENTAL"] = "UNSTABLE_EXPERIMENTAL";
+  ModelStage2["EXPERIMENTAL"] = "EXPERIMENTAL";
+  ModelStage2["PREVIEW"] = "PREVIEW";
+  ModelStage2["STABLE"] = "STABLE";
+  ModelStage2["LEGACY"] = "LEGACY";
+  ModelStage2["DEPRECATED"] = "DEPRECATED";
+  ModelStage2["RETIRED"] = "RETIRED";
+})(ModelStage || (ModelStage = {}));
 var MediaResolution;
 (function(MediaResolution2) {
   MediaResolution2["MEDIA_RESOLUTION_UNSPECIFIED"] = "MEDIA_RESOLUTION_UNSPECIFIED";
@@ -50611,6 +50633,13 @@ var TuningTask;
   TuningTask2["TUNING_TASK_T2V"] = "TUNING_TASK_T2V";
   TuningTask2["TUNING_TASK_R2V"] = "TUNING_TASK_R2V";
 })(TuningTask || (TuningTask = {}));
+var DocumentState;
+(function(DocumentState2) {
+  DocumentState2["STATE_UNSPECIFIED"] = "STATE_UNSPECIFIED";
+  DocumentState2["STATE_PENDING"] = "STATE_PENDING";
+  DocumentState2["STATE_ACTIVE"] = "STATE_ACTIVE";
+  DocumentState2["STATE_FAILED"] = "STATE_FAILED";
+})(DocumentState || (DocumentState = {}));
 var PartMediaResolutionLevel;
 (function(PartMediaResolutionLevel2) {
   PartMediaResolutionLevel2["MEDIA_RESOLUTION_UNSPECIFIED"] = "MEDIA_RESOLUTION_UNSPECIFIED";
@@ -50632,6 +50661,13 @@ var ResourceScope;
 (function(ResourceScope2) {
   ResourceScope2["COLLECTION"] = "COLLECTION";
 })(ResourceScope || (ResourceScope = {}));
+var ServiceTier;
+(function(ServiceTier2) {
+  ServiceTier2["SERVICE_TIER_UNSPECIFIED"] = "SERVICE_TIER_UNSPECIFIED";
+  ServiceTier2["SERVICE_TIER_FLEX"] = "SERVICE_TIER_FLEX";
+  ServiceTier2["SERVICE_TIER_STANDARD"] = "SERVICE_TIER_STANDARD";
+  ServiceTier2["SERVICE_TIER_PRIORITY"] = "SERVICE_TIER_PRIORITY";
+})(ServiceTier || (ServiceTier = {}));
 var FeatureSelectionPreference;
 (function(FeatureSelectionPreference2) {
   FeatureSelectionPreference2["FEATURE_SELECTION_PREFERENCE_UNSPECIFIED"] = "FEATURE_SELECTION_PREFERENCE_UNSPECIFIED";
@@ -50639,17 +50675,6 @@ var FeatureSelectionPreference;
   FeatureSelectionPreference2["BALANCED"] = "BALANCED";
   FeatureSelectionPreference2["PRIORITIZE_COST"] = "PRIORITIZE_COST";
 })(FeatureSelectionPreference || (FeatureSelectionPreference = {}));
-var Environment;
-(function(Environment2) {
-  Environment2["ENVIRONMENT_UNSPECIFIED"] = "ENVIRONMENT_UNSPECIFIED";
-  Environment2["ENVIRONMENT_BROWSER"] = "ENVIRONMENT_BROWSER";
-})(Environment || (Environment = {}));
-var ProminentPeople;
-(function(ProminentPeople2) {
-  ProminentPeople2["PROMINENT_PEOPLE_UNSPECIFIED"] = "PROMINENT_PEOPLE_UNSPECIFIED";
-  ProminentPeople2["ALLOW_PROMINENT_PEOPLE"] = "ALLOW_PROMINENT_PEOPLE";
-  ProminentPeople2["BLOCK_PROMINENT_PEOPLE"] = "BLOCK_PROMINENT_PEOPLE";
-})(ProminentPeople || (ProminentPeople = {}));
 var EmbeddingApiType;
 (function(EmbeddingApiType2) {
   EmbeddingApiType2["PREDICT"] = "PREDICT";
@@ -50737,13 +50762,6 @@ var TuningMethod;
   TuningMethod2["PREFERENCE_TUNING"] = "PREFERENCE_TUNING";
   TuningMethod2["DISTILLATION"] = "DISTILLATION";
 })(TuningMethod || (TuningMethod = {}));
-var DocumentState;
-(function(DocumentState2) {
-  DocumentState2["STATE_UNSPECIFIED"] = "STATE_UNSPECIFIED";
-  DocumentState2["STATE_PENDING"] = "STATE_PENDING";
-  DocumentState2["STATE_ACTIVE"] = "STATE_ACTIVE";
-  DocumentState2["STATE_FAILED"] = "STATE_FAILED";
-})(DocumentState || (DocumentState = {}));
 var FileState;
 (function(FileState2) {
   FileState2["STATE_UNSPECIFIED"] = "STATE_UNSPECIFIED";
@@ -50809,6 +50827,7 @@ var TurnCoverage;
   TurnCoverage2["TURN_COVERAGE_UNSPECIFIED"] = "TURN_COVERAGE_UNSPECIFIED";
   TurnCoverage2["TURN_INCLUDES_ONLY_ACTIVITY"] = "TURN_INCLUDES_ONLY_ACTIVITY";
   TurnCoverage2["TURN_INCLUDES_ALL_INPUT"] = "TURN_INCLUDES_ALL_INPUT";
+  TurnCoverage2["TURN_INCLUDES_AUDIO_ACTIVITY_AND_ALL_VIDEO"] = "TURN_INCLUDES_AUDIO_ACTIVITY_AND_ALL_VIDEO";
 })(TurnCoverage || (TurnCoverage = {}));
 var Scale;
 (function(Scale2) {
@@ -51104,7 +51123,6 @@ var ComputeTokensResponse = class {
 var GenerateVideosOperation = class _GenerateVideosOperation {
   /**
    * Instantiates an Operation of the same type as the one being called with the fields set from the API response.
-   * @internal
    */
   _fromAPIResponse({ apiResponse, _isVertexAI }) {
     const operation = new _GenerateVideosOperation();
@@ -51136,7 +51154,6 @@ var UploadToFileSearchStoreResumableResponse = class {
 var ImportFileOperation = class _ImportFileOperation {
   /**
    * Instantiates an Operation of the same type as the one being called with the fields set from the API response.
-   * @internal
    */
   _fromAPIResponse({ apiResponse, _isVertexAI }) {
     const operation = new _ImportFileOperation();
@@ -51233,7 +51250,6 @@ var LiveMusicServerMessage = class {
 var UploadToFileSearchStoreOperation = class _UploadToFileSearchStoreOperation {
   /**
    * Instantiates an Operation of the same type as the one being called with the fields set from the API response.
-   * @internal
    */
   _fromAPIResponse({ apiResponse, _isVertexAI }) {
     const operation = new _UploadToFileSearchStoreOperation();
@@ -52640,6 +52656,10 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
   if (getValueByPath(fromObject, ["modelArmorConfig"]) !== void 0) {
     throw new Error("modelArmorConfig parameter is not supported in Gemini API.");
   }
+  const fromServiceTier = getValueByPath(fromObject, ["serviceTier"]);
+  if (parentObject !== void 0 && fromServiceTier != null) {
+    setValueByPath(parentObject, ["serviceTier"], fromServiceTier);
+  }
   return toObject;
 }
 function generateContentResponseFromMldev$1(fromObject) {
@@ -52679,6 +52699,10 @@ function generateContentResponseFromMldev$1(fromObject) {
   ]);
   if (fromUsageMetadata != null) {
     setValueByPath(toObject, ["usageMetadata"], fromUsageMetadata);
+  }
+  const fromModelStatus = getValueByPath(fromObject, ["modelStatus"]);
+  if (fromModelStatus != null) {
+    setValueByPath(toObject, ["modelStatus"], fromModelStatus);
   }
   return toObject;
 }
@@ -52965,6 +52989,10 @@ function partToMldev$4(fromObject) {
   const fromToolResponse = getValueByPath(fromObject, ["toolResponse"]);
   if (fromToolResponse != null) {
     setValueByPath(toObject, ["toolResponse"], fromToolResponse);
+  }
+  const fromPartMetadata = getValueByPath(fromObject, ["partMetadata"]);
+  if (fromPartMetadata != null) {
+    setValueByPath(toObject, ["partMetadata"], fromPartMetadata);
   }
   return toObject;
 }
@@ -54198,6 +54226,10 @@ function partToMldev$3(fromObject) {
   if (fromToolResponse != null) {
     setValueByPath(toObject, ["toolResponse"], fromToolResponse);
   }
+  const fromPartMetadata = getValueByPath(fromObject, ["partMetadata"]);
+  if (fromPartMetadata != null) {
+    setValueByPath(toObject, ["partMetadata"], fromPartMetadata);
+  }
   return toObject;
 }
 function partToVertex$2(fromObject) {
@@ -54263,6 +54295,9 @@ function partToVertex$2(fromObject) {
   }
   if (getValueByPath(fromObject, ["toolResponse"]) !== void 0) {
     throw new Error("toolResponse parameter is not supported in Vertex AI.");
+  }
+  if (getValueByPath(fromObject, ["partMetadata"]) !== void 0) {
+    throw new Error("partMetadata parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -55842,7 +55877,7 @@ function generationConfigToVertex$1(fromObject) {
   }
   const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
   if (fromSpeechConfig != null) {
-    setValueByPath(toObject, ["speechConfig"], fromSpeechConfig);
+    setValueByPath(toObject, ["speechConfig"], speechConfigToVertex$1(fromSpeechConfig));
   }
   const fromStopSequences = getValueByPath(fromObject, [
     "stopSequences"
@@ -56062,7 +56097,7 @@ function liveConnectConfigToVertex(fromObject, parentObject) {
   }
   const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
   if (parentObject !== void 0 && fromSpeechConfig != null) {
-    setValueByPath(parentObject, ["setup", "generationConfig", "speechConfig"], tLiveSpeechConfig(fromSpeechConfig));
+    setValueByPath(parentObject, ["setup", "generationConfig", "speechConfig"], speechConfigToVertex$1(tLiveSpeechConfig(fromSpeechConfig)));
   }
   const fromThinkingConfig = getValueByPath(fromObject, [
     "thinkingConfig"
@@ -56322,6 +56357,22 @@ function liveServerMessageFromVertex(fromObject) {
   }
   return toObject;
 }
+function multiSpeakerVoiceConfigToVertex$1(fromObject) {
+  const toObject = {};
+  const fromSpeakerVoiceConfigs = getValueByPath(fromObject, [
+    "speakerVoiceConfigs"
+  ]);
+  if (fromSpeakerVoiceConfigs != null) {
+    let transformedList = fromSpeakerVoiceConfigs;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return speakerVoiceConfigToVertex$1(item);
+      });
+    }
+    setValueByPath(toObject, ["speakerVoiceConfigs"], transformedList);
+  }
+  return toObject;
+}
 function partToMldev$2(fromObject) {
   const toObject = {};
   const fromMediaResolution = getValueByPath(fromObject, [
@@ -56387,6 +56438,10 @@ function partToMldev$2(fromObject) {
   const fromToolResponse = getValueByPath(fromObject, ["toolResponse"]);
   if (fromToolResponse != null) {
     setValueByPath(toObject, ["toolResponse"], fromToolResponse);
+  }
+  const fromPartMetadata = getValueByPath(fromObject, ["partMetadata"]);
+  if (fromPartMetadata != null) {
+    setValueByPath(toObject, ["partMetadata"], fromPartMetadata);
   }
   return toObject;
 }
@@ -56454,6 +56509,23 @@ function partToVertex$1(fromObject) {
   if (getValueByPath(fromObject, ["toolResponse"]) !== void 0) {
     throw new Error("toolResponse parameter is not supported in Vertex AI.");
   }
+  if (getValueByPath(fromObject, ["partMetadata"]) !== void 0) {
+    throw new Error("partMetadata parameter is not supported in Vertex AI.");
+  }
+  return toObject;
+}
+function replicatedVoiceConfigToVertex$1(fromObject) {
+  const toObject = {};
+  const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
+  if (fromMimeType != null) {
+    setValueByPath(toObject, ["mimeType"], fromMimeType);
+  }
+  const fromVoiceSampleAudio = getValueByPath(fromObject, [
+    "voiceSampleAudio"
+  ]);
+  if (fromVoiceSampleAudio != null) {
+    setValueByPath(toObject, ["voiceSampleAudio"], fromVoiceSampleAudio);
+  }
   return toObject;
 }
 function sessionResumptionConfigToMldev$1(fromObject) {
@@ -56464,6 +56536,36 @@ function sessionResumptionConfigToMldev$1(fromObject) {
   }
   if (getValueByPath(fromObject, ["transparent"]) !== void 0) {
     throw new Error("transparent parameter is not supported in Gemini API.");
+  }
+  return toObject;
+}
+function speakerVoiceConfigToVertex$1(fromObject) {
+  const toObject = {};
+  const fromSpeaker = getValueByPath(fromObject, ["speaker"]);
+  if (fromSpeaker != null) {
+    setValueByPath(toObject, ["speaker"], fromSpeaker);
+  }
+  const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
+  if (fromVoiceConfig != null) {
+    setValueByPath(toObject, ["voiceConfig"], voiceConfigToVertex$1(fromVoiceConfig));
+  }
+  return toObject;
+}
+function speechConfigToVertex$1(fromObject) {
+  const toObject = {};
+  const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
+  if (fromVoiceConfig != null) {
+    setValueByPath(toObject, ["voiceConfig"], voiceConfigToVertex$1(fromVoiceConfig));
+  }
+  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
+  if (fromLanguageCode != null) {
+    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
+  }
+  const fromMultiSpeakerVoiceConfig = getValueByPath(fromObject, [
+    "multiSpeakerVoiceConfig"
+  ]);
+  if (fromMultiSpeakerVoiceConfig != null) {
+    setValueByPath(toObject, ["multiSpeakerVoiceConfig"], multiSpeakerVoiceConfigToVertex$1(fromMultiSpeakerVoiceConfig));
   }
   return toObject;
 }
@@ -56697,6 +56799,22 @@ function voiceActivityFromVertex(fromObject) {
   const fromVoiceActivityType = getValueByPath(fromObject, ["type"]);
   if (fromVoiceActivityType != null) {
     setValueByPath(toObject, ["voiceActivityType"], fromVoiceActivityType);
+  }
+  return toObject;
+}
+function voiceConfigToVertex$1(fromObject) {
+  const toObject = {};
+  const fromReplicatedVoiceConfig = getValueByPath(fromObject, [
+    "replicatedVoiceConfig"
+  ]);
+  if (fromReplicatedVoiceConfig != null) {
+    setValueByPath(toObject, ["replicatedVoiceConfig"], replicatedVoiceConfigToVertex$1(fromReplicatedVoiceConfig));
+  }
+  const fromPrebuiltVoiceConfig = getValueByPath(fromObject, [
+    "prebuiltVoiceConfig"
+  ]);
+  if (fromPrebuiltVoiceConfig != null) {
+    setValueByPath(toObject, ["prebuiltVoiceConfig"], fromPrebuiltVoiceConfig);
   }
   return toObject;
 }
@@ -57739,6 +57857,10 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject, rootO
   if (getValueByPath(fromObject, ["modelArmorConfig"]) !== void 0) {
     throw new Error("modelArmorConfig parameter is not supported in Gemini API.");
   }
+  const fromServiceTier = getValueByPath(fromObject, ["serviceTier"]);
+  if (parentObject !== void 0 && fromServiceTier != null) {
+    setValueByPath(parentObject, ["serviceTier"], fromServiceTier);
+  }
   return toObject;
 }
 function generateContentConfigToVertex(apiClient, fromObject, parentObject, rootObject) {
@@ -57885,7 +58007,7 @@ function generateContentConfigToVertex(apiClient, fromObject, parentObject, root
   }
   const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
   if (fromSpeechConfig != null) {
-    setValueByPath(toObject, ["speechConfig"], tSpeechConfig(fromSpeechConfig));
+    setValueByPath(toObject, ["speechConfig"], speechConfigToVertex(tSpeechConfig(fromSpeechConfig)));
   }
   const fromAudioTimestamp = getValueByPath(fromObject, [
     "audioTimestamp"
@@ -57911,6 +58033,9 @@ function generateContentConfigToVertex(apiClient, fromObject, parentObject, root
   ]);
   if (parentObject !== void 0 && fromModelArmorConfig != null) {
     setValueByPath(parentObject, ["modelArmorConfig"], fromModelArmorConfig);
+  }
+  if (getValueByPath(fromObject, ["serviceTier"]) !== void 0) {
+    throw new Error("serviceTier parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -57995,6 +58120,10 @@ function generateContentResponseFromMldev(fromObject, rootObject) {
   ]);
   if (fromUsageMetadata != null) {
     setValueByPath(toObject, ["usageMetadata"], fromUsageMetadata);
+  }
+  const fromModelStatus = getValueByPath(fromObject, ["modelStatus"]);
+  if (fromModelStatus != null) {
+    setValueByPath(toObject, ["modelStatus"], fromModelStatus);
   }
   return toObject;
 }
@@ -58381,6 +58510,9 @@ function generateVideosConfigToMldev(fromObject, parentObject, rootObject) {
   if (getValueByPath(fromObject, ["compressionQuality"]) !== void 0) {
     throw new Error("compressionQuality parameter is not supported in Gemini API.");
   }
+  if (getValueByPath(fromObject, ["labels"]) !== void 0) {
+    throw new Error("labels parameter is not supported in Gemini API.");
+  }
   return toObject;
 }
 function generateVideosConfigToVertex(fromObject, parentObject, rootObject) {
@@ -58470,6 +58602,10 @@ function generateVideosConfigToVertex(fromObject, parentObject, rootObject) {
   ]);
   if (parentObject !== void 0 && fromCompressionQuality != null) {
     setValueByPath(parentObject, ["parameters", "compressionQuality"], fromCompressionQuality);
+  }
+  const fromLabels = getValueByPath(fromObject, ["labels"]);
+  if (parentObject !== void 0 && fromLabels != null) {
+    setValueByPath(parentObject, ["labels"], fromLabels);
   }
   return toObject;
 }
@@ -58740,7 +58876,7 @@ function generatedVideoFromVertex(fromObject, rootObject) {
   }
   return toObject;
 }
-function generationConfigToVertex(fromObject, _rootObject) {
+function generationConfigToVertex(fromObject, rootObject) {
   const toObject = {};
   const fromModelSelectionConfig = getValueByPath(fromObject, [
     "modelSelectionConfig"
@@ -58836,7 +58972,7 @@ function generationConfigToVertex(fromObject, _rootObject) {
   }
   const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
   if (fromSpeechConfig != null) {
-    setValueByPath(toObject, ["speechConfig"], fromSpeechConfig);
+    setValueByPath(toObject, ["speechConfig"], speechConfigToVertex(fromSpeechConfig));
   }
   const fromStopSequences = getValueByPath(fromObject, [
     "stopSequences"
@@ -59291,6 +59427,22 @@ function modelFromVertex(fromObject, rootObject) {
   }
   return toObject;
 }
+function multiSpeakerVoiceConfigToVertex(fromObject, rootObject) {
+  const toObject = {};
+  const fromSpeakerVoiceConfigs = getValueByPath(fromObject, [
+    "speakerVoiceConfigs"
+  ]);
+  if (fromSpeakerVoiceConfigs != null) {
+    let transformedList = fromSpeakerVoiceConfigs;
+    if (Array.isArray(transformedList)) {
+      transformedList = transformedList.map((item) => {
+        return speakerVoiceConfigToVertex(item);
+      });
+    }
+    setValueByPath(toObject, ["speakerVoiceConfigs"], transformedList);
+  }
+  return toObject;
+}
 function partToMldev$1(fromObject, rootObject) {
   const toObject = {};
   const fromMediaResolution = getValueByPath(fromObject, [
@@ -59357,6 +59509,10 @@ function partToMldev$1(fromObject, rootObject) {
   if (fromToolResponse != null) {
     setValueByPath(toObject, ["toolResponse"], fromToolResponse);
   }
+  const fromPartMetadata = getValueByPath(fromObject, ["partMetadata"]);
+  if (fromPartMetadata != null) {
+    setValueByPath(toObject, ["partMetadata"], fromPartMetadata);
+  }
   return toObject;
 }
 function partToVertex(fromObject, _rootObject) {
@@ -59422,6 +59578,9 @@ function partToVertex(fromObject, _rootObject) {
   }
   if (getValueByPath(fromObject, ["toolResponse"]) !== void 0) {
     throw new Error("toolResponse parameter is not supported in Vertex AI.");
+  }
+  if (getValueByPath(fromObject, ["partMetadata"]) !== void 0) {
+    throw new Error("partMetadata parameter is not supported in Vertex AI.");
   }
   return toObject;
 }
@@ -59593,6 +59752,20 @@ function referenceImageAPIInternalToVertex(fromObject, rootObject) {
   }
   return toObject;
 }
+function replicatedVoiceConfigToVertex(fromObject, _rootObject) {
+  const toObject = {};
+  const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
+  if (fromMimeType != null) {
+    setValueByPath(toObject, ["mimeType"], fromMimeType);
+  }
+  const fromVoiceSampleAudio = getValueByPath(fromObject, [
+    "voiceSampleAudio"
+  ]);
+  if (fromVoiceSampleAudio != null) {
+    setValueByPath(toObject, ["voiceSampleAudio"], fromVoiceSampleAudio);
+  }
+  return toObject;
+}
 function safetyAttributesFromMldev(fromObject, _rootObject) {
   const toObject = {};
   const fromCategories = getValueByPath(fromObject, [
@@ -59739,6 +59912,36 @@ function segmentImageSourceToVertex(fromObject, parentObject, rootObject) {
   ]);
   if (parentObject !== void 0 && fromScribbleImage != null) {
     setValueByPath(parentObject, ["instances[0]", "scribble"], scribbleImageToVertex(fromScribbleImage));
+  }
+  return toObject;
+}
+function speakerVoiceConfigToVertex(fromObject, rootObject) {
+  const toObject = {};
+  const fromSpeaker = getValueByPath(fromObject, ["speaker"]);
+  if (fromSpeaker != null) {
+    setValueByPath(toObject, ["speaker"], fromSpeaker);
+  }
+  const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
+  if (fromVoiceConfig != null) {
+    setValueByPath(toObject, ["voiceConfig"], voiceConfigToVertex(fromVoiceConfig));
+  }
+  return toObject;
+}
+function speechConfigToVertex(fromObject, rootObject) {
+  const toObject = {};
+  const fromVoiceConfig = getValueByPath(fromObject, ["voiceConfig"]);
+  if (fromVoiceConfig != null) {
+    setValueByPath(toObject, ["voiceConfig"], voiceConfigToVertex(fromVoiceConfig));
+  }
+  const fromLanguageCode = getValueByPath(fromObject, ["languageCode"]);
+  if (fromLanguageCode != null) {
+    setValueByPath(toObject, ["languageCode"], fromLanguageCode);
+  }
+  const fromMultiSpeakerVoiceConfig = getValueByPath(fromObject, [
+    "multiSpeakerVoiceConfig"
+  ]);
+  if (fromMultiSpeakerVoiceConfig != null) {
+    setValueByPath(toObject, ["multiSpeakerVoiceConfig"], multiSpeakerVoiceConfigToVertex(fromMultiSpeakerVoiceConfig));
   }
   return toObject;
 }
@@ -60223,6 +60426,22 @@ function videoToVertex(fromObject, _rootObject) {
   }
   return toObject;
 }
+function voiceConfigToVertex(fromObject, rootObject) {
+  const toObject = {};
+  const fromReplicatedVoiceConfig = getValueByPath(fromObject, [
+    "replicatedVoiceConfig"
+  ]);
+  if (fromReplicatedVoiceConfig != null) {
+    setValueByPath(toObject, ["replicatedVoiceConfig"], replicatedVoiceConfigToVertex(fromReplicatedVoiceConfig));
+  }
+  const fromPrebuiltVoiceConfig = getValueByPath(fromObject, [
+    "prebuiltVoiceConfig"
+  ]);
+  if (fromPrebuiltVoiceConfig != null) {
+    setValueByPath(toObject, ["prebuiltVoiceConfig"], fromPrebuiltVoiceConfig);
+  }
+  return toObject;
+}
 function createFileSearchStoreConfigToMldev(fromObject, parentObject) {
   const toObject = {};
   const fromDisplayName = getValueByPath(fromObject, ["displayName"]);
@@ -60455,7 +60674,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.46.0";
+var SDK_VERSION = "1.47.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -60503,6 +60722,8 @@ var ApiClient = class {
         this.clientOptions.location = void 0;
       } else if (this.clientOptions.apiKey || this.clientOptions.location === "global") {
         initHttpOptions.baseUrl = "https://aiplatform.googleapis.com/";
+      } else if (this.clientOptions.project && this.clientOptions.location && this.clientOptions.location === "us") {
+        initHttpOptions.baseUrl = `https://aiplatform.${this.clientOptions.location}.rep.googleapis.com/`;
       } else if (this.clientOptions.project && this.clientOptions.location) {
         initHttpOptions.baseUrl = `https://${this.clientOptions.location}-aiplatform.googleapis.com/`;
       }
@@ -63598,6 +63819,10 @@ function partToMldev(fromObject) {
   if (fromToolResponse != null) {
     setValueByPath(toObject, ["toolResponse"], fromToolResponse);
   }
+  const fromPartMetadata = getValueByPath(fromObject, ["partMetadata"]);
+  if (fromPartMetadata != null) {
+    setValueByPath(toObject, ["partMetadata"], fromPartMetadata);
+  }
   return toObject;
 }
 function sessionResumptionConfigToMldev(fromObject) {
@@ -66202,6 +66427,11 @@ function createTuningJobConfigToVertex(fromObject, parentObject, rootObject) {
     if (parentObject !== void 0 && fromTuningMode != null) {
       setValueByPath(parentObject, ["supervisedTuningSpec", "tuningMode"], fromTuningMode);
     }
+  } else if (discriminatorTuningMode === "DISTILLATION") {
+    const fromTuningMode = getValueByPath(fromObject, ["tuningMode"]);
+    if (parentObject !== void 0 && fromTuningMode != null) {
+      setValueByPath(parentObject, ["distillationSpec", "tuningMode"], fromTuningMode);
+    }
   }
   const fromCustomBaseModel = getValueByPath(fromObject, [
     "customBaseModel"
@@ -66221,6 +66451,11 @@ function createTuningJobConfigToVertex(fromObject, parentObject, rootObject) {
     if (parentObject !== void 0 && fromBatchSize != null) {
       setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "batchSize"], fromBatchSize);
     }
+  } else if (discriminatorBatchSize === "DISTILLATION") {
+    const fromBatchSize = getValueByPath(fromObject, ["batchSize"]);
+    if (parentObject !== void 0 && fromBatchSize != null) {
+      setValueByPath(parentObject, ["distillationSpec", "hyperParameters", "batchSize"], fromBatchSize);
+    }
   }
   let discriminatorLearningRate = getValueByPath(rootObject, [
     "config",
@@ -66235,6 +66470,13 @@ function createTuningJobConfigToVertex(fromObject, parentObject, rootObject) {
     ]);
     if (parentObject !== void 0 && fromLearningRate != null) {
       setValueByPath(parentObject, ["supervisedTuningSpec", "hyperParameters", "learningRate"], fromLearningRate);
+    }
+  } else if (discriminatorLearningRate === "DISTILLATION") {
+    const fromLearningRate = getValueByPath(fromObject, [
+      "learningRate"
+    ]);
+    if (parentObject !== void 0 && fromLearningRate != null) {
+      setValueByPath(parentObject, ["distillationSpec", "hyperParameters", "learningRate"], fromLearningRate);
     }
   }
   const fromLabels = getValueByPath(fromObject, ["labels"]);
@@ -66735,6 +66977,18 @@ function tuningJobFromVertex(fromObject, _rootObject) {
   ]);
   if (fromVeoTuningSpec != null) {
     setValueByPath(toObject, ["veoTuningSpec"], fromVeoTuningSpec);
+  }
+  const fromDistillationSamplingSpec = getValueByPath(fromObject, [
+    "distillationSamplingSpec"
+  ]);
+  if (fromDistillationSamplingSpec != null) {
+    setValueByPath(toObject, ["distillationSamplingSpec"], fromDistillationSamplingSpec);
+  }
+  const fromTuningJobMetadata = getValueByPath(fromObject, [
+    "tuningJobMetadata"
+  ]);
+  if (fromTuningJobMetadata != null) {
+    setValueByPath(toObject, ["tuningJobMetadata"], fromTuningJobMetadata);
   }
   return toObject;
 }
