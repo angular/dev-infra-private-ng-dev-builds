@@ -11972,13 +11972,14 @@ var require_braces = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/constants.js
+// node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/constants.js
 var require_constants2 = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/constants.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/constants.js"(exports2, module2) {
     "use strict";
     var path9 = __require("path");
     var WIN_SLASH = "\\\\/";
     var WIN_NO_SLASH = `[^${WIN_SLASH}]`;
+    var DEFAULT_MAX_EXTGLOB_RECURSION = 0;
     var DOT_LITERAL = "\\.";
     var PLUS_LITERAL = "\\+";
     var QMARK_LITERAL = "\\?";
@@ -12026,6 +12027,7 @@ var require_constants2 = __commonJS({
       END_ANCHOR: `(?:[${WIN_SLASH}]|$)`
     };
     var POSIX_REGEX_SOURCE = {
+      __proto__: null,
       alnum: "a-zA-Z0-9",
       alpha: "a-zA-Z",
       ascii: "\\x00-\\x7F",
@@ -12042,6 +12044,7 @@ var require_constants2 = __commonJS({
       xdigit: "A-Fa-f0-9"
     };
     module2.exports = {
+      DEFAULT_MAX_EXTGLOB_RECURSION,
       MAX_LENGTH: 1024 * 64,
       POSIX_REGEX_SOURCE,
       // regular expressions
@@ -12053,6 +12056,7 @@ var require_constants2 = __commonJS({
       REGEX_REMOVE_BACKSLASH: /(?:\[.*?[^\\]\]|\\(?=.))/g,
       // Replace globs with equivalent patterns to reduce parsing time.
       REPLACEMENTS: {
+        __proto__: null,
         "***": "*",
         "**/**": "**",
         "**/**/**": "**"
@@ -12169,9 +12173,9 @@ var require_constants2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/utils.js
+// node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/utils.js
 var require_utils3 = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/utils.js"(exports2) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/utils.js"(exports2) {
     "use strict";
     var path9 = __require("path");
     var win32 = process.platform === "win32";
@@ -12232,9 +12236,9 @@ var require_utils3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/scan.js
+// node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/scan.js
 var require_scan = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/scan.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/scan.js"(exports2, module2) {
     "use strict";
     var utils2 = require_utils3();
     var {
@@ -12565,9 +12569,9 @@ var require_scan = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/parse.js
+// node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/parse.js
 var require_parse2 = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/parse.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/parse.js"(exports2, module2) {
     "use strict";
     var constants = require_constants2();
     var utils2 = require_utils3();
@@ -12593,6 +12597,213 @@ var require_parse2 = __commonJS({
     };
     var syntaxError = (type, char) => {
       return `Missing ${type}: "${char}" - use "\\\\${char}" to match literal characters`;
+    };
+    var splitTopLevel = (input) => {
+      const parts = [];
+      let bracket = 0;
+      let paren = 0;
+      let quote = 0;
+      let value = "";
+      let escaped = false;
+      for (const ch of input) {
+        if (escaped === true) {
+          value += ch;
+          escaped = false;
+          continue;
+        }
+        if (ch === "\\") {
+          value += ch;
+          escaped = true;
+          continue;
+        }
+        if (ch === '"') {
+          quote = quote === 1 ? 0 : 1;
+          value += ch;
+          continue;
+        }
+        if (quote === 0) {
+          if (ch === "[") {
+            bracket++;
+          } else if (ch === "]" && bracket > 0) {
+            bracket--;
+          } else if (bracket === 0) {
+            if (ch === "(") {
+              paren++;
+            } else if (ch === ")" && paren > 0) {
+              paren--;
+            } else if (ch === "|" && paren === 0) {
+              parts.push(value);
+              value = "";
+              continue;
+            }
+          }
+        }
+        value += ch;
+      }
+      parts.push(value);
+      return parts;
+    };
+    var isPlainBranch = (branch) => {
+      let escaped = false;
+      for (const ch of branch) {
+        if (escaped === true) {
+          escaped = false;
+          continue;
+        }
+        if (ch === "\\") {
+          escaped = true;
+          continue;
+        }
+        if (/[?*+@!()[\]{}]/.test(ch)) {
+          return false;
+        }
+      }
+      return true;
+    };
+    var normalizeSimpleBranch = (branch) => {
+      let value = branch.trim();
+      let changed = true;
+      while (changed === true) {
+        changed = false;
+        if (/^@\([^\\()[\]{}|]+\)$/.test(value)) {
+          value = value.slice(2, -1);
+          changed = true;
+        }
+      }
+      if (!isPlainBranch(value)) {
+        return;
+      }
+      return value.replace(/\\(.)/g, "$1");
+    };
+    var hasRepeatedCharPrefixOverlap = (branches) => {
+      const values = branches.map(normalizeSimpleBranch).filter(Boolean);
+      for (let i = 0; i < values.length; i++) {
+        for (let j = i + 1; j < values.length; j++) {
+          const a = values[i];
+          const b = values[j];
+          const char = a[0];
+          if (!char || a !== char.repeat(a.length) || b !== char.repeat(b.length)) {
+            continue;
+          }
+          if (a === b || a.startsWith(b) || b.startsWith(a)) {
+            return true;
+          }
+        }
+      }
+      return false;
+    };
+    var parseRepeatedExtglob = (pattern, requireEnd = true) => {
+      if (pattern[0] !== "+" && pattern[0] !== "*" || pattern[1] !== "(") {
+        return;
+      }
+      let bracket = 0;
+      let paren = 0;
+      let quote = 0;
+      let escaped = false;
+      for (let i = 1; i < pattern.length; i++) {
+        const ch = pattern[i];
+        if (escaped === true) {
+          escaped = false;
+          continue;
+        }
+        if (ch === "\\") {
+          escaped = true;
+          continue;
+        }
+        if (ch === '"') {
+          quote = quote === 1 ? 0 : 1;
+          continue;
+        }
+        if (quote === 1) {
+          continue;
+        }
+        if (ch === "[") {
+          bracket++;
+          continue;
+        }
+        if (ch === "]" && bracket > 0) {
+          bracket--;
+          continue;
+        }
+        if (bracket > 0) {
+          continue;
+        }
+        if (ch === "(") {
+          paren++;
+          continue;
+        }
+        if (ch === ")") {
+          paren--;
+          if (paren === 0) {
+            if (requireEnd === true && i !== pattern.length - 1) {
+              return;
+            }
+            return {
+              type: pattern[0],
+              body: pattern.slice(2, i),
+              end: i
+            };
+          }
+        }
+      }
+    };
+    var getStarExtglobSequenceOutput = (pattern) => {
+      let index = 0;
+      const chars = [];
+      while (index < pattern.length) {
+        const match2 = parseRepeatedExtglob(pattern.slice(index), false);
+        if (!match2 || match2.type !== "*") {
+          return;
+        }
+        const branches = splitTopLevel(match2.body).map((branch2) => branch2.trim());
+        if (branches.length !== 1) {
+          return;
+        }
+        const branch = normalizeSimpleBranch(branches[0]);
+        if (!branch || branch.length !== 1) {
+          return;
+        }
+        chars.push(branch);
+        index += match2.end + 1;
+      }
+      if (chars.length < 1) {
+        return;
+      }
+      const source = chars.length === 1 ? utils2.escapeRegex(chars[0]) : `[${chars.map((ch) => utils2.escapeRegex(ch)).join("")}]`;
+      return `${source}*`;
+    };
+    var repeatedExtglobRecursion = (pattern) => {
+      let depth = 0;
+      let value = pattern.trim();
+      let match2 = parseRepeatedExtglob(value);
+      while (match2) {
+        depth++;
+        value = match2.body.trim();
+        match2 = parseRepeatedExtglob(value);
+      }
+      return depth;
+    };
+    var analyzeRepeatedExtglob = (body, options) => {
+      if (options.maxExtglobRecursion === false) {
+        return { risky: false };
+      }
+      const max = typeof options.maxExtglobRecursion === "number" ? options.maxExtglobRecursion : constants.DEFAULT_MAX_EXTGLOB_RECURSION;
+      const branches = splitTopLevel(body).map((branch) => branch.trim());
+      if (branches.length > 1) {
+        if (branches.some((branch) => branch === "") || branches.some((branch) => /^[*?]+$/.test(branch)) || hasRepeatedCharPrefixOverlap(branches)) {
+          return { risky: true };
+        }
+      }
+      for (const branch of branches) {
+        const safeOutput = getStarExtglobSequenceOutput(branch);
+        if (safeOutput) {
+          return { risky: true, safeOutput };
+        }
+        if (repeatedExtglobRecursion(branch) > max) {
+          return { risky: true };
+        }
+      }
+      return { risky: false };
     };
     var parse7 = (input, options) => {
       if (typeof input !== "string") {
@@ -12726,6 +12937,8 @@ var require_parse2 = __commonJS({
         token.prev = prev;
         token.parens = state.parens;
         token.output = state.output;
+        token.startIndex = state.index;
+        token.tokensIndex = tokens.length;
         const output2 = (opts.capture ? "(" : "") + token.open;
         increment("parens");
         push({ type, value: value2, output: state.output ? "" : ONE_CHAR });
@@ -12733,6 +12946,26 @@ var require_parse2 = __commonJS({
         extglobs.push(token);
       };
       const extglobClose = (token) => {
+        const literal2 = input.slice(token.startIndex, state.index + 1);
+        const body = input.slice(token.startIndex + 2, state.index);
+        const analysis = analyzeRepeatedExtglob(body, opts);
+        if ((token.type === "plus" || token.type === "star") && analysis.risky) {
+          const safeOutput = analysis.safeOutput ? (token.output ? "" : ONE_CHAR) + (opts.capture ? `(${analysis.safeOutput})` : analysis.safeOutput) : void 0;
+          const open2 = tokens[token.tokensIndex];
+          open2.type = "text";
+          open2.value = literal2;
+          open2.output = safeOutput || utils2.escapeRegex(literal2);
+          for (let i = token.tokensIndex + 1; i < tokens.length; i++) {
+            tokens[i].value = "";
+            tokens[i].output = "";
+            delete tokens[i].suffix;
+          }
+          state.output = token.output + open2.output;
+          state.backtrack = true;
+          push({ type: "paren", extglob: true, value, output: "" });
+          decrement("parens");
+          return;
+        }
         let output2 = token.close + (opts.capture ? ")" : "");
         let rest;
         if (token.type === "negate") {
@@ -13346,9 +13579,9 @@ var require_parse2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/picomatch.js
+// node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/picomatch.js
 var require_picomatch = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/lib/picomatch.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/picomatch.js"(exports2, module2) {
     "use strict";
     var path9 = __require("path");
     var scan = require_scan();
@@ -13490,9 +13723,9 @@ var require_picomatch = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/index.js
+// node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/index.js
 var require_picomatch2 = __commonJS({
-  "node_modules/.aspect_rules_js/picomatch@2.3.1/node_modules/picomatch/index.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/index.js"(exports2, module2) {
     "use strict";
     module2.exports = require_picomatch();
   }
@@ -16727,9 +16960,9 @@ var require_balanced_match = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js
+// node_modules/.aspect_rules_js/brace-expansion@2.0.3/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "node_modules/.aspect_rules_js/brace-expansion@2.0.2/node_modules/brace-expansion/index.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/brace-expansion@2.0.3/node_modules/brace-expansion/index.js"(exports2, module2) {
     var balanced2 = require_balanced_match();
     module2.exports = expandTop;
     var escSlash2 = "\0SLASH" + Math.random() + "\0";
@@ -16829,7 +17062,7 @@ var require_brace_expansion = __commonJS({
           var x = numeric2(n[0]);
           var y = numeric2(n[1]);
           var width = Math.max(n[0].length, n[1].length);
-          var incr = n.length == 3 ? Math.abs(numeric2(n[2])) : 1;
+          var incr = n.length == 3 ? Math.max(Math.abs(numeric2(n[2])), 1) : 1;
           var test = lte2;
           var reverse = y < x;
           if (reverse) {
@@ -36111,7 +36344,7 @@ var range = (a, b, str) => {
   return result;
 };
 
-// node_modules/.aspect_rules_js/brace-expansion@5.0.4/node_modules/brace-expansion/dist/esm/index.js
+// node_modules/.aspect_rules_js/brace-expansion@5.0.5/node_modules/brace-expansion/dist/esm/index.js
 var escSlash = "\0SLASH" + Math.random() + "\0";
 var escOpen = "\0OPEN" + Math.random() + "\0";
 var escClose = "\0CLOSE" + Math.random() + "\0";
@@ -36221,7 +36454,7 @@ function expand_(str, max, isTop) {
       const x = numeric(n[0]);
       const y = numeric(n[1]);
       const width = Math.max(n[0].length, n[1].length);
-      let incr = n.length === 3 && n[2] !== void 0 ? Math.abs(numeric(n[2])) : 1;
+      let incr = n.length === 3 && n[2] !== void 0 ? Math.max(Math.abs(numeric(n[2])), 1) : 1;
       let test = lte;
       const reverse = y < x;
       if (reverse) {
@@ -48623,7 +48856,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path6 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-cd14b15be53503f132d389eeb20e98c7dc9280e4`;
+var localVersion = `0.0.0-d69b99aeae90df28c37c57176a69995b3b60df1b`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49841,7 +50074,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.47.0_181604741/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.47.0_530000443/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
 var import_google_auth_library = __toESM(require_src5(), 1);
 import { createWriteStream } from "fs";
@@ -49860,7 +50093,7 @@ var import_subprotocol = __toESM(require_subprotocol(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.47.0_181604741/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@1.47.0_530000443/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
