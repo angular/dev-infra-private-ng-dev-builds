@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-e77ae0894db65292bc8f3ed5fd18bb833658ceb7",
+  "version": "0.0.0-221c985c8568930e9d88f0f2783229ac91ef9345",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -63,7 +63,7 @@
     "supports-color": "10.2.2",
     "typed-graphqlify": "3.1.6",
     "tsx": "4.21.0",
-    "typescript": "5.9.3",
+    "typescript": "6.0.2",
     "utf-8-validate": "6.0.6",
     "which": "6.0.1",
     "yaml": "2.8.3",
