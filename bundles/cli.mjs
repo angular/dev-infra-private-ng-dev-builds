@@ -10638,7 +10638,7 @@ var require_path = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.convertPosixPathToPattern = exports2.convertWindowsPathToPattern = exports2.convertPathToPattern = exports2.escapePosixPath = exports2.escapeWindowsPath = exports2.escape = exports2.removeLeadingDotSegment = exports2.makeAbsolute = exports2.unixify = void 0;
     var os2 = __require("os");
-    var path9 = __require("path");
+    var path10 = __require("path");
     var IS_WINDOWS_PLATFORM = os2.platform() === "win32";
     var LEADING_DOT_SEGMENT_CHARACTERS_COUNT = 2;
     var POSIX_UNESCAPED_GLOB_SYMBOLS_RE = /(\\?)([()*?[\]{|}]|^!|[!+@](?=\()|\\(?![!()*+?@[\]{|}]))/g;
@@ -10650,7 +10650,7 @@ var require_path = __commonJS({
     }
     exports2.unixify = unixify;
     function makeAbsolute(cwd, filepath) {
-      return path9.resolve(cwd, filepath);
+      return path10.resolve(cwd, filepath);
     }
     exports2.makeAbsolute = makeAbsolute;
     function removeLeadingDotSegment(entry) {
@@ -11500,7 +11500,7 @@ var require_expand = __commonJS({
       }
       return utils2.flatten(result);
     };
-    var expand2 = (ast, options = {}) => {
+    var expand3 = (ast, options = {}) => {
       const rangeLimit = options.rangeLimit === void 0 ? 1e3 : options.rangeLimit;
       const walk = (node, parent = {}) => {
         node.queue = [];
@@ -11562,7 +11562,7 @@ var require_expand = __commonJS({
       };
       return utils2.flatten(walk(ast));
     };
-    module2.exports = expand2;
+    module2.exports = expand3;
   }
 });
 
@@ -11915,7 +11915,7 @@ var require_braces = __commonJS({
     "use strict";
     var stringify = require_stringify();
     var compile2 = require_compile();
-    var expand2 = require_expand();
+    var expand3 = require_expand();
     var parse7 = require_parse();
     var braces = (input, options = {}) => {
       let output2 = [];
@@ -11953,7 +11953,7 @@ var require_braces = __commonJS({
       if (typeof input === "string") {
         input = braces.parse(input, options);
       }
-      let result = expand2(input, options);
+      let result = expand3(input, options);
       if (options.noempty === true) {
         result = result.filter(Boolean);
       }
@@ -11976,7 +11976,7 @@ var require_braces = __commonJS({
 var require_constants2 = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/constants.js"(exports2, module2) {
     "use strict";
-    var path9 = __require("path");
+    var path10 = __require("path");
     var WIN_SLASH = "\\\\/";
     var WIN_NO_SLASH = `[^${WIN_SLASH}]`;
     var DEFAULT_MAX_EXTGLOB_RECURSION = 0;
@@ -12150,7 +12150,7 @@ var require_constants2 = __commonJS({
       /* | */
       CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279,
       /* \uFEFF */
-      SEP: path9.sep,
+      SEP: path10.sep,
       /**
        * Create EXTGLOB_CHARS
        */
@@ -12177,7 +12177,7 @@ var require_constants2 = __commonJS({
 var require_utils3 = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/utils.js"(exports2) {
     "use strict";
-    var path9 = __require("path");
+    var path10 = __require("path");
     var win32 = process.platform === "win32";
     var {
       REGEX_BACKSLASH,
@@ -12206,7 +12206,7 @@ var require_utils3 = __commonJS({
       if (options && typeof options.windows === "boolean") {
         return options.windows;
       }
-      return win32 === true || path9.sep === "\\";
+      return win32 === true || path10.sep === "\\";
     };
     exports2.escapeLast = (input, char, lastIdx) => {
       const idx = input.lastIndexOf(char, lastIdx);
@@ -13583,7 +13583,7 @@ var require_parse2 = __commonJS({
 var require_picomatch = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/picomatch.js"(exports2, module2) {
     "use strict";
-    var path9 = __require("path");
+    var path10 = __require("path");
     var scan = require_scan();
     var parse7 = require_parse2();
     var utils2 = require_utils3();
@@ -13669,7 +13669,7 @@ var require_picomatch = __commonJS({
     };
     picomatch.matchBase = (input, glob7, options, posix = utils2.isWindows(options)) => {
       const regex = glob7 instanceof RegExp ? glob7 : picomatch.makeRe(glob7, options);
-      return regex.test(path9.basename(input));
+      return regex.test(path10.basename(input));
     };
     picomatch.isMatch = (str, patterns, options) => picomatch(patterns, options)(str);
     picomatch.parse = (pattern, options) => {
@@ -13904,7 +13904,7 @@ var require_pattern = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isAbsolute = exports2.partitionAbsoluteAndRelative = exports2.removeDuplicateSlashes = exports2.matchAny = exports2.convertPatternsToRe = exports2.makeRe = exports2.getPatternParts = exports2.expandBraceExpansion = exports2.expandPatternsWithBraceExpansion = exports2.isAffectDepthOfReadingPattern = exports2.endsWithSlashGlobStar = exports2.hasGlobStar = exports2.getBaseDirectory = exports2.isPatternRelatedToParentDirectory = exports2.getPatternsOutsideCurrentDirectory = exports2.getPatternsInsideCurrentDirectory = exports2.getPositivePatterns = exports2.getNegativePatterns = exports2.isPositivePattern = exports2.isNegativePattern = exports2.convertToNegativePattern = exports2.convertToPositivePattern = exports2.isDynamicPattern = exports2.isStaticPattern = void 0;
-    var path9 = __require("path");
+    var path10 = __require("path");
     var globParent = require_glob_parent();
     var micromatch = require_micromatch();
     var GLOBSTAR2 = "**";
@@ -13999,7 +13999,7 @@ var require_pattern = __commonJS({
     }
     exports2.endsWithSlashGlobStar = endsWithSlashGlobStar;
     function isAffectDepthOfReadingPattern(pattern) {
-      const basename4 = path9.basename(pattern);
+      const basename4 = path10.basename(pattern);
       return endsWithSlashGlobStar(pattern) || isStaticPattern(basename4);
     }
     exports2.isAffectDepthOfReadingPattern = isAffectDepthOfReadingPattern;
@@ -14057,7 +14057,7 @@ var require_pattern = __commonJS({
     }
     exports2.partitionAbsoluteAndRelative = partitionAbsoluteAndRelative;
     function isAbsolute3(pattern) {
-      return path9.isAbsolute(pattern);
+      return path10.isAbsolute(pattern);
     }
     exports2.isAbsolute = isAbsolute3;
   }
@@ -14234,8 +14234,8 @@ var require_utils4 = __commonJS({
     exports2.errno = errno;
     var fs7 = require_fs();
     exports2.fs = fs7;
-    var path9 = require_path();
-    exports2.path = path9;
+    var path10 = require_path();
+    exports2.path = path10;
     var pattern = require_pattern();
     exports2.pattern = pattern;
     var stream = require_stream();
@@ -14347,8 +14347,8 @@ var require_async = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.read = void 0;
-    function read(path9, settings, callback) {
-      settings.fs.lstat(path9, (lstatError, lstat) => {
+    function read(path10, settings, callback) {
+      settings.fs.lstat(path10, (lstatError, lstat) => {
         if (lstatError !== null) {
           callFailureCallback(callback, lstatError);
           return;
@@ -14357,7 +14357,7 @@ var require_async = __commonJS({
           callSuccessCallback(callback, lstat);
           return;
         }
-        settings.fs.stat(path9, (statError, stat2) => {
+        settings.fs.stat(path10, (statError, stat2) => {
           if (statError !== null) {
             if (settings.throwErrorOnBrokenSymbolicLink) {
               callFailureCallback(callback, statError);
@@ -14389,13 +14389,13 @@ var require_sync = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.read = void 0;
-    function read(path9, settings) {
-      const lstat = settings.fs.lstatSync(path9);
+    function read(path10, settings) {
+      const lstat = settings.fs.lstatSync(path10);
       if (!lstat.isSymbolicLink() || !settings.followSymbolicLink) {
         return lstat;
       }
       try {
-        const stat2 = settings.fs.statSync(path9);
+        const stat2 = settings.fs.statSync(path10);
         if (settings.markSymbolicLink) {
           stat2.isSymbolicLink = () => true;
         }
@@ -14466,17 +14466,17 @@ var require_out = __commonJS({
     var sync = require_sync();
     var settings_1 = require_settings();
     exports2.Settings = settings_1.default;
-    function stat2(path9, optionsOrSettingsOrCallback, callback) {
+    function stat2(path10, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
-        async.read(path9, getSettings(), optionsOrSettingsOrCallback);
+        async.read(path10, getSettings(), optionsOrSettingsOrCallback);
         return;
       }
-      async.read(path9, getSettings(optionsOrSettingsOrCallback), callback);
+      async.read(path10, getSettings(optionsOrSettingsOrCallback), callback);
     }
     exports2.stat = stat2;
-    function statSync2(path9, optionsOrSettings) {
+    function statSync2(path10, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
-      return sync.read(path9, settings);
+      return sync.read(path10, settings);
     }
     exports2.statSync = statSync2;
     function getSettings(settingsOrOptions = {}) {
@@ -14695,16 +14695,16 @@ var require_async2 = __commonJS({
           return;
         }
         const tasks = names.map((name) => {
-          const path9 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
+          const path10 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
           return (done) => {
-            fsStat.stat(path9, settings.fsStatSettings, (error48, stats) => {
+            fsStat.stat(path10, settings.fsStatSettings, (error48, stats) => {
               if (error48 !== null) {
                 done(error48);
                 return;
               }
               const entry = {
                 name,
-                path: path9,
+                path: path10,
                 dirent: utils2.fs.createDirentFromStats(name, stats)
               };
               if (settings.stats) {
@@ -14822,7 +14822,7 @@ var require_settings2 = __commonJS({
   "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/settings.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    var path9 = __require("path");
+    var path10 = __require("path");
     var fsStat = require_out();
     var fs7 = require_fs4();
     var Settings = class {
@@ -14830,7 +14830,7 @@ var require_settings2 = __commonJS({
         this._options = _options;
         this.followSymbolicLinks = this._getValue(this._options.followSymbolicLinks, false);
         this.fs = fs7.createFileSystemAdapter(this._options.fs);
-        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path9.sep);
+        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path10.sep);
         this.stats = this._getValue(this._options.stats, false);
         this.throwErrorOnBrokenSymbolicLink = this._getValue(this._options.throwErrorOnBrokenSymbolicLink, true);
         this.fsStatSettings = new fsStat.Settings({
@@ -14857,17 +14857,17 @@ var require_out2 = __commonJS({
     var sync = require_sync2();
     var settings_1 = require_settings2();
     exports2.Settings = settings_1.default;
-    function scandir(path9, optionsOrSettingsOrCallback, callback) {
+    function scandir(path10, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
-        async.read(path9, getSettings(), optionsOrSettingsOrCallback);
+        async.read(path10, getSettings(), optionsOrSettingsOrCallback);
         return;
       }
-      async.read(path9, getSettings(optionsOrSettingsOrCallback), callback);
+      async.read(path10, getSettings(optionsOrSettingsOrCallback), callback);
     }
     exports2.scandir = scandir;
-    function scandirSync(path9, optionsOrSettings) {
+    function scandirSync(path10, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
-      return sync.read(path9, settings);
+      return sync.read(path10, settings);
     }
     exports2.scandirSync = scandirSync;
     function getSettings(settingsOrOptions = {}) {
@@ -15517,7 +15517,7 @@ var require_settings3 = __commonJS({
   "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/settings.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    var path9 = __require("path");
+    var path10 = __require("path");
     var fsScandir = require_out2();
     var Settings = class {
       constructor(_options = {}) {
@@ -15527,7 +15527,7 @@ var require_settings3 = __commonJS({
         this.deepFilter = this._getValue(this._options.deepFilter, null);
         this.entryFilter = this._getValue(this._options.entryFilter, null);
         this.errorFilter = this._getValue(this._options.errorFilter, null);
-        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path9.sep);
+        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path10.sep);
         this.fsScandirSettings = new fsScandir.Settings({
           followSymbolicLinks: this._options.followSymbolicLinks,
           fs: this._options.fs,
@@ -15589,7 +15589,7 @@ var require_reader2 = __commonJS({
   "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/reader.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    var path9 = __require("path");
+    var path10 = __require("path");
     var fsStat = require_out();
     var utils2 = require_utils4();
     var Reader = class {
@@ -15602,7 +15602,7 @@ var require_reader2 = __commonJS({
         });
       }
       _getFullEntryPath(filepath) {
-        return path9.resolve(this._settings.cwd, filepath);
+        return path10.resolve(this._settings.cwd, filepath);
       }
       _makeEntry(stats, pattern) {
         const entry = {
@@ -16018,7 +16018,7 @@ var require_provider = __commonJS({
   "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/provider.js"(exports2) {
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
-    var path9 = __require("path");
+    var path10 = __require("path");
     var deep_1 = require_deep();
     var entry_1 = require_entry();
     var error_1 = require_error();
@@ -16032,7 +16032,7 @@ var require_provider = __commonJS({
         this.entryTransformer = new entry_2.default(this._settings);
       }
       _getRootDirectory(task) {
-        return path9.resolve(this._settings.cwd, task.base);
+        return path10.resolve(this._settings.cwd, task.base);
       }
       _getReaderOptions(task) {
         const basePath = task.base === "." ? "" : task.base;
@@ -17005,7 +17005,7 @@ var require_brace_expansion = __commonJS({
       if (str.substr(0, 2) === "{}") {
         str = "\\{\\}" + str.substr(2);
       }
-      return expand2(escapeBraces2(str), true).map(unescapeBraces2);
+      return expand3(escapeBraces2(str), true).map(unescapeBraces2);
     }
     function embrace2(str) {
       return "{" + str + "}";
@@ -17019,13 +17019,13 @@ var require_brace_expansion = __commonJS({
     function gte2(i, y) {
       return i >= y;
     }
-    function expand2(str, isTop) {
+    function expand3(str, isTop) {
       var expansions = [];
       var m = balanced2("{", "}", str);
       if (!m)
         return [str];
       var pre = m.pre;
-      var post = m.post.length ? expand2(m.post, false) : [""];
+      var post = m.post.length ? expand3(m.post, false) : [""];
       if (/\$$/.test(m.pre)) {
         for (var k = 0; k < post.length; k++) {
           var expansion = pre + "{" + m.body + "}" + post[k];
@@ -17039,7 +17039,7 @@ var require_brace_expansion = __commonJS({
         if (!isSequence && !isOptions) {
           if (m.post.match(/,(?!,).*\}/)) {
             str = m.pre + "{" + m.body + escClose2 + m.post;
-            return expand2(str);
+            return expand3(str);
           }
           return [str];
         }
@@ -17049,7 +17049,7 @@ var require_brace_expansion = __commonJS({
         } else {
           n = parseCommaParts2(m.body);
           if (n.length === 1) {
-            n = expand2(n[0], false).map(embrace2);
+            n = expand3(n[0], false).map(embrace2);
             if (n.length === 1) {
               return post.map(function(p) {
                 return m.pre + n[0] + p;
@@ -17095,7 +17095,7 @@ var require_brace_expansion = __commonJS({
         } else {
           N = [];
           for (var j = 0; j < n.length; j++) {
-            N.push.apply(N, expand2(n[j], false));
+            N.push.apply(N, expand3(n[j], false));
           }
         }
         for (var j = 0; j < N.length; j++) {
@@ -17328,11 +17328,11 @@ var require_cjs = __commonJS({
       return (f) => f.length === len && f !== "." && f !== "..";
     };
     var defaultPlatform2 = typeof process === "object" && process ? typeof process.env === "object" && process.env && process.env.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
-    var path9 = {
+    var path10 = {
       win32: { sep: "\\" },
       posix: { sep: "/" }
     };
-    exports2.sep = defaultPlatform2 === "win32" ? path9.win32.sep : path9.posix.sep;
+    exports2.sep = defaultPlatform2 === "win32" ? path10.win32.sep : path10.posix.sep;
     exports2.minimatch.sep = exports2.sep;
     exports2.GLOBSTAR = Symbol("globstar **");
     exports2.minimatch.GLOBSTAR = exports2.GLOBSTAR;
@@ -18309,7 +18309,7 @@ var require_folder_hash = __commonJS({
     var crypto2 = __require("crypto");
     var debug = require_src();
     var minimatch2 = require_index_cjs();
-    var path9 = __require("path");
+    var path10 = __require("path");
     var defaultOptions = {
       algo: "sha1",
       // see crypto.getHashes() for options
@@ -18358,7 +18358,7 @@ var require_folder_hash = __commonJS({
         callback = arguments[arguments.length - 1];
         return parseParameters(arguments).then(({ basename: basename4, dir: dir2, options: options2 }) => {
           options2.skipMatching = true;
-          return fs7.promises.lstat(path9.join(dir2, basename4)).then((stats) => {
+          return fs7.promises.lstat(path10.join(dir2, basename4)).then((stats) => {
             stats.name = basename4;
             return stats;
           }).then((stats) => hashElementPromise(stats, dir2, options2, true));
@@ -18414,7 +18414,7 @@ var require_folder_hash = __commonJS({
         runnables.forEach((run) => run());
       }
       async function hashFolderPromise(name, dir, options, isRootElement = false) {
-        const folderPath = path9.join(dir, name);
+        const folderPath = path10.join(dir, name);
         let ignoreBasenameOnce = options.ignoreBasenameOnce;
         delete options.ignoreBasenameOnce;
         if (options.skipMatching) {
@@ -18433,7 +18433,7 @@ var require_folder_hash = __commonJS({
         return hash2;
       }
       function hashFilePromise(name, dir, options, isRootElement = false) {
-        const filePath = path9.join(dir, name);
+        const filePath = path10.join(dir, name);
         if (options.skipMatching) {
           log.match(`skipped '${filePath}'`);
           delete options.skipMatching;
@@ -18464,7 +18464,7 @@ var require_folder_hash = __commonJS({
         });
       }
       async function hashSymLinkPromise(name, dir, options, isRootElement = false) {
-        const target = await fs7.promises.readlink(path9.join(dir, name));
+        const target = await fs7.promises.readlink(path10.join(dir, name));
         log.symlink(`handling symbolic link ${name} -> ${target}`);
         if (options.symbolicLinks.include) {
           if (options.symbolicLinks.ignoreTargetContent) {
@@ -18497,7 +18497,7 @@ var require_folder_hash = __commonJS({
           options.ignoreBasenameOnce = true;
         }
         try {
-          const stats = await fs7.promises.stat(path9.join(dir, name));
+          const stats = await fs7.promises.stat(path10.join(dir, name));
           stats.name = name;
           const temp = await hashElementPromise(stats, dir, options, isRootElement);
           if (!options.symbolicLinks.ignoreTargetPath) {
@@ -18525,13 +18525,13 @@ var require_folder_hash = __commonJS({
           }
         }
       }
-      function ignore(name, path10, rules) {
+      function ignore(name, path11, rules) {
         if (rules.exclude) {
           if (rules.matchBasename && rules.exclude(name)) {
             log.match(`exclude basename '${name}'`);
             return true;
-          } else if (rules.matchPath && rules.exclude(path10)) {
-            log.match(`exclude path '${path10}'`);
+          } else if (rules.matchPath && rules.exclude(path11)) {
+            log.match(`exclude path '${path11}'`);
             return true;
           }
         }
@@ -18539,15 +18539,15 @@ var require_folder_hash = __commonJS({
           if (rules.matchBasename && rules.include(name)) {
             log.match(`include basename '${name}'`);
             return false;
-          } else if (rules.matchPath && rules.include(path10)) {
-            log.match(`include path '${path10}'`);
+          } else if (rules.matchPath && rules.include(path11)) {
+            log.match(`include path '${path11}'`);
             return false;
           } else {
-            log.match(`include rule failed for path '${path10}'`);
+            log.match(`include rule failed for path '${path11}'`);
             return true;
           }
         }
-        log.match(`Will not ignore unmatched '${path10}'`);
+        log.match(`Will not ignore unmatched '${path11}'`);
         return false;
       }
       return hashElement2;
@@ -18558,8 +18558,8 @@ var require_folder_hash = __commonJS({
         return Promise.reject(new TypeError("First argument must be a string"));
       }
       if (!isString(dir)) {
-        dir = path9.dirname(basename4);
-        basename4 = path9.basename(basename4);
+        dir = path10.dirname(basename4);
+        basename4 = path10.basename(basename4);
         options_ = args[1];
       }
       if (!isObject2(options_))
@@ -18726,7 +18726,7 @@ var require_polyfills = __commonJS({
       fs7.fstatSync = statFixSync(fs7.fstatSync);
       fs7.lstatSync = statFixSync(fs7.lstatSync);
       if (fs7.chmod && !fs7.lchmod) {
-        fs7.lchmod = function(path9, mode, cb) {
+        fs7.lchmod = function(path10, mode, cb) {
           if (cb)
             process.nextTick(cb);
         };
@@ -18734,7 +18734,7 @@ var require_polyfills = __commonJS({
         };
       }
       if (fs7.chown && !fs7.lchown) {
-        fs7.lchown = function(path9, uid, gid, cb) {
+        fs7.lchown = function(path10, uid, gid, cb) {
           if (cb)
             process.nextTick(cb);
         };
@@ -18805,9 +18805,9 @@ var require_polyfills = __commonJS({
         };
       }(fs7.readSync);
       function patchLchmod(fs8) {
-        fs8.lchmod = function(path9, mode, callback) {
+        fs8.lchmod = function(path10, mode, callback) {
           fs8.open(
-            path9,
+            path10,
             constants.O_WRONLY | constants.O_SYMLINK,
             mode,
             function(err, fd) {
@@ -18825,8 +18825,8 @@ var require_polyfills = __commonJS({
             }
           );
         };
-        fs8.lchmodSync = function(path9, mode) {
-          var fd = fs8.openSync(path9, constants.O_WRONLY | constants.O_SYMLINK, mode);
+        fs8.lchmodSync = function(path10, mode) {
+          var fd = fs8.openSync(path10, constants.O_WRONLY | constants.O_SYMLINK, mode);
           var threw = true;
           var ret;
           try {
@@ -18847,8 +18847,8 @@ var require_polyfills = __commonJS({
       }
       function patchLutimes(fs8) {
         if (constants.hasOwnProperty("O_SYMLINK") && fs8.futimes) {
-          fs8.lutimes = function(path9, at, mt, cb) {
-            fs8.open(path9, constants.O_SYMLINK, function(er, fd) {
+          fs8.lutimes = function(path10, at, mt, cb) {
+            fs8.open(path10, constants.O_SYMLINK, function(er, fd) {
               if (er) {
                 if (cb)
                   cb(er);
@@ -18862,8 +18862,8 @@ var require_polyfills = __commonJS({
               });
             });
           };
-          fs8.lutimesSync = function(path9, at, mt) {
-            var fd = fs8.openSync(path9, constants.O_SYMLINK);
+          fs8.lutimesSync = function(path10, at, mt) {
+            var fd = fs8.openSync(path10, constants.O_SYMLINK);
             var ret;
             var threw = true;
             try {
@@ -18999,12 +18999,12 @@ var require_legacy_streams = __commonJS({
         ReadStream,
         WriteStream
       };
-      function ReadStream(path9, options) {
+      function ReadStream(path10, options) {
         if (!(this instanceof ReadStream))
-          return new ReadStream(path9, options);
+          return new ReadStream(path10, options);
         Stream2.call(this);
         var self2 = this;
-        this.path = path9;
+        this.path = path10;
         this.fd = null;
         this.readable = true;
         this.paused = false;
@@ -19050,11 +19050,11 @@ var require_legacy_streams = __commonJS({
           self2._read();
         });
       }
-      function WriteStream(path9, options) {
+      function WriteStream(path10, options) {
         if (!(this instanceof WriteStream))
-          return new WriteStream(path9, options);
+          return new WriteStream(path10, options);
         Stream2.call(this);
-        this.path = path9;
+        this.path = path10;
         this.fd = null;
         this.writable = true;
         this.flags = "w";
@@ -19197,14 +19197,14 @@ var require_graceful_fs = __commonJS({
       fs8.createWriteStream = createWriteStream2;
       var fs$readFile = fs8.readFile;
       fs8.readFile = readFile6;
-      function readFile6(path9, options, cb) {
+      function readFile6(path10, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$readFile(path9, options, cb);
-        function go$readFile(path10, options2, cb2, startTime) {
-          return fs$readFile(path10, options2, function(err) {
+        return go$readFile(path10, options, cb);
+        function go$readFile(path11, options2, cb2, startTime) {
+          return fs$readFile(path11, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$readFile, [path10, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$readFile, [path11, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -19214,14 +19214,14 @@ var require_graceful_fs = __commonJS({
       }
       var fs$writeFile = fs8.writeFile;
       fs8.writeFile = writeFile5;
-      function writeFile5(path9, data, options, cb) {
+      function writeFile5(path10, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$writeFile(path9, data, options, cb);
-        function go$writeFile(path10, data2, options2, cb2, startTime) {
-          return fs$writeFile(path10, data2, options2, function(err) {
+        return go$writeFile(path10, data, options, cb);
+        function go$writeFile(path11, data2, options2, cb2, startTime) {
+          return fs$writeFile(path11, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$writeFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$writeFile, [path11, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -19232,14 +19232,14 @@ var require_graceful_fs = __commonJS({
       var fs$appendFile = fs8.appendFile;
       if (fs$appendFile)
         fs8.appendFile = appendFile;
-      function appendFile(path9, data, options, cb) {
+      function appendFile(path10, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$appendFile(path9, data, options, cb);
-        function go$appendFile(path10, data2, options2, cb2, startTime) {
-          return fs$appendFile(path10, data2, options2, function(err) {
+        return go$appendFile(path10, data, options, cb);
+        function go$appendFile(path11, data2, options2, cb2, startTime) {
+          return fs$appendFile(path11, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$appendFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$appendFile, [path11, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -19270,31 +19270,31 @@ var require_graceful_fs = __commonJS({
       var fs$readdir = fs8.readdir;
       fs8.readdir = readdir;
       var noReaddirOptionVersions = /^v[0-5]\./;
-      function readdir(path9, options, cb) {
+      function readdir(path10, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path10, options2, cb2, startTime) {
-          return fs$readdir(path10, fs$readdirCallback(
-            path10,
+        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path11, options2, cb2, startTime) {
+          return fs$readdir(path11, fs$readdirCallback(
+            path11,
             options2,
             cb2,
             startTime
           ));
-        } : function go$readdir2(path10, options2, cb2, startTime) {
-          return fs$readdir(path10, options2, fs$readdirCallback(
-            path10,
+        } : function go$readdir2(path11, options2, cb2, startTime) {
+          return fs$readdir(path11, options2, fs$readdirCallback(
+            path11,
             options2,
             cb2,
             startTime
           ));
         };
-        return go$readdir(path9, options, cb);
-        function fs$readdirCallback(path10, options2, cb2, startTime) {
+        return go$readdir(path10, options, cb);
+        function fs$readdirCallback(path11, options2, cb2, startTime) {
           return function(err, files) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
               enqueue([
                 go$readdir,
-                [path10, options2, cb2],
+                [path11, options2, cb2],
                 err,
                 startTime || Date.now(),
                 Date.now()
@@ -19365,7 +19365,7 @@ var require_graceful_fs = __commonJS({
         enumerable: true,
         configurable: true
       });
-      function ReadStream(path9, options) {
+      function ReadStream(path10, options) {
         if (this instanceof ReadStream)
           return fs$ReadStream.apply(this, arguments), this;
         else
@@ -19385,7 +19385,7 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function WriteStream(path9, options) {
+      function WriteStream(path10, options) {
         if (this instanceof WriteStream)
           return fs$WriteStream.apply(this, arguments), this;
         else
@@ -19403,22 +19403,22 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function createReadStream(path9, options) {
-        return new fs8.ReadStream(path9, options);
+      function createReadStream(path10, options) {
+        return new fs8.ReadStream(path10, options);
       }
-      function createWriteStream2(path9, options) {
-        return new fs8.WriteStream(path9, options);
+      function createWriteStream2(path10, options) {
+        return new fs8.WriteStream(path10, options);
       }
       var fs$open = fs8.open;
       fs8.open = open2;
-      function open2(path9, flags, mode, cb) {
+      function open2(path10, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
-        return go$open(path9, flags, mode, cb);
-        function go$open(path10, flags2, mode2, cb2, startTime) {
-          return fs$open(path10, flags2, mode2, function(err, fd) {
+        return go$open(path10, flags, mode, cb);
+        function go$open(path11, flags2, mode2, cb2, startTime) {
+          return fs$open(path11, flags2, mode2, function(err, fd) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$open, [path10, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$open, [path11, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -25780,7 +25780,7 @@ var require_util2 = __commonJS({
     exports2.getWellKnownCertificateConfigFileLocation = getWellKnownCertificateConfigFileLocation;
     var fs7 = __require("fs");
     var os2 = __require("os");
-    var path9 = __require("path");
+    var path10 = __require("path");
     var WELL_KNOWN_CERTIFICATE_CONFIG_FILE = "certificate_config.json";
     var CLOUDSDK_CONFIG_DIRECTORY = "gcloud";
     function snakeToCamel(str) {
@@ -25873,8 +25873,8 @@ var require_util2 = __commonJS({
       }
     }
     function getWellKnownCertificateConfigFileLocation() {
-      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path9.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path9.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
-      return path9.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
+      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path10.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path10.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
+      return path10.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
     }
     function _isWindows() {
       return os2.platform().startsWith("win");
@@ -27822,7 +27822,7 @@ var require_getCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.getCredentials = getCredentials;
-    var path9 = __require("path");
+    var path10 = __require("path");
     var fs7 = __require("fs");
     var util_1 = __require("util");
     var errorWithCode_1 = require_errorWithCode();
@@ -27894,7 +27894,7 @@ var require_getCredentials = __commonJS({
        * @returns An instance of a class that implements ICredentialsProvider.
        */
       static create(keyFilePath) {
-        const keyFileExtension = path9.extname(keyFilePath);
+        const keyFileExtension = path10.extname(keyFilePath);
         switch (keyFileExtension) {
           case ExtensionFiles.JSON:
             return new JsonCredentialsProvider(keyFilePath);
@@ -30980,7 +30980,7 @@ var require_googleauth = __commonJS({
     var gaxios_1 = require_src2();
     var gcpMetadata = require_src4();
     var os2 = __require("os");
-    var path9 = __require("path");
+    var path10 = __require("path");
     var crypto_1 = require_crypto3();
     var computeclient_1 = require_computeclient();
     var idtokenclient_1 = require_idtokenclient();
@@ -31266,11 +31266,11 @@ var require_googleauth = __commonJS({
         } else {
           const home = process.env["HOME"];
           if (home) {
-            location = path9.join(home, ".config");
+            location = path10.join(home, ".config");
           }
         }
         if (location) {
-          location = path9.join(location, "gcloud", "application_default_credentials.json");
+          location = path10.join(location, "gcloud", "application_default_credentials.json");
           if (!fs7.existsSync(location)) {
             location = null;
           }
@@ -31614,7 +31614,7 @@ var require_googleauth = __commonJS({
         if (this.jsonContent) {
           return this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
         } else if (this.keyFilename) {
-          const filePath = path9.resolve(this.keyFilename);
+          const filePath = path10.resolve(this.keyFilename);
           const stream = fs7.createReadStream(filePath);
           return await this.fromStreamAsync(stream, this.clientOptions);
         } else if (this.apiKey) {
@@ -32186,7 +32186,7 @@ var require_constants4 = __commonJS({
 var require_node_gyp_build = __commonJS({
   "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js"(exports2, module2) {
     var fs7 = __require("fs");
-    var path9 = __require("path");
+    var path10 = __require("path");
     var os2 = __require("os");
     var runtimeRequire = typeof __webpack_require__ === "function" ? __non_webpack_require__ : __require;
     var vars = process.config && process.config.variables || {};
@@ -32203,25 +32203,25 @@ var require_node_gyp_build = __commonJS({
       return runtimeRequire(load3.resolve(dir));
     }
     load3.resolve = load3.path = function(dir) {
-      dir = path9.resolve(dir || ".");
+      dir = path10.resolve(dir || ".");
       try {
-        var name = runtimeRequire(path9.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
+        var name = runtimeRequire(path10.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
         if (process.env[name + "_PREBUILD"])
           dir = process.env[name + "_PREBUILD"];
       } catch (err) {
       }
       if (!prebuildsOnly) {
-        var release = getFirst(path9.join(dir, "build/Release"), matchBuild);
+        var release = getFirst(path10.join(dir, "build/Release"), matchBuild);
         if (release)
           return release;
-        var debug = getFirst(path9.join(dir, "build/Debug"), matchBuild);
+        var debug = getFirst(path10.join(dir, "build/Debug"), matchBuild);
         if (debug)
           return debug;
       }
       var prebuild = resolve8(dir);
       if (prebuild)
         return prebuild;
-      var nearby = resolve8(path9.dirname(process.execPath));
+      var nearby = resolve8(path10.dirname(process.execPath));
       if (nearby)
         return nearby;
       var target = [
@@ -32239,16 +32239,16 @@ var require_node_gyp_build = __commonJS({
       ].filter(Boolean).join(" ");
       throw new Error("No native build was found for " + target + "\n    loaded from: " + dir + "\n");
       function resolve8(dir2) {
-        var tuples = readdirSync(path9.join(dir2, "prebuilds")).map(parseTuple);
+        var tuples = readdirSync(path10.join(dir2, "prebuilds")).map(parseTuple);
         var tuple2 = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0];
         if (!tuple2)
           return;
-        var prebuilds = path9.join(dir2, "prebuilds", tuple2.name);
+        var prebuilds = path10.join(dir2, "prebuilds", tuple2.name);
         var parsed = readdirSync(prebuilds).map(parseTags);
         var candidates = parsed.filter(matchTags(runtime, abi));
         var winner = candidates.sort(compareTags(runtime))[0];
         if (winner)
-          return path9.join(prebuilds, winner.file);
+          return path10.join(prebuilds, winner.file);
       }
     };
     function readdirSync(dir) {
@@ -32260,7 +32260,7 @@ var require_node_gyp_build = __commonJS({
     }
     function getFirst(dir, filter2) {
       var files = readdirSync(dir).filter(filter2);
-      return files[0] && path9.join(dir, files[0]);
+      return files[0] && path10.join(dir, files[0]);
     }
     function matchBuild(name) {
       return /\.node$/.test(name);
@@ -39327,7 +39327,7 @@ var CheckModule = {
   describe: "Check the status of information the caretaker manages for the repository"
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/key.js
 var isUpKey = (key, keybindings = []) => (
   // The up key
   key.name === "up" || // Vim keybinding: hjkl keys map to left/down/up/right
@@ -39346,7 +39346,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -39369,10 +39369,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -39478,7 +39478,10 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/use-state.js
+function isFactory(value) {
+  return typeof value === "function";
+}
 function useState(defaultValue) {
   return withPointer((pointer) => {
     const setState = AsyncResource2.bind(function setState2(newValue) {
@@ -39490,13 +39493,13 @@ function useState(defaultValue) {
     if (pointer.initialized) {
       return [pointer.get(), setState];
     }
-    const value = typeof defaultValue === "function" ? defaultValue() : defaultValue;
+    const value = isFactory(defaultValue) ? defaultValue() : defaultValue;
     pointer.set(value);
     return [value, setState];
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -39508,16 +39511,17 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
-// node_modules/.aspect_rules_js/@inquirer+figures@2.0.4/node_modules/@inquirer/figures/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+figures@2.0.5/node_modules/@inquirer/figures/dist/index.js
 import process2 from "node:process";
 function isUnicodeSupported() {
-  if (process2.platform !== "win32") {
+  if (!process2.platform.startsWith("win")) {
     return process2.env["TERM"] !== "linux";
   }
-  return Boolean(process2.env["WT_SESSION"]) || // Windows Terminal
+  return Boolean(process2.env["CI"]) || // CI environments generally support unicode
+  Boolean(process2.env["WT_SESSION"]) || // Windows Terminal
   Boolean(process2.env["TERMINUS_SUBLIME"]) || // Terminus (<0.2.27)
   process2.env["ConEmuTask"] === "{cmd::Cmder}" || // ConEmu and cmder
   process2.env["TERM_PROGRAM"] === "Terminus-Sublime" || process2.env["TERM_PROGRAM"] === "vscode" || process2.env["TERM"] === "xterm-256color" || process2.env["TERM"] === "alacritty" || process2.env["TERMINAL_EMULATOR"] === "JetBrains-JediTerm";
@@ -39803,7 +39807,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -39824,7 +39828,7 @@ var defaultTheme = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -39852,7 +39856,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -39883,7 +39887,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -39896,12 +39900,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -39920,7 +39924,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 
 // node_modules/.aspect_rules_js/fast-string-truncated-width@3.0.3/node_modules/fast-string-truncated-width/dist/utils.js
@@ -40260,7 +40264,7 @@ function wrapAnsi(string4, columns, options) {
   return String(string4).normalize().split(CRLF_OR_LF).map((line) => exec(line, columns, options)).join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/utils.js
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, hard: true }).split("\n").map((str) => str.trimEnd())).join("\n");
 }
@@ -40268,7 +40272,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -40357,7 +40361,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -40613,10 +40617,10 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
-// node_modules/.aspect_rules_js/@inquirer+ansi@2.0.4/node_modules/@inquirer/ansi/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+ansi@2.0.5/node_modules/@inquirer/ansi/dist/index.js
 var ESC2 = "\x1B[";
 var cursorLeft = ESC2 + "G";
 var cursorHide = ESC2 + "?25l";
@@ -40632,7 +40636,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC2 + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -40692,7 +40696,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -40707,7 +40711,8 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+import path3 from "node:path";
 var nativeSetImmediate = globalThis.setImmediate;
 function getCallSites() {
   const _prepareStackTrace = Error.prepareStackTrace;
@@ -40764,13 +40769,22 @@ function createPrompt(view) {
         const checkCursorPos = () => screen.checkCursorPos();
         rl.input.on("keypress", checkCursorPos);
         cleanups.add(() => rl.input.removeListener("keypress", checkCursorPos));
+        let pendingDone = null;
         cycle(() => {
+          let effectsSettled = false;
           try {
             const nextView = view(config2, (value) => {
-              setImmediate(() => resolve8(value));
+              if (effectsSettled) {
+                resolve8(value);
+              } else {
+                pendingDone = { value };
+              }
             });
             if (nextView === void 0) {
-              const callerFilename = callSites[1]?.getFileName();
+              let callerFilename = callSites[1]?.getFileName();
+              if (callerFilename && !callerFilename.startsWith("file://")) {
+                callerFilename = path3.resolve(callerFilename);
+              }
               throw new Error(`Prompt functions must return a string.
     at ${callerFilename}`);
             }
@@ -40779,6 +40793,12 @@ function createPrompt(view) {
             effectScheduler.run();
           } catch (error48) {
             reject(error48);
+          }
+          effectsSettled = true;
+          if (pendingDone !== null) {
+            const { value } = pendingDone;
+            pendingDone = null;
+            resolve8(value);
           }
         });
       };
@@ -40803,7 +40823,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@11.1.7_@types+node@24.12.0/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@11.1.8_@types+node@24.12.2/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -40818,7 +40838,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.1.2_@types+node@24.12.0/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.1.3_@types+node@24.12.2/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -40858,12 +40878,13 @@ function normalizeChoices(choices) {
   return choices.map((choice) => {
     if (Separator.isSeparator(choice))
       return choice;
-    if (typeof choice === "string") {
+    if (typeof choice !== "object" || choice === null || !("value" in choice)) {
+      const name2 = String(choice);
       return {
         value: choice,
-        name: choice,
-        short: choice,
-        checkedName: choice,
+        name: name2,
+        short: name2,
+        checkedName: name2,
         disabled: false,
         checked: false
       };
@@ -41008,148 +41029,154 @@ var dist_default4 = createPrompt((config2, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.4_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@3.0.0_@types+node@24.12.2/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib2());
 var import_iconv_lite = __toESM(require_lib3());
-import { spawn, spawnSync } from "child_process";
-import { readFileSync, unlinkSync, writeFileSync } from "fs";
-import path3 from "node:path";
+import { spawn, spawnSync } from "node:child_process";
+import { readFileSync, unlinkSync, writeFileSync } from "node:fs";
+import path4 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.4_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/errors/CreateFileError.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@3.0.0_@types+node@24.12.2/node_modules/@inquirer/external-editor/dist/errors.js
 var CreateFileError = class extends Error {
+  name = "CreateFileError";
   originalError;
   constructor(originalError) {
-    super(`Failed to create temporary file. ${originalError.message}`);
+    super(`Failed to create temporary file.${originalError instanceof Error ? ` ${originalError.message}` : ""}`, { cause: originalError });
     this.originalError = originalError;
   }
 };
-
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.4_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/errors/LaunchEditorError.js
 var LaunchEditorError = class extends Error {
+  name = "LaunchEditorError";
   originalError;
   constructor(originalError) {
-    super(`Failed to launch editor. ${originalError.message}`);
+    super(`Failed to launch editor.${originalError instanceof Error ? ` ${originalError.message}` : ""}`, { cause: originalError });
     this.originalError = originalError;
   }
 };
-
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.4_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/errors/ReadFileError.js
 var ReadFileError = class extends Error {
+  name = "ReadFileError";
   originalError;
   constructor(originalError) {
-    super(`Failed to read temporary file. ${originalError.message}`);
+    super(`Failed to read temporary file.${originalError instanceof Error ? ` ${originalError.message}` : ""}`, { cause: originalError });
     this.originalError = originalError;
   }
 };
-
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.4_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/errors/RemoveFileError.js
 var RemoveFileError = class extends Error {
+  name = "RemoveFileError";
   originalError;
   constructor(originalError) {
-    super(`Failed to remove temporary file. ${originalError.message}`);
+    super(`Failed to remove temporary file.${originalError instanceof Error ? ` ${originalError.message}` : ""}`, { cause: originalError });
     this.originalError = originalError;
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@2.0.4_@types+node@24.12.0/node_modules/@inquirer/external-editor/dist/index.js
-function editAsync(text = "", callback, fileOptions) {
-  const editor = new ExternalEditor(text, fileOptions);
-  editor.runAsync((err, result) => {
-    if (err) {
-      setImmediate(callback, err, void 0);
+// node_modules/.aspect_rules_js/@inquirer+external-editor@3.0.0_@types+node@24.12.2/node_modules/@inquirer/external-editor/dist/parse-editor-command.js
+function parseEditorCommand(editor) {
+  let bin;
+  let rest;
+  if (editor.startsWith('"')) {
+    const closeQuote = editor.indexOf('"', 1);
+    if (closeQuote === -1) {
+      bin = editor.slice(1);
+      rest = "";
     } else {
-      try {
-        editor.cleanup();
-        setImmediate(callback, void 0, result);
-      } catch (cleanupError) {
-        setImmediate(callback, cleanupError, void 0);
-      }
+      bin = editor.substring(1, closeQuote);
+      rest = editor.substring(closeQuote + 1).trim();
     }
-  });
+  } else {
+    const firstSpace = editor.indexOf(" ");
+    if (firstSpace === -1) {
+      bin = editor;
+      rest = "";
+    } else {
+      bin = editor.substring(0, firstSpace);
+      rest = editor.substring(firstSpace + 1).trim();
+    }
+  }
+  return { bin, args: rest ? rest.split(/\s+/) : [] };
 }
+
+// node_modules/.aspect_rules_js/@inquirer+external-editor@3.0.0_@types+node@24.12.2/node_modules/@inquirer/external-editor/dist/index.js
+var editAsync = (text, callbackOrOptions, fileOptions) => {
+  const callback = typeof callbackOrOptions === "function" ? callbackOrOptions : void 0;
+  const options = typeof callbackOrOptions === "function" ? fileOptions : callbackOrOptions;
+  return new ExternalEditor(text, options).runAsync(callback);
+};
 function sanitizeAffix(affix) {
   if (!affix)
     return "";
   return affix.replace(/[^a-zA-Z0-9_.-]/g, "_");
 }
-function splitStringBySpace(str) {
-  const pieces = [];
-  let currentString = "";
-  for (let strIndex = 0; strIndex < str.length; strIndex++) {
-    const currentLetter = str.charAt(strIndex);
-    if (strIndex > 0 && currentLetter === " " && str[strIndex - 1] !== "\\" && currentString.length > 0) {
-      pieces.push(currentString);
-      currentString = "";
-    } else {
-      currentString = `${currentString}${currentLetter}`;
-    }
-  }
-  if (currentString.length > 0) {
-    pieces.push(currentString);
-  }
-  return pieces;
-}
 var ExternalEditor = class {
-  text = "";
-  tempFile;
   editor;
   lastExitStatus = 0;
+  text = "";
+  tempFile = "";
   fileOptions = {};
-  get temp_file() {
-    console.log("DEPRECATED: temp_file. Use tempFile moving forward.");
-    return this.tempFile;
-  }
-  get last_exit_status() {
-    console.log("DEPRECATED: last_exit_status. Use lastExitStatus moving forward.");
-    return this.lastExitStatus;
-  }
-  constructor(text = "", fileOptions) {
+  constructor(text = "", fileOptions = {}) {
     this.text = text;
-    if (fileOptions) {
-      this.fileOptions = fileOptions;
-    }
-    this.determineEditor();
-    this.createTemporaryFile();
+    this.fileOptions = fileOptions;
+    this.editor = parseEditorCommand(process.env["VISUAL"] ?? process.env["EDITOR"] ?? (process.platform.startsWith("win") ? "notepad" : "vim"));
   }
   run() {
-    this.launchEditor();
-    this.readTemporaryFile();
-    return this.text;
-  }
-  runAsync(callback) {
+    this.createTempFile();
     try {
-      this.launchEditorAsync(() => {
-        try {
-          this.readTemporaryFile();
-          setImmediate(callback, void 0, this.text);
-        } catch (readError) {
-          setImmediate(callback, readError, void 0);
-        }
-      });
-    } catch (launchError) {
-      setImmediate(callback, launchError, void 0);
+      try {
+        const editorProcess = spawnSync(this.editor.bin, this.editor.args.concat([this.tempFile]), { stdio: "inherit" });
+        this.lastExitStatus = editorProcess.status ?? 0;
+      } catch (launchError) {
+        throw new LaunchEditorError(launchError);
+      }
+      this.readTemporaryFile();
+      return this.text;
+    } finally {
+      this.cleanup();
     }
   }
+  runAsync(callback) {
+    this.createTempFile();
+    const promise2 = new Promise((resolve8, reject) => {
+      try {
+        const editorProcess = spawn(this.editor.bin, this.editor.args.concat([this.tempFile]), { stdio: "inherit" });
+        editorProcess.on("exit", (code) => {
+          this.lastExitStatus = code;
+          resolve8();
+        });
+      } catch (launchError) {
+        reject(new LaunchEditorError(launchError));
+      }
+    }).then(() => {
+      this.readTemporaryFile();
+      return this.text;
+    }).finally(() => {
+      this.cleanup();
+    });
+    if (callback) {
+      promise2.then((text) => callback(void 0, text), (err) => callback(err instanceof Error ? err : new Error(String(err)), void 0));
+    }
+    return promise2;
+  }
   cleanup() {
-    this.removeTemporaryFile();
+    if (!this.tempFile)
+      return;
+    try {
+      unlinkSync(this.tempFile);
+      this.tempFile = "";
+    } catch (removeFileError) {
+      throw new RemoveFileError(removeFileError);
+    }
   }
-  determineEditor() {
-    const editor = process.env["VISUAL"] ? process.env["VISUAL"] : process.env["EDITOR"] ? process.env["EDITOR"] : process.platform.startsWith("win") ? "notepad" : "vim";
-    const editorOpts = splitStringBySpace(editor).map((piece) => piece.replace("\\ ", " "));
-    const bin = editorOpts.shift();
-    this.editor = { args: editorOpts, bin };
-  }
-  createTemporaryFile() {
+  createTempFile() {
     try {
       const baseDir = this.fileOptions.dir ?? os.tmpdir();
       const id = randomUUID();
       const prefix = sanitizeAffix(this.fileOptions.prefix);
       const postfix = sanitizeAffix(this.fileOptions.postfix);
       const filename = `${prefix}${id}${postfix}`;
-      const candidate = path3.resolve(baseDir, filename);
-      const baseResolved = path3.resolve(baseDir) + path3.sep;
+      const candidate = path4.resolve(baseDir, filename);
+      const baseResolved = path4.resolve(baseDir) + path4.sep;
       if (!candidate.startsWith(baseResolved)) {
         throw new Error("Resolved temporary file escaped the base directory");
       }
@@ -41179,38 +41206,13 @@ var ExternalEditor = class {
       throw new ReadFileError(readFileError);
     }
   }
-  removeTemporaryFile() {
-    try {
-      unlinkSync(this.tempFile);
-    } catch (removeFileError) {
-      throw new RemoveFileError(removeFileError);
-    }
-  }
-  launchEditor() {
-    try {
-      const editorProcess = spawnSync(this.editor.bin, this.editor.args.concat([this.tempFile]), { stdio: "inherit" });
-      this.lastExitStatus = editorProcess.status ?? 0;
-    } catch (launchError) {
-      throw new LaunchEditorError(launchError);
-    }
-  }
-  launchEditorAsync(callback) {
-    try {
-      const editorProcess = spawn(this.editor.bin, this.editor.args.concat([this.tempFile]), { stdio: "inherit" });
-      editorProcess.on("exit", (code) => {
-        this.lastExitStatus = code;
-        setImmediate(callback);
-      });
-    } catch (launchError) {
-      throw new LaunchEditorError(launchError);
-    }
-  }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.0.10_@types+node@24.12.0/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.1.0_@types+node@24.12.2/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep",
   style: {
+    loadingMessage: () => "Validating...",
     waitingMessage: (enterKey) => `Press ${enterKey} to launch your preferred editor.`
   }
 };
@@ -41221,39 +41223,34 @@ var dist_default5 = createPrompt((config2, done) => {
   const [value = "", setValue] = useState(config2.default);
   const [errorMsg, setError] = useState();
   const prefix = usePrefix({ status, theme });
-  function startEditor(rl) {
+  async function startEditor(rl) {
     rl.pause();
-    const editCallback = async (error49, answer) => {
+    try {
+      const answer = await editAsync(value, { postfix, ...fileProps });
       rl.resume();
-      if (error49) {
-        setError(error49.toString());
+      setStatus("loading");
+      const isValid = await validate(answer);
+      if (isValid === true) {
+        setError(void 0);
+        setStatus("done");
+        done(answer);
       } else {
-        setStatus("loading");
-        const finalAnswer = answer ?? "";
-        const isValid = await validate(finalAnswer);
-        if (isValid === true) {
-          setError(void 0);
-          setStatus("done");
-          done(finalAnswer);
+        if (theme.validationFailureMode === "clear") {
+          setValue(config2.default);
         } else {
-          if (theme.validationFailureMode === "clear") {
-            setValue(config2.default);
-          } else {
-            setValue(finalAnswer);
-          }
-          setError(isValid || "You must provide a valid value");
-          setStatus("idle");
+          setValue(answer);
         }
+        setError(isValid || "You must provide a valid value");
+        setStatus("idle");
       }
-    };
-    editAsync(value, (error49, answer) => void editCallback(error49, answer), {
-      postfix,
-      ...fileProps
-    });
+    } catch (error49) {
+      rl.resume();
+      setError(String(error49));
+    }
   }
   useEffect((rl) => {
     if (!waitForUserInput) {
-      startEditor(rl);
+      void startEditor(rl);
     }
   }, []);
   useKeypress((key, rl) => {
@@ -41261,12 +41258,14 @@ var dist_default5 = createPrompt((config2, done) => {
       return;
     }
     if (isEnterKey(key)) {
-      startEditor(rl);
+      void startEditor(rl);
     }
   });
   const message = theme.style.message(config2.message, status);
   let helpTip = "";
-  if (status === "idle") {
+  if (status === "loading") {
+    helpTip = theme.style.help(theme.style.loadingMessage());
+  } else if (status === "idle") {
     const enterKey = theme.style.key("enter");
     helpTip = theme.style.help(theme.style.waitingMessage(enterKey));
   }
@@ -41277,7 +41276,7 @@ var dist_default5 = createPrompt((config2, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error48];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.10_@types+node@24.12.0/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.0.11_@types+node@24.12.2/node_modules/@inquirer/confirm/dist/index.js
 function getBooleanValue(value, defaultValue) {
   let answer = defaultValue !== false;
   if (/^(y|yes)/i.test(value))
@@ -41323,7 +41322,7 @@ var dist_default6 = createPrompt((config2, done) => {
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.0.10_@types+node@24.12.0/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.0.11_@types+node@24.12.2/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -41408,7 +41407,7 @@ var dist_default7 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.0.10_@types+node@24.12.0/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.0.11_@types+node@24.12.2/node_modules/@inquirer/number/dist/index.js
 function isStepOf(value, step, min) {
   const valuePow = value * Math.pow(10, 6);
   const stepPow = step * Math.pow(10, 6);
@@ -41446,7 +41445,7 @@ var dist_default8 = createPrompt((config2, done) => {
       if (required2 || answer != null) {
         isValid = validateNumber(answer, { min, max, step });
       }
-      if (isValid === true) {
+      if (isValid === true && answer != null) {
         isValid = await validate(answer);
       }
       if (isValid === true) {
@@ -41489,7 +41488,7 @@ var dist_default8 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.0.10_@types+node@24.12.0/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.0.12_@types+node@24.12.2/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText4 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -41499,9 +41498,10 @@ function normalizeChoices2(choices) {
     const name = "name" in choice ? choice.name : String(choice.value);
     const value = "value" in choice ? choice.value : name;
     return {
+      // oxlint-disable-next-line typescript/no-unsafe-type-assertion
       value,
       name,
-      key: choice.key.toLowerCase()
+      key: choice.key
     };
   });
 }
@@ -41510,7 +41510,7 @@ var helpChoice = {
   name: "Help, list all options",
   value: void 0
 };
-var dist_default9 = createPrompt((config2, done) => {
+var expand2 = createPrompt((config2, done) => {
   const { default: defaultKey = "h" } = config2;
   const choices = useMemo(() => normalizeChoices2(config2.choices), [config2.choices]);
   const [status, setStatus] = useState("idle");
@@ -41585,7 +41585,7 @@ var dist_default9 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.6_@types+node@24.12.0/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.2.7_@types+node@24.12.2/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText5 } from "node:util";
 var numberRegex = /\d+/;
 var rawlistTheme = {
@@ -41631,7 +41631,7 @@ function getSelectedChoice(input, choices) {
   }
   return selectedChoice ? [selectedChoice, choices.indexOf(selectedChoice)] : [void 0, void 0];
 }
-var dist_default10 = createPrompt((config2, done) => {
+var dist_default9 = createPrompt((config2, done) => {
   const { loop = true } = config2;
   const choices = useMemo(() => normalizeChoices3(config2.choices), [config2.choices]);
   const [status, setStatus] = useState("idle");
@@ -41671,10 +41671,12 @@ var dist_default10 = createPrompt((config2, done) => {
       } else if (loop || isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
         const offset = isUpKey(key) ? -1 : 1;
         let next = active;
+        let nextChoice;
         do {
           next = (next + offset + choices.length) % choices.length;
-        } while (!isSelectableChoice(choices[next]));
-        setValue(choices[next].key);
+          nextChoice = choices[next];
+        } while (!isSelectableChoice(nextChoice));
+        setValue(nextChoice.key);
       }
     } else {
       setValue(rl.line);
@@ -41710,13 +41712,13 @@ var dist_default10 = createPrompt((config2, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.0.10_@types+node@24.12.0/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.0.11_@types+node@24.12.2/node_modules/@inquirer/password/dist/index.js
 var passwordTheme = {
   style: {
     maskedText: "[input is masked]"
   }
 };
-var dist_default11 = createPrompt((config2, done) => {
+var dist_default10 = createPrompt((config2, done) => {
   const { validate = () => true } = config2;
   const theme = makeTheme(passwordTheme, config2.theme);
   const [status, setStatus] = useState("idle");
@@ -41764,7 +41766,7 @@ var dist_default11 = createPrompt((config2, done) => {
   return [[prefix, message, config2.mask ? formattedValue : helpTip].join(" "), error48];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.1.6_@types+node@24.12.0/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.1.7_@types+node@24.12.2/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -41782,11 +41784,12 @@ function normalizeChoices4(choices) {
   return choices.map((choice) => {
     if (Separator.isSeparator(choice))
       return choice;
-    if (typeof choice === "string") {
+    if (typeof choice !== "object" || choice === null || !("value" in choice)) {
+      const name2 = String(choice);
       return {
         value: choice,
-        name: choice,
-        short: choice,
+        name: name2,
+        short: name2,
         disabled: false
       };
     }
@@ -41803,7 +41806,7 @@ function normalizeChoices4(choices) {
     return normalizedChoice;
   });
 }
-var dist_default12 = createPrompt((config2, done) => {
+var dist_default11 = createPrompt((config2, done) => {
   const { pageSize = 7, validate = () => true } = config2;
   const theme = makeTheme(searchTheme, config2.theme);
   const [status, setStatus] = useState("loading");
@@ -41934,7 +41937,7 @@ var dist_default12 = createPrompt((config2, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.1.2_@types+node@24.12.0/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.1.3_@types+node@24.12.2/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
@@ -41979,7 +41982,7 @@ function normalizeChoices5(choices) {
     return normalizedChoice;
   });
 }
-var dist_default13 = createPrompt((config2, done) => {
+var dist_default12 = createPrompt((config2, done) => {
   const { loop = true, pageSize = 7 } = config2;
   const theme = makeTheme(selectTheme, config2.theme);
   const { keybindings } = theme;
@@ -42003,6 +42006,9 @@ var dist_default13 = createPrompt((config2, done) => {
   }, [config2.default, items]);
   const [active, setActive] = useState(defaultItemIndex === -1 ? bounds.first : defaultItemIndex);
   const selectedChoice = items[active];
+  if (selectedChoice == null || Separator.isSeparator(selectedChoice)) {
+    throw new Error("Active index does not point to a choice");
+  }
   const [errorMsg, setError] = useState();
   useKeypress((key, rl) => {
     clearTimeout(searchTimeoutRef.current);
@@ -42116,7 +42122,7 @@ Prompt.confirm = (_config, _context) => {
 };
 Prompt.input = dist_default7;
 Prompt.checkbox = dist_default4;
-Prompt.select = dist_default13;
+Prompt.select = dist_default12;
 Prompt.editor = dist_default5;
 
 // ng-dev/caretaker/handoff/update-github-team.js
@@ -42684,7 +42690,7 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902980308/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_902980308/node_modules/@conventional-changelog/git-client/dist/utils.js
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -42697,7 +42703,7 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902980308/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_902980308/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn as spawn2 } from "child_process";
 
 // node_modules/.aspect_rules_js/@simple-libs+stream-utils@1.2.0/node_modules/@simple-libs/stream-utils/dist/index.js
@@ -42779,7 +42785,7 @@ function output(process5) {
   return concatBufferStream(outputStream(process5));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902980308/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_902980308/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var GitClient2 = class {
   cwd;
@@ -42837,9 +42843,9 @@ var GitClient2 = class {
    * @yields Raw commits data.
    */
   async *getRawCommits(params2 = {}) {
-    const { path: path9, from = "", to = "HEAD", format: format2 = "%B", ignore, reverse, merges, since } = params2;
+    const { path: path10, from = "", to = "HEAD", format: format2 = "%B", ignore, reverse, merges, since, firstParent } = params2;
     const shouldNotIgnore = ignore ? (chunk2) => !ignore.test(chunk2) : () => true;
-    const stdout = this.execStream("log", `--format=${format2}%n${SCISSOR}`, since && `--since=${since instanceof Date ? since.toISOString() : since}`, reverse && "--reverse", merges && "--merges", merges === false && "--no-merges", [from, to].filter(Boolean).join(".."), ...path9 ? ["--", ...toArray(path9)] : []);
+    const stdout = this.execStream("log", `--format=${format2}%n${SCISSOR}`, since && `--since=${since instanceof Date ? since.toISOString() : since}`, reverse && "--reverse", merges && "--merges", merges === false && "--no-merges", firstParent && "--first-parent", [from, to].filter(Boolean).join(".."), ...path10 ? ["--", ...toArray(path10)] : []);
     const commitsStream = splitStream(stdout, `${SCISSOR}
 `);
     let chunk;
@@ -42855,9 +42861,9 @@ var GitClient2 = class {
    * @yields Tags
    */
   async *getTags(params2 = {}) {
-    const { path: path9, from = "", to = "HEAD", since } = params2;
+    const { path: path10, from = "", to = "HEAD", since } = params2;
     const tagRegex = /tag:\s*(.+?)[,)]/gi;
-    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", since && `--since=${since instanceof Date ? since.toISOString() : since}`, [from, to].filter(Boolean).join(".."), ...path9 ? ["--", ...toArray(path9)] : []);
+    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", since && `--since=${since instanceof Date ? since.toISOString() : since}`, [from, to].filter(Boolean).join(".."), ...path10 ? ["--", ...toArray(path10)] : []);
     let chunk;
     let matches;
     let tag;
@@ -43013,7 +43019,7 @@ var GitClient2 = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.6.0_902980308/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_902980308/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
 var import_semver = __toESM(require_semver());
 
 // ng-dev/commit-message/utils.js
@@ -43676,7 +43682,7 @@ function builder11(argv) {
   return argv.positional("projectRoot", {
     type: "string",
     normalize: true,
-    coerce: (path9) => resolve2(path9),
+    coerce: (path10) => resolve2(path10),
     demandOption: true
   });
 }
@@ -44966,7 +44972,7 @@ var Validation3 = class extends PullRequestValidation {
 };
 
 // ng-dev/pr/common/validation/assert-isolated-separate-files.js
-import path4 from "path";
+import path5 from "path";
 var isolatedSeparateFilesValidation = createPullRequestValidation({ name: "assertIsolatedSeparateFiles", canBeForceIgnored: true }, () => Validation4);
 var Validation4 = class extends PullRequestValidation {
   async assert(config2, prNumber, gitClient2) {
@@ -44996,7 +45002,7 @@ async function getGsyncConfig(config2, git) {
   let googleSyncConfig = null;
   if (config2.g3SyncConfigPath) {
     try {
-      const configPath = path4.join(git.baseDir, config2.g3SyncConfigPath);
+      const configPath = path5.join(git.baseDir, config2.g3SyncConfigPath);
       googleSyncConfig = await getGoogleSyncConfig(configPath);
     } catch {
     }
@@ -45016,8 +45022,8 @@ var PullRequestFiles = class _PullRequestFiles {
   async pullRequestHasSeparateFiles() {
     const pullRequestFiles = await this.loadPullRequestFiles();
     const separateFilePatterns = this.config.separateFilePatterns.map((p) => new Minimatch(p));
-    for (let path9 of pullRequestFiles) {
-      if (separateFilePatterns.some((p) => p.match(path9))) {
+    for (let path10 of pullRequestFiles) {
+      if (separateFilePatterns.some((p) => p.match(path10))) {
         return true;
       }
     }
@@ -46297,7 +46303,7 @@ var import_semver5 = __toESM(require_semver());
 
 // node_modules/.aspect_rules_js/ejs@5.0.1/node_modules/ejs/lib/esm/ejs.js
 import fs2 from "node:fs";
-import path5 from "node:path";
+import path6 from "node:path";
 
 // node_modules/.aspect_rules_js/ejs@5.0.1/node_modules/ejs/lib/esm/utils.js
 var utils = {};
@@ -46461,9 +46467,9 @@ ejs.fileLoader = fs2.readFileSync;
 ejs.localsName = _DEFAULT_LOCALS_NAME;
 ejs.promiseImpl = new Function("return this;")().Promise;
 ejs.resolveInclude = function(name, filename, isDir) {
-  let dirname6 = path5.dirname;
-  let extname2 = path5.extname;
-  let resolve8 = path5.resolve;
+  let dirname6 = path6.dirname;
+  let extname2 = path6.extname;
+  let resolve8 = path6.resolve;
   let includePath = resolve8(isDir ? filename : dirname6(filename), name);
   let ext2 = extname2(name);
   if (!ext2) {
@@ -46480,30 +46486,30 @@ function resolvePaths(name, paths) {
     return filePath;
   }
 }
-function getIncludePath(path9, options) {
+function getIncludePath(path10, options) {
   let includePath;
   let filePath;
   let views = options.views;
-  let match2 = /^[A-Za-z]+:\\|^\//.exec(path9);
+  let match2 = /^[A-Za-z]+:\\|^\//.exec(path10);
   if (match2 && match2.length) {
-    path9 = path9.replace(/^\/*/, "");
+    path10 = path10.replace(/^\/*/, "");
     if (Array.isArray(options.root)) {
-      includePath = resolvePaths(path9, options.root);
+      includePath = resolvePaths(path10, options.root);
     } else {
-      includePath = ejs.resolveInclude(path9, options.root || "/", true);
+      includePath = ejs.resolveInclude(path10, options.root || "/", true);
     }
   } else {
     if (options.filename) {
-      filePath = ejs.resolveInclude(path9, options.filename);
+      filePath = ejs.resolveInclude(path10, options.filename);
       if (fs2.existsSync(filePath)) {
         includePath = filePath;
       }
     }
     if (!includePath && Array.isArray(views)) {
-      includePath = resolvePaths(path9, views);
+      includePath = resolvePaths(path10, views);
     }
     if (!includePath && typeof options.includer !== "function") {
-      throw new Error('Could not find the include file "' + options.escapeFunction(path9) + '"');
+      throw new Error('Could not find the include file "' + options.escapeFunction(path10) + '"');
     }
   }
   return includePath;
@@ -46562,11 +46568,11 @@ function tryHandleCache(options, data, cb) {
 function fileLoader(filePath) {
   return ejs.fileLoader(filePath);
 }
-function includeFile(path9, options) {
+function includeFile(path10, options) {
   let opts = utils_default.shallowCopy(utils_default.createNullProtoObjWherePossible(), options);
-  opts.filename = getIncludePath(path9, opts);
+  opts.filename = getIncludePath(path10, opts);
   if (typeof options.includer === "function") {
-    let includerResult = options.includer(path9, opts.filename);
+    let includerResult = options.includer(path10, opts.filename);
     if (includerResult) {
       if (includerResult.filename) {
         opts.filename = includerResult.filename;
@@ -46794,12 +46800,12 @@ Template.prototype = {
       throw e;
     }
     let returnedFn = function anonymous(data) {
-      let include = function(path9, includeData) {
+      let include = function(path10, includeData) {
         let d = utils_default.shallowCopy(utils_default.createNullProtoObjWherePossible(), data);
         if (includeData) {
           d = utils_default.shallowCopy(d, includeData);
         }
-        return includeFile(path9, opts)(d);
+        return includeFile(path10, opts)(d);
       };
       return fn.apply(
         opts.context,
@@ -46808,7 +46814,7 @@ Template.prototype = {
     };
     if (opts.filename && typeof Object.defineProperty === "function") {
       let filename = opts.filename;
-      let basename4 = path5.basename(filename, path5.extname(filename));
+      let basename4 = path6.basename(filename, path6.extname(filename));
       try {
         Object.defineProperty(returnedFn, "name", {
           value: basename4,
@@ -47365,11 +47371,11 @@ var Changelog = class {
     const changelog = this.entries.map((entry) => entry.content).join(joinMarker);
     writeFileSync5(this.filePath, changelog, {});
   }
-  getEntriesFor(path9) {
-    if (!existsSync3(path9)) {
+  getEntriesFor(path10) {
+    if (!existsSync3(path10)) {
       return [];
     }
-    return readFileSync7(path9, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
+    return readFileSync7(path10, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
   }
 };
 function parseChangelogEntry(content) {
@@ -48846,10 +48852,10 @@ var actions = [
 
 // ng-dev/utils/version-check.js
 var import_yaml3 = __toESM(require_dist());
-import * as path6 from "path";
+import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-ba726e7bca0b08b125ccc6f93c233749e1213c17`;
+var localVersion = `0.0.0-e77ae0894db65292bc8f3ed5fd18bb833658ceb7`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -48859,7 +48865,7 @@ async function ngDevVersionMiddleware() {
   verified = true;
 }
 async function verifyNgDevToolIsUpToDate(workspacePath) {
-  const packageJsonPath = path6.join(workspacePath, workspaceRelativePackageJsonPath);
+  const packageJsonPath = path7.join(workspacePath, workspaceRelativePackageJsonPath);
   const packageJson = JSON.parse(fs4.readFileSync(packageJsonPath, "utf-8"));
   if (packageJson.name === "@angular/build-tooling") {
     Log.debug("Skipping ng-dev version check as this is a locally generated version.");
@@ -49254,7 +49260,7 @@ var ReleasePublishSnapshotsCommandModule = {
 };
 
 // ng-dev/release/stamping/cli.js
-import path7 from "path";
+import path8 from "path";
 import url from "url";
 
 // ng-dev/release/stamping/env-stamp.js
@@ -49363,7 +49369,7 @@ function builder23(args) {
 async function handler23({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
-    const scriptURL = url.pathToFileURL(path7.resolve(additionalStampingScript));
+    const scriptURL = url.pathToFileURL(path8.resolve(additionalStampingScript));
     const stampingExports = await import(scriptURL.toString());
     await stampingExports.default(mode);
   }
@@ -49508,8 +49514,8 @@ function getFileStatus(filePath) {
     return null;
   }
 }
-function convertPathToForwardSlash(path9) {
-  return path9.replace(/\\/g, "/");
+function convertPathToForwardSlash(path10) {
+  return path10.replace(/\\/g, "/");
 }
 
 // ng-dev/ts-circular-dependencies/parser.js
@@ -49542,21 +49548,21 @@ var Analyzer = class {
     this.unresolvedFiles = /* @__PURE__ */ new Map();
     this._ignoreTypeOnlyChecks = !!ignoreTypeOnlyChecks;
   }
-  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path9 = []) {
-    const previousIndex = path9.indexOf(sf);
+  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path10 = []) {
+    const previousIndex = path10.indexOf(sf);
     if (previousIndex !== -1) {
-      return [path9.slice(previousIndex)];
+      return [path10.slice(previousIndex)];
     }
     if (visited.has(sf)) {
       return [];
     }
-    path9.push(sf);
+    path10.push(sf);
     visited.add(sf);
     const result = [];
     for (const ref of getModuleReferences(sf, this._ignoreTypeOnlyChecks)) {
       const targetFile = this._resolveImport(ref, sf.fileName);
       if (targetFile !== null) {
-        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path9.slice()));
+        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path10.slice()));
       }
     }
     return result;
@@ -49684,23 +49690,23 @@ function compareGoldens(actual, expected) {
   });
   return { newCircularDeps, fixedCircularDeps };
 }
-function normalizeCircularDependency(path9) {
-  if (path9.length <= 1) {
-    return path9;
+function normalizeCircularDependency(path10) {
+  if (path10.length <= 1) {
+    return path10;
   }
   let indexFirstNode = 0;
-  let valueFirstNode = path9[0];
-  for (let i = 1; i < path9.length; i++) {
-    const value = path9[i];
+  let valueFirstNode = path10[0];
+  for (let i = 1; i < path10.length; i++) {
+    const value = path10[i];
     if (value.localeCompare(valueFirstNode, "en") < 0) {
       indexFirstNode = i;
       valueFirstNode = value;
     }
   }
   if (indexFirstNode === 0) {
-    return path9;
+    return path10;
   }
-  return [...path9.slice(indexFirstNode), ...path9.slice(0, indexFirstNode)];
+  return [...path10.slice(indexFirstNode), ...path10.slice(0, indexFirstNode)];
 }
 function isSameCircularDependency(actual, expected) {
   if (actual.length !== expected.length) {
@@ -49813,8 +49819,8 @@ function main(approve, config2, printWarnings) {
   }
   return 1;
 }
-function getRelativePath(baseDir, path9) {
-  return convertPathToForwardSlash(relative2(baseDir, path9));
+function getRelativePath(baseDir, path10) {
+  return convertPathToForwardSlash(relative2(baseDir, path10));
 }
 function convertReferenceChainToString(chain) {
   return chain.join(" \u2192 ");
@@ -53523,7 +53529,7 @@ var Batches = class extends BaseModule2 {
       params2
     );
     const urlParams = body["_url"];
-    const path9 = formatMap("{model}:batchGenerateContent", urlParams);
+    const path10 = formatMap("{model}:batchGenerateContent", urlParams);
     const batch = body["batch"];
     const inputConfig = batch["inputConfig"];
     const requestsWrapper = inputConfig["requests"];
@@ -53544,7 +53550,7 @@ var Batches = class extends BaseModule2 {
     delete body["config"];
     delete body["_url"];
     delete body["_query"];
-    return { path: path9, body };
+    return { path: path10, body };
   }
   // Helper function to get the first GCS URI
   getGcsUri(src) {
@@ -53600,16 +53606,16 @@ var Batches = class extends BaseModule2 {
   async createInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs", body["_url"]);
+      path10 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53624,12 +53630,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = createBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:batchGenerateContent", body["_url"]);
+      path10 = formatMap("{model}:batchGenerateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53654,18 +53660,18 @@ var Batches = class extends BaseModule2 {
   async createEmbeddingsInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createEmbeddingsBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:asyncBatchEmbedContent", body["_url"]);
+      path10 = formatMap("{model}:asyncBatchEmbedContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53694,16 +53700,16 @@ var Batches = class extends BaseModule2 {
   async get(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path10 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53718,12 +53724,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = getBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}", body["_url"]);
+      path10 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53751,16 +53757,16 @@ var Batches = class extends BaseModule2 {
    */
   async cancel(params2) {
     var _a4, _b, _c, _d;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
+      path10 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53769,12 +53775,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = cancelBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}:cancel", body["_url"]);
+      path10 = formatMap("batches/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53786,16 +53792,16 @@ var Batches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listBatchJobsParametersToVertex(params2);
-      path9 = formatMap("batchPredictionJobs", body["_url"]);
+      path10 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53818,12 +53824,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = listBatchJobsParametersToMldev(params2);
-      path9 = formatMap("batches", body["_url"]);
+      path10 = formatMap("batches", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53860,16 +53866,16 @@ var Batches = class extends BaseModule2 {
   async delete(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteBatchJobParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path10 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -53890,12 +53896,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = deleteBatchJobParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("batches/{name}", body["_url"]);
+      path10 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -54784,16 +54790,16 @@ var Caches = class extends BaseModule2 {
   async create(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path10 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -54807,12 +54813,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = createCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path10 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -54840,16 +54846,16 @@ var Caches = class extends BaseModule2 {
   async get(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -54863,12 +54869,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = getCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -54896,16 +54902,16 @@ var Caches = class extends BaseModule2 {
   async delete(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -54928,12 +54934,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = deleteCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -54973,16 +54979,16 @@ var Caches = class extends BaseModule2 {
   async update(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateCachedContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -54996,12 +55002,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = updateCachedContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -55018,16 +55024,16 @@ var Caches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listCachedContentsParametersToVertex(params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path10 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -55050,12 +55056,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = listCachedContentsParametersToMldev(params2);
-      path9 = formatMap("cachedContents", body["_url"]);
+      path10 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -55661,18 +55667,18 @@ var Files = class extends BaseModule2 {
   async listInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listFilesParametersToMldev(params2);
-      path9 = formatMap("files", body["_url"]);
+      path10 = formatMap("files", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -55698,18 +55704,18 @@ var Files = class extends BaseModule2 {
   async createInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createFileParametersToMldev(params2);
-      path9 = formatMap("upload/v1beta/files", body["_url"]);
+      path10 = formatMap("upload/v1beta/files", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -55744,18 +55750,18 @@ var Files = class extends BaseModule2 {
   async get(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getFileParametersToMldev(params2);
-      path9 = formatMap("files/{file}", body["_url"]);
+      path10 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -55785,18 +55791,18 @@ var Files = class extends BaseModule2 {
   async delete(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteFileParametersToMldev(params2);
-      path9 = formatMap("files/{file}", body["_url"]);
+      path10 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -55822,18 +55828,18 @@ var Files = class extends BaseModule2 {
   async registerFilesInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = internalRegisterFilesParametersToMldev(params2);
-      path9 = formatMap("files:register", body["_url"]);
+      path10 = formatMap("files:register", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -61038,13 +61044,13 @@ var ApiClient = class {
       throw new Error("HTTP options are not correctly set.");
     }
   }
-  constructUrl(path9, httpOptions, prependProjectLocation) {
+  constructUrl(path10, httpOptions, prependProjectLocation) {
     const urlElement = [this.getRequestUrlInternal(httpOptions)];
     if (prependProjectLocation) {
       urlElement.push(this.getBaseResourcePath());
     }
-    if (path9 !== "") {
-      urlElement.push(path9);
+    if (path10 !== "") {
+      urlElement.push(path10);
     }
     const url3 = new URL(`${urlElement.join("/")}`);
     return url3;
@@ -61329,8 +61335,8 @@ var ApiClient = class {
       file: fileToUpload
     };
     const fileName = this.getFileName(file2);
-    const path9 = formatMap("upload/v1beta/files", body["_url"]);
-    const uploadUrl = await this.fetchUploadUrl(path9, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config2 === null || config2 === void 0 ? void 0 : config2.httpOptions);
+    const path10 = formatMap("upload/v1beta/files", body["_url"]);
+    const uploadUrl = await this.fetchUploadUrl(path10, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config2 === null || config2 === void 0 ? void 0 : config2.httpOptions);
     return uploader.upload(file2, uploadUrl, this);
   }
   /**
@@ -61354,13 +61360,13 @@ var ApiClient = class {
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
-    const path9 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
+    const path10 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
     const fileName = this.getFileName(file2);
     const body = {};
     if (config2 != null) {
       uploadToFileSearchStoreConfigToMldev(config2, body);
     }
-    const uploadUrl = await this.fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, config2 === null || config2 === void 0 ? void 0 : config2.httpOptions);
+    const uploadUrl = await this.fetchUploadUrl(path10, sizeBytes, mimeType, fileName, body, config2 === null || config2 === void 0 ? void 0 : config2.httpOptions);
     return uploader.uploadToFileSearchStore(file2, uploadUrl, this);
   }
   /**
@@ -61373,7 +61379,7 @@ var ApiClient = class {
     const downloader = this.clientOptions.downloader;
     await downloader.download(params2, this);
   }
-  async fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, configHttpOptions) {
+  async fetchUploadUrl(path10, sizeBytes, mimeType, fileName, body, configHttpOptions) {
     var _a4;
     let httpOptions = {};
     if (configHttpOptions) {
@@ -61386,7 +61392,7 @@ var ApiClient = class {
       };
     }
     const httpResponse = await this.request({
-      path: path9,
+      path: path10,
       body: JSON.stringify(body),
       httpMethod: "POST",
       httpOptions
@@ -62582,16 +62588,16 @@ var Models = class extends BaseModule2 {
   async generateContentInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:generateContent", body["_url"]);
+      path10 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62614,12 +62620,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:generateContent", body["_url"]);
+      path10 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62645,17 +62651,17 @@ var Models = class extends BaseModule2 {
   async generateContentStreamInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path10 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62693,13 +62699,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path10 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62761,17 +62767,17 @@ var Models = class extends BaseModule2 {
   async embedContentInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = embedContentParametersPrivateToVertex(this.apiClient, params2, params2);
       const endpointUrl = tIsVertexEmbedContentModel(params2.model) ? "{model}:embedContent" : "{model}:predict";
-      path9 = formatMap(endpointUrl, body["_url"]);
+      path10 = formatMap(endpointUrl, body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62794,12 +62800,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = embedContentParametersPrivateToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:batchEmbedContents", body["_url"]);
+      path10 = formatMap("{model}:batchEmbedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62828,16 +62834,16 @@ var Models = class extends BaseModule2 {
   async generateImagesInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateImagesParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62860,12 +62866,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateImagesParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62894,16 +62900,16 @@ var Models = class extends BaseModule2 {
   async editImageInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = editImageParametersInternalToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -62934,16 +62940,16 @@ var Models = class extends BaseModule2 {
   async upscaleImageInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = upscaleImageAPIParametersInternalToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63009,16 +63015,16 @@ var Models = class extends BaseModule2 {
   async recontextImage(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = recontextImageParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63060,16 +63066,16 @@ var Models = class extends BaseModule2 {
   async segmentImage(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = segmentImageParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predict", body["_url"]);
+      path10 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63099,16 +63105,16 @@ var Models = class extends BaseModule2 {
   async get(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63123,12 +63129,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = getModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63146,16 +63152,16 @@ var Models = class extends BaseModule2 {
   async listInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listModelsParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{models_url}", body["_url"]);
+      path10 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63178,12 +63184,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = listModelsParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{models_url}", body["_url"]);
+      path10 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63226,16 +63232,16 @@ var Models = class extends BaseModule2 {
   async update(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}", body["_url"]);
+      path10 = formatMap("{model}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -63250,12 +63256,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = updateModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -63284,16 +63290,16 @@ var Models = class extends BaseModule2 {
   async delete(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteModelParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -63316,12 +63322,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = deleteModelParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -63363,16 +63369,16 @@ var Models = class extends BaseModule2 {
   async countTokens(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = countTokensParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:countTokens", body["_url"]);
+      path10 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63395,12 +63401,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = countTokensParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:countTokens", body["_url"]);
+      path10 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63444,16 +63450,16 @@ var Models = class extends BaseModule2 {
   async computeTokens(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = computeTokensParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:computeTokens", body["_url"]);
+      path10 = formatMap("{model}:computeTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63484,16 +63490,16 @@ var Models = class extends BaseModule2 {
   async generateVideosInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateVideosParametersToVertex(this.apiClient, params2);
-      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path10 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63510,12 +63516,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateVideosParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path10 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -63617,16 +63623,16 @@ var Operations = class extends BaseModule2 {
   async getVideosOperationInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getOperationParametersToVertex(params2);
-      path9 = formatMap("{operationName}", body["_url"]);
+      path10 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63638,12 +63644,12 @@ var Operations = class extends BaseModule2 {
       return response;
     } else {
       const body = getOperationParametersToMldev(params2);
-      path9 = formatMap("{operationName}", body["_url"]);
+      path10 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -63658,16 +63664,16 @@ var Operations = class extends BaseModule2 {
   async fetchPredictVideosOperationInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = fetchPredictOperationParametersToVertex(params2);
-      path9 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
+      path10 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -64302,20 +64308,20 @@ var Tokens = class extends BaseModule2 {
   async create(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("The client.tokens.create method is only supported by the Gemini Developer API.");
     } else {
       const body = createAuthTokenParametersToMldev(this.apiClient, params2);
-      path9 = formatMap("auth_tokens", body["_url"]);
+      path10 = formatMap("auth_tokens", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       const transformedBody = convertBidiSetupToTokenSetup(body, params2.config);
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(transformedBody),
         httpMethod: "POST",
@@ -64425,18 +64431,18 @@ var Documents = class extends BaseModule2 {
   async get(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getDocumentParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -64457,18 +64463,18 @@ var Documents = class extends BaseModule2 {
    */
   async delete(params2) {
     var _a4, _b;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteDocumentParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -64480,18 +64486,18 @@ var Documents = class extends BaseModule2 {
   async listInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listDocumentsParametersToMldev(params2);
-      path9 = formatMap("{parent}/documents", body["_url"]);
+      path10 = formatMap("{parent}/documents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -64569,18 +64575,18 @@ var FileSearchStores = class extends BaseModule2 {
   async create(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createFileSearchStoreParametersToMldev(params2);
-      path9 = formatMap("fileSearchStores", body["_url"]);
+      path10 = formatMap("fileSearchStores", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -64603,18 +64609,18 @@ var FileSearchStores = class extends BaseModule2 {
   async get(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getFileSearchStoreParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -64635,18 +64641,18 @@ var FileSearchStores = class extends BaseModule2 {
    */
   async delete(params2) {
     var _a4, _b;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteFileSearchStoreParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -64658,18 +64664,18 @@ var FileSearchStores = class extends BaseModule2 {
   async listInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listFileSearchStoresParametersToMldev(params2);
-      path9 = formatMap("fileSearchStores", body["_url"]);
+      path10 = formatMap("fileSearchStores", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -64689,18 +64695,18 @@ var FileSearchStores = class extends BaseModule2 {
   async uploadToFileSearchStoreInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = uploadToFileSearchStoreParametersToMldev(params2);
-      path9 = formatMap("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
+      path10 = formatMap("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -64728,18 +64734,18 @@ var FileSearchStores = class extends BaseModule2 {
   async importFile(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = importFileParametersToMldev(params2);
-      path9 = formatMap("{file_search_store_name}:importFile", body["_url"]);
+      path10 = formatMap("{file_search_store_name}:importFile", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -65104,12 +65110,12 @@ function encodeURIPath(str) {
   return str.replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/g, encodeURIComponent);
 }
 var EMPTY = Object.freeze(/* @__PURE__ */ Object.create(null));
-var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(statics, ...params2) {
+var createPathTagFunction = (pathEncoder = encodeURIPath) => function path10(statics, ...params2) {
   if (statics.length === 1)
     return statics[0];
   let postPath = false;
   const invalidSegments = [];
-  const path10 = statics.reduce((previousValue, currentValue, index) => {
+  const path11 = statics.reduce((previousValue, currentValue, index) => {
     var _a4, _b, _c;
     if (/[?#]/.test(currentValue)) {
       postPath = true;
@@ -65127,7 +65133,7 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(stat
     }
     return previousValue + currentValue + (index === params2.length ? "" : encoded);
   }, "");
-  const pathOnly = path10.split(/[?#]/, 1)[0];
+  const pathOnly = path11.split(/[?#]/, 1)[0];
   const invalidSegmentPattern = /(^|\/)(?:\.|%2e){1,2}(?=\/|$)/gi;
   let match2;
   while ((match2 = invalidSegmentPattern.exec(pathOnly)) !== null) {
@@ -65151,12 +65157,12 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(stat
     }, "");
     throw new GeminiNextGenAPIClientError(`Path parameters result in path with invalid segments:
 ${invalidSegments.map((e) => e.error).join("\n")}
-${path10}
+${path11}
 ${underline2}`);
   }
-  return path10;
+  return path11;
 };
-var path8 = createPathTagFunction(encodeURIPath);
+var path9 = createPathTagFunction(encodeURIPath);
 var BaseInteractions = class extends APIResource {
   create(params2, options) {
     var _a4;
@@ -65167,7 +65173,7 @@ var BaseInteractions = class extends APIResource {
     if ("agent" in body && "generation_config" in body) {
       throw new GeminiNextGenAPIClientError(`Invalid request: specified \`agent\` and \`generation_config\`. If specifying \`agent\`, use \`agent_config\`.`);
     }
-    return this._client.post(path8`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a4 = params2.stream) !== null && _a4 !== void 0 ? _a4 : false }));
+    return this._client.post(path9`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a4 = params2.stream) !== null && _a4 !== void 0 ? _a4 : false }));
   }
   /**
    * Deletes the interaction by id.
@@ -65181,7 +65187,7 @@ var BaseInteractions = class extends APIResource {
    */
   delete(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.delete(path8`/${api_version}/interactions/${id}`, options);
+    return this._client.delete(path9`/${api_version}/interactions/${id}`, options);
   }
   /**
    * Cancels an interaction by id. This only applies to background interactions that are still running.
@@ -65195,12 +65201,12 @@ var BaseInteractions = class extends APIResource {
    */
   cancel(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.post(path8`/${api_version}/interactions/${id}/cancel`, options);
+    return this._client.post(path9`/${api_version}/interactions/${id}/cancel`, options);
   }
   get(id, params2 = {}, options) {
     var _a4;
     const _b = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _b, query = __rest(_b, ["api_version"]);
-    return this._client.get(path8`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a4 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a4 !== void 0 ? _a4 : false }));
+    return this._client.get(path9`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a4 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a4 !== void 0 ? _a4 : false }));
   }
 };
 BaseInteractions._key = Object.freeze(["interactions"]);
@@ -65941,9 +65947,9 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
   makeStatusError(status, error48, message, headers) {
     return APIError.generate(status, error48, message, headers);
   }
-  buildURL(path9, query, defaultBaseURL) {
+  buildURL(path10, query, defaultBaseURL) {
     const baseURL = !this.baseURLOverridden() && defaultBaseURL || this.baseURL;
-    const url3 = isAbsoluteURL(path9) ? new URL(path9) : new URL(baseURL + (baseURL.endsWith("/") && path9.startsWith("/") ? path9.slice(1) : path9));
+    const url3 = isAbsoluteURL(path10) ? new URL(path10) : new URL(baseURL + (baseURL.endsWith("/") && path10.startsWith("/") ? path10.slice(1) : path10));
     const defaultQuery = this.defaultQuery();
     const pathQuery = Object.fromEntries(url3.searchParams);
     if (!isEmptyObj(defaultQuery) || !isEmptyObj(pathQuery)) {
@@ -65972,24 +65978,24 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
    */
   async prepareRequest(request, { url: url3, options }) {
   }
-  get(path9, opts) {
-    return this.methodRequest("get", path9, opts);
+  get(path10, opts) {
+    return this.methodRequest("get", path10, opts);
   }
-  post(path9, opts) {
-    return this.methodRequest("post", path9, opts);
+  post(path10, opts) {
+    return this.methodRequest("post", path10, opts);
   }
-  patch(path9, opts) {
-    return this.methodRequest("patch", path9, opts);
+  patch(path10, opts) {
+    return this.methodRequest("patch", path10, opts);
   }
-  put(path9, opts) {
-    return this.methodRequest("put", path9, opts);
+  put(path10, opts) {
+    return this.methodRequest("put", path10, opts);
   }
-  delete(path9, opts) {
-    return this.methodRequest("delete", path9, opts);
+  delete(path10, opts) {
+    return this.methodRequest("delete", path10, opts);
   }
-  methodRequest(method, path9, opts) {
+  methodRequest(method, path10, opts) {
     return this.request(Promise.resolve(opts).then((opts2) => {
-      return Object.assign({ method, path: path9 }, opts2);
+      return Object.assign({ method, path: path10 }, opts2);
     }));
   }
   request(options, remainingRetries = null) {
@@ -66163,8 +66169,8 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
   async buildRequest(inputOptions, { retryCount = 0 } = {}) {
     var _b, _c, _d;
     const options = Object.assign({}, inputOptions);
-    const { method, path: path9, query, defaultBaseURL } = options;
-    const url3 = this.buildURL(path9, query, defaultBaseURL);
+    const { method, path: path10, query, defaultBaseURL } = options;
+    const url3 = this.buildURL(path10, query, defaultBaseURL);
     if ("timeout" in options)
       validatePositiveInteger("timeout", options.timeout);
     options.timeout = (_b = options.timeout) !== null && _b !== void 0 ? _b : this.timeout;
@@ -67306,16 +67312,16 @@ var Tunings = class extends BaseModule2 {
   async getInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getTuningJobParametersToVertex(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -67336,12 +67342,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = getTuningJobParametersToMldev(params2);
-      path9 = formatMap("{name}", body["_url"]);
+      path10 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -67365,16 +67371,16 @@ var Tunings = class extends BaseModule2 {
   async listInternal(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listTuningJobsParametersToVertex(params2);
-      path9 = formatMap("tuningJobs", body["_url"]);
+      path10 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -67397,12 +67403,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = listTuningJobsParametersToMldev(params2);
-      path9 = formatMap("tunedModels", body["_url"]);
+      path10 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -67439,16 +67445,16 @@ var Tunings = class extends BaseModule2 {
   async cancel(params2) {
     var _a4, _b, _c, _d;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelTuningJobParametersToVertex(params2);
-      path9 = formatMap("{name}:cancel", body["_url"]);
+      path10 = formatMap("{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -67471,12 +67477,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = cancelTuningJobParametersToMldev(params2);
-      path9 = formatMap("{name}:cancel", body["_url"]);
+      path10 = formatMap("{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -67502,16 +67508,16 @@ var Tunings = class extends BaseModule2 {
   async tuneInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createTuningJobParametersPrivateToVertex(params2, params2);
-      path9 = formatMap("tuningJobs", body["_url"]);
+      path10 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -67537,18 +67543,18 @@ var Tunings = class extends BaseModule2 {
   async tuneMldevInternal(params2) {
     var _a4, _b;
     let response;
-    let path9 = "";
+    let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createTuningJobParametersPrivateToMldev(params2);
-      path9 = formatMap("tunedModels", body["_url"]);
+      path10 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path9,
+        path: path10,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -69094,10 +69100,10 @@ function mergeDefs(...defs) {
 function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
-function getElementAtPath(obj, path9) {
-  if (!path9)
+function getElementAtPath(obj, path10) {
+  if (!path10)
     return obj;
-  return path9.reduce((acc, key) => acc?.[key], obj);
+  return path10.reduce((acc, key) => acc?.[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -69480,11 +69486,11 @@ function aborted(x, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path9, issues) {
+function prefixIssues(path10, issues) {
   return issues.map((iss) => {
     var _a4;
     (_a4 = iss).path ?? (_a4.path = []);
-    iss.path.unshift(path9);
+    iss.path.unshift(path10);
     return iss;
   });
 }
@@ -69667,7 +69673,7 @@ function formatError(error48, mapper = (issue2) => issue2.message) {
 }
 function treeifyError(error48, mapper = (issue2) => issue2.message) {
   const result = { errors: [] };
-  const processError = (error49, path9 = []) => {
+  const processError = (error49, path10 = []) => {
     var _a4, _b;
     for (const issue2 of error49.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
@@ -69677,7 +69683,7 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
       } else if (issue2.code === "invalid_element") {
         processError({ issues: issue2.issues }, issue2.path);
       } else {
-        const fullpath = [...path9, ...issue2.path];
+        const fullpath = [...path10, ...issue2.path];
         if (fullpath.length === 0) {
           result.errors.push(mapper(issue2));
           continue;
@@ -69709,8 +69715,8 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
 }
 function toDotPath(_path) {
   const segs = [];
-  const path9 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
-  for (const seg of path9) {
+  const path10 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
+  for (const seg of path10) {
     if (typeof seg === "number")
       segs.push(`[${seg}]`);
     else if (typeof seg === "symbol")
@@ -81573,13 +81579,13 @@ function resolveRef(ref, ctx) {
   if (!ref.startsWith("#")) {
     throw new Error("External $ref is not supported, only local refs (#/...) are allowed");
   }
-  const path9 = ref.slice(1).split("/").filter(Boolean);
-  if (path9.length === 0) {
+  const path10 = ref.slice(1).split("/").filter(Boolean);
+  if (path10.length === 0) {
     return ctx.rootSchema;
   }
   const defsKey = ctx.version === "draft-2020-12" ? "$defs" : "definitions";
-  if (path9[0] === defsKey) {
-    const key = path9[1];
+  if (path10[0] === defsKey) {
+    const key = path10[1];
     if (!key || !ctx.defs[key]) {
       throw new Error(`Reference not found: ${ref}`);
     }
