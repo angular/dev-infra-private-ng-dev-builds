@@ -16960,9 +16960,9 @@ var require_balanced_match = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/brace-expansion@2.0.3/node_modules/brace-expansion/index.js
+// node_modules/.aspect_rules_js/brace-expansion@2.1.0/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "node_modules/.aspect_rules_js/brace-expansion@2.0.3/node_modules/brace-expansion/index.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/brace-expansion@2.1.0/node_modules/brace-expansion/index.js"(exports2, module2) {
     var balanced2 = require_balanced_match();
     module2.exports = expandTop;
     var escSlash2 = "\0SLASH" + Math.random() + "\0";
@@ -16999,13 +16999,15 @@ var require_brace_expansion = __commonJS({
       parts.push.apply(parts, p);
       return parts;
     }
-    function expandTop(str) {
+    function expandTop(str, options) {
       if (!str)
         return [];
+      options = options || {};
+      var max = options.max == null ? Infinity : options.max;
       if (str.substr(0, 2) === "{}") {
         str = "\\{\\}" + str.substr(2);
       }
-      return expand3(escapeBraces2(str), true).map(unescapeBraces2);
+      return expand3(escapeBraces2(str), max, true).map(unescapeBraces2);
     }
     function embrace2(str) {
       return "{" + str + "}";
@@ -17019,15 +17021,15 @@ var require_brace_expansion = __commonJS({
     function gte2(i, y) {
       return i >= y;
     }
-    function expand3(str, isTop) {
+    function expand3(str, max, isTop) {
       var expansions = [];
       var m = balanced2("{", "}", str);
       if (!m)
         return [str];
       var pre = m.pre;
-      var post = m.post.length ? expand3(m.post, false) : [""];
+      var post = m.post.length ? expand3(m.post, max, false) : [""];
       if (/\$$/.test(m.pre)) {
-        for (var k = 0; k < post.length; k++) {
+        for (var k = 0; k < post.length && k < max; k++) {
           var expansion = pre + "{" + m.body + "}" + post[k];
           expansions.push(expansion);
         }
@@ -17039,7 +17041,7 @@ var require_brace_expansion = __commonJS({
         if (!isSequence && !isOptions) {
           if (m.post.match(/,(?!,).*\}/)) {
             str = m.pre + "{" + m.body + escClose2 + m.post;
-            return expand3(str);
+            return expand3(str, max, true);
           }
           return [str];
         }
@@ -17049,7 +17051,7 @@ var require_brace_expansion = __commonJS({
         } else {
           n = parseCommaParts2(m.body);
           if (n.length === 1) {
-            n = expand3(n[0], false).map(embrace2);
+            n = expand3(n[0], max, false).map(embrace2);
             if (n.length === 1) {
               return post.map(function(p) {
                 return m.pre + n[0] + p;
@@ -17095,11 +17097,11 @@ var require_brace_expansion = __commonJS({
         } else {
           N = [];
           for (var j = 0; j < n.length; j++) {
-            N.push.apply(N, expand3(n[j], false));
+            N.push.apply(N, expand3(n[j], max, false));
           }
         }
         for (var j = 0; j < N.length; j++) {
-          for (var k = 0; k < post.length; k++) {
+          for (var k = 0; k < post.length && expansions.length < max; k++) {
             var expansion = pre + N[j] + post[k];
             if (!isTop || isSequence || expansion)
               expansions.push(expansion);
@@ -48855,7 +48857,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-221c985c8568930e9d88f0f2783229ac91ef9345`;
+var localVersion = `0.0.0-80659f606f547e99bd08aa15c98479371b3bacab`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
