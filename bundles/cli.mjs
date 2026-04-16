@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-TUTTLTAK.mjs";
+} from "./chunk-PTDPQBIK.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -65,7 +65,7 @@ import {
   runParserWithCompletedFunctions,
   underline,
   yellow
-} from "./chunk-YN3IWAKJ.mjs";
+} from "./chunk-G7GMCCSS.mjs";
 import {
   CommitParser
 } from "./chunk-VWFPSUIZ.mjs";
@@ -47712,7 +47712,8 @@ var ExternalCommands = class {
     try {
       await ChildProcess.spawn(". ~/.nvm/nvm.sh && nvm install", [], {
         cwd: projectDir,
-        mode: "on-error"
+        mode: "on-error",
+        shell: true
       });
       if (!quiet) {
         const { stdout: nodeVersion } = await ChildProcess.spawn("node", ["--version"], {
@@ -48858,7 +48859,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-680d70ff29d821a7ff6e7235c5220492e328d112`;
+var localVersion = `0.0.0-8bb0c36445bb7e7ab8280ac24fc4924a3457c8d6`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

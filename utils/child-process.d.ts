@@ -4,13 +4,13 @@ export interface CommonCmdOpts {
     mode?: 'enabled' | 'silent' | 'on-error';
     suppressErrorOnFailingExitCode?: boolean;
 }
-export interface SpawnSyncOptions extends CommonCmdOpts, Omit<_SpawnSyncOptions, 'shell' | 'stdio' | 'input'> {
+export interface SpawnSyncOptions extends CommonCmdOpts, Omit<_SpawnSyncOptions, 'stdio' | 'input'> {
 }
-export interface SpawnOptions extends CommonCmdOpts, Omit<_SpawnOptions, 'shell' | 'stdio'> {
+export interface SpawnOptions extends CommonCmdOpts, Omit<_SpawnOptions, 'stdio'> {
 }
-export interface ExecOptions extends CommonCmdOpts, Omit<_ExecOptions, 'shell' | 'stdio'> {
+export interface ExecOptions extends CommonCmdOpts, Omit<_ExecOptions, 'stdio'> {
 }
-export interface SpawnInteractiveCommandOptions extends Omit<_SpawnOptions, 'shell' | 'stdio'> {
+export interface SpawnInteractiveCommandOptions extends Omit<_SpawnOptions, 'stdio'> {
 }
 export interface SpawnResult {
     stdout: string;
