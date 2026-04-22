@@ -47563,7 +47563,7 @@ var NpmCommand = class {
     await ChildProcess.spawn("npm", args, { cwd: packagePath, mode: "silent" });
   }
   static async deprecate(packageName, version2, message, registryUrl) {
-    const args = ["deprecate", `${packageName}@"${version2}"`, `"${message}"`];
+    const args = ["deprecate", `${packageName}@${version2}`, message];
     if (registryUrl !== void 0) {
       args.push("--registry", registryUrl);
     }
@@ -48859,7 +48859,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-8bb0c36445bb7e7ab8280ac24fc4924a3457c8d6`;
+var localVersion = `0.0.0-9fc958feba3cea291aca698839e794db5a55d051`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
