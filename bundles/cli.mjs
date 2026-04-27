@@ -43805,7 +43805,7 @@ async function updateGeneratedFileTargets() {
   try {
     const result = await ChildProcess.spawn(getBazelBin(), [
       "query",
-      `"kind(esbuild, //...) intersect attr(name, '_generated$', //...)"`,
+      `kind(esbuild, //...) intersect attr(name, '_generated$', //...)`,
       "--output",
       "label"
     ], { mode: "silent" });
@@ -48859,7 +48859,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-9fc958feba3cea291aca698839e794db5a55d051`;
+var localVersion = `0.0.0-4c9f91f47b0e5bb1134d6bfaa26cda0ba5ec629a`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
