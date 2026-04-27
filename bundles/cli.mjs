@@ -43816,7 +43816,7 @@ async function updateGeneratedFileTargets() {
     Log.debug("Discovered Targets");
     targets.forEach((target) => Log.debug(target));
     spinner.update(`Found ${targets.length} generated file targets to update`);
-    await ChildProcess.spawn(getBazelBin(), ["build", targets.join(" ")], { mode: "silent" });
+    await ChildProcess.spawn(getBazelBin(), ["build", ...targets], { mode: "silent" });
     for (let idx = 0; idx < targets.length; idx++) {
       const target = targets[idx];
       spinner.update(`${idx + 1} of ${targets.length} updates completed`);
@@ -48859,7 +48859,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-4c9f91f47b0e5bb1134d6bfaa26cda0ba5ec629a`;
+var localVersion = `0.0.0-2c2d7e68e6634e9ac92eaa5f12c137a96725d216`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
