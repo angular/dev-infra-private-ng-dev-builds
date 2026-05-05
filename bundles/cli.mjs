@@ -10599,8 +10599,8 @@ var require_errno = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.isEnoentCodeError = void 0;
-    function isEnoentCodeError(error48) {
-      return error48.code === "ENOENT";
+    function isEnoentCodeError(error51) {
+      return error51.code === "ENOENT";
     }
     exports2.isEnoentCodeError = isEnoentCodeError;
   }
@@ -14192,7 +14192,7 @@ var require_stream = __commonJS({
     function merge3(streams) {
       const mergedStream = merge2(streams);
       streams.forEach((stream) => {
-        stream.once("error", (error48) => mergedStream.emit("error", error48));
+        stream.once("error", (error51) => mergedStream.emit("error", error51));
       });
       mergedStream.once("close", () => propagateCloseEventToSources(streams));
       mergedStream.once("end", () => propagateCloseEventToSources(streams));
@@ -14374,8 +14374,8 @@ var require_async = __commonJS({
       });
     }
     exports2.read = read;
-    function callFailureCallback(callback, error48) {
-      callback(error48);
+    function callFailureCallback(callback, error51) {
+      callback(error51);
     }
     function callSuccessCallback(callback, result) {
       callback(null, result);
@@ -14400,11 +14400,11 @@ var require_sync = __commonJS({
           stat2.isSymbolicLink = () => true;
         }
         return stat2;
-      } catch (error48) {
+      } catch (error51) {
         if (!settings.throwErrorOnBrokenSymbolicLink) {
           return lstat;
         }
-        throw error48;
+        throw error51;
       }
     }
     exports2.read = read;
@@ -14697,9 +14697,9 @@ var require_async2 = __commonJS({
         const tasks = names.map((name) => {
           const path10 = common2.joinPathSegments(directory, name, settings.pathSegmentSeparator);
           return (done) => {
-            fsStat.stat(path10, settings.fsStatSettings, (error48, stats) => {
-              if (error48 !== null) {
-                done(error48);
+            fsStat.stat(path10, settings.fsStatSettings, (error51, stats) => {
+              if (error51 !== null) {
+                done(error51);
                 return;
               }
               const entry = {
@@ -14724,8 +14724,8 @@ var require_async2 = __commonJS({
       });
     }
     exports2.readdir = readdir;
-    function callFailureCallback(callback, error48) {
-      callback(error48);
+    function callFailureCallback(callback, error51) {
+      callback(error51);
     }
     function callSuccessCallback(callback, result) {
       callback(null, result);
@@ -14762,9 +14762,9 @@ var require_sync2 = __commonJS({
           try {
             const stats = settings.fs.statSync(entry.path);
             entry.dirent = utils2.fs.createDirentFromStats(entry.name, stats);
-          } catch (error48) {
+          } catch (error51) {
             if (settings.throwErrorOnBrokenSymbolicLink) {
-              throw error48;
+              throw error51;
             }
           }
         }
@@ -14959,7 +14959,7 @@ var require_queue = __commonJS({
         empty: noop2,
         kill,
         killAndDrain,
-        error: error48,
+        error: error51,
         abort
       };
       return self2;
@@ -15102,7 +15102,7 @@ var require_queue = __commonJS({
         }
         self2.drain = noop2;
       }
-      function error48(handler33) {
+      function error51(handler33) {
         errorHandler = handler33;
       }
     }
@@ -15203,11 +15203,11 @@ var require_common2 = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.joinPathSegments = exports2.replacePathSegmentSeparator = exports2.isAppliedFilter = exports2.isFatalError = void 0;
-    function isFatalError(settings, error48) {
+    function isFatalError(settings, error51) {
       if (settings.errorFilter === null) {
         return true;
       }
-      return !settings.errorFilter(error48);
+      return !settings.errorFilter(error51);
     }
     exports2.isFatalError = isFatalError;
     function isAppliedFilter(filter2, value) {
@@ -15302,16 +15302,16 @@ var require_async3 = __commonJS({
       }
       _pushToQueue(directory, base) {
         const queueItem = { directory, base };
-        this._queue.push(queueItem, (error48) => {
-          if (error48 !== null) {
-            this._handleError(error48);
+        this._queue.push(queueItem, (error51) => {
+          if (error51 !== null) {
+            this._handleError(error51);
           }
         });
       }
       _worker(item, done) {
-        this._scandir(item.directory, this._settings.fsScandirSettings, (error48, entries) => {
-          if (error48 !== null) {
-            done(error48, void 0);
+        this._scandir(item.directory, this._settings.fsScandirSettings, (error51, entries) => {
+          if (error51 !== null) {
+            done(error51, void 0);
             return;
           }
           for (const entry of entries) {
@@ -15320,13 +15320,13 @@ var require_async3 = __commonJS({
           done(null, void 0);
         });
       }
-      _handleError(error48) {
-        if (this._isDestroyed || !common2.isFatalError(this._settings, error48)) {
+      _handleError(error51) {
+        if (this._isDestroyed || !common2.isFatalError(this._settings, error51)) {
           return;
         }
         this._isFatalError = true;
         this._isDestroyed = true;
-        this._emitter.emit("error", error48);
+        this._emitter.emit("error", error51);
       }
       _handleEntry(entry, base) {
         if (this._isDestroyed || this._isFatalError) {
@@ -15365,8 +15365,8 @@ var require_async4 = __commonJS({
         this._storage = [];
       }
       read(callback) {
-        this._reader.onError((error48) => {
-          callFailureCallback(callback, error48);
+        this._reader.onError((error51) => {
+          callFailureCallback(callback, error51);
         });
         this._reader.onEntry((entry) => {
           this._storage.push(entry);
@@ -15378,8 +15378,8 @@ var require_async4 = __commonJS({
       }
     };
     exports2.default = AsyncProvider;
-    function callFailureCallback(callback, error48) {
-      callback(error48);
+    function callFailureCallback(callback, error51) {
+      callback(error51);
     }
     function callSuccessCallback(callback, entries) {
       callback(null, entries);
@@ -15411,8 +15411,8 @@ var require_stream2 = __commonJS({
         });
       }
       read() {
-        this._reader.onError((error48) => {
-          this._stream.emit("error", error48);
+        this._reader.onError((error51) => {
+          this._stream.emit("error", error51);
         });
         this._reader.onEntry((entry) => {
           this._stream.push(entry);
@@ -15462,15 +15462,15 @@ var require_sync3 = __commonJS({
           for (const entry of entries) {
             this._handleEntry(entry, base);
           }
-        } catch (error48) {
-          this._handleError(error48);
+        } catch (error51) {
+          this._handleError(error51);
         }
       }
-      _handleError(error48) {
-        if (!common2.isFatalError(this._settings, error48)) {
+      _handleError(error51) {
+        if (!common2.isFatalError(this._settings, error51)) {
           return;
         }
-        throw error48;
+        throw error51;
       }
       _handleEntry(entry, base) {
         const fullpath = entry.path;
@@ -15615,8 +15615,8 @@ var require_reader2 = __commonJS({
         }
         return entry;
       }
-      _isFatalError(error48) {
-        return !utils2.errno.isEnoentCodeError(error48) && !this._settings.suppressErrors;
+      _isFatalError(error51) {
+        return !utils2.errno.isEnoentCodeError(error51) && !this._settings.suppressErrors;
       }
     };
     exports2.default = Reader;
@@ -15661,17 +15661,17 @@ var require_stream3 = __commonJS({
         return stream;
       }
       _getEntry(filepath, pattern, options) {
-        return this._getStat(filepath).then((stats) => this._makeEntry(stats, pattern)).catch((error48) => {
-          if (options.errorFilter(error48)) {
+        return this._getStat(filepath).then((stats) => this._makeEntry(stats, pattern)).catch((error51) => {
+          if (options.errorFilter(error51)) {
             return null;
           }
-          throw error48;
+          throw error51;
         });
       }
       _getStat(filepath) {
         return new Promise((resolve8, reject) => {
-          this._stat(filepath, this._fsStatSettings, (error48, stats) => {
-            return error48 === null ? resolve8(stats) : reject(error48);
+          this._stat(filepath, this._fsStatSettings, (error51, stats) => {
+            return error51 === null ? resolve8(stats) : reject(error51);
           });
         });
       }
@@ -15696,11 +15696,11 @@ var require_async5 = __commonJS({
       }
       dynamic(root, options) {
         return new Promise((resolve8, reject) => {
-          this._walkAsync(root, options, (error48, entries) => {
-            if (error48 === null) {
+          this._walkAsync(root, options, (error51, entries) => {
+            if (error51 === null) {
               resolve8(entries);
             } else {
-              reject(error48);
+              reject(error51);
             }
           });
         });
@@ -15971,10 +15971,10 @@ var require_error = __commonJS({
         this._settings = _settings;
       }
       getFilter() {
-        return (error48) => this._isNonFatalError(error48);
+        return (error51) => this._isNonFatalError(error51);
       }
-      _isNonFatalError(error48) {
-        return utils2.errno.isEnoentCodeError(error48) || this._settings.suppressErrors;
+      _isNonFatalError(error51) {
+        return utils2.errno.isEnoentCodeError(error51) || this._settings.suppressErrors;
       }
     };
     exports2.default = ErrorFilter;
@@ -16115,7 +16115,7 @@ var require_stream4 = __commonJS({
         const source = this.api(root, task, options);
         const destination = new stream_1.Readable({ objectMode: true, read: () => {
         } });
-        source.once("error", (error48) => destination.emit("error", error48)).on("data", (entry) => destination.emit("data", options.transform(entry))).once("end", () => destination.emit("end"));
+        source.once("error", (error51) => destination.emit("error", error51)).on("data", (entry) => destination.emit("data", options.transform(entry))).once("end", () => destination.emit("end"));
         destination.once("close", () => source.destroy());
         return destination;
       }
@@ -16163,11 +16163,11 @@ var require_sync5 = __commonJS({
         try {
           const stats = this._getStat(filepath);
           return this._makeEntry(stats, pattern);
-        } catch (error48) {
-          if (options.errorFilter(error48)) {
+        } catch (error51) {
+          if (options.errorFilter(error51)) {
             return null;
           }
-          throw error48;
+          throw error51;
         }
       }
       _getStat(filepath) {
@@ -16683,14 +16683,14 @@ var require_browser = __commonJS({
         } else {
           exports2.storage.removeItem("debug");
         }
-      } catch (error48) {
+      } catch (error51) {
       }
     }
     function load3() {
       let r;
       try {
         r = exports2.storage.getItem("debug");
-      } catch (error48) {
+      } catch (error51) {
       }
       if (!r && typeof process !== "undefined" && "env" in process) {
         r = process.env.DEBUG;
@@ -16700,7 +16700,7 @@ var require_browser = __commonJS({
     function localstorage() {
       try {
         return localStorage;
-      } catch (error48) {
+      } catch (error51) {
       }
     }
     module2.exports = require_common3()(exports2);
@@ -16708,8 +16708,8 @@ var require_browser = __commonJS({
     formatters.j = function(v) {
       try {
         return JSON.stringify(v);
-      } catch (error48) {
-        return "[UnexpectedJSONParseError]: " + error48.message;
+      } catch (error51) {
+        return "[UnexpectedJSONParseError]: " + error51.message;
       }
     };
   }
@@ -16814,7 +16814,7 @@ var require_node2 = __commonJS({
           221
         ];
       }
-    } catch (error48) {
+    } catch (error51) {
     }
     exports2.inspectOpts = Object.keys(process.env).filter((key) => {
       return /^debug_/i.test(key);
@@ -18884,7 +18884,7 @@ var require_polyfills = __commonJS({
             return ret;
           };
         } else if (fs8.futimes) {
-          fs8.lutimes = function(_a4, _b, _c, cb) {
+          fs8.lutimes = function(_a5, _b, _c, cb) {
             if (cb)
               process.nextTick(cb);
           };
@@ -21351,12 +21351,12 @@ var require_retry_operation = __commonJS({
       var mainError = null;
       var mainErrorCount = 0;
       for (var i = 0; i < this._errors.length; i++) {
-        var error48 = this._errors[i];
-        var message = error48.message;
+        var error51 = this._errors[i];
+        var message = error51.message;
         var count = (counts[message] || 0) + 1;
         counts[message] = count;
         if (count >= mainErrorCount) {
-          mainError = error48;
+          mainError = error51;
           mainErrorCount = count;
         }
       }
@@ -21487,11 +21487,11 @@ var require_p_retry = __commonJS({
         this.message = message;
       }
     };
-    var decorateErrorWithCounts = (error48, attemptNumber, options) => {
+    var decorateErrorWithCounts = (error51, attemptNumber, options) => {
       const retriesLeft = options.retries - (attemptNumber - 1);
-      error48.attemptNumber = attemptNumber;
-      error48.retriesLeft = retriesLeft;
-      return error48;
+      error51.attemptNumber = attemptNumber;
+      error51.retriesLeft = retriesLeft;
+      return error51;
     };
     var isNetworkError = (errorMessage) => networkErrorMsgs.includes(errorMessage);
     var pRetry2 = (input, options) => new Promise((resolve8, reject) => {
@@ -21505,26 +21505,26 @@ var require_p_retry = __commonJS({
       operation.attempt(async (attemptNumber) => {
         try {
           resolve8(await input(attemptNumber));
-        } catch (error48) {
-          if (!(error48 instanceof Error)) {
-            reject(new TypeError(`Non-error was thrown: "${error48}". You should only throw errors.`));
+        } catch (error51) {
+          if (!(error51 instanceof Error)) {
+            reject(new TypeError(`Non-error was thrown: "${error51}". You should only throw errors.`));
             return;
           }
-          if (error48 instanceof AbortError2) {
+          if (error51 instanceof AbortError2) {
             operation.stop();
-            reject(error48.originalError);
-          } else if (error48 instanceof TypeError && !isNetworkError(error48.message)) {
+            reject(error51.originalError);
+          } else if (error51 instanceof TypeError && !isNetworkError(error51.message)) {
             operation.stop();
-            reject(error48);
+            reject(error51);
           } else {
-            decorateErrorWithCounts(error48, attemptNumber, options);
+            decorateErrorWithCounts(error51, attemptNumber, options);
             try {
-              await options.onFailedAttempt(error48);
-            } catch (error49) {
-              reject(error49);
+              await options.onFailedAttempt(error51);
+            } catch (error52) {
+              reject(error52);
               return;
             }
-            if (!operation.retry(error48)) {
+            if (!operation.retry(error51)) {
               reject(operation.mainError());
             }
           }
@@ -22116,7 +22116,7 @@ var require_gaxios = __commonJS({
     var __importDefault = exports2 && exports2.__importDefault || function(mod) {
       return mod && mod.__esModule ? mod : { "default": mod };
     };
-    var _a4;
+    var _a5;
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.Gaxios = void 0;
     var extend_1 = __importDefault(require_extend());
@@ -22179,10 +22179,10 @@ var require_gaxios = __commonJS({
           url3 = new URL(input.url);
         }
         if (input && typeof input === "object" && "headers" in input) {
-          _a4.mergeHeaders(headers, input.headers);
+          _a5.mergeHeaders(headers, input.headers);
         }
         if (init) {
-          _a4.mergeHeaders(headers, new Headers(init.headers));
+          _a5.mergeHeaders(headers, new Headers(init.headers));
         }
         if (typeof input === "object" && !(input instanceof URL)) {
           return this.request({ ...init, ...input, headers, url: url3 });
@@ -22200,7 +22200,7 @@ var require_gaxios = __commonJS({
         return this.#applyResponseInterceptors(this._request(prepared));
       }
       async _defaultAdapter(config2) {
-        const fetchImpl = config2.fetchImplementation || this.defaults.fetchImplementation || await _a4.#getFetch();
+        const fetchImpl = config2.fetchImplementation || this.defaults.fetchImplementation || await _a5.#getFetch();
         const preparedOpts = { ...config2 };
         delete preparedOpts.data;
         const res = await fetchImpl(config2.url, preparedOpts);
@@ -22360,7 +22360,7 @@ var require_gaxios = __commonJS({
        */
       async #prepareRequest(options) {
         const preparedHeaders = new Headers(this.defaults.headers);
-        _a4.mergeHeaders(preparedHeaders, options.headers);
+        _a5.mergeHeaders(preparedHeaders, options.headers);
         const opts = (0, extend_1.default)(true, {}, this.defaults, options);
         if (!opts.url) {
           throw new Error("URL is required.");
@@ -22423,7 +22423,7 @@ var require_gaxios = __commonJS({
         const proxy = opts.proxy || process?.env?.HTTPS_PROXY || process?.env?.https_proxy || process?.env?.HTTP_PROXY || process?.env?.http_proxy;
         if (opts.agent) {
         } else if (proxy && this.#urlMayUseProxy(opts.url, opts.noProxy)) {
-          const HttpsProxyAgent = await _a4.#getProxyAgent();
+          const HttpsProxyAgent = await _a5.#getProxyAgent();
           if (this.agentCache.has(proxy)) {
             opts.agent = this.agentCache.get(proxy);
           } else {
@@ -22579,7 +22579,7 @@ Content-Type: ${partContentType}\r
       }
     };
     exports2.Gaxios = Gaxios;
-    _a4 = Gaxios;
+    _a5 = Gaxios;
   }
 });
 
@@ -24274,7 +24274,7 @@ var require_parse3 = __commonJS({
         n: "\n",
         r: "\r",
         t: "	"
-      }, text, error48 = function(m) {
+      }, text, error51 = function(m) {
         throw {
           name: "SyntaxError",
           message: m,
@@ -24283,7 +24283,7 @@ var require_parse3 = __commonJS({
         };
       }, next = function(c) {
         if (c && c !== ch) {
-          error48("Expected '" + c + "' instead of '" + ch + "'");
+          error51("Expected '" + c + "' instead of '" + ch + "'");
         }
         ch = text.charAt(at);
         at += 1;
@@ -24318,7 +24318,7 @@ var require_parse3 = __commonJS({
         }
         number5 = +string5;
         if (!isFinite(number5)) {
-          error48("Bad number");
+          error51("Bad number");
         } else {
           if (BigNumber == null)
             BigNumber = require_bignumber();
@@ -24361,7 +24361,7 @@ var require_parse3 = __commonJS({
             }
           }
         }
-        error48("Bad string");
+        error51("Bad string");
       }, white = function() {
         while (ch && ch <= " ") {
           next();
@@ -24388,7 +24388,7 @@ var require_parse3 = __commonJS({
             next("l");
             return null;
         }
-        error48("Unexpected '" + ch + "'");
+        error51("Unexpected '" + ch + "'");
       }, value, array2 = function() {
         var array3 = [];
         if (ch === "[") {
@@ -24409,7 +24409,7 @@ var require_parse3 = __commonJS({
             white();
           }
         }
-        error48("Bad array");
+        error51("Bad array");
       }, object2 = function() {
         var key, object3 = /* @__PURE__ */ Object.create(null);
         if (ch === "{") {
@@ -24424,11 +24424,11 @@ var require_parse3 = __commonJS({
             white();
             next(":");
             if (_options.strict === true && Object.hasOwnProperty.call(object3, key)) {
-              error48('Duplicate key "' + key + '"');
+              error51('Duplicate key "' + key + '"');
             }
             if (suspectProtoRx.test(key) === true) {
               if (_options.protoAction === "error") {
-                error48("Object contains forbidden prototype property");
+                error51("Object contains forbidden prototype property");
               } else if (_options.protoAction === "ignore") {
                 value();
               } else {
@@ -24436,7 +24436,7 @@ var require_parse3 = __commonJS({
               }
             } else if (suspectConstructorRx.test(key) === true) {
               if (_options.constructorAction === "error") {
-                error48("Object contains forbidden constructor property");
+                error51("Object contains forbidden constructor property");
               } else if (_options.constructorAction === "ignore") {
                 value();
               } else {
@@ -24454,7 +24454,7 @@ var require_parse3 = __commonJS({
             white();
           }
         }
-        error48("Bad object");
+        error51("Bad object");
       };
       value = function() {
         white();
@@ -24479,7 +24479,7 @@ var require_parse3 = __commonJS({
         result = value();
         white();
         if (ch) {
-          error48("Syntax error");
+          error51("Syntax error");
         }
         return typeof reviver === "function" ? function walk(holder, key) {
           var k, v, value2 = holder[key];
@@ -24742,11 +24742,11 @@ var require_logging_utils = __commonJS({
     }).func;
     var DebugLogBackendBase = class {
       constructor() {
-        var _a4;
+        var _a5;
         this.cached = /* @__PURE__ */ new Map();
         this.filters = [];
         this.filtersSet = false;
-        let nodeFlag = (_a4 = process5.env[exports2.env.nodeEnables]) !== null && _a4 !== void 0 ? _a4 : "*";
+        let nodeFlag = (_a5 = process5.env[exports2.env.nodeEnables]) !== null && _a5 !== void 0 ? _a5 : "*";
         if (nodeFlag === "all") {
           nodeFlag = "*";
         }
@@ -24784,7 +24784,7 @@ var require_logging_utils = __commonJS({
           };
         }
         return (fields, ...args) => {
-          var _a4;
+          var _a5;
           const nscolour = `${colours_1.Colours.green}${namespace}${colours_1.Colours.reset}`;
           const pid = `${colours_1.Colours.yellow}${process5.pid}${colours_1.Colours.reset}`;
           let level;
@@ -24799,7 +24799,7 @@ var require_logging_utils = __commonJS({
               level = `${colours_1.Colours.yellow}${fields.severity}${colours_1.Colours.reset}`;
               break;
             default:
-              level = (_a4 = fields.severity) !== null && _a4 !== void 0 ? _a4 : LogSeverity.DEFAULT;
+              level = (_a5 = fields.severity) !== null && _a5 !== void 0 ? _a5 : LogSeverity.DEFAULT;
               break;
           }
           const msg = util.formatWithOptions({ colors: colours_1.Colours.enabled }, ...args);
@@ -24833,8 +24833,8 @@ var require_logging_utils = __commonJS({
         };
       }
       setFilters() {
-        var _a4;
-        const existingFilters = (_a4 = process5.env["NODE_DEBUG"]) !== null && _a4 !== void 0 ? _a4 : "";
+        var _a5;
+        const existingFilters = (_a5 = process5.env["NODE_DEBUG"]) !== null && _a5 !== void 0 ? _a5 : "";
         process5.env["NODE_DEBUG"] = `${existingFilters}${existingFilters ? "," : ""}${this.filters.join(",")}`;
       }
     };
@@ -24843,16 +24843,16 @@ var require_logging_utils = __commonJS({
     }
     var StructuredBackend = class extends DebugLogBackendBase {
       constructor(upstream) {
-        var _a4;
+        var _a5;
         super();
-        this.upstream = (_a4 = upstream) !== null && _a4 !== void 0 ? _a4 : void 0;
+        this.upstream = (_a5 = upstream) !== null && _a5 !== void 0 ? _a5 : void 0;
       }
       makeLogger(namespace) {
-        var _a4;
-        const debugLogger = (_a4 = this.upstream) === null || _a4 === void 0 ? void 0 : _a4.makeLogger(namespace);
+        var _a5;
+        const debugLogger = (_a5 = this.upstream) === null || _a5 === void 0 ? void 0 : _a5.makeLogger(namespace);
         return (fields, ...args) => {
-          var _a5;
-          const severity = (_a5 = fields.severity) !== null && _a5 !== void 0 ? _a5 : LogSeverity.INFO;
+          var _a6;
+          const severity = (_a6 = fields.severity) !== null && _a6 !== void 0 ? _a6 : LogSeverity.INFO;
           const json2 = Object.assign({
             severity,
             message: util.format(...args)
@@ -24866,8 +24866,8 @@ var require_logging_utils = __commonJS({
         };
       }
       setFilters() {
-        var _a4;
-        (_a4 = this.upstream) === null || _a4 === void 0 ? void 0 : _a4.setFilters();
+        var _a5;
+        (_a5 = this.upstream) === null || _a5 === void 0 ? void 0 : _a5.setFilters();
       }
     };
     function getStructuredBackend(upstream) {
@@ -26182,19 +26182,19 @@ var require_authclient = __commonJS({
           }
           return response;
         },
-        rejected: async (error48) => {
+        rejected: async (error51) => {
           try {
-            const symbols = error48.config;
+            const symbols = error51.config;
             const methodName = symbols[_AuthClient.RequestMethodNameSymbol];
             const logId = symbols[_AuthClient.RequestLogIdSymbol];
             if (methodName) {
-              _AuthClient.log.info("%s [%s] error %j", methodName, logId, error48.response?.data);
+              _AuthClient.log.info("%s [%s] error %j", methodName, logId, error51.response?.data);
             } else {
-              _AuthClient.log.error("[%s] error %j", logId, error48.response?.data);
+              _AuthClient.log.error("[%s] error %j", logId, error51.response?.data);
             }
           } catch (e) {
           }
-          throw error48;
+          throw error51;
         }
       };
       /**
@@ -27854,8 +27854,8 @@ var require_getCredentials = __commonJS({
         let body;
         try {
           body = JSON.parse(key);
-        } catch (error48) {
-          const err = error48;
+        } catch (error51) {
+          const err = error51;
           throw new Error(`Invalid JSON key file: ${err.message}`);
         }
         const privateKey = body.private_key;
@@ -28833,21 +28833,21 @@ var require_impersonated = __commonJS({
             tokens: this.credentials,
             res
           };
-        } catch (error48) {
-          if (!(error48 instanceof Error))
-            throw error48;
+        } catch (error51) {
+          if (!(error51 instanceof Error))
+            throw error51;
           let status = 0;
           let message = "";
-          if (error48 instanceof gaxios_1.GaxiosError) {
-            status = error48?.response?.data?.error?.status;
-            message = error48?.response?.data?.error?.message;
+          if (error51 instanceof gaxios_1.GaxiosError) {
+            status = error51?.response?.data?.error?.status;
+            message = error51?.response?.data?.error?.message;
           }
           if (status && message) {
-            error48.message = `${status}: unable to impersonate: ${message}`;
-            throw error48;
+            error51.message = `${status}: unable to impersonate: ${message}`;
+            throw error51;
           } else {
-            error48.message = `unable to impersonate: ${error48}`;
-            throw error48;
+            error51.message = `unable to impersonate: ${error51}`;
+            throw error51;
           }
         }
       }
@@ -29103,15 +29103,15 @@ var require_stscredentials = __commonJS({
           const stsSuccessfulResponse = response.data;
           stsSuccessfulResponse.res = response;
           return stsSuccessfulResponse;
-        } catch (error48) {
-          if (error48 instanceof gaxios_1.GaxiosError && error48.response) {
+        } catch (error51) {
+          if (error51 instanceof gaxios_1.GaxiosError && error51.response) {
             throw (0, oauth2common_1.getErrorFromOAuthErrorResponse)(
-              error48.response.data,
+              error51.response.data,
               // Preserve other fields from the original error.
-              error48
+              error51
             );
           }
-          throw error48;
+          throw error51;
         }
       }
     };
@@ -30538,9 +30538,9 @@ var require_pluggable_auth_handler = __commonJS({
                 const responseJson = JSON.parse(output2);
                 const response = new executable_response_1.ExecutableResponse(responseJson);
                 return resolve8(response);
-              } catch (error48) {
-                if (error48 instanceof executable_response_1.ExecutableResponseError) {
-                  return reject(error48);
+              } catch (error51) {
+                if (error51 instanceof executable_response_1.ExecutableResponseError) {
+                  return reject(error51);
                 }
                 return reject(new executable_response_1.ExecutableResponseError(`The executable returned an invalid response: ${output2}`));
               }
@@ -30580,9 +30580,9 @@ var require_pluggable_auth_handler = __commonJS({
             return new executable_response_1.ExecutableResponse(responseJson);
           }
           return void 0;
-        } catch (error48) {
-          if (error48 instanceof executable_response_1.ExecutableResponseError) {
-            throw error48;
+        } catch (error51) {
+          if (error51 instanceof executable_response_1.ExecutableResponseError) {
+            throw error51;
           }
           throw new executable_response_1.ExecutableResponseError(`The output file contained an invalid response: ${responseString}`);
         }
@@ -30838,15 +30838,15 @@ var require_externalAccountAuthorizedUserClient = __commonJS({
           const tokenRefreshResponse = response.data;
           tokenRefreshResponse.res = response;
           return tokenRefreshResponse;
-        } catch (error48) {
-          if (error48 instanceof gaxios_1.GaxiosError && error48.response) {
+        } catch (error51) {
+          if (error51 instanceof gaxios_1.GaxiosError && error51.response) {
             throw (0, oauth2common_1.getErrorFromOAuthErrorResponse)(
-              error48.response.data,
+              error51.response.data,
               // Preserve other fields from the original error.
-              error48
+              error51
             );
           }
-          throw error48;
+          throw error51;
         }
       }
     };
@@ -33349,26 +33349,26 @@ var require_receiver = __commonJS({
         }
         const buf = this.consume(2);
         if ((buf[0] & 48) !== 0) {
-          const error48 = this.createError(
+          const error51 = this.createError(
             RangeError,
             "RSV2 and RSV3 must be clear",
             true,
             1002,
             "WS_ERR_UNEXPECTED_RSV_2_3"
           );
-          cb(error48);
+          cb(error51);
           return;
         }
         const compressed = (buf[0] & 64) === 64;
         if (compressed && !this._extensions[PerMessageDeflate2.extensionName]) {
-          const error48 = this.createError(
+          const error51 = this.createError(
             RangeError,
             "RSV1 must be clear",
             true,
             1002,
             "WS_ERR_UNEXPECTED_RSV_1"
           );
-          cb(error48);
+          cb(error51);
           return;
         }
         this._fin = (buf[0] & 128) === 128;
@@ -33376,84 +33376,84 @@ var require_receiver = __commonJS({
         this._payloadLength = buf[1] & 127;
         if (this._opcode === 0) {
           if (compressed) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               RangeError,
               "RSV1 must be clear",
               true,
               1002,
               "WS_ERR_UNEXPECTED_RSV_1"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
           if (!this._fragmented) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               RangeError,
               "invalid opcode 0",
               true,
               1002,
               "WS_ERR_INVALID_OPCODE"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
           this._opcode = this._fragmented;
         } else if (this._opcode === 1 || this._opcode === 2) {
           if (this._fragmented) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               RangeError,
               `invalid opcode ${this._opcode}`,
               true,
               1002,
               "WS_ERR_INVALID_OPCODE"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
           this._compressed = compressed;
         } else if (this._opcode > 7 && this._opcode < 11) {
           if (!this._fin) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               RangeError,
               "FIN must be set",
               true,
               1002,
               "WS_ERR_EXPECTED_FIN"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
           if (compressed) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               RangeError,
               "RSV1 must be clear",
               true,
               1002,
               "WS_ERR_UNEXPECTED_RSV_1"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
           if (this._payloadLength > 125 || this._opcode === 8 && this._payloadLength === 1) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               RangeError,
               `invalid payload length ${this._payloadLength}`,
               true,
               1002,
               "WS_ERR_INVALID_CONTROL_PAYLOAD_LENGTH"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
         } else {
-          const error48 = this.createError(
+          const error51 = this.createError(
             RangeError,
             `invalid opcode ${this._opcode}`,
             true,
             1002,
             "WS_ERR_INVALID_OPCODE"
           );
-          cb(error48);
+          cb(error51);
           return;
         }
         if (!this._fin && !this._fragmented)
@@ -33461,25 +33461,25 @@ var require_receiver = __commonJS({
         this._masked = (buf[1] & 128) === 128;
         if (this._isServer) {
           if (!this._masked) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               RangeError,
               "MASK must be set",
               true,
               1002,
               "WS_ERR_EXPECTED_MASK"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
         } else if (this._masked) {
-          const error48 = this.createError(
+          const error51 = this.createError(
             RangeError,
             "MASK must be clear",
             true,
             1002,
             "WS_ERR_UNEXPECTED_MASK"
           );
-          cb(error48);
+          cb(error51);
           return;
         }
         if (this._payloadLength === 126)
@@ -33517,14 +33517,14 @@ var require_receiver = __commonJS({
         const buf = this.consume(8);
         const num = buf.readUInt32BE(0);
         if (num > Math.pow(2, 53 - 32) - 1) {
-          const error48 = this.createError(
+          const error51 = this.createError(
             RangeError,
             "Unsupported WebSocket frame: payload length > 2^53 - 1",
             false,
             1009,
             "WS_ERR_UNSUPPORTED_DATA_PAYLOAD_LENGTH"
           );
-          cb(error48);
+          cb(error51);
           return;
         }
         this._payloadLength = num * Math.pow(2, 32) + buf.readUInt32BE(4);
@@ -33540,14 +33540,14 @@ var require_receiver = __commonJS({
         if (this._payloadLength && this._opcode < 8) {
           this._totalPayloadLength += this._payloadLength;
           if (this._totalPayloadLength > this._maxPayload && this._maxPayload > 0) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               RangeError,
               "Max payload size exceeded",
               false,
               1009,
               "WS_ERR_UNSUPPORTED_MESSAGE_LENGTH"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
         }
@@ -33617,14 +33617,14 @@ var require_receiver = __commonJS({
           if (buf.length) {
             this._messageLength += buf.length;
             if (this._messageLength > this._maxPayload && this._maxPayload > 0) {
-              const error48 = this.createError(
+              const error51 = this.createError(
                 RangeError,
                 "Max payload size exceeded",
                 false,
                 1009,
                 "WS_ERR_UNSUPPORTED_MESSAGE_LENGTH"
               );
-              cb(error48);
+              cb(error51);
               return;
             }
             this._fragments.push(buf);
@@ -33676,14 +33676,14 @@ var require_receiver = __commonJS({
         } else {
           const buf = concat(fragments, messageLength);
           if (!this._skipUTF8Validation && !isValidUTF8(buf)) {
-            const error48 = this.createError(
+            const error51 = this.createError(
               Error,
               "invalid UTF-8 sequence",
               true,
               1007,
               "WS_ERR_INVALID_UTF8"
             );
-            cb(error48);
+            cb(error51);
             return;
           }
           if (this._state === INFLATING || this._allowSynchronousEvents) {
@@ -33715,14 +33715,14 @@ var require_receiver = __commonJS({
           } else {
             const code = data.readUInt16BE(0);
             if (!isValidStatusCode(code)) {
-              const error48 = this.createError(
+              const error51 = this.createError(
                 RangeError,
                 `invalid status code ${code}`,
                 true,
                 1002,
                 "WS_ERR_INVALID_CLOSE_CODE"
               );
-              cb(error48);
+              cb(error51);
               return;
             }
             const buf = new FastBuffer(
@@ -33731,14 +33731,14 @@ var require_receiver = __commonJS({
               data.length - 2
             );
             if (!this._skipUTF8Validation && !isValidUTF8(buf)) {
-              const error48 = this.createError(
+              const error51 = this.createError(
                 Error,
                 "invalid UTF-8 sequence",
                 true,
                 1007,
                 "WS_ERR_INVALID_UTF8"
               );
-              cb(error48);
+              cb(error51);
               return;
             }
             this._loop = false;
@@ -34453,10 +34453,10 @@ var require_event_target = __commonJS({
             callListener(handler33, this, event);
           };
         } else if (type === "error") {
-          wrapper = function onError(error48) {
+          wrapper = function onError(error51) {
             const event = new ErrorEvent("error", {
-              error: error48,
-              message: error48.message
+              error: error51,
+              message: error51.message
             });
             event[kTarget] = this;
             callListener(handler33, this, event);
@@ -35631,7 +35631,7 @@ var require_stream5 = __commonJS({
         if (!duplex.push(data))
           ws.pause();
       });
-      ws.once("error", function error48(err) {
+      ws.once("error", function error51(err) {
         if (duplex.destroyed)
           return;
         terminateOnDestroy = false;
@@ -35649,7 +35649,7 @@ var require_stream5 = __commonJS({
           return;
         }
         let called = false;
-        ws.once("error", function error48(err2) {
+        ws.once("error", function error51(err2) {
           called = true;
           callback(err2);
         });
@@ -38585,8 +38585,8 @@ function parse(text, errors = [], options = ParseOptions.DEFAULT) {
       currentParent = previousParents.pop();
     },
     onLiteralValue: onValue,
-    onError: (error48, offset, length) => {
-      errors.push({ error: error48, offset, length });
+    onError: (error51, offset, length) => {
+      errors.push({ error: error51, offset, length });
     }
   };
   visit(text, visitor, options);
@@ -38699,8 +38699,8 @@ function visit(text, visitor, options = ParseOptions.DEFAULT) {
       }
     }
   }
-  function handleError(error48, skipUntilAfter = [], skipUntil = []) {
-    onError(error48);
+  function handleError(error51, skipUntilAfter = [], skipUntil = []) {
+    onError(error51);
     if (skipUntilAfter.length + skipUntil.length > 0) {
       let token = _scanner.getToken();
       while (token !== 17) {
@@ -40793,8 +40793,8 @@ function createPrompt(view) {
             const [content, bottomContent] = typeof nextView === "string" ? [nextView] : nextView;
             screen.render(content, bottomContent);
             effectScheduler.run();
-          } catch (error48) {
-            reject(error48);
+          } catch (error51) {
+            reject(error51);
           }
           effectsSettled = true;
           if (pendingDone !== null) {
@@ -40812,9 +40812,9 @@ function createPrompt(view) {
       return Object.assign(promise2.then((answer) => {
         effectScheduler.clearAll();
         return answer;
-      }, (error48) => {
+      }, (error51) => {
         effectScheduler.clearAll();
-        throw error48;
+        throw error51;
       }).finally(() => {
         cleanups.forEach((cleanup) => cleanup());
         screen.done({ clearContent: Boolean(context.clearPromptOnDone) });
@@ -41245,9 +41245,9 @@ var dist_default5 = createPrompt((config2, done) => {
         setError(isValid || "You must provide a valid value");
         setStatus("idle");
       }
-    } catch (error49) {
+    } catch (error52) {
       rl.resume();
-      setError(String(error49));
+      setError(String(error52));
     }
   }
   useEffect((rl) => {
@@ -41271,11 +41271,11 @@ var dist_default5 = createPrompt((config2, done) => {
     const enterKey = theme.style.key("enter");
     helpTip = theme.style.help(theme.style.waitingMessage(enterKey));
   }
-  let error48 = "";
+  let error51 = "";
   if (errorMsg) {
-    error48 = theme.style.error(errorMsg);
+    error51 = theme.style.error(errorMsg);
   }
-  return [[prefix, message, helpTip].filter(Boolean).join(" "), error48];
+  return [[prefix, message, helpTip].filter(Boolean).join(" "), error51];
 });
 
 // node_modules/.aspect_rules_js/@inquirer+confirm@6.0.12_@types+node@24.12.2/node_modules/@inquirer/confirm/dist/index.js
@@ -41399,13 +41399,13 @@ var dist_default7 = createPrompt((config2, done) => {
   if (defaultValue && status !== "done" && !value) {
     defaultStr = theme.style.defaultAnswer(defaultValue);
   }
-  let error48 = "";
+  let error51 = "";
   if (errorMsg) {
-    error48 = theme.style.error(errorMsg);
+    error51 = theme.style.error(errorMsg);
   }
   return [
     [prefix, message, defaultStr, formattedValue].filter((v) => v !== void 0).join(" "),
-    error48
+    error51
   ];
 });
 
@@ -41480,13 +41480,13 @@ var dist_default8 = createPrompt((config2, done) => {
   if (defaultValue && status !== "done" && !value) {
     defaultStr = theme.style.defaultAnswer(defaultValue);
   }
-  let error48 = "";
+  let error51 = "";
   if (errorMsg) {
-    error48 = theme.style.error(errorMsg);
+    error51 = theme.style.error(errorMsg);
   }
   return [
     [prefix, message, defaultStr, formattedValue].filter((v) => v !== void 0).join(" "),
-    error48
+    error51
   ];
 });
 
@@ -41577,13 +41577,13 @@ var expand2 = createPrompt((config2, done) => {
   if (currentOption) {
     helpTip = `${styleText4("cyan", ">>")} ${currentOption.name}`;
   }
-  let error48 = "";
+  let error51 = "";
   if (errorMsg) {
-    error48 = theme.style.error(errorMsg);
+    error51 = theme.style.error(errorMsg);
   }
   return [
     `${prefix} ${message}${shortChoices} ${value}`,
-    [longChoices, helpTip, error48].filter(Boolean).join("\n")
+    [longChoices, helpTip, error51].filter(Boolean).join("\n")
   ];
 });
 
@@ -41699,9 +41699,9 @@ var dist_default9 = createPrompt((config2, done) => {
     }
     return line;
   }).join("\n");
-  let error48 = "";
+  let error51 = "";
   if (errorMsg) {
-    error48 = theme.style.error(errorMsg);
+    error51 = theme.style.error(errorMsg);
   }
   const [selectedChoice] = getSelectedChoice(value, choices);
   let description = "";
@@ -41710,7 +41710,7 @@ var dist_default9 = createPrompt((config2, done) => {
   }
   return [
     `${prefix} ${message} ${value}`,
-    [choicesStr, error48, description].filter(Boolean).join("\n")
+    [choicesStr, error51, description].filter(Boolean).join("\n")
   ];
 });
 
@@ -41761,11 +41761,11 @@ var dist_default10 = createPrompt((config2, done) => {
   if (status === "done") {
     formattedValue = theme.style.answer(formattedValue);
   }
-  let error48 = "";
+  let error51 = "";
   if (errorMsg) {
-    error48 = theme.style.error(errorMsg);
+    error51 = theme.style.error(errorMsg);
   }
-  return [[prefix, message, config2.mask ? formattedValue : helpTip].join(" "), error48];
+  return [[prefix, message, config2.mask ? formattedValue : helpTip].join(" "), error51];
 });
 
 // node_modules/.aspect_rules_js/@inquirer+search@4.1.8_@types+node@24.12.2/node_modules/@inquirer/search/dist/index.js
@@ -41845,9 +41845,9 @@ var dist_default11 = createPrompt((config2, done) => {
           setSearchResults(normalized);
           setStatus("idle");
         }
-      } catch (error49) {
-        if (!controller.signal.aborted && error49 instanceof Error) {
-          setSearchError(error49.message);
+      } catch (error52) {
+        if (!controller.signal.aborted && error52 instanceof Error) {
+          setSearchError(error52.message);
         }
       }
     };
@@ -41916,11 +41916,11 @@ var dist_default11 = createPrompt((config2, done) => {
     pageSize,
     loop: false
   });
-  let error48;
+  let error51;
   if (searchError) {
-    error48 = theme.style.error(searchError);
+    error51 = theme.style.error(searchError);
   } else if (searchResults.length === 0 && searchTerm !== "" && status === "idle") {
-    error48 = theme.style.error("No results found");
+    error51 = theme.style.error("No results found");
   }
   let searchStr;
   if (status === "done" && selectedChoice) {
@@ -41931,7 +41931,7 @@ var dist_default11 = createPrompt((config2, done) => {
   const description = selectedChoice?.description;
   const header = [prefix, message, searchStr].filter(Boolean).join(" ").trimEnd();
   const body = [
-    error48 ?? page,
+    error51 ?? page,
     " ",
     description ? theme.style.description(description) : "",
     helpLine
@@ -42677,8 +42677,8 @@ function builder4(argv) {
     defaultDescription: "`True` on CI or can be enabled through ng-dev user-config."
   });
 }
-async function handler4({ error: error48, file: file2, fileEnvVariable }) {
-  const isErrorMode = error48 === null ? await getIsErrorModeDefault() : error48;
+async function handler4({ error: error51, file: file2, fileEnvVariable }) {
+  const isErrorMode = error51 === null ? await getIsErrorModeDefault() : error51;
   const filePath = file2 || fileEnvVariable || ".git/COMMIT_EDITMSG";
   await validateFile(filePath, isErrorMode);
 }
@@ -42750,10 +42750,10 @@ async function exitCode(process5) {
   return new Promise((resolve8) => process5.once("close", resolve8));
 }
 async function catchProcessError(process5) {
-  let error48 = new Error("Process exited with non-zero code");
+  let error51 = new Error("Process exited with non-zero code");
   let stderr = "";
   process5.on("error", (err) => {
-    error48 = err;
+    error51 = err;
   });
   if (process5.stderr) {
     let chunk;
@@ -42763,9 +42763,9 @@ async function catchProcessError(process5) {
   }
   const code = await exitCode(process5);
   if (stderr) {
-    error48 = new Error(stderr);
+    error51 = new Error(stderr);
   }
-  return code ? error48 : null;
+  return code ? error51 : null;
 }
 async function* outputStream(process5) {
   const { stdout } = process5;
@@ -42778,9 +42778,9 @@ async function* outputStream(process5) {
     });
     yield* stdout;
   }
-  const error48 = await errorPromise;
-  if (error48) {
-    throw error48;
+  const error51 = await errorPromise;
+  if (error51) {
+    throw error51;
   }
 }
 function output(process5) {
@@ -48859,7 +48859,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-e391d56ec4a9d89b4006515b0679350f1394d19a`;
+var localVersion = `0.0.0-fcf9aad99710835428e0e9859bf060689045a131`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -50056,11 +50056,11 @@ async function handler29() {
     await checkPortability();
     await checkValidity();
     Log.info(`${green("\u2713")} ng-dev configuration validation passed`);
-  } catch (error48) {
-    if (error48 instanceof ConfigValidationError) {
-      error48.errors.forEach((e) => Log.info(e));
+  } catch (error51) {
+    if (error51 instanceof ConfigValidationError) {
+      error51.errors.forEach((e) => Log.info(e));
     } else {
-      Log.info(error48);
+      Log.info(error51);
     }
     Log.info(`${red("\u2718")} ng-dev configuration validation failed, see above for more details`);
   }
@@ -50107,11 +50107,11 @@ function getDefaultBaseUrls() {
   };
 }
 function getBaseUrl(httpOptions, vertexai, vertexBaseUrlFromEnv, geminiBaseUrlFromEnv) {
-  var _a4, _b;
+  var _a5, _b;
   if (!(httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.baseUrl)) {
     const defaultBaseUrls = getDefaultBaseUrls();
     if (vertexai) {
-      return (_a4 = defaultBaseUrls.vertexUrl) !== null && _a4 !== void 0 ? _a4 : vertexBaseUrlFromEnv;
+      return (_a5 = defaultBaseUrls.vertexUrl) !== null && _a5 !== void 0 ? _a5 : vertexBaseUrlFromEnv;
     } else {
       return (_b = defaultBaseUrls.geminiUrl) !== null && _b !== void 0 ? _b : geminiBaseUrlFromEnv;
     }
@@ -50220,11 +50220,11 @@ function getValueByPath(data, keys, defaultValue = void 0) {
       }
     }
     return data;
-  } catch (error48) {
-    if (error48 instanceof TypeError) {
+  } catch (error51) {
+    if (error51 instanceof TypeError) {
       return defaultValue;
     }
-    throw error48;
+    throw error51;
   }
 }
 function moveValueByPath(data, paths) {
@@ -51164,8 +51164,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get text() {
-    var _a4, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a5, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a5 = this.candidates) === null || _a5 === void 0 ? void 0 : _a5[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51204,8 +51204,8 @@ var GenerateContentResponse = class {
    * a warning will be logged.
    */
   get data() {
-    var _a4, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a5, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a5 = this.candidates) === null || _a5 === void 0 ? void 0 : _a5[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51274,8 +51274,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get functionCalls() {
-    var _a4, _b, _c, _d, _e, _f, _g, _h;
-    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a5, _b, _c, _d, _e, _f, _g, _h;
+    if (((_d = (_c = (_b = (_a5 = this.candidates) === null || _a5 === void 0 ? void 0 : _a5[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51311,8 +51311,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get executableCode() {
-    var _a4, _b, _c, _d, _e, _f, _g, _h, _j;
-    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a5, _b, _c, _d, _e, _f, _g, _h, _j;
+    if (((_d = (_c = (_b = (_a5 = this.candidates) === null || _a5 === void 0 ? void 0 : _a5[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51347,8 +51347,8 @@ var GenerateContentResponse = class {
    * ```
    */
   get codeExecutionResult() {
-    var _a4, _b, _c, _d, _e, _f, _g, _h, _j;
-    if (((_d = (_c = (_b = (_a4 = this.candidates) === null || _a4 === void 0 ? void 0 : _a4[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
+    var _a5, _b, _c, _d, _e, _f, _g, _h, _j;
+    if (((_d = (_c = (_b = (_a5 = this.candidates) === null || _a5 === void 0 ? void 0 : _a5[0]) === null || _b === void 0 ? void 0 : _b.content) === null || _c === void 0 ? void 0 : _c.parts) === null || _d === void 0 ? void 0 : _d.length) === 0) {
       return void 0;
     }
     if (this.candidates && this.candidates.length > 1) {
@@ -51443,11 +51443,11 @@ var LiveServerMessage = class {
    * parts will be returned, and a warning will be logged.
    */
   get text() {
-    var _a4, _b, _c;
+    var _a5, _b, _c;
     let text = "";
     let anyTextPartFound = false;
     const nonTextParts = [];
-    for (const part of (_c = (_b = (_a4 = this.serverContent) === null || _a4 === void 0 ? void 0 : _a4.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
+    for (const part of (_c = (_b = (_a5 = this.serverContent) === null || _a5 === void 0 ? void 0 : _a5.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
       for (const [fieldName, fieldValue] of Object.entries(part)) {
         if (fieldName !== "text" && fieldName !== "thought" && fieldValue !== null) {
           nonTextParts.push(fieldName);
@@ -51475,10 +51475,10 @@ var LiveServerMessage = class {
    * a warning will be logged.
    */
   get data() {
-    var _a4, _b, _c;
+    var _a5, _b, _c;
     let data = "";
     const nonDataParts = [];
-    for (const part of (_c = (_b = (_a4 = this.serverContent) === null || _a4 === void 0 ? void 0 : _a4.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
+    for (const part of (_c = (_b = (_a5 = this.serverContent) === null || _a5 === void 0 ? void 0 : _a5.modelTurn) === null || _b === void 0 ? void 0 : _b.parts) !== null && _c !== void 0 ? _c : []) {
       for (const [fieldName, fieldValue] of Object.entries(part)) {
         if (fieldName !== "inlineData" && fieldValue !== null) {
           nonDataParts.push(fieldName);
@@ -51874,7 +51874,7 @@ function isVideo(origin) {
   return origin !== null && origin !== void 0 && typeof origin === "object" && "uri" in origin;
 }
 function tFileName(fromName) {
-  var _a4;
+  var _a5;
   let name;
   if (_isFile(fromName)) {
     name = fromName.name;
@@ -51886,7 +51886,7 @@ function tFileName(fromName) {
     }
   }
   if (isGeneratedVideo(fromName)) {
-    name = (_a4 = fromName.video) === null || _a4 === void 0 ? void 0 : _a4.uri;
+    name = (_a5 = fromName.video) === null || _a5 === void 0 ? void 0 : _a5.uri;
     if (name === void 0) {
       return void 0;
     }
@@ -53392,7 +53392,7 @@ var Pager = class {
     this.init(name, response, params2);
   }
   init(name, response, params2) {
-    var _a4, _b;
+    var _a5, _b;
     this.nameInternal = name;
     this.pageInternal = response[this.nameInternal] || [];
     this.sdkHttpResponseInternal = response === null || response === void 0 ? void 0 : response.sdkHttpResponse;
@@ -53409,7 +53409,7 @@ var Pager = class {
       requestParams["config"]["pageToken"] = response["nextPageToken"];
     }
     this.paramsInternal = requestParams;
-    this.pageInternalSize = (_b = (_a4 = requestParams["config"]) === null || _a4 === void 0 ? void 0 : _a4["pageSize"]) !== null && _b !== void 0 ? _b : this.pageInternal.length;
+    this.pageInternalSize = (_b = (_a5 = requestParams["config"]) === null || _a5 === void 0 ? void 0 : _a5["pageSize"]) !== null && _b !== void 0 ? _b : this.pageInternal.length;
   }
   initNextPage(response) {
     this.init(this.nameInternal, response, this.paramsInternal);
@@ -53537,8 +53537,8 @@ var Pager = class {
    * Returns true if there are more pages to fetch from the API.
    */
   hasNextPage() {
-    var _a4;
-    if (((_a4 = this.params["config"]) === null || _a4 === void 0 ? void 0 : _a4["pageToken"]) !== void 0) {
+    var _a5;
+    if (((_a5 = this.params["config"]) === null || _a5 === void 0 ? void 0 : _a5["pageToken"]) !== void 0) {
       return true;
     }
     return false;
@@ -53648,7 +53648,7 @@ var Batches = class extends BaseModule2 {
    *
    */
   async createInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -53663,7 +53663,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53702,7 +53702,7 @@ var Batches = class extends BaseModule2 {
    *
    */
   async createEmbeddingsInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -53719,7 +53719,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53742,7 +53742,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -53757,7 +53757,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -53800,7 +53800,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async cancel(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -53814,7 +53814,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     } else {
@@ -53834,7 +53834,7 @@ var Batches = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -53849,7 +53849,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -53908,7 +53908,7 @@ var Batches = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -53923,7 +53923,7 @@ var Batches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -54832,7 +54832,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async create(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -54847,7 +54847,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -54888,7 +54888,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -54903,7 +54903,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -54944,7 +54944,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -54959,7 +54959,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -55021,7 +55021,7 @@ var Caches = class extends BaseModule2 {
    * ```
    */
   async update(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -55036,7 +55036,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -55066,7 +55066,7 @@ var Caches = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -55081,7 +55081,7 @@ var Caches = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -55223,11 +55223,11 @@ function __asyncValues(o) {
   }
 }
 function isValidResponse(response) {
-  var _a4;
+  var _a5;
   if (response.candidates == void 0 || response.candidates.length === 0) {
     return false;
   }
-  const content = (_a4 = response.candidates[0]) === null || _a4 === void 0 ? void 0 : _a4.content;
+  const content = (_a5 = response.candidates[0]) === null || _a5 === void 0 ? void 0 : _a5.content;
   if (content === void 0) {
     return false;
   }
@@ -55354,18 +55354,18 @@ var Chat = class {
    * ```
    */
   async sendMessage(params2) {
-    var _a4;
+    var _a5;
     await this.sendPromise;
     const inputContent = tContent(params2.message);
     const responsePromise = this.modelsModule.generateContent({
       model: this.model,
       contents: this.getHistory(true).concat(inputContent),
-      config: (_a4 = params2.config) !== null && _a4 !== void 0 ? _a4 : this.config
+      config: (_a5 = params2.config) !== null && _a5 !== void 0 ? _a5 : this.config
     });
     this.sendPromise = (async () => {
-      var _a5, _b, _c;
+      var _a6, _b, _c;
       const response = await responsePromise;
-      const outputContent = (_b = (_a5 = response.candidates) === null || _a5 === void 0 ? void 0 : _a5[0]) === null || _b === void 0 ? void 0 : _b.content;
+      const outputContent = (_b = (_a6 = response.candidates) === null || _a6 === void 0 ? void 0 : _a6[0]) === null || _b === void 0 ? void 0 : _b.content;
       const fullAutomaticFunctionCallingHistory = response.automaticFunctionCallingHistory;
       const index = this.getHistory(true).length;
       let automaticFunctionCallingHistory = [];
@@ -55404,13 +55404,13 @@ var Chat = class {
    * ```
    */
   async sendMessageStream(params2) {
-    var _a4;
+    var _a5;
     await this.sendPromise;
     const inputContent = tContent(params2.message);
     const streamResponse = this.modelsModule.generateContentStream({
       model: this.model,
       contents: this.getHistory(true).concat(inputContent),
-      config: (_a4 = params2.config) !== null && _a4 !== void 0 ? _a4 : this.config
+      config: (_a5 = params2.config) !== null && _a5 !== void 0 ? _a5 : this.config
     });
     this.sendPromise = streamResponse.then(() => void 0).catch(() => void 0);
     const response = await streamResponse;
@@ -55446,11 +55446,11 @@ var Chat = class {
   }
   processStreamResponse(streamResponse, inputContent) {
     return __asyncGenerator(this, arguments, function* processStreamResponse_1() {
-      var _a4, e_1, _b, _c;
+      var _a5, e_1, _b, _c;
       var _d, _e;
       const outputContent = [];
       try {
-        for (var _f = true, streamResponse_1 = __asyncValues(streamResponse), streamResponse_1_1; streamResponse_1_1 = yield __await(streamResponse_1.next()), _a4 = streamResponse_1_1.done, !_a4; _f = true) {
+        for (var _f = true, streamResponse_1 = __asyncValues(streamResponse), streamResponse_1_1; streamResponse_1_1 = yield __await(streamResponse_1.next()), _a5 = streamResponse_1_1.done, !_a5; _f = true) {
           _c = streamResponse_1_1.value;
           _f = false;
           const chunk = _c;
@@ -55466,7 +55466,7 @@ var Chat = class {
         e_1 = { error: e_1_1 };
       } finally {
         try {
-          if (!_f && !_a4 && (_b = streamResponse_1.return))
+          if (!_f && !_a5 && (_b = streamResponse_1.return))
             yield __await(_b.call(streamResponse_1));
         } finally {
           if (e_1)
@@ -55709,7 +55709,7 @@ var Files = class extends BaseModule2 {
     return this.registerFilesInternal(params2);
   }
   async listInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -55726,7 +55726,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -55746,7 +55746,7 @@ var Files = class extends BaseModule2 {
     }
   }
   async createInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -55763,7 +55763,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -55792,7 +55792,7 @@ var Files = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -55809,7 +55809,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -55833,7 +55833,7 @@ var Files = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -55850,7 +55850,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -55870,7 +55870,7 @@ var Files = class extends BaseModule2 {
     }
   }
   async registerFilesInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -55887,7 +55887,7 @@ var Files = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -60909,9 +60909,9 @@ var DEFAULT_RETRY_HTTP_STATUS_CODES = [
 ];
 var ApiClient = class {
   constructor(opts) {
-    var _a4, _b, _c;
+    var _a5, _b, _c;
     this.clientOptions = Object.assign({}, opts);
-    this.customBaseUrl = (_a4 = opts.httpOptions) === null || _a4 === void 0 ? void 0 : _a4.baseUrl;
+    this.customBaseUrl = (_a5 = opts.httpOptions) === null || _a5 === void 0 ? void 0 : _a5.baseUrl;
     if (this.clientOptions.vertexai) {
       if (this.clientOptions.project && this.clientOptions.location) {
         this.clientOptions.apiKey = void 0;
@@ -60956,8 +60956,8 @@ var ApiClient = class {
     }
   }
   isVertexAI() {
-    var _a4;
-    return (_a4 = this.clientOptions.vertexai) !== null && _a4 !== void 0 ? _a4 : false;
+    var _a5;
+    return (_a5 = this.clientOptions.vertexai) !== null && _a5 !== void 0 ? _a5 : false;
   }
   getProject() {
     return this.clientOptions.project;
@@ -61152,8 +61152,8 @@ var ApiClient = class {
   }
   processStreamResponse(response) {
     return __asyncGenerator(this, arguments, function* processStreamResponse_1() {
-      var _a4;
-      const reader = (_a4 = response === null || response === void 0 ? void 0 : response.body) === null || _a4 === void 0 ? void 0 : _a4.getReader();
+      var _a5;
+      const reader = (_a5 = response === null || response === void 0 ? void 0 : response.body) === null || _a5 === void 0 ? void 0 : _a5.getReader();
       const decoder = new TextDecoder("utf-8");
       if (!reader) {
         throw new Error("Response body is empty");
@@ -61187,8 +61187,8 @@ var ApiClient = class {
               }
             }
           } catch (e) {
-            const error48 = e;
-            if (error48.name === "ApiError") {
+            const error51 = e;
+            if (error51.name === "ApiError") {
               throw e;
             }
           }
@@ -61232,7 +61232,7 @@ var ApiClient = class {
     });
   }
   async apiCall(url3, requestInit) {
-    var _a4;
+    var _a5;
     if (!this.clientOptions.httpOptions || !this.clientOptions.httpOptions.retryOptions) {
       return fetch(url3, requestInit);
     }
@@ -61249,7 +61249,7 @@ var ApiClient = class {
     };
     return (0, import_p_retry.default)(runFetch, {
       // Retry attempts is one less than the number of total attempts.
-      retries: ((_a4 = retryOptions.attempts) !== null && _a4 !== void 0 ? _a4 : DEFAULT_RETRY_ATTEMPTS) - 1
+      retries: ((_a5 = retryOptions.attempts) !== null && _a5 !== void 0 ? _a5 : DEFAULT_RETRY_ATTEMPTS) - 1
     });
   }
   getDefaultHeaders() {
@@ -61274,11 +61274,11 @@ var ApiClient = class {
     return headers;
   }
   getFileName(file2) {
-    var _a4;
+    var _a5;
     let fileName = "";
     if (typeof file2 === "string") {
       fileName = file2.replace(/[/\\]+$/, "");
-      fileName = (_a4 = fileName.split(/[/\\]/).pop()) !== null && _a4 !== void 0 ? _a4 : "";
+      fileName = (_a5 = fileName.split(/[/\\]/).pop()) !== null && _a5 !== void 0 ? _a5 : "";
     }
     return fileName;
   }
@@ -61294,7 +61294,7 @@ var ApiClient = class {
    * @throws An error if the `mimeType` is not provided and can not be inferred,
    */
   async uploadFile(file2, config2) {
-    var _a4;
+    var _a5;
     const fileToUpload = {};
     if (config2 != null) {
       fileToUpload.mimeType = config2.mimeType;
@@ -61307,7 +61307,7 @@ var ApiClient = class {
     const uploader = this.clientOptions.uploader;
     const fileStat = await uploader.stat(file2);
     fileToUpload.sizeBytes = String(fileStat.size);
-    const mimeType = (_a4 = config2 === null || config2 === void 0 ? void 0 : config2.mimeType) !== null && _a4 !== void 0 ? _a4 : fileStat.type;
+    const mimeType = (_a5 = config2 === null || config2 === void 0 ? void 0 : config2.mimeType) !== null && _a5 !== void 0 ? _a5 : fileStat.type;
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
@@ -61333,11 +61333,11 @@ var ApiClient = class {
    * @throws An error if the `mimeType` is not provided and can not be inferred,
    */
   async uploadFileToFileSearchStore(fileSearchStoreName, file2, config2) {
-    var _a4;
+    var _a5;
     const uploader = this.clientOptions.uploader;
     const fileStat = await uploader.stat(file2);
     const sizeBytes = String(fileStat.size);
-    const mimeType = (_a4 = config2 === null || config2 === void 0 ? void 0 : config2.mimeType) !== null && _a4 !== void 0 ? _a4 : fileStat.type;
+    const mimeType = (_a5 = config2 === null || config2 === void 0 ? void 0 : config2.mimeType) !== null && _a5 !== void 0 ? _a5 : fileStat.type;
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
@@ -61361,7 +61361,7 @@ var ApiClient = class {
     await downloader.download(params2, this);
   }
   async fetchUploadUrl(path10, sizeBytes, mimeType, fileName, body, configHttpOptions) {
-    var _a4;
+    var _a5;
     let httpOptions = {};
     if (configHttpOptions) {
       httpOptions = configHttpOptions;
@@ -61381,7 +61381,7 @@ var ApiClient = class {
     if (!httpResponse || !(httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers)) {
       throw new Error("Server did not return an HttpResponse or the returned HttpResponse did not have headers.");
     }
-    const uploadUrl = (_a4 = httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers) === null || _a4 === void 0 ? void 0 : _a4["x-goog-upload-url"];
+    const uploadUrl = (_a5 = httpResponse === null || httpResponse === void 0 ? void 0 : httpResponse.headers) === null || _a5 === void 0 ? void 0 : _a5["x-goog-upload-url"];
     if (uploadUrl === void 0) {
       throw new Error("Failed to get upload url. Server did not return the x-google-upload-url in the headers");
     }
@@ -61389,14 +61389,14 @@ var ApiClient = class {
   }
 };
 async function throwErrorIfNotOK(response) {
-  var _a4;
+  var _a5;
   if (response === void 0) {
     throw new Error("response is undefined");
   }
   if (!response.ok) {
     const status = response.status;
     let errorBody;
-    if ((_a4 = response.headers.get("content-type")) === null || _a4 === void 0 ? void 0 : _a4.includes("application/json")) {
+    if ((_a5 = response.headers.get("content-type")) === null || _a5 === void 0 ? void 0 : _a5.includes("application/json")) {
       errorBody = await response.json();
     } else {
       errorBody = {
@@ -61476,8 +61476,8 @@ function hasMcpToolUsage(tools) {
   return hasMcpToolUsageFromMcpToTool;
 }
 function setMcpUsageHeader(headers) {
-  var _a4;
-  const existingHeader = (_a4 = headers[GOOGLE_API_CLIENT_HEADER]) !== null && _a4 !== void 0 ? _a4 : "";
+  var _a5;
+  const existingHeader = (_a5 = headers[GOOGLE_API_CLIENT_HEADER]) !== null && _a5 !== void 0 ? _a5 : "";
   headers[GOOGLE_API_CLIENT_HEADER] = (existingHeader + ` ${MCP_LABEL}`).trimStart();
 }
 function isMcpCallableTool(object2) {
@@ -61521,7 +61521,7 @@ var McpCallableTool = class _McpCallableTool {
    *     names.
    */
   async initialize() {
-    var _a4, e_1, _b, _c;
+    var _a5, e_1, _b, _c;
     if (this.mcpTools.length > 0) {
       return;
     }
@@ -61529,7 +61529,7 @@ var McpCallableTool = class _McpCallableTool {
     const mcpTools = [];
     for (const mcpClient of this.mcpClients) {
       try {
-        for (var _d = true, _e = (e_1 = void 0, __asyncValues(listAllTools(mcpClient))), _f; _f = await _e.next(), _a4 = _f.done, !_a4; _d = true) {
+        for (var _d = true, _e = (e_1 = void 0, __asyncValues(listAllTools(mcpClient))), _f; _f = await _e.next(), _a5 = _f.done, !_a5; _d = true) {
           _c = _f.value;
           _d = false;
           const mcpTool = _c;
@@ -61544,7 +61544,7 @@ var McpCallableTool = class _McpCallableTool {
         e_1 = { error: e_1_1 };
       } finally {
         try {
-          if (!_d && !_a4 && (_b = _e.return))
+          if (!_d && !_a5 && (_b = _e.return))
             await _b.call(_e);
         } finally {
           if (e_1)
@@ -61640,7 +61640,7 @@ var LiveMusic = class {
        ```
       */
   async connect(params2) {
-    var _a4, _b;
+    var _a5, _b;
     if (this.apiClient.isVertexAI()) {
       throw new Error("Live music is not supported for Vertex AI.");
     }
@@ -61665,7 +61665,7 @@ var LiveMusic = class {
       onmessage: (event) => {
         void handleWebSocketMessage$1(apiClient, callbacks.onmessage, event);
       },
-      onerror: (_a4 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a4 !== void 0 ? _a4 : function(e) {
+      onerror: (_a5 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a5 !== void 0 ? _a5 : function(e) {
       },
       onclose: (_b = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onclose) !== null && _b !== void 0 ? _b : function(e) {
       }
@@ -61854,7 +61854,7 @@ var Live = class {
        ```
       */
   async connect(params2) {
-    var _a4, _b, _c, _d, _e, _f;
+    var _a5, _b, _c, _d, _e, _f;
     if (params2.config && params2.config.httpOptions) {
       throw new Error("The Live module does not support httpOptions at request-level in LiveConnectConfig yet. Please use the client-level httpOptions configuration instead.");
     }
@@ -61898,8 +61898,8 @@ var Live = class {
     });
     const callbacks = params2.callbacks;
     const onopenAwaitedCallback = function() {
-      var _a5;
-      (_a5 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onopen) === null || _a5 === void 0 ? void 0 : _a5.call(callbacks);
+      var _a6;
+      (_a6 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onopen) === null || _a6 === void 0 ? void 0 : _a6.call(callbacks);
       onopenResolve({});
     };
     const apiClient = this.apiClient;
@@ -61908,7 +61908,7 @@ var Live = class {
       onmessage: (event) => {
         void handleWebSocketMessage(apiClient, callbacks.onmessage, event);
       },
-      onerror: (_a4 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a4 !== void 0 ? _a4 : function(e) {
+      onerror: (_a5 = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onerror) !== null && _a5 !== void 0 ? _a5 : function(e) {
       },
       onclose: (_b = callbacks === null || callbacks === void 0 ? void 0 : callbacks.onclose) !== null && _b !== void 0 ? _b : function(e) {
       }
@@ -61983,7 +61983,7 @@ var Session = class {
         if (!apiClient.isVertexAI()) {
           contents = contents.map((item) => contentToMldev$1(item));
         }
-      } catch (_a4) {
+      } catch (_a5) {
         throw new Error(`Failed to parse client content "turns", type: '${typeof params2.turns}'`);
       }
       return {
@@ -62173,8 +62173,8 @@ function mapToHeaders(map2) {
 }
 var DEFAULT_MAX_REMOTE_CALLS = 10;
 function shouldDisableAfc(config2) {
-  var _a4, _b, _c;
-  if ((_a4 = config2 === null || config2 === void 0 ? void 0 : config2.automaticFunctionCalling) === null || _a4 === void 0 ? void 0 : _a4.disable) {
+  var _a5, _b, _c;
+  if ((_a5 = config2 === null || config2 === void 0 ? void 0 : config2.automaticFunctionCalling) === null || _a5 === void 0 ? void 0 : _a5.disable) {
     return true;
   }
   let callableToolsPresent = false;
@@ -62198,13 +62198,13 @@ function isCallableTool(tool) {
   return "callTool" in tool && typeof tool.callTool === "function";
 }
 function hasCallableTools(params2) {
-  var _a4, _b, _c;
-  return (_c = (_b = (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.tools) === null || _b === void 0 ? void 0 : _b.some((tool) => isCallableTool(tool))) !== null && _c !== void 0 ? _c : false;
+  var _a5, _b, _c;
+  return (_c = (_b = (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.tools) === null || _b === void 0 ? void 0 : _b.some((tool) => isCallableTool(tool))) !== null && _c !== void 0 ? _c : false;
 }
 function findAfcIncompatibleToolIndexes(params2) {
-  var _a4;
+  var _a5;
   const afcIncompatibleToolIndexes = [];
-  if (!((_a4 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a4 === void 0 ? void 0 : _a4.tools)) {
+  if (!((_a5 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a5 === void 0 ? void 0 : _a5.tools)) {
     return afcIncompatibleToolIndexes;
   }
   params2.config.tools.forEach((tool, index) => {
@@ -62219,8 +62219,8 @@ function findAfcIncompatibleToolIndexes(params2) {
   return afcIncompatibleToolIndexes;
 }
 function shouldAppendAfcHistory(config2) {
-  var _a4;
-  return !((_a4 = config2 === null || config2 === void 0 ? void 0 : config2.automaticFunctionCalling) === null || _a4 === void 0 ? void 0 : _a4.ignoreCallHistory);
+  var _a5;
+  return !((_a5 = config2 === null || config2 === void 0 ? void 0 : config2.automaticFunctionCalling) === null || _a5 === void 0 ? void 0 : _a5.ignoreCallHistory);
 }
 var Models = class extends BaseModule2 {
   constructor(apiClient) {
@@ -62248,7 +62248,7 @@ var Models = class extends BaseModule2 {
       }
     };
     this.generateContent = async (params2) => {
-      var _a4, _b, _c, _d, _e;
+      var _a5, _b, _c, _d, _e;
       const transformedParams = await this.processParamsMaybeAddMcpUsage(params2);
       this.maybeMoveToResponseJsonSchem(params2);
       if (!hasCallableTools(params2) || shouldDisableAfc(params2.config)) {
@@ -62262,7 +62262,7 @@ var Models = class extends BaseModule2 {
       let response;
       let functionResponseContent;
       const automaticFunctionCallingHistory = tContents(transformedParams.contents);
-      const maxRemoteCalls = (_c = (_b = (_a4 = transformedParams.config) === null || _a4 === void 0 ? void 0 : _a4.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
+      const maxRemoteCalls = (_c = (_b = (_a5 = transformedParams.config) === null || _a5 === void 0 ? void 0 : _a5.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
       let remoteCalls = 0;
       while (remoteCalls < maxRemoteCalls) {
         response = await this.generateContentInternal(transformedParams);
@@ -62297,7 +62297,7 @@ var Models = class extends BaseModule2 {
       return response;
     };
     this.generateContentStream = async (params2) => {
-      var _a4, _b, _c, _d, _e;
+      var _a5, _b, _c, _d, _e;
       this.maybeMoveToResponseJsonSchem(params2);
       if (shouldDisableAfc(params2.config)) {
         const transformedParams = await this.processParamsMaybeAddMcpUsage(params2);
@@ -62308,7 +62308,7 @@ var Models = class extends BaseModule2 {
         const formattedIndexes = incompatibleToolIndexes.map((index) => `tools[${index}]`).join(", ");
         throw new Error(`Incompatible tools found at ${formattedIndexes}. Automatic function calling with CallableTools (or MCP objects) and basic FunctionDeclarations" is not yet supported.`);
       }
-      const streamFunctionCall = (_c = (_b = (_a4 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a4 === void 0 ? void 0 : _a4.toolConfig) === null || _b === void 0 ? void 0 : _b.functionCallingConfig) === null || _c === void 0 ? void 0 : _c.streamFunctionCallArguments;
+      const streamFunctionCall = (_c = (_b = (_a5 = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _a5 === void 0 ? void 0 : _a5.toolConfig) === null || _b === void 0 ? void 0 : _b.functionCallingConfig) === null || _c === void 0 ? void 0 : _c.streamFunctionCallArguments;
       const disableAfc = (_e = (_d = params2 === null || params2 === void 0 ? void 0 : params2.config) === null || _d === void 0 ? void 0 : _d.automaticFunctionCalling) === null || _e === void 0 ? void 0 : _e.disable;
       if (streamFunctionCall && !disableAfc) {
         throw new Error("Running in streaming mode with 'streamFunctionCallArguments' enabled, this feature is not compatible with automatic function calling (AFC). Please set 'config.automaticFunctionCalling.disable' to true to disable AFC or leave 'config.toolConfig.functionCallingConfig.streamFunctionCallArguments' to be undefined or set to false to disable streaming function call arguments feature.");
@@ -62317,12 +62317,12 @@ var Models = class extends BaseModule2 {
     };
     this.generateImages = async (params2) => {
       return await this.generateImagesInternal(params2).then((apiResponse) => {
-        var _a4;
+        var _a5;
         let positivePromptSafetyAttributes;
         const generatedImages = [];
         if (apiResponse === null || apiResponse === void 0 ? void 0 : apiResponse.generatedImages) {
           for (const generatedImage of apiResponse.generatedImages) {
-            if (generatedImage && (generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) && ((_a4 = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) === null || _a4 === void 0 ? void 0 : _a4.contentType) === "Positive Prompt") {
+            if (generatedImage && (generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) && ((_a5 = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes) === null || _a5 === void 0 ? void 0 : _a5.contentType) === "Positive Prompt") {
               positivePromptSafetyAttributes = generatedImage === null || generatedImage === void 0 ? void 0 : generatedImage.safetyAttributes;
             } else {
               generatedImages.push(generatedImage);
@@ -62346,7 +62346,7 @@ var Models = class extends BaseModule2 {
       });
     };
     this.list = async (params2) => {
-      var _a4;
+      var _a5;
       const defaultConfig2 = {
         queryBase: true
       };
@@ -62356,7 +62356,7 @@ var Models = class extends BaseModule2 {
       };
       if (this.apiClient.isVertexAI()) {
         if (!actualParams.config.queryBase) {
-          if ((_a4 = actualParams.config) === null || _a4 === void 0 ? void 0 : _a4.filter) {
+          if ((_a5 = actualParams.config) === null || _a5 === void 0 ? void 0 : _a5.filter) {
             throw new Error("Filtering tuned models list for Vertex AI is not currently supported");
           } else {
             actualParams.config.filter = "labels.tune-type:*";
@@ -62396,12 +62396,12 @@ var Models = class extends BaseModule2 {
       return await this.upscaleImageInternal(apiParams);
     };
     this.generateVideos = async (params2) => {
-      var _a4, _b, _c, _d, _e, _f;
+      var _a5, _b, _c, _d, _e, _f;
       if ((params2.prompt || params2.image || params2.video) && params2.source) {
         throw new Error("Source and prompt/image/video are mutually exclusive. Please only use source.");
       }
       if (!this.apiClient.isVertexAI()) {
-        if (((_a4 = params2.video) === null || _a4 === void 0 ? void 0 : _a4.uri) && ((_b = params2.video) === null || _b === void 0 ? void 0 : _b.videoBytes)) {
+        if (((_a5 = params2.video) === null || _a5 === void 0 ? void 0 : _a5.uri) && ((_b = params2.video) === null || _b === void 0 ? void 0 : _b.videoBytes)) {
           params2.video = {
             uri: params2.video.uri,
             mimeType: params2.video.mimeType
@@ -62441,8 +62441,8 @@ var Models = class extends BaseModule2 {
    * MCP tools in the parameters.
    */
   async processParamsMaybeAddMcpUsage(params2) {
-    var _a4, _b, _c;
-    const tools = (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.tools;
+    var _a5, _b, _c;
+    const tools = (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.tools;
     if (!tools) {
       return params2;
     }
@@ -62471,9 +62471,9 @@ var Models = class extends BaseModule2 {
     return newParams;
   }
   async initAfcToolsMap(params2) {
-    var _a4, _b, _c;
+    var _a5, _b, _c;
     const afcTools = /* @__PURE__ */ new Map();
-    for (const tool of (_b = (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.tools) !== null && _b !== void 0 ? _b : []) {
+    for (const tool of (_b = (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.tools) !== null && _b !== void 0 ? _b : []) {
       if (isCallableTool(tool)) {
         const callableTool = tool;
         const toolDeclaration = await callableTool.tool();
@@ -62491,14 +62491,14 @@ var Models = class extends BaseModule2 {
     return afcTools;
   }
   async processAfcStream(params2) {
-    var _a4, _b, _c;
-    const maxRemoteCalls = (_c = (_b = (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
+    var _a5, _b, _c;
+    const maxRemoteCalls = (_c = (_b = (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.automaticFunctionCalling) === null || _b === void 0 ? void 0 : _b.maximumRemoteCalls) !== null && _c !== void 0 ? _c : DEFAULT_MAX_REMOTE_CALLS;
     let wereFunctionsCalled = false;
     let remoteCallCount = 0;
     const afcToolsMap = await this.initAfcToolsMap(params2);
     return function(models, afcTools, params3) {
       return __asyncGenerator(this, arguments, function* () {
-        var _a5, e_1, _b2, _c2;
+        var _a6, e_1, _b2, _c2;
         var _d, _e;
         while (remoteCallCount < maxRemoteCalls) {
           if (wereFunctionsCalled) {
@@ -62510,7 +62510,7 @@ var Models = class extends BaseModule2 {
           const functionResponses = [];
           const responseContents = [];
           try {
-            for (var _f = true, response_1 = (e_1 = void 0, __asyncValues(response)), response_1_1; response_1_1 = yield __await(response_1.next()), _a5 = response_1_1.done, !_a5; _f = true) {
+            for (var _f = true, response_1 = (e_1 = void 0, __asyncValues(response)), response_1_1; response_1_1 = yield __await(response_1.next()), _a6 = response_1_1.done, !_a6; _f = true) {
               _c2 = response_1_1.value;
               _f = false;
               const chunk = _c2;
@@ -62536,7 +62536,7 @@ var Models = class extends BaseModule2 {
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (!_f && !_a5 && (_b2 = response_1.return))
+              if (!_f && !_a6 && (_b2 = response_1.return))
                 yield __await(_b2.call(response_1));
             } finally {
               if (e_1)
@@ -62571,7 +62571,7 @@ var Models = class extends BaseModule2 {
     }(this, afcToolsMap, params2);
   }
   async generateContentInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -62586,7 +62586,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62634,7 +62634,7 @@ var Models = class extends BaseModule2 {
     }
   }
   async generateContentStreamInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -62650,14 +62650,14 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
       return response.then(function(apiResponse) {
         return __asyncGenerator(this, arguments, function* () {
-          var _a5, e_2, _b2, _c2;
+          var _a6, e_2, _b2, _c2;
           try {
-            for (var _d2 = true, apiResponse_1 = __asyncValues(apiResponse), apiResponse_1_1; apiResponse_1_1 = yield __await(apiResponse_1.next()), _a5 = apiResponse_1_1.done, !_a5; _d2 = true) {
+            for (var _d2 = true, apiResponse_1 = __asyncValues(apiResponse), apiResponse_1_1; apiResponse_1_1 = yield __await(apiResponse_1.next()), _a6 = apiResponse_1_1.done, !_a6; _d2 = true) {
               _c2 = apiResponse_1_1.value;
               _d2 = false;
               const chunk = _c2;
@@ -62673,7 +62673,7 @@ var Models = class extends BaseModule2 {
             e_2 = { error: e_2_1 };
           } finally {
             try {
-              if (!_d2 && !_a5 && (_b2 = apiResponse_1.return))
+              if (!_d2 && !_a6 && (_b2 = apiResponse_1.return))
                 yield __await(_b2.call(apiResponse_1));
             } finally {
               if (e_2)
@@ -62699,9 +62699,9 @@ var Models = class extends BaseModule2 {
       });
       return response.then(function(apiResponse) {
         return __asyncGenerator(this, arguments, function* () {
-          var _a5, e_3, _b2, _c2;
+          var _a6, e_3, _b2, _c2;
           try {
-            for (var _d2 = true, apiResponse_2 = __asyncValues(apiResponse), apiResponse_2_1; apiResponse_2_1 = yield __await(apiResponse_2.next()), _a5 = apiResponse_2_1.done, !_a5; _d2 = true) {
+            for (var _d2 = true, apiResponse_2 = __asyncValues(apiResponse), apiResponse_2_1; apiResponse_2_1 = yield __await(apiResponse_2.next()), _a6 = apiResponse_2_1.done, !_a6; _d2 = true) {
               _c2 = apiResponse_2_1.value;
               _d2 = false;
               const chunk = _c2;
@@ -62717,7 +62717,7 @@ var Models = class extends BaseModule2 {
             e_3 = { error: e_3_1 };
           } finally {
             try {
-              if (!_d2 && !_a5 && (_b2 = apiResponse_2.return))
+              if (!_d2 && !_a6 && (_b2 = apiResponse_2.return))
                 yield __await(_b2.call(apiResponse_2));
             } finally {
               if (e_3)
@@ -62750,7 +62750,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async embedContentInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -62766,7 +62766,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62817,7 +62817,7 @@ var Models = class extends BaseModule2 {
    * Private method for generating images.
    */
   async generateImagesInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -62832,7 +62832,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62883,7 +62883,7 @@ var Models = class extends BaseModule2 {
    * Private method for editing an image.
    */
   async editImageInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -62898,7 +62898,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62923,7 +62923,7 @@ var Models = class extends BaseModule2 {
    * Private method for upscaling an image.
    */
   async upscaleImageInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -62938,7 +62938,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -62984,7 +62984,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async recontextImage(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -62999,7 +62999,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63035,7 +63035,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async segmentImage(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63050,7 +63050,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63074,7 +63074,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async get(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63089,7 +63089,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63121,7 +63121,7 @@ var Models = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63136,7 +63136,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -63201,7 +63201,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async update(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63216,7 +63216,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63259,7 +63259,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async delete(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63274,7 +63274,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -63338,7 +63338,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async countTokens(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63353,7 +63353,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -63419,7 +63419,7 @@ var Models = class extends BaseModule2 {
    * ```
    */
   async computeTokens(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63434,7 +63434,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -63459,7 +63459,7 @@ var Models = class extends BaseModule2 {
    * Private method for generating videos.
    */
   async generateVideosInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63474,7 +63474,7 @@ var Models = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63592,7 +63592,7 @@ var Operations = class extends BaseModule2 {
     }
   }
   async getVideosOperationInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63607,7 +63607,7 @@ var Operations = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -63633,7 +63633,7 @@ var Operations = class extends BaseModule2 {
     }
   }
   async fetchPredictVideosOperationInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -63648,7 +63648,7 @@ var Operations = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64308,7 +64308,7 @@ var Tokens = class extends BaseModule2 {
    * ```
    */
   async create(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -64327,7 +64327,7 @@ var Tokens = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(transformedBody),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64431,7 +64431,7 @@ var Documents = class extends BaseModule2 {
    * @return Document.
    */
   async get(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -64448,7 +64448,7 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64464,7 +64464,7 @@ var Documents = class extends BaseModule2 {
    * @param params - The parameters for deleting a document.
    */
   async delete(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -64480,13 +64480,13 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     }
   }
   async listInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -64503,7 +64503,7 @@ var Documents = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64575,7 +64575,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return FileSearchStore.
    */
   async create(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -64592,7 +64592,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64609,7 +64609,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return FileSearchStore.
    */
   async get(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -64626,7 +64626,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64642,7 +64642,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @param params - The parameters for deleting a File Search Store.
    */
   async delete(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let path10 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
@@ -64658,13 +64658,13 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       });
     }
   }
   async listInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -64681,7 +64681,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64695,7 +64695,7 @@ var FileSearchStores = class extends BaseModule2 {
     }
   }
   async uploadToFileSearchStoreInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -64712,7 +64712,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64734,7 +64734,7 @@ var FileSearchStores = class extends BaseModule2 {
    * @return ImportFileOperation.
    */
   async importFile(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -64751,7 +64751,7 @@ var FileSearchStores = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json();
@@ -64787,16 +64787,16 @@ var castToError = (err) => {
   if (typeof err === "object" && err !== null) {
     try {
       if (Object.prototype.toString.call(err) === "[object Error]") {
-        const error48 = new Error(err.message, err.cause ? { cause: err.cause } : {});
+        const error51 = new Error(err.message, err.cause ? { cause: err.cause } : {});
         if (err.stack)
-          error48.stack = err.stack;
-        if (err.cause && !error48.cause)
-          error48.cause = err.cause;
+          error51.stack = err.stack;
+        if (err.cause && !error51.cause)
+          error51.cause = err.cause;
         if (err.name)
-          error48.name = err.name;
-        return error48;
+          error51.name = err.name;
+        return error51;
       }
-    } catch (_a4) {
+    } catch (_a5) {
     }
     try {
       return new Error(JSON.stringify(err));
@@ -64808,14 +64808,14 @@ var castToError = (err) => {
 var GeminiNextGenAPIClientError = class extends Error {
 };
 var APIError = class _APIError extends GeminiNextGenAPIClientError {
-  constructor(status, error48, message, headers) {
-    super(`${_APIError.makeMessage(status, error48, message)}`);
+  constructor(status, error51, message, headers) {
+    super(`${_APIError.makeMessage(status, error51, message)}`);
     this.status = status;
     this.headers = headers;
-    this.error = error48;
+    this.error = error51;
   }
-  static makeMessage(status, error48, message) {
-    const msg = (error48 === null || error48 === void 0 ? void 0 : error48.message) ? typeof error48.message === "string" ? error48.message : JSON.stringify(error48.message) : error48 ? JSON.stringify(error48) : message;
+  static makeMessage(status, error51, message) {
+    const msg = (error51 === null || error51 === void 0 ? void 0 : error51.message) ? typeof error51.message === "string" ? error51.message : JSON.stringify(error51.message) : error51 ? JSON.stringify(error51) : message;
     if (status && msg) {
       return `${status} ${msg}`;
     }
@@ -64831,32 +64831,32 @@ var APIError = class _APIError extends GeminiNextGenAPIClientError {
     if (!status || !headers) {
       return new APIConnectionError({ message, cause: castToError(errorResponse) });
     }
-    const error48 = errorResponse;
+    const error51 = errorResponse;
     if (status === 400) {
-      return new BadRequestError(status, error48, message, headers);
+      return new BadRequestError(status, error51, message, headers);
     }
     if (status === 401) {
-      return new AuthenticationError(status, error48, message, headers);
+      return new AuthenticationError(status, error51, message, headers);
     }
     if (status === 403) {
-      return new PermissionDeniedError(status, error48, message, headers);
+      return new PermissionDeniedError(status, error51, message, headers);
     }
     if (status === 404) {
-      return new NotFoundError(status, error48, message, headers);
+      return new NotFoundError(status, error51, message, headers);
     }
     if (status === 409) {
-      return new ConflictError(status, error48, message, headers);
+      return new ConflictError(status, error51, message, headers);
     }
     if (status === 422) {
-      return new UnprocessableEntityError(status, error48, message, headers);
+      return new UnprocessableEntityError(status, error51, message, headers);
     }
     if (status === 429) {
-      return new RateLimitError(status, error48, message, headers);
+      return new RateLimitError(status, error51, message, headers);
     }
     if (status >= 500) {
-      return new InternalServerError(status, error48, message, headers);
+      return new InternalServerError(status, error51, message, headers);
     }
-    return new _APIError(status, error48, message, headers);
+    return new _APIError(status, error51, message, headers);
   }
 };
 var APIUserAbortError = class extends APIError {
@@ -64954,8 +64954,8 @@ function ReadableStreamFrom(iterable) {
       }
     },
     async cancel() {
-      var _a4;
-      await ((_a4 = iter.return) === null || _a4 === void 0 ? void 0 : _a4.call(iter));
+      var _a5;
+      await ((_a5 = iter.return) === null || _a5 === void 0 ? void 0 : _a5.call(iter));
     }
   });
 }
@@ -64987,11 +64987,11 @@ function ReadableStreamToAsyncIterable(stream) {
   };
 }
 async function CancelReadableStream(stream) {
-  var _a4, _b;
+  var _a5, _b;
   if (stream === null || typeof stream !== "object")
     return;
   if (stream[Symbol.asyncIterator]) {
-    await ((_b = (_a4 = stream[Symbol.asyncIterator]()).return) === null || _b === void 0 ? void 0 : _b.call(_a4));
+    await ((_b = (_a5 = stream[Symbol.asyncIterator]()).return) === null || _b === void 0 ? void 0 : _b.call(_a5));
     return;
   }
   const reader = stream.getReader();
@@ -65020,10 +65020,10 @@ function stringifyQuery(query) {
 }
 var VERSION = "0.0.1";
 var checkFileSupport = () => {
-  var _a4;
+  var _a5;
   if (typeof File === "undefined") {
     const { process: process5 } = globalThis;
-    const isOldNode = typeof ((_a4 = process5 === null || process5 === void 0 ? void 0 : process5.versions) === null || _a4 === void 0 ? void 0 : _a4.node) === "string" && parseInt(process5.versions.node.split(".")) < 20;
+    const isOldNode = typeof ((_a5 = process5 === null || process5 === void 0 ? void 0 : process5.versions) === null || _a5 === void 0 ? void 0 : _a5.node) === "string" && parseInt(process5.versions.node.split(".")) < 20;
     throw new Error("`File` is not defined as a global, which is required for file uploads." + (isOldNode ? " Update to Node 20 LTS or newer, or set `globalThis.File` to `import('node:buffer').File`." : ""));
   }
 };
@@ -65063,7 +65063,7 @@ async function toFile(value, name, options) {
   return makeFile(parts, name, options);
 }
 async function getBytes(value) {
-  var _a4, e_1, _b, _c;
+  var _a5, e_1, _b, _c;
   var _d;
   let parts = [];
   if (typeof value === "string" || ArrayBuffer.isView(value) || // includes Uint8Array, Buffer, etc.
@@ -65073,7 +65073,7 @@ async function getBytes(value) {
     parts.push(value instanceof Blob ? value : await value.arrayBuffer());
   } else if (isAsyncIterable(value)) {
     try {
-      for (var _e = true, value_1 = __asyncValues(value), value_1_1; value_1_1 = await value_1.next(), _a4 = value_1_1.done, !_a4; _e = true) {
+      for (var _e = true, value_1 = __asyncValues(value), value_1_1; value_1_1 = await value_1.next(), _a5 = value_1_1.done, !_a5; _e = true) {
         _c = value_1_1.value;
         _e = false;
         const chunk = _c;
@@ -65083,7 +65083,7 @@ async function getBytes(value) {
       e_1 = { error: e_1_1 };
     } finally {
       try {
-        if (!_e && !_a4 && (_b = value_1.return))
+        if (!_e && !_a5 && (_b = value_1.return))
           await _b.call(value_1);
       } finally {
         if (e_1)
@@ -65118,14 +65118,14 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path10(sta
   let postPath = false;
   const invalidSegments = [];
   const path11 = statics.reduce((previousValue, currentValue, index) => {
-    var _a4, _b, _c;
+    var _a5, _b, _c;
     if (/[?#]/.test(currentValue)) {
       postPath = true;
     }
     const value = params2[index];
     let encoded = (postPath ? encodeURIComponent : pathEncoder)("" + value);
     if (index !== params2.length && (value == null || typeof value === "object" && // handle values from other realms
-    value.toString === ((_c = Object.getPrototypeOf((_b = Object.getPrototypeOf((_a4 = value.hasOwnProperty) !== null && _a4 !== void 0 ? _a4 : EMPTY)) !== null && _b !== void 0 ? _b : EMPTY)) === null || _c === void 0 ? void 0 : _c.toString))) {
+    value.toString === ((_c = Object.getPrototypeOf((_b = Object.getPrototypeOf((_a5 = value.hasOwnProperty) !== null && _a5 !== void 0 ? _a5 : EMPTY)) !== null && _b !== void 0 ? _b : EMPTY)) === null || _c === void 0 ? void 0 : _c.toString))) {
       encoded = value + "";
       invalidSegments.push({
         start: previousValue.length + currentValue.length,
@@ -65167,7 +65167,7 @@ ${underline2}`);
 var path9 = createPathTagFunction(encodeURIPath);
 var BaseInteractions = class extends APIResource {
   create(params2, options) {
-    var _a4;
+    var _a5;
     const { api_version = this._client.apiVersion } = params2, body = __rest(params2, ["api_version"]);
     if ("model" in body && "agent_config" in body) {
       throw new GeminiNextGenAPIClientError(`Invalid request: specified \`model\` and \`agent_config\`. If specifying \`model\`, use \`generation_config\`.`);
@@ -65175,7 +65175,7 @@ var BaseInteractions = class extends APIResource {
     if ("agent" in body && "generation_config" in body) {
       throw new GeminiNextGenAPIClientError(`Invalid request: specified \`agent\` and \`generation_config\`. If specifying \`agent\`, use \`agent_config\`.`);
     }
-    return this._client.post(path9`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a4 = params2.stream) !== null && _a4 !== void 0 ? _a4 : false }));
+    return this._client.post(path9`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a5 = params2.stream) !== null && _a5 !== void 0 ? _a5 : false }));
   }
   /**
    * Deletes the interaction by id.
@@ -65207,9 +65207,9 @@ var BaseInteractions = class extends APIResource {
     return this._client.post(path9`/${api_version}/interactions/${id}/cancel`, options);
   }
   get(id, params2 = {}, options) {
-    var _a4;
+    var _a5;
     const _b = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _b, query = __rest(_b, ["api_version"]);
-    return this._client.get(path9`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a4 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a4 !== void 0 ? _a4 : false }));
+    return this._client.get(path9`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a5 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a5 !== void 0 ? _a5 : false }));
   }
 };
 BaseInteractions._key = Object.freeze(["interactions"]);
@@ -65234,7 +65234,7 @@ var BaseWebhooks = class extends APIResource {
    * Lists all Webhooks.
    */
   list(params2 = {}, options) {
-    const _a4 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a4, query = __rest(_a4, ["api_version"]);
+    const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, query = __rest(_a5, ["api_version"]);
     return this._client.get(path9`/${api_version}/webhooks`, Object.assign({ query }, options));
   }
   /**
@@ -65262,7 +65262,7 @@ var BaseWebhooks = class extends APIResource {
    * Generates a new signing secret for a Webhook.
    */
   rotateSigningSecret(id, params2 = {}, options) {
-    const _a4 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a4, body = __rest(_a4, ["api_version"]);
+    const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, body = __rest(_a5, ["api_version"]);
     return this._client.post(path9`/${api_version}/webhooks/${id}:rotateSigningSecret`, Object.assign({ body }, options));
   }
 };
@@ -65299,7 +65299,7 @@ var LineDecoder = class {
     this.searchIndex = 0;
   }
   decode(chunk) {
-    var _a4;
+    var _a5;
     if (chunk == null) {
       return [];
     }
@@ -65307,7 +65307,7 @@ var LineDecoder = class {
     this.buffer = concatBytes([this.buffer, binaryChunk]);
     const lines = [];
     let patternIndex;
-    while ((patternIndex = findNewlineIndex(this.buffer, (_a4 = this.carriageReturnIndex) !== null && _a4 !== void 0 ? _a4 : this.searchIndex)) != null) {
+    while ((patternIndex = findNewlineIndex(this.buffer, (_a5 = this.carriageReturnIndex) !== null && _a5 !== void 0 ? _a5 : this.searchIndex)) != null) {
       if (patternIndex.carriage && this.carriageReturnIndex == null) {
         this.carriageReturnIndex = patternIndex.index;
         continue;
@@ -65392,9 +65392,9 @@ var noopLogger = {
 };
 var cachedLoggers = /* @__PURE__ */ new WeakMap();
 function loggerFor(client) {
-  var _a4;
+  var _a5;
   const logger = client.logger;
-  const logLevel = (_a4 = client.logLevel) !== null && _a4 !== void 0 ? _a4 : "off";
+  const logLevel = (_a5 = client.logLevel) !== null && _a5 !== void 0 ? _a5 : "off";
   if (!logger) {
     return noopLogger;
   }
@@ -65441,7 +65441,7 @@ var Stream = class _Stream {
     const logger = client ? loggerFor(client) : console;
     function iterator() {
       return __asyncGenerator(this, arguments, function* iterator_1() {
-        var _a4, e_1, _b, _c;
+        var _a5, e_1, _b, _c;
         if (consumed) {
           throw new GeminiNextGenAPIClientError("Cannot iterate over a consumed stream, use `.tee()` to split the stream.");
         }
@@ -65449,7 +65449,7 @@ var Stream = class _Stream {
         let done = false;
         try {
           try {
-            for (var _d = true, _e = __asyncValues(_iterSSEMessages(response, controller)), _f; _f = yield __await(_e.next()), _a4 = _f.done, !_a4; _d = true) {
+            for (var _d = true, _e = __asyncValues(_iterSSEMessages(response, controller)), _f; _f = yield __await(_e.next()), _a5 = _f.done, !_a5; _d = true) {
               _c = _f.value;
               _d = false;
               const sse = _c;
@@ -65472,7 +65472,7 @@ var Stream = class _Stream {
             e_1 = { error: e_1_1 };
           } finally {
             try {
-              if (!_d && !_a4 && (_b = _e.return))
+              if (!_d && !_a5 && (_b = _e.return))
                 yield __await(_b.call(_e));
             } finally {
               if (e_1)
@@ -65500,11 +65500,11 @@ var Stream = class _Stream {
     let consumed = false;
     function iterLines() {
       return __asyncGenerator(this, arguments, function* iterLines_1() {
-        var _a4, e_2, _b, _c;
+        var _a5, e_2, _b, _c;
         const lineDecoder = new LineDecoder();
         const iter = ReadableStreamToAsyncIterable(readableStream);
         try {
-          for (var _d = true, iter_1 = __asyncValues(iter), iter_1_1; iter_1_1 = yield __await(iter_1.next()), _a4 = iter_1_1.done, !_a4; _d = true) {
+          for (var _d = true, iter_1 = __asyncValues(iter), iter_1_1; iter_1_1 = yield __await(iter_1.next()), _a5 = iter_1_1.done, !_a5; _d = true) {
             _c = iter_1_1.value;
             _d = false;
             const chunk = _c;
@@ -65516,7 +65516,7 @@ var Stream = class _Stream {
           e_2 = { error: e_2_1 };
         } finally {
           try {
-            if (!_d && !_a4 && (_b = iter_1.return))
+            if (!_d && !_a5 && (_b = iter_1.return))
               yield __await(_b.call(iter_1));
           } finally {
             if (e_2)
@@ -65530,7 +65530,7 @@ var Stream = class _Stream {
     }
     function iterator() {
       return __asyncGenerator(this, arguments, function* iterator_2() {
-        var _a4, e_3, _b, _c;
+        var _a5, e_3, _b, _c;
         if (consumed) {
           throw new GeminiNextGenAPIClientError("Cannot iterate over a consumed stream, use `.tee()` to split the stream.");
         }
@@ -65538,7 +65538,7 @@ var Stream = class _Stream {
         let done = false;
         try {
           try {
-            for (var _d = true, _e = __asyncValues(iterLines()), _f; _f = yield __await(_e.next()), _a4 = _f.done, !_a4; _d = true) {
+            for (var _d = true, _e = __asyncValues(iterLines()), _f; _f = yield __await(_e.next()), _a5 = _f.done, !_a5; _d = true) {
               _c = _f.value;
               _d = false;
               const line = _c;
@@ -65551,7 +65551,7 @@ var Stream = class _Stream {
             e_3 = { error: e_3_1 };
           } finally {
             try {
-              if (!_d && !_a4 && (_b = _e.return))
+              if (!_d && !_a5 && (_b = _e.return))
                 yield __await(_b.call(_e));
             } finally {
               if (e_3)
@@ -65623,15 +65623,15 @@ var Stream = class _Stream {
         }
       },
       async cancel() {
-        var _a4;
-        await ((_a4 = iter.return) === null || _a4 === void 0 ? void 0 : _a4.call(iter));
+        var _a5;
+        await ((_a5 = iter.return) === null || _a5 === void 0 ? void 0 : _a5.call(iter));
       }
     });
   }
 };
 function _iterSSEMessages(response, controller) {
   return __asyncGenerator(this, arguments, function* _iterSSEMessages_1() {
-    var _a4, e_4, _b, _c;
+    var _a5, e_4, _b, _c;
     if (!response.body) {
       controller.abort();
       if (typeof globalThis.navigator !== "undefined" && globalThis.navigator.product === "ReactNative") {
@@ -65643,7 +65643,7 @@ function _iterSSEMessages(response, controller) {
     const lineDecoder = new LineDecoder();
     const iter = ReadableStreamToAsyncIterable(response.body);
     try {
-      for (var _d = true, _e = __asyncValues(iterBinaryChunks(iter)), _f; _f = yield __await(_e.next()), _a4 = _f.done, !_a4; _d = true) {
+      for (var _d = true, _e = __asyncValues(iterBinaryChunks(iter)), _f; _f = yield __await(_e.next()), _a5 = _f.done, !_a5; _d = true) {
         _c = _f.value;
         _d = false;
         const sseChunk = _c;
@@ -65657,7 +65657,7 @@ function _iterSSEMessages(response, controller) {
       e_4 = { error: e_4_1 };
     } finally {
       try {
-        if (!_d && !_a4 && (_b = _e.return))
+        if (!_d && !_a5 && (_b = _e.return))
           yield __await(_b.call(_e));
       } finally {
         if (e_4)
@@ -65673,9 +65673,9 @@ function _iterSSEMessages(response, controller) {
 }
 function iterBinaryChunks(iterator) {
   return __asyncGenerator(this, arguments, function* iterBinaryChunks_1() {
-    var _a4, e_5, _b, _c;
+    var _a5, e_5, _b, _c;
     try {
-      for (var _d = true, iterator_3 = __asyncValues(iterator), iterator_3_1; iterator_3_1 = yield __await(iterator_3.next()), _a4 = iterator_3_1.done, !_a4; _d = true) {
+      for (var _d = true, iterator_3 = __asyncValues(iterator), iterator_3_1; iterator_3_1 = yield __await(iterator_3.next()), _a5 = iterator_3_1.done, !_a5; _d = true) {
         _c = iterator_3_1.value;
         _d = false;
         const chunk = _c;
@@ -65689,7 +65689,7 @@ function iterBinaryChunks(iterator) {
       e_5 = { error: e_5_1 };
     } finally {
       try {
-        if (!_d && !_a4 && (_b = iterator_3.return))
+        if (!_d && !_a5 && (_b = iterator_3.return))
           yield __await(_b.call(iterator_3));
       } finally {
         if (e_5)
@@ -65747,7 +65747,7 @@ function partition(str, delimiter) {
 async function defaultParseResponse(client, props) {
   const { response, requestLogID, retryOfRequestLogID, startTime } = props;
   const body = await (async () => {
-    var _a4;
+    var _a5;
     if (props.options.stream) {
       loggerFor(client).debug("response", response.status, response.url, response.headers, response.body);
       if (props.options.__streamClass) {
@@ -65762,7 +65762,7 @@ async function defaultParseResponse(client, props) {
       return response;
     }
     const contentType = response.headers.get("content-type");
-    const mediaType = (_a4 = contentType === null || contentType === void 0 ? void 0 : contentType.split(";")[0]) === null || _a4 === void 0 ? void 0 : _a4.trim();
+    const mediaType = (_a5 = contentType === null || contentType === void 0 ? void 0 : contentType.split(";")[0]) === null || _a5 === void 0 ? void 0 : _a5.trim();
     const isJSON = (mediaType === null || mediaType === void 0 ? void 0 : mediaType.includes("application/json")) || (mediaType === null || mediaType === void 0 ? void 0 : mediaType.endsWith("+json"));
     if (isJSON) {
       const contentLength = response.headers.get("content-length");
@@ -65902,9 +65902,9 @@ var buildHeaders = (newHeaders) => {
   return { [brand_privateNullableHeaders]: true, values: targetHeaders, nulls: nullHeaders };
 };
 var readEnv = (env) => {
-  var _a4, _b, _c, _d, _e;
+  var _a5, _b, _c, _d, _e;
   if (typeof globalThis.process !== "undefined") {
-    return ((_b = (_a4 = globalThis.process.env) === null || _a4 === void 0 ? void 0 : _a4[env]) === null || _b === void 0 ? void 0 : _b.trim()) || void 0;
+    return ((_b = (_a5 = globalThis.process.env) === null || _a5 === void 0 ? void 0 : _a5[env]) === null || _b === void 0 ? void 0 : _b.trim()) || void 0;
   }
   if (typeof globalThis.Deno !== "undefined") {
     return ((_e = (_d = (_c = globalThis.Deno.env) === null || _c === void 0 ? void 0 : _c.get) === null || _d === void 0 ? void 0 : _d.call(_c, env)) === null || _e === void 0 ? void 0 : _e.trim()) || void 0;
@@ -66001,8 +66001,8 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
   defaultIdempotencyKey() {
     return `stainless-node-retry-${uuid4()}`;
   }
-  makeStatusError(status, error48, message, headers) {
-    return APIError.generate(status, error48, message, headers);
+  makeStatusError(status, error51, message, headers) {
+    return APIError.generate(status, error51, message, headers);
   }
   buildURL(path10, query, defaultBaseURL) {
     const baseURL = !this.baseURLOverridden() && defaultBaseURL || this.baseURL;
@@ -66386,15 +66386,15 @@ var NodeDownloader = class {
           await writeFile2(params2.downloadPath, response, {
             encoding: "base64"
           });
-        } catch (error48) {
-          throw new Error(`Failed to write file to ${params2.downloadPath}: ${error48}`);
+        } catch (error51) {
+          throw new Error(`Failed to write file to ${params2.downloadPath}: ${error51}`);
         }
       }
     }
   }
 };
 async function downloadFile(params2, apiClient) {
-  var _a4, _b, _c;
+  var _a5, _b, _c;
   const name = tFileName(params2.file);
   if (name !== void 0) {
     return await apiClient.request({
@@ -66403,7 +66403,7 @@ async function downloadFile(params2, apiClient) {
       queryParams: {
         "alt": "media"
       },
-      httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+      httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
       abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
     });
   } else if (isGeneratedVideo(params2.file)) {
@@ -67335,13 +67335,13 @@ var Tunings = class extends BaseModule2 {
       return await this.getInternal(params2);
     };
     this.tune = async (params2) => {
-      var _a4;
+      var _a5;
       if (this.apiClient.isVertexAI()) {
         if (params2.baseModel.startsWith("projects/")) {
           const preTunedModel = {
             tunedModelName: params2.baseModel
           };
-          if ((_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.preTunedModelCheckpointId) {
+          if ((_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.preTunedModelCheckpointId) {
             preTunedModel.checkpointId = params2.config.preTunedModelCheckpointId;
           }
           const paramsPrivate = Object.assign(Object.assign({}, params2), { preTunedModel });
@@ -67369,7 +67369,7 @@ var Tunings = class extends BaseModule2 {
     };
   }
   async getInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -67384,7 +67384,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -67428,7 +67428,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async listInternal(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -67443,7 +67443,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -67502,7 +67502,7 @@ var Tunings = class extends BaseModule2 {
    * ```
    */
   async cancel(params2) {
-    var _a4, _b, _c, _d;
+    var _a5, _b, _c, _d;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -67517,7 +67517,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -67565,7 +67565,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async tuneInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -67580,7 +67580,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -67600,7 +67600,7 @@ var Tunings = class extends BaseModule2 {
     }
   }
   async tuneMldevInternal(params2) {
-    var _a4, _b;
+    var _a5, _b;
     let response;
     let path10 = "";
     let queryParams = {};
@@ -67617,7 +67617,7 @@ var Tunings = class extends BaseModule2 {
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
-        httpOptions: (_a4 = params2.config) === null || _a4 === void 0 ? void 0 : _a4.httpOptions,
+        httpOptions: (_a5 = params2.config) === null || _a5 === void 0 ? void 0 : _a5.httpOptions,
         abortSignal: (_b = params2.config) === null || _b === void 0 ? void 0 : _b.abortSignal
       }).then((httpResponse) => {
         return httpResponse.json().then((jsonResponse) => {
@@ -67641,19 +67641,19 @@ var INITIAL_RETRY_DELAY_MS = 1e3;
 var DELAY_MULTIPLIER = 2;
 var X_GOOG_UPLOAD_STATUS_HEADER_FIELD = "x-goog-upload-status";
 async function uploadBlob(file2, uploadUrl, apiClient, httpOptions) {
-  var _a4;
+  var _a5;
   const response = await uploadBlobInternal(file2, uploadUrl, apiClient, httpOptions);
   const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-  if (((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+  if (((_a5 = response === null || response === void 0 ? void 0 : response.headers) === null || _a5 === void 0 ? void 0 : _a5[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
     throw new Error("Failed to upload file: Upload status is not finalized.");
   }
   return responseJson["file"];
 }
 async function uploadBlobToFileSearchStore(file2, uploadUrl, apiClient, httpOptions) {
-  var _a4;
+  var _a5;
   const response = await uploadBlobInternal(file2, uploadUrl, apiClient, httpOptions);
   const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-  if (((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+  if (((_a5 = response === null || response === void 0 ? void 0 : response.headers) === null || _a5 === void 0 ? void 0 : _a5[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
     throw new Error("Failed to upload file: Upload status is not finalized.");
   }
   const resp = uploadToFileSearchStoreOperationFromMldev(responseJson);
@@ -67662,9 +67662,9 @@ async function uploadBlobToFileSearchStore(file2, uploadUrl, apiClient, httpOpti
   return typedResp;
 }
 async function uploadBlobInternal(file2, uploadUrl, apiClient, httpOptions) {
-  var _a4, _b, _c;
+  var _a5, _b, _c;
   let finalUrl = uploadUrl;
-  const effectiveBaseUrl = (httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.baseUrl) || ((_a4 = apiClient.clientOptions.httpOptions) === null || _a4 === void 0 ? void 0 : _a4.baseUrl);
+  const effectiveBaseUrl = (httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.baseUrl) || ((_a5 = apiClient.clientOptions.httpOptions) === null || _a5 === void 0 ? void 0 : _a5.baseUrl);
   if (effectiveBaseUrl) {
     const baseUri = new URL(effectiveBaseUrl);
     const uploadUri = new URL(uploadUrl);
@@ -67831,19 +67831,19 @@ var NodeUploader = class {
     return mimeType;
   }
   async uploadFileFromPath(file2, uploadUrl, apiClient, httpOptions) {
-    var _a4;
+    var _a5;
     const response = await this.uploadFileFromPathInternal(file2, uploadUrl, apiClient, httpOptions);
     const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-    if (((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+    if (((_a5 = response === null || response === void 0 ? void 0 : response.headers) === null || _a5 === void 0 ? void 0 : _a5[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
       throw new Error("Failed to upload file: Upload status is not finalized.");
     }
     return responseJson["file"];
   }
   async uploadFileToFileSearchStoreFromPath(file2, uploadUrl, apiClient, httpOptions) {
-    var _a4;
+    var _a5;
     const response = await this.uploadFileFromPathInternal(file2, uploadUrl, apiClient, httpOptions);
     const responseJson = await (response === null || response === void 0 ? void 0 : response.json());
-    if (((_a4 = response === null || response === void 0 ? void 0 : response.headers) === null || _a4 === void 0 ? void 0 : _a4[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
+    if (((_a5 = response === null || response === void 0 ? void 0 : response.headers) === null || _a5 === void 0 ? void 0 : _a5[X_GOOG_UPLOAD_STATUS_HEADER_FIELD]) !== "final") {
       throw new Error("Failed to upload file: Upload status is not finalized.");
     }
     const resp = uploadToFileSearchStoreOperationFromMldev(responseJson);
@@ -67852,9 +67852,9 @@ var NodeUploader = class {
     return typedResp;
   }
   async uploadFileFromPathInternal(file2, uploadUrl, apiClient, httpOptions) {
-    var _a4, _b, _c;
+    var _a5, _b, _c;
     let finalUrl = uploadUrl;
-    const effectiveBaseUrl = (httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.baseUrl) || ((_a4 = apiClient.clientOptions.httpOptions) === null || _a4 === void 0 ? void 0 : _a4.baseUrl);
+    const effectiveBaseUrl = (httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.baseUrl) || ((_a5 = apiClient.clientOptions.httpOptions) === null || _a5 === void 0 ? void 0 : _a5.baseUrl);
     if (effectiveBaseUrl) {
       const baseUri = new URL(effectiveBaseUrl);
       const uploadUri = new URL(uploadUrl);
@@ -67953,7 +67953,7 @@ var NodeFiles = class extends Files {
 var LANGUAGE_LABEL_PREFIX = "gl-node/";
 var GoogleGenAI = class {
   getNextGenClient() {
-    var _a4;
+    var _a5;
     const httpOpts = this.httpOptions;
     if (this._nextGenClient === void 0) {
       this._nextGenClient = new GeminiNextGenAPIClient({
@@ -67963,7 +67963,7 @@ var GoogleGenAI = class {
         clientAdapter: this.apiClient,
         defaultHeaders: this.apiClient.getDefaultHeaders(),
         timeout: httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.timeout,
-        maxRetries: (_a4 = httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.retryOptions) === null || _a4 === void 0 ? void 0 : _a4.attempts
+        maxRetries: (_a5 = httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.retryOptions) === null || _a5 === void 0 ? void 0 : _a5.attempts
       });
     }
     if (httpOpts === null || httpOpts === void 0 ? void 0 : httpOpts.extraBody) {
@@ -67987,11 +67987,11 @@ var GoogleGenAI = class {
     return this._webhooks;
   }
   constructor(options) {
-    var _a4, _b, _c, _d, _e, _f;
+    var _a5, _b, _c, _d, _e, _f;
     if ((options.project || options.location) && options.apiKey) {
       throw new Error("Project/location and API key are mutually exclusive in the client initializer.");
     }
-    this.vertexai = (_b = (_a4 = options.vertexai) !== null && _a4 !== void 0 ? _a4 : getBooleanEnv("GOOGLE_GENAI_USE_VERTEXAI")) !== null && _b !== void 0 ? _b : false;
+    this.vertexai = (_b = (_a5 = options.vertexai) !== null && _a5 !== void 0 ? _a5 : getBooleanEnv("GOOGLE_GENAI_USE_VERTEXAI")) !== null && _b !== void 0 ? _b : false;
     const envApiKey = getApiKeyFromEnv();
     const envProject = getEnv("GOOGLE_CLOUD_PROJECT");
     const envLocation = getEnv("GOOGLE_CLOUD_LOCATION");
@@ -68060,8 +68060,8 @@ var GoogleGenAI = class {
   }
 };
 function getEnv(env) {
-  var _a4, _b, _c;
-  return (_c = (_b = (_a4 = process === null || process === void 0 ? void 0 : process.env) === null || _a4 === void 0 ? void 0 : _a4[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
+  var _a5, _b, _c;
+  return (_c = (_b = (_a5 = process === null || process === void 0 ? void 0 : process.env) === null || _a5 === void 0 ? void 0 : _a5[env]) === null || _b === void 0 ? void 0 : _b.trim()) !== null && _c !== void 0 ? _c : void 0;
 }
 function getBooleanEnv(env) {
   return stringToBoolean(getEnv(env));
@@ -68159,10 +68159,10 @@ async function handler30(options) {
     }
   }
   progressBar.stop();
-  for (const { name, error: error48 } of failures) {
+  for (const { name, error: error51 } of failures) {
     Log.info("-------------------------------------");
     Log.info(`${name} failed to migrate:`);
-    Log.info(error48);
+    Log.info(error51);
   }
   Log.info(`
 Done \u{1F389}`);
@@ -68324,7 +68324,7 @@ async function fixFilesWithAI(apiKey, globPatterns, errorDescription, model, tem
         step: "Deleting temporary uploaded files"
       });
       const deleteTasks = uploadedFileNames.map((name) => {
-        return ai.files.delete({ name }).catch((error48) => Log.warn(`WARNING: Failed to delete temporary file ${name}:`, error48)).finally(() => progressBar.increment());
+        return ai.files.delete({ name }).catch((error51) => Log.warn(`WARNING: Failed to delete temporary file ${name}:`, error51)).finally(() => progressBar.increment());
       });
       await Promise.allSettled(deleteTasks).finally(() => progressBar.stop());
     }
@@ -68363,8 +68363,8 @@ async function uploadFiles(ai, filePaths, progressBar) {
       } else {
         throw new Error(`Uploaded file for ${filePath} is missing URI or MIME type after processing. Skipping.`);
       }
-    } catch (error48) {
-      Log.error(`Error uploading or processing file ${filePath}: ${error48.message}`);
+    } catch (error51) {
+      Log.error(`Error uploading or processing file ${filePath}: ${error51.message}`);
       return null;
     }
   });
@@ -68405,7 +68405,7 @@ var FixModule = {
   describe: "Fixes errors from the specified error output"
 };
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/external.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/external.js
 var external_exports = {};
 __export(external_exports, {
   $brand: () => $brand,
@@ -68467,6 +68467,7 @@ __export(external_exports, {
   ZodOptional: () => ZodOptional,
   ZodPipe: () => ZodPipe,
   ZodPrefault: () => ZodPrefault,
+  ZodPreprocess: () => ZodPreprocess,
   ZodPromise: () => ZodPromise,
   ZodReadonly: () => ZodReadonly,
   ZodRealError: () => ZodRealError,
@@ -68545,6 +68546,7 @@ __export(external_exports, {
   int32: () => int32,
   int64: () => int64,
   intersection: () => intersection,
+  invertCodec: () => invertCodec,
   ipv4: () => ipv42,
   ipv6: () => ipv62,
   iso: () => iso_exports,
@@ -68646,7 +68648,7 @@ __export(external_exports, {
   xor: () => xor
 });
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/index.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/index.js
 var core_exports2 = {};
 __export(core_exports2, {
   $ZodAny: () => $ZodAny,
@@ -68726,6 +68728,7 @@ __export(core_exports2, {
   $ZodOptional: () => $ZodOptional,
   $ZodPipe: () => $ZodPipe,
   $ZodPrefault: () => $ZodPrefault,
+  $ZodPreprocess: () => $ZodPreprocess,
   $ZodPromise: () => $ZodPromise,
   $ZodReadonly: () => $ZodReadonly,
   $ZodRealError: () => $ZodRealError,
@@ -68924,7 +68927,8 @@ __export(core_exports2, {
   version: () => version
 });
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/core.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/core.js
+var _a3;
 var NEVER = Object.freeze({
   status: "aborted"
 });
@@ -68959,10 +68963,10 @@ function $constructor(name, initializer3, params2) {
   }
   Object.defineProperty(Definition, "name", { value: name });
   function _(def) {
-    var _a4;
+    var _a5;
     const inst = params2?.Parent ? new Definition() : this;
     init(inst, def);
-    (_a4 = inst._zod).deferred ?? (_a4.deferred = []);
+    (_a5 = inst._zod).deferred ?? (_a5.deferred = []);
     for (const fn of inst._zod.deferred) {
       fn();
     }
@@ -68991,14 +68995,15 @@ var $ZodEncodeError = class extends Error {
     this.name = "ZodEncodeError";
   }
 };
-var globalConfig = {};
+(_a3 = globalThis).__zod_globalConfig ?? (_a3.__zod_globalConfig = {});
+var globalConfig = globalThis.__zod_globalConfig;
 function config(newConfig) {
   if (newConfig)
     Object.assign(globalConfig, newConfig);
   return globalConfig;
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/util.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/util.js
 var util_exports = {};
 __export(util_exports, {
   BIGINT_FORMAT_RANGES: () => BIGINT_FORMAT_RANGES,
@@ -69024,6 +69029,7 @@ __export(util_exports, {
   defineLazy: () => defineLazy,
   esc: () => esc,
   escapeRegex: () => escapeRegex,
+  explicitlyAborted: () => explicitlyAborted,
   extend: () => extend,
   finalizeIssue: () => finalizeIssue,
   floatSafeRemainder: () => floatSafeRemainder,
@@ -69112,19 +69118,12 @@ function cleanRegex(source) {
   return source.slice(start, end);
 }
 function floatSafeRemainder(val, step) {
-  const valDecCount = (val.toString().split(".")[1] || "").length;
-  const stepString = step.toString();
-  let stepDecCount = (stepString.split(".")[1] || "").length;
-  if (stepDecCount === 0 && /\d?e-\d?/.test(stepString)) {
-    const match2 = stepString.match(/\d?e-(\d?)/);
-    if (match2?.[1]) {
-      stepDecCount = Number.parseInt(match2[1]);
-    }
-  }
-  const decCount = valDecCount > stepDecCount ? valDecCount : stepDecCount;
-  const valInt = Number.parseInt(val.toFixed(decCount).replace(".", ""));
-  const stepInt = Number.parseInt(step.toFixed(decCount).replace(".", ""));
-  return valInt % stepInt / 10 ** decCount;
+  const ratio = val / step;
+  const roundedRatio = Math.round(ratio);
+  const tolerance = Number.EPSILON * Math.max(Math.abs(ratio), 1);
+  if (Math.abs(ratio - roundedRatio) < tolerance)
+    return 0;
+  return ratio - roundedRatio;
 }
 var EVALUATING = Symbol("evaluating");
 function defineLazy(object2, key, getter) {
@@ -69207,6 +69206,9 @@ function isObject(data) {
   return typeof data === "object" && data !== null && !Array.isArray(data);
 }
 var allowsEval = cached(() => {
+  if (globalConfig.jitless) {
+    return false;
+  }
   if (typeof navigator !== "undefined" && navigator?.userAgent?.includes("Cloudflare")) {
     return false;
   }
@@ -69239,6 +69241,10 @@ function shallowClone(o) {
     return { ...o };
   if (Array.isArray(o))
     return [...o];
+  if (o instanceof Map)
+    return new Map(o);
+  if (o instanceof Set)
+    return new Set(o);
   return o;
 }
 function numKeys(data) {
@@ -69295,7 +69301,14 @@ var getParsedType = (data) => {
   }
 };
 var propertyKeyTypes = /* @__PURE__ */ new Set(["string", "number", "symbol"]);
-var primitiveTypes = /* @__PURE__ */ new Set(["string", "number", "bigint", "boolean", "symbol", "undefined"]);
+var primitiveTypes = /* @__PURE__ */ new Set([
+  "string",
+  "number",
+  "bigint",
+  "boolean",
+  "symbol",
+  "undefined"
+]);
 function escapeRegex(str) {
   return str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -69464,6 +69477,9 @@ function safeExtend(schema, shape) {
   return clone(schema, def);
 }
 function merge(a, b) {
+  if (a._zod.def.checks?.length) {
+    throw new Error(".merge() cannot be used on object schemas containing refinements. Use .safeExtend() instead.");
+  }
   const def = mergeDefs(a._zod.def, {
     get shape() {
       const _shape = { ...a._zod.def.shape, ...b._zod.def.shape };
@@ -69473,8 +69489,7 @@ function merge(a, b) {
     get catchall() {
       return b._zod.def.catchall;
     },
-    checks: []
-    // delete existing checks
+    checks: b._zod.def.checks ?? []
   });
   return clone(a, def);
 }
@@ -69557,10 +69572,20 @@ function aborted(x, startIndex = 0) {
   }
   return false;
 }
+function explicitlyAborted(x, startIndex = 0) {
+  if (x.aborted === true)
+    return true;
+  for (let i = startIndex; i < x.issues.length; i++) {
+    if (x.issues[i]?.continue === false) {
+      return true;
+    }
+  }
+  return false;
+}
 function prefixIssues(path10, issues) {
   return issues.map((iss) => {
-    var _a4;
-    (_a4 = iss).path ?? (_a4.path = []);
+    var _a5;
+    (_a5 = iss).path ?? (_a5.path = []);
     iss.path.unshift(path10);
     return iss;
   });
@@ -69569,17 +69594,14 @@ function unwrapMessage(message) {
   return typeof message === "string" ? message : message?.message;
 }
 function finalizeIssue(iss, ctx, config2) {
-  const full = { ...iss, path: iss.path ?? [] };
-  if (!iss.message) {
-    const message = unwrapMessage(iss.inst?._zod.def?.error?.(iss)) ?? unwrapMessage(ctx?.error?.(iss)) ?? unwrapMessage(config2.customError?.(iss)) ?? unwrapMessage(config2.localeError?.(iss)) ?? "Invalid input";
-    full.message = message;
+  const message = iss.message ? iss.message : unwrapMessage(iss.inst?._zod.def?.error?.(iss)) ?? unwrapMessage(ctx?.error?.(iss)) ?? unwrapMessage(config2.customError?.(iss)) ?? unwrapMessage(config2.localeError?.(iss)) ?? "Invalid input";
+  const { inst: _inst, continue: _continue, input: _input, ...rest } = iss;
+  rest.path ?? (rest.path = []);
+  rest.message = message;
+  if (ctx?.reportInput) {
+    rest.input = _input;
   }
-  delete full.inst;
-  delete full.continue;
-  if (!ctx?.reportInput) {
-    delete full.input;
-  }
-  return full;
+  return rest;
 }
 function getSizableOrigin(input) {
   if (input instanceof Set)
@@ -69677,7 +69699,7 @@ var Class = class {
   }
 };
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/errors.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/errors.js
 var initializer = (inst, def) => {
   inst.name = "$ZodError";
   Object.defineProperty(inst, "_zod", {
@@ -69696,10 +69718,10 @@ var initializer = (inst, def) => {
 };
 var $ZodError = $constructor("$ZodError", initializer);
 var $ZodRealError = $constructor("$ZodError", initializer, { Parent: Error });
-function flattenError(error48, mapper = (issue2) => issue2.message) {
+function flattenError(error51, mapper = (issue2) => issue2.message) {
   const fieldErrors = {};
   const formErrors = [];
-  for (const sub of error48.issues) {
+  for (const sub of error51.issues) {
     if (sub.path.length > 0) {
       fieldErrors[sub.path[0]] = fieldErrors[sub.path[0]] || [];
       fieldErrors[sub.path[0]].push(mapper(sub));
@@ -69709,50 +69731,53 @@ function flattenError(error48, mapper = (issue2) => issue2.message) {
   }
   return { formErrors, fieldErrors };
 }
-function formatError(error48, mapper = (issue2) => issue2.message) {
+function formatError(error51, mapper = (issue2) => issue2.message) {
   const fieldErrors = { _errors: [] };
-  const processError = (error49) => {
-    for (const issue2 of error49.issues) {
+  const processError = (error52, path10 = []) => {
+    for (const issue2 of error52.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
-        issue2.errors.map((issues) => processError({ issues }));
+        issue2.errors.map((issues) => processError({ issues }, [...path10, ...issue2.path]));
       } else if (issue2.code === "invalid_key") {
-        processError({ issues: issue2.issues });
+        processError({ issues: issue2.issues }, [...path10, ...issue2.path]);
       } else if (issue2.code === "invalid_element") {
-        processError({ issues: issue2.issues });
-      } else if (issue2.path.length === 0) {
-        fieldErrors._errors.push(mapper(issue2));
+        processError({ issues: issue2.issues }, [...path10, ...issue2.path]);
       } else {
-        let curr = fieldErrors;
-        let i = 0;
-        while (i < issue2.path.length) {
-          const el = issue2.path[i];
-          const terminal = i === issue2.path.length - 1;
-          if (!terminal) {
-            curr[el] = curr[el] || { _errors: [] };
-          } else {
-            curr[el] = curr[el] || { _errors: [] };
-            curr[el]._errors.push(mapper(issue2));
+        const fullpath = [...path10, ...issue2.path];
+        if (fullpath.length === 0) {
+          fieldErrors._errors.push(mapper(issue2));
+        } else {
+          let curr = fieldErrors;
+          let i = 0;
+          while (i < fullpath.length) {
+            const el = fullpath[i];
+            const terminal = i === fullpath.length - 1;
+            if (!terminal) {
+              curr[el] = curr[el] || { _errors: [] };
+            } else {
+              curr[el] = curr[el] || { _errors: [] };
+              curr[el]._errors.push(mapper(issue2));
+            }
+            curr = curr[el];
+            i++;
           }
-          curr = curr[el];
-          i++;
         }
       }
     }
   };
-  processError(error48);
+  processError(error51);
   return fieldErrors;
 }
-function treeifyError(error48, mapper = (issue2) => issue2.message) {
+function treeifyError(error51, mapper = (issue2) => issue2.message) {
   const result = { errors: [] };
-  const processError = (error49, path10 = []) => {
-    var _a4, _b;
-    for (const issue2 of error49.issues) {
+  const processError = (error52, path10 = []) => {
+    var _a5, _b;
+    for (const issue2 of error52.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
-        issue2.errors.map((issues) => processError({ issues }, issue2.path));
+        issue2.errors.map((issues) => processError({ issues }, [...path10, ...issue2.path]));
       } else if (issue2.code === "invalid_key") {
-        processError({ issues: issue2.issues }, issue2.path);
+        processError({ issues: issue2.issues }, [...path10, ...issue2.path]);
       } else if (issue2.code === "invalid_element") {
-        processError({ issues: issue2.issues }, issue2.path);
+        processError({ issues: issue2.issues }, [...path10, ...issue2.path]);
       } else {
         const fullpath = [...path10, ...issue2.path];
         if (fullpath.length === 0) {
@@ -69766,7 +69791,7 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
           const terminal = i === fullpath.length - 1;
           if (typeof el === "string") {
             curr.properties ?? (curr.properties = {});
-            (_a4 = curr.properties)[el] ?? (_a4[el] = { errors: [] });
+            (_a5 = curr.properties)[el] ?? (_a5[el] = { errors: [] });
             curr = curr.properties[el];
           } else {
             curr.items ?? (curr.items = []);
@@ -69781,7 +69806,7 @@ function treeifyError(error48, mapper = (issue2) => issue2.message) {
       }
     }
   };
-  processError(error48);
+  processError(error51);
   return result;
 }
 function toDotPath(_path) {
@@ -69802,9 +69827,9 @@ function toDotPath(_path) {
   }
   return segs.join("");
 }
-function prettifyError(error48) {
+function prettifyError(error51) {
   const lines = [];
-  const issues = [...error48.issues].sort((a, b) => (a.path ?? []).length - (b.path ?? []).length);
+  const issues = [...error51.issues].sort((a, b) => (a.path ?? []).length - (b.path ?? []).length);
   for (const issue2 of issues) {
     lines.push(`\u2716 ${issue2.message}`);
     if (issue2.path?.length)
@@ -69813,9 +69838,9 @@ function prettifyError(error48) {
   return lines.join("\n");
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/parse.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/parse.js
 var _parse = (_Err) => (schema, value, _ctx, _params) => {
-  const ctx = _ctx ? Object.assign(_ctx, { async: false }) : { async: false };
+  const ctx = _ctx ? { ..._ctx, async: false } : { async: false };
   const result = schema._zod.run({ value, issues: [] }, ctx);
   if (result instanceof Promise) {
     throw new $ZodAsyncError();
@@ -69829,7 +69854,7 @@ var _parse = (_Err) => (schema, value, _ctx, _params) => {
 };
 var parse4 = _parse($ZodRealError);
 var _parseAsync = (_Err) => async (schema, value, _ctx, params2) => {
-  const ctx = _ctx ? Object.assign(_ctx, { async: true }) : { async: true };
+  const ctx = _ctx ? { ..._ctx, async: true } : { async: true };
   let result = schema._zod.run({ value, issues: [] }, ctx);
   if (result instanceof Promise)
     result = await result;
@@ -69854,7 +69879,7 @@ var _safeParse = (_Err) => (schema, value, _ctx) => {
 };
 var safeParse = _safeParse($ZodRealError);
 var _safeParseAsync = (_Err) => async (schema, value, _ctx) => {
-  const ctx = _ctx ? Object.assign(_ctx, { async: true }) : { async: true };
+  const ctx = _ctx ? { ..._ctx, async: true } : { async: true };
   let result = schema._zod.run({ value, issues: [] }, ctx);
   if (result instanceof Promise)
     result = await result;
@@ -69865,7 +69890,7 @@ var _safeParseAsync = (_Err) => async (schema, value, _ctx) => {
 };
 var safeParseAsync = _safeParseAsync($ZodRealError);
 var _encode = (_Err) => (schema, value, _ctx) => {
-  const ctx = _ctx ? Object.assign(_ctx, { direction: "backward" }) : { direction: "backward" };
+  const ctx = _ctx ? { ..._ctx, direction: "backward" } : { direction: "backward" };
   return _parse(_Err)(schema, value, ctx);
 };
 var encode = _encode($ZodRealError);
@@ -69874,7 +69899,7 @@ var _decode = (_Err) => (schema, value, _ctx) => {
 };
 var decode = _decode($ZodRealError);
 var _encodeAsync = (_Err) => async (schema, value, _ctx) => {
-  const ctx = _ctx ? Object.assign(_ctx, { direction: "backward" }) : { direction: "backward" };
+  const ctx = _ctx ? { ..._ctx, direction: "backward" } : { direction: "backward" };
   return _parseAsync(_Err)(schema, value, ctx);
 };
 var encodeAsync = _encodeAsync($ZodRealError);
@@ -69883,7 +69908,7 @@ var _decodeAsync = (_Err) => async (schema, value, _ctx) => {
 };
 var decodeAsync = _decodeAsync($ZodRealError);
 var _safeEncode = (_Err) => (schema, value, _ctx) => {
-  const ctx = _ctx ? Object.assign(_ctx, { direction: "backward" }) : { direction: "backward" };
+  const ctx = _ctx ? { ..._ctx, direction: "backward" } : { direction: "backward" };
   return _safeParse(_Err)(schema, value, ctx);
 };
 var safeEncode = _safeEncode($ZodRealError);
@@ -69892,7 +69917,7 @@ var _safeDecode = (_Err) => (schema, value, _ctx) => {
 };
 var safeDecode = _safeDecode($ZodRealError);
 var _safeEncodeAsync = (_Err) => async (schema, value, _ctx) => {
-  const ctx = _ctx ? Object.assign(_ctx, { direction: "backward" }) : { direction: "backward" };
+  const ctx = _ctx ? { ..._ctx, direction: "backward" } : { direction: "backward" };
   return _safeParseAsync(_Err)(schema, value, ctx);
 };
 var safeEncodeAsync = _safeEncodeAsync($ZodRealError);
@@ -69901,7 +69926,7 @@ var _safeDecodeAsync = (_Err) => async (schema, value, _ctx) => {
 };
 var safeDecodeAsync = _safeDecodeAsync($ZodRealError);
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/regexes.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/regexes.js
 var regexes_exports = {};
 __export(regexes_exports, {
   base64: () => base64,
@@ -69925,6 +69950,7 @@ __export(regexes_exports, {
   hex: () => hex,
   hostname: () => hostname,
   html5Email: () => html5Email,
+  httpProtocol: () => httpProtocol,
   idnEmail: () => idnEmail,
   integer: () => integer,
   ipv4: () => ipv4,
@@ -69963,7 +69989,7 @@ __export(regexes_exports, {
   uuid7: () => uuid7,
   xid: () => xid
 });
-var cuid = /^[cC][^\s-]{8,}$/;
+var cuid = /^[cC][0-9a-z]{6,}$/;
 var cuid2 = /^[0-9a-z]+$/;
 var ulid = /^[0-9A-HJKMNP-TV-Za-hjkmnp-tv-z]{26}$/;
 var xid = /^[0-9a-vA-V]{20}$/;
@@ -70002,6 +70028,7 @@ var base64 = /^$|^(?:[0-9a-zA-Z+/]{4})*(?:(?:[0-9a-zA-Z+/]{2}==)|(?:[0-9a-zA-Z+/
 var base64url = /^[A-Za-z0-9_-]*$/;
 var hostname = /^(?=.{1,253}\.?$)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[-0-9a-zA-Z]{0,61}[0-9a-zA-Z])?)*\.?$/;
 var domain = /^([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
+var httpProtocol = /^https?$/;
 var e164 = /^\+[1-9]\d{6,14}$/;
 var dateSource = `(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))`;
 var date = new RegExp(`^${dateSource}$`);
@@ -70058,12 +70085,12 @@ var sha512_hex = /^[0-9a-fA-F]{128}$/;
 var sha512_base64 = fixedBase64(86, "==");
 var sha512_base64url = fixedBase64url(86);
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/checks.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/checks.js
 var $ZodCheck = $constructor("$ZodCheck", (inst, def) => {
-  var _a4;
+  var _a5;
   inst._zod ?? (inst._zod = {});
   inst._zod.def = def;
-  (_a4 = inst._zod).onattach ?? (_a4.onattach = []);
+  (_a5 = inst._zod).onattach ?? (_a5.onattach = []);
 });
 var numericOriginMap = {
   number: "number",
@@ -70129,8 +70156,8 @@ var $ZodCheckGreaterThan = $constructor("$ZodCheckGreaterThan", (inst, def) => {
 var $ZodCheckMultipleOf = $constructor("$ZodCheckMultipleOf", (inst, def) => {
   $ZodCheck.init(inst, def);
   inst._zod.onattach.push((inst2) => {
-    var _a4;
-    (_a4 = inst2._zod.bag).multipleOf ?? (_a4.multipleOf = def.value);
+    var _a5;
+    (_a5 = inst2._zod.bag).multipleOf ?? (_a5.multipleOf = def.value);
   });
   inst._zod.check = (payload) => {
     if (typeof payload.value !== typeof def.value)
@@ -70263,9 +70290,9 @@ var $ZodCheckBigIntFormat = $constructor("$ZodCheckBigIntFormat", (inst, def) =>
   };
 });
 var $ZodCheckMaxSize = $constructor("$ZodCheckMaxSize", (inst, def) => {
-  var _a4;
+  var _a5;
   $ZodCheck.init(inst, def);
-  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
+  (_a5 = inst._zod.def).when ?? (_a5.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.size !== void 0;
   });
@@ -70291,9 +70318,9 @@ var $ZodCheckMaxSize = $constructor("$ZodCheckMaxSize", (inst, def) => {
   };
 });
 var $ZodCheckMinSize = $constructor("$ZodCheckMinSize", (inst, def) => {
-  var _a4;
+  var _a5;
   $ZodCheck.init(inst, def);
-  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
+  (_a5 = inst._zod.def).when ?? (_a5.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.size !== void 0;
   });
@@ -70319,9 +70346,9 @@ var $ZodCheckMinSize = $constructor("$ZodCheckMinSize", (inst, def) => {
   };
 });
 var $ZodCheckSizeEquals = $constructor("$ZodCheckSizeEquals", (inst, def) => {
-  var _a4;
+  var _a5;
   $ZodCheck.init(inst, def);
-  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
+  (_a5 = inst._zod.def).when ?? (_a5.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.size !== void 0;
   });
@@ -70349,9 +70376,9 @@ var $ZodCheckSizeEquals = $constructor("$ZodCheckSizeEquals", (inst, def) => {
   };
 });
 var $ZodCheckMaxLength = $constructor("$ZodCheckMaxLength", (inst, def) => {
-  var _a4;
+  var _a5;
   $ZodCheck.init(inst, def);
-  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
+  (_a5 = inst._zod.def).when ?? (_a5.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.length !== void 0;
   });
@@ -70378,9 +70405,9 @@ var $ZodCheckMaxLength = $constructor("$ZodCheckMaxLength", (inst, def) => {
   };
 });
 var $ZodCheckMinLength = $constructor("$ZodCheckMinLength", (inst, def) => {
-  var _a4;
+  var _a5;
   $ZodCheck.init(inst, def);
-  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
+  (_a5 = inst._zod.def).when ?? (_a5.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.length !== void 0;
   });
@@ -70407,9 +70434,9 @@ var $ZodCheckMinLength = $constructor("$ZodCheckMinLength", (inst, def) => {
   };
 });
 var $ZodCheckLengthEquals = $constructor("$ZodCheckLengthEquals", (inst, def) => {
-  var _a4;
+  var _a5;
   $ZodCheck.init(inst, def);
-  (_a4 = inst._zod.def).when ?? (_a4.when = (payload) => {
+  (_a5 = inst._zod.def).when ?? (_a5.when = (payload) => {
     const val = payload.value;
     return !nullish(val) && val.length !== void 0;
   });
@@ -70438,7 +70465,7 @@ var $ZodCheckLengthEquals = $constructor("$ZodCheckLengthEquals", (inst, def) =>
   };
 });
 var $ZodCheckStringFormat = $constructor("$ZodCheckStringFormat", (inst, def) => {
-  var _a4, _b;
+  var _a5, _b;
   $ZodCheck.init(inst, def);
   inst._zod.onattach.push((inst2) => {
     const bag = inst2._zod.bag;
@@ -70449,7 +70476,7 @@ var $ZodCheckStringFormat = $constructor("$ZodCheckStringFormat", (inst, def) =>
     }
   });
   if (def.pattern)
-    (_a4 = inst._zod).check ?? (_a4.check = (payload) => {
+    (_a5 = inst._zod).check ?? (_a5.check = (payload) => {
       def.pattern.lastIndex = 0;
       if (def.pattern.test(payload.value))
         return;
@@ -70606,7 +70633,7 @@ var $ZodCheckOverwrite = $constructor("$ZodCheckOverwrite", (inst, def) => {
   };
 });
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/doc.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/doc.js
 var Doc = class {
   constructor(args = []) {
     this.content = [];
@@ -70642,16 +70669,16 @@ var Doc = class {
   }
 };
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/versions.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/versions.js
 var version = {
   major: 4,
-  minor: 3,
-  patch: 6
+  minor: 4,
+  patch: 2
 };
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/schemas.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/schemas.js
 var $ZodType = $constructor("$ZodType", (inst, def) => {
-  var _a4;
+  var _a5;
   inst ?? (inst = {});
   inst._zod.def = def;
   inst._zod.bag = inst._zod.bag || {};
@@ -70666,7 +70693,7 @@ var $ZodType = $constructor("$ZodType", (inst, def) => {
     }
   }
   if (checks.length === 0) {
-    (_a4 = inst._zod).deferred ?? (_a4.deferred = []);
+    (_a5 = inst._zod).deferred ?? (_a5.deferred = []);
     inst._zod.deferred?.push(() => {
       inst._zod.run = inst._zod.parse;
     });
@@ -70676,6 +70703,8 @@ var $ZodType = $constructor("$ZodType", (inst, def) => {
       let asyncResult;
       for (const ch of checks2) {
         if (ch._zod.def.when) {
+          if (explicitlyAborted(payload))
+            continue;
           const shouldRun = ch._zod.def.when(payload);
           if (!shouldRun)
             continue;
@@ -70816,6 +70845,19 @@ var $ZodURL = $constructor("$ZodURL", (inst, def) => {
   inst._zod.check = (payload) => {
     try {
       const trimmed = payload.value.trim();
+      if (!def.normalize && def.protocol?.source === httpProtocol.source) {
+        if (!/^https?:\/\//i.test(trimmed)) {
+          payload.issues.push({
+            code: "invalid_format",
+            format: "url",
+            note: "Invalid URL format",
+            input: payload.value,
+            inst,
+            continue: !def.abort
+          });
+          return;
+        }
+      }
       const url3 = new URL(trimmed);
       if (def.hostname) {
         def.hostname.lastIndex = 0;
@@ -70969,6 +71011,8 @@ var $ZodCIDRv6 = $constructor("$ZodCIDRv6", (inst, def) => {
 function isValidBase64(data) {
   if (data === "")
     return true;
+  if (/\s/.test(data))
+    return false;
   if (data.length % 4 !== 0)
     return false;
   try {
@@ -71161,8 +71205,6 @@ var $ZodUndefined = $constructor("$ZodUndefined", (inst, def) => {
   $ZodType.init(inst, def);
   inst._zod.pattern = _undefined;
   inst._zod.values = /* @__PURE__ */ new Set([void 0]);
-  inst._zod.optin = "optional";
-  inst._zod.optout = "optional";
   inst._zod.parse = (payload, _ctx) => {
     const input = payload.value;
     if (typeof input === "undefined")
@@ -71291,15 +71333,27 @@ var $ZodArray = $constructor("$ZodArray", (inst, def) => {
     return payload;
   };
 });
-function handlePropertyResult(result, final, key, input, isOptionalOut) {
+function handlePropertyResult(result, final, key, input, isOptionalIn, isOptionalOut) {
+  const isPresent = key in input;
   if (result.issues.length) {
-    if (isOptionalOut && !(key in input)) {
+    if (isOptionalIn && isOptionalOut && !isPresent) {
       return;
     }
     final.issues.push(...prefixIssues(key, result.issues));
   }
+  if (!isPresent && !isOptionalIn) {
+    if (!result.issues.length) {
+      final.issues.push({
+        code: "invalid_type",
+        expected: "nonoptional",
+        input: void 0,
+        path: [key]
+      });
+    }
+    return;
+  }
   if (result.value === void 0) {
-    if (key in input) {
+    if (isPresent) {
       final.value[key] = void 0;
     }
   } else {
@@ -71327,8 +71381,11 @@ function handleCatchall(proms, input, payload, ctx, def, inst) {
   const keySet = def.keySet;
   const _catchall = def.catchall._zod;
   const t = _catchall.def.type;
+  const isOptionalIn = _catchall.optin === "optional";
   const isOptionalOut = _catchall.optout === "optional";
   for (const key in input) {
+    if (key === "__proto__")
+      continue;
     if (keySet.has(key))
       continue;
     if (t === "never") {
@@ -71337,9 +71394,9 @@ function handleCatchall(proms, input, payload, ctx, def, inst) {
     }
     const r = _catchall.run({ value: input[key], issues: [] }, ctx);
     if (r instanceof Promise) {
-      proms.push(r.then((r2) => handlePropertyResult(r2, payload, key, input, isOptionalOut)));
+      proms.push(r.then((r2) => handlePropertyResult(r2, payload, key, input, isOptionalIn, isOptionalOut)));
     } else {
-      handlePropertyResult(r, payload, key, input, isOptionalOut);
+      handlePropertyResult(r, payload, key, input, isOptionalIn, isOptionalOut);
     }
   }
   if (unrecognized.length) {
@@ -71405,12 +71462,13 @@ var $ZodObject = $constructor("$ZodObject", (inst, def) => {
     const shape = value.shape;
     for (const key of value.keys) {
       const el = shape[key];
+      const isOptionalIn = el._zod.optin === "optional";
       const isOptionalOut = el._zod.optout === "optional";
       const r = el._zod.run({ value: input[key], issues: [] }, ctx);
       if (r instanceof Promise) {
-        proms.push(r.then((r2) => handlePropertyResult(r2, payload, key, input, isOptionalOut)));
+        proms.push(r.then((r2) => handlePropertyResult(r2, payload, key, input, isOptionalIn, isOptionalOut)));
       } else {
-        handlePropertyResult(r, payload, key, input, isOptionalOut);
+        handlePropertyResult(r, payload, key, input, isOptionalIn, isOptionalOut);
       }
     }
     if (!catchall) {
@@ -71441,9 +71499,10 @@ var $ZodObjectJIT = $constructor("$ZodObjectJIT", (inst, def) => {
       const id = ids[key];
       const k = esc(key);
       const schema = shape[key];
+      const isOptionalIn = schema?._zod?.optin === "optional";
       const isOptionalOut = schema?._zod?.optout === "optional";
       doc.write(`const ${id} = ${parseStr(key)};`);
-      if (isOptionalOut) {
+      if (isOptionalIn && isOptionalOut) {
         doc.write(`
         if (${id}.issues.length) {
           if (${k} in input) {
@@ -71462,6 +71521,33 @@ var $ZodObjectJIT = $constructor("$ZodObjectJIT", (inst, def) => {
           newResult[${k}] = ${id}.value;
         }
         
+      `);
+      } else if (!isOptionalIn) {
+        doc.write(`
+        const ${id}_present = ${k} in input;
+        if (${id}.issues.length) {
+          payload.issues = payload.issues.concat(${id}.issues.map(iss => ({
+            ...iss,
+            path: iss.path ? [${k}, ...iss.path] : [${k}]
+          })));
+        }
+        if (!${id}_present && !${id}.issues.length) {
+          payload.issues.push({
+            code: "invalid_type",
+            expected: "nonoptional",
+            input: undefined,
+            path: [${k}]
+          });
+        }
+
+        if (${id}_present) {
+          if (${id}.value === undefined) {
+            newResult[${k}] = undefined;
+          } else {
+            newResult[${k}] = ${id}.value;
+          }
+        }
+
       `);
       } else {
         doc.write(`
@@ -71555,10 +71641,9 @@ var $ZodUnion = $constructor("$ZodUnion", (inst, def) => {
     }
     return void 0;
   });
-  const single = def.options.length === 1;
-  const first = def.options[0]._zod.run;
+  const first = def.options.length === 1 ? def.options[0]._zod.run : null;
   inst._zod.parse = (payload, ctx) => {
-    if (single) {
+    if (first) {
       return first(payload, ctx);
     }
     let async = false;
@@ -71611,10 +71696,9 @@ function handleExclusiveUnionResults(results, final, inst, ctx) {
 var $ZodXor = $constructor("$ZodXor", (inst, def) => {
   $ZodUnion.init(inst, def);
   def.inclusive = false;
-  const single = def.options.length === 1;
-  const first = def.options[0]._zod.run;
+  const first = def.options.length === 1 ? def.options[0]._zod.run : null;
   inst._zod.parse = (payload, ctx) => {
-    if (single) {
+    if (first) {
       return first(payload, ctx);
     }
     let async = false;
@@ -71689,7 +71773,7 @@ var $ZodDiscriminatedUnion = $constructor("$ZodDiscriminatedUnion", (inst, def) 
     if (opt) {
       return opt._zod.run(payload, ctx);
     }
-    if (def.unionFallback) {
+    if (def.unionFallback || ctx.direction === "backward") {
       return _super(payload, ctx);
     }
     payload.issues.push({
@@ -71697,6 +71781,7 @@ var $ZodDiscriminatedUnion = $constructor("$ZodDiscriminatedUnion", (inst, def) 
       errors: [],
       note: "No matching discriminator",
       discriminator: def.discriminator,
+      options: Array.from(disc.value.keys()),
       input,
       path: [def.discriminator],
       inst
@@ -71818,63 +71903,95 @@ var $ZodTuple = $constructor("$ZodTuple", (inst, def) => {
     }
     payload.value = [];
     const proms = [];
-    const reversedIndex = [...items].reverse().findIndex((item) => item._zod.optin !== "optional");
-    const optStart = reversedIndex === -1 ? 0 : items.length - reversedIndex;
+    const optinStart = getTupleOptStart(items, "optin");
+    const optoutStart = getTupleOptStart(items, "optout");
     if (!def.rest) {
-      const tooBig = input.length > items.length;
-      const tooSmall = input.length < optStart - 1;
-      if (tooBig || tooSmall) {
+      if (input.length < optinStart) {
         payload.issues.push({
-          ...tooBig ? { code: "too_big", maximum: items.length, inclusive: true } : { code: "too_small", minimum: items.length },
+          code: "too_small",
+          minimum: optinStart,
+          inclusive: true,
           input,
           inst,
           origin: "array"
         });
         return payload;
       }
-    }
-    let i = -1;
-    for (const item of items) {
-      i++;
-      if (i >= input.length) {
-        if (i >= optStart)
-          continue;
+      if (input.length > items.length) {
+        payload.issues.push({
+          code: "too_big",
+          maximum: items.length,
+          inclusive: true,
+          input,
+          inst,
+          origin: "array"
+        });
       }
-      const result = item._zod.run({
-        value: input[i],
-        issues: []
-      }, ctx);
-      if (result instanceof Promise) {
-        proms.push(result.then((result2) => handleTupleResult(result2, payload, i)));
+    }
+    const itemResults = new Array(items.length);
+    for (let i = 0; i < items.length; i++) {
+      const r = items[i]._zod.run({ value: input[i], issues: [] }, ctx);
+      if (r instanceof Promise) {
+        proms.push(r.then((rr) => {
+          itemResults[i] = rr;
+        }));
       } else {
-        handleTupleResult(result, payload, i);
+        itemResults[i] = r;
       }
     }
     if (def.rest) {
+      let i = items.length - 1;
       const rest = input.slice(items.length);
       for (const el of rest) {
         i++;
-        const result = def.rest._zod.run({
-          value: el,
-          issues: []
-        }, ctx);
+        const result = def.rest._zod.run({ value: el, issues: [] }, ctx);
         if (result instanceof Promise) {
-          proms.push(result.then((result2) => handleTupleResult(result2, payload, i)));
+          proms.push(result.then((r) => handleTupleResult(r, payload, i)));
         } else {
           handleTupleResult(result, payload, i);
         }
       }
     }
-    if (proms.length)
-      return Promise.all(proms).then(() => payload);
-    return payload;
+    if (proms.length) {
+      return Promise.all(proms).then(() => handleTupleResults(itemResults, payload, items, input, optoutStart));
+    }
+    return handleTupleResults(itemResults, payload, items, input, optoutStart);
   };
 });
+function getTupleOptStart(items, key) {
+  for (let i = items.length - 1; i >= 0; i--) {
+    if (items[i]._zod[key] !== "optional")
+      return i + 1;
+  }
+  return 0;
+}
 function handleTupleResult(result, final, index) {
   if (result.issues.length) {
     final.issues.push(...prefixIssues(index, result.issues));
   }
   final.value[index] = result.value;
+}
+function handleTupleResults(itemResults, final, items, input, optoutStart) {
+  for (let i = 0; i < items.length; i++) {
+    const r = itemResults[i];
+    const isPresent = i < input.length;
+    if (r.issues.length) {
+      if (!isPresent && i >= optoutStart) {
+        final.value.length = i;
+        break;
+      }
+      final.issues.push(...prefixIssues(i, r.issues));
+    }
+    final.value[i] = r.value;
+  }
+  for (let i = final.value.length - 1; i >= input.length; i--) {
+    if (items[i]._zod.optout === "optional" && final.value[i] === void 0) {
+      final.value.length = i;
+    } else {
+      break;
+    }
+  }
+  return final;
 }
 var $ZodRecord = $constructor("$ZodRecord", (inst, def) => {
   $ZodType.init(inst, def);
@@ -71897,19 +72014,35 @@ var $ZodRecord = $constructor("$ZodRecord", (inst, def) => {
       for (const key of values) {
         if (typeof key === "string" || typeof key === "number" || typeof key === "symbol") {
           recordKeys.add(typeof key === "number" ? key.toString() : key);
+          const keyResult = def.keyType._zod.run({ value: key, issues: [] }, ctx);
+          if (keyResult instanceof Promise) {
+            throw new Error("Async schemas not supported in object keys currently");
+          }
+          if (keyResult.issues.length) {
+            payload.issues.push({
+              code: "invalid_key",
+              origin: "record",
+              issues: keyResult.issues.map((iss) => finalizeIssue(iss, ctx, config())),
+              input: key,
+              path: [key],
+              inst
+            });
+            continue;
+          }
+          const outKey = keyResult.value;
           const result = def.valueType._zod.run({ value: input[key], issues: [] }, ctx);
           if (result instanceof Promise) {
             proms.push(result.then((result2) => {
               if (result2.issues.length) {
                 payload.issues.push(...prefixIssues(key, result2.issues));
               }
-              payload.value[key] = result2.value;
+              payload.value[outKey] = result2.value;
             }));
           } else {
             if (result.issues.length) {
               payload.issues.push(...prefixIssues(key, result.issues));
             }
-            payload.value[key] = result.value;
+            payload.value[outKey] = result.value;
           }
         }
       }
@@ -71932,6 +72065,8 @@ var $ZodRecord = $constructor("$ZodRecord", (inst, def) => {
       payload.value = {};
       for (const key of Reflect.ownKeys(input)) {
         if (key === "__proto__")
+          continue;
+        if (!Object.prototype.propertyIsEnumerable.call(input, key))
           continue;
         let keyResult = def.keyType._zod.run({ value: key, issues: [] }, ctx);
         if (keyResult instanceof Promise) {
@@ -72425,6 +72560,11 @@ function handleCodecTxResult(left, value, nextSchema, ctx) {
   }
   return nextSchema._zod.run({ value, issues: left.issues }, ctx);
 }
+var $ZodPreprocess = $constructor("$ZodPreprocess", (inst, def) => {
+  $ZodPipe.init(inst, def);
+  defineLazy(inst._zod, "optin", () => def.out._zod.optin);
+  defineLazy(inst._zod, "optout", () => def.out._zod.optout);
+});
 var $ZodReadonly = $constructor("$ZodReadonly", (inst, def) => {
   $ZodType.init(inst, def);
   defineLazy(inst._zod, "propValues", () => def.innerType._zod.propValues);
@@ -72576,7 +72716,12 @@ var $ZodPromise = $constructor("$ZodPromise", (inst, def) => {
 });
 var $ZodLazy = $constructor("$ZodLazy", (inst, def) => {
   $ZodType.init(inst, def);
-  defineLazy(inst._zod, "innerType", () => def.getter());
+  defineLazy(inst._zod, "innerType", () => {
+    const d = def;
+    if (!d._cachedInner)
+      d._cachedInner = def.getter();
+    return d._cachedInner;
+  });
   defineLazy(inst._zod, "pattern", () => inst._zod.innerType?._zod?.pattern);
   defineLazy(inst._zod, "propValues", () => inst._zod.innerType?._zod?.propValues);
   defineLazy(inst._zod, "optin", () => inst._zod.innerType?._zod?.optin ?? void 0);
@@ -72620,7 +72765,7 @@ function handleRefineResult(result, payload, input, inst) {
   }
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/index.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/index.js
 var locales_exports = {};
 __export(locales_exports, {
   ar: () => ar_default,
@@ -72631,6 +72776,7 @@ __export(locales_exports, {
   cs: () => cs_default,
   da: () => da_default,
   de: () => de_default,
+  el: () => el_default,
   en: () => en_default,
   eo: () => eo_default,
   es: () => es_default,
@@ -72639,6 +72785,7 @@ __export(locales_exports, {
   fr: () => fr_default,
   frCA: () => fr_CA_default,
   he: () => he_default,
+  hr: () => hr_default,
   hu: () => hu_default,
   hy: () => hy_default,
   id: () => id_default,
@@ -72658,6 +72805,7 @@ __export(locales_exports, {
   pl: () => pl_default,
   ps: () => ps_default,
   pt: () => pt_default,
+  ro: () => ro_default,
   ru: () => ru_default,
   sl: () => sl_default,
   sv: () => sv_default,
@@ -72674,7 +72822,7 @@ __export(locales_exports, {
   zhTW: () => zh_TW_default
 });
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ar.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ar.js
 var error = () => {
   const Sizable = {
     string: { unit: "\u062D\u0631\u0641", verb: "\u0623\u0646 \u064A\u062D\u0648\u064A" },
@@ -72781,7 +72929,7 @@ function ar_default() {
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/az.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/az.js
 var error2 = () => {
   const Sizable = {
     string: { unit: "simvol", verb: "olmal\u0131d\u0131r" },
@@ -72887,7 +73035,7 @@ function az_default() {
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/be.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/be.js
 function getBelarusianPlural(count, one, few, many) {
   const absCount = Math.abs(count);
   const lastDigit = absCount % 10;
@@ -73044,7 +73192,7 @@ function be_default() {
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/bg.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/bg.js
 var error4 = () => {
   const Sizable = {
     string: { unit: "\u0441\u0438\u043C\u0432\u043E\u043B\u0430", verb: "\u0434\u0430 \u0441\u044A\u0434\u044A\u0440\u0436\u0430" },
@@ -73165,7 +73313,7 @@ function bg_default() {
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ca.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ca.js
 var error5 = () => {
   const Sizable = {
     string: { unit: "car\xE0cters", verb: "contenir" },
@@ -73273,7 +73421,7 @@ function ca_default() {
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/cs.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/cs.js
 var error6 = () => {
   const Sizable = {
     string: { unit: "znak\u016F", verb: "m\xEDt" },
@@ -73385,7 +73533,7 @@ function cs_default() {
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/da.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/da.js
 var error7 = () => {
   const Sizable = {
     string: { unit: "tegn", verb: "havde" },
@@ -73501,7 +73649,7 @@ function da_default() {
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/de.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/de.js
 var error8 = () => {
   const Sizable = {
     string: { unit: "Zeichen", verb: "zu haben" },
@@ -73610,8 +73758,118 @@ function de_default() {
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/en.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/el.js
 var error9 = () => {
+  const Sizable = {
+    string: { unit: "\u03C7\u03B1\u03C1\u03B1\u03BA\u03C4\u03AE\u03C1\u03B5\u03C2", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" },
+    file: { unit: "bytes", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" },
+    array: { unit: "\u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" },
+    set: { unit: "\u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" },
+    map: { unit: "\u03BA\u03B1\u03C4\u03B1\u03C7\u03C9\u03C1\u03AE\u03C3\u03B5\u03B9\u03C2", verb: "\u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9" }
+  };
+  function getSizing(origin) {
+    return Sizable[origin] ?? null;
+  }
+  const FormatDictionary = {
+    regex: "\u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2",
+    email: "\u03B4\u03B9\u03B5\u03CD\u03B8\u03C5\u03BD\u03C3\u03B7 email",
+    url: "URL",
+    emoji: "emoji",
+    uuid: "UUID",
+    uuidv4: "UUIDv4",
+    uuidv6: "UUIDv6",
+    nanoid: "nanoid",
+    guid: "GUID",
+    cuid: "cuid",
+    cuid2: "cuid2",
+    ulid: "ULID",
+    xid: "XID",
+    ksuid: "KSUID",
+    datetime: "ISO \u03B7\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1 \u03BA\u03B1\u03B9 \u03CE\u03C1\u03B1",
+    date: "ISO \u03B7\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1",
+    time: "ISO \u03CE\u03C1\u03B1",
+    duration: "ISO \u03B4\u03B9\u03AC\u03C1\u03BA\u03B5\u03B9\u03B1",
+    ipv4: "\u03B4\u03B9\u03B5\u03CD\u03B8\u03C5\u03BD\u03C3\u03B7 IPv4",
+    ipv6: "\u03B4\u03B9\u03B5\u03CD\u03B8\u03C5\u03BD\u03C3\u03B7 IPv6",
+    mac: "\u03B4\u03B9\u03B5\u03CD\u03B8\u03C5\u03BD\u03C3\u03B7 MAC",
+    cidrv4: "\u03B5\u03CD\u03C1\u03BF\u03C2 IPv4",
+    cidrv6: "\u03B5\u03CD\u03C1\u03BF\u03C2 IPv6",
+    base64: "\u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03C0\u03BF\u03B9\u03B7\u03BC\u03AD\u03BD\u03B7 \u03C3\u03B5 base64",
+    base64url: "\u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03C0\u03BF\u03B9\u03B7\u03BC\u03AD\u03BD\u03B7 \u03C3\u03B5 base64url",
+    json_string: "\u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC JSON",
+    e164: "\u03B1\u03C1\u03B9\u03B8\u03BC\u03CC\u03C2 E.164",
+    jwt: "JWT",
+    template_literal: "\u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2"
+  };
+  const TypeDictionary = {
+    nan: "NaN"
+  };
+  return (issue2) => {
+    switch (issue2.code) {
+      case "invalid_type": {
+        const expected = TypeDictionary[issue2.expected] ?? issue2.expected;
+        const receivedType = parsedType(issue2.input);
+        const received = TypeDictionary[receivedType] ?? receivedType;
+        if (typeof issue2.expected === "string" && /^[A-Z]/.test(issue2.expected)) {
+          return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2: \u03B1\u03BD\u03B1\u03BC\u03B5\u03BD\u03CC\u03C4\u03B1\u03BD instanceof ${issue2.expected}, \u03BB\u03AE\u03C6\u03B8\u03B7\u03BA\u03B5 ${received}`;
+        }
+        return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2: \u03B1\u03BD\u03B1\u03BC\u03B5\u03BD\u03CC\u03C4\u03B1\u03BD ${expected}, \u03BB\u03AE\u03C6\u03B8\u03B7\u03BA\u03B5 ${received}`;
+      }
+      case "invalid_value":
+        if (issue2.values.length === 1)
+          return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2: \u03B1\u03BD\u03B1\u03BC\u03B5\u03BD\u03CC\u03C4\u03B1\u03BD ${stringifyPrimitive(issue2.values[0])}`;
+        return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03B5\u03C0\u03B9\u03BB\u03BF\u03B3\u03AE: \u03B1\u03BD\u03B1\u03BC\u03B5\u03BD\u03CC\u03C4\u03B1\u03BD \u03AD\u03BD\u03B1 \u03B1\u03C0\u03CC ${joinValues(issue2.values, "|")}`;
+      case "too_big": {
+        const adj = issue2.inclusive ? "<=" : "<";
+        const sizing = getSizing(issue2.origin);
+        if (sizing)
+          return `\u03A0\u03BF\u03BB\u03CD \u03BC\u03B5\u03B3\u03AC\u03BB\u03BF: \u03B1\u03BD\u03B1\u03BC\u03B5\u03BD\u03CC\u03C4\u03B1\u03BD ${issue2.origin ?? "\u03C4\u03B9\u03BC\u03AE"} \u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9 ${adj}${issue2.maximum.toString()} ${sizing.unit ?? "\u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03B1"}`;
+        return `\u03A0\u03BF\u03BB\u03CD \u03BC\u03B5\u03B3\u03AC\u03BB\u03BF: \u03B1\u03BD\u03B1\u03BC\u03B5\u03BD\u03CC\u03C4\u03B1\u03BD ${issue2.origin ?? "\u03C4\u03B9\u03BC\u03AE"} \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 ${adj}${issue2.maximum.toString()}`;
+      }
+      case "too_small": {
+        const adj = issue2.inclusive ? ">=" : ">";
+        const sizing = getSizing(issue2.origin);
+        if (sizing) {
+          return `\u03A0\u03BF\u03BB\u03CD \u03BC\u03B9\u03BA\u03C1\u03CC: \u03B1\u03BD\u03B1\u03BC\u03B5\u03BD\u03CC\u03C4\u03B1\u03BD ${issue2.origin} \u03BD\u03B1 \u03AD\u03C7\u03B5\u03B9 ${adj}${issue2.minimum.toString()} ${sizing.unit}`;
+        }
+        return `\u03A0\u03BF\u03BB\u03CD \u03BC\u03B9\u03BA\u03C1\u03CC: \u03B1\u03BD\u03B1\u03BC\u03B5\u03BD\u03CC\u03C4\u03B1\u03BD ${issue2.origin} \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 ${adj}${issue2.minimum.toString()}`;
+      }
+      case "invalid_format": {
+        const _issue = issue2;
+        if (_issue.format === "starts_with") {
+          return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC: \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03BE\u03B5\u03BA\u03B9\u03BD\u03AC \u03BC\u03B5 "${_issue.prefix}"`;
+        }
+        if (_issue.format === "ends_with")
+          return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC: \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03C4\u03B5\u03BB\u03B5\u03B9\u03CE\u03BD\u03B5\u03B9 \u03BC\u03B5 "${_issue.suffix}"`;
+        if (_issue.format === "includes")
+          return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC: \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03C0\u03B5\u03C1\u03B9\u03AD\u03C7\u03B5\u03B9 "${_issue.includes}"`;
+        if (_issue.format === "regex")
+          return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03C3\u03C5\u03BC\u03B2\u03BF\u03BB\u03BF\u03C3\u03B5\u03B9\u03C1\u03AC: \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03C4\u03B1\u03B9\u03C1\u03B9\u03AC\u03B6\u03B5\u03B9 \u03BC\u03B5 \u03C4\u03BF \u03BC\u03BF\u03C4\u03AF\u03B2\u03BF ${_issue.pattern}`;
+        return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03BF: ${FormatDictionary[_issue.format] ?? issue2.format}`;
+      }
+      case "not_multiple_of":
+        return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03BF\u03C2 \u03B1\u03C1\u03B9\u03B8\u03BC\u03CC\u03C2: \u03C0\u03C1\u03AD\u03C0\u03B5\u03B9 \u03BD\u03B1 \u03B5\u03AF\u03BD\u03B1\u03B9 \u03C0\u03BF\u03BB\u03BB\u03B1\u03C0\u03BB\u03AC\u03C3\u03B9\u03BF \u03C4\u03BF\u03C5 ${issue2.divisor}`;
+      case "unrecognized_keys":
+        return `\u0386\u03B3\u03BD\u03C9\u03C3\u03C4${issue2.keys.length > 1 ? "\u03B1" : "\u03BF"} \u03BA\u03BB\u03B5\u03B9\u03B4${issue2.keys.length > 1 ? "\u03B9\u03AC" : "\u03AF"}: ${joinValues(issue2.keys, ", ")}`;
+      case "invalid_key":
+        return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03BF \u03BA\u03BB\u03B5\u03B9\u03B4\u03AF \u03C3\u03C4\u03BF ${issue2.origin}`;
+      case "invalid_union":
+        return "\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2";
+      case "invalid_element":
+        return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03C4\u03B9\u03BC\u03AE \u03C3\u03C4\u03BF ${issue2.origin}`;
+      default:
+        return `\u039C\u03B7 \u03AD\u03B3\u03BA\u03C5\u03C1\u03B7 \u03B5\u03AF\u03C3\u03BF\u03B4\u03BF\u03C2`;
+    }
+  };
+};
+function el_default() {
+  return {
+    localeError: error9()
+  };
+}
+
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/en.js
+var error10 = () => {
   const Sizable = {
     string: { unit: "characters", verb: "to have" },
     file: { unit: "bytes", verb: "to have" },
@@ -73705,6 +73963,10 @@ var error9 = () => {
       case "invalid_key":
         return `Invalid key in ${issue2.origin}`;
       case "invalid_union":
+        if (issue2.options && Array.isArray(issue2.options) && issue2.options.length > 0) {
+          const opts = issue2.options.map((o) => `'${o}'`).join(" | ");
+          return `Invalid discriminator value. Expected ${opts}`;
+        }
         return "Invalid input";
       case "invalid_element":
         return `Invalid value in ${issue2.origin}`;
@@ -73715,12 +73977,12 @@ var error9 = () => {
 };
 function en_default() {
   return {
-    localeError: error9()
+    localeError: error10()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/eo.js
-var error10 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/eo.js
+var error11 = () => {
   const Sizable = {
     string: { unit: "karaktrojn", verb: "havi" },
     file: { unit: "bajtojn", verb: "havi" },
@@ -73825,12 +74087,12 @@ var error10 = () => {
 };
 function eo_default() {
   return {
-    localeError: error10()
+    localeError: error11()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/es.js
-var error11 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/es.js
+var error12 = () => {
   const Sizable = {
     string: { unit: "caracteres", verb: "tener" },
     file: { unit: "bytes", verb: "tener" },
@@ -73958,12 +74220,12 @@ var error11 = () => {
 };
 function es_default() {
   return {
-    localeError: error11()
+    localeError: error12()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/fa.js
-var error12 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/fa.js
+var error13 = () => {
   const Sizable = {
     string: { unit: "\u06A9\u0627\u0631\u0627\u06A9\u062A\u0631", verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F" },
     file: { unit: "\u0628\u0627\u06CC\u062A", verb: "\u062F\u0627\u0634\u062A\u0647 \u0628\u0627\u0634\u062F" },
@@ -74073,12 +74335,12 @@ var error12 = () => {
 };
 function fa_default() {
   return {
-    localeError: error12()
+    localeError: error13()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/fi.js
-var error13 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/fi.js
+var error14 = () => {
   const Sizable = {
     string: { unit: "merkki\xE4", subject: "merkkijonon" },
     file: { unit: "tavua", subject: "tiedoston" },
@@ -74186,12 +74448,12 @@ var error13 = () => {
 };
 function fi_default() {
   return {
-    localeError: error13()
+    localeError: error14()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/fr.js
-var error14 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/fr.js
+var error15 = () => {
   const Sizable = {
     string: { unit: "caract\xE8res", verb: "avoir" },
     file: { unit: "octets", verb: "avoir" },
@@ -74232,9 +74494,27 @@ var error14 = () => {
     template_literal: "entr\xE9e"
   };
   const TypeDictionary = {
-    nan: "NaN",
+    string: "cha\xEEne",
     number: "nombre",
-    array: "tableau"
+    int: "entier",
+    boolean: "bool\xE9en",
+    bigint: "grand entier",
+    symbol: "symbole",
+    undefined: "ind\xE9fini",
+    null: "null",
+    never: "jamais",
+    void: "vide",
+    date: "date",
+    array: "tableau",
+    object: "objet",
+    tuple: "tuple",
+    record: "enregistrement",
+    map: "carte",
+    set: "ensemble",
+    file: "fichier",
+    nonoptional: "non-optionnel",
+    nan: "NaN",
+    function: "fonction"
   };
   return (issue2) => {
     switch (issue2.code) {
@@ -74255,16 +74535,15 @@ var error14 = () => {
         const adj = issue2.inclusive ? "<=" : "<";
         const sizing = getSizing(issue2.origin);
         if (sizing)
-          return `Trop grand : ${issue2.origin ?? "valeur"} doit ${sizing.verb} ${adj}${issue2.maximum.toString()} ${sizing.unit ?? "\xE9l\xE9ment(s)"}`;
-        return `Trop grand : ${issue2.origin ?? "valeur"} doit \xEAtre ${adj}${issue2.maximum.toString()}`;
+          return `Trop grand : ${TypeDictionary[issue2.origin] ?? "valeur"} doit ${sizing.verb} ${adj}${issue2.maximum.toString()} ${sizing.unit ?? "\xE9l\xE9ment(s)"}`;
+        return `Trop grand : ${TypeDictionary[issue2.origin] ?? "valeur"} doit \xEAtre ${adj}${issue2.maximum.toString()}`;
       }
       case "too_small": {
         const adj = issue2.inclusive ? ">=" : ">";
         const sizing = getSizing(issue2.origin);
-        if (sizing) {
-          return `Trop petit : ${issue2.origin} doit ${sizing.verb} ${adj}${issue2.minimum.toString()} ${sizing.unit}`;
-        }
-        return `Trop petit : ${issue2.origin} doit \xEAtre ${adj}${issue2.minimum.toString()}`;
+        if (sizing)
+          return `Trop petit : ${TypeDictionary[issue2.origin] ?? "valeur"} doit ${sizing.verb} ${adj}${issue2.minimum.toString()} ${sizing.unit}`;
+        return `Trop petit : ${TypeDictionary[issue2.origin] ?? "valeur"} doit \xEAtre ${adj}${issue2.minimum.toString()}`;
       }
       case "invalid_format": {
         const _issue = issue2;
@@ -74295,12 +74574,12 @@ var error14 = () => {
 };
 function fr_default() {
   return {
-    localeError: error14()
+    localeError: error15()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/fr-CA.js
-var error15 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/fr-CA.js
+var error16 = () => {
   const Sizable = {
     string: { unit: "caract\xE8res", verb: "avoir" },
     file: { unit: "octets", verb: "avoir" },
@@ -74403,12 +74682,12 @@ var error15 = () => {
 };
 function fr_CA_default() {
   return {
-    localeError: error15()
+    localeError: error16()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/he.js
-var error16 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/he.js
+var error17 = () => {
   const TypeNames = {
     string: { label: "\u05DE\u05D7\u05E8\u05D5\u05D6\u05EA", gender: "f" },
     number: { label: "\u05DE\u05E1\u05E4\u05E8", gender: "m" },
@@ -74598,12 +74877,135 @@ var error16 = () => {
 };
 function he_default() {
   return {
-    localeError: error16()
+    localeError: error17()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/hu.js
-var error17 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/hr.js
+var error18 = () => {
+  const Sizable = {
+    string: { unit: "znakova", verb: "imati" },
+    file: { unit: "bajtova", verb: "imati" },
+    array: { unit: "stavki", verb: "imati" },
+    set: { unit: "stavki", verb: "imati" }
+  };
+  function getSizing(origin) {
+    return Sizable[origin] ?? null;
+  }
+  const FormatDictionary = {
+    regex: "unos",
+    email: "email adresa",
+    url: "URL",
+    emoji: "emoji",
+    uuid: "UUID",
+    uuidv4: "UUIDv4",
+    uuidv6: "UUIDv6",
+    nanoid: "nanoid",
+    guid: "GUID",
+    cuid: "cuid",
+    cuid2: "cuid2",
+    ulid: "ULID",
+    xid: "XID",
+    ksuid: "KSUID",
+    datetime: "ISO datum i vrijeme",
+    date: "ISO datum",
+    time: "ISO vrijeme",
+    duration: "ISO trajanje",
+    ipv4: "IPv4 adresa",
+    ipv6: "IPv6 adresa",
+    cidrv4: "IPv4 raspon",
+    cidrv6: "IPv6 raspon",
+    base64: "base64 kodirani tekst",
+    base64url: "base64url kodirani tekst",
+    json_string: "JSON tekst",
+    e164: "E.164 broj",
+    jwt: "JWT",
+    template_literal: "unos"
+  };
+  const TypeDictionary = {
+    nan: "NaN",
+    string: "tekst",
+    number: "broj",
+    boolean: "boolean",
+    array: "niz",
+    object: "objekt",
+    set: "skup",
+    file: "datoteka",
+    date: "datum",
+    bigint: "bigint",
+    symbol: "simbol",
+    undefined: "undefined",
+    null: "null",
+    function: "funkcija",
+    map: "mapa"
+  };
+  return (issue2) => {
+    switch (issue2.code) {
+      case "invalid_type": {
+        const expected = TypeDictionary[issue2.expected] ?? issue2.expected;
+        const receivedType = parsedType(issue2.input);
+        const received = TypeDictionary[receivedType] ?? receivedType;
+        if (/^[A-Z]/.test(issue2.expected)) {
+          return `Neispravan unos: o\u010Dekuje se instanceof ${issue2.expected}, a primljeno je ${received}`;
+        }
+        return `Neispravan unos: o\u010Dekuje se ${expected}, a primljeno je ${received}`;
+      }
+      case "invalid_value":
+        if (issue2.values.length === 1)
+          return `Neispravna vrijednost: o\u010Dekivano ${stringifyPrimitive(issue2.values[0])}`;
+        return `Neispravna opcija: o\u010Dekivano jedno od ${joinValues(issue2.values, "|")}`;
+      case "too_big": {
+        const adj = issue2.inclusive ? "<=" : "<";
+        const sizing = getSizing(issue2.origin);
+        const origin = TypeDictionary[issue2.origin] ?? issue2.origin;
+        if (sizing)
+          return `Preveliko: o\u010Dekivano da ${origin ?? "vrijednost"} ima ${adj}${issue2.maximum.toString()} ${sizing.unit ?? "elemenata"}`;
+        return `Preveliko: o\u010Dekivano da ${origin ?? "vrijednost"} bude ${adj}${issue2.maximum.toString()}`;
+      }
+      case "too_small": {
+        const adj = issue2.inclusive ? ">=" : ">";
+        const sizing = getSizing(issue2.origin);
+        const origin = TypeDictionary[issue2.origin] ?? issue2.origin;
+        if (sizing) {
+          return `Premalo: o\u010Dekivano da ${origin} ima ${adj}${issue2.minimum.toString()} ${sizing.unit}`;
+        }
+        return `Premalo: o\u010Dekivano da ${origin} bude ${adj}${issue2.minimum.toString()}`;
+      }
+      case "invalid_format": {
+        const _issue = issue2;
+        if (_issue.format === "starts_with")
+          return `Neispravan tekst: mora zapo\u010Dinjati s "${_issue.prefix}"`;
+        if (_issue.format === "ends_with")
+          return `Neispravan tekst: mora zavr\u0161avati s "${_issue.suffix}"`;
+        if (_issue.format === "includes")
+          return `Neispravan tekst: mora sadr\u017Eavati "${_issue.includes}"`;
+        if (_issue.format === "regex")
+          return `Neispravan tekst: mora odgovarati uzorku ${_issue.pattern}`;
+        return `Neispravna ${FormatDictionary[_issue.format] ?? issue2.format}`;
+      }
+      case "not_multiple_of":
+        return `Neispravan broj: mora biti vi\u0161ekratnik od ${issue2.divisor}`;
+      case "unrecognized_keys":
+        return `Neprepoznat${issue2.keys.length > 1 ? "i klju\u010Devi" : " klju\u010D"}: ${joinValues(issue2.keys, ", ")}`;
+      case "invalid_key":
+        return `Neispravan klju\u010D u ${TypeDictionary[issue2.origin] ?? issue2.origin}`;
+      case "invalid_union":
+        return "Neispravan unos";
+      case "invalid_element":
+        return `Neispravna vrijednost u ${TypeDictionary[issue2.origin] ?? issue2.origin}`;
+      default:
+        return `Neispravan unos`;
+    }
+  };
+};
+function hr_default() {
+  return {
+    localeError: error18()
+  };
+}
+
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/hu.js
+var error19 = () => {
   const Sizable = {
     string: { unit: "karakter", verb: "legyen" },
     file: { unit: "byte", verb: "legyen" },
@@ -74707,11 +75109,11 @@ var error17 = () => {
 };
 function hu_default() {
   return {
-    localeError: error17()
+    localeError: error19()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/hy.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/hy.js
 function getArmenianPlural(count, one, many) {
   return Math.abs(count) === 1 ? one : many;
 }
@@ -74722,7 +75124,7 @@ function withDefiniteArticle(word) {
   const lastChar = word[word.length - 1];
   return word + (vowels.includes(lastChar) ? "\u0576" : "\u0568");
 }
-var error18 = () => {
+var error20 = () => {
   const Sizable = {
     string: {
       unit: {
@@ -74855,12 +75257,12 @@ var error18 = () => {
 };
 function hy_default() {
   return {
-    localeError: error18()
+    localeError: error20()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/id.js
-var error19 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/id.js
+var error21 = () => {
   const Sizable = {
     string: { unit: "karakter", verb: "memiliki" },
     file: { unit: "byte", verb: "memiliki" },
@@ -74962,12 +75364,12 @@ var error19 = () => {
 };
 function id_default() {
   return {
-    localeError: error19()
+    localeError: error21()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/is.js
-var error20 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/is.js
+var error22 = () => {
   const Sizable = {
     string: { unit: "stafi", verb: "a\xF0 hafa" },
     file: { unit: "b\xE6ti", verb: "a\xF0 hafa" },
@@ -75072,12 +75474,12 @@ var error20 = () => {
 };
 function is_default() {
   return {
-    localeError: error20()
+    localeError: error22()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/it.js
-var error21 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/it.js
+var error23 = () => {
   const Sizable = {
     string: { unit: "caratteri", verb: "avere" },
     file: { unit: "byte", verb: "avere" },
@@ -75162,7 +75564,7 @@ var error21 = () => {
           return `Stringa non valida: deve includere "${_issue.includes}"`;
         if (_issue.format === "regex")
           return `Stringa non valida: deve corrispondere al pattern ${_issue.pattern}`;
-        return `Invalid ${FormatDictionary[_issue.format] ?? issue2.format}`;
+        return `Input non valido: ${FormatDictionary[_issue.format] ?? issue2.format}`;
       }
       case "not_multiple_of":
         return `Numero non valido: deve essere un multiplo di ${issue2.divisor}`;
@@ -75181,12 +75583,12 @@ var error21 = () => {
 };
 function it_default() {
   return {
-    localeError: error21()
+    localeError: error23()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ja.js
-var error22 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ja.js
+var error24 = () => {
   const Sizable = {
     string: { unit: "\u6587\u5B57", verb: "\u3067\u3042\u308B" },
     file: { unit: "\u30D0\u30A4\u30C8", verb: "\u3067\u3042\u308B" },
@@ -75289,12 +75691,12 @@ var error22 = () => {
 };
 function ja_default() {
   return {
-    localeError: error22()
+    localeError: error24()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ka.js
-var error23 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ka.js
+var error25 = () => {
   const Sizable = {
     string: { unit: "\u10E1\u10D8\u10DB\u10D1\u10DD\u10DA\u10DD", verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1" },
     file: { unit: "\u10D1\u10D0\u10D8\u10E2\u10D8", verb: "\u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1" },
@@ -75327,9 +75729,9 @@ var error23 = () => {
     ipv6: "IPv6 \u10DB\u10D8\u10E1\u10D0\u10DB\u10D0\u10E0\u10D7\u10D8",
     cidrv4: "IPv4 \u10D3\u10D8\u10D0\u10DE\u10D0\u10D6\u10DD\u10DC\u10D8",
     cidrv6: "IPv6 \u10D3\u10D8\u10D0\u10DE\u10D0\u10D6\u10DD\u10DC\u10D8",
-    base64: "base64-\u10D9\u10DD\u10D3\u10D8\u10E0\u10D4\u10D1\u10E3\u10DA\u10D8 \u10E1\u10E2\u10E0\u10D8\u10DC\u10D2\u10D8",
-    base64url: "base64url-\u10D9\u10DD\u10D3\u10D8\u10E0\u10D4\u10D1\u10E3\u10DA\u10D8 \u10E1\u10E2\u10E0\u10D8\u10DC\u10D2\u10D8",
-    json_string: "JSON \u10E1\u10E2\u10E0\u10D8\u10DC\u10D2\u10D8",
+    base64: "base64-\u10D9\u10DD\u10D3\u10D8\u10E0\u10D4\u10D1\u10E3\u10DA\u10D8 \u10D5\u10D4\u10DA\u10D8",
+    base64url: "base64url-\u10D9\u10DD\u10D3\u10D8\u10E0\u10D4\u10D1\u10E3\u10DA\u10D8 \u10D5\u10D4\u10DA\u10D8",
+    json_string: "JSON \u10D5\u10D4\u10DA\u10D8",
     e164: "E.164 \u10DC\u10DD\u10DB\u10D4\u10E0\u10D8",
     jwt: "JWT",
     template_literal: "\u10E8\u10D4\u10E7\u10D5\u10D0\u10DC\u10D0"
@@ -75337,7 +75739,7 @@ var error23 = () => {
   const TypeDictionary = {
     nan: "NaN",
     number: "\u10E0\u10D8\u10EA\u10EE\u10D5\u10D8",
-    string: "\u10E1\u10E2\u10E0\u10D8\u10DC\u10D2\u10D8",
+    string: "\u10D5\u10D4\u10DA\u10D8",
     boolean: "\u10D1\u10E3\u10DA\u10D4\u10D0\u10DC\u10D8",
     function: "\u10E4\u10E3\u10DC\u10E5\u10EA\u10D8\u10D0",
     array: "\u10DB\u10D0\u10E1\u10D8\u10D5\u10D8"
@@ -75375,14 +75777,14 @@ var error23 = () => {
       case "invalid_format": {
         const _issue = issue2;
         if (_issue.format === "starts_with") {
-          return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 \u10E1\u10E2\u10E0\u10D8\u10DC\u10D2\u10D8: \u10E3\u10DC\u10D3\u10D0 \u10D8\u10EC\u10E7\u10D4\u10D1\u10DD\u10D3\u10D4\u10E1 "${_issue.prefix}"-\u10D8\u10D7`;
+          return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 \u10D5\u10D4\u10DA\u10D8: \u10E3\u10DC\u10D3\u10D0 \u10D8\u10EC\u10E7\u10D4\u10D1\u10DD\u10D3\u10D4\u10E1 "${_issue.prefix}"-\u10D8\u10D7`;
         }
         if (_issue.format === "ends_with")
-          return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 \u10E1\u10E2\u10E0\u10D8\u10DC\u10D2\u10D8: \u10E3\u10DC\u10D3\u10D0 \u10DB\u10D7\u10D0\u10D5\u10E0\u10D3\u10D4\u10D1\u10DD\u10D3\u10D4\u10E1 "${_issue.suffix}"-\u10D8\u10D7`;
+          return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 \u10D5\u10D4\u10DA\u10D8: \u10E3\u10DC\u10D3\u10D0 \u10DB\u10D7\u10D0\u10D5\u10E0\u10D3\u10D4\u10D1\u10DD\u10D3\u10D4\u10E1 "${_issue.suffix}"-\u10D8\u10D7`;
         if (_issue.format === "includes")
-          return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 \u10E1\u10E2\u10E0\u10D8\u10DC\u10D2\u10D8: \u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1 "${_issue.includes}"-\u10E1`;
+          return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 \u10D5\u10D4\u10DA\u10D8: \u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D8\u10EA\u10D0\u10D5\u10D3\u10D4\u10E1 "${_issue.includes}"-\u10E1`;
         if (_issue.format === "regex")
-          return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 \u10E1\u10E2\u10E0\u10D8\u10DC\u10D2\u10D8: \u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D4\u10E1\u10D0\u10D1\u10D0\u10DB\u10D4\u10D1\u10DD\u10D3\u10D4\u10E1 \u10E8\u10D0\u10D1\u10DA\u10DD\u10DC\u10E1 ${_issue.pattern}`;
+          return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 \u10D5\u10D4\u10DA\u10D8: \u10E3\u10DC\u10D3\u10D0 \u10E8\u10D4\u10D4\u10E1\u10D0\u10D1\u10D0\u10DB\u10D4\u10D1\u10DD\u10D3\u10D4\u10E1 \u10E8\u10D0\u10D1\u10DA\u10DD\u10DC\u10E1 ${_issue.pattern}`;
         return `\u10D0\u10E0\u10D0\u10E1\u10EC\u10DD\u10E0\u10D8 ${FormatDictionary[_issue.format] ?? issue2.format}`;
       }
       case "not_multiple_of":
@@ -75402,12 +75804,12 @@ var error23 = () => {
 };
 function ka_default() {
   return {
-    localeError: error23()
+    localeError: error25()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/km.js
-var error24 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/km.js
+var error26 = () => {
   const Sizable = {
     string: { unit: "\u178F\u17BD\u17A2\u1780\u17D2\u179F\u179A", verb: "\u1782\u17BD\u179A\u1798\u17B6\u1793" },
     file: { unit: "\u1794\u17C3", verb: "\u1782\u17BD\u179A\u1798\u17B6\u1793" },
@@ -75513,17 +75915,17 @@ var error24 = () => {
 };
 function km_default() {
   return {
-    localeError: error24()
+    localeError: error26()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/kh.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/kh.js
 function kh_default() {
   return km_default();
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ko.js
-var error25 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ko.js
+var error27 = () => {
   const Sizable = {
     string: { unit: "\uBB38\uC790", verb: "to have" },
     file: { unit: "\uBC14\uC774\uD2B8", verb: "to have" },
@@ -75630,11 +76032,11 @@ var error25 = () => {
 };
 function ko_default() {
   return {
-    localeError: error25()
+    localeError: error27()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/lt.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/lt.js
 var capitalizeFirstCharacter = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
@@ -75648,7 +76050,7 @@ function getUnitTypeFromNumber(number4) {
     return "one";
   return "few";
 }
-var error26 = () => {
+var error28 = () => {
   const Sizable = {
     string: {
       unit: {
@@ -75834,12 +76236,12 @@ var error26 = () => {
 };
 function lt_default() {
   return {
-    localeError: error26()
+    localeError: error28()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/mk.js
-var error27 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/mk.js
+var error29 = () => {
   const Sizable = {
     string: { unit: "\u0437\u043D\u0430\u0446\u0438", verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442" },
     file: { unit: "\u0431\u0430\u0458\u0442\u0438", verb: "\u0434\u0430 \u0438\u043C\u0430\u0430\u0442" },
@@ -75944,12 +76346,12 @@ var error27 = () => {
 };
 function mk_default() {
   return {
-    localeError: error27()
+    localeError: error29()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ms.js
-var error28 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ms.js
+var error30 = () => {
   const Sizable = {
     string: { unit: "aksara", verb: "mempunyai" },
     file: { unit: "bait", verb: "mempunyai" },
@@ -76052,12 +76454,12 @@ var error28 = () => {
 };
 function ms_default() {
   return {
-    localeError: error28()
+    localeError: error30()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/nl.js
-var error29 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/nl.js
+var error31 = () => {
   const Sizable = {
     string: { unit: "tekens", verb: "heeft" },
     file: { unit: "bytes", verb: "heeft" },
@@ -76163,12 +76565,12 @@ var error29 = () => {
 };
 function nl_default() {
   return {
-    localeError: error29()
+    localeError: error31()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/no.js
-var error30 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/no.js
+var error32 = () => {
   const Sizable = {
     string: { unit: "tegn", verb: "\xE5 ha" },
     file: { unit: "bytes", verb: "\xE5 ha" },
@@ -76272,12 +76674,12 @@ var error30 = () => {
 };
 function no_default() {
   return {
-    localeError: error30()
+    localeError: error32()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ota.js
-var error31 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ota.js
+var error33 = () => {
   const Sizable = {
     string: { unit: "harf", verb: "olmal\u0131d\u0131r" },
     file: { unit: "bayt", verb: "olmal\u0131d\u0131r" },
@@ -76382,12 +76784,12 @@ var error31 = () => {
 };
 function ota_default() {
   return {
-    localeError: error31()
+    localeError: error33()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ps.js
-var error32 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ps.js
+var error34 = () => {
   const Sizable = {
     string: { unit: "\u062A\u0648\u06A9\u064A", verb: "\u0648\u0644\u0631\u064A" },
     file: { unit: "\u0628\u0627\u06CC\u067C\u0633", verb: "\u0648\u0644\u0631\u064A" },
@@ -76497,12 +76899,12 @@ var error32 = () => {
 };
 function ps_default() {
   return {
-    localeError: error32()
+    localeError: error34()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/pl.js
-var error33 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/pl.js
+var error35 = () => {
   const Sizable = {
     string: { unit: "znak\xF3w", verb: "mie\u0107" },
     file: { unit: "bajt\xF3w", verb: "mie\u0107" },
@@ -76607,12 +77009,12 @@ var error33 = () => {
 };
 function pl_default() {
   return {
-    localeError: error33()
+    localeError: error35()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/pt.js
-var error34 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/pt.js
+var error36 = () => {
   const Sizable = {
     string: { unit: "caracteres", verb: "ter" },
     file: { unit: "bytes", verb: "ter" },
@@ -76716,11 +77118,131 @@ var error34 = () => {
 };
 function pt_default() {
   return {
-    localeError: error34()
+    localeError: error36()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ru.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ro.js
+var error37 = () => {
+  const Sizable = {
+    string: { unit: "caractere", verb: "s\u0103 aib\u0103" },
+    file: { unit: "octe\u021Bi", verb: "s\u0103 aib\u0103" },
+    array: { unit: "elemente", verb: "s\u0103 aib\u0103" },
+    set: { unit: "elemente", verb: "s\u0103 aib\u0103" },
+    map: { unit: "intr\u0103ri", verb: "s\u0103 aib\u0103" }
+  };
+  function getSizing(origin) {
+    return Sizable[origin] ?? null;
+  }
+  const FormatDictionary = {
+    regex: "intrare",
+    email: "adres\u0103 de email",
+    url: "URL",
+    emoji: "emoji",
+    uuid: "UUID",
+    uuidv4: "UUIDv4",
+    uuidv6: "UUIDv6",
+    nanoid: "nanoid",
+    guid: "GUID",
+    cuid: "cuid",
+    cuid2: "cuid2",
+    ulid: "ULID",
+    xid: "XID",
+    ksuid: "KSUID",
+    datetime: "dat\u0103 \u0219i or\u0103 ISO",
+    date: "dat\u0103 ISO",
+    time: "or\u0103 ISO",
+    duration: "durat\u0103 ISO",
+    ipv4: "adres\u0103 IPv4",
+    ipv6: "adres\u0103 IPv6",
+    mac: "adres\u0103 MAC",
+    cidrv4: "interval IPv4",
+    cidrv6: "interval IPv6",
+    base64: "\u0219ir codat base64",
+    base64url: "\u0219ir codat base64url",
+    json_string: "\u0219ir JSON",
+    e164: "num\u0103r E.164",
+    jwt: "JWT",
+    template_literal: "intrare"
+  };
+  const TypeDictionary = {
+    nan: "NaN",
+    string: "\u0219ir",
+    number: "num\u0103r",
+    boolean: "boolean",
+    function: "func\u021Bie",
+    array: "matrice",
+    object: "obiect",
+    undefined: "nedefinit",
+    symbol: "simbol",
+    bigint: "num\u0103r mare",
+    void: "void",
+    never: "never",
+    map: "hart\u0103",
+    set: "set"
+  };
+  return (issue2) => {
+    switch (issue2.code) {
+      case "invalid_type": {
+        const expected = TypeDictionary[issue2.expected] ?? issue2.expected;
+        const receivedType = parsedType(issue2.input);
+        const received = TypeDictionary[receivedType] ?? receivedType;
+        return `Intrare invalid\u0103: a\u0219teptat ${expected}, primit ${received}`;
+      }
+      case "invalid_value":
+        if (issue2.values.length === 1)
+          return `Intrare invalid\u0103: a\u0219teptat ${stringifyPrimitive(issue2.values[0])}`;
+        return `Op\u021Biune invalid\u0103: a\u0219teptat una dintre ${joinValues(issue2.values, "|")}`;
+      case "too_big": {
+        const adj = issue2.inclusive ? "<=" : "<";
+        const sizing = getSizing(issue2.origin);
+        if (sizing)
+          return `Prea mare: a\u0219teptat ca ${issue2.origin ?? "valoarea"} ${sizing.verb} ${adj}${issue2.maximum.toString()} ${sizing.unit ?? "elemente"}`;
+        return `Prea mare: a\u0219teptat ca ${issue2.origin ?? "valoarea"} s\u0103 fie ${adj}${issue2.maximum.toString()}`;
+      }
+      case "too_small": {
+        const adj = issue2.inclusive ? ">=" : ">";
+        const sizing = getSizing(issue2.origin);
+        if (sizing) {
+          return `Prea mic: a\u0219teptat ca ${issue2.origin} ${sizing.verb} ${adj}${issue2.minimum.toString()} ${sizing.unit}`;
+        }
+        return `Prea mic: a\u0219teptat ca ${issue2.origin} s\u0103 fie ${adj}${issue2.minimum.toString()}`;
+      }
+      case "invalid_format": {
+        const _issue = issue2;
+        if (_issue.format === "starts_with") {
+          return `\u0218ir invalid: trebuie s\u0103 \xEEnceap\u0103 cu "${_issue.prefix}"`;
+        }
+        if (_issue.format === "ends_with")
+          return `\u0218ir invalid: trebuie s\u0103 se termine cu "${_issue.suffix}"`;
+        if (_issue.format === "includes")
+          return `\u0218ir invalid: trebuie s\u0103 includ\u0103 "${_issue.includes}"`;
+        if (_issue.format === "regex")
+          return `\u0218ir invalid: trebuie s\u0103 se potriveasc\u0103 cu modelul ${_issue.pattern}`;
+        return `Format invalid: ${FormatDictionary[_issue.format] ?? issue2.format}`;
+      }
+      case "not_multiple_of":
+        return `Num\u0103r invalid: trebuie s\u0103 fie multiplu de ${issue2.divisor}`;
+      case "unrecognized_keys":
+        return `Chei nerecunoscute: ${joinValues(issue2.keys, ", ")}`;
+      case "invalid_key":
+        return `Cheie invalid\u0103 \xEEn ${issue2.origin}`;
+      case "invalid_union":
+        return "Intrare invalid\u0103";
+      case "invalid_element":
+        return `Valoare invalid\u0103 \xEEn ${issue2.origin}`;
+      default:
+        return `Intrare invalid\u0103`;
+    }
+  };
+};
+function ro_default() {
+  return {
+    localeError: error37()
+  };
+}
+
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ru.js
 function getRussianPlural(count, one, few, many) {
   const absCount = Math.abs(count);
   const lastDigit = absCount % 10;
@@ -76736,7 +77258,7 @@ function getRussianPlural(count, one, few, many) {
   }
   return many;
 }
-var error35 = () => {
+var error38 = () => {
   const Sizable = {
     string: {
       unit: {
@@ -76873,12 +77395,12 @@ var error35 = () => {
 };
 function ru_default() {
   return {
-    localeError: error35()
+    localeError: error38()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/sl.js
-var error36 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/sl.js
+var error39 = () => {
   const Sizable = {
     string: { unit: "znakov", verb: "imeti" },
     file: { unit: "bajtov", verb: "imeti" },
@@ -76983,12 +77505,12 @@ var error36 = () => {
 };
 function sl_default() {
   return {
-    localeError: error36()
+    localeError: error39()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/sv.js
-var error37 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/sv.js
+var error40 = () => {
   const Sizable = {
     string: { unit: "tecken", verb: "att ha" },
     file: { unit: "bytes", verb: "att ha" },
@@ -77094,12 +77616,12 @@ var error37 = () => {
 };
 function sv_default() {
   return {
-    localeError: error37()
+    localeError: error40()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ta.js
-var error38 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ta.js
+var error41 = () => {
   const Sizable = {
     string: { unit: "\u0B8E\u0BB4\u0BC1\u0BA4\u0BCD\u0BA4\u0BC1\u0B95\u0BCD\u0B95\u0BB3\u0BCD", verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD" },
     file: { unit: "\u0BAA\u0BC8\u0B9F\u0BCD\u0B9F\u0BC1\u0B95\u0BB3\u0BCD", verb: "\u0B95\u0BCA\u0BA3\u0BCD\u0B9F\u0BBF\u0BB0\u0BC1\u0B95\u0BCD\u0B95 \u0BB5\u0BC7\u0BA3\u0BCD\u0B9F\u0BC1\u0BAE\u0BCD" },
@@ -77205,12 +77727,12 @@ var error38 = () => {
 };
 function ta_default() {
   return {
-    localeError: error38()
+    localeError: error41()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/th.js
-var error39 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/th.js
+var error42 = () => {
   const Sizable = {
     string: { unit: "\u0E15\u0E31\u0E27\u0E2D\u0E31\u0E01\u0E29\u0E23", verb: "\u0E04\u0E27\u0E23\u0E21\u0E35" },
     file: { unit: "\u0E44\u0E1A\u0E15\u0E4C", verb: "\u0E04\u0E27\u0E23\u0E21\u0E35" },
@@ -77316,12 +77838,12 @@ var error39 = () => {
 };
 function th_default() {
   return {
-    localeError: error39()
+    localeError: error42()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/tr.js
-var error40 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/tr.js
+var error43 = () => {
   const Sizable = {
     string: { unit: "karakter", verb: "olmal\u0131" },
     file: { unit: "bayt", verb: "olmal\u0131" },
@@ -77422,12 +77944,12 @@ var error40 = () => {
 };
 function tr_default() {
   return {
-    localeError: error40()
+    localeError: error43()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/uk.js
-var error41 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/uk.js
+var error44 = () => {
   const Sizable = {
     string: { unit: "\u0441\u0438\u043C\u0432\u043E\u043B\u0456\u0432", verb: "\u043C\u0430\u0442\u0438\u043C\u0435" },
     file: { unit: "\u0431\u0430\u0439\u0442\u0456\u0432", verb: "\u043C\u0430\u0442\u0438\u043C\u0435" },
@@ -77531,17 +78053,17 @@ var error41 = () => {
 };
 function uk_default() {
   return {
-    localeError: error41()
+    localeError: error44()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ua.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ua.js
 function ua_default() {
   return uk_default();
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/ur.js
-var error42 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/ur.js
+var error45 = () => {
   const Sizable = {
     string: { unit: "\u062D\u0631\u0648\u0641", verb: "\u06C1\u0648\u0646\u0627" },
     file: { unit: "\u0628\u0627\u0626\u0679\u0633", verb: "\u06C1\u0648\u0646\u0627" },
@@ -77647,17 +78169,18 @@ var error42 = () => {
 };
 function ur_default() {
   return {
-    localeError: error42()
+    localeError: error45()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/uz.js
-var error43 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/uz.js
+var error46 = () => {
   const Sizable = {
     string: { unit: "belgi", verb: "bo\u2018lishi kerak" },
     file: { unit: "bayt", verb: "bo\u2018lishi kerak" },
     array: { unit: "element", verb: "bo\u2018lishi kerak" },
-    set: { unit: "element", verb: "bo\u2018lishi kerak" }
+    set: { unit: "element", verb: "bo\u2018lishi kerak" },
+    map: { unit: "yozuv", verb: "bo\u2018lishi kerak" }
   };
   function getSizing(origin) {
     return Sizable[origin] ?? null;
@@ -77757,12 +78280,12 @@ var error43 = () => {
 };
 function uz_default() {
   return {
-    localeError: error43()
+    localeError: error46()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/vi.js
-var error44 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/vi.js
+var error47 = () => {
   const Sizable = {
     string: { unit: "k\xFD t\u1EF1", verb: "c\xF3" },
     file: { unit: "byte", verb: "c\xF3" },
@@ -77866,12 +78389,12 @@ var error44 = () => {
 };
 function vi_default() {
   return {
-    localeError: error44()
+    localeError: error47()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/zh-CN.js
-var error45 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/zh-CN.js
+var error48 = () => {
   const Sizable = {
     string: { unit: "\u5B57\u7B26", verb: "\u5305\u542B" },
     file: { unit: "\u5B57\u8282", verb: "\u5305\u542B" },
@@ -77976,12 +78499,12 @@ var error45 = () => {
 };
 function zh_CN_default() {
   return {
-    localeError: error45()
+    localeError: error48()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/zh-TW.js
-var error46 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/zh-TW.js
+var error49 = () => {
   const Sizable = {
     string: { unit: "\u5B57\u5143", verb: "\u64C1\u6709" },
     file: { unit: "\u4F4D\u5143\u7D44", verb: "\u64C1\u6709" },
@@ -78084,12 +78607,12 @@ var error46 = () => {
 };
 function zh_TW_default() {
   return {
-    localeError: error46()
+    localeError: error49()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/locales/yo.js
-var error47 = () => {
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/locales/yo.js
+var error50 = () => {
   const Sizable = {
     string: { unit: "\xE0mi", verb: "n\xED" },
     file: { unit: "bytes", verb: "n\xED" },
@@ -78192,12 +78715,12 @@ var error47 = () => {
 };
 function yo_default() {
   return {
-    localeError: error47()
+    localeError: error50()
   };
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/registries.js
-var _a3;
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/registries.js
+var _a4;
 var $output = Symbol("ZodOutput");
 var $input = Symbol("ZodInput");
 var $ZodRegistry = class {
@@ -78243,10 +78766,10 @@ var $ZodRegistry = class {
 function registry() {
   return new $ZodRegistry();
 }
-(_a3 = globalThis).__zod_globalRegistry ?? (_a3.__zod_globalRegistry = registry());
+(_a4 = globalThis).__zod_globalRegistry ?? (_a4.__zod_globalRegistry = registry());
 var globalRegistry = globalThis.__zod_globalRegistry;
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/api.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/api.js
 function _string(Class2, params2) {
   return new Class2({
     type: "string",
@@ -79053,7 +79576,7 @@ function _refine(Class2, fn, _params) {
   });
   return schema;
 }
-function _superRefine(fn) {
+function _superRefine(fn, params2) {
   const ch = _check((payload) => {
     payload.addIssue = (issue2) => {
       if (typeof issue2 === "string") {
@@ -79070,7 +79593,7 @@ function _superRefine(fn) {
       }
     };
     return fn(payload.value, payload);
-  });
+  }, params2);
   return ch;
 }
 function _check(fn, params2) {
@@ -79172,7 +79695,7 @@ function _stringFormat(Class2, format2, fnOrRegex, _params = {}) {
   return inst;
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/to-json-schema.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/to-json-schema.js
 function initializeContext(params2) {
   let target = params2?.target ?? "draft-2020-12";
   if (target === "draft-4")
@@ -79195,7 +79718,7 @@ function initializeContext(params2) {
   };
 }
 function process4(schema, ctx, _params = { path: [], schemaPath: [] }) {
-  var _a4;
+  var _a5;
   const def = schema._zod.def;
   const seen = ctx.seen.get(schema);
   if (seen) {
@@ -79242,8 +79765,8 @@ function process4(schema, ctx, _params = { path: [], schemaPath: [] }) {
     delete result.schema.examples;
     delete result.schema.default;
   }
-  if (ctx.io === "input" && result.schema._prefault)
-    (_a4 = result.schema).default ?? (_a4.default = result.schema._prefault);
+  if (ctx.io === "input" && "_prefault" in result.schema)
+    (_a5 = result.schema).default ?? (_a5.default = result.schema._prefault);
   delete result.schema._prefault;
   const _result = ctx.seen.get(schema);
   return _result.schema;
@@ -79424,10 +79947,15 @@ function finalize(ctx, schema) {
     result.$id = ctx.external.uri(id);
   }
   Object.assign(result, root.def ?? root.schema);
+  const rootMetaId = ctx.metadataRegistry.get(schema)?.id;
+  if (rootMetaId !== void 0 && result.id === rootMetaId)
+    delete result.id;
   const defs = ctx.external?.defs ?? {};
   for (const entry of ctx.seen.entries()) {
     const seen = entry[1];
     if (seen.def && seen.defId) {
+      if (seen.def.id === seen.defId)
+        delete seen.def.id;
       defs[seen.defId] = seen.def;
     }
   }
@@ -79483,6 +80011,8 @@ function isTransforming(_schema, _ctx) {
     return isTransforming(def.keyType, ctx) || isTransforming(def.valueType, ctx);
   }
   if (def.type === "pipe") {
+    if (_schema._zod.traits.has("$ZodCodec"))
+      return true;
     return isTransforming(def.in, ctx) || isTransforming(def.out, ctx);
   }
   if (def.type === "object") {
@@ -79524,7 +80054,7 @@ var createStandardJSONSchemaMethod = (schema, io, processors = {}) => (params2) 
   return finalize(ctx, schema);
 };
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/json-schema-processors.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/json-schema-processors.js
 var formatMap2 = {
   guid: "uuid",
   url: "uri",
@@ -79572,39 +80102,28 @@ var numberProcessor = (schema, ctx, _json, _params) => {
     json2.type = "integer";
   else
     json2.type = "number";
-  if (typeof exclusiveMinimum === "number") {
-    if (ctx.target === "draft-04" || ctx.target === "openapi-3.0") {
+  const exMin = typeof exclusiveMinimum === "number" && exclusiveMinimum >= (minimum ?? Number.NEGATIVE_INFINITY);
+  const exMax = typeof exclusiveMaximum === "number" && exclusiveMaximum <= (maximum ?? Number.POSITIVE_INFINITY);
+  const legacy = ctx.target === "draft-04" || ctx.target === "openapi-3.0";
+  if (exMin) {
+    if (legacy) {
       json2.minimum = exclusiveMinimum;
       json2.exclusiveMinimum = true;
     } else {
       json2.exclusiveMinimum = exclusiveMinimum;
     }
-  }
-  if (typeof minimum === "number") {
+  } else if (typeof minimum === "number") {
     json2.minimum = minimum;
-    if (typeof exclusiveMinimum === "number" && ctx.target !== "draft-04") {
-      if (exclusiveMinimum >= minimum)
-        delete json2.minimum;
-      else
-        delete json2.exclusiveMinimum;
-    }
   }
-  if (typeof exclusiveMaximum === "number") {
-    if (ctx.target === "draft-04" || ctx.target === "openapi-3.0") {
+  if (exMax) {
+    if (legacy) {
       json2.maximum = exclusiveMaximum;
       json2.exclusiveMaximum = true;
     } else {
       json2.exclusiveMaximum = exclusiveMaximum;
     }
-  }
-  if (typeof maximum === "number") {
+  } else if (typeof maximum === "number") {
     json2.maximum = maximum;
-    if (typeof exclusiveMaximum === "number" && ctx.target !== "draft-04") {
-      if (exclusiveMaximum <= maximum)
-        delete json2.maximum;
-      else
-        delete json2.exclusiveMaximum;
-    }
   }
   if (typeof multipleOf === "number")
     json2.multipleOf = multipleOf;
@@ -79776,7 +80295,10 @@ var arrayProcessor = (schema, ctx, _json, params2) => {
   if (typeof maximum === "number")
     json2.maxItems = maximum;
   json2.type = "array";
-  json2.items = process4(def.element, ctx, { ...params2, path: [...params2.path, "items"] });
+  json2.items = process4(def.element, ctx, {
+    ...params2,
+    path: [...params2.path, "items"]
+  });
 };
 var objectProcessor = (schema, ctx, _json, params2) => {
   const json2 = _json;
@@ -79969,7 +80491,8 @@ var catchProcessor = (schema, ctx, json2, params2) => {
 };
 var pipeProcessor = (schema, ctx, _json, params2) => {
   const def = schema._zod.def;
-  const innerType = ctx.io === "input" ? def.in._zod.def.type === "transform" ? def.out : def.in : def.out;
+  const inIsTransform = def.in._zod.traits.has("$ZodTransform");
+  const innerType = ctx.io === "input" ? inIsTransform ? def.out : def.in : def.out;
   process4(innerType, ctx, params2);
   const seen = ctx.seen.get(schema);
   seen.ref = innerType;
@@ -80075,7 +80598,7 @@ function toJSONSchema(input, params2) {
   return finalize(ctx, input);
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/json-schema-generator.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/json-schema-generator.js
 var JSONSchemaGenerator = class {
   /** @deprecated Access via ctx instead */
   get metadataRegistry() {
@@ -80150,10 +80673,10 @@ var JSONSchemaGenerator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/core/json-schema.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/core/json-schema.js
 var json_schema_exports = {};
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/schemas.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/schemas.js
 var schemas_exports2 = {};
 __export(schemas_exports2, {
   ZodAny: () => ZodAny,
@@ -80203,6 +80726,7 @@ __export(schemas_exports2, {
   ZodOptional: () => ZodOptional,
   ZodPipe: () => ZodPipe,
   ZodPrefault: () => ZodPrefault,
+  ZodPreprocess: () => ZodPreprocess,
   ZodPromise: () => ZodPromise,
   ZodReadonly: () => ZodReadonly,
   ZodRecord: () => ZodRecord,
@@ -80263,6 +80787,7 @@ __export(schemas_exports2, {
   int32: () => int32,
   int64: () => int64,
   intersection: () => intersection,
+  invertCodec: () => invertCodec,
   ipv4: () => ipv42,
   ipv6: () => ipv62,
   json: () => json,
@@ -80322,7 +80847,7 @@ __export(schemas_exports2, {
   xor: () => xor
 });
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/checks.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/checks.js
 var checks_exports2 = {};
 __export(checks_exports2, {
   endsWith: () => _endsWith,
@@ -80356,7 +80881,7 @@ __export(checks_exports2, {
   uppercase: () => _uppercase
 });
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/iso.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/iso.js
 var iso_exports = {};
 __export(iso_exports, {
   ZodISODate: () => ZodISODate,
@@ -80397,7 +80922,7 @@ function duration2(params2) {
   return _isoDuration(ZodISODuration, params2);
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/errors.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/errors.js
 var initializer2 = (inst, issues) => {
   $ZodError.init(inst, issues);
   inst.name = "ZodError";
@@ -80437,7 +80962,7 @@ var ZodRealError = $constructor("ZodError", initializer2, {
   Parent: Error
 });
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/parse.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/parse.js
 var parse5 = _parse(ZodRealError);
 var parseAsync2 = _parseAsync(ZodRealError);
 var safeParse2 = _safeParse(ZodRealError);
@@ -80451,7 +80976,44 @@ var safeDecode2 = _safeDecode(ZodRealError);
 var safeEncodeAsync2 = _safeEncodeAsync(ZodRealError);
 var safeDecodeAsync2 = _safeDecodeAsync(ZodRealError);
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/schemas.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/schemas.js
+var _installedGroups = /* @__PURE__ */ new WeakMap();
+function _installLazyMethods(inst, group, methods) {
+  const proto = Object.getPrototypeOf(inst);
+  let installed = _installedGroups.get(proto);
+  if (!installed) {
+    installed = /* @__PURE__ */ new Set();
+    _installedGroups.set(proto, installed);
+  }
+  if (installed.has(group))
+    return;
+  installed.add(group);
+  for (const key in methods) {
+    const fn = methods[key];
+    Object.defineProperty(proto, key, {
+      configurable: true,
+      enumerable: false,
+      get() {
+        const bound = fn.bind(this);
+        Object.defineProperty(this, key, {
+          configurable: true,
+          writable: true,
+          enumerable: true,
+          value: bound
+        });
+        return bound;
+      },
+      set(v) {
+        Object.defineProperty(this, key, {
+          configurable: true,
+          writable: true,
+          enumerable: true,
+          value: v
+        });
+      }
+    });
+  }
+}
 var ZodType = $constructor("ZodType", (inst, def) => {
   $ZodType.init(inst, def);
   Object.assign(inst["~standard"], {
@@ -80464,23 +81026,6 @@ var ZodType = $constructor("ZodType", (inst, def) => {
   inst.def = def;
   inst.type = def.type;
   Object.defineProperty(inst, "_def", { value: def });
-  inst.check = (...checks) => {
-    return inst.clone(util_exports.mergeDefs(def, {
-      checks: [
-        ...def.checks ?? [],
-        ...checks.map((ch) => typeof ch === "function" ? { _zod: { check: ch, def: { check: "custom" }, onattach: [] } } : ch)
-      ]
-    }), {
-      parent: true
-    });
-  };
-  inst.with = inst.check;
-  inst.clone = (def2, params2) => clone(inst, def2, params2);
-  inst.brand = () => inst;
-  inst.register = (reg, meta3) => {
-    reg.add(inst, meta3);
-    return inst;
-  };
   inst.parse = (data, params2) => parse5(inst, data, params2, { callee: inst.parse });
   inst.safeParse = (data, params2) => safeParse2(inst, data, params2);
   inst.parseAsync = async (data, params2) => parseAsync2(inst, data, params2, { callee: inst.parseAsync });
@@ -80494,45 +81039,108 @@ var ZodType = $constructor("ZodType", (inst, def) => {
   inst.safeDecode = (data, params2) => safeDecode2(inst, data, params2);
   inst.safeEncodeAsync = async (data, params2) => safeEncodeAsync2(inst, data, params2);
   inst.safeDecodeAsync = async (data, params2) => safeDecodeAsync2(inst, data, params2);
-  inst.refine = (check3, params2) => inst.check(refine(check3, params2));
-  inst.superRefine = (refinement) => inst.check(superRefine(refinement));
-  inst.overwrite = (fn) => inst.check(_overwrite(fn));
-  inst.optional = () => optional2(inst);
-  inst.exactOptional = () => exactOptional(inst);
-  inst.nullable = () => nullable(inst);
-  inst.nullish = () => optional2(nullable(inst));
-  inst.nonoptional = (params2) => nonoptional(inst, params2);
-  inst.array = () => array(inst);
-  inst.or = (arg) => union([inst, arg]);
-  inst.and = (arg) => intersection(inst, arg);
-  inst.transform = (tx) => pipe(inst, transform(tx));
-  inst.default = (def2) => _default2(inst, def2);
-  inst.prefault = (def2) => prefault(inst, def2);
-  inst.catch = (params2) => _catch2(inst, params2);
-  inst.pipe = (target) => pipe(inst, target);
-  inst.readonly = () => readonly(inst);
-  inst.describe = (description) => {
-    const cl = inst.clone();
-    globalRegistry.add(cl, { description });
-    return cl;
-  };
+  _installLazyMethods(inst, "ZodType", {
+    check(...chks) {
+      const def2 = this.def;
+      return this.clone(util_exports.mergeDefs(def2, {
+        checks: [
+          ...def2.checks ?? [],
+          ...chks.map((ch) => typeof ch === "function" ? { _zod: { check: ch, def: { check: "custom" }, onattach: [] } } : ch)
+        ]
+      }), { parent: true });
+    },
+    with(...chks) {
+      return this.check(...chks);
+    },
+    clone(def2, params2) {
+      return clone(this, def2, params2);
+    },
+    brand() {
+      return this;
+    },
+    register(reg, meta3) {
+      reg.add(this, meta3);
+      return this;
+    },
+    refine(check3, params2) {
+      return this.check(refine(check3, params2));
+    },
+    superRefine(refinement, params2) {
+      return this.check(superRefine(refinement, params2));
+    },
+    overwrite(fn) {
+      return this.check(_overwrite(fn));
+    },
+    optional() {
+      return optional2(this);
+    },
+    exactOptional() {
+      return exactOptional(this);
+    },
+    nullable() {
+      return nullable(this);
+    },
+    nullish() {
+      return optional2(nullable(this));
+    },
+    nonoptional(params2) {
+      return nonoptional(this, params2);
+    },
+    array() {
+      return array(this);
+    },
+    or(arg) {
+      return union([this, arg]);
+    },
+    and(arg) {
+      return intersection(this, arg);
+    },
+    transform(tx) {
+      return pipe(this, transform(tx));
+    },
+    default(d) {
+      return _default2(this, d);
+    },
+    prefault(d) {
+      return prefault(this, d);
+    },
+    catch(params2) {
+      return _catch2(this, params2);
+    },
+    pipe(target) {
+      return pipe(this, target);
+    },
+    readonly() {
+      return readonly(this);
+    },
+    describe(description) {
+      const cl = this.clone();
+      globalRegistry.add(cl, { description });
+      return cl;
+    },
+    meta(...args) {
+      if (args.length === 0)
+        return globalRegistry.get(this);
+      const cl = this.clone();
+      globalRegistry.add(cl, args[0]);
+      return cl;
+    },
+    isOptional() {
+      return this.safeParse(void 0).success;
+    },
+    isNullable() {
+      return this.safeParse(null).success;
+    },
+    apply(fn) {
+      return fn(this);
+    }
+  });
   Object.defineProperty(inst, "description", {
     get() {
       return globalRegistry.get(inst)?.description;
     },
     configurable: true
   });
-  inst.meta = (...args) => {
-    if (args.length === 0) {
-      return globalRegistry.get(inst);
-    }
-    const cl = inst.clone();
-    globalRegistry.add(cl, args[0]);
-    return cl;
-  };
-  inst.isOptional = () => inst.safeParse(void 0).success;
-  inst.isNullable = () => inst.safeParse(null).success;
-  inst.apply = (fn) => fn(inst);
   return inst;
 });
 var _ZodString = $constructor("_ZodString", (inst, def) => {
@@ -80543,21 +81151,53 @@ var _ZodString = $constructor("_ZodString", (inst, def) => {
   inst.format = bag.format ?? null;
   inst.minLength = bag.minimum ?? null;
   inst.maxLength = bag.maximum ?? null;
-  inst.regex = (...args) => inst.check(_regex(...args));
-  inst.includes = (...args) => inst.check(_includes(...args));
-  inst.startsWith = (...args) => inst.check(_startsWith(...args));
-  inst.endsWith = (...args) => inst.check(_endsWith(...args));
-  inst.min = (...args) => inst.check(_minLength(...args));
-  inst.max = (...args) => inst.check(_maxLength(...args));
-  inst.length = (...args) => inst.check(_length(...args));
-  inst.nonempty = (...args) => inst.check(_minLength(1, ...args));
-  inst.lowercase = (params2) => inst.check(_lowercase(params2));
-  inst.uppercase = (params2) => inst.check(_uppercase(params2));
-  inst.trim = () => inst.check(_trim());
-  inst.normalize = (...args) => inst.check(_normalize(...args));
-  inst.toLowerCase = () => inst.check(_toLowerCase());
-  inst.toUpperCase = () => inst.check(_toUpperCase());
-  inst.slugify = () => inst.check(_slugify());
+  _installLazyMethods(inst, "_ZodString", {
+    regex(...args) {
+      return this.check(_regex(...args));
+    },
+    includes(...args) {
+      return this.check(_includes(...args));
+    },
+    startsWith(...args) {
+      return this.check(_startsWith(...args));
+    },
+    endsWith(...args) {
+      return this.check(_endsWith(...args));
+    },
+    min(...args) {
+      return this.check(_minLength(...args));
+    },
+    max(...args) {
+      return this.check(_maxLength(...args));
+    },
+    length(...args) {
+      return this.check(_length(...args));
+    },
+    nonempty(...args) {
+      return this.check(_minLength(1, ...args));
+    },
+    lowercase(params2) {
+      return this.check(_lowercase(params2));
+    },
+    uppercase(params2) {
+      return this.check(_uppercase(params2));
+    },
+    trim() {
+      return this.check(_trim());
+    },
+    normalize(...args) {
+      return this.check(_normalize(...args));
+    },
+    toLowerCase() {
+      return this.check(_toLowerCase());
+    },
+    toUpperCase() {
+      return this.check(_toUpperCase());
+    },
+    slugify() {
+      return this.check(_slugify());
+    }
+  });
 });
 var ZodString = $constructor("ZodString", (inst, def) => {
   $ZodString.init(inst, def);
@@ -80636,7 +81276,7 @@ function url2(params2) {
 }
 function httpUrl(params2) {
   return _url(ZodURL, {
-    protocol: /^https?$/,
+    protocol: regexes_exports.httpProtocol,
     hostname: regexes_exports.domain,
     ...util_exports.normalizeParams(params2)
   });
@@ -80778,21 +81418,53 @@ var ZodNumber = $constructor("ZodNumber", (inst, def) => {
   $ZodNumber.init(inst, def);
   ZodType.init(inst, def);
   inst._zod.processJSONSchema = (ctx, json2, params2) => numberProcessor(inst, ctx, json2, params2);
-  inst.gt = (value, params2) => inst.check(_gt(value, params2));
-  inst.gte = (value, params2) => inst.check(_gte(value, params2));
-  inst.min = (value, params2) => inst.check(_gte(value, params2));
-  inst.lt = (value, params2) => inst.check(_lt(value, params2));
-  inst.lte = (value, params2) => inst.check(_lte(value, params2));
-  inst.max = (value, params2) => inst.check(_lte(value, params2));
-  inst.int = (params2) => inst.check(int(params2));
-  inst.safe = (params2) => inst.check(int(params2));
-  inst.positive = (params2) => inst.check(_gt(0, params2));
-  inst.nonnegative = (params2) => inst.check(_gte(0, params2));
-  inst.negative = (params2) => inst.check(_lt(0, params2));
-  inst.nonpositive = (params2) => inst.check(_lte(0, params2));
-  inst.multipleOf = (value, params2) => inst.check(_multipleOf(value, params2));
-  inst.step = (value, params2) => inst.check(_multipleOf(value, params2));
-  inst.finite = () => inst;
+  _installLazyMethods(inst, "ZodNumber", {
+    gt(value, params2) {
+      return this.check(_gt(value, params2));
+    },
+    gte(value, params2) {
+      return this.check(_gte(value, params2));
+    },
+    min(value, params2) {
+      return this.check(_gte(value, params2));
+    },
+    lt(value, params2) {
+      return this.check(_lt(value, params2));
+    },
+    lte(value, params2) {
+      return this.check(_lte(value, params2));
+    },
+    max(value, params2) {
+      return this.check(_lte(value, params2));
+    },
+    int(params2) {
+      return this.check(int(params2));
+    },
+    safe(params2) {
+      return this.check(int(params2));
+    },
+    positive(params2) {
+      return this.check(_gt(0, params2));
+    },
+    nonnegative(params2) {
+      return this.check(_gte(0, params2));
+    },
+    negative(params2) {
+      return this.check(_lt(0, params2));
+    },
+    nonpositive(params2) {
+      return this.check(_lte(0, params2));
+    },
+    multipleOf(value, params2) {
+      return this.check(_multipleOf(value, params2));
+    },
+    step(value, params2) {
+      return this.check(_multipleOf(value, params2));
+    },
+    finite() {
+      return this;
+    }
+  });
   const bag = inst._zod.bag;
   inst.minValue = Math.max(bag.minimum ?? Number.NEGATIVE_INFINITY, bag.exclusiveMinimum ?? Number.NEGATIVE_INFINITY) ?? null;
   inst.maxValue = Math.min(bag.maximum ?? Number.POSITIVE_INFINITY, bag.exclusiveMaximum ?? Number.POSITIVE_INFINITY) ?? null;
@@ -80939,11 +81611,23 @@ var ZodArray = $constructor("ZodArray", (inst, def) => {
   ZodType.init(inst, def);
   inst._zod.processJSONSchema = (ctx, json2, params2) => arrayProcessor(inst, ctx, json2, params2);
   inst.element = def.element;
-  inst.min = (minLength, params2) => inst.check(_minLength(minLength, params2));
-  inst.nonempty = (params2) => inst.check(_minLength(1, params2));
-  inst.max = (maxLength, params2) => inst.check(_maxLength(maxLength, params2));
-  inst.length = (len, params2) => inst.check(_length(len, params2));
-  inst.unwrap = () => inst.element;
+  _installLazyMethods(inst, "ZodArray", {
+    min(n, params2) {
+      return this.check(_minLength(n, params2));
+    },
+    nonempty(params2) {
+      return this.check(_minLength(1, params2));
+    },
+    max(n, params2) {
+      return this.check(_maxLength(n, params2));
+    },
+    length(n, params2) {
+      return this.check(_length(n, params2));
+    },
+    unwrap() {
+      return this.element;
+    }
+  });
 });
 function array(element, params2) {
   return _array(ZodArray, element, params2);
@@ -80959,23 +81643,47 @@ var ZodObject = $constructor("ZodObject", (inst, def) => {
   util_exports.defineLazy(inst, "shape", () => {
     return def.shape;
   });
-  inst.keyof = () => _enum2(Object.keys(inst._zod.def.shape));
-  inst.catchall = (catchall) => inst.clone({ ...inst._zod.def, catchall });
-  inst.passthrough = () => inst.clone({ ...inst._zod.def, catchall: unknown() });
-  inst.loose = () => inst.clone({ ...inst._zod.def, catchall: unknown() });
-  inst.strict = () => inst.clone({ ...inst._zod.def, catchall: never() });
-  inst.strip = () => inst.clone({ ...inst._zod.def, catchall: void 0 });
-  inst.extend = (incoming) => {
-    return util_exports.extend(inst, incoming);
-  };
-  inst.safeExtend = (incoming) => {
-    return util_exports.safeExtend(inst, incoming);
-  };
-  inst.merge = (other) => util_exports.merge(inst, other);
-  inst.pick = (mask) => util_exports.pick(inst, mask);
-  inst.omit = (mask) => util_exports.omit(inst, mask);
-  inst.partial = (...args) => util_exports.partial(ZodOptional, inst, args[0]);
-  inst.required = (...args) => util_exports.required(ZodNonOptional, inst, args[0]);
+  _installLazyMethods(inst, "ZodObject", {
+    keyof() {
+      return _enum2(Object.keys(this._zod.def.shape));
+    },
+    catchall(catchall) {
+      return this.clone({ ...this._zod.def, catchall });
+    },
+    passthrough() {
+      return this.clone({ ...this._zod.def, catchall: unknown() });
+    },
+    loose() {
+      return this.clone({ ...this._zod.def, catchall: unknown() });
+    },
+    strict() {
+      return this.clone({ ...this._zod.def, catchall: never() });
+    },
+    strip() {
+      return this.clone({ ...this._zod.def, catchall: void 0 });
+    },
+    extend(incoming) {
+      return util_exports.extend(this, incoming);
+    },
+    safeExtend(incoming) {
+      return util_exports.safeExtend(this, incoming);
+    },
+    merge(other) {
+      return util_exports.merge(this, other);
+    },
+    pick(mask) {
+      return util_exports.pick(this, mask);
+    },
+    omit(mask) {
+      return util_exports.omit(this, mask);
+    },
+    partial(...args) {
+      return util_exports.partial(ZodOptional, this, args[0]);
+    },
+    required(...args) {
+      return util_exports.required(ZodNonOptional, this, args[0]);
+    }
+  });
 });
 function object(shape, params2) {
   const def = {
@@ -81080,6 +81788,14 @@ var ZodRecord = $constructor("ZodRecord", (inst, def) => {
   inst.valueType = def.valueType;
 });
 function record(keyType, valueType, params2) {
+  if (!valueType || !valueType._zod) {
+    return new ZodRecord({
+      type: "record",
+      keyType: string2(),
+      valueType: keyType,
+      ...util_exports.normalizeParams(valueType)
+    });
+  }
   return new ZodRecord({
     type: "record",
     keyType,
@@ -81409,6 +82125,20 @@ function codec(in_, out, params2) {
     reverseTransform: params2.encode
   });
 }
+function invertCodec(codec2) {
+  const def = codec2._zod.def;
+  return new ZodCodec({
+    type: "pipe",
+    in: def.out,
+    out: def.in,
+    transform: def.reverseTransform,
+    reverseTransform: def.transform
+  });
+}
+var ZodPreprocess = $constructor("ZodPreprocess", (inst, def) => {
+  ZodPipe.init(inst, def);
+  $ZodPreprocess.init(inst, def);
+});
 var ZodReadonly = $constructor("ZodReadonly", (inst, def) => {
   $ZodReadonly.init(inst, def);
   ZodType.init(inst, def);
@@ -81488,8 +82218,8 @@ function custom(fn, _params) {
 function refine(fn, _params = {}) {
   return _refine(ZodCustom, fn, _params);
 }
-function superRefine(fn) {
-  return _superRefine(fn);
+function superRefine(fn, params2) {
+  return _superRefine(fn, params2);
 }
 var describe2 = describe;
 var meta2 = meta;
@@ -81527,10 +82257,14 @@ function json(params2) {
   return jsonSchema;
 }
 function preprocess(fn, schema) {
-  return pipe(transform(fn), schema);
+  return new ZodPreprocess({
+    type: "pipe",
+    in: transform(fn),
+    out: schema
+  });
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/compat.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/compat.js
 var ZodIssueCode = {
   invalid_type: "invalid_type",
   too_big: "too_big",
@@ -81556,7 +82290,7 @@ var ZodFirstPartyTypeKind;
 /* @__PURE__ */ (function(ZodFirstPartyTypeKind2) {
 })(ZodFirstPartyTypeKind || (ZodFirstPartyTypeKind = {}));
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/from-json-schema.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/from-json-schema.js
 var z = {
   ...schemas_exports2,
   ...checks_exports2,
@@ -81948,12 +82682,6 @@ function convertBaseSchema(schema, ctx) {
     default:
       throw new Error(`Unsupported type: ${type}`);
   }
-  if (schema.description) {
-    zodSchema = zodSchema.describe(schema.description);
-  }
-  if (schema.default !== void 0) {
-    zodSchema = zodSchema.default(schema.default);
-  }
   return zodSchema;
 }
 function convertSchema(schema, ctx) {
@@ -81990,6 +82718,9 @@ function convertSchema(schema, ctx) {
   if (schema.readOnly === true) {
     baseSchema = z.readonly(baseSchema);
   }
+  if (schema.default !== void 0) {
+    baseSchema = baseSchema.default(schema.default);
+  }
   const extraMeta = {};
   const coreMetadataKeys = ["$id", "id", "$comment", "$anchor", "$vocabulary", "$dynamicRef", "$dynamicAnchor"];
   for (const key of coreMetadataKeys) {
@@ -82011,26 +82742,35 @@ function convertSchema(schema, ctx) {
   if (Object.keys(extraMeta).length > 0) {
     ctx.registry.add(baseSchema, extraMeta);
   }
+  if (schema.description) {
+    baseSchema = baseSchema.describe(schema.description);
+  }
   return baseSchema;
 }
 function fromJSONSchema(schema, params2) {
   if (typeof schema === "boolean") {
     return schema ? z.any() : z.never();
   }
-  const version2 = detectVersion(schema, params2?.defaultTarget);
-  const defs = schema.$defs || schema.definitions || {};
+  let normalized;
+  try {
+    normalized = JSON.parse(JSON.stringify(schema));
+  } catch {
+    throw new Error("fromJSONSchema input is not valid JSON (possibly cyclic); use $defs/$ref for recursive schemas");
+  }
+  const version2 = detectVersion(normalized, params2?.defaultTarget);
+  const defs = normalized.$defs || normalized.definitions || {};
   const ctx = {
     version: version2,
     defs,
     refs: /* @__PURE__ */ new Map(),
     processing: /* @__PURE__ */ new Set(),
-    rootSchema: schema,
+    rootSchema: normalized,
     registry: params2?.registry ?? globalRegistry
   };
-  return convertSchema(schema, ctx);
+  return convertSchema(normalized, ctx);
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/coerce.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/coerce.js
 var coerce_exports = {};
 __export(coerce_exports, {
   bigint: () => bigint3,
@@ -82055,7 +82795,7 @@ function date4(params2) {
   return _coercedDate(ZodDate, params2);
 }
 
-// node_modules/.aspect_rules_js/zod@4.3.6/node_modules/zod/v4/classic/external.js
+// node_modules/.aspect_rules_js/zod@4.4.2/node_modules/zod/v4/classic/external.js
 config(en_default());
 
 // ng-dev/ai/skills/validate.js
