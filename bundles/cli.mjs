@@ -47720,7 +47720,7 @@ var ExternalCommands = class {
     }
     try {
       const nodeVersionFromNvmrc = readFileSync8(join10(projectDir, ".nvmrc"), "utf8").trim();
-      const { stdout } = await ChildProcess.spawn(". ~/.nvm/nvm.sh && nvm install >&2 && nvm which", [], {
+      const { stdout } = await ChildProcess.spawn(". ~/.nvm/nvm.sh && nvm install >&2 && nvm which --silent", [], {
         cwd: projectDir,
         mode: "on-error",
         shell: true
@@ -48888,7 +48888,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-602e90c2a387da841df7a6b530932fe5527bbc50`;
+var localVersion = `0.0.0-6ef1cf3158022456bf1f7031de79b7e44fe479b2`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
