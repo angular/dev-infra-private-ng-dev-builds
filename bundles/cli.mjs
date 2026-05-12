@@ -18379,26 +18379,26 @@ var require_folder_hash = __commonJS({
           }
         });
       }
-      function hashElementPromise(stats, dirname6, options, isRootElement = false) {
+      function hashElementPromise(stats, dirname7, options, isRootElement = false) {
         const name = stats.name;
         let promise2 = void 0;
         if (stats.isDirectory()) {
-          promise2 = hashFolderPromise(name, dirname6, options, isRootElement);
+          promise2 = hashFolderPromise(name, dirname7, options, isRootElement);
         } else if (stats.isFile()) {
-          promise2 = hashFilePromise(name, dirname6, options, isRootElement);
+          promise2 = hashFilePromise(name, dirname7, options, isRootElement);
         } else if (stats.isSymbolicLink()) {
-          promise2 = hashSymLinkPromise(name, dirname6, options, isRootElement);
+          promise2 = hashSymLinkPromise(name, dirname7, options, isRootElement);
         } else {
           log.err("hashElementPromise cannot handle ", stats);
           return Promise.resolve({ name, hash: "Error: unknown element type" });
         }
         return promise2.catch((err) => {
           if (err.code && (err.code === "EMFILE" || err.code === "ENFILE")) {
-            log.queue(`queued ${dirname6}/${name} because of ${err.code}`);
+            log.queue(`queued ${dirname7}/${name} because of ${err.code}`);
             const promise3 = new Promise((resolve8, reject) => {
               queue.push(() => {
-                log.queue(`Will processs queued ${dirname6}/${name}`);
-                return hashElementPromise(stats, dirname6, options, isRootElement).then((ok) => resolve8(ok)).catch((err2) => reject(err2));
+                log.queue(`Will processs queued ${dirname7}/${name}`);
+                return hashElementPromise(stats, dirname7, options, isRootElement).then((ok) => resolve8(ok)).catch((err2) => reject(err2));
               });
             });
             if (queueTimer === void 0) {
@@ -46471,10 +46471,10 @@ ejs.fileLoader = fs2.readFileSync;
 ejs.localsName = _DEFAULT_LOCALS_NAME;
 ejs.promiseImpl = new Function("return this;")().Promise;
 ejs.resolveInclude = function(name, filename, isDir) {
-  let dirname6 = path6.dirname;
+  let dirname7 = path6.dirname;
   let extname2 = path6.extname;
   let resolve8 = path6.resolve;
-  let includePath = resolve8(isDir ? filename : dirname6(filename), name);
+  let includePath = resolve8(isDir ? filename : dirname7(filename), name);
   let ext2 = extname2(name);
   if (!ext2) {
     includePath += ".ejs";
@@ -47617,8 +47617,9 @@ var NpmCommand = class {
 };
 
 // ng-dev/release/publish/external-commands.js
-import { existsSync as existsSync5 } from "fs";
-import { join as join10 } from "path";
+var import_semver7 = __toESM(require_semver());
+import { existsSync as existsSync5, readFileSync as readFileSync8 } from "fs";
+import { dirname as dirname4, join as join10 } from "path";
 
 // ng-dev/release/publish/actions-error.js
 var UserAbortedReleaseActionError = class extends Error {
@@ -47711,17 +47712,37 @@ var ExternalCommands = class {
       return;
     }
     try {
-      await ChildProcess.spawn(". ~/.nvm/nvm.sh && nvm install", [], {
+      const nodeVersionFromNvmrc = readFileSync8(join10(projectDir, ".nvmrc"), "utf8").trim();
+      const { stdout } = await ChildProcess.spawn(". ~/.nvm/nvm.sh && nvm install >&2 && nvm which", [], {
         cwd: projectDir,
         mode: "on-error",
         shell: true
       });
+      const nodeBinPath = stdout.trim();
+      if (nodeBinPath) {
+        const nodeDir = dirname4(nodeBinPath);
+        const currentPath = process.env["PATH"] || "";
+        const pathParts = currentPath.split(":");
+        if (pathParts[0] !== nodeDir) {
+          const filteredParts = pathParts.filter((p) => p !== nodeDir);
+          process.env["PATH"] = [nodeDir, ...filteredParts].join(":");
+          Log.debug(`Updated process.env.PATH to include ${nodeDir}`);
+        }
+      }
+      const { stdout: nodeVersionOutput } = await ChildProcess.spawn("node", ["--version"], {
+        mode: "silent",
+        cwd: projectDir
+      });
+      const detectedNodeVersion = nodeVersionOutput.trim();
+      if (!import_semver7.default.satisfies(detectedNodeVersion, nodeVersionFromNvmrc)) {
+        Log.error(`  \u2718   Node.js version mismatch after update.
+`);
+        Log.error(`      Expected version: ${nodeVersionFromNvmrc}`);
+        Log.error(`      Actual version:   ${detectedNodeVersion}`);
+        throw new FatalReleaseActionError();
+      }
       if (!quiet) {
-        const { stdout: nodeVersion } = await ChildProcess.spawn("node", ["--version"], {
-          mode: "silent",
-          cwd: projectDir
-        });
-        Log.info(green(`  \u2713   Set node version to ${nodeVersion}.`));
+        Log.info(green(`  \u2713   Set node version to ${detectedNodeVersion}.`));
       }
     } catch (e) {
       Log.error(e);
@@ -47792,7 +47813,7 @@ var ExternalCommands = class {
 };
 
 // ng-dev/release/publish/actions/configure-next-as-major.js
-var import_semver8 = __toESM(require_semver());
+var import_semver9 = __toESM(require_semver());
 
 // ng-dev/utils/constants.js
 var workspaceRelativePackageJsonPath = "package.json";
@@ -47803,16 +47824,16 @@ import { existsSync as existsSync6, promises as fs3 } from "fs";
 import { join as join11 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
-var import_semver7 = __toESM(require_semver());
+var import_semver8 = __toESM(require_semver());
 function isExperimentalSemver(version2) {
   return version2.major === 0 && version2.minor >= 100;
 }
 function createExperimentalSemver(version2) {
-  version2 = new import_semver7.default.SemVer(version2);
-  const experimentalVersion = new import_semver7.default.SemVer(version2.format());
+  version2 = new import_semver8.default.SemVer(version2);
+  const experimentalVersion = new import_semver8.default.SemVer(version2.format());
   experimentalVersion.major = 0;
   experimentalVersion.minor = version2.major * 100 + version2.minor;
-  return new import_semver7.default.SemVer(experimentalVersion.format());
+  return new import_semver8.default.SemVer(experimentalVersion.format());
 }
 
 // ng-dev/release/versioning/version-tags.js
@@ -48338,7 +48359,7 @@ function isFirstNextPrerelease(v) {
 var ConfigureNextAsMajorAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
-    this._newVersion = import_semver8.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
+    this._newVersion = import_semver9.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
   }
   async getDescription() {
     const { branchName } = this.active.next;
@@ -48364,9 +48385,9 @@ var ConfigureNextAsMajorAction = class extends ReleaseAction {
 };
 
 // ng-dev/utils/semver.js
-var import_semver9 = __toESM(require_semver());
+var import_semver10 = __toESM(require_semver());
 function semverInc(version2, release, identifier) {
-  const clone2 = new import_semver9.default.SemVer(version2.version);
+  const clone2 = new import_semver10.default.SemVer(version2.version);
   return clone2.inc(release, identifier);
 }
 
@@ -48515,7 +48536,7 @@ var CutNpmNextReleaseCandidateAction = class extends CutNpmNextPrereleaseAction 
 };
 
 // ng-dev/release/publish/actions/cut-stable.js
-var import_semver14 = __toESM(require_semver());
+var import_semver15 = __toESM(require_semver());
 var CutStableAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -48564,7 +48585,7 @@ var CutStableAction = class extends ReleaseAction {
     return this._isNewMajor ? "next" : "latest";
   }
   _computeNewVersion({ version: version2 }) {
-    return import_semver14.default.parse(`${version2.major}.${version2.minor}.${version2.patch}`);
+    return import_semver15.default.parse(`${version2.major}.${version2.minor}.${version2.patch}`);
   }
   static async isActive(active) {
     if (active.exceptionalMinor !== null) {
@@ -48615,7 +48636,7 @@ var CutExceptionalMinorReleaseCandidateAction = class extends CutExceptionalMino
 };
 
 // ng-dev/release/publish/actions/exceptional-minor/prepare-exceptional-minor.js
-var import_semver16 = __toESM(require_semver());
+var import_semver17 = __toESM(require_semver());
 var PrepareExceptionalMinorAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -48623,7 +48644,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
     this._baseBranch = this._patch.branchName;
     this._patchVersion = this._patch.version;
     this._newBranch = `${this._patchVersion.major}.${this._patchVersion.minor + 1}.x`;
-    this._newVersion = import_semver16.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
+    this._newVersion = import_semver17.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
   }
   async getDescription() {
     return `Prepare an exceptional minor based on the existing "${this._baseBranch}" branch (${this._newBranch}).`;
@@ -48654,7 +48675,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 };
 
 // ng-dev/release/publish/actions/shared/branch-off-next-branch.js
-var import_semver17 = __toESM(require_semver());
+var import_semver18 = __toESM(require_semver());
 
 // ng-dev/release/publish/actions/renovate-config-updates.js
 import { existsSync as existsSync7 } from "node:fs";
@@ -48727,7 +48748,7 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   }
   async _createNextBranchUpdatePullRequest(releaseNotes, newVersion) {
     const { branchName: nextBranch, version: version2 } = this.active.next;
-    const newNextVersion = import_semver17.default.parse(`${version2.major}.${version2.minor + 1}.0-next.0`);
+    const newNextVersion = import_semver18.default.parse(`${version2.major}.${version2.minor + 1}.0-next.0`);
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
@@ -48772,15 +48793,15 @@ var MoveNextIntoReleaseCandidateAction = class extends BranchOffNextBranchBaseAc
 };
 
 // ng-dev/release/publish/actions/special/cut-lts-minor.js
-var import_semver18 = __toESM(require_semver());
+var import_semver19 = __toESM(require_semver());
 var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
   async getDescription() {
     return `SPECIAL: Cut a new release for an LTS minor.`;
   }
   async perform() {
     const ltsBranch = await this._askForVersionBranch("Please specify the target LTS branch:");
-    const compareVersionForReleaseNotes = import_semver18.default.parse(await Prompt.input({ message: "Compare version for release" }));
-    const newVersion = import_semver18.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
+    const compareVersionForReleaseNotes = import_semver19.default.parse(await Prompt.input({ message: "Compare version for release" }));
+    const newVersion = import_semver19.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, ltsBranch.branch);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
     await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.branch, getLtsNpmDistTagOfMajor(newVersion.major), { showAsLatestOnGitHub: false });
@@ -48805,7 +48826,7 @@ var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
 };
 
 // ng-dev/release/publish/actions/tag-recent-major-as-latest.js
-var import_semver19 = __toESM(require_semver());
+var import_semver20 = __toESM(require_semver());
 var TagRecentMajorAsLatest = class extends ReleaseAction {
   async getDescription() {
     return `Retag recently published major v${this.active.latest.version} as "latest" in NPM.`;
@@ -48833,7 +48854,7 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
       return false;
     }
     const packageInfo = await fetchProjectNpmPackageInfo(config2);
-    const npmLatestVersion = import_semver19.default.parse(packageInfo["dist-tags"]["latest"]);
+    const npmLatestVersion = import_semver20.default.parse(packageInfo["dist-tags"]["latest"]);
     return npmLatestVersion !== null && npmLatestVersion.major === latest.version.major - 1;
   }
 };
@@ -48860,7 +48881,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-5b99d6d3e88b82657d768d816b0d1d1dccbf0b9e`;
+var localVersion = `0.0.0-96bda20c27167a0e655d292f85a1daf611a9db62`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49270,7 +49291,7 @@ import url from "url";
 
 // ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
-var import_semver20 = __toESM(require_semver());
+var import_semver21 = __toESM(require_semver());
 import { join as join15 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
@@ -49353,7 +49374,7 @@ function getVersionFromWorkspacePackageJson(git) {
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver20.default.SemVer(packageJson.version);
+  return new import_semver21.default.SemVer(packageJson.version);
 }
 
 // ng-dev/release/stamping/cli.js
@@ -49424,7 +49445,7 @@ var ReleaseNpmDistTagDeleteCommand = {
 };
 
 // ng-dev/release/npm-dist-tag/set/cli.js
-var import_semver21 = __toESM(require_semver());
+var import_semver22 = __toESM(require_semver());
 function builder25(args) {
   return args.positional("tagName", {
     type: "string",
@@ -49445,7 +49466,7 @@ async function handler25(args) {
   const config2 = await getConfig();
   assertValidReleaseConfig(config2);
   const { npmPackages, publishRegistry } = config2.release;
-  const version2 = import_semver21.default.parse(rawVersion);
+  const version2 = import_semver22.default.parse(rawVersion);
   if (version2 === null) {
     Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
     process.exit(1);
@@ -49502,12 +49523,12 @@ function buildReleaseParser(localYargs) {
 
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync9, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
+import { existsSync as existsSync9, readFileSync as readFileSync12, writeFileSync as writeFileSync6 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
-import { readFileSync as readFileSync10 } from "fs";
-import { dirname as dirname4, join as join16, resolve as resolve5 } from "path";
+import { readFileSync as readFileSync11 } from "fs";
+import { dirname as dirname5, join as join16, resolve as resolve5 } from "path";
 import ts2 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
@@ -49577,7 +49598,7 @@ var Analyzer = class {
     if (this._sourceFileCache.has(resolvedPath)) {
       return this._sourceFileCache.get(resolvedPath);
     }
-    const fileContent = readFileSync10(resolvedPath, "utf8");
+    const fileContent = readFileSync11(resolvedPath, "utf8");
     const sourceFile = ts2.createSourceFile(resolvedPath, fileContent, ts2.ScriptTarget.Latest, false);
     this._sourceFileCache.set(resolvedPath, sourceFile);
     return sourceFile;
@@ -49609,7 +49630,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join16(dirname4(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join16(dirname5(containingFilePath), specifier) : specifier;
     const stat2 = getFileStatus(importFullPath);
     if (stat2 && stat2.isFile()) {
       return importFullPath;
@@ -49629,9 +49650,9 @@ var Analyzer = class {
 };
 
 // ng-dev/ts-circular-dependencies/config.js
-import { dirname as dirname5, extname, isAbsolute, resolve as resolve6 } from "path";
+import { dirname as dirname6, extname, isAbsolute, resolve as resolve6 } from "path";
 async function loadTestConfig(configPath) {
-  const configBaseDir = dirname5(configPath);
+  const configBaseDir = dirname6(configPath);
   const resolveRelativePath = (relativePath) => resolve6(configBaseDir, relativePath);
   try {
     let config2;
@@ -49797,7 +49818,7 @@ function main(approve, config2, printWarnings) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
-  const expected = goldenFile ? JSON.parse(readFileSync11(goldenFile, "utf8")) : [];
+  const expected = goldenFile ? JSON.parse(readFileSync12(goldenFile, "utf8")) : [];
   const { fixedCircularDeps, newCircularDeps } = compareGoldens(actual, expected);
   const isMatching = fixedCircularDeps.length === 0 && newCircularDeps.length === 0;
   if (isMatching) {
