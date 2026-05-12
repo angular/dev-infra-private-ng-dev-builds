@@ -47568,7 +47568,14 @@ var NpmCommand = class {
     if (registryUrl !== void 0) {
       args.push("--registry", registryUrl);
     }
-    await ChildProcess.spawn("npm", args, { mode: "silent" });
+    try {
+      await ChildProcess.spawn("npm", args, { mode: "silent" });
+    } catch (e) {
+      Log.error(Array(80).join("#"));
+      Log.error(`  \u2718   An error occurred while deprecating "${packageName}".`);
+      Log.error(e);
+      Log.error(Array(80).join("#"));
+    }
   }
   static async setDistTagForPackage(packageName, distTag, version2, registryUrl) {
     const args = ["dist-tag", "add", `${packageName}@${version2}`, distTag];
@@ -48881,7 +48888,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-96bda20c27167a0e655d292f85a1daf611a9db62`;
+var localVersion = `0.0.0-602e90c2a387da841df7a6b530932fe5527bbc50`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
