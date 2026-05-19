@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-3KYN7RKS.mjs";
+} from "./chunk-XI6A552T.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -32160,9 +32160,9 @@ var require_src5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/constants.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/constants.js
 var require_constants4 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/constants.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/constants.js"(exports2, module2) {
     "use strict";
     var BINARY_TYPES = ["nodebuffer", "arraybuffer", "fragments"];
     var hasBlob = typeof Blob !== "undefined";
@@ -32418,9 +32418,9 @@ var require_bufferutil = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/buffer-util.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/buffer-util.js
 var require_buffer_util = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/buffer-util.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/buffer-util.js"(exports2, module2) {
     "use strict";
     var { EMPTY_BUFFER } = require_constants4();
     var FastBuffer = Buffer[Symbol.species];
@@ -32500,9 +32500,9 @@ var require_buffer_util = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/limiter.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/limiter.js
 var require_limiter = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/limiter.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/limiter.js"(exports2, module2) {
     "use strict";
     var kDone = Symbol("kDone");
     var kRun = Symbol("kRun");
@@ -32551,9 +32551,9 @@ var require_limiter = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/permessage-deflate.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/permessage-deflate.js
 var require_permessage_deflate = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/permessage-deflate.js"(exports2, module2) {
     "use strict";
     var zlib = __require("zlib");
     var bufferUtil = require_buffer_util();
@@ -32984,9 +32984,9 @@ var require_utf_8_validate = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/validation.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/validation.js
 var require_validation = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/validation.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/validation.js"(exports2, module2) {
     "use strict";
     var { isUtf8 } = __require("buffer");
     var { hasBlob } = require_constants4();
@@ -33185,9 +33185,9 @@ var require_validation = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/receiver.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/receiver.js
 var require_receiver = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/receiver.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/receiver.js"(exports2, module2) {
     "use strict";
     var { Writable } = __require("stream");
     var PerMessageDeflate2 = require_permessage_deflate();
@@ -33788,12 +33788,15 @@ var require_receiver = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/sender.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/sender.js
 var require_sender = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/sender.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/sender.js"(exports2, module2) {
     "use strict";
     var { Duplex } = __require("stream");
     var { randomFillSync } = __require("crypto");
+    var {
+      types: { isUint8Array }
+    } = __require("util");
     var PerMessageDeflate2 = require_permessage_deflate();
     var { EMPTY_BUFFER, kWebSocket, NOOP } = require_constants4();
     var { isBlob, isValidStatusCode } = require_validation();
@@ -33950,8 +33953,10 @@ var require_sender = __commonJS({
           buf.writeUInt16BE(code, 0);
           if (typeof data === "string") {
             buf.write(data, 2);
-          } else {
+          } else if (isUint8Array(data)) {
             buf.set(data, 2);
+          } else {
+            throw new TypeError("Second argument must be a string or a Uint8Array");
           }
         }
         const options = {
@@ -34282,9 +34287,9 @@ var require_sender = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/event-target.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/event-target.js
 var require_event_target = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/event-target.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/event-target.js"(exports2, module2) {
     "use strict";
     var { kForOnEventAttribute, kListener } = require_constants4();
     var kCode = Symbol("kCode");
@@ -34511,9 +34516,9 @@ var require_event_target = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/extension.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/extension.js
 var require_extension = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/extension.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/extension.js"(exports2, module2) {
     "use strict";
     var { tokenChars } = require_validation();
     function push(dest, name, elem) {
@@ -34681,9 +34686,9 @@ var require_extension = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/websocket.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/websocket.js
 var require_websocket = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/websocket.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/websocket.js"(exports2, module2) {
     "use strict";
     var EventEmitter = __require("events");
     var https = __require("https");
@@ -35596,9 +35601,9 @@ var require_websocket = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/stream.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/stream.js
 var require_stream5 = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/stream.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/stream.js"(exports2, module2) {
     "use strict";
     var WebSocket2 = require_websocket();
     var { Duplex } = __require("stream");
@@ -35702,9 +35707,9 @@ var require_stream5 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/subprotocol.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/subprotocol.js
 var require_subprotocol = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/subprotocol.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/subprotocol.js"(exports2, module2) {
     "use strict";
     var { tokenChars } = require_validation();
     function parse7(header) {
@@ -35750,9 +35755,9 @@ var require_subprotocol = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/websocket-server.js
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/websocket-server.js
 var require_websocket_server = __commonJS({
-  "node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/lib/websocket-server.js"(exports2, module2) {
+  "node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/lib/websocket-server.js"(exports2, module2) {
     "use strict";
     var EventEmitter = __require("events");
     var http = __require("http");
@@ -48888,7 +48893,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-a09a0b0b86117804bcda674acfd216d817222ab2`;
+var localVersion = `0.0.0-49e2dadc4b17b0ff10a76329065c9b7e1fff3e91`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -50115,7 +50120,7 @@ import { writeFile as writeFile2 } from "fs/promises";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
 
-// node_modules/.aspect_rules_js/ws@8.20.0_1527948970/node_modules/ws/wrapper.mjs
+// node_modules/.aspect_rules_js/ws@8.20.1_1527948970/node_modules/ws/wrapper.mjs
 var import_stream = __toESM(require_stream5(), 1);
 var import_extension = __toESM(require_extension(), 1);
 var import_permessage_deflate = __toESM(require_permessage_deflate(), 1);
