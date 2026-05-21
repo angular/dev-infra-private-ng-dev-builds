@@ -1,7 +1,7 @@
 import { PullRequestValidationConfig } from '../../config/index.js';
 import { PullRequestValidationFailure } from './validation-failure.js';
 export declare function createPullRequestValidationConfig(config: PullRequestValidationConfig): PullRequestValidationConfig;
-export type PullRequestValidationErrorCreateFn = (message: string) => PullRequestValidationFailure;
+export type PullRequestValidationErrorCreateFn = (message: string, isFinal?: boolean) => PullRequestValidationFailure;
 export declare abstract class PullRequestValidation {
     protected name: keyof PullRequestValidationConfig;
     protected _createError: PullRequestValidationErrorCreateFn;

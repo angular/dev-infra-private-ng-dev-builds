@@ -44833,10 +44833,11 @@ var PullRequestValidationError = class extends FatalMergeToolError {
 
 // ng-dev/pr/common/validation/validation-failure.js
 var PullRequestValidationFailure = class {
-  constructor(message, validationName, canBeForceIgnored) {
+  constructor(message, validationName, canBeForceIgnored, isFinal = true) {
     this.message = message;
     this.validationName = validationName;
     this.canBeForceIgnored = canBeForceIgnored;
+    this.isFinal = isFinal;
   }
 };
 
@@ -44866,7 +44867,7 @@ function createPullRequestValidation({ name, canBeForceIgnored }, getValidationC
   return {
     async run(validationConfig, ...args) {
       if (validationConfig[name]) {
-        const validation = new (getValidationCtor())(name, (message) => new PullRequestValidationFailure(message, name, canBeForceIgnored));
+        const validation = new (getValidationCtor())(name, (message, isFinal = true) => new PullRequestValidationFailure(message, name, canBeForceIgnored, isFinal));
         try {
           await validation.assert(...args);
         } catch (e) {
@@ -45139,10 +45140,10 @@ var Validation9 = class extends PullRequestValidation {
   assert(pullRequest) {
     const { combinedStatus, statuses } = getStatusesForPullRequest(pullRequest);
     if (statuses.find((status) => status.name === "lint") === void 0) {
-      throw this._createError("Pull request is missing expected status checks. Check the pull request for pending workflows");
+      throw this._createError("Pull request is missing expected status checks. Check the pull request for pending workflows", false);
     }
     if (combinedStatus === PullRequestStatus.PENDING) {
-      throw this._createError("Pull request has pending status checks.");
+      throw this._createError("Pull request has pending status checks.", false);
     }
     if (combinedStatus === PullRequestStatus.FAILING) {
       throw this._createError("Pull request has failing status checks.");
@@ -45177,12 +45178,13 @@ var Validation11 = class extends PullRequestValidation {
 };
 
 // ng-dev/pr/common/validation/validate-pull-request.js
-async function assertValidPullRequest(pullRequest, validationConfig, ngDevConfig, activeReleaseTrains, target, gitClient2) {
+import { setTimeout as setTimeout2 } from "node:timers/promises";
+async function runValidations(pullRequest, validationConfig, ngDevConfig, activeReleaseTrains, target, gitClient2) {
   const labels = pullRequest.labels.nodes.map((l) => l.name);
   const commitsInPr = pullRequest.commits.nodes.map((n) => {
     return parseCommitMessage(n.commit.message);
   });
-  const validationResults = [
+  const validationPromises = [
     minimumReviewsValidation.run(validationConfig, pullRequest),
     completedReviewsValidation.run(validationConfig, pullRequest),
     mergeReadyValidation.run(validationConfig, pullRequest),
@@ -45195,11 +45197,50 @@ async function assertValidPullRequest(pullRequest, validationConfig, ngDevConfig
     enforceTestedValidation.run(validationConfig, pullRequest, gitClient2)
   ];
   if (activeReleaseTrains !== null) {
-    validationResults.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels, pullRequest));
+    validationPromises.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels, pullRequest));
   }
-  return await Promise.all(validationResults).then((results) => {
-    return results.filter((result) => result !== null);
-  });
+  const results = await Promise.all(validationPromises);
+  return results.filter((result) => result !== null);
+}
+async function assertValidPullRequest(originalPullRequest, validationConfig, ngDevConfig, activeReleaseTrains, target, gitClient2) {
+  let pullRequest = originalPullRequest;
+  let spinner;
+  const maxAttempts = 60;
+  let attempts = 0;
+  while (true) {
+    const failures = await runValidations(pullRequest, validationConfig, ngDevConfig, activeReleaseTrains, target, gitClient2);
+    const finalFailures = failures.filter((f) => f.isFinal);
+    const nonFinalFailures = failures.filter((f) => !f.isFinal);
+    const shouldWaitForPending = nonFinalFailures.length > 0 && finalFailures.length === 0 && validationConfig.waitIfPending;
+    if (!shouldWaitForPending) {
+      if (spinner) {
+        spinner.complete();
+      }
+      return failures;
+    }
+    if (attempts >= maxAttempts) {
+      if (spinner) {
+        spinner.complete();
+      }
+      Log.error(`Timed out waiting for non-final validations to complete after ${maxAttempts} minutes.`);
+      return failures;
+    }
+    const names = nonFinalFailures.map((f) => f.validationName).join(", ");
+    const verb = nonFinalFailures.length === 1 ? "is" : "are";
+    const spinnerText = `[${names}] ${verb} not final. Waiting for completion (attempt ${attempts + 1}/${maxAttempts})...`;
+    if (!spinner) {
+      spinner = new Spinner(spinnerText);
+    } else {
+      spinner.update(spinnerText);
+    }
+    await setTimeout2(6e4);
+    const freshPr = await fetchPullRequestFromGithub(gitClient2, originalPullRequest.number);
+    if (!freshPr) {
+      throw new Error("Failed to re-fetch pull request data");
+    }
+    pullRequest = freshPr;
+    attempts++;
+  }
 }
 
 // ng-dev/pr/merge/strategies/strategy.js
@@ -45555,7 +45596,8 @@ var defaultPullRequestMergeFlags = {
   branchPrompt: true,
   forceManualBranches: false,
   dryRun: false,
-  ignorePendingReviews: false
+  ignorePendingReviews: false,
+  waitForValidations: false
 };
 var MergeTool = class {
   constructor(config2, git, flags) {
@@ -45566,7 +45608,8 @@ var MergeTool = class {
   async merge(prNumber, partialValidationConfig) {
     const validationConfig = createPullRequestValidationConfig({
       ...this.config.pullRequest.validators,
-      ...partialValidationConfig
+      ...partialValidationConfig,
+      waitIfPending: this.flags.waitForValidations
     });
     if (this.git.hasUncommittedChanges()) {
       throw new FatalMergeToolError("Local working repository not clean. Please make sure there are no uncommitted changes.");
@@ -45804,10 +45847,20 @@ async function builder16(argv) {
     type: "boolean",
     default: false,
     description: "Bypass the check for pending reviews on the pull request"
+  }).option("wait-for-validations", {
+    type: "boolean",
+    default: false,
+    description: "Wait for pending validations to complete before merging."
   });
 }
-async function handler16({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews }) {
-  await mergePullRequest(pr, { branchPrompt, forceManualBranches, dryRun, ignorePendingReviews });
+async function handler16({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews, waitForValidations }) {
+  await mergePullRequest(pr, {
+    branchPrompt,
+    forceManualBranches,
+    dryRun,
+    ignorePendingReviews,
+    waitForValidations
+  });
 }
 var MergeCommandModule = {
   handler: handler16,
@@ -48893,7 +48946,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-49e2dadc4b17b0ff10a76329065c9b7e1fff3e91`;
+var localVersion = `0.0.0-00702bc333eac5292601d5374536195a0cd80b4e`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -68331,7 +68384,7 @@ var MigrateModule = {
 // ng-dev/ai/fix.js
 var import_fast_glob5 = __toESM(require_out4());
 var import_cli_progress4 = __toESM(require_cli_progress());
-import { setTimeout as setTimeout2 } from "node:timers/promises";
+import { setTimeout as setTimeout3 } from "node:timers/promises";
 import { readFile as readFile4, writeFile as writeFile4 } from "node:fs/promises";
 import { basename as basename2 } from "node:path";
 import assert2 from "node:assert";
@@ -68450,7 +68503,7 @@ async function uploadFiles(ai, filePaths, progressBar) {
       assert2(uploadedFile.name, "File name cannot be undefined after upload.");
       let getFile = await ai.files.get({ name: uploadedFile.name });
       while (getFile.state === FileState.PROCESSING) {
-        await setTimeout2(500);
+        await setTimeout3(500);
         getFile = await ai.files.get({ name: uploadedFile.name });
       }
       if (getFile.state === FileState.FAILED) {

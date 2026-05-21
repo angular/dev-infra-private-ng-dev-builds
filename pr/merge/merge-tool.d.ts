@@ -6,6 +6,7 @@ export interface PullRequestMergeFlags {
     forceManualBranches: boolean;
     dryRun: boolean;
     ignorePendingReviews: boolean;
+    waitForValidations: boolean;
 }
 export declare class MergeTool {
     config: NgDevConfig<{
