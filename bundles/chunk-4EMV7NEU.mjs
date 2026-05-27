@@ -10094,7 +10094,7 @@ function withDefaults(oldDefaults, newDefaults) {
 }
 var endpoint = withDefaults(null, DEFAULTS);
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.9/node_modules/@octokit/request/dist-bundle/index.js
+// node_modules/.aspect_rules_js/@octokit+request@10.0.10/node_modules/@octokit/request/dist-bundle/index.js
 var import_content_type = __toESM(require_dist());
 
 // node_modules/.aspect_rules_js/json-with-bigint@3.5.8/node_modules/json-with-bigint/json-with-bigint.js
@@ -10255,8 +10255,8 @@ var RequestError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.9/node_modules/@octokit/request/dist-bundle/index.js
-var VERSION2 = "10.0.9";
+// node_modules/.aspect_rules_js/@octokit+request@10.0.10/node_modules/@octokit/request/dist-bundle/index.js
+var VERSION2 = "10.0.10";
 var defaults_default = {
   headers: {
     "user-agent": `octokit-request.js/${VERSION2} ${getUserAgent()}`
