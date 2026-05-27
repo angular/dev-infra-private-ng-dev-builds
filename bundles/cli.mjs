@@ -21551,7 +21551,7 @@ var require_extend = __commonJS({
       }
       return toStr.call(arr) === "[object Array]";
     };
-    var isPlainObject3 = function isPlainObject4(obj) {
+    var isPlainObject4 = function isPlainObject5(obj) {
       if (!obj || toStr.call(obj) !== "[object Object]") {
         return false;
       }
@@ -21608,12 +21608,12 @@ var require_extend = __commonJS({
             src = getProperty(target, name);
             copy = getProperty(options, name);
             if (target !== copy) {
-              if (deep && copy && (isPlainObject3(copy) || (copyIsArray = isArray2(copy)))) {
+              if (deep && copy && (isPlainObject4(copy) || (copyIsArray = isArray2(copy)))) {
                 if (copyIsArray) {
                   copyIsArray = false;
                   clone2 = src && isArray2(src) ? src : [];
                 } else {
-                  clone2 = src && isPlainObject3(src) ? src : {};
+                  clone2 = src && isPlainObject4(src) ? src : {};
                 }
                 setProperty2(target, { name, newValue: extend2(deep, clone2, copy) });
               } else if (typeof copy !== "undefined") {
@@ -48946,7 +48946,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-adae685a338508cb2d4f688e84c4efd3204c7b69`;
+var localVersion = `0.0.0-c6d2935115dce3f012a8ce5352758a3768546627`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -50164,7 +50164,7 @@ function buildConfigParser(localYargs) {
   return localYargs.help().strict().demandCommand().command(ValidateModule);
 }
 
-// node_modules/.aspect_rules_js/@google+genai@1.52.0_408531172/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@2.6.0_408531172/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
 var import_google_auth_library = __toESM(require_src5(), 1);
 import { createWriteStream } from "fs";
@@ -50183,7 +50183,7 @@ var import_subprotocol = __toESM(require_subprotocol(), 1);
 var import_websocket = __toESM(require_websocket(), 1);
 var import_websocket_server = __toESM(require_websocket_server(), 1);
 
-// node_modules/.aspect_rules_js/@google+genai@1.52.0_408531172/node_modules/@google/genai/dist/node/index.mjs
+// node_modules/.aspect_rules_js/@google+genai@2.6.0_408531172/node_modules/@google/genai/dist/node/index.mjs
 import * as path$1 from "path";
 var _defaultBaseGeminiUrl = void 0;
 var _defaultBaseVertexUrl = void 0;
@@ -50662,11 +50662,6 @@ function videoFromVertex$1(fromObject) {
   }
   return toObject;
 }
-var Language;
-(function(Language2) {
-  Language2["LANGUAGE_UNSPECIFIED"] = "LANGUAGE_UNSPECIFIED";
-  Language2["PYTHON"] = "PYTHON";
-})(Language || (Language = {}));
 var Outcome;
 (function(Outcome2) {
   Outcome2["OUTCOME_UNSPECIFIED"] = "OUTCOME_UNSPECIFIED";
@@ -50674,6 +50669,11 @@ var Outcome;
   Outcome2["OUTCOME_FAILED"] = "OUTCOME_FAILED";
   Outcome2["OUTCOME_DEADLINE_EXCEEDED"] = "OUTCOME_DEADLINE_EXCEEDED";
 })(Outcome || (Outcome = {}));
+var Language;
+(function(Language2) {
+  Language2["LANGUAGE_UNSPECIFIED"] = "LANGUAGE_UNSPECIFIED";
+  Language2["PYTHON"] = "PYTHON";
+})(Language || (Language = {}));
 var FunctionResponseScheduling;
 (function(FunctionResponseScheduling2) {
   FunctionResponseScheduling2["SCHEDULING_UNSPECIFIED"] = "SCHEDULING_UNSPECIFIED";
@@ -50696,6 +50696,8 @@ var Environment;
 (function(Environment2) {
   Environment2["ENVIRONMENT_UNSPECIFIED"] = "ENVIRONMENT_UNSPECIFIED";
   Environment2["ENVIRONMENT_BROWSER"] = "ENVIRONMENT_BROWSER";
+  Environment2["ENVIRONMENT_MOBILE"] = "ENVIRONMENT_MOBILE";
+  Environment2["ENVIRONMENT_DESKTOP"] = "ENVIRONMENT_DESKTOP";
 })(Environment || (Environment = {}));
 var AuthType;
 (function(AuthType2) {
@@ -50950,6 +50952,12 @@ var PairwiseChoice;
   PairwiseChoice2["CANDIDATE"] = "CANDIDATE";
   PairwiseChoice2["TIE"] = "TIE";
 })(PairwiseChoice || (PairwiseChoice = {}));
+var TuningSpeed;
+(function(TuningSpeed2) {
+  TuningSpeed2["TUNING_SPEED_UNSPECIFIED"] = "TUNING_SPEED_UNSPECIFIED";
+  TuningSpeed2["REGULAR"] = "REGULAR";
+  TuningSpeed2["FAST"] = "FAST";
+})(TuningSpeed || (TuningSpeed = {}));
 var TuningTask;
 (function(TuningTask2) {
   TuningTask2["TUNING_TASK_UNSPECIFIED"] = "TUNING_TASK_UNSPECIFIED";
@@ -50957,6 +50965,12 @@ var TuningTask;
   TuningTask2["TUNING_TASK_T2V"] = "TUNING_TASK_T2V";
   TuningTask2["TUNING_TASK_R2V"] = "TUNING_TASK_R2V";
 })(TuningTask || (TuningTask = {}));
+var VideoOrientation;
+(function(VideoOrientation2) {
+  VideoOrientation2["VIDEO_ORIENTATION_UNSPECIFIED"] = "VIDEO_ORIENTATION_UNSPECIFIED";
+  VideoOrientation2["LANDSCAPE"] = "LANDSCAPE";
+  VideoOrientation2["PORTRAIT"] = "PORTRAIT";
+})(VideoOrientation || (VideoOrientation = {}));
 var DocumentState;
 (function(DocumentState2) {
   DocumentState2["STATE_UNSPECIFIED"] = "STATE_UNSPECIFIED";
@@ -52209,22 +52223,22 @@ function authConfigToMldev$4(fromObject) {
     setValueByPath(toObject, ["apiKey"], fromApiKey);
   }
   if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
-    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+    throw new Error("apiKeyConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["authType"]) !== void 0) {
-    throw new Error("authType parameter is not supported in Gemini API.");
+    throw new Error("authType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
-    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+    throw new Error("googleServiceAccountConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
-    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+    throw new Error("httpBasicAuthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
-    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+    throw new Error("oauthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
-    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+    throw new Error("oidcConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -52305,13 +52319,13 @@ function batchJobDestinationToVertex(fromObject) {
     setValueByPath(toObject, ["bigqueryDestination", "outputUri"], fromBigqueryUri);
   }
   if (getValueByPath(fromObject, ["fileName"]) !== void 0) {
-    throw new Error("fileName parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("fileName parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["inlinedResponses"]) !== void 0) {
-    throw new Error("inlinedResponses parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("inlinedResponses parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["inlinedEmbedContentResponses"]) !== void 0) {
-    throw new Error("inlinedEmbedContentResponses parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("inlinedEmbedContentResponses parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   const fromVertexDataset = getValueByPath(fromObject, [
     "vertexDataset"
@@ -52456,13 +52470,13 @@ function batchJobSourceFromVertex(fromObject) {
 function batchJobSourceToMldev(apiClient, fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["format"]) !== void 0) {
-    throw new Error("format parameter is not supported in Gemini API.");
+    throw new Error("format parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["gcsUri"]) !== void 0) {
-    throw new Error("gcsUri parameter is not supported in Gemini API.");
+    throw new Error("gcsUri parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["bigqueryUri"]) !== void 0) {
-    throw new Error("bigqueryUri parameter is not supported in Gemini API.");
+    throw new Error("bigqueryUri parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFileName = getValueByPath(fromObject, ["fileName"]);
   if (fromFileName != null) {
@@ -52481,7 +52495,7 @@ function batchJobSourceToMldev(apiClient, fromObject) {
     setValueByPath(toObject, ["requests", "requests"], transformedList);
   }
   if (getValueByPath(fromObject, ["vertexDatasetName"]) !== void 0) {
-    throw new Error("vertexDatasetName parameter is not supported in Gemini API.");
+    throw new Error("vertexDatasetName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -52500,10 +52514,10 @@ function batchJobSourceToVertex(fromObject) {
     setValueByPath(toObject, ["bigquerySource", "inputUri"], fromBigqueryUri);
   }
   if (getValueByPath(fromObject, ["fileName"]) !== void 0) {
-    throw new Error("fileName parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("fileName parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["inlinedRequests"]) !== void 0) {
-    throw new Error("inlinedRequests parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("inlinedRequests parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   const fromVertexDatasetName = getValueByPath(fromObject, [
     "vertexDatasetName"
@@ -52520,7 +52534,7 @@ function blobToMldev$4(fromObject) {
     setValueByPath(toObject, ["data"], fromData);
   }
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -52643,7 +52657,7 @@ function createBatchJobConfigToMldev(fromObject, parentObject) {
     setValueByPath(parentObject, ["batch", "displayName"], fromDisplayName);
   }
   if (getValueByPath(fromObject, ["dest"]) !== void 0) {
-    throw new Error("dest parameter is not supported in Gemini API.");
+    throw new Error("dest parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromWebhookConfig = getValueByPath(fromObject, [
     "webhookConfig"
@@ -52664,7 +52678,7 @@ function createBatchJobConfigToVertex(fromObject, parentObject) {
     setValueByPath(parentObject, ["outputConfig"], batchJobDestinationToVertex(tBatchJobDestination(fromDest)));
   }
   if (getValueByPath(fromObject, ["webhookConfig"]) !== void 0) {
-    throw new Error("webhookConfig parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("webhookConfig parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -52820,16 +52834,16 @@ function embedContentConfigToMldev$1(fromObject, parentObject) {
     setValueByPath(parentObject, ["requests[]", "outputDimensionality"], fromOutputDimensionality);
   }
   if (getValueByPath(fromObject, ["mimeType"]) !== void 0) {
-    throw new Error("mimeType parameter is not supported in Gemini API.");
+    throw new Error("mimeType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["autoTruncate"]) !== void 0) {
-    throw new Error("autoTruncate parameter is not supported in Gemini API.");
+    throw new Error("autoTruncate parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["documentOcr"]) !== void 0) {
-    throw new Error("documentOcr parameter is not supported in Gemini API.");
+    throw new Error("documentOcr parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["audioTrackExtraction"]) !== void 0) {
-    throw new Error("audioTrackExtraction parameter is not supported in Gemini API.");
+    throw new Error("audioTrackExtraction parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -52850,7 +52864,7 @@ function embeddingsBatchJobSourceToMldev(apiClient, fromObject) {
 function fileDataToMldev$4(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFileUri = getValueByPath(fromObject, ["fileUri"]);
   if (fromFileUri != null) {
@@ -52877,10 +52891,10 @@ function functionCallToMldev$4(fromObject) {
     setValueByPath(toObject, ["name"], fromName);
   }
   if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
-    throw new Error("partialArgs parameter is not supported in Gemini API.");
+    throw new Error("partialArgs parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
-    throw new Error("willContinue parameter is not supported in Gemini API.");
+    throw new Error("willContinue parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -52897,7 +52911,7 @@ function functionCallingConfigToMldev$2(fromObject) {
     setValueByPath(toObject, ["mode"], fromMode);
   }
   if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
-    throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
+    throw new Error("streamFunctionCallArguments parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -52984,10 +52998,10 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
     setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
   }
   if (getValueByPath(fromObject, ["routingConfig"]) !== void 0) {
-    throw new Error("routingConfig parameter is not supported in Gemini API.");
+    throw new Error("routingConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["modelSelectionConfig"]) !== void 0) {
-    throw new Error("modelSelectionConfig parameter is not supported in Gemini API.");
+    throw new Error("modelSelectionConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromSafetySettings = getValueByPath(fromObject, [
     "safetySettings"
@@ -53016,7 +53030,7 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
     setValueByPath(parentObject, ["toolConfig"], toolConfigToMldev$2(fromToolConfig));
   }
   if (getValueByPath(fromObject, ["labels"]) !== void 0) {
-    throw new Error("labels parameter is not supported in Gemini API.");
+    throw new Error("labels parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromCachedContent = getValueByPath(fromObject, [
     "cachedContent"
@@ -53041,7 +53055,7 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
     setValueByPath(toObject, ["speechConfig"], tSpeechConfig(fromSpeechConfig));
   }
   if (getValueByPath(fromObject, ["audioTimestamp"]) !== void 0) {
-    throw new Error("audioTimestamp parameter is not supported in Gemini API.");
+    throw new Error("audioTimestamp parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromThinkingConfig = getValueByPath(fromObject, [
     "thinkingConfig"
@@ -53060,7 +53074,7 @@ function generateContentConfigToMldev$1(apiClient, fromObject, parentObject) {
     setValueByPath(toObject, ["enableEnhancedCivicAnswers"], fromEnableEnhancedCivicAnswers);
   }
   if (getValueByPath(fromObject, ["modelArmorConfig"]) !== void 0) {
-    throw new Error("modelArmorConfig parameter is not supported in Gemini API.");
+    throw new Error("modelArmorConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromServiceTier = getValueByPath(fromObject, ["serviceTier"]);
   if (parentObject !== void 0 && fromServiceTier != null) {
@@ -53147,10 +53161,10 @@ function googleSearchToMldev$4(fromObject) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
-    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+    throw new Error("blockingConfidence parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+    throw new Error("excludeDomains parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -53171,19 +53185,19 @@ function imageConfigToMldev$1(fromObject) {
     setValueByPath(toObject, ["imageSize"], fromImageSize);
   }
   if (getValueByPath(fromObject, ["personGeneration"]) !== void 0) {
-    throw new Error("personGeneration parameter is not supported in Gemini API.");
+    throw new Error("personGeneration parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["prominentPeople"]) !== void 0) {
-    throw new Error("prominentPeople parameter is not supported in Gemini API.");
+    throw new Error("prominentPeople parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["outputMimeType"]) !== void 0) {
-    throw new Error("outputMimeType parameter is not supported in Gemini API.");
+    throw new Error("outputMimeType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["outputCompressionQuality"]) !== void 0) {
-    throw new Error("outputCompressionQuality parameter is not supported in Gemini API.");
+    throw new Error("outputCompressionQuality parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["imageOutputOptions"]) !== void 0) {
-    throw new Error("imageOutputOptions parameter is not supported in Gemini API.");
+    throw new Error("imageOutputOptions parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -53240,7 +53254,7 @@ function listBatchJobsConfigToMldev(fromObject, parentObject) {
     setValueByPath(parentObject, ["_query", "pageToken"], fromPageToken);
   }
   if (getValueByPath(fromObject, ["filter"]) !== void 0) {
-    throw new Error("filter parameter is not supported in Gemini API.");
+    throw new Error("filter parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -53409,7 +53423,7 @@ function safetySettingToMldev$3(fromObject) {
     setValueByPath(toObject, ["category"], fromCategory);
   }
   if (getValueByPath(fromObject, ["method"]) !== void 0) {
-    throw new Error("method parameter is not supported in Gemini API.");
+    throw new Error("method parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromThreshold = getValueByPath(fromObject, ["threshold"]);
   if (fromThreshold != null) {
@@ -53440,7 +53454,7 @@ function toolConfigToMldev$2(fromObject) {
 function toolToMldev$4(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
-    throw new Error("retrieval parameter is not supported in Gemini API.");
+    throw new Error("retrieval parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -53465,7 +53479,7 @@ function toolToMldev$4(fromObject) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+    throw new Error("enterpriseWebSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFunctionDeclarations = getValueByPath(fromObject, [
     "functionDeclarations"
@@ -53486,7 +53500,7 @@ function toolToMldev$4(fromObject) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
-    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
+    throw new Error("parallelAiSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -54133,22 +54147,22 @@ function authConfigToMldev$3(fromObject) {
     setValueByPath(toObject, ["apiKey"], fromApiKey);
   }
   if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
-    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+    throw new Error("apiKeyConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["authType"]) !== void 0) {
-    throw new Error("authType parameter is not supported in Gemini API.");
+    throw new Error("authType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
-    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+    throw new Error("googleServiceAccountConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
-    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+    throw new Error("httpBasicAuthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
-    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+    throw new Error("oauthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
-    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+    throw new Error("oidcConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -54159,11 +54173,43 @@ function blobToMldev$3(fromObject) {
     setValueByPath(toObject, ["data"], fromData);
   }
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
     setValueByPath(toObject, ["mimeType"], fromMimeType);
+  }
+  return toObject;
+}
+function codeExecutionResultToVertex$2(fromObject) {
+  const toObject = {};
+  const fromOutcome = getValueByPath(fromObject, ["outcome"]);
+  if (fromOutcome != null) {
+    setValueByPath(toObject, ["outcome"], fromOutcome);
+  }
+  const fromOutput = getValueByPath(fromObject, ["output"]);
+  if (fromOutput != null) {
+    setValueByPath(toObject, ["output"], fromOutput);
+  }
+  if (getValueByPath(fromObject, ["id"]) !== void 0) {
+    throw new Error("id parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
+  }
+  return toObject;
+}
+function computerUseToVertex$2(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
+  const fromExcludedPredefinedFunctions = getValueByPath(fromObject, [
+    "excludedPredefinedFunctions"
+  ]);
+  if (fromExcludedPredefinedFunctions != null) {
+    setValueByPath(toObject, ["excludedPredefinedFunctions"], fromExcludedPredefinedFunctions);
+  }
+  if (getValueByPath(fromObject, ["enablePromptInjectionDetection"]) !== void 0) {
+    throw new Error("enablePromptInjectionDetection parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -54248,7 +54294,7 @@ function createCachedContentConfigToMldev(fromObject, parentObject) {
     setValueByPath(parentObject, ["toolConfig"], toolConfigToMldev$1(fromToolConfig));
   }
   if (getValueByPath(fromObject, ["kmsKeyName"]) !== void 0) {
-    throw new Error("kmsKeyName parameter is not supported in Gemini API.");
+    throw new Error("kmsKeyName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -54362,10 +54408,25 @@ function deleteCachedContentResponseFromVertex(fromObject) {
   }
   return toObject;
 }
+function executableCodeToVertex$2(fromObject) {
+  const toObject = {};
+  const fromCode = getValueByPath(fromObject, ["code"]);
+  if (fromCode != null) {
+    setValueByPath(toObject, ["code"], fromCode);
+  }
+  const fromLanguage = getValueByPath(fromObject, ["language"]);
+  if (fromLanguage != null) {
+    setValueByPath(toObject, ["language"], fromLanguage);
+  }
+  if (getValueByPath(fromObject, ["id"]) !== void 0) {
+    throw new Error("id parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
+  }
+  return toObject;
+}
 function fileDataToMldev$3(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFileUri = getValueByPath(fromObject, ["fileUri"]);
   if (fromFileUri != null) {
@@ -54392,10 +54453,10 @@ function functionCallToMldev$3(fromObject) {
     setValueByPath(toObject, ["name"], fromName);
   }
   if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
-    throw new Error("partialArgs parameter is not supported in Gemini API.");
+    throw new Error("partialArgs parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
-    throw new Error("willContinue parameter is not supported in Gemini API.");
+    throw new Error("willContinue parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -54412,42 +54473,7 @@ function functionCallingConfigToMldev$1(fromObject) {
     setValueByPath(toObject, ["mode"], fromMode);
   }
   if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
-    throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
-  }
-  return toObject;
-}
-function functionDeclarationToVertex$2(fromObject) {
-  const toObject = {};
-  const fromDescription = getValueByPath(fromObject, ["description"]);
-  if (fromDescription != null) {
-    setValueByPath(toObject, ["description"], fromDescription);
-  }
-  const fromName = getValueByPath(fromObject, ["name"]);
-  if (fromName != null) {
-    setValueByPath(toObject, ["name"], fromName);
-  }
-  const fromParameters = getValueByPath(fromObject, ["parameters"]);
-  if (fromParameters != null) {
-    setValueByPath(toObject, ["parameters"], fromParameters);
-  }
-  const fromParametersJsonSchema = getValueByPath(fromObject, [
-    "parametersJsonSchema"
-  ]);
-  if (fromParametersJsonSchema != null) {
-    setValueByPath(toObject, ["parametersJsonSchema"], fromParametersJsonSchema);
-  }
-  const fromResponse = getValueByPath(fromObject, ["response"]);
-  if (fromResponse != null) {
-    setValueByPath(toObject, ["response"], fromResponse);
-  }
-  const fromResponseJsonSchema = getValueByPath(fromObject, [
-    "responseJsonSchema"
-  ]);
-  if (fromResponseJsonSchema != null) {
-    setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
-  }
-  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
-    throw new Error("behavior parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("streamFunctionCallArguments parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -54486,10 +54512,10 @@ function googleSearchToMldev$3(fromObject) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
-    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+    throw new Error("blockingConfidence parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+    throw new Error("excludeDomains parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -54679,13 +54705,13 @@ function partToVertex$2(fromObject) {
     "codeExecutionResult"
   ]);
   if (fromCodeExecutionResult != null) {
-    setValueByPath(toObject, ["codeExecutionResult"], fromCodeExecutionResult);
+    setValueByPath(toObject, ["codeExecutionResult"], codeExecutionResultToVertex$2(fromCodeExecutionResult));
   }
   const fromExecutableCode = getValueByPath(fromObject, [
     "executableCode"
   ]);
   if (fromExecutableCode != null) {
-    setValueByPath(toObject, ["executableCode"], fromExecutableCode);
+    setValueByPath(toObject, ["executableCode"], executableCodeToVertex$2(fromExecutableCode));
   }
   const fromFileData = getValueByPath(fromObject, ["fileData"]);
   if (fromFileData != null) {
@@ -54726,13 +54752,13 @@ function partToVertex$2(fromObject) {
     setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
   }
   if (getValueByPath(fromObject, ["toolCall"]) !== void 0) {
-    throw new Error("toolCall parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("toolCall parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["toolResponse"]) !== void 0) {
-    throw new Error("toolResponse parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("toolResponse parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["partMetadata"]) !== void 0) {
-    throw new Error("partMetadata parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("partMetadata parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -54771,14 +54797,14 @@ function toolConfigToVertex$1(fromObject) {
     setValueByPath(toObject, ["functionCallingConfig"], fromFunctionCallingConfig);
   }
   if (getValueByPath(fromObject, ["includeServerSideToolInvocations"]) !== void 0) {
-    throw new Error("includeServerSideToolInvocations parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("includeServerSideToolInvocations parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
 function toolToMldev$3(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
-    throw new Error("retrieval parameter is not supported in Gemini API.");
+    throw new Error("retrieval parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -54803,7 +54829,7 @@ function toolToMldev$3(fromObject) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+    throw new Error("enterpriseWebSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFunctionDeclarations = getValueByPath(fromObject, [
     "functionDeclarations"
@@ -54824,7 +54850,7 @@ function toolToMldev$3(fromObject) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
-    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
+    throw new Error("parallelAiSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -54850,10 +54876,10 @@ function toolToVertex$2(fromObject) {
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
+    setValueByPath(toObject, ["computerUse"], computerUseToVertex$2(fromComputerUse));
   }
   if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
-    throw new Error("fileSearch parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("fileSearch parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -54882,7 +54908,7 @@ function toolToVertex$2(fromObject) {
     let transformedList = fromFunctionDeclarations;
     if (Array.isArray(transformedList)) {
       transformedList = transformedList.map((item) => {
-        return functionDeclarationToVertex$2(item);
+        return item;
       });
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
@@ -54904,7 +54930,7 @@ function toolToVertex$2(fromObject) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   if (getValueByPath(fromObject, ["mcpServers"]) !== void 0) {
-    throw new Error("mcpServers parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("mcpServers parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -56063,7 +56089,7 @@ var Files = class extends BaseModule2 {
 function audioTranscriptionConfigToMldev$1(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["languageCodes"]) !== void 0) {
-    throw new Error("languageCodes parameter is not supported in Gemini API.");
+    throw new Error("languageCodes parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -56074,22 +56100,22 @@ function authConfigToMldev$2(fromObject) {
     setValueByPath(toObject, ["apiKey"], fromApiKey);
   }
   if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
-    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+    throw new Error("apiKeyConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["authType"]) !== void 0) {
-    throw new Error("authType parameter is not supported in Gemini API.");
+    throw new Error("authType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
-    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+    throw new Error("googleServiceAccountConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
-    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+    throw new Error("httpBasicAuthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
-    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+    throw new Error("oauthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
-    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+    throw new Error("oidcConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -56100,11 +56126,43 @@ function blobToMldev$2(fromObject) {
     setValueByPath(toObject, ["data"], fromData);
   }
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
     setValueByPath(toObject, ["mimeType"], fromMimeType);
+  }
+  return toObject;
+}
+function codeExecutionResultToVertex$1(fromObject) {
+  const toObject = {};
+  const fromOutcome = getValueByPath(fromObject, ["outcome"]);
+  if (fromOutcome != null) {
+    setValueByPath(toObject, ["outcome"], fromOutcome);
+  }
+  const fromOutput = getValueByPath(fromObject, ["output"]);
+  if (fromOutput != null) {
+    setValueByPath(toObject, ["output"], fromOutput);
+  }
+  if (getValueByPath(fromObject, ["id"]) !== void 0) {
+    throw new Error("id parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
+  }
+  return toObject;
+}
+function computerUseToVertex$1(fromObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
+  const fromExcludedPredefinedFunctions = getValueByPath(fromObject, [
+    "excludedPredefinedFunctions"
+  ]);
+  if (fromExcludedPredefinedFunctions != null) {
+    setValueByPath(toObject, ["excludedPredefinedFunctions"], fromExcludedPredefinedFunctions);
+  }
+  if (getValueByPath(fromObject, ["enablePromptInjectionDetection"]) !== void 0) {
+    throw new Error("enablePromptInjectionDetection parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -56144,10 +56202,25 @@ function contentToVertex$1(fromObject) {
   }
   return toObject;
 }
+function executableCodeToVertex$1(fromObject) {
+  const toObject = {};
+  const fromCode = getValueByPath(fromObject, ["code"]);
+  if (fromCode != null) {
+    setValueByPath(toObject, ["code"], fromCode);
+  }
+  const fromLanguage = getValueByPath(fromObject, ["language"]);
+  if (fromLanguage != null) {
+    setValueByPath(toObject, ["language"], fromLanguage);
+  }
+  if (getValueByPath(fromObject, ["id"]) !== void 0) {
+    throw new Error("id parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
+  }
+  return toObject;
+}
 function fileDataToMldev$2(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFileUri = getValueByPath(fromObject, ["fileUri"]);
   if (fromFileUri != null) {
@@ -56174,45 +56247,10 @@ function functionCallToMldev$2(fromObject) {
     setValueByPath(toObject, ["name"], fromName);
   }
   if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
-    throw new Error("partialArgs parameter is not supported in Gemini API.");
+    throw new Error("partialArgs parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
-    throw new Error("willContinue parameter is not supported in Gemini API.");
-  }
-  return toObject;
-}
-function functionDeclarationToVertex$1(fromObject) {
-  const toObject = {};
-  const fromDescription = getValueByPath(fromObject, ["description"]);
-  if (fromDescription != null) {
-    setValueByPath(toObject, ["description"], fromDescription);
-  }
-  const fromName = getValueByPath(fromObject, ["name"]);
-  if (fromName != null) {
-    setValueByPath(toObject, ["name"], fromName);
-  }
-  const fromParameters = getValueByPath(fromObject, ["parameters"]);
-  if (fromParameters != null) {
-    setValueByPath(toObject, ["parameters"], fromParameters);
-  }
-  const fromParametersJsonSchema = getValueByPath(fromObject, [
-    "parametersJsonSchema"
-  ]);
-  if (fromParametersJsonSchema != null) {
-    setValueByPath(toObject, ["parametersJsonSchema"], fromParametersJsonSchema);
-  }
-  const fromResponse = getValueByPath(fromObject, ["response"]);
-  if (fromResponse != null) {
-    setValueByPath(toObject, ["response"], fromResponse);
-  }
-  const fromResponseJsonSchema = getValueByPath(fromObject, [
-    "responseJsonSchema"
-  ]);
-  if (fromResponseJsonSchema != null) {
-    setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
-  }
-  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
-    throw new Error("behavior parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("willContinue parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -56339,7 +56377,7 @@ function generationConfigToVertex$1(fromObject) {
     setValueByPath(toObject, ["topP"], fromTopP);
   }
   if (getValueByPath(fromObject, ["enableEnhancedCivicAnswers"]) !== void 0) {
-    throw new Error("enableEnhancedCivicAnswers parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("enableEnhancedCivicAnswers parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -56362,10 +56400,10 @@ function googleSearchToMldev$2(fromObject) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
-    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+    throw new Error("blockingConfidence parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+    throw new Error("excludeDomains parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -56484,7 +56522,7 @@ function liveConnectConfigToMldev$1(fromObject, parentObject) {
     setValueByPath(parentObject, ["setup", "proactivity"], fromProactivity);
   }
   if (getValueByPath(fromObject, ["explicitVadSignal"]) !== void 0) {
-    throw new Error("explicitVadSignal parameter is not supported in Gemini API.");
+    throw new Error("explicitVadSignal parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromAvatarConfig = getValueByPath(fromObject, ["avatarConfig"]);
   if (parentObject !== void 0 && fromAvatarConfig != null) {
@@ -56501,6 +56539,12 @@ function liveConnectConfigToMldev$1(fromObject, parentObject) {
       });
     }
     setValueByPath(parentObject, ["setup", "safetySettings"], transformedList);
+  }
+  const fromStreamTranslationConfig = getValueByPath(fromObject, [
+    "streamTranslationConfig"
+  ]);
+  if (parentObject !== void 0 && fromStreamTranslationConfig != null) {
+    setValueByPath(parentObject, ["setup", "generationConfig", "streamTranslationConfig"], fromStreamTranslationConfig);
   }
   return toObject;
 }
@@ -56633,6 +56677,9 @@ function liveConnectConfigToVertex(fromObject, parentObject) {
       });
     }
     setValueByPath(parentObject, ["setup", "safetySettings"], transformedList);
+  }
+  if (getValueByPath(fromObject, ["streamTranslationConfig"]) !== void 0) {
+    throw new Error("streamTranslationConfig parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -56908,13 +56955,13 @@ function partToVertex$1(fromObject) {
     "codeExecutionResult"
   ]);
   if (fromCodeExecutionResult != null) {
-    setValueByPath(toObject, ["codeExecutionResult"], fromCodeExecutionResult);
+    setValueByPath(toObject, ["codeExecutionResult"], codeExecutionResultToVertex$1(fromCodeExecutionResult));
   }
   const fromExecutableCode = getValueByPath(fromObject, [
     "executableCode"
   ]);
   if (fromExecutableCode != null) {
-    setValueByPath(toObject, ["executableCode"], fromExecutableCode);
+    setValueByPath(toObject, ["executableCode"], executableCodeToVertex$1(fromExecutableCode));
   }
   const fromFileData = getValueByPath(fromObject, ["fileData"]);
   if (fromFileData != null) {
@@ -56955,13 +57002,13 @@ function partToVertex$1(fromObject) {
     setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
   }
   if (getValueByPath(fromObject, ["toolCall"]) !== void 0) {
-    throw new Error("toolCall parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("toolCall parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["toolResponse"]) !== void 0) {
-    throw new Error("toolResponse parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("toolResponse parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["partMetadata"]) !== void 0) {
-    throw new Error("partMetadata parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("partMetadata parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -56972,7 +57019,7 @@ function safetySettingToMldev$2(fromObject) {
     setValueByPath(toObject, ["category"], fromCategory);
   }
   if (getValueByPath(fromObject, ["method"]) !== void 0) {
-    throw new Error("method parameter is not supported in Gemini API.");
+    throw new Error("method parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromThreshold = getValueByPath(fromObject, ["threshold"]);
   if (fromThreshold != null) {
@@ -56987,14 +57034,14 @@ function sessionResumptionConfigToMldev$1(fromObject) {
     setValueByPath(toObject, ["handle"], fromHandle);
   }
   if (getValueByPath(fromObject, ["transparent"]) !== void 0) {
-    throw new Error("transparent parameter is not supported in Gemini API.");
+    throw new Error("transparent parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
 function toolToMldev$2(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
-    throw new Error("retrieval parameter is not supported in Gemini API.");
+    throw new Error("retrieval parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -57019,7 +57066,7 @@ function toolToMldev$2(fromObject) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+    throw new Error("enterpriseWebSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFunctionDeclarations = getValueByPath(fromObject, [
     "functionDeclarations"
@@ -57040,7 +57087,7 @@ function toolToMldev$2(fromObject) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
-    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
+    throw new Error("parallelAiSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -57066,10 +57113,10 @@ function toolToVertex$1(fromObject) {
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
+    setValueByPath(toObject, ["computerUse"], computerUseToVertex$1(fromComputerUse));
   }
   if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
-    throw new Error("fileSearch parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("fileSearch parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -57098,7 +57145,7 @@ function toolToVertex$1(fromObject) {
     let transformedList = fromFunctionDeclarations;
     if (Array.isArray(transformedList)) {
       transformedList = transformedList.map((item) => {
-        return functionDeclarationToVertex$1(item);
+        return item;
       });
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
@@ -57120,7 +57167,7 @@ function toolToVertex$1(fromObject) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   if (getValueByPath(fromObject, ["mcpServers"]) !== void 0) {
-    throw new Error("mcpServers parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("mcpServers parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -57231,22 +57278,22 @@ function authConfigToMldev$1(fromObject, _rootObject) {
     setValueByPath(toObject, ["apiKey"], fromApiKey);
   }
   if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
-    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+    throw new Error("apiKeyConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["authType"]) !== void 0) {
-    throw new Error("authType parameter is not supported in Gemini API.");
+    throw new Error("authType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
-    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+    throw new Error("googleServiceAccountConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
-    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+    throw new Error("httpBasicAuthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
-    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+    throw new Error("oauthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
-    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+    throw new Error("oidcConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -57257,7 +57304,7 @@ function blobToMldev$1(fromObject, _rootObject) {
     setValueByPath(toObject, ["data"], fromData);
   }
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -57339,6 +57386,21 @@ function citationMetadataFromMldev(fromObject, _rootObject) {
   }
   return toObject;
 }
+function codeExecutionResultToVertex(fromObject, _rootObject) {
+  const toObject = {};
+  const fromOutcome = getValueByPath(fromObject, ["outcome"]);
+  if (fromOutcome != null) {
+    setValueByPath(toObject, ["outcome"], fromOutcome);
+  }
+  const fromOutput = getValueByPath(fromObject, ["output"]);
+  if (fromOutput != null) {
+    setValueByPath(toObject, ["output"], fromOutput);
+  }
+  if (getValueByPath(fromObject, ["id"]) !== void 0) {
+    throw new Error("id parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
+  }
+  return toObject;
+}
 function computeTokensParametersToVertex(apiClient, fromObject, rootObject) {
   const toObject = {};
   const fromModel = getValueByPath(fromObject, ["model"]);
@@ -57374,6 +57436,23 @@ function computeTokensResponseFromVertex(fromObject, _rootObject) {
       });
     }
     setValueByPath(toObject, ["tokensInfo"], transformedList);
+  }
+  return toObject;
+}
+function computerUseToVertex(fromObject, _rootObject) {
+  const toObject = {};
+  const fromEnvironment = getValueByPath(fromObject, ["environment"]);
+  if (fromEnvironment != null) {
+    setValueByPath(toObject, ["environment"], fromEnvironment);
+  }
+  const fromExcludedPredefinedFunctions = getValueByPath(fromObject, [
+    "excludedPredefinedFunctions"
+  ]);
+  if (fromExcludedPredefinedFunctions != null) {
+    setValueByPath(toObject, ["excludedPredefinedFunctions"], fromExcludedPredefinedFunctions);
+  }
+  if (getValueByPath(fromObject, ["enablePromptInjectionDetection"]) !== void 0) {
+    throw new Error("enablePromptInjectionDetection parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -57454,13 +57533,13 @@ function controlReferenceConfigToVertex(fromObject, _rootObject) {
 function countTokensConfigToMldev(fromObject, _rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["systemInstruction"]) !== void 0) {
-    throw new Error("systemInstruction parameter is not supported in Gemini API.");
+    throw new Error("systemInstruction parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["tools"]) !== void 0) {
-    throw new Error("tools parameter is not supported in Gemini API.");
+    throw new Error("tools parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["generationConfig"]) !== void 0) {
-    throw new Error("generationConfig parameter is not supported in Gemini API.");
+    throw new Error("generationConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -57761,16 +57840,16 @@ function embedContentConfigToMldev(fromObject, parentObject, _rootObject) {
     setValueByPath(parentObject, ["requests[]", "outputDimensionality"], fromOutputDimensionality);
   }
   if (getValueByPath(fromObject, ["mimeType"]) !== void 0) {
-    throw new Error("mimeType parameter is not supported in Gemini API.");
+    throw new Error("mimeType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["autoTruncate"]) !== void 0) {
-    throw new Error("autoTruncate parameter is not supported in Gemini API.");
+    throw new Error("autoTruncate parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["documentOcr"]) !== void 0) {
-    throw new Error("documentOcr parameter is not supported in Gemini API.");
+    throw new Error("documentOcr parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["audioTrackExtraction"]) !== void 0) {
-    throw new Error("audioTrackExtraction parameter is not supported in Gemini API.");
+    throw new Error("audioTrackExtraction parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -58045,10 +58124,25 @@ function endpointFromVertex(fromObject, _rootObject) {
   }
   return toObject;
 }
+function executableCodeToVertex(fromObject, _rootObject) {
+  const toObject = {};
+  const fromCode = getValueByPath(fromObject, ["code"]);
+  if (fromCode != null) {
+    setValueByPath(toObject, ["code"], fromCode);
+  }
+  const fromLanguage = getValueByPath(fromObject, ["language"]);
+  if (fromLanguage != null) {
+    setValueByPath(toObject, ["language"], fromLanguage);
+  }
+  if (getValueByPath(fromObject, ["id"]) !== void 0) {
+    throw new Error("id parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
+  }
+  return toObject;
+}
 function fileDataToMldev$1(fromObject, _rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFileUri = getValueByPath(fromObject, ["fileUri"]);
   if (fromFileUri != null) {
@@ -58075,10 +58169,10 @@ function functionCallToMldev$1(fromObject, _rootObject) {
     setValueByPath(toObject, ["name"], fromName);
   }
   if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
-    throw new Error("partialArgs parameter is not supported in Gemini API.");
+    throw new Error("partialArgs parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
-    throw new Error("willContinue parameter is not supported in Gemini API.");
+    throw new Error("willContinue parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -58095,42 +58189,7 @@ function functionCallingConfigToMldev(fromObject, _rootObject) {
     setValueByPath(toObject, ["mode"], fromMode);
   }
   if (getValueByPath(fromObject, ["streamFunctionCallArguments"]) !== void 0) {
-    throw new Error("streamFunctionCallArguments parameter is not supported in Gemini API.");
-  }
-  return toObject;
-}
-function functionDeclarationToVertex(fromObject, _rootObject) {
-  const toObject = {};
-  const fromDescription = getValueByPath(fromObject, ["description"]);
-  if (fromDescription != null) {
-    setValueByPath(toObject, ["description"], fromDescription);
-  }
-  const fromName = getValueByPath(fromObject, ["name"]);
-  if (fromName != null) {
-    setValueByPath(toObject, ["name"], fromName);
-  }
-  const fromParameters = getValueByPath(fromObject, ["parameters"]);
-  if (fromParameters != null) {
-    setValueByPath(toObject, ["parameters"], fromParameters);
-  }
-  const fromParametersJsonSchema = getValueByPath(fromObject, [
-    "parametersJsonSchema"
-  ]);
-  if (fromParametersJsonSchema != null) {
-    setValueByPath(toObject, ["parametersJsonSchema"], fromParametersJsonSchema);
-  }
-  const fromResponse = getValueByPath(fromObject, ["response"]);
-  if (fromResponse != null) {
-    setValueByPath(toObject, ["response"], fromResponse);
-  }
-  const fromResponseJsonSchema = getValueByPath(fromObject, [
-    "responseJsonSchema"
-  ]);
-  if (fromResponseJsonSchema != null) {
-    setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
-  }
-  if (getValueByPath(fromObject, ["behavior"]) !== void 0) {
-    throw new Error("behavior parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("streamFunctionCallArguments parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -58217,10 +58276,10 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject, rootO
     setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
   }
   if (getValueByPath(fromObject, ["routingConfig"]) !== void 0) {
-    throw new Error("routingConfig parameter is not supported in Gemini API.");
+    throw new Error("routingConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["modelSelectionConfig"]) !== void 0) {
-    throw new Error("modelSelectionConfig parameter is not supported in Gemini API.");
+    throw new Error("modelSelectionConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromSafetySettings = getValueByPath(fromObject, [
     "safetySettings"
@@ -58249,7 +58308,7 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject, rootO
     setValueByPath(parentObject, ["toolConfig"], toolConfigToMldev(fromToolConfig));
   }
   if (getValueByPath(fromObject, ["labels"]) !== void 0) {
-    throw new Error("labels parameter is not supported in Gemini API.");
+    throw new Error("labels parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromCachedContent = getValueByPath(fromObject, [
     "cachedContent"
@@ -58274,7 +58333,7 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject, rootO
     setValueByPath(toObject, ["speechConfig"], tSpeechConfig(fromSpeechConfig));
   }
   if (getValueByPath(fromObject, ["audioTimestamp"]) !== void 0) {
-    throw new Error("audioTimestamp parameter is not supported in Gemini API.");
+    throw new Error("audioTimestamp parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromThinkingConfig = getValueByPath(fromObject, [
     "thinkingConfig"
@@ -58293,7 +58352,7 @@ function generateContentConfigToMldev(apiClient, fromObject, parentObject, rootO
     setValueByPath(toObject, ["enableEnhancedCivicAnswers"], fromEnableEnhancedCivicAnswers);
   }
   if (getValueByPath(fromObject, ["modelArmorConfig"]) !== void 0) {
-    throw new Error("modelArmorConfig parameter is not supported in Gemini API.");
+    throw new Error("modelArmorConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromServiceTier = getValueByPath(fromObject, ["serviceTier"]);
   if (parentObject !== void 0 && fromServiceTier != null) {
@@ -58464,7 +58523,7 @@ function generateContentConfigToVertex(apiClient, fromObject, parentObject, root
     setValueByPath(toObject, ["imageConfig"], imageConfigToVertex(fromImageConfig));
   }
   if (getValueByPath(fromObject, ["enableEnhancedCivicAnswers"]) !== void 0) {
-    throw new Error("enableEnhancedCivicAnswers parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("enableEnhancedCivicAnswers parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   const fromModelArmorConfig = getValueByPath(fromObject, [
     "modelArmorConfig"
@@ -58613,10 +58672,10 @@ function generateContentResponseFromVertex(fromObject, _rootObject) {
 function generateImagesConfigToMldev(fromObject, parentObject, _rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["outputGcsUri"]) !== void 0) {
-    throw new Error("outputGcsUri parameter is not supported in Gemini API.");
+    throw new Error("outputGcsUri parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["negativePrompt"]) !== void 0) {
-    throw new Error("negativePrompt parameter is not supported in Gemini API.");
+    throw new Error("negativePrompt parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromNumberOfImages = getValueByPath(fromObject, [
     "numberOfImages"
@@ -58635,7 +58694,7 @@ function generateImagesConfigToMldev(fromObject, parentObject, _rootObject) {
     setValueByPath(parentObject, ["parameters", "guidanceScale"], fromGuidanceScale);
   }
   if (getValueByPath(fromObject, ["seed"]) !== void 0) {
-    throw new Error("seed parameter is not supported in Gemini API.");
+    throw new Error("seed parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromSafetyFilterLevel = getValueByPath(fromObject, [
     "safetyFilterLevel"
@@ -58678,17 +58737,17 @@ function generateImagesConfigToMldev(fromObject, parentObject, _rootObject) {
     setValueByPath(parentObject, ["parameters", "outputOptions", "compressionQuality"], fromOutputCompressionQuality);
   }
   if (getValueByPath(fromObject, ["addWatermark"]) !== void 0) {
-    throw new Error("addWatermark parameter is not supported in Gemini API.");
+    throw new Error("addWatermark parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["labels"]) !== void 0) {
-    throw new Error("labels parameter is not supported in Gemini API.");
+    throw new Error("labels parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromImageSize = getValueByPath(fromObject, ["imageSize"]);
   if (parentObject !== void 0 && fromImageSize != null) {
     setValueByPath(parentObject, ["parameters", "sampleImageSize"], fromImageSize);
   }
   if (getValueByPath(fromObject, ["enhancePrompt"]) !== void 0) {
-    throw new Error("enhancePrompt parameter is not supported in Gemini API.");
+    throw new Error("enhancePrompt parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -58881,10 +58940,10 @@ function generateVideosConfigToMldev(fromObject, parentObject, rootObject) {
     setValueByPath(parentObject, ["parameters", "sampleCount"], fromNumberOfVideos);
   }
   if (getValueByPath(fromObject, ["outputGcsUri"]) !== void 0) {
-    throw new Error("outputGcsUri parameter is not supported in Gemini API.");
+    throw new Error("outputGcsUri parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["fps"]) !== void 0) {
-    throw new Error("fps parameter is not supported in Gemini API.");
+    throw new Error("fps parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromDurationSeconds = getValueByPath(fromObject, [
     "durationSeconds"
@@ -58893,7 +58952,7 @@ function generateVideosConfigToMldev(fromObject, parentObject, rootObject) {
     setValueByPath(parentObject, ["parameters", "durationSeconds"], fromDurationSeconds);
   }
   if (getValueByPath(fromObject, ["seed"]) !== void 0) {
-    throw new Error("seed parameter is not supported in Gemini API.");
+    throw new Error("seed parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromAspectRatio = getValueByPath(fromObject, ["aspectRatio"]);
   if (parentObject !== void 0 && fromAspectRatio != null) {
@@ -58910,7 +58969,7 @@ function generateVideosConfigToMldev(fromObject, parentObject, rootObject) {
     setValueByPath(parentObject, ["parameters", "personGeneration"], fromPersonGeneration);
   }
   if (getValueByPath(fromObject, ["pubsubTopic"]) !== void 0) {
-    throw new Error("pubsubTopic parameter is not supported in Gemini API.");
+    throw new Error("pubsubTopic parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromNegativePrompt = getValueByPath(fromObject, [
     "negativePrompt"
@@ -58925,7 +58984,7 @@ function generateVideosConfigToMldev(fromObject, parentObject, rootObject) {
     setValueByPath(parentObject, ["parameters", "enhancePrompt"], fromEnhancePrompt);
   }
   if (getValueByPath(fromObject, ["generateAudio"]) !== void 0) {
-    throw new Error("generateAudio parameter is not supported in Gemini API.");
+    throw new Error("generateAudio parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromLastFrame = getValueByPath(fromObject, ["lastFrame"]);
   if (parentObject !== void 0 && fromLastFrame != null) {
@@ -58944,13 +59003,13 @@ function generateVideosConfigToMldev(fromObject, parentObject, rootObject) {
     setValueByPath(parentObject, ["instances[0]", "referenceImages"], transformedList);
   }
   if (getValueByPath(fromObject, ["mask"]) !== void 0) {
-    throw new Error("mask parameter is not supported in Gemini API.");
+    throw new Error("mask parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["compressionQuality"]) !== void 0) {
-    throw new Error("compressionQuality parameter is not supported in Gemini API.");
+    throw new Error("compressionQuality parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["labels"]) !== void 0) {
-    throw new Error("labels parameter is not supported in Gemini API.");
+    throw new Error("labels parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromWebhookConfig = getValueByPath(fromObject, [
     "webhookConfig"
@@ -58959,7 +59018,7 @@ function generateVideosConfigToMldev(fromObject, parentObject, rootObject) {
     setValueByPath(parentObject, ["webhookConfig"], fromWebhookConfig);
   }
   if (getValueByPath(fromObject, ["resizeMode"]) !== void 0) {
-    throw new Error("resizeMode parameter is not supported in Gemini API.");
+    throw new Error("resizeMode parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -59056,7 +59115,7 @@ function generateVideosConfigToVertex(fromObject, parentObject, rootObject) {
     setValueByPath(parentObject, ["labels"], fromLabels);
   }
   if (getValueByPath(fromObject, ["webhookConfig"]) !== void 0) {
-    throw new Error("webhookConfig parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("webhookConfig parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   const fromResizeMode = getValueByPath(fromObject, ["resizeMode"]);
   if (parentObject !== void 0 && fromResizeMode != null) {
@@ -59454,7 +59513,7 @@ function generationConfigToVertex(fromObject, _rootObject) {
     setValueByPath(toObject, ["topP"], fromTopP);
   }
   if (getValueByPath(fromObject, ["enableEnhancedCivicAnswers"]) !== void 0) {
-    throw new Error("enableEnhancedCivicAnswers parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("enableEnhancedCivicAnswers parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -59493,10 +59552,10 @@ function googleSearchToMldev$1(fromObject, _rootObject) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
-    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+    throw new Error("blockingConfidence parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+    throw new Error("excludeDomains parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -59517,19 +59576,19 @@ function imageConfigToMldev(fromObject, _rootObject) {
     setValueByPath(toObject, ["imageSize"], fromImageSize);
   }
   if (getValueByPath(fromObject, ["personGeneration"]) !== void 0) {
-    throw new Error("personGeneration parameter is not supported in Gemini API.");
+    throw new Error("personGeneration parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["prominentPeople"]) !== void 0) {
-    throw new Error("prominentPeople parameter is not supported in Gemini API.");
+    throw new Error("prominentPeople parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["outputMimeType"]) !== void 0) {
-    throw new Error("outputMimeType parameter is not supported in Gemini API.");
+    throw new Error("outputMimeType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["outputCompressionQuality"]) !== void 0) {
-    throw new Error("outputCompressionQuality parameter is not supported in Gemini API.");
+    throw new Error("outputCompressionQuality parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["imageOutputOptions"]) !== void 0) {
-    throw new Error("imageOutputOptions parameter is not supported in Gemini API.");
+    throw new Error("imageOutputOptions parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -59610,7 +59669,7 @@ function imageFromVertex(fromObject, _rootObject) {
 function imageToMldev(fromObject, _rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["gcsUri"]) !== void 0) {
-    throw new Error("gcsUri parameter is not supported in Gemini API.");
+    throw new Error("gcsUri parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromImageBytes = getValueByPath(fromObject, ["imageBytes"]);
   if (fromImageBytes != null) {
@@ -59954,7 +60013,7 @@ function partToMldev$1(fromObject, rootObject) {
   }
   return toObject;
 }
-function partToVertex(fromObject, _rootObject) {
+function partToVertex(fromObject, rootObject) {
   const toObject = {};
   const fromMediaResolution = getValueByPath(fromObject, [
     "mediaResolution"
@@ -59966,13 +60025,13 @@ function partToVertex(fromObject, _rootObject) {
     "codeExecutionResult"
   ]);
   if (fromCodeExecutionResult != null) {
-    setValueByPath(toObject, ["codeExecutionResult"], fromCodeExecutionResult);
+    setValueByPath(toObject, ["codeExecutionResult"], codeExecutionResultToVertex(fromCodeExecutionResult));
   }
   const fromExecutableCode = getValueByPath(fromObject, [
     "executableCode"
   ]);
   if (fromExecutableCode != null) {
-    setValueByPath(toObject, ["executableCode"], fromExecutableCode);
+    setValueByPath(toObject, ["executableCode"], executableCodeToVertex(fromExecutableCode));
   }
   const fromFileData = getValueByPath(fromObject, ["fileData"]);
   if (fromFileData != null) {
@@ -60013,13 +60072,13 @@ function partToVertex(fromObject, _rootObject) {
     setValueByPath(toObject, ["videoMetadata"], fromVideoMetadata);
   }
   if (getValueByPath(fromObject, ["toolCall"]) !== void 0) {
-    throw new Error("toolCall parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("toolCall parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["toolResponse"]) !== void 0) {
-    throw new Error("toolResponse parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("toolResponse parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   if (getValueByPath(fromObject, ["partMetadata"]) !== void 0) {
-    throw new Error("partMetadata parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("partMetadata parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -60242,7 +60301,7 @@ function safetySettingToMldev$1(fromObject, _rootObject) {
     setValueByPath(toObject, ["category"], fromCategory);
   }
   if (getValueByPath(fromObject, ["method"]) !== void 0) {
-    throw new Error("method parameter is not supported in Gemini API.");
+    throw new Error("method parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromThreshold = getValueByPath(fromObject, ["threshold"]);
   if (fromThreshold != null) {
@@ -60375,14 +60434,14 @@ function toolConfigToVertex(fromObject, _rootObject) {
     setValueByPath(toObject, ["functionCallingConfig"], fromFunctionCallingConfig);
   }
   if (getValueByPath(fromObject, ["includeServerSideToolInvocations"]) !== void 0) {
-    throw new Error("includeServerSideToolInvocations parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("includeServerSideToolInvocations parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
 function toolToMldev$1(fromObject, rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
-    throw new Error("retrieval parameter is not supported in Gemini API.");
+    throw new Error("retrieval parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -60407,7 +60466,7 @@ function toolToMldev$1(fromObject, rootObject) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+    throw new Error("enterpriseWebSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFunctionDeclarations = getValueByPath(fromObject, [
     "functionDeclarations"
@@ -60428,7 +60487,7 @@ function toolToMldev$1(fromObject, rootObject) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
-    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
+    throw new Error("parallelAiSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -60454,10 +60513,10 @@ function toolToVertex(fromObject, rootObject) {
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
-    setValueByPath(toObject, ["computerUse"], fromComputerUse);
+    setValueByPath(toObject, ["computerUse"], computerUseToVertex(fromComputerUse));
   }
   if (getValueByPath(fromObject, ["fileSearch"]) !== void 0) {
-    throw new Error("fileSearch parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("fileSearch parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   const fromGoogleSearch = getValueByPath(fromObject, ["googleSearch"]);
   if (fromGoogleSearch != null) {
@@ -60486,7 +60545,7 @@ function toolToVertex(fromObject, rootObject) {
     let transformedList = fromFunctionDeclarations;
     if (Array.isArray(transformedList)) {
       transformedList = transformedList.map((item) => {
-        return functionDeclarationToVertex(item);
+        return item;
       });
     }
     setValueByPath(toObject, ["functionDeclarations"], transformedList);
@@ -60508,7 +60567,7 @@ function toolToVertex(fromObject, rootObject) {
     setValueByPath(toObject, ["urlContext"], fromUrlContext);
   }
   if (getValueByPath(fromObject, ["mcpServers"]) !== void 0) {
-    throw new Error("mcpServers parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("mcpServers parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -61059,7 +61118,7 @@ var CONTENT_TYPE_HEADER = "Content-Type";
 var SERVER_TIMEOUT_HEADER = "X-Server-Timeout";
 var USER_AGENT_HEADER = "User-Agent";
 var GOOGLE_API_CLIENT_HEADER = "x-goog-api-client";
-var SDK_VERSION = "1.52.0";
+var SDK_VERSION = "2.6.0";
 var LIBRARY_LABEL = `google-genai-sdk/${SDK_VERSION}`;
 var VERTEX_AI_API_DEFAULT_VERSION = "v1beta1";
 var GOOGLE_AI_API_DEFAULT_VERSION = "v1beta";
@@ -61280,6 +61339,20 @@ var ApiClient = class {
       const abortController = new AbortController();
       const signal = abortController.signal;
       if (httpOptions.timeout && (httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.timeout) > 0) {
+        const dispatcherSymbol = Symbol.for("undici.globalDispatcher.1");
+        const globalDispatcher = globalThis[dispatcherSymbol];
+        if (globalDispatcher) {
+          const symbols = Object.getOwnPropertySymbols(globalDispatcher);
+          for (const sym of symbols) {
+            const desc = sym.description;
+            if ((desc === null || desc === void 0 ? void 0 : desc.includes("headers timeout")) || (desc === null || desc === void 0 ? void 0 : desc.includes("body timeout"))) {
+              const currentTimeout = globalDispatcher[sym];
+              if (typeof currentTimeout === "number") {
+                globalDispatcher[sym] = Math.max(currentTimeout, httpOptions.timeout);
+              }
+            }
+          }
+        }
         const timeoutHandle = setTimeout(() => abortController.abort(), httpOptions.timeout);
         if (timeoutHandle && typeof timeoutHandle.unref === "function") {
           timeoutHandle.unref();
@@ -61306,7 +61379,7 @@ var ApiClient = class {
       if (e instanceof Error) {
         throw e;
       } else {
-        throw new Error(JSON.stringify(e));
+        throw new Error(`exception ${e} sending request`, { cause: e });
       }
     });
   }
@@ -61318,7 +61391,7 @@ var ApiClient = class {
       if (e instanceof Error) {
         throw e;
       } else {
-        throw new Error(JSON.stringify(e));
+        throw new Error(`exception ${e} sending request`, { cause: e });
       }
     });
   }
@@ -61438,9 +61511,9 @@ var ApiClient = class {
       for (const [key, value] of Object.entries(httpOptions.headers)) {
         headers.append(key, value);
       }
-      if (httpOptions.timeout && httpOptions.timeout > 0) {
-        headers.append(SERVER_TIMEOUT_HEADER, String(Math.ceil(httpOptions.timeout / 1e3)));
-      }
+    }
+    if ((httpOptions === null || httpOptions === void 0 ? void 0 : httpOptions.timeout) && httpOptions.timeout > 0) {
+      headers.append(SERVER_TIMEOUT_HEADER, String(Math.ceil(httpOptions.timeout / 1e3)));
     }
     await this.clientOptions.auth.addAuthHeaders(headers, url3);
     return headers;
@@ -62529,7 +62602,7 @@ var Models = class extends BaseModule2 {
       if (this.apiClient.isVertexAI()) {
         if (!actualParams.config.queryBase) {
           if ((_a5 = actualParams.config) === null || _a5 === void 0 ? void 0 : _a5.filter) {
-            throw new Error("Filtering tuned models list for Gemini Enterprise Agent Platform (previously known as Vertex AI) is not currently supported");
+            throw new Error("Filtering tuned models list is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
           } else {
             actualParams.config.filter = "labels.tune-type:*";
           }
@@ -63834,7 +63907,7 @@ var Operations = class extends BaseModule2 {
 function audioTranscriptionConfigToMldev(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["languageCodes"]) !== void 0) {
-    throw new Error("languageCodes parameter is not supported in Gemini API.");
+    throw new Error("languageCodes parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -63845,22 +63918,22 @@ function authConfigToMldev(fromObject) {
     setValueByPath(toObject, ["apiKey"], fromApiKey);
   }
   if (getValueByPath(fromObject, ["apiKeyConfig"]) !== void 0) {
-    throw new Error("apiKeyConfig parameter is not supported in Gemini API.");
+    throw new Error("apiKeyConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["authType"]) !== void 0) {
-    throw new Error("authType parameter is not supported in Gemini API.");
+    throw new Error("authType parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["googleServiceAccountConfig"]) !== void 0) {
-    throw new Error("googleServiceAccountConfig parameter is not supported in Gemini API.");
+    throw new Error("googleServiceAccountConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["httpBasicAuthConfig"]) !== void 0) {
-    throw new Error("httpBasicAuthConfig parameter is not supported in Gemini API.");
+    throw new Error("httpBasicAuthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oauthConfig"]) !== void 0) {
-    throw new Error("oauthConfig parameter is not supported in Gemini API.");
+    throw new Error("oauthConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["oidcConfig"]) !== void 0) {
-    throw new Error("oidcConfig parameter is not supported in Gemini API.");
+    throw new Error("oidcConfig parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -63871,7 +63944,7 @@ function blobToMldev(fromObject) {
     setValueByPath(toObject, ["data"], fromData);
   }
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromMimeType = getValueByPath(fromObject, ["mimeType"]);
   if (fromMimeType != null) {
@@ -63938,7 +64011,7 @@ function createAuthTokenParametersToMldev(apiClient, fromObject) {
 function fileDataToMldev(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["displayName"]) !== void 0) {
-    throw new Error("displayName parameter is not supported in Gemini API.");
+    throw new Error("displayName parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFileUri = getValueByPath(fromObject, ["fileUri"]);
   if (fromFileUri != null) {
@@ -63965,10 +64038,10 @@ function functionCallToMldev(fromObject) {
     setValueByPath(toObject, ["name"], fromName);
   }
   if (getValueByPath(fromObject, ["partialArgs"]) !== void 0) {
-    throw new Error("partialArgs parameter is not supported in Gemini API.");
+    throw new Error("partialArgs parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["willContinue"]) !== void 0) {
-    throw new Error("willContinue parameter is not supported in Gemini API.");
+    throw new Error("willContinue parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -63991,10 +64064,10 @@ function googleSearchToMldev(fromObject) {
     setValueByPath(toObject, ["searchTypes"], fromSearchTypes);
   }
   if (getValueByPath(fromObject, ["blockingConfidence"]) !== void 0) {
-    throw new Error("blockingConfidence parameter is not supported in Gemini API.");
+    throw new Error("blockingConfidence parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["excludeDomains"]) !== void 0) {
-    throw new Error("excludeDomains parameter is not supported in Gemini API.");
+    throw new Error("excludeDomains parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromTimeRangeFilter = getValueByPath(fromObject, [
     "timeRangeFilter"
@@ -64113,7 +64186,7 @@ function liveConnectConfigToMldev(fromObject, parentObject) {
     setValueByPath(parentObject, ["setup", "proactivity"], fromProactivity);
   }
   if (getValueByPath(fromObject, ["explicitVadSignal"]) !== void 0) {
-    throw new Error("explicitVadSignal parameter is not supported in Gemini API.");
+    throw new Error("explicitVadSignal parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromAvatarConfig = getValueByPath(fromObject, ["avatarConfig"]);
   if (parentObject !== void 0 && fromAvatarConfig != null) {
@@ -64130,6 +64203,12 @@ function liveConnectConfigToMldev(fromObject, parentObject) {
       });
     }
     setValueByPath(parentObject, ["setup", "safetySettings"], transformedList);
+  }
+  const fromStreamTranslationConfig = getValueByPath(fromObject, [
+    "streamTranslationConfig"
+  ]);
+  if (parentObject !== void 0 && fromStreamTranslationConfig != null) {
+    setValueByPath(parentObject, ["setup", "generationConfig", "streamTranslationConfig"], fromStreamTranslationConfig);
   }
   return toObject;
 }
@@ -64224,7 +64303,7 @@ function safetySettingToMldev(fromObject) {
     setValueByPath(toObject, ["category"], fromCategory);
   }
   if (getValueByPath(fromObject, ["method"]) !== void 0) {
-    throw new Error("method parameter is not supported in Gemini API.");
+    throw new Error("method parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromThreshold = getValueByPath(fromObject, ["threshold"]);
   if (fromThreshold != null) {
@@ -64239,14 +64318,14 @@ function sessionResumptionConfigToMldev(fromObject) {
     setValueByPath(toObject, ["handle"], fromHandle);
   }
   if (getValueByPath(fromObject, ["transparent"]) !== void 0) {
-    throw new Error("transparent parameter is not supported in Gemini API.");
+    throw new Error("transparent parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
 function toolToMldev(fromObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["retrieval"]) !== void 0) {
-    throw new Error("retrieval parameter is not supported in Gemini API.");
+    throw new Error("retrieval parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromComputerUse = getValueByPath(fromObject, ["computerUse"]);
   if (fromComputerUse != null) {
@@ -64271,7 +64350,7 @@ function toolToMldev(fromObject) {
     setValueByPath(toObject, ["codeExecution"], fromCodeExecution);
   }
   if (getValueByPath(fromObject, ["enterpriseWebSearch"]) !== void 0) {
-    throw new Error("enterpriseWebSearch parameter is not supported in Gemini API.");
+    throw new Error("enterpriseWebSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromFunctionDeclarations = getValueByPath(fromObject, [
     "functionDeclarations"
@@ -64292,7 +64371,7 @@ function toolToMldev(fromObject) {
     setValueByPath(toObject, ["googleSearchRetrieval"], fromGoogleSearchRetrieval);
   }
   if (getValueByPath(fromObject, ["parallelAiSearch"]) !== void 0) {
-    throw new Error("parallelAiSearch parameter is not supported in Gemini API.");
+    throw new Error("parallelAiSearch parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromUrlContext = getValueByPath(fromObject, ["urlContext"]);
   if (fromUrlContext != null) {
@@ -65084,7 +65163,9 @@ var APIConnectionError = class extends APIError {
 };
 var APIConnectionTimeoutError = class extends APIConnectionError {
   constructor({ message } = {}) {
-    super({ message: message !== null && message !== void 0 ? message : "Request timed out." });
+    super({
+      message: message !== null && message !== void 0 ? message : "Request timed out. This is a client-side timeout. You can increase the timeout by setting the `timeout` argument in your request or client http options."
+    });
   }
 };
 var BadRequestError = class extends APIError {
@@ -65376,109 +65457,38 @@ ${underline2}`);
   return path11;
 };
 var path9 = createPathTagFunction(encodeURIPath);
-var BaseInteractions = class extends APIResource {
-  create(params2, options) {
-    var _a5;
-    const { api_version = this._client.apiVersion } = params2, body = __rest(params2, ["api_version"]);
-    if ("model" in body && "agent_config" in body) {
-      throw new GeminiNextGenAPIClientError(`Invalid request: specified \`model\` and \`agent_config\`. If specifying \`model\`, use \`generation_config\`.`);
-    }
-    if ("agent" in body && "generation_config" in body) {
-      throw new GeminiNextGenAPIClientError(`Invalid request: specified \`agent\` and \`generation_config\`. If specifying \`agent\`, use \`agent_config\`.`);
-    }
-    return this._client.post(path9`/${api_version}/interactions`, Object.assign(Object.assign({ body }, options), { stream: (_a5 = params2.stream) !== null && _a5 !== void 0 ? _a5 : false }));
-  }
+var BaseAgents = class extends APIResource {
   /**
-   * Deletes the interaction by id.
-   *
-   * @example
-   * ```ts
-   * const interaction = await client.interactions.delete('id', {
-   *   api_version: 'api_version',
-   * });
-   * ```
+   * Creates a new Agent (Typed version for SDK).
    */
-  delete(id, params2 = {}, options) {
-    const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.delete(path9`/${api_version}/interactions/${id}`, options);
+  create(params2 = {}, options) {
+    const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, body = __rest(_a5, ["api_version"]);
+    return this._client.post(path9`/${api_version}/agents`, Object.assign({ body }, options));
   }
   /**
-   * Cancels an interaction by id. This only applies to background interactions that
-   * are still running.
-   *
-   * @example
-   * ```ts
-   * const interaction = await client.interactions.cancel('id', {
-   *   api_version: 'api_version',
-   * });
-   * ```
-   */
-  cancel(id, params2 = {}, options) {
-    const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.post(path9`/${api_version}/interactions/${id}/cancel`, options);
-  }
-  get(id, params2 = {}, options) {
-    var _a5;
-    const _b = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _b, query = __rest(_b, ["api_version"]);
-    return this._client.get(path9`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a5 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a5 !== void 0 ? _a5 : false }));
-  }
-};
-BaseInteractions._key = Object.freeze(["interactions"]);
-var Interactions = class extends BaseInteractions {
-};
-var BaseWebhooks = class extends APIResource {
-  /**
-   * Creates a new Webhook.
-   */
-  create(params2, options) {
-    const { api_version = this._client.apiVersion } = params2, body = __rest(params2, ["api_version"]);
-    return this._client.post(path9`/${api_version}/webhooks`, Object.assign({ body }, options));
-  }
-  /**
-   * Updates an existing Webhook.
-   */
-  update(id, params2 = {}, options) {
-    const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion, update_mask } = _a5, body = __rest(_a5, ["api_version", "update_mask"]);
-    return this._client.patch(path9`/${api_version}/webhooks/${id}`, Object.assign({ query: { update_mask }, body }, options));
-  }
-  /**
-   * Lists all Webhooks.
+   * Lists all Agents.
    */
   list(params2 = {}, options) {
     const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, query = __rest(_a5, ["api_version"]);
-    return this._client.get(path9`/${api_version}/webhooks`, Object.assign({ query }, options));
+    return this._client.get(path9`/${api_version}/agents`, Object.assign({ query }, options));
   }
   /**
-   * Deletes a Webhook.
+   * Deletes an Agent.
    */
   delete(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.delete(path9`/${api_version}/webhooks/${id}`, options);
+    return this._client.delete(path9`/${api_version}/agents/${id}`, options);
   }
   /**
-   * Gets a specific Webhook.
+   * Gets a specific Agent.
    */
   get(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.get(path9`/${api_version}/webhooks/${id}`, options);
-  }
-  /**
-   * Sends a ping event to a Webhook.
-   */
-  ping(id, params2 = void 0, options) {
-    const { api_version = this._client.apiVersion, body } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.post(path9`/${api_version}/webhooks/${id}:ping`, Object.assign({ body }, options));
-  }
-  /**
-   * Generates a new signing secret for a Webhook.
-   */
-  rotateSigningSecret(id, params2 = {}, options) {
-    const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, body = __rest(_a5, ["api_version"]);
-    return this._client.post(path9`/${api_version}/webhooks/${id}:rotateSigningSecret`, Object.assign({ body }, options));
+    return this._client.get(path9`/${api_version}/agents/${id}`, options);
   }
 };
-BaseWebhooks._key = Object.freeze(["webhooks"]);
-var Webhooks = class extends BaseWebhooks {
+BaseAgents._key = Object.freeze(["agents"]);
+var Agents = class extends BaseAgents {
 };
 function concatBytes(buffers) {
   let length = 0;
@@ -65955,6 +65965,270 @@ function partition(str, delimiter) {
   }
   return [str, "", ""];
 }
+var LEGACY_LYRIA_MODELS = /* @__PURE__ */ new Set([
+  "lyria-3-pro-preview",
+  "lyria-3-clip-preview"
+]);
+var LEGACY_EVENT_TYPE_RENAMES = {
+  "interaction.start": "interaction.created",
+  "content.start": "step.start",
+  "content.delta": "step.delta",
+  "content.stop": "step.stop",
+  "interaction.complete": "interaction.completed"
+};
+function isLegacyLyriaRequest({ isVertex, model }) {
+  return Boolean(isVertex) && typeof model === "string" && LEGACY_LYRIA_MODELS.has(model);
+}
+function isVertexClient(client) {
+  const adapter = client.clientAdapter;
+  return Boolean(adapter && adapter.isVertexAI());
+}
+function isPlainObject2(value) {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+function wrapOutputsAsSteps(data) {
+  if (!("outputs" in data) || "steps" in data) {
+    return data;
+  }
+  const { outputs } = data, rest = __rest(data, ["outputs"]);
+  return Object.assign(Object.assign({}, rest), { steps: [{ type: "model_output", content: outputs }] });
+}
+function coerceLegacyInteractionResponse(data) {
+  if (!isPlainObject2(data))
+    return data;
+  return wrapOutputsAsSteps(data);
+}
+function maybeRemapLegacyStreamEvent(data) {
+  if (!isPlainObject2(data))
+    return data;
+  const eventType = data["event_type"];
+  if (typeof eventType !== "string" || !(eventType in LEGACY_EVENT_TYPE_RENAMES)) {
+    return data;
+  }
+  const renamed = Object.assign(Object.assign({}, data), { event_type: LEGACY_EVENT_TYPE_RENAMES[eventType] });
+  if (eventType === "content.start") {
+    const { content } = renamed, rest = __rest(renamed, ["content"]);
+    let stepContent;
+    if (content == null) {
+      stepContent = [];
+    } else if (Array.isArray(content)) {
+      stepContent = content;
+    } else {
+      stepContent = [content];
+    }
+    return Object.assign(Object.assign({}, rest), { step: { type: "model_output", content: stepContent } });
+  }
+  if (eventType === "interaction.start" || eventType === "interaction.complete") {
+    const inner = renamed["interaction"];
+    if (isPlainObject2(inner)) {
+      renamed["interaction"] = wrapOutputsAsSteps(inner);
+    }
+  }
+  return renamed;
+}
+var LegacyLyriaStream = class _LegacyLyriaStream extends Stream {
+  static fromSSEResponse(response, controller, client) {
+    const base = Stream.fromSSEResponse(response, controller, client);
+    function wrappedIterator() {
+      return __asyncGenerator(this, arguments, function* wrappedIterator_1() {
+        var _a5, e_1, _b, _c;
+        try {
+          for (var _d = true, base_1 = __asyncValues(base), base_1_1; base_1_1 = yield __await(base_1.next()), _a5 = base_1_1.done, !_a5; _d = true) {
+            _c = base_1_1.value;
+            _d = false;
+            const item = _c;
+            yield yield __await(maybeRemapLegacyStreamEvent(item));
+          }
+        } catch (e_1_1) {
+          e_1 = { error: e_1_1 };
+        } finally {
+          try {
+            if (!_d && !_a5 && (_b = base_1.return))
+              yield __await(_b.call(base_1));
+          } finally {
+            if (e_1)
+              throw e_1.error;
+          }
+        }
+      });
+    }
+    return new _LegacyLyriaStream(wrappedIterator, controller, client);
+  }
+};
+var BaseInteractions = class extends APIResource {
+  create(params2, options) {
+    var _a5;
+    const { api_version = this._client.apiVersion } = params2, body = __rest(params2, ["api_version"]);
+    if ("model" in body && "agent_config" in body) {
+      throw new GeminiNextGenAPIClientError(`Invalid request: specified \`model\` and \`agent_config\`. If specifying \`model\`, use \`generation_config\`.`);
+    }
+    if ("agent" in body && "generation_config" in body) {
+      throw new GeminiNextGenAPIClientError(`Invalid request: specified \`agent\` and \`generation_config\`. If specifying \`agent\`, use \`agent_config\`.`);
+    }
+    const needsLegacyLyriaShim = isLegacyLyriaRequest({
+      isVertex: isVertexClient(this._client),
+      model: "model" in body ? body.model : void 0
+    });
+    const isStreaming = (_a5 = params2.stream) !== null && _a5 !== void 0 ? _a5 : false;
+    const promise2 = this._client.post(path9`/${api_version}/interactions`, Object.assign(Object.assign(Object.assign({ body }, options), { stream: isStreaming }), needsLegacyLyriaShim && isStreaming ? { __streamClass: LegacyLyriaStream } : {}));
+    if (isStreaming) {
+      return promise2;
+    }
+    let nonStreaming = promise2;
+    if (needsLegacyLyriaShim) {
+      nonStreaming = nonStreaming._thenUnwrap((data) => coerceLegacyInteractionResponse(data));
+    }
+    return nonStreaming._thenUnwrap(addOutputProperties);
+  }
+  /**
+   * Deletes the interaction by id.
+   *
+   * @example
+   * ```ts
+   * const interaction = await client.interactions.delete('id', {
+   *   api_version: 'api_version',
+   * });
+   * ```
+   */
+  delete(id, params2 = {}, options) {
+    const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
+    return this._client.delete(path9`/${api_version}/interactions/${id}`, options);
+  }
+  /**
+   * Cancels an interaction by id. This only applies to background interactions that
+   * are still running.
+   *
+   * @example
+   * ```ts
+   * const interaction = await client.interactions.cancel('id', {
+   *   api_version: 'api_version',
+   * });
+   * ```
+   */
+  cancel(id, params2 = {}, options) {
+    const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
+    return this._client.post(path9`/${api_version}/interactions/${id}/cancel`, options)._thenUnwrap(addOutputProperties);
+  }
+  get(id, params2 = {}, options) {
+    var _a5;
+    const _b = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _b, query = __rest(_b, ["api_version"]);
+    const response = this._client.get(path9`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a5 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a5 !== void 0 ? _a5 : false }));
+    if (params2 === null || params2 === void 0 ? void 0 : params2.stream) {
+      return response;
+    }
+    return response._thenUnwrap(addOutputProperties);
+  }
+};
+BaseInteractions._key = Object.freeze(["interactions"]);
+var Interactions = class extends BaseInteractions {
+};
+function addOutputProperties(interaction) {
+  var _a5, _b;
+  const steps = (_a5 = interaction.steps) !== null && _a5 !== void 0 ? _a5 : [];
+  const textParts = [];
+  let collecting = false;
+  outer:
+    for (let i = steps.length - 1; i >= 0; i--) {
+      const step = steps[i];
+      if (step.type === "user_input")
+        break;
+      if (step.type !== "model_output" || !step.content) {
+        if (collecting)
+          break outer;
+        continue;
+      }
+      const content = step.content;
+      for (let j = content.length - 1; j >= 0; j--) {
+        const item = content[j];
+        if (item.type === "text") {
+          collecting = true;
+          textParts.push((_b = item.text) !== null && _b !== void 0 ? _b : "");
+        } else if (collecting) {
+          break outer;
+        }
+      }
+    }
+  const output_text = textParts.reverse().join("");
+  let output_image;
+  let output_audio;
+  let output_video;
+  for (let i = steps.length - 1; i >= 0; i--) {
+    const step = steps[i];
+    const anyStep = step;
+    if (anyStep.type === "user_input") {
+      break;
+    }
+    if (anyStep.type === "model_output" && anyStep.content) {
+      for (let j = anyStep.content.length - 1; j >= 0; j--) {
+        const content = anyStep.content[j];
+        if (content.type === "image" && !output_image) {
+          output_image = content;
+        }
+        if (content.type === "audio" && !output_audio) {
+          output_audio = content;
+        }
+        if (content.type === "video" && !output_video) {
+          output_video = content;
+        }
+      }
+    }
+  }
+  return Object.assign(Object.assign(Object.assign(Object.assign(Object.assign({}, interaction), output_text && { output_text }), output_image && { output_image }), output_audio && { output_audio }), output_video && { output_video });
+}
+var BaseWebhooks = class extends APIResource {
+  /**
+   * Creates a new Webhook.
+   */
+  create(params2, options) {
+    const { api_version = this._client.apiVersion } = params2, body = __rest(params2, ["api_version"]);
+    return this._client.post(path9`/${api_version}/webhooks`, Object.assign({ body }, options));
+  }
+  /**
+   * Updates an existing Webhook.
+   */
+  update(id, params2 = {}, options) {
+    const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion, update_mask } = _a5, body = __rest(_a5, ["api_version", "update_mask"]);
+    return this._client.patch(path9`/${api_version}/webhooks/${id}`, Object.assign({ query: { update_mask }, body }, options));
+  }
+  /**
+   * Lists all Webhooks.
+   */
+  list(params2 = {}, options) {
+    const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, query = __rest(_a5, ["api_version"]);
+    return this._client.get(path9`/${api_version}/webhooks`, Object.assign({ query }, options));
+  }
+  /**
+   * Deletes a Webhook.
+   */
+  delete(id, params2 = {}, options) {
+    const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
+    return this._client.delete(path9`/${api_version}/webhooks/${id}`, options);
+  }
+  /**
+   * Gets a specific Webhook.
+   */
+  get(id, params2 = {}, options) {
+    const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
+    return this._client.get(path9`/${api_version}/webhooks/${id}`, options);
+  }
+  /**
+   * Sends a ping event to a Webhook.
+   */
+  ping(id, params2 = void 0, options) {
+    const { api_version = this._client.apiVersion, body } = params2 !== null && params2 !== void 0 ? params2 : {};
+    return this._client.post(path9`/${api_version}/webhooks/${id}:ping`, Object.assign({ body }, options));
+  }
+  /**
+   * Generates a new signing secret for a Webhook.
+   */
+  rotateSigningSecret(id, params2 = {}, options) {
+    const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, body = __rest(_a5, ["api_version"]);
+    return this._client.post(path9`/${api_version}/webhooks/${id}:rotateSigningSecret`, Object.assign({ body }, options));
+  }
+};
+BaseWebhooks._key = Object.freeze(["webhooks"]);
+var Webhooks = class extends BaseWebhooks {
+};
 async function defaultParseResponse(client, props) {
   const { response, requestLogID, retryOfRequestLogID, startTime } = props;
   const body = await (async () => {
@@ -66457,7 +66731,7 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
     const authHeaders = await this.authHeaders(options);
     let headers = buildHeaders([
       idempotencyHeaders,
-      { Accept: "application/json", "User-Agent": this.getUserAgent() },
+      { Accept: "application/json", "User-Agent": this.getUserAgent(), "Api-Revision": "2026-05-20" },
       this._options.defaultHeaders,
       bodyHeaders,
       options.headers,
@@ -66502,6 +66776,7 @@ var GeminiNextGenAPIClient = class extends BaseGeminiNextGenAPIClient {
     super(...arguments);
     this.interactions = new Interactions(this);
     this.webhooks = new Webhooks(this);
+    this.agents = new Agents(this);
   }
 };
 _a2 = GeminiNextGenAPIClient;
@@ -66522,6 +66797,7 @@ GeminiNextGenAPIClient.UnprocessableEntityError = UnprocessableEntityError;
 GeminiNextGenAPIClient.toFile = toFile;
 GeminiNextGenAPIClient.Interactions = Interactions;
 GeminiNextGenAPIClient.Webhooks = Webhooks;
+GeminiNextGenAPIClient.Agents = Agents;
 var GOOGLE_API_KEY_HEADER = "x-goog-api-key";
 var REQUIRED_VERTEX_AI_SCOPE = "https://www.googleapis.com/auth/cloud-platform";
 var NodeAuth = class {
@@ -66705,7 +66981,7 @@ function cancelTuningJobResponseFromVertex(fromObject, _rootObject) {
 function createTuningJobConfigToMldev(fromObject, parentObject, _rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["validationDataset"]) !== void 0) {
-    throw new Error("validationDataset parameter is not supported in Gemini API.");
+    throw new Error("validationDataset parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromTunedModelDisplayName = getValueByPath(fromObject, [
     "tunedModelDisplayName"
@@ -66714,7 +66990,7 @@ function createTuningJobConfigToMldev(fromObject, parentObject, _rootObject) {
     setValueByPath(parentObject, ["displayName"], fromTunedModelDisplayName);
   }
   if (getValueByPath(fromObject, ["description"]) !== void 0) {
-    throw new Error("description parameter is not supported in Gemini API.");
+    throw new Error("description parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromEpochCount = getValueByPath(fromObject, ["epochCount"]);
   if (parentObject !== void 0 && fromEpochCount != null) {
@@ -66727,19 +67003,19 @@ function createTuningJobConfigToMldev(fromObject, parentObject, _rootObject) {
     setValueByPath(toObject, ["tuningTask", "hyperparameters", "learningRateMultiplier"], fromLearningRateMultiplier);
   }
   if (getValueByPath(fromObject, ["exportLastCheckpointOnly"]) !== void 0) {
-    throw new Error("exportLastCheckpointOnly parameter is not supported in Gemini API.");
+    throw new Error("exportLastCheckpointOnly parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["preTunedModelCheckpointId"]) !== void 0) {
-    throw new Error("preTunedModelCheckpointId parameter is not supported in Gemini API.");
+    throw new Error("preTunedModelCheckpointId parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["adapterSize"]) !== void 0) {
-    throw new Error("adapterSize parameter is not supported in Gemini API.");
+    throw new Error("adapterSize parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["tuningMode"]) !== void 0) {
-    throw new Error("tuningMode parameter is not supported in Gemini API.");
+    throw new Error("tuningMode parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["customBaseModel"]) !== void 0) {
-    throw new Error("customBaseModel parameter is not supported in Gemini API.");
+    throw new Error("customBaseModel parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromBatchSize = getValueByPath(fromObject, ["batchSize"]);
   if (parentObject !== void 0 && fromBatchSize != null) {
@@ -66750,25 +67026,25 @@ function createTuningJobConfigToMldev(fromObject, parentObject, _rootObject) {
     setValueByPath(parentObject, ["tuningTask", "hyperparameters", "learningRate"], fromLearningRate);
   }
   if (getValueByPath(fromObject, ["labels"]) !== void 0) {
-    throw new Error("labels parameter is not supported in Gemini API.");
+    throw new Error("labels parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["beta"]) !== void 0) {
-    throw new Error("beta parameter is not supported in Gemini API.");
+    throw new Error("beta parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["baseTeacherModel"]) !== void 0) {
-    throw new Error("baseTeacherModel parameter is not supported in Gemini API.");
+    throw new Error("baseTeacherModel parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["tunedTeacherModelSource"]) !== void 0) {
-    throw new Error("tunedTeacherModelSource parameter is not supported in Gemini API.");
+    throw new Error("tunedTeacherModelSource parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["sftLossWeightMultiplier"]) !== void 0) {
-    throw new Error("sftLossWeightMultiplier parameter is not supported in Gemini API.");
+    throw new Error("sftLossWeightMultiplier parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["outputUri"]) !== void 0) {
-    throw new Error("outputUri parameter is not supported in Gemini API.");
+    throw new Error("outputUri parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["encryptionSpec"]) !== void 0) {
-    throw new Error("encryptionSpec parameter is not supported in Gemini API.");
+    throw new Error("encryptionSpec parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   return toObject;
 }
@@ -67068,6 +67344,250 @@ function createTuningJobParametersPrivateToVertex(fromObject, rootObject) {
   }
   return toObject;
 }
+function distillationHyperParametersFromVertex(fromObject, rootObject) {
+  const toObject = {};
+  const fromAdapterSize = getValueByPath(fromObject, ["adapterSize"]);
+  if (fromAdapterSize != null) {
+    setValueByPath(toObject, ["adapterSize"], fromAdapterSize);
+  }
+  const fromEpochCount = getValueByPath(fromObject, ["epochCount"]);
+  if (fromEpochCount != null) {
+    setValueByPath(toObject, ["epochCount"], fromEpochCount);
+  }
+  const fromLearningRateMultiplier = getValueByPath(fromObject, [
+    "learningRateMultiplier"
+  ]);
+  if (fromLearningRateMultiplier != null) {
+    setValueByPath(toObject, ["learningRateMultiplier"], fromLearningRateMultiplier);
+  }
+  const fromGenerationConfig = getValueByPath(fromObject, [
+    "generationConfig"
+  ]);
+  if (fromGenerationConfig != null) {
+    setValueByPath(toObject, ["generationConfig"], generationConfigFromVertex(fromGenerationConfig));
+  }
+  const fromLearningRate = getValueByPath(fromObject, ["learningRate"]);
+  if (fromLearningRate != null) {
+    setValueByPath(toObject, ["learningRate"], fromLearningRate);
+  }
+  const fromBatchSize = getValueByPath(fromObject, ["batchSize"]);
+  if (fromBatchSize != null) {
+    setValueByPath(toObject, ["batchSize"], fromBatchSize);
+  }
+  return toObject;
+}
+function distillationSamplingSpecFromVertex(fromObject, rootObject) {
+  const toObject = {};
+  const fromBaseTeacherModel = getValueByPath(fromObject, [
+    "baseTeacherModel"
+  ]);
+  if (fromBaseTeacherModel != null) {
+    setValueByPath(toObject, ["baseTeacherModel"], fromBaseTeacherModel);
+  }
+  const fromTunedTeacherModelSource = getValueByPath(fromObject, [
+    "tunedTeacherModelSource"
+  ]);
+  if (fromTunedTeacherModelSource != null) {
+    setValueByPath(toObject, ["tunedTeacherModelSource"], fromTunedTeacherModelSource);
+  }
+  const fromValidationDatasetUri = getValueByPath(fromObject, [
+    "validationDatasetUri"
+  ]);
+  if (fromValidationDatasetUri != null) {
+    setValueByPath(toObject, ["validationDatasetUri"], fromValidationDatasetUri);
+  }
+  const fromPromptDatasetUri = getValueByPath(fromObject, [
+    "promptDatasetUri"
+  ]);
+  if (fromPromptDatasetUri != null) {
+    setValueByPath(toObject, ["promptDatasetUri"], fromPromptDatasetUri);
+  }
+  const fromHyperparameters = getValueByPath(fromObject, [
+    "hyperparameters"
+  ]);
+  if (fromHyperparameters != null) {
+    setValueByPath(toObject, ["hyperparameters"], distillationHyperParametersFromVertex(fromHyperparameters));
+  }
+  return toObject;
+}
+function distillationSpecFromVertex(fromObject, rootObject) {
+  const toObject = {};
+  const fromPromptDatasetUri = getValueByPath(fromObject, [
+    "promptDatasetUri"
+  ]);
+  if (fromPromptDatasetUri != null) {
+    setValueByPath(toObject, ["promptDatasetUri"], fromPromptDatasetUri);
+  }
+  const fromBaseTeacherModel = getValueByPath(fromObject, [
+    "baseTeacherModel"
+  ]);
+  if (fromBaseTeacherModel != null) {
+    setValueByPath(toObject, ["baseTeacherModel"], fromBaseTeacherModel);
+  }
+  const fromHyperParameters = getValueByPath(fromObject, [
+    "hyperParameters"
+  ]);
+  if (fromHyperParameters != null) {
+    setValueByPath(toObject, ["hyperParameters"], distillationHyperParametersFromVertex(fromHyperParameters));
+  }
+  const fromPipelineRootDirectory = getValueByPath(fromObject, [
+    "pipelineRootDirectory"
+  ]);
+  if (fromPipelineRootDirectory != null) {
+    setValueByPath(toObject, ["pipelineRootDirectory"], fromPipelineRootDirectory);
+  }
+  const fromStudentModel = getValueByPath(fromObject, ["studentModel"]);
+  if (fromStudentModel != null) {
+    setValueByPath(toObject, ["studentModel"], fromStudentModel);
+  }
+  const fromTrainingDatasetUri = getValueByPath(fromObject, [
+    "trainingDatasetUri"
+  ]);
+  if (fromTrainingDatasetUri != null) {
+    setValueByPath(toObject, ["trainingDatasetUri"], fromTrainingDatasetUri);
+  }
+  const fromTunedTeacherModelSource = getValueByPath(fromObject, [
+    "tunedTeacherModelSource"
+  ]);
+  if (fromTunedTeacherModelSource != null) {
+    setValueByPath(toObject, ["tunedTeacherModelSource"], fromTunedTeacherModelSource);
+  }
+  const fromValidationDatasetUri = getValueByPath(fromObject, [
+    "validationDatasetUri"
+  ]);
+  if (fromValidationDatasetUri != null) {
+    setValueByPath(toObject, ["validationDatasetUri"], fromValidationDatasetUri);
+  }
+  const fromTuningMode = getValueByPath(fromObject, ["tuningMode"]);
+  if (fromTuningMode != null) {
+    setValueByPath(toObject, ["tuningMode"], fromTuningMode);
+  }
+  return toObject;
+}
+function generationConfigFromVertex(fromObject, _rootObject) {
+  const toObject = {};
+  const fromModelSelectionConfig = getValueByPath(fromObject, [
+    "modelConfig"
+  ]);
+  if (fromModelSelectionConfig != null) {
+    setValueByPath(toObject, ["modelSelectionConfig"], fromModelSelectionConfig);
+  }
+  const fromResponseJsonSchema = getValueByPath(fromObject, [
+    "responseJsonSchema"
+  ]);
+  if (fromResponseJsonSchema != null) {
+    setValueByPath(toObject, ["responseJsonSchema"], fromResponseJsonSchema);
+  }
+  const fromAudioTimestamp = getValueByPath(fromObject, [
+    "audioTimestamp"
+  ]);
+  if (fromAudioTimestamp != null) {
+    setValueByPath(toObject, ["audioTimestamp"], fromAudioTimestamp);
+  }
+  const fromCandidateCount = getValueByPath(fromObject, [
+    "candidateCount"
+  ]);
+  if (fromCandidateCount != null) {
+    setValueByPath(toObject, ["candidateCount"], fromCandidateCount);
+  }
+  const fromEnableAffectiveDialog = getValueByPath(fromObject, [
+    "enableAffectiveDialog"
+  ]);
+  if (fromEnableAffectiveDialog != null) {
+    setValueByPath(toObject, ["enableAffectiveDialog"], fromEnableAffectiveDialog);
+  }
+  const fromFrequencyPenalty = getValueByPath(fromObject, [
+    "frequencyPenalty"
+  ]);
+  if (fromFrequencyPenalty != null) {
+    setValueByPath(toObject, ["frequencyPenalty"], fromFrequencyPenalty);
+  }
+  const fromLogprobs = getValueByPath(fromObject, ["logprobs"]);
+  if (fromLogprobs != null) {
+    setValueByPath(toObject, ["logprobs"], fromLogprobs);
+  }
+  const fromMaxOutputTokens = getValueByPath(fromObject, [
+    "maxOutputTokens"
+  ]);
+  if (fromMaxOutputTokens != null) {
+    setValueByPath(toObject, ["maxOutputTokens"], fromMaxOutputTokens);
+  }
+  const fromMediaResolution = getValueByPath(fromObject, [
+    "mediaResolution"
+  ]);
+  if (fromMediaResolution != null) {
+    setValueByPath(toObject, ["mediaResolution"], fromMediaResolution);
+  }
+  const fromPresencePenalty = getValueByPath(fromObject, [
+    "presencePenalty"
+  ]);
+  if (fromPresencePenalty != null) {
+    setValueByPath(toObject, ["presencePenalty"], fromPresencePenalty);
+  }
+  const fromResponseLogprobs = getValueByPath(fromObject, [
+    "responseLogprobs"
+  ]);
+  if (fromResponseLogprobs != null) {
+    setValueByPath(toObject, ["responseLogprobs"], fromResponseLogprobs);
+  }
+  const fromResponseMimeType = getValueByPath(fromObject, [
+    "responseMimeType"
+  ]);
+  if (fromResponseMimeType != null) {
+    setValueByPath(toObject, ["responseMimeType"], fromResponseMimeType);
+  }
+  const fromResponseModalities = getValueByPath(fromObject, [
+    "responseModalities"
+  ]);
+  if (fromResponseModalities != null) {
+    setValueByPath(toObject, ["responseModalities"], fromResponseModalities);
+  }
+  const fromResponseSchema = getValueByPath(fromObject, [
+    "responseSchema"
+  ]);
+  if (fromResponseSchema != null) {
+    setValueByPath(toObject, ["responseSchema"], fromResponseSchema);
+  }
+  const fromRoutingConfig = getValueByPath(fromObject, [
+    "routingConfig"
+  ]);
+  if (fromRoutingConfig != null) {
+    setValueByPath(toObject, ["routingConfig"], fromRoutingConfig);
+  }
+  const fromSeed = getValueByPath(fromObject, ["seed"]);
+  if (fromSeed != null) {
+    setValueByPath(toObject, ["seed"], fromSeed);
+  }
+  const fromSpeechConfig = getValueByPath(fromObject, ["speechConfig"]);
+  if (fromSpeechConfig != null) {
+    setValueByPath(toObject, ["speechConfig"], fromSpeechConfig);
+  }
+  const fromStopSequences = getValueByPath(fromObject, [
+    "stopSequences"
+  ]);
+  if (fromStopSequences != null) {
+    setValueByPath(toObject, ["stopSequences"], fromStopSequences);
+  }
+  const fromTemperature = getValueByPath(fromObject, ["temperature"]);
+  if (fromTemperature != null) {
+    setValueByPath(toObject, ["temperature"], fromTemperature);
+  }
+  const fromThinkingConfig = getValueByPath(fromObject, [
+    "thinkingConfig"
+  ]);
+  if (fromThinkingConfig != null) {
+    setValueByPath(toObject, ["thinkingConfig"], fromThinkingConfig);
+  }
+  const fromTopK = getValueByPath(fromObject, ["topK"]);
+  if (fromTopK != null) {
+    setValueByPath(toObject, ["topK"], fromTopK);
+  }
+  const fromTopP = getValueByPath(fromObject, ["topP"]);
+  if (fromTopP != null) {
+    setValueByPath(toObject, ["topP"], fromTopP);
+  }
+  return toObject;
+}
 function getTuningJobParametersToMldev(fromObject, _rootObject) {
   const toObject = {};
   const fromName = getValueByPath(fromObject, ["name"]);
@@ -67149,10 +67669,10 @@ function tunedModelFromMldev(fromObject, _rootObject) {
 function tuningDatasetToMldev(fromObject, _rootObject) {
   const toObject = {};
   if (getValueByPath(fromObject, ["gcsUri"]) !== void 0) {
-    throw new Error("gcsUri parameter is not supported in Gemini API.");
+    throw new Error("gcsUri parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   if (getValueByPath(fromObject, ["vertexDatasetResource"]) !== void 0) {
-    throw new Error("vertexDatasetResource parameter is not supported in Gemini API.");
+    throw new Error("vertexDatasetResource parameter is only supported in Gemini Enterprise Agent Platform mode, not in Gemini Developer API mode.");
   }
   const fromExamples = getValueByPath(fromObject, ["examples"]);
   if (fromExamples != null) {
@@ -67221,7 +67741,7 @@ function tuningDatasetToVertex(fromObject, parentObject, rootObject) {
     }
   }
   if (getValueByPath(fromObject, ["examples"]) !== void 0) {
-    throw new Error("examples parameter is not supported in Gemini Enterprise Agent Platform (previously known as Vertex AI).");
+    throw new Error("examples parameter is only supported in Gemini Developer API mode, not in Gemini Enterprise Agent Platform mode.");
   }
   return toObject;
 }
@@ -67277,7 +67797,7 @@ function tuningJobFromMldev(fromObject, rootObject) {
   }
   return toObject;
 }
-function tuningJobFromVertex(fromObject, _rootObject) {
+function tuningJobFromVertex(fromObject, rootObject) {
   const toObject = {};
   const fromSdkHttpResponse = getValueByPath(fromObject, [
     "sdkHttpResponse"
@@ -67347,7 +67867,7 @@ function tuningJobFromVertex(fromObject, _rootObject) {
     "distillationSpec"
   ]);
   if (fromDistillationSpec != null) {
-    setValueByPath(toObject, ["distillationSpec"], fromDistillationSpec);
+    setValueByPath(toObject, ["distillationSpec"], distillationSpecFromVertex(fromDistillationSpec));
   }
   const fromTuningDataStats = getValueByPath(fromObject, [
     "tuningDataStats"
@@ -67431,17 +67951,23 @@ function tuningJobFromVertex(fromObject, _rootObject) {
   if (fromVeoTuningSpec != null) {
     setValueByPath(toObject, ["veoTuningSpec"], fromVeoTuningSpec);
   }
-  const fromDistillationSamplingSpec = getValueByPath(fromObject, [
-    "distillationSamplingSpec"
-  ]);
-  if (fromDistillationSamplingSpec != null) {
-    setValueByPath(toObject, ["distillationSamplingSpec"], fromDistillationSamplingSpec);
-  }
   const fromTuningJobMetadata = getValueByPath(fromObject, [
     "tuningJobMetadata"
   ]);
   if (fromTuningJobMetadata != null) {
     setValueByPath(toObject, ["tuningJobMetadata"], fromTuningJobMetadata);
+  }
+  const fromVeoLoraTuningSpec = getValueByPath(fromObject, [
+    "veoLoraTuningSpec"
+  ]);
+  if (fromVeoLoraTuningSpec != null) {
+    setValueByPath(toObject, ["veoLoraTuningSpec"], fromVeoLoraTuningSpec);
+  }
+  const fromDistillationSamplingSpec = getValueByPath(fromObject, [
+    "distillationSamplingSpec"
+  ]);
+  if (fromDistillationSamplingSpec != null) {
+    setValueByPath(toObject, ["distillationSamplingSpec"], distillationSamplingSpecFromVertex(fromDistillationSamplingSpec));
   }
   return toObject;
 }
@@ -68143,6 +68669,14 @@ var GoogleGenAI = class {
     }
     this._webhooks = this.getNextGenClient().webhooks;
     return this._webhooks;
+  }
+  get agents() {
+    if (this._agents !== void 0) {
+      return this._agents;
+    }
+    console.warn("GoogleGenAI.agents: Agents usage is experimental and may change in future versions.");
+    this._agents = this.getNextGenClient().agents;
+    return this._agents;
   }
   constructor(options) {
     var _a5, _b, _c, _d;
@@ -69195,7 +69729,7 @@ __export(util_exports, {
   getSizableOrigin: () => getSizableOrigin,
   hexToUint8Array: () => hexToUint8Array,
   isObject: () => isObject,
-  isPlainObject: () => isPlainObject2,
+  isPlainObject: () => isPlainObject3,
   issue: () => issue,
   joinValues: () => joinValues,
   jsonStringifyReplacer: () => jsonStringifyReplacer,
@@ -69375,7 +69909,7 @@ var allowsEval = cached(() => {
     return false;
   }
 });
-function isPlainObject2(o) {
+function isPlainObject3(o) {
   if (isObject(o) === false)
     return false;
   const ctor = o.constructor;
@@ -69392,7 +69926,7 @@ function isPlainObject2(o) {
   return true;
 }
 function shallowClone(o) {
-  if (isPlainObject2(o))
+  if (isPlainObject3(o))
     return { ...o };
   if (Array.isArray(o))
     return [...o];
@@ -69596,7 +70130,7 @@ function omit(schema, mask) {
   return clone(schema, def);
 }
 function extend(schema, shape) {
-  if (!isPlainObject2(shape)) {
+  if (!isPlainObject3(shape)) {
     throw new Error("Invalid input to extend: expected a plain object");
   }
   const checks = schema._zod.def.checks;
@@ -69619,7 +70153,7 @@ function extend(schema, shape) {
   return clone(schema, def);
 }
 function safeExtend(schema, shape) {
-  if (!isPlainObject2(shape)) {
+  if (!isPlainObject3(shape)) {
     throw new Error("Invalid input to safeExtend: expected a plain object");
   }
   const def = mergeDefs(schema._zod.def, {
@@ -71966,7 +72500,7 @@ function mergeValues(a, b) {
   if (a instanceof Date && b instanceof Date && +a === +b) {
     return { valid: true, data: a };
   }
-  if (isPlainObject2(a) && isPlainObject2(b)) {
+  if (isPlainObject3(a) && isPlainObject3(b)) {
     const bKeys = Object.keys(b);
     const sharedKeys = Object.keys(a).filter((key) => bKeys.indexOf(key) !== -1);
     const newObj = { ...a, ...b };
@@ -72152,7 +72686,7 @@ var $ZodRecord = $constructor("$ZodRecord", (inst, def) => {
   $ZodType.init(inst, def);
   inst._zod.parse = (payload, ctx) => {
     const input = payload.value;
-    if (!isPlainObject2(input)) {
+    if (!isPlainObject3(input)) {
       payload.issues.push({
         expected: "record",
         code: "invalid_type",
