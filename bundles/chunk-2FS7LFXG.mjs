@@ -5621,7 +5621,7 @@ var CONFIG_FILE_PATH_MATCHER = ".ng-dev/config.mjs";
 var USER_CONFIG_FILE_PATH = ".ng-dev.user";
 var userConfig = null;
 var setConfig = setCachedConfig;
-async function getConfig(baseDirOrAssertions) {
+async function getConfig(baseDirOrAssertions, returnNullOnConfigNotFound = false) {
   let cachedConfig2 = getCachedConfig();
   if (cachedConfig2 === null) {
     let baseDir;
@@ -5631,7 +5631,10 @@ async function getConfig(baseDirOrAssertions) {
       baseDir = determineRepoBaseDirFromCwd();
     }
     const configPath = join3(baseDir, CONFIG_FILE_PATH_MATCHER);
-    cachedConfig2 = await readConfigFile(configPath);
+    cachedConfig2 = await readConfigFile(configPath, returnNullOnConfigNotFound);
+    if (returnNullOnConfigNotFound && !cachedConfig2) {
+      return null;
+    }
     setCachedConfig(cachedConfig2);
   }
   if (Array.isArray(baseDirOrAssertions)) {
@@ -5678,14 +5681,14 @@ function assertValidCaretakerConfig(config) {
     throw new ConfigValidationError(`No configuration defined for "caretaker"`);
   }
 }
-async function readConfigFile(configPath, returnEmptyObjectOnError = false) {
+async function readConfigFile(configPath, returnNullOnConfigNotFound = false) {
   try {
     return await import(pathToFileURL(configPath).toString());
   } catch (e) {
-    if (returnEmptyObjectOnError) {
+    if (returnNullOnConfigNotFound) {
       Log.debug(`Could not read configuration file at ${configPath}, returning empty object instead.`);
       Log.debug(e);
-      return {};
+      return null;
     }
     Log.error(`Could not read configuration file at ${configPath}.`);
     Log.error(e);

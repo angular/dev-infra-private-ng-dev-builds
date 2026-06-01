@@ -31,6 +31,7 @@ export declare const setConfig: typeof setCachedConfig;
 export declare function getConfig(): Promise<NgDevConfig>;
 export declare function getConfig(baseDir: string): Promise<NgDevConfig>;
 export declare function getConfig<A extends MultipleAssertions>(assertions: A): Promise<NgDevConfig<Assertions<A>>>;
+export declare function getConfig<A extends MultipleAssertions>(assertions: A, returnNullOnConfigNotFound: true): Promise<NgDevConfig<Assertions<A>> | null>;
 export declare function getUserConfig(): Promise<{
     [key: string]: any;
 }>;

@@ -46,7 +46,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-4EMV7NEU.mjs";
+} from "./chunk-WBKY7U4X.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -65,7 +65,7 @@ import {
   runParserWithCompletedFunctions,
   underline,
   yellow
-} from "./chunk-PVA34BB2.mjs";
+} from "./chunk-2FS7LFXG.mjs";
 import {
   CommitParser
 } from "./chunk-VWFPSUIZ.mjs";
@@ -49021,7 +49021,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-9ee8a680dd018d61d21588bb04cf40d49a9f5deb`;
+var localVersion = `0.0.0-df2b39e1010db60cea7cfbc11988897ed424a7a3`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
