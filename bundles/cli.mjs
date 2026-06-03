@@ -47783,7 +47783,8 @@ var ExternalCommands = class {
       await this._spawnNpmScript([
         "ng-dev",
         "release",
-        "set-dist-tag",
+        "npm-dist-tag",
+        "set",
         npmDistTag,
         version2.format(),
         `--skip-experimental-packages=${options.skipExperimentalPackages}`
@@ -49021,7 +49022,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-df2b39e1010db60cea7cfbc11988897ed424a7a3`;
+var localVersion = `0.0.0-6a613f2a8529185fda503da34fc4ddcab6967e7d`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
