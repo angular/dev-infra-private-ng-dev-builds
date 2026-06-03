@@ -49022,7 +49022,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-9dfe0e4c760b8e28fa0ce3ad7c073c805caa7877`;
+var localVersion = `0.0.0-be7ae87e2ddc8925f5e47bf8cfd4ce5e94612666`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -68851,7 +68851,7 @@ var import_cli_progress3 = __toESM(require_cli_progress());
 import { readFile as readFile3, writeFile as writeFile3 } from "fs/promises";
 
 // ng-dev/ai/consts.js
-var DEFAULT_MODEL = "gemini-2.5-pro";
+var DEFAULT_MODEL = "gemini-3.1-pro-preview";
 var DEFAULT_TEMPERATURE = 0.1;
 var DEFAULT_API_KEY = process.env["GEMINI_API_KEY"];
 
