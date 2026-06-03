@@ -45482,6 +45482,24 @@ import { setTimeout as sleep } from "node:timers/promises";
 import { dirname as dirname3, join as join7 } from "node:path";
 import { fileURLToPath as fileURLToPath3 } from "node:url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
+  async check(pullRequest) {
+    const originalHeadSha = this.git.run(["rev-parse", TEMP_PR_HEAD_BRANCH]).stdout.trim();
+    const branchOrRevisionBeforeRebase = this.git.getCurrentBranchOrRevision();
+    try {
+      try {
+        this.git.run(["rebase", "--interactive", "--autosquash", pullRequest.baseSha, TEMP_PR_HEAD_BRANCH], {
+          env: { ...process.env, GIT_SEQUENCE_EDITOR: "true" }
+        });
+      } catch (e) {
+        this.git.runGraceful(["rebase", "--abort"]);
+        throw new MergeConflictsFatalError([]);
+      }
+      await super.check(pullRequest);
+    } finally {
+      this.git.run(["update-ref", `refs/heads/${TEMP_PR_HEAD_BRANCH}`, originalHeadSha]);
+      this.git.run(["checkout", "-f", branchOrRevisionBeforeRebase]);
+    }
+  }
   async merge(pullRequest) {
     const { githubTargetBranch, targetBranches, revisionRange, needsCommitMessageFixup, baseSha, prNumber } = pullRequest;
     const branchOrRevisionBeforeRebase = this.git.getCurrentBranchOrRevision();
@@ -49022,7 +49040,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-be7ae87e2ddc8925f5e47bf8cfd4ce5e94612666`;
+var localVersion = `0.0.0-b64a291ca373bc91e5ee876488710c026157bf91`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
