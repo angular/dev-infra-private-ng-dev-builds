@@ -43218,6 +43218,7 @@ function multimatch(list, patterns, options = {}) {
 
 // ng-dev/format/run-commands-parallel.js
 import { cpus } from "os";
+import { lstatSync } from "fs";
 
 // ng-dev/format/formatters/buildifier.js
 import { join } from "path";
@@ -43375,7 +43376,10 @@ function runFormatterInParallel(allFiles, action) {
         return;
       }
       const { file: file2, formatter } = nextCommand;
-      const [spawnCmd, ...spawnArgs] = [...formatter.commandFor(action).split(" "), file2];
+      if (lstatSync(file2).isSymbolicLink()) {
+        throw new Error(`Security violation: symlink detected for file ${file2}`);
+      }
+      const [spawnCmd, ...spawnArgs] = [...formatter.commandFor(action).split(" "), "--", file2];
       ChildProcess.spawn(spawnCmd, spawnArgs, {
         suppressErrorOnFailingExitCode: true,
         mode: "silent"
@@ -43736,7 +43740,7 @@ var SyncModuleBazelModule = {
 };
 
 // ng-dev/misc/build-and-link/cli.js
-import { lstatSync } from "fs";
+import { lstatSync as lstatSync2 } from "fs";
 import { resolve as resolve2 } from "path";
 
 // ng-dev/release/build/index.js
@@ -43771,7 +43775,7 @@ function builder11(argv) {
 }
 async function handler11({ projectRoot }) {
   try {
-    if (!lstatSync(projectRoot).isDirectory()) {
+    if (!lstatSync2(projectRoot).isDirectory()) {
       Log.error(`  \u2718   The 'projectRoot' must be a directory: ${projectRoot}`);
       process.exit(1);
     }
@@ -46150,7 +46154,7 @@ var PullApproveGroupArray = class _PullApproveGroupArray extends Array {
 };
 
 // ng-dev/pullapprove/condition_evaluator.js
-import { runInNewContext } from "vm";
+import ts from "typescript";
 var conditionEvaluationContext = (() => {
   const context = {
     "len": (value) => value.length,
@@ -46168,18 +46172,168 @@ var conditionEvaluationContext = (() => {
   return context;
 })();
 function convertConditionToFunction(expr) {
-  const jsExpression = `
-    (files, groups) => {
-      return (${transformExpressionToJs(expr)});
-    }
-  `;
-  const isMatchingFn = runInNewContext(jsExpression, conditionEvaluationContext);
+  const jsExpressionStr = transformExpressionToJs(expr);
+  const sourceFile = ts.createSourceFile("expr.ts", jsExpressionStr, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
   return (files, groups) => {
-    const result = isMatchingFn(new PullApproveStringArray(...files), new PullApproveGroupArray(...groups));
+    const evaluationContext = Object.create(conditionEvaluationContext);
+    evaluationContext["files"] = new PullApproveStringArray(...files);
+    evaluationContext["groups"] = new PullApproveGroupArray(...groups);
+    const result = evaluateNode(sourceFile, evaluationContext);
     if (Array.isArray(result)) {
       return result.length !== 0;
     }
     return !!result;
+  };
+}
+function evaluateNode(node, context) {
+  if (ts.isSourceFile(node)) {
+    if (node.statements.length !== 1) {
+      throw new Error("Invalid expression: multiple statements not allowed");
+    }
+    const stmt = node.statements[0];
+    if (!ts.isExpressionStatement(stmt)) {
+      throw new Error("Invalid expression: must be an expression");
+    }
+    return evaluateNode(stmt.expression, context);
+  }
+  if (ts.isExpressionStatement(node)) {
+    return evaluateNode(node.expression, context);
+  }
+  if (ts.isParenthesizedExpression(node)) {
+    return evaluateNode(node.expression, context);
+  }
+  if (ts.isPrefixUnaryExpression(node)) {
+    if (node.operator === ts.SyntaxKind.ExclamationToken) {
+      return !evaluateNode(node.operand, context);
+    }
+    throw new Error(`Unsupported prefix operator: ${node.operator}`);
+  }
+  if (ts.isBinaryExpression(node)) {
+    const left = evaluateNode(node.left, context);
+    if (node.operatorToken.kind === ts.SyntaxKind.AmpersandAmpersandToken) {
+      return left && evaluateNode(node.right, context);
+    }
+    if (node.operatorToken.kind === ts.SyntaxKind.BarBarToken) {
+      return left || evaluateNode(node.right, context);
+    }
+    const right = evaluateNode(node.right, context);
+    switch (node.operatorToken.kind) {
+      case ts.SyntaxKind.EqualsEqualsToken:
+      case ts.SyntaxKind.EqualsEqualsEqualsToken:
+        return left === right;
+      case ts.SyntaxKind.ExclamationEqualsToken:
+      case ts.SyntaxKind.ExclamationEqualsEqualsToken:
+        return left !== right;
+      case ts.SyntaxKind.GreaterThanToken:
+        return left > right;
+      case ts.SyntaxKind.GreaterThanEqualsToken:
+        return left >= right;
+      case ts.SyntaxKind.LessThanToken:
+        return left < right;
+      case ts.SyntaxKind.LessThanEqualsToken:
+        return left <= right;
+      default:
+        throw new Error(`Unsupported binary operator: ${node.operatorToken.kind}`);
+    }
+  }
+  if (ts.isIdentifier(node)) {
+    const name = node.text;
+    if (name in context) {
+      return context[name];
+    }
+    throw new Error(`Undefined variable or function: ${name}`);
+  }
+  if (ts.isPropertyAccessExpression(node)) {
+    const obj = evaluateNode(node.expression, context);
+    const prop = node.name.text;
+    if (obj && (typeof obj === "object" || typeof obj === "string")) {
+      if (Array.isArray(obj)) {
+        if (prop === "length") {
+          return obj.length;
+        }
+        if (prop === "includes") {
+          return obj.includes.bind(obj);
+        }
+        if (prop === "some") {
+          return obj.some.bind(obj);
+        }
+        if (prop === "filter") {
+          return obj.filter.bind(obj);
+        }
+        if (prop === "include" && typeof obj.include === "function") {
+          return obj.include.bind(obj);
+        }
+        if (prop === "exclude" && typeof obj.exclude === "function") {
+          return obj.exclude.bind(obj);
+        }
+        if (prop === "names") {
+          return obj.names;
+        }
+        if (prop === "active") {
+          return obj.active;
+        }
+        if (prop === "approved") {
+          return obj.approved;
+        }
+        if (prop === "pending") {
+          return obj.pending;
+        }
+        if (prop === "inactive") {
+          return obj.inactive;
+        }
+        if (prop === "rejected") {
+          return obj.rejected;
+        }
+      } else if (obj instanceof String || typeof obj === "string") {
+        if (prop === "matchesAny") {
+          return obj.matchesAny;
+        }
+      } else if (obj instanceof PullApproveGroup) {
+        if (prop === "groupName") {
+          return obj.groupName;
+        }
+        if (prop === "precedingGroups") {
+          return obj.precedingGroups;
+        }
+      }
+    }
+    throw new Error(`Forbidden property access: ${prop}`);
+  }
+  if (ts.isCallExpression(node)) {
+    const fn = evaluateNode(node.expression, context);
+    if (typeof fn !== "function") {
+      throw new Error(`Expression is not a function`);
+    }
+    const args = [];
+    for (const arg of node.arguments) {
+      if (ts.isArrowFunction(arg)) {
+        args.push(createCallback(arg, context));
+      } else {
+        args.push(evaluateNode(arg, context));
+      }
+    }
+    return fn(...args);
+  }
+  if (ts.isStringLiteral(node)) {
+    return node.text;
+  }
+  if (ts.isNumericLiteral(node)) {
+    return Number(node.text);
+  }
+  if (ts.isArrayLiteralExpression(node)) {
+    return node.elements.map((el) => evaluateNode(el, context));
+  }
+  throw new Error(`Unsupported expression node type: ${ts.SyntaxKind[node.kind]}`);
+}
+function createCallback(arrowFn, context) {
+  if (arrowFn.parameters.length !== 1) {
+    throw new Error("Only arrow functions with exactly 1 parameter are supported");
+  }
+  const paramName = arrowFn.parameters[0].name.text;
+  return (val) => {
+    const childContext = Object.create(context);
+    childContext[paramName] = val;
+    return evaluateNode(arrowFn.body, childContext);
   };
 }
 function transformExpressionToJs(expression) {
@@ -49040,7 +49194,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-b64a291ca373bc91e5ee876488710c026157bf91`;
+var localVersion = `0.0.0-53689052908ef1f582a0bef36af509d05e3a8634`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49688,7 +49842,7 @@ import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 }
 // ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync11 } from "fs";
 import { dirname as dirname5, join as join16, resolve as resolve5 } from "path";
-import ts2 from "typescript";
+import ts3 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
 import { statSync } from "fs";
@@ -49704,21 +49858,21 @@ function convertPathToForwardSlash(path10) {
 }
 
 // ng-dev/ts-circular-dependencies/parser.js
-import ts from "typescript";
+import ts2 from "typescript";
 function getModuleReferences(initialNode, ignoreTypeOnlyChecks) {
   const references = [];
   const visitNode = (node) => {
-    if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
-      if (ignoreTypeOnlyChecks && (ts.isImportDeclaration(node) && node.importClause?.isTypeOnly || ts.isExportDeclaration(node) && node.isTypeOnly)) {
+    if (ts2.isImportDeclaration(node) || ts2.isExportDeclaration(node)) {
+      if (ignoreTypeOnlyChecks && (ts2.isImportDeclaration(node) && node.importClause?.isTypeOnly || ts2.isExportDeclaration(node) && node.isTypeOnly)) {
         return;
       }
-      if (node.moduleSpecifier !== void 0 && ts.isStringLiteral(node.moduleSpecifier)) {
+      if (node.moduleSpecifier !== void 0 && ts2.isStringLiteral(node.moduleSpecifier)) {
         references.push(node.moduleSpecifier.text);
       }
     }
-    ts.forEachChild(node, visitNode);
+    ts2.forEachChild(node, visitNode);
   };
-  ts.forEachChild(initialNode, visitNode);
+  ts2.forEachChild(initialNode, visitNode);
   return references;
 }
 
@@ -49758,7 +49912,7 @@ var Analyzer = class {
       return this._sourceFileCache.get(resolvedPath);
     }
     const fileContent = readFileSync11(resolvedPath, "utf8");
-    const sourceFile = ts2.createSourceFile(resolvedPath, fileContent, ts2.ScriptTarget.Latest, false);
+    const sourceFile = ts3.createSourceFile(resolvedPath, fileContent, ts3.ScriptTarget.Latest, false);
     this._sourceFileCache.set(resolvedPath, sourceFile);
     return sourceFile;
   }
