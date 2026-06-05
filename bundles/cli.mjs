@@ -47311,6 +47311,9 @@ var ejs_default = ejs;
 var import_semver5 = __toESM(require_semver());
 
 // ng-dev/release/notes/context.js
+function escapeHtml(str) {
+  return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+}
 var typesToIncludeInReleaseNotes = Object.values(COMMIT_TYPES).filter((type) => type.releaseNotesLevel === ReleaseNotesLevel.Visible).map((type) => type.name);
 var RenderContext = class {
   constructor(data) {
@@ -47333,10 +47336,21 @@ var RenderContext = class {
   _categorizeCommits(commits) {
     return commits.map((commit) => {
       const { description, groupName } = this.data.categorizeCommit?.(commit) ?? {};
+      const escapedBreakingChanges = commit.breakingChanges.map((bc) => ({
+        ...bc,
+        text: escapeHtml(bc.text)
+      }));
+      const escapedDeprecations = commit.deprecations.map((dep) => ({
+        ...dep,
+        text: escapeHtml(dep.text)
+      }));
       return {
-        groupName: groupName ?? commit.scope,
-        description: description ?? commit.subject,
-        ...commit
+        ...commit,
+        type: escapeHtml(commit.type),
+        groupName: escapeHtml(groupName ?? commit.scope),
+        description: escapeHtml(description ?? commit.subject),
+        breakingChanges: escapedBreakingChanges,
+        deprecations: escapedDeprecations
       };
     });
   }
@@ -49218,7 +49232,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-5b7bfdff34dc5819b648425c2b066eeb40374952`;
+var localVersion = `0.0.0-7ba841c3c224954fc17eac72150483284751e074`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
