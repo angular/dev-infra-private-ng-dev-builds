@@ -44401,6 +44401,8 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
   const headRefName = pr.headRef.name;
   const headRefUrl = addTokenToGitHttpsUrl(pr.headRef.repository.url, git.githubToken);
   const forceWithLeaseFlag = `--force-with-lease=${headRefName}:${pr.headRefOid}`;
+  const escapedHeadRefName = `'${headRefName.replace(/'/g, "'\\''")}'`;
+  const escapedForceWithLeaseFlag = `--force-with-lease=${escapedHeadRefName}:${pr.headRefOid}`;
   if (!pr.maintainerCanModify && !pr.viewerDidAuthor && !opts.allowIfMaintainerCannotModify) {
     throw new MaintainerModifyAccessError("PR is not set to allow maintainers to modify the PR");
   }
@@ -44419,7 +44421,7 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
     resetGitState: () => {
       return git.checkout(previousBranchOrRevision, true);
     },
-    pushToUpstreamCommand: `git push ${upstreamUrlToPush(pr.headRef.repository.url)} HEAD:${headRefName} ${forceWithLeaseFlag}`,
+    pushToUpstreamCommand: `git push ${upstreamUrlToPush(pr.headRef.repository.url)} HEAD:${escapedHeadRefName} ${escapedForceWithLeaseFlag}`,
     resetGitStateCommand: `git rebase --abort && git reset --hard && git checkout ${previousBranchOrRevision}`,
     pullRequest: pr
   };
@@ -46006,6 +46008,8 @@ async function rebasePr(prNumber, interactive = false) {
   const headRefUrl = addTokenToGitHttpsUrl(pr.headRef.repository.url, git.githubToken);
   const baseRefUrl = addTokenToGitHttpsUrl(pr.baseRef.repository.url, git.githubToken);
   const forceWithLeaseFlag = `--force-with-lease=${headRefName}:${pr.headRefOid}`;
+  const escapedHeadRefName = `'${headRefName.replace(/'/g, "'\\''")}'`;
+  const escapedForceWithLeaseFlag = `--force-with-lease=${escapedHeadRefName}:${pr.headRefOid}`;
   if (!pr.maintainerCanModify && !pr.viewerDidAuthor) {
     Log.error(`Cannot rebase as you did not author the PR and the PR does not allow maintainersto modify the PR`);
     return 1;
@@ -46049,7 +46053,7 @@ async function rebasePr(prNumber, interactive = false) {
   const continueRebase = process.env["CI"] === void 0 && await Prompt.confirm({ message: "Manually complete rebase?" });
   if (continueRebase) {
     Log.info(`After manually completing rebase, run the following command to update PR #${prNumber}:`);
-    Log.info(` $ git push ${pr.headRef.repository.url} HEAD:${headRefName} ${forceWithLeaseFlag}`);
+    Log.info(` $ git push ${pr.headRef.repository.url} HEAD:${escapedHeadRefName} ${escapedForceWithLeaseFlag}`);
     Log.info();
     Log.info(`To abort the rebase and return to the state of the repository before this command`);
     Log.info(`run the following command:`);
@@ -49214,7 +49218,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-d96c1cbfdd1dc3faf6a59b0175a7fb8bb3cbace7`;
+var localVersion = `0.0.0-5b7bfdff34dc5819b648425c2b066eeb40374952`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
