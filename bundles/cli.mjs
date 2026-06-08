@@ -29833,7 +29833,11 @@ async function getGroupMembers(group) {
       team_slug: group
     }).then(({ data }) => data.map((member) => member.login));
   } catch (e) {
-    Log.debug(e);
+    if (e instanceof Error) {
+      Log.debug(e.stack ?? e.message);
+    } else {
+      Log.debug(String(e));
+    }
     return [];
   }
 }
@@ -29886,10 +29890,9 @@ async function verifyMergeMode(expectedMode) {
     } catch (err) {
       Log.info(`${red("\u2718")} Failed to update merge-mode`);
       if (err instanceof Error) {
-        Log.info(err.message);
-        Log.debug(err.stack);
+        Log.debug(err.stack ?? err.message);
       } else {
-        Log.info(err);
+        Log.debug(String(err));
       }
       return false;
     }
@@ -29926,13 +29929,12 @@ async function setMergeModeRelease() {
   } catch (err) {
     Log.error("  \u2718  Failed to setup of repository for release");
     if (err instanceof Error) {
-      Log.info(err.message);
-      Log.debug(err.stack);
-      return false;
+      Log.debug(err.stack ?? err.message);
+    } else {
+      Log.debug(String(err));
     }
-    Log.info(err);
+    return false;
   }
-  return false;
 }
 async function setRepoReleaserTeamToOnlyCurrentUser() {
   const git = await AuthenticatedGitClient.get();
@@ -29981,11 +29983,10 @@ async function resetMergeMode() {
   } catch (err) {
     Log.info(`${red("\u2718")} Failed to reset the merge mode of the repository`);
     if (err instanceof Error) {
-      Log.info(err.message);
-      Log.debug(err.stack);
-      return false;
+      Log.debug(err.stack ?? err.message);
+    } else {
+      Log.debug(String(err));
     }
-    Log.info(err);
     return false;
   }
 }
@@ -36818,7 +36819,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-0400dfcb3ed9b856b6f2613861a68a1b3c173596`;
+var localVersion = `0.0.0-15a3a8ac9105b318695de948204820d09e2395a1`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
