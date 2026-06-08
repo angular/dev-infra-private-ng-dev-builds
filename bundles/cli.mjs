@@ -29504,7 +29504,7 @@ var G3Stats = class {
       Log.debug(`No '${branch}' branch exists on upstream, skipping.`);
       return null;
     }
-    git.runGraceful(["fetch", "-q", git.getRepoGitUrl(), branch]);
+    git.runGraceful(["fetch", "-q", git.getRepoGitUrl(), "--", branch]);
     return git.runGraceful(["rev-parse", "FETCH_HEAD"]).stdout.trim();
   }
   static async getG3SyncFileMatchFns(git, configs) {
@@ -36083,7 +36083,7 @@ var ReleaseAction = class {
     Log.info(green(`  \u2713   Updated the changelog to capture changes for "${releaseNotes.version}".`));
   }
   async checkoutUpstreamBranch(branchName) {
-    this.git.run(["fetch", "-q", this.git.getRepoGitUrl(), branchName]);
+    this.git.run(["fetch", "-q", this.git.getRepoGitUrl(), "--", branchName]);
     this.git.run(["checkout", "-q", "FETCH_HEAD", "--detach"]);
   }
   async installDependenciesForCurrentBranch() {
@@ -36118,6 +36118,7 @@ var ReleaseAction = class {
       "fetch",
       "--force",
       this.git.getRepoGitUrl(),
+      "--",
       `refs/tags/${releaseNotesCompareTag}:refs/tags/${releaseNotesCompareTag}`
     ]);
     const releaseNotes = await ReleaseNotes.forRange(this.git, newVersion, releaseNotesCompareTag, "HEAD");
@@ -36819,7 +36820,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-8f2bf2b3d4263c79e6e59278ebf6aed25f0cc596`;
+var localVersion = `0.0.0-218907322acedf4a12aa76d3ca0572b33f2e4108`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
