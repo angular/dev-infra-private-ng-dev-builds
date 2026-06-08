@@ -44407,7 +44407,7 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
     throw new MaintainerModifyAccessError("PR is not set to allow maintainers to modify the PR");
   }
   try {
-    git.run(["fetch", "-q", headRefUrl, headRefName]);
+    git.run(["fetch", "-q", headRefUrl, "--", headRefName]);
     git.run(["checkout", "--detach", "FETCH_HEAD"]);
   } catch (e) {
     git.checkout(previousBranchOrRevision, true);
@@ -44466,7 +44466,7 @@ async function checkoutToTargetBranch(prNumber, target, { pullRequest }) {
 `);
   const baseRefUrl = addTokenToGitHttpsUrl(pullRequest.baseRef.repository.url, git.githubToken);
   git.run(["checkout", "-q", targetBranch]);
-  git.run(["fetch", "-q", baseRefUrl, targetBranch, "--deepen=500"]);
+  git.run(["fetch", "-q", baseRefUrl, "--deepen=500", "--", targetBranch]);
   git.run(["checkout", "-b", branchName]);
   Log.info(`Running cherry-pick`);
   try {
@@ -44811,9 +44811,9 @@ async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
   });
   Log.info(`Retrieved ${allPendingPRs.length} total pending PRs`);
   Log.info(`Checking ${pendingPrs.length} PRs for conflicts after a merge of #${newPrNumber}`);
-  git.run(["fetch", "-q", requestedPr.headRef.repository.url, requestedPr.headRef.name]);
+  git.run(["fetch", "-q", requestedPr.headRef.repository.url, "--", requestedPr.headRef.name]);
   git.run(["checkout", "-q", "-B", tempWorkingBranch, "FETCH_HEAD"]);
-  git.run(["fetch", "-q", requestedPr.baseRef.repository.url, requestedPr.baseRef.name]);
+  git.run(["fetch", "-q", requestedPr.baseRef.repository.url, "--", requestedPr.baseRef.name]);
   try {
     git.run(["rebase", "FETCH_HEAD"], { stdio: "ignore" });
   } catch (err) {
@@ -44826,7 +44826,7 @@ async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
   }
   progressBar.start(pendingPrs.length, 0);
   for (const pr of pendingPrs) {
-    git.run(["fetch", "-q", pr.headRef.repository.url, pr.headRef.name]);
+    git.run(["fetch", "-q", pr.headRef.repository.url, "--", pr.headRef.name]);
     git.run(["checkout", "-q", "--detach", "FETCH_HEAD"]);
     try {
       git.run(["rebase", tempWorkingBranch], { stdio: "ignore" });
@@ -46016,10 +46016,10 @@ async function rebasePr(prNumber, interactive = false) {
   }
   try {
     Log.info(`Checking out PR #${prNumber} from ${fullHeadRef}`);
-    git.run(["fetch", "-q", headRefUrl, headRefName, "--deepen=500"]);
+    git.run(["fetch", "-q", headRefUrl, "--deepen=500", "--", headRefName]);
     git.run(["checkout", "-q", "--detach", "FETCH_HEAD"]);
     Log.info(`Fetching ${fullBaseRef} to rebase #${prNumber} on`);
-    git.run(["fetch", "-q", baseRefUrl, baseRefName, "--deepen=500"]);
+    git.run(["fetch", "-q", baseRefUrl, "--deepen=500", "--", baseRefName]);
     const commonAncestorSha = git.run(["merge-base", "HEAD", "FETCH_HEAD"]).stdout.trim();
     const commits = await getCommitsInRange(commonAncestorSha, "HEAD");
     let squashFixups = process.env["CI"] !== void 0 || commits.filter((commit) => commit.isFixup).length === 0 ? false : await Prompt.confirm({
@@ -49232,7 +49232,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-7ba841c3c224954fc17eac72150483284751e074`;
+var localVersion = `0.0.0-3c28e060b2ca0def0d0409100c38b266edca2ffe`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
