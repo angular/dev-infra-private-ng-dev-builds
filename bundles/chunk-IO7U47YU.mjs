@@ -13770,6 +13770,8 @@ var GitClient = class _GitClient {
     return getRepositoryGitUrl(this.remoteConfig);
   }
   hasCommit(branchName, sha) {
+    assertValidGitRef(branchName);
+    assertValidGitRef(sha);
     return this.run(["branch", branchName, "--contains", sha]).stdout !== "";
   }
   isShallowRepo() {
@@ -13787,6 +13789,7 @@ var GitClient = class _GitClient {
     return this.runGraceful(["diff-index", "--quiet", "HEAD"]).status !== 0;
   }
   checkout(branchOrRevision, cleanState) {
+    assertValidGitRef(branchOrRevision);
     if (cleanState) {
       this.runGraceful(["am", "--abort"], { stdio: "ignore" });
       this.runGraceful(["cherry-pick", "--abort"], { stdio: "ignore" });
@@ -13796,6 +13799,7 @@ var GitClient = class _GitClient {
     return this.runGraceful(["checkout", branchOrRevision], { stdio: "ignore" }).status === 0;
   }
   allChangesFilesSince(shaOrRef = "HEAD") {
+    assertValidGitRef(shaOrRef);
     return Array.from(/* @__PURE__ */ new Set([
       ...gitOutputAsArray(this.runGraceful(["diff", "--name-only", "--diff-filter=d", shaOrRef])),
       ...gitOutputAsArray(this.runGraceful(["ls-files", "--others", "--exclude-standard"]))
@@ -13822,6 +13826,11 @@ var GitClient = class _GitClient {
 GitClient._unauthenticatedInstance = null;
 function gitOutputAsArray(gitCommandResult) {
   return gitCommandResult.stdout.split("\n").map((x) => x.trim()).filter((x) => !!x);
+}
+function assertValidGitRef(ref) {
+  if (ref.startsWith("-")) {
+    throw new Error(`Invalid Git reference: ${ref}`);
+  }
 }
 
 // ng-dev/utils/git/graphql-queries.js
@@ -14665,6 +14674,7 @@ export {
   getFileContentsUrl,
   GitCommandError,
   GitClient,
+  assertValidGitRef,
   AuthenticatedGitClient,
   require_semver2 as require_semver,
   ReleaseTrain,

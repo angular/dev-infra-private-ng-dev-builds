@@ -36,4 +36,5 @@ export declare class GitClient {
     private static _unauthenticatedInstance;
     static get(): Promise<GitClient>;
 }
+export declare function assertValidGitRef(ref: string): void;
 export {};

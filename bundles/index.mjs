@@ -20,6 +20,7 @@ import {
   allLabels,
   assertValidCommitMessageConfig,
   assertValidFormatConfig,
+  assertValidGitRef,
   assertValidPullRequestConfig,
   computeLtsEndDateOfMajor,
   convertVersionBranchToSemVer,
@@ -41,7 +42,7 @@ import {
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-AXWYRMCM.mjs";
+} from "./chunk-IO7U47YU.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -86,6 +87,7 @@ export {
   assertValidCaretakerConfig,
   assertValidCommitMessageConfig,
   assertValidFormatConfig,
+  assertValidGitRef,
   assertValidGithubConfig,
   assertValidPullRequestConfig,
   assertValidReleaseConfig,
