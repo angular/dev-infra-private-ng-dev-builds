@@ -5834,7 +5834,7 @@ var require_lib2 = __commonJS({
       return matches;
     };
     exports2.analyse = analyse;
-    var detectFile = (filepath, opts = {}) => new Promise((resolve9, reject) => {
+    var detectFile = (filepath, opts = {}) => new Promise((resolve10, reject) => {
       let fd;
       const fs7 = (0, node_1.default)();
       const handler33 = (err, buffer) => {
@@ -5844,7 +5844,7 @@ var require_lib2 = __commonJS({
         if (err) {
           reject(err);
         } else if (buffer) {
-          resolve9((0, exports2.detect)(buffer));
+          resolve10((0, exports2.detect)(buffer));
         } else {
           reject(new Error("No error and no buffer received"));
         }
@@ -10637,9 +10637,9 @@ var require_path = __commonJS({
     "use strict";
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.convertPosixPathToPattern = exports2.convertWindowsPathToPattern = exports2.convertPathToPattern = exports2.escapePosixPath = exports2.escapeWindowsPath = exports2.escape = exports2.removeLeadingDotSegment = exports2.makeAbsolute = exports2.unixify = void 0;
-    var os2 = __require("os");
+    var os3 = __require("os");
     var path10 = __require("path");
-    var IS_WINDOWS_PLATFORM = os2.platform() === "win32";
+    var IS_WINDOWS_PLATFORM = os3.platform() === "win32";
     var LEADING_DOT_SEGMENT_CHARACTERS_COUNT = 2;
     var POSIX_UNESCAPED_GLOB_SYMBOLS_RE = /(\\?)([()*?[\]{|}]|^!|[!+@](?=\()|\\(?![!()*+?@[\]{|}]))/g;
     var WINDOWS_UNESCAPED_GLOB_SYMBOLS_RE = /(\\?)([()[\]{}]|^!|[!+@](?=\())/g;
@@ -15148,42 +15148,42 @@ var require_queue = __commonJS({
       queue.drained = drained;
       return queue;
       function push(value) {
-        var p = new Promise(function(resolve9, reject) {
+        var p = new Promise(function(resolve10, reject) {
           pushCb(value, function(err, result) {
             if (err) {
               reject(err);
               return;
             }
-            resolve9(result);
+            resolve10(result);
           });
         });
         p.catch(noop2);
         return p;
       }
       function unshift(value) {
-        var p = new Promise(function(resolve9, reject) {
+        var p = new Promise(function(resolve10, reject) {
           unshiftCb(value, function(err, result) {
             if (err) {
               reject(err);
               return;
             }
-            resolve9(result);
+            resolve10(result);
           });
         });
         p.catch(noop2);
         return p;
       }
       function drained() {
-        var p = new Promise(function(resolve9) {
+        var p = new Promise(function(resolve10) {
           process.nextTick(function() {
             if (queue.idle()) {
-              resolve9();
+              resolve10();
             } else {
               var previousDrain = queue.drain;
               queue.drain = function() {
                 if (typeof previousDrain === "function")
                   previousDrain();
-                resolve9();
+                resolve10();
                 queue.drain = previousDrain;
               };
             }
@@ -15669,9 +15669,9 @@ var require_stream3 = __commonJS({
         });
       }
       _getStat(filepath) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           this._stat(filepath, this._fsStatSettings, (error51, stats) => {
-            return error51 === null ? resolve9(stats) : reject(error51);
+            return error51 === null ? resolve10(stats) : reject(error51);
           });
         });
       }
@@ -15695,10 +15695,10 @@ var require_async5 = __commonJS({
         this._readerStream = new stream_1.default(this._settings);
       }
       dynamic(root, options) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           this._walkAsync(root, options, (error51, entries) => {
             if (error51 === null) {
-              resolve9(entries);
+              resolve10(entries);
             } else {
               reject(error51);
             }
@@ -15708,10 +15708,10 @@ var require_async5 = __commonJS({
       async static(patterns, options) {
         const entries = [];
         const stream = this._readerStream.static(patterns, options);
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           stream.once("error", reject);
           stream.on("data", (entry) => entries.push(entry));
-          stream.once("end", () => resolve9(entries));
+          stream.once("end", () => resolve10(entries));
         });
       }
     };
@@ -16214,8 +16214,8 @@ var require_settings4 = __commonJS({
     Object.defineProperty(exports2, "__esModule", { value: true });
     exports2.DEFAULT_FILE_SYSTEM_ADAPTER = void 0;
     var fs7 = __require("fs");
-    var os2 = __require("os");
-    var CPU_COUNT = Math.max(os2.cpus().length, 1);
+    var os3 = __require("os");
+    var CPU_COUNT = Math.max(os3.cpus().length, 1);
     exports2.DEFAULT_FILE_SYSTEM_ADAPTER = {
       lstat: fs7.lstat,
       lstatSync: fs7.lstatSync,
@@ -18395,10 +18395,10 @@ var require_folder_hash = __commonJS({
         return promise2.catch((err) => {
           if (err.code && (err.code === "EMFILE" || err.code === "ENFILE")) {
             log.queue(`queued ${dirname7}/${name} because of ${err.code}`);
-            const promise3 = new Promise((resolve9, reject) => {
+            const promise3 = new Promise((resolve10, reject) => {
               queue.push(() => {
                 log.queue(`Will processs queued ${dirname7}/${name}`);
-                return hashElementPromise(stats, dirname7, options, isRootElement).then((ok) => resolve9(ok)).catch((err2) => reject(err2));
+                return hashElementPromise(stats, dirname7, options, isRootElement).then((ok) => resolve10(ok)).catch((err2) => reject(err2));
               });
             });
             if (queueTimer === void 0) {
@@ -18442,7 +18442,7 @@ var require_folder_hash = __commonJS({
         } else if (ignore(name, filePath, options.files)) {
           return Promise.resolve(void 0);
         }
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           try {
             const hash2 = crypto2.createHash(options.algo, options.algoOptions);
             if (options.files.ignoreBasename || options.ignoreBasenameOnce || isRootElement && options.files.ignoreRootName) {
@@ -18458,7 +18458,7 @@ var require_folder_hash = __commonJS({
             f.pipe(hash2, { end: false });
             f.on("end", () => {
               const hashedFile = new HashedFile(name, hash2, options.encoding);
-              return resolve9(hashedFile);
+              return resolve10(hashedFile);
             });
           } catch (ex) {
             return reject(ex);
@@ -20305,10 +20305,10 @@ var require_commonjs = __commonJS({
        * Return a void Promise that resolves once the stream ends.
        */
       async promise() {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           this.on(DESTROYED, () => reject(new Error("stream destroyed")));
           this.on("error", (er) => reject(er));
-          this.on("end", () => resolve9());
+          this.on("end", () => resolve10());
         });
       }
       /**
@@ -20332,7 +20332,7 @@ var require_commonjs = __commonJS({
             return Promise.resolve({ done: false, value: res });
           if (this[EOF])
             return stop();
-          let resolve9;
+          let resolve10;
           let reject;
           const onerr = (er) => {
             this.off("data", ondata);
@@ -20346,19 +20346,19 @@ var require_commonjs = __commonJS({
             this.off("end", onend);
             this.off(DESTROYED, ondestroy);
             this.pause();
-            resolve9({ value, done: !!this[EOF] });
+            resolve10({ value, done: !!this[EOF] });
           };
           const onend = () => {
             this.off("error", onerr);
             this.off("data", ondata);
             this.off(DESTROYED, ondestroy);
             stop();
-            resolve9({ done: true, value: void 0 });
+            resolve10({ done: true, value: void 0 });
           };
           const ondestroy = () => onerr(new Error("stream destroyed"));
           return new Promise((res2, rej) => {
             reject = rej;
-            resolve9 = res2;
+            resolve10 = res2;
             this.once(DESTROYED, ondestroy);
             this.once("error", onerr);
             this.once("end", onend);
@@ -20809,7 +20809,7 @@ var require_lib6 = __commonJS({
     module2.exports.fromStream = fromStream;
     function fromStream(stream, opts) {
       const istream = integrityStream(opts);
-      return new Promise((resolve9, reject) => {
+      return new Promise((resolve10, reject) => {
         stream.pipe(istream);
         stream.on("error", reject);
         istream.on("error", reject);
@@ -20817,7 +20817,7 @@ var require_lib6 = __commonJS({
         istream.on("integrity", (s) => {
           sri = s;
         });
-        istream.on("end", () => resolve9(sri));
+        istream.on("end", () => resolve10(sri));
         istream.resume();
       });
     }
@@ -20876,7 +20876,7 @@ var require_lib6 = __commonJS({
         ));
       }
       const checker = integrityStream(opts);
-      return new Promise((resolve9, reject) => {
+      return new Promise((resolve10, reject) => {
         stream.pipe(checker);
         stream.on("error", reject);
         checker.on("error", reject);
@@ -20884,7 +20884,7 @@ var require_lib6 = __commonJS({
         checker.on("verified", (s) => {
           verified2 = s;
         });
-        checker.on("end", () => resolve9(verified2));
+        checker.on("end", () => resolve10(verified2));
         checker.resume();
       });
     }
@@ -21494,7 +21494,7 @@ var require_p_retry = __commonJS({
       return error51;
     };
     var isNetworkError = (errorMessage) => networkErrorMsgs.includes(errorMessage);
-    var pRetry2 = (input, options) => new Promise((resolve9, reject) => {
+    var pRetry2 = (input, options) => new Promise((resolve10, reject) => {
       options = {
         onFailedAttempt: () => {
         },
@@ -21504,7 +21504,7 @@ var require_p_retry = __commonJS({
       const operation = retry.operation(options);
       operation.attempt(async (attemptNumber) => {
         try {
-          resolve9(await input(attemptNumber));
+          resolve10(await input(attemptNumber));
         } catch (error51) {
           if (!(error51 instanceof Error)) {
             reject(new TypeError(`Non-error was thrown: "${error51}". You should only throw errors.`));
@@ -22040,8 +22040,8 @@ var require_retry3 = __commonJS({
       }
       const delay = getNextRetryDelay(config2);
       err.config.retryConfig.currentRetryAttempt += 1;
-      const backoff = config2.retryBackoff ? config2.retryBackoff(err, delay) : new Promise((resolve9) => {
-        setTimeout(resolve9, delay);
+      const backoff = config2.retryBackoff ? config2.retryBackoff(err, delay) : new Promise((resolve10) => {
+        setTimeout(resolve10, delay);
       });
       if (config2.onRetryAttempt) {
         await config2.onRetryAttempt(err);
@@ -25781,7 +25781,7 @@ var require_util2 = __commonJS({
     exports2.isValidFile = isValidFile;
     exports2.getWellKnownCertificateConfigFileLocation = getWellKnownCertificateConfigFileLocation;
     var fs7 = __require("fs");
-    var os2 = __require("os");
+    var os3 = __require("os");
     var path10 = __require("path");
     var WELL_KNOWN_CERTIFICATE_CONFIG_FILE = "certificate_config.json";
     var CLOUDSDK_CONFIG_DIRECTORY = "gcloud";
@@ -25879,7 +25879,7 @@ var require_util2 = __commonJS({
       return path10.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
     }
     function _isWindows() {
-      return os2.platform().startsWith("win");
+      return os3.platform().startsWith("win");
     }
   }
 });
@@ -28283,7 +28283,7 @@ var require_jwtaccess = __commonJS({
         }
       }
       fromStreamAsync(inputStream) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           if (!inputStream) {
             reject(new Error("Must pass in a stream containing the service account auth settings."));
           }
@@ -28292,7 +28292,7 @@ var require_jwtaccess = __commonJS({
             try {
               const data = JSON.parse(s);
               this.fromJSON(data);
-              resolve9();
+              resolve10();
             } catch (err) {
               reject(err);
             }
@@ -28531,7 +28531,7 @@ var require_jwtclient = __commonJS({
         }
       }
       fromStreamAsync(inputStream) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           if (!inputStream) {
             throw new Error("Must pass in a stream containing the service account auth settings.");
           }
@@ -28540,7 +28540,7 @@ var require_jwtclient = __commonJS({
             try {
               const data = JSON.parse(s);
               this.fromJSON(data);
-              resolve9();
+              resolve10();
             } catch (e) {
               reject(e);
             }
@@ -28673,7 +28673,7 @@ var require_refreshclient = __commonJS({
         }
       }
       async fromStreamAsync(inputStream) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           if (!inputStream) {
             return reject(new Error("Must pass in a stream containing the user refresh token."));
           }
@@ -28682,7 +28682,7 @@ var require_refreshclient = __commonJS({
             try {
               const data = JSON.parse(s);
               this.fromJSON(data);
-              return resolve9();
+              return resolve10();
             } catch (err) {
               return reject(err);
             }
@@ -30515,7 +30515,7 @@ var require_pluggable_auth_handler = __commonJS({
        * @return A promise that resolves with the executable response.
        */
       retrieveResponseFromExecutable(envMap) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           const child = childProcess.spawn(this.commandComponents[0], this.commandComponents.slice(1), {
             env: { ...process.env, ...Object.fromEntries(envMap) }
           });
@@ -30537,7 +30537,7 @@ var require_pluggable_auth_handler = __commonJS({
               try {
                 const responseJson = JSON.parse(output2);
                 const response = new executable_response_1.ExecutableResponse(responseJson);
-                return resolve9(response);
+                return resolve10(response);
               } catch (error51) {
                 if (error51 instanceof executable_response_1.ExecutableResponseError) {
                   return reject(error51);
@@ -30981,7 +30981,7 @@ var require_googleauth = __commonJS({
     var fs7 = __require("fs");
     var gaxios_1 = require_src2();
     var gcpMetadata = require_src4();
-    var os2 = __require("os");
+    var os3 = __require("os");
     var path10 = __require("path");
     var crypto_1 = require_crypto3();
     var computeclient_1 = require_computeclient();
@@ -31440,7 +31440,7 @@ var require_googleauth = __commonJS({
         }
       }
       fromStreamAsync(inputStream, options) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           if (!inputStream) {
             throw new Error("Must pass in a stream containing the Google auth settings.");
           }
@@ -31450,7 +31450,7 @@ var require_googleauth = __commonJS({
               try {
                 const data = JSON.parse(chunks.join(""));
                 const r = this._cacheClientFromJSON(data, options);
-                return resolve9(r);
+                return resolve10(r);
               } catch (err) {
                 if (!this.keyFilename)
                   throw err;
@@ -31460,7 +31460,7 @@ var require_googleauth = __commonJS({
                 });
                 this.cachedCredential = client;
                 this.setGapicJWTValues(client);
-                return resolve9(client);
+                return resolve10(client);
               }
             } catch (err) {
               return reject(err);
@@ -31484,7 +31484,7 @@ var require_googleauth = __commonJS({
        * @api private
        */
       _isWindows() {
-        const sys = os2.platform();
+        const sys = os3.platform();
         if (sys && sys.length >= 3) {
           if (sys.substring(0, 3).toLowerCase() === "win") {
             return true;
@@ -31496,17 +31496,17 @@ var require_googleauth = __commonJS({
        * Run the Google Cloud SDK command that prints the default project ID
        */
       async getDefaultServiceProjectId() {
-        return new Promise((resolve9) => {
+        return new Promise((resolve10) => {
           (0, child_process_1.exec)("gcloud config config-helper --format json", (err, stdout) => {
             if (!err && stdout) {
               try {
                 const projectId = JSON.parse(stdout).configuration.properties.core.project;
-                resolve9(projectId);
+                resolve10(projectId);
                 return;
               } catch (e) {
               }
             }
-            resolve9(null);
+            resolve10(null);
           });
         });
       }
@@ -32189,14 +32189,14 @@ var require_node_gyp_build = __commonJS({
   "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js"(exports2, module2) {
     var fs7 = __require("fs");
     var path10 = __require("path");
-    var os2 = __require("os");
+    var os3 = __require("os");
     var runtimeRequire = typeof __webpack_require__ === "function" ? __non_webpack_require__ : __require;
     var vars = process.config && process.config.variables || {};
     var prebuildsOnly = !!process.env.PREBUILDS_ONLY;
     var abi = process.versions.modules;
     var runtime = isElectron() ? "electron" : isNwjs() ? "node-webkit" : "node";
-    var arch = process.env.npm_config_arch || os2.arch();
-    var platform = process.env.npm_config_platform || os2.platform();
+    var arch = process.env.npm_config_arch || os3.arch();
+    var platform = process.env.npm_config_platform || os3.platform();
     var libc = process.env.LIBC || (isAlpine(platform) ? "musl" : "glibc");
     var armv = process.env.ARM_VERSION || (arch === "arm64" ? "8" : vars.arm_version) || "";
     var uv = (process.versions.uv || "").split(".")[0];
@@ -32220,10 +32220,10 @@ var require_node_gyp_build = __commonJS({
         if (debug)
           return debug;
       }
-      var prebuild = resolve9(dir);
+      var prebuild = resolve10(dir);
       if (prebuild)
         return prebuild;
-      var nearby = resolve9(path10.dirname(process.execPath));
+      var nearby = resolve10(path10.dirname(process.execPath));
       if (nearby)
         return nearby;
       var target = [
@@ -32240,7 +32240,7 @@ var require_node_gyp_build = __commonJS({
         // eslint-disable-line
       ].filter(Boolean).join(" ");
       throw new Error("No native build was found for " + target + "\n    loaded from: " + dir + "\n");
-      function resolve9(dir2) {
+      function resolve10(dir2) {
         var tuples = readdirSync(path10.join(dir2, "prebuilds")).map(parseTuple);
         var tuple2 = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0];
         if (!tuple2)
@@ -40785,13 +40785,13 @@ var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
   static withResolver() {
-    let resolve9;
+    let resolve10;
     let reject;
     const promise2 = new Promise((res, rej) => {
-      resolve9 = res;
+      resolve10 = res;
       reject = rej;
     });
-    return { promise: promise2, resolve: resolve9, reject };
+    return { promise: promise2, resolve: resolve10, reject };
   }
 };
 
@@ -40828,7 +40828,7 @@ function createPrompt(view) {
     });
     output2.mute();
     const screen = new ScreenManager(rl);
-    const { promise: promise2, resolve: resolve9, reject } = PromisePolyfill.withResolver();
+    const { promise: promise2, resolve: resolve10, reject } = PromisePolyfill.withResolver();
     const cancel = () => reject(new CancelPromptError());
     if (signal) {
       const abort = () => reject(new AbortPromptError({ cause: signal.reason }));
@@ -40859,7 +40859,7 @@ function createPrompt(view) {
           try {
             const nextView = view(config2, (value) => {
               if (effectsSettled) {
-                resolve9(value);
+                resolve10(value);
               } else {
                 pendingDone = { value };
               }
@@ -40882,7 +40882,7 @@ function createPrompt(view) {
           if (pendingDone !== null) {
             const { value } = pendingDone;
             pendingDone = null;
-            resolve9(value);
+            resolve10(value);
           }
         });
       };
@@ -41227,7 +41227,7 @@ var ExternalEditor = class {
   }
   runAsync(callback) {
     this.createTempFile();
-    const promise2 = new Promise((resolve9, reject) => {
+    const promise2 = new Promise((resolve10, reject) => {
       try {
         const editorProcess = spawn(this.editor.bin, this.editorArgs(), {
           shell: false,
@@ -41238,7 +41238,7 @@ var ExternalEditor = class {
         });
         editorProcess.once("exit", (code) => {
           this.lastExitStatus = code ?? 0;
-          resolve9();
+          resolve10();
         });
       } catch (launchError) {
         reject(new LaunchEditorError(launchError));
@@ -42327,7 +42327,12 @@ async function verifyMergeMode(expectedMode) {
       return true;
     } catch (err) {
       Log.info(`${red("\u2718")} Failed to update merge-mode`);
-      Log.info(err);
+      if (err instanceof Error) {
+        Log.info(err.message);
+        Log.debug(err.stack);
+      } else {
+        Log.info(err);
+      }
       return false;
     }
   }
@@ -42841,7 +42846,7 @@ async function exitCode(process5) {
   if (process5.exitCode !== null) {
     return process5.exitCode;
   }
-  return new Promise((resolve9) => process5.once("close", resolve9));
+  return new Promise((resolve10) => process5.once("close", resolve10));
 }
 async function catchProcessError(process5) {
   let error51 = new Error("Process exited with non-zero code");
@@ -43357,7 +43362,7 @@ async function getActiveFormatters() {
 // ng-dev/format/run-commands-parallel.js
 var AVAILABLE_THREADS = Math.max(Math.min(cpus().length, 8) - 1, 1);
 function runFormatterInParallel(allFiles, action) {
-  return new Promise(async (resolve9) => {
+  return new Promise(async (resolve10) => {
     const formatters = await getActiveFormatters();
     const failures = [];
     const pendingCommands = [];
@@ -43365,7 +43370,7 @@ function runFormatterInParallel(allFiles, action) {
       pendingCommands.push(...multimatch.call(void 0, allFiles, formatter.getFileMatcher(), { dot: true }).map((file2) => ({ formatter, file: file2 })));
     }
     if (pendingCommands.length === 0) {
-      return resolve9(false);
+      return resolve10(false);
     }
     switch (action) {
       case "format":
@@ -43408,7 +43413,7 @@ function runFormatterInParallel(allFiles, action) {
         threads[thread] = false;
         if (threads.every((active) => !active)) {
           progressBar.stop();
-          resolve9(failures);
+          resolve10(failures);
         }
       });
       threads[thread] = true;
@@ -43769,13 +43774,13 @@ import { fileURLToPath } from "url";
 import { fork } from "child_process";
 var BuildWorker = class {
   static async invokeBuild() {
-    return new Promise((resolve9) => {
+    return new Promise((resolve10) => {
       const buildProcess = fork(getBuildWorkerScriptPath(), {
         stdio: ["inherit", 2, 2, "ipc"]
       });
       let builtPackages = null;
       buildProcess.on("message", (buildResponse) => builtPackages = buildResponse);
-      buildProcess.on("exit", () => resolve9(builtPackages));
+      buildProcess.on("exit", () => resolve10(builtPackages));
     });
   }
 };
@@ -46045,7 +46050,12 @@ async function rebasePr(prNumber, interactive = false) {
       return 0;
     }
   } catch (err) {
-    Log.error(err);
+    if (err instanceof Error) {
+      Log.error(err.message);
+      Log.debug(err.stack);
+    } else {
+      Log.error(err);
+    }
     git.checkout(previousBranchOrRevision, true);
     return 1;
   }
@@ -46802,8 +46812,8 @@ ejs.promiseImpl = new Function("return this;")().Promise;
 ejs.resolveInclude = function(name, filename, isDir) {
   let dirname7 = path6.dirname;
   let extname2 = path6.extname;
-  let resolve9 = path6.resolve;
-  let includePath = resolve9(isDir ? filename : dirname7(filename), name);
+  let resolve10 = path6.resolve;
+  let includePath = resolve10(isDir ? filename : dirname7(filename), name);
   let ext2 = extname2(name);
   if (!ext2) {
     includePath += ".ejs";
@@ -46878,10 +46888,10 @@ function tryHandleCache(options, data, cb) {
   let result;
   if (!cb) {
     if (typeof ejs.promiseImpl == "function") {
-      return new ejs.promiseImpl(function(resolve9, reject) {
+      return new ejs.promiseImpl(function(resolve10, reject) {
         try {
           result = handleCache(options)(data);
-          resolve9(result);
+          resolve10(result);
         } catch (err) {
           reject(err);
         }
@@ -47861,10 +47871,10 @@ var import_semver7 = __toESM(require_semver());
 var ReadBufferFromStdinError = class extends Error {
 };
 function readBufferFromStdinUntilClosed(input = process.stdin) {
-  return new Promise((resolve9, reject) => {
+  return new Promise((resolve10, reject) => {
     const data = [];
     input.on("data", (chunk) => data.push(chunk));
-    input.on("end", () => resolve9(Buffer.concat(data)));
+    input.on("end", () => resolve10(Buffer.concat(data)));
     input.on("error", () => reject(new ReadBufferFromStdinError()));
     input.on("timeout", () => reject(new ReadBufferFromStdinError("Unexpected timeout")));
   });
@@ -47969,7 +47979,8 @@ var NpmCommand = class {
 // ng-dev/release/publish/external-commands.js
 var import_semver8 = __toESM(require_semver());
 import { existsSync as existsSync5, readFileSync as readFileSync8 } from "fs";
-import { dirname as dirname4, join as join10 } from "path";
+import { dirname as dirname4, join as join10, resolve as resolve5 } from "path";
+import os2 from "os";
 
 // ng-dev/release/publish/actions-error.js
 var UserAbortedReleaseActionError = class extends Error {
@@ -48064,6 +48075,14 @@ var ExternalCommands = class {
     }
     try {
       const nodeVersionFromNvmrc = readFileSync8(join10(projectDir, ".nvmrc"), "utf8").trim();
+      if (nodeVersionFromNvmrc.includes("/") || nodeVersionFromNvmrc.includes("\\") || nodeVersionFromNvmrc.includes("..")) {
+        throw new Error("Invalid .nvmrc content: contains path traversal characters");
+      }
+      const versionPattern = /^[v0-9.-]+$/;
+      const isValidSemverRange = import_semver8.default.validRange(nodeVersionFromNvmrc) !== null;
+      if (!versionPattern.test(nodeVersionFromNvmrc) && !isValidSemverRange) {
+        throw new Error("Invalid .nvmrc content: does not match valid version pattern");
+      }
       const { stdout } = await ChildProcess.spawn(". ~/.nvm/nvm.sh && nvm install >&2 && nvm which --silent", [], {
         cwd: projectDir,
         mode: "on-error",
@@ -48071,7 +48090,16 @@ var ExternalCommands = class {
       });
       const nodeBinPath = stdout.trim();
       if (nodeBinPath) {
-        const nodeDir = dirname4(nodeBinPath);
+        const homeDir = os2.homedir();
+        const absoluteNodeBinPath = resolve5(nodeBinPath);
+        const absoluteProjectDir = resolve5(projectDir);
+        if (!absoluteNodeBinPath.startsWith(homeDir)) {
+          throw new Error(`Security Error: Resolved Node.js path is outside the home directory: ${nodeBinPath}`);
+        }
+        if (absoluteNodeBinPath.startsWith(absoluteProjectDir)) {
+          throw new Error(`Security Error: Resolved Node.js path is inside the project directory: ${nodeBinPath}`);
+        }
+        const nodeDir = dirname4(absoluteNodeBinPath);
         const currentPath = process.env["PATH"] || "";
         const pathParts = currentPath.split(":");
         if (pathParts[0] !== nodeDir) {
@@ -49232,7 +49260,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-995da09a76920d886f8abba16f6388f75c18a2ae`;
+var localVersion = `0.0.0-1df88e861d03e6a5f1ead1fc97c90819a3070702`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -49875,11 +49903,11 @@ function buildReleaseParser(localYargs) {
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
 import { existsSync as existsSync9, readFileSync as readFileSync12, writeFileSync as writeFileSync6 } from "fs";
-import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve7 } from "path";
+import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve8 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync11 } from "fs";
-import { dirname as dirname5, join as join16, resolve as resolve5 } from "path";
+import { dirname as dirname5, join as join16, resolve as resolve6 } from "path";
 import ts3 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
@@ -49945,7 +49973,7 @@ var Analyzer = class {
     return result;
   }
   getSourceFile(filePath) {
-    const resolvedPath = resolve5(filePath);
+    const resolvedPath = resolve6(filePath);
     if (this._sourceFileCache.has(resolvedPath)) {
       return this._sourceFileCache.get(resolvedPath);
     }
@@ -50001,10 +50029,10 @@ var Analyzer = class {
 };
 
 // ng-dev/ts-circular-dependencies/config.js
-import { dirname as dirname6, extname, isAbsolute, resolve as resolve6 } from "path";
+import { dirname as dirname6, extname, isAbsolute, resolve as resolve7 } from "path";
 async function loadTestConfig(configPath) {
   const configBaseDir = dirname6(configPath);
-  const resolveRelativePath = (relativePath) => resolve6(configBaseDir, relativePath);
+  const resolveRelativePath = (relativePath) => resolve7(configBaseDir, relativePath);
   try {
     let config2;
     switch (extname(configPath)) {
@@ -50114,12 +50142,12 @@ function tsCircularDependenciesBuilder(localYargs) {
     description: "Path to the configuration file."
   }).option("warnings", { type: "boolean", description: "Prints all warnings." }).command("check", "Checks if the circular dependencies have changed.", (args) => args, async (argv) => {
     const { config: configArg, warnings } = argv;
-    const configPath = isAbsolute2(configArg) ? configArg : resolve7(configArg);
+    const configPath = isAbsolute2(configArg) ? configArg : resolve8(configArg);
     const config2 = await loadTestConfig(configPath);
     process.exit(main(false, config2, !!warnings));
   }).command("approve", "Approves the current circular dependencies.", (args) => args, async (argv) => {
     const { config: configArg, warnings } = argv;
-    const configPath = isAbsolute2(configArg) ? configArg : resolve7(configArg);
+    const configPath = isAbsolute2(configArg) ? configArg : resolve8(configArg);
     const config2 = await loadTestConfig(configPath);
     process.exit(main(true, config2, !!warnings));
   });
@@ -55667,14 +55695,14 @@ function __asyncValues(o) {
   }, i);
   function verb(n) {
     i[n] = o[n] && function(v) {
-      return new Promise(function(resolve9, reject) {
-        v = o[n](v), settle(resolve9, reject, v.done, v.value);
+      return new Promise(function(resolve10, reject) {
+        v = o[n](v), settle(resolve10, reject, v.done, v.value);
       });
     };
   }
-  function settle(resolve9, reject, d, v) {
+  function settle(resolve10, reject, d, v) {
     Promise.resolve(v).then(function(v2) {
-      resolve9({ value: v2, done: d });
+      resolve10({ value: v2, done: d });
     }, reject);
   }
 }
@@ -62134,8 +62162,8 @@ var LiveMusic = class {
     const url3 = `${websocketBaseUrl}/ws/google.ai.generativelanguage.${apiVersion}.GenerativeService.BidiGenerateMusic?key=${apiKey}`;
     let onopenResolve = () => {
     };
-    const onopenPromise = new Promise((resolve9) => {
-      onopenResolve = resolve9;
+    const onopenPromise = new Promise((resolve10) => {
+      onopenResolve = resolve10;
     });
     const callbacks = params2.callbacks;
     const onopenAwaitedCallback = function() {
@@ -62375,8 +62403,8 @@ var Live = class {
     }
     let onopenResolve = () => {
     };
-    const onopenPromise = new Promise((resolve9) => {
-      onopenResolve = resolve9;
+    const onopenPromise = new Promise((resolve10) => {
+      onopenResolve = resolve10;
     });
     const callbacks = params2.callbacks;
     const onopenAwaitedCallback = function() {
@@ -65455,7 +65483,7 @@ var safeJSON = (text) => {
     return void 0;
   }
 };
-var sleep$1 = (ms) => new Promise((resolve9) => setTimeout(resolve9, ms));
+var sleep$1 = (ms) => new Promise((resolve10) => setTimeout(resolve10, ms));
 function getDefaultFetch() {
   if (typeof fetch !== "undefined") {
     return fetch;
@@ -66508,8 +66536,8 @@ async function defaultParseResponse(client, props) {
 }
 var APIPromise = class _APIPromise extends Promise {
   constructor(client, responsePromise, parseResponse = defaultParseResponse) {
-    super((resolve9) => {
-      resolve9(null);
+    super((resolve10) => {
+      resolve10(null);
     });
     this.responsePromise = responsePromise;
     this.parseResponse = parseResponse;
@@ -69252,7 +69280,7 @@ var MigrateModule = {
 // ng-dev/ai/fix.js
 import { setTimeout as setTimeout3 } from "node:timers/promises";
 import { readFile as readFile4, writeFile as writeFile4 } from "node:fs/promises";
-import { basename as basename2, resolve as resolve8, relative as relative3, isAbsolute as isAbsolute3 } from "node:path";
+import { basename as basename2, resolve as resolve9, relative as relative3, isAbsolute as isAbsolute3 } from "node:path";
 var import_fast_glob5 = __toESM(require_out4());
 var import_cli_progress4 = __toESM(require_cli_progress());
 import assert2 from "node:assert";
@@ -69317,7 +69345,7 @@ async function fixFilesWithAI(apiKey, globPatterns, errorDescription, model, tem
     clearOnComplete: true
   });
   const repoRoot = determineRepoBaseDirFromCwd();
-  const absoluteInputFilePaths = new Set(filePaths.map((p) => resolve8(p)));
+  const absoluteInputFilePaths = new Set(filePaths.map((p) => resolve9(p)));
   let spinner;
   try {
     const { fileNameMap, partsForGeneration, uploadedFileNames: uploadedFiles } = await uploadFiles(ai, filePaths, progressBar);
@@ -69343,7 +69371,7 @@ async function fixFilesWithAI(apiKey, globPatterns, errorDescription, model, tem
       throw new Error("AI response is not a JSON array.");
     }
     for (const fix of fixes) {
-      const absoluteFixPath = resolve8(repoRoot, fix.filePath);
+      const absoluteFixPath = resolve9(repoRoot, fix.filePath);
       const relativePath = relative3(repoRoot, absoluteFixPath);
       const startsWithRepo = !relativePath.startsWith("..") && !isAbsolute3(relativePath);
       const isInInputFiles = absoluteInputFilePaths.has(absoluteFixPath);
