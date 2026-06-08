@@ -44494,8 +44494,8 @@ async function checkoutAsPrTakeover(prNumber, { resetGitState, pullRequest }) {
     Log.error(` \u2718 Expected branch name \`${branchName}\` already exists locally`);
     return;
   }
-  if (!takeoverAccounts.includes(pullRequest.author.login)) {
-    Log.warn(` \u26A0 ${bold(pullRequest.author.login)} is not an account fully supported for takeover.`);
+  if (!pullRequest.author || !takeoverAccounts.includes(pullRequest.author.login)) {
+    Log.warn(` \u26A0 ${bold(pullRequest.author?.login ?? "unknown")} is not an account fully supported for takeover.`);
     Log.warn(`   Supported accounts: ${bold(takeoverAccounts.join(", "))}`);
     if (await Prompt.confirm({
       message: `Continue with pull request takeover anyway?`,
@@ -45024,8 +45024,8 @@ var Validation = class extends PullRequestValidation {
         }
         break;
       case targetLabels["TARGET_AUTOMATION"]:
-        if (!automationBots.includes(pullRequest.author.login)) {
-          throw this._createUserUsingAutomationLabelError(targetLabel, pullRequest.author.login);
+        if (!pullRequest.author || !automationBots.includes(pullRequest.author.login)) {
+          throw this._createUserUsingAutomationLabelError(targetLabel, pullRequest.author?.login ?? "unknown");
         }
         break;
       default:
@@ -45209,7 +45209,7 @@ var PullRequestComments = class _PullRequestComments {
 };
 async function pullRequestHasValidTestedComment(comments, gitClient2) {
   for (const { bodyText, author } of comments) {
-    if (bodyText.startsWith(`TESTED=`) && await github_macros_default.isGooglerOrgMember(gitClient2.github, author.login)) {
+    if (bodyText.startsWith(`TESTED=`) && author && await github_macros_default.isGooglerOrgMember(gitClient2.github, author.login)) {
       return true;
     }
   }
@@ -49260,7 +49260,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path7 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib8());
-var localVersion = `0.0.0-1df88e861d03e6a5f1ead1fc97c90819a3070702`;
+var localVersion = `0.0.0-184e3024d57cb19c4fb7d2c422d4c810b04ebc4b`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
