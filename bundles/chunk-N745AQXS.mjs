@@ -5423,7 +5423,7 @@ var ChildProcess = class {
   static spawnInteractive(command2, args, options = {}) {
     return new Promise((resolve5, reject) => {
       const commandText = `${command2} ${args.join(" ")}`;
-      Log.debug(`Executing command: ${commandText}`);
+      Log.debug(`Executing command: ${sanitize(commandText)}`);
       const childProcess = _spawn(command2, args, { ...options, stdio: "inherit" });
       childProcess.on("close", (status) => status === 0 ? resolve5() : reject(status));
     });
@@ -5431,13 +5431,13 @@ var ChildProcess = class {
   static spawnSync(command2, args, options = {}) {
     const commandText = `${command2} ${args.join(" ")}`;
     const env2 = getEnvironmentForNonInteractiveCommand(options.env);
-    Log.debug(`Executing command: ${commandText}`);
+    Log.debug(`Executing command: ${sanitize(commandText)}`);
     const { status: exitCode, signal, stdout, stderr } = _spawnSync(command2, args, { ...options, env: env2, encoding: "utf8", stdio: "pipe" });
     const status = statusFromExitCodeAndSignal(exitCode, signal);
     if (status === 0 || options.suppressErrorOnFailingExitCode) {
       return { status, stdout, stderr };
     }
-    throw new Error(stderr);
+    throw new Error(sanitize(stderr));
   }
   static spawn(command2, args, options = {}) {
     const commandText = `${command2} ${args.join(" ")}`;
@@ -5461,7 +5461,10 @@ function processAsyncCmd(command2, options, childProcess) {
     let logOutput = "";
     let stdout = "";
     let stderr = "";
-    Log.debug(`Executing command: ${command2}`);
+    Log.debug(`Executing command: ${sanitize(command2)}`);
+    childProcess.on("error", (err) => {
+      reject(err);
+    });
     if (options.input !== void 0) {
       assert(childProcess.stdin, "Cannot write process `input` if there is no pipe `stdin` channel.");
       childProcess.stdin.write(options.input);
@@ -5471,23 +5474,23 @@ function processAsyncCmd(command2, options, childProcess) {
       stderr += message;
       logOutput += message;
       if (options.mode === void 0 || options.mode === "enabled") {
-        process.stderr.write(message);
+        process.stderr.write(sanitize(String(message)));
       }
     });
     childProcess.stdout?.on("data", (message) => {
       stdout += message;
       logOutput += message;
       if (options.mode === void 0 || options.mode === "enabled") {
-        process.stderr.write(message);
+        process.stderr.write(sanitize(String(message)));
       }
     });
     childProcess.on("close", (exitCode, signal) => {
       const exitDescription = exitCode !== null ? `exit code "${exitCode}"` : `signal "${signal}"`;
       const status = statusFromExitCodeAndSignal(exitCode, signal);
       const printFn = status !== 0 && options.mode === "on-error" ? Log.error : Log.debug;
-      printFn(`Command "${command2}" completed with ${exitDescription}.`);
+      printFn(`Command "${sanitize(command2)}" completed with ${exitDescription}.`);
       printFn(`Process output: 
-${logOutput}`);
+${sanitize(logOutput)}`);
       if (status === 0 || options.suppressErrorOnFailingExitCode) {
         resolve5({ stdout, stderr, status });
       } else {
@@ -5495,6 +5498,12 @@ ${logOutput}`);
       }
     });
   });
+}
+function sanitize(value) {
+  if (!value) {
+    return "";
+  }
+  return value.replace(/(https?:\/\/)([^@:/]*)(:[^@/]+)?@/g, "$1<TOKEN>@");
 }
 
 // ng-dev/utils/repo-directory.js
