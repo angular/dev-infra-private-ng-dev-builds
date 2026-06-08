@@ -23369,13 +23369,16 @@ var GitClient = class _GitClient {
       encoding: "utf8"
     });
     Log.debug(`Status: ${result.status}, Error: ${!!result.error}, Signal: ${result.signal}`);
-    if (result.status !== 0 && result.stderr !== null) {
+    if (result.status !== 0 && result.stderr !== null && result.stderr !== void 0) {
       process.stderr.write(this.sanitizeConsoleOutput(result.stderr));
     }
-    Log.debug("Stdout:", result.stdout);
-    Log.debug("Stderr:", result.stderr);
-    Log.debug("Process Error:", result.error);
+    Log.debug("Stdout:", result.stdout ? this.sanitizeConsoleOutput(result.stdout) : result.stdout);
+    Log.debug("Stderr:", result.stderr ? this.sanitizeConsoleOutput(result.stderr) : result.stderr);
     if (result.error !== void 0) {
+      Log.debug("Process Error:", this.sanitizeConsoleOutput(result.error.message));
+      if (result.error.stack) {
+        Log.debug("Process Error Stack:", this.sanitizeConsoleOutput(result.error.stack));
+      }
       process.stderr.write(this.sanitizeConsoleOutput(result.error.message));
     }
     return result;
@@ -23426,7 +23429,7 @@ var GitClient = class _GitClient {
     return gitOutputAsArray(this.runGraceful(["ls-files"]));
   }
   sanitizeConsoleOutput(value) {
-    return value;
+    return value.replace(/(https?:\/\/)([^@:]+)(:[^@]+)?@/g, "$1<TOKEN>@");
   }
   static async get() {
     if (_GitClient._unauthenticatedInstance === null) {
@@ -23478,7 +23481,8 @@ var AuthenticatedGitClient = class _AuthenticatedGitClient extends GitClient {
     this.github = new AuthenticatedGithubClient(this.githubToken);
   }
   sanitizeConsoleOutput(value) {
-    return value.replace(this._githubTokenRegex, "<TOKEN>");
+    const sanitized = super.sanitizeConsoleOutput(value);
+    return sanitized.replace(this._githubTokenRegex, "<TOKEN>");
   }
   getRepoGitUrl() {
     return getRepositoryGitUrl(this.remoteConfig, this.githubToken);
