@@ -31193,6 +31193,11 @@ async function processNodeToolchainArgs(args, nvmrcVersion) {
   if (!effectiveVersion) {
     return args;
   }
+  const validatedVersion = import_semver2.default.valid(effectiveVersion);
+  if (!validatedVersion) {
+    throw new Error("Invalid Node.js version: " + effectiveVersion);
+  }
+  effectiveVersion = validatedVersion;
   Log.info(`Resolving Node.js repositories for v${effectiveVersion}...`);
   const repositories = await getNodeJsRepositories(effectiveVersion);
   const lines = repositories.map(({ filename, sha, type }) => {
@@ -36820,7 +36825,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-218907322acedf4a12aa76d3ca0572b33f2e4108`;
+var localVersion = `0.0.0-e78f06f32bc0780cfda374af155a1b5dc84fa14d`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
