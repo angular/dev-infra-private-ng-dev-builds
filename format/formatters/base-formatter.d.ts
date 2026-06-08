@@ -3,7 +3,7 @@ import { FormatConfig } from '../config.js';
 export type CallbackFunc = (file: string, code: number | NodeJS.Signals, stdout: string, stderr: string) => boolean;
 export type FormatterAction = 'check' | 'format';
 interface FormatterActionMetadata {
-    commandFlags: string;
+    commandFlags: string[];
     callback: CallbackFunc;
 }
 export declare abstract class Formatter {
@@ -17,7 +17,7 @@ export declare abstract class Formatter {
     };
     abstract matchers: string[];
     constructor(git: GitClient, config: FormatConfig);
-    commandFor(action: FormatterAction): string;
+    commandFor(action: FormatterAction): string[];
     callbackFor(action: FormatterAction): CallbackFunc;
     isEnabled(): boolean;
     getFileMatcher(): string[];

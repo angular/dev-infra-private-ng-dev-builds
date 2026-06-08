@@ -5,11 +5,11 @@ export declare class Buildifier extends Formatter {
     matchers: string[];
     actions: {
         check: {
-            commandFlags: string;
+            commandFlags: string[];
             callback: (_: string, code: number | NodeJS.Signals, stdout: string) => boolean;
         };
         format: {
-            commandFlags: string;
+            commandFlags: string[];
             callback: (file: string, code: number | NodeJS.Signals, _: string, stderr: string) => boolean;
         };
     };
