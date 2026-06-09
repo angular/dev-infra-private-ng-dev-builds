@@ -35551,6 +35551,12 @@ var UserAbortedReleaseActionError = class extends Error {
 };
 var FatalReleaseActionError = class extends Error {
 };
+var StageOnlySuccessError = class extends Error {
+  constructor(pullRequest) {
+    super("Stage-only phase completed successfully.");
+    this.pullRequest = pullRequest;
+  }
+};
 
 // ng-dev/release/publish/pnpm-versioning.js
 import { join as join9 } from "node:path";
@@ -35939,11 +35945,12 @@ var ReleaseAction = class {
   static isActive(_trains, _config) {
     throw Error("Not implemented.");
   }
-  constructor(active, git, config2, projectDir) {
+  constructor(active, git, config2, projectDir, stageOnly = false) {
     this.active = active;
     this.git = git;
     this.config = config2;
     this.projectDir = projectDir;
+    this.stageOnly = stageOnly;
   }
   async updateProjectVersion(newVersion, additionalUpdateFn) {
     const pkgJsonPath = join11(this.projectDir, workspaceRelativePackageJsonPath);
@@ -36136,6 +36143,15 @@ var ReleaseAction = class {
     await this._verifyPackageVersions(releaseNotes.version, builtPackagesWithInfo);
     const pullRequest = await this.pushChangesToForkAndCreatePullRequest(pullRequestTargetBranch, `release-stage-${newVersion}`, `Bump version to "v${newVersion}" with changelog.`);
     Log.info(green("  \u2713   Release staging pull request has been created."));
+    if (this.stageOnly) {
+      await Promise.all(builtPackagesWithInfo.map(async (pkg) => {
+        if (existsSync6(pkg.outputPath)) {
+          await fs3.rm(pkg.outputPath, { recursive: true, force: true });
+          Log.info(`Cleaned up built package directory: ${pkg.outputPath}`);
+        }
+      }));
+      throw new StageOnlySuccessError(pullRequest);
+    }
     return { releaseNotes, pullRequest, builtPackagesWithInfo };
   }
   async checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, stagingBranch, stagingOpts) {
@@ -36825,7 +36841,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-e78f06f32bc0780cfda374af155a1b5dc84fa14d`;
+var localVersion = `0.0.0-cef5e36af124e7442d7e2868be3f8c0bba496952`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -36889,6 +36905,7 @@ var ReleaseTool = class {
     this._git = _git;
     this._github = _github;
     this._projectRoot = _projectRoot;
+    this._flags = _flags;
     this.previousGitBranchOrRevision = this._git.getCurrentBranchOrRevision();
     this._config = {
       ...config2,
@@ -36917,6 +36934,10 @@ var ReleaseTool = class {
     try {
       await action.perform();
     } catch (e) {
+      if (e instanceof StageOnlySuccessError) {
+        Log.info(green(`\u2713 Staging completed successfully. PR URL: ${e.pullRequest.url}`));
+        return CompletionState.SUCCESS;
+      }
       if (e instanceof UserAbortedReleaseActionError) {
         return CompletionState.MANUALLY_ABORTED;
       }
@@ -36938,7 +36959,7 @@ var ReleaseTool = class {
     const choices = [];
     for (let actionType of actions) {
       if (await actionType.isActive(activeTrains, this._config)) {
-        const action = new actionType(activeTrains, this._git, this._config, this._projectRoot);
+        const action = new actionType(activeTrains, this._git, this._config, this._projectRoot, this._flags.stageOnly);
         choices.push({ name: await action.getDescription(), value: action });
       }
     }
@@ -37033,6 +37054,10 @@ var ReleaseTool = class {
 function builder21(argv) {
   return addGithubTokenOption(argv).option("publishRegistry", {
     type: "string"
+  }).option("stage-only", {
+    type: "boolean",
+    default: false,
+    description: "Only stage the release (bump version, generate changelog, build, precheck, create PR) and exit."
   });
 }
 async function handler22(flags) {

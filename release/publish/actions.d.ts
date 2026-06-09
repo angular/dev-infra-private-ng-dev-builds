@@ -20,17 +20,24 @@ export interface StagingOptions {
 }
 export interface ReleaseActionConstructor<T extends ReleaseAction = ReleaseAction> {
     isActive(active: ActiveReleaseTrains, config: ReleaseConfig): Promise<boolean>;
-    new (...args: [ActiveReleaseTrains, AuthenticatedGitClient, ReleaseConfig, string]): T;
+    new (...args: [
+        active: ActiveReleaseTrains,
+        git: AuthenticatedGitClient,
+        config: ReleaseConfig,
+        projectDir: string,
+        stageOnly?: boolean
+    ]): T;
 }
 export declare abstract class ReleaseAction {
     protected active: ActiveReleaseTrains;
     protected git: AuthenticatedGitClient;
     protected config: ReleaseConfig;
     protected projectDir: string;
+    protected stageOnly: boolean;
     static isActive(_trains: ActiveReleaseTrains, _config: ReleaseConfig): Promise<boolean>;
     abstract getDescription(): Promise<string>;
     abstract perform(): Promise<void>;
-    constructor(active: ActiveReleaseTrains, git: AuthenticatedGitClient, config: ReleaseConfig, projectDir: string);
+    constructor(active: ActiveReleaseTrains, git: AuthenticatedGitClient, config: ReleaseConfig, projectDir: string, stageOnly?: boolean);
     protected updateProjectVersion(newVersion: semver.SemVer, additionalUpdateFn?: (pkgJson: PackageJson) => void): Promise<void>;
     protected getAspectLockFiles(): string[];
     protected getLatestCommitOfBranch(branchName: string): Promise<Commit>;

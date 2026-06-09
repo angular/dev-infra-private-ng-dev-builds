@@ -8,11 +8,13 @@ export declare enum CompletionState {
 }
 export interface ReleaseToolFlags {
     publishRegistry?: string;
+    stageOnly?: boolean;
 }
 export declare class ReleaseTool {
     protected _git: AuthenticatedGitClient;
     protected _github: GithubConfig;
     protected _projectRoot: string;
+    protected _flags: ReleaseToolFlags;
     private previousGitBranchOrRevision;
     protected _config: ReleaseConfig;
     constructor(_git: AuthenticatedGitClient, config: ReleaseConfig, _github: GithubConfig, _projectRoot: string, _flags: ReleaseToolFlags);
