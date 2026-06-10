@@ -27,18 +27,18 @@ export declare class RenderContext {
     constructor(data: RenderContextData);
     _categorizeCommits(commits: CommitFromGitLog[]): CategorizedCommit[];
     private _commitsWithinGroupComparator;
-    asCommitGroups(commits: CategorizedCommit[]): {
+    asCommitGroups: (commits: CategorizedCommit[]) => {
         title: string;
         commits: CategorizedCommit[];
     }[];
-    hasBreakingChanges(commit: CategorizedCommit): boolean;
-    hasDeprecations(commit: CategorizedCommit): boolean;
-    includeInReleaseNotes(): (commit: CategorizedCommit) => boolean;
-    unique(field: keyof CategorizedCommit): (commit: CategorizedCommit) => boolean;
-    commitToLink(commit: CategorizedCommit): string;
-    pullRequestToLink(prNumber: number): string;
-    convertPullRequestReferencesToLinks(content: string): string;
-    bulletizeText(text: string): string;
-    commitToBadge(commit: CategorizedCommit): string;
+    hasBreakingChanges: (commit: CategorizedCommit) => boolean;
+    hasDeprecations: (commit: CategorizedCommit) => boolean;
+    includeInReleaseNotes: () => (commit: CategorizedCommit) => boolean;
+    unique: (field: keyof CategorizedCommit) => (commit: CategorizedCommit) => boolean;
+    commitToLink: (commit: CategorizedCommit) => string;
+    pullRequestToLink: (prNumber: number) => string;
+    convertPullRequestReferencesToLinks: (content: string) => string;
+    bulletizeText: (text: string) => string;
+    commitToBadge: (commit: CategorizedCommit) => string;
 }
 export declare function buildDateStamp(date?: Date): string;
