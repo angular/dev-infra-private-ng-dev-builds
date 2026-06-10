@@ -5489,8 +5489,8 @@ var require_queue = __commonJS({
         }
         self2.drain = noop2;
       }
-      function error51(handler33) {
-        errorHandler = handler33;
+      function error51(handler34) {
+        errorHandler = handler34;
       }
     }
     function noop2() {
@@ -10463,8 +10463,8 @@ var require_commonjs = __commonJS({
       /**
        * Alias for {@link Minipass#on}
        */
-      addListener(ev, handler33) {
-        return this.on(ev, handler33);
+      addListener(ev, handler34) {
+        return this.on(ev, handler34);
       }
       /**
        * Mostly identical to `EventEmitter.on`, with the following
@@ -10483,8 +10483,8 @@ var require_commonjs = __commonJS({
        *   cause the event to be re-emitted immediately with the error previously
        *   raised.
        */
-      on(ev, handler33) {
-        const ret = super.on(ev, handler33);
+      on(ev, handler34) {
+        const ret = super.on(ev, handler34);
         if (ev === "data") {
           this[DISCARDED] = false;
           this[DATALISTENERS]++;
@@ -10497,7 +10497,7 @@ var require_commonjs = __commonJS({
           super.emit(ev);
           this.removeAllListeners(ev);
         } else if (ev === "error" && this[EMITTED_ERROR]) {
-          const h = handler33;
+          const h = handler34;
           if (this[ASYNC])
             defer(() => h.call(this, this[EMITTED_ERROR]));
           else
@@ -10508,8 +10508,8 @@ var require_commonjs = __commonJS({
       /**
        * Alias for {@link Minipass#off}
        */
-      removeListener(ev, handler33) {
-        return this.off(ev, handler33);
+      removeListener(ev, handler34) {
+        return this.off(ev, handler34);
       }
       /**
        * Mostly identical to `EventEmitter.off`
@@ -10519,8 +10519,8 @@ var require_commonjs = __commonJS({
        * then the flow of data will stop until there is another consumer or
        * {@link Minipass#resume} is explicitly called.
        */
-      off(ev, handler33) {
-        const ret = super.off(ev, handler33);
+      off(ev, handler34) {
+        const ret = super.off(ev, handler34);
         if (ev === "data") {
           this[DATALISTENERS] = this.listeners("data").length;
           if (this[DATALISTENERS] === 0 && !this[DISCARDED] && !this[PIPES].length) {
@@ -10895,17 +10895,17 @@ var require_lib3 = __commonJS({
         this.digests = this.goodSri ? this.sri[this.algorithm] : null;
         this.optString = getOptString(this.opts?.options);
       }
-      on(ev, handler33) {
+      on(ev, handler34) {
         if (ev === "size" && this.#emittedSize) {
-          return handler33(this.#emittedSize);
+          return handler34(this.#emittedSize);
         }
         if (ev === "integrity" && this.#emittedIntegrity) {
-          return handler33(this.#emittedIntegrity);
+          return handler34(this.#emittedIntegrity);
         }
         if (ev === "verified" && this.#emittedVerified) {
-          return handler33(this.#emittedVerified);
+          return handler34(this.#emittedVerified);
         }
-        return super.on(ev, handler33);
+        return super.on(ev, handler34);
       }
       emit(ev, data) {
         if (ev === "end") {
@@ -22930,19 +22930,19 @@ var require_node_gyp_build = __commonJS({
       ].filter(Boolean).join(" ");
       throw new Error("No native build was found for " + target + "\n    loaded from: " + dir + "\n");
       function resolve10(dir2) {
-        var tuples = readdirSync(path8.join(dir2, "prebuilds")).map(parseTuple);
+        var tuples = readdirSync2(path8.join(dir2, "prebuilds")).map(parseTuple);
         var tuple2 = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0];
         if (!tuple2)
           return;
         var prebuilds = path8.join(dir2, "prebuilds", tuple2.name);
-        var parsed = readdirSync(prebuilds).map(parseTags);
+        var parsed = readdirSync2(prebuilds).map(parseTags);
         var candidates = parsed.filter(matchTags(runtime, abi));
         var winner = candidates.sort(compareTags(runtime))[0];
         if (winner)
           return path8.join(prebuilds, winner.file);
       }
     };
-    function readdirSync(dir) {
+    function readdirSync2(dir) {
       try {
         return fs7.readdirSync(dir);
       } catch (err) {
@@ -22950,7 +22950,7 @@ var require_node_gyp_build = __commonJS({
       }
     }
     function getFirst(dir, filter2) {
-      var files = readdirSync(dir).filter(filter2);
+      var files = readdirSync2(dir).filter(filter2);
       return files[0] && path8.join(dir, files[0]);
     }
     function matchBuild(name) {
@@ -25161,9 +25161,9 @@ var require_event_target = __commonJS({
        *     the listener would be automatically removed when invoked.
        * @public
        */
-      addEventListener(type, handler33, options = {}) {
+      addEventListener(type, handler34, options = {}) {
         for (const listener of this.listeners(type)) {
-          if (!options[kForOnEventAttribute] && listener[kListener] === handler33 && !listener[kForOnEventAttribute]) {
+          if (!options[kForOnEventAttribute] && listener[kListener] === handler34 && !listener[kForOnEventAttribute]) {
             return;
           }
         }
@@ -25174,7 +25174,7 @@ var require_event_target = __commonJS({
               data: isBinary ? data : data.toString()
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler34, this, event);
           };
         } else if (type === "close") {
           wrapper = function onClose(code, message) {
@@ -25184,7 +25184,7 @@ var require_event_target = __commonJS({
               wasClean: this._closeFrameReceived && this._closeFrameSent
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler34, this, event);
           };
         } else if (type === "error") {
           wrapper = function onError(error51) {
@@ -25193,19 +25193,19 @@ var require_event_target = __commonJS({
               message: error51.message
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler34, this, event);
           };
         } else if (type === "open") {
           wrapper = function onOpen() {
             const event = new Event("open");
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler34, this, event);
           };
         } else {
           return;
         }
         wrapper[kForOnEventAttribute] = !!options[kForOnEventAttribute];
-        wrapper[kListener] = handler33;
+        wrapper[kListener] = handler34;
         if (options.once) {
           this.once(type, wrapper);
         } else {
@@ -25219,9 +25219,9 @@ var require_event_target = __commonJS({
        * @param {(Function|Object)} handler The listener to remove
        * @public
        */
-      removeEventListener(type, handler33) {
+      removeEventListener(type, handler34) {
         for (const listener of this.listeners(type)) {
-          if (listener[kListener] === handler33 && !listener[kForOnEventAttribute]) {
+          if (listener[kListener] === handler34 && !listener[kForOnEventAttribute]) {
             this.removeListener(type, listener);
             break;
           }
@@ -25895,16 +25895,16 @@ var require_websocket = __commonJS({
           }
           return null;
         },
-        set(handler33) {
+        set(handler34) {
           for (const listener of this.listeners(method)) {
             if (listener[kForOnEventAttribute]) {
               this.removeListener(method, listener);
               break;
             }
           }
-          if (typeof handler33 !== "function")
+          if (typeof handler34 !== "function")
             return;
-          this.addEventListener(method, handler33, {
+          this.addEventListener(method, handler34, {
             [kForOnEventAttribute]: true
           });
         }
@@ -37141,7 +37141,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-83566f888e5aefcf86bb49ad4882c29e19f4f7de`;
+var localVersion = `0.0.0-b9d15e3de22a6b8b161046d1ed5cea574a2537ca`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -37388,11 +37388,329 @@ var ReleasePublishCommandModule = {
   describe: "Publish new releases and configure version branches."
 };
 
-// ng-dev/release/snapshot-publish/snapshots.js
-import { existsSync as existsSync8, cpSync } from "fs";
-import { rm } from "fs/promises";
+// ng-dev/release/publish/index-ci.js
+var import_semver22 = __toESM(require_semver());
 import { join as join14 } from "path";
+import { readdirSync, readFileSync as readFileSync9, existsSync as existsSync8, writeFileSync as writeFileSync5, rmSync, mkdtempSync } from "fs";
 import { tmpdir } from "os";
+var PublishCiTool = class {
+  constructor(config2, git, projectDir, options) {
+    this.config = config2;
+    this.git = git;
+    this.projectDir = projectDir;
+    this.options = options;
+  }
+  async run() {
+    if (!this.options.dryRun && !process.env["WOMBOT_TOKEN"]) {
+      throw new Error("WOMBOT_TOKEN environment variable is not defined.");
+    }
+    this.assertExpectedSha();
+    const builtPackages = findBuiltPackages(this.options.builtPackagesDir);
+    if (builtPackages.length === 0) {
+      throw new Error(`No built packages found under directory ${this.options.builtPackagesDir}`);
+    }
+    const builtPackagesWithInfo = await analyzeAndExtendBuiltPackagesWithInfo(builtPackages, this.config.release.npmPackages);
+    const beforeStagingSha = this.getBeforeStagingSha();
+    const newVersion = readPackageJsonAtRef(this.git, "HEAD").version;
+    const versionAtBeforeStaging = readPackageJsonAtRef(this.git, beforeStagingSha).version;
+    const newSemver = import_semver22.default.parse(newVersion);
+    if (!newSemver) {
+      throw new Error(`Failed to parse version ${newVersion} as semver.`);
+    }
+    const versionAtBeforeStagingSemver = import_semver22.default.parse(versionAtBeforeStaging);
+    if (!versionAtBeforeStagingSemver) {
+      throw new Error(`Failed to parse version ${versionAtBeforeStaging} as semver.`);
+    }
+    const previousVersionTag = this.getPreviousVersionTag(newSemver, versionAtBeforeStagingSemver);
+    const releaseNotes = await ReleaseNotes.forRange(this.git, newSemver, previousVersionTag, beforeStagingSha);
+    const npmDistTag = await determineNpmDistTag(newSemver, this.config.release, this.git);
+    await this.createGithubReleaseAndTags(newVersion, newSemver, releaseNotes, npmDistTag);
+    await this.publishAndDeprecatePackages(builtPackagesWithInfo, npmDistTag);
+  }
+  assertExpectedSha() {
+    const headSha = this.git.run(["rev-parse", "HEAD"]).stdout.trim();
+    if (headSha !== this.options.expectedSha) {
+      throw new Error(`Expected HEAD SHA to be ${this.options.expectedSha}, but got ${headSha}.`);
+    }
+  }
+  getBeforeStagingSha() {
+    const parentsOutput = this.git.run(["show", "--format=%P", "-s", "HEAD"]).stdout.trim();
+    const parents = parentsOutput ? parentsOutput.split(" ") : [];
+    if (parents.length >= 2) {
+      const stagingCommitSha = parents[1];
+      const stagingCommitParentsOutput = this.git.run(["show", "--format=%P", "-s", stagingCommitSha]).stdout.trim();
+      const stagingCommitParents = stagingCommitParentsOutput ? stagingCommitParentsOutput.split(" ") : [];
+      if (stagingCommitParents.length === 0) {
+        throw new Error(`Could not find parent for staging commit ${stagingCommitSha}`);
+      }
+      return stagingCommitParents[0];
+    } else if (parents.length === 1) {
+      return parents[0];
+    } else {
+      throw new Error("HEAD commit has no parents.");
+    }
+  }
+  getPreviousVersionTag(newSemver, versionAtBeforeStagingSemver) {
+    if (newSemver.prerelease.length === 0 && versionAtBeforeStagingSemver.prerelease.length > 0) {
+      this.git.run(["fetch", "--tags", this.git.getRepoGitUrl()]);
+      const tagsOutput = this.git.run(["tag", "-l", "v*"]).stdout.trim();
+      const tags = tagsOutput ? tagsOutput.split("\n").map((t) => t.trim()) : [];
+      let highestStableVersion = null;
+      for (const tag of tags) {
+        const versionStr = tag.startsWith("v") ? tag.slice(1) : tag;
+        const parsed = import_semver22.default.parse(versionStr);
+        if (parsed && parsed.prerelease.length === 0) {
+          if (import_semver22.default.lt(parsed, newSemver)) {
+            if (highestStableVersion === null || import_semver22.default.gt(parsed, highestStableVersion)) {
+              highestStableVersion = parsed;
+            }
+          }
+        }
+      }
+      if (highestStableVersion === null) {
+        throw new Error(`Could not find a previous stable version tag matching v* less than ${newSemver.format()}`);
+      }
+      return `v${highestStableVersion.format()}`;
+    }
+    return `v${versionAtBeforeStagingSemver.format()}`;
+  }
+  async createGithubReleaseAndTags(newVersion, newSemver, releaseNotes, npmDistTag) {
+    const globalTagName = `v${newVersion}`;
+    if (this.options.dryRun) {
+      Log.info(`[Dry-Run] Would tag global tag: ${globalTagName}`);
+    } else {
+      try {
+        await this.git.github.git.createRef({
+          ...this.git.remoteParams,
+          ref: `refs/tags/${globalTagName}`,
+          sha: this.options.expectedSha
+        });
+        Log.info(green(`  \u2713   Tagged ${globalTagName} release upstream.`));
+      } catch (e) {
+        if (isGithubApiError(e) && e.status === 422) {
+          Log.warn(`Warning: Tag ${globalTagName} already exists, skipping tag creation.`);
+        } else {
+          throw e;
+        }
+      }
+    }
+    let releaseBody = await releaseNotes.getGithubReleaseEntry();
+    if (releaseBody.length > githubReleaseBodyLimit) {
+      const baseUrl = getFileContentsUrl(this.git, globalTagName, workspaceRelativeChangelogPath);
+      const urlFragment = await releaseNotes.getUrlFragmentForRelease();
+      const releaseNotesUrl = `${baseUrl}#${urlFragment}`;
+      releaseBody = `Release notes are too large to be captured here. [View all changes here](${releaseNotesUrl}).`;
+    }
+    if (this.options.dryRun) {
+      Log.info(`[Dry-Run] Would create GitHub Release for tag: ${globalTagName}`);
+    } else {
+      try {
+        await this.git.github.repos.createRelease({
+          ...this.git.remoteParams,
+          name: globalTagName,
+          tag_name: globalTagName,
+          prerelease: newSemver.prerelease.length > 0,
+          make_latest: npmDistTag === "latest" ? "true" : "false",
+          body: releaseBody
+        });
+        Log.info(green(`  \u2713   Created ${globalTagName} release in Github.`));
+      } catch (e) {
+        if (isGithubApiError(e) && e.status === 422) {
+          Log.warn(`Warning: GitHub release for ${globalTagName} already exists, skipping release creation.`);
+        } else {
+          throw e;
+        }
+      }
+    }
+    if (this.config.release.npmPackages.length > 1) {
+      for (const npmPkg of this.config.release.npmPackages) {
+        const monorepoTagName = `${npmPkg.name}@${newVersion}`;
+        if (this.options.dryRun) {
+          Log.info(`[Dry-Run] Would tag monorepo package: ${monorepoTagName}`);
+        } else {
+          try {
+            await this.git.github.git.createRef({
+              ...this.git.remoteParams,
+              ref: `refs/tags/${monorepoTagName}`,
+              sha: this.options.expectedSha
+            });
+            Log.info(green(`  \u2713   Tagged monorepo package release: ${monorepoTagName}`));
+          } catch (e) {
+            if (isGithubApiError(e) && e.status === 422) {
+              Log.warn(`Warning: Tag ${monorepoTagName} already exists, skipping tag creation.`);
+            } else {
+              throw e;
+            }
+          }
+        }
+      }
+    }
+  }
+  async publishAndDeprecatePackages(builtPackages, npmDistTag) {
+    if (this.options.dryRun) {
+      for (const pkg of builtPackages) {
+        Log.info(`[Dry-Run] Would publish package: ${pkg.name} to Wombat`);
+        if (pkg.deprecated) {
+          Log.info(`[Dry-Run] Would deprecate package: ${pkg.name}@${pkg.deprecated.version}`);
+        }
+      }
+    } else {
+      const tempDir = mkdtempSync(join14(tmpdir(), "angular-publish-ci-"));
+      const tempNpmrcPath = join14(tempDir, ".npmrc");
+      const originalUserconfig = process.env["NPM_CONFIG_USERCONFIG"];
+      try {
+        const wombatNpmrcContent = [
+          `registry=https://wombat-dressing-room.appspot.com/`,
+          `//wombat-dressing-room.appspot.com/:_authToken=\${WOMBOT_TOKEN}`
+        ].join("\n") + "\n";
+        writeFileSync5(tempNpmrcPath, wombatNpmrcContent);
+        Log.info(green(`  \u2713   Created temporary .npmrc for Wombat registry.`));
+        process.env["NPM_CONFIG_USERCONFIG"] = tempNpmrcPath;
+        for (const pkg of builtPackages) {
+          Log.info(`Publishing "${pkg.name}"...`);
+          await NpmCommand.publish(pkg.outputPath, npmDistTag, void 0);
+          Log.info(green(`  \u2713   Successfully published "${pkg.name}".`));
+        }
+        for (const pkg of builtPackages) {
+          if (!pkg.deprecated) {
+            continue;
+          }
+          Log.info(`Deprecating "${pkg.name}"...`);
+          const { version: version2, message } = pkg.deprecated;
+          await NpmCommand.deprecate(pkg.name, version2, message, void 0);
+          Log.info(green(`  \u2713   Successfully deprecated "${pkg.name}@${version2}".`));
+        }
+      } finally {
+        try {
+          rmSync(tempDir, { recursive: true, force: true });
+        } catch (e) {
+          Log.warn(`Warning: Failed to clean up temporary directory ${tempDir}: ${e}`);
+        } finally {
+          if (originalUserconfig !== void 0) {
+            process.env["NPM_CONFIG_USERCONFIG"] = originalUserconfig;
+          } else {
+            delete process.env["NPM_CONFIG_USERCONFIG"];
+          }
+        }
+      }
+    }
+  }
+};
+function readPackageJsonAtRef(git, ref) {
+  const content = git.run(["show", `${ref}:package.json`]).stdout.trim();
+  return JSON.parse(content);
+}
+function findBuiltPackages(dir) {
+  if (!existsSync8(dir)) {
+    throw new Error(`The built packages directory does not exist: ${dir}`);
+  }
+  const packages = [];
+  const walk = (currentDir) => {
+    let entries;
+    try {
+      entries = readdirSync(currentDir, { withFileTypes: true });
+    } catch (e) {
+      return;
+    }
+    const hasPackageJson = entries.some((e) => e.isFile() && e.name === "package.json");
+    if (hasPackageJson) {
+      try {
+        const pkgJson = JSON.parse(readFileSync9(join14(currentDir, "package.json"), "utf8"));
+        if (pkgJson.name) {
+          if (!pkgJson.private) {
+            packages.push({
+              name: pkgJson.name,
+              outputPath: currentDir
+            });
+          }
+          return;
+        }
+      } catch (e) {
+      }
+    }
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        walk(join14(currentDir, entry.name));
+      }
+    }
+  };
+  walk(dir);
+  return packages;
+}
+async function determineNpmDistTag(newSemver, config2, git) {
+  const { active: activeLts, inactive: inactiveLts } = await fetchLongTermSupportBranchesFromNpm(config2);
+  const ltsBranch = [...activeLts, ...inactiveLts].find((b) => b.version.major === newSemver.major);
+  if (ltsBranch) {
+    return ltsBranch.npmDistTag;
+  }
+  const repo = {
+    owner: git.remoteConfig.owner,
+    name: git.remoteConfig.name,
+    api: git.github,
+    nextBranchName: git.mainBranchName
+  };
+  const activeTrains = await ActiveReleaseTrains.fetch(repo);
+  if (newSemver.prerelease.length > 0) {
+    if (activeTrains.exceptionalMinor !== null && newSemver.major === activeTrains.exceptionalMinor.version.major && newSemver.minor === activeTrains.exceptionalMinor.version.minor) {
+      return "do-not-use-exceptional-minor";
+    }
+    return "next";
+  }
+  if (newSemver.major > activeTrains.latest.version.major) {
+    return "next";
+  }
+  return "latest";
+}
+
+// ng-dev/release/publish/cli-ci.js
+function builder22(argv) {
+  return addGithubTokenOption(argv).option("built-packages-dir", {
+    type: "string",
+    demandOption: true,
+    description: "Path to the directory containing pre-built packages."
+  }).option("expected-sha", {
+    type: "string",
+    demandOption: true,
+    description: "The expected Git SHA of the release commit."
+  }).option("dry-run", {
+    type: "boolean",
+    default: false,
+    description: "Run the publish command in dry-run mode, skipping tag/release creation and NPM publishing."
+  });
+}
+async function handler23(flags) {
+  const git = await AuthenticatedGitClient.get();
+  const config2 = await getConfig();
+  assertValidReleaseConfig(config2);
+  assertValidGithubConfig(config2);
+  const tool = new PublishCiTool(config2, git, git.baseDir, flags);
+  try {
+    await tool.run();
+    Log.info(green("Release CI publish completed successfully."));
+  } catch (e) {
+    if (e instanceof Error) {
+      Log.error(`Release CI publish failed: ${e.message}`);
+      if (e.stack) {
+        Log.debug(e.stack);
+      }
+    } else {
+      Log.error(`Release CI publish failed with unknown error: ${e}`);
+    }
+    process.exitCode = 1;
+  }
+}
+var ReleasePublishCiCommandModule = {
+  builder: builder22,
+  handler: handler23,
+  command: "publish-ci",
+  describe: "Publish a release from CI."
+};
+
+// ng-dev/release/snapshot-publish/snapshots.js
+import { existsSync as existsSync9, cpSync } from "fs";
+import { rm } from "fs/promises";
+import { join as join15 } from "path";
+import { tmpdir as tmpdir2 } from "os";
 var PATHS_TO_EXCLUDE = [
   "MODULE.bazel.lock",
   "**/MODULE.bazel.lock",
@@ -37468,8 +37786,8 @@ var SnapshotPublisher = class _SnapshotPublisher {
       const packageRepo = pkg.snapshotRepo;
       const owner = this.config.github.owner;
       const url3 = `https://github.com/${owner}/${packageRepo}.git`;
-      const tmpRepoDir = join14(tmpdir(), "ng-snapshot-publishing", packageRepo);
-      if (existsSync8(tmpRepoDir)) {
+      const tmpRepoDir = join15(tmpdir2(), "ng-snapshot-publishing", packageRepo);
+      if (existsSync9(tmpRepoDir)) {
         await rm(tmpRepoDir, { recursive: true, force: true });
       }
       const branchExistsInRemote = this.git.runGraceful(["ls-remote", "--heads", url3, "--", this.branchName]).stdout.trim() !== "";
@@ -37483,7 +37801,7 @@ var SnapshotPublisher = class _SnapshotPublisher {
         this.git.run(["clone", url3, tmpRepoDir, "--depth", "1"]);
         this.git.run(["checkout", "-b", this.branchName], { cwd: tmpRepoDir });
       }
-      await Promise.all(this.git.run(["ls-files"], { cwd: tmpRepoDir }).stdout.trim().split("\n").filter((filePath) => filePath !== "").map((filePath) => rm(join14(tmpRepoDir, filePath), { force: true })));
+      await Promise.all(this.git.run(["ls-files"], { cwd: tmpRepoDir }).stdout.trim().split("\n").filter((filePath) => filePath !== "").map((filePath) => rm(join15(tmpRepoDir, filePath), { force: true })));
       cpSync(pkg.outputPath, tmpRepoDir, { recursive: true });
       this.git.run(["add", "-A"], { cwd: tmpRepoDir });
       const containsChanges = this.git.runGraceful([
@@ -37536,7 +37854,7 @@ var SnapshotPublisher = class _SnapshotPublisher {
 };
 
 // ng-dev/release/snapshot-publish/cli.js
-function builder22(argv) {
+function builder23(argv) {
   return addGithubTokenOption(argv).option("skip-non-affected-snapshots", {
     type: "boolean",
     description: "Whether to skip publishing snapshots for packages that are not affected by the current changes.",
@@ -37548,7 +37866,7 @@ function builder22(argv) {
   });
 }
 var ReleasePublishSnapshotsCommandModule = {
-  builder: builder22,
+  builder: builder23,
   handler: SnapshotPublisher.run,
   command: "publish-snapshots",
   describe: false
@@ -37560,8 +37878,8 @@ import url from "url";
 
 // ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
-var import_semver22 = __toESM(require_semver());
-import { join as join15 } from "path";
+var import_semver23 = __toESM(require_semver());
+import { join as join16 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
   console.info(`BUILD_SCM_BRANCH ${getCurrentBranch(git)}`);
@@ -37638,16 +37956,16 @@ function getCurrentGitUser(git) {
   }
 }
 function getVersionFromWorkspacePackageJson(git) {
-  const packageJsonPath = join15(git.baseDir, "package.json");
+  const packageJsonPath = join16(git.baseDir, "package.json");
   const packageJson = JSON.parse(fs5.readFileSync(packageJsonPath, "utf8"));
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver22.default.SemVer(packageJson.version);
+  return new import_semver23.default.SemVer(packageJson.version);
 }
 
 // ng-dev/release/stamping/cli.js
-function builder23(args) {
+function builder24(args) {
   return args.option("mode", {
     demandOption: true,
     description: "Whether the env-stamp should be built for a snapshot or release",
@@ -37661,7 +37979,7 @@ function builder23(args) {
     description: "Working-dir relative or absolute path to an ESM script which can print additional stamping variables"
   });
 }
-async function handler23({ mode, includeVersion, additionalStampingScript }) {
+async function handler24({ mode, includeVersion, additionalStampingScript }) {
   await printEnvStamp(mode, includeVersion);
   if (additionalStampingScript !== void 0) {
     const scriptURL = url.pathToFileURL(path6.resolve(additionalStampingScript));
@@ -37670,21 +37988,21 @@ async function handler23({ mode, includeVersion, additionalStampingScript }) {
   }
 }
 var BuildEnvStampCommand = {
-  builder: builder23,
-  handler: handler23,
+  builder: builder24,
+  handler: handler24,
   command: "build-env-stamp",
   describe: false
 };
 
 // ng-dev/release/npm-dist-tag/delete/cli.js
-function builder24(args) {
+function builder25(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
     description: "Name of the NPM dist tag."
   });
 }
-async function handler24(args) {
+async function handler25(args) {
   const { tagName } = args;
   const config2 = await getConfig();
   assertValidReleaseConfig(config2);
@@ -37707,15 +38025,15 @@ async function handler24(args) {
   Log.info(green(`  \u2713   Deleted "${bold(tagName)}" NPM dist tag for all packages.`));
 }
 var ReleaseNpmDistTagDeleteCommand = {
-  builder: builder24,
-  handler: handler24,
+  builder: builder25,
+  handler: handler25,
   command: "delete <tag-name>",
   describe: "Deletes a given NPM dist tag for all release packages."
 };
 
 // ng-dev/release/npm-dist-tag/set/cli.js
-var import_semver23 = __toESM(require_semver());
-function builder25(args) {
+var import_semver24 = __toESM(require_semver());
+function builder26(args) {
   return args.positional("tagName", {
     type: "string",
     demandOption: true,
@@ -37730,12 +38048,12 @@ function builder25(args) {
     default: false
   });
 }
-async function handler25(args) {
+async function handler26(args) {
   const { targetVersion: rawVersion, tagName, skipExperimentalPackages } = args;
   const config2 = await getConfig();
   assertValidReleaseConfig(config2);
   const { npmPackages, publishRegistry } = config2.release;
-  const version2 = import_semver23.default.parse(rawVersion);
+  const version2 = import_semver24.default.parse(rawVersion);
   if (version2 === null) {
     Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
     process.exit(1);
@@ -37767,8 +38085,8 @@ async function handler25(args) {
   Log.info(green(`      ${bold(tagName)} will now point to ${bold(`v${version2}`)}.`));
 }
 var ReleaseNpmDistTagSetCommand = {
-  builder: builder25,
-  handler: handler25,
+  builder: builder26,
+  handler: handler26,
   command: "set <tag-name> <target-version>",
   describe: "Sets a given NPM dist tag for all release packages."
 };
@@ -37787,17 +38105,17 @@ var ReleaseNpmDistTagCommand = {
 
 // ng-dev/release/cli.js
 function buildReleaseParser(localYargs) {
-  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule).command(ReleasePublishSnapshotsCommandModule);
+  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleasePublishCiCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule).command(ReleasePublishSnapshotsCommandModule);
 }
 
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync9, readFileSync as readFileSync11, writeFileSync as writeFileSync5 } from "fs";
+import { existsSync as existsSync10, readFileSync as readFileSync12, writeFileSync as writeFileSync6 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve8 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
-import { readFileSync as readFileSync10 } from "fs";
-import { dirname as dirname5, join as join16, resolve as resolve6 } from "path";
+import { readFileSync as readFileSync11 } from "fs";
+import { dirname as dirname5, join as join17, resolve as resolve6 } from "path";
 import ts3 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
@@ -37867,7 +38185,7 @@ var Analyzer = class {
     if (this._sourceFileCache.has(resolvedPath)) {
       return this._sourceFileCache.get(resolvedPath);
     }
-    const fileContent = readFileSync10(resolvedPath, "utf8");
+    const fileContent = readFileSync11(resolvedPath, "utf8");
     const sourceFile = ts3.createSourceFile(resolvedPath, fileContent, ts3.ScriptTarget.Latest, false);
     this._sourceFileCache.set(resolvedPath, sourceFile);
     return sourceFile;
@@ -37899,7 +38217,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join16(dirname5(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join17(dirname5(containingFilePath), specifier) : specifier;
     const stat2 = getFileStatus(importFullPath);
     if (stat2 && stat2.isFile()) {
       return importFullPath;
@@ -37912,7 +38230,7 @@ var Analyzer = class {
       }
     }
     if (stat2 && stat2.isDirectory()) {
-      return this._resolveFileSpecifier(join16(importFullPath, "index"));
+      return this._resolveFileSpecifier(join17(importFullPath, "index"));
     }
     return null;
   }
@@ -38079,15 +38397,15 @@ function main(approve, config2, printWarnings) {
     return 0;
   }
   if (approve) {
-    writeFileSync5(goldenFile, JSON.stringify(actual, null, 2));
+    writeFileSync6(goldenFile, JSON.stringify(actual, null, 2));
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync9(goldenFile)) {
+  if (!existsSync10(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
-  const expected = goldenFile ? JSON.parse(readFileSync11(goldenFile, "utf8")) : [];
+  const expected = goldenFile ? JSON.parse(readFileSync12(goldenFile, "utf8")) : [];
   const { fixedCircularDeps, newCircularDeps } = compareGoldens(actual, expected);
   const isMatching = fixedCircularDeps.length === 0 && newCircularDeps.length === 0;
   if (isMatching) {
@@ -38122,31 +38440,31 @@ function convertReferenceChainToString(chain) {
 }
 
 // ng-dev/auth/login/cli.js
-async function builder26(yargs) {
+async function builder27(yargs) {
   return yargs;
 }
-async function handler26() {
+async function handler27() {
   Log.warn("ng-dev auth login has been deprecated. Authentication will be done");
   Log.warn("using TOKEN from the local environment.");
 }
 var LoginModule = {
-  handler: handler26,
-  builder: builder26,
+  handler: handler27,
+  builder: builder27,
   command: "login",
   describe: "Log into the ng-dev service"
 };
 
 // ng-dev/auth/logout/cli.js
-async function builder27(yargs) {
+async function builder28(yargs) {
   return yargs;
 }
-async function handler27() {
+async function handler28() {
   Log.warn("ng-dev auth logout has been deprecated. Authentication will be done");
   Log.warn("using local environment.");
 }
 var LogoutModule = {
-  handler: handler27,
-  builder: builder27,
+  handler: handler28,
+  builder: builder28,
   command: "logout",
   describe: "Log out of the ng-dev service"
 };
@@ -38210,7 +38528,7 @@ async function loadWorkflows(src) {
 }
 
 // ng-dev/perf/workflow/cli.js
-import { join as join17 } from "path";
+import { join as join18 } from "path";
 
 // ng-dev/perf/workflow/database.js
 import { Spanner } from "@google-cloud/spanner";
@@ -38229,7 +38547,7 @@ async function addWorkflowPerformanceResult(result) {
 }
 
 // ng-dev/perf/workflow/cli.js
-function builder28(yargs) {
+function builder29(yargs) {
   return yargs.option("config-file", {
     default: ".ng-dev/dx-perf-workflows.yml",
     type: "string",
@@ -38246,8 +38564,8 @@ function builder28(yargs) {
     description: "The commit sha to associate the measurement with, uploading it to our database"
   });
 }
-async function handler28({ configFile, list, name, commitSha }) {
-  const workflows = await loadWorkflows(join17(determineRepoBaseDirFromCwd(), configFile));
+async function handler29({ configFile, list, name, commitSha }) {
+  const workflows = await loadWorkflows(join18(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
     return;
@@ -38278,8 +38596,8 @@ async function handler28({ configFile, list, name, commitSha }) {
   }
 }
 var WorkflowsModule = {
-  handler: handler28,
-  builder: builder28,
+  handler: handler29,
+  builder: builder29,
   command: "workflows",
   describe: "Evaluate the performance of the provided workflows"
 };
@@ -38290,17 +38608,17 @@ function buildPerfParser(localYargs) {
 }
 
 // ng-dev/config/validate/portability.js
-import { join as join18 } from "path";
-import { tmpdir as tmpdir2 } from "os";
+import { join as join19 } from "path";
+import { tmpdir as tmpdir3 } from "os";
 import { cp, mkdtemp, rm as rm2 } from "fs/promises";
 async function checkPortability() {
   Log.debug("Copying ng-dev configuration to isolated temp directory");
-  const tmpConfigDir = await mkdtemp(join18(tmpdir2(), "ng-dev-config-check-"));
+  const tmpConfigDir = await mkdtemp(join19(tmpdir3(), "ng-dev-config-check-"));
   const repoBaseDir = determineRepoBaseDirFromCwd();
   try {
-    await cp(join18(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
+    await cp(join19(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
     Log.debug("Validating configuration loads in isolation");
-    const baseConfigFile = join18(tmpConfigDir, "config.mjs");
+    const baseConfigFile = join19(tmpConfigDir, "config.mjs");
     const { status, stderr } = await ChildProcess.exec(`node ${baseConfigFile}`, {
       cwd: tmpConfigDir,
       mode: "silent"
@@ -38339,10 +38657,10 @@ async function checkValidity() {
 }
 
 // ng-dev/config/validate/cli.js
-async function builder29(yargs) {
+async function builder30(yargs) {
   return yargs;
 }
-async function handler29() {
+async function handler30() {
   try {
     await checkPortability();
     await checkValidity();
@@ -38357,8 +38675,8 @@ async function handler29() {
   }
 }
 var ValidateModule = {
-  handler: handler29,
-  builder: builder29,
+  handler: handler30,
+  builder: builder30,
   command: "validate",
   describe: "Validate that the configuration provided in .ng-dev/ is valid and portable"
 };
@@ -57034,7 +57352,7 @@ var DEFAULT_API_KEY = process.env["GEMINI_API_KEY"];
 // ng-dev/ai/migrate.js
 import assert from "node:assert";
 var import_fast_glob4 = __toESM(require_out4());
-function builder30(argv) {
+function builder31(argv) {
   return argv.option("prompt", {
     type: "string",
     alias: "p",
@@ -57065,7 +57383,7 @@ function builder30(argv) {
     description: "API key used when making calls to the Gemini API"
   });
 }
-async function handler30(options) {
+async function handler31(options) {
   const apiKey = options.apiKey || DEFAULT_API_KEY;
   assert(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
@@ -57161,8 +57479,8 @@ async function applyPrompt(ai, model, temperature, content, prompt) {
   return parsed.content;
 }
 var MigrateModule = {
-  builder: builder30,
-  handler: handler30,
+  builder: builder31,
+  handler: handler31,
   command: "migrate",
   describe: "Apply a prompt-based AI migration over a set of files"
 };
@@ -57175,7 +57493,7 @@ var import_fast_glob5 = __toESM(require_out4());
 var import_cli_progress4 = __toESM(require_cli_progress());
 import assert2 from "node:assert";
 import { randomUUID } from "node:crypto";
-function builder31(argv) {
+function builder32(argv) {
   return argv.positional("files", {
     description: `One or more glob patterns to find target files (e.g., 'src/**/*.ts' 'test/**/*.ts').`,
     type: "string",
@@ -57203,7 +57521,7 @@ function builder31(argv) {
     description: "API key used when making calls to the Gemini API"
   });
 }
-async function handler31(options) {
+async function handler32(options) {
   const apiKey = options.apiKey || DEFAULT_API_KEY;
   assert2(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
@@ -57361,8 +57679,8 @@ function generatePrompt(errorDescription, fileNameMap) {
 `;
 }
 var FixModule = {
-  builder: builder31,
-  handler: handler31,
+  builder: builder32,
+  handler: handler32,
   command: "fix <files..>",
   describe: "Fixes errors from the specified error output"
 };
@@ -71770,7 +72088,7 @@ config(en_default());
 var import_fast_glob6 = __toESM(require_out4());
 var import_yaml5 = __toESM(require_dist());
 import { readFile as readFile5 } from "node:fs/promises";
-import { join as join19, basename as basename3 } from "node:path";
+import { join as join20, basename as basename3 } from "node:path";
 var skillFrontmatterSchema = external_exports.object({
   name: external_exports.string().min(1).max(64).regex(/^[a-z0-9-]+$/, "Name must only contain lowercase alphanumeric characters and hyphens").refine((val) => !val.startsWith("-") && !val.endsWith("-") && !val.includes("--"), "Name must not start/end with hyphens or contain consecutive hyphens"),
   description: external_exports.string().min(1).max(1024),
@@ -71781,7 +72099,7 @@ var skillFrontmatterSchema = external_exports.object({
 });
 async function validateSkills(repoRoot) {
   let errorCount = 0;
-  const skillFiles = await (0, import_fast_glob6.default)("**/SKILL.md", { cwd: join19(repoRoot, "skills"), absolute: true });
+  const skillFiles = await (0, import_fast_glob6.default)("**/SKILL.md", { cwd: join20(repoRoot, "skills"), absolute: true });
   if (skillFiles.length === 0) {
     Log.info(` ${yellow("\u26A0")}  No skills found in skills/ directory.`);
     return { results: [], exitCode: 0 };
@@ -71790,13 +72108,13 @@ async function validateSkills(repoRoot) {
   const validationResults = await Promise.all(skillFiles.map(validateSkill));
   for (const result of validationResults.sort((a, b) => a.failures.length - b.failures.length)) {
     if (result.failures.length > 0) {
-      Log.info(` ${red("\u2718")}  ${bold(result.name)} (${join19("skills", result.name, "SKILL.md")})`);
+      Log.info(` ${red("\u2718")}  ${bold(result.name)} (${join20("skills", result.name, "SKILL.md")})`);
       result.failures.forEach((failure) => {
         Log.info(`  -  ${failure}`);
         errorCount++;
       });
     } else {
-      Log.info(` ${green("\u2714")}  ${bold(result.name)} (${join19("skills", result.name, "SKILL.md")})`);
+      Log.info(` ${green("\u2714")}  ${bold(result.name)} (${join20("skills", result.name, "SKILL.md")})`);
     }
   }
   Log.info();
@@ -71809,7 +72127,7 @@ async function validateSkills(repoRoot) {
   }
 }
 async function validateSkill(filePath) {
-  const name = basename3(join19(filePath, ".."));
+  const name = basename3(join20(filePath, ".."));
   const failures = [];
   try {
     const content = await readFile5(filePath, { encoding: "utf8" });
@@ -71842,7 +72160,7 @@ async function validateSkill(filePath) {
 }
 
 // ng-dev/ai/skills/cli.js
-async function builder32(yargs) {
+async function builder33(yargs) {
   return yargs.option("base-dir", {
     type: "string",
     default: determineRepoBaseDirFromCwd(),
@@ -71850,14 +72168,14 @@ async function builder32(yargs) {
     description: "The base directory to look for skills in"
   });
 }
-async function handler32({ baseDir }) {
+async function handler33({ baseDir }) {
   process.exitCode = (await validateSkills(baseDir)).exitCode;
 }
 var SkillsModule = {
   command: "skills validate",
   describe: "Validate agent skills in the repository",
-  builder: builder32,
-  handler: handler32
+  builder: builder33,
+  handler: handler33
 };
 
 // ng-dev/ai/cli.js
