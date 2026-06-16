@@ -33655,6 +33655,7 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
       await strategy.merge(pullRequest);
       Log.info(green(`  \u2713  Successfully merged the pull request: #${prNumber}`));
     } finally {
+      this.git.runGraceful(["reset", "--hard"]);
       this.git.run(["checkout", "-f", previousBranchOrRevision]);
       await strategy.cleanup(pullRequest);
     }
@@ -37141,7 +37142,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-83b406aceaa440a45c84b885b00d1f38cd31d8a2`;
+var localVersion = `0.0.0-e9faacd5b4df391f59989b6fb448b2c24115d592`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
