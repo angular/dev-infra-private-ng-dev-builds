@@ -35775,11 +35775,28 @@ var ReleasePrecheckCommandModule = {
 // ng-dev/release/versioning/npm-command.js
 var NpmCommand = class {
   static async publish(packagePath, distTag, registryUrl) {
-    const args = ["publish", "--access", "public", "--tag", distTag];
+    const args = ["publish", packagePath, "--access", "public", "--tag", distTag];
     if (registryUrl !== void 0) {
       args.push("--registry", registryUrl);
     }
-    await ChildProcess.spawn("npm", args, { cwd: packagePath, mode: "silent" });
+    await ChildProcess.spawn("npm", args, { mode: "silent" });
+  }
+  static async checkVersionExists(packageName, version2, registryUrl) {
+    const args = ["view", `${packageName}@${version2}`, "version"];
+    if (registryUrl !== void 0) {
+      args.push("--registry", registryUrl);
+    }
+    try {
+      const result = await ChildProcess.spawn("npm", args, { mode: "silent" });
+      const output2 = result.stdout.trim();
+      return output2 !== "";
+    } catch (e) {
+      const errString = getErrorMessage(e);
+      if (errString.includes("E404") || errString.includes("404 Not Found")) {
+        return false;
+      }
+      throw e;
+    }
   }
   static async deprecate(packageName, version2, message, registryUrl) {
     const args = ["deprecate", `${packageName}@${version2}`, message];
@@ -35840,6 +35857,23 @@ var NpmCommand = class {
     }
   }
 };
+function getErrorMessage(error51) {
+  if (error51 instanceof Error) {
+    return error51.message;
+  }
+  if (typeof error51 === "string") {
+    return error51;
+  }
+  if (error51 && typeof error51 === "object") {
+    if ("message" in error51 && typeof error51.message === "string") {
+      return error51.message;
+    }
+    if ("stderr" in error51 && typeof error51.stderr === "string") {
+      return error51.stderr;
+    }
+  }
+  return String(error51);
+}
 
 // ng-dev/release/publish/external-commands.js
 var import_semver8 = __toESM(require_semver());
@@ -37142,7 +37176,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-e9faacd5b4df391f59989b6fb448b2c24115d592`;
+var localVersion = `0.0.0-a8a341bd2b49b931c92408d497588b6acd012eeb`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
