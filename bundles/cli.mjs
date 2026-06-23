@@ -1025,7 +1025,7 @@ var require_path = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.convertPosixPathToPattern = exports.convertWindowsPathToPattern = exports.convertPathToPattern = exports.escapePosixPath = exports.escapeWindowsPath = exports.escape = exports.removeLeadingDotSegment = exports.makeAbsolute = exports.unixify = void 0;
     var os2 = __require("os");
-    var path8 = __require("path");
+    var path9 = __require("path");
     var IS_WINDOWS_PLATFORM = os2.platform() === "win32";
     var LEADING_DOT_SEGMENT_CHARACTERS_COUNT = 2;
     var POSIX_UNESCAPED_GLOB_SYMBOLS_RE = /(\\?)([()*?[\]{|}]|^!|[!+@](?=\()|\\(?![!()*+?@[\]{|}]))/g;
@@ -1037,7 +1037,7 @@ var require_path = __commonJS({
     }
     exports.unixify = unixify;
     function makeAbsolute(cwd, filepath) {
-      return path8.resolve(cwd, filepath);
+      return path9.resolve(cwd, filepath);
     }
     exports.makeAbsolute = makeAbsolute;
     function removeLeadingDotSegment(entry) {
@@ -2363,7 +2363,7 @@ var require_braces = __commonJS({
 var require_constants2 = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/constants.js"(exports, module) {
     "use strict";
-    var path8 = __require("path");
+    var path9 = __require("path");
     var WIN_SLASH = "\\\\/";
     var WIN_NO_SLASH = `[^${WIN_SLASH}]`;
     var DEFAULT_MAX_EXTGLOB_RECURSION = 0;
@@ -2537,7 +2537,7 @@ var require_constants2 = __commonJS({
       /* | */
       CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279,
       /* \uFEFF */
-      SEP: path8.sep,
+      SEP: path9.sep,
       /**
        * Create EXTGLOB_CHARS
        */
@@ -2564,7 +2564,7 @@ var require_constants2 = __commonJS({
 var require_utils2 = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/utils.js"(exports) {
     "use strict";
-    var path8 = __require("path");
+    var path9 = __require("path");
     var win32 = process.platform === "win32";
     var {
       REGEX_BACKSLASH,
@@ -2593,7 +2593,7 @@ var require_utils2 = __commonJS({
       if (options && typeof options.windows === "boolean") {
         return options.windows;
       }
-      return win32 === true || path8.sep === "\\";
+      return win32 === true || path9.sep === "\\";
     };
     exports.escapeLast = (input, char, lastIdx) => {
       const idx = input.lastIndexOf(char, lastIdx);
@@ -3970,7 +3970,7 @@ var require_parse2 = __commonJS({
 var require_picomatch = __commonJS({
   "node_modules/.aspect_rules_js/picomatch@2.3.2/node_modules/picomatch/lib/picomatch.js"(exports, module) {
     "use strict";
-    var path8 = __require("path");
+    var path9 = __require("path");
     var scan = require_scan();
     var parse7 = require_parse2();
     var utils2 = require_utils2();
@@ -4056,7 +4056,7 @@ var require_picomatch = __commonJS({
     };
     picomatch.matchBase = (input, glob7, options, posix = utils2.isWindows(options)) => {
       const regex = glob7 instanceof RegExp ? glob7 : picomatch.makeRe(glob7, options);
-      return regex.test(path8.basename(input));
+      return regex.test(path9.basename(input));
     };
     picomatch.isMatch = (str, patterns, options) => picomatch(patterns, options)(str);
     picomatch.parse = (pattern, options) => {
@@ -4291,7 +4291,7 @@ var require_pattern = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.isAbsolute = exports.partitionAbsoluteAndRelative = exports.removeDuplicateSlashes = exports.matchAny = exports.convertPatternsToRe = exports.makeRe = exports.getPatternParts = exports.expandBraceExpansion = exports.expandPatternsWithBraceExpansion = exports.isAffectDepthOfReadingPattern = exports.endsWithSlashGlobStar = exports.hasGlobStar = exports.getBaseDirectory = exports.isPatternRelatedToParentDirectory = exports.getPatternsOutsideCurrentDirectory = exports.getPatternsInsideCurrentDirectory = exports.getPositivePatterns = exports.getNegativePatterns = exports.isPositivePattern = exports.isNegativePattern = exports.convertToNegativePattern = exports.convertToPositivePattern = exports.isDynamicPattern = exports.isStaticPattern = void 0;
-    var path8 = __require("path");
+    var path9 = __require("path");
     var globParent = require_glob_parent();
     var micromatch = require_micromatch();
     var GLOBSTAR2 = "**";
@@ -4386,7 +4386,7 @@ var require_pattern = __commonJS({
     }
     exports.endsWithSlashGlobStar = endsWithSlashGlobStar;
     function isAffectDepthOfReadingPattern(pattern) {
-      const basename4 = path8.basename(pattern);
+      const basename4 = path9.basename(pattern);
       return endsWithSlashGlobStar(pattern) || isStaticPattern(basename4);
     }
     exports.isAffectDepthOfReadingPattern = isAffectDepthOfReadingPattern;
@@ -4444,7 +4444,7 @@ var require_pattern = __commonJS({
     }
     exports.partitionAbsoluteAndRelative = partitionAbsoluteAndRelative;
     function isAbsolute4(pattern) {
-      return path8.isAbsolute(pattern);
+      return path9.isAbsolute(pattern);
     }
     exports.isAbsolute = isAbsolute4;
   }
@@ -4619,10 +4619,10 @@ var require_utils3 = __commonJS({
     exports.array = array2;
     var errno = require_errno();
     exports.errno = errno;
-    var fs7 = require_fs();
-    exports.fs = fs7;
-    var path8 = require_path();
-    exports.path = path8;
+    var fs8 = require_fs();
+    exports.fs = fs8;
+    var path9 = require_path();
+    exports.path = path9;
     var pattern = require_pattern();
     exports.pattern = pattern;
     var stream = require_stream();
@@ -4734,8 +4734,8 @@ var require_async = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.read = void 0;
-    function read(path8, settings, callback) {
-      settings.fs.lstat(path8, (lstatError, lstat) => {
+    function read(path9, settings, callback) {
+      settings.fs.lstat(path9, (lstatError, lstat) => {
         if (lstatError !== null) {
           callFailureCallback(callback, lstatError);
           return;
@@ -4744,7 +4744,7 @@ var require_async = __commonJS({
           callSuccessCallback(callback, lstat);
           return;
         }
-        settings.fs.stat(path8, (statError, stat2) => {
+        settings.fs.stat(path9, (statError, stat2) => {
           if (statError !== null) {
             if (settings.throwErrorOnBrokenSymbolicLink) {
               callFailureCallback(callback, statError);
@@ -4776,13 +4776,13 @@ var require_sync = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.read = void 0;
-    function read(path8, settings) {
-      const lstat = settings.fs.lstatSync(path8);
+    function read(path9, settings) {
+      const lstat = settings.fs.lstatSync(path9);
       if (!lstat.isSymbolicLink() || !settings.followSymbolicLink) {
         return lstat;
       }
       try {
-        const stat2 = settings.fs.statSync(path8);
+        const stat2 = settings.fs.statSync(path9);
         if (settings.markSymbolicLink) {
           stat2.isSymbolicLink = () => true;
         }
@@ -4804,12 +4804,12 @@ var require_fs2 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.createFileSystemAdapter = exports.FILE_SYSTEM_ADAPTER = void 0;
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     exports.FILE_SYSTEM_ADAPTER = {
-      lstat: fs7.lstat,
-      stat: fs7.stat,
-      lstatSync: fs7.lstatSync,
-      statSync: fs7.statSync
+      lstat: fs8.lstat,
+      stat: fs8.stat,
+      lstatSync: fs8.lstatSync,
+      statSync: fs8.statSync
     };
     function createFileSystemAdapter(fsMethods) {
       if (fsMethods === void 0) {
@@ -4826,12 +4826,12 @@ var require_settings = __commonJS({
   "node_modules/.aspect_rules_js/@nodelib+fs.stat@2.0.5/node_modules/@nodelib/fs.stat/out/settings.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var fs7 = require_fs2();
+    var fs8 = require_fs2();
     var Settings = class {
       constructor(_options = {}) {
         this._options = _options;
         this.followSymbolicLink = this._getValue(this._options.followSymbolicLink, true);
-        this.fs = fs7.createFileSystemAdapter(this._options.fs);
+        this.fs = fs8.createFileSystemAdapter(this._options.fs);
         this.markSymbolicLink = this._getValue(this._options.markSymbolicLink, false);
         this.throwErrorOnBrokenSymbolicLink = this._getValue(this._options.throwErrorOnBrokenSymbolicLink, true);
       }
@@ -4853,17 +4853,17 @@ var require_out = __commonJS({
     var sync = require_sync();
     var settings_1 = require_settings();
     exports.Settings = settings_1.default;
-    function stat2(path8, optionsOrSettingsOrCallback, callback) {
+    function stat2(path9, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
-        async.read(path8, getSettings(), optionsOrSettingsOrCallback);
+        async.read(path9, getSettings(), optionsOrSettingsOrCallback);
         return;
       }
-      async.read(path8, getSettings(optionsOrSettingsOrCallback), callback);
+      async.read(path9, getSettings(optionsOrSettingsOrCallback), callback);
     }
     exports.stat = stat2;
-    function statSync2(path8, optionsOrSettings) {
+    function statSync2(path9, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
-      return sync.read(path8, settings);
+      return sync.read(path9, settings);
     }
     exports.statSync = statSync2;
     function getSettings(settingsOrOptions = {}) {
@@ -4989,8 +4989,8 @@ var require_utils4 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.fs = void 0;
-    var fs7 = require_fs3();
-    exports.fs = fs7;
+    var fs8 = require_fs3();
+    exports.fs = fs8;
   }
 });
 
@@ -5082,16 +5082,16 @@ var require_async2 = __commonJS({
           return;
         }
         const tasks = names.map((name) => {
-          const path8 = common.joinPathSegments(directory, name, settings.pathSegmentSeparator);
+          const path9 = common.joinPathSegments(directory, name, settings.pathSegmentSeparator);
           return (done) => {
-            fsStat.stat(path8, settings.fsStatSettings, (error51, stats) => {
+            fsStat.stat(path9, settings.fsStatSettings, (error51, stats) => {
               if (error51 !== null) {
                 done(error51);
                 return;
               }
               const entry = {
                 name,
-                path: path8,
+                path: path9,
                 dirent: utils2.fs.createDirentFromStats(name, stats)
               };
               if (settings.stats) {
@@ -5185,14 +5185,14 @@ var require_fs4 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.createFileSystemAdapter = exports.FILE_SYSTEM_ADAPTER = void 0;
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     exports.FILE_SYSTEM_ADAPTER = {
-      lstat: fs7.lstat,
-      stat: fs7.stat,
-      lstatSync: fs7.lstatSync,
-      statSync: fs7.statSync,
-      readdir: fs7.readdir,
-      readdirSync: fs7.readdirSync
+      lstat: fs8.lstat,
+      stat: fs8.stat,
+      lstatSync: fs8.lstatSync,
+      statSync: fs8.statSync,
+      readdir: fs8.readdir,
+      readdirSync: fs8.readdirSync
     };
     function createFileSystemAdapter(fsMethods) {
       if (fsMethods === void 0) {
@@ -5209,15 +5209,15 @@ var require_settings2 = __commonJS({
   "node_modules/.aspect_rules_js/@nodelib+fs.scandir@2.1.5/node_modules/@nodelib/fs.scandir/out/settings.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var path8 = __require("path");
+    var path9 = __require("path");
     var fsStat = require_out();
-    var fs7 = require_fs4();
+    var fs8 = require_fs4();
     var Settings = class {
       constructor(_options = {}) {
         this._options = _options;
         this.followSymbolicLinks = this._getValue(this._options.followSymbolicLinks, false);
-        this.fs = fs7.createFileSystemAdapter(this._options.fs);
-        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path8.sep);
+        this.fs = fs8.createFileSystemAdapter(this._options.fs);
+        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path9.sep);
         this.stats = this._getValue(this._options.stats, false);
         this.throwErrorOnBrokenSymbolicLink = this._getValue(this._options.throwErrorOnBrokenSymbolicLink, true);
         this.fsStatSettings = new fsStat.Settings({
@@ -5244,17 +5244,17 @@ var require_out2 = __commonJS({
     var sync = require_sync2();
     var settings_1 = require_settings2();
     exports.Settings = settings_1.default;
-    function scandir(path8, optionsOrSettingsOrCallback, callback) {
+    function scandir(path9, optionsOrSettingsOrCallback, callback) {
       if (typeof optionsOrSettingsOrCallback === "function") {
-        async.read(path8, getSettings(), optionsOrSettingsOrCallback);
+        async.read(path9, getSettings(), optionsOrSettingsOrCallback);
         return;
       }
-      async.read(path8, getSettings(optionsOrSettingsOrCallback), callback);
+      async.read(path9, getSettings(optionsOrSettingsOrCallback), callback);
     }
     exports.scandir = scandir;
-    function scandirSync(path8, optionsOrSettings) {
+    function scandirSync(path9, optionsOrSettings) {
       const settings = getSettings(optionsOrSettings);
-      return sync.read(path8, settings);
+      return sync.read(path9, settings);
     }
     exports.scandirSync = scandirSync;
     function getSettings(settingsOrOptions = {}) {
@@ -5489,8 +5489,8 @@ var require_queue = __commonJS({
         }
         self2.drain = noop2;
       }
-      function error51(handler33) {
-        errorHandler = handler33;
+      function error51(handler34) {
+        errorHandler = handler34;
       }
     }
     function noop2() {
@@ -5904,7 +5904,7 @@ var require_settings3 = __commonJS({
   "node_modules/.aspect_rules_js/@nodelib+fs.walk@1.2.8/node_modules/@nodelib/fs.walk/out/settings.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var path8 = __require("path");
+    var path9 = __require("path");
     var fsScandir = require_out2();
     var Settings = class {
       constructor(_options = {}) {
@@ -5914,7 +5914,7 @@ var require_settings3 = __commonJS({
         this.deepFilter = this._getValue(this._options.deepFilter, null);
         this.entryFilter = this._getValue(this._options.entryFilter, null);
         this.errorFilter = this._getValue(this._options.errorFilter, null);
-        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path8.sep);
+        this.pathSegmentSeparator = this._getValue(this._options.pathSegmentSeparator, path9.sep);
         this.fsScandirSettings = new fsScandir.Settings({
           followSymbolicLinks: this._options.followSymbolicLinks,
           fs: this._options.fs,
@@ -5976,7 +5976,7 @@ var require_reader2 = __commonJS({
   "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/readers/reader.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var path8 = __require("path");
+    var path9 = __require("path");
     var fsStat = require_out();
     var utils2 = require_utils3();
     var Reader = class {
@@ -5989,7 +5989,7 @@ var require_reader2 = __commonJS({
         });
       }
       _getFullEntryPath(filepath) {
-        return path8.resolve(this._settings.cwd, filepath);
+        return path9.resolve(this._settings.cwd, filepath);
       }
       _makeEntry(stats, pattern) {
         const entry = {
@@ -6405,7 +6405,7 @@ var require_provider = __commonJS({
   "node_modules/.aspect_rules_js/fast-glob@3.3.3/node_modules/fast-glob/out/providers/provider.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var path8 = __require("path");
+    var path9 = __require("path");
     var deep_1 = require_deep();
     var entry_1 = require_entry();
     var error_1 = require_error();
@@ -6419,7 +6419,7 @@ var require_provider = __commonJS({
         this.entryTransformer = new entry_2.default(this._settings);
       }
       _getRootDirectory(task) {
-        return path8.resolve(this._settings.cwd, task.base);
+        return path9.resolve(this._settings.cwd, task.base);
       }
       _getReaderOptions(task) {
         const basePath = task.base === "." ? "" : task.base;
@@ -6600,16 +6600,16 @@ var require_settings4 = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.DEFAULT_FILE_SYSTEM_ADAPTER = void 0;
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     var os2 = __require("os");
     var CPU_COUNT = Math.max(os2.cpus().length, 1);
     exports.DEFAULT_FILE_SYSTEM_ADAPTER = {
-      lstat: fs7.lstat,
-      lstatSync: fs7.lstatSync,
-      stat: fs7.stat,
-      statSync: fs7.statSync,
-      readdir: fs7.readdir,
-      readdirSync: fs7.readdirSync
+      lstat: fs8.lstat,
+      lstatSync: fs8.lstatSync,
+      stat: fs8.stat,
+      statSync: fs8.statSync,
+      readdir: fs8.readdir,
+      readdirSync: fs8.readdirSync
     };
     var Settings = class {
       constructor(_options = {}) {
@@ -7717,11 +7717,11 @@ var require_cjs = __commonJS({
       return (f) => f.length === len && f !== "." && f !== "..";
     };
     var defaultPlatform2 = typeof process === "object" && process ? typeof process.env === "object" && process.env && process.env.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
-    var path8 = {
+    var path9 = {
       win32: { sep: "\\" },
       posix: { sep: "/" }
     };
-    exports.sep = defaultPlatform2 === "win32" ? path8.win32.sep : path8.posix.sep;
+    exports.sep = defaultPlatform2 === "win32" ? path9.win32.sep : path9.posix.sep;
     exports.minimatch.sep = exports.sep;
     exports.GLOBSTAR = Symbol("globstar **");
     exports.minimatch.GLOBSTAR = exports.GLOBSTAR;
@@ -8698,7 +8698,7 @@ var require_folder_hash = __commonJS({
     var crypto2 = __require("crypto");
     var debug = require_src();
     var minimatch2 = require_index_cjs();
-    var path8 = __require("path");
+    var path9 = __require("path");
     var defaultOptions = {
       algo: "sha1",
       // see crypto.getHashes() for options
@@ -8740,14 +8740,14 @@ var require_folder_hash = __commonJS({
       queue: debug("fhash:queue"),
       glob: debug("fhash:glob")
     };
-    function prep(fs7) {
+    function prep(fs8) {
       let queue = [];
       let queueTimer = void 0;
       function hashElement2(name, dir, options, callback) {
         callback = arguments[arguments.length - 1];
         return parseParameters(arguments).then(({ basename: basename4, dir: dir2, options: options2 }) => {
           options2.skipMatching = true;
-          return fs7.promises.lstat(path8.join(dir2, basename4)).then((stats) => {
+          return fs8.promises.lstat(path9.join(dir2, basename4)).then((stats) => {
             stats.name = basename4;
             return stats;
           }).then((stats) => hashElementPromise(stats, dir2, options2, true));
@@ -8803,7 +8803,7 @@ var require_folder_hash = __commonJS({
         runnables.forEach((run) => run());
       }
       async function hashFolderPromise(name, dir, options, isRootElement = false) {
-        const folderPath = path8.join(dir, name);
+        const folderPath = path9.join(dir, name);
         let ignoreBasenameOnce = options.ignoreBasenameOnce;
         delete options.ignoreBasenameOnce;
         if (options.skipMatching) {
@@ -8812,7 +8812,7 @@ var require_folder_hash = __commonJS({
         } else if (ignore(name, folderPath, options.folders)) {
           return void 0;
         }
-        const files = await fs7.promises.readdir(folderPath, { withFileTypes: true });
+        const files = await fs8.promises.readdir(folderPath, { withFileTypes: true });
         const children = await Promise.all(
           files.sort((a, b) => a.name.localeCompare(b.name)).map((child) => hashElementPromise(child, folderPath, options))
         );
@@ -8822,7 +8822,7 @@ var require_folder_hash = __commonJS({
         return hash2;
       }
       function hashFilePromise(name, dir, options, isRootElement = false) {
-        const filePath = path8.join(dir, name);
+        const filePath = path9.join(dir, name);
         if (options.skipMatching) {
           log.match(`skipped '${filePath}'`);
           delete options.skipMatching;
@@ -8838,7 +8838,7 @@ var require_folder_hash = __commonJS({
             } else {
               hash2.update(name);
             }
-            const f = fs7.createReadStream(filePath);
+            const f = fs8.createReadStream(filePath);
             f.on("error", (err) => {
               reject(err);
             });
@@ -8853,7 +8853,7 @@ var require_folder_hash = __commonJS({
         });
       }
       async function hashSymLinkPromise(name, dir, options, isRootElement = false) {
-        const target = await fs7.promises.readlink(path8.join(dir, name));
+        const target = await fs8.promises.readlink(path9.join(dir, name));
         log.symlink(`handling symbolic link ${name} -> ${target}`);
         if (options.symbolicLinks.include) {
           if (options.symbolicLinks.ignoreTargetContent) {
@@ -8886,7 +8886,7 @@ var require_folder_hash = __commonJS({
           options.ignoreBasenameOnce = true;
         }
         try {
-          const stats = await fs7.promises.stat(path8.join(dir, name));
+          const stats = await fs8.promises.stat(path9.join(dir, name));
           stats.name = name;
           const temp = await hashElementPromise(stats, dir, options, isRootElement);
           if (!options.symbolicLinks.ignoreTargetPath) {
@@ -8914,13 +8914,13 @@ var require_folder_hash = __commonJS({
           }
         }
       }
-      function ignore(name, path9, rules) {
+      function ignore(name, path10, rules) {
         if (rules.exclude) {
           if (rules.matchBasename && rules.exclude(name)) {
             log.match(`exclude basename '${name}'`);
             return true;
-          } else if (rules.matchPath && rules.exclude(path9)) {
-            log.match(`exclude path '${path9}'`);
+          } else if (rules.matchPath && rules.exclude(path10)) {
+            log.match(`exclude path '${path10}'`);
             return true;
           }
         }
@@ -8928,15 +8928,15 @@ var require_folder_hash = __commonJS({
           if (rules.matchBasename && rules.include(name)) {
             log.match(`include basename '${name}'`);
             return false;
-          } else if (rules.matchPath && rules.include(path9)) {
-            log.match(`include path '${path9}'`);
+          } else if (rules.matchPath && rules.include(path10)) {
+            log.match(`include path '${path10}'`);
             return false;
           } else {
-            log.match(`include rule failed for path '${path9}'`);
+            log.match(`include rule failed for path '${path10}'`);
             return true;
           }
         }
-        log.match(`Will not ignore unmatched '${path9}'`);
+        log.match(`Will not ignore unmatched '${path10}'`);
         return false;
       }
       return hashElement2;
@@ -8947,8 +8947,8 @@ var require_folder_hash = __commonJS({
         return Promise.reject(new TypeError("First argument must be a string"));
       }
       if (!isString(dir)) {
-        dir = path8.dirname(basename4);
-        basename4 = path8.basename(basename4);
+        dir = path9.dirname(basename4);
+        basename4 = path9.basename(basename4);
         options_ = args[1];
       }
       if (!isObject2(options_))
@@ -9089,56 +9089,56 @@ var require_polyfills = __commonJS({
     }
     var chdir;
     module.exports = patch;
-    function patch(fs7) {
+    function patch(fs8) {
       if (constants.hasOwnProperty("O_SYMLINK") && process.version.match(/^v0\.6\.[0-2]|^v0\.5\./)) {
-        patchLchmod(fs7);
+        patchLchmod(fs8);
       }
-      if (!fs7.lutimes) {
-        patchLutimes(fs7);
+      if (!fs8.lutimes) {
+        patchLutimes(fs8);
       }
-      fs7.chown = chownFix(fs7.chown);
-      fs7.fchown = chownFix(fs7.fchown);
-      fs7.lchown = chownFix(fs7.lchown);
-      fs7.chmod = chmodFix(fs7.chmod);
-      fs7.fchmod = chmodFix(fs7.fchmod);
-      fs7.lchmod = chmodFix(fs7.lchmod);
-      fs7.chownSync = chownFixSync(fs7.chownSync);
-      fs7.fchownSync = chownFixSync(fs7.fchownSync);
-      fs7.lchownSync = chownFixSync(fs7.lchownSync);
-      fs7.chmodSync = chmodFixSync(fs7.chmodSync);
-      fs7.fchmodSync = chmodFixSync(fs7.fchmodSync);
-      fs7.lchmodSync = chmodFixSync(fs7.lchmodSync);
-      fs7.stat = statFix(fs7.stat);
-      fs7.fstat = statFix(fs7.fstat);
-      fs7.lstat = statFix(fs7.lstat);
-      fs7.statSync = statFixSync(fs7.statSync);
-      fs7.fstatSync = statFixSync(fs7.fstatSync);
-      fs7.lstatSync = statFixSync(fs7.lstatSync);
-      if (fs7.chmod && !fs7.lchmod) {
-        fs7.lchmod = function(path8, mode, cb) {
+      fs8.chown = chownFix(fs8.chown);
+      fs8.fchown = chownFix(fs8.fchown);
+      fs8.lchown = chownFix(fs8.lchown);
+      fs8.chmod = chmodFix(fs8.chmod);
+      fs8.fchmod = chmodFix(fs8.fchmod);
+      fs8.lchmod = chmodFix(fs8.lchmod);
+      fs8.chownSync = chownFixSync(fs8.chownSync);
+      fs8.fchownSync = chownFixSync(fs8.fchownSync);
+      fs8.lchownSync = chownFixSync(fs8.lchownSync);
+      fs8.chmodSync = chmodFixSync(fs8.chmodSync);
+      fs8.fchmodSync = chmodFixSync(fs8.fchmodSync);
+      fs8.lchmodSync = chmodFixSync(fs8.lchmodSync);
+      fs8.stat = statFix(fs8.stat);
+      fs8.fstat = statFix(fs8.fstat);
+      fs8.lstat = statFix(fs8.lstat);
+      fs8.statSync = statFixSync(fs8.statSync);
+      fs8.fstatSync = statFixSync(fs8.fstatSync);
+      fs8.lstatSync = statFixSync(fs8.lstatSync);
+      if (fs8.chmod && !fs8.lchmod) {
+        fs8.lchmod = function(path9, mode, cb) {
           if (cb)
             process.nextTick(cb);
         };
-        fs7.lchmodSync = function() {
+        fs8.lchmodSync = function() {
         };
       }
-      if (fs7.chown && !fs7.lchown) {
-        fs7.lchown = function(path8, uid, gid, cb) {
+      if (fs8.chown && !fs8.lchown) {
+        fs8.lchown = function(path9, uid, gid, cb) {
           if (cb)
             process.nextTick(cb);
         };
-        fs7.lchownSync = function() {
+        fs8.lchownSync = function() {
         };
       }
       if (platform === "win32") {
-        fs7.rename = typeof fs7.rename !== "function" ? fs7.rename : function(fs$rename) {
+        fs8.rename = typeof fs8.rename !== "function" ? fs8.rename : function(fs$rename) {
           function rename(from, to, cb) {
             var start = Date.now();
             var backoff = 0;
             fs$rename(from, to, function CB(er) {
               if (er && (er.code === "EACCES" || er.code === "EPERM" || er.code === "EBUSY") && Date.now() - start < 6e4) {
                 setTimeout(function() {
-                  fs7.stat(to, function(stater, st) {
+                  fs8.stat(to, function(stater, st) {
                     if (stater && stater.code === "ENOENT")
                       fs$rename(from, to, CB);
                     else
@@ -9156,9 +9156,9 @@ var require_polyfills = __commonJS({
           if (Object.setPrototypeOf)
             Object.setPrototypeOf(rename, fs$rename);
           return rename;
-        }(fs7.rename);
+        }(fs8.rename);
       }
-      fs7.read = typeof fs7.read !== "function" ? fs7.read : function(fs$read) {
+      fs8.read = typeof fs8.read !== "function" ? fs8.read : function(fs$read) {
         function read(fd, buffer, offset, length, position, callback_) {
           var callback;
           if (callback_ && typeof callback_ === "function") {
@@ -9166,23 +9166,23 @@ var require_polyfills = __commonJS({
             callback = function(er, _, __) {
               if (er && er.code === "EAGAIN" && eagCounter < 10) {
                 eagCounter++;
-                return fs$read.call(fs7, fd, buffer, offset, length, position, callback);
+                return fs$read.call(fs8, fd, buffer, offset, length, position, callback);
               }
               callback_.apply(this, arguments);
             };
           }
-          return fs$read.call(fs7, fd, buffer, offset, length, position, callback);
+          return fs$read.call(fs8, fd, buffer, offset, length, position, callback);
         }
         if (Object.setPrototypeOf)
           Object.setPrototypeOf(read, fs$read);
         return read;
-      }(fs7.read);
-      fs7.readSync = typeof fs7.readSync !== "function" ? fs7.readSync : /* @__PURE__ */ function(fs$readSync) {
+      }(fs8.read);
+      fs8.readSync = typeof fs8.readSync !== "function" ? fs8.readSync : /* @__PURE__ */ function(fs$readSync) {
         return function(fd, buffer, offset, length, position) {
           var eagCounter = 0;
           while (true) {
             try {
-              return fs$readSync.call(fs7, fd, buffer, offset, length, position);
+              return fs$readSync.call(fs8, fd, buffer, offset, length, position);
             } catch (er) {
               if (er.code === "EAGAIN" && eagCounter < 10) {
                 eagCounter++;
@@ -9192,11 +9192,11 @@ var require_polyfills = __commonJS({
             }
           }
         };
-      }(fs7.readSync);
-      function patchLchmod(fs8) {
-        fs8.lchmod = function(path8, mode, callback) {
-          fs8.open(
-            path8,
+      }(fs8.readSync);
+      function patchLchmod(fs9) {
+        fs9.lchmod = function(path9, mode, callback) {
+          fs9.open(
+            path9,
             constants.O_WRONLY | constants.O_SYMLINK,
             mode,
             function(err, fd) {
@@ -9205,8 +9205,8 @@ var require_polyfills = __commonJS({
                   callback(err);
                 return;
               }
-              fs8.fchmod(fd, mode, function(err2) {
-                fs8.close(fd, function(err22) {
+              fs9.fchmod(fd, mode, function(err2) {
+                fs9.close(fd, function(err22) {
                   if (callback)
                     callback(err2 || err22);
                 });
@@ -9214,68 +9214,68 @@ var require_polyfills = __commonJS({
             }
           );
         };
-        fs8.lchmodSync = function(path8, mode) {
-          var fd = fs8.openSync(path8, constants.O_WRONLY | constants.O_SYMLINK, mode);
+        fs9.lchmodSync = function(path9, mode) {
+          var fd = fs9.openSync(path9, constants.O_WRONLY | constants.O_SYMLINK, mode);
           var threw = true;
           var ret;
           try {
-            ret = fs8.fchmodSync(fd, mode);
+            ret = fs9.fchmodSync(fd, mode);
             threw = false;
           } finally {
             if (threw) {
               try {
-                fs8.closeSync(fd);
+                fs9.closeSync(fd);
               } catch (er) {
               }
             } else {
-              fs8.closeSync(fd);
+              fs9.closeSync(fd);
             }
           }
           return ret;
         };
       }
-      function patchLutimes(fs8) {
-        if (constants.hasOwnProperty("O_SYMLINK") && fs8.futimes) {
-          fs8.lutimes = function(path8, at, mt, cb) {
-            fs8.open(path8, constants.O_SYMLINK, function(er, fd) {
+      function patchLutimes(fs9) {
+        if (constants.hasOwnProperty("O_SYMLINK") && fs9.futimes) {
+          fs9.lutimes = function(path9, at, mt, cb) {
+            fs9.open(path9, constants.O_SYMLINK, function(er, fd) {
               if (er) {
                 if (cb)
                   cb(er);
                 return;
               }
-              fs8.futimes(fd, at, mt, function(er2) {
-                fs8.close(fd, function(er22) {
+              fs9.futimes(fd, at, mt, function(er2) {
+                fs9.close(fd, function(er22) {
                   if (cb)
                     cb(er2 || er22);
                 });
               });
             });
           };
-          fs8.lutimesSync = function(path8, at, mt) {
-            var fd = fs8.openSync(path8, constants.O_SYMLINK);
+          fs9.lutimesSync = function(path9, at, mt) {
+            var fd = fs9.openSync(path9, constants.O_SYMLINK);
             var ret;
             var threw = true;
             try {
-              ret = fs8.futimesSync(fd, at, mt);
+              ret = fs9.futimesSync(fd, at, mt);
               threw = false;
             } finally {
               if (threw) {
                 try {
-                  fs8.closeSync(fd);
+                  fs9.closeSync(fd);
                 } catch (er) {
                 }
               } else {
-                fs8.closeSync(fd);
+                fs9.closeSync(fd);
               }
             }
             return ret;
           };
-        } else if (fs8.futimes) {
-          fs8.lutimes = function(_a5, _b, _c, cb) {
+        } else if (fs9.futimes) {
+          fs9.lutimes = function(_a5, _b, _c, cb) {
             if (cb)
               process.nextTick(cb);
           };
-          fs8.lutimesSync = function() {
+          fs9.lutimesSync = function() {
           };
         }
       }
@@ -9283,7 +9283,7 @@ var require_polyfills = __commonJS({
         if (!orig)
           return orig;
         return function(target, mode, cb) {
-          return orig.call(fs7, target, mode, function(er) {
+          return orig.call(fs8, target, mode, function(er) {
             if (chownErOk(er))
               er = null;
             if (cb)
@@ -9296,7 +9296,7 @@ var require_polyfills = __commonJS({
           return orig;
         return function(target, mode) {
           try {
-            return orig.call(fs7, target, mode);
+            return orig.call(fs8, target, mode);
           } catch (er) {
             if (!chownErOk(er))
               throw er;
@@ -9307,7 +9307,7 @@ var require_polyfills = __commonJS({
         if (!orig)
           return orig;
         return function(target, uid, gid, cb) {
-          return orig.call(fs7, target, uid, gid, function(er) {
+          return orig.call(fs8, target, uid, gid, function(er) {
             if (chownErOk(er))
               er = null;
             if (cb)
@@ -9320,7 +9320,7 @@ var require_polyfills = __commonJS({
           return orig;
         return function(target, uid, gid) {
           try {
-            return orig.call(fs7, target, uid, gid);
+            return orig.call(fs8, target, uid, gid);
           } catch (er) {
             if (!chownErOk(er))
               throw er;
@@ -9345,14 +9345,14 @@ var require_polyfills = __commonJS({
             if (cb)
               cb.apply(this, arguments);
           }
-          return options ? orig.call(fs7, target, options, callback) : orig.call(fs7, target, callback);
+          return options ? orig.call(fs8, target, options, callback) : orig.call(fs8, target, callback);
         };
       }
       function statFixSync(orig) {
         if (!orig)
           return orig;
         return function(target, options) {
-          var stats = options ? orig.call(fs7, target, options) : orig.call(fs7, target);
+          var stats = options ? orig.call(fs8, target, options) : orig.call(fs8, target);
           if (stats) {
             if (stats.uid < 0)
               stats.uid += 4294967296;
@@ -9383,17 +9383,17 @@ var require_legacy_streams = __commonJS({
   "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/legacy-streams.js"(exports, module) {
     var Stream2 = __require("stream").Stream;
     module.exports = legacy;
-    function legacy(fs7) {
+    function legacy(fs8) {
       return {
         ReadStream,
         WriteStream
       };
-      function ReadStream(path8, options) {
+      function ReadStream(path9, options) {
         if (!(this instanceof ReadStream))
-          return new ReadStream(path8, options);
+          return new ReadStream(path9, options);
         Stream2.call(this);
         var self2 = this;
-        this.path = path8;
+        this.path = path9;
         this.fd = null;
         this.readable = true;
         this.paused = false;
@@ -9428,7 +9428,7 @@ var require_legacy_streams = __commonJS({
           });
           return;
         }
-        fs7.open(this.path, this.flags, this.mode, function(err, fd) {
+        fs8.open(this.path, this.flags, this.mode, function(err, fd) {
           if (err) {
             self2.emit("error", err);
             self2.readable = false;
@@ -9439,11 +9439,11 @@ var require_legacy_streams = __commonJS({
           self2._read();
         });
       }
-      function WriteStream(path8, options) {
+      function WriteStream(path9, options) {
         if (!(this instanceof WriteStream))
-          return new WriteStream(path8, options);
+          return new WriteStream(path9, options);
         Stream2.call(this);
-        this.path = path8;
+        this.path = path9;
         this.fd = null;
         this.writable = true;
         this.flags = "w";
@@ -9468,7 +9468,7 @@ var require_legacy_streams = __commonJS({
         this.busy = false;
         this._queue = [];
         if (this.fd === null) {
-          this._open = fs7.open;
+          this._open = fs8.open;
           this._queue.push([this._open, this.path, this.flags, this.mode, void 0]);
           this.flush();
         }
@@ -9503,7 +9503,7 @@ var require_clone = __commonJS({
 // node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/graceful-fs.js
 var require_graceful_fs = __commonJS({
   "node_modules/.aspect_rules_js/graceful-fs@4.2.11/node_modules/graceful-fs/graceful-fs.js"(exports, module) {
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     var polyfills = require_polyfills();
     var legacy = require_legacy_streams();
     var clone2 = require_clone();
@@ -9535,12 +9535,12 @@ var require_graceful_fs = __commonJS({
         m = "GFS4: " + m.split(/\n/).join("\nGFS4: ");
         console.error(m);
       };
-    if (!fs7[gracefulQueue]) {
+    if (!fs8[gracefulQueue]) {
       queue = global[gracefulQueue] || [];
-      publishQueue(fs7, queue);
-      fs7.close = function(fs$close) {
+      publishQueue(fs8, queue);
+      fs8.close = function(fs$close) {
         function close(fd, cb) {
-          return fs$close.call(fs7, fd, function(err) {
+          return fs$close.call(fs8, fd, function(err) {
             if (!err) {
               resetQueue();
             }
@@ -9552,48 +9552,48 @@ var require_graceful_fs = __commonJS({
           value: fs$close
         });
         return close;
-      }(fs7.close);
-      fs7.closeSync = function(fs$closeSync) {
+      }(fs8.close);
+      fs8.closeSync = function(fs$closeSync) {
         function closeSync(fd) {
-          fs$closeSync.apply(fs7, arguments);
+          fs$closeSync.apply(fs8, arguments);
           resetQueue();
         }
         Object.defineProperty(closeSync, previousSymbol, {
           value: fs$closeSync
         });
         return closeSync;
-      }(fs7.closeSync);
+      }(fs8.closeSync);
       if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || "")) {
         process.on("exit", function() {
-          debug(fs7[gracefulQueue]);
-          __require("assert").equal(fs7[gracefulQueue].length, 0);
+          debug(fs8[gracefulQueue]);
+          __require("assert").equal(fs8[gracefulQueue].length, 0);
         });
       }
     }
     var queue;
     if (!global[gracefulQueue]) {
-      publishQueue(global, fs7[gracefulQueue]);
+      publishQueue(global, fs8[gracefulQueue]);
     }
-    module.exports = patch(clone2(fs7));
-    if (process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !fs7.__patched) {
-      module.exports = patch(fs7);
-      fs7.__patched = true;
+    module.exports = patch(clone2(fs8));
+    if (process.env.TEST_GRACEFUL_FS_GLOBAL_PATCH && !fs8.__patched) {
+      module.exports = patch(fs8);
+      fs8.__patched = true;
     }
-    function patch(fs8) {
-      polyfills(fs8);
-      fs8.gracefulify = patch;
-      fs8.createReadStream = createReadStream;
-      fs8.createWriteStream = createWriteStream2;
-      var fs$readFile = fs8.readFile;
-      fs8.readFile = readFile6;
-      function readFile6(path8, options, cb) {
+    function patch(fs9) {
+      polyfills(fs9);
+      fs9.gracefulify = patch;
+      fs9.createReadStream = createReadStream;
+      fs9.createWriteStream = createWriteStream2;
+      var fs$readFile = fs9.readFile;
+      fs9.readFile = readFile6;
+      function readFile6(path9, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$readFile(path8, options, cb);
-        function go$readFile(path9, options2, cb2, startTime) {
-          return fs$readFile(path9, options2, function(err) {
+        return go$readFile(path9, options, cb);
+        function go$readFile(path10, options2, cb2, startTime) {
+          return fs$readFile(path10, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$readFile, [path9, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$readFile, [path10, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -9601,16 +9601,16 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      var fs$writeFile = fs8.writeFile;
-      fs8.writeFile = writeFile5;
-      function writeFile5(path8, data, options, cb) {
+      var fs$writeFile = fs9.writeFile;
+      fs9.writeFile = writeFile5;
+      function writeFile5(path9, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$writeFile(path8, data, options, cb);
-        function go$writeFile(path9, data2, options2, cb2, startTime) {
-          return fs$writeFile(path9, data2, options2, function(err) {
+        return go$writeFile(path9, data, options, cb);
+        function go$writeFile(path10, data2, options2, cb2, startTime) {
+          return fs$writeFile(path10, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$writeFile, [path9, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$writeFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -9618,17 +9618,17 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      var fs$appendFile = fs8.appendFile;
+      var fs$appendFile = fs9.appendFile;
       if (fs$appendFile)
-        fs8.appendFile = appendFile;
-      function appendFile(path8, data, options, cb) {
+        fs9.appendFile = appendFile;
+      function appendFile(path9, data, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        return go$appendFile(path8, data, options, cb);
-        function go$appendFile(path9, data2, options2, cb2, startTime) {
-          return fs$appendFile(path9, data2, options2, function(err) {
+        return go$appendFile(path9, data, options, cb);
+        function go$appendFile(path10, data2, options2, cb2, startTime) {
+          return fs$appendFile(path10, data2, options2, function(err) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$appendFile, [path9, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$appendFile, [path10, data2, options2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -9636,9 +9636,9 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      var fs$copyFile = fs8.copyFile;
+      var fs$copyFile = fs9.copyFile;
       if (fs$copyFile)
-        fs8.copyFile = copyFile;
+        fs9.copyFile = copyFile;
       function copyFile(src, dest, flags, cb) {
         if (typeof flags === "function") {
           cb = flags;
@@ -9656,34 +9656,34 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      var fs$readdir = fs8.readdir;
-      fs8.readdir = readdir;
+      var fs$readdir = fs9.readdir;
+      fs9.readdir = readdir;
       var noReaddirOptionVersions = /^v[0-5]\./;
-      function readdir(path8, options, cb) {
+      function readdir(path9, options, cb) {
         if (typeof options === "function")
           cb = options, options = null;
-        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path9, options2, cb2, startTime) {
-          return fs$readdir(path9, fs$readdirCallback(
-            path9,
+        var go$readdir = noReaddirOptionVersions.test(process.version) ? function go$readdir2(path10, options2, cb2, startTime) {
+          return fs$readdir(path10, fs$readdirCallback(
+            path10,
             options2,
             cb2,
             startTime
           ));
-        } : function go$readdir2(path9, options2, cb2, startTime) {
-          return fs$readdir(path9, options2, fs$readdirCallback(
-            path9,
+        } : function go$readdir2(path10, options2, cb2, startTime) {
+          return fs$readdir(path10, options2, fs$readdirCallback(
+            path10,
             options2,
             cb2,
             startTime
           ));
         };
-        return go$readdir(path8, options, cb);
-        function fs$readdirCallback(path9, options2, cb2, startTime) {
+        return go$readdir(path9, options, cb);
+        function fs$readdirCallback(path10, options2, cb2, startTime) {
           return function(err, files) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
               enqueue([
                 go$readdir,
-                [path9, options2, cb2],
+                [path10, options2, cb2],
                 err,
                 startTime || Date.now(),
                 Date.now()
@@ -9698,21 +9698,21 @@ var require_graceful_fs = __commonJS({
         }
       }
       if (process.version.substr(0, 4) === "v0.8") {
-        var legStreams = legacy(fs8);
+        var legStreams = legacy(fs9);
         ReadStream = legStreams.ReadStream;
         WriteStream = legStreams.WriteStream;
       }
-      var fs$ReadStream = fs8.ReadStream;
+      var fs$ReadStream = fs9.ReadStream;
       if (fs$ReadStream) {
         ReadStream.prototype = Object.create(fs$ReadStream.prototype);
         ReadStream.prototype.open = ReadStream$open;
       }
-      var fs$WriteStream = fs8.WriteStream;
+      var fs$WriteStream = fs9.WriteStream;
       if (fs$WriteStream) {
         WriteStream.prototype = Object.create(fs$WriteStream.prototype);
         WriteStream.prototype.open = WriteStream$open;
       }
-      Object.defineProperty(fs8, "ReadStream", {
+      Object.defineProperty(fs9, "ReadStream", {
         get: function() {
           return ReadStream;
         },
@@ -9722,7 +9722,7 @@ var require_graceful_fs = __commonJS({
         enumerable: true,
         configurable: true
       });
-      Object.defineProperty(fs8, "WriteStream", {
+      Object.defineProperty(fs9, "WriteStream", {
         get: function() {
           return WriteStream;
         },
@@ -9733,7 +9733,7 @@ var require_graceful_fs = __commonJS({
         configurable: true
       });
       var FileReadStream = ReadStream;
-      Object.defineProperty(fs8, "FileReadStream", {
+      Object.defineProperty(fs9, "FileReadStream", {
         get: function() {
           return FileReadStream;
         },
@@ -9744,7 +9744,7 @@ var require_graceful_fs = __commonJS({
         configurable: true
       });
       var FileWriteStream = WriteStream;
-      Object.defineProperty(fs8, "FileWriteStream", {
+      Object.defineProperty(fs9, "FileWriteStream", {
         get: function() {
           return FileWriteStream;
         },
@@ -9754,7 +9754,7 @@ var require_graceful_fs = __commonJS({
         enumerable: true,
         configurable: true
       });
-      function ReadStream(path8, options) {
+      function ReadStream(path9, options) {
         if (this instanceof ReadStream)
           return fs$ReadStream.apply(this, arguments), this;
         else
@@ -9774,7 +9774,7 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function WriteStream(path8, options) {
+      function WriteStream(path9, options) {
         if (this instanceof WriteStream)
           return fs$WriteStream.apply(this, arguments), this;
         else
@@ -9792,22 +9792,22 @@ var require_graceful_fs = __commonJS({
           }
         });
       }
-      function createReadStream(path8, options) {
-        return new fs8.ReadStream(path8, options);
+      function createReadStream(path9, options) {
+        return new fs9.ReadStream(path9, options);
       }
-      function createWriteStream2(path8, options) {
-        return new fs8.WriteStream(path8, options);
+      function createWriteStream2(path9, options) {
+        return new fs9.WriteStream(path9, options);
       }
-      var fs$open = fs8.open;
-      fs8.open = open2;
-      function open2(path8, flags, mode, cb) {
+      var fs$open = fs9.open;
+      fs9.open = open2;
+      function open2(path9, flags, mode, cb) {
         if (typeof mode === "function")
           cb = mode, mode = null;
-        return go$open(path8, flags, mode, cb);
-        function go$open(path9, flags2, mode2, cb2, startTime) {
-          return fs$open(path9, flags2, mode2, function(err, fd) {
+        return go$open(path9, flags, mode, cb);
+        function go$open(path10, flags2, mode2, cb2, startTime) {
+          return fs$open(path10, flags2, mode2, function(err, fd) {
             if (err && (err.code === "EMFILE" || err.code === "ENFILE"))
-              enqueue([go$open, [path9, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
+              enqueue([go$open, [path10, flags2, mode2, cb2], err, startTime || Date.now(), Date.now()]);
             else {
               if (typeof cb2 === "function")
                 cb2.apply(this, arguments);
@@ -9815,20 +9815,20 @@ var require_graceful_fs = __commonJS({
           });
         }
       }
-      return fs8;
+      return fs9;
     }
     function enqueue(elem) {
       debug("ENQUEUE", elem[0].name, elem[1]);
-      fs7[gracefulQueue].push(elem);
+      fs8[gracefulQueue].push(elem);
       retry();
     }
     var retryTimer;
     function resetQueue() {
       var now = Date.now();
-      for (var i = 0; i < fs7[gracefulQueue].length; ++i) {
-        if (fs7[gracefulQueue][i].length > 2) {
-          fs7[gracefulQueue][i][3] = now;
-          fs7[gracefulQueue][i][4] = now;
+      for (var i = 0; i < fs8[gracefulQueue].length; ++i) {
+        if (fs8[gracefulQueue][i].length > 2) {
+          fs8[gracefulQueue][i][3] = now;
+          fs8[gracefulQueue][i][4] = now;
         }
       }
       retry();
@@ -9836,9 +9836,9 @@ var require_graceful_fs = __commonJS({
     function retry() {
       clearTimeout(retryTimer);
       retryTimer = void 0;
-      if (fs7[gracefulQueue].length === 0)
+      if (fs8[gracefulQueue].length === 0)
         return;
-      var elem = fs7[gracefulQueue].shift();
+      var elem = fs8[gracefulQueue].shift();
       var fn = elem[0];
       var args = elem[1];
       var err = elem[2];
@@ -9860,7 +9860,7 @@ var require_graceful_fs = __commonJS({
           debug("RETRY", fn.name, args);
           fn.apply(null, args.concat([startTime]));
         } else {
-          fs7[gracefulQueue].push(elem);
+          fs8[gracefulQueue].push(elem);
         }
       }
       if (retryTimer === void 0) {
@@ -10463,8 +10463,8 @@ var require_commonjs = __commonJS({
       /**
        * Alias for {@link Minipass#on}
        */
-      addListener(ev, handler33) {
-        return this.on(ev, handler33);
+      addListener(ev, handler34) {
+        return this.on(ev, handler34);
       }
       /**
        * Mostly identical to `EventEmitter.on`, with the following
@@ -10483,8 +10483,8 @@ var require_commonjs = __commonJS({
        *   cause the event to be re-emitted immediately with the error previously
        *   raised.
        */
-      on(ev, handler33) {
-        const ret = super.on(ev, handler33);
+      on(ev, handler34) {
+        const ret = super.on(ev, handler34);
         if (ev === "data") {
           this[DISCARDED] = false;
           this[DATALISTENERS]++;
@@ -10497,7 +10497,7 @@ var require_commonjs = __commonJS({
           super.emit(ev);
           this.removeAllListeners(ev);
         } else if (ev === "error" && this[EMITTED_ERROR]) {
-          const h = handler33;
+          const h = handler34;
           if (this[ASYNC])
             defer(() => h.call(this, this[EMITTED_ERROR]));
           else
@@ -10508,8 +10508,8 @@ var require_commonjs = __commonJS({
       /**
        * Alias for {@link Minipass#off}
        */
-      removeListener(ev, handler33) {
-        return this.off(ev, handler33);
+      removeListener(ev, handler34) {
+        return this.off(ev, handler34);
       }
       /**
        * Mostly identical to `EventEmitter.off`
@@ -10519,8 +10519,8 @@ var require_commonjs = __commonJS({
        * then the flow of data will stop until there is another consumer or
        * {@link Minipass#resume} is explicitly called.
        */
-      off(ev, handler33) {
-        const ret = super.off(ev, handler33);
+      off(ev, handler34) {
+        const ret = super.off(ev, handler34);
         if (ev === "data") {
           this[DATALISTENERS] = this.listeners("data").length;
           if (this[DATALISTENERS] === 0 && !this[DISCARDED] && !this[PIPES].length) {
@@ -10895,17 +10895,17 @@ var require_lib3 = __commonJS({
         this.digests = this.goodSri ? this.sri[this.algorithm] : null;
         this.optString = getOptString(this.opts?.options);
       }
-      on(ev, handler33) {
+      on(ev, handler34) {
         if (ev === "size" && this.#emittedSize) {
-          return handler33(this.#emittedSize);
+          return handler34(this.#emittedSize);
         }
         if (ev === "integrity" && this.#emittedIntegrity) {
-          return handler33(this.#emittedIntegrity);
+          return handler34(this.#emittedIntegrity);
         }
         if (ev === "verified" && this.#emittedVerified) {
-          return handler33(this.#emittedVerified);
+          return handler34(this.#emittedVerified);
         }
-        return super.on(ev, handler33);
+        return super.on(ev, handler34);
       }
       emit(ev, data) {
         if (ev === "end") {
@@ -16176,9 +16176,9 @@ var require_util2 = __commonJS({
     exports.removeUndefinedValuesInObject = removeUndefinedValuesInObject;
     exports.isValidFile = isValidFile;
     exports.getWellKnownCertificateConfigFileLocation = getWellKnownCertificateConfigFileLocation;
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     var os2 = __require("os");
-    var path8 = __require("path");
+    var path9 = __require("path");
     var WELL_KNOWN_CERTIFICATE_CONFIG_FILE = "certificate_config.json";
     var CLOUDSDK_CONFIG_DIRECTORY = "gcloud";
     function snakeToCamel(str) {
@@ -16264,15 +16264,15 @@ var require_util2 = __commonJS({
     }
     async function isValidFile(filePath) {
       try {
-        const stats = await fs7.promises.lstat(filePath);
+        const stats = await fs8.promises.lstat(filePath);
         return stats.isFile();
       } catch (e) {
         return false;
       }
     }
     function getWellKnownCertificateConfigFileLocation() {
-      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path8.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path8.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
-      return path8.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
+      const configDir = process.env.CLOUDSDK_CONFIG || (_isWindows() ? path9.join(process.env.APPDATA || "", CLOUDSDK_CONFIG_DIRECTORY) : path9.join(process.env.HOME || "", ".config", CLOUDSDK_CONFIG_DIRECTORY));
+      return path9.join(configDir, WELL_KNOWN_CERTIFICATE_CONFIG_FILE);
     }
     function _isWindows() {
       return os2.platform().startsWith("win");
@@ -18604,11 +18604,11 @@ var require_getCredentials = __commonJS({
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.getCredentials = getCredentials;
-    var path8 = __require("path");
-    var fs7 = __require("fs");
+    var path9 = __require("path");
+    var fs8 = __require("fs");
     var util_1 = __require("util");
     var errorWithCode_1 = require_errorWithCode();
-    var readFile6 = fs7.readFile ? (0, util_1.promisify)(fs7.readFile) : async () => {
+    var readFile6 = fs8.readFile ? (0, util_1.promisify)(fs8.readFile) : async () => {
       throw new errorWithCode_1.ErrorWithCode("use key rather than keyFile.", "MISSING_CREDENTIALS");
     };
     var ExtensionFiles;
@@ -18676,7 +18676,7 @@ var require_getCredentials = __commonJS({
        * @returns An instance of a class that implements ICredentialsProvider.
        */
       static create(keyFilePath) {
-        const keyFileExtension = path8.extname(keyFilePath);
+        const keyFileExtension = path9.extname(keyFilePath);
         switch (keyFileExtension) {
           case ExtensionFiles.JSON:
             return new JsonCredentialsProvider(keyFilePath);
@@ -20285,12 +20285,12 @@ var require_filesubjecttokensupplier = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.FileSubjectTokenSupplier = void 0;
     var util_1 = __require("util");
-    var fs7 = __require("fs");
-    var readFile6 = (0, util_1.promisify)(fs7.readFile ?? (() => {
+    var fs8 = __require("fs");
+    var readFile6 = (0, util_1.promisify)(fs8.readFile ?? (() => {
     }));
-    var realpath = (0, util_1.promisify)(fs7.realpath ?? (() => {
+    var realpath = (0, util_1.promisify)(fs8.realpath ?? (() => {
     }));
-    var lstat = (0, util_1.promisify)(fs7.lstat ?? (() => {
+    var lstat = (0, util_1.promisify)(fs8.lstat ?? (() => {
     }));
     var FileSubjectTokenSupplier = class {
       filePath;
@@ -20408,7 +20408,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.CertificateSubjectTokenSupplier = exports.InvalidConfigurationError = exports.CertificateSourceUnavailableError = exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = void 0;
     var util_1 = require_util2();
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     var crypto_1 = __require("crypto");
     var https = __require("https");
     exports.CERTIFICATE_CONFIGURATION_ENV_VARIABLE = "GOOGLE_API_CERTIFICATE_CONFIG";
@@ -20502,7 +20502,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
         const configPath = this.certificateConfigPath;
         let fileContents;
         try {
-          fileContents = await fs7.promises.readFile(configPath, "utf8");
+          fileContents = await fs8.promises.readFile(configPath, "utf8");
         } catch (err) {
           throw new CertificateSourceUnavailableError(`Failed to read certificate config file at: ${configPath}`);
         }
@@ -20527,14 +20527,14 @@ var require_certificatesubjecttokensupplier = __commonJS({
       async #getKeyAndCert(certPath, keyPath) {
         let cert, key;
         try {
-          cert = await fs7.promises.readFile(certPath);
+          cert = await fs8.promises.readFile(certPath);
           new crypto_1.X509Certificate(cert);
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
           throw new CertificateSourceUnavailableError(`Failed to read certificate file at ${certPath}: ${message}`);
         }
         try {
-          key = await fs7.promises.readFile(keyPath);
+          key = await fs8.promises.readFile(keyPath);
           (0, crypto_1.createPrivateKey)(key);
         } catch (err) {
           const message = err instanceof Error ? err.message : String(err);
@@ -20553,7 +20553,7 @@ var require_certificatesubjecttokensupplier = __commonJS({
           return JSON.stringify([leafCert.raw.toString("base64")]);
         }
         try {
-          const chainPems = await fs7.promises.readFile(this.trustChainPath, "utf8");
+          const chainPems = await fs8.promises.readFile(this.trustChainPath, "utf8");
           const pemBlocks = chainPems.match(/-----BEGIN CERTIFICATE-----[^-]+-----END CERTIFICATE-----/g) ?? [];
           const chainCerts = pemBlocks.map((pem, index) => {
             try {
@@ -21255,7 +21255,7 @@ var require_pluggable_auth_handler = __commonJS({
     exports.PluggableAuthHandler = exports.ExecutableError = void 0;
     var executable_response_1 = require_executable_response();
     var childProcess = __require("child_process");
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     var ExecutableError = class extends Error {
       /**
        * The exit code returned by the executable.
@@ -21340,14 +21340,14 @@ var require_pluggable_auth_handler = __commonJS({
         }
         let filePath;
         try {
-          filePath = await fs7.promises.realpath(this.outputFile);
+          filePath = await fs8.promises.realpath(this.outputFile);
         } catch {
           return void 0;
         }
-        if (!(await fs7.promises.lstat(filePath)).isFile()) {
+        if (!(await fs8.promises.lstat(filePath)).isFile()) {
           return void 0;
         }
-        const responseString = await fs7.promises.readFile(filePath, {
+        const responseString = await fs8.promises.readFile(filePath, {
           encoding: "utf8"
         });
         if (responseString === "") {
@@ -21758,7 +21758,7 @@ var require_gdchclient = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GdchClient = exports.GDCH_SERVICE_ACCOUNT_TYPE = void 0;
     var crypto2 = __require("crypto");
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     var https = __require("https");
     var oauth2client_1 = require_oauth2client();
     var DEFAULT_LIFETIME_IN_SECONDS = 3600;
@@ -21981,7 +21981,7 @@ var require_gdchclient = __commonJS({
         const currentPath = this.caCertPath;
         this.caAgentPromise = (async () => {
           try {
-            const ca = await fs7.promises.readFile(currentPath);
+            const ca = await fs8.promises.readFile(currentPath);
             return new https.Agent({ ca });
           } catch (err) {
             if (this.cachedCaCertPath === currentPath) {
@@ -22041,11 +22041,11 @@ var require_googleauth = __commonJS({
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.GoogleAuth = exports.GoogleAuthExceptionMessages = void 0;
     var child_process_1 = __require("child_process");
-    var fs7 = __require("fs");
+    var fs8 = __require("fs");
     var gaxios_1 = require_src2();
     var gcpMetadata = require_src4();
     var os2 = __require("os");
-    var path8 = __require("path");
+    var path9 = __require("path");
     var crypto_1 = require_crypto3();
     var computeclient_1 = require_computeclient();
     var idtokenclient_1 = require_idtokenclient();
@@ -22332,12 +22332,12 @@ var require_googleauth = __commonJS({
         } else {
           const home = process.env["HOME"];
           if (home) {
-            location = path8.join(home, ".config");
+            location = path9.join(home, ".config");
           }
         }
         if (location) {
-          location = path8.join(location, "gcloud", "application_default_credentials.json");
-          if (!fs7.existsSync(location)) {
+          location = path9.join(location, "gcloud", "application_default_credentials.json");
+          if (!fs8.existsSync(location)) {
             location = null;
           }
         }
@@ -22358,8 +22358,8 @@ var require_googleauth = __commonJS({
           throw new Error("The file path is invalid.");
         }
         try {
-          filePath = fs7.realpathSync(filePath);
-          if (!fs7.lstatSync(filePath).isFile()) {
+          filePath = fs8.realpathSync(filePath);
+          if (!fs8.lstatSync(filePath).isFile()) {
             throw new Error();
           }
         } catch (err) {
@@ -22368,7 +22368,7 @@ var require_googleauth = __commonJS({
           }
           throw err;
         }
-        const readStream = fs7.createReadStream(filePath);
+        const readStream = fs8.createReadStream(filePath);
         return this.fromStream(readStream, options);
       }
       /**
@@ -22695,8 +22695,8 @@ var require_googleauth = __commonJS({
         if (this.jsonContent) {
           return this._cacheClientFromJSON(this.jsonContent, this.clientOptions);
         } else if (this.keyFilename) {
-          const filePath = path8.resolve(this.keyFilename);
-          const stream = fs7.createReadStream(filePath);
+          const filePath = path9.resolve(this.keyFilename);
+          const stream = fs8.createReadStream(filePath);
           return await this.fromStreamAsync(stream, this.clientOptions);
         } else if (this.apiKey) {
           const client = await this.fromAPIKey(this.apiKey, this.clientOptions);
@@ -23273,8 +23273,8 @@ var require_constants4 = __commonJS({
 // node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js
 var require_node_gyp_build = __commonJS({
   "node_modules/.aspect_rules_js/node-gyp-build@4.8.4/node_modules/node-gyp-build/node-gyp-build.js"(exports, module) {
-    var fs7 = __require("fs");
-    var path8 = __require("path");
+    var fs8 = __require("fs");
+    var path9 = __require("path");
     var os2 = __require("os");
     var runtimeRequire = typeof __webpack_require__ === "function" ? __non_webpack_require__ : __require;
     var vars = process.config && process.config.variables || {};
@@ -23291,25 +23291,25 @@ var require_node_gyp_build = __commonJS({
       return runtimeRequire(load2.resolve(dir));
     }
     load2.resolve = load2.path = function(dir) {
-      dir = path8.resolve(dir || ".");
+      dir = path9.resolve(dir || ".");
       try {
-        var name = runtimeRequire(path8.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
+        var name = runtimeRequire(path9.join(dir, "package.json")).name.toUpperCase().replace(/-/g, "_");
         if (process.env[name + "_PREBUILD"])
           dir = process.env[name + "_PREBUILD"];
       } catch (err) {
       }
       if (!prebuildsOnly) {
-        var release = getFirst(path8.join(dir, "build/Release"), matchBuild);
+        var release = getFirst(path9.join(dir, "build/Release"), matchBuild);
         if (release)
           return release;
-        var debug = getFirst(path8.join(dir, "build/Debug"), matchBuild);
+        var debug = getFirst(path9.join(dir, "build/Debug"), matchBuild);
         if (debug)
           return debug;
       }
       var prebuild = resolve10(dir);
       if (prebuild)
         return prebuild;
-      var nearby = resolve10(path8.dirname(process.execPath));
+      var nearby = resolve10(path9.dirname(process.execPath));
       if (nearby)
         return nearby;
       var target = [
@@ -23327,28 +23327,28 @@ var require_node_gyp_build = __commonJS({
       ].filter(Boolean).join(" ");
       throw new Error("No native build was found for " + target + "\n    loaded from: " + dir + "\n");
       function resolve10(dir2) {
-        var tuples = readdirSync(path8.join(dir2, "prebuilds")).map(parseTuple);
+        var tuples = readdirSync(path9.join(dir2, "prebuilds")).map(parseTuple);
         var tuple2 = tuples.filter(matchTuple(platform, arch)).sort(compareTuples)[0];
         if (!tuple2)
           return;
-        var prebuilds = path8.join(dir2, "prebuilds", tuple2.name);
+        var prebuilds = path9.join(dir2, "prebuilds", tuple2.name);
         var parsed = readdirSync(prebuilds).map(parseTags);
         var candidates = parsed.filter(matchTags(runtime, abi));
         var winner = candidates.sort(compareTags(runtime))[0];
         if (winner)
-          return path8.join(prebuilds, winner.file);
+          return path9.join(prebuilds, winner.file);
       }
     };
     function readdirSync(dir) {
       try {
-        return fs7.readdirSync(dir);
+        return fs8.readdirSync(dir);
       } catch (err) {
         return [];
       }
     }
     function getFirst(dir, filter2) {
       var files = readdirSync(dir).filter(filter2);
-      return files[0] && path8.join(dir, files[0]);
+      return files[0] && path9.join(dir, files[0]);
     }
     function matchBuild(name) {
       return /\.node$/.test(name);
@@ -23450,7 +23450,7 @@ var require_node_gyp_build = __commonJS({
       return typeof window !== "undefined" && window.process && window.process.type === "renderer";
     }
     function isAlpine(platform2) {
-      return platform2 === "linux" && fs7.existsSync("/etc/alpine-release");
+      return platform2 === "linux" && fs8.existsSync("/etc/alpine-release");
     }
     load2.parseTags = parseTags;
     load2.matchTags = matchTags;
@@ -25558,9 +25558,9 @@ var require_event_target = __commonJS({
        *     the listener would be automatically removed when invoked.
        * @public
        */
-      addEventListener(type, handler33, options = {}) {
+      addEventListener(type, handler34, options = {}) {
         for (const listener of this.listeners(type)) {
-          if (!options[kForOnEventAttribute] && listener[kListener] === handler33 && !listener[kForOnEventAttribute]) {
+          if (!options[kForOnEventAttribute] && listener[kListener] === handler34 && !listener[kForOnEventAttribute]) {
             return;
           }
         }
@@ -25571,7 +25571,7 @@ var require_event_target = __commonJS({
               data: isBinary ? data : data.toString()
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler34, this, event);
           };
         } else if (type === "close") {
           wrapper = function onClose(code, message) {
@@ -25581,7 +25581,7 @@ var require_event_target = __commonJS({
               wasClean: this._closeFrameReceived && this._closeFrameSent
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler34, this, event);
           };
         } else if (type === "error") {
           wrapper = function onError(error51) {
@@ -25590,19 +25590,19 @@ var require_event_target = __commonJS({
               message: error51.message
             });
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler34, this, event);
           };
         } else if (type === "open") {
           wrapper = function onOpen() {
             const event = new Event("open");
             event[kTarget] = this;
-            callListener(handler33, this, event);
+            callListener(handler34, this, event);
           };
         } else {
           return;
         }
         wrapper[kForOnEventAttribute] = !!options[kForOnEventAttribute];
-        wrapper[kListener] = handler33;
+        wrapper[kListener] = handler34;
         if (options.once) {
           this.once(type, wrapper);
         } else {
@@ -25616,9 +25616,9 @@ var require_event_target = __commonJS({
        * @param {(Function|Object)} handler The listener to remove
        * @public
        */
-      removeEventListener(type, handler33) {
+      removeEventListener(type, handler34) {
         for (const listener of this.listeners(type)) {
-          if (listener[kListener] === handler33 && !listener[kForOnEventAttribute]) {
+          if (listener[kListener] === handler34 && !listener[kForOnEventAttribute]) {
             this.removeListener(type, listener);
             break;
           }
@@ -26292,16 +26292,16 @@ var require_websocket = __commonJS({
           }
           return null;
         },
-        set(handler33) {
+        set(handler34) {
           for (const listener of this.listeners(method)) {
             if (listener[kForOnEventAttribute]) {
               this.removeListener(method, listener);
               break;
             }
           }
-          if (typeof handler33 !== "function")
+          if (typeof handler34 !== "function")
             return;
-          this.addEventListener(method, handler33, {
+          this.addEventListener(method, handler34, {
             [kForOnEventAttribute]: true
           });
         }
@@ -31202,9 +31202,9 @@ var GitClient2 = class {
    * @yields Raw commits data.
    */
   async *getRawCommits(params2 = {}) {
-    const { path: path8, from = "", to = "HEAD", format: format2 = "%B", ignore, reverse, merges, since, firstParent } = params2;
+    const { path: path9, from = "", to = "HEAD", format: format2 = "%B", ignore, reverse, merges, since, firstParent } = params2;
     const shouldNotIgnore = ignore ? (chunk2) => !ignore.test(chunk2) : () => true;
-    const stdout = this.execStream("log", `--format=${format2}%n${SCISSOR}`, since && `--since=${since instanceof Date ? since.toISOString() : since}`, reverse && "--reverse", merges && "--merges", merges === false && "--no-merges", firstParent && "--first-parent", [from, to].filter(Boolean).join(".."), ...path8 ? ["--", ...toArray(path8)] : []);
+    const stdout = this.execStream("log", `--format=${format2}%n${SCISSOR}`, since && `--since=${since instanceof Date ? since.toISOString() : since}`, reverse && "--reverse", merges && "--merges", merges === false && "--no-merges", firstParent && "--first-parent", [from, to].filter(Boolean).join(".."), ...path9 ? ["--", ...toArray(path9)] : []);
     const commitsStream = splitStream(stdout, `${SCISSOR}
 `);
     let chunk;
@@ -31220,9 +31220,9 @@ var GitClient2 = class {
    * @yields Tags
    */
   async *getTags(params2 = {}) {
-    const { path: path8, from = "", to = "HEAD", since } = params2;
+    const { path: path9, from = "", to = "HEAD", since } = params2;
     const tagRegex = /tag:\s*(.+?)[,)]/gi;
-    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", since && `--since=${since instanceof Date ? since.toISOString() : since}`, [from, to].filter(Boolean).join(".."), ...path8 ? ["--", ...toArray(path8)] : []);
+    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", since && `--since=${since instanceof Date ? since.toISOString() : since}`, [from, to].filter(Boolean).join(".."), ...path9 ? ["--", ...toArray(path9)] : []);
     let chunk;
     let matches;
     let tag;
@@ -32057,7 +32057,7 @@ function builder11(argv) {
   return argv.positional("projectRoot", {
     type: "string",
     normalize: true,
-    coerce: (path8) => resolve2(path8),
+    coerce: (path9) => resolve2(path9),
     demandOption: true
   });
 }
@@ -33400,8 +33400,8 @@ var PullRequestFiles = class _PullRequestFiles {
   async pullRequestHasSeparateFiles() {
     const pullRequestFiles = await this.loadPullRequestFiles();
     const separateFilePatterns = this.config.separateFilePatterns.map((p) => new Minimatch(p));
-    for (let path8 of pullRequestFiles) {
-      if (separateFilePatterns.some((p) => p.match(path8))) {
+    for (let path9 of pullRequestFiles) {
+      if (separateFilePatterns.some((p) => p.match(path9))) {
         return true;
       }
     }
@@ -35090,30 +35090,30 @@ function resolvePaths(name, paths) {
     return filePath;
   }
 }
-function getIncludePath(path8, options) {
+function getIncludePath(path9, options) {
   let includePath;
   let filePath;
   let views = options.views;
-  let match2 = /^[A-Za-z]+:\\|^\//.exec(path8);
+  let match2 = /^[A-Za-z]+:\\|^\//.exec(path9);
   if (match2 && match2.length) {
-    path8 = path8.replace(/^\/*/, "");
+    path9 = path9.replace(/^\/*/, "");
     if (Array.isArray(options.root)) {
-      includePath = resolvePaths(path8, options.root);
+      includePath = resolvePaths(path9, options.root);
     } else {
-      includePath = ejs.resolveInclude(path8, options.root || "/", true);
+      includePath = ejs.resolveInclude(path9, options.root || "/", true);
     }
   } else {
     if (options.filename) {
-      filePath = ejs.resolveInclude(path8, options.filename);
+      filePath = ejs.resolveInclude(path9, options.filename);
       if (fs2.existsSync(filePath)) {
         includePath = filePath;
       }
     }
     if (!includePath && Array.isArray(views)) {
-      includePath = resolvePaths(path8, views);
+      includePath = resolvePaths(path9, views);
     }
     if (!includePath && typeof options.includer !== "function") {
-      throw new Error('Could not find the include file "' + options.escapeFunction(path8) + '"');
+      throw new Error('Could not find the include file "' + options.escapeFunction(path9) + '"');
     }
   }
   return includePath;
@@ -35172,11 +35172,11 @@ function tryHandleCache(options, data, cb) {
 function fileLoader(filePath) {
   return ejs.fileLoader(filePath);
 }
-function includeFile(path8, options) {
+function includeFile(path9, options) {
   let opts = utils_default.shallowCopy(utils_default.createNullProtoObjWherePossible(), options);
-  opts.filename = getIncludePath(path8, opts);
+  opts.filename = getIncludePath(path9, opts);
   if (typeof options.includer === "function") {
-    let includerResult = options.includer(path8, opts.filename);
+    let includerResult = options.includer(path9, opts.filename);
     if (includerResult) {
       if (includerResult.filename) {
         opts.filename = includerResult.filename;
@@ -35405,12 +35405,12 @@ Template.prototype = {
       throw e;
     }
     let returnedFn = function anonymous(data) {
-      let include = function(path8, includeData) {
+      let include = function(path9, includeData) {
         let d = utils_default.shallowCopy(utils_default.createNullProtoObjWherePossible(), data);
         if (includeData) {
           d = utils_default.shallowCopy(d, includeData);
         }
-        return includeFile(path8, opts)(d);
+        return includeFile(path9, opts)(d);
       };
       let locals;
       if (opts.unsafePrototypeLocals) {
@@ -35993,11 +35993,11 @@ var Changelog = class {
     const changelog = this.entries.map((entry) => entry.content).join(joinMarker);
     writeFileSync4(this.filePath, changelog, {});
   }
-  getEntriesFor(path8) {
-    if (!existsSync3(path8)) {
+  getEntriesFor(path9) {
+    if (!existsSync3(path9)) {
       return [];
     }
-    return readFileSync6(path8, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
+    return readFileSync6(path9, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
   }
 };
 function parseChangelogEntry(content) {
@@ -37573,7 +37573,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-317ca0bf38ddc8ab2e561bf3ee35c4a0d4aae539`;
+var localVersion = `0.0.0-6c11443ffc8a192a3715e4daef19aec64c1ed98d`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -38217,19 +38217,630 @@ var ReleaseNpmDistTagCommand = {
   }
 };
 
+// ng-dev/release/recover-ci-publish/recover-ci-publish.js
+import fs6 from "node:fs";
+import { tmpdir as tmpdir3 } from "node:os";
+import path7 from "node:path";
+
+// github-actions/release/publish/lib/publish-ci.js
+var import_semver24 = __toESM(require_semver());
+import { join as join16 } from "path";
+import { existsSync as existsSync9, writeFileSync as writeFileSync5, rmSync, mkdtempSync } from "fs";
+import { tmpdir as tmpdir2 } from "os";
+
+// github-actions/release/publish/lib/publish-summary.js
+var PublishSummary = class {
+  constructor() {
+    this.packages = [];
+    this.tags = [];
+    this.release = null;
+  }
+  addPackage(result) {
+    this.packages.push(result);
+  }
+  addTag(result) {
+    this.tags.push(result);
+  }
+  setRelease(result) {
+    this.release = result;
+  }
+  /** Returns whether any operation failed. */
+  hasFailures() {
+    return this.packages.some((p) => p.status === "FAILED") || this.tags.some((t) => t.status === "FAILED") || this.release !== null && this.release.status === "FAILED";
+  }
+  /** Returns whether a specific package failed to publish. */
+  hasPackageFailed(name) {
+    return this.packages.some((p) => p.name === name && p.status === "FAILED");
+  }
+  /** Returns a list of detailed failure messages. */
+  getFailedItems() {
+    const failures = [];
+    for (const p of this.packages) {
+      if (p.status === "FAILED") {
+        failures.push(`Package "${p.name}@${p.version}" failed to publish: ${p.error}`);
+      }
+    }
+    for (const t of this.tags) {
+      if (t.status === "FAILED") {
+        failures.push(`Git tag "${t.name}" failed to create: ${t.error}`);
+      }
+    }
+    if (this.release && this.release.status === "FAILED") {
+      failures.push(`GitHub Release "${this.release.name}" failed to create: ${this.release.error}`);
+    }
+    return failures;
+  }
+  /** Formats the collected results as a Markdown summary. */
+  toMarkdown() {
+    let md = "## Release Publish Summary\n\n";
+    md += "### NPM Packages\n\n";
+    md += "| Package | Version | Status | Detail |\n";
+    md += "| --- | --- | --- | --- |\n";
+    for (const p of this.packages) {
+      const statusEmoji = p.status === "PUBLISHED" ? "\u2705" : p.status === "SKIPPED" ? "\u26A0\uFE0F" : "\u274C";
+      const statusText = p.status === "PUBLISHED" ? "Published" : p.status === "SKIPPED" ? "Skipped (Already Published)" : "Failed";
+      const detail = p.error ? `\`${sanitizeErrorForMarkdownTable(p.error)}\`` : "";
+      md += `| \`${p.name}\` | \`${p.version}\` | ${statusEmoji} ${statusText} | ${detail} |
+`;
+    }
+    md += "\n";
+    md += "### Git Tags & GitHub Release\n\n";
+    md += "| Item | Status | Detail |\n";
+    md += "| --- | --- | --- |\n";
+    for (const t of this.tags) {
+      const statusEmoji = t.status === "CREATED" ? "\u2705" : t.status === "SKIPPED" ? "\u26A0\uFE0F" : "\u274C";
+      const statusText = t.status === "CREATED" ? "Created" : t.status === "SKIPPED" ? "Skipped (Already Exists)" : "Failed";
+      const detail = t.error ? `\`${sanitizeErrorForMarkdownTable(t.error)}\`` : "";
+      md += `| Tag \`${t.name}\` | ${statusEmoji} ${statusText} | ${detail} |
+`;
+    }
+    if (this.release) {
+      const r = this.release;
+      const statusEmoji = r.status === "CREATED" ? "\u2705" : r.status === "SKIPPED" ? "\u26A0\uFE0F" : "\u274C";
+      const statusText = r.status === "CREATED" ? "Created" : r.status === "SKIPPED" ? "Skipped (Already Exists)" : "Failed";
+      const detail = r.error ? `\`${sanitizeErrorForMarkdownTable(r.error)}\`` : "";
+      md += `| Release \`${r.name}\` | ${statusEmoji} ${statusText} | ${detail} |
+`;
+    }
+    return md;
+  }
+};
+function sanitizeErrorForMarkdownTable(error51) {
+  if (!error51) {
+    return "";
+  }
+  return error51.replace(/\r?\n/g, " ").replace(/\|/g, "\\|").replace(/`/g, "'");
+}
+
+// github-actions/release/publish/lib/publish-ci.js
+var PublishCiTool = class {
+  constructor(config2, git, projectDir, options) {
+    this.config = config2;
+    this.git = git;
+    this.projectDir = projectDir;
+    this.options = options;
+    this.summary = new PublishSummary();
+  }
+  /**
+   * Executes the publish-ci process.
+   */
+  async run() {
+    if (this.options.useLocalNpmConfig) {
+      if (process.env["CI"] || process.env["GITHUB_ACTIONS"]) {
+        throw new Error("useLocalNpmConfig cannot be used in a CI environment.");
+      }
+    } else if (!this.options.dryRun && !process.env["WOMBOT_TOKEN"]) {
+      throw new Error("WOMBOT_TOKEN environment variable is not defined.");
+    }
+    this.assertExpectedSha();
+    const newVersion = readPackageJsonAtRef(this.git, "HEAD").version;
+    const builtPackagesWithInfo = await this.resolveTgzPackages(newVersion);
+    const newSemver = import_semver24.default.parse(newVersion);
+    if (!newSemver) {
+      throw new Error(`Failed to parse version ${newVersion} as semver.`);
+    }
+    const npmDistTag = await determineNpmDistTag(newSemver, this.config.release, this.git);
+    if (!this.options.skipTagging) {
+      const beforeStagingSha = this.getBeforeStagingSha();
+      const versionAtBeforeStaging = readPackageJsonAtRef(this.git, beforeStagingSha).version;
+      const versionAtBeforeStagingSemver = import_semver24.default.parse(versionAtBeforeStaging);
+      if (!versionAtBeforeStagingSemver) {
+        throw new Error(`Failed to parse version ${versionAtBeforeStaging} as semver.`);
+      }
+      const previousVersionTag = this.getPreviousVersionTag(newSemver, versionAtBeforeStagingSemver);
+      const releaseNotes = await ReleaseNotes.forRange(this.git, newSemver, previousVersionTag, beforeStagingSha);
+      await this.createGithubReleaseAndTags(newVersion, newSemver, releaseNotes, npmDistTag);
+    } else {
+      Log.info("Skipping Git tagging and GitHub Release creation as configured.");
+    }
+    await this.publishAndDeprecatePackages(builtPackagesWithInfo, npmDistTag, newVersion);
+    const markdownSummary = this.summary.toMarkdown();
+    Log.info("\n" + markdownSummary);
+    if (process.env["GITHUB_STEP_SUMMARY"]) {
+      try {
+        writeFileSync5(process.env["GITHUB_STEP_SUMMARY"], markdownSummary, { flag: "a" });
+        Log.info(green("  \u2713   Written job summary to GITHUB_STEP_SUMMARY."));
+      } catch (e) {
+        Log.warn(`Warning: Failed to write GITHUB_STEP_SUMMARY: ${e}`);
+      }
+    }
+    if (this.summary.hasFailures()) {
+      const failures = this.summary.getFailedItems().join("\n");
+      throw new Error(`Publish failed with the following errors:
+${failures}`);
+    }
+  }
+  /** Resolves the pre-built .tgz packages from the builtPackagesDir. */
+  async resolveTgzPackages(version2) {
+    if (!existsSync9(this.options.builtPackagesDir)) {
+      throw new Error(`The built packages directory does not exist: ${this.options.builtPackagesDir}`);
+    }
+    const builtPackages = [];
+    for (const npmPkg of this.config.release.npmPackages) {
+      const scopeAndName = npmPkg.name.startsWith("@") ? npmPkg.name.slice(1) : npmPkg.name;
+      const fileName = `${scopeAndName.replace(/\//g, "-")}-${version2}.tgz`;
+      const tgzPath = join16(this.options.builtPackagesDir, fileName);
+      if (!existsSync9(tgzPath)) {
+        throw new Error(`Expected built package file not found: ${tgzPath}`);
+      }
+      builtPackages.push({
+        name: npmPkg.name,
+        outputPath: tgzPath
+      });
+    }
+    return await analyzeAndExtendBuiltPackagesWithInfo(builtPackages, this.config.release.npmPackages);
+  }
+  /**
+   * Asserts that the current HEAD commit SHA matches the expected SHA passed in options.
+   * @throws {Error} If the HEAD SHA does not match the expected SHA.
+   */
+  assertExpectedSha() {
+    const headSha = this.git.run(["rev-parse", "HEAD"]).stdout.trim();
+    if (headSha !== this.options.expectedSha) {
+      throw new Error(`Expected HEAD SHA to be ${this.options.expectedSha}, but got ${headSha}.`);
+    }
+  }
+  /**
+   * Resolves the SHA of the commit immediately prior to the release staging changes.
+   *
+   * Analyzes the parents of the current HEAD commit. If it is a merge commit (typically the
+   * merged staging PR), it identifies the parent of the staging commit. Otherwise, it defaults
+   * to the single parent of HEAD.
+   *
+   * @returns The SHA of the pre-staging commit.
+   * @throws {Error} If HEAD has no parents, or if the parent structure is unexpected.
+   */
+  getBeforeStagingSha() {
+    const parentsOutput = this.git.run(["show", "--format=%P", "-s", "HEAD"]).stdout.trim();
+    const parents = parentsOutput ? parentsOutput.split(" ") : [];
+    if (parents.length >= 2) {
+      const stagingCommitSha = parents[1];
+      const stagingCommitParentsOutput = this.git.run(["show", "--format=%P", "-s", stagingCommitSha]).stdout.trim();
+      const stagingCommitParents = stagingCommitParentsOutput ? stagingCommitParentsOutput.split(" ") : [];
+      if (stagingCommitParents.length === 0) {
+        throw new Error(`Could not find parent for staging commit ${stagingCommitSha}`);
+      }
+      return stagingCommitParents[0];
+    } else if (parents.length === 1) {
+      return parents[0];
+    } else {
+      throw new Error("HEAD commit has no parents.");
+    }
+  }
+  /**
+   * Resolves the previous version Git tag to compare against for generating release notes.
+   *
+   * If the release is a transition from a pre-release (e.g. RC) to a stable version, it searches
+   * the repository tags for the highest stable version that is less than the new version.
+   * Otherwise, it defaults to the version tag associated with the pre-staging commit.
+   *
+   * @param newSemver The version currently being published.
+   * @param versionAtBeforeStagingSemver The version at the pre-staging commit.
+   * @returns The git tag name of the previous version (e.g. 'v1.2.3').
+   * @throws {Error} If a previous stable version tag cannot be resolved when transitioning to stable.
+   */
+  getPreviousVersionTag(newSemver, versionAtBeforeStagingSemver) {
+    if (newSemver.prerelease.length === 0 && versionAtBeforeStagingSemver.prerelease.length > 0) {
+      this.git.run(["fetch", "--tags", this.git.getRepoGitUrl()]);
+      const tagsOutput = this.git.run(["tag", "-l", "v*"]).stdout.trim();
+      const tags = tagsOutput ? tagsOutput.split("\n").map((t) => t.trim()) : [];
+      let highestStableVersion = null;
+      for (const tag of tags) {
+        const versionStr = tag.startsWith("v") ? tag.slice(1) : tag;
+        const parsed = import_semver24.default.parse(versionStr);
+        if (parsed && parsed.prerelease.length === 0) {
+          if (import_semver24.default.lt(parsed, newSemver)) {
+            if (highestStableVersion === null || import_semver24.default.gt(parsed, highestStableVersion)) {
+              highestStableVersion = parsed;
+            }
+          }
+        }
+      }
+      if (highestStableVersion === null) {
+        throw new Error(`Could not find a previous stable version tag matching v* less than ${newSemver.format()}`);
+      }
+      return `v${highestStableVersion.format()}`;
+    }
+    return `v${versionAtBeforeStagingSemver.format()}`;
+  }
+  /**
+   * Creates the GitHub Release and Git tags for the version being published.
+   *
+   * Creates the global version tag (`vX.Y.Z`), the GitHub Release entry containing the
+   * release notes, and individual monorepo package tags (`@angular/core@X.Y.Z`) if configured.
+   * These operations are idempotent and will gracefully log warnings if a tag or release
+   * already exists.
+   *
+   * @param newVersion The version string to release.
+   * @param newSemver The parsed SemVer representation of the version.
+   * @param releaseNotes The generated release notes for this version range.
+   * @param npmDistTag The determined NPM distribution tag (used to flag latest releases on GitHub).
+   */
+  async createGithubReleaseAndTags(newVersion, newSemver, releaseNotes, npmDistTag) {
+    const globalTagName = `v${newVersion}`;
+    if (this.options.dryRun) {
+      Log.info(`[Dry-Run] Would tag global tag: ${globalTagName}`);
+      this.summary.addTag({ name: globalTagName, status: "CREATED" });
+    } else {
+      try {
+        await this.git.github.git.createRef({
+          ...this.git.remoteParams,
+          ref: `refs/tags/${globalTagName}`,
+          sha: this.options.expectedSha
+        });
+        Log.info(green(`  \u2713   Tagged ${globalTagName} release upstream.`));
+        this.summary.addTag({ name: globalTagName, status: "CREATED" });
+      } catch (e) {
+        if (isGithubApiError(e) && e.status === 422) {
+          Log.warn(`Warning: Tag ${globalTagName} already exists, skipping tag creation.`);
+          this.summary.addTag({ name: globalTagName, status: "SKIPPED" });
+        } else {
+          Log.error(`Failed to tag global tag ${globalTagName}: ${e}`);
+          this.summary.addTag({ name: globalTagName, status: "FAILED", error: String(e) });
+        }
+      }
+    }
+    let releaseBody = await releaseNotes.getGithubReleaseEntry();
+    if (releaseBody.length > githubReleaseBodyLimit) {
+      const baseUrl = getFileContentsUrl(this.git, globalTagName, workspaceRelativeChangelogPath);
+      const urlFragment = await releaseNotes.getUrlFragmentForRelease();
+      const releaseNotesUrl = `${baseUrl}#${urlFragment}`;
+      releaseBody = `Release notes are too large to be captured here. [View all changes here](${releaseNotesUrl}).`;
+    }
+    if (this.options.dryRun) {
+      Log.info(`[Dry-Run] Would create GitHub Release for tag: ${globalTagName}`);
+      this.summary.setRelease({ name: globalTagName, status: "CREATED" });
+    } else {
+      try {
+        await this.git.github.repos.createRelease({
+          ...this.git.remoteParams,
+          name: globalTagName,
+          tag_name: globalTagName,
+          prerelease: newSemver.prerelease.length > 0,
+          make_latest: npmDistTag === "latest" ? "true" : "false",
+          body: releaseBody
+        });
+        Log.info(green(`  \u2713   Created ${globalTagName} release in Github.`));
+        this.summary.setRelease({ name: globalTagName, status: "CREATED" });
+      } catch (e) {
+        if (isGithubApiError(e) && e.status === 422) {
+          Log.warn(`Warning: GitHub release for ${globalTagName} already exists, skipping release creation.`);
+          this.summary.setRelease({ name: globalTagName, status: "SKIPPED" });
+        } else {
+          Log.error(`Failed to create GitHub release ${globalTagName}: ${e}`);
+          this.summary.setRelease({ name: globalTagName, status: "FAILED", error: String(e) });
+        }
+      }
+    }
+    if (this.config.release.npmPackages.length > 1) {
+      for (const npmPkg of this.config.release.npmPackages) {
+        const monorepoTagName = `${npmPkg.name}@${newVersion}`;
+        if (this.options.dryRun) {
+          Log.info(`[Dry-Run] Would tag monorepo package: ${monorepoTagName}`);
+          this.summary.addTag({ name: monorepoTagName, status: "CREATED" });
+        } else {
+          try {
+            await this.git.github.git.createRef({
+              ...this.git.remoteParams,
+              ref: `refs/tags/${monorepoTagName}`,
+              sha: this.options.expectedSha
+            });
+            Log.info(green(`  \u2713   Tagged monorepo package release: ${monorepoTagName}`));
+            this.summary.addTag({ name: monorepoTagName, status: "CREATED" });
+          } catch (e) {
+            if (isGithubApiError(e) && e.status === 422) {
+              Log.warn(`Warning: Tag ${monorepoTagName} already exists, skipping tag creation.`);
+              this.summary.addTag({ name: monorepoTagName, status: "SKIPPED" });
+            } else {
+              Log.error(`Failed to tag monorepo package ${monorepoTagName}: ${e}`);
+              this.summary.addTag({ name: monorepoTagName, status: "FAILED", error: String(e) });
+            }
+          }
+        }
+      }
+    }
+  }
+  /**
+   * Publishes the pre-built packages to the NPM registry via Wombat Dressing Room.
+   *
+   * Temporarily configures the local `.npmrc` file to point to the Wombat registry and include
+   * the authenticated `WOMBOT_TOKEN`. After publishing all resolved packages, the original
+   * `.npmrc` is restored (or deleted if it did not exist before).
+   *
+   * @param builtPackages List of built packages to be published.
+   * @param npmDistTag The NPM distribution tag (e.g. 'latest', 'next') to publish under.
+   */
+  async publishAndDeprecatePackages(builtPackages, npmDistTag, version2) {
+    if (this.options.dryRun) {
+      for (const pkg of builtPackages) {
+        Log.info(`[Dry-Run] Would publish package: ${pkg.name} to Wombat`);
+        this.summary.addPackage({ name: pkg.name, version: version2, status: "PUBLISHED" });
+        if (pkg.deprecated) {
+          Log.info(`[Dry-Run] Would deprecate package: ${pkg.name}@${pkg.deprecated.version}`);
+        }
+      }
+      return;
+    }
+    const tempDir = mkdtempSync(join16(tmpdir2(), "angular-publish-ci-"));
+    const tempNpmrcPath = join16(tempDir, ".npmrc");
+    const originalUserconfig = process.env["NPM_CONFIG_USERCONFIG"];
+    try {
+      if (!this.options.useLocalNpmConfig) {
+        const wombatNpmrcContent = [
+          `registry=https://wombat-dressing-room.appspot.com/`,
+          `//wombat-dressing-room.appspot.com/:_authToken=\${WOMBOT_TOKEN}`
+        ].join("\n") + "\n";
+        writeFileSync5(tempNpmrcPath, wombatNpmrcContent);
+        Log.info(green(`  \u2713   Created temporary .npmrc for Wombat registry.`));
+        process.env["NPM_CONFIG_USERCONFIG"] = tempNpmrcPath;
+      } else {
+        Log.info("Using default local NPM configuration.");
+      }
+      for (const pkg of builtPackages) {
+        Log.info(`Checking if "${pkg.name}@${version2}" is already published...`);
+        try {
+          const exists = await NpmCommand.checkVersionExists(pkg.name, version2, this.config.release.publishRegistry);
+          if (exists) {
+            Log.warn(`Warning: Package "${pkg.name}@${version2}" is already published. Skipping.`);
+            this.summary.addPackage({ name: pkg.name, version: version2, status: "SKIPPED" });
+            continue;
+          }
+          Log.info(`Publishing "${pkg.name}"...`);
+          await NpmCommand.publish(pkg.outputPath, npmDistTag, this.config.release.publishRegistry);
+          Log.info(green(`  \u2713   Successfully published "${pkg.name}".`));
+          this.summary.addPackage({ name: pkg.name, version: version2, status: "PUBLISHED" });
+        } catch (e) {
+          Log.error(`An error occurred while publishing "${pkg.name}": ${e}`);
+          this.summary.addPackage({
+            name: pkg.name,
+            version: version2,
+            status: "FAILED",
+            error: String(e)
+          });
+        }
+      }
+      for (const pkg of builtPackages) {
+        if (!pkg.deprecated) {
+          continue;
+        }
+        if (this.summary.hasPackageFailed(pkg.name)) {
+          Log.warn(`Skipping deprecation for "${pkg.name}" because publish failed.`);
+          continue;
+        }
+        Log.info(`Deprecating "${pkg.name}"...`);
+        const { version: version3, message } = pkg.deprecated;
+        try {
+          await NpmCommand.deprecate(pkg.name, version3, message, this.config.release.publishRegistry);
+          Log.info(green(`  \u2713   Successfully deprecated "${pkg.name}@${version3}".`));
+        } catch (e) {
+          Log.error(`Failed to deprecate "${pkg.name}": ${e}`);
+        }
+      }
+    } finally {
+      try {
+        rmSync(tempDir, { recursive: true, force: true });
+      } catch (e) {
+        Log.warn(`Warning: Failed to clean up temporary directory ${tempDir}: ${e}`);
+      } finally {
+        if (originalUserconfig !== void 0) {
+          process.env["NPM_CONFIG_USERCONFIG"] = originalUserconfig;
+        } else {
+          delete process.env["NPM_CONFIG_USERCONFIG"];
+        }
+      }
+    }
+  }
+};
+function readPackageJsonAtRef(git, ref) {
+  const content = git.run(["show", `${ref}:package.json`]).stdout.trim();
+  return JSON.parse(content);
+}
+async function determineNpmDistTag(newSemver, config2, git) {
+  const { active: activeLts, inactive: inactiveLts } = await fetchLongTermSupportBranchesFromNpm(config2);
+  const ltsBranch = [...activeLts, ...inactiveLts].find((b) => b.version.major === newSemver.major);
+  if (ltsBranch) {
+    return ltsBranch.npmDistTag;
+  }
+  const repo = {
+    owner: git.remoteConfig.owner,
+    name: git.remoteConfig.name,
+    api: git.github,
+    nextBranchName: git.mainBranchName
+  };
+  const activeTrains = await ActiveReleaseTrains.fetch(repo);
+  if (newSemver.prerelease.length > 0) {
+    if (activeTrains.exceptionalMinor !== null && newSemver.major === activeTrains.exceptionalMinor.version.major && newSemver.minor === activeTrains.exceptionalMinor.version.minor) {
+      return "do-not-use-exceptional-minor";
+    }
+    return "next";
+  }
+  if (newSemver.major > activeTrains.latest.version.major) {
+    return "next";
+  }
+  return "latest";
+}
+
+// ng-dev/release/recover-ci-publish/recover-ci-publish.js
+var ReleaseRecoverCiPublishTool = class {
+  constructor(git, releaseConfig, githubConfig, runId, options = {}) {
+    this.git = git;
+    this.releaseConfig = releaseConfig;
+    this.githubConfig = githubConfig;
+    this.runId = runId;
+    this.options = options;
+  }
+  async run() {
+    const registry2 = this.options.publishRegistry ?? this.releaseConfig.publishRegistry;
+    const loginOk = await this._verifyNpmLoginState(registry2);
+    if (!loginOk) {
+      Log.error("  \u2718   NPM login verification failed. Aborting recovery.");
+      process.exitCode = 1;
+      return;
+    }
+    const tempDir = fs6.mkdtempSync(path7.join(tmpdir3(), "ng-dev-publish-recovery-"));
+    Log.debug(`Created temp directory: ${tempDir}`);
+    try {
+      Log.info(`Fetching workflow run details for run ID: ${this.runId}...`);
+      const { data: run } = await this.git.github.rest.actions.getWorkflowRun({
+        owner: this.githubConfig.owner,
+        repo: this.githubConfig.name,
+        run_id: this.runId
+      });
+      Log.info(`Found run: ${run.name} (Commit SHA: ${run.head_sha})`);
+      Log.info("Fetching list of artifacts for this run...");
+      const { data: artifactsData } = await this.git.github.rest.actions.listWorkflowRunArtifacts({
+        owner: this.githubConfig.owner,
+        repo: this.githubConfig.name,
+        run_id: this.runId
+      });
+      const artifactName = "release-packages-tgz";
+      const artifact = artifactsData.artifacts.find((art) => art.name === artifactName);
+      if (!artifact) {
+        throw new Error(`Expected artifact "${artifactName}" not found in run ${this.runId}.`);
+      }
+      Log.info(`Downloading artifact "${artifactName}" (ID: ${artifact.id})...`);
+      const downloadResponse = await this.git.github.rest.actions.downloadArtifact({
+        owner: this.githubConfig.owner,
+        repo: this.githubConfig.name,
+        artifact_id: artifact.id,
+        archive_format: "zip"
+      });
+      const buffer = Buffer.from(downloadResponse.data);
+      const zipPath = path7.join(tempDir, "artifacts.zip");
+      fs6.writeFileSync(zipPath, buffer);
+      Log.info(`Downloaded artifact zip to ${zipPath}`);
+      const extractDir = path7.join(tempDir, "extracted");
+      fs6.mkdirSync(extractDir, { recursive: true });
+      Log.info(`Extracting packages to ${extractDir}...`);
+      try {
+        await ChildProcess.spawn("unzip", [zipPath, "-d", extractDir], { mode: "silent" });
+      } catch (err) {
+        if (err && err.code === "ENOENT") {
+          throw new Error(`Failed to execute 'unzip'. Please ensure that the 'unzip' utility is installed and available in your PATH.`);
+        }
+        throw new Error(`Failed to extract packages zip artifact: ${err}`);
+      }
+      Log.info("Packages extracted successfully.");
+      Log.info("Initializing PublishCiTool for local publishing...");
+      const tool = new PublishCiTool({ github: this.githubConfig, release: this.releaseConfig }, this.git, this.git.baseDir, {
+        builtPackagesDir: extractDir,
+        expectedSha: run.head_sha,
+        useLocalNpmConfig: true,
+        dryRun: this.options.dryRun,
+        skipTagging: true
+      });
+      Log.info("Starting local publishing of recovered packages...");
+      await tool.run();
+      Log.info("Local recovery publishing completed.");
+    } catch (e) {
+      Log.error("  \u2718   An error occurred during recovery:");
+      Log.error(e);
+      process.exitCode = 1;
+    } finally {
+      Log.debug(`Cleaning up temp directory: ${tempDir}`);
+      try {
+        fs6.rmSync(tempDir, { recursive: true, force: true });
+      } catch (err) {
+        Log.warn(`Warning: Could not remove temp directory ${tempDir}:`, err);
+      }
+    }
+  }
+  async _verifyNpmLoginState(registry2) {
+    const registryName = `NPM at the ${registry2 ?? "default NPM"} registry`;
+    if (registry2?.includes("wombat-dressing-room.appspot.com")) {
+      Log.info("Unable to determine NPM login state for Wombat proxy, requiring login now.");
+      try {
+        await NpmCommand.startInteractiveLogin(registry2);
+      } catch {
+        return false;
+      }
+      return true;
+    }
+    if (await NpmCommand.checkIsLoggedIn(registry2)) {
+      Log.debug(`Already logged into ${registryName}.`);
+      return true;
+    }
+    Log.warn(`  \u2718   Not currently logged into ${registryName}.`);
+    const shouldLogin = await Prompt.confirm({ message: "Would you like to log into NPM now?" });
+    if (shouldLogin) {
+      try {
+        await NpmCommand.startInteractiveLogin(registry2);
+        return true;
+      } catch (e) {
+        Log.error("NPM login failed:", e);
+        return false;
+      }
+    }
+    return false;
+  }
+};
+
+// ng-dev/release/recover-ci-publish/cli.js
+function builder26(argv) {
+  return addGithubTokenOption(argv).positional("run-id", {
+    type: "number",
+    demandOption: true,
+    description: "The GitHub Actions workflow run ID containing the release packages to recover."
+  }).option("dry-run", {
+    type: "boolean",
+    default: false,
+    description: "Run the recovery process in dry-run mode (skips actual publishing)."
+  }).option("publish-registry", {
+    type: "string",
+    description: "NPM registry URL to publish packages to (overrides config)."
+  });
+}
+async function handler26(args) {
+  const git = await AuthenticatedGitClient.get();
+  const config2 = await getConfig();
+  assertValidReleaseConfig(config2);
+  assertValidGithubConfig(config2);
+  const tool = new ReleaseRecoverCiPublishTool(git, config2.release, config2.github, args.runId, {
+    dryRun: args.dryRun,
+    publishRegistry: args.publishRegistry
+  });
+  await tool.run();
+}
+var ReleaseRecoverCiPublishCommandModule = {
+  builder: builder26,
+  handler: handler26,
+  command: "recover-ci-publish <run-id>",
+  describe: "Recover a failed CI release publish run by downloading built artifacts and publishing them locally."
+};
+
 // ng-dev/release/cli.js
 function buildReleaseParser(localYargs) {
-  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule).command(ReleasePublishSnapshotsCommandModule);
+  return localYargs.help().strict().demandCommand().command(ReleasePublishCommandModule).command(ReleaseBuildCommandModule).command(ReleaseInfoCommandModule).command(ReleaseNpmDistTagCommand).command(ReleasePrecheckCommandModule).command(BuildEnvStampCommand).command(ReleaseNotesCommandModule).command(ReleasePublishSnapshotsCommandModule).command(ReleaseRecoverCiPublishCommandModule);
 }
 
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob3 = __toESM(require_out4());
-import { existsSync as existsSync9, readFileSync as readFileSync11, writeFileSync as writeFileSync5 } from "fs";
+import { existsSync as existsSync10, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve8 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync10 } from "fs";
-import { dirname as dirname5, join as join16, resolve as resolve6 } from "path";
+import { dirname as dirname5, join as join17, resolve as resolve6 } from "path";
 import ts3 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
@@ -38241,8 +38852,8 @@ function getFileStatus(filePath) {
     return null;
   }
 }
-function convertPathToForwardSlash(path8) {
-  return path8.replace(/\\/g, "/");
+function convertPathToForwardSlash(path9) {
+  return path9.replace(/\\/g, "/");
 }
 
 // ng-dev/ts-circular-dependencies/parser.js
@@ -38275,21 +38886,21 @@ var Analyzer = class {
     this.unresolvedFiles = /* @__PURE__ */ new Map();
     this._ignoreTypeOnlyChecks = !!ignoreTypeOnlyChecks;
   }
-  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path8 = []) {
-    const previousIndex = path8.indexOf(sf);
+  findCycles(sf, visited = /* @__PURE__ */ new WeakSet(), path9 = []) {
+    const previousIndex = path9.indexOf(sf);
     if (previousIndex !== -1) {
-      return [path8.slice(previousIndex)];
+      return [path9.slice(previousIndex)];
     }
     if (visited.has(sf)) {
       return [];
     }
-    path8.push(sf);
+    path9.push(sf);
     visited.add(sf);
     const result = [];
     for (const ref of getModuleReferences(sf, this._ignoreTypeOnlyChecks)) {
       const targetFile = this._resolveImport(ref, sf.fileName);
       if (targetFile !== null) {
-        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path8.slice()));
+        result.push(...this.findCycles(this.getSourceFile(targetFile), visited, path9.slice()));
       }
     }
     return result;
@@ -38331,7 +38942,7 @@ var Analyzer = class {
     this.unresolvedFiles.get(originFilePath).push(specifier);
   }
   _resolveFileSpecifier(specifier, containingFilePath) {
-    const importFullPath = containingFilePath !== void 0 ? join16(dirname5(containingFilePath), specifier) : specifier;
+    const importFullPath = containingFilePath !== void 0 ? join17(dirname5(containingFilePath), specifier) : specifier;
     const stat2 = getFileStatus(importFullPath);
     if (stat2 && stat2.isFile()) {
       return importFullPath;
@@ -38344,7 +38955,7 @@ var Analyzer = class {
       }
     }
     if (stat2 && stat2.isDirectory()) {
-      return this._resolveFileSpecifier(join16(importFullPath, "index"));
+      return this._resolveFileSpecifier(join17(importFullPath, "index"));
     }
     return null;
   }
@@ -38417,23 +39028,23 @@ function compareGoldens(actual, expected) {
   });
   return { newCircularDeps, fixedCircularDeps };
 }
-function normalizeCircularDependency(path8) {
-  if (path8.length <= 1) {
-    return path8;
+function normalizeCircularDependency(path9) {
+  if (path9.length <= 1) {
+    return path9;
   }
   let indexFirstNode = 0;
-  let valueFirstNode = path8[0];
-  for (let i = 1; i < path8.length; i++) {
-    const value = path8[i];
+  let valueFirstNode = path9[0];
+  for (let i = 1; i < path9.length; i++) {
+    const value = path9[i];
     if (value.localeCompare(valueFirstNode, "en") < 0) {
       indexFirstNode = i;
       valueFirstNode = value;
     }
   }
   if (indexFirstNode === 0) {
-    return path8;
+    return path9;
   }
-  return [...path8.slice(indexFirstNode), ...path8.slice(0, indexFirstNode)];
+  return [...path9.slice(indexFirstNode), ...path9.slice(0, indexFirstNode)];
 }
 function isSameCircularDependency(actual, expected) {
   if (actual.length !== expected.length) {
@@ -38511,11 +39122,11 @@ function main(approve, config2, printWarnings) {
     return 0;
   }
   if (approve) {
-    writeFileSync5(goldenFile, JSON.stringify(actual, null, 2));
+    writeFileSync6(goldenFile, JSON.stringify(actual, null, 2));
     Log.info(green("\u2714  Updated golden file."));
     return 0;
   }
-  if (!existsSync9(goldenFile)) {
+  if (!existsSync10(goldenFile)) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
@@ -38546,39 +39157,39 @@ function main(approve, config2, printWarnings) {
   }
   return 1;
 }
-function getRelativePath(baseDir, path8) {
-  return convertPathToForwardSlash(relative2(baseDir, path8));
+function getRelativePath(baseDir, path9) {
+  return convertPathToForwardSlash(relative2(baseDir, path9));
 }
 function convertReferenceChainToString(chain) {
   return chain.join(" \u2192 ");
 }
 
 // ng-dev/auth/login/cli.js
-async function builder26(yargs) {
+async function builder27(yargs) {
   return yargs;
 }
-async function handler26() {
+async function handler27() {
   Log.warn("ng-dev auth login has been deprecated. Authentication will be done");
   Log.warn("using TOKEN from the local environment.");
 }
 var LoginModule = {
-  handler: handler26,
-  builder: builder26,
+  handler: handler27,
+  builder: builder27,
   command: "login",
   describe: "Log into the ng-dev service"
 };
 
 // ng-dev/auth/logout/cli.js
-async function builder27(yargs) {
+async function builder28(yargs) {
   return yargs;
 }
-async function handler27() {
+async function handler28() {
   Log.warn("ng-dev auth logout has been deprecated. Authentication will be done");
   Log.warn("using local environment.");
 }
 var LogoutModule = {
-  handler: handler27,
-  builder: builder27,
+  handler: handler28,
+  builder: builder28,
   command: "logout",
   describe: "Log out of the ng-dev service"
 };
@@ -38642,7 +39253,7 @@ async function loadWorkflows(src) {
 }
 
 // ng-dev/perf/workflow/cli.js
-import { join as join17 } from "path";
+import { join as join18 } from "path";
 
 // ng-dev/perf/workflow/database.js
 import { Spanner } from "@google-cloud/spanner";
@@ -38661,7 +39272,7 @@ async function addWorkflowPerformanceResult(result) {
 }
 
 // ng-dev/perf/workflow/cli.js
-function builder28(yargs) {
+function builder29(yargs) {
   return yargs.option("config-file", {
     default: ".ng-dev/dx-perf-workflows.yml",
     type: "string",
@@ -38678,8 +39289,8 @@ function builder28(yargs) {
     description: "The commit sha to associate the measurement with, uploading it to our database"
   });
 }
-async function handler28({ configFile, list, name, commitSha }) {
-  const workflows = await loadWorkflows(join17(determineRepoBaseDirFromCwd(), configFile));
+async function handler29({ configFile, list, name, commitSha }) {
+  const workflows = await loadWorkflows(join18(determineRepoBaseDirFromCwd(), configFile));
   if (list) {
     process.stdout.write(JSON.stringify(Object.keys(workflows)));
     return;
@@ -38710,8 +39321,8 @@ async function handler28({ configFile, list, name, commitSha }) {
   }
 }
 var WorkflowsModule = {
-  handler: handler28,
-  builder: builder28,
+  handler: handler29,
+  builder: builder29,
   command: "workflows",
   describe: "Evaluate the performance of the provided workflows"
 };
@@ -38722,17 +39333,17 @@ function buildPerfParser(localYargs) {
 }
 
 // ng-dev/config/validate/portability.js
-import { join as join18 } from "path";
-import { tmpdir as tmpdir2 } from "os";
+import { join as join19 } from "path";
+import { tmpdir as tmpdir4 } from "os";
 import { cp, mkdtemp, rm as rm2 } from "fs/promises";
 async function checkPortability() {
   Log.debug("Copying ng-dev configuration to isolated temp directory");
-  const tmpConfigDir = await mkdtemp(join18(tmpdir2(), "ng-dev-config-check-"));
+  const tmpConfigDir = await mkdtemp(join19(tmpdir4(), "ng-dev-config-check-"));
   const repoBaseDir = determineRepoBaseDirFromCwd();
   try {
-    await cp(join18(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
+    await cp(join19(repoBaseDir, ".ng-dev"), tmpConfigDir, { recursive: true });
     Log.debug("Validating configuration loads in isolation");
-    const baseConfigFile = join18(tmpConfigDir, "config.mjs");
+    const baseConfigFile = join19(tmpConfigDir, "config.mjs");
     const { status, stderr } = await ChildProcess.exec(`node ${baseConfigFile}`, {
       cwd: tmpConfigDir,
       mode: "silent"
@@ -38771,10 +39382,10 @@ async function checkValidity() {
 }
 
 // ng-dev/config/validate/cli.js
-async function builder29(yargs) {
+async function builder30(yargs) {
   return yargs;
 }
-async function handler29() {
+async function handler30() {
   try {
     await checkPortability();
     await checkValidity();
@@ -38789,8 +39400,8 @@ async function handler29() {
   }
 }
 var ValidateModule = {
-  handler: handler29,
-  builder: builder29,
+  handler: handler30,
+  builder: builder30,
   command: "validate",
   describe: "Validate that the configuration provided in .ng-dev/ is valid and portable"
 };
@@ -38804,7 +39415,7 @@ function buildConfigParser(localYargs) {
 var import_p_retry = __toESM(require_p_retry(), 1);
 var import_google_auth_library = __toESM(require_src6(), 1);
 import { createWriteStream } from "fs";
-import * as fs6 from "fs/promises";
+import * as fs7 from "fs/promises";
 import { writeFile as writeFile2 } from "fs/promises";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
@@ -42405,7 +43016,7 @@ var Batches = class extends BaseModule2 {
       params2
     );
     const urlParams = body["_url"];
-    const path8 = formatMap("{model}:batchGenerateContent", urlParams);
+    const path9 = formatMap("{model}:batchGenerateContent", urlParams);
     const batch = body["batch"];
     const inputConfig = batch["inputConfig"];
     const requestsWrapper = inputConfig["requests"];
@@ -42426,7 +43037,7 @@ var Batches = class extends BaseModule2 {
     delete body["config"];
     delete body["_url"];
     delete body["_query"];
-    return { path: path8, body };
+    return { path: path9, body };
   }
   // Helper function to get the first GCS URI
   getGcsUri(src) {
@@ -42482,16 +43093,16 @@ var Batches = class extends BaseModule2 {
   async createInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createBatchJobParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("batchPredictionJobs", body["_url"]);
+      path9 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -42506,12 +43117,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = createBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:batchGenerateContent", body["_url"]);
+      path9 = formatMap("{model}:batchGenerateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -42536,18 +43147,18 @@ var Batches = class extends BaseModule2 {
   async createEmbeddingsInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createEmbeddingsBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:asyncBatchEmbedContent", body["_url"]);
+      path9 = formatMap("{model}:asyncBatchEmbedContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -42576,16 +43187,16 @@ var Batches = class extends BaseModule2 {
   async get(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getBatchJobParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -42600,12 +43211,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = getBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("batches/{name}", body["_url"]);
+      path9 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -42633,16 +43244,16 @@ var Batches = class extends BaseModule2 {
    */
   async cancel(params2) {
     var _a5, _b, _c, _d;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelBatchJobParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
+      path9 = formatMap("batchPredictionJobs/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -42651,12 +43262,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = cancelBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("batches/{name}:cancel", body["_url"]);
+      path9 = formatMap("batches/{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -42668,16 +43279,16 @@ var Batches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listBatchJobsParametersToVertex(params2);
-      path8 = formatMap("batchPredictionJobs", body["_url"]);
+      path9 = formatMap("batchPredictionJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -42700,12 +43311,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = listBatchJobsParametersToMldev(params2);
-      path8 = formatMap("batches", body["_url"]);
+      path9 = formatMap("batches", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -42742,16 +43353,16 @@ var Batches = class extends BaseModule2 {
   async delete(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteBatchJobParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("batchPredictionJobs/{name}", body["_url"]);
+      path9 = formatMap("batchPredictionJobs/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -42772,12 +43383,12 @@ var Batches = class extends BaseModule2 {
       });
     } else {
       const body = deleteBatchJobParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("batches/{name}", body["_url"]);
+      path9 = formatMap("batches/{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -43678,16 +44289,16 @@ var Caches = class extends BaseModule2 {
   async create(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createCachedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("cachedContents", body["_url"]);
+      path9 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -43701,12 +44312,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = createCachedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("cachedContents", body["_url"]);
+      path9 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -43734,16 +44345,16 @@ var Caches = class extends BaseModule2 {
   async get(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getCachedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -43757,12 +44368,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = getCachedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -43790,16 +44401,16 @@ var Caches = class extends BaseModule2 {
   async delete(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteCachedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -43822,12 +44433,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = deleteCachedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -43867,16 +44478,16 @@ var Caches = class extends BaseModule2 {
   async update(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateCachedContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -43890,12 +44501,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = updateCachedContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -43912,16 +44523,16 @@ var Caches = class extends BaseModule2 {
   async listInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listCachedContentsParametersToVertex(params2);
-      path8 = formatMap("cachedContents", body["_url"]);
+      path9 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -43944,12 +44555,12 @@ var Caches = class extends BaseModule2 {
       });
     } else {
       const body = listCachedContentsParametersToMldev(params2);
-      path8 = formatMap("cachedContents", body["_url"]);
+      path9 = formatMap("cachedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -44555,18 +45166,18 @@ var Files = class extends BaseModule2 {
   async listInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listFilesParametersToMldev(params2);
-      path8 = formatMap("files", body["_url"]);
+      path9 = formatMap("files", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -44592,18 +45203,18 @@ var Files = class extends BaseModule2 {
   async createInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createFileParametersToMldev(params2);
-      path8 = formatMap("upload/v1beta/files", body["_url"]);
+      path9 = formatMap("upload/v1beta/files", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -44638,18 +45249,18 @@ var Files = class extends BaseModule2 {
   async get(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getFileParametersToMldev(params2);
-      path8 = formatMap("files/{file}", body["_url"]);
+      path9 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -44679,18 +45290,18 @@ var Files = class extends BaseModule2 {
   async delete(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteFileParametersToMldev(params2);
-      path8 = formatMap("files/{file}", body["_url"]);
+      path9 = formatMap("files/{file}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -44716,18 +45327,18 @@ var Files = class extends BaseModule2 {
   async registerFilesInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = internalRegisterFilesParametersToMldev(params2);
-      path8 = formatMap("files:register", body["_url"]);
+      path9 = formatMap("files:register", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -49915,13 +50526,13 @@ var ApiClient = class {
       throw new Error("HTTP options are not correctly set.");
     }
   }
-  constructUrl(path8, httpOptions, prependProjectLocation) {
+  constructUrl(path9, httpOptions, prependProjectLocation) {
     const urlElement = [this.getRequestUrlInternal(httpOptions)];
     if (prependProjectLocation) {
       urlElement.push(this.getBaseResourcePath());
     }
-    if (path8 !== "") {
-      urlElement.push(path8);
+    if (path9 !== "") {
+      urlElement.push(path9);
     }
     const url3 = new URL(`${urlElement.join("/")}`);
     return url3;
@@ -50220,8 +50831,8 @@ var ApiClient = class {
       file: fileToUpload
     };
     const fileName = this.getFileName(file2);
-    const path8 = formatMap("upload/v1beta/files", body["_url"]);
-    const uploadUrl = await this.fetchUploadUrl(path8, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config2 === null || config2 === void 0 ? void 0 : config2.httpOptions);
+    const path9 = formatMap("upload/v1beta/files", body["_url"]);
+    const uploadUrl = await this.fetchUploadUrl(path9, fileToUpload.sizeBytes, fileToUpload.mimeType, fileName, body, config2 === null || config2 === void 0 ? void 0 : config2.httpOptions);
     return uploader.upload(file2, uploadUrl, this);
   }
   /**
@@ -50245,13 +50856,13 @@ var ApiClient = class {
     if (mimeType === void 0 || mimeType === "") {
       throw new Error("Can not determine mimeType. Please provide mimeType in the config.");
     }
-    const path8 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
+    const path9 = `upload/v1beta/${fileSearchStoreName}:uploadToFileSearchStore`;
     const fileName = this.getFileName(file2);
     const body = {};
     if (config2 != null) {
       uploadToFileSearchStoreConfigToMldev(config2, body);
     }
-    const uploadUrl = await this.fetchUploadUrl(path8, sizeBytes, mimeType, fileName, body, config2 === null || config2 === void 0 ? void 0 : config2.httpOptions);
+    const uploadUrl = await this.fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, config2 === null || config2 === void 0 ? void 0 : config2.httpOptions);
     return uploader.uploadToFileSearchStore(file2, uploadUrl, this);
   }
   /**
@@ -50264,7 +50875,7 @@ var ApiClient = class {
     const downloader = this.clientOptions.downloader;
     await downloader.download(params2, this);
   }
-  async fetchUploadUrl(path8, sizeBytes, mimeType, fileName, body, configHttpOptions) {
+  async fetchUploadUrl(path9, sizeBytes, mimeType, fileName, body, configHttpOptions) {
     var _a5;
     let httpOptions = {};
     if (configHttpOptions) {
@@ -50277,7 +50888,7 @@ var ApiClient = class {
       };
     }
     const httpResponse = await this.request({
-      path: path8,
+      path: path9,
       body: JSON.stringify(body),
       httpMethod: "POST",
       httpOptions
@@ -51477,16 +52088,16 @@ var Models = class extends BaseModule2 {
   async generateContentInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:generateContent", body["_url"]);
+      path9 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51509,12 +52120,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:generateContent", body["_url"]);
+      path9 = formatMap("{model}:generateContent", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51540,17 +52151,17 @@ var Models = class extends BaseModule2 {
   async generateContentStreamInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateContentParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51588,13 +52199,13 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateContentParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
+      path9 = formatMap("{model}:streamGenerateContent?alt=sse", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       const apiClient = this.apiClient;
       response = apiClient.requestStream({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51656,17 +52267,17 @@ var Models = class extends BaseModule2 {
   async embedContentInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = embedContentParametersPrivateToVertex(this.apiClient, params2, params2);
       const endpointUrl = tIsVertexEmbedContentModel(params2.model) ? "{model}:embedContent" : "{model}:predict";
-      path8 = formatMap(endpointUrl, body["_url"]);
+      path9 = formatMap(endpointUrl, body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51689,12 +52300,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = embedContentParametersPrivateToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:batchEmbedContents", body["_url"]);
+      path9 = formatMap("{model}:batchEmbedContents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51723,16 +52334,16 @@ var Models = class extends BaseModule2 {
   async generateImagesInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateImagesParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51755,12 +52366,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateImagesParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51789,16 +52400,16 @@ var Models = class extends BaseModule2 {
   async editImageInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = editImageParametersInternalToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51829,16 +52440,16 @@ var Models = class extends BaseModule2 {
   async upscaleImageInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = upscaleImageAPIParametersInternalToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51890,16 +52501,16 @@ var Models = class extends BaseModule2 {
   async recontextImage(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = recontextImageParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51941,16 +52552,16 @@ var Models = class extends BaseModule2 {
   async segmentImage(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = segmentImageParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predict", body["_url"]);
+      path9 = formatMap("{model}:predict", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -51980,16 +52591,16 @@ var Models = class extends BaseModule2 {
   async get(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getModelParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -52004,12 +52615,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = getModelParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -52027,16 +52638,16 @@ var Models = class extends BaseModule2 {
   async listInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listModelsParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{models_url}", body["_url"]);
+      path9 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -52059,12 +52670,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = listModelsParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{models_url}", body["_url"]);
+      path9 = formatMap("{models_url}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -52107,16 +52718,16 @@ var Models = class extends BaseModule2 {
   async update(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = updateModelParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}", body["_url"]);
+      path9 = formatMap("{model}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -52131,12 +52742,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = updateModelParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "PATCH",
@@ -52165,16 +52776,16 @@ var Models = class extends BaseModule2 {
   async delete(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = deleteModelParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -52197,12 +52808,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = deleteModelParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -52244,16 +52855,16 @@ var Models = class extends BaseModule2 {
   async countTokens(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = countTokensParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:countTokens", body["_url"]);
+      path9 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -52276,12 +52887,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = countTokensParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:countTokens", body["_url"]);
+      path9 = formatMap("{model}:countTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -52325,16 +52936,16 @@ var Models = class extends BaseModule2 {
   async computeTokens(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = computeTokensParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:computeTokens", body["_url"]);
+      path9 = formatMap("{model}:computeTokens", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -52365,16 +52976,16 @@ var Models = class extends BaseModule2 {
   async generateVideosInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = generateVideosParametersToVertex(this.apiClient, params2);
-      path8 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -52391,12 +53002,12 @@ var Models = class extends BaseModule2 {
       });
     } else {
       const body = generateVideosParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("{model}:predictLongRunning", body["_url"]);
+      path9 = formatMap("{model}:predictLongRunning", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -52498,16 +53109,16 @@ var Operations = class extends BaseModule2 {
   async getVideosOperationInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getOperationParametersToVertex(params2);
-      path8 = formatMap("{operationName}", body["_url"]);
+      path9 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -52519,12 +53130,12 @@ var Operations = class extends BaseModule2 {
       return response;
     } else {
       const body = getOperationParametersToMldev(params2);
-      path8 = formatMap("{operationName}", body["_url"]);
+      path9 = formatMap("{operationName}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -52539,16 +53150,16 @@ var Operations = class extends BaseModule2 {
   async fetchPredictVideosOperationInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = fetchPredictOperationParametersToVertex(params2);
-      path8 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
+      path9 = formatMap("{resourceName}:fetchPredictOperation", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53220,20 +53831,20 @@ var Tokens = class extends BaseModule2 {
   async create(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("The client.tokens.create method is only supported by the Gemini Developer API.");
     } else {
       const body = createAuthTokenParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("auth_tokens", body["_url"]);
+      path9 = formatMap("auth_tokens", body["_url"]);
       queryParams = body["_query"];
       delete body["config"];
       delete body["_url"];
       delete body["_query"];
       const transformedBody = convertBidiSetupToTokenSetup(body, params2.config);
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(transformedBody),
         httpMethod: "POST",
@@ -53343,18 +53954,18 @@ var Documents = class extends BaseModule2 {
   async get(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getDocumentParametersToMldev(params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53375,18 +53986,18 @@ var Documents = class extends BaseModule2 {
    */
   async delete(params2) {
     var _a5, _b;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteDocumentParametersToMldev(params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -53398,18 +54009,18 @@ var Documents = class extends BaseModule2 {
   async listInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listDocumentsParametersToMldev(params2);
-      path8 = formatMap("{parent}/documents", body["_url"]);
+      path9 = formatMap("{parent}/documents", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53526,18 +54137,18 @@ var FileSearchStores = class extends BaseModule2 {
   async create(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createFileSearchStoreParametersToMldev(this.apiClient, params2);
-      path8 = formatMap("fileSearchStores", body["_url"]);
+      path9 = formatMap("fileSearchStores", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53560,18 +54171,18 @@ var FileSearchStores = class extends BaseModule2 {
   async get(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = getFileSearchStoreParametersToMldev(params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53592,18 +54203,18 @@ var FileSearchStores = class extends BaseModule2 {
    */
   async delete(params2) {
     var _a5, _b;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = deleteFileSearchStoreParametersToMldev(params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       await this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "DELETE",
@@ -53615,18 +54226,18 @@ var FileSearchStores = class extends BaseModule2 {
   async listInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = listFileSearchStoresParametersToMldev(params2);
-      path8 = formatMap("fileSearchStores", body["_url"]);
+      path9 = formatMap("fileSearchStores", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -53646,18 +54257,18 @@ var FileSearchStores = class extends BaseModule2 {
   async uploadToFileSearchStoreInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = uploadToFileSearchStoreParametersToMldev(params2);
-      path8 = formatMap("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
+      path9 = formatMap("upload/v1beta/{file_search_store_name}:uploadToFileSearchStore", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -53685,18 +54296,18 @@ var FileSearchStores = class extends BaseModule2 {
   async importFile(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = importFileParametersToMldev(params2);
-      path8 = formatMap("{file_search_store_name}:importFile", body["_url"]);
+      path9 = formatMap("{file_search_store_name}:importFile", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -54063,12 +54674,12 @@ function encodeURIPath(str) {
   return str.replace(/[^A-Za-z0-9\-._~!$&'()*+,;=:@]+/g, encodeURIComponent);
 }
 var EMPTY = Object.freeze(/* @__PURE__ */ Object.create(null));
-var createPathTagFunction = (pathEncoder = encodeURIPath) => function path8(statics, ...params2) {
+var createPathTagFunction = (pathEncoder = encodeURIPath) => function path9(statics, ...params2) {
   if (statics.length === 1)
     return statics[0];
   let postPath = false;
   const invalidSegments = [];
-  const path9 = statics.reduce((previousValue, currentValue, index) => {
+  const path10 = statics.reduce((previousValue, currentValue, index) => {
     var _a5, _b, _c;
     if (/[?#]/.test(currentValue)) {
       postPath = true;
@@ -54086,7 +54697,7 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path8(stat
     }
     return previousValue + currentValue + (index === params2.length ? "" : encoded);
   }, "");
-  const pathOnly = path9.split(/[?#]/, 1)[0];
+  const pathOnly = path10.split(/[?#]/, 1)[0];
   const invalidSegmentPattern = /(^|\/)(?:\.|%2e){1,2}(?=\/|$)/gi;
   let match2;
   while ((match2 = invalidSegmentPattern.exec(pathOnly)) !== null) {
@@ -54110,40 +54721,40 @@ var createPathTagFunction = (pathEncoder = encodeURIPath) => function path8(stat
     }, "");
     throw new GeminiNextGenAPIClientError(`Path parameters result in path with invalid segments:
 ${invalidSegments.map((e) => e.error).join("\n")}
-${path9}
+${path10}
 ${underline2}`);
   }
-  return path9;
+  return path10;
 };
-var path7 = createPathTagFunction(encodeURIPath);
+var path8 = createPathTagFunction(encodeURIPath);
 var BaseAgents = class extends APIResource {
   /**
    * Creates a new Agent (Typed version for SDK).
    */
   create(params2 = {}, options) {
     const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, body = __rest(_a5, ["api_version"]);
-    return this._client.post(path7`/${api_version}/agents`, Object.assign({ body }, options));
+    return this._client.post(path8`/${api_version}/agents`, Object.assign({ body }, options));
   }
   /**
    * Lists all Agents.
    */
   list(params2 = {}, options) {
     const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, query = __rest(_a5, ["api_version"]);
-    return this._client.get(path7`/${api_version}/agents`, Object.assign({ query }, options));
+    return this._client.get(path8`/${api_version}/agents`, Object.assign({ query }, options));
   }
   /**
    * Deletes an Agent.
    */
   delete(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.delete(path7`/${api_version}/agents/${id}`, options);
+    return this._client.delete(path8`/${api_version}/agents/${id}`, options);
   }
   /**
    * Gets a specific Agent.
    */
   get(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.get(path7`/${api_version}/agents/${id}`, options);
+    return this._client.get(path8`/${api_version}/agents/${id}`, options);
   }
 };
 BaseAgents._key = Object.freeze(["agents"]);
@@ -54729,7 +55340,7 @@ var BaseInteractions = class extends APIResource {
       model: "model" in body ? body.model : void 0
     });
     const isStreaming = (_a5 = params2.stream) !== null && _a5 !== void 0 ? _a5 : false;
-    const promise2 = this._client.post(path7`/${api_version}/interactions`, Object.assign(Object.assign(Object.assign({ body }, options), { stream: isStreaming }), needsLegacyLyriaShim && isStreaming ? { __streamClass: LegacyLyriaStream } : {}));
+    const promise2 = this._client.post(path8`/${api_version}/interactions`, Object.assign(Object.assign(Object.assign({ body }, options), { stream: isStreaming }), needsLegacyLyriaShim && isStreaming ? { __streamClass: LegacyLyriaStream } : {}));
     if (isStreaming) {
       return promise2;
     }
@@ -54751,7 +55362,7 @@ var BaseInteractions = class extends APIResource {
    */
   delete(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.delete(path7`/${api_version}/interactions/${id}`, options);
+    return this._client.delete(path8`/${api_version}/interactions/${id}`, options);
   }
   /**
    * Cancels an interaction by id. This only applies to background interactions that
@@ -54766,12 +55377,12 @@ var BaseInteractions = class extends APIResource {
    */
   cancel(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.post(path7`/${api_version}/interactions/${id}/cancel`, options)._thenUnwrap(addOutputProperties);
+    return this._client.post(path8`/${api_version}/interactions/${id}/cancel`, options)._thenUnwrap(addOutputProperties);
   }
   get(id, params2 = {}, options) {
     var _a5;
     const _b = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _b, query = __rest(_b, ["api_version"]);
-    const response = this._client.get(path7`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a5 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a5 !== void 0 ? _a5 : false }));
+    const response = this._client.get(path8`/${api_version}/interactions/${id}`, Object.assign(Object.assign({ query }, options), { stream: (_a5 = params2 === null || params2 === void 0 ? void 0 : params2.stream) !== null && _a5 !== void 0 ? _a5 : false }));
     if (params2 === null || params2 === void 0 ? void 0 : params2.stream) {
       return response;
     }
@@ -54840,49 +55451,49 @@ var BaseWebhooks = class extends APIResource {
    */
   create(params2, options) {
     const { api_version = this._client.apiVersion } = params2, body = __rest(params2, ["api_version"]);
-    return this._client.post(path7`/${api_version}/webhooks`, Object.assign({ body }, options));
+    return this._client.post(path8`/${api_version}/webhooks`, Object.assign({ body }, options));
   }
   /**
    * Updates an existing Webhook.
    */
   update(id, params2 = {}, options) {
     const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion, update_mask } = _a5, body = __rest(_a5, ["api_version", "update_mask"]);
-    return this._client.patch(path7`/${api_version}/webhooks/${id}`, Object.assign({ query: { update_mask }, body }, options));
+    return this._client.patch(path8`/${api_version}/webhooks/${id}`, Object.assign({ query: { update_mask }, body }, options));
   }
   /**
    * Lists all Webhooks.
    */
   list(params2 = {}, options) {
     const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, query = __rest(_a5, ["api_version"]);
-    return this._client.get(path7`/${api_version}/webhooks`, Object.assign({ query }, options));
+    return this._client.get(path8`/${api_version}/webhooks`, Object.assign({ query }, options));
   }
   /**
    * Deletes a Webhook.
    */
   delete(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.delete(path7`/${api_version}/webhooks/${id}`, options);
+    return this._client.delete(path8`/${api_version}/webhooks/${id}`, options);
   }
   /**
    * Gets a specific Webhook.
    */
   get(id, params2 = {}, options) {
     const { api_version = this._client.apiVersion } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.get(path7`/${api_version}/webhooks/${id}`, options);
+    return this._client.get(path8`/${api_version}/webhooks/${id}`, options);
   }
   /**
    * Sends a ping event to a Webhook.
    */
   ping(id, params2 = void 0, options) {
     const { api_version = this._client.apiVersion, body } = params2 !== null && params2 !== void 0 ? params2 : {};
-    return this._client.post(path7`/${api_version}/webhooks/${id}:ping`, Object.assign({ body }, options));
+    return this._client.post(path8`/${api_version}/webhooks/${id}:ping`, Object.assign({ body }, options));
   }
   /**
    * Generates a new signing secret for a Webhook.
    */
   rotateSigningSecret(id, params2 = {}, options) {
     const _a5 = params2 !== null && params2 !== void 0 ? params2 : {}, { api_version = this._client.apiVersion } = _a5, body = __rest(_a5, ["api_version"]);
-    return this._client.post(path7`/${api_version}/webhooks/${id}:rotateSigningSecret`, Object.assign({ body }, options));
+    return this._client.post(path8`/${api_version}/webhooks/${id}:rotateSigningSecret`, Object.assign({ body }, options));
   }
 };
 BaseWebhooks._key = Object.freeze(["webhooks"]);
@@ -55148,9 +55759,9 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
   makeStatusError(status, error51, message, headers) {
     return APIError.generate(status, error51, message, headers);
   }
-  buildURL(path8, query, defaultBaseURL) {
+  buildURL(path9, query, defaultBaseURL) {
     const baseURL = !this.baseURLOverridden() && defaultBaseURL || this.baseURL;
-    const url3 = isAbsoluteURL(path8) ? new URL(path8) : new URL(baseURL + (baseURL.endsWith("/") && path8.startsWith("/") ? path8.slice(1) : path8));
+    const url3 = isAbsoluteURL(path9) ? new URL(path9) : new URL(baseURL + (baseURL.endsWith("/") && path9.startsWith("/") ? path9.slice(1) : path9));
     const defaultQuery = this.defaultQuery();
     const pathQuery = Object.fromEntries(url3.searchParams);
     if (!isEmptyObj(defaultQuery) || !isEmptyObj(pathQuery)) {
@@ -55179,24 +55790,24 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
    */
   async prepareRequest(request, { url: url3, options }) {
   }
-  get(path8, opts) {
-    return this.methodRequest("get", path8, opts);
+  get(path9, opts) {
+    return this.methodRequest("get", path9, opts);
   }
-  post(path8, opts) {
-    return this.methodRequest("post", path8, opts);
+  post(path9, opts) {
+    return this.methodRequest("post", path9, opts);
   }
-  patch(path8, opts) {
-    return this.methodRequest("patch", path8, opts);
+  patch(path9, opts) {
+    return this.methodRequest("patch", path9, opts);
   }
-  put(path8, opts) {
-    return this.methodRequest("put", path8, opts);
+  put(path9, opts) {
+    return this.methodRequest("put", path9, opts);
   }
-  delete(path8, opts) {
-    return this.methodRequest("delete", path8, opts);
+  delete(path9, opts) {
+    return this.methodRequest("delete", path9, opts);
   }
-  methodRequest(method, path8, opts) {
+  methodRequest(method, path9, opts) {
     return this.request(Promise.resolve(opts).then((opts2) => {
-      return Object.assign({ method, path: path8 }, opts2);
+      return Object.assign({ method, path: path9 }, opts2);
     }));
   }
   request(options, remainingRetries = null) {
@@ -55370,8 +55981,8 @@ var BaseGeminiNextGenAPIClient = class _BaseGeminiNextGenAPIClient {
   async buildRequest(inputOptions, { retryCount = 0 } = {}) {
     var _b, _c, _d;
     const options = Object.assign({}, inputOptions);
-    const { method, path: path8, query, defaultBaseURL } = options;
-    const url3 = this.buildURL(path8, query, defaultBaseURL);
+    const { method, path: path9, query, defaultBaseURL } = options;
+    const url3 = this.buildURL(path9, query, defaultBaseURL);
     if ("timeout" in options)
       validatePositiveInteger("timeout", options.timeout);
     options.timeout = (_b = options.timeout) !== null && _b !== void 0 ? _b : this.timeout;
@@ -57035,16 +57646,16 @@ var Tunings = class extends BaseModule2 {
   async getInternal(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = getTuningJobParametersToVertex(params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -57065,12 +57676,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = getTuningJobParametersToMldev(params2);
-      path8 = formatMap("{name}", body["_url"]);
+      path9 = formatMap("{name}", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -57094,16 +57705,16 @@ var Tunings = class extends BaseModule2 {
   async listInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = listTuningJobsParametersToVertex(params2);
-      path8 = formatMap("tuningJobs", body["_url"]);
+      path9 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "GET",
@@ -57142,16 +57753,16 @@ var Tunings = class extends BaseModule2 {
   async cancel(params2) {
     var _a5, _b, _c, _d;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = cancelTuningJobParametersToVertex(params2);
-      path8 = formatMap("{name}:cancel", body["_url"]);
+      path9 = formatMap("{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -57174,12 +57785,12 @@ var Tunings = class extends BaseModule2 {
       });
     } else {
       const body = cancelTuningJobParametersToMldev(params2);
-      path8 = formatMap("{name}:cancel", body["_url"]);
+      path9 = formatMap("{name}:cancel", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -57205,16 +57816,16 @@ var Tunings = class extends BaseModule2 {
   async tuneInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = createTuningJobParametersPrivateToVertex(params2, params2);
-      path8 = formatMap("tuningJobs", body["_url"]);
+      path9 = formatMap("tuningJobs", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -57240,18 +57851,18 @@ var Tunings = class extends BaseModule2 {
   async tuneMldevInternal(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       throw new Error("This method is only supported by the Gemini Developer API.");
     } else {
       const body = createTuningJobParametersPrivateToMldev(params2);
-      path8 = formatMap("tunedModels", body["_url"]);
+      path9 = formatMap("tunedModels", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -57275,16 +57886,16 @@ var Tunings = class extends BaseModule2 {
   async validateReward(params2) {
     var _a5, _b;
     let response;
-    let path8 = "";
+    let path9 = "";
     let queryParams = {};
     if (this.apiClient.isVertexAI()) {
       const body = validateRewardParametersToVertex(params2);
-      path8 = formatMap("{parent}/tuningJobs:validateReinforcementTuningReward", body["_url"]);
+      path9 = formatMap("{parent}/tuningJobs:validateReinforcementTuningReward", body["_url"]);
       queryParams = body["_query"];
       delete body["_url"];
       delete body["_query"];
       response = this.apiClient.request({
-        path: path8,
+        path: path9,
         queryParams,
         body: JSON.stringify(body),
         httpMethod: "POST",
@@ -57397,7 +58008,7 @@ var NodeUploader = class {
   async stat(file2) {
     const fileStat = { size: 0, type: void 0 };
     if (typeof file2 === "string") {
-      const originalStat = await fs6.stat(file2);
+      const originalStat = await fs7.stat(file2);
       fileStat.size = originalStat.size;
       fileStat.type = this.inferMimeType(file2);
       return fileStat;
@@ -57545,7 +58156,7 @@ var NodeUploader = class {
     let fileHandle;
     const fileName = path$1.basename(file2);
     try {
-      fileHandle = await fs6.open(file2, "r");
+      fileHandle = await fs7.open(file2, "r");
       if (!fileHandle) {
         throw new Error(`Failed to open file`);
       }
@@ -57796,7 +58407,7 @@ var DEFAULT_API_KEY = process.env["GEMINI_API_KEY"];
 // ng-dev/ai/migrate.js
 import assert from "node:assert";
 var import_fast_glob4 = __toESM(require_out4());
-function builder30(argv) {
+function builder31(argv) {
   return argv.option("prompt", {
     type: "string",
     alias: "p",
@@ -57827,7 +58438,7 @@ function builder30(argv) {
     description: "API key used when making calls to the Gemini API"
   });
 }
-async function handler30(options) {
+async function handler31(options) {
   const apiKey = options.apiKey || DEFAULT_API_KEY;
   assert(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
@@ -57923,8 +58534,8 @@ async function applyPrompt(ai, model, temperature, content, prompt) {
   return parsed.content;
 }
 var MigrateModule = {
-  builder: builder30,
-  handler: handler30,
+  builder: builder31,
+  handler: handler31,
   command: "migrate",
   describe: "Apply a prompt-based AI migration over a set of files"
 };
@@ -57937,7 +58548,7 @@ var import_fast_glob5 = __toESM(require_out4());
 var import_cli_progress4 = __toESM(require_cli_progress());
 import assert2 from "node:assert";
 import { randomUUID } from "node:crypto";
-function builder31(argv) {
+function builder32(argv) {
   return argv.positional("files", {
     description: `One or more glob patterns to find target files (e.g., 'src/**/*.ts' 'test/**/*.ts').`,
     type: "string",
@@ -57965,7 +58576,7 @@ function builder31(argv) {
     description: "API key used when making calls to the Gemini API"
   });
 }
-async function handler31(options) {
+async function handler32(options) {
   const apiKey = options.apiKey || DEFAULT_API_KEY;
   assert2(apiKey, [
     "No API key configured. A Gemini API key must be set as the `GEMINI_API_KEY` environment variable, or passed in using the `--api-key` flag.",
@@ -58123,8 +58734,8 @@ function generatePrompt(errorDescription, fileNameMap) {
 `;
 }
 var FixModule = {
-  builder: builder31,
-  handler: handler31,
+  builder: builder32,
+  handler: handler32,
   command: "fix <files..>",
   describe: "Fixes errors from the specified error output"
 };
@@ -58894,10 +59505,10 @@ function mergeDefs(...defs) {
 function cloneDef(schema) {
   return mergeDefs(schema._zod.def);
 }
-function getElementAtPath(obj, path8) {
-  if (!path8)
+function getElementAtPath(obj, path9) {
+  if (!path9)
     return obj;
-  return path8.reduce((acc, key) => acc?.[key], obj);
+  return path9.reduce((acc, key) => acc?.[key], obj);
 }
 function promiseAllObject(promisesObj) {
   const keys = Object.keys(promisesObj);
@@ -59306,11 +59917,11 @@ function explicitlyAborted(x, startIndex = 0) {
   }
   return false;
 }
-function prefixIssues(path8, issues) {
+function prefixIssues(path9, issues) {
   return issues.map((iss) => {
     var _a5;
     (_a5 = iss).path ?? (_a5.path = []);
-    iss.path.unshift(path8);
+    iss.path.unshift(path9);
     return iss;
   });
 }
@@ -59457,16 +60068,16 @@ function flattenError(error51, mapper = (issue2) => issue2.message) {
 }
 function formatError(error51, mapper = (issue2) => issue2.message) {
   const fieldErrors = { _errors: [] };
-  const processError = (error52, path8 = []) => {
+  const processError = (error52, path9 = []) => {
     for (const issue2 of error52.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
-        issue2.errors.map((issues) => processError({ issues }, [...path8, ...issue2.path]));
+        issue2.errors.map((issues) => processError({ issues }, [...path9, ...issue2.path]));
       } else if (issue2.code === "invalid_key") {
-        processError({ issues: issue2.issues }, [...path8, ...issue2.path]);
+        processError({ issues: issue2.issues }, [...path9, ...issue2.path]);
       } else if (issue2.code === "invalid_element") {
-        processError({ issues: issue2.issues }, [...path8, ...issue2.path]);
+        processError({ issues: issue2.issues }, [...path9, ...issue2.path]);
       } else {
-        const fullpath = [...path8, ...issue2.path];
+        const fullpath = [...path9, ...issue2.path];
         if (fullpath.length === 0) {
           fieldErrors._errors.push(mapper(issue2));
         } else {
@@ -59493,17 +60104,17 @@ function formatError(error51, mapper = (issue2) => issue2.message) {
 }
 function treeifyError(error51, mapper = (issue2) => issue2.message) {
   const result = { errors: [] };
-  const processError = (error52, path8 = []) => {
+  const processError = (error52, path9 = []) => {
     var _a5, _b;
     for (const issue2 of error52.issues) {
       if (issue2.code === "invalid_union" && issue2.errors.length) {
-        issue2.errors.map((issues) => processError({ issues }, [...path8, ...issue2.path]));
+        issue2.errors.map((issues) => processError({ issues }, [...path9, ...issue2.path]));
       } else if (issue2.code === "invalid_key") {
-        processError({ issues: issue2.issues }, [...path8, ...issue2.path]);
+        processError({ issues: issue2.issues }, [...path9, ...issue2.path]);
       } else if (issue2.code === "invalid_element") {
-        processError({ issues: issue2.issues }, [...path8, ...issue2.path]);
+        processError({ issues: issue2.issues }, [...path9, ...issue2.path]);
       } else {
-        const fullpath = [...path8, ...issue2.path];
+        const fullpath = [...path9, ...issue2.path];
         if (fullpath.length === 0) {
           result.errors.push(mapper(issue2));
           continue;
@@ -59535,8 +60146,8 @@ function treeifyError(error51, mapper = (issue2) => issue2.message) {
 }
 function toDotPath(_path) {
   const segs = [];
-  const path8 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
-  for (const seg of path8) {
+  const path9 = _path.map((seg) => typeof seg === "object" ? seg.key : seg);
+  for (const seg of path9) {
     if (typeof seg === "number")
       segs.push(`[${seg}]`);
     else if (typeof seg === "symbol")
@@ -72114,13 +72725,13 @@ function resolveRef(ref, ctx) {
   if (!ref.startsWith("#")) {
     throw new Error("External $ref is not supported, only local refs (#/...) are allowed");
   }
-  const path8 = ref.slice(1).split("/").filter(Boolean);
-  if (path8.length === 0) {
+  const path9 = ref.slice(1).split("/").filter(Boolean);
+  if (path9.length === 0) {
     return ctx.rootSchema;
   }
   const defsKey = ctx.version === "draft-2020-12" ? "$defs" : "definitions";
-  if (path8[0] === defsKey) {
-    const key = path8[1];
+  if (path9[0] === defsKey) {
+    const key = path9[1];
     if (!key || !ctx.defs[key]) {
       throw new Error(`Reference not found: ${ref}`);
     }
@@ -72532,7 +73143,7 @@ config(en_default());
 var import_fast_glob6 = __toESM(require_out4());
 var import_yaml5 = __toESM(require_dist());
 import { readFile as readFile5 } from "node:fs/promises";
-import { join as join19, basename as basename3 } from "node:path";
+import { join as join20, basename as basename3 } from "node:path";
 var skillFrontmatterSchema = external_exports.object({
   name: external_exports.string().min(1).max(64).regex(/^[a-z0-9-]+$/, "Name must only contain lowercase alphanumeric characters and hyphens").refine((val) => !val.startsWith("-") && !val.endsWith("-") && !val.includes("--"), "Name must not start/end with hyphens or contain consecutive hyphens"),
   description: external_exports.string().min(1).max(1024),
@@ -72543,7 +73154,7 @@ var skillFrontmatterSchema = external_exports.object({
 });
 async function validateSkills(repoRoot) {
   let errorCount = 0;
-  const skillFiles = await (0, import_fast_glob6.default)("**/SKILL.md", { cwd: join19(repoRoot, "skills"), absolute: true });
+  const skillFiles = await (0, import_fast_glob6.default)("**/SKILL.md", { cwd: join20(repoRoot, "skills"), absolute: true });
   if (skillFiles.length === 0) {
     Log.info(` ${yellow("\u26A0")}  No skills found in skills/ directory.`);
     return { results: [], exitCode: 0 };
@@ -72552,13 +73163,13 @@ async function validateSkills(repoRoot) {
   const validationResults = await Promise.all(skillFiles.map(validateSkill));
   for (const result of validationResults.sort((a, b) => a.failures.length - b.failures.length)) {
     if (result.failures.length > 0) {
-      Log.info(` ${red("\u2718")}  ${bold(result.name)} (${join19("skills", result.name, "SKILL.md")})`);
+      Log.info(` ${red("\u2718")}  ${bold(result.name)} (${join20("skills", result.name, "SKILL.md")})`);
       result.failures.forEach((failure) => {
         Log.info(`  -  ${failure}`);
         errorCount++;
       });
     } else {
-      Log.info(` ${green("\u2714")}  ${bold(result.name)} (${join19("skills", result.name, "SKILL.md")})`);
+      Log.info(` ${green("\u2714")}  ${bold(result.name)} (${join20("skills", result.name, "SKILL.md")})`);
     }
   }
   Log.info();
@@ -72571,7 +73182,7 @@ async function validateSkills(repoRoot) {
   }
 }
 async function validateSkill(filePath) {
-  const name = basename3(join19(filePath, ".."));
+  const name = basename3(join20(filePath, ".."));
   const failures = [];
   try {
     const content = await readFile5(filePath, { encoding: "utf8" });
@@ -72604,7 +73215,7 @@ async function validateSkill(filePath) {
 }
 
 // ng-dev/ai/skills/cli.js
-async function builder32(yargs) {
+async function builder33(yargs) {
   return yargs.option("base-dir", {
     type: "string",
     default: determineRepoBaseDirFromCwd(),
@@ -72612,14 +73223,14 @@ async function builder32(yargs) {
     description: "The base directory to look for skills in"
   });
 }
-async function handler32({ baseDir }) {
+async function handler33({ baseDir }) {
   process.exitCode = (await validateSkills(baseDir)).exitCode;
 }
 var SkillsModule = {
   command: "skills validate",
   describe: "Validate agent skills in the repository",
-  builder: builder32,
-  handler: handler32
+  builder: builder33,
+  handler: handler33
 };
 
 // ng-dev/ai/cli.js
@@ -72632,6 +73243,13 @@ runParserWithCompletedFunctions((yargs) => {
   process.exitCode = 0;
   return yargs.scriptName("ng-dev").middleware([captureLogOutputForCommand, ngDevVersionMiddleware], true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).command("ai <command>", "", buildAiParser).command("config <command>", false, buildConfigParser).version(localVersion).wrap(120).strict();
 });
+/**
+ * @license
+ * Copyright Google LLC
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
 /*! Bundled license information:
 
 is-extglob/index.js:
