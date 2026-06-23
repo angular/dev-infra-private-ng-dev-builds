@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-OTOLHPGZ.mjs";
+} from "./chunk-6XSRLCXJ.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -14957,25 +14957,13 @@ var require_gcp_residency = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.4/node_modules/google-logging-utils/build/src/colours.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js
 var require_colours = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.4/node_modules/google-logging-utils/build/src/colours.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js"(exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     exports.Colours = void 0;
     var Colours = class _Colours {
-      static enabled = false;
-      static reset = "";
-      static bright = "";
-      static dim = "";
-      static red = "";
-      static green = "";
-      static yellow = "";
-      static blue = "";
-      static magenta = "";
-      static cyan = "";
-      static white = "";
-      static grey = "";
       /**
        * @param stream The stream (e.g. process.stderr)
        * @returns true if the stream should have colourization enabled
@@ -14985,7 +14973,7 @@ var require_colours = __commonJS({
         stream.isTTY && (typeof stream.getColorDepth === "function" ? stream.getColorDepth() > 2 : true);
       }
       static refresh() {
-        _Colours.enabled = _Colours.isEnabled(process?.stderr);
+        _Colours.enabled = _Colours.isEnabled(process === null || process === void 0 ? void 0 : process.stderr);
         if (!this.enabled) {
           _Colours.reset = "";
           _Colours.bright = "";
@@ -15014,30 +15002,25 @@ var require_colours = __commonJS({
       }
     };
     exports.Colours = Colours;
+    Colours.enabled = false;
+    Colours.reset = "";
+    Colours.bright = "";
+    Colours.dim = "";
+    Colours.red = "";
+    Colours.green = "";
+    Colours.yellow = "";
+    Colours.blue = "";
+    Colours.magenta = "";
+    Colours.cyan = "";
+    Colours.white = "";
+    Colours.grey = "";
     Colours.refresh();
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.4/node_modules/google-logging-utils/build/src/types.js
-var require_types = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.4/node_modules/google-logging-utils/build/src/types.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.LogSeverity = void 0;
-    var LogSeverity;
-    (function(LogSeverity2) {
-      LogSeverity2["DEFAULT"] = "DEFAULT";
-      LogSeverity2["DEBUG"] = "DEBUG";
-      LogSeverity2["INFO"] = "INFO";
-      LogSeverity2["WARNING"] = "WARNING";
-      LogSeverity2["ERROR"] = "ERROR";
-    })(LogSeverity || (exports.LogSeverity = LogSeverity = {}));
-  }
-});
-
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.4/node_modules/google-logging-utils/build/src/logging-utils.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js
 var require_logging_utils = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.4/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -15084,7 +15067,7 @@ var require_logging_utils = __commonJS({
       };
     }();
     Object.defineProperty(exports, "__esModule", { value: true });
-    exports.env = exports.DebugLogBackendBase = exports.placeholder = exports.AdhocDebugLogger = void 0;
+    exports.env = exports.DebugLogBackendBase = exports.placeholder = exports.AdhocDebugLogger = exports.LogSeverity = void 0;
     exports.getNodeBackend = getNodeBackend;
     exports.getDebugBackend = getDebugBackend;
     exports.getStructuredBackend = getStructuredBackend;
@@ -15094,18 +15077,18 @@ var require_logging_utils = __commonJS({
     var process3 = __importStar(__require("process"));
     var util = __importStar(__require("util"));
     var colours_1 = require_colours();
-    var types_1 = require_types();
+    var LogSeverity;
+    (function(LogSeverity2) {
+      LogSeverity2["DEFAULT"] = "DEFAULT";
+      LogSeverity2["DEBUG"] = "DEBUG";
+      LogSeverity2["INFO"] = "INFO";
+      LogSeverity2["WARNING"] = "WARNING";
+      LogSeverity2["ERROR"] = "ERROR";
+    })(LogSeverity || (exports.LogSeverity = LogSeverity = {}));
     var AdhocDebugLogger = class extends events_1.EventEmitter {
-      // Our namespace (system/subsystem/etc)
-      namespace;
-      // The function we'll call with new log lines.
-      // Should be built in Node util stuff, or the "debug" package, or whatever.
-      upstream;
-      // Self-referential function wrapper that calls invoke() on us.
-      func;
       /**
        * @param upstream The backend will pass a function that will be
-       * called whenever our logger function is invoked.
+       *   called whenever our logger function is invoked.
        */
       constructor(namespace, upstream) {
         super();
@@ -15117,10 +15100,10 @@ var require_logging_utils = __commonJS({
           // And pull over the EventEmitter functionality.
           on: (event, listener) => this.on(event, listener)
         });
-        this.func.debug = (...args) => this.invokeSeverity(types_1.LogSeverity.DEBUG, ...args);
-        this.func.info = (...args) => this.invokeSeverity(types_1.LogSeverity.INFO, ...args);
-        this.func.warn = (...args) => this.invokeSeverity(types_1.LogSeverity.WARNING, ...args);
-        this.func.error = (...args) => this.invokeSeverity(types_1.LogSeverity.ERROR, ...args);
+        this.func.debug = (...args) => this.invokeSeverity(LogSeverity.DEBUG, ...args);
+        this.func.info = (...args) => this.invokeSeverity(LogSeverity.INFO, ...args);
+        this.func.warn = (...args) => this.invokeSeverity(LogSeverity.WARNING, ...args);
+        this.func.error = (...args) => this.invokeSeverity(LogSeverity.ERROR, ...args);
         this.func.sublog = (namespace2) => log(namespace2, this.func);
       }
       invoke(fields, ...args) {
@@ -15143,11 +15126,12 @@ var require_logging_utils = __commonJS({
     exports.placeholder = new AdhocDebugLogger("", () => {
     }).func;
     var DebugLogBackendBase = class {
-      cached = /* @__PURE__ */ new Map();
-      filters = [];
-      filtersSet = false;
       constructor() {
-        let nodeFlag = process3.env[exports.env.nodeEnables] ?? "*";
+        var _a5;
+        this.cached = /* @__PURE__ */ new Map();
+        this.filters = [];
+        this.filtersSet = false;
+        let nodeFlag = (_a5 = process3.env[exports.env.nodeEnables]) !== null && _a5 !== void 0 ? _a5 : "*";
         if (nodeFlag === "all") {
           nodeFlag = "*";
         }
@@ -15172,9 +15156,10 @@ var require_logging_utils = __commonJS({
     };
     exports.DebugLogBackendBase = DebugLogBackendBase;
     var NodeBackend = class extends DebugLogBackendBase {
-      // Default to allowing all systems, since we gate earlier based on whether the
-      // variable is empty.
-      enabledRegexp = /.*/g;
+      constructor() {
+        super(...arguments);
+        this.enabledRegexp = /.*/g;
+      }
       isEnabled(namespace) {
         return this.enabledRegexp.test(namespace);
       }
@@ -15184,21 +15169,22 @@ var require_logging_utils = __commonJS({
           };
         }
         return (fields, ...args) => {
+          var _a5;
           const nscolour = `${colours_1.Colours.green}${namespace}${colours_1.Colours.reset}`;
           const pid = `${colours_1.Colours.yellow}${process3.pid}${colours_1.Colours.reset}`;
           let level;
           switch (fields.severity) {
-            case types_1.LogSeverity.ERROR:
+            case LogSeverity.ERROR:
               level = `${colours_1.Colours.red}${fields.severity}${colours_1.Colours.reset}`;
               break;
-            case types_1.LogSeverity.INFO:
+            case LogSeverity.INFO:
               level = `${colours_1.Colours.magenta}${fields.severity}${colours_1.Colours.reset}`;
               break;
-            case types_1.LogSeverity.WARNING:
+            case LogSeverity.WARNING:
               level = `${colours_1.Colours.yellow}${fields.severity}${colours_1.Colours.reset}`;
               break;
             default:
-              level = fields.severity ?? types_1.LogSeverity.DEFAULT;
+              level = (_a5 = fields.severity) !== null && _a5 !== void 0 ? _a5 : LogSeverity.DEFAULT;
               break;
           }
           const msg = util.formatWithOptions({ colors: colours_1.Colours.enabled }, ...args);
@@ -15221,7 +15207,6 @@ var require_logging_utils = __commonJS({
       return new NodeBackend();
     }
     var DebugBackend = class extends DebugLogBackendBase {
-      debugPkg;
       constructor(pkg) {
         super();
         this.debugPkg = pkg;
@@ -15233,7 +15218,8 @@ var require_logging_utils = __commonJS({
         };
       }
       setFilters() {
-        const existingFilters = process3.env["NODE_DEBUG"] ?? "";
+        var _a5;
+        const existingFilters = (_a5 = process3.env["NODE_DEBUG"]) !== null && _a5 !== void 0 ? _a5 : "";
         process3.env["NODE_DEBUG"] = `${existingFilters}${existingFilters ? "," : ""}${this.filters.join(",")}`;
       }
     };
@@ -15241,15 +15227,17 @@ var require_logging_utils = __commonJS({
       return new DebugBackend(debugPkg);
     }
     var StructuredBackend = class extends DebugLogBackendBase {
-      upstream;
       constructor(upstream) {
+        var _a5;
         super();
-        this.upstream = upstream ?? void 0;
+        this.upstream = (_a5 = upstream) !== null && _a5 !== void 0 ? _a5 : void 0;
       }
       makeLogger(namespace) {
-        const debugLogger = this.upstream?.makeLogger(namespace);
+        var _a5;
+        const debugLogger = (_a5 = this.upstream) === null || _a5 === void 0 ? void 0 : _a5.makeLogger(namespace);
         return (fields, ...args) => {
-          const severity = fields.severity ?? types_1.LogSeverity.INFO;
+          var _a6;
+          const severity = (_a6 = fields.severity) !== null && _a6 !== void 0 ? _a6 : LogSeverity.INFO;
           const json2 = Object.assign({
             severity,
             message: util.format(...args)
@@ -15263,7 +15251,8 @@ var require_logging_utils = __commonJS({
         };
       }
       setFilters() {
-        this.upstream?.setFilters();
+        var _a5;
+        (_a5 = this.upstream) === null || _a5 === void 0 ? void 0 : _a5.setFilters();
       }
     };
     function getStructuredBackend(upstream) {
@@ -15315,7 +15304,7 @@ var require_logging_utils = __commonJS({
             }
             previousBackend = cachedBackend;
           }
-          cachedBackend?.log(namespace, fields, ...args);
+          cachedBackend === null || cachedBackend === void 0 ? void 0 : cachedBackend.log(namespace, fields, ...args);
         });
         return newLogger;
       })();
@@ -15325,9 +15314,9 @@ var require_logging_utils = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.4/node_modules/google-logging-utils/build/src/index.js
+// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js
 var require_src3 = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.4/node_modules/google-logging-utils/build/src/index.js"(exports) {
+  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
       if (k2 === void 0)
@@ -16280,392 +16269,6 @@ var require_util2 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js
-var require_colours2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/colours.js"(exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.Colours = void 0;
-    var Colours = class _Colours {
-      /**
-       * @param stream The stream (e.g. process.stderr)
-       * @returns true if the stream should have colourization enabled
-       */
-      static isEnabled(stream) {
-        return stream && // May happen in browsers.
-        stream.isTTY && (typeof stream.getColorDepth === "function" ? stream.getColorDepth() > 2 : true);
-      }
-      static refresh() {
-        _Colours.enabled = _Colours.isEnabled(process === null || process === void 0 ? void 0 : process.stderr);
-        if (!this.enabled) {
-          _Colours.reset = "";
-          _Colours.bright = "";
-          _Colours.dim = "";
-          _Colours.red = "";
-          _Colours.green = "";
-          _Colours.yellow = "";
-          _Colours.blue = "";
-          _Colours.magenta = "";
-          _Colours.cyan = "";
-          _Colours.white = "";
-          _Colours.grey = "";
-        } else {
-          _Colours.reset = "\x1B[0m";
-          _Colours.bright = "\x1B[1m";
-          _Colours.dim = "\x1B[2m";
-          _Colours.red = "\x1B[31m";
-          _Colours.green = "\x1B[32m";
-          _Colours.yellow = "\x1B[33m";
-          _Colours.blue = "\x1B[34m";
-          _Colours.magenta = "\x1B[35m";
-          _Colours.cyan = "\x1B[36m";
-          _Colours.white = "\x1B[37m";
-          _Colours.grey = "\x1B[90m";
-        }
-      }
-    };
-    exports.Colours = Colours;
-    Colours.enabled = false;
-    Colours.reset = "";
-    Colours.bright = "";
-    Colours.dim = "";
-    Colours.red = "";
-    Colours.green = "";
-    Colours.yellow = "";
-    Colours.blue = "";
-    Colours.magenta = "";
-    Colours.cyan = "";
-    Colours.white = "";
-    Colours.grey = "";
-    Colours.refresh();
-  }
-});
-
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js
-var require_logging_utils2 = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/logging-utils.js"(exports) {
-    "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      var desc = Object.getOwnPropertyDescriptor(m, k);
-      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-        desc = { enumerable: true, get: function() {
-          return m[k];
-        } };
-      }
-      Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __setModuleDefault = exports && exports.__setModuleDefault || (Object.create ? function(o, v) {
-      Object.defineProperty(o, "default", { enumerable: true, value: v });
-    } : function(o, v) {
-      o["default"] = v;
-    });
-    var __importStar = exports && exports.__importStar || /* @__PURE__ */ function() {
-      var ownKeys = function(o) {
-        ownKeys = Object.getOwnPropertyNames || function(o2) {
-          var ar = [];
-          for (var k in o2)
-            if (Object.prototype.hasOwnProperty.call(o2, k))
-              ar[ar.length] = k;
-          return ar;
-        };
-        return ownKeys(o);
-      };
-      return function(mod) {
-        if (mod && mod.__esModule)
-          return mod;
-        var result = {};
-        if (mod != null) {
-          for (var k = ownKeys(mod), i = 0; i < k.length; i++)
-            if (k[i] !== "default")
-              __createBinding(result, mod, k[i]);
-        }
-        __setModuleDefault(result, mod);
-        return result;
-      };
-    }();
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.env = exports.DebugLogBackendBase = exports.placeholder = exports.AdhocDebugLogger = exports.LogSeverity = void 0;
-    exports.getNodeBackend = getNodeBackend;
-    exports.getDebugBackend = getDebugBackend;
-    exports.getStructuredBackend = getStructuredBackend;
-    exports.setBackend = setBackend;
-    exports.log = log;
-    var events_1 = __require("events");
-    var process3 = __importStar(__require("process"));
-    var util = __importStar(__require("util"));
-    var colours_1 = require_colours2();
-    var LogSeverity;
-    (function(LogSeverity2) {
-      LogSeverity2["DEFAULT"] = "DEFAULT";
-      LogSeverity2["DEBUG"] = "DEBUG";
-      LogSeverity2["INFO"] = "INFO";
-      LogSeverity2["WARNING"] = "WARNING";
-      LogSeverity2["ERROR"] = "ERROR";
-    })(LogSeverity || (exports.LogSeverity = LogSeverity = {}));
-    var AdhocDebugLogger = class extends events_1.EventEmitter {
-      /**
-       * @param upstream The backend will pass a function that will be
-       *   called whenever our logger function is invoked.
-       */
-      constructor(namespace, upstream) {
-        super();
-        this.namespace = namespace;
-        this.upstream = upstream;
-        this.func = Object.assign(this.invoke.bind(this), {
-          // Also add an instance pointer back to us.
-          instance: this,
-          // And pull over the EventEmitter functionality.
-          on: (event, listener) => this.on(event, listener)
-        });
-        this.func.debug = (...args) => this.invokeSeverity(LogSeverity.DEBUG, ...args);
-        this.func.info = (...args) => this.invokeSeverity(LogSeverity.INFO, ...args);
-        this.func.warn = (...args) => this.invokeSeverity(LogSeverity.WARNING, ...args);
-        this.func.error = (...args) => this.invokeSeverity(LogSeverity.ERROR, ...args);
-        this.func.sublog = (namespace2) => log(namespace2, this.func);
-      }
-      invoke(fields, ...args) {
-        if (this.upstream) {
-          try {
-            this.upstream(fields, ...args);
-          } catch (e) {
-          }
-        }
-        try {
-          this.emit("log", fields, args);
-        } catch (e) {
-        }
-      }
-      invokeSeverity(severity, ...args) {
-        this.invoke({ severity }, ...args);
-      }
-    };
-    exports.AdhocDebugLogger = AdhocDebugLogger;
-    exports.placeholder = new AdhocDebugLogger("", () => {
-    }).func;
-    var DebugLogBackendBase = class {
-      constructor() {
-        var _a5;
-        this.cached = /* @__PURE__ */ new Map();
-        this.filters = [];
-        this.filtersSet = false;
-        let nodeFlag = (_a5 = process3.env[exports.env.nodeEnables]) !== null && _a5 !== void 0 ? _a5 : "*";
-        if (nodeFlag === "all") {
-          nodeFlag = "*";
-        }
-        this.filters = nodeFlag.split(",");
-      }
-      log(namespace, fields, ...args) {
-        try {
-          if (!this.filtersSet) {
-            this.setFilters();
-            this.filtersSet = true;
-          }
-          let logger = this.cached.get(namespace);
-          if (!logger) {
-            logger = this.makeLogger(namespace);
-            this.cached.set(namespace, logger);
-          }
-          logger(fields, ...args);
-        } catch (e) {
-          console.error(e);
-        }
-      }
-    };
-    exports.DebugLogBackendBase = DebugLogBackendBase;
-    var NodeBackend = class extends DebugLogBackendBase {
-      constructor() {
-        super(...arguments);
-        this.enabledRegexp = /.*/g;
-      }
-      isEnabled(namespace) {
-        return this.enabledRegexp.test(namespace);
-      }
-      makeLogger(namespace) {
-        if (!this.enabledRegexp.test(namespace)) {
-          return () => {
-          };
-        }
-        return (fields, ...args) => {
-          var _a5;
-          const nscolour = `${colours_1.Colours.green}${namespace}${colours_1.Colours.reset}`;
-          const pid = `${colours_1.Colours.yellow}${process3.pid}${colours_1.Colours.reset}`;
-          let level;
-          switch (fields.severity) {
-            case LogSeverity.ERROR:
-              level = `${colours_1.Colours.red}${fields.severity}${colours_1.Colours.reset}`;
-              break;
-            case LogSeverity.INFO:
-              level = `${colours_1.Colours.magenta}${fields.severity}${colours_1.Colours.reset}`;
-              break;
-            case LogSeverity.WARNING:
-              level = `${colours_1.Colours.yellow}${fields.severity}${colours_1.Colours.reset}`;
-              break;
-            default:
-              level = (_a5 = fields.severity) !== null && _a5 !== void 0 ? _a5 : LogSeverity.DEFAULT;
-              break;
-          }
-          const msg = util.formatWithOptions({ colors: colours_1.Colours.enabled }, ...args);
-          const filteredFields = Object.assign({}, fields);
-          delete filteredFields.severity;
-          const fieldsJson = Object.getOwnPropertyNames(filteredFields).length ? JSON.stringify(filteredFields) : "";
-          const fieldsColour = fieldsJson ? `${colours_1.Colours.grey}${fieldsJson}${colours_1.Colours.reset}` : "";
-          console.error("%s [%s|%s] %s%s", pid, nscolour, level, msg, fieldsJson ? ` ${fieldsColour}` : "");
-        };
-      }
-      // Regexp patterns below are from here:
-      // https://github.com/nodejs/node/blob/c0aebed4b3395bd65d54b18d1fd00f071002ac20/lib/internal/util/debuglog.js#L36
-      setFilters() {
-        const totalFilters = this.filters.join(",");
-        const regexp = totalFilters.replace(/[|\\{}()[\]^$+?.]/g, "\\$&").replace(/\*/g, ".*").replace(/,/g, "$|^");
-        this.enabledRegexp = new RegExp(`^${regexp}$`, "i");
-      }
-    };
-    function getNodeBackend() {
-      return new NodeBackend();
-    }
-    var DebugBackend = class extends DebugLogBackendBase {
-      constructor(pkg) {
-        super();
-        this.debugPkg = pkg;
-      }
-      makeLogger(namespace) {
-        const debugLogger = this.debugPkg(namespace);
-        return (fields, ...args) => {
-          debugLogger(args[0], ...args.slice(1));
-        };
-      }
-      setFilters() {
-        var _a5;
-        const existingFilters = (_a5 = process3.env["NODE_DEBUG"]) !== null && _a5 !== void 0 ? _a5 : "";
-        process3.env["NODE_DEBUG"] = `${existingFilters}${existingFilters ? "," : ""}${this.filters.join(",")}`;
-      }
-    };
-    function getDebugBackend(debugPkg) {
-      return new DebugBackend(debugPkg);
-    }
-    var StructuredBackend = class extends DebugLogBackendBase {
-      constructor(upstream) {
-        var _a5;
-        super();
-        this.upstream = (_a5 = upstream) !== null && _a5 !== void 0 ? _a5 : void 0;
-      }
-      makeLogger(namespace) {
-        var _a5;
-        const debugLogger = (_a5 = this.upstream) === null || _a5 === void 0 ? void 0 : _a5.makeLogger(namespace);
-        return (fields, ...args) => {
-          var _a6;
-          const severity = (_a6 = fields.severity) !== null && _a6 !== void 0 ? _a6 : LogSeverity.INFO;
-          const json2 = Object.assign({
-            severity,
-            message: util.format(...args)
-          }, fields);
-          const jsonString = JSON.stringify(json2);
-          if (debugLogger) {
-            debugLogger(fields, jsonString);
-          } else {
-            console.log("%s", jsonString);
-          }
-        };
-      }
-      setFilters() {
-        var _a5;
-        (_a5 = this.upstream) === null || _a5 === void 0 ? void 0 : _a5.setFilters();
-      }
-    };
-    function getStructuredBackend(upstream) {
-      return new StructuredBackend(upstream);
-    }
-    exports.env = {
-      /**
-       * Filter wildcards specific to the Node syntax, and similar to the built-in
-       * utils.debuglog() environment variable. If missing, disables logging.
-       */
-      nodeEnables: "GOOGLE_SDK_NODE_LOGGING"
-    };
-    var loggerCache = /* @__PURE__ */ new Map();
-    var cachedBackend = void 0;
-    function setBackend(backend) {
-      cachedBackend = backend;
-      loggerCache.clear();
-    }
-    function log(namespace, parent) {
-      if (!cachedBackend) {
-        const enablesFlag = process3.env[exports.env.nodeEnables];
-        if (!enablesFlag) {
-          return exports.placeholder;
-        }
-      }
-      if (!namespace) {
-        return exports.placeholder;
-      }
-      if (parent) {
-        namespace = `${parent.instance.namespace}:${namespace}`;
-      }
-      const existing = loggerCache.get(namespace);
-      if (existing) {
-        return existing.func;
-      }
-      if (cachedBackend === null) {
-        return exports.placeholder;
-      } else if (cachedBackend === void 0) {
-        cachedBackend = getNodeBackend();
-      }
-      const logger = (() => {
-        let previousBackend = void 0;
-        const newLogger = new AdhocDebugLogger(namespace, (fields, ...args) => {
-          if (previousBackend !== cachedBackend) {
-            if (cachedBackend === null) {
-              return;
-            } else if (cachedBackend === void 0) {
-              cachedBackend = getNodeBackend();
-            }
-            previousBackend = cachedBackend;
-          }
-          cachedBackend === null || cachedBackend === void 0 ? void 0 : cachedBackend.log(namespace, fields, ...args);
-        });
-        return newLogger;
-      })();
-      loggerCache.set(namespace, logger);
-      return logger.func;
-    }
-  }
-});
-
-// node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js
-var require_src5 = __commonJS({
-  "node_modules/.aspect_rules_js/google-logging-utils@1.1.3/node_modules/google-logging-utils/build/src/index.js"(exports) {
-    "use strict";
-    var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      var desc = Object.getOwnPropertyDescriptor(m, k);
-      if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-        desc = { enumerable: true, get: function() {
-          return m[k];
-        } };
-      }
-      Object.defineProperty(o, k2, desc);
-    } : function(o, m, k, k2) {
-      if (k2 === void 0)
-        k2 = k;
-      o[k2] = m[k];
-    });
-    var __exportStar = exports && exports.__exportStar || function(m, exports2) {
-      for (var p in m)
-        if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports2, p))
-          __createBinding(exports2, m, p);
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    __exportStar(require_logging_utils2(), exports);
-  }
-});
-
 // node_modules/.aspect_rules_js/google-auth-library@10.7.0_supports-color@10.2.2/node_modules/google-auth-library/package.json
 var require_package2 = __commonJS({
   "node_modules/.aspect_rules_js/google-auth-library@10.7.0_supports-color@10.2.2/node_modules/google-auth-library/package.json"(exports, module) {
@@ -16786,7 +16389,7 @@ var require_authclient = __commonJS({
     var events_1 = __require("events");
     var gaxios_1 = require_src2();
     var util_1 = require_util2();
-    var google_logging_utils_1 = require_src5();
+    var google_logging_utils_1 = require_src3();
     var shared_cjs_1 = require_shared2();
     exports.DEFAULT_UNIVERSE = "googleapis.com";
     exports.DEFAULT_EAGER_REFRESH_THRESHOLD_MILLIS = 5 * 60 * 1e3;
@@ -23107,7 +22710,7 @@ var require_passthrough = __commonJS({
 });
 
 // node_modules/.aspect_rules_js/google-auth-library@10.7.0_supports-color@10.2.2/node_modules/google-auth-library/build/src/index.js
-var require_src6 = __commonJS({
+var require_src5 = __commonJS({
   "node_modules/.aspect_rules_js/google-auth-library@10.7.0_supports-color@10.2.2/node_modules/google-auth-library/build/src/index.js"(exports) {
     "use strict";
     var __createBinding = exports && exports.__createBinding || (Object.create ? function(o, m, k, k2) {
@@ -37573,7 +37176,7 @@ var import_yaml3 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-6c11443ffc8a192a3715e4daef19aec64c1ed98d`;
+var localVersion = `0.0.0-786ee4782863cc2e6c90737aa3b3801e1f3eb432`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -39413,7 +39016,7 @@ function buildConfigParser(localYargs) {
 
 // node_modules/.aspect_rules_js/@google+genai@2.8.0_408531172/node_modules/@google/genai/dist/node/index.mjs
 var import_p_retry = __toESM(require_p_retry(), 1);
-var import_google_auth_library = __toESM(require_src6(), 1);
+var import_google_auth_library = __toESM(require_src5(), 1);
 import { createWriteStream } from "fs";
 import * as fs7 from "fs/promises";
 import { writeFile as writeFile2 } from "fs/promises";
