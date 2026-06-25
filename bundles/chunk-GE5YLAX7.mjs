@@ -3,11 +3,9 @@ import {createRequire as __cjsCompatRequire_ngDev} from 'module';
 const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 import {
-  init_supports_color,
-  supports_color_default
-} from "./chunk-EVBSN22H.mjs";
-import {
   __commonJS,
+  __esm,
+  __export,
   __toESM
 } from "./chunk-RZTNU4LP.mjs";
 
@@ -32,6 +30,155 @@ var require_get_caller_file = __commonJS({
         return stack[position] ? stack[position].getFileName() : void 0;
       }
     };
+  }
+});
+
+// node_modules/.aspect_rules_js/supports-color@10.2.2/node_modules/supports-color/index.js
+var supports_color_exports = {};
+__export(supports_color_exports, {
+  createSupportsColor: () => createSupportsColor,
+  default: () => supports_color_default
+});
+import process2 from "node:process";
+import os from "node:os";
+import tty from "node:tty";
+function hasFlag(flag, argv = globalThis.Deno ? globalThis.Deno.args : process2.argv) {
+  const prefix = flag.startsWith("-") ? "" : flag.length === 1 ? "-" : "--";
+  const position = argv.indexOf(prefix + flag);
+  const terminatorPosition = argv.indexOf("--");
+  return position !== -1 && (terminatorPosition === -1 || position < terminatorPosition);
+}
+function envForceColor() {
+  if (!("FORCE_COLOR" in env2)) {
+    return;
+  }
+  if (env2.FORCE_COLOR === "true") {
+    return 1;
+  }
+  if (env2.FORCE_COLOR === "false") {
+    return 0;
+  }
+  if (env2.FORCE_COLOR.length === 0) {
+    return 1;
+  }
+  const level = Math.min(Number.parseInt(env2.FORCE_COLOR, 10), 3);
+  if (![0, 1, 2, 3].includes(level)) {
+    return;
+  }
+  return level;
+}
+function translateLevel(level) {
+  if (level === 0) {
+    return false;
+  }
+  return {
+    level,
+    hasBasic: true,
+    has256: level >= 2,
+    has16m: level >= 3
+  };
+}
+function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
+  const noFlagForceColor = envForceColor();
+  if (noFlagForceColor !== void 0) {
+    flagForceColor = noFlagForceColor;
+  }
+  const forceColor = sniffFlags ? flagForceColor : noFlagForceColor;
+  if (forceColor === 0) {
+    return 0;
+  }
+  if (sniffFlags) {
+    if (hasFlag("color=16m") || hasFlag("color=full") || hasFlag("color=truecolor")) {
+      return 3;
+    }
+    if (hasFlag("color=256")) {
+      return 2;
+    }
+  }
+  if ("TF_BUILD" in env2 && "AGENT_NAME" in env2) {
+    return 1;
+  }
+  if (haveStream && !streamIsTTY && forceColor === void 0) {
+    return 0;
+  }
+  const min = forceColor || 0;
+  if (env2.TERM === "dumb") {
+    return min;
+  }
+  if (process2.platform === "win32") {
+    const osRelease = os.release().split(".");
+    if (Number(osRelease[0]) >= 10 && Number(osRelease[2]) >= 10586) {
+      return Number(osRelease[2]) >= 14931 ? 3 : 2;
+    }
+    return 1;
+  }
+  if ("CI" in env2) {
+    if (["GITHUB_ACTIONS", "GITEA_ACTIONS", "CIRCLECI"].some((key) => key in env2)) {
+      return 3;
+    }
+    if (["TRAVIS", "APPVEYOR", "GITLAB_CI", "BUILDKITE", "DRONE"].some((sign) => sign in env2) || env2.CI_NAME === "codeship") {
+      return 1;
+    }
+    return min;
+  }
+  if ("TEAMCITY_VERSION" in env2) {
+    return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env2.TEAMCITY_VERSION) ? 1 : 0;
+  }
+  if (env2.COLORTERM === "truecolor") {
+    return 3;
+  }
+  if (env2.TERM === "xterm-kitty") {
+    return 3;
+  }
+  if (env2.TERM === "xterm-ghostty") {
+    return 3;
+  }
+  if (env2.TERM === "wezterm") {
+    return 3;
+  }
+  if ("TERM_PROGRAM" in env2) {
+    const version = Number.parseInt((env2.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+    switch (env2.TERM_PROGRAM) {
+      case "iTerm.app": {
+        return version >= 3 ? 3 : 2;
+      }
+      case "Apple_Terminal": {
+        return 2;
+      }
+    }
+  }
+  if (/-256(color)?$/i.test(env2.TERM)) {
+    return 2;
+  }
+  if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env2.TERM)) {
+    return 1;
+  }
+  if ("COLORTERM" in env2) {
+    return 1;
+  }
+  return min;
+}
+function createSupportsColor(stream, options = {}) {
+  const level = _supportsColor(stream, {
+    streamIsTTY: stream && stream.isTTY,
+    ...options
+  });
+  return translateLevel(level);
+}
+var env2, flagForceColor, supportsColor, supports_color_default;
+var init_supports_color = __esm({
+  "node_modules/.aspect_rules_js/supports-color@10.2.2/node_modules/supports-color/index.js"() {
+    ({ env: env2 } = process2);
+    if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
+      flagForceColor = 0;
+    } else if (hasFlag("color") || hasFlag("colors") || hasFlag("color=true") || hasFlag("color=always")) {
+      flagForceColor = 1;
+    }
+    supportsColor = {
+      stdout: createSupportsColor({ isTTY: tty.isatty(1) }),
+      stderr: createSupportsColor({ isTTY: tty.isatty(2) })
+    };
+    supports_color_default = supportsColor;
   }
 });
 
@@ -1457,8 +1604,8 @@ var YargsParser = class {
       if (typeof envPrefix === "undefined")
         return;
       const prefix = typeof envPrefix === "string" ? envPrefix : "";
-      const env2 = mixin2.env();
-      Object.keys(env2).forEach(function(envVar) {
+      const env3 = mixin2.env();
+      Object.keys(env3).forEach(function(envVar) {
         if (prefix === "" || envVar.lastIndexOf(prefix, 0) === 0) {
           const keys = envVar.split("__").map(function(key, i) {
             if (i === 0) {
@@ -1467,7 +1614,7 @@ var YargsParser = class {
             return camelCase(key);
           });
           if ((configOnly && flags.configs[keys.join(".")] || !configOnly) && !hasKey(argv2, keys)) {
-            setArg(keys.join("."), env2[envVar]);
+            setArg(keys.join("."), env3[envVar]);
           }
         }
       });
@@ -5430,9 +5577,9 @@ var ChildProcess = class {
   }
   static spawnSync(command2, args, options = {}) {
     const commandText = `${command2} ${args.join(" ")}`;
-    const env2 = getEnvironmentForNonInteractiveCommand(options.env);
+    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
     Log.debug(`Executing command: ${sanitize(commandText)}`);
-    const { status: exitCode, signal, stdout, stderr } = _spawnSync(command2, args, { ...options, env: env2, encoding: "utf8", stdio: "pipe" });
+    const { status: exitCode, signal, stdout, stderr } = _spawnSync(command2, args, { ...options, env: env3, encoding: "utf8", stdio: "pipe" });
     const status = statusFromExitCodeAndSignal(exitCode, signal);
     if (status === 0 || options.suppressErrorOnFailingExitCode) {
       return { status, stdout, stderr };
@@ -5441,12 +5588,12 @@ var ChildProcess = class {
   }
   static spawn(command2, args, options = {}) {
     const commandText = `${command2} ${args.join(" ")}`;
-    const env2 = getEnvironmentForNonInteractiveCommand(options.env);
-    return processAsyncCmd(commandText, options, _spawn(command2, args, { ...options, env: env2, stdio: "pipe" }));
+    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
+    return processAsyncCmd(commandText, options, _spawn(command2, args, { ...options, env: env3, stdio: "pipe" }));
   }
   static exec(command2, options = {}) {
-    const env2 = getEnvironmentForNonInteractiveCommand(options.env);
-    return processAsyncCmd(command2, options, _exec(command2, { ...options, env: env2 }));
+    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
+    return processAsyncCmd(command2, options, _exec(command2, { ...options, env: env3 }));
   }
 };
 function statusFromExitCodeAndSignal(exitCode, signal) {
@@ -5738,6 +5885,8 @@ function assertValidReleaseConfig(config) {
 
 export {
   runParserWithCompletedFunctions,
+  supports_color_exports,
+  init_supports_color,
   ChildProcess,
   determineRepoBaseDirFromCwd,
   LogLevel,
