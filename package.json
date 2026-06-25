@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-ff4046900c623801d13f764a1ee59ce7d2b49599",
+  "version": "0.0.0-1b83fcd99cec9ff01e539f293c643ee962adc217",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@actions/core": "3.0.1",
     "@google-cloud/spanner": "8.0.0",
-    "@google/genai": "2.8.0",
+    "@google/genai": "2.10.0",
     "@inquirer/prompts": "8.5.2",
     "@inquirer/type": "4.0.7",
     "@octokit/auth-app": "8.2.0",
@@ -59,7 +59,7 @@
     "minimatch": "10.2.5",
     "multimatch": "8.0.0",
     "nock": "14.0.15",
-    "semver": "7.8.4",
+    "semver": "7.8.5",
     "supports-color": "10.2.2",
     "typed-graphqlify": "3.1.6",
     "tsx": "4.22.4",
