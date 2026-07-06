@@ -15476,7 +15476,7 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_674404200/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.0.2_674404200/node_modules/@conventional-changelog/git-client/dist/utils.js
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -15489,10 +15489,10 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_674404200/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.0.2_674404200/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn } from "child_process";
 
-// node_modules/.aspect_rules_js/@simple-libs+stream-utils@1.2.0/node_modules/@simple-libs/stream-utils/dist/index.js
+// node_modules/.aspect_rules_js/@simple-libs+stream-utils@2.0.0/node_modules/@simple-libs/stream-utils/dist/index.js
 async function toArray2(iterable) {
   const result = [];
   for await (const item of iterable) {
@@ -15526,7 +15526,7 @@ async function* splitStream(stream, separator) {
   }
 }
 
-// node_modules/.aspect_rules_js/@simple-libs+child-process-utils@1.0.2/node_modules/@simple-libs/child-process-utils/dist/index.js
+// node_modules/.aspect_rules_js/@simple-libs+child-process-utils@2.0.0/node_modules/@simple-libs/child-process-utils/dist/index.js
 async function exitCode(process3) {
   if (process3.exitCode !== null) {
     return process3.exitCode;
@@ -15571,7 +15571,7 @@ function output(process3) {
   return concatBufferStream(outputStream(process3));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_674404200/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.0.2_674404200/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var GitClient2 = class {
   cwd;
@@ -15805,7 +15805,7 @@ var GitClient2 = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_674404200/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.0.2_674404200/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
 var import_semver = __toESM(require_semver());
 
 // ng-dev/commit-message/utils.js
@@ -36493,7 +36493,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-ade740e365b12e140864396c1ee73eb81342bf08`;
+var localVersion = `0.0.0-8ff5422196e57089fc92e0c3a4128b916f02af87`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
