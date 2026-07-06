@@ -4,7 +4,7 @@ const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 import "./chunk-RZTNU4LP.mjs";
 
-// node_modules/.aspect_rules_js/conventional-commits-filter@5.0.0/node_modules/conventional-commits-filter/dist/utils.js
+// node_modules/.aspect_rules_js/conventional-commits-filter@6.0.1/node_modules/conventional-commits-filter/dist/utils.js
 function isMatch(object, source) {
   let aValue;
   let bValue;
@@ -36,7 +36,7 @@ function findRevertCommit(commit, reverts) {
   return null;
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-filter@5.0.0/node_modules/conventional-commits-filter/dist/RevertedCommitsFilter.js
+// node_modules/.aspect_rules_js/conventional-commits-filter@6.0.1/node_modules/conventional-commits-filter/dist/RevertedCommitsFilter.js
 var RevertedCommitsFilter = class {
   hold = /* @__PURE__ */ new Set();
   holdRevertsCount = 0;
@@ -81,7 +81,7 @@ var RevertedCommitsFilter = class {
   }
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-filter@5.0.0/node_modules/conventional-commits-filter/dist/filters.js
+// node_modules/.aspect_rules_js/conventional-commits-filter@6.0.1/node_modules/conventional-commits-filter/dist/filters.js
 import { Transform } from "stream";
 async function* filterRevertedCommits(commits) {
   const filter = new RevertedCommitsFilter();
