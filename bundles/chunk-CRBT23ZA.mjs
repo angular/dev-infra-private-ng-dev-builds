@@ -3,7 +3,7 @@ import {createRequire as __cjsCompatRequire_ngDev} from 'module';
 const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.4.0/node_modules/conventional-commits-parser/dist/regex.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/regex.js
 var nomatchRegex = /(?!.*)/;
 function escape(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -26,7 +26,7 @@ function getReferencePartsRegex(issuePrefixes, issuePrefixesCaseSensitive) {
     return nomatchRegex;
   }
   const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-  return new RegExp(`(?:.*?)??\\s*([\\w-\\.\\/]*?)??(${joinOr(issuePrefixes)})([\\w-]+)(?=\\s|$|[,;)\\]])`, flags);
+  return new RegExp(`(?:.*?)??\\s*([\\w-\\.\\/]*?)??(${joinOr(issuePrefixes)})([\\w-]+)(?=\\s|$|[,;.)\\]])`, flags);
 }
 function getReferencesRegex(referenceActions) {
   if (!referenceActions) {
@@ -35,20 +35,26 @@ function getReferencesRegex(referenceActions) {
   const joinedKeywords = joinOr(referenceActions);
   return new RegExp(`(${joinedKeywords})(?:\\s+(.*?))(?=(?:${joinedKeywords})|$)`, "gi");
 }
+function getFooterTokenRegex(issuePrefixes) {
+  const issuePrefixSeparator = issuePrefixes ? `|\\s+(?:${joinOr(issuePrefixes)})` : "";
+  return new RegExp(`^\\s*(?:BREAKING CHANGE|[\\w-]+)(?::\\s+${issuePrefixSeparator}).+`, "i");
+}
 function getParserRegexes(options = {}) {
   const notes = getNotesRegex(options.noteKeywords, options.notesPattern);
   const referenceParts = getReferencePartsRegex(options.issuePrefixes, options.issuePrefixesCaseSensitive);
   const references = getReferencesRegex(options.referenceActions);
+  const footerToken = getFooterTokenRegex(options.issuePrefixes);
   return {
     notes,
     referenceParts,
     references,
+    footerToken,
     mentions: /@([\w-]+)/g,
     url: /\b(?:https?):\/\/(?:www\.)?([-a-zA-Z0-9@:%_+.~#?&//=])+\b/
   };
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.4.0/node_modules/conventional-commits-parser/dist/utils.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/utils.js
 var SCISSOR = "------------------------ >8 ------------------------";
 function trimNewLines(input) {
   const matches = input.match(/[^\r\n]/);
@@ -88,7 +94,7 @@ function assignMatchedCorrespondence(target, matches, correspondence) {
   return target;
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.4.0/node_modules/conventional-commits-parser/dist/options.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/options.js
 var defaultOptions = {
   noteKeywords: ["BREAKING CHANGE", "BREAKING-CHANGE"],
   issuePrefixes: ["#"],
@@ -114,7 +120,7 @@ var defaultOptions = {
   fieldPattern: /^-(.*?)-$/
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.4.0/node_modules/conventional-commits-parser/dist/CommitParser.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/CommitParser.js
 function createCommitObject(initialData = {}) {
   return {
     merge: null,
@@ -276,7 +282,7 @@ var CommitParser = class {
       return false;
     }
     const matches = this.currentLine().match(regexes.notes);
-    let references = [];
+    let isFooterToken;
     if (matches) {
       const note = {
         title: matches[1],
@@ -292,15 +298,14 @@ var CommitParser = class {
         if (this.parseNotes()) {
           return true;
         }
-        references = this.parseReferences(this.currentLine());
-        if (references.length) {
-          commit.references.push(...references);
-        } else {
+        isFooterToken = regexes.footerToken.test(this.currentLine());
+        commit.references.push(...this.parseReferences(this.currentLine()));
+        if (!isFooterToken) {
           note.text = appendLine(note.text, this.currentLine());
         }
         commit.footer = appendLine(commit.footer, this.currentLine());
         this.nextLine();
-        if (references.length) {
+        if (isFooterToken) {
           break;
         }
       }
@@ -309,16 +314,16 @@ var CommitParser = class {
     return false;
   }
   parseBodyAndFooter(isBody) {
-    const { commit } = this;
+    const { commit, regexes } = this;
     if (!this.isLineAvailable()) {
       return isBody;
     }
-    const references = this.parseReferences(this.currentLine());
-    const isStillBody = !references.length && isBody;
+    const isFooterToken = regexes.footerToken.test(this.currentLine());
+    const isStillBody = !isFooterToken && isBody;
+    commit.references.push(...this.parseReferences(this.currentLine()));
     if (isStillBody) {
       commit.body = appendLine(commit.body, this.currentLine());
     } else {
-      commit.references.push(...references);
       commit.footer = appendLine(commit.footer, this.currentLine());
     }
     this.nextLine();
@@ -358,12 +363,8 @@ var CommitParser = class {
   }
   cleanupCommit() {
     const { commit } = this;
-    if (commit.body) {
-      commit.body = trimNewLines(commit.body);
-    }
-    if (commit.footer) {
-      commit.footer = trimNewLines(commit.footer);
-    }
+    commit.body &&= trimNewLines(commit.body);
+    commit.footer &&= trimNewLines(commit.footer);
     commit.notes.forEach((note) => {
       note.text = trimNewLines(note.text);
     });
@@ -417,7 +418,7 @@ var CommitParser = class {
   }
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@6.4.0/node_modules/conventional-commits-parser/dist/stream.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/stream.js
 import { Transform } from "stream";
 function parseCommits(options = {}) {
   const warnOption = options.warn;

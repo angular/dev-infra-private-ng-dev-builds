@@ -71,7 +71,7 @@ import {
 } from "./chunk-GE5YLAX7.mjs";
 import {
   CommitParser
-} from "./chunk-VWFPSUIZ.mjs";
+} from "./chunk-CRBT23ZA.mjs";
 import {
   __commonJS,
   __export,
@@ -15476,7 +15476,7 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_902980308/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_931490326/node_modules/@conventional-changelog/git-client/dist/utils.js
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -15489,7 +15489,7 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_902980308/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_931490326/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn } from "child_process";
 
 // node_modules/.aspect_rules_js/@simple-libs+stream-utils@1.2.0/node_modules/@simple-libs/stream-utils/dist/index.js
@@ -15571,7 +15571,7 @@ function output(process3) {
   return concatBufferStream(outputStream(process3));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_902980308/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_931490326/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var GitClient2 = class {
   cwd;
@@ -15805,7 +15805,7 @@ var GitClient2 = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_902980308/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@2.7.0_931490326/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
 var import_semver = __toESM(require_semver());
 
 // ng-dev/commit-message/utils.js
@@ -36493,7 +36493,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-fe36dd7d7c40ab8241dcc5abe6d129b5ab747a10`;
+var localVersion = `0.0.0-f70fa167a8627f06b170d5216cb92bfcf854d374`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
