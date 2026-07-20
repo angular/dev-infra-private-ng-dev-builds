@@ -3,7 +3,7 @@ import {createRequire as __cjsCompatRequire_ngDev} from 'module';
 const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/regex.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.0/node_modules/conventional-commits-parser/dist/regex.js
 var nomatchRegex = /(?!.*)/;
 function escape(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -54,7 +54,7 @@ function getParserRegexes(options = {}) {
   };
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/utils.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.0/node_modules/conventional-commits-parser/dist/utils.js
 var SCISSOR = "------------------------ >8 ------------------------";
 function trimNewLines(input) {
   const matches = input.match(/[^\r\n]/);
@@ -94,7 +94,7 @@ function assignMatchedCorrespondence(target, matches, correspondence) {
   return target;
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/options.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.0/node_modules/conventional-commits-parser/dist/options.js
 var defaultOptions = {
   noteKeywords: ["BREAKING CHANGE", "BREAKING-CHANGE"],
   issuePrefixes: ["#"],
@@ -120,7 +120,7 @@ var defaultOptions = {
   fieldPattern: /^-(.*?)-$/
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/CommitParser.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.0/node_modules/conventional-commits-parser/dist/CommitParser.js
 function createCommitObject(initialData = {}) {
   return {
     merge: null,
@@ -418,7 +418,7 @@ var CommitParser = class {
   }
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.0.1/node_modules/conventional-commits-parser/dist/stream.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.0/node_modules/conventional-commits-parser/dist/stream.js
 import { Transform } from "stream";
 function parseCommits(options = {}) {
   const warnOption = options.warn;

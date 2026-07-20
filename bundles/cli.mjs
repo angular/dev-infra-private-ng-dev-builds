@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-CMGXRPON.mjs";
+} from "./chunk-4CYQ2X3J.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -71,7 +71,7 @@ import {
 } from "./chunk-GE5YLAX7.mjs";
 import {
   CommitParser
-} from "./chunk-CRBT23ZA.mjs";
+} from "./chunk-PSHVCNME.mjs";
 import {
   __commonJS,
   __export,
@@ -15480,7 +15480,7 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.0.2_674404200/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374440/node_modules/@conventional-changelog/git-client/dist/utils.js
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -15493,7 +15493,7 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.0.2_674404200/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374440/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn } from "child_process";
 
 // node_modules/.aspect_rules_js/@simple-libs+stream-utils@2.0.0/node_modules/@simple-libs/stream-utils/dist/index.js
@@ -15575,7 +15575,7 @@ function output(process3) {
   return concatBufferStream(outputStream(process3));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.0.2_674404200/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374440/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var GitClient2 = class {
   cwd;
@@ -15651,9 +15651,9 @@ var GitClient2 = class {
    * @yields Tags
    */
   async *getTags(params2 = {}) {
-    const { path: path8, from = "", to = "HEAD", since } = params2;
+    const { path: path8, from = "", to = "HEAD", since, all } = params2;
     const tagRegex = /tag:\s*(.+?)[,)]/gi;
-    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", since && `--since=${since instanceof Date ? since.toISOString() : since}`, [from, to].filter(Boolean).join(".."), ...path8 ? ["--", ...toArray(path8)] : []);
+    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", all && "--all", since && `--since=${since instanceof Date ? since.toISOString() : since}`, [from, to].filter(Boolean).join(".."), ...path8 ? ["--", ...toArray(path8)] : []);
     let chunk;
     let matches;
     let tag;
@@ -15809,7 +15809,7 @@ var GitClient2 = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.0.2_674404200/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374440/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
 var import_semver = __toESM(require_semver());
 
 // ng-dev/commit-message/utils.js
@@ -36497,7 +36497,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-ab850ab679f5ee8f019adca5283795ddf1581201`;
+var localVersion = `0.0.0-7eb2566eaab7757d7fdfc2aa518f5884a42c005b`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
