@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-4CYQ2X3J.mjs";
+} from "./chunk-M7XMYTYE.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -7458,9 +7458,9 @@ var require_balanced_match = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/brace-expansion@2.1.1/node_modules/brace-expansion/index.js
+// node_modules/.aspect_rules_js/brace-expansion@2.1.2/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "node_modules/.aspect_rules_js/brace-expansion@2.1.1/node_modules/brace-expansion/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/brace-expansion@2.1.2/node_modules/brace-expansion/index.js"(exports, module) {
     var balanced2 = require_balanced_match();
     module.exports = expandTop;
     var escSlash2 = "\0SLASH" + Math.random() + "\0";
@@ -7521,17 +7521,19 @@ var require_brace_expansion = __commonJS({
     }
     function expand2(str, max, isTop) {
       var expansions = [];
-      var m = balanced2("{", "}", str);
-      if (!m)
-        return [str];
-      var pre = m.pre;
-      var post = m.post.length ? expand2(m.post, max, false) : [""];
-      if (/\$$/.test(m.pre)) {
-        for (var k = 0; k < post.length && k < max; k++) {
-          var expansion = pre + "{" + m.body + "}" + post[k];
-          expansions.push(expansion);
+      for (; ; ) {
+        const m = balanced2("{", "}", str);
+        if (!m)
+          return [str];
+        const pre = m.pre;
+        if (/\$$/.test(m.pre)) {
+          const post2 = m.post.length ? expand2(m.post, max, false) : [""];
+          for (let k2 = 0; k2 < post2.length && k2 < max; k2++) {
+            const expansion2 = pre + "{" + m.body + "}" + post2[k2];
+            expansions.push(expansion2);
+          }
+          return expansions;
         }
-      } else {
         var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
         var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
         var isSequence = isNumericSequence || isAlphaSequence;
@@ -7539,10 +7541,12 @@ var require_brace_expansion = __commonJS({
         if (!isSequence && !isOptions) {
           if (m.post.match(/,(?!,).*\}/)) {
             str = m.pre + "{" + m.body + escClose2 + m.post;
-            return expand2(str, max, true);
+            isTop = true;
+            continue;
           }
           return [str];
         }
+        const post = m.post.length ? expand2(m.post, max, false) : [""];
         var n;
         if (isSequence) {
           n = m.body.split(/\.\./);
@@ -7605,8 +7609,8 @@ var require_brace_expansion = __commonJS({
               expansions.push(expansion);
           }
         }
+        return expansions;
       }
-      return expansions;
     }
   }
 });
@@ -36497,7 +36501,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-7eb2566eaab7757d7fdfc2aa518f5884a42c005b`;
+var localVersion = `0.0.0-7365173626bd7f475d30ba010bfb0e485233b199`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
