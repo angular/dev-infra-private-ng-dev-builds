@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-2MK37CP6.mjs";
+} from "./chunk-D7SBR34O.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -68,10 +68,10 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-GOS4KQ4F.mjs";
+} from "./chunk-QM7BPMX4.mjs";
 import {
   CommitParser
-} from "./chunk-PSHVCNME.mjs";
+} from "./chunk-TG2BSFOI.mjs";
 import {
   __commonJS,
   __export,
@@ -12118,7 +12118,7 @@ function expand_(str, max, maxLength, isTop) {
   return acc;
 }
 
-// node_modules/.aspect_rules_js/minimatch@10.2.5/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/minimatch@10.2.6/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -12129,7 +12129,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.5/node_modules/minimatch/dist/esm/brace-expressions.js
+// node_modules/.aspect_rules_js/minimatch@10.2.6/node_modules/minimatch/dist/esm/brace-expressions.js
 var posixClasses = {
   "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}", true],
   "[:alpha:]": ["\\p{L}\\p{Nl}", true],
@@ -12239,7 +12239,7 @@ var parseClass = (glob5, position) => {
   return [comb, uflag, endPos - pos, true];
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.5/node_modules/minimatch/dist/esm/unescape.js
+// node_modules/.aspect_rules_js/minimatch@10.2.6/node_modules/minimatch/dist/esm/unescape.js
 var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/\[([^/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\])\]/g, "$1$2").replace(/\\([^/])/g, "$1");
@@ -12247,7 +12247,7 @@ var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) 
   return windowsPathsNoEscape ? s.replace(/\[([^/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\{}])\]/g, "$1$2").replace(/\\([^/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.5/node_modules/minimatch/dist/esm/ast.js
+// node_modules/.aspect_rules_js/minimatch@10.2.6/node_modules/minimatch/dist/esm/ast.js
 var _a;
 var types2 = /* @__PURE__ */ new Set(["!", "?", "+", "*", "@"]);
 var isExtglobType = (c) => types2.has(c);
@@ -12891,7 +12891,7 @@ var AST = class {
 };
 _a = AST;
 
-// node_modules/.aspect_rules_js/minimatch@10.2.5/node_modules/minimatch/dist/esm/escape.js
+// node_modules/.aspect_rules_js/minimatch@10.2.6/node_modules/minimatch/dist/esm/escape.js
 var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
@@ -12899,7 +12899,7 @@ var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) =
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// node_modules/.aspect_rules_js/minimatch@10.2.5/node_modules/minimatch/dist/esm/index.js
+// node_modules/.aspect_rules_js/minimatch@10.2.6/node_modules/minimatch/dist/esm/index.js
 var minimatch = (p, pattern, options = {}) => {
   assertValidPattern(pattern);
   if (!options.nocomment && pattern.charAt(0) === "#") {
@@ -15512,7 +15512,7 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374440/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374409/node_modules/@conventional-changelog/git-client/dist/utils.js
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -15525,7 +15525,7 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374440/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374409/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn } from "child_process";
 
 // node_modules/.aspect_rules_js/@simple-libs+stream-utils@2.0.0/node_modules/@simple-libs/stream-utils/dist/index.js
@@ -15607,7 +15607,7 @@ function output(process3) {
   return concatBufferStream(outputStream(process3));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374440/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374409/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var GitClient2 = class {
   cwd;
@@ -15841,7 +15841,7 @@ var GitClient2 = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374440/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374409/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
 var import_semver = __toESM(require_semver());
 
 // ng-dev/commit-message/utils.js
@@ -36529,7 +36529,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-5e5a041183d65975eb929325d01044b239999b0c`;
+var localVersion = `0.0.0-c279805293db7c28fe20709bc7ac3a3f3bbebb40`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

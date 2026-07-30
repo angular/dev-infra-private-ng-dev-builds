@@ -188,7 +188,7 @@ var init_supports_color = __esm({
   }
 });
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/lib/platform-shims/esm.mjs
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/lib/platform-shims/esm.mjs
 import { notStrictEqual, strictEqual } from "assert";
 
 // node_modules/.aspect_rules_js/cliui@9.0.1/node_modules/cliui/build/lib/index.js
@@ -974,7 +974,7 @@ function sync_default(start, callback) {
   }
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/lib/platform-shims/esm.mjs
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/lib/platform-shims/esm.mjs
 import { inspect } from "util";
 import { fileURLToPath } from "url";
 
@@ -1963,10 +1963,10 @@ yargsParser.decamelize = decamelize;
 yargsParser.looksLikeNumber = looksLikeNumber;
 var lib_default = yargsParser;
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/lib/platform-shims/esm.mjs
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/lib/platform-shims/esm.mjs
 import { basename, dirname as dirname2, extname, relative, resolve as resolve4, join } from "path";
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/utils/process-argv.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/process-argv.js
 function getProcessArgvBinIndex() {
   if (isBundledElectronApp())
     return 0;
@@ -1980,6 +1980,132 @@ function isElectronApp() {
 }
 function getProcessArgvBin() {
   return process.argv[getProcessArgvBinIndex()];
+}
+
+// node_modules/.aspect_rules_js/string-width@8.2.2/node_modules/string-width/index.js
+var segmenter2 = new Intl.Segmenter();
+var zeroWidthClusterRegex = new RegExp("^(?:\\p{Default_Ignorable_Code_Point}|\\p{Control}|\\p{Format}|\\p{Nonspacing_Mark}|\\p{Enclosing_Mark}|\\p{Surrogate})+$", "v");
+var leadingNonPrintingRegex = new RegExp("^[\\p{Default_Ignorable_Code_Point}\\p{Control}\\p{Format}\\p{Nonspacing_Mark}\\p{Enclosing_Mark}\\p{Surrogate}]+", "v");
+var spacingMarkRegex = new RegExp("\\p{Spacing_Mark}", "v");
+var rgiEmojiRegex = new RegExp("^\\p{RGI_Emoji}$", "v");
+var unqualifiedKeycapRegex = /^[\d#*]\u20E3$/;
+var extendedPictographicRegex = new RegExp("\\p{Extended_Pictographic}", "gu");
+function isDoubleWidthNonRgiEmojiSequence(segment) {
+  if (segment.length > 50) {
+    return false;
+  }
+  if (unqualifiedKeycapRegex.test(segment)) {
+    return true;
+  }
+  if (segment.includes("\u200D")) {
+    const pictographics = segment.match(extendedPictographicRegex);
+    return pictographics !== null && pictographics.length >= 2;
+  }
+  return false;
+}
+function baseVisible(segment) {
+  return segment.replace(leadingNonPrintingRegex, "");
+}
+function isZeroWidthCluster(segment) {
+  return zeroWidthClusterRegex.test(segment);
+}
+function isHangulLeadingJamo(codePoint) {
+  return codePoint >= 4352 && codePoint <= 4447 || codePoint >= 43360 && codePoint <= 43388;
+}
+function isHangulVowelJamo(codePoint) {
+  return codePoint >= 4448 && codePoint <= 4519 || codePoint >= 55216 && codePoint <= 55238;
+}
+function isHangulTrailingJamo(codePoint) {
+  return codePoint >= 4520 && codePoint <= 4607 || codePoint >= 55243 && codePoint <= 55291;
+}
+function isHangulJamo(codePoint) {
+  return isHangulLeadingJamo(codePoint) || isHangulVowelJamo(codePoint) || isHangulTrailingJamo(codePoint);
+}
+function hangulClusterWidth(visibleSegment, eastAsianWidthOptions) {
+  const codePoints = [];
+  for (const character of visibleSegment) {
+    if (zeroWidthClusterRegex.test(character)) {
+      continue;
+    }
+    codePoints.push(character.codePointAt(0));
+  }
+  if (codePoints.length === 0) {
+    return void 0;
+  }
+  let width = 0;
+  for (let index = 0; index < codePoints.length; index++) {
+    const codePoint = codePoints[index];
+    if (!isHangulJamo(codePoint)) {
+      if (width === 0) {
+        return void 0;
+      }
+      for (let remaining = index; remaining < codePoints.length; remaining++) {
+        width += eastAsianWidth(codePoints[remaining], eastAsianWidthOptions);
+      }
+      return width;
+    }
+    if (isHangulLeadingJamo(codePoint) && isHangulVowelJamo(codePoints[index + 1])) {
+      width += 2;
+      index += isHangulTrailingJamo(codePoints[index + 2]) ? 2 : 1;
+      continue;
+    }
+    width += eastAsianWidth(codePoint, eastAsianWidthOptions);
+  }
+  return width;
+}
+function trailingWidth(visibleSegment, eastAsianWidthOptions) {
+  let extra = 0;
+  let first = true;
+  for (const character of visibleSegment) {
+    if (first) {
+      first = false;
+      continue;
+    }
+    if (spacingMarkRegex.test(character) || character >= "\uFF00" && character <= "\uFFEF") {
+      extra += eastAsianWidth(character.codePointAt(0), eastAsianWidthOptions);
+    }
+  }
+  return extra;
+}
+function stringWidth2(input, options = {}) {
+  if (typeof input !== "string" || input.length === 0) {
+    return 0;
+  }
+  const {
+    ambiguousIsNarrow = true,
+    countAnsiEscapeCodes = false
+  } = options;
+  let string = input;
+  if (!countAnsiEscapeCodes && (string.includes("\x1B") || string.includes("\x9B"))) {
+    string = stripAnsi(string);
+  }
+  if (string.length === 0) {
+    return 0;
+  }
+  if (/^[\u0020-\u007E]*$/.test(string)) {
+    return string.length;
+  }
+  let width = 0;
+  const eastAsianWidthOptions = { ambiguousAsWide: !ambiguousIsNarrow };
+  for (const { segment } of segmenter2.segment(string)) {
+    if (isZeroWidthCluster(segment)) {
+      continue;
+    }
+    if (rgiEmojiRegex.test(segment) || isDoubleWidthNonRgiEmojiSequence(segment)) {
+      width += 2;
+      continue;
+    }
+    const visibleSegment = baseVisible(segment);
+    const hangulWidth = hangulClusterWidth(visibleSegment, eastAsianWidthOptions);
+    if (hangulWidth !== void 0) {
+      width += hangulWidth;
+      continue;
+    }
+    const codePoint = visibleSegment.codePointAt(0);
+    width += eastAsianWidth(codePoint, eastAsianWidthOptions);
+    width += trailingWidth(visibleSegment, eastAsianWidthOptions);
+  }
+  return width;
 }
 
 // node_modules/.aspect_rules_js/y18n@5.0.8/node_modules/y18n/build/lib/platform-shims/node.js
@@ -2169,7 +2295,7 @@ var y18n2 = (opts) => {
 };
 var y18n_default = y18n2;
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/lib/platform-shims/esm.mjs
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/lib/platform-shims/esm.mjs
 var import_get_caller_file = __toESM(require_get_caller_file(), 1);
 import { createRequire as createRequire2 } from "node:module";
 import { readFileSync as readFileSync3, readdirSync as readdirSync2 } from "node:fs";
@@ -2216,14 +2342,14 @@ var esm_default = {
     const callerFile = (0, import_get_caller_file.default)(3);
     return callerFile.match(/^file:\/\//) ? fileURLToPath(callerFile) : callerFile;
   },
-  stringWidth,
+  stringWidth: stringWidth2,
   y18n: y18n_default({
     directory: resolve4(__dirname, "../../../locales"),
     updateFiles: false
   })
 };
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/typings/common-types.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/typings/common-types.js
 function assertNotStrictEqual(actual, expected, shim3, message) {
   shim3.assert.notStrictEqual(actual, expected, message);
 }
@@ -2234,12 +2360,12 @@ function objectKeys(object) {
   return Object.keys(object);
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/utils/is-promise.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/is-promise.js
 function isPromise(maybePromise) {
   return !!maybePromise && !!maybePromise.then && typeof maybePromise.then === "function";
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/yerror.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/yerror.js
 var YError = class _YError extends Error {
   constructor(msg) {
     super(msg || "yargs error");
@@ -2250,7 +2376,7 @@ var YError = class _YError extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/parse-command.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/parse-command.js
 function parseCommand(cmd) {
   const extraSpacesStrippedCommand = cmd.replace(/\s{2,}/g, " ");
   const splitCommand = extraSpacesStrippedCommand.split(/\s+(?![^[]*]|[^<]*>)/);
@@ -2283,7 +2409,7 @@ function parseCommand(cmd) {
   return parsedCommand;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/argsert.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/argsert.js
 var positionName = ["first", "second", "third", "fourth", "fifth", "sixth"];
 function argsert(arg1, arg2, arg3) {
   function parseArgs() {
@@ -2341,7 +2467,7 @@ function argumentTypeError(observedType, allowedTypes, position) {
   throw new YError(`Invalid ${positionName[position] || "manyith"} argument. Expected ${allowedTypes.join(" or ")} but received ${observedType}.`);
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/middleware.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/middleware.js
 var GlobalMiddleware = class {
   constructor(yargs) {
     this.globalMiddleware = [];
@@ -2423,7 +2549,7 @@ function applyMiddleware(argv, yargs, middlewares, beforeValidation) {
   }, argv);
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/utils/maybe-async-result.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/maybe-async-result.js
 function maybeAsyncResult(getResult, resultHandler, errorHandler = (err) => {
   throw err;
 }) {
@@ -2438,7 +2564,7 @@ function isFunction(arg) {
   return typeof arg === "function";
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/command.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/command.js
 var DEFAULT_MARKER = /(^\*)|(^\$0)/;
 var CommandInstance = class {
   constructor(usage2, validation2, globalMiddleware, shim3) {
@@ -2859,7 +2985,7 @@ function isCommandHandlerDefinition(cmd) {
   return typeof cmd === "object" && !Array.isArray(cmd);
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/utils/obj-filter.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/obj-filter.js
 function objFilter(original = {}, filter = () => true) {
   const obj = {};
   objectKeys(original).forEach((key) => {
@@ -2870,7 +2996,7 @@ function objFilter(original = {}, filter = () => true) {
   return obj;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/utils/set-blocking.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/set-blocking.js
 function setBlocking(blocking) {
   if (typeof process === "undefined")
     return;
@@ -2882,7 +3008,7 @@ function setBlocking(blocking) {
   });
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/usage.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/usage.js
 function isBoolean(fail) {
   return typeof fail === "boolean";
 }
@@ -3408,7 +3534,7 @@ function getText(text) {
   return isIndentedText(text) ? text.text : text;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/completion-templates.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/completion-templates.js
 var completionShTemplate = `###-begin-{{app_name}}-completions-###
 #
 # yargs command completion script
@@ -3468,7 +3594,7 @@ fi
 ###-end-{{app_name}}-completions-###
 `;
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/completion.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/completion.js
 var Completion = class {
   constructor(yargs, usage2, command2, shim3) {
     var _a2, _b2, _c2;
@@ -3681,7 +3807,7 @@ function isFallbackCompletionFunction(completionFunction) {
   return completionFunction.length > 3;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/utils/levenshtein.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/levenshtein.js
 function levenshtein(a, b) {
   if (a.length === 0)
     return b.length;
@@ -3712,7 +3838,7 @@ function levenshtein(a, b) {
   return matrix[b.length][a.length];
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/validation.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/validation.js
 var specialKeys = ["$0", "--", "_"];
 function validation(yargs, usage2, shim3) {
   const __ = shim3.y18n.__;
@@ -3981,7 +4107,7 @@ ${customMsgs.join("\n")}` : "";
   return self;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/utils/apply-extends.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/apply-extends.js
 var previouslyVisitedConfigs = [];
 var shim2;
 function applyExtends(config, cwd, mergeExtends, _shim) {
@@ -4025,6 +4151,8 @@ function mergeDeep(config1, config2) {
   }
   Object.assign(target, config1);
   for (const key of Object.keys(config2)) {
+    if (key === "__proto__")
+      continue;
     if (isObject(config2[key]) && isObject(target[key])) {
       target[key] = mergeDeep(config1[key], config2[key]);
     } else {
@@ -4034,7 +4162,7 @@ function mergeDeep(config1, config2) {
   return target;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/build/lib/yargs-factory.js
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/yargs-factory.js
 var __classPrivateFieldSet = function(receiver, state, value, kind, f) {
   if (kind === "m")
     throw new TypeError("Private method is not writable");
@@ -5075,7 +5203,7 @@ var YargsInstance = class {
   [kGetDollarZero]() {
     let $0 = "";
     let default$0;
-    if (/\b(node|iojs|electron)(\.exe)?$/.test(__classPrivateFieldGet(this, _YargsInstance_shim, "f").process.argv()[0])) {
+    if (/\b(node|iojs|electron|bun)(\.exe)?$/.test(__classPrivateFieldGet(this, _YargsInstance_shim, "f").process.argv()[0])) {
       default$0 = __classPrivateFieldGet(this, _YargsInstance_shim, "f").process.argv().slice(1, 2);
     } else {
       default$0 = __classPrivateFieldGet(this, _YargsInstance_shim, "f").process.argv().slice(0, 1);
@@ -5538,7 +5666,7 @@ function isYargsInstance(y) {
   return !!y && typeof y.getInternalMethods === "function";
 }
 
-// node_modules/.aspect_rules_js/yargs@18.0.0/node_modules/yargs/index.mjs
+// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/index.mjs
 var Yargs = YargsFactory(esm_default);
 var yargs_default = Yargs;
 

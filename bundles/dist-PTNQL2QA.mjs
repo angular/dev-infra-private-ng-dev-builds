@@ -7,7 +7,7 @@ import {
   createCommitObject,
   parseCommits,
   parseCommitsStream
-} from "./chunk-PSHVCNME.mjs";
+} from "./chunk-TG2BSFOI.mjs";
 import "./chunk-RZTNU4LP.mjs";
 export {
   CommitParser,
