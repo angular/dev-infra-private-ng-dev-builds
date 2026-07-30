@@ -33,7 +33,7 @@ var require_get_caller_file = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/supports-color@10.2.2/node_modules/supports-color/index.js
+// node_modules/.aspect_rules_js/supports-color@11.0.0/node_modules/supports-color/index.js
 var supports_color_exports = {};
 __export(supports_color_exports, {
   createSupportsColor: () => createSupportsColor,
@@ -61,7 +61,10 @@ function envForceColor() {
   if (env2.FORCE_COLOR.length === 0) {
     return 1;
   }
-  const level = Math.min(Number.parseInt(env2.FORCE_COLOR, 10), 3);
+  if (!new RegExp("^\\d+$", "v").test(env2.FORCE_COLOR)) {
+    return;
+  }
+  const level = Math.min(Number(env2.FORCE_COLOR), 3);
   if (![0, 1, 2, 3].includes(level)) {
     return;
   }
@@ -95,6 +98,9 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
       return 2;
     }
   }
+  if (forceColor !== void 0 && new RegExp("^\\d+$", "v").test(env2.FORCE_COLOR)) {
+    return forceColor;
+  }
   if ("TF_BUILD" in env2 && "AGENT_NAME" in env2) {
     return 1;
   }
@@ -113,16 +119,16 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
     return 1;
   }
   if ("CI" in env2) {
-    if (["GITHUB_ACTIONS", "GITEA_ACTIONS", "CIRCLECI"].some((key) => key in env2)) {
+    if (["GITHUB_ACTIONS", "GITEA_ACTIONS", "CIRCLECI"].some((key) => Object.hasOwn(env2, key))) {
       return 3;
     }
-    if (["TRAVIS", "APPVEYOR", "GITLAB_CI", "BUILDKITE", "DRONE"].some((sign) => sign in env2) || env2.CI_NAME === "codeship") {
+    if (["TRAVIS", "APPVEYOR", "GITLAB_CI", "BUILDKITE", "DRONE"].some((sign) => Object.hasOwn(env2, sign)) || env2.CI_NAME === "codeship") {
       return 1;
     }
     return min;
   }
   if ("TEAMCITY_VERSION" in env2) {
-    return /^(9\.(0*[1-9]\d*)\.|\d{2,}\.)/.test(env2.TEAMCITY_VERSION) ? 1 : 0;
+    return new RegExp("^(?:9\\.0*[1-9]\\d*\\.|\\d{2,}\\.)", "v").test(env2.TEAMCITY_VERSION) ? 1 : 0;
   }
   if (env2.COLORTERM === "truecolor") {
     return 3;
@@ -137,7 +143,7 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
     return 3;
   }
   if ("TERM_PROGRAM" in env2) {
-    const version = Number.parseInt((env2.TERM_PROGRAM_VERSION || "").split(".")[0], 10);
+    const version = Number((env2.TERM_PROGRAM_VERSION || "").split(".", 1)[0]);
     switch (env2.TERM_PROGRAM) {
       case "iTerm.app": {
         return version >= 3 ? 3 : 2;
@@ -147,10 +153,10 @@ function _supportsColor(haveStream, { streamIsTTY, sniffFlags = true } = {}) {
       }
     }
   }
-  if (/-256(color)?$/i.test(env2.TERM)) {
+  if (new RegExp("-256(?:color)?$", "iv").test(env2.TERM)) {
     return 2;
   }
-  if (/^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux/i.test(env2.TERM)) {
+  if (new RegExp("^screen|^xterm|^vt100|^vt220|^rxvt|color|ansi|cygwin|linux", "iv").test(env2.TERM)) {
     return 1;
   }
   if ("COLORTERM" in env2) {
@@ -167,7 +173,7 @@ function createSupportsColor(stream, options = {}) {
 }
 var env2, flagForceColor, supportsColor, supports_color_default;
 var init_supports_color = __esm({
-  "node_modules/.aspect_rules_js/supports-color@10.2.2/node_modules/supports-color/index.js"() {
+  "node_modules/.aspect_rules_js/supports-color@11.0.0/node_modules/supports-color/index.js"() {
     ({ env: env2 } = process2);
     if (hasFlag("no-color") || hasFlag("no-colors") || hasFlag("color=false") || hasFlag("color=never")) {
       flagForceColor = 0;

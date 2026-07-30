@@ -5,7 +5,7 @@ const require = __cjsCompatRequire_ngDev(import.meta.url);
 import {
   assertValidReleaseConfig,
   getConfig
-} from "../../chunk-GE5YLAX7.mjs";
+} from "../../chunk-GOS4KQ4F.mjs";
 import "../../chunk-RZTNU4LP.mjs";
 
 // ng-dev/release/build/build-worker.ts

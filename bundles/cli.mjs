@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-EZB6IXUM.mjs";
+} from "./chunk-2MK37CP6.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -68,7 +68,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-GE5YLAX7.mjs";
+} from "./chunk-GOS4KQ4F.mjs";
 import {
   CommitParser
 } from "./chunk-PSHVCNME.mjs";
@@ -6866,9 +6866,9 @@ var require_ms = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@10.2.2/node_modules/debug/src/common.js
+// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/common.js
 var require_common3 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@10.2.2/node_modules/debug/src/common.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/common.js"(exports, module) {
     function setup(env) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
@@ -7043,9 +7043,9 @@ var require_common3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@10.2.2/node_modules/debug/src/browser.js
+// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/browser.js
 var require_browser = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@10.2.2/node_modules/debug/src/browser.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/browser.js"(exports, module) {
     exports.formatArgs = formatArgs2;
     exports.save = save;
     exports.load = load2;
@@ -7213,9 +7213,9 @@ var require_browser = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@10.2.2/node_modules/debug/src/node.js
+// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/node.js
 var require_node = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@10.2.2/node_modules/debug/src/node.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
     var util = __require("util");
     exports.init = init;
@@ -7387,9 +7387,9 @@ var require_node = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@10.2.2/node_modules/debug/src/index.js
+// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/index.js
 var require_src = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@10.2.2/node_modules/debug/src/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/index.js"(exports, module) {
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
       module.exports = require_browser();
     } else {
@@ -8807,9 +8807,9 @@ var require_index_cjs = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/folder-hash@4.1.3_supports-color@10.2.2/node_modules/folder-hash/index.js
+// node_modules/.aspect_rules_js/folder-hash@4.1.3_supports-color@11.0.0/node_modules/folder-hash/index.js
 var require_folder_hash = __commonJS({
-  "node_modules/.aspect_rules_js/folder-hash@4.1.3_supports-color@10.2.2/node_modules/folder-hash/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/folder-hash@4.1.3_supports-color@11.0.0/node_modules/folder-hash/index.js"(exports, module) {
     var crypto = __require("crypto");
     var debug = require_src();
     var minimatch2 = require_index_cjs();
@@ -36529,7 +36529,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-98b6d8032f3f23a230f6ecbd51981ef1ca83cea8`;
+var localVersion = `0.0.0-5e5a041183d65975eb929325d01044b239999b0c`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
