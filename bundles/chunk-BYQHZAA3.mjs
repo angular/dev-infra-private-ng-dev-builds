@@ -19857,7 +19857,7 @@ function Collection() {
 }
 var before_after_hook_default = { Singular, Collection };
 
-// node_modules/.aspect_rules_js/@octokit+endpoint@11.0.3/node_modules/@octokit/endpoint/dist-bundle/index.js
+// node_modules/.aspect_rules_js/@octokit+endpoint@11.0.4/node_modules/@octokit/endpoint/dist-bundle/index.js
 var VERSION = "0.0.0-development";
 var userAgent = `octokit-endpoint.js/${VERSION} ${getUserAgent()}`;
 var DEFAULTS = {
@@ -20175,7 +20175,7 @@ function withDefaults(oldDefaults, newDefaults) {
 }
 var endpoint = withDefaults(null, DEFAULTS);
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.11/node_modules/@octokit/request/dist-bundle/index.js
+// node_modules/.aspect_rules_js/@octokit+request@10.0.13/node_modules/@octokit/request/dist-bundle/index.js
 var import_content_type = __toESM(require_dist());
 
 // node_modules/.aspect_rules_js/json-with-bigint@3.5.10/node_modules/json-with-bigint/json-with-bigint.js
@@ -20541,7 +20541,7 @@ var JSONParse = (text, reviver) => {
   }
 };
 
-// node_modules/.aspect_rules_js/@octokit+request-error@7.1.0/node_modules/@octokit/request-error/dist-src/index.js
+// node_modules/.aspect_rules_js/@octokit+request-error@7.1.1/node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
   name;
   /**
@@ -20580,8 +20580,8 @@ var RequestError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.11/node_modules/@octokit/request/dist-bundle/index.js
-var VERSION2 = "10.0.11";
+// node_modules/.aspect_rules_js/@octokit+request@10.0.13/node_modules/@octokit/request/dist-bundle/index.js
+var VERSION2 = "10.0.13";
 var defaults_default = {
   headers: {
     "user-agent": `octokit-request.js/${VERSION2} ${getUserAgent()}`
@@ -20711,7 +20711,10 @@ async function getResponseData(response) {
     } catch (err) {
       return text;
     }
-  } else if (mimetype.type.startsWith("text/") || mimetype.parameters.charset?.toLowerCase() === "utf-8") {
+  } else if (mimetype.type.startsWith("text/") || // `application/octet-stream` is the canonical "arbitrary binary" type
+  // (RFC 2046) and must never be decoded as text, even when the response
+  // carries a (misleading) `charset=utf-8` parameter — see #751.
+  mimetype.parameters.charset?.toLowerCase() === "utf-8" && mimetype.type !== "application/octet-stream") {
     return response.text().catch(noop);
   } else {
     return response.arrayBuffer().catch(
