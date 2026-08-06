@@ -36625,7 +36625,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-8d89c9546c88a5487503d603716a6a2ab99fbf0c`;
+var localVersion = `0.0.0-92c6b596e59e320c9edbc6d6490c1047264c4a0d`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -38466,6 +38466,9 @@ function buildConfigParser(localYargs) {
 // ng-dev/cli.js
 runParserWithCompletedFunctions((yargs) => {
   process.exitCode = 0;
+  if (process.platform === "win32") {
+    process.env["NoDefaultCurrentDirectoryInExePath"] = "1";
+  }
   return yargs.scriptName("ng-dev").middleware([captureLogOutputForCommand, ngDevVersionMiddleware], true).demandCommand().recommendCommands().command("auth <command>", false, buildAuthParser).command("commit-message <command>", "", buildCommitMessageParser).command("format <command>", "", buildFormatParser).command("pr <command>", "", buildPrParser).command("pullapprove <command>", "", buildPullapproveParser).command("release", "", buildReleaseParser).command("ts-circular-deps <command>", "", tsCircularDependenciesBuilder).command("caretaker <command>", "", buildCaretakerParser).command("misc <command>", "", buildMiscParser).command("ngbot <command>", false, buildNgbotParser).command("perf <command>", "", buildPerfParser).command("config <command>", false, buildConfigParser).version(localVersion).wrap(120).strict();
 });
 /**
