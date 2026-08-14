@@ -15608,7 +15608,8 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374378/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.2_674374378/node_modules/@conventional-changelog/git-client/dist/utils.js
+var import_semver = __toESM(require_semver());
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -15621,7 +15622,7 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374378/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.2_674374378/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn } from "child_process";
 
 // node_modules/.aspect_rules_js/@simple-libs+stream-utils@2.0.0/node_modules/@simple-libs/stream-utils/dist/index.js
@@ -15703,8 +15704,9 @@ function output(process3) {
   return concatBufferStream(outputStream(process3));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374378/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.2_674374378/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
+var END_OF_OPTIONS = "--end-of-options";
 var GitClient2 = class {
   cwd;
   debug;
@@ -15763,7 +15765,7 @@ var GitClient2 = class {
   async *getRawCommits(params2 = {}) {
     const { path: path8, from = "", to = "HEAD", format: format2 = "%B", ignore, reverse, merges, since, firstParent } = params2;
     const shouldNotIgnore = ignore ? (chunk2) => !ignore.test(chunk2) : () => true;
-    const stdout = this.execStream("log", `--format=${format2}%n${SCISSOR}`, since && `--since=${since instanceof Date ? since.toISOString() : since}`, reverse && "--reverse", merges && "--merges", merges === false && "--no-merges", firstParent && "--first-parent", [from, to].filter(Boolean).join(".."), ...path8 ? ["--", ...toArray(path8)] : []);
+    const stdout = this.execStream("log", `--format=${format2}%n${SCISSOR}`, since && `--since=${since instanceof Date ? since.toISOString() : since}`, reverse && "--reverse", merges && "--merges", merges === false && "--no-merges", firstParent && "--first-parent", END_OF_OPTIONS, [from, to].filter(Boolean).join(".."), ...path8 ? ["--", ...toArray(path8)] : []);
     const commitsStream = splitStream(stdout, `${SCISSOR}
 `);
     let chunk;
@@ -15781,7 +15783,7 @@ var GitClient2 = class {
   async *getTags(params2 = {}) {
     const { path: path8, from = "", to = "HEAD", since, all } = params2;
     const tagRegex = /tag:\s*(.+?)[,)]/gi;
-    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", all && "--all", since && `--since=${since instanceof Date ? since.toISOString() : since}`, [from, to].filter(Boolean).join(".."), ...path8 ? ["--", ...toArray(path8)] : []);
+    const stdout = this.execStream("log", "--decorate", "--no-color", "--date-order", all && "--all", since && `--since=${since instanceof Date ? since.toISOString() : since}`, END_OF_OPTIONS, [from, to].filter(Boolean).join(".."), ...path8 ? ["--", ...toArray(path8)] : []);
     let chunk;
     let matches;
     let tag;
@@ -15880,7 +15882,7 @@ var GitClient2 = class {
    * @returns Target hash.
    */
   async verify(rev, safe) {
-    let git = this.exec("rev-parse", "--verify", rev);
+    let git = this.exec("rev-parse", "--verify", END_OF_OPTIONS, rev);
     if (safe) {
       git = git.catch(() => "");
     }
@@ -15916,6 +15918,7 @@ var GitClient2 = class {
   }
   /**
    * Create a new branch.
+   * Name is a value of the `-b` option, so it is never parsed as an option itself.
    * @param branch - Branch name.
    */
   async createBranch(branch) {
@@ -15933,12 +15936,12 @@ var GitClient2 = class {
    * @param branch - Branch name.
    */
   async checkout(branch) {
-    await this.exec("checkout", branch);
+    await this.exec("checkout", END_OF_OPTIONS, branch);
   }
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.0_674374378/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
-var import_semver = __toESM(require_semver());
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.2_674374378/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
+var import_semver2 = __toESM(require_semver());
 
 // ng-dev/commit-message/utils.js
 var gitClient;
@@ -16386,7 +16389,7 @@ import { existsSync as existsSync2, readFileSync as readFileSync3, writeFileSync
 import { join as join4 } from "node:path";
 
 // ng-dev/misc/sync-module-bazel/sync-module-bazel.js
-var import_semver2 = __toESM(require_semver());
+var import_semver3 = __toESM(require_semver());
 var REPOSITORY_TYPES = {
   "darwin-arm64.tar.gz": "darwin_arm64",
   "darwin-x64.tar.gz": "darwin_amd64",
@@ -16451,7 +16454,7 @@ async function processNodeToolchainArgs(args, nvmrcVersion) {
   if (!effectiveVersion) {
     return args;
   }
-  const validatedVersion = import_semver2.default.valid(effectiveVersion);
+  const validatedVersion = import_semver3.default.valid(effectiveVersion);
   if (!validatedVersion) {
     throw new Error("Invalid Node.js version: " + effectiveVersion);
   }
@@ -16474,7 +16477,7 @@ ${lines.join("\n")}
 `;
 }
 async function syncPnpm(content, version2) {
-  if (!import_semver2.default.valid(version2)) {
+  if (!import_semver3.default.valid(version2)) {
     throw new Error(`Invalid PNPM version: ${version2}`);
   }
   if (!PNPM_VERSION_REGEXP.test(content)) {
@@ -16485,7 +16488,7 @@ async function syncPnpm(content, version2) {
   return updateVersionAndIntegrity(content, version2, pnpmIntegrity, PNPM_VERSION_REGEXP, PNPM_INTEGRITY_REGEXP, "pnpm_version", "pnpm_version_integrity");
 }
 async function syncTypeScript(content, version2) {
-  if (!import_semver2.default.valid(version2)) {
+  if (!import_semver3.default.valid(version2)) {
     throw new Error(`Invalid TypeScript version: ${version2}`);
   }
   if (!TS_VERSION_REGEXP.test(content)) {
@@ -31303,7 +31306,7 @@ function buildNgbotParser(localYargs) {
 }
 
 // ng-dev/pr/common/targeting/lts-branch.js
-var import_semver3 = __toESM(require_semver());
+var import_semver4 = __toESM(require_semver());
 
 // ng-dev/utils/locale.js
 var defaultLocale = "en-US";
@@ -31316,7 +31319,7 @@ async function assertActiveLtsBranch(repo, releaseConfig, branchName) {
   const { version: version2 } = await getVersionInfoForBranch(repo, branchName);
   const { "dist-tags": distTags, time: time3 } = await fetchProjectNpmPackageInfo(releaseConfig);
   const ltsNpmTag = getLtsNpmDistTagOfMajor(version2.major);
-  const ltsVersion = import_semver3.default.parse(distTags[ltsNpmTag]);
+  const ltsVersion = import_semver4.default.parse(distTags[ltsNpmTag]);
   if (ltsVersion === null) {
     throw new InvalidTargetBranchError(`No LTS version tagged for v${version2.major} in NPM.`);
   }
@@ -33957,7 +33960,7 @@ var ReleaseInfoCommandModule = {
 };
 
 // ng-dev/release/notes/cli.js
-var import_semver6 = __toESM(require_semver());
+var import_semver7 = __toESM(require_semver());
 
 // node_modules/.aspect_rules_js/ejs@6.0.1/node_modules/ejs/lib/esm/ejs.js
 import fs2 from "node:fs";
@@ -34635,7 +34638,7 @@ if (typeof window != "undefined") {
 var ejs_default = ejs;
 
 // ng-dev/release/notes/release-notes.js
-var import_semver5 = __toESM(require_semver());
+var import_semver6 = __toESM(require_semver());
 
 // ng-dev/release/notes/context.js
 function escapeHtml(str) {
@@ -34965,7 +34968,7 @@ function santizeCommitMessage(content) {
 }
 
 // ng-dev/release/notes/changelog.js
-var import_semver4 = __toESM(require_semver());
+var import_semver5 = __toESM(require_semver());
 import { existsSync as existsSync3, readFileSync as readFileSync6, writeFileSync as writeFileSync4 } from "fs";
 import { join as join9 } from "path";
 var changelogPath = "CHANGELOG.md";
@@ -35027,7 +35030,7 @@ var Changelog = class {
   }
   moveEntriesPriorToVersionToArchive(version2) {
     [...this.entries].reverse().forEach((entry) => {
-      if (import_semver4.default.lt(entry.version, version2)) {
+      if (import_semver5.default.lt(entry.version, version2)) {
         this.archiveEntries.unshift(entry);
         this.entries.splice(this.entries.indexOf(entry), 1);
       }
@@ -35057,7 +35060,7 @@ function parseChangelogEntry(content) {
   if (versionMatcherResult === null) {
     throw Error(`Unable to determine version for changelog entry: ${content}`);
   }
-  const version2 = import_semver4.default.parse(versionMatcherResult[1]);
+  const version2 = import_semver5.default.parse(versionMatcherResult[1]);
   if (version2 === null) {
     throw Error(`Unable to determine version for changelog entry, with tag: ${versionMatcherResult[1]}`);
   }
@@ -35090,7 +35093,7 @@ var ReleaseNotes = class _ReleaseNotes {
     return ejs_default.render(changelog_default, await this.generateRenderContext(), { rmWhitespace: true });
   }
   async prependEntryToChangelogFile() {
-    if (import_semver5.default.prerelease(this.version) === null) {
+    if (import_semver6.default.prerelease(this.version) === null) {
       Changelog.removePrereleaseEntriesForVersion(this.git, this.version);
     }
     Changelog.prependEntryToChangelogFile(this.git, await this.getChangelogEntry());
@@ -35140,7 +35143,7 @@ function builder21(argv) {
   return argv.option("releaseVersion", {
     type: "string",
     default: "0.0.0",
-    coerce: (version2) => new import_semver6.default.SemVer(version2)
+    coerce: (version2) => new import_semver7.default.SemVer(version2)
   }).option("from", {
     type: "string",
     description: "The git tag or ref to start the changelog entry from",
@@ -35179,7 +35182,7 @@ var ReleaseNotesCommandModule = {
 };
 
 // ng-dev/release/precheck/cli.js
-var import_semver7 = __toESM(require_semver());
+var import_semver8 = __toESM(require_semver());
 
 // ng-dev/utils/read-stdin-until-closed.js
 var ReadBufferFromStdinError = class extends Error {
@@ -35205,7 +35208,7 @@ async function handler22() {
     process.exitCode = 1;
     return;
   }
-  const newVersion = import_semver7.default.parse(newVersionRaw);
+  const newVersion = import_semver8.default.parse(newVersionRaw);
   if (newVersion === null) {
     Log.error(`  \u2718   Release pre-checks failed. Invalid new version was provided.`);
     process.exitCode = 1;
@@ -35325,7 +35328,7 @@ function getErrorMessage(error51) {
 }
 
 // ng-dev/release/publish/external-commands.js
-var import_semver8 = __toESM(require_semver());
+var import_semver9 = __toESM(require_semver());
 import { existsSync as existsSync5, readFileSync as readFileSync7 } from "fs";
 import { dirname as dirname4, join as join11, resolve as resolve5 } from "path";
 import os from "os";
@@ -35433,7 +35436,7 @@ var ExternalCommands = class {
         throw new Error("Invalid .nvmrc content: contains path traversal characters");
       }
       const versionPattern = /^[v0-9.-]+$/;
-      const isValidSemverRange = import_semver8.default.validRange(nodeVersionFromNvmrc) !== null;
+      const isValidSemverRange = import_semver9.default.validRange(nodeVersionFromNvmrc) !== null;
       if (!versionPattern.test(nodeVersionFromNvmrc) && !isValidSemverRange) {
         throw new Error("Invalid .nvmrc content: does not match valid version pattern");
       }
@@ -35467,7 +35470,7 @@ var ExternalCommands = class {
         cwd: projectDir
       });
       const detectedNodeVersion = nodeVersionOutput.trim();
-      if (!import_semver8.default.satisfies(detectedNodeVersion, nodeVersionFromNvmrc)) {
+      if (!import_semver9.default.satisfies(detectedNodeVersion, nodeVersionFromNvmrc)) {
         Log.error(`  \u2718   Node.js version mismatch after update.
 `);
         Log.error(`      Expected version: ${nodeVersionFromNvmrc}`);
@@ -35546,7 +35549,7 @@ var ExternalCommands = class {
 };
 
 // ng-dev/release/publish/actions/configure-next-as-major.js
-var import_semver10 = __toESM(require_semver());
+var import_semver11 = __toESM(require_semver());
 
 // ng-dev/utils/constants.js
 var workspaceRelativePackageJsonPath = "package.json";
@@ -35557,16 +35560,16 @@ import { existsSync as existsSync6, promises as fs3 } from "fs";
 import { join as join12 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
-var import_semver9 = __toESM(require_semver());
+var import_semver10 = __toESM(require_semver());
 function isExperimentalSemver(version2) {
   return version2.major === 0 && version2.minor >= 100;
 }
 function createExperimentalSemver(version2) {
-  version2 = new import_semver9.default.SemVer(version2);
-  const experimentalVersion = new import_semver9.default.SemVer(version2.format());
+  version2 = new import_semver10.default.SemVer(version2);
+  const experimentalVersion = new import_semver10.default.SemVer(version2.format());
   experimentalVersion.major = 0;
   experimentalVersion.minor = version2.major * 100 + version2.minor;
-  return new import_semver9.default.SemVer(experimentalVersion.format());
+  return new import_semver10.default.SemVer(experimentalVersion.format());
 }
 
 // ng-dev/release/versioning/version-tags.js
@@ -36103,7 +36106,7 @@ function isFirstNextPrerelease(v) {
 var ConfigureNextAsMajorAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
-    this._newVersion = import_semver10.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
+    this._newVersion = import_semver11.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
   }
   async getDescription() {
     const { branchName } = this.active.next;
@@ -36129,9 +36132,9 @@ var ConfigureNextAsMajorAction = class extends ReleaseAction {
 };
 
 // ng-dev/utils/semver.js
-var import_semver11 = __toESM(require_semver());
+var import_semver12 = __toESM(require_semver());
 function semverInc(version2, release, identifier) {
-  const clone2 = new import_semver11.default.SemVer(version2.version);
+  const clone2 = new import_semver12.default.SemVer(version2.version);
   return clone2.inc(release, identifier);
 }
 
@@ -36280,7 +36283,7 @@ var CutNpmNextReleaseCandidateAction = class extends CutNpmNextPrereleaseAction 
 };
 
 // ng-dev/release/publish/actions/cut-stable.js
-var import_semver16 = __toESM(require_semver());
+var import_semver17 = __toESM(require_semver());
 var CutStableAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -36329,7 +36332,7 @@ var CutStableAction = class extends ReleaseAction {
     return this._isNewMajor ? "next" : "latest";
   }
   _computeNewVersion({ version: version2 }) {
-    return import_semver16.default.parse(`${version2.major}.${version2.minor}.${version2.patch}`);
+    return import_semver17.default.parse(`${version2.major}.${version2.minor}.${version2.patch}`);
   }
   static async isActive(active) {
     if (active.exceptionalMinor !== null) {
@@ -36380,7 +36383,7 @@ var CutExceptionalMinorReleaseCandidateAction = class extends CutExceptionalMino
 };
 
 // ng-dev/release/publish/actions/exceptional-minor/prepare-exceptional-minor.js
-var import_semver18 = __toESM(require_semver());
+var import_semver19 = __toESM(require_semver());
 var PrepareExceptionalMinorAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -36388,7 +36391,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
     this._baseBranch = this._patch.branchName;
     this._patchVersion = this._patch.version;
     this._newBranch = `${this._patchVersion.major}.${this._patchVersion.minor + 1}.x`;
-    this._newVersion = import_semver18.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
+    this._newVersion = import_semver19.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
   }
   async getDescription() {
     return `Prepare an exceptional minor based on the existing "${this._baseBranch}" branch (${this._newBranch}).`;
@@ -36419,7 +36422,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 };
 
 // ng-dev/release/publish/actions/shared/branch-off-next-branch.js
-var import_semver19 = __toESM(require_semver());
+var import_semver20 = __toESM(require_semver());
 
 // ng-dev/release/publish/actions/renovate-config-updates.js
 import { existsSync as existsSync7 } from "node:fs";
@@ -36492,7 +36495,7 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   }
   async _createNextBranchUpdatePullRequest(releaseNotes, newVersion) {
     const { branchName: nextBranch, version: version2 } = this.active.next;
-    const newNextVersion = import_semver19.default.parse(`${version2.major}.${version2.minor + 1}.0-next.0`);
+    const newNextVersion = import_semver20.default.parse(`${version2.major}.${version2.minor + 1}.0-next.0`);
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
@@ -36537,15 +36540,15 @@ var MoveNextIntoReleaseCandidateAction = class extends BranchOffNextBranchBaseAc
 };
 
 // ng-dev/release/publish/actions/special/cut-lts-minor.js
-var import_semver20 = __toESM(require_semver());
+var import_semver21 = __toESM(require_semver());
 var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
   async getDescription() {
     return `SPECIAL: Cut a new release for an LTS minor.`;
   }
   async perform() {
     const ltsBranch = await this._askForVersionBranch("Please specify the target LTS branch:");
-    const compareVersionForReleaseNotes = import_semver20.default.parse(await Prompt.input({ message: "Compare version for release" }));
-    const newVersion = import_semver20.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
+    const compareVersionForReleaseNotes = import_semver21.default.parse(await Prompt.input({ message: "Compare version for release" }));
+    const newVersion = import_semver21.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, ltsBranch.branch);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
     await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.branch, getLtsNpmDistTagOfMajor(newVersion.major), { showAsLatestOnGitHub: false });
@@ -36570,7 +36573,7 @@ var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
 };
 
 // ng-dev/release/publish/actions/tag-recent-major-as-latest.js
-var import_semver21 = __toESM(require_semver());
+var import_semver22 = __toESM(require_semver());
 var TagRecentMajorAsLatest = class extends ReleaseAction {
   async getDescription() {
     return `Retag recently published major v${this.active.latest.version} as "latest" in NPM.`;
@@ -36598,7 +36601,7 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
       return false;
     }
     const packageInfo = await fetchProjectNpmPackageInfo(config2);
-    const npmLatestVersion = import_semver21.default.parse(packageInfo["dist-tags"]["latest"]);
+    const npmLatestVersion = import_semver22.default.parse(packageInfo["dist-tags"]["latest"]);
     return npmLatestVersion !== null && npmLatestVersion.major === latest.version.major - 1;
   }
 };
@@ -36625,7 +36628,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-92c6b596e59e320c9edbc6d6490c1047264c4a0d`;
+var localVersion = `0.0.0-ae0c698d65e96cf44bc81ece27615603297d7999`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -37044,7 +37047,7 @@ import url2 from "url";
 
 // ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
-var import_semver22 = __toESM(require_semver());
+var import_semver23 = __toESM(require_semver());
 import { join as join16 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
@@ -37127,7 +37130,7 @@ function getVersionFromWorkspacePackageJson(git) {
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver22.default.SemVer(packageJson.version);
+  return new import_semver23.default.SemVer(packageJson.version);
 }
 
 // ng-dev/release/stamping/cli.js
@@ -37198,7 +37201,7 @@ var ReleaseNpmDistTagDeleteCommand = {
 };
 
 // ng-dev/release/npm-dist-tag/set/cli.js
-var import_semver23 = __toESM(require_semver());
+var import_semver24 = __toESM(require_semver());
 function builder26(args) {
   return args.positional("tagName", {
     type: "string",
@@ -37219,7 +37222,7 @@ async function handler26(args) {
   const config2 = await getConfig();
   assertValidReleaseConfig(config2);
   const { npmPackages, publishRegistry } = config2.release;
-  const version2 = import_semver23.default.parse(rawVersion);
+  const version2 = import_semver24.default.parse(rawVersion);
   if (version2 === null) {
     Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
     process.exit(1);
@@ -37275,7 +37278,7 @@ import { tmpdir as tmpdir3 } from "node:os";
 import path7 from "node:path";
 
 // github-actions/release/publish/lib/publish-ci.js
-var import_semver24 = __toESM(require_semver());
+var import_semver25 = __toESM(require_semver());
 import { join as join17 } from "path";
 import { existsSync as existsSync9, writeFileSync as writeFileSync5, rmSync, mkdtempSync } from "fs";
 import { tmpdir as tmpdir2 } from "os";
@@ -37387,7 +37390,7 @@ var PublishCiTool = class {
     this.assertExpectedSha();
     const newVersion = readPackageJsonAtRef(this.git, "HEAD").version;
     const builtPackagesWithInfo = await this.resolveTgzPackages(newVersion);
-    const newSemver = import_semver24.default.parse(newVersion);
+    const newSemver = import_semver25.default.parse(newVersion);
     if (!newSemver) {
       throw new Error(`Failed to parse version ${newVersion} as semver.`);
     }
@@ -37395,7 +37398,7 @@ var PublishCiTool = class {
     if (!this.options.skipTagging) {
       const beforeStagingSha = this.getBeforeStagingSha();
       const versionAtBeforeStaging = readPackageJsonAtRef(this.git, beforeStagingSha).version;
-      const versionAtBeforeStagingSemver = import_semver24.default.parse(versionAtBeforeStaging);
+      const versionAtBeforeStagingSemver = import_semver25.default.parse(versionAtBeforeStaging);
       if (!versionAtBeforeStagingSemver) {
         throw new Error(`Failed to parse version ${versionAtBeforeStaging} as semver.`);
       }
@@ -37499,10 +37502,10 @@ ${failures}`);
       let highestStableVersion = null;
       for (const tag of tags) {
         const versionStr = tag.startsWith("v") ? tag.slice(1) : tag;
-        const parsed = import_semver24.default.parse(versionStr);
+        const parsed = import_semver25.default.parse(versionStr);
         if (parsed && parsed.prerelease.length === 0) {
-          if (import_semver24.default.lt(parsed, newSemver)) {
-            if (highestStableVersion === null || import_semver24.default.gt(parsed, highestStableVersion)) {
+          if (import_semver25.default.lt(parsed, newSemver)) {
+            if (highestStableVersion === null || import_semver25.default.gt(parsed, highestStableVersion)) {
               highestStableVersion = parsed;
             }
           }
