@@ -1,3 +1,3 @@
-export declare const localVersion = "0.0.0-99e828878959e1cc0f9b9b60b43685e599495a0b";
+export declare const localVersion = "0.0.0-6d918a6dd670e28afd4ba54d00b805d4aba43dca";
 export declare function ngDevVersionMiddleware(): Promise<void>;
 export declare function verifyNgDevToolIsUpToDate(workspacePath: string): Promise<boolean>;

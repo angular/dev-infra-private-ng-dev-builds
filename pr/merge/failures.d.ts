@@ -17,3 +17,6 @@ export declare class MergeConflictsFatalError extends FatalMergeToolError {
 export declare class PullRequestValidationError extends FatalMergeToolError {
     constructor();
 }
+export declare class MismatchedPullRequestHeadShaFatalError extends FatalMergeToolError {
+    constructor(expectedSha: string, actualSha: string);
+}

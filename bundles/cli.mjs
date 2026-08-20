@@ -32254,6 +32254,11 @@ var PullRequestValidationError = class extends FatalMergeToolError {
     super("Tool exited as at least one pull request validation error was discovered.");
   }
 };
+var MismatchedPullRequestHeadShaFatalError = class extends FatalMergeToolError {
+  constructor(expectedSha, actualSha) {
+    super(`Pull request head commit changed after it was validated. The pull request was validated at ${expectedSha}, but its head is now ${actualSha}. Merging would land commits that were never reviewed or checked. Please re-run the merge so the new head is validated.`);
+  }
+};
 
 // ng-dev/pr/common/validation/validation-failure.js
 var PullRequestValidationFailure = class {
@@ -32675,6 +32680,10 @@ var MergeStrategy = class {
   }
   async prepare(pullRequest) {
     this.fetchTargetBranches(pullRequest.targetBranches, `pull/${pullRequest.prNumber}/head:${TEMP_PR_HEAD_BRANCH}`);
+    const fetchedHeadSha = this.git.run(["rev-parse", TEMP_PR_HEAD_BRANCH]).stdout.trim();
+    if (fetchedHeadSha !== pullRequest.headSha) {
+      throw new MismatchedPullRequestHeadShaFatalError(pullRequest.headSha, fetchedHeadSha);
+    }
   }
   async check(pullRequest) {
     const { githubTargetBranch, targetBranches, requiredBaseSha } = pullRequest;
@@ -32895,7 +32904,7 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
     this.config = config2;
   }
   async merge(pullRequest) {
-    const { githubTargetBranch, prNumber, needsCommitMessageFixup, targetBranches } = pullRequest;
+    const { githubTargetBranch, prNumber, needsCommitMessageFixup, targetBranches, headSha } = pullRequest;
     const cherryPickTargetBranches = targetBranches.filter((b) => b !== githubTargetBranch);
     const commits = await this.getPullRequestCommits(pullRequest);
     const { squashCount, fixupCount, normalCommitsCount } = await this.getCommitsInfo(pullRequest);
@@ -32903,6 +32912,7 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
     const mergeOptions = {
       pull_number: prNumber,
       merge_method: method === "auto" ? "rebase" : method,
+      sha: headSha,
       ...this.git.remoteParams
     };
     if (method === "auto") {
@@ -32939,6 +32949,9 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
     } catch (e) {
       if (isGithubApiError(e) && (e.status === 403 || e.status === 404)) {
         throw new FatalMergeToolError("Insufficient Github API permissions to merge pull request.");
+      }
+      if (isGithubApiError(e) && e.status === 409) {
+        throw new FatalMergeToolError(`Pull request head commit changed after it was validated (expected ${headSha}). Merging now would land commits that were never reviewed or checked. Please re-run the merge so the new head is validated.`);
       }
       throw e;
     }
@@ -36628,7 +36641,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-99e828878959e1cc0f9b9b60b43685e599495a0b`;
+var localVersion = `0.0.0-6d918a6dd670e28afd4ba54d00b805d4aba43dca`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
