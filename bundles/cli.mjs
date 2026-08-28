@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-Z3X5GOBV.mjs";
+} from "./chunk-ZBP47RX4.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -36641,7 +36641,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-8fb164f40c9776c41771785c6d9facbd9ea63b73`;
+var localVersion = `0.0.0-6a54b1f6636c00be7b9c3fa5928da87df48ff9a0`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

@@ -24865,7 +24865,7 @@ function isNodeJSWrappedError(value, errorType) {
   return value instanceof errorType;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/key.js
 var keybindings = ["emacs", "vim"];
 var keybindingLookup = new Set(keybindings);
 function isKeybinding(value) {
@@ -24895,7 +24895,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -24918,10 +24918,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -25027,7 +25027,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-state.js
 function isFactory(value) {
   return typeof value === "function";
 }
@@ -25053,7 +25053,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -25065,7 +25065,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.8/node_modules/@inquirer/figures/dist/index.js
@@ -25361,7 +25361,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -25389,7 +25389,7 @@ function getDefaultTheme() {
   };
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject3(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -25417,7 +25417,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -25448,7 +25448,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -25461,12 +25461,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -25485,7 +25485,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 
 // node_modules/.aspect_rules_js/fast-string-truncated-width@3.0.3/node_modules/fast-string-truncated-width/dist/utils.js
@@ -25825,7 +25825,7 @@ function wrapAnsi(string, columns, options) {
   return String(string).normalize().split(CRLF_OR_LF).map((line) => exec(line, columns, options)).join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/utils.js
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, wordWrap: false }).split("\n").map((str) => str.trimEnd())).join("\n");
 }
@@ -25833,7 +25833,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -25922,7 +25922,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib2());
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
@@ -26178,7 +26178,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.7/node_modules/@inquirer/ansi/dist/index.js
@@ -26197,7 +26197,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC2 + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -26258,7 +26258,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/promise-polyfill.js
 var PromisePolyfill = class extends Promise {
   // Available starting from Node 22
   // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/withResolvers
@@ -26273,7 +26273,7 @@ var PromisePolyfill = class extends Promise {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/create-prompt.js
 import path from "node:path";
 var nativeSetImmediate = globalThis.setImmediate;
 function getCallSites() {
@@ -26385,7 +26385,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.0_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.1_@types+node@24.13.3/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -26400,7 +26400,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.2.2_@types+node@24.13.3/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.2.3_@types+node@24.13.3/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -26782,7 +26782,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.3.0_@types+node@24.13.3/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.3.1_@types+node@24.13.3/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep",
   style: {
@@ -26850,24 +26850,46 @@ var dist_default5 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.2.0_@types+node@24.13.3/node_modules/@inquirer/confirm/dist/index.js
-function getBooleanValue(value, defaultValue) {
-  let answer = defaultValue !== false;
-  if (/^(y|yes)/i.test(value))
-    answer = true;
-  else if (/^(n|no)/i.test(value))
-    answer = false;
-  return answer;
-}
-function boolToString(value) {
-  return value ? "Yes" : "No";
-}
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.3.0_@types+node@24.13.3/node_modules/@inquirer/confirm/dist/index.js
+import { styleText as styleText4 } from "node:util";
+var confirmTheme = {
+  keywords: {
+    yes: "Yes",
+    no: "No"
+  },
+  style: {
+    confirmDefault: (text) => {
+      const first = text[0] ?? "";
+      if (first.toLowerCase() === first.toUpperCase()) {
+        return styleText4("cyan", text);
+      }
+      return first.toUpperCase() + text.slice(1);
+    }
+  }
+};
 var dist_default6 = createPrompt((config, done) => {
-  const { transformer = boolToString } = config;
   const [status, setStatus] = useState("idle");
   const [value, setValue] = useState("");
-  const theme = makeTheme(config.theme);
+  const theme = makeTheme(confirmTheme, config.theme);
   const prefix = usePrefix({ status, theme });
+  const { yes, no } = theme.keywords;
+  const yesHint = (yes[0] ?? "").toLowerCase();
+  const noHint = (no[0] ?? "").toLowerCase();
+  const hint = config.default === false ? `${yesHint}/${theme.style.confirmDefault(noHint)}` : `${theme.style.confirmDefault(yesHint)}/${noHint}`;
+  function boolToString(value2) {
+    return value2 ? yes : no;
+  }
+  const { transformer = boolToString } = config;
+  function getBooleanValue(value2, defaultValue2) {
+    const v = value2.toLowerCase();
+    if (v === "")
+      return defaultValue2 !== false;
+    if (yes.toLowerCase().startsWith(v))
+      return true;
+    if (no.toLowerCase().startsWith(v))
+      return false;
+    return defaultValue2 !== false;
+  }
   useKeypress((key, rl) => {
     if (status !== "idle")
       return;
@@ -26890,13 +26912,13 @@ var dist_default6 = createPrompt((config, done) => {
   if (status === "done") {
     formattedValue = theme.style.answer(value);
   } else {
-    defaultValue = ` ${theme.style.defaultAnswer(config.default === false ? "y/N" : "Y/n")}`;
+    defaultValue = ` ${theme.style.defaultAnswer(hint)}`;
   }
   const message = theme.style.message(config.message, status);
   return `${prefix} ${message}${defaultValue} ${formattedValue}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.1.3_@types+node@24.13.3/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.1.4_@types+node@24.13.3/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -26981,7 +27003,7 @@ var dist_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.2.0_@types+node@24.13.3/node_modules/@inquirer/number/dist/is-step-of.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.2.1_@types+node@24.13.3/node_modules/@inquirer/number/dist/is-step-of.js
 function toDecimal(value) {
   const [coefficient = "", exponent = "0"] = value.toString().toLowerCase().split("e");
   const [integer = "", fraction = ""] = coefficient.split(".");
@@ -27005,7 +27027,7 @@ function isStepOf(value, step, min) {
   return (valueInteger - minInteger) % stepInteger === 0n;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.2.0_@types+node@24.13.3/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.2.1_@types+node@24.13.3/node_modules/@inquirer/number/dist/index.js
 function validateNumber(value, { min, max, step }) {
   if (value == null || Number.isNaN(value)) {
     return false;
@@ -27080,8 +27102,8 @@ var dist_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.1.2_@types+node@24.13.3/node_modules/@inquirer/expand/dist/index.js
-import { styleText as styleText4 } from "node:util";
+// node_modules/.aspect_rules_js/@inquirer+expand@5.1.3_@types+node@24.13.3/node_modules/@inquirer/expand/dist/index.js
+import { styleText as styleText5 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
     if (Separator.isSeparator(choice)) {
@@ -27125,7 +27147,7 @@ var expand2 = createPrompt((config, done) => {
         } else if (value === "") {
           setError("Please input a value");
         } else {
-          setError(`"${styleText4("red", value)}" isn't an available option`);
+          setError(`"${styleText5("red", value)}" isn't an available option`);
         }
       }
     } else {
@@ -27165,7 +27187,7 @@ var expand2 = createPrompt((config, done) => {
   let helpTip = "";
   const currentOption = choices.find((choice) => !Separator.isSeparator(choice) && choice.key === value.toLowerCase());
   if (currentOption) {
-    helpTip = `${styleText4("cyan", ">>")} ${currentOption.name}`;
+    helpTip = `${styleText5("cyan", ">>")} ${currentOption.name}`;
   }
   let error = "";
   if (errorMsg) {
@@ -27177,12 +27199,12 @@ var expand2 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.3.2_@types+node@24.13.3/node_modules/@inquirer/rawlist/dist/index.js
-import { styleText as styleText5 } from "node:util";
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.3.3_@types+node@24.13.3/node_modules/@inquirer/rawlist/dist/index.js
+import { styleText as styleText6 } from "node:util";
 var numberRegex = /\d+/;
 var rawlistTheme = {
   style: {
-    description: (text) => styleText5("cyan", text)
+    description: (text) => styleText6("cyan", text)
   }
 };
 function isSelectableChoice(choice) {
@@ -27253,7 +27275,7 @@ var dist_default9 = createPrompt((config, done) => {
       } else if (value === "") {
         setError("Please input a value");
       } else {
-        setError(`"${styleText5("red", value)}" isn't an available option`);
+        setError(`"${styleText6("red", value)}" isn't an available option`);
       }
     } else if (isUpKey(key, keybindings2) || isDownKey(key, keybindings2)) {
       rl.clearLine(0);
@@ -27305,18 +27327,21 @@ var dist_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.1.2_@types+node@24.13.3/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.2.0_@types+node@24.13.3/node_modules/@inquirer/password/dist/index.js
+import { styleText as styleText7 } from "node:util";
 var passwordTheme = {
   style: {
-    maskedText: "[input is masked]"
+    maskedText: "[input is masked]",
+    keysHelpTip: (keys) => keys.map(([key, action]) => `${styleText7("bold", key)} ${styleText7("dim", action)}`).join(styleText7("dim", " \u2022 "))
   }
 };
 var dist_default10 = createPrompt((config, done) => {
-  const { validate = () => true } = config;
+  const { toggleMask = true, validate = () => true } = config;
   const theme = makeTheme(passwordTheme, config.theme);
   const [status, setStatus] = useState("idle");
   const [errorMsg, setError] = useState();
   const [value, setValue] = useState("");
+  const [revealed, setRevealed] = useState(false);
   const prefix = usePrefix({ status, theme });
   useKeypress(async (key, rl) => {
     if (status !== "idle") {
@@ -27335,39 +27360,46 @@ var dist_default10 = createPrompt((config, done) => {
         setError(isValid || "You must provide a valid value");
         setStatus("idle");
       }
+    } else if (toggleMask && key.ctrl && key.name === "t") {
+      setRevealed((prev) => !prev);
     } else {
       setValue(rl.line);
       setError(void 0);
     }
   });
   const message = theme.style.message(config.message, status);
+  const showPlaintext = toggleMask && revealed && status === "idle";
   let formattedValue = "";
-  let helpTip;
-  if (config.mask) {
+  if (showPlaintext) {
+    formattedValue = value;
+  } else if (config.mask) {
     const maskChar = typeof config.mask === "string" ? config.mask : "*";
     formattedValue = maskChar.repeat(value.length);
   } else if (status !== "done") {
-    helpTip = `${theme.style.help(theme.style.maskedText)}${cursorHide}`;
+    formattedValue = theme.style.help(theme.style.maskedText);
   }
   if (status === "done") {
     formattedValue = theme.style.answer(formattedValue);
+  } else if (!config.mask) {
+    formattedValue += cursorHide;
   }
-  let error = "";
-  if (errorMsg) {
-    error = theme.style.error(errorMsg);
-  }
-  return [[prefix, message, config.mask ? formattedValue : helpTip].join(" "), error];
+  const content = [prefix, message, formattedValue].filter(Boolean).join(" ");
+  const bottomContent = [
+    errorMsg ? theme.style.error(errorMsg) : "",
+    toggleMask && status === "idle" ? theme.style.keysHelpTip([["ctrl+t", "toggle visibility"]]) : ""
+  ].filter(Boolean).join("\n");
+  return [content, bottomContent];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.3.0_@types+node@24.13.3/node_modules/@inquirer/search/dist/index.js
-import { styleText as styleText6 } from "node:util";
+// node_modules/.aspect_rules_js/@inquirer+search@4.3.1_@types+node@24.13.3/node_modules/@inquirer/search/dist/index.js
+import { styleText as styleText8 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
   style: {
-    disabled: (text) => styleText6("dim", `- ${text}`),
-    searchTerm: (text) => styleText6("cyan", text),
-    description: (text) => styleText6("cyan", text),
-    keysHelpTip: (keys) => keys.map(([key, action]) => `${styleText6("bold", key)} ${styleText6("dim", action)}`).join(styleText6("dim", " \u2022 "))
+    disabled: (text) => styleText8("dim", `- ${text}`),
+    searchTerm: (text) => styleText8("cyan", text),
+    description: (text) => styleText8("cyan", text),
+    keysHelpTip: (keys) => keys.map(([key, action]) => `${styleText8("bold", key)} ${styleText8("dim", action)}`).join(styleText8("dim", " \u2022 "))
   }
 };
 function isSelectable2(item) {
@@ -27535,14 +27567,14 @@ var dist_default11 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.2.2_@types+node@24.13.3/node_modules/@inquirer/select/dist/index.js
-import { styleText as styleText7 } from "node:util";
+// node_modules/.aspect_rules_js/@inquirer+select@5.2.3_@types+node@24.13.3/node_modules/@inquirer/select/dist/index.js
+import { styleText as styleText9 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },
   style: {
-    disabled: (text) => styleText7("dim", text),
-    description: (text) => styleText7("cyan", text),
-    keysHelpTip: (keys) => keys.map(([key, action]) => `${styleText7("bold", key)} ${styleText7("dim", action)}`).join(styleText7("dim", " \u2022 "))
+    disabled: (text) => styleText9("dim", text),
+    description: (text) => styleText9("cyan", text),
+    keysHelpTip: (keys) => keys.map(([key, action]) => `${styleText9("bold", key)} ${styleText9("dim", action)}`).join(styleText9("dim", " \u2022 "))
   },
   i18n: { disabledError: "This option is disabled and cannot be selected." },
   indexMode: "hidden"
