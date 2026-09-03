@@ -19725,7 +19725,7 @@ function Collection() {
 }
 var before_after_hook_default = { Singular, Collection };
 
-// node_modules/.aspect_rules_js/@octokit+endpoint@11.0.4/node_modules/@octokit/endpoint/dist-bundle/index.js
+// node_modules/.aspect_rules_js/@octokit+endpoint@11.0.5/node_modules/@octokit/endpoint/dist-bundle/index.js
 var VERSION = "0.0.0-development";
 var userAgent = `octokit-endpoint.js/${VERSION} ${getUserAgent()}`;
 var DEFAULTS = {
@@ -20511,7 +20511,7 @@ var JSONParse = (text, reviver) => {
   }
 };
 
-// node_modules/.aspect_rules_js/@octokit+request-error@7.1.1/node_modules/@octokit/request-error/dist-src/index.js
+// node_modules/.aspect_rules_js/@octokit+request-error@7.1.2/node_modules/@octokit/request-error/dist-src/index.js
 var RequestError = class extends Error {
   name;
   /**
@@ -20550,8 +20550,8 @@ var RequestError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@octokit+request@10.0.15/node_modules/@octokit/request/dist-bundle/index.js
-var VERSION2 = "10.0.15";
+// node_modules/.aspect_rules_js/@octokit+request@10.0.16/node_modules/@octokit/request/dist-bundle/index.js
+var VERSION2 = "10.0.16";
 var defaults_default = {
   headers: {
     "user-agent": `octokit-request.js/${VERSION2} ${getUserAgent()}`
