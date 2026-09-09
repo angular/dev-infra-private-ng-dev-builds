@@ -40982,7 +40982,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-183403ae13b785698eaf13c819dda55b9fed430b`;
+var localVersion = `0.0.0-a1993a758648b43d3ccf7be9e3eade089a82a4e7`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -41001,7 +41001,14 @@ async function verifyNgDevToolIsUpToDate(workspacePath) {
   const expectedVersion = await getExpectedVersionFromPnpmLockUpstream();
   Log.debug("Checking ng-dev version in lockfile and in the running script:");
   Log.debug(`  Local: ${localVersion}`);
-  Log.debug(`  Expected: ${expectedVersion}`);
+  Log.debug(`  Expected: ${expectedVersion ?? "unknown"}`);
+  if (expectedVersion === null) {
+    Log.warn("  \u26A0   Could not extract the expected `ng-dev` version from `pnpm-lock.yaml`.");
+    return await Prompt.confirm({
+      message: "Do you want to continue anyway?",
+      default: false
+    });
+  }
   if (localVersion !== expectedVersion) {
     Log.warn("  \u26A0   Your locally installed version of the `ng-dev` tool is outdated and not");
     Log.warn("      matching with the version in the `package.json` file.");
@@ -41023,15 +41030,44 @@ async function getExpectedVersionFromPnpmLockUpstream() {
     if (Array.isArray(data) || data.type !== "file") {
       throw Error(`A non-single file of content was retrieved from Github when the pnpm-lock.yaml file was requested`);
     }
-    const lockFile = (0, import_yaml4.parse)(Buffer.from(data.content, data.encoding).toString("utf-8"));
-    const importers = lockFile["importers"]["."];
-    const depEntry = importers.dependencies?.["@angular/ng-dev"] ?? importers.devDependencies?.["@angular/ng-dev"] ?? importers.optionalDependencies?.["@angular/ng-dev"];
-    const packageId = (0, import_dependency_path.tryGetPackageId)(depEntry.version);
-    return lockFile["packages"][`@angular/ng-dev@${packageId}`].version;
+    const content = Buffer.from(data.content, data.encoding).toString("utf-8");
+    const expectedVersion = extractNgDevVersionFromPnpmLock(content);
+    if (expectedVersion === null) {
+      throw Error("Could not find @angular/ng-dev entry in pnpm-lock.yaml");
+    }
+    return expectedVersion;
   } catch (e) {
     Log.debug("Could not find expected ng-dev version from `pnpm-lock.yaml` file:", e);
-    return "unknown";
+    return null;
   }
+}
+function extractNgDevVersionFromPnpmLock(content) {
+  const documents = (0, import_yaml4.parseAllDocuments)(content);
+  for (const doc of documents) {
+    if (doc.errors.length > 0) {
+      throw doc.errors[0];
+    }
+  }
+  const lockFiles = documents.map((doc) => doc.toJS());
+  for (const lockFile of lockFiles) {
+    const importers = lockFile?.["importers"]?.["."];
+    const depEntry = importers?.dependencies?.["@angular/ng-dev"] ?? importers?.devDependencies?.["@angular/ng-dev"] ?? importers?.optionalDependencies?.["@angular/ng-dev"];
+    if (!depEntry) {
+      continue;
+    }
+    const depEntryVersion = typeof depEntry === "object" && depEntry !== null ? depEntry.version : depEntry;
+    if (typeof depEntryVersion !== "string" || !depEntryVersion) {
+      continue;
+    }
+    const packageId = (0, import_dependency_path.tryGetPackageId)(depEntryVersion) ?? depEntryVersion;
+    for (const file2 of lockFiles) {
+      const version2 = file2?.["packages"]?.[`@angular/ng-dev@${packageId}`]?.version ?? file2?.["packages"]?.[`@angular/ng-dev@${depEntryVersion}`]?.version;
+      if (version2) {
+        return version2;
+      }
+    }
+  }
+  return null;
 }
 
 // ng-dev/release/publish/index.js
