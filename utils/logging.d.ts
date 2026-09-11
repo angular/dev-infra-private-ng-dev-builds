@@ -14,6 +14,7 @@ export declare const yellow: (text: string, options?: import("util").StyleTextOp
 export declare const bold: (text: string, options?: import("util").StyleTextOptions | undefined) => string;
 export declare const blue: (text: string, options?: import("util").StyleTextOptions | undefined) => string;
 export declare const underline: (text: string, options?: import("util").StyleTextOptions | undefined) => string;
+export declare const magenta: (text: string, options?: import("util").StyleTextOptions | undefined) => string;
 export declare abstract class Log {
     static info: (...values: unknown[]) => void;
     static error: (...values: unknown[]) => void;

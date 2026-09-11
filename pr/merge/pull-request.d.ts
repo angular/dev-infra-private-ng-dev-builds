@@ -18,6 +18,7 @@ export interface PullRequest {
     requiredBaseSha?: string;
     needsCommitMessageFixup: boolean;
     hasCaretakerNote: boolean;
+    caretakerNote?: string;
     baseSha: string;
     revisionRange: string;
     validationFailures: PullRequestValidationFailure[];

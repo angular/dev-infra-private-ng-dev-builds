@@ -1,5 +1,6 @@
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 import { PullRequestConfig, PullRequestValidationConfig } from '../config/index.js';
+import { PullRequest } from './pull-request.js';
 import { GithubConfig, NgDevConfig } from '../../utils/config.js';
 export interface PullRequestMergeFlags {
     branchPrompt: boolean;
@@ -21,5 +22,7 @@ export declare class MergeTool {
     }>, git: AuthenticatedGitClient, flags: Partial<PullRequestMergeFlags>);
     merge(prNumber: number, partialValidationConfig: PullRequestValidationConfig): Promise<void>;
     private updatePullRequestTargetedBranchesFromPrompt;
+    checkCaretakerNoteConfirmation(pullRequest: PullRequest): Promise<void>;
+    getCaretakerNote(pullRequest: PullRequest): Promise<string | undefined>;
     confirmMergeAccess(): Promise<void>;
 }

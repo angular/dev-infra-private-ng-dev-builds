@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-U7PAJR6D.mjs";
+} from "./chunk-7IRT7ROC.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -63,12 +63,13 @@ import {
   getUserConfig,
   green,
   init_supports_color,
+  magenta,
   red,
   runParserWithCompletedFunctions,
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-H3MYIWGQ.mjs";
+} from "./chunk-3TPHGSIP.mjs";
 import {
   CommitParser
 } from "./chunk-GB5SHDKT.mjs";
@@ -36549,7 +36550,25 @@ var DiscoverNewConflictsCommandModule = {
 };
 
 // ng-dev/pr/merge/messages.js
-function getCaretakerNotePromptMessage(pullRequest) {
+var CARETAKER_NOTE_COMMENT_REGEX = /^\s*(?:[*_#\[(]+\s*)?(?:caretakers?(?:[\s-]*(?:notes?|\(notes?\)))?|notes?\s+(?:for|to)\s+caretakers?)(?:\s*[\])])?(?:\*{1,2}|_{1,2})?\s*[:"]/i;
+function getCaretakerNoteFromComments(comments) {
+  const matchingComments = comments.filter((c) => !!c.bodyText && (c.authorAssociation === "OWNER" || c.authorAssociation === "MEMBER" || c.authorAssociation === "COLLABORATOR") && CARETAKER_NOTE_COMMENT_REGEX.test(c.bodyText));
+  if (matchingComments.length === 1) {
+    return matchingComments[0].bodyText;
+  }
+  return null;
+}
+function getQuotedComment(comment) {
+  return comment.trim().split(/\r?\n/).map((line) => line.length > 0 ? `> ${line}` : ">").join("\n");
+}
+function getCaretakerNotePromptMessage(pullRequest, caretakerNote = pullRequest.caretakerNote) {
+  if (caretakerNote) {
+    return red("Pull request has a caretaker note applied. Please make sure you read it:") + `
+
+${magenta(getQuotedComment(caretakerNote))}
+
+Do you want to proceed merging?`;
+  }
   return red("Pull request has a caretaker note applied. Please make sure you read it.") + `
 Quick link to PR: ${pullRequest.url}
 Do you want to proceed merging?`;
@@ -37437,9 +37456,7 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
     if (this.flags.forceManualBranches) {
       await this.updatePullRequestTargetedBranchesFromPrompt(pullRequest);
     }
-    if (pullRequest.hasCaretakerNote && !await Prompt.confirm({ message: getCaretakerNotePromptMessage(pullRequest) })) {
-      throw new UserAbortedMergeToolError();
-    }
+    await this.checkCaretakerNoteConfirmation(pullRequest);
     const strategy = this.config.pullRequest.githubApiMerge ? new GithubApiMergeStrategy(this.git, this.config.pullRequest.githubApiMerge) : new AutosquashMergeStrategy(this.git);
     const previousBranchOrRevision = this.git.getCurrentBranchOrRevision();
     try {
@@ -37515,6 +37532,29 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
       throw new FatalMergeToolError(`Pull Requests must merge into their targeted Github branch. If this branch (${pullRequest.githubTargetBranch}) should not be included, please change the targeted branch via the Github UI.`);
     }
     pullRequest.targetBranches = selectedBranches;
+  }
+  async checkCaretakerNoteConfirmation(pullRequest) {
+    if (!pullRequest.hasCaretakerNote) {
+      return;
+    }
+    const caretakerNote = await this.getCaretakerNote(pullRequest);
+    pullRequest.caretakerNote = caretakerNote;
+    if (!await Prompt.confirm({
+      message: getCaretakerNotePromptMessage(pullRequest, caretakerNote)
+    })) {
+      throw new UserAbortedMergeToolError();
+    }
+  }
+  async getCaretakerNote(pullRequest) {
+    try {
+      const comments = await fetchPullRequestCommentsFromGithub(this.git, pullRequest.prNumber);
+      if (comments !== null) {
+        return getCaretakerNoteFromComments(comments) ?? void 0;
+      }
+    } catch (e) {
+      Log.debug(`Failed to fetch pull request comments for caretaker note: ${e}`);
+    }
+    return void 0;
   }
   async confirmMergeAccess() {
     if (this.git.userType === "user") {
@@ -40982,7 +41022,7 @@ var import_yaml4 = __toESM(require_dist());
 import * as path5 from "path";
 import * as fs4 from "fs";
 var import_dependency_path = __toESM(require_lib5());
-var localVersion = `0.0.0-f5c817076b8e4da7b6e91783dbcd553c5003a296`;
+var localVersion = `0.0.0-cde7ad16c16f5c7dbd57b62e8b930443813484ec`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

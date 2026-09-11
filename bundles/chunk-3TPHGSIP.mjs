@@ -5817,6 +5817,7 @@ var yellow = styleText.bind(null, "yellow");
 var bold = styleText.bind(null, "bold");
 var blue = styleText.bind(null, "blue");
 var underline = styleText.bind(null, "underline");
+var magenta = styleText.bind(null, "magenta");
 var Log = class {
 };
 Log.info = buildLogLevelFunction(() => console.info, LogLevel.INFO, null);
@@ -6031,6 +6032,7 @@ export {
   bold,
   blue,
   underline,
+  magenta,
   Log,
   captureLogOutputForCommand,
   setConfig,

@@ -42,7 +42,7 @@ import {
   requiresLabels,
   resolveYarnScriptForProject,
   targetLabels
-} from "./chunk-U7PAJR6D.mjs";
+} from "./chunk-7IRT7ROC.mjs";
 import {
   ConfigValidationError,
   DEFAULT_LOG_LEVEL,
@@ -57,11 +57,12 @@ import {
   getConfig,
   getUserConfig,
   green,
+  magenta,
   red,
   setConfig,
   underline,
   yellow
-} from "./chunk-H3MYIWGQ.mjs";
+} from "./chunk-3TPHGSIP.mjs";
 import "./chunk-RZTNU4LP.mjs";
 export {
   ActiveReleaseTrains,
@@ -109,6 +110,7 @@ export {
   isLtsDistTag,
   isVersionBranch,
   isVersionPublishedToNpm,
+  magenta,
   managedLabels,
   mergeLabels,
   miscLabels,
