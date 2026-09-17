@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-cde7ad16c16f5c7dbd57b62e8b930443813484ec",
+  "version": "0.0.0-71e60c68d9d483b0d763b8e6ed4dd9deb8da3b1a",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -30,7 +30,6 @@
     "@octokit/request-error": "7.1.2",
     "@octokit/rest": "22.0.1",
     "@octokit/types": "17.0.0",
-    "@pnpm/dependency-path": "1001.1.10",
     "@types/cli-progress": "3.11.6",
     "@types/ejs": "3.1.5",
     "@types/events": "3.0.3",
