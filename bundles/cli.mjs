@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-7IRT7ROC.mjs";
+} from "./chunk-4PNYOBOC.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -38450,7 +38450,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-71e60c68d9d483b0d763b8e6ed4dd9deb8da3b1a`;
+var localVersion = `0.0.0-20b69d39859eae19d7ac04b6f1902f73286f7686`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
