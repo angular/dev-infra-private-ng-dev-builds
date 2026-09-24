@@ -188,7 +188,7 @@ var init_supports_color = __esm({
   }
 });
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/lib/platform-shims/esm.mjs
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/lib/platform-shims/esm.mjs
 import { notStrictEqual, strictEqual } from "assert";
 
 // node_modules/.aspect_rules_js/cliui@9.0.1/node_modules/cliui/build/lib/index.js
@@ -974,7 +974,7 @@ function sync_default(start, callback) {
   }
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/lib/platform-shims/esm.mjs
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/lib/platform-shims/esm.mjs
 import { inspect } from "util";
 import { fileURLToPath } from "url";
 
@@ -1963,10 +1963,10 @@ yargsParser.decamelize = decamelize;
 yargsParser.looksLikeNumber = looksLikeNumber;
 var lib_default = yargsParser;
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/lib/platform-shims/esm.mjs
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/lib/platform-shims/esm.mjs
 import { basename, dirname as dirname2, extname, relative, resolve as resolve4, join } from "path";
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/process-argv.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/utils/process-argv.js
 function getProcessArgvBinIndex() {
   if (isBundledElectronApp())
     return 0;
@@ -2295,7 +2295,7 @@ var y18n2 = (opts) => {
 };
 var y18n_default = y18n2;
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/lib/platform-shims/esm.mjs
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/lib/platform-shims/esm.mjs
 var import_get_caller_file = __toESM(require_get_caller_file(), 1);
 import { createRequire as createRequire2 } from "node:module";
 import { readFileSync as readFileSync3, readdirSync as readdirSync2 } from "node:fs";
@@ -2349,7 +2349,7 @@ var esm_default = {
   })
 };
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/typings/common-types.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/typings/common-types.js
 function assertNotStrictEqual(actual, expected, shim3, message) {
   shim3.assert.notStrictEqual(actual, expected, message);
 }
@@ -2360,12 +2360,12 @@ function objectKeys(object) {
   return Object.keys(object);
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/is-promise.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/utils/is-promise.js
 function isPromise(maybePromise) {
   return !!maybePromise && !!maybePromise.then && typeof maybePromise.then === "function";
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/yerror.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/yerror.js
 var YError = class _YError extends Error {
   constructor(msg) {
     super(msg || "yargs error");
@@ -2376,7 +2376,7 @@ var YError = class _YError extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/parse-command.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/parse-command.js
 function parseCommand(cmd) {
   const extraSpacesStrippedCommand = cmd.replace(/\s{2,}/g, " ");
   const splitCommand = extraSpacesStrippedCommand.split(/\s+(?![^[]*]|[^<]*>)/);
@@ -2409,7 +2409,7 @@ function parseCommand(cmd) {
   return parsedCommand;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/argsert.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/argsert.js
 var positionName = ["first", "second", "third", "fourth", "fifth", "sixth"];
 function argsert(arg1, arg2, arg3) {
   function parseArgs() {
@@ -2467,7 +2467,7 @@ function argumentTypeError(observedType, allowedTypes, position) {
   throw new YError(`Invalid ${positionName[position] || "manyith"} argument. Expected ${allowedTypes.join(" or ")} but received ${observedType}.`);
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/middleware.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/middleware.js
 var GlobalMiddleware = class {
   constructor(yargs) {
     this.globalMiddleware = [];
@@ -2549,7 +2549,7 @@ function applyMiddleware(argv, yargs, middlewares, beforeValidation) {
   }, argv);
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/maybe-async-result.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/utils/maybe-async-result.js
 function maybeAsyncResult(getResult, resultHandler, errorHandler = (err) => {
   throw err;
 }) {
@@ -2564,7 +2564,7 @@ function isFunction(arg) {
   return typeof arg === "function";
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/command.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/command.js
 var DEFAULT_MARKER = /(^\*)|(^\$0)/;
 var CommandInstance = class {
   constructor(usage2, validation2, globalMiddleware, shim3) {
@@ -2985,7 +2985,7 @@ function isCommandHandlerDefinition(cmd) {
   return typeof cmd === "object" && !Array.isArray(cmd);
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/obj-filter.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/utils/obj-filter.js
 function objFilter(original = {}, filter = () => true) {
   const obj = {};
   objectKeys(original).forEach((key) => {
@@ -2996,7 +2996,7 @@ function objFilter(original = {}, filter = () => true) {
   return obj;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/set-blocking.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/utils/set-blocking.js
 function setBlocking(blocking) {
   if (typeof process === "undefined")
     return;
@@ -3008,7 +3008,7 @@ function setBlocking(blocking) {
   });
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/usage.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/usage.js
 function isBoolean(fail) {
   return typeof fail === "boolean";
 }
@@ -3534,7 +3534,7 @@ function getText(text) {
   return isIndentedText(text) ? text.text : text;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/completion-templates.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/completion-templates.js
 var completionShTemplate = `###-begin-{{app_name}}-completions-###
 #
 # yargs command completion script
@@ -3586,18 +3586,27 @@ _{{app_name}}_yargs_completions()
     _default
   fi
 }
-if [[ "'\${zsh_eval_context[-1]}" == "loadautofunc" ]]; then
+if [[ "\${zsh_eval_context[-1]}" == "loadautofunc" ]]; then
   _{{app_name}}_yargs_completions "$@"
 else
   compdef _{{app_name}}_yargs_completions {{app_name}}
 fi
 ###-end-{{app_name}}-completions-###
 `;
+var completionFishTemplate = `###-begin-{{app_name}}-completions-###
+#
+# yargs command completion script
+#
+# Installation: {{app_path}} {{completion_command}} > ~/.config/fish/completions/{{app_name}}.fish
+#
+complete -f -c {{app_name}} -a '({{app_path}} --get-yargs-completions (commandline -o)[2..-1])'
+###-end-{{app_name}}-completions-###
+`;
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/completion.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/completion.js
 var Completion = class {
   constructor(yargs, usage2, command2, shim3) {
-    var _a2, _b2, _c2;
+    var _a2, _b2, _c2, _d, _e;
     this.yargs = yargs;
     this.usage = usage2;
     this.command = command2;
@@ -3607,6 +3616,7 @@ var Completion = class {
     this.customCompletionFunction = null;
     this.indexAfterLastReset = 0;
     this.zshShell = (_c2 = ((_a2 = this.shim.getEnv("SHELL")) === null || _a2 === void 0 ? void 0 : _a2.includes("zsh")) || ((_b2 = this.shim.getEnv("ZSH_NAME")) === null || _b2 === void 0 ? void 0 : _b2.includes("zsh"))) !== null && _c2 !== void 0 ? _c2 : false;
+    this.fishShell = (_e = (_d = this.shim.getEnv("SHELL")) === null || _d === void 0 ? void 0 : _d.includes("fish")) !== null && _e !== void 0 ? _e : false;
   }
   defaultCompletion(args, argv, current, done) {
     const handlers = this.command.getCommandHandlers();
@@ -3634,11 +3644,13 @@ var Completion = class {
       this.usage.getCommands().forEach((usageCommand) => {
         const commandName = parseCommand(usageCommand[0]).cmd;
         if (args.indexOf(commandName) === -1) {
-          if (!this.zshShell) {
-            completions.push(commandName);
-          } else {
-            const desc = usageCommand[1] || "";
+          const desc = usageCommand[1] || "";
+          if (this.fishShell) {
+            completions.push(commandName + "	" + desc);
+          } else if (this.zshShell) {
             completions.push(commandName.replace(/:/g, "\\:") + ":" + desc);
+          } else {
+            completions.push(commandName);
           }
         }
       });
@@ -3661,7 +3673,11 @@ var Completion = class {
     if (this.previousArgHasChoices(args)) {
       const choices = this.getPreviousArgChoices(args);
       if (choices && choices.length > 0) {
-        completions.push(...choices.map((c) => c.replace(/:/g, "\\:")));
+        if (this.fishShell) {
+          completions.push(...choices);
+        } else {
+          completions.push(...choices.map((c) => c.replace(/:/g, "\\:")));
+        }
       }
     }
   }
@@ -3678,7 +3694,11 @@ var Completion = class {
     const choices = this.yargs.getOptions().choices[positionalKey] || [];
     for (const choice of choices) {
       if (choice.startsWith(current)) {
-        completions.push(choice.replace(/:/g, "\\:"));
+        if (this.fishShell) {
+          completions.push(choice);
+        } else {
+          completions.push(choice.replace(/:/g, "\\:"));
+        }
       }
     }
   }
@@ -3731,7 +3751,7 @@ var Completion = class {
   completeOptionKey(key, completions, current, negable) {
     var _a2, _b2, _c2, _d;
     let keyWithDesc = key;
-    if (this.zshShell) {
+    if (this.zshShell || this.fishShell) {
       const descs = this.usage.getDescriptions();
       const aliasKey = (_b2 = (_a2 = this === null || this === void 0 ? void 0 : this.aliases) === null || _a2 === void 0 ? void 0 : _a2[key]) === null || _b2 === void 0 ? void 0 : _b2.find((alias) => {
         const desc2 = descs[alias];
@@ -3739,7 +3759,12 @@ var Completion = class {
       });
       const descFromAlias = aliasKey ? descs[aliasKey] : void 0;
       const desc = (_d = (_c2 = descs[key]) !== null && _c2 !== void 0 ? _c2 : descFromAlias) !== null && _d !== void 0 ? _d : "";
-      keyWithDesc = `${key.replace(/:/g, "\\:")}:${desc.replace("__yargsString__:", "").replace(/(\r\n|\n|\r)/gm, " ")}`;
+      const cleanedDesc = desc.replace("__yargsString__:", "").replace(/(\r\n|\n|\r)/gm, " ");
+      if (this.fishShell) {
+        keyWithDesc = `${key}	${cleanedDesc}`;
+      } else {
+        keyWithDesc = `${key.replace(/:/g, "\\:")}:${cleanedDesc}`;
+      }
     }
     const startsByTwoDashes = (s) => /^--/.test(s);
     const isShortOption = (s) => /^[^0-9]$/.test(s);
@@ -3782,7 +3807,14 @@ var Completion = class {
     return isPromise(argv) ? argv.then(completionFunction) : completionFunction(argv);
   }
   generateCompletionScript($0, cmd) {
-    let script = this.zshShell ? completionZshTemplate : completionShTemplate;
+    let script;
+    if (this.zshShell) {
+      script = completionZshTemplate;
+    } else if (this.fishShell) {
+      script = completionFishTemplate;
+    } else {
+      script = completionShTemplate;
+    }
     const name = this.shim.path.basename($0);
     if ($0.match(/\.js$/))
       $0 = `./${$0}`;
@@ -3807,7 +3839,7 @@ function isFallbackCompletionFunction(completionFunction) {
   return completionFunction.length > 3;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/levenshtein.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/utils/levenshtein.js
 function levenshtein(a, b) {
   if (a.length === 0)
     return b.length;
@@ -3838,7 +3870,7 @@ function levenshtein(a, b) {
   return matrix[b.length][a.length];
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/validation.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/validation.js
 var specialKeys = ["$0", "--", "_"];
 function validation(yargs, usage2, shim3) {
   const __ = shim3.y18n.__;
@@ -4107,7 +4139,7 @@ ${customMsgs.join("\n")}` : "";
   return self;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/utils/apply-extends.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/utils/apply-extends.js
 var previouslyVisitedConfigs = [];
 var shim2;
 function applyExtends(config, cwd, mergeExtends, _shim) {
@@ -4162,7 +4194,7 @@ function mergeDeep(config1, config2) {
   return target;
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/build/lib/yargs-factory.js
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/build/lib/yargs-factory.js
 var __classPrivateFieldSet = function(receiver, state, value, kind, f) {
   if (kind === "m")
     throw new TypeError("Private method is not writable");
@@ -5666,7 +5698,7 @@ function isYargsInstance(y) {
   return !!y && typeof y.getInternalMethods === "function";
 }
 
-// node_modules/.aspect_rules_js/yargs@18.1.0/node_modules/yargs/index.mjs
+// node_modules/.aspect_rules_js/yargs@18.2.0/node_modules/yargs/index.mjs
 var Yargs = YargsFactory(esm_default);
 var yargs_default = Yargs;
 
