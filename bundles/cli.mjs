@@ -38450,7 +38450,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-3b181b7da71ce256d7dc44532ed3df8198f7d853`;
+var localVersion = `0.0.0-438f31efd5c7e1267eaadb4636f7ec0a6c1a088f`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
