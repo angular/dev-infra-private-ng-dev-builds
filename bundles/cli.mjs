@@ -35786,11 +35786,11 @@ var ReleaseInfoCommandModule = {
 // ng-dev/release/notes/cli.js
 var import_semver7 = __toESM(require_semver());
 
-// node_modules/.aspect_rules_js/ejs@6.0.1/node_modules/ejs/lib/esm/ejs.js
+// node_modules/.aspect_rules_js/ejs@7.0.1/node_modules/ejs/lib/esm/ejs.js
 import fs2 from "node:fs";
 import path4 from "node:path";
 
-// node_modules/.aspect_rules_js/ejs@6.0.1/node_modules/ejs/lib/esm/utils.js
+// node_modules/.aspect_rules_js/ejs@7.0.1/node_modules/ejs/lib/esm/utils.js
 var utils = {};
 var regExpChars = /[|\\{}()[\]^$+*?.]/g;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -35857,25 +35857,6 @@ utils.shallowCopy = function(to, from) {
   }
   return to;
 };
-utils.shallowCopyFromList = function(to, from, list) {
-  list = list || [];
-  from = from || {};
-  if (to !== null && to !== void 0) {
-    for (var i = 0; i < list.length; i++) {
-      var p = list[i];
-      if (typeof from[p] != "undefined") {
-        if (!hasOwn(from, p)) {
-          continue;
-        }
-        if (p === "__proto__" || p === "constructor") {
-          continue;
-        }
-        to[p] = from[p];
-      }
-    }
-  }
-  return to;
-};
 utils.cache = {
   _data: {},
   set: function(key, val) {
@@ -35922,7 +35903,7 @@ utils.hasOwnOnlyObject = function(obj) {
 };
 var utils_default = utils;
 
-// node_modules/.aspect_rules_js/ejs@6.0.1/node_modules/ejs/lib/esm/ejs.js
+// node_modules/.aspect_rules_js/ejs@7.0.1/node_modules/ejs/lib/esm/ejs.js
 var DECLARATION_KEYWORD = "let";
 var ejs = {};
 var _DEFAULT_OPEN_DELIMITER = "<";
@@ -35930,19 +35911,6 @@ var _DEFAULT_CLOSE_DELIMITER = ">";
 var _DEFAULT_DELIMITER = "%";
 var _DEFAULT_LOCALS_NAME = "locals";
 var _REGEX_STRING = "(<%%|%%>|<%=|<%-|<%_|<%#|<%|%>|-%>|_%>)";
-var _OPTS_PASSABLE_WITH_DATA = [
-  "delimiter",
-  "scope",
-  "context",
-  "debug",
-  "compileDebug",
-  "_with",
-  "rmWhitespace",
-  "strict",
-  "filename",
-  "async"
-];
-var _OPTS_PASSABLE_WITH_DATA_EXPRESS = _OPTS_PASSABLE_WITH_DATA.concat("cache");
 var _BOM = /^\uFEFF/;
 var _JS_IDENTIFIER = /^[a-zA-Z_$][0-9a-zA-Z_$]*$/;
 ejs.cache = utils_default.cache;
@@ -36098,9 +36066,6 @@ ejs.compile = function compile2(template, opts) {
 ejs.render = function(template, d, o) {
   let data = d || utils_default.createNullProtoObjWherePossible();
   let opts = o || utils_default.createNullProtoObjWherePossible();
-  if (arguments.length == 2) {
-    utils_default.shallowCopyFromList(opts, data, _OPTS_PASSABLE_WITH_DATA);
-  }
   return handleCache(opts, template)(data);
 };
 ejs.renderFile = function() {
@@ -36109,7 +36074,6 @@ ejs.renderFile = function() {
   let cb;
   let opts = { filename };
   let data;
-  let viewOpts;
   if (typeof arguments[arguments.length - 1] == "function") {
     cb = args.pop();
   }
@@ -36117,20 +36081,13 @@ ejs.renderFile = function() {
     data = args.shift();
     if (args.length) {
       utils_default.shallowCopy(opts, args.pop());
-    } else {
-      if (utils_default.hasOwn(data, "settings") && data.settings) {
-        if (data.settings.views) {
-          opts.views = data.settings.views;
-        }
-        if (data.settings["view cache"]) {
-          opts.cache = true;
-        }
-        viewOpts = data.settings["view options"];
-        if (viewOpts) {
-          utils_default.shallowCopy(opts, viewOpts);
-        }
+    } else if (utils_default.hasOwn(data, "settings") && data.settings) {
+      if (data.settings.views) {
+        opts.views = data.settings.views;
       }
-      utils_default.shallowCopyFromList(opts, data, _OPTS_PASSABLE_WITH_DATA_EXPRESS);
+      if (data.settings["view cache"]) {
+        opts.cache = true;
+      }
     }
     opts.filename = filename;
   } else {
@@ -38450,7 +38407,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-438f31efd5c7e1267eaadb4636f7ec0a6c1a088f`;
+var localVersion = `0.0.0-8b6cbbca278a26f2495275c5d9d0d8633573162d`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
