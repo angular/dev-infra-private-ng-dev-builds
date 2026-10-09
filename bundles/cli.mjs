@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-Q55SMVIO.mjs";
+} from "./chunk-LAZC5Z2U.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -72,7 +72,7 @@ import {
 } from "./chunk-IN4UPURP.mjs";
 import {
   CommitParser
-} from "./chunk-GB5SHDKT.mjs";
+} from "./chunk-YFFXSOAM.mjs";
 import {
   __commonJS,
   __export,
@@ -469,7 +469,7 @@ var require_options = __commonJS({
     }
     module.exports = {
       // set global options
-      parse: function parse7(rawOptions, preset) {
+      parse: function parse8(rawOptions, preset) {
         const options = {};
         const opt = Object.assign({}, preset, rawOptions);
         options.throttleTime = 1e3 / mergeOption(opt.fps, 10);
@@ -1472,7 +1472,7 @@ var require_to_regex_range = __commonJS({
         stop = countZeros(max + 1, zeros) - 1;
       }
       stops = [...stops];
-      stops.sort(compare);
+      stops.sort(compare2);
       return stops;
     }
     function rangeToPattern(start, stop, options) {
@@ -1545,7 +1545,7 @@ var require_to_regex_range = __commonJS({
         arr.push([a[i], b[i]]);
       return arr;
     }
-    function compare(a, b) {
+    function compare2(a, b) {
       return a > b ? 1 : b > a ? -1 : 0;
     }
     function contains(arr, key, val) {
@@ -2084,7 +2084,7 @@ var require_parse = __commonJS({
       CHAR_NO_BREAK_SPACE,
       CHAR_ZERO_WIDTH_NOBREAK_SPACE
     } = require_constants();
-    var parse7 = (input2, options = {}) => {
+    var parse8 = (input2, options = {}) => {
       if (typeof input2 !== "string") {
         throw new TypeError("Expected a string");
       }
@@ -2288,7 +2288,7 @@ var require_parse = __commonJS({
       push({ type: "eos" });
       return ast;
     };
-    module.exports = parse7;
+    module.exports = parse8;
   }
 });
 
@@ -2299,7 +2299,7 @@ var require_braces = __commonJS({
     var stringify = require_stringify();
     var compile3 = require_compile();
     var expand2 = require_expand();
-    var parse7 = require_parse();
+    var parse8 = require_parse();
     var braces = (input2, options = {}) => {
       let output3 = [];
       if (Array.isArray(input2)) {
@@ -2319,7 +2319,7 @@ var require_braces = __commonJS({
       }
       return output3;
     };
-    braces.parse = (input2, options = {}) => parse7(input2, options);
+    braces.parse = (input2, options = {}) => parse8(input2, options);
     braces.stringify = (input2, options = {}) => {
       if (typeof input2 === "string") {
         return stringify(braces.parse(input2, options), options);
@@ -2377,7 +2377,7 @@ var require_constants2 = __commonJS({
     var NO_DOT_SLASH = `(?!${DOT_LITERAL}{0,1}${END_ANCHOR})`;
     var NO_DOTS_SLASH = `(?!${DOTS_SLASH})`;
     var QMARK_NO_DOT = `[^.${SLASH_LITERAL}]`;
-    var STAR = `${QMARK}*?`;
+    var STAR2 = `${QMARK}*?`;
     var POSIX_CHARS = {
       DOT_LITERAL,
       PLUS_LITERAL,
@@ -2392,7 +2392,7 @@ var require_constants2 = __commonJS({
       NO_DOT_SLASH,
       NO_DOTS_SLASH,
       QMARK_NO_DOT,
-      STAR,
+      STAR: STAR2,
       START_ANCHOR
     };
     var WINDOWS_CHARS = {
@@ -3188,7 +3188,7 @@ var require_parse2 = __commonJS({
       }
       return { risky: false };
     };
-    var parse7 = (input2, options) => {
+    var parse8 = (input2, options) => {
       if (typeof input2 !== "string") {
         throw new TypeError("Expected a string");
       }
@@ -3216,7 +3216,7 @@ var require_parse2 = __commonJS({
         NO_DOTS_SLASH,
         QMARK,
         QMARK_NO_DOT,
-        STAR,
+        STAR: STAR2,
         START_ANCHOR
       } = PLATFORM_CHARS;
       const globstar = (opts2) => {
@@ -3224,7 +3224,7 @@ var require_parse2 = __commonJS({
       };
       const nodot = opts.dot ? "" : NO_DOT;
       const qmarkNoDot = opts.dot ? QMARK : QMARK_NO_DOT;
-      let star3 = opts.bash === true ? globstar(opts) : STAR;
+      let star3 = opts.bash === true ? globstar(opts) : STAR2;
       if (opts.capture) {
         star3 = `(${star3})`;
       }
@@ -3281,7 +3281,7 @@ var require_parse2 = __commonJS({
         state.start++;
         return true;
       };
-      const increment = (type) => {
+      const increment2 = (type) => {
         state[type]++;
         stack.push(type);
       };
@@ -3323,7 +3323,7 @@ var require_parse2 = __commonJS({
         token.startIndex = state.index;
         token.tokensIndex = tokens.length;
         const output3 = (opts.capture ? "(" : "") + token.open;
-        increment("parens");
+        increment2("parens");
         push({ type, value: value2, output: state.output ? "" : ONE_CHAR });
         push({ type: "paren", extglob: true, value: advance(), output: output3 });
         extglobs.push(token);
@@ -3360,7 +3360,7 @@ var require_parse2 = __commonJS({
             output3 = token.close = `)$))${extglobStar}`;
           }
           if (token.inner.includes("*") && (rest = remaining()) && /^\.[^\\/.]+$/.test(rest)) {
-            const expression = parse7(rest, { ...options, fastpaths: false }).output;
+            const expression = parse8(rest, { ...options, fastpaths: false }).output;
             output3 = token.close = `)${expression})${extglobStar})`;
           }
           if (token.prev.type === "bos") {
@@ -3499,7 +3499,7 @@ var require_parse2 = __commonJS({
           continue;
         }
         if (value === "(") {
-          increment("parens");
+          increment2("parens");
           push({ type: "paren", value });
           continue;
         }
@@ -3523,7 +3523,7 @@ var require_parse2 = __commonJS({
             }
             value = `\\${value}`;
           } else {
-            increment("brackets");
+            increment2("brackets");
           }
           push({ type: "bracket", value });
           continue;
@@ -3562,7 +3562,7 @@ var require_parse2 = __commonJS({
           continue;
         }
         if (value === "{" && opts.nobrace !== true) {
-          increment("braces");
+          increment2("braces");
           const open2 = {
             type: "brace",
             value,
@@ -3889,7 +3889,7 @@ var require_parse2 = __commonJS({
       }
       return state;
     };
-    parse7.fastpaths = (input2, options) => {
+    parse8.fastpaths = (input2, options) => {
       const opts = { ...options };
       const max = typeof opts.maxLength === "number" ? Math.min(MAX_LENGTH, opts.maxLength) : MAX_LENGTH;
       const len = input2.length;
@@ -3906,14 +3906,14 @@ var require_parse2 = __commonJS({
         NO_DOT,
         NO_DOTS,
         NO_DOTS_SLASH,
-        STAR,
+        STAR: STAR2,
         START_ANCHOR
       } = constants.globChars(win32);
       const nodot = opts.dot ? NO_DOTS : NO_DOT;
       const slashDot = opts.dot ? NO_DOTS_SLASH : NO_DOT;
       const capture = opts.capture ? "" : "?:";
       const state = { negated: false, prefix: "" };
-      let star3 = opts.bash === true ? ".*?" : STAR;
+      let star3 = opts.bash === true ? ".*?" : STAR2;
       if (opts.capture) {
         star3 = `(${star3})`;
       }
@@ -3958,7 +3958,7 @@ var require_parse2 = __commonJS({
       }
       return source;
     };
-    module.exports = parse7;
+    module.exports = parse8;
   }
 });
 
@@ -3968,7 +3968,7 @@ var require_picomatch = __commonJS({
     "use strict";
     var path8 = __require("path");
     var scan = require_scan();
-    var parse7 = require_parse2();
+    var parse8 = require_parse2();
     var utils2 = require_utils2();
     var constants = require_constants2();
     var isObject2 = (val) => val && typeof val === "object" && !Array.isArray(val);
@@ -4058,7 +4058,7 @@ var require_picomatch = __commonJS({
     picomatch.parse = (pattern, options) => {
       if (Array.isArray(pattern))
         return pattern.map((p) => picomatch.parse(p, options));
-      return parse7(pattern, { ...options, fastpaths: false });
+      return parse8(pattern, { ...options, fastpaths: false });
     };
     picomatch.scan = (input2, options) => scan(input2, options);
     picomatch.compileRe = (state, options, returnOutput = false, returnState = false) => {
@@ -4084,10 +4084,10 @@ var require_picomatch = __commonJS({
       }
       let parsed = { negated: false, fastpaths: true };
       if (options.fastpaths !== false && (input2[0] === "." || input2[0] === "*")) {
-        parsed.output = parse7.fastpaths(input2, options);
+        parsed.output = parse8.fastpaths(input2, options);
       }
       if (!parsed.output) {
-        parsed = parse7(input2, options);
+        parsed = parse8(input2, options);
       }
       return picomatch.compileRe(parsed, options, returnOutput, returnState);
     };
@@ -6765,7 +6765,7 @@ var require_ms = __commonJS({
       options = options || {};
       var type = typeof val;
       if (type === "string" && val.length > 0) {
-        return parse7(val);
+        return parse8(val);
       } else if (type === "number" && isFinite(val)) {
         return options.long ? fmtLong(val) : fmtShort(val);
       }
@@ -6773,7 +6773,7 @@ var require_ms = __commonJS({
         "val is not a non-empty string or a valid number. val=" + JSON.stringify(val)
       );
     };
-    function parse7(str) {
+    function parse8(str) {
       str = String(str);
       if (str.length > 100) {
         return;
@@ -6868,13 +6868,13 @@ var require_ms = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/common.js
+// node_modules/.aspect_rules_js/debug@4.4.3_supports-color@11.0.0/node_modules/debug/src/common.js
 var require_common3 = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/common.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.3_supports-color@11.0.0/node_modules/debug/src/common.js"(exports, module) {
     function setup(env) {
       createDebug.debug = createDebug;
       createDebug.default = createDebug;
-      createDebug.coerce = coerce;
+      createDebug.coerce = coerce2;
       createDebug.disable = disable;
       createDebug.enable = enable;
       createDebug.enabled = enabled;
@@ -6971,7 +6971,7 @@ var require_common3 = __commonJS({
         createDebug.namespaces = namespaces;
         createDebug.names = [];
         createDebug.skips = [];
-        const split = (typeof namespaces === "string" ? namespaces : "").trim().replace(" ", ",").split(",").filter(Boolean);
+        const split = (typeof namespaces === "string" ? namespaces : "").trim().replace(/\s+/g, ",").split(",").filter(Boolean);
         for (const ns of split) {
           if (ns[0] === "-") {
             createDebug.skips.push(ns.slice(1));
@@ -7029,7 +7029,7 @@ var require_common3 = __commonJS({
         }
         return false;
       }
-      function coerce(val) {
+      function coerce2(val) {
         if (val instanceof Error) {
           return val.stack || val.message;
         }
@@ -7045,9 +7045,9 @@ var require_common3 = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/browser.js
+// node_modules/.aspect_rules_js/debug@4.4.3_supports-color@11.0.0/node_modules/debug/src/browser.js
 var require_browser = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/browser.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.3_supports-color@11.0.0/node_modules/debug/src/browser.js"(exports, module) {
     exports.formatArgs = formatArgs2;
     exports.save = save;
     exports.load = load2;
@@ -7189,7 +7189,7 @@ var require_browser = __commonJS({
     function load2() {
       let r;
       try {
-        r = exports.storage.getItem("debug");
+        r = exports.storage.getItem("debug") || exports.storage.getItem("DEBUG");
       } catch (error61) {
       }
       if (!r && typeof process !== "undefined" && "env" in process) {
@@ -7215,9 +7215,9 @@ var require_browser = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/node.js
+// node_modules/.aspect_rules_js/debug@4.4.3_supports-color@11.0.0/node_modules/debug/src/node.js
 var require_node = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/node.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.3_supports-color@11.0.0/node_modules/debug/src/node.js"(exports, module) {
     var tty = __require("tty");
     var util = __require("util");
     exports.init = init;
@@ -7389,9 +7389,9 @@ var require_node = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/index.js
+// node_modules/.aspect_rules_js/debug@4.4.3_supports-color@11.0.0/node_modules/debug/src/index.js
 var require_src = __commonJS({
-  "node_modules/.aspect_rules_js/debug@4.4.0_supports-color@11.0.0/node_modules/debug/src/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/debug@4.4.3_supports-color@11.0.0/node_modules/debug/src/index.js"(exports, module) {
     if (typeof process === "undefined" || process.type === "renderer" || process.browser === true || process.__nwjs) {
       module.exports = require_browser();
     } else {
@@ -8883,9 +8883,9 @@ var require_index_cjs = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/folder-hash@4.1.3_supports-color@11.0.0/node_modules/folder-hash/index.js
+// node_modules/.aspect_rules_js/folder-hash@4.1.4_supports-color@11.0.0/node_modules/folder-hash/index.js
 var require_folder_hash = __commonJS({
-  "node_modules/.aspect_rules_js/folder-hash@4.1.3_supports-color@11.0.0/node_modules/folder-hash/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/folder-hash@4.1.4_supports-color@11.0.0/node_modules/folder-hash/index.js"(exports, module) {
     var crypto = __require("crypto");
     var debug = require_src();
     var minimatch2 = require_index_cjs();
@@ -13040,8 +13040,75 @@ var ValidateFileModule = {
   describe: "Validate the most recent commit message"
 };
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.2_674374378/node_modules/@conventional-changelog/git-client/dist/utils.js
-var import_semver = __toESM(require_semver());
+// node_modules/.aspect_rules_js/verkit@0.5.0/node_modules/verkit/dist/comparison-CmVirWIW.js
+var LETTER_DASH_NUMBER = "[a-zA-Z0-9-]";
+var NUMERIC_IDENTIFIER = String.raw`0|[1-9]\d*`;
+var NUMERIC_IDENTIFIER_LOOSE = String.raw`\d+`;
+var NON_NUMERIC_IDENTIFIER = String.raw`\d*[a-zA-Z-]${LETTER_DASH_NUMBER}*`;
+var MAIN_VERSION = String.raw`(${NUMERIC_IDENTIFIER})\.(${NUMERIC_IDENTIFIER})\.(${NUMERIC_IDENTIFIER})`;
+var MAIN_VERSION_LOOSE = String.raw`(${NUMERIC_IDENTIFIER_LOOSE})\.(${NUMERIC_IDENTIFIER_LOOSE})\.(${NUMERIC_IDENTIFIER_LOOSE})`;
+var PRERELEASE_IDENTIFIER = `(?:${NON_NUMERIC_IDENTIFIER}|${NUMERIC_IDENTIFIER})`;
+var PRERELEASE_IDENTIFIER_LOOSE = `(?:${NON_NUMERIC_IDENTIFIER}|${NUMERIC_IDENTIFIER_LOOSE})`;
+var PRERELEASE = String.raw`(?:-(${PRERELEASE_IDENTIFIER}(?:\.${PRERELEASE_IDENTIFIER})*))`;
+var PRERELEASE_LOOSE = String.raw`(?:-?(${PRERELEASE_IDENTIFIER_LOOSE}(?:\.${PRERELEASE_IDENTIFIER_LOOSE})*))`;
+var BUILD_IDENTIFIER = `${LETTER_DASH_NUMBER}+`;
+var BUILD = String.raw`(?:\+(${BUILD_IDENTIFIER}(?:\.${BUILD_IDENTIFIER})*))`;
+var FULL_PLAIN = `v?${MAIN_VERSION}${PRERELEASE}?${BUILD}?`;
+var LOOSE_PLAIN = String.raw`[v=\s]*${MAIN_VERSION_LOOSE}${PRERELEASE_LOOSE}?${BUILD}?`;
+var GREATER_LESS_THAN = "((?:<|>)?=?)";
+var XRANGE_IDENTIFIER = String.raw`${NUMERIC_IDENTIFIER}|x|X|\*`;
+var XRANGE_IDENTIFIER_LOOSE = String.raw`${NUMERIC_IDENTIFIER_LOOSE}|x|X|\*`;
+var XRANGE_PLAIN = String.raw`[v=\s]*(${XRANGE_IDENTIFIER})(?:\.(${XRANGE_IDENTIFIER})(?:\.(${XRANGE_IDENTIFIER})(?:${PRERELEASE})?${BUILD}?)?)?`;
+var XRANGE_PLAIN_LOOSE = String.raw`[v=\s]*(${XRANGE_IDENTIFIER_LOOSE})(?:\.(${XRANGE_IDENTIFIER_LOOSE})(?:\.(${XRANGE_IDENTIFIER_LOOSE})(?:${PRERELEASE_LOOSE})?${BUILD}?)?)?`;
+var LONE_TILDE = "(?:~>?)";
+var LONE_CARET = String.raw`(?:\^)`;
+var COERCE_PLAIN = String.raw`(^|[^\d])(\d{1,${16}})(?:\.(\d{1,${16}}))?(?:\.(\d{1,${16}}))?`;
+var COERCE = String.raw`${COERCE_PLAIN}(?:$|[^\d])`;
+var COERCE_FULL = String.raw`${COERCE_PLAIN}(?:${PRERELEASE})?(?:${BUILD})?(?:$|[^\d])`;
+function makeSafeRegexSource(source) {
+  const replacements = [
+    [String.raw`\s`, 1],
+    [String.raw`\d`, 256],
+    [LETTER_DASH_NUMBER, 250]
+  ];
+  for (const [token, maximum] of replacements)
+    source = source.split(`${token}*`).join(`${token}{0,${maximum}}`).split(`${token}+`).join(`${token}{1,${maximum}}`);
+  return source;
+}
+function safeRegex(source, flags) {
+  return new RegExp(makeSafeRegexSource(source), flags);
+}
+var FULL = safeRegex(`^${FULL_PLAIN}$`);
+var LOOSE = safeRegex(`^${LOOSE_PLAIN}$`);
+
+// node_modules/.aspect_rules_js/verkit@0.5.0/node_modules/verkit/dist/set-BGFWKKE8.js
+var STRICT_COMPARATOR = safeRegex(String.raw`^${GREATER_LESS_THAN}\s*(${FULL_PLAIN})$|^$`);
+var LOOSE_COMPARATOR = safeRegex(String.raw`^${GREATER_LESS_THAN}\s*(${LOOSE_PLAIN})$|^$`);
+
+// node_modules/.aspect_rules_js/verkit@0.5.0/node_modules/verkit/dist/range-C5wjdo9a.js
+var BUILD_STRIP = new RegExp(BUILD, "g");
+var BUILD_SAFE = safeRegex(BUILD);
+var STRICT_HYPHEN = safeRegex(String.raw`^\s*(${XRANGE_PLAIN})\s+-\s+(${XRANGE_PLAIN})\s*$`);
+var LOOSE_HYPHEN = safeRegex(String.raw`^\s*(${XRANGE_PLAIN_LOOSE})\s+-\s+(${XRANGE_PLAIN_LOOSE})\s*$`);
+var COMPARATOR_TRIM = safeRegex(String.raw`(\s*)${GREATER_LESS_THAN}\s*(${LOOSE_PLAIN}|${XRANGE_PLAIN})`, "g");
+var TILDE_TRIM = safeRegex(String.raw`(\s*)${LONE_TILDE}\s+`, "g");
+var CARET_TRIM = safeRegex(String.raw`(\s*)${LONE_CARET}\s+`, "g");
+var STRICT_TILDE = safeRegex(`^${LONE_TILDE}${XRANGE_PLAIN}$`);
+var LOOSE_TILDE = safeRegex(`^${LONE_TILDE}${XRANGE_PLAIN_LOOSE}$`);
+var STRICT_CARET = safeRegex(`^${LONE_CARET}${XRANGE_PLAIN}$`);
+var LOOSE_CARET = safeRegex(`^${LONE_CARET}${XRANGE_PLAIN_LOOSE}$`);
+var STRICT_XRANGE = safeRegex(String.raw`^${GREATER_LESS_THAN}\s*${XRANGE_PLAIN}$`);
+var LOOSE_XRANGE = safeRegex(String.raw`^${GREATER_LESS_THAN}\s*${XRANGE_PLAIN_LOOSE}$`);
+var STAR = safeRegex(String.raw`(<|>)?=?\s*\*`);
+var LOOSE_COMPARATOR2 = safeRegex(String.raw`^${GREATER_LESS_THAN}\s*(${LOOSE_PLAIN})$|^$`);
+
+// node_modules/.aspect_rules_js/verkit@0.5.0/node_modules/verkit/dist/version-Co1j9Tpq.js
+var COERCE_EXACT = safeRegex(COERCE);
+var COERCE_FULL_EXACT = safeRegex(COERCE_FULL);
+var PRERELEASE_EXACT = safeRegex(`^${PRERELEASE}$`);
+var PRERELEASE_LOOSE_EXACT = safeRegex(`^${PRERELEASE_LOOSE}$`);
+
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374347/node_modules/@conventional-changelog/git-client/dist/utils.js
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -13054,7 +13121,7 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.2_674374378/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374347/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn } from "child_process";
 
 // node_modules/.aspect_rules_js/@simple-libs+stream-utils@2.0.0/node_modules/@simple-libs/stream-utils/dist/index.js
@@ -13136,7 +13203,7 @@ function output(process3) {
   return concatBufferStream(outputStream(process3));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.2_674374378/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374347/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var END_OF_OPTIONS = "--end-of-options";
 var GitClient2 = class {
@@ -13371,9 +13438,6 @@ var GitClient2 = class {
     await this.exec("checkout", END_OF_OPTIONS, branch);
   }
 };
-
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.1.2_674374378/node_modules/@conventional-changelog/git-client/dist/ConventionalGitClient.js
-var import_semver2 = __toESM(require_semver());
 
 // ng-dev/commit-message/utils.js
 var gitClient;
@@ -13821,7 +13885,7 @@ import { existsSync as existsSync2, readFileSync as readFileSync3, writeFileSync
 import { join as join4 } from "node:path";
 
 // ng-dev/misc/sync-module-bazel/sync-module-bazel.js
-var import_semver3 = __toESM(require_semver());
+var import_semver = __toESM(require_semver());
 var REPOSITORY_TYPES = {
   "darwin-arm64.tar.gz": "darwin_arm64",
   "darwin-x64.tar.gz": "darwin_amd64",
@@ -13886,7 +13950,7 @@ async function processNodeToolchainArgs(args, nvmrcVersion) {
   if (!effectiveVersion) {
     return args;
   }
-  const validatedVersion = import_semver3.default.valid(effectiveVersion);
+  const validatedVersion = import_semver.default.valid(effectiveVersion);
   if (!validatedVersion) {
     throw new Error("Invalid Node.js version: " + effectiveVersion);
   }
@@ -13909,7 +13973,7 @@ ${lines.join("\n")}
 `;
 }
 async function syncPnpm(content, version2) {
-  if (!import_semver3.default.valid(version2)) {
+  if (!import_semver.default.valid(version2)) {
     throw new Error(`Invalid PNPM version: ${version2}`);
   }
   if (!PNPM_VERSION_REGEXP.test(content)) {
@@ -13920,7 +13984,7 @@ async function syncPnpm(content, version2) {
   return updateVersionAndIntegrity(content, version2, pnpmIntegrity, PNPM_VERSION_REGEXP, PNPM_INTEGRITY_REGEXP, "pnpm_version", "pnpm_version_integrity");
 }
 async function syncTypeScript(content, version2) {
-  if (!import_semver3.default.valid(version2)) {
+  if (!import_semver.default.valid(version2)) {
     throw new Error(`Invalid TypeScript version: ${version2}`);
   }
   if (!TS_VERSION_REGEXP.test(content)) {
@@ -14409,7 +14473,7 @@ __export(external_exports, {
   optional: () => optional2,
   output: () => output2,
   overwrite: () => _overwrite,
-  parse: () => parse4,
+  parse: () => parse5,
   parseAsync: () => parseAsync2,
   partialRecord: () => partialRecord,
   pipe: () => pipe,
@@ -14753,7 +14817,7 @@ __export(core_exports2, {
   memoizer: () => memoizer,
   mergeValues: () => mergeValues,
   meta: () => meta,
-  parse: () => parse3,
+  parse: () => parse4,
   parseAsync: () => parseAsync,
   parseURLObject: () => parseURLObject,
   prettifyError: () => prettifyError,
@@ -15955,7 +16019,7 @@ var _parse = (_Err) => {
   };
   return fn;
 };
-var parse3 = _parse($ZodRealError);
+var parse4 = _parse($ZodRealError);
 var _parseAsync = (_Err) => {
   const fn = async (schema, value, _ctx, params2) => {
     const ctx = _ctx ? { ..._ctx, async: true } : { async: true };
@@ -16026,18 +16090,18 @@ var validateAsync = async (schema, value, _ctx) => {
   return result.issues.length === 0;
 };
 var _encode = (_Err) => {
-  const parse7 = _parse(_Err);
+  const parse8 = _parse(_Err);
   const fn = (schema, value, _ctx, _params) => {
     const ctx = _ctx ? { ..._ctx, direction: "backward" } : { direction: "backward" };
-    return parse7(schema, value, ctx, finalizeParams(fn, _params));
+    return parse8(schema, value, ctx, finalizeParams(fn, _params));
   };
   return fn;
 };
 var encode = _encode($ZodRealError);
 var _decode = (_Err) => {
-  const parse7 = _parse(_Err);
+  const parse8 = _parse(_Err);
   const fn = (schema, value, _ctx, _params) => {
-    return parse7(schema, value, _ctx, finalizeParams(fn, _params));
+    return parse8(schema, value, _ctx, finalizeParams(fn, _params));
   };
   return fn;
 };
@@ -18971,10 +19035,10 @@ var $ZodFunction = $constructor("$ZodFunction", (inst, def) => {
       throw new Error("implement() must be called with a function");
     }
     return Object.defineProperty(function(...args) {
-      const parsedArgs = inst._def.input ? parse3(inst._def.input, args) : args;
+      const parsedArgs = inst._def.input ? parse4(inst._def.input, args) : args;
       const result = Reflect.apply(func, this, parsedArgs);
       if (inst._def.output) {
-        return parse3(inst._def.output, result);
+        return parse4(inst._def.output, result);
       }
       return result;
     }, "_zod", { value: inst._zod, enumerable: false });
@@ -30720,7 +30784,7 @@ var ZodRealError = $constructor("ZodError", initializer2, void 0, {
 });
 
 // node_modules/.aspect_rules_js/zod@4.5.4/node_modules/zod/v4/classic/parse.js
-var parse4 = _parse(ZodRealError);
+var parse5 = _parse(ZodRealError);
 var parseAsync2 = _parseAsync(ZodRealError);
 var safeParse2 = _safeParse(ZodRealError);
 var safeParseAsync2 = _safeParseAsync(ZodRealError);
@@ -30857,7 +30921,7 @@ var ZodType = $constructor("ZodType", (inst, def) => {
     util_exports.own(this, "~standard", value);
   },
   parse: function _parse2(data, params2) {
-    return parse4(this, data, params2, { callee: _parse2 });
+    return parse5(this, data, params2, { callee: _parse2 });
   },
   parseAsync: async function _parseAsync2(data, params2) {
     return await parseAsync2(this, data, params2, { callee: _parseAsync2 });
@@ -33078,7 +33142,7 @@ function buildNgbotParser(localYargs) {
 }
 
 // ng-dev/pr/common/targeting/lts-branch.js
-var import_semver4 = __toESM(require_semver());
+var import_semver2 = __toESM(require_semver());
 
 // ng-dev/utils/locale.js
 var defaultLocale = "en-US";
@@ -33091,7 +33155,7 @@ async function assertActiveLtsBranch(repo, releaseConfig, branchName) {
   const { version: version2 } = await getVersionInfoForBranch(repo, branchName);
   const { "dist-tags": distTags, time: time3 } = await fetchProjectNpmPackageInfo(releaseConfig);
   const ltsNpmTag = getLtsNpmDistTagOfMajor(version2.major);
-  const ltsVersion = import_semver4.default.parse(distTags[ltsNpmTag]);
+  const ltsVersion = import_semver2.default.parse(distTags[ltsNpmTag]);
   if (ltsVersion === null) {
     throw new InvalidTargetBranchError(`No LTS version tagged for v${version2.major} in NPM.`);
   }
@@ -35784,7 +35848,7 @@ var ReleaseInfoCommandModule = {
 };
 
 // ng-dev/release/notes/cli.js
-var import_semver7 = __toESM(require_semver());
+var import_semver5 = __toESM(require_semver());
 
 // node_modules/.aspect_rules_js/ejs@7.0.1/node_modules/ejs/lib/esm/ejs.js
 import fs2 from "node:fs";
@@ -36419,7 +36483,7 @@ if (typeof window != "undefined") {
 var ejs_default = ejs;
 
 // ng-dev/release/notes/release-notes.js
-var import_semver6 = __toESM(require_semver());
+var import_semver4 = __toESM(require_semver());
 
 // ng-dev/release/notes/context.js
 function escapeHtml(str) {
@@ -36749,7 +36813,7 @@ function santizeCommitMessage(content) {
 }
 
 // ng-dev/release/notes/changelog.js
-var import_semver5 = __toESM(require_semver());
+var import_semver3 = __toESM(require_semver());
 import { existsSync as existsSync3, readFileSync as readFileSync6, writeFileSync as writeFileSync4 } from "fs";
 import { join as join9 } from "path";
 var changelogPath = "CHANGELOG.md";
@@ -36811,7 +36875,7 @@ var Changelog = class {
   }
   moveEntriesPriorToVersionToArchive(version2) {
     [...this.entries].reverse().forEach((entry) => {
-      if (import_semver5.default.lt(entry.version, version2)) {
+      if (import_semver3.default.lt(entry.version, version2)) {
         this.archiveEntries.unshift(entry);
         this.entries.splice(this.entries.indexOf(entry), 1);
       }
@@ -36841,7 +36905,7 @@ function parseChangelogEntry(content) {
   if (versionMatcherResult === null) {
     throw Error(`Unable to determine version for changelog entry: ${content}`);
   }
-  const version2 = import_semver5.default.parse(versionMatcherResult[1]);
+  const version2 = import_semver3.default.parse(versionMatcherResult[1]);
   if (version2 === null) {
     throw Error(`Unable to determine version for changelog entry, with tag: ${versionMatcherResult[1]}`);
   }
@@ -36874,7 +36938,7 @@ var ReleaseNotes = class _ReleaseNotes {
     return ejs_default.render(changelog_default, await this.generateRenderContext(), { rmWhitespace: true });
   }
   async prependEntryToChangelogFile() {
-    if (import_semver6.default.prerelease(this.version) === null) {
+    if (import_semver4.default.prerelease(this.version) === null) {
       Changelog.removePrereleaseEntriesForVersion(this.git, this.version);
     }
     Changelog.prependEntryToChangelogFile(this.git, await this.getChangelogEntry());
@@ -36924,7 +36988,7 @@ function builder21(argv) {
   return argv.option("releaseVersion", {
     type: "string",
     default: "0.0.0",
-    coerce: (version2) => new import_semver7.default.SemVer(version2)
+    coerce: (version2) => new import_semver5.default.SemVer(version2)
   }).option("from", {
     type: "string",
     description: "The git tag or ref to start the changelog entry from",
@@ -36963,7 +37027,7 @@ var ReleaseNotesCommandModule = {
 };
 
 // ng-dev/release/precheck/cli.js
-var import_semver8 = __toESM(require_semver());
+var import_semver6 = __toESM(require_semver());
 
 // ng-dev/utils/read-stdin-until-closed.js
 var ReadBufferFromStdinError = class extends Error {
@@ -36989,7 +37053,7 @@ async function handler22() {
     process.exitCode = 1;
     return;
   }
-  const newVersion = import_semver8.default.parse(newVersionRaw);
+  const newVersion = import_semver6.default.parse(newVersionRaw);
   if (newVersion === null) {
     Log.error(`  \u2718   Release pre-checks failed. Invalid new version was provided.`);
     process.exitCode = 1;
@@ -37109,7 +37173,7 @@ function getErrorMessage(error61) {
 }
 
 // ng-dev/release/publish/external-commands.js
-var import_semver9 = __toESM(require_semver());
+var import_semver7 = __toESM(require_semver());
 import { existsSync as existsSync5, readFileSync as readFileSync7 } from "fs";
 import { dirname as dirname4, join as join11, resolve as resolve5 } from "path";
 import os from "os";
@@ -37217,7 +37281,7 @@ var ExternalCommands = class {
         throw new Error("Invalid .nvmrc content: contains path traversal characters");
       }
       const versionPattern = /^[v0-9.-]+$/;
-      const isValidSemverRange = import_semver9.default.validRange(nodeVersionFromNvmrc) !== null;
+      const isValidSemverRange = import_semver7.default.validRange(nodeVersionFromNvmrc) !== null;
       if (!versionPattern.test(nodeVersionFromNvmrc) && !isValidSemverRange) {
         throw new Error("Invalid .nvmrc content: does not match valid version pattern");
       }
@@ -37251,7 +37315,7 @@ var ExternalCommands = class {
         cwd: projectDir
       });
       const detectedNodeVersion = nodeVersionOutput.trim();
-      if (!import_semver9.default.satisfies(detectedNodeVersion, nodeVersionFromNvmrc)) {
+      if (!import_semver7.default.satisfies(detectedNodeVersion, nodeVersionFromNvmrc)) {
         Log.error(`  \u2718   Node.js version mismatch after update.
 `);
         Log.error(`      Expected version: ${nodeVersionFromNvmrc}`);
@@ -37330,7 +37394,7 @@ var ExternalCommands = class {
 };
 
 // ng-dev/release/publish/actions/configure-next-as-major.js
-var import_semver11 = __toESM(require_semver());
+var import_semver9 = __toESM(require_semver());
 
 // ng-dev/utils/constants.js
 var workspaceRelativePackageJsonPath = "package.json";
@@ -37341,16 +37405,16 @@ import { existsSync as existsSync6, promises as fs3 } from "fs";
 import { join as join12 } from "path";
 
 // ng-dev/release/versioning/experimental-versions.js
-var import_semver10 = __toESM(require_semver());
+var import_semver8 = __toESM(require_semver());
 function isExperimentalSemver(version2) {
   return version2.major === 0 && version2.minor >= 100;
 }
 function createExperimentalSemver(version2) {
-  version2 = new import_semver10.default.SemVer(version2);
-  const experimentalVersion = new import_semver10.default.SemVer(version2.format());
+  version2 = new import_semver8.default.SemVer(version2);
+  const experimentalVersion = new import_semver8.default.SemVer(version2.format());
   experimentalVersion.major = 0;
   experimentalVersion.minor = version2.major * 100 + version2.minor;
-  return new import_semver10.default.SemVer(experimentalVersion.format());
+  return new import_semver8.default.SemVer(experimentalVersion.format());
 }
 
 // ng-dev/release/versioning/version-tags.js
@@ -37749,7 +37813,7 @@ var ReleaseAction = class {
   async promptAndWaitForPullRequestMerged(pullRequest) {
     await promptToInitiatePullRequestMerge(this.git, pullRequest);
   }
-  async _createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, isPrerelease, showAsLatestOnGitHub) {
+  async _createGithubReleaseForVersion(releaseNotes, versionBumpCommitSha, isPrerelease2, showAsLatestOnGitHub) {
     const tagName = getReleaseTagForVersion(releaseNotes.version);
     await this.git.github.git.createRef({
       ...this.git.remoteParams,
@@ -37766,7 +37830,7 @@ var ReleaseAction = class {
       ...this.git.remoteParams,
       name: releaseNotes.version.toString(),
       tag_name: tagName,
-      prerelease: isPrerelease,
+      prerelease: isPrerelease2,
       make_latest: showAsLatestOnGitHub ? "true" : "false",
       body: releaseBody
     });
@@ -37887,7 +37951,7 @@ function isFirstNextPrerelease(v) {
 var ConfigureNextAsMajorAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
-    this._newVersion = import_semver11.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
+    this._newVersion = import_semver9.default.parse(`${this.active.next.version.major + 1}.0.0-next.0`);
   }
   async getDescription() {
     const { branchName } = this.active.next;
@@ -37913,9 +37977,9 @@ var ConfigureNextAsMajorAction = class extends ReleaseAction {
 };
 
 // ng-dev/utils/semver.js
-var import_semver12 = __toESM(require_semver());
+var import_semver10 = __toESM(require_semver());
 function semverInc(version2, release, identifier) {
-  const clone2 = new import_semver12.default.SemVer(version2.version);
+  const clone2 = new import_semver10.default.SemVer(version2.version);
   return clone2.inc(release, identifier);
 }
 
@@ -38064,7 +38128,7 @@ var CutNpmNextReleaseCandidateAction = class extends CutNpmNextPrereleaseAction 
 };
 
 // ng-dev/release/publish/actions/cut-stable.js
-var import_semver17 = __toESM(require_semver());
+var import_semver15 = __toESM(require_semver());
 var CutStableAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -38113,7 +38177,7 @@ var CutStableAction = class extends ReleaseAction {
     return this._isNewMajor ? "next" : "latest";
   }
   _computeNewVersion({ version: version2 }) {
-    return import_semver17.default.parse(`${version2.major}.${version2.minor}.${version2.patch}`);
+    return import_semver15.default.parse(`${version2.major}.${version2.minor}.${version2.patch}`);
   }
   static async isActive(active) {
     if (active.exceptionalMinor !== null) {
@@ -38164,7 +38228,7 @@ var CutExceptionalMinorReleaseCandidateAction = class extends CutExceptionalMino
 };
 
 // ng-dev/release/publish/actions/exceptional-minor/prepare-exceptional-minor.js
-var import_semver19 = __toESM(require_semver());
+var import_semver17 = __toESM(require_semver());
 var PrepareExceptionalMinorAction = class extends ReleaseAction {
   constructor() {
     super(...arguments);
@@ -38172,7 +38236,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
     this._baseBranch = this._patch.branchName;
     this._patchVersion = this._patch.version;
     this._newBranch = `${this._patchVersion.major}.${this._patchVersion.minor + 1}.x`;
-    this._newVersion = import_semver19.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
+    this._newVersion = import_semver17.default.parse(`${this._patchVersion.major}.${this._patchVersion.minor + 1}.0-next.0`);
   }
   async getDescription() {
     return `Prepare an exceptional minor based on the existing "${this._baseBranch}" branch (${this._newBranch}).`;
@@ -38203,7 +38267,7 @@ var PrepareExceptionalMinorAction = class extends ReleaseAction {
 };
 
 // ng-dev/release/publish/actions/shared/branch-off-next-branch.js
-var import_semver20 = __toESM(require_semver());
+var import_semver18 = __toESM(require_semver());
 
 // ng-dev/release/publish/actions/renovate-config-updates.js
 import { existsSync as existsSync7 } from "node:fs";
@@ -38276,7 +38340,7 @@ var BranchOffNextBranchBaseAction = class extends CutNpmNextPrereleaseAction {
   }
   async _createNextBranchUpdatePullRequest(releaseNotes, newVersion) {
     const { branchName: nextBranch, version: version2 } = this.active.next;
-    const newNextVersion = import_semver20.default.parse(`${version2.major}.${version2.minor + 1}.0-next.0`);
+    const newNextVersion = import_semver18.default.parse(`${version2.major}.${version2.minor + 1}.0-next.0`);
     const bumpCommitMessage = getCommitMessageForExceptionalNextVersionBump(newNextVersion);
     await this.checkoutUpstreamBranch(nextBranch);
     await this.updateProjectVersion(newNextVersion);
@@ -38321,15 +38385,15 @@ var MoveNextIntoReleaseCandidateAction = class extends BranchOffNextBranchBaseAc
 };
 
 // ng-dev/release/publish/actions/special/cut-lts-minor.js
-var import_semver21 = __toESM(require_semver());
+var import_semver19 = __toESM(require_semver());
 var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
   async getDescription() {
     return `SPECIAL: Cut a new release for an LTS minor.`;
   }
   async perform() {
     const ltsBranch = await this._askForVersionBranch("Please specify the target LTS branch:");
-    const compareVersionForReleaseNotes = import_semver21.default.parse(await Prompt.input({ message: "Compare version for release" }));
-    const newVersion = import_semver21.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
+    const compareVersionForReleaseNotes = import_semver19.default.parse(await Prompt.input({ message: "Compare version for release" }));
+    const newVersion = import_semver19.default.parse(`${ltsBranch.branchVersion.major}.${ltsBranch.branchVersion.minor}.0`);
     const { pullRequest, releaseNotes, builtPackagesWithInfo, beforeStagingSha } = await this.checkoutBranchAndStageVersion(newVersion, compareVersionForReleaseNotes, ltsBranch.branch);
     await this.promptAndWaitForPullRequestMerged(pullRequest);
     await this.publish(builtPackagesWithInfo, releaseNotes, beforeStagingSha, ltsBranch.branch, getLtsNpmDistTagOfMajor(newVersion.major), { showAsLatestOnGitHub: false });
@@ -38354,7 +38418,7 @@ var SpecialCutLongTermSupportMinorAction = class extends ReleaseAction {
 };
 
 // ng-dev/release/publish/actions/tag-recent-major-as-latest.js
-var import_semver22 = __toESM(require_semver());
+var import_semver20 = __toESM(require_semver());
 var TagRecentMajorAsLatest = class extends ReleaseAction {
   async getDescription() {
     return `Retag recently published major v${this.active.latest.version} as "latest" in NPM.`;
@@ -38382,7 +38446,7 @@ var TagRecentMajorAsLatest = class extends ReleaseAction {
       return false;
     }
     const packageInfo = await fetchProjectNpmPackageInfo(config2);
-    const npmLatestVersion = import_semver22.default.parse(packageInfo["dist-tags"]["latest"]);
+    const npmLatestVersion = import_semver20.default.parse(packageInfo["dist-tags"]["latest"]);
     return npmLatestVersion !== null && npmLatestVersion.major === latest.version.major - 1;
   }
 };
@@ -38407,7 +38471,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-8b6cbbca278a26f2495275c5d9d0d8633573162d`;
+var localVersion = `0.0.0-9cfc822cc3dd2004d1918aed9da74bf4011346fa`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -38847,7 +38911,7 @@ import url2 from "url";
 
 // ng-dev/release/stamping/env-stamp.js
 import * as fs5 from "fs";
-var import_semver23 = __toESM(require_semver());
+var import_semver21 = __toESM(require_semver());
 import { join as join16 } from "path";
 async function printEnvStamp(mode, includeVersion) {
   const git = await GitClient.get();
@@ -38930,7 +38994,7 @@ function getVersionFromWorkspacePackageJson(git) {
   if (packageJson.version === void 0) {
     throw new Error(`No workspace version found in: ${packageJsonPath}`);
   }
-  return new import_semver23.default.SemVer(packageJson.version);
+  return new import_semver21.default.SemVer(packageJson.version);
 }
 
 // ng-dev/release/stamping/cli.js
@@ -39001,7 +39065,7 @@ var ReleaseNpmDistTagDeleteCommand = {
 };
 
 // ng-dev/release/npm-dist-tag/set/cli.js
-var import_semver24 = __toESM(require_semver());
+var import_semver22 = __toESM(require_semver());
 function builder26(args) {
   return args.positional("tagName", {
     type: "string",
@@ -39022,7 +39086,7 @@ async function handler26(args) {
   const config2 = await getConfig();
   assertValidReleaseConfig(config2);
   const { npmPackages, publishRegistry } = config2.release;
-  const version2 = import_semver24.default.parse(rawVersion);
+  const version2 = import_semver22.default.parse(rawVersion);
   if (version2 === null) {
     Log.error(`Invalid version specified (${rawVersion}). Unable to set NPM dist tag.`);
     process.exit(1);
@@ -39078,7 +39142,7 @@ import { tmpdir as tmpdir3 } from "node:os";
 import path7 from "node:path";
 
 // github-actions/release/publish/lib/publish-ci.js
-var import_semver25 = __toESM(require_semver());
+var import_semver23 = __toESM(require_semver());
 import { join as join17 } from "path";
 import { existsSync as existsSync9, writeFileSync as writeFileSync5, rmSync, mkdtempSync } from "fs";
 import { tmpdir as tmpdir2 } from "os";
@@ -39190,7 +39254,7 @@ var PublishCiTool = class {
     this.assertExpectedSha();
     const newVersion = readPackageJsonAtRef(this.git, "HEAD").version;
     const builtPackagesWithInfo = await this.resolveTgzPackages(newVersion);
-    const newSemver = import_semver25.default.parse(newVersion);
+    const newSemver = import_semver23.default.parse(newVersion);
     if (!newSemver) {
       throw new Error(`Failed to parse version ${newVersion} as semver.`);
     }
@@ -39198,7 +39262,7 @@ var PublishCiTool = class {
     if (!this.options.skipTagging) {
       const beforeStagingSha = this.getBeforeStagingSha();
       const versionAtBeforeStaging = readPackageJsonAtRef(this.git, beforeStagingSha).version;
-      const versionAtBeforeStagingSemver = import_semver25.default.parse(versionAtBeforeStaging);
+      const versionAtBeforeStagingSemver = import_semver23.default.parse(versionAtBeforeStaging);
       if (!versionAtBeforeStagingSemver) {
         throw new Error(`Failed to parse version ${versionAtBeforeStaging} as semver.`);
       }
@@ -39302,10 +39366,10 @@ ${failures}`);
       let highestStableVersion = null;
       for (const tag of tags) {
         const versionStr = tag.startsWith("v") ? tag.slice(1) : tag;
-        const parsed = import_semver25.default.parse(versionStr);
+        const parsed = import_semver23.default.parse(versionStr);
         if (parsed && parsed.prerelease.length === 0) {
-          if (import_semver25.default.lt(parsed, newSemver)) {
-            if (highestStableVersion === null || import_semver25.default.gt(parsed, highestStableVersion)) {
+          if (import_semver23.default.lt(parsed, newSemver)) {
+            if (highestStableVersion === null || import_semver23.default.gt(parsed, highestStableVersion)) {
               highestStableVersion = parsed;
             }
           }
