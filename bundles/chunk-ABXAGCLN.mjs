@@ -5804,7 +5804,7 @@ ${sanitize(logOutput)}`);
       if (status === 0 || options.suppressErrorOnFailingExitCode) {
         resolve5({ stdout, stderr, status });
       } else {
-        reject(options.mode === "silent" ? logOutput : void 0);
+        reject(options.mode === "silent" ? sanitize(logOutput) : void 0);
       }
     });
   });

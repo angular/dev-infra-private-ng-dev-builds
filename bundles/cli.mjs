@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-MFMNPU5F.mjs";
+} from "./chunk-L2M3AJHF.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -69,7 +69,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-QLAKXKEO.mjs";
+} from "./chunk-ABXAGCLN.mjs";
 import {
   CommitParser
 } from "./chunk-YFFXSOAM.mjs";
@@ -5532,42 +5532,42 @@ var require_queue = __commonJS({
       queue.drained = drained;
       return queue;
       function push(value) {
-        var p = new Promise(function(resolve9, reject) {
+        var p = new Promise(function(resolve10, reject) {
           pushCb(value, function(err, result) {
             if (err) {
               reject(err);
               return;
             }
-            resolve9(result);
+            resolve10(result);
           });
         });
         p.catch(noop);
         return p;
       }
       function unshift(value) {
-        var p = new Promise(function(resolve9, reject) {
+        var p = new Promise(function(resolve10, reject) {
           unshiftCb(value, function(err, result) {
             if (err) {
               reject(err);
               return;
             }
-            resolve9(result);
+            resolve10(result);
           });
         });
         p.catch(noop);
         return p;
       }
       function drained() {
-        var p = new Promise(function(resolve9) {
+        var p = new Promise(function(resolve10) {
           process.nextTick(function() {
             if (queue.idle()) {
-              resolve9();
+              resolve10();
             } else {
               var previousDrain = queue.drain;
               queue.drain = function() {
                 if (typeof previousDrain === "function")
                   previousDrain();
-                resolve9();
+                resolve10();
                 queue.drain = previousDrain;
               };
             }
@@ -6053,9 +6053,9 @@ var require_stream3 = __commonJS({
         });
       }
       _getStat(filepath) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           this._stat(filepath, this._fsStatSettings, (error62, stats) => {
-            return error62 === null ? resolve9(stats) : reject(error62);
+            return error62 === null ? resolve10(stats) : reject(error62);
           });
         });
       }
@@ -6079,10 +6079,10 @@ var require_async5 = __commonJS({
         this._readerStream = new stream_1.default(this._settings);
       }
       dynamic(root, options) {
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           this._walkAsync(root, options, (error62, entries) => {
             if (error62 === null) {
-              resolve9(entries);
+              resolve10(entries);
             } else {
               reject(error62);
             }
@@ -6092,10 +6092,10 @@ var require_async5 = __commonJS({
       async static(patterns, options) {
         const entries = [];
         const stream = this._readerStream.static(patterns, options);
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           stream.once("error", reject);
           stream.on("data", (entry) => entries.push(entry));
-          stream.once("end", () => resolve9(entries));
+          stream.once("end", () => resolve10(entries));
         });
       }
     };
@@ -8993,10 +8993,10 @@ var require_folder_hash = __commonJS({
         return promise2.catch((err) => {
           if (err.code && (err.code === "EMFILE" || err.code === "ENFILE")) {
             log.queue(`queued ${dirname7}/${name} because of ${err.code}`);
-            const promise3 = new Promise((resolve9, reject) => {
+            const promise3 = new Promise((resolve10, reject) => {
               queue.push(() => {
                 log.queue(`Will processs queued ${dirname7}/${name}`);
-                return hashElementPromise(stats, dirname7, options, isRootElement).then((ok) => resolve9(ok)).catch((err2) => reject(err2));
+                return hashElementPromise(stats, dirname7, options, isRootElement).then((ok) => resolve10(ok)).catch((err2) => reject(err2));
               });
             });
             if (queueTimer === void 0) {
@@ -9040,7 +9040,7 @@ var require_folder_hash = __commonJS({
         } else if (ignore(name, filePath, options.files)) {
           return Promise.resolve(void 0);
         }
-        return new Promise((resolve9, reject) => {
+        return new Promise((resolve10, reject) => {
           try {
             const hash2 = crypto.createHash(options.algo, options.algoOptions);
             if (options.files.ignoreBasename || options.ignoreBasenameOnce || isRootElement && options.files.ignoreRootName) {
@@ -9056,7 +9056,7 @@ var require_folder_hash = __commonJS({
             f.pipe(hash2, { end: false });
             f.on("end", () => {
               const hashedFile = new HashedFile(name, hash2, options.encoding);
-              return resolve9(hashedFile);
+              return resolve10(hashedFile);
             });
           } catch (ex) {
             return reject(ex);
@@ -13205,7 +13205,7 @@ async function exitCode(process2) {
   if (process2.exitCode !== null) {
     return process2.exitCode;
   }
-  return new Promise((resolve9) => process2.once("close", resolve9));
+  return new Promise((resolve10) => process2.once("close", resolve10));
 }
 async function catchProcessError(process2) {
   let error62 = new Error("Process exited with non-zero code");
@@ -13720,7 +13720,7 @@ async function getActiveFormatters() {
 // ng-dev/format/run-commands-parallel.js
 var AVAILABLE_THREADS = Math.max(Math.min(cpus().length, 8) - 1, 1);
 function runFormatterInParallel(allFiles, action) {
-  return new Promise(async (resolve9) => {
+  return new Promise(async (resolve10) => {
     const formatters = await getActiveFormatters();
     const failures = [];
     const pendingCommands = [];
@@ -13728,7 +13728,7 @@ function runFormatterInParallel(allFiles, action) {
       pendingCommands.push(...multimatch.call(void 0, allFiles, formatter.getFileMatcher(), { dot: true }).map((file2) => ({ formatter, file: file2 })));
     }
     if (pendingCommands.length === 0) {
-      return resolve9(false);
+      return resolve10(false);
     }
     switch (action) {
       case "format":
@@ -13771,7 +13771,7 @@ function runFormatterInParallel(allFiles, action) {
         threads[thread] = false;
         if (threads.every((active) => !active)) {
           progressBar.stop();
-          resolve9(failures);
+          resolve10(failures);
         }
       });
       threads[thread] = true;
@@ -14137,13 +14137,13 @@ import { fileURLToPath } from "url";
 import { fork } from "child_process";
 var BuildWorker = class {
   static async invokeBuild() {
-    return new Promise((resolve9) => {
+    return new Promise((resolve10) => {
       const buildProcess = fork(getBuildWorkerScriptPath(), {
         stdio: ["inherit", 2, 2, "ipc"]
       });
       let builtPackages = null;
       buildProcess.on("message", (buildResponse) => builtPackages = buildResponse);
-      buildProcess.on("exit", () => resolve9(builtPackages));
+      buildProcess.on("exit", () => resolve10(builtPackages));
     });
   }
 };
@@ -19346,7 +19346,7 @@ var recursive = /* @__PURE__ */ new WeakMap();
 var NONE = 0;
 var ASSUMED = 1;
 var PROVEN = 2;
-function isRecursive(inst, stack, resolve9) {
+function isRecursive(inst, stack, resolve10) {
   const cached2 = recursive.get(inst);
   if (cached2 !== void 0)
     return cached2 ? PROVEN : NONE;
@@ -19356,7 +19356,7 @@ function isRecursive(inst, stack, resolve9) {
   let result = NONE;
   const check2 = (child) => {
     if (result !== PROVEN && child?._zod) {
-      const answer = isRecursive(child, stack, resolve9);
+      const answer = isRecursive(child, stack, resolve10);
       if (answer > result)
         result = answer;
     }
@@ -19367,7 +19367,7 @@ function isRecursive(inst, stack, resolve9) {
       const desc = Object.getOwnPropertyDescriptor(sh, key);
       if (spread && !desc.enumerable)
         continue;
-      const child = desc.get ? ASSUMED : desc.value?._zod ? isRecursive(desc.value, stack, resolve9) : NONE;
+      const child = desc.get ? ASSUMED : desc.value?._zod ? isRecursive(desc.value, stack, resolve10) : NONE;
       if (child > answer)
         answer = child;
     }
@@ -19430,7 +19430,7 @@ function isRecursive(inst, stack, resolve9) {
       check2(def.output);
       break;
     case "lazy": {
-      const inner = def._cachedInner ?? (resolve9 ? inst._zod.innerType : void 0);
+      const inner = def._cachedInner ?? (resolve10 ? inst._zod.innerType : void 0);
       merge2(inner ? isRecursive(inner, stack, false) : ASSUMED);
       break;
     }
@@ -36838,8 +36838,8 @@ ejs.promiseImpl = new Function("return this;")().Promise;
 ejs.resolveInclude = function(name, filename, isDir) {
   let dirname7 = path4.dirname;
   let extname2 = path4.extname;
-  let resolve9 = path4.resolve;
-  let includePath = resolve9(isDir ? filename : dirname7(filename), name);
+  let resolve10 = path4.resolve;
+  let includePath = resolve10(isDir ? filename : dirname7(filename), name);
   let ext2 = extname2(name);
   if (!ext2) {
     includePath += ".ejs";
@@ -36914,10 +36914,10 @@ function tryHandleCache(options, data, cb) {
   let result;
   if (!cb) {
     if (typeof ejs.promiseImpl == "function") {
-      return new ejs.promiseImpl(function(resolve9, reject) {
+      return new ejs.promiseImpl(function(resolve10, reject) {
         try {
           result = handleCache(options)(data);
-          resolve9(result);
+          resolve10(result);
         } catch (err) {
           reject(err);
         }
@@ -37890,10 +37890,10 @@ var import_semver6 = __toESM(require_semver());
 var ReadBufferFromStdinError = class extends Error {
 };
 function readBufferFromStdinUntilClosed(input2 = process.stdin) {
-  return new Promise((resolve9, reject) => {
+  return new Promise((resolve10, reject) => {
     const data = [];
     input2.on("data", (chunk) => data.push(chunk));
-    input2.on("end", () => resolve9(Buffer.concat(data)));
+    input2.on("end", () => resolve10(Buffer.concat(data)));
     input2.on("error", () => reject(new ReadBufferFromStdinError()));
     input2.on("timeout", () => reject(new ReadBufferFromStdinError("Unexpected timeout")));
   });
@@ -37928,20 +37928,20 @@ var ReleasePrecheckCommandModule = {
 
 // ng-dev/release/versioning/npm-command.js
 var NpmCommand = class {
-  static async publish(packagePath, distTag, registryUrl) {
+  static async publish(packagePath, distTag, registryUrl, cwd) {
     const args = ["publish", packagePath, "--access", "public", "--tag", distTag];
     if (registryUrl !== void 0) {
       args.push("--registry", registryUrl);
     }
-    await ChildProcess.spawn("npm", args, { mode: "silent" });
+    await ChildProcess.spawn("npm", args, { mode: "silent", ...cwd ? { cwd } : {} });
   }
-  static async checkVersionExists(packageName, version2, registryUrl) {
+  static async checkVersionExists(packageName, version2, registryUrl, cwd) {
     const args = ["view", `${packageName}@${version2}`, "version"];
     if (registryUrl !== void 0) {
       args.push("--registry", registryUrl);
     }
     try {
-      const result = await ChildProcess.spawn("npm", args, { mode: "silent" });
+      const result = await ChildProcess.spawn("npm", args, { mode: "silent", ...cwd ? { cwd } : {} });
       const output3 = result.stdout.trim();
       return output3 !== "";
     } catch (e) {
@@ -37952,13 +37952,13 @@ var NpmCommand = class {
       throw e;
     }
   }
-  static async deprecate(packageName, version2, message, registryUrl) {
+  static async deprecate(packageName, version2, message, registryUrl, cwd) {
     const args = ["deprecate", `${packageName}@${version2}`, message];
     if (registryUrl !== void 0) {
       args.push("--registry", registryUrl);
     }
     try {
-      await ChildProcess.spawn("npm", args, { mode: "silent" });
+      await ChildProcess.spawn("npm", args, { mode: "silent", ...cwd ? { cwd } : {} });
     } catch (e) {
       Log.error(Array(80).join("#"));
       Log.error(`  \u2718   An error occurred while deprecating "${packageName}".`);
@@ -38211,6 +38211,8 @@ var ExternalCommands = class {
       await ChildProcess.spawn("pnpm", [
         "install",
         "--frozen-lockfile",
+        "--ignore-scripts",
+        "--ignore-pnpmfile",
         "--config.confirmModulesPurge=false"
       ], {
         cwd: projectDir,
@@ -39328,7 +39330,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-7acaef3cd9141b7c99b939646ce583ee331b2759`;
+var localVersion = `0.0.0-f28485704b2d1f81ae380a8296a4f14d9852c248`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -40000,7 +40002,7 @@ import path7 from "node:path";
 
 // github-actions/release/publish/lib/publish-ci.js
 var import_semver23 = __toESM(require_semver());
-import { join as join17 } from "path";
+import { join as join17, resolve as resolve6 } from "path";
 import { existsSync as existsSync9, writeFileSync as writeFileSync5, rmSync, mkdtempSync } from "fs";
 import { tmpdir as tmpdir2 } from "os";
 
@@ -40129,7 +40131,11 @@ var PublishCiTool = class {
     } else {
       Log.info("Skipping Git tagging and GitHub Release creation as configured.");
     }
-    await this.publishAndDeprecatePackages(builtPackagesWithInfo, npmDistTag, newVersion);
+    if (!this.summary.hasFailures()) {
+      await this.publishAndDeprecatePackages(builtPackagesWithInfo, npmDistTag, newVersion);
+    } else {
+      Log.error("Skipping package publishing due to tagging or release creation failures.");
+    }
     const markdownSummary = this.summary.toMarkdown();
     Log.info("\n" + markdownSummary);
     if (process.env["GITHUB_STEP_SUMMARY"]) {
@@ -40268,8 +40274,13 @@ ${failures}`);
         this.summary.addTag({ name: globalTagName, status: "CREATED" });
       } catch (e) {
         if (isGithubApiError(e) && e.status === 422) {
-          Log.warn(`Warning: Tag ${globalTagName} already exists, skipping tag creation.`);
-          this.summary.addTag({ name: globalTagName, status: "SKIPPED" });
+          const verificationError = await this.verifyExistingTagSha(globalTagName);
+          if (verificationError === null) {
+            Log.warn(`Warning: Tag ${globalTagName} already exists, skipping tag creation.`);
+            this.summary.addTag({ name: globalTagName, status: "SKIPPED" });
+          } else {
+            this.summary.addTag({ name: globalTagName, status: "FAILED", error: verificationError });
+          }
         } else {
           Log.error(`Failed to tag global tag ${globalTagName}: ${e}`);
           this.summary.addTag({ name: globalTagName, status: "FAILED", error: String(e) });
@@ -40300,8 +40311,17 @@ ${failures}`);
         this.summary.setRelease({ name: globalTagName, status: "CREATED" });
       } catch (e) {
         if (isGithubApiError(e) && e.status === 422) {
-          Log.warn(`Warning: GitHub release for ${globalTagName} already exists, skipping release creation.`);
-          this.summary.setRelease({ name: globalTagName, status: "SKIPPED" });
+          const verificationError = await this.verifyExistingTagSha(globalTagName);
+          if (verificationError === null) {
+            Log.warn(`Warning: GitHub release for ${globalTagName} already exists, skipping release creation.`);
+            this.summary.setRelease({ name: globalTagName, status: "SKIPPED" });
+          } else {
+            this.summary.setRelease({
+              name: globalTagName,
+              status: "FAILED",
+              error: verificationError
+            });
+          }
         } else {
           Log.error(`Failed to create GitHub release ${globalTagName}: ${e}`);
           this.summary.setRelease({ name: globalTagName, status: "FAILED", error: String(e) });
@@ -40325,8 +40345,17 @@ ${failures}`);
             this.summary.addTag({ name: monorepoTagName, status: "CREATED" });
           } catch (e) {
             if (isGithubApiError(e) && e.status === 422) {
-              Log.warn(`Warning: Tag ${monorepoTagName} already exists, skipping tag creation.`);
-              this.summary.addTag({ name: monorepoTagName, status: "SKIPPED" });
+              const verificationError = await this.verifyExistingTagSha(monorepoTagName);
+              if (verificationError === null) {
+                Log.warn(`Warning: Tag ${monorepoTagName} already exists, skipping tag creation.`);
+                this.summary.addTag({ name: monorepoTagName, status: "SKIPPED" });
+              } else {
+                this.summary.addTag({
+                  name: monorepoTagName,
+                  status: "FAILED",
+                  error: verificationError
+                });
+              }
             } else {
               Log.error(`Failed to tag monorepo package ${monorepoTagName}: ${e}`);
               this.summary.addTag({ name: monorepoTagName, status: "FAILED", error: String(e) });
@@ -40334,6 +40363,48 @@ ${failures}`);
           }
         }
       }
+    }
+  }
+  /**
+   * Verifies that an already-existing Git tag on GitHub points to `this.options.expectedSha`.
+   *
+   * @returns `null` if the tag points to `expectedSha`, or an error message if it points to a
+   *   different commit or if the lookup fails.
+   */
+  async verifyExistingTagSha(tagName) {
+    try {
+      const existingRef = await this.git.github.git.getRef({
+        ...this.git.remoteParams,
+        ref: `tags/${tagName}`
+      });
+      let existingSha = existingRef.data?.object?.sha;
+      if (!existingSha) {
+        const errorMsg2 = `Failed to resolve SHA for existing tag ${tagName}.`;
+        Log.error(errorMsg2);
+        return errorMsg2;
+      }
+      if (existingRef.data?.object?.type === "tag") {
+        const tagObject = await this.git.github.git.getTag({
+          ...this.git.remoteParams,
+          tag_sha: existingSha
+        });
+        existingSha = tagObject.data?.object?.sha;
+        if (!existingSha) {
+          const errorMsg2 = `Failed to resolve commit SHA for annotated tag ${tagName}.`;
+          Log.error(errorMsg2);
+          return errorMsg2;
+        }
+      }
+      if (existingSha === this.options.expectedSha) {
+        return null;
+      }
+      const errorMsg = `Existing tag ${tagName} points to ${existingSha}, which does not match expected SHA ${this.options.expectedSha}.`;
+      Log.error(errorMsg);
+      return errorMsg;
+    } catch (err) {
+      const errorMsg = `Failed to verify existing tag ${tagName}: ${err}`;
+      Log.error(errorMsg);
+      return errorMsg;
     }
   }
   /**
@@ -40375,14 +40446,14 @@ ${failures}`);
       for (const pkg of builtPackages) {
         Log.info(`Checking if "${pkg.name}@${version2}" is already published...`);
         try {
-          const exists = await NpmCommand.checkVersionExists(pkg.name, version2, this.config.release.publishRegistry);
+          const exists = await NpmCommand.checkVersionExists(pkg.name, version2, this.config.release.publishRegistry, tempDir);
           if (exists) {
             Log.warn(`Warning: Package "${pkg.name}@${version2}" is already published. Skipping.`);
             this.summary.addPackage({ name: pkg.name, version: version2, status: "SKIPPED" });
             continue;
           }
           Log.info(`Publishing "${pkg.name}"...`);
-          await NpmCommand.publish(pkg.outputPath, npmDistTag, this.config.release.publishRegistry);
+          await NpmCommand.publish(resolve6(pkg.outputPath), npmDistTag, this.config.release.publishRegistry, tempDir);
           Log.info(green(`  \u2713   Successfully published "${pkg.name}".`));
           this.summary.addPackage({ name: pkg.name, version: version2, status: "PUBLISHED" });
         } catch (e) {
@@ -40406,7 +40477,7 @@ ${failures}`);
         Log.info(`Deprecating "${pkg.name}"...`);
         const { version: version3, message } = pkg.deprecated;
         try {
-          await NpmCommand.deprecate(pkg.name, version3, message, this.config.release.publishRegistry);
+          await NpmCommand.deprecate(pkg.name, version3, message, this.config.release.publishRegistry, tempDir);
           Log.info(green(`  \u2713   Successfully deprecated "${pkg.name}@${version3}".`));
         } catch (e) {
           Log.error(`Failed to deprecate "${pkg.name}": ${e}`);
@@ -40612,11 +40683,11 @@ function buildReleaseParser(localYargs) {
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob4 = __toESM(require_out4());
 import { existsSync as existsSync10, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
-import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve8 } from "path";
+import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve9 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
 import { readFileSync as readFileSync10 } from "fs";
-import { dirname as dirname5, join as join18, resolve as resolve6 } from "path";
+import { dirname as dirname5, join as join18, resolve as resolve7 } from "path";
 import ts3 from "typescript";
 
 // ng-dev/ts-circular-dependencies/file_system.js
@@ -40682,7 +40753,7 @@ var Analyzer = class {
     return result;
   }
   getSourceFile(filePath) {
-    const resolvedPath = resolve6(filePath);
+    const resolvedPath = resolve7(filePath);
     if (this._sourceFileCache.has(resolvedPath)) {
       return this._sourceFileCache.get(resolvedPath);
     }
@@ -40738,10 +40809,10 @@ var Analyzer = class {
 };
 
 // ng-dev/ts-circular-dependencies/config.js
-import { dirname as dirname6, extname, isAbsolute, resolve as resolve7 } from "path";
+import { dirname as dirname6, extname, isAbsolute, resolve as resolve8 } from "path";
 async function loadTestConfig(configPath) {
   const configBaseDir = dirname6(configPath);
-  const resolveRelativePath = (relativePath) => resolve7(configBaseDir, relativePath);
+  const resolveRelativePath = (relativePath) => resolve8(configBaseDir, relativePath);
   try {
     let config2;
     switch (extname(configPath)) {
@@ -40851,12 +40922,12 @@ function tsCircularDependenciesBuilder(localYargs) {
     description: "Path to the configuration file."
   }).option("warnings", { type: "boolean", description: "Prints all warnings." }).command("check", "Checks if the circular dependencies have changed.", (args) => args, async (argv) => {
     const { config: configArg, warnings } = argv;
-    const configPath = isAbsolute2(configArg) ? configArg : resolve8(configArg);
+    const configPath = isAbsolute2(configArg) ? configArg : resolve9(configArg);
     const config2 = await loadTestConfig(configPath);
     process.exit(main(false, config2, !!warnings));
   }).command("approve", "Approves the current circular dependencies.", (args) => args, async (argv) => {
     const { config: configArg, warnings } = argv;
-    const configPath = isAbsolute2(configArg) ? configArg : resolve8(configArg);
+    const configPath = isAbsolute2(configArg) ? configArg : resolve9(configArg);
     const config2 = await loadTestConfig(configPath);
     process.exit(main(true, config2, !!warnings));
   });
