@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-b5099d69dcfb3550e1a7a5e69c5c90920076d822",
+  "version": "0.0.0-c240b6a65af4b66f1fdee06c9e87312ce79e3205",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -47,7 +47,7 @@
     "ejs": "7.0.1",
     "encoding": "0.1.13",
     "fast-glob": "3.3.3",
-    "firebase": "12.19.0",
+    "firebase": "13.0.0",
     "folder-hash": "4.1.4",
     "jasmine-core": "6.3.0",
     "jasmine-reporters": "2.5.2",
