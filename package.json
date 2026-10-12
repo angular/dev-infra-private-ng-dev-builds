@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-5fb5ac8b22fb074ec50302e64f24c8397ea3b632",
+  "version": "0.0.0-b5099d69dcfb3550e1a7a5e69c5c90920076d822",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -55,7 +55,7 @@
     "jsonc-parser": "3.3.1",
     "minimatch": "10.2.6",
     "multimatch": "8.0.0",
-    "nock": "14.0.17",
+    "nock": "15.0.1",
     "semver": "7.8.5",
     "supports-color": "11.0.0",
     "typed-graphqlify": "3.1.6",
