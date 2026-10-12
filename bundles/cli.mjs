@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-TTC2AQGU.mjs";
+} from "./chunk-MFMNPU5F.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -69,7 +69,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-6SDARNEM.mjs";
+} from "./chunk-QLAKXKEO.mjs";
 import {
   CommitParser
 } from "./chunk-YFFXSOAM.mjs";
@@ -34607,6 +34607,8 @@ var PR_SCHEMA2 = {
         commit: {
           oid: types.string,
           authoredDate: types.string,
+          committedDate: types.string,
+          pushedDate: types.custom(),
           statusCheckRollup: optional({
             state: types.custom(),
             contexts: params({ last: 100 }, {
@@ -34697,7 +34699,8 @@ var PR_COMMENTS_SCHEMA = params({ first: 100 }, {
     login: types.string
   },
   authorAssociation: types.custom(),
-  bodyText: types.string
+  bodyText: types.string,
+  createdAt: types.string
 });
 async function fetchPullRequestFromGithub(git, prNumber) {
   return await getPr(PR_SCHEMA2, prNumber, git);
@@ -34728,17 +34731,19 @@ function getStatusesForPullRequest(pullRequest) {
   }).forEach((context) => {
     switch (context.__typename) {
       case "CheckRun":
-        statusMap.set(context.name, {
+        statusMap.set(`check:${context.name}`, {
           type: "check",
           name: context.name,
           status: normalizeGithubCheckState(context.conclusion, context.status)
         });
+        break;
       case "StatusContext":
-        statusMap.set(context.context, {
+        statusMap.set(`status:${context.context}`, {
           type: "status",
           name: context.context,
           status: normalizeGithubStatusState(context.state)
         });
+        break;
     }
   });
   return {
@@ -35005,6 +35010,12 @@ var automationBots = ["angular-robot"];
 var changesAllowForTargetLabelValidation = createPullRequestValidation({ name: "assertChangesAllowForTargetLabel", canBeForceIgnored: true }, () => Validation);
 var Validation = class extends PullRequestValidation {
   assert(commits, targetLabel, config2, releaseTrains, labelsOnPullRequest, pullRequest) {
+    if (targetLabel === targetLabels["TARGET_AUTOMATION"]) {
+      if (!pullRequest.author || !automationBots.includes(pullRequest.author.login)) {
+        throw this._createUserUsingAutomationLabelError(targetLabel, pullRequest.author?.login ?? "unknown");
+      }
+      return;
+    }
     if (labelsOnPullRequest.includes(mergeLabels["MERGE_FIX_COMMIT_MESSAGE"].name)) {
       Log.debug("Skipping commit message target label validation because the commit message fixup label is applied.");
       return;
@@ -35033,11 +35044,6 @@ var Validation = class extends PullRequestValidation {
         }
         if (hasDeprecations && !releaseTrains.isFeatureFreeze()) {
           throw this._createHasDeprecationsError(targetLabel);
-        }
-        break;
-      case targetLabels["TARGET_AUTOMATION"]:
-        if (!pullRequest.author || !automationBots.includes(pullRequest.author.login)) {
-          throw this._createUserUsingAutomationLabelError(targetLabel, pullRequest.author?.login ?? "unknown");
         }
         break;
       default:
@@ -35198,7 +35204,9 @@ var Validation6 = class extends PullRequestValidation {
       return;
     }
     const comments = await PullRequestComments.create(gitClient2, pullRequest.number).loadPullRequestComments();
-    if (await pullRequestHasValidTestedComment(comments, gitClient2)) {
+    const latestCommit = pullRequest.commits.nodes[pullRequest.commits.nodes.length - 1]?.commit;
+    const latestCommitDate = latestCommit?.pushedDate ?? latestCommit?.committedDate ?? latestCommit?.authoredDate;
+    if (await pullRequestHasValidTestedComment(comments, gitClient2, latestCommitDate)) {
       return;
     }
     throw this._createError(`Pull Request requires a TGP and does not have one. Either run a TGP or specify the PR is fully tested by adding a comment with "TESTED=[reason]".`);
@@ -35219,8 +35227,12 @@ var PullRequestComments = class _PullRequestComments {
     return new _PullRequestComments(git, prNumber);
   }
 };
-async function pullRequestHasValidTestedComment(comments, gitClient2) {
-  for (const { bodyText, author } of comments) {
+async function pullRequestHasValidTestedComment(comments, gitClient2, latestCommitDate) {
+  for (const comment of comments) {
+    const { bodyText, author } = comment;
+    if (latestCommitDate && (!comment.createdAt || !(Date.parse(comment.createdAt) >= Date.parse(latestCommitDate)))) {
+      continue;
+    }
     if (bodyText.startsWith(`TESTED=`) && author && await github_macros_default.isGooglerOrgMember(gitClient2.github, author.login)) {
       return true;
     }
@@ -35286,8 +35298,8 @@ var Validation10 = class extends PullRequestValidation {
 var signedClaValidation = createPullRequestValidation({ name: "assertSignedCla", canBeForceIgnored: true }, () => Validation11);
 var Validation11 = class extends PullRequestValidation {
   assert(pullRequest) {
-    const passing = getStatusesForPullRequest(pullRequest).statuses.some(({ name, status }) => {
-      return name === "cla/google" && status === PullRequestStatus.PASSING;
+    const passing = getStatusesForPullRequest(pullRequest).statuses.some(({ type, name, status }) => {
+      return type === "status" && name === "cla/google" && status === PullRequestStatus.PASSING;
     });
     if (!passing) {
       throw this._createError("CLA is not signed by the contributor.");
@@ -39306,7 +39318,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-c240b6a65af4b66f1fdee06c9e87312ce79e3205`;
+var localVersion = `0.0.0-4d49b0c20fe119594533194ee3f1cb8995f94b3a`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

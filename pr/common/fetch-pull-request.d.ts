@@ -29,6 +29,8 @@ export declare const PR_SCHEMA: {
             commit: {
                 oid: string;
                 authoredDate: string;
+                committedDate: string;
+                pushedDate: string | null;
                 statusCheckRollup: {
                     state: StatusState;
                     contexts: {
@@ -117,6 +119,7 @@ export declare const PR_COMMENTS_SCHEMA: {
     };
     authorAssociation: CommentAuthorAssociation;
     bodyText: string;
+    createdAt: string;
 };
 export type PullRequestCommentsFromGithub = typeof PR_COMMENTS_SCHEMA;
 export type PullRequestStatusInfo = {

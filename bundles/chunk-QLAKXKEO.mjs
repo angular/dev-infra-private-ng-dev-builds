@@ -5722,7 +5722,7 @@ async function runParserWithCompletedFunctions(applyConfiguration) {
 
 // ng-dev/utils/logging.js
 import { styleText } from "util";
-import { createWriteStream, copyFileSync, existsSync, lstatSync } from "fs";
+import { createWriteStream, copyFileSync, lstatSync } from "fs";
 import { join as join2 } from "path";
 
 // ng-dev/utils/child-process.js
@@ -5880,7 +5880,7 @@ async function captureLogOutputForCommand(argv) {
   }
   const repoDir = determineRepoBaseDirFromCwd();
   const logFilePath = join2(repoDir, ".ng-dev.log");
-  if (existsSync(logFilePath) && lstatSync(logFilePath).isSymbolicLink()) {
+  if (lstatSync(logFilePath, { throwIfNoEntry: false })?.isSymbolicLink()) {
     throw new Error("Security Violation: .ng-dev.log is a symbolic link. To prevent arbitrary file write, execution is aborted.");
   }
   logStream = createWriteStream(logFilePath, { encoding: "utf-8" });

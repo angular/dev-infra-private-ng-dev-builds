@@ -24,6 +24,8 @@ export declare const enforcedStatusesValidation: {
                 commit: {
                     oid: string;
                     authoredDate: string;
+                    committedDate: string;
+                    pushedDate: string | null;
                     statusCheckRollup: {
                         state: import("@octokit/graphql-schema").StatusState;
                         contexts: {

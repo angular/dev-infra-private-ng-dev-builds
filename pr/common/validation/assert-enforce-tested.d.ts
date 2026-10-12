@@ -25,6 +25,8 @@ export declare const enforceTestedValidation: {
                 commit: {
                     oid: string;
                     authoredDate: string;
+                    committedDate: string;
+                    pushedDate: string | null;
                     statusCheckRollup: {
                         state: import("@octokit/graphql-schema").StatusState;
                         contexts: {
@@ -110,4 +112,4 @@ export declare class PullRequestComments {
     loadPullRequestComments(): Promise<PullRequestCommentsFromGithub[]>;
     static create(git: AuthenticatedGitClient, prNumber: number): PullRequestComments;
 }
-export declare function pullRequestHasValidTestedComment(comments: PullRequestCommentsFromGithub[], gitClient: AuthenticatedGitClient): Promise<boolean>;
+export declare function pullRequestHasValidTestedComment(comments: PullRequestCommentsFromGithub[], gitClient: AuthenticatedGitClient, latestCommitDate?: string): Promise<boolean>;
