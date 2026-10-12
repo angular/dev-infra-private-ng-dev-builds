@@ -12851,8 +12851,10 @@ var SQUASH_PREFIX_RE = /^squash! /i;
 var REVERT_PREFIX_RE = /^revert:? /i;
 var headerPattern = /^(\w+)(?:\(([^)]+)\))?: (.*)$/;
 var headerCorrespondence = ["type", "scope", "subject"];
+var GIT_LOG_METADATA_RE = /\r?\n-hash-\r?\n([^\r\n]*)\r?\n-shortHash-\r?\n([^\r\n]*)\r?\n-author-\r?\n([^\r\n]*)\s*$/;
 var parseOptions = {
   commentChar: "#",
+  fieldPattern: /(?!)/,
   headerPattern,
   headerCorrespondence,
   noteKeywords: [NoteSections.BREAKING_CHANGE, NoteSections.DEPRECATED],
@@ -12864,7 +12866,12 @@ function parseCommitFromGitLog(fullText) {
   return parseInternal(fullText);
 }
 function parseInternal(fullText) {
-  const commit = commitParser.parse(fullText);
+  const metadataMatch = fullText.match(GIT_LOG_METADATA_RE);
+  const messageText = metadataMatch ? fullText.slice(0, metadataMatch.index) : fullText;
+  const hash2 = metadataMatch?.[1]?.trim() || void 0;
+  const shortHash = metadataMatch?.[2]?.trim() || void 0;
+  const author = metadataMatch?.[3]?.trim() || void 0;
+  const commit = commitParser.parse(messageText);
   const breakingChanges = [];
   const deprecations = [];
   const header = (commit.header || "").replace(FIXUP_PREFIX_RE, "").replace(SQUASH_PREFIX_RE, "").replace(REVERT_PREFIX_RE, "");
@@ -12893,9 +12900,9 @@ function parseInternal(fullText) {
     isFixup: FIXUP_PREFIX_RE.test(fullText),
     isSquash: SQUASH_PREFIX_RE.test(fullText),
     isRevert: REVERT_PREFIX_RE.test(fullText),
-    author: commit["author"] || void 0,
-    hash: commit["hash"] || void 0,
-    shortHash: commit["shortHash"] || void 0
+    author,
+    hash: hash2,
+    shortHash
   };
 }
 
@@ -37403,8 +37410,10 @@ var RenderContext = class {
       };
     };
     this.commitToLink = (commit) => {
-      const url3 = `https://github.com/${this.data.github.owner}/${this.data.github.name}/commit/${commit.hash}`;
-      return `[${commit.shortHash}](${url3})`;
+      const hash2 = sanitizeCommitHash(commit.hash);
+      const shortHash = sanitizeCommitHash(commit.shortHash);
+      const url3 = `https://github.com/${this.data.github.owner}/${this.data.github.name}/commit/${hash2}`;
+      return `[${shortHash}](${url3})`;
     };
     this.pullRequestToLink = (prNumber) => {
       const url3 = `https://github.com/${this.data.github.owner}/${this.data.github.name}/pull/${prNumber}`;
@@ -37429,9 +37438,11 @@ var RenderContext = class {
           color = "orange";
           break;
       }
-      const url3 = `https://github.com/${this.data.github.owner}/${this.data.github.name}/commit/${commit.hash}`;
-      const imgSrc = `https://img.shields.io/badge/${commit.shortHash}-${commit.type}-${color}`;
-      return `[![${commit.type} - ${commit.shortHash}](${imgSrc})](${url3})`;
+      const hash2 = sanitizeCommitHash(commit.hash);
+      const shortHash = sanitizeCommitHash(commit.shortHash);
+      const url3 = `https://github.com/${this.data.github.owner}/${this.data.github.name}/commit/${hash2}`;
+      const imgSrc = `https://img.shields.io/badge/${shortHash}-${commit.type}-${color}`;
+      return `[![${commit.type} - ${shortHash}](${imgSrc})](${url3})`;
     };
   }
   _categorizeCommits(commits) {
@@ -37456,6 +37467,9 @@ var RenderContext = class {
     });
   }
 };
+function sanitizeCommitHash(hash2) {
+  return (hash2 ?? "").replace(/[\[\]()<>\\\r\n]/g, "");
+}
 function buildDateStamp(date5 = /* @__PURE__ */ new Date()) {
   const year = `${date5.getFullYear()}`;
   const month = `${date5.getMonth() + 1}`.padStart(2, "0");
@@ -37635,12 +37649,8 @@ function getCommitsForRangeWithDeduping(client, baseRef, headRef) {
   return commits;
 }
 function fetchCommitsForRevisionRange(client, revisionRange) {
-  const splitDelimiter = "-------------\u0275\u0275------------";
-  const output3 = client.run([
-    "log",
-    `--format=${gitLogFormatForParsing}${splitDelimiter}`,
-    revisionRange
-  ]);
+  const splitDelimiter = "\0";
+  const output3 = client.run(["log", `--format=${gitLogFormatForParsing}%x00`, revisionRange]);
   const commits = /* @__PURE__ */ new Map();
   output3.stdout.split(splitDelimiter).reverse().forEach((entry) => {
     if (entry.trim() === "") {
@@ -39318,7 +39328,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-4d49b0c20fe119594533194ee3f1cb8995f94b3a`;
+var localVersion = `0.0.0-7acaef3cd9141b7c99b939646ce583ee331b2759`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
