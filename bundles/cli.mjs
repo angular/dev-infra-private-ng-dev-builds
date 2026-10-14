@@ -34750,17 +34750,19 @@ function getStatusesForPullRequest(pullRequest) {
   }).forEach((context) => {
     switch (context.__typename) {
       case "CheckRun":
-        statusMap.set(context.name, {
+        statusMap.set(`check:${context.name}`, {
           type: "check",
           name: context.name,
           status: normalizeGithubCheckState(context.conclusion, context.status)
         });
+        break;
       case "StatusContext":
-        statusMap.set(context.context, {
+        statusMap.set(`status:${context.context}`, {
           type: "status",
           name: context.context,
           status: normalizeGithubStatusState(context.state)
         });
+        break;
     }
   });
   return {
@@ -35315,8 +35317,8 @@ var Validation10 = class extends PullRequestValidation {
 var signedClaValidation = createPullRequestValidation({ name: "assertSignedCla", canBeForceIgnored: true }, () => Validation11);
 var Validation11 = class extends PullRequestValidation {
   assert(pullRequest) {
-    const passing = getStatusesForPullRequest(pullRequest).statuses.some(({ name, status }) => {
-      return name === "cla/google" && status === PullRequestStatus.PASSING;
+    const passing = getStatusesForPullRequest(pullRequest).statuses.some(({ type, name, status }) => {
+      return type === "check" && name === "cla/google" && status === PullRequestStatus.PASSING;
     });
     if (!passing) {
       throw this._createError("CLA is not signed by the contributor.");
@@ -39340,7 +39342,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-1ae310edf8e3212bf9dbeeb1799f489fc2a96ac7`;
+var localVersion = `0.0.0-2e1b5f749c2315fe8bab7b2630b46b2cee7c82db`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
