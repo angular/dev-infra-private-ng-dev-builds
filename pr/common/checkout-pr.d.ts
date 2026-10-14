@@ -1,3 +1,4 @@
+import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 export declare class UnexpectedLocalChangesError extends Error {
 }
 export declare class PullRequestNotFoundError extends Error {
@@ -37,3 +38,4 @@ export declare function checkOutPullRequestLocally(prNumber: number, opts?: Pull
         };
     };
 }>;
+export declare function upstreamUrlToPush(repoUrl: string, git: AuthenticatedGitClient): string;

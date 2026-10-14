@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-L2M3AJHF.mjs";
+} from "./chunk-535Q35KB.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -9269,14 +9269,23 @@ function addGithubTokenOption(argv) {
   });
 }
 function configureGitClientWithTokenOrFromEnvironment(token) {
-  const githubToken = token || (process.env["GITHUB_TOKEN"] ?? process.env["TOKEN"]);
+  let tokenEnvVar = null;
+  if (process.env["GITHUB_TOKEN"]) {
+    tokenEnvVar = "GITHUB_TOKEN";
+  } else if (process.env["TOKEN"]) {
+    tokenEnvVar = "TOKEN";
+  }
+  const githubToken = token || (tokenEnvVar ? process.env[tokenEnvVar] : void 0);
   if (!githubToken) {
     Log.error("No Github token set. Please set the `GITHUB_TOKEN` environment variable.");
     Log.error("Alternatively, pass the `--github-token` command line flag.");
     Log.warn(`You can generate a token here: ${GITHUB_TOKEN_GENERATE_URL}`);
     throw Error("Unable to determine the Github token.");
   }
-  AuthenticatedGitClient.configure(githubToken);
+  const sourceEnvVar = token ? null : tokenEnvVar;
+  AuthenticatedGitClient.configure(githubToken, "user", sourceEnvVar);
+  delete process.env["GITHUB_TOKEN"];
+  delete process.env["TOKEN"];
 }
 
 // ng-dev/utils/git/github-macros.js
@@ -14134,12 +14143,18 @@ import { resolve as resolve2 } from "path";
 // ng-dev/release/build/index.js
 import { dirname, join as join5 } from "path";
 import { fileURLToPath } from "url";
-import { fork } from "child_process";
+import childProcess from "child_process";
 var BuildWorker = class {
   static async invokeBuild() {
     return new Promise((resolve10) => {
-      const buildProcess = fork(getBuildWorkerScriptPath(), {
-        stdio: ["inherit", 2, 2, "ipc"]
+      const env = { ...process.env };
+      delete env["GITHUB_TOKEN"];
+      delete env["TOKEN"];
+      delete env["GH_TOKEN"];
+      delete env["SNAPSHOT_BUILDS_GITHUB_TOKEN"];
+      const buildProcess = childProcess.fork(getBuildWorkerScriptPath(), {
+        stdio: ["inherit", 2, 2, "ipc"],
+        env
       });
       let builtPackages = null;
       buildProcess.on("message", (buildResponse) => builtPackages = buildResponse);
@@ -34422,18 +34437,15 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
     resetGitState: () => {
       return git.checkout(previousBranchOrRevision, true);
     },
-    pushToUpstreamCommand: `git push ${upstreamUrlToPush(pr.headRef.repository.url)} HEAD:${escapedHeadRefName} ${escapedForceWithLeaseFlag}`,
+    pushToUpstreamCommand: `git push ${upstreamUrlToPush(pr.headRef.repository.url, git)} HEAD:${escapedHeadRefName} ${escapedForceWithLeaseFlag}`,
     resetGitStateCommand: `git rebase --abort && git reset --hard && git checkout ${previousBranchOrRevision}`,
     pullRequest: pr
   };
 }
-function upstreamUrlToPush(repoUrl) {
+function upstreamUrlToPush(repoUrl, git) {
   const pushToUpstreamUrl = new URL(repoUrl);
-  if (process.env["GITHUB_TOKEN"]) {
-    pushToUpstreamUrl.password = "$GITHUB_TOKEN";
-    pushToUpstreamUrl.username = "x-access-token";
-  } else if (process.env["TOKEN"]) {
-    pushToUpstreamUrl.password = "$TOKEN";
+  if (git.tokenEnvironmentVariable) {
+    pushToUpstreamUrl.password = `$${git.tokenEnvironmentVariable}`;
     pushToUpstreamUrl.username = "x-access-token";
   }
   return pushToUpstreamUrl.href;
@@ -34738,19 +34750,17 @@ function getStatusesForPullRequest(pullRequest) {
   }).forEach((context) => {
     switch (context.__typename) {
       case "CheckRun":
-        statusMap.set(`check:${context.name}`, {
+        statusMap.set(context.name, {
           type: "check",
           name: context.name,
           status: normalizeGithubCheckState(context.conclusion, context.status)
         });
-        break;
       case "StatusContext":
-        statusMap.set(`status:${context.context}`, {
+        statusMap.set(context.context, {
           type: "status",
           name: context.context,
           status: normalizeGithubStatusState(context.state)
         });
-        break;
     }
   });
   return {
@@ -35305,8 +35315,8 @@ var Validation10 = class extends PullRequestValidation {
 var signedClaValidation = createPullRequestValidation({ name: "assertSignedCla", canBeForceIgnored: true }, () => Validation11);
 var Validation11 = class extends PullRequestValidation {
   assert(pullRequest) {
-    const passing = getStatusesForPullRequest(pullRequest).statuses.some(({ type, name, status }) => {
-      return type === "status" && name === "cla/google" && status === PullRequestStatus.PASSING;
+    const passing = getStatusesForPullRequest(pullRequest).statuses.some(({ name, status }) => {
+      return name === "cla/google" && status === PullRequestStatus.PASSING;
     });
     if (!passing) {
       throw this._createError("CLA is not signed by the contributor.");
@@ -38545,23 +38555,23 @@ var ReleaseAction = class {
     this.git.run(["push", "-q", this.git.getRepoGitUrl(), `HEAD:refs/heads/${branchName}`]);
   }
   async _pushHeadToFork(proposedBranchName, trackLocalBranch) {
-    const fork2 = await this._getForkOfAuthenticatedUser();
-    const repoGitUrl = getRepositoryGitUrl({ ...fork2, useSsh: this.git.remoteConfig.useSsh }, this.git.githubToken);
-    const branchName = await this._findAvailableBranchName(fork2, proposedBranchName);
+    const fork = await this._getForkOfAuthenticatedUser();
+    const repoGitUrl = getRepositoryGitUrl({ ...fork, useSsh: this.git.remoteConfig.useSsh }, this.git.githubToken);
+    const branchName = await this._findAvailableBranchName(fork, proposedBranchName);
     const pushArgs = [];
     if (trackLocalBranch) {
       await this.createLocalBranchFromHead(branchName);
       pushArgs.push("--set-upstream");
     }
     this.git.run(["push", "-q", repoGitUrl, `HEAD:refs/heads/${branchName}`, ...pushArgs]);
-    return { fork: fork2, branchName };
+    return { fork, branchName };
   }
   async pushChangesToForkAndCreatePullRequest(targetBranch, proposedForkBranchName, title, body) {
     const repoSlug = `${this.git.remoteParams.owner}/${this.git.remoteParams.repo}`;
-    const { fork: fork2, branchName } = await this._pushHeadToFork(proposedForkBranchName, true);
+    const { fork, branchName } = await this._pushHeadToFork(proposedForkBranchName, true);
     const { data } = await this.git.github.pulls.create({
       ...this.git.remoteParams,
-      head: `${fork2.owner}:${branchName}`,
+      head: `${fork.owner}:${branchName}`,
       base: targetBranch,
       body,
       title
@@ -38577,7 +38587,7 @@ var ReleaseAction = class {
     return {
       id: data.number,
       url: data.html_url,
-      fork: fork2,
+      fork,
       forkBranch: branchName
     };
   }
@@ -39330,7 +39340,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-f28485704b2d1f81ae380a8296a4f14d9852c248`;
+var localVersion = `0.0.0-1ae310edf8e3212bf9dbeeb1799f489fc2a96ac7`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

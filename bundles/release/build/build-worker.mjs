@@ -17,6 +17,10 @@ async function main() {
   if (process.send === void 0) {
     throw Error("This script needs to be invoked as a NodeJS worker.");
   }
+  delete process.env["GITHUB_TOKEN"];
+  delete process.env["TOKEN"];
+  delete process.env["GH_TOKEN"];
+  delete process.env["SNAPSHOT_BUILDS_GITHUB_TOKEN"];
   const config = await getConfig();
   assertValidReleaseConfig(config);
   const builtPackages = await config.release.buildPackages();
