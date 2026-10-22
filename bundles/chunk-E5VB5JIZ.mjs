@@ -24947,7 +24947,7 @@ function isNodeJSWrappedError(value, errorType) {
   return value instanceof errorType;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/key.js
 var keybindings = ["emacs", "vim"];
 var keybindingLookup = new Set(keybindings);
 function isKeybinding(value) {
@@ -24977,7 +24977,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -25000,10 +25000,10 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
@@ -25107,7 +25107,7 @@ var effectScheduler = {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-state.js
 function isFactory(value) {
   return typeof value === "function";
 }
@@ -25133,7 +25133,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -25145,7 +25145,7 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+figures@2.0.9/node_modules/@inquirer/figures/dist/index.js
@@ -25441,7 +25441,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -25469,7 +25469,7 @@ function getDefaultTheme() {
   };
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject3(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -25497,7 +25497,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -25528,7 +25528,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -25541,12 +25541,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -25565,7 +25565,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 
 // node_modules/.aspect_rules_js/fast-string-truncated-width@3.0.3/node_modules/fast-string-truncated-width/dist/utils.js
@@ -25905,7 +25905,7 @@ function wrapAnsi(string, columns, options) {
   return String(string).normalize().split(CRLF_OR_LF).map((line) => exec(line, columns, options)).join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/utils.js
 function breakLines(content, width) {
   return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, wordWrap: false }).split("\n").map((str) => str.trimEnd())).join("\n");
 }
@@ -25913,7 +25913,7 @@ function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -26002,7 +26002,7 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
 
@@ -26017,7 +26017,7 @@ function withResolver() {
   return { promise, resolve: resolve2, reject };
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib2());
 
 // node_modules/.aspect_rules_js/signal-exit@4.1.0/node_modules/signal-exit/dist/mjs/signals.js
@@ -26271,7 +26271,7 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
 // node_modules/.aspect_rules_js/@inquirer+ansi@2.0.9/node_modules/@inquirer/ansi/dist/index.js
@@ -26290,7 +26290,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC2 + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -26351,9 +26351,10 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 import path from "node:path";
 var nativeSetImmediate = globalThis.setImmediate;
+var nativeClearImmediate = globalThis.clearImmediate;
 function listenTo(target, event, listener) {
   if ("on" in target) {
     target.on(event, listener);
@@ -26459,7 +26460,8 @@ function createPrompt(view) {
         });
       };
       if ("readableFlowing" in input) {
-        nativeSetImmediate(startCycle);
+        const immediate = nativeSetImmediate(startCycle);
+        cleanups.add(() => nativeClearImmediate(immediate));
       } else {
         startCycle();
       }
@@ -26469,7 +26471,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.0.4_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.0.5_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -26484,7 +26486,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.2.6_@types+node@24.19.2/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.2.7_@types+node@24.19.2/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -26568,9 +26570,13 @@ var dist_default4 = createPrompt((config, done) => {
   const [active, setActive] = useState(bounds.first);
   const [errorMsg, setError] = useState();
   useKeypress(async (key) => {
+    if (status !== "idle")
+      return;
     if (isEnterKey(key)) {
+      setStatus("loading");
       const selection = items.filter(isChecked);
       const isValid = await validate([...selection]);
+      setStatus("idle");
       if (required && !selection.length) {
         setError("At least one choice must be selected");
       } else if (isValid === true) {
@@ -26866,7 +26872,7 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.3.4_@types+node@24.19.2/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.3.5_@types+node@24.19.2/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep",
   style: {
@@ -26934,7 +26940,7 @@ var dist_default5 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.3.3_@types+node@24.19.2/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.3.4_@types+node@24.19.2/node_modules/@inquirer/confirm/dist/index.js
 import { styleText as styleText4 } from "node:util";
 var confirmTheme = {
   keywords: {
@@ -27018,7 +27024,7 @@ var dist_default6 = createPrompt((config, done) => {
   return [`${prefix} ${message}${defaultValue} ${formattedValue}`, error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.1.7_@types+node@24.19.2/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.1.8_@types+node@24.19.2/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -27103,7 +27109,7 @@ var dist_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.2.4_@types+node@24.19.2/node_modules/@inquirer/number/dist/is-step-of.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.2.5_@types+node@24.19.2/node_modules/@inquirer/number/dist/is-step-of.js
 function toDecimal(value) {
   const [coefficient = "", exponent = "0"] = value.toString().toLowerCase().split("e");
   const [integer = "", fraction = ""] = coefficient.split(".");
@@ -27127,7 +27133,7 @@ function isStepOf(value, step, min) {
   return (valueInteger - minInteger) % stepInteger === 0n;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.2.4_@types+node@24.19.2/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.2.5_@types+node@24.19.2/node_modules/@inquirer/number/dist/index.js
 function validateNumber(value, { min, max, step }) {
   if (value == null || Number.isNaN(value)) {
     return false;
@@ -27152,7 +27158,7 @@ var dist_default8 = createPrompt((config, done) => {
       return;
     }
     if (isEnterKey(key)) {
-      const input = value || defaultValue;
+      const input = value.trim() || defaultValue;
       const answer = input === "" ? void 0 : Number(input);
       setStatus("loading");
       let isValid = true;
@@ -27202,7 +27208,7 @@ var dist_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.1.6_@types+node@24.19.2/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.1.7_@types+node@24.19.2/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText5 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -27299,7 +27305,7 @@ var expand2 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.3.6_@types+node@24.19.2/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.3.7_@types+node@24.19.2/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var numberRegex = /\d+/;
 var rawlistTheme = {
@@ -27428,7 +27434,7 @@ var dist_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.2.3_@types+node@24.19.2/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.2.4_@types+node@24.19.2/node_modules/@inquirer/password/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var passwordTheme = {
   style: {
@@ -27492,7 +27498,7 @@ var dist_default10 = createPrompt((config, done) => {
   return [content, bottomContent];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.3.4_@types+node@24.19.2/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.3.5_@types+node@24.19.2/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText8 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -27668,7 +27674,7 @@ var dist_default11 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.2.6_@types+node@24.19.2/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.2.7_@types+node@24.19.2/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText9 } from "node:util";
 var selectTheme = {
   icon: { cursor: dist_default.pointer },

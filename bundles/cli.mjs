@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-J3B7I6QL.mjs";
+} from "./chunk-E5VB5JIZ.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -36765,11 +36765,11 @@ var ReleaseInfoCommandModule = {
 // ng-dev/release/notes/cli.js
 var import_semver5 = __toESM(require_semver());
 
-// node_modules/.aspect_rules_js/ejs@7.0.1/node_modules/ejs/lib/esm/ejs.js
+// node_modules/.aspect_rules_js/ejs@7.0.2/node_modules/ejs/lib/esm/ejs.js
 import fs2 from "node:fs";
 import path4 from "node:path";
 
-// node_modules/.aspect_rules_js/ejs@7.0.1/node_modules/ejs/lib/esm/utils.js
+// node_modules/.aspect_rules_js/ejs@7.0.2/node_modules/ejs/lib/esm/utils.js
 var utils = {};
 var regExpChars = /[|\\{}()[\]^$+*?.]/g;
 var hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -36882,7 +36882,7 @@ utils.hasOwnOnlyObject = function(obj) {
 };
 var utils_default = utils;
 
-// node_modules/.aspect_rules_js/ejs@7.0.1/node_modules/ejs/lib/esm/ejs.js
+// node_modules/.aspect_rules_js/ejs@7.0.2/node_modules/ejs/lib/esm/ejs.js
 var DECLARATION_KEYWORD = "let";
 var ejs = {};
 var _DEFAULT_OPEN_DELIMITER = "<";
@@ -37007,7 +37007,7 @@ function includeFile(path8, options) {
       if (includerResult.filename) {
         opts.filename = includerResult.filename;
       }
-      if (includerResult.template) {
+      if (includerResult.template || includerResult.template === "") {
         return handleCache(opts, includerResult.template);
       }
     }
@@ -37058,6 +37058,9 @@ ejs.renderFile = function() {
   }
   if (args.length) {
     data = args.shift();
+    if (data == null) {
+      data = utils_default.createNullProtoObjWherePossible();
+    }
     if (args.length) {
       utils_default.shallowCopy(opts, args.pop());
     } else if (utils_default.hasOwn(data, "settings") && data.settings) {
@@ -37113,6 +37116,31 @@ function Template(text, optsParam) {
   }
   this.opts = options;
   this.regex = this.createRegex();
+  this.tags = buildTags(options);
+}
+function buildTags(opts) {
+  let o = opts.openDelimiter;
+  let d = opts.delimiter;
+  let c = opts.closeDelimiter;
+  return {
+    eval: o + d,
+    evalSlurp: o + d + "_",
+    escaped: o + d + "=",
+    raw: o + d + "-",
+    comment: o + d + "#",
+    literalOpen: o + d + d,
+    close: d + c,
+    closeTrim: "-" + d + c,
+    closeSlurp: "_" + d + c,
+    literalClose: d + d + c
+  };
+}
+function countNewlines(str) {
+  let count = 0;
+  for (let i = str.indexOf("\n"); i !== -1; i = str.indexOf("\n", i + 1)) {
+    count++;
+  }
+  return count;
 }
 Template.modes = {
   EVAL: "eval",
@@ -37259,21 +37287,19 @@ Template.prototype = {
       this.templateText = this.templateText.replace(/[\r\n]+/g, "\n").replace(/^\s+|\s+$/gm, "");
     }
     let self = this;
-    let d = this.opts.delimiter;
-    let o = this.opts.openDelimiter;
-    let c = this.opts.closeDelimiter;
-    let openWhitespaceSlurpTag = utils_default.escapeRegExpChars(o + d + "_");
-    let closeWhitespaceSlurpTag = utils_default.escapeRegExpChars("_" + d + c);
-    let openWhitespaceSlurpReplacement = o + d + "_";
-    let closeWhitespaceSlurpReplacement = "_" + d + c;
+    let tags = this.tags;
+    let openWhitespaceSlurpTag = utils_default.escapeRegExpChars(tags.evalSlurp);
+    let closeWhitespaceSlurpTag = utils_default.escapeRegExpChars(tags.closeSlurp);
+    let openWhitespaceSlurpReplacement = tags.evalSlurp;
+    let closeWhitespaceSlurpReplacement = tags.closeSlurp;
     this.templateText = this.templateText.replace(new RegExp("[ \\t]*" + openWhitespaceSlurpTag, "gm"), openWhitespaceSlurpReplacement).replace(new RegExp(closeWhitespaceSlurpTag + "[ \\t]*", "gm"), closeWhitespaceSlurpReplacement);
     let matches = this.parseTemplateText();
     if (matches && matches.length) {
       matches.forEach(function(line, index) {
         let closing;
-        if (line.indexOf(o + d) === 0 && line.indexOf(o + d + d) !== 0) {
+        if (line.indexOf(tags.eval) === 0 && line.indexOf(tags.literalOpen) !== 0) {
           closing = matches[index + 2];
-          if (!(closing == d + c || closing == "-" + d + c || closing == "_" + d + c)) {
+          if (!(closing == tags.close || closing == tags.closeTrim || closing == tags.closeSlurp)) {
             throw new Error('Could not find matching close tag for "' + line + '".');
           }
         }
@@ -37318,36 +37344,33 @@ Template.prototype = {
   },
   scanLine: function(line) {
     let self = this;
-    let d = this.opts.delimiter;
-    let o = this.opts.openDelimiter;
-    let c = this.opts.closeDelimiter;
-    let newLineCount = 0;
-    newLineCount = line.split("\n").length - 1;
+    let tags = this.tags;
+    let newLineCount = countNewlines(line);
     switch (line) {
-      case o + d:
-      case o + d + "_":
+      case tags.eval:
+      case tags.evalSlurp:
         this.mode = Template.modes.EVAL;
         break;
-      case o + d + "=":
+      case tags.escaped:
         this.mode = Template.modes.ESCAPED;
         break;
-      case o + d + "-":
+      case tags.raw:
         this.mode = Template.modes.RAW;
         break;
-      case o + d + "#":
+      case tags.comment:
         this.mode = Template.modes.COMMENT;
         break;
-      case o + d + d:
+      case tags.literalOpen:
         this.mode = Template.modes.LITERAL;
-        this.source += '    ; __append("' + line.replace(o + d + d, o + d) + '")\n';
+        this.source += "    ; __append(" + JSON.stringify(tags.eval) + ")\n";
         break;
-      case d + d + c:
+      case tags.literalClose:
         this.mode = Template.modes.LITERAL;
-        this.source += '    ; __append("' + line.replace(d + d + c, d + c) + '")\n';
+        this.source += "    ; __append(" + JSON.stringify(tags.close) + ")\n";
         break;
-      case d + c:
-      case "-" + d + c:
-      case "_" + d + c:
+      case tags.close:
+      case tags.closeTrim:
+      case tags.closeSlurp:
         if (this.mode == Template.modes.LITERAL) {
           this._addOutput(line);
         }
@@ -39391,7 +39414,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-f8062d1d0f50e59fcb36a9375a596f416204ee28`;
+var localVersion = `0.0.0-05f294094d7b9377f3b545673098aefb904962f3`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
