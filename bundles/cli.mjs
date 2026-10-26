@@ -35539,10 +35539,7 @@ var MergeStrategy = class {
 ${banchesAndSha.map(([branch, sha]) => `- ${branch}: ${sha}`).join("\n")}`
     });
   }
-  async closeLinkedIssues({ closingIssuesReferences, githubTargetBranch }) {
-    if (githubTargetBranch === this.git.mainBranchName) {
-      return;
-    }
+  async closeLinkedIssues({ closingIssuesReferences }) {
     for (const { number: issue_number, state } of closingIssuesReferences) {
       if (state === "CLOSED") {
         continue;
@@ -35656,8 +35653,8 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
         pull_number: pullRequest.prNumber,
         state: "closed"
       });
-      await this.closeLinkedIssues(pullRequest);
     }
+    await this.closeLinkedIssues(pullRequest);
   }
 };
 function getCommitMessageFilterScriptPath2() {
@@ -39414,7 +39411,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-05f294094d7b9377f3b545673098aefb904962f3`;
+var localVersion = `0.0.0-a651944a7ee1d9496e7724cf1a094f26de564766`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
