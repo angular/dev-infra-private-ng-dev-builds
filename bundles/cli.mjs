@@ -34677,6 +34677,16 @@ var PR_SCHEMA2 = {
           authoredDate: types.string,
           committedDate: types.string,
           pushedDate: types.custom(),
+          author: optional({
+            user: optional({
+              login: types.string
+            })
+          }),
+          committer: optional({
+            user: optional({
+              login: types.string
+            })
+          }),
           statusCheckRollup: optional({
             state: types.custom(),
             contexts: params({ last: 100 }, {
@@ -34693,6 +34703,7 @@ var PR_SCHEMA2 = {
                     __typename: types.constant("StatusContext"),
                     state: types.custom(),
                     context: types.string,
+                    description: optional(types.string),
                     createdAt: types.string
                   }
                 })
@@ -34704,20 +34715,31 @@ var PR_SCHEMA2 = {
       }
     ]
   }),
-  reviewRequests: {
-    totalCount: types.number
-  },
-  reviews: params({ last: 100, states: "APPROVED" }, {
+  reviewRequests: params({ first: 100 }, {
+    totalCount: types.number,
+    nodes: [
+      {
+        requestedReviewer: optional(onUnion({
+          User: {
+            login: types.string
+          }
+        }))
+      }
+    ]
+  }),
+  reviews: params({ last: 100, states: "[APPROVED, CHANGES_REQUESTED, DISMISSED]" }, {
     nodes: [
       {
         author: {
           login: types.string
         },
         authorAssociation: types.custom(),
+        state: types.custom(),
+        submittedAt: types.string,
         bodyText: types.string,
-        commit: {
+        commit: optional({
           oid: types.string
-        }
+        })
       }
     ]
   }),
@@ -34809,7 +34831,8 @@ function getStatusesForPullRequest(pullRequest) {
         statusMap.set(`status:${context.context}`, {
           type: "status",
           name: context.context,
-          status: normalizeGithubStatusState(context.state)
+          status: normalizeGithubStatusState(context.state),
+          ...context.description ? { description: context.description } : {}
         });
         break;
     }
@@ -35253,8 +35276,10 @@ var Validation5 = class extends PullRequestValidation {
     }
     const { statuses } = getStatusesForPullRequest(pullRequest);
     const missing = [];
+    const targetBranch = pullRequest.baseRefName || "main";
     for (const enforced of config2.requiredStatuses) {
-      if (!statuses.some((s) => s.name === enforced.name && s.type === enforced.type)) {
+      const matchingStatus = statuses.find((s) => s.name === enforced.name && s.type === enforced.type);
+      if (!matchingStatus || isSkippedStatusForTargetBranch(matchingStatus.description, targetBranch)) {
         missing.push(enforced.name);
       }
     }
@@ -35263,12 +35288,29 @@ var Validation5 = class extends PullRequestValidation {
     }
   }
 };
+function isSkippedStatusForTargetBranch(description, targetBranch) {
+  if (!description) {
+    return false;
+  }
+  const match2 = description.match(/^Skipped\. PR does not target `?([^`]+)`? branch(?: \(targets `?([^`]+)`?\))?$/);
+  if (!match2) {
+    return false;
+  }
+  const [, skippedBranch, stampedTargetBranch] = match2;
+  if (skippedBranch === targetBranch) {
+    return true;
+  }
+  if (stampedTargetBranch && stampedTargetBranch !== targetBranch) {
+    return true;
+  }
+  return false;
+}
 
 // ng-dev/pr/common/validation/assert-enforce-tested.js
 var enforceTestedValidation = createPullRequestValidation({ name: "assertEnforceTested", canBeForceIgnored: true }, () => Validation6);
 var Validation6 = class extends PullRequestValidation {
-  async assert(pullRequest, gitClient2) {
-    if (!pullRequestRequiresTGP(pullRequest)) {
+  async assert(pullRequest, gitClient2, config2) {
+    if (!await pullRequestRequiresTGP(pullRequest, gitClient2, config2)) {
       return;
     }
     const comments = await PullRequestComments.create(gitClient2, pullRequest.number).loadPullRequestComments();
@@ -35280,8 +35322,22 @@ var Validation6 = class extends PullRequestValidation {
     throw this._createError(`Pull Request requires a TGP and does not have one. Either run a TGP or specify the PR is fully tested by adding a comment with "TESTED=[reason]".`);
   }
 };
-function pullRequestRequiresTGP(pullRequest) {
-  return pullRequest.labels.nodes.some(({ name }) => name === requiresLabels["REQUIRES_TGP"].name);
+async function pullRequestRequiresTGP(pullRequest, gitClient2, config2) {
+  if (pullRequest.labels.nodes.some(({ name }) => name === requiresLabels["REQUIRES_TGP"].name)) {
+    return true;
+  }
+  if (config2) {
+    let g3SyncConfigWithMatchers = null;
+    try {
+      assertValidCaretakerConfig(config2);
+      g3SyncConfigWithMatchers = await getGsyncConfig(config2.caretaker, gitClient2);
+    } catch {
+    }
+    if (g3SyncConfigWithMatchers !== null) {
+      return await PullRequestFiles.create(gitClient2, pullRequest.number, g3SyncConfigWithMatchers.config).pullRequestHasSeparateFiles();
+    }
+  }
+  return false;
 }
 var PullRequestComments = class _PullRequestComments {
   constructor(git, prNumber) {
@@ -35322,15 +35378,84 @@ var Validation7 = class extends PullRequestValidation {
 };
 
 // ng-dev/pr/common/validation/assert-minimum-reviews.js
+var googleOwnedRobots = ["angular-robot"];
 var minimumReviewsValidation = createPullRequestValidation({ name: "assertMinimumReviews", canBeForceIgnored: false }, () => Validation8);
 var Validation8 = class extends PullRequestValidation {
-  assert(pullRequest) {
-    const totalCount = pullRequest.reviews.nodes.filter(({ authorAssociation }) => authorAssociation === "MEMBER").length;
-    if (totalCount === 0) {
-      throw this._createError(`Pull request cannot be merged without at least one review from a team member`);
+  async assert(pullRequest, gitClient2) {
+    const requestedReviewers = new Set((pullRequest.reviewRequests?.nodes ?? []).map((node2) => node2?.requestedReviewer?.login).filter((login) => Boolean(login)));
+    const sortedReviews = [...pullRequest.reviews?.nodes ?? []].sort((a, b) => {
+      if (a.submittedAt && b.submittedAt) {
+        return Date.parse(a.submittedAt) - Date.parse(b.submittedAt);
+      }
+      return 0;
+    });
+    const latestMemberReviews = /* @__PURE__ */ new Map();
+    let anonymousIndex = 0;
+    for (const review of sortedReviews) {
+      if (review.authorAssociation !== "MEMBER") {
+        continue;
+      }
+      const state = review.state ?? "APPROVED";
+      if (state === "COMMENTED" || state === "PENDING") {
+        continue;
+      }
+      const reviewerLogin = review.author?.login;
+      const key = reviewerLogin || `__anonymous_${anonymousIndex++}`;
+      if (reviewerLogin && requestedReviewers.has(reviewerLogin) && state === "APPROVED") {
+        latestMemberReviews.delete(key);
+        continue;
+      }
+      latestMemberReviews.set(key, { ...review, state });
+    }
+    const activeMemberReviews = Array.from(latestMemberReviews.values());
+    if (activeMemberReviews.some((review) => review.state === "CHANGES_REQUESTED")) {
+      throw this._createError("Pull request cannot be merged while a team member has requested changes.");
+    }
+    const approvedMemberReviews = activeMemberReviews.filter((review) => review.state === "APPROVED");
+    if (approvedMemberReviews.length === 0) {
+      throw this._createError("Pull request cannot be merged without at least one review from a team member");
+    }
+    const hasApprovalForHead = approvedMemberReviews.some((review) => review.commit?.oid === pullRequest.headRefOid);
+    if (!hasApprovalForHead) {
+      const isExemptAuthor = await this._isExemptFromHeadShaApproval(pullRequest, gitClient2);
+      if (!isExemptAuthor) {
+        throw this._createError(`Pull request cannot be merged because the latest commit (${pullRequest.headRefOid}) has not been approved by a team member.`);
+      }
     }
   }
+  async _isExemptFromHeadShaApproval(pullRequest, gitClient2) {
+    const authorLogin = pullRequest.author?.login;
+    if (!authorLogin || !await this._isGooglerOrRobot(authorLogin, gitClient2)) {
+      return false;
+    }
+    for (const node2 of pullRequest.commits?.nodes ?? []) {
+      const commit = node2?.commit;
+      const authorLoginFromCommit = commit?.author?.user?.login;
+      const committerLoginFromCommit = commit?.committer?.user?.login;
+      if (!authorLoginFromCommit || !committerLoginFromCommit) {
+        return false;
+      }
+      for (const commitLogin of [authorLoginFromCommit, committerLoginFromCommit]) {
+        if (commitLogin !== authorLogin && commitLogin !== "web-flow" && !await this._isGooglerOrRobot(commitLogin, gitClient2)) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+  async _isGooglerOrRobot(username, gitClient2) {
+    if (googleOwnedRobots.includes(username)) {
+      return true;
+    }
+    if (!gitClient2) {
+      return false;
+    }
+    return await github_macros_default.isGooglerOrgMember(gitClient2.github, authorLoginOrUser(username));
+  }
 };
+function authorLoginOrUser(username) {
+  return username;
+}
 
 // ng-dev/pr/common/validation/assert-passing-ci.js
 var passingCiValidation = createPullRequestValidation({ name: "assertPassingCi", canBeForceIgnored: true }, () => Validation9);
@@ -35383,7 +35508,7 @@ async function runValidations(pullRequest, validationConfig, ngDevConfig, active
     return parseCommitMessage(n.commit.message);
   });
   const validationPromises = [
-    minimumReviewsValidation.run(validationConfig, pullRequest),
+    minimumReviewsValidation.run(validationConfig, pullRequest, gitClient2),
     completedReviewsValidation.run(validationConfig, pullRequest),
     mergeReadyValidation.run(validationConfig, pullRequest),
     signedClaValidation.run(validationConfig, pullRequest),
@@ -35392,7 +35517,7 @@ async function runValidations(pullRequest, validationConfig, ngDevConfig, active
     passingCiValidation.run(validationConfig, pullRequest),
     enforcedStatusesValidation.run(validationConfig, pullRequest, ngDevConfig.pullRequest),
     isolatedSeparateFilesValidation.run(validationConfig, ngDevConfig, pullRequest.number, gitClient2),
-    enforceTestedValidation.run(validationConfig, pullRequest, gitClient2)
+    enforceTestedValidation.run(validationConfig, pullRequest, gitClient2, ngDevConfig)
   ];
   if (activeReleaseTrains !== null) {
     validationPromises.push(changesAllowForTargetLabelValidation.run(validationConfig, commitsInPr, target.label, ngDevConfig.pullRequest, activeReleaseTrains, labels, pullRequest));
@@ -35436,7 +35561,8 @@ async function assertValidPullRequest(originalPullRequest, validationConfig, ngD
     if (!freshPr) {
       throw new Error("Failed to re-fetch pull request data");
     }
-    pullRequest = freshPr;
+    Object.assign(originalPullRequest, freshPr);
+    pullRequest = originalPullRequest;
     attempts++;
   }
 }
@@ -35560,8 +35686,8 @@ async function loadAndValidatePullRequest({ git, config: config2 }, prNumber, va
   if (prData === null) {
     throw new FatalMergeToolError("Pull request could not be found.");
   }
-  const labels = prData.labels.nodes.map((l) => l.name);
-  const githubTargetBranch = prData.baseRefName;
+  let labels = prData.labels.nodes.map((l) => l.name);
+  let githubTargetBranch = prData.baseRefName;
   const { mainBranchName, name, owner } = config2.github;
   let activeReleaseTrains = null;
   let target = null;
@@ -35577,6 +35703,8 @@ async function loadAndValidatePullRequest({ git, config: config2 }, prNumber, va
     target = await getTargetBranchesAndLabelForPullRequest(activeReleaseTrains, git.github, config2, labels, githubTargetBranch);
   }
   const validationFailures = await assertValidPullRequest(prData, validationConfig, config2, activeReleaseTrains, target, git);
+  labels = prData.labels.nodes.map((l) => l.name);
+  githubTargetBranch = prData.baseRefName;
   const requiredBaseSha = config2.pullRequest.requiredBaseCommits && config2.pullRequest.requiredBaseCommits[githubTargetBranch];
   const needsCommitMessageFixup = labels.includes(mergeLabels["MERGE_FIX_COMMIT_MESSAGE"].name);
   const hasCaretakerNote = labels.includes(mergeLabels["MERGE_CARETAKER_NOTE"].name);
@@ -39411,7 +39539,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-b8ce0e167ac2a0edba1a94adb3071cb913ae2cbe`;
+var localVersion = `0.0.0-d45884cba93817d0e1a2be67ca5638227f64e508`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

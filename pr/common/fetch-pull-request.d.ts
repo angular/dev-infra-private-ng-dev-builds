@@ -1,4 +1,4 @@
-import type { CheckConclusionState, CheckStatusState, MergeableState, PullRequestState, StatusState, CommentAuthorAssociation, IssueState } from '@octokit/graphql-schema';
+import type { CheckConclusionState, CheckStatusState, MergeableState, PullRequestReviewState, PullRequestState, StatusState, CommentAuthorAssociation, IssueState } from '@octokit/graphql-schema';
 import { AuthenticatedGitClient } from '../../utils/git/authenticated-git-client.js';
 export declare enum PullRequestStatus {
     PASSING = 0,
@@ -31,6 +31,16 @@ export declare const PR_SCHEMA: {
                 authoredDate: string;
                 committedDate: string;
                 pushedDate: string | null;
+                author: {
+                    user: {
+                        login: string;
+                    } | null | undefined;
+                } | null | undefined;
+                committer: {
+                    user: {
+                        login: string;
+                    } | null | undefined;
+                } | null | undefined;
                 statusCheckRollup: {
                     state: StatusState;
                     contexts: {
@@ -42,11 +52,13 @@ export declare const PR_SCHEMA: {
                             completedAt: string;
                             state?: undefined;
                             context?: undefined;
+                            description?: undefined;
                             createdAt?: undefined;
                         } | {
                             __typename: "StatusContext";
                             state: StatusState;
                             context: string;
+                            description: string | null | undefined;
                             createdAt: string;
                             status?: undefined;
                             conclusion?: undefined;
@@ -61,6 +73,11 @@ export declare const PR_SCHEMA: {
     };
     reviewRequests: {
         totalCount: number;
+        nodes: {
+            requestedReviewer: {
+                login: string;
+            } | null | undefined;
+        }[];
     };
     reviews: {
         nodes: {
@@ -68,10 +85,12 @@ export declare const PR_SCHEMA: {
                 login: string;
             };
             authorAssociation: CommentAuthorAssociation;
+            state: PullRequestReviewState;
+            submittedAt: string;
             bodyText: string;
             commit: {
                 oid: string;
-            };
+            } | null | undefined;
         }[];
     };
     maintainerCanModify: boolean;
@@ -128,6 +147,7 @@ export type PullRequestStatusInfo = {
         status: PullRequestStatus;
         type: 'check' | 'status';
         name: string;
+        description?: string;
     }[];
 };
 export declare function fetchPullRequestFromGithub(git: AuthenticatedGitClient, prNumber: number): Promise<PullRequestFromGithub | null>;

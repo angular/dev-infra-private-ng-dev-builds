@@ -1,10 +1,16 @@
-import { GithubConfig, GoogleSyncConfig, NgDevConfig } from '../../../utils/config.js';
+import { CaretakerConfig, GithubConfig, GoogleSyncConfig, NgDevConfig } from '../../../utils/config.js';
+import { SyncFileMatchFn } from '../../../utils/g3-sync-config.js';
 import { AuthenticatedGitClient } from '../../../utils/git/authenticated-git-client.js';
 export declare const isolatedSeparateFilesValidation: {
     run(validationConfig: import("../../config/index.js").PullRequestValidationConfig, config: NgDevConfig<{
         github: GithubConfig;
     }>, prNumber: number, gitClient: AuthenticatedGitClient): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
+export declare function getGsyncConfig(config: CaretakerConfig, git: AuthenticatedGitClient): Promise<{
+    ngMatchFn: SyncFileMatchFn;
+    separateMatchFn: SyncFileMatchFn;
+    config: GoogleSyncConfig;
+} | null>;
 export declare class PullRequestFiles {
     private git;
     private prNumber;

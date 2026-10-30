@@ -29,6 +29,16 @@ export declare const changesAllowForTargetLabelValidation: {
                     authoredDate: string;
                     committedDate: string;
                     pushedDate: string | null;
+                    author: {
+                        user: {
+                            login: string;
+                        } | null | undefined;
+                    } | null | undefined;
+                    committer: {
+                        user: {
+                            login: string;
+                        } | null | undefined;
+                    } | null | undefined;
                     statusCheckRollup: {
                         state: import("@octokit/graphql-schema").StatusState;
                         contexts: {
@@ -40,11 +50,13 @@ export declare const changesAllowForTargetLabelValidation: {
                                 completedAt: string;
                                 state?: undefined;
                                 context?: undefined;
+                                description?: undefined;
                                 createdAt?: undefined;
                             } | {
                                 __typename: "StatusContext";
                                 state: import("@octokit/graphql-schema").StatusState;
                                 context: string;
+                                description: string | null | undefined;
                                 createdAt: string;
                                 status?: undefined;
                                 conclusion?: undefined;
@@ -59,6 +71,11 @@ export declare const changesAllowForTargetLabelValidation: {
         };
         reviewRequests: {
             totalCount: number;
+            nodes: {
+                requestedReviewer: {
+                    login: string;
+                } | null | undefined;
+            }[];
         };
         reviews: {
             nodes: {
@@ -66,10 +83,12 @@ export declare const changesAllowForTargetLabelValidation: {
                     login: string;
                 };
                 authorAssociation: import("@octokit/graphql-schema").CommentAuthorAssociation;
+                state: import("@octokit/graphql-schema").PullRequestReviewState;
+                submittedAt: string;
                 bodyText: string;
                 commit: {
                     oid: string;
-                };
+                } | null | undefined;
             }[];
         };
         maintainerCanModify: boolean;

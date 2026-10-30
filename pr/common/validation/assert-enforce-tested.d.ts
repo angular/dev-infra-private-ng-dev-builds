@@ -27,6 +27,16 @@ export declare const enforceTestedValidation: {
                     authoredDate: string;
                     committedDate: string;
                     pushedDate: string | null;
+                    author: {
+                        user: {
+                            login: string;
+                        } | null | undefined;
+                    } | null | undefined;
+                    committer: {
+                        user: {
+                            login: string;
+                        } | null | undefined;
+                    } | null | undefined;
                     statusCheckRollup: {
                         state: import("@octokit/graphql-schema").StatusState;
                         contexts: {
@@ -38,11 +48,13 @@ export declare const enforceTestedValidation: {
                                 completedAt: string;
                                 state?: undefined;
                                 context?: undefined;
+                                description?: undefined;
                                 createdAt?: undefined;
                             } | {
                                 __typename: "StatusContext";
                                 state: import("@octokit/graphql-schema").StatusState;
                                 context: string;
+                                description: string | null | undefined;
                                 createdAt: string;
                                 status?: undefined;
                                 conclusion?: undefined;
@@ -57,6 +69,11 @@ export declare const enforceTestedValidation: {
         };
         reviewRequests: {
             totalCount: number;
+            nodes: {
+                requestedReviewer: {
+                    login: string;
+                } | null | undefined;
+            }[];
         };
         reviews: {
             nodes: {
@@ -64,10 +81,12 @@ export declare const enforceTestedValidation: {
                     login: string;
                 };
                 authorAssociation: import("@octokit/graphql-schema").CommentAuthorAssociation;
+                state: import("@octokit/graphql-schema").PullRequestReviewState;
+                submittedAt: string;
                 bodyText: string;
                 commit: {
                     oid: string;
-                };
+                } | null | undefined;
             }[];
         };
         maintainerCanModify: boolean;
@@ -103,7 +122,9 @@ export declare const enforceTestedValidation: {
                 state: import("@octokit/graphql-schema").IssueState;
             }[];
         };
-    }, gitClient: AuthenticatedGitClient): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
+    }, gitClient: AuthenticatedGitClient, config?: {
+        __isNgDevConfigObject: boolean;
+    } | undefined): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
 export declare class PullRequestComments {
     private git;

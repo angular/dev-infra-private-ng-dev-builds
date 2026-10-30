@@ -1,3 +1,6 @@
+import type { PullRequestReviewState } from '@octokit/graphql-schema';
+import { AuthenticatedGitClient } from '../../../utils/git/authenticated-git-client.js';
+export declare const googleOwnedRobots: string[];
 export declare const minimumReviewsValidation: {
     run(validationConfig: import("../../config/index.js").PullRequestValidationConfig, pullRequest: {
         url: string;
@@ -25,6 +28,16 @@ export declare const minimumReviewsValidation: {
                     authoredDate: string;
                     committedDate: string;
                     pushedDate: string | null;
+                    author: {
+                        user: {
+                            login: string;
+                        } | null | undefined;
+                    } | null | undefined;
+                    committer: {
+                        user: {
+                            login: string;
+                        } | null | undefined;
+                    } | null | undefined;
                     statusCheckRollup: {
                         state: import("@octokit/graphql-schema").StatusState;
                         contexts: {
@@ -36,11 +49,13 @@ export declare const minimumReviewsValidation: {
                                 completedAt: string;
                                 state?: undefined;
                                 context?: undefined;
+                                description?: undefined;
                                 createdAt?: undefined;
                             } | {
                                 __typename: "StatusContext";
                                 state: import("@octokit/graphql-schema").StatusState;
                                 context: string;
+                                description: string | null | undefined;
                                 createdAt: string;
                                 status?: undefined;
                                 conclusion?: undefined;
@@ -55,6 +70,11 @@ export declare const minimumReviewsValidation: {
         };
         reviewRequests: {
             totalCount: number;
+            nodes: {
+                requestedReviewer: {
+                    login: string;
+                } | null | undefined;
+            }[];
         };
         reviews: {
             nodes: {
@@ -62,10 +82,12 @@ export declare const minimumReviewsValidation: {
                     login: string;
                 };
                 authorAssociation: import("@octokit/graphql-schema").CommentAuthorAssociation;
+                state: PullRequestReviewState;
+                submittedAt: string;
                 bodyText: string;
                 commit: {
                     oid: string;
-                };
+                } | null | undefined;
             }[];
         };
         maintainerCanModify: boolean;
@@ -101,5 +123,5 @@ export declare const minimumReviewsValidation: {
                 state: import("@octokit/graphql-schema").IssueState;
             }[];
         };
-    }): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
+    }, gitClient?: AuthenticatedGitClient | undefined): Promise<import("./validation-failure.js").PullRequestValidationFailure | null>;
 };
