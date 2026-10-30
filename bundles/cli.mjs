@@ -38421,7 +38421,6 @@ var ExternalCommands = class {
         "install",
         "--frozen-lockfile",
         "--ignore-scripts",
-        "--ignore-pnpmfile",
         "--config.confirmModulesPurge=false"
       ], {
         cwd: projectDir,
@@ -39539,7 +39538,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-d45884cba93817d0e1a2be67ca5638227f64e508`;
+var localVersion = `0.0.0-5708c4df037871bab3ce15d27e020dbdbe9fe0fc`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
