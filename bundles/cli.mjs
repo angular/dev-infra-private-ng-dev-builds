@@ -35001,10 +35001,47 @@ Do you want to proceed merging?`;
 function getTargetedBranchesConfirmationPromptMessage() {
   return `Do you want to proceed merging?`;
 }
-function getTargetedBranchesMessage(pullRequest) {
-  const targetBranchListAsString = pullRequest.targetBranches.map((b) => `  - ${bold(b)}`).join("\n");
-  return `Pull Request #${pullRequest.prNumber} will merge into:
-${targetBranchListAsString}`;
+function formatCaretakerNoteForSummary(note) {
+  const content = note.replace(CARETAKER_NOTE_COMMENT_REGEX, "").trim() || note.trim();
+  const lines = content.split(/\r?\n/).map((line) => line.trimEnd());
+  if (lines.length <= 1) {
+    return lines[0] || "";
+  }
+  return "\n" + lines.map((l) => `         ${l}`).join("\n");
+}
+function getPullRequestSummary(pullRequest) {
+  const lines = [`PR #${pullRequest.prNumber}:`];
+  lines.push(`       branches: ${pullRequest.targetBranches.join(", ")}`);
+  if (pullRequest.hasCaretakerNote) {
+    if (pullRequest.caretakerNote) {
+      lines.push(`       caretaker note: ${formatCaretakerNoteForSummary(pullRequest.caretakerNote)}`);
+    } else {
+      lines.push(`       caretaker note: ${red(`Applied, but no note found in comments (${pullRequest.url})`)}`);
+    }
+  }
+  if (pullRequest.validationFailures?.length) {
+    for (const failure2 of pullRequest.validationFailures) {
+      lines.push(`       validation warning: ${yellow(failure2.message)}`);
+    }
+  }
+  return lines.join("\n");
+}
+function getMultiPullRequestSummary(pullRequests) {
+  return pullRequests.map(getPullRequestSummary).join("\n\n");
+}
+function getMergeResultsSummary(results, isDryRun = false) {
+  const lines = [bold("Merge Results:")];
+  for (const result of results) {
+    if (result.status === "success") {
+      const branches = result.targetBranches?.length ? ` into ${result.targetBranches.join(", ")}` : "";
+      const action = isDryRun ? "Can be merged" : "Successfully merged";
+      lines.push(green(`  \u2713  PR #${result.prNumber}: ${action}${branches}`));
+    } else {
+      const reason = result.failureReason ? `: ${result.failureReason}` : "";
+      lines.push(red(`  \u2718  PR #${result.prNumber}: Failed to merge${reason}`));
+    }
+  }
+  return lines.join("\n");
 }
 
 // ng-dev/pr/merge/failures.js
@@ -35035,8 +35072,9 @@ var MergeConflictsFatalError = class extends FatalMergeToolError {
   }
 };
 var PullRequestValidationError = class extends FatalMergeToolError {
-  constructor() {
-    super("Tool exited as at least one pull request validation error was discovered.");
+  constructor(failure2) {
+    super(failure2 ?? "Tool exited as at least one pull request validation error was discovered.");
+    this.failure = failure2;
   }
 };
 var MismatchedPullRequestHeadShaFatalError = class extends FatalMergeToolError {
@@ -35591,8 +35629,8 @@ var MergeStrategy = class {
     await this._assertMergeableOrThrow(pullRequest, targetBranches);
   }
   async cleanup(pullRequest) {
-    pullRequest.targetBranches.forEach((branchName) => this.git.run(["branch", "-D", this.getLocalTargetBranchName(branchName)]));
-    this.git.run(["branch", "-D", TEMP_PR_HEAD_BRANCH]);
+    pullRequest.targetBranches.forEach((branchName) => this.git.runGraceful(["branch", "-D", this.getLocalTargetBranchName(branchName)]));
+    this.git.runGraceful(["branch", "-D", TEMP_PR_HEAD_BRANCH]);
   }
   getLocalTargetBranchName(targetBranch) {
     return `merge_pr_target_${targetBranch.replace(/\//g, "_")}`;
@@ -35941,6 +35979,15 @@ var GithubApiMergeStrategy = class extends AutosquashMergeStrategy {
 };
 
 // ng-dev/pr/merge/merge-tool.js
+function getErrorMessage(error62) {
+  if (error62 instanceof InvalidTargetBranchError || error62 instanceof InvalidTargetLabelError) {
+    return error62.failureMessage;
+  }
+  if (error62 instanceof Error) {
+    return error62.message;
+  }
+  return String(error62);
+}
 var defaultPullRequestMergeFlags = {
   branchPrompt: true,
   forceManualBranches: false,
@@ -35955,11 +36002,13 @@ var MergeTool = class {
     this.flags = { ...defaultPullRequestMergeFlags, ...flags };
   }
   async merge(prNumber, partialValidationConfig) {
-    const validationConfig = createPullRequestValidationConfig({
-      ...this.config.pullRequest.validators,
-      ...partialValidationConfig,
-      waitIfPending: this.flags.waitForValidations
-    });
+    const results = await this.mergeMany([prNumber], partialValidationConfig);
+    const result = results.find((r) => r.prNumber === prNumber);
+    if (!result || result.status !== "success") {
+      throw new FatalMergeToolError(result?.failureReason ?? "Failed to merge pull request.");
+    }
+  }
+  async mergeMany(prNumbers, partialValidationConfig) {
     if (this.git.hasUncommittedChanges()) {
       throw new FatalMergeToolError("Local working repository not clean. Please make sure there are no uncommitted changes.");
     }
@@ -35968,54 +36017,127 @@ var MergeTool = class {
 Please convert the repository to a complete one by syncing with upstream.
 https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
     }
+    const uniquePrNumbers = Array.from(new Set(prNumbers));
+    if (this.flags.forceManualBranches && uniquePrNumbers.length > 1) {
+      throw new FatalMergeToolError("Manual branch selection (--force-manual-branches) cannot be used when merging multiple pull requests.");
+    }
     await this.confirmMergeAccess();
-    const pullRequest = await loadAndValidatePullRequest(this, prNumber, validationConfig);
-    if (pullRequest.validationFailures.length > 0) {
-      Log.error(`Pull request did not pass one or more validation checks. Error:`);
-      for (const failure2 of pullRequest.validationFailures) {
-        Log.error(` -> ${bold(failure2.message)}`);
+    const validationConfig = createPullRequestValidationConfig({
+      ...this.config.pullRequest.validators,
+      ...partialValidationConfig,
+      waitIfPending: this.flags.waitForValidations
+    });
+    const results = [];
+    const validPullRequests = [];
+    for (const prNumber of uniquePrNumbers) {
+      try {
+        const pullRequest = await this.loadAndValidatePullRequest(prNumber, validationConfig);
+        await this.assertPullRequestValidation(pullRequest);
+        if (pullRequest.hasCaretakerNote) {
+          pullRequest.caretakerNote = await this.getCaretakerNote(pullRequest);
+        }
+        if (this.flags.forceManualBranches) {
+          await this.updatePullRequestTargetedBranchesFromPrompt(pullRequest);
+        }
+        validPullRequests.push(pullRequest);
+      } catch (e) {
+        if (e instanceof UserAbortedMergeToolError) {
+          throw e;
+        }
+        if (isGithubApiError(e) && e.status === 401) {
+          throw e;
+        }
+        if (e instanceof FatalMergeToolError || e instanceof InvalidTargetBranchError || e instanceof InvalidTargetLabelError || isGithubApiError(e)) {
+          const reason = getErrorMessage(e);
+          Log.error(`Could not load PR #${prNumber}: ${bold(reason)}`);
+          results.push({
+            prNumber,
+            status: "failed",
+            failureReason: reason
+          });
+        } else {
+          throw e;
+        }
       }
+    }
+    if (validPullRequests.length === 0) {
+      Log.error("No pull requests are ready to be merged.");
       Log.info();
-      if (pullRequest.validationFailures.some((failure2) => !failure2.canBeForceIgnored)) {
-        Log.debug("Discovered a fatal error, which cannot be forced");
-        throw new PullRequestValidationError();
+      if (results.length > 0) {
+        Log.info(getMergeResultsSummary(results, this.flags.dryRun));
+        Log.info();
       }
-      Log.info(yellow(`All discovered validations are non-fatal and can be forcibly ignored.`));
-      if (!await Prompt.confirm({
-        message: "Do you want to forcibly ignore these validation failures?"
-      })) {
-        throw new PullRequestValidationError();
-      }
+      return results;
     }
-    if (this.flags.forceManualBranches) {
-      await this.updatePullRequestTargetedBranchesFromPrompt(pullRequest);
+    Log.info();
+    Log.info(getMultiPullRequestSummary(validPullRequests));
+    Log.info();
+    if (!this.flags.dryRun && this.flags.branchPrompt && !await Prompt.confirm({ message: getTargetedBranchesConfirmationPromptMessage() })) {
+      throw new UserAbortedMergeToolError();
     }
-    await this.checkCaretakerNoteConfirmation(pullRequest);
-    const strategy = this.config.pullRequest.githubApiMerge ? new GithubApiMergeStrategy(this.git, this.config.pullRequest.githubApiMerge) : new AutosquashMergeStrategy(this.git);
     const previousBranchOrRevision = this.git.getCurrentBranchOrRevision();
-    try {
-      await strategy.prepare(pullRequest);
-      Log.info();
-      Log.info(getTargetedBranchesMessage(pullRequest));
-      await strategy.check(pullRequest);
-      Log.info("");
-      Log.info(green(`     PR: ${bold(pullRequest.title)}`));
-      Log.info(green(`  \u2713  Pull request can be merged into all target branches.`));
-      Log.info();
-      if (this.flags.dryRun) {
-        Log.info(green(`  \u2713  Exiting due to dry run mode.`));
-        return;
+    for (const pullRequest of validPullRequests) {
+      const strategy = this.getMergeStrategy(pullRequest);
+      try {
+        await strategy.prepare(pullRequest);
+        await strategy.check(pullRequest);
+        if (!this.flags.dryRun) {
+          await strategy.merge(pullRequest);
+        }
+        results.push({
+          prNumber: pullRequest.prNumber,
+          status: "success",
+          targetBranches: pullRequest.targetBranches
+        });
+      } catch (e) {
+        if (e instanceof UserAbortedMergeToolError) {
+          throw e;
+        }
+        let reason = "Unknown error";
+        if (e instanceof MergeConflictsFatalError) {
+          reason = `Merge conflicts detected on target branches: ${e.failedBranches.join(", ")}`;
+          Log.error(red(`  \u2718  PR #${pullRequest.prNumber} cannot be merged: ${reason}`));
+        } else if (isGithubApiError(e) && e.status === 405 && e.message.startsWith("Repository rule violations found")) {
+          reason = "Repository Rule Violation (ensure you have been placed in the expected caretaking group)";
+          Log.error(red(`  \u2718  Repository Rule Violation for PR #${pullRequest.prNumber}.`));
+          Log.error("     This typically indicates that you are not currently a member of the expected");
+          Log.error("     group for merge permissions in this repository. Have you been placed in the");
+          Log.error("     expected caretaking group?");
+          Log.debug("Github API request failed: " + bold(e.message));
+        } else if (isGithubApiError(e)) {
+          if (e.status === 401) {
+            throw e;
+          }
+          reason = `GitHub API error: ${e.message}`;
+          Log.error(red(`  \u2718  PR #${pullRequest.prNumber} cannot be merged: ${reason}`));
+        } else if (e instanceof FatalMergeToolError) {
+          reason = e.message;
+          Log.error(red(`  \u2718  PR #${pullRequest.prNumber} cannot be merged: ${reason}`));
+        } else {
+          throw e;
+        }
+        results.push({
+          prNumber: pullRequest.prNumber,
+          status: "failed",
+          failureReason: reason,
+          targetBranches: pullRequest.targetBranches
+        });
+      } finally {
+        this.git.runGraceful(["rebase", "--abort"], { stdio: "ignore" });
+        this.git.runGraceful(["cherry-pick", "--abort"], { stdio: "ignore" });
+        this.git.runGraceful(["reset", "--hard"]);
+        this.git.runGraceful(["checkout", "-f", previousBranchOrRevision]);
+        await strategy.cleanup(pullRequest);
       }
-      if (!this.config.pullRequest.__noTargetLabeling && !this.flags.forceManualBranches && this.flags.branchPrompt && !await Prompt.confirm({ message: getTargetedBranchesConfirmationPromptMessage() })) {
-        throw new UserAbortedMergeToolError();
-      }
-      await strategy.merge(pullRequest);
-      Log.info(green(`  \u2713  Successfully merged the pull request: #${prNumber}`));
-    } finally {
-      this.git.runGraceful(["reset", "--hard"]);
-      this.git.run(["checkout", "-f", previousBranchOrRevision]);
-      await strategy.cleanup(pullRequest);
     }
+    if (this.flags.dryRun) {
+      Log.info(green(`  \u2713  Exiting due to dry run mode.`));
+    }
+    results.sort((a, b) => uniquePrNumbers.indexOf(a.prNumber) - uniquePrNumbers.indexOf(b.prNumber));
+    Log.info();
+    Log.info(getMergeResultsSummary(results, this.flags.dryRun));
+    Log.info();
+    return results;
   }
   async updatePullRequestTargetedBranchesFromPrompt(pullRequest) {
     const { name: repoName, owner } = this.config.github;
@@ -36112,10 +36234,30 @@ https://git-scm.com/docs/git-fetch#Documentation/git-fetch.txt---unshallow`);
       Log.debug("Assuming correct access because this a bot account.");
     }
   }
+  async loadAndValidatePullRequest(prNumber, validationConfig) {
+    return loadAndValidatePullRequest(this, prNumber, validationConfig);
+  }
+  async assertPullRequestValidation(pullRequest) {
+    if (pullRequest.validationFailures.length === 0) {
+      return;
+    }
+    if (pullRequest.validationFailures.some((failure2) => !failure2.canBeForceIgnored)) {
+      Log.error(`Pull request #${pullRequest.prNumber} did not pass one or more validation checks. Error:`);
+      for (const failure2 of pullRequest.validationFailures) {
+        Log.error(` -> ${bold(failure2.message)}`);
+      }
+      Log.info();
+      Log.debug("Discovered a fatal error, which cannot be forced");
+      throw new PullRequestValidationError(pullRequest.validationFailures.map((f) => f.message).join("; "));
+    }
+  }
+  getMergeStrategy(pullRequest) {
+    return this.config.pullRequest.githubApiMerge ? new GithubApiMergeStrategy(this.git, this.config.pullRequest.githubApiMerge) : new AutosquashMergeStrategy(this.git);
+  }
 };
 
 // ng-dev/pr/merge/merge-pull-request.js
-async function mergePullRequest(prNumber, flags) {
+async function mergePullRequests(prNumbers, flags) {
   process.env["HUSKY"] = "0";
   const tool = await createPullRequestMergeTool(flags);
   if (!await performMerge()) {
@@ -36125,51 +36267,56 @@ async function mergePullRequest(prNumber, flags) {
     assertCompletedReviews: !flags.ignorePendingReviews
   }) {
     try {
-      await tool.merge(prNumber, validationConfig);
-      return true;
+      const results = await tool.mergeMany(prNumbers, validationConfig);
+      return results.length > 0 && results.every((r) => r.status === "success");
     } catch (e) {
-      if (isGithubApiError(e) && e.status === 401) {
-        Log.error("Github API request failed: " + bold(e.message));
-        Log.error("Please ensure that your provided token is valid.");
-        Log.warn(`You can generate a token here: ${GITHUB_TOKEN_GENERATE_URL}`);
-        return false;
-      }
-      if (isGithubApiError(e) && e.status === 405 && e.message.startsWith("Repository rule violations found")) {
-        Log.error("  \u2718  Repository Rule Violation. This typically indicates that you are not");
-        Log.error("     currently a member of the expected group for merge permissions in this");
-        Log.error("     repository. Have you been placed in the expected caretaking group?");
-        Log.debug("Github API request failed: " + bold(e.message));
-        return false;
-      }
-      if (isGithubApiError(e)) {
-        Log.error("Github API request failed: " + bold(e.message));
-        return false;
-      }
-      if (e instanceof UserAbortedMergeToolError) {
-        Log.warn("Manually aborted merging..");
-        return false;
-      }
-      if (e instanceof InvalidTargetBranchError) {
-        Log.error(`Pull request selects an invalid GitHub destination branch:`);
-        Log.error(` -> ${bold(e.failureMessage)}`);
-      }
-      if (e instanceof InvalidTargetLabelError) {
-        Log.error(`Pull request target label could not be determined:`);
-        Log.error(` -> ${bold(e.failureMessage)}`);
-      }
-      if (e instanceof PullRequestValidationError) {
-        Log.error("Pull request failed at least one validation check.");
-        Log.error("See above for specific error information");
-        return false;
-      }
-      if (e instanceof FatalMergeToolError) {
-        Log.error(`Could not merge the specified pull request. Error:`);
-        Log.error(` -> ${bold(e.message)}`);
-        return false;
-      }
-      throw e;
+      return handleMergeError(e);
     }
   }
+}
+function handleMergeError(e) {
+  if (isGithubApiError(e) && e.status === 401) {
+    Log.error("Github API request failed: " + bold(e.message));
+    Log.error("Please ensure that your provided token is valid.");
+    Log.warn(`You can generate a token here: ${GITHUB_TOKEN_GENERATE_URL}`);
+    return false;
+  }
+  if (isGithubApiError(e) && e.status === 405 && e.message.startsWith("Repository rule violations found")) {
+    Log.error("  \u2718  Repository Rule Violation. This typically indicates that you are not");
+    Log.error("     currently a member of the expected group for merge permissions in this");
+    Log.error("     repository. Have you been placed in the expected caretaking group?");
+    Log.debug("Github API request failed: " + bold(e.message));
+    return false;
+  }
+  if (isGithubApiError(e)) {
+    Log.error("Github API request failed: " + bold(e.message));
+    return false;
+  }
+  if (e instanceof UserAbortedMergeToolError) {
+    Log.warn("Manually aborted merging..");
+    return false;
+  }
+  if (e instanceof InvalidTargetBranchError) {
+    Log.error(`Pull request selects an invalid GitHub destination branch:`);
+    Log.error(` -> ${bold(e.failureMessage)}`);
+    return false;
+  }
+  if (e instanceof InvalidTargetLabelError) {
+    Log.error(`Pull request target label could not be determined:`);
+    Log.error(` -> ${bold(e.failureMessage)}`);
+    return false;
+  }
+  if (e instanceof PullRequestValidationError) {
+    Log.error("Pull request failed at least one validation check.");
+    Log.error("See above for specific error information");
+    return false;
+  }
+  if (e instanceof FatalMergeToolError) {
+    Log.error(`Could not merge the specified pull request(s). Error:`);
+    Log.error(` -> ${bold(e.message)}`);
+    return false;
+  }
+  throw e;
 }
 async function createPullRequestMergeTool(flags) {
   try {
@@ -36192,7 +36339,7 @@ async function createPullRequestMergeTool(flags) {
   }
 }
 function parsePrNumber(prUrlOrNumber) {
-  const prNumber = parseInt(prUrlOrNumber.split("/").pop());
+  const prNumber = parseInt(prUrlOrNumber.split("/").filter(Boolean).pop());
   if (isNaN(prNumber)) {
     throw new Error("Pull Request was unable to be parsed from the parameters");
   }
@@ -36201,11 +36348,13 @@ function parsePrNumber(prUrlOrNumber) {
 
 // ng-dev/pr/merge/cli.js
 async function builder17(argv) {
-  return addDryRunFlag(addGithubTokenOption(argv)).help().strict().positional("pr", {
+  return addDryRunFlag(addGithubTokenOption(argv)).help().strict().positional("prs", {
+    alias: "pr",
     demandOption: true,
-    coerce: (prUrlOrNumber) => parsePrNumber(prUrlOrNumber),
+    coerce: (prs) => (Array.isArray(prs) ? prs : [prs]).flatMap((pr) => String(pr).split(",")).map((pr) => pr.trim()).filter(Boolean).map((pr) => parsePrNumber(pr)),
     type: "string",
-    description: "The PR to be merged."
+    array: true,
+    description: "The PR(s) to be merged."
   }).option("branch-prompt", {
     type: "boolean",
     default: true,
@@ -36224,8 +36373,8 @@ async function builder17(argv) {
     description: "Wait for pending validations to complete before merging."
   });
 }
-async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews, waitForValidations }) {
-  await mergePullRequest(pr, {
+async function handler17({ prs, pr, branchPrompt, forceManualBranches, dryRun, ignorePendingReviews, waitForValidations }) {
+  await mergePullRequests(prs ?? pr, {
     branchPrompt,
     forceManualBranches,
     dryRun,
@@ -36236,8 +36385,8 @@ async function handler17({ pr, branchPrompt, forceManualBranches, dryRun, ignore
 var MergeCommandModule = {
   handler: handler17,
   builder: builder17,
-  command: "merge <pr>",
-  describe: "Merge a PR into its targeted branches."
+  command: "merge <prs..>",
+  describe: "Merge PR(s) into their targeted branches."
 };
 
 // ng-dev/pr/rebase/index.js
@@ -38154,7 +38303,7 @@ var NpmCommand = class {
       const output3 = result.stdout.trim();
       return output3 !== "";
     } catch (e) {
-      const errString = getErrorMessage(e);
+      const errString = getErrorMessage2(e);
       if (errString.includes("E404") || errString.includes("404 Not Found")) {
         return false;
       }
@@ -38220,7 +38369,7 @@ var NpmCommand = class {
     }
   }
 };
-function getErrorMessage(error62) {
+function getErrorMessage2(error62) {
   if (error62 instanceof Error) {
     return error62.message;
   }
@@ -39538,7 +39687,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path5 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-5708c4df037871bab3ce15d27e020dbdbe9fe0fc`;
+var localVersion = `0.0.0-f7a91b76e0c2ca6c8cbdd7991327da052b9f6e00`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {

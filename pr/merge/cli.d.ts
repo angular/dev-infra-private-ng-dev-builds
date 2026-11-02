@@ -1,6 +1,7 @@
 import { CommandModule } from 'yargs';
 export interface MergeCommandOptions {
-    pr: number;
+    prs: number[];
+    pr?: number[];
     branchPrompt: boolean;
     forceManualBranches: boolean;
     dryRun: boolean;
