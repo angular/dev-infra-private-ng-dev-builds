@@ -1,6 +1,6 @@
 {
   "name": "@angular/ng-dev",
-  "version": "0.0.0-f7a91b76e0c2ca6c8cbdd7991327da052b9f6e00",
+  "version": "0.0.0-4b4b82ac5abe501bf51f5fcd41dedb2df08f72b2",
   "type": "module",
   "private": true,
   "bin": "./bundles/cli.mjs",
@@ -53,7 +53,7 @@
     "jasmine-reporters": "2.5.2",
     "jasmine": "6.3.0",
     "jsonc-parser": "3.3.1",
-    "minimatch": "10.2.6",
+    "minimatch": "11.0.3",
     "multimatch": "8.0.0",
     "nock": "15.0.5",
     "semver": "7.8.5",
