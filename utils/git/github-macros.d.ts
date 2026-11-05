@@ -1,5 +1,10 @@
 import { AuthenticatedGithubClient } from './github.js';
 import { RestEndpointMethodTypes } from '@octokit/rest';
+export interface GooglerOrgVerificationResult {
+    isMember: boolean;
+    canVerifyOrg: boolean;
+}
+declare function verifyGooglerOrgMembership(client: AuthenticatedGithubClient, username: string): Promise<GooglerOrgVerificationResult>;
 declare function isGooglerOrgMember(client: AuthenticatedGithubClient, username: string): Promise<boolean>;
 interface CheckOrStatusResult {
     type: string;
@@ -24,5 +29,6 @@ declare function getCombinedChecksAndStatusesForRef(github: AuthenticatedGithubC
 declare const _default: {
     getCombinedChecksAndStatusesForRef: typeof getCombinedChecksAndStatusesForRef;
     isGooglerOrgMember: typeof isGooglerOrgMember;
+    verifyGooglerOrgMembership: typeof verifyGooglerOrgMembership;
 };
 export default _default;

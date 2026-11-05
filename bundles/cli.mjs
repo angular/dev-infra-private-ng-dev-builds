@@ -9289,15 +9289,23 @@ function configureGitClientWithTokenOrFromEnvironment(token) {
 }
 
 // ng-dev/utils/git/github-macros.js
-async function isGooglerOrgMember(client, username) {
+async function verifyGooglerOrgMembership(client, username) {
   try {
     const response = await client.orgs.checkMembershipForUser({ org: "googlers", username });
-    if (response.status === 204) {
-      return true;
+    if (response.url?.includes("/public_members/")) {
+      return { isMember: true, canVerifyOrg: false };
     }
-  } catch {
+    return { isMember: response.status === 204, canVerifyOrg: true };
+  } catch (e) {
+    if (isGithubApiError(e) && e.status === 404 && !e.response?.url?.includes("/public_members/")) {
+      return { isMember: false, canVerifyOrg: true };
+    }
+    return { isMember: false, canVerifyOrg: false };
   }
-  return false;
+}
+async function isGooglerOrgMember(client, username) {
+  const { isMember } = await verifyGooglerOrgMembership(client, username);
+  return isMember;
 }
 async function getCombinedChecksAndStatusesForRef(github, params2) {
   const { data: checkResults } = await github.checks.listForRef(params2);
@@ -9334,7 +9342,8 @@ async function getCombinedChecksAndStatusesForRef(github, params2) {
 }
 var github_macros_default = {
   getCombinedChecksAndStatusesForRef,
-  isGooglerOrgMember
+  isGooglerOrgMember,
+  verifyGooglerOrgMembership
 };
 
 // ng-dev/caretaker/check/base.js
@@ -37387,40 +37396,58 @@ var Validation8 = class extends PullRequestValidation {
     }
     const hasApprovalForHead = approvedMemberReviews.some((review) => review.commit?.oid === pullRequest.headRefOid);
     if (!hasApprovalForHead) {
-      const isExemptAuthor = await this._isExemptFromHeadShaApproval(pullRequest, gitClient2);
-      if (!isExemptAuthor) {
+      const exemptionResult = await this._checkExemptionFromHeadShaApproval(pullRequest, gitClient2);
+      if (!exemptionResult.isExempt) {
+        if (exemptionResult.cannotVerifyGooglerOrg) {
+          Log.warn('Unable to verify membership in the "googlers" GitHub organization with the current GitHub token. Ensure your GitHub account is a member of the "googlers" organization (http://go/github) and that your token includes the "read:org" or "repo" scope.');
+          throw this._createError(`Pull request cannot be merged because the latest commit (${pullRequest.headRefOid}) has not been approved by a team member, and the current GitHub token cannot verify "googlers" organization membership. Please submit a review approving the latest commit or configure a token with "googlers" organization access.`);
+        }
         throw this._createError(`Pull request cannot be merged because the latest commit (${pullRequest.headRefOid}) has not been approved by a team member.`);
       }
     }
   }
-  async _isExemptFromHeadShaApproval(pullRequest, gitClient2) {
+  async _checkExemptionFromHeadShaApproval(pullRequest, gitClient2) {
     const authorLogin = pullRequest.author?.login;
-    if (!authorLogin || !await this._isGooglerOrRobot(authorLogin, gitClient2)) {
-      return false;
+    if (!authorLogin) {
+      return { isExempt: false, cannotVerifyGooglerOrg: false };
     }
+    const authorCheck = await this._verifyGooglerOrRobot(authorLogin, gitClient2);
+    if (!authorCheck.isGooglerOrRobot) {
+      return { isExempt: false, cannotVerifyGooglerOrg: authorCheck.cannotVerifyGooglerOrg };
+    }
+    const verifiedLogins = /* @__PURE__ */ new Set([authorLogin, "web-flow", ...googleOwnedRobots]);
     for (const node2 of pullRequest.commits?.nodes ?? []) {
       const commit = node2?.commit;
       const authorLoginFromCommit = commit?.author?.user?.login;
       const committerLoginFromCommit = commit?.committer?.user?.login;
       if (!authorLoginFromCommit || !committerLoginFromCommit) {
-        return false;
+        return { isExempt: false, cannotVerifyGooglerOrg: false };
       }
       for (const commitLogin of [authorLoginFromCommit, committerLoginFromCommit]) {
-        if (commitLogin !== authorLogin && commitLogin !== "web-flow" && !await this._isGooglerOrRobot(commitLogin, gitClient2)) {
-          return false;
+        if (verifiedLogins.has(commitLogin)) {
+          continue;
         }
+        const commitCheck = await this._verifyGooglerOrRobot(commitLogin, gitClient2);
+        if (!commitCheck.isGooglerOrRobot) {
+          return { isExempt: false, cannotVerifyGooglerOrg: commitCheck.cannotVerifyGooglerOrg };
+        }
+        verifiedLogins.add(commitLogin);
       }
     }
-    return true;
+    return { isExempt: true, cannotVerifyGooglerOrg: false };
   }
-  async _isGooglerOrRobot(username, gitClient2) {
+  async _verifyGooglerOrRobot(username, gitClient2) {
     if (googleOwnedRobots.includes(username)) {
-      return true;
+      return { isGooglerOrRobot: true, cannotVerifyGooglerOrg: false };
     }
     if (!gitClient2) {
-      return false;
+      return { isGooglerOrRobot: false, cannotVerifyGooglerOrg: false };
     }
-    return await github_macros_default.isGooglerOrgMember(gitClient2.github, authorLoginOrUser(username));
+    const { isMember, canVerifyOrg } = await github_macros_default.verifyGooglerOrgMembership(gitClient2.github, authorLoginOrUser(username));
+    return {
+      isGooglerOrRobot: isMember,
+      cannotVerifyGooglerOrg: !canVerifyOrg
+    };
   }
 };
 function authorLoginOrUser(username) {
@@ -41619,7 +41646,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-2db88296355300b94198e3f4ed5232dbd74c7687`;
+var localVersion = `0.0.0-6afd924ca295eb0f17cec3530e2d2855e82dde06`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
