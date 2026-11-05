@@ -3,7 +3,7 @@ import {createRequire as __cjsCompatRequire_ngDev} from 'module';
 const require = __cjsCompatRequire_ngDev(import.meta.url);
 
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.3/node_modules/conventional-commits-parser/dist/regex.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.4/node_modules/conventional-commits-parser/dist/regex.js
 var nomatchRegex = /(?!.*)/;
 function escape(string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -25,8 +25,9 @@ function getReferencePartsRegex(issuePrefixes, issuePrefixesCaseSensitive) {
   if (!issuePrefixes) {
     return nomatchRegex;
   }
-  const flags = issuePrefixesCaseSensitive ? "g" : "gi";
-  return new RegExp(`(?:.*?)??\\s*([\\w-\\.\\/]*?)??(${joinOr(issuePrefixes)})([\\w-]+)(?=\\s|$|[,;.)\\]])`, flags);
+  const flags = issuePrefixesCaseSensitive ? "gy" : "giy";
+  const repositoryChar = "[\\w-\\.\\/]";
+  return new RegExp(`.*?(?<!${repositoryChar})(?:(${repositoryChar}+)(?!${repositoryChar}))?(${joinOr(issuePrefixes)})((?=[\\w-]*\\d)[\\w-]+)(?=\\s|$|[,;.)\\]])`, flags);
 }
 function getReferencesRegex(referenceActions, separator = "") {
   if (!referenceActions) {
@@ -57,7 +58,7 @@ function getParserRegexes(options = {}) {
   };
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.3/node_modules/conventional-commits-parser/dist/utils.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.4/node_modules/conventional-commits-parser/dist/utils.js
 var SCISSOR = "------------------------ >8 ------------------------";
 function trimNewLines(input) {
   const matches = input.match(/[^\r\n]/);
@@ -97,7 +98,7 @@ function assignMatchedCorrespondence(target, matches, correspondence) {
   return target;
 }
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.3/node_modules/conventional-commits-parser/dist/options.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.4/node_modules/conventional-commits-parser/dist/options.js
 var defaultOptions = {
   noteKeywords: ["BREAKING CHANGE", "BREAKING-CHANGE"],
   issuePrefixes: ["#"],
@@ -125,7 +126,7 @@ var defaultOptions = {
   fieldPattern: /^-(?=.*\w)(.*?)-$/
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.3/node_modules/conventional-commits-parser/dist/CommitParser.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.4/node_modules/conventional-commits-parser/dist/CommitParser.js
 function createCommitObject(initialData = {}) {
   return {
     merge: null,
@@ -190,20 +191,22 @@ var CommitParser = class {
   }
   parseReferences(input, isFooterToken = false) {
     const { regexes } = this;
-    const referencesRegex = isFooterToken ? regexes.footerReferences : regexes.references;
-    const regex = input.match(referencesRegex) ? referencesRegex : /()(.+)/gi;
-    const references = [];
+    const regex = isFooterToken ? regexes.footerReferences : regexes.references;
+    const sentences = [];
+    let lastIndex = 0;
     let matches;
-    let action;
-    let sentence;
-    let reference;
     while (true) {
       matches = regex.exec(input);
       if (!matches) {
         break;
       }
-      action = matches[1] || null;
-      sentence = matches[2] || "";
+      sentences.push([null, input.slice(lastIndex, matches.index)], [matches[1] || null, matches[2] || ""]);
+      lastIndex = regex.lastIndex;
+    }
+    sentences.push([null, input.slice(lastIndex)]);
+    const references = [];
+    let reference;
+    for (const [action, sentence] of sentences) {
       while (true) {
         reference = this.parseReference(sentence, action);
         if (!reference) {
@@ -424,7 +427,7 @@ var CommitParser = class {
   }
 };
 
-// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.3/node_modules/conventional-commits-parser/dist/stream.js
+// node_modules/.aspect_rules_js/conventional-commits-parser@7.1.4/node_modules/conventional-commits-parser/dist/stream.js
 import { Transform } from "stream";
 function parseCommits(options = {}) {
   const warnOption = options.warn;

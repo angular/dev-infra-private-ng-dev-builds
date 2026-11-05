@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-RJ2YUADA.mjs";
+} from "./chunk-EALSBVQR.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -72,7 +72,7 @@ import {
 } from "./chunk-ABXAGCLN.mjs";
 import {
   CommitParser
-} from "./chunk-YFFXSOAM.mjs";
+} from "./chunk-4JVJUM7F.mjs";
 import {
   __commonJS,
   __export,
@@ -10458,7 +10458,7 @@ var Matcher = class {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.3/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/minimatch@11.0.4/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -10469,7 +10469,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.3/node_modules/minimatch/dist/esm/escape.js
+// node_modules/.aspect_rules_js/minimatch@11.0.4/node_modules/minimatch/dist/esm/escape.js
 var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
@@ -10477,7 +10477,7 @@ var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) =
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.3/node_modules/minimatch/dist/esm/unescape.js
+// node_modules/.aspect_rules_js/minimatch@11.0.4/node_modules/minimatch/dist/esm/unescape.js
 var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/\[([^/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\])\]/g, "$1$2").replace(/\\([^/])/g, "$1");
@@ -10485,7 +10485,7 @@ var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) 
   return windowsPathsNoEscape ? s.replace(/\[([^/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\{}])\]/g, "$1$2").replace(/\\([^/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.3/node_modules/minimatch/dist/esm/index.js
+// node_modules/.aspect_rules_js/minimatch@11.0.4/node_modules/minimatch/dist/esm/index.js
 var minimatch = (p, pattern, options = {}) => {
   assertValidPattern(pattern);
   if (!options.nocomment && pattern.charAt(0) === "#") {
@@ -13501,7 +13501,7 @@ var COERCE_FULL_EXACT = safeRegex(COERCE_FULL);
 var PRERELEASE_EXACT = safeRegex(`^${PRERELEASE}$`);
 var PRERELEASE_LOOSE_EXACT = safeRegex(`^${PRERELEASE_LOOSE}$`);
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374347/node_modules/@conventional-changelog/git-client/dist/utils.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374316/node_modules/@conventional-changelog/git-client/dist/utils.js
 function formatArgs(...args) {
   return args.reduce((finalArgs, arg) => {
     if (arg) {
@@ -13514,7 +13514,7 @@ function toArray(value) {
   return Array.isArray(value) ? value : [value];
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374347/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374316/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 import { spawn } from "child_process";
 
 // node_modules/.aspect_rules_js/@simple-libs+stream-utils@2.0.0/node_modules/@simple-libs/stream-utils/dist/index.js
@@ -13596,7 +13596,7 @@ function output(process2) {
   return concatBufferStream(outputStream(process2));
 }
 
-// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374347/node_modules/@conventional-changelog/git-client/dist/GitClient.js
+// node_modules/.aspect_rules_js/@conventional-changelog+git-client@3.2.0_674374316/node_modules/@conventional-changelog/git-client/dist/GitClient.js
 var SCISSOR = "------------------------ >8 ------------------------";
 var END_OF_OPTIONS = "--end-of-options";
 var GitClient2 = class {
@@ -41619,7 +41619,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-4b4b82ac5abe501bf51f5fcd41dedb2df08f72b2`;
+var localVersion = `0.0.0-2db88296355300b94198e3f4ed5232dbd74c7687`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
