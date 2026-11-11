@@ -1526,15 +1526,15 @@ var require_to_regex_range = __commonJS({
       }
       return tokens;
     }
-    function filterPatterns(arr, comparison, prefix, intersection2, options) {
+    function filterPatterns(arr, comparison, prefix2, intersection2, options) {
       let result = [];
       for (let ele of arr) {
         let { string: string4 } = ele;
         if (!intersection2 && !contains(comparison, "string", string4)) {
-          result.push(prefix + string4);
+          result.push(prefix2 + string4);
         }
         if (intersection2 && contains(comparison, "string", string4)) {
-          result.push(prefix + string4);
+          result.push(prefix2 + string4);
         }
       }
       return result;
@@ -1650,7 +1650,7 @@ var require_fill_range = __commonJS({
     var toSequence = (parts, options, maxLen) => {
       parts.negatives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
       parts.positives.sort((a, b) => a < b ? -1 : a > b ? 1 : 0);
-      let prefix = options.capture ? "" : "?:";
+      let prefix2 = options.capture ? "" : "?:";
       let positives = "";
       let negatives = "";
       let result;
@@ -1658,7 +1658,7 @@ var require_fill_range = __commonJS({
         positives = parts.positives.map((v) => toMaxLen(String(v), maxLen)).join("|");
       }
       if (parts.negatives.length) {
-        negatives = `-(${prefix}${parts.negatives.map((v) => toMaxLen(String(v), maxLen)).join("|")})`;
+        negatives = `-(${prefix2}${parts.negatives.map((v) => toMaxLen(String(v), maxLen)).join("|")})`;
       }
       if (positives && negatives) {
         result = `${positives}|${negatives}`;
@@ -1666,7 +1666,7 @@ var require_fill_range = __commonJS({
         result = positives || negatives;
       }
       if (options.wrap) {
-        return `(${prefix}${result})`;
+        return `(${prefix2}${result})`;
       }
       return result;
     };
@@ -1683,8 +1683,8 @@ var require_fill_range = __commonJS({
     var toRegex = (start, end, options) => {
       if (Array.isArray(start)) {
         let wrap = options.wrap === true;
-        let prefix = options.capture ? "" : "?:";
-        return wrap ? `(${prefix}${start.join("|")})` : start.join("|");
+        let prefix2 = options.capture ? "" : "?:";
+        return wrap ? `(${prefix2}${start.join("|")})` : start.join("|");
       }
       return toRegexRange(start, end, options);
     };
@@ -1811,20 +1811,20 @@ var require_compile = __commonJS({
         const invalidBlock = utils2.isInvalidBrace(parent);
         const invalidNode = node2.invalid === true && options.escapeInvalid === true;
         const invalid = invalidBlock === true || invalidNode === true;
-        const prefix = options.escapeInvalid === true ? "\\" : "";
+        const prefix2 = options.escapeInvalid === true ? "\\" : "";
         let output3 = "";
         if (node2.isOpen === true) {
-          return prefix + node2.value;
+          return prefix2 + node2.value;
         }
         if (node2.isClose === true) {
-          console.log("node.isClose", prefix, node2.value);
-          return prefix + node2.value;
+          console.log("node.isClose", prefix2, node2.value);
+          return prefix2 + node2.value;
         }
         if (node2.type === "open") {
-          return invalid ? prefix + node2.value : "(";
+          return invalid ? prefix2 + node2.value : "(";
         }
         if (node2.type === "close") {
-          return invalid ? prefix + node2.value : ")";
+          return invalid ? prefix2 + node2.value : ")";
         }
         if (node2.type === "comma") {
           return node2.prev.type === "comma" ? "" : invalid ? node2.value : "|";
@@ -2864,10 +2864,10 @@ var require_scan = __commonJS({
         isGlob = false;
       }
       let base = str;
-      let prefix = "";
+      let prefix2 = "";
       let glob5 = "";
       if (start > 0) {
-        prefix = str.slice(0, start);
+        prefix2 = str.slice(0, start);
         str = str.slice(start);
         lastIndex -= start;
       }
@@ -2893,7 +2893,7 @@ var require_scan = __commonJS({
         }
       }
       const state = {
-        prefix,
+        prefix: prefix2,
         input: input2,
         start,
         base,
@@ -2922,7 +2922,7 @@ var require_scan = __commonJS({
           if (opts.tokens) {
             if (idx === 0 && start !== 0) {
               tokens[idx].isPrefix = true;
-              tokens[idx].value = prefix;
+              tokens[idx].value = prefix2;
             } else {
               tokens[idx].value = value;
             }
@@ -7343,8 +7343,8 @@ var require_node = __commonJS({
       if (useColors2) {
         const c = this.color;
         const colorCode = "\x1B[3" + (c < 8 ? c : "8;5;" + c);
-        const prefix = `  ${colorCode};1m${name} \x1B[0m`;
-        args[0] = prefix + args[0].split("\n").join("\n" + prefix);
+        const prefix2 = `  ${colorCode};1m${name} \x1B[0m`;
+        args[0] = prefix2 + args[0].split("\n").join("\n" + prefix2);
         args.push(colorCode + "m+" + module.exports.humanize(this.diff) + "\x1B[0m");
       } else {
         args[0] = getDate() + name + " " + args[0];
@@ -9699,7 +9699,62 @@ function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
   return acc;
 }
 
-// node_modules/.aspect_rules_js/@isaacs+nonrecursive-glob-match@1.0.3/node_modules/@isaacs/nonrecursive-glob-match/dist/esm/parse-class.js
+// node_modules/.aspect_rules_js/@isaacs+nonrecursive-glob-match@1.1.0/node_modules/@isaacs/nonrecursive-glob-match/dist/esm/numeric-range.js
+var digit = (a, b) => a === b ? { t: "lit", ch: String(a) } : { t: "class", re: new RegExp(`^[${a}-${b}]$`) };
+var prefix = (d, alts) => alts.map((s) => [digit(d, d), ...s]);
+var fixed = (a, b) => {
+  if (!a)
+    return [[]];
+  let lo = +a[0];
+  let hi = +b[0];
+  const ra = a.slice(1);
+  const rb = b.slice(1);
+  if (lo === hi)
+    return prefix(lo, fixed(ra, rb));
+  const zeros = "0".repeat(ra.length);
+  const nines = "9".repeat(ra.length);
+  const out = [];
+  if (ra !== zeros)
+    out.push(...prefix(lo++, fixed(ra, nines)));
+  const last = rb === nines ? [] : prefix(hi--, fixed(zeros, rb));
+  if (lo <= hi) {
+    out.push([digit(lo, hi), ...Array.from(ra, () => digit(0, 9))]);
+  }
+  out.push(...last);
+  return out;
+};
+var nonneg = (a, b, width) => {
+  if (width) {
+    return fixed(String(a).padStart(width, "0"), String(b).padStart(width, "0"));
+  }
+  const out = [];
+  for (let len = String(a).length; len <= String(b).length; len++) {
+    const lo = Math.max(a, len === 1 ? 0 : 10 ** (len - 1));
+    const hi = Math.min(b, 10 ** len - 1);
+    out.push(...fixed(String(lo), String(hi)));
+  }
+  return out;
+};
+var numericRange = (loStr, hiStr) => {
+  let lo = Number(loStr);
+  let hi = Number(hiStr);
+  if (!Number.isSafeInteger(lo) || !Number.isSafeInteger(hi))
+    return;
+  if (lo > hi)
+    [lo, hi] = [hi, lo];
+  const padded = /^-?0\d/.test(loStr) || /^-?0\d/.test(hiStr);
+  const width = padded ? Math.max(loStr.length, hiStr.length) : 0;
+  const out = [];
+  if (lo < 0) {
+    const neg = nonneg(Math.max(-hi, 1), -lo, width && width - 1);
+    out.push(...neg.map((s) => [{ t: "lit", ch: "-" }, ...s]));
+  }
+  if (hi >= 0)
+    out.push(...nonneg(Math.max(lo, 0), hi, width));
+  return out;
+};
+
+// node_modules/.aspect_rules_js/@isaacs+nonrecursive-glob-match@1.1.0/node_modules/@isaacs/nonrecursive-glob-match/dist/esm/parse-class.js
 var posixClasses = {
   "[:alnum:]": ["\\p{L}\\p{Nl}\\p{Nd}"],
   "[:alpha:]": ["\\p{L}\\p{Nl}"],
@@ -9807,7 +9862,7 @@ var parseClass = (glob5, position, nocase = false, form) => {
   return [new RegExp(comb, nocase ? "iu" : "u"), endPos - pos];
 };
 
-// node_modules/.aspect_rules_js/@isaacs+nonrecursive-glob-match@1.0.3/node_modules/@isaacs/nonrecursive-glob-match/dist/esm/index.js
+// node_modules/.aspect_rules_js/@isaacs+nonrecursive-glob-match@1.1.0/node_modules/@isaacs/nonrecursive-glob-match/dist/esm/index.js
 var MATCH = { t: "match", id: 0 };
 var extTypes = "!?+*@";
 var lit = (ch) => ({ t: "lit", ch });
@@ -9836,10 +9891,24 @@ var litMatch = (l, c) => {
   ascii[code] ||= l.re.test(c) ? 1 : 2;
   return ascii[code] === 1;
 };
-var tokenize = (p, nocase, noext, form) => {
+var tokenize = (p, nocase, noext, form, mark) => {
   const toks = [];
   for (let i = 0; i < p.length; ) {
     const c = String.fromCodePoint(p.codePointAt(i));
+    if (mark) {
+      const m = c === "\\" && p.startsWith(mark, i + 1) ? 1 : 0;
+      if (m || c === mark) {
+        const start = i + m + mark.length;
+        const end = p.indexOf(mark, start);
+        const r = /^(-?\d+)\.\.(-?\d+)$/.exec(p.slice(start, end));
+        const alts = end !== -1 && r && numericRange(r[1], r[2]);
+        if (alts) {
+          toks.push({ t: "ext", type: "@", alts });
+          i = end + mark.length;
+          continue;
+        }
+      }
+    }
     if (c === "\\") {
       const e = p.codePointAt(i + 1);
       const ch = e === void 0 ? c : String.fromCodePoint(e);
@@ -10334,7 +10403,7 @@ var Matcher = class {
     const { nocase = false, noext = false, normalize: n } = options;
     this.#form = n === true ? "NFC" : n || void 0;
     const literal3 = /^[?*+@]\(\)$/.test(pattern);
-    const toks = tokenize(pattern, nocase, noext || literal3, this.#form);
+    const toks = tokenize(pattern, nocase, noext || literal3, this.#form, options.rangeMark);
     let [items] = build(toks, pair(toks), 0, toks.length, true);
     if (this.#form)
       items = normalize(items, this.#form);
@@ -10411,7 +10480,7 @@ var Matcher = class {
     if (chars !== void 0 && (chars.length < min || chars.length > max)) {
       return false;
     }
-    const prefix = this.#prefix.length;
+    const prefix2 = this.#prefix.length;
     if (this.#affix) {
       if (this.#prefixStr !== void 0 && this.#suffixStr !== void 0) {
         if (!s.startsWith(this.#prefixStr) || !s.endsWith(this.#suffixStr)) {
@@ -10429,13 +10498,13 @@ var Matcher = class {
     if (this.#linear) {
       if (s === "." || s === "..")
         return false;
-      if (dotStart && !prefix)
+      if (dotStart && !prefix2)
         return false;
       if (this.#wild)
         return true;
       chars ??= codePoints(s);
       const end = chars.length - this.#suffix.length;
-      return testLinear(this.#linear, chars, prefix, end);
+      return testLinear(this.#linear, chars, prefix2, end);
     }
     chars ??= codePoints(s);
     if (s === "." || s === "..") {
@@ -10467,7 +10536,7 @@ var Matcher = class {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.4/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/minimatch@11.0.5/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -10478,7 +10547,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.4/node_modules/minimatch/dist/esm/escape.js
+// node_modules/.aspect_rules_js/minimatch@11.0.5/node_modules/minimatch/dist/esm/escape.js
 var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
@@ -10486,7 +10555,7 @@ var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) =
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.4/node_modules/minimatch/dist/esm/unescape.js
+// node_modules/.aspect_rules_js/minimatch@11.0.5/node_modules/minimatch/dist/esm/unescape.js
 var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/\[([^/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\])\]/g, "$1$2").replace(/\\([^/])/g, "$1");
@@ -10494,7 +10563,7 @@ var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) 
   return windowsPathsNoEscape ? s.replace(/\[([^/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\{}])\]/g, "$1$2").replace(/\\([^/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.4/node_modules/minimatch/dist/esm/index.js
+// node_modules/.aspect_rules_js/minimatch@11.0.5/node_modules/minimatch/dist/esm/index.js
 var minimatch = (p, pattern, options = {}) => {
   assertValidPattern(pattern);
   if (!options.nocomment && pattern.charAt(0) === "#") {
@@ -10564,6 +10633,8 @@ var braceExpand = (pattern, options = {}) => {
   return expand(pattern, { max: options.braceExpandMax });
 };
 minimatch.braceExpand = braceExpand;
+var RANGE_MIN = 100;
+var rangeRe = /(?<![\\$])\{(-?\d+)\.\.(-?\d+)\}/g;
 var match = (list, pattern, options = {}) => {
   const mm = new Minimatch(pattern, options);
   list = list.filter((f) => mm.match(f));
@@ -10727,6 +10798,8 @@ var Minimatch = class {
   #matchers = /* @__PURE__ */ new Map();
   // parse() returns PENDING in place of a Matcher
   #pending = false;
+  // the char that marks numeric ranges in globSet, if any
+  #rangeMark;
   // the GlobstarParts of each pattern row, by start index and partial
   #globstarParts = /* @__PURE__ */ new WeakMap();
   constructor(pattern, options = {}) {
@@ -10830,7 +10903,7 @@ var Minimatch = class {
       return;
     }
     this.parseNegate();
-    this.globSet = [...new Set(this.braceExpand())];
+    this.globSet = [...new Set(this.#expandBraces())];
     const rawGlobParts = this.globSet.map((s) => this.#slashSplit(s));
     this.globParts = this.preprocess(rawGlobParts);
     this.#pending = true;
@@ -11217,6 +11290,8 @@ var Minimatch = class {
   // this WOULD be allowed if ** did follow symlinks, or * didn't
   firstPhasePreProcess(globParts) {
     const { braceExpandMax = 1e5 } = this.options;
+    let splitCells = 0;
+    const maxSplitCells = 1e6;
     let didSomething = false;
     do {
       didSomething = false;
@@ -11235,13 +11310,18 @@ var Minimatch = class {
           const p2 = parts[gs + 3];
           if (next !== "..")
             continue;
-          if (!p || p === "." || p === ".." || !p2 || p2 === "." || p2 === ".." || globParts.length >= braceExpandMax) {
+          if (!p || p === "." || p === ".." || !p2 || p2 === "." || p2 === "..") {
             continue;
+          }
+          const addedCells = parts.length - 1;
+          if (globParts.length >= braceExpandMax || splitCells + addedCells > maxSplitCells) {
+            throw new RangeError(`optimizationLevel 2: too many patterns from '**/..'`);
           }
           didSomething = true;
           parts.splice(gs, 1);
           const other = parts.slice(0);
           other[gs] = "**";
+          splitCells += addedCells;
           globParts.push(other);
           gs--;
         }
@@ -11280,62 +11360,53 @@ var Minimatch = class {
     return globParts;
   }
   // second phase: multi-pattern dedupes
-  // {<pre>/*/<rest>,<pre>/<p>/<rest>} -> <pre>/*/<rest>
   // {<pre>/<rest>,<pre>/<rest>} -> <pre>/<rest>
-  // {<pre>/**/<rest>,<pre>/<rest>} -> <pre>/**/<rest>
-  //
-  // {<pre>/**/<rest>,<pre>/**/<p>/<rest>} -> <pre>/**/<rest>
-  // ^-- not valid because ** doens't follow symlinks
+  // {<pre>/*/<rest>,<pre>/<p>/<rest>} -> <pre>/*/<rest>
   secondPhasePreProcess(globParts) {
-    if (globParts.length > 1e3)
-      return globParts;
-    for (let i = 0; i < globParts.length - 1; i++) {
-      for (let j = i + 1; j < globParts.length; j++) {
-        const matched = this.partsMatch(globParts[i], globParts[j], !this.preserveMultipleSlashes);
-        if (matched) {
-          globParts[i] = [];
-          globParts[j] = matched;
-          break;
-        }
-      }
-    }
-    return globParts.filter((gs) => gs.length);
-  }
-  partsMatch(a, b, emptyGSMatch = false) {
-    let ai = 0;
-    let bi = 0;
-    let result = [];
-    let which = "";
-    while (ai < a.length && bi < b.length) {
-      if (a[ai] === b[bi]) {
-        result.push(which === "b" ? b[bi] : a[ai]);
-        ai++;
-        bi++;
-      } else if (emptyGSMatch && a[ai] === "**" && b[bi] === a[ai + 1]) {
-        result.push(a[ai]);
-        ai++;
-      } else if (emptyGSMatch && b[bi] === "**" && a[ai] === b[bi + 1]) {
-        result.push(b[bi]);
-        bi++;
-      } else if (a[ai] === "*" && b[bi] && (this.options.dot || !b[bi].startsWith(".")) && b[bi] !== "**") {
-        if (which === "b")
-          return false;
-        which = "a";
-        result.push(a[ai]);
-        ai++;
-        bi++;
-      } else if (b[bi] === "*" && a[ai] && (this.options.dot || !a[ai].startsWith(".")) && a[ai] !== "**") {
-        if (which === "a")
-          return false;
-        which = "b";
-        result.push(b[bi]);
-        ai++;
-        bi++;
-      } else {
+    const keys = /* @__PURE__ */ new Set();
+    const rows = globParts.filter((parts) => {
+      const key = parts.join("/");
+      if (keys.has(key))
         return false;
+      keys.add(key);
+      return true;
+    });
+    const stars = /* @__PURE__ */ new Map();
+    for (const parts of rows) {
+      const s = [];
+      for (let i = 0; i < parts.length; i++) {
+        if (parts[i] === "*")
+          s.push(i);
       }
+      if (s.length)
+        stars.set(s.join(","), s);
     }
-    return a.length === b.length && result;
+    if (!stars.size || rows.length * stars.size > 1e5)
+      return rows;
+    const { dot } = this.options;
+    return rows.filter((parts) => {
+      for (const s of stars.values()) {
+        if (s[s.length - 1] >= parts.length)
+          continue;
+        const c = [...parts];
+        let ok = true;
+        let changed = false;
+        for (const i of s) {
+          const p = parts[i];
+          if (p === "*")
+            continue;
+          if (!p || p === "**" || !dot && p.startsWith(".")) {
+            ok = false;
+            break;
+          }
+          c[i] = "*";
+          changed = true;
+        }
+        if (ok && changed && keys.has(c.join("/")))
+          return false;
+      }
+      return true;
+    });
   }
   parseNegate() {
     if (this.nonegate)
@@ -11545,6 +11616,44 @@ var Minimatch = class {
   braceExpand() {
     return braceExpand(this.pattern, this.options);
   }
+  // Expand braces, except numeric ranges such as {0..999} with at
+  // least RANGE_MIN values. Each of those stays in its pattern as
+  // `<mark>0..999<mark>`, for the Matcher to test. If a range might
+  // be inside a [...] class, expand all of them instead.
+  #expandBraces() {
+    const { pattern } = this;
+    if (this.options.nobrace)
+      return this.braceExpand();
+    let code = 57344;
+    while (pattern.includes(String.fromCharCode(code))) {
+      if (++code > 63743)
+        return this.braceExpand();
+    }
+    const mark = String.fromCharCode(code);
+    let found = false;
+    const marked = pattern.replace(rangeRe, (m, lo, hi) => {
+      const a = Number(lo);
+      const b = Number(hi);
+      if (!Number.isSafeInteger(a) || !Number.isSafeInteger(b) || Math.abs(a - b) + 1 < RANGE_MIN) {
+        return m;
+      }
+      found = true;
+      return `${mark}${lo}..${hi}${mark}`;
+    });
+    if (!found)
+      return this.braceExpand();
+    const set2 = braceExpand(marked, this.options);
+    for (const p of set2) {
+      for (const portion of p.split("/")) {
+        const c = portion.indexOf("[");
+        if (c !== -1 && c < portion.lastIndexOf(mark)) {
+          return this.braceExpand();
+        }
+      }
+    }
+    this.#rangeMark = mark;
+    return set2;
+  }
   parse(pattern) {
     assertValidPattern(pattern);
     const options = this.options;
@@ -11553,7 +11662,8 @@ var Minimatch = class {
     if (pattern === "")
       return "";
     const { nocase, nocaseMagicOnly, noext = false, dot, normalize: normalize3 } = options;
-    const lit2 = literal(pattern, noext);
+    const rangeMark = this.#rangeMark;
+    const lit2 = rangeMark && pattern.includes(rangeMark) ? void 0 : literal(pattern, noext);
     if (lit2 !== void 0 && !(nocase && !nocaseMagicOnly && pattern.toUpperCase() !== pattern.toLowerCase())) {
       return this.#norm(lit2);
     }
@@ -11561,7 +11671,13 @@ var Minimatch = class {
       return PENDING;
     let m = this.#matchers.get(pattern);
     if (!m) {
-      m = new Matcher(pattern, { nocase, noext, dot, normalize: normalize3 });
+      m = new Matcher(pattern, {
+        nocase,
+        noext,
+        dot,
+        normalize: normalize3,
+        ...rangeMark && { rangeMark }
+      });
       this.#matchers.set(pattern, m);
     }
     return m;
@@ -16182,12 +16298,12 @@ var Spinner = class {
   complete() {
     this._complete("", this.text);
   }
-  _complete(prefix, text) {
+  _complete(prefix2, text) {
     if (this.completed) {
       return;
     }
     clearInterval(this.intervalId);
-    this.printFrame(prefix, text);
+    this.printFrame(prefix2, text);
     process.stdout.write("\n");
     this.showCursor();
     this.completed = true;
@@ -16196,16 +16312,16 @@ var Spinner = class {
     this.currentSpinnerCharacterIndex = (this.currentSpinnerCharacterIndex + 1) % this.spinnerCharacters.length;
     return this.spinnerCharacters[this.currentSpinnerCharacterIndex];
   }
-  printFrame(prefix = this.getNextSpinnerCharacter(), text) {
+  printFrame(prefix2 = this.getNextSpinnerCharacter(), text) {
     if (IS_CI) {
       this.printNextCIFrame(text);
     } else {
-      this.printNextLocalFrame(prefix, text);
+      this.printNextLocalFrame(prefix2, text);
     }
   }
-  printNextLocalFrame(prefix, text) {
+  printNextLocalFrame(prefix2, text) {
     cursorTo(process.stdout, 0);
-    process.stdout.write(` ${prefix} ${text || this.text}`);
+    process.stdout.write(` ${prefix2} ${text || this.text}`);
     clearLine(process.stdout, 1);
   }
   printNextCIFrame(text) {
@@ -19259,11 +19375,11 @@ function isValidCIDRv6(value) {
   const parts = value.split("/");
   if (parts.length !== 2)
     return false;
-  const [address, prefix] = parts;
-  if (!prefix)
+  const [address, prefix2] = parts;
+  if (!prefix2)
     return false;
-  const prefixNum = Number(prefix);
-  if (`${prefixNum}` !== prefix)
+  const prefixNum = Number(prefix2);
+  if (`${prefixNum}` !== prefix2)
     return false;
   if (prefixNum < 0 || prefixNum > 128)
     return false;
@@ -29762,8 +29878,8 @@ function generateStringFormatCheck(doc, ctx, def, accessor, needsValue = true) {
       doc.write(`if (!${accessor}.includes(${esc(def.includes)})) return INVALID;`);
       break;
     case "starts_with": {
-      const prefix = def.prefix;
-      doc.write(`if (${accessor}.slice(0, ${prefix.length}) !== ${esc(prefix)}) return INVALID;`);
+      const prefix2 = def.prefix;
+      doc.write(`if (${accessor}.slice(0, ${prefix2.length}) !== ${esc(prefix2)}) return INVALID;`);
       break;
     }
     case "ends_with": {
@@ -30505,8 +30621,8 @@ function generateDiscriminatedUnionCheck(doc, ctx, def, accessor) {
       claimed.add(value);
     }
     const conditions = Array.from(values, (value) => literalEquality(ctx, discVar, value));
-    const prefix = firstBranch ? "if" : "else if";
-    doc.write(`${prefix} (${conditions.join(" || ")}) {`);
+    const prefix2 = firstBranch ? "if" : "else if";
+    doc.write(`${prefix2} (${conditions.join(" || ")}) {`);
     doc.indented((d) => {
       const branchOutput = generateCheck(d, ctx, option, accessor);
       d.write(`${outputVar} = ${branchOutput};`);
@@ -31380,12 +31496,12 @@ function _includes(includes, params2) {
     includes
   });
 }
-function _startsWith(prefix, params2) {
+function _startsWith(prefix2, params2) {
   return new $ZodCheckStartsWith({
     check: "string_format",
     format: "starts_with",
     ...normalizeParams(params2),
-    prefix
+    prefix: prefix2
   });
 }
 function _endsWith(suffix, params2) {
@@ -41646,7 +41762,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-6afd924ca295eb0f17cec3530e2d2855e82dde06`;
+var localVersion = `0.0.0-5c5cdb966e905973cdc6d55a79a5944e73ae063b`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
