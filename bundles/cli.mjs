@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-EALSBVQR.mjs";
+} from "./chunk-3B3N7AYY.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -69,7 +69,7 @@ import {
   supports_color_exports,
   underline,
   yellow
-} from "./chunk-ABXAGCLN.mjs";
+} from "./chunk-XNKXDVMU.mjs";
 import {
   CommitParser
 } from "./chunk-4JVJUM7F.mjs";
@@ -41762,7 +41762,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-0c134fb123a6bfed88468b13152e8ce6610ba5eb`;
+var localVersion = `0.0.0-7e3dce8783e567d1d811f7680f7b63db841dc771`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
