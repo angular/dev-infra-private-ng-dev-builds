@@ -47,7 +47,7 @@ import {
   resolveYarnScriptForProject,
   targetLabels,
   types
-} from "./chunk-3B3N7AYY.mjs";
+} from "./chunk-WRTEXYVR.mjs";
 import {
   ChildProcess,
   ConfigValidationError,
@@ -10536,7 +10536,7 @@ var Matcher = class {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.5/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/minimatch@11.0.7/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -10547,7 +10547,7 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.5/node_modules/minimatch/dist/esm/escape.js
+// node_modules/.aspect_rules_js/minimatch@11.0.7/node_modules/minimatch/dist/esm/escape.js
 var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
@@ -10555,7 +10555,7 @@ var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) =
   return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.5/node_modules/minimatch/dist/esm/unescape.js
+// node_modules/.aspect_rules_js/minimatch@11.0.7/node_modules/minimatch/dist/esm/unescape.js
 var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/\[([^/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\])\]/g, "$1$2").replace(/\\([^/])/g, "$1");
@@ -10563,28 +10563,114 @@ var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) 
   return windowsPathsNoEscape ? s.replace(/\[([^/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\{}])\]/g, "$1$2").replace(/\\([^/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.5/node_modules/minimatch/dist/esm/index.js
-var minimatch = (p, pattern, options = {}) => {
+// node_modules/.aspect_rules_js/minimatch@11.0.7/node_modules/minimatch/dist/esm/index.js
+var DEFAULT_BRACE_EXPAND_MAX = 1e5;
+var DEFAULT_GLOB_STAR_RECURSION_MAX = 200;
+var AWE_KEY = "allowWindowsEscape";
+var minimatch = (p, pattern, options) => {
   assertValidPattern(pattern);
-  if (!options.nocomment && pattern.charAt(0) === "#") {
+  if (!options?.nocomment && pattern.charAt(0) === "#") {
     return false;
   }
   return cachedMinimatch(pattern, options).match(p);
 };
 var cache = /* @__PURE__ */ new Map();
+var oldCache = /* @__PURE__ */ new Map();
+var cacheSize = 0;
 var cacheMax = 256;
-var cachedMinimatch = (pattern, options) => {
-  const key = pattern + "\0" + JSON.stringify(options);
-  let mm = cache.get(key);
-  if (mm) {
-    cache.delete(key);
-  } else {
-    mm = new Minimatch(pattern, { ...options });
-    if (cache.size >= cacheMax) {
-      cache.delete(cache.keys().next().value);
+var tri = (v) => v === void 0 ? 0 : v ? 2 : 1;
+var booleanWeights = new Map(Object.keys({
+  nobrace: 0,
+  nocomment: 0,
+  nonegate: 0,
+  noglobstar: 0,
+  noext: 0,
+  nonull: 0,
+  partial: 0,
+  dot: 0,
+  nocase: 0,
+  nocaseMagicOnly: 0,
+  magicalBraces: 0,
+  matchBase: 0,
+  flipNegate: 0,
+  preserveMultipleSlashes: 0,
+  windowsNoMagicRoot: 0
+}).map((k, i) => [k, 24 * 3 ** i]));
+var optionsKey = (o) => {
+  let n = 0;
+  let wpe = false;
+  for (const k in o) {
+    const v = o[k];
+    switch (k) {
+      case "windowsPathsNoEscape":
+        if (v)
+          wpe = true;
+        break;
+      case AWE_KEY:
+        if (v === false)
+          wpe = true;
+        break;
+      case "platform": {
+        const p = v || defaultPlatform;
+        if (p === defaultPlatform)
+          break;
+        if (p === "darwin")
+          n += 3;
+        else if (p === "win32")
+          n += 6;
+        else if (p === "linux")
+          n += 9;
+        else
+          return JSON.stringify(o);
+        break;
+      }
+      case "optimizationLevel":
+        if (v === void 0)
+          break;
+        n += v >= 2 ? 1 : v >= 1 ? 0 : 2;
+        break;
+      case "braceExpandMax":
+        if (v !== void 0 && v !== DEFAULT_BRACE_EXPAND_MAX) {
+          return JSON.stringify(o);
+        }
+        break;
+      case "maxGlobstarRecursion":
+        if (v !== void 0 && v !== DEFAULT_GLOB_STAR_RECURSION_MAX) {
+          return JSON.stringify(o);
+        }
+        break;
+      case "normalize":
+        if (v !== void 0)
+          return JSON.stringify(o);
+        break;
+      default:
+        n += (booleanWeights.get(k) ?? 0) * tri(v);
     }
   }
-  cache.set(key, mm);
+  return wpe ? n + 12 : n;
+};
+var copyOptions = (o) => {
+  const copy = {};
+  for (const k in o)
+    copy[k] = o[k];
+  return copy;
+};
+var cachedMinimatch = (pattern, options) => {
+  const key = options ? optionsKey(options) : 0;
+  let mm = cache.get(key)?.get(pattern);
+  if (mm)
+    return mm;
+  mm = oldCache.get(key)?.get(pattern) ?? new Minimatch(pattern, copyOptions(options));
+  if (cacheSize >= cacheMax) {
+    oldCache = cache;
+    cache = /* @__PURE__ */ new Map();
+    cacheSize = 0;
+  }
+  let byPattern = cache.get(key);
+  if (!byPattern)
+    cache.set(key, byPattern = /* @__PURE__ */ new Map());
+  byPattern.set(pattern, mm);
+  cacheSize++;
   return mm;
 };
 var defaultPlatform = typeof process === "object" && process ? process.env?.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
@@ -10596,7 +10682,10 @@ var sep = defaultPlatform === "win32" ? path.win32.sep : path.posix.sep;
 minimatch.sep = sep;
 var GLOBSTAR = Symbol("globstar **");
 minimatch.GLOBSTAR = GLOBSTAR;
-var filter = (pattern, options = {}) => (p) => minimatch(p, pattern, options);
+var filter = (pattern, options) => {
+  let mm;
+  return (p) => (mm ??= cachedMinimatch(pattern, options)).match(p);
+};
 minimatch.filter = filter;
 var ext = (a, b = {}) => Object.assign({}, a, b);
 var defaults = (def) => {
@@ -10806,12 +10895,11 @@ var Minimatch = class {
     assertValidPattern(pattern);
     options = options || {};
     this.options = options;
-    this.maxGlobstarRecursion = options.maxGlobstarRecursion ?? 200;
+    this.maxGlobstarRecursion = options.maxGlobstarRecursion ?? DEFAULT_GLOB_STAR_RECURSION_MAX;
     this.pattern = pattern;
     this.platform = options.platform || defaultPlatform;
     this.isWindows = this.platform === "win32";
-    const awe = "allowWindowsEscape";
-    this.windowsPathsNoEscape = !!options.windowsPathsNoEscape || options[awe] === false;
+    this.windowsPathsNoEscape = !!options.windowsPathsNoEscape || options[AWE_KEY] === false;
     if (this.windowsPathsNoEscape) {
       this.pattern = this.pattern.replace(/\\/g, "/");
     }
@@ -10956,16 +11044,19 @@ var Minimatch = class {
     let merged = true;
     while (merged) {
       merged = false;
+      if (this.set.length < 2)
+        return;
+      let keys = this.#mergeKeys();
       const len = Math.max(0, ...this.set.map((r) => r.length));
       for (let k = 0; k < len; k++) {
         const groups = /* @__PURE__ */ new Map();
+        const R = this.set.length + 1;
         this.set.forEach((row, i) => {
           if (!(row[k] instanceof Matcher || row[k] === PENDING) || !extSafe(this.globParts[i][k])) {
             return;
           }
-          const parts = [...this.globParts[i]];
-          parts[k] = "";
-          const key = `${row.length}/${parts.join("/")}`;
+          const { pre, suf } = keys[i];
+          const key = pre[k] * R + suf[k + 1];
           const g = groups.get(key);
           if (g)
             g.push(i);
@@ -10988,9 +11079,59 @@ var Minimatch = class {
           merged = true;
           this.set = this.set.filter((_, i) => !drop.has(i));
           this.globParts = this.globParts.filter((_, i) => !drop.has(i));
+          if (this.set.length < 2)
+            return;
+          keys = this.#mergeKeys();
         }
       }
     }
+  }
+  // For each row, number ids for its prefixes and suffixes, such that
+  // pre[k] identifies parts[0..k) and suf[k] identifies parts[k..n).
+  // Two rows are the same other than at portion k exactly when they
+  // have the same pre[k] and suf[k + 1]. This is linear in the size of
+  // the rows, where joining the whole row for every k was quadratic.
+  #mergeKeys() {
+    const partIds = /* @__PURE__ */ new Map();
+    const ids = this.globParts.map((parts) => parts.map((s) => {
+      let id = partIds.get(s);
+      if (id === void 0)
+        partIds.set(s, id = partIds.size);
+      return id;
+    }));
+    const P = partIds.size;
+    const len = Math.max(0, ...ids.map((r) => r.length));
+    const keys = ids.map((r) => ({
+      pre: [0],
+      suf: new Array(r.length + 1).fill(0)
+    }));
+    for (let k = 0; k < len; k++) {
+      const m = /* @__PURE__ */ new Map();
+      ids.forEach((r, i) => {
+        if (k >= r.length)
+          return;
+        const { pre } = keys[i];
+        const key = pre[k] * P + r[k];
+        let id = m.get(key);
+        if (id === void 0)
+          m.set(key, id = m.size + 1);
+        pre.push(id);
+      });
+    }
+    for (let k = len - 1; k >= 0; k--) {
+      const m = /* @__PURE__ */ new Map();
+      ids.forEach((r, i) => {
+        if (k >= r.length)
+          return;
+        const { suf } = keys[i];
+        const key = suf[k + 1] * P + r[k];
+        let id = m.get(key);
+        if (id === void 0)
+          m.set(key, id = m.size + 1);
+        suf[k] = id;
+      });
+    }
+    return keys;
   }
   // various transforms to equivalent pattern sets that are
   // faster to process in a filesystem walk.  The goal is to
@@ -11289,7 +11430,7 @@ var Minimatch = class {
   // **/*/<rest> -> */**/<rest> <== not valid because ** doesn't follow
   // this WOULD be allowed if ** did follow symlinks, or * didn't
   firstPhasePreProcess(globParts) {
-    const { braceExpandMax = 1e5 } = this.options;
+    const { braceExpandMax = DEFAULT_BRACE_EXPAND_MAX } = this.options;
     let splitCells = 0;
     const maxSplitCells = 1e6;
     let didSomething = false;
@@ -41762,7 +41903,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-7e3dce8783e567d1d811f7680f7b63db841dc771`;
+var localVersion = `0.0.0-2bc6a148e1adcc70e9ce68d0eb26d052a4890b42`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
