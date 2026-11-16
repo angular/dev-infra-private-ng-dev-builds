@@ -10536,7 +10536,7 @@ var Matcher = class {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.7/node_modules/minimatch/dist/esm/assert-valid-pattern.js
+// node_modules/.aspect_rules_js/minimatch@11.0.8/node_modules/minimatch/dist/esm/assert-valid-pattern.js
 var MAX_PATTERN_LENGTH = 1024 * 64;
 var assertValidPattern = (pattern) => {
   if (typeof pattern !== "string") {
@@ -10547,23 +10547,31 @@ var assertValidPattern = (pattern) => {
   }
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.7/node_modules/minimatch/dist/esm/escape.js
+// node_modules/.aspect_rules_js/minimatch@11.0.8/node_modules/minimatch/dist/esm/escape.js
 var escape = (s, { windowsPathsNoEscape = false, magicalBraces = false } = {}) => {
-  if (magicalBraces) {
-    return windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&");
+  const e = magicalBraces ? windowsPathsNoEscape ? s.replace(/[?*()[\]{}]/g, "[$&]") : s.replace(/[?*()[\]\\{}]/g, "\\$&") : windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
+  const c = e.charAt(0);
+  if (c === "#") {
+    return (windowsPathsNoEscape ? "[#]" : "\\#") + e.slice(1);
   }
-  return windowsPathsNoEscape ? s.replace(/[?*()[\]]/g, "[$&]") : s.replace(/[?*()[\]\\]/g, "\\$&");
+  if (c === "!") {
+    return (windowsPathsNoEscape ? "@(!)" : "\\!") + e.slice(1);
+  }
+  return e;
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.7/node_modules/minimatch/dist/esm/unescape.js
+// node_modules/.aspect_rules_js/minimatch@11.0.8/node_modules/minimatch/dist/esm/unescape.js
 var unescape = (s, { windowsPathsNoEscape = false, magicalBraces = true } = {}) => {
+  if (windowsPathsNoEscape && s.startsWith("@(!)")) {
+    return "!" + unescape(s.slice(4), { windowsPathsNoEscape, magicalBraces });
+  }
   if (magicalBraces) {
     return windowsPathsNoEscape ? s.replace(/\[([^/\\])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\])\]/g, "$1$2").replace(/\\([^/])/g, "$1");
   }
   return windowsPathsNoEscape ? s.replace(/\[([^/\\{}])\]/g, "$1") : s.replace(/((?!\\).|^)\[([^/\\{}])\]/g, "$1$2").replace(/\\([^/{}])/g, "$1");
 };
 
-// node_modules/.aspect_rules_js/minimatch@11.0.7/node_modules/minimatch/dist/esm/index.js
+// node_modules/.aspect_rules_js/minimatch@11.0.8/node_modules/minimatch/dist/esm/index.js
 var DEFAULT_BRACE_EXPAND_MAX = 1e5;
 var DEFAULT_GLOB_STAR_RECURSION_MAX = 200;
 var AWE_KEY = "allowWindowsEscape";
@@ -10577,7 +10585,19 @@ var minimatch = (p, pattern, options) => {
 var cache = /* @__PURE__ */ new Map();
 var oldCache = /* @__PURE__ */ new Map();
 var cacheSize = 0;
+var cacheTotalWeight = 0;
 var cacheMax = 256;
+var cacheMaxWeight = 1 << 15;
+var cacheMaxEntryWeight = 1 << 12;
+var cacheWeight = (mm) => {
+  let w = mm.pattern.length;
+  for (const s of mm.globSet) {
+    w += s.length + 1;
+    if (w > cacheMaxEntryWeight)
+      break;
+  }
+  return w;
+};
 var tri = (v) => v === void 0 ? 0 : v ? 2 : 1;
 var booleanWeights = new Map(Object.keys({
   nobrace: 0,
@@ -10661,16 +10681,21 @@ var cachedMinimatch = (pattern, options) => {
   if (mm)
     return mm;
   mm = oldCache.get(key)?.get(pattern) ?? new Minimatch(pattern, copyOptions(options));
-  if (cacheSize >= cacheMax) {
+  const weight = cacheWeight(mm);
+  if (weight > cacheMaxEntryWeight)
+    return mm;
+  if (cacheSize >= cacheMax || cacheTotalWeight + weight > cacheMaxWeight) {
     oldCache = cache;
     cache = /* @__PURE__ */ new Map();
     cacheSize = 0;
+    cacheTotalWeight = 0;
   }
   let byPattern = cache.get(key);
   if (!byPattern)
     cache.set(key, byPattern = /* @__PURE__ */ new Map());
   byPattern.set(pattern, mm);
   cacheSize++;
+  cacheTotalWeight += weight;
   return mm;
 };
 var defaultPlatform = typeof process === "object" && process ? process.env?.__MINIMATCH_TESTING_PLATFORM__ || process.platform : "posix";
@@ -10719,7 +10744,11 @@ var braceExpand = (pattern, options = {}) => {
   if (options.nobrace || !/\{(?:(?!\{).)*\}/.test(pattern)) {
     return [pattern];
   }
-  return expand(pattern, { max: options.braceExpandMax });
+  let p = pattern.replace(/\\\\/g, "\\\\\\\\");
+  if (options.windowsPathsNoEscape || options[AWE_KEY] === false) {
+    p = p.replace(/\[([{}])\]/g, "[\\$1]");
+  }
+  return expand(p, { max: options.braceExpandMax });
 };
 minimatch.braceExpand = braceExpand;
 var RANGE_MIN = 100;
@@ -10780,6 +10809,25 @@ var literal = (pattern, noext) => {
     }
   }
   return lit2;
+};
+var MAX_EXTGLOBS = 256;
+var extglobCount = (pattern) => {
+  let n = 0;
+  for (let i = 0; i < pattern.length - 1; i++) {
+    const c = pattern.charAt(i);
+    if (c === "\\") {
+      i++;
+    } else if ("+@!?*".includes(c) && pattern.charAt(i + 1) === "(") {
+      n++;
+      i++;
+    }
+  }
+  return n;
+};
+var assertValidExtglobs = (pattern) => {
+  if (extglobCount(pattern) > MAX_EXTGLOBS) {
+    throw new TypeError("pattern has too many extglobs");
+  }
 };
 var extSafe = (pattern) => {
   if (/^[?*+@]\(\)$/.test(pattern) || pattern.includes("[:"))
@@ -11070,6 +11118,8 @@ var Minimatch = class {
           const [first, ...rest] = g;
           const alts = g.map((i) => this.globParts[i][k]);
           const glob5 = `@(${alts.join("|")})`;
+          if (extglobCount(glob5) > MAX_EXTGLOBS)
+            continue;
           this.globParts[first][k] = glob5;
           this.set[first][k] = this.parse(glob5);
           for (const i of rest)
@@ -11812,6 +11862,8 @@ var Minimatch = class {
       return PENDING;
     let m = this.#matchers.get(pattern);
     if (!m) {
+      if (!noext)
+        assertValidExtglobs(pattern);
       m = new Matcher(pattern, {
         nocase,
         noext,
@@ -41903,7 +41955,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-2bc6a148e1adcc70e9ce68d0eb26d052a4890b42`;
+var localVersion = `0.0.0-d23e22aba545f9f104f51669496cd3c402c3abb8`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
