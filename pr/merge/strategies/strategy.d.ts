@@ -7,6 +7,8 @@ export declare abstract class MergeStrategy {
     prepare(pullRequest: PullRequest): Promise<void>;
     abstract merge(pullRequest: PullRequest): Promise<void>;
     check(pullRequest: PullRequest): Promise<void>;
+    protected checkMergeableIntoTargets(pullRequest: PullRequest): Promise<void>;
+    protected assertTargetBranchAndCommitRange(pullRequest: PullRequest): void;
     cleanup(pullRequest: PullRequest): Promise<void>;
     protected getLocalTargetBranchName(targetBranch: string): string;
     protected cherryPickIntoTargetBranches(revisionRange: string, targetBranches: string[], options?: {

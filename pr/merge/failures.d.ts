@@ -21,3 +21,7 @@ export declare class PullRequestValidationError extends FatalMergeToolError {
 export declare class MismatchedPullRequestHeadShaFatalError extends FatalMergeToolError {
     constructor(expectedSha: string, actualSha: string);
 }
+export declare class ForbiddenPullRequestFilesFatalError extends FatalMergeToolError {
+    forbiddenPaths: string[];
+    constructor(forbiddenPaths: string[]);
+}

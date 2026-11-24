@@ -36947,6 +36947,59 @@ async function getPrComments(commentsSchema, prNumber, git) {
   return comments;
 }
 
+// ng-dev/pr/common/validation/assert-safe-pr-files.js
+var IGNORABLE_PATH_CHARS_REGEX = /[\u200c-\u200f\u202a-\u202e\u206a-\u206f\ufeff]/g;
+var NODE_MODULES_SEGMENT_REGEX = /^(node_modules|node_m~\d+|nodemo~\d+)$/i;
+var ForbiddenPullRequestPathsError = class extends Error {
+  constructor(forbiddenPaths) {
+    super(`Pull request contains forbidden files under node_modules/: ${forbiddenPaths.join(", ")}`);
+    this.forbiddenPaths = forbiddenPaths;
+  }
+};
+var MismatchedFetchedHeadShaError = class extends Error {
+  constructor(expectedSha, actualSha) {
+    super(`Pull request head commit changed while fetching (expected ${expectedSha}, got ${actualSha}).`);
+    this.expectedSha = expectedSha;
+    this.actualSha = actualSha;
+  }
+};
+function hasNodeModulesSegment(filePath) {
+  return filePath.split(/[\\/]/).some((rawSegment) => {
+    const normalized = rawSegment.normalize("NFC").replace(IGNORABLE_PATH_CHARS_REGEX, "").replace(/[ .]+$/, "");
+    return normalized.length > 0 && NODE_MODULES_SEGMENT_REGEX.test(normalized);
+  });
+}
+function extractNodeModulesPaths(gitNulPathsOutput) {
+  return Array.from(new Set(gitNulPathsOutput.split("\0").filter((entry) => entry.length > 0 && hasNodeModulesSegment(entry))));
+}
+function assertNoNodeModulesInCommitRange(git, revisionRange) {
+  const output3 = git.run([
+    "log",
+    "--no-show-signature",
+    "--no-notes",
+    "--no-renames",
+    "--diff-filter=d",
+    "-z",
+    "-m",
+    "--pretty=format:",
+    "--name-only",
+    revisionRange
+  ]).stdout;
+  const forbidden = extractNodeModulesPaths(output3);
+  if (forbidden.length > 0) {
+    throw new ForbiddenPullRequestPathsError(forbidden);
+  }
+}
+function ensureBaseCommitExistsLocally(git, commitSha, fetchUrl, refName) {
+  if (git.runGraceful(["cat-file", "-e", `${commitSha}^{commit}`], { stdio: "ignore" }).status === 0) {
+    return;
+  }
+  git.run(["fetch", "-q", fetchUrl, "--deepen=500", "--", refName]);
+  if (git.runGraceful(["cat-file", "-e", `${commitSha}^{commit}`], { stdio: "ignore" }).status !== 0) {
+    git.runGraceful(["fetch", "-q", fetchUrl, "--depth=1", "--", commitSha], { stdio: "ignore" });
+  }
+}
+
 // ng-dev/pr/common/checkout-pr.js
 var PR_SCHEMA = {
   author: {
@@ -36997,8 +37050,15 @@ async function checkOutPullRequestLocally(prNumber, opts = {}) {
     throw new MaintainerModifyAccessError("PR is not set to allow maintainers to modify the PR");
   }
   try {
-    git.run(["fetch", "-q", headRefUrl, "--", headRefName]);
-    git.run(["checkout", "--detach", "FETCH_HEAD"]);
+    const baseRefUrl = addTokenToGitHttpsUrl(pr.baseRef.repository.url, git.githubToken);
+    git.run(["fetch", "-q", headRefUrl, "--deepen=500", "--", headRefName]);
+    const fetchedHeadSha = git.run(["rev-parse", "FETCH_HEAD"]).stdout.trim();
+    if (fetchedHeadSha !== pr.headRefOid) {
+      throw new MismatchedFetchedHeadShaError(pr.headRefOid, fetchedHeadSha);
+    }
+    ensureBaseCommitExistsLocally(git, pr.baseRefOid, baseRefUrl, pr.baseRef.name);
+    assertNoNodeModulesInCommitRange(git, `${pr.baseRefOid}..${pr.headRefOid}`);
+    git.run(["checkout", "--detach", pr.headRefOid]);
   } catch (e) {
     git.checkout(previousBranchOrRevision, true);
     throw e;
@@ -37026,7 +37086,7 @@ function upstreamUrlToPush(repoUrl, git) {
 }
 
 // ng-dev/pr/checkout/target.js
-async function checkoutToTargetBranch(prNumber, target, { pullRequest }) {
+async function checkoutToTargetBranch(prNumber, target, { pullRequest, resetGitState }) {
   const git = await AuthenticatedGitClient.get();
   const config2 = git.config;
   const branchName = `pr-${target.toLowerCase().replaceAll(/[\W_]/gm, "-")}-${prNumber}`;
@@ -37052,12 +37112,19 @@ async function checkoutToTargetBranch(prNumber, target, { pullRequest }) {
   Log.info(`Targeting '${targetBranch}' branch
 `);
   const baseRefUrl = addTokenToGitHttpsUrl(pullRequest.baseRef.repository.url, git.githubToken);
+  const revisionRange = `${pullRequest.baseRefOid}..${pullRequest.headRefOid}`;
   git.run(["checkout", "-q", targetBranch]);
   git.run(["fetch", "-q", baseRefUrl, "--deepen=500", "--", targetBranch]);
+  try {
+    ensureBaseCommitExistsLocally(git, pullRequest.baseRefOid, baseRefUrl, pullRequest.baseRef.name);
+    assertNoNodeModulesInCommitRange(git, revisionRange);
+  } catch (e) {
+    resetGitState();
+    throw e;
+  }
   git.run(["checkout", "-b", branchName]);
   Log.info(`Running cherry-pick`);
   try {
-    const revisionRange = `${pullRequest.baseRefOid}..${pullRequest.headRefOid}`;
     git.run(["cherry-pick", revisionRange]);
     Log.info(` ${green("\u2714")} Cherry-pick is complete. You can now push to create a new pull request.`);
   } catch {
@@ -37089,6 +37156,14 @@ async function checkoutAsPrTakeover(prNumber, { resetGitState, pullRequest }) {
       resetGitState();
       return;
     }
+  }
+  try {
+    const baseRefUrl = addTokenToGitHttpsUrl(pullRequest.baseRef.repository.url, git.githubToken);
+    ensureBaseCommitExistsLocally(git, pullRequest.baseRefOid, baseRefUrl, pullRequest.baseRef.name);
+    assertNoNodeModulesInCommitRange(git, `${pullRequest.baseRefOid}..HEAD`);
+  } catch (e) {
+    resetGitState();
+    throw e;
   }
   Log.info(`Setting local branch name based on the pull request`);
   git.run(["checkout", "-q", "-b", branchName]);
@@ -37426,39 +37501,107 @@ async function discoverNewConflictsForPr(newPrNumber, updatedAfter) {
   });
   Log.info(`Retrieved ${allPendingPRs.length} total pending PRs`);
   Log.info(`Checking ${pendingPrs.length} PRs for conflicts after a merge of #${newPrNumber}`);
-  git.run(["fetch", "-q", requestedPr.headRef.repository.url, "--", requestedPr.headRef.name]);
-  git.run(["checkout", "-q", "-B", tempWorkingBranch, "FETCH_HEAD"]);
-  git.run(["fetch", "-q", requestedPr.baseRef.repository.url, "--", requestedPr.baseRef.name]);
   try {
-    git.run(["rebase", "FETCH_HEAD"], { stdio: "ignore" });
-  } catch (err) {
-    if (err instanceof GitCommandError) {
-      Log.error("The requested PR currently has conflicts");
-      git.checkout(previousBranchOrRevision, true);
+    git.run([
+      "fetch",
+      "-q",
+      requestedPr.baseRef.repository.url,
+      "--deepen=500",
+      "--",
+      requestedPr.baseRef.name
+    ]);
+    const baseTipSha = git.run(["rev-parse", "FETCH_HEAD"]).stdout.trim();
+    git.run([
+      "fetch",
+      "-q",
+      requestedPr.headRef.repository.url,
+      "--deepen=500",
+      "--",
+      requestedPr.headRef.name
+    ]);
+    const requestedPrHeadSha = git.run(["rev-parse", "FETCH_HEAD"]).stdout.trim();
+    if (requestedPrHeadSha !== requestedPr.headRefOid) {
+      Log.error(new MismatchedFetchedHeadShaError(requestedPr.headRefOid, requestedPrHeadSha).message);
       process.exit(1);
     }
-    throw err;
-  }
-  progressBar.start(pendingPrs.length, 0);
-  for (const pr of pendingPrs) {
-    git.run(["fetch", "-q", pr.headRef.repository.url, "--", pr.headRef.name]);
-    git.run(["checkout", "-q", "--detach", "FETCH_HEAD"]);
+    const requestedMergeBaseResult = git.runGraceful([
+      "merge-base",
+      baseTipSha,
+      requestedPrHeadSha
+    ]);
+    if (requestedMergeBaseResult.status !== 0) {
+      Log.error("The requested PR has no common ancestor with its target branch");
+      process.exit(1);
+    }
+    const requestedMergeBase = requestedMergeBaseResult.stdout.trim();
     try {
-      git.run(["rebase", tempWorkingBranch], { stdio: "ignore" });
+      assertNoNodeModulesInCommitRange(git, `${requestedMergeBase}..${requestedPrHeadSha}`);
+    } catch (err) {
+      if (err instanceof ForbiddenPullRequestPathsError) {
+        Log.error(err.message);
+        process.exit(1);
+      }
+      throw err;
+    }
+    git.run(["checkout", "-q", "-B", tempWorkingBranch, requestedPrHeadSha]);
+    try {
+      git.run(["rebase", baseTipSha], { stdio: "ignore" });
     } catch (err) {
       if (err instanceof GitCommandError) {
-        conflicts.push(pr);
-      } else {
+        Log.error("The requested PR currently has conflicts");
+        process.exit(1);
+      }
+      throw err;
+    }
+    progressBar.start(pendingPrs.length, 0);
+    for (const pr of pendingPrs) {
+      git.run(["fetch", "-q", pr.headRef.repository.url, "--deepen=500", "--", pr.headRef.name]);
+      const candidateHeadSha = git.run(["rev-parse", "FETCH_HEAD"]).stdout.trim();
+      if (candidateHeadSha !== pr.headRefOid) {
+        Log.warn(`Skipping PR #${pr.number}: ${new MismatchedFetchedHeadShaError(pr.headRefOid, candidateHeadSha).message}`);
+        progressBar.increment(1);
+        continue;
+      }
+      const candidateMergeBaseResult = git.runGraceful([
+        "merge-base",
+        baseTipSha,
+        candidateHeadSha
+      ]);
+      if (candidateMergeBaseResult.status !== 0) {
+        Log.warn(`Skipping PR #${pr.number}: unable to determine common ancestor with ${requestedPr.baseRef.name}.`);
+        progressBar.increment(1);
+        continue;
+      }
+      const candidateMergeBase = candidateMergeBaseResult.stdout.trim();
+      try {
+        assertNoNodeModulesInCommitRange(git, `${candidateMergeBase}..${candidateHeadSha}`);
+      } catch (err) {
+        if (err instanceof ForbiddenPullRequestPathsError) {
+          Log.warn(`Skipping PR #${pr.number}: ${err.message}`);
+          progressBar.increment(1);
+          continue;
+        }
         throw err;
       }
+      git.run(["checkout", "-q", "--detach", candidateHeadSha]);
+      try {
+        git.run(["rebase", tempWorkingBranch], { stdio: "ignore" });
+      } catch (err) {
+        if (err instanceof GitCommandError) {
+          conflicts.push(pr);
+        } else {
+          throw err;
+        }
+      }
+      git.runGraceful(["rebase", "--abort"], { stdio: "ignore" });
+      progressBar.increment(1);
     }
-    git.runGraceful(["rebase", "--abort"], { stdio: "ignore" });
-    progressBar.increment(1);
+    progressBar.stop();
+  } finally {
+    git.checkout(previousBranchOrRevision, true);
   }
-  progressBar.stop();
   Log.info();
   Log.info(`Result:`);
-  git.checkout(previousBranchOrRevision, true);
   if (conflicts.length === 0) {
     Log.info(`No new conflicting PRs found after #${newPrNumber} merging`);
     process.exit(0);
@@ -37605,6 +37748,12 @@ var PullRequestValidationError = class extends FatalMergeToolError {
 var MismatchedPullRequestHeadShaFatalError = class extends FatalMergeToolError {
   constructor(expectedSha, actualSha) {
     super(`Pull request head commit changed after it was validated. The pull request was validated at ${expectedSha}, but its head is now ${actualSha}. Merging would land commits that were never reviewed or checked. Please re-run the merge so the new head is validated.`);
+  }
+};
+var ForbiddenPullRequestFilesFatalError = class extends FatalMergeToolError {
+  constructor(forbiddenPaths) {
+    super(`Pull request commits touch forbidden paths under node_modules/: ${forbiddenPaths.join(", ")}. Refusing to merge.`);
+    this.forbiddenPaths = forbiddenPaths;
   }
 };
 
@@ -38162,14 +38311,40 @@ var MergeStrategy = class {
     }
   }
   async check(pullRequest) {
-    const { githubTargetBranch, targetBranches, requiredBaseSha } = pullRequest;
-    if (targetBranches.every((t) => t !== githubTargetBranch)) {
-      throw new MismatchedTargetBranchFatalError(targetBranches);
-    }
+    this.assertTargetBranchAndCommitRange(pullRequest);
+    await this.checkMergeableIntoTargets(pullRequest);
+  }
+  async checkMergeableIntoTargets(pullRequest) {
+    const { targetBranches, requiredBaseSha } = pullRequest;
     if (requiredBaseSha && !this.git.hasCommit(TEMP_PR_HEAD_BRANCH, requiredBaseSha)) {
       throw new UnsatisfiedBaseShaFatalError();
     }
     await this._assertMergeableOrThrow(pullRequest, targetBranches);
+  }
+  assertTargetBranchAndCommitRange(pullRequest) {
+    const { githubTargetBranch, targetBranches, baseSha, revisionRange } = pullRequest;
+    if (targetBranches.every((t) => t !== githubTargetBranch)) {
+      throw new MismatchedTargetBranchFatalError(targetBranches);
+    }
+    ensureBaseCommitExistsLocally(this.git, baseSha, this.git.getRepoGitUrl(), githubTargetBranch);
+    const localTargetBranch = this.getLocalTargetBranchName(githubTargetBranch);
+    const mergeBaseResult = this.git.runGraceful([
+      "merge-base",
+      localTargetBranch,
+      TEMP_PR_HEAD_BRANCH
+    ]);
+    const mergeBaseSha = mergeBaseResult.status === 0 ? mergeBaseResult.stdout.trim() : null;
+    try {
+      assertNoNodeModulesInCommitRange(this.git, revisionRange);
+      if (mergeBaseSha && mergeBaseSha !== baseSha) {
+        assertNoNodeModulesInCommitRange(this.git, `${mergeBaseSha}..${TEMP_PR_HEAD_BRANCH}`);
+      }
+    } catch (e) {
+      if (e instanceof ForbiddenPullRequestPathsError) {
+        throw new ForbiddenPullRequestFilesFatalError(e.forbiddenPaths);
+      }
+      throw e;
+    }
   }
   async cleanup(pullRequest) {
     pullRequest.targetBranches.forEach((branchName) => this.git.runGraceful(["branch", "-D", this.getLocalTargetBranchName(branchName)]));
@@ -38316,6 +38491,7 @@ import { dirname as dirname3, join as join8 } from "node:path";
 import { fileURLToPath as fileURLToPath3 } from "node:url";
 var AutosquashMergeStrategy = class extends MergeStrategy {
   async check(pullRequest) {
+    this.assertTargetBranchAndCommitRange(pullRequest);
     const originalHeadSha = this.git.run(["rev-parse", TEMP_PR_HEAD_BRANCH]).stdout.trim();
     const branchOrRevisionBeforeRebase = this.git.getCurrentBranchOrRevision();
     try {
@@ -38327,7 +38503,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
         this.git.runGraceful(["rebase", "--abort"]);
         throw new MergeConflictsFatalError([]);
       }
-      await super.check(pullRequest);
+      await this.checkMergeableIntoTargets(pullRequest);
     } finally {
       this.git.run(["update-ref", `refs/heads/${TEMP_PR_HEAD_BRANCH}`, originalHeadSha]);
       this.git.run(["checkout", "-f", branchOrRevisionBeforeRebase]);
@@ -38335,6 +38511,7 @@ var AutosquashMergeStrategy = class extends MergeStrategy {
   }
   async merge(pullRequest) {
     const { githubTargetBranch, targetBranches, revisionRange, needsCommitMessageFixup, baseSha, prNumber } = pullRequest;
+    this.assertTargetBranchAndCommitRange(pullRequest);
     const branchOrRevisionBeforeRebase = this.git.getCurrentBranchOrRevision();
     const rebaseEnv = needsCommitMessageFixup ? void 0 : { ...process.env, GIT_SEQUENCE_EDITOR: "true" };
     this.git.run(["rebase", "--interactive", "--autosquash", baseSha, TEMP_PR_HEAD_BRANCH], {
@@ -38959,12 +39136,18 @@ async function rebasePr(prNumber, interactive = false) {
     return 1;
   }
   try {
-    Log.info(`Checking out PR #${prNumber} from ${fullHeadRef}`);
+    Log.info(`Fetching PR #${prNumber} from ${fullHeadRef}`);
     git.run(["fetch", "-q", headRefUrl, "--deepen=500", "--", headRefName]);
-    git.run(["checkout", "-q", "--detach", "FETCH_HEAD"]);
+    const fetchedHeadSha = git.run(["rev-parse", "FETCH_HEAD"]).stdout.trim();
+    if (fetchedHeadSha !== pr.headRefOid) {
+      throw new MismatchedFetchedHeadShaError(pr.headRefOid, fetchedHeadSha);
+    }
     Log.info(`Fetching ${fullBaseRef} to rebase #${prNumber} on`);
     git.run(["fetch", "-q", baseRefUrl, "--deepen=500", "--", baseRefName]);
-    const commonAncestorSha = git.run(["merge-base", "HEAD", "FETCH_HEAD"]).stdout.trim();
+    const commonAncestorSha = git.run(["merge-base", fetchedHeadSha, "FETCH_HEAD"]).stdout.trim();
+    assertNoNodeModulesInCommitRange(git, `${commonAncestorSha}..${fetchedHeadSha}`);
+    Log.info(`Checking out PR #${prNumber} from ${fullHeadRef}`);
+    git.run(["checkout", "-q", "--detach", fetchedHeadSha]);
     const commits = await getCommitsInRange(commonAncestorSha, "HEAD");
     let squashFixups = process.env["CI"] !== void 0 || commits.filter((commit) => commit.isFixup).length === 0 ? false : await Prompt.confirm({
       message: `PR #${prNumber} contains fixup commits, would you like to squash them during rebase?`,
@@ -42230,7 +42413,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-e5e802e7fabd8e5f1c3d66c9fa676856168acaa8`;
+var localVersion = `0.0.0-7d2d4a84c91ac77dbaed99bf860b39cef800287b`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
