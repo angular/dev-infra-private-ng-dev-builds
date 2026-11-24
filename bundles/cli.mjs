@@ -7408,12 +7408,12 @@ var require_src = __commonJS({
 var require_balanced_match = __commonJS({
   "node_modules/.aspect_rules_js/balanced-match@1.0.2/node_modules/balanced-match/index.js"(exports, module) {
     "use strict";
-    module.exports = balanced2;
-    function balanced2(a, b, str) {
+    module.exports = balanced;
+    function balanced(a, b, str) {
       if (a instanceof RegExp)
-        a = maybeMatch2(a, str);
+        a = maybeMatch(a, str);
       if (b instanceof RegExp)
-        b = maybeMatch2(b, str);
+        b = maybeMatch(b, str);
       var r = range2(a, b, str);
       return r && {
         start: r[0],
@@ -7423,11 +7423,11 @@ var require_balanced_match = __commonJS({
         post: str.slice(r[1] + b.length)
       };
     }
-    function maybeMatch2(reg, str) {
+    function maybeMatch(reg, str) {
       var m = str.match(reg);
       return m ? m[0] : null;
     }
-    balanced2.range = range2;
+    balanced.range = range2;
     function range2(a, b, str) {
       var begs, beg, left, right, result;
       var ai = str.indexOf(a);
@@ -7464,20 +7464,22 @@ var require_balanced_match = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/brace-expansion@2.1.7/node_modules/brace-expansion/index.js
+// node_modules/.aspect_rules_js/brace-expansion@2.1.8/node_modules/brace-expansion/index.js
 var require_brace_expansion = __commonJS({
-  "node_modules/.aspect_rules_js/brace-expansion@2.1.7/node_modules/brace-expansion/index.js"(exports, module) {
-    var balanced2 = require_balanced_match();
+  "node_modules/.aspect_rules_js/brace-expansion@2.1.8/node_modules/brace-expansion/index.js"(exports, module) {
+    var balanced = require_balanced_match();
     module.exports = expandTop;
-    var escSlash2 = "\0SLASH" + Math.random() + "\0";
-    var escOpen2 = "\0OPEN" + Math.random() + "\0";
-    var escClose2 = "\0CLOSE" + Math.random() + "\0";
-    var escComma2 = "\0COMMA" + Math.random() + "\0";
-    var escPeriod2 = "\0PERIOD" + Math.random() + "\0";
+    var escSlash2 = "\0SLASH" + Math.random().toFixed(16) + "\0";
+    var escOpen2 = "\0OPEN" + Math.random().toFixed(16) + "\0";
+    var escClose2 = "\0CLOSE" + Math.random().toFixed(16) + "\0";
+    var escComma2 = "\0COMMA" + Math.random().toFixed(16) + "\0";
+    var escPeriod2 = "\0PERIOD" + Math.random().toFixed(16) + "\0";
     var EXPANSION_MAX2 = 1e5;
     var EXPANSION_MAX_LENGTH2 = 4e6;
     var EXPANSION_MAX_DEPTH2 = 1e3;
     var EXPANSION_MAX_REWRITES2 = 1e3;
+    var EXPANSION_MAX_STEPS2 = 2e7;
+    var CALL_STEPS2 = 16;
     function numeric2(str) {
       return parseInt(str, 10) == str ? parseInt(str, 10) : str.charCodeAt(0);
     }
@@ -7492,11 +7494,69 @@ var require_brace_expansion = __commonJS({
         target.push(items[i]);
       }
     }
-    function parseCommaParts2(str) {
+    function balancedWithBudget2(str, masked, budget) {
+      if (budget.remaining < 0) {
+        return void 0;
+      }
+      var r = balanced.range("{", "}", masked);
+      var unmatched = r !== void 0 && masked.indexOf("{") < r[0];
+      budget.remaining -= r && !unmatched ? r[1] + 1 : str.length;
+      if (!r || budget.remaining < 0) {
+        return void 0;
+      }
+      return {
+        end: r[1],
+        pre: str.slice(0, r[0]),
+        body: str.slice(r[0] + 1, r[1]),
+        post: str.slice(r[1] + 1),
+        unmatched
+      };
+    }
+    function maskUnmatchedOpens2(masked, budget) {
+      budget.remaining -= masked.length;
+      var open2 = [];
+      for (var i = 0; i < masked.length; i++) {
+        var c = masked.charCodeAt(i);
+        if (c === 123) {
+          open2.push(i);
+        } else if (c === 125 && open2.length) {
+          open2.pop();
+        }
+      }
+      var out = "";
+      var last = 0;
+      for (var j = 0; j < open2.length; j++) {
+        out += masked.slice(last, open2[j]) + "\0";
+        last = open2[j] + 1;
+      }
+      return out + masked.slice(last);
+    }
+    function commaSetFollows2(str, budget) {
+      budget.remaining -= str.length;
+      if (budget.remaining < 0) {
+        return false;
+      }
+      var close = false;
+      for (var i = str.length - 1; i >= 0; i--) {
+        var c = str.charCodeAt(i);
+        if (c === 125) {
+          close = true;
+        } else if (c === 10 || c === 13 || c === 8232 || c === 8233) {
+          close = false;
+        } else if (c === 44 && close && str.charCodeAt(i + 1) !== 44) {
+          return true;
+        }
+      }
+      return false;
+    }
+    function parseCommaParts2(str, budget) {
       var parts = [];
       var carry = "";
       for (; ; ) {
-        var m = balanced2("{", "}", str);
+        var m = balancedWithBudget2(str, str, budget);
+        if (budget.remaining < 0) {
+          return void 0;
+        }
         if (!m) {
           var tail = str.split(",");
           tail[0] = carry + tail[0];
@@ -7518,18 +7578,31 @@ var require_brace_expansion = __commonJS({
         str = post;
       }
     }
+    function bound2(value, fallback) {
+      return value == null || isNaN(value) ? fallback : value;
+    }
     function expandTop(str, options) {
       if (!str)
         return [];
       options = options || {};
-      var max = options.max == null ? EXPANSION_MAX2 : options.max;
-      var maxLength = options.maxLength == null ? EXPANSION_MAX_LENGTH2 : options.maxLength;
-      var maxDepth = options.maxDepth == null ? EXPANSION_MAX_DEPTH2 : options.maxDepth;
-      var maxRewrites = options.maxRewrites == null ? EXPANSION_MAX_REWRITES2 : options.maxRewrites;
+      var max = bound2(options.max, EXPANSION_MAX2);
+      var maxLength = bound2(options.maxLength, EXPANSION_MAX_LENGTH2);
+      var maxDepth = bound2(options.maxDepth, EXPANSION_MAX_DEPTH2);
+      var maxRewrites = bound2(options.maxRewrites, EXPANSION_MAX_REWRITES2);
+      var maxSteps = bound2(options.maxSteps, EXPANSION_MAX_STEPS2);
       if (str.substr(0, 2) === "{}") {
         str = "\\{\\}" + str.substr(2);
       }
-      return expand2(escapeBraces2(str), max, maxLength, maxDepth, 0, maxRewrites, true).map(unescapeBraces2);
+      return expand2(
+        escapeBraces2(str),
+        max,
+        maxLength,
+        maxDepth,
+        0,
+        maxRewrites,
+        { remaining: maxSteps },
+        true
+      ).map(unescapeBraces2);
     }
     function embrace2(str) {
       return "{" + str + "}";
@@ -7543,25 +7616,33 @@ var require_brace_expansion = __commonJS({
     function gte2(i, y) {
       return i >= y;
     }
-    function combine2(acc, pre, values, max, maxLength, dropEmpties) {
+    function combine2(acc, pre, values, max, maxLength, dropEmpties, budget) {
       var out = [];
       var length = 0;
-      for (var a = 0; a < acc.length; a++) {
-        for (var v = 0; v < values.length; v++) {
-          if (out.length >= max)
-            return out;
-          var expansion = acc[a] + pre + values[v];
-          if (dropEmpties && !expansion)
-            continue;
-          if (length + expansion.length > maxLength)
-            return out;
-          out.push(expansion);
-          length += expansion.length;
+      var nonEmpty;
+      outer:
+        for (var a = 0; a < acc.length; a++) {
+          var prefix2 = acc[a] + pre;
+          var vs = values;
+          if (dropEmpties && !prefix2) {
+            if (!nonEmpty)
+              nonEmpty = values.filter(Boolean);
+            vs = nonEmpty;
+          }
+          for (var v = 0; v < vs.length; v++) {
+            if (out.length >= max)
+              break outer;
+            var expansion = prefix2 + vs[v];
+            if (length + expansion.length > maxLength)
+              break outer;
+            out.push(expansion);
+            length += expansion.length;
+          }
         }
-      }
+      budget.remaining -= out.length;
       return out;
     }
-    function expandSequence2(body, isAlphaSequence, max, maxLength) {
+    function expandSequence2(body, isAlphaSequence, max, maxLength, budget) {
       var n = body.split(/\.\./);
       var N = [];
       if (n[0] === void 0 || n[1] === void 0) {
@@ -7578,8 +7659,13 @@ var require_brace_expansion = __commonJS({
         test = gte2;
       }
       var pad = n.some(isPadded2);
+      var cost = pad ? width : 1;
       var length = 0;
       for (var i = x; test(i, y) && N.length < max; i += incr) {
+        budget.remaining -= cost;
+        if (budget.remaining < 0) {
+          return void 0;
+        }
         var c;
         if (isAlphaSequence) {
           c = String.fromCharCode(i);
@@ -7607,7 +7693,8 @@ var require_brace_expansion = __commonJS({
       }
       return N;
     }
-    function expand2(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
+    function expand2(str, max, maxLength, maxDepth, depth, maxRewrites, budget, isTop) {
+      budget.remaining -= CALL_STEPS2;
       if (depth > maxDepth) {
         return [str];
       }
@@ -7615,12 +7702,27 @@ var require_brace_expansion = __commonJS({
       var rewrites = 0;
       var dropEmpties = false;
       var firstGroup = true;
+      var masked = str;
       for (; ; ) {
-        const m = balanced2("{", "}", str);
+        const m = balancedWithBudget2(str, masked, budget);
         if (!m) {
-          return combine2(acc, str, [""], max, maxLength, dropEmpties);
+          return combine2(acc, str, [""], max, maxLength, dropEmpties, budget);
+        }
+        if (m.unmatched) {
+          masked = maskUnmatchedOpens2(masked, budget);
         }
         const pre = m.pre;
+        var literal3 = function() {
+          return combine2(
+            acc,
+            pre + "{" + m.body + "}" + m.post,
+            [""],
+            max,
+            maxLength,
+            dropEmpties,
+            budget
+          );
+        };
         if (/\$$/.test(pre)) {
           acc = combine2(
             acc,
@@ -7628,33 +7730,31 @@ var require_brace_expansion = __commonJS({
             [""],
             max,
             maxLength,
-            dropEmpties && !m.post.length
+            dropEmpties && !m.post.length,
+            budget
           );
           firstGroup = false;
           if (!m.post.length)
             break;
           str = m.post;
+          masked = masked.slice(m.end + 1);
           continue;
         }
         var isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
-        var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(m.body);
+        var isAlphaSequence = /^[a-zA-Z]\.\.[a-zA-Z](?:\.\.-?\d+)?$/.test(
+          m.body
+        );
         var isSequence = isNumericSequence || isAlphaSequence;
         var isOptions = m.body.indexOf(",") >= 0;
         if (!isSequence && !isOptions) {
-          if (rewrites < maxRewrites && m.post.match(/,(?!,).*\}/)) {
+          if (rewrites < maxRewrites && commaSetFollows2(m.post, budget)) {
             rewrites++;
             str = m.pre + "{" + m.body + escClose2 + m.post;
+            masked = masked.slice(0, m.end) + escClose2 + masked.slice(m.end + 1);
             isTop = true;
             continue;
           }
-          return combine2(
-            acc,
-            pre + "{" + m.body + "}" + m.post,
-            [""],
-            max,
-            maxLength,
-            dropEmpties
-          );
+          return literal3();
         }
         if (firstGroup) {
           dropEmpties = isTop && !isSequence;
@@ -7662,23 +7762,53 @@ var require_brace_expansion = __commonJS({
         }
         var values;
         if (isSequence) {
-          values = expandSequence2(m.body, isAlphaSequence, max, maxLength);
+          values = expandSequence2(
+            m.body,
+            isAlphaSequence,
+            max,
+            maxLength,
+            budget
+          );
+          if (!values) {
+            return literal3();
+          }
         } else {
-          var n = parseCommaParts2(m.body);
+          var n = parseCommaParts2(m.body, budget);
+          if (!n) {
+            return literal3();
+          }
           if (n.length === 1 && n[0] !== void 0) {
-            n = expand2(n[0], max, maxLength, maxDepth, depth + 1, maxRewrites, false).map(embrace2);
+            n = expand2(
+              n[0],
+              max,
+              maxLength,
+              maxDepth,
+              depth + 1,
+              maxRewrites,
+              budget,
+              false
+            ).map(embrace2);
+            if (budget.remaining < 0) {
+              return literal3();
+            }
             if (n.length === 1) {
-              acc = combine2(
+              var single = combine2(
                 acc,
                 pre + n[0],
                 [""],
                 max,
                 maxLength,
-                dropEmpties && !m.post.length
+                dropEmpties && !m.post.length,
+                budget
               );
+              if (budget.remaining < 0) {
+                return literal3();
+              }
+              acc = single;
               if (!m.post.length)
                 break;
               str = m.post;
+              masked = masked.slice(m.end + 1);
               continue;
             }
           }
@@ -7692,7 +7822,19 @@ var require_brace_expansion = __commonJS({
           var valuesLength = 0;
           outer:
             for (var j = 0; j < n.length; j++) {
-              var expanded = expand2(n[j], max, maxLength, maxDepth, depth + 1, maxRewrites, false);
+              var expanded = expand2(
+                n[j],
+                max,
+                maxLength,
+                maxDepth,
+                depth + 1,
+                maxRewrites,
+                budget,
+                false
+              );
+              if (budget.remaining < 0) {
+                return literal3();
+              }
               for (var k = 0; k < expanded.length; k++) {
                 var v = expanded[k];
                 if (dropsEmpties && !v)
@@ -7705,10 +7847,23 @@ var require_brace_expansion = __commonJS({
               }
             }
         }
-        acc = combine2(acc, pre, values, max, maxLength, dropEmpties && !m.post.length);
+        var next = combine2(
+          acc,
+          pre,
+          values,
+          max,
+          maxLength,
+          dropEmpties && !m.post.length,
+          budget
+        );
+        if (budget.remaining < 0) {
+          return literal3();
+        }
+        acc = next;
         if (!m.post.length)
           break;
         str = m.post;
+        masked = masked.slice(m.end + 1);
       }
       return acc;
     }
@@ -9422,22 +9577,6 @@ var CiModule = class extends BaseModule {
 import path2 from "path";
 
 // node_modules/.aspect_rules_js/balanced-match@4.0.4/node_modules/balanced-match/dist/esm/index.js
-var balanced = (a, b, str) => {
-  const ma = a instanceof RegExp ? maybeMatch(a, str) : a;
-  const mb = b instanceof RegExp ? maybeMatch(b, str) : b;
-  const r = ma !== null && mb != null && range(ma, mb, str);
-  return r && {
-    start: r[0],
-    end: r[1],
-    pre: str.slice(0, r[0]),
-    body: str.slice(r[0] + ma.length, r[1]),
-    post: str.slice(r[1] + mb.length)
-  };
-};
-var maybeMatch = (reg, str) => {
-  const m = str.match(reg);
-  return m ? m[0] : null;
-};
 var range = (a, b, str) => {
   let begs, beg, left, right = void 0, result;
   let ai = str.indexOf(a);
@@ -9474,12 +9613,12 @@ var range = (a, b, str) => {
   return result;
 };
 
-// node_modules/.aspect_rules_js/brace-expansion@5.0.12/node_modules/brace-expansion/dist/esm/index.js
-var escSlash = "\0SLASH" + Math.random() + "\0";
-var escOpen = "\0OPEN" + Math.random() + "\0";
-var escClose = "\0CLOSE" + Math.random() + "\0";
-var escComma = "\0COMMA" + Math.random() + "\0";
-var escPeriod = "\0PERIOD" + Math.random() + "\0";
+// node_modules/.aspect_rules_js/brace-expansion@5.0.13/node_modules/brace-expansion/dist/esm/index.js
+var escSlash = "\0SLASH" + Math.random().toFixed(16) + "\0";
+var escOpen = "\0OPEN" + Math.random().toFixed(16) + "\0";
+var escClose = "\0CLOSE" + Math.random().toFixed(16) + "\0";
+var escComma = "\0COMMA" + Math.random().toFixed(16) + "\0";
+var escPeriod = "\0PERIOD" + Math.random().toFixed(16) + "\0";
 var escSlashPattern = new RegExp(escSlash, "g");
 var escOpenPattern = new RegExp(escOpen, "g");
 var escClosePattern = new RegExp(escClose, "g");
@@ -9494,6 +9633,8 @@ var EXPANSION_MAX = 1e5;
 var EXPANSION_MAX_LENGTH = 4e6;
 var EXPANSION_MAX_DEPTH = 1e3;
 var EXPANSION_MAX_REWRITES = 1e3;
+var EXPANSION_MAX_STEPS = 2e7;
+var CALL_STEPS = 16;
 function numeric(str) {
   return !isNaN(str) ? parseInt(str, 10) : str.charCodeAt(0);
 }
@@ -9508,11 +9649,70 @@ function pushAll(target, items) {
     target.push(items[i]);
   }
 }
-function parseCommaParts(str) {
+function balancedWithBudget(str, masked, budget) {
+  if (budget.remaining < 0) {
+    return void 0;
+  }
+  const r = range("{", "}", masked);
+  const unmatched = r !== void 0 && masked.indexOf("{") < r[0];
+  budget.remaining -= r && !unmatched ? r[1] + 1 : str.length;
+  if (!r || budget.remaining < 0) {
+    return void 0;
+  }
+  return {
+    end: r[1],
+    pre: str.slice(0, r[0]),
+    body: str.slice(r[0] + 1, r[1]),
+    post: str.slice(r[1] + 1),
+    unmatched
+  };
+}
+function maskUnmatchedOpens(masked, budget) {
+  budget.remaining -= masked.length;
+  const open2 = [];
+  for (let i = 0; i < masked.length; i++) {
+    const c = masked.charCodeAt(i);
+    if (c === 123) {
+      open2.push(i);
+    } else if (c === 125 && open2.length) {
+      open2.pop();
+    }
+  }
+  let out = "";
+  let last = 0;
+  for (let i = 0; i < open2.length; i++) {
+    const at = open2[i];
+    out += masked.slice(last, at) + "\0";
+    last = at + 1;
+  }
+  return out + masked.slice(last);
+}
+function commaSetFollows(str, budget) {
+  budget.remaining -= str.length;
+  if (budget.remaining < 0) {
+    return false;
+  }
+  let close = false;
+  for (let i = str.length - 1; i >= 0; i--) {
+    const c = str.charCodeAt(i);
+    if (c === 125) {
+      close = true;
+    } else if (c === 10 || c === 13 || c === 8232 || c === 8233) {
+      close = false;
+    } else if (c === 44 && close && str.charCodeAt(i + 1) !== 44) {
+      return true;
+    }
+  }
+  return false;
+}
+function parseCommaParts(str, budget) {
   const parts = [];
   let carry = "";
   for (; ; ) {
-    const m = balanced("{", "}", str);
+    const m = balancedWithBudget(str, str, budget);
+    if (budget.remaining < 0) {
+      return void 0;
+    }
     if (!m) {
       const tail = str.split(",");
       tail[0] = carry + tail[0];
@@ -9532,15 +9732,22 @@ function parseCommaParts(str) {
     str = post;
   }
 }
+function bound(value, fallback) {
+  return value === void 0 || isNaN(value) ? fallback : value;
+}
 function expand(str, options = {}) {
   if (!str) {
     return [];
   }
-  const { max = EXPANSION_MAX, maxLength = EXPANSION_MAX_LENGTH, maxDepth = EXPANSION_MAX_DEPTH, maxRewrites = EXPANSION_MAX_REWRITES } = options;
+  const max = bound(options.max, EXPANSION_MAX);
+  const maxLength = bound(options.maxLength, EXPANSION_MAX_LENGTH);
+  const maxDepth = bound(options.maxDepth, EXPANSION_MAX_DEPTH);
+  const maxRewrites = bound(options.maxRewrites, EXPANSION_MAX_REWRITES);
+  const maxSteps = bound(options.maxSteps, EXPANSION_MAX_STEPS);
   if (str.slice(0, 2) === "{}") {
     str = "\\{\\}" + str.slice(2);
   }
-  return expand_(escapeBraces(str), max, maxLength, maxDepth, 0, maxRewrites, true).map(unescapeBraces);
+  return expand_(escapeBraces(str), max, maxLength, maxDepth, 0, maxRewrites, { remaining: maxSteps }, true).map(unescapeBraces);
 }
 function embrace(str) {
   return "{" + str + "}";
@@ -9554,25 +9761,33 @@ function lte(i, y) {
 function gte(i, y) {
   return i >= y;
 }
-function combine(acc, pre, values, max, maxLength, dropEmpties) {
+function combine(acc, pre, values, max, maxLength, dropEmpties, budget) {
   const out = [];
   let length = 0;
-  for (let a = 0; a < acc.length; a++) {
-    for (let v = 0; v < values.length; v++) {
-      if (out.length >= max)
-        return out;
-      const expansion = acc[a] + pre + values[v];
-      if (dropEmpties && !expansion)
-        continue;
-      if (length + expansion.length > maxLength)
-        return out;
-      out.push(expansion);
-      length += expansion.length;
+  let nonEmpty;
+  outer:
+    for (let a = 0; a < acc.length; a++) {
+      const prefix2 = acc[a] + pre;
+      let vs = values;
+      if (dropEmpties && !prefix2) {
+        if (!nonEmpty)
+          nonEmpty = values.filter((v) => v);
+        vs = nonEmpty;
+      }
+      for (let v = 0; v < vs.length; v++) {
+        if (out.length >= max)
+          break outer;
+        const expansion = prefix2 + vs[v];
+        if (length + expansion.length > maxLength)
+          break outer;
+        out.push(expansion);
+        length += expansion.length;
+      }
     }
-  }
+  budget.remaining -= out.length;
   return out;
 }
-function expandSequence(body, isAlphaSequence, max, maxLength) {
+function expandSequence(body, isAlphaSequence, max, maxLength, budget) {
   const n = body.split(/\.\./);
   const N = [];
   if (n[0] === void 0 || n[1] === void 0) {
@@ -9589,8 +9804,13 @@ function expandSequence(body, isAlphaSequence, max, maxLength) {
     test = gte;
   }
   const pad = n.some(isPadded);
+  const cost = pad ? width : 1;
   let length = 0;
   for (let i = x; test(i, y) && N.length < max; i += incr) {
+    budget.remaining -= cost;
+    if (budget.remaining < 0) {
+      return void 0;
+    }
     let c;
     if (isAlphaSequence) {
       c = String.fromCharCode(i);
@@ -9618,7 +9838,8 @@ function expandSequence(body, isAlphaSequence, max, maxLength) {
   }
   return N;
 }
-function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
+function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, budget, isTop) {
+  budget.remaining -= CALL_STEPS;
   if (depth > maxDepth) {
     return [str];
   }
@@ -9626,18 +9847,24 @@ function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
   let rewrites = 0;
   let dropEmpties = false;
   let firstGroup = true;
+  let masked = str;
   for (; ; ) {
-    const m = balanced("{", "}", str);
+    const m = balancedWithBudget(str, masked, budget);
     if (!m) {
-      return combine(acc, str, [""], max, maxLength, dropEmpties);
+      return combine(acc, str, [""], max, maxLength, dropEmpties, budget);
+    }
+    if (m.unmatched) {
+      masked = maskUnmatchedOpens(masked, budget);
     }
     const pre = m.pre;
+    const literal3 = () => combine(acc, pre + "{" + m.body + "}" + m.post, [""], max, maxLength, dropEmpties, budget);
     if (/\$$/.test(pre)) {
-      acc = combine(acc, pre + "{" + m.body + "}", [""], max, maxLength, dropEmpties && !m.post.length);
+      acc = combine(acc, pre + "{" + m.body + "}", [""], max, maxLength, dropEmpties && !m.post.length, budget);
       firstGroup = false;
       if (!m.post.length)
         break;
       str = m.post;
+      masked = masked.slice(m.end + 1);
       continue;
     }
     const isNumericSequence = /^-?\d+\.\.-?\d+(?:\.\.-?\d+)?$/.test(m.body);
@@ -9645,13 +9872,14 @@ function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
     const isSequence = isNumericSequence || isAlphaSequence;
     const isOptions = m.body.indexOf(",") >= 0;
     if (!isSequence && !isOptions) {
-      if (rewrites < maxRewrites && m.post.match(/,(?!,).*\}/)) {
+      if (rewrites < maxRewrites && commaSetFollows(m.post, budget)) {
         rewrites++;
         str = m.pre + "{" + m.body + escClose + m.post;
+        masked = masked.slice(0, m.end) + escClose + masked.slice(m.end + 1);
         isTop = true;
         continue;
       }
-      return combine(acc, pre + "{" + m.body + "}" + m.post, [""], max, maxLength, dropEmpties);
+      return literal3();
     }
     if (firstGroup) {
       dropEmpties = isTop && !isSequence;
@@ -9659,16 +9887,30 @@ function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
     }
     let values;
     if (isSequence) {
-      values = expandSequence(m.body, isAlphaSequence, max, maxLength);
+      values = expandSequence(m.body, isAlphaSequence, max, maxLength, budget);
+      if (!values) {
+        return literal3();
+      }
     } else {
-      let n = parseCommaParts(m.body);
+      let n = parseCommaParts(m.body, budget);
+      if (!n) {
+        return literal3();
+      }
       if (n.length === 1 && n[0] !== void 0) {
-        n = expand_(n[0], max, maxLength, maxDepth, depth + 1, maxRewrites, false).map(embrace);
+        n = expand_(n[0], max, maxLength, maxDepth, depth + 1, maxRewrites, budget, false).map(embrace);
+        if (budget.remaining < 0) {
+          return literal3();
+        }
         if (n.length === 1) {
-          acc = combine(acc, pre + n[0], [""], max, maxLength, dropEmpties && !m.post.length);
+          const next2 = combine(acc, pre + n[0], [""], max, maxLength, dropEmpties && !m.post.length, budget);
+          if (budget.remaining < 0) {
+            return literal3();
+          }
+          acc = next2;
           if (!m.post.length)
             break;
           str = m.post;
+          masked = masked.slice(m.end + 1);
           continue;
         }
       }
@@ -9682,7 +9924,10 @@ function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
       let valuesLength = 0;
       outer:
         for (let j = 0; j < n.length; j++) {
-          const expanded = expand_(n[j], max, maxLength, maxDepth, depth + 1, maxRewrites, false);
+          const expanded = expand_(n[j], max, maxLength, maxDepth, depth + 1, maxRewrites, budget, false);
+          if (budget.remaining < 0) {
+            return literal3();
+          }
           for (let k = 0; k < expanded.length; k++) {
             const v = expanded[k];
             if (dropsEmpties && !v)
@@ -9695,10 +9940,15 @@ function expand_(str, max, maxLength, maxDepth, depth, maxRewrites, isTop) {
           }
         }
     }
-    acc = combine(acc, pre, values, max, maxLength, dropEmpties && !m.post.length);
+    const next = combine(acc, pre, values, max, maxLength, dropEmpties && !m.post.length, budget);
+    if (budget.remaining < 0) {
+      return literal3();
+    }
+    acc = next;
     if (!m.post.length)
       break;
     str = m.post;
+    masked = masked.slice(m.end + 1);
   }
   return acc;
 }
@@ -41980,7 +42230,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-ee411f2da1e98268f8bab10b2d65969d234b6690`;
+var localVersion = `0.0.0-e5e802e7fabd8e5f1c3d66c9fa676856168acaa8`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
