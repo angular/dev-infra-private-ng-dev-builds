@@ -1,4 +1,4 @@
-import { Formatter } from './base-formatter.js';
+import { Formatter, FormatterAction } from './base-formatter.js';
 export declare class Buildifier extends Formatter {
     readonly name = "buildifier";
     binaryFilePath: string;
@@ -13,4 +13,5 @@ export declare class Buildifier extends Formatter {
             callback: (file: string, code: number | NodeJS.Signals, _: string, stderr: string) => boolean;
         };
     };
+    getFailureLine(file: string, action: FormatterAction, _code: number | NodeJS.Signals, stdout: string, stderr: string): Promise<number | undefined>;
 }

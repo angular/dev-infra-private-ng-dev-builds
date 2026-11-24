@@ -16131,6 +16131,7 @@ import { cpus } from "os";
 import { lstatSync } from "fs";
 
 // ng-dev/format/formatters/buildifier.js
+import { readFileSync as readFileSync3 } from "fs";
 import { join } from "path";
 
 // ng-dev/format/formatters/base-formatter.js
@@ -16165,7 +16166,35 @@ var Formatter = class {
   getFileMatcher() {
     return this.config[this.name] ? this.matchers : [];
   }
+  async getFailureLine(_file2, _action, _code, _stdout, _stderr) {
+    return void 0;
+  }
 };
+function findFirstDifferingLine(original, formatted) {
+  if (original === formatted) {
+    return void 0;
+  }
+  const splitLines = (content) => content === "" ? [] : content.replace(/\r?\n$/, "").split(/\r?\n/);
+  const originalLines = splitLines(original);
+  const formattedLines = splitLines(formatted);
+  const maxOriginalLine = Math.max(originalLines.length, 1);
+  const maxLines = Math.max(originalLines.length, formattedLines.length);
+  for (let i = 0; i < maxLines; i++) {
+    if (originalLines[i] !== formattedLines[i]) {
+      return Math.min(i + 1, maxOriginalLine);
+    }
+  }
+  const splitRawLines = (content) => content === "" ? [] : content.replace(/\n$/, "").split("\n");
+  const originalRawLines = splitRawLines(original);
+  const formattedRawLines = splitRawLines(formatted);
+  const maxRawLines = Math.max(originalRawLines.length, formattedRawLines.length);
+  for (let i = 0; i < maxRawLines; i++) {
+    if (originalRawLines[i] !== formattedRawLines[i]) {
+      return Math.min(i + 1, maxOriginalLine);
+    }
+  }
+  return maxOriginalLine;
+}
 
 // ng-dev/format/formatters/buildifier.js
 var Buildifier = class extends Formatter {
@@ -16196,10 +16225,52 @@ var Buildifier = class extends Formatter {
       }
     };
   }
+  async getFailureLine(file2, action, _code, stdout, stderr) {
+    const syntaxErrorMatch = /:(\d+):\d+:/.exec(stderr);
+    if (syntaxErrorMatch) {
+      const line = Number(syntaxErrorMatch[1]);
+      return line >= 1 ? line : void 0;
+    }
+    if (action !== "check") {
+      return void 0;
+    }
+    const candidateLines = [];
+    let needsFormatDiff = false;
+    try {
+      const parsed = JSON.parse(stdout || "{}");
+      const fileResult = parsed.files?.[0];
+      for (const warning of fileResult?.warnings ?? []) {
+        const line = warning.start?.line;
+        if (typeof line === "number" && line >= 1) {
+          candidateLines.push(line);
+        }
+      }
+      needsFormatDiff = fileResult?.formatted === false && fileResult?.valid !== false;
+    } catch {
+      return void 0;
+    }
+    if (needsFormatDiff) {
+      try {
+        const { status, stdout: formattedStdout } = await ChildProcess.spawn(this.binaryFilePath, ["--mode=print_if_changed", "--", file2], { suppressErrorOnFailingExitCode: true, mode: "silent" });
+        if (status === 0) {
+          const original = readFileSync3(file2, "utf8");
+          if (formattedStdout !== "" || original.trim() === "") {
+            const diffLine = findFirstDifferingLine(original, formattedStdout);
+            if (diffLine !== void 0) {
+              candidateLines.push(diffLine);
+            }
+          }
+        }
+      } catch {
+      }
+    }
+    return candidateLines.length > 0 ? Math.min(...candidateLines) : void 0;
+  }
 };
 var BAZEL_WARNING_FLAG = `--warnings=attr-cfg,attr-license,attr-non-empty,attr-output-default,attr-single-file,ctx-args,depset-iteration,depset-union,dict-concatenation,duplicated-name,filetype,git-repository,http-archive,integer-division,load,native-build,native-package,output-group,package-name,package-on-top,positional-args,redefined-variable,repository-name,string-iteration,unused-variable`;
 
 // ng-dev/format/formatters/prettier.js
+import { readFileSync as readFileSync4 } from "fs";
 import { join as join2 } from "path";
 var Prettier = class extends Formatter {
   constructor() {
@@ -16240,6 +16311,29 @@ var Prettier = class extends Formatter {
         }
       }
     };
+  }
+  async getFailureLine(file2, action, _code, _stdout, stderr) {
+    const syntaxErrorMatch = /\((\d+):\d+\)/.exec(stderr);
+    if (syntaxErrorMatch) {
+      const line = Number(syntaxErrorMatch[1]);
+      return line >= 1 ? line : void 0;
+    }
+    if (action !== "check") {
+      return void 0;
+    }
+    try {
+      const args = this.configPath ? ["--config", this.configPath, "--", file2] : ["--", file2];
+      const { status, stdout } = await ChildProcess.spawn(this.binaryFilePath, args, {
+        suppressErrorOnFailingExitCode: true,
+        mode: "silent"
+      });
+      if (status !== 0) {
+        return void 0;
+      }
+      return findFirstDifferingLine(readFileSync4(file2, "utf8"), stdout);
+    } catch {
+      return void 0;
+    }
   }
 };
 
@@ -16293,10 +16387,11 @@ function runFormatterInParallel(allFiles, action) {
       ChildProcess.spawn(spawnCmd, spawnArgs, {
         suppressErrorOnFailingExitCode: true,
         mode: "silent"
-      }).then(({ stdout, stderr, status }) => {
+      }).then(async ({ stdout, stderr, status }) => {
         const failed = formatter.callbackFor(action)(file2, status, stdout, stderr);
         if (failed) {
-          failures.push({ filePath: file2, message: stderr });
+          const line = await formatter.getFailureLine(file2, action, status, stdout, stderr);
+          failures.push({ filePath: file2, message: stderr, line });
         }
         progressBar.increment(1);
         if (pendingCommands.length) {
@@ -16324,8 +16419,9 @@ async function formatFiles(files) {
   }
   if (failures.length !== 0) {
     Log.error(`The following files could not be formatted:`);
-    failures.forEach(({ filePath, message }) => {
-      Log.info(`  \u2022 ${filePath}: ${message}`);
+    failures.forEach(({ filePath, line, message }) => {
+      const location = line !== void 0 ? `${filePath}:${line}` : filePath;
+      Log.error(`  \u2022 ${location}: ${message}`);
     });
     Log.error(`Formatting failed, see errors above for more information.`);
     return 1;
@@ -16341,8 +16437,9 @@ async function checkFiles(files) {
   }
   if (failures.length) {
     Log.warn("\nThe following files are out of format:");
-    for (const { filePath } of failures) {
-      Log.warn(`  \u2022 ${filePath}`);
+    for (const { filePath, line } of failures) {
+      const location = line !== void 0 ? `${filePath}:${line}` : filePath;
+      Log.warn(`  \u2022 ${location}: File is out of format`);
     }
     Log.warn();
     let runFormatter = false;
@@ -16457,7 +16554,7 @@ function buildFormatParser(localYargs) {
 }
 
 // ng-dev/misc/sync-module-bazel/cli.js
-import { existsSync as existsSync2, readFileSync as readFileSync3, writeFileSync as writeFileSync3 } from "node:fs";
+import { existsSync as existsSync2, readFileSync as readFileSync5, writeFileSync as writeFileSync3 } from "node:fs";
 import { join as join4 } from "node:path";
 
 // ng-dev/misc/sync-module-bazel/sync-module-bazel.js
@@ -16627,15 +16724,15 @@ async function handler10() {
   if (!existsSync2(nvmrcPath)) {
     nvmrcPath = join4(determineRepoBaseDirFromCwd(), ".nvmrc");
   }
-  const packageJson = JSON.parse(readFileSync3(packageJsonPath, "utf8"));
+  const packageJson = JSON.parse(readFileSync5(packageJsonPath, "utf8"));
   const pnpmVersion = packageJson.engines?.pnpm;
   const tsVersion = packageJson.dependencies?.typescript || packageJson.devDependencies?.typescript;
   let nvmrcVersion;
   try {
-    nvmrcVersion = readFileSync3(nvmrcPath, "utf8").trim().replace(/^v/, "");
+    nvmrcVersion = readFileSync5(nvmrcPath, "utf8").trim().replace(/^v/, "");
   } catch {
   }
-  const originalBazelContent = readFileSync3(moduleBazelPath, "utf8");
+  const originalBazelContent = readFileSync5(moduleBazelPath, "utf8");
   let moduleBazelContent = originalBazelContent;
   if (pnpmVersion) {
     moduleBazelContent = await syncPnpm(moduleBazelContent, pnpmVersion);
@@ -36551,12 +36648,12 @@ function buildMiscParser(localYargs) {
 
 // ng-dev/ngbot/verify.js
 var import_yaml2 = __toESM(require_dist());
-import { readFileSync as readFileSync4 } from "fs";
+import { readFileSync as readFileSync6 } from "fs";
 import { resolve as resolve3 } from "path";
 async function verify() {
   const git = await GitClient.get();
   const NGBOT_CONFIG_YAML_PATH = resolve3(git.baseDir, ".github/angular-robot.yml");
-  const ngBotYaml = readFileSync4(NGBOT_CONFIG_YAML_PATH, "utf8");
+  const ngBotYaml = readFileSync6(NGBOT_CONFIG_YAML_PATH, "utf8");
   try {
     (0, import_yaml2.parse)(ngBotYaml);
     Log.info(green("\u2714  Valid NgBot YAML config"));
@@ -39223,7 +39320,7 @@ function buildPrParser(localYargs) {
 }
 
 // ng-dev/pullapprove/verify.js
-import { readFileSync as readFileSync5 } from "fs";
+import { readFileSync as readFileSync7 } from "fs";
 import { resolve as resolve4 } from "path";
 
 // ng-dev/pullapprove/logging.js
@@ -39584,7 +39681,7 @@ async function verify2() {
   const git = await GitClient.get();
   const PULL_APPROVE_YAML_PATH = resolve4(git.baseDir, ".pullapprove.yml");
   const REPO_FILES = git.allFiles();
-  const pullApproveYamlRaw = readFileSync5(PULL_APPROVE_YAML_PATH, "utf8");
+  const pullApproveYamlRaw = readFileSync7(PULL_APPROVE_YAML_PATH, "utf8");
   const groups = getGroupsFromYaml(pullApproveYamlRaw);
   const groupsSkipped = groups.filter((group) => !group.conditions.length);
   const groupsWithConditions = groups.filter((group) => !!group.conditions.length);
@@ -40755,7 +40852,7 @@ function santizeCommitMessage(content) {
 
 // ng-dev/release/notes/changelog.js
 var import_semver3 = __toESM(require_semver());
-import { existsSync as existsSync3, readFileSync as readFileSync6, writeFileSync as writeFileSync4 } from "fs";
+import { existsSync as existsSync3, readFileSync as readFileSync8, writeFileSync as writeFileSync4 } from "fs";
 import { join as join9 } from "path";
 var changelogPath = "CHANGELOG.md";
 var changelogArchivePath = "CHANGELOG_ARCHIVE.md";
@@ -40838,7 +40935,7 @@ var Changelog = class {
     if (!existsSync3(path10)) {
       return [];
     }
-    return readFileSync6(path10, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
+    return readFileSync8(path10, { encoding: "utf8" }).split(splitMarker).filter((entry) => entry.trim().length !== 0).map(parseChangelogEntry);
   }
 };
 function parseChangelogEntry(content) {
@@ -41115,7 +41212,7 @@ function getErrorMessage2(error62) {
 
 // ng-dev/release/publish/external-commands.js
 var import_semver7 = __toESM(require_semver());
-import { existsSync as existsSync5, readFileSync as readFileSync7 } from "fs";
+import { existsSync as existsSync5, readFileSync as readFileSync9 } from "fs";
 import { dirname as dirname4, join as join11, resolve as resolve5 } from "path";
 import os from "os";
 
@@ -41217,7 +41314,7 @@ var ExternalCommands = class {
       return;
     }
     try {
-      const nodeVersionFromNvmrc = readFileSync7(join11(projectDir, ".nvmrc"), "utf8").trim();
+      const nodeVersionFromNvmrc = readFileSync9(join11(projectDir, ".nvmrc"), "utf8").trim();
       if (nodeVersionFromNvmrc.includes("/") || nodeVersionFromNvmrc.includes("\\") || nodeVersionFromNvmrc.includes("..")) {
         throw new Error("Invalid .nvmrc content: contains path traversal characters");
       }
@@ -42413,7 +42510,7 @@ var actions = [
 // ng-dev/utils/version-check.js
 import * as path6 from "path";
 import * as fs4 from "fs";
-var localVersion = `0.0.0-7d2d4a84c91ac77dbaed99bf860b39cef800287b`;
+var localVersion = `0.0.0-f715124457316f652e0391b8c1893fcc29bae700`;
 var verified = false;
 async function ngDevVersionMiddleware() {
   if (verified) {
@@ -43765,11 +43862,11 @@ function buildReleaseParser(localYargs) {
 
 // ng-dev/ts-circular-dependencies/index.js
 var import_fast_glob4 = __toESM(require_out4());
-import { existsSync as existsSync10, readFileSync as readFileSync11, writeFileSync as writeFileSync6 } from "fs";
+import { existsSync as existsSync10, readFileSync as readFileSync13, writeFileSync as writeFileSync6 } from "fs";
 import { isAbsolute as isAbsolute2, relative as relative2, resolve as resolve9 } from "path";
 
 // ng-dev/ts-circular-dependencies/analyzer.js
-import { readFileSync as readFileSync10 } from "fs";
+import { readFileSync as readFileSync12 } from "fs";
 import { dirname as dirname5, join as join18, resolve as resolve7 } from "path";
 import ts3 from "typescript";
 
@@ -43840,7 +43937,7 @@ var Analyzer = class {
     if (this._sourceFileCache.has(resolvedPath)) {
       return this._sourceFileCache.get(resolvedPath);
     }
-    const fileContent = readFileSync10(resolvedPath, "utf8");
+    const fileContent = readFileSync12(resolvedPath, "utf8");
     const sourceFile = ts3.createSourceFile(resolvedPath, fileContent, ts3.ScriptTarget.Latest, false);
     this._sourceFileCache.set(resolvedPath, sourceFile);
     return sourceFile;
@@ -44060,7 +44157,7 @@ function main(approve, config2, printWarnings) {
     Log.error(`x  Could not find golden file: ${goldenFile}`);
     return 1;
   }
-  const expected = goldenFile ? JSON.parse(readFileSync11(goldenFile, "utf8")) : [];
+  const expected = goldenFile ? JSON.parse(readFileSync13(goldenFile, "utf8")) : [];
   const { fixedCircularDeps, newCircularDeps } = compareGoldens(actual, expected);
   const isMatching = fixedCircularDeps.length === 0 && newCircularDeps.length === 0;
   if (isMatching) {

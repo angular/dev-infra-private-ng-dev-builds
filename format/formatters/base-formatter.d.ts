@@ -21,5 +21,7 @@ export declare abstract class Formatter {
     callbackFor(action: FormatterAction): CallbackFunc;
     isEnabled(): boolean;
     getFileMatcher(): string[];
+    getFailureLine(_file: string, _action: FormatterAction, _code: number | NodeJS.Signals, _stdout: string, _stderr: string): Promise<number | undefined>;
 }
+export declare function findFirstDifferingLine(original: string, formatted: string): number | undefined;
 export {};

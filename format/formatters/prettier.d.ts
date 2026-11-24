@@ -1,4 +1,4 @@
-import { Formatter } from './base-formatter.js';
+import { Formatter, FormatterAction } from './base-formatter.js';
 export declare class Prettier extends Formatter {
     readonly name = "prettier";
     binaryFilePath: string;
@@ -14,4 +14,5 @@ export declare class Prettier extends Formatter {
             callback: (file: string, code: number | NodeJS.Signals, _: string, stderr: string) => boolean;
         };
     };
+    getFailureLine(file: string, action: FormatterAction, _code: number | NodeJS.Signals, _stdout: string, stderr: string): Promise<number | undefined>;
 }
