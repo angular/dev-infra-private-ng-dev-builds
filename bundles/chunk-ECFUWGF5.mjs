@@ -2274,9 +2274,9 @@ var require_cli_width = __commonJS({
   }
 });
 
-// node_modules/.aspect_rules_js/mute-stream@4.0.0/node_modules/mute-stream/lib/index.js
+// node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js
 var require_lib2 = __commonJS({
-  "node_modules/.aspect_rules_js/mute-stream@4.0.0/node_modules/mute-stream/lib/index.js"(exports, module) {
+  "node_modules/.aspect_rules_js/mute-stream@3.0.0/node_modules/mute-stream/lib/index.js"(exports, module) {
     var Stream = __require("stream");
     var MuteStream2 = class extends Stream {
       #isTTY = null;
@@ -24979,7 +24979,7 @@ function isNodeJSWrappedError(value, errorType) {
   return value instanceof errorType;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/key.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/key.js
 var keybindings = ["emacs", "vim"];
 var keybindingLookup = new Set(keybindings);
 function isKeybinding(value) {
@@ -25009,7 +25009,7 @@ var isTabKey = (key) => key.name === "tab";
 var isNumberKey = (key) => "1234567890".includes(key.name);
 var isEnterKey = (key) => key.name === "enter" || key.name === "return";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/errors.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/errors.js
 var AbortPromptError = class extends Error {
   name = "AbortPromptError";
   message = "Prompt was aborted";
@@ -25032,11 +25032,12 @@ var ValidationError = class extends Error {
   name = "ValidationError";
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-state.js
 import { AsyncResource as AsyncResource2 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/hook-engine.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/hook-engine.js
 import { AsyncLocalStorage, AsyncResource } from "node:async_hooks";
+var nativeQueueMicrotask = globalThis.queueMicrotask;
 var hookStorage = new AsyncLocalStorage();
 function createStore(rl) {
   const store = {
@@ -25046,7 +25047,8 @@ function createStore(rl) {
     hooksEffect: [],
     index: 0,
     handleChange() {
-    }
+    },
+    deferredPaint: null
   };
   return store;
 }
@@ -25076,17 +25078,39 @@ function withUpdates(fn) {
     const store = getStore();
     let shouldUpdate = false;
     const oldHandleChange = store.handleChange;
-    store.handleChange = () => {
+    const recordChange = () => {
       shouldUpdate = true;
     };
+    store.handleChange = recordChange;
     const returnValue = fn(...args);
     if (shouldUpdate) {
+      let flushedUpdate = false;
+      store.handleChange = () => {
+        flushedUpdate = true;
+      };
       oldHandleChange();
+      store.handleChange = oldHandleChange;
+      if (flushedUpdate) {
+        scheduleDeferredPaint(store, oldHandleChange);
+      }
+    } else {
+      store.handleChange = oldHandleChange;
     }
-    store.handleChange = oldHandleChange;
     return returnValue;
   };
   return AsyncResource.bind(wrapped);
+}
+function scheduleDeferredPaint(store, paint) {
+  if (store.deferredPaint !== null)
+    return;
+  store.deferredPaint = AsyncResource.bind(paint);
+  nativeQueueMicrotask(() => {
+    const pending = store.deferredPaint;
+    if (pending === null)
+      return;
+    store.deferredPaint = null;
+    pending();
+  });
 }
 function withPointer(cb) {
   const store = getStore();
@@ -25136,10 +25160,11 @@ var effectScheduler = {
     });
     store.hooksEffect.length = 0;
     store.hooksCleanup.length = 0;
+    store.deferredPaint = null;
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-state.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-state.js
 function isFactory(value) {
   return typeof value === "function";
 }
@@ -25165,7 +25190,7 @@ function useState(defaultValue) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-effect.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-effect.js
 function useEffect(cb, depArray) {
   withPointer((pointer) => {
     const oldDeps = pointer.get();
@@ -25177,10 +25202,10 @@ function useEffect(cb, depArray) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/theme.js
 import { styleText } from "node:util";
 
-// node_modules/.aspect_rules_js/@inquirer+figures@2.1.0/node_modules/@inquirer/figures/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+figures@2.1.1/node_modules/@inquirer/figures/dist/index.js
 import process2 from "node:process";
 function isUnicodeSupported() {
   if (!process2.platform.startsWith("win")) {
@@ -25473,7 +25498,7 @@ var figures = shouldUseMain ? mainSymbols : fallbackSymbols;
 var dist_default = figures;
 var replacements = Object.entries(specialMainSymbols);
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/theme.js
 var defaultTheme = {
   prefix: {
     idle: styleText("blue", "?"),
@@ -25501,7 +25526,7 @@ function getDefaultTheme() {
   };
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/make-theme.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/make-theme.js
 function isPlainObject3(value) {
   if (typeof value !== "object" || value === null)
     return false;
@@ -25531,7 +25556,7 @@ function makeTheme(...themes) {
   return deepMerge(...themesToMerge);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-prefix.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-prefix.js
 function usePrefix({ status = "idle", theme }) {
   const [showLoader, setShowLoader] = useState(false);
   const [tick, setTick] = useState(0);
@@ -25562,7 +25587,7 @@ function usePrefix({ status = "idle", theme }) {
   return typeof prefix === "string" ? prefix : prefix[iconName] ?? prefix["idle"];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-memo.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-memo.js
 function useMemo(fn, dependencies) {
   return withPointer((pointer) => {
     const prev = pointer.get();
@@ -25575,12 +25600,12 @@ function useMemo(fn, dependencies) {
   });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-ref.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-ref.js
 function useRef(val) {
   return useState({ current: val })[0];
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-keypress.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/use-keypress.js
 function useKeypress(userHandler) {
   const signal = useRef(userHandler);
   signal.current = userHandler;
@@ -25599,7 +25624,7 @@ function useKeypress(userHandler) {
   }, []);
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/utils.js
 var import_cli_width = __toESM(require_cli_width());
 
 // node_modules/.aspect_rules_js/fast-string-truncated-width@3.0.3/node_modules/fast-string-truncated-width/dist/utils.js
@@ -25939,15 +25964,24 @@ function wrapAnsi(string, columns, options) {
   return String(string).normalize().split(CRLF_OR_LF).map((line) => exec(line, columns, options)).join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/utils.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/utils.js
 function breakLines(content, width) {
-  return content.split("\n").flatMap((line) => wrapAnsi(line, width, { trim: false, wordWrap: false }).split("\n").map((str) => str.trimEnd())).join("\n");
+  return wrapContent(content, width).text;
+}
+function wrapContent(content, width) {
+  const wrappedLines = content.split("\n").map((line) => wrapAnsi(line, width, { trim: false, wordWrap: false }).split("\n"));
+  const finalLine = wrappedLines.at(-1) ?? [];
+  return {
+    text: wrappedLines.flat().map((line) => line.trimEnd()).join("\n"),
+    lastRow: finalLine.at(-1) ?? "",
+    finalLineRows: finalLine.length
+  };
 }
 function readlineWidth() {
   return (0, import_cli_width.default)({ defaultWidth: 80, output: readline().output });
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/pagination/use-pagination.js
 function usePointerPosition({ active, renderedItems, pageSize, loop }) {
   const state = useRef({
     lastPointer: active,
@@ -26036,11 +26070,11 @@ function usePagination({ items, active, renderItem, pageSize, loop = true }) {
   return pageBuffer.filter((line) => typeof line === "string").join("\n");
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 import * as readline2 from "node:readline";
 import { AsyncResource as AsyncResource3 } from "node:async_hooks";
 
-// node_modules/.aspect_rules_js/@inquirer+type@4.3.0_@types+node@24.19.2/node_modules/@inquirer/type/dist/utils.js
+// node_modules/.aspect_rules_js/@inquirer+type@4.3.1_@types+node@24.19.2/node_modules/@inquirer/type/dist/utils.js
 function withResolver() {
   let resolve2;
   let reject;
@@ -26051,7 +26085,7 @@ function withResolver() {
   return { promise, resolve: resolve2, reject };
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 var import_mute_stream = __toESM(require_lib2());
 
 // node_modules/.aspect_rules_js/signal-exit@4.1.0/node_modules/signal-exit/dist/mjs/signals.js
@@ -26305,10 +26339,10 @@ var {
   unload
 } = signalExitWrap(processOk(process3) ? new SignalExit(process3) : new SignalExitFallback());
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
 import { stripVTControlCharacters } from "node:util";
 
-// node_modules/.aspect_rules_js/@inquirer+ansi@2.1.0/node_modules/@inquirer/ansi/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+ansi@2.1.1/node_modules/@inquirer/ansi/dist/index.js
 var ESC2 = "\x1B[";
 var cursorLeft = ESC2 + "G";
 var cursorHide = ESC2 + "?25l";
@@ -26324,7 +26358,7 @@ var cursorTo = (x, y) => {
 var eraseLine = ESC2 + "2K";
 var eraseLines = (lines) => lines > 0 ? (eraseLine + cursorUp(1)).repeat(lines - 1) + eraseLine + cursorLeft : "";
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/screen-manager.js
 var height = (content) => content.split("\n").length;
 var lastLine = (content) => content.split("\n").pop() ?? "";
 var ScreenManager = class {
@@ -26352,13 +26386,16 @@ var ScreenManager = class {
     this.rl.setPrompt(prompt);
     this.cursorPos = this.rl.getCursorPos();
     const width = readlineWidth();
-    content = breakLines(content, width);
+    const wrapped = wrapContent(content, width);
+    content = wrapped.text;
     bottomContent = breakLines(bottomContent, width);
-    if (rawPromptLine.length % width === 0) {
+    const lastRowWidth = dist_default3(stripVTControlCharacters(wrapped.lastRow));
+    const atRightEdge = lastRowWidth >= width;
+    if (atRightEdge || rawPromptLine.length === 0) {
       content += "\n";
     }
     let output = content + (bottomContent ? "\n" + bottomContent : "");
-    const promptLineUpDiff = Math.floor(rawPromptLine.length / width) - this.cursorPos.rows;
+    const promptLineUpDiff = wrapped.finalLineRows - 1 + Number(atRightEdge) - this.cursorPos.rows;
     const bottomContentHeight = promptLineUpDiff + (bottomContent ? height(bottomContent) : 0);
     if (bottomContentHeight > 0)
       output += cursorUp(bottomContentHeight);
@@ -26385,7 +26422,7 @@ var ScreenManager = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/create-prompt.js
 import path from "node:path";
 var nativeSetImmediate = globalThis.setImmediate;
 var nativeClearImmediate = globalThis.clearImmediate;
@@ -26457,7 +26494,9 @@ function createPrompt(view) {
         rejectPrompt(new ExitPromptError(`User force closed the prompt with ${code} ${signal2}`));
       }));
       cleanups.add(listenTo(rl, "SIGINT", () => rejectPrompt(new ExitPromptError(`User force closed the prompt with SIGINT`))));
-      cleanups.add(listenTo(rl, "close", clearEffects));
+      const isTTY = "isTTY" in input && input.isTTY;
+      const onReadlineClose = isTTY ? () => rejectPrompt(new ExitPromptError("User force closed the prompt with EOF")) : clearEffects;
+      cleanups.add(listenTo(rl, "close", onReadlineClose));
       const startCycle = () => {
         cleanups.add(listenTo(rl.input, "keypress", () => screen.checkCursorPos()));
         let pendingDone = null;
@@ -26493,7 +26532,7 @@ function createPrompt(view) {
           }
         });
       };
-      if ("readableFlowing" in input && input.isTTY) {
+      if ("readableFlowing" in input && isTTY) {
         const immediate = nativeSetImmediate(startCycle);
         cleanups.add(() => nativeClearImmediate(immediate));
       } else {
@@ -26505,7 +26544,7 @@ function createPrompt(view) {
   return prompt;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+core@12.1.0_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/Separator.js
+// node_modules/.aspect_rules_js/@inquirer+core@12.1.1_@types+node@24.19.2/node_modules/@inquirer/core/dist/lib/Separator.js
 import { styleText as styleText2 } from "node:util";
 var Separator = class {
   separator = styleText2("dim", Array.from({ length: 15 }).join(dist_default.line));
@@ -26520,7 +26559,7 @@ var Separator = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+checkbox@5.3.0_@types+node@24.19.2/node_modules/@inquirer/checkbox/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+checkbox@5.3.1_@types+node@24.19.2/node_modules/@inquirer/checkbox/dist/index.js
 import { styleText as styleText3 } from "node:util";
 var checkboxTheme = {
   icon: {
@@ -26643,8 +26682,10 @@ var dist_default4 = createPrompt((config, done) => {
       }
     } else if (key.name === shortcuts.all) {
       const selectAll = items.some((choice) => isSelectable(choice) && !choice.checked);
+      setError(void 0);
       setItems(items.map(check(selectAll)));
     } else if (key.name === shortcuts.invert) {
+      setError(void 0);
       setItems(items.map(toggle));
     } else if (isNumberKey(key)) {
       const selectedIndex = Number(key.name) - 1;
@@ -26656,9 +26697,14 @@ var dist_default4 = createPrompt((config, done) => {
         return selectableIndex === selectedIndex;
       });
       const selectedItem = items[position];
-      if (selectedItem && isSelectable(selectedItem)) {
-        setActive(position);
-        setItems(items.map((choice, i) => i === position ? toggle(choice) : choice));
+      if (selectedItem && !Separator.isSeparator(selectedItem)) {
+        if (selectedItem.disabled) {
+          setError(theme.i18n.disabledError);
+        } else {
+          setError(void 0);
+          setActive(position);
+          setItems(items.map((choice, i) => i === position ? toggle(choice) : choice));
+        }
       }
     }
   });
@@ -26714,7 +26760,7 @@ var dist_default4 = createPrompt((config, done) => {
   return `${lines}${cursorHide}`;
 });
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@3.1.0_@types+node@24.19.2/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@3.1.1_@types+node@24.19.2/node_modules/@inquirer/external-editor/dist/index.js
 var import_chardet = __toESM(require_lib3());
 var import_iconv_lite = __toESM(require_lib4());
 import { spawn, spawnSync as spawnSync2 } from "node:child_process";
@@ -26723,7 +26769,7 @@ import path2 from "node:path";
 import os from "node:os";
 import { randomUUID } from "node:crypto";
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@3.1.0_@types+node@24.19.2/node_modules/@inquirer/external-editor/dist/errors.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@3.1.1_@types+node@24.19.2/node_modules/@inquirer/external-editor/dist/errors.js
 var CreateFileError = class extends Error {
   name = "CreateFileError";
   originalError;
@@ -26757,7 +26803,7 @@ var RemoveFileError = class extends Error {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@3.1.0_@types+node@24.19.2/node_modules/@inquirer/external-editor/dist/parse-editor-command.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@3.1.1_@types+node@24.19.2/node_modules/@inquirer/external-editor/dist/parse-editor-command.js
 function parseEditorCommand(editor) {
   let bin;
   let rest;
@@ -26783,7 +26829,7 @@ function parseEditorCommand(editor) {
   return { bin, args: rest ? rest.split(/\s+/) : [] };
 }
 
-// node_modules/.aspect_rules_js/@inquirer+external-editor@3.1.0_@types+node@24.19.2/node_modules/@inquirer/external-editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+external-editor@3.1.1_@types+node@24.19.2/node_modules/@inquirer/external-editor/dist/index.js
 var editAsync = (text, callbackOrOptions, fileOptions) => {
   const callback = typeof callbackOrOptions === "function" ? callbackOrOptions : void 0;
   const options = typeof callbackOrOptions === "function" ? fileOptions : callbackOrOptions;
@@ -26906,12 +26952,13 @@ var ExternalEditor = class {
   }
 };
 
-// node_modules/.aspect_rules_js/@inquirer+editor@5.4.0_@types+node@24.19.2/node_modules/@inquirer/editor/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+editor@5.5.0_@types+node@24.19.2/node_modules/@inquirer/editor/dist/index.js
 var editorTheme = {
   validationFailureMode: "keep",
   style: {
     loadingMessage: () => "Validating...",
-    waitingMessage: (enterKey) => `Press ${enterKey} to launch your preferred editor.`
+    waitingMessage: (enterKey) => `Press ${enterKey} to launch your preferred editor.`,
+    validationError: "You must provide a valid value"
   }
 };
 var dist_default5 = createPrompt((config, done) => {
@@ -26923,27 +26970,32 @@ var dist_default5 = createPrompt((config, done) => {
   const prefix = usePrefix({ status, theme });
   async function startEditor(rl) {
     rl.pause();
+    let answer;
     try {
-      const answer = await editAsync(value, { postfix, ...fileProps });
+      answer = await editAsync(value, { postfix, ...fileProps });
+    } catch (error2) {
       rl.resume();
-      setStatus("loading");
+      setError(String(error2));
+      return;
+    }
+    rl.resume();
+    setStatus("loading");
+    const validationFailed = (errorMsg2) => {
+      setValue(theme.validationFailureMode === "clear" ? config.default : answer);
+      setError(errorMsg2);
+      setStatus("idle");
+    };
+    try {
       const isValid = await validate(answer);
       if (isValid === true) {
         setError(void 0);
         setStatus("done");
         done(answer);
       } else {
-        if (theme.validationFailureMode === "clear") {
-          setValue(config.default);
-        } else {
-          setValue(answer);
-        }
-        setError(isValid || "You must provide a valid value");
-        setStatus("idle");
+        validationFailed(isValid || theme.style.validationError);
       }
     } catch (error2) {
-      rl.resume();
-      setError(String(error2));
+      validationFailed(String(error2));
     }
   }
   useEffect((rl) => {
@@ -26974,8 +27026,12 @@ var dist_default5 = createPrompt((config, done) => {
   return [[prefix, message, helpTip].filter(Boolean).join(" "), error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+confirm@6.4.0_@types+node@24.19.2/node_modules/@inquirer/confirm/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+confirm@6.4.1_@types+node@24.19.2/node_modules/@inquirer/confirm/dist/index.js
 import { styleText as styleText4 } from "node:util";
+var segmenter = new Intl.Segmenter();
+function keywordInitial(keyword) {
+  return segmenter.segment(keyword).containing(0)?.segment.toLowerCase() ?? "";
+}
 var confirmTheme = {
   keywords: {
     yes: "Yes",
@@ -26984,11 +27040,10 @@ var confirmTheme = {
   },
   style: {
     confirmDefault: (text) => {
-      const first = text[0] ?? "";
-      if (first.toLowerCase() === first.toUpperCase()) {
+      if (text.toLowerCase() === text.toUpperCase()) {
         return styleText4("cyan", text);
       }
-      return first.toUpperCase() + text.slice(1);
+      return text.toUpperCase();
     }
   }
 };
@@ -26999,8 +27054,8 @@ var dist_default6 = createPrompt((config, done) => {
   const theme = makeTheme(confirmTheme, config.theme);
   const prefix = usePrefix({ status, theme });
   const { yes, no } = theme.keywords;
-  const yesHint = (yes[0] ?? "").toLowerCase();
-  const noHint = (no[0] ?? "").toLowerCase();
+  const yesHint = keywordInitial(yes);
+  const noHint = keywordInitial(no);
   const hint = config.default === false ? `${yesHint}/${theme.style.confirmDefault(noHint)}` : `${theme.style.confirmDefault(yesHint)}/${noHint}`;
   function boolToString(value2) {
     return value2 ? yes : no;
@@ -27010,9 +27065,19 @@ var dist_default6 = createPrompt((config, done) => {
     const v = value2.trim().toLowerCase();
     if (v === "")
       return config.default !== false;
-    if (yes.toLowerCase().startsWith(v))
+    const yesKeyword = yes.toLowerCase();
+    const noKeyword = no.toLowerCase();
+    if (v === yesKeyword)
       return true;
-    if (no.toLowerCase().startsWith(v))
+    if (v === noKeyword)
+      return false;
+    if (v === "y" || v === "yes")
+      return true;
+    if (v === "n" || v === "no")
+      return false;
+    if (yesKeyword.startsWith(v))
+      return true;
+    if (noKeyword.startsWith(v))
       return false;
     if ("yes".startsWith(v))
       return true;
@@ -27058,7 +27123,7 @@ var dist_default6 = createPrompt((config, done) => {
   return [`${prefix} ${message}${defaultValue} ${formattedValue}`, error];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+input@5.2.0_@types+node@24.19.2/node_modules/@inquirer/input/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+input@5.2.1_@types+node@24.19.2/node_modules/@inquirer/input/dist/index.js
 var inputTheme = {
   validationFailureMode: "keep"
 };
@@ -27075,7 +27140,7 @@ var dist_default7 = createPrompt((config, done) => {
     if (required && !value2) {
       return "You must provide a value";
     }
-    if (pattern && !pattern.test(value2)) {
+    if (pattern && value2.search(pattern) === -1) {
       return patternError;
     }
     if (typeof config.validate === "function") {
@@ -27092,10 +27157,12 @@ var dist_default7 = createPrompt((config, done) => {
       setStatus("loading");
       const isValid = await validate(answer);
       if (isValid === true) {
+        setError(void 0);
         setValue(answer);
         setStatus("done");
         done(answer);
       } else {
+        rl.clearLine(0);
         if (theme.validationFailureMode === "clear") {
           setValue("");
         } else {
@@ -27143,7 +27210,7 @@ var dist_default7 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.3.0_@types+node@24.19.2/node_modules/@inquirer/number/dist/is-step-of.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.3.1_@types+node@24.19.2/node_modules/@inquirer/number/dist/is-step-of.js
 function toDecimal(value) {
   const [coefficient = "", exponent = "0"] = value.toString().toLowerCase().split("e");
   const [integer = "", fraction = ""] = coefficient.split(".");
@@ -27167,9 +27234,10 @@ function isStepOf(value, step, min) {
   return (valueInteger - minInteger) % stepInteger === 0n;
 }
 
-// node_modules/.aspect_rules_js/@inquirer+number@4.3.0_@types+node@24.19.2/node_modules/@inquirer/number/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+number@4.3.1_@types+node@24.19.2/node_modules/@inquirer/number/dist/index.js
+var PLAIN_DECIMAL = /^[+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?$/;
 function validateNumber(value, { min, max, step }) {
-  if (value == null || Number.isNaN(value)) {
+  if (value == null || !Number.isFinite(value)) {
     return false;
   } else if (value < min || value > max) {
     return `Value must be between ${min} and ${max}`;
@@ -27193,7 +27261,7 @@ var dist_default8 = createPrompt((config, done) => {
     }
     if (isEnterKey(key)) {
       const input = value.trim() || defaultValue;
-      const answer = input === "" ? void 0 : Number(input);
+      const answer = input === "" ? void 0 : PLAIN_DECIMAL.test(input) ? Number(input) : Number.NaN;
       setStatus("loading");
       let isValid = true;
       if (required || answer != null) {
@@ -27210,6 +27278,7 @@ var dist_default8 = createPrompt((config, done) => {
         setStatus("done");
         done(answer);
       } else {
+        rl.clearLine(0);
         rl.write(value);
         setError(isValid || "You must provide a valid numeric value");
         setStatus("idle");
@@ -27245,7 +27314,7 @@ var dist_default8 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+expand@5.2.0_@types+node@24.19.2/node_modules/@inquirer/expand/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+expand@5.2.1_@types+node@24.19.2/node_modules/@inquirer/expand/dist/index.js
 import { styleText as styleText5 } from "node:util";
 function normalizeChoices2(choices) {
   return choices.map((choice) => {
@@ -27280,6 +27349,7 @@ var expand2 = createPrompt((config, done) => {
     if (isEnterKey(event)) {
       const answer = (value.trim() || defaultKey).toLowerCase();
       if (answer === "h" && !expanded) {
+        setValue("");
         setExpanded(true);
       } else {
         const selectedChoice = choices.find((choice) => !Separator.isSeparator(choice) && choice.key === answer);
@@ -27290,6 +27360,7 @@ var expand2 = createPrompt((config, done) => {
         } else if (value === "") {
           setError("Please input a value");
         } else {
+          rl.write(value);
           setError(`"${styleText5("red", value)}" isn't an available option`);
         }
       }
@@ -27342,7 +27413,7 @@ var expand2 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+rawlist@5.4.0_@types+node@24.19.2/node_modules/@inquirer/rawlist/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+rawlist@5.4.1_@types+node@24.19.2/node_modules/@inquirer/rawlist/dist/index.js
 import { styleText as styleText6 } from "node:util";
 var numberRegex = /^\d+$/;
 var rawlistTheme = {
@@ -27369,13 +27440,16 @@ function normalizeChoices3(choices) {
       };
     }
     const name = choice.name ?? String(choice.value);
-    return {
+    const normalizedChoice = {
       value: choice.value,
       name,
       short: choice.short ?? name,
-      key: choice.key ?? String(index),
-      description: choice.description
+      key: choice.key ?? String(index)
     };
+    if (choice.description) {
+      normalizedChoice.description = choice.description;
+    }
+    return normalizedChoice;
   });
 }
 function getSelectedChoice(input, choices) {
@@ -27394,7 +27468,7 @@ var dist_default9 = createPrompt((config, done) => {
   const choices = useMemo(() => normalizeChoices3(config.choices), [config.choices]);
   const [status, setStatus] = useState("idle");
   const [value, setValue] = useState(() => {
-    const defaultChoice = config.default == null ? void 0 : choices.find((choice) => isSelectableChoice(choice) && choice.value === config.default);
+    const defaultChoice = config.default === void 0 ? void 0 : choices.find((choice) => isSelectableChoice(choice) && choice.value === config.default);
     return defaultChoice?.key ?? "";
   });
   const [errorMsg, setError] = useState();
@@ -27419,14 +27493,17 @@ var dist_default9 = createPrompt((config, done) => {
       } else if (value === "") {
         setError("Please input a value");
       } else {
+        rl.write(value);
         setError(`"${styleText6("red", value)}" isn't an available option`);
       }
     } else if (isUpKey(key, keybindings2) || isDownKey(key, keybindings2)) {
+      const lineHadInput = rl.line !== "";
       rl.clearLine(0);
       const [selectedChoice2, active] = getSelectedChoice(value, choices);
       if (!selectedChoice2) {
         const firstChoice = isDownKey(key, keybindings2) ? choices.find(isSelectableChoice) : choices.findLast(isSelectableChoice);
         setValue(firstChoice.key);
+        rl.write(firstChoice.key);
       } else if (loop || isUpKey(key, keybindings2) && active !== bounds.first || isDownKey(key, keybindings2) && active !== bounds.last) {
         const offset = isUpKey(key, keybindings2) ? -1 : 1;
         let next = active;
@@ -27436,6 +27513,9 @@ var dist_default9 = createPrompt((config, done) => {
           nextChoice = choices[next];
         } while (!isSelectableChoice(nextChoice));
         setValue(nextChoice.key);
+        rl.write(nextChoice.key);
+      } else if (lineHadInput) {
+        rl.write(value);
       }
     } else {
       setValue(rl.line);
@@ -27471,7 +27551,7 @@ var dist_default9 = createPrompt((config, done) => {
   ];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+password@5.3.0_@types+node@24.19.2/node_modules/@inquirer/password/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+password@5.3.1_@types+node@24.19.2/node_modules/@inquirer/password/dist/index.js
 import { styleText as styleText7 } from "node:util";
 var passwordTheme = {
   style: {
@@ -27500,6 +27580,7 @@ var dist_default10 = createPrompt((config, done) => {
         setStatus("done");
         done(answer);
       } else {
+        rl.clearLine(0);
         rl.write(value);
         setError(isValid || "You must provide a valid value");
         setStatus("idle");
@@ -27535,7 +27616,7 @@ var dist_default10 = createPrompt((config, done) => {
   return [content, bottomContent];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+search@4.4.0_@types+node@24.19.2/node_modules/@inquirer/search/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+search@4.4.1_@types+node@24.19.2/node_modules/@inquirer/search/dist/index.js
 import { styleText as styleText8 } from "node:util";
 var searchTheme = {
   icon: { cursor: dist_default.pointer },
@@ -27583,7 +27664,10 @@ var dist_default11 = createPrompt((config, done) => {
   const [searchResults, setSearchResults] = useState([]);
   const [searchError, setSearchError] = useState();
   const defaultApplied = useRef(false);
-  const prefix = usePrefix({ status, theme });
+  const prefix = usePrefix({
+    status: status === "validating" ? "loading" : status,
+    theme
+  });
   const bounds = useMemo(() => {
     const first = searchResults.findIndex(isSelectable2);
     const last = searchResults.findLastIndex(isSelectable2);
@@ -27618,8 +27702,12 @@ var dist_default11 = createPrompt((config, done) => {
           setStatus("idle");
         }
       } catch (error2) {
-        if (!controller.signal.aborted && error2 instanceof Error) {
-          setSearchError(error2.message);
+        if (!controller.signal.aborted) {
+          const message2 = error2 instanceof Error && error2.message ? error2.message : "Search failed";
+          setSearchError(message2);
+          setActive(void 0);
+          setSearchResults([]);
+          setStatus("idle");
         }
       }
     };
@@ -27630,17 +27718,24 @@ var dist_default11 = createPrompt((config, done) => {
   }, [searchTerm]);
   const selectedChoice = searchResults[active];
   useKeypress(async (key, rl) => {
+    if (status === "validating") {
+      rl.clearLine(0);
+      rl.write(searchTerm);
+      return;
+    }
     if (isEnterKey(key)) {
       if (selectedChoice && status === "idle") {
-        setStatus("loading");
+        setStatus("validating");
         const isValid = await validate(selectedChoice.value);
         setStatus("idle");
         if (isValid === true) {
           setStatus("done");
           done(selectedChoice.value);
         } else if (selectedChoice.name === searchTerm) {
+          rl.write(searchTerm);
           setSearchError(isValid || "You must provide a valid value");
         } else {
+          rl.clearLine(0);
           rl.write(selectedChoice.name);
           setSearchTerm(selectedChoice.name);
         }
@@ -27653,6 +27748,7 @@ var dist_default11 = createPrompt((config, done) => {
       setSearchTerm(selectedChoice.name);
     } else if (status !== "loading" && (isUpKey(key) || isDownKey(key))) {
       rl.clearLine(0);
+      rl.write(searchTerm);
       if (isUpKey(key) && active !== bounds.first || isDownKey(key) && active !== bounds.last) {
         const offset = isUpKey(key) ? -1 : 1;
         let next = active;
@@ -27665,7 +27761,7 @@ var dist_default11 = createPrompt((config, done) => {
       setSearchTerm(rl.line);
     }
   });
-  const message = theme.style.message(config.message, status);
+  const message = theme.style.message(config.message, status === "validating" ? "loading" : status);
   const helpLine = theme.style.keysHelpTip([
     ["\u2191\u2193", "navigate"],
     ["\u23CE", "select"]
@@ -27711,7 +27807,7 @@ var dist_default11 = createPrompt((config, done) => {
   return [header, body];
 });
 
-// node_modules/.aspect_rules_js/@inquirer+select@5.3.0_@types+node@24.19.2/node_modules/@inquirer/select/dist/index.js
+// node_modules/.aspect_rules_js/@inquirer+select@5.3.1_@types+node@24.19.2/node_modules/@inquirer/select/dist/index.js
 import { styleText as styleText9 } from "node:util";
 var numberLineRegex = /^\d+$/;
 var selectTheme = {
