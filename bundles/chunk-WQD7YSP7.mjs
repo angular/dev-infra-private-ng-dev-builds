@@ -9,9 +9,14 @@ import {
   assertValidGithubConfig,
   determineRepoBaseDirFromCwd,
   getConfig,
+  getExcludedDirsForCwd,
+  getPathFromEnvironment,
   green,
+  require_lib,
+  resolveSafeExecutable,
+  sanitizeEnvironmentPath,
   yellow
-} from "./chunk-XNKXDVMU.mjs";
+} from "./chunk-DRPSWF72.mjs";
 import {
   __commonJS,
   __require,
@@ -2223,230 +2228,6 @@ var require_semver2 = __commonJS({
       compareIdentifiers: identifiers.compareIdentifiers,
       rcompareIdentifiers: identifiers.rcompareIdentifiers
     };
-  }
-});
-
-// node_modules/.aspect_rules_js/isexe@4.0.0/node_modules/isexe/dist/commonjs/index.min.js
-var require_index_min = __commonJS({
-  "node_modules/.aspect_rules_js/isexe@4.0.0/node_modules/isexe/dist/commonjs/index.min.js"(exports) {
-    "use strict";
-    var a = (t, e) => () => (e || t((e = { exports: {} }).exports, e), e.exports);
-    var _ = a((i) => {
-      "use strict";
-      Object.defineProperty(i, "__esModule", { value: true });
-      i.sync = i.isexe = void 0;
-      var M = __require("node:fs"), x = __require("node:fs/promises"), q = async (t, e = {}) => {
-        let { ignoreErrors: r = false } = e;
-        try {
-          return d(await (0, x.stat)(t), e);
-        } catch (s) {
-          let n = s;
-          if (r || n.code === "EACCES")
-            return false;
-          throw n;
-        }
-      };
-      i.isexe = q;
-      var m = (t, e = {}) => {
-        let { ignoreErrors: r = false } = e;
-        try {
-          return d((0, M.statSync)(t), e);
-        } catch (s) {
-          let n = s;
-          if (r || n.code === "EACCES")
-            return false;
-          throw n;
-        }
-      };
-      i.sync = m;
-      var d = (t, e) => t.isFile() && A(t, e), A = (t, e) => {
-        let r = e.uid ?? process.getuid?.(), s = e.groups ?? process.getgroups?.() ?? [], n = e.gid ?? process.getgid?.() ?? s[0];
-        if (r === void 0 || n === void 0)
-          throw new Error("cannot get uid or gid");
-        let u = /* @__PURE__ */ new Set([n, ...s]), c = t.mode, S = t.uid, P = t.gid, f = parseInt("100", 8), l = parseInt("010", 8), j = parseInt("001", 8), C = f | l;
-        return !!(c & j || c & l && u.has(P) || c & f && S === r || c & C && r === 0);
-      };
-    });
-    var g = a((o) => {
-      "use strict";
-      Object.defineProperty(o, "__esModule", { value: true });
-      o.sync = o.isexe = void 0;
-      var T = __require("node:fs"), I = __require("node:fs/promises"), D = __require("node:path"), F = async (t, e = {}) => {
-        let { ignoreErrors: r = false } = e;
-        try {
-          return y(await (0, I.stat)(t), t, e);
-        } catch (s) {
-          let n = s;
-          if (r || n.code === "EACCES")
-            return false;
-          throw n;
-        }
-      };
-      o.isexe = F;
-      var L = (t, e = {}) => {
-        let { ignoreErrors: r = false } = e;
-        try {
-          return y((0, T.statSync)(t), t, e);
-        } catch (s) {
-          let n = s;
-          if (r || n.code === "EACCES")
-            return false;
-          throw n;
-        }
-      };
-      o.sync = L;
-      var B = (t, e) => {
-        let { pathExt: r = process.env.PATHEXT || "" } = e, s = r.split(D.delimiter);
-        if (s.indexOf("") !== -1)
-          return true;
-        for (let n of s) {
-          let u = n.toLowerCase(), c = t.substring(t.length - u.length).toLowerCase();
-          if (u && c === u)
-            return true;
-        }
-        return false;
-      }, y = (t, e, r) => t.isFile() && B(e, r);
-    });
-    var p = a((h) => {
-      "use strict";
-      Object.defineProperty(h, "__esModule", { value: true });
-    });
-    var v = exports && exports.__createBinding || (Object.create ? function(t, e, r, s) {
-      s === void 0 && (s = r);
-      var n = Object.getOwnPropertyDescriptor(e, r);
-      (!n || ("get" in n ? !e.__esModule : n.writable || n.configurable)) && (n = { enumerable: true, get: function() {
-        return e[r];
-      } }), Object.defineProperty(t, s, n);
-    } : function(t, e, r, s) {
-      s === void 0 && (s = r), t[s] = e[r];
-    });
-    var G = exports && exports.__setModuleDefault || (Object.create ? function(t, e) {
-      Object.defineProperty(t, "default", { enumerable: true, value: e });
-    } : function(t, e) {
-      t.default = e;
-    });
-    var w = exports && exports.__importStar || /* @__PURE__ */ function() {
-      var t = function(e) {
-        return t = Object.getOwnPropertyNames || function(r) {
-          var s = [];
-          for (var n in r)
-            Object.prototype.hasOwnProperty.call(r, n) && (s[s.length] = n);
-          return s;
-        }, t(e);
-      };
-      return function(e) {
-        if (e && e.__esModule)
-          return e;
-        var r = {};
-        if (e != null)
-          for (var s = t(e), n = 0; n < s.length; n++)
-            s[n] !== "default" && v(r, e, s[n]);
-        return G(r, e), r;
-      };
-    }();
-    var X = exports && exports.__exportStar || function(t, e) {
-      for (var r in t)
-        r !== "default" && !Object.prototype.hasOwnProperty.call(e, r) && v(e, t, r);
-    };
-    Object.defineProperty(exports, "__esModule", { value: true });
-    exports.sync = exports.isexe = exports.posix = exports.win32 = void 0;
-    var E = w(_());
-    exports.posix = E;
-    var O = w(g());
-    exports.win32 = O;
-    X(p(), exports);
-    var H = process.env._ISEXE_TEST_PLATFORM_ || process.platform;
-    var b = H === "win32" ? O : E;
-    exports.isexe = b.isexe;
-    exports.sync = b.sync;
-  }
-});
-
-// node_modules/.aspect_rules_js/which@7.0.0/node_modules/which/lib/index.js
-var require_lib = __commonJS({
-  "node_modules/.aspect_rules_js/which@7.0.0/node_modules/which/lib/index.js"(exports, module) {
-    var { isexe, sync: isexeSync } = require_index_min();
-    var { join: join2, delimiter, sep: sep2, posix } = __require("path");
-    var isWindows = process.platform === "win32";
-    var rSlash = new RegExp(`[${posix.sep}${sep2 === posix.sep ? "" : sep2}]`.replace(/(\\)/g, "\\$1"));
-    var rRel = new RegExp(`^\\.${rSlash.source}`);
-    var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
-    var getPathInfo = (cmd, {
-      path: optPath = process.env.PATH,
-      pathExt: optPathExt = process.env.PATHEXT,
-      delimiter: optDelimiter = delimiter
-    }) => {
-      const pathEnv = cmd.match(rSlash) ? [""] : [
-        // windows always checks the cwd first
-        ...isWindows ? [process.cwd()] : [],
-        ...(optPath || /* istanbul ignore next: very unusual */
-        "").split(optDelimiter)
-      ];
-      if (isWindows) {
-        const pathExtExe = optPathExt || [".EXE", ".CMD", ".BAT", ".COM"].join(optDelimiter);
-        const pathExt = pathExtExe.split(optDelimiter).flatMap((item) => [item, item.toLowerCase()]);
-        if (cmd.includes(".") && pathExt[0] !== "") {
-          pathExt.unshift("");
-        }
-        return { pathEnv, pathExt, pathExtExe };
-      }
-      return { pathEnv, pathExt: [""] };
-    };
-    var getPathPart = (raw, cmd) => {
-      const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
-      const prefix = !pathPart && rRel.test(cmd) ? cmd.slice(0, 2) : "";
-      return prefix + join2(pathPart, cmd);
-    };
-    var which2 = async (cmd, opt = {}) => {
-      const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
-      const found = [];
-      for (const envPart of pathEnv) {
-        const p = getPathPart(envPart, cmd);
-        for (const ext of pathExt) {
-          const withExt = p + ext;
-          const is = await isexe(withExt, { pathExt: pathExtExe, ignoreErrors: true });
-          if (is) {
-            if (!opt.all) {
-              return withExt;
-            }
-            found.push(withExt);
-          }
-        }
-      }
-      if (opt.all && found.length) {
-        return found;
-      }
-      if (opt.nothrow) {
-        return null;
-      }
-      throw getNotFoundError(cmd);
-    };
-    var whichSync = (cmd, opt = {}) => {
-      const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
-      const found = [];
-      for (const pathEnvPart of pathEnv) {
-        const p = getPathPart(pathEnvPart, cmd);
-        for (const ext of pathExt) {
-          const withExt = p + ext;
-          const is = isexeSync(withExt, { pathExt: pathExtExe, ignoreErrors: true });
-          if (is) {
-            if (!opt.all) {
-              return withExt;
-            }
-            found.push(withExt);
-          }
-        }
-      }
-      if (opt.all && found.length) {
-        return found;
-      }
-      if (opt.nothrow) {
-        return null;
-      }
-      throw getNotFoundError(cmd);
-    };
-    module.exports = which2;
-    which2.sync = whichSync;
   }
 });
 
@@ -24329,6 +24110,7 @@ var GitClient = class _GitClient {
     this.baseDir = baseDir;
     this.github = new GithubClient();
     this.gitBinPath = "git";
+    this.cachedGitResolution = null;
     this.config = config;
     this.remoteConfig = config.github;
     this.remoteParams = { owner: config.github.owner, repo: config.github.name };
@@ -24349,10 +24131,41 @@ var GitClient = class _GitClient {
     }
     args = ["-c", "credential.helper=", "-c", "core.hooksPath=/dev/null", ...args];
     Log.debug("Executing: git", this.sanitizeConsoleOutput(args.join(" ")));
-    const result = spawnSync(this.gitBinPath, args, {
+    const excludedDirs = Array.from(/* @__PURE__ */ new Set([this.baseDir, ...getExcludedDirsForCwd(options.cwd)]));
+    const env = sanitizeEnvironmentPath(options.env ?? process.env, excludedDirs);
+    let gitExecutable = this.gitBinPath;
+    if (gitExecutable === "git") {
+      const resolutionKey = `${getPathFromEnvironment(env)}\0${excludedDirs.join("\0")}`;
+      if (this.cachedGitResolution?.key !== resolutionKey) {
+        this.cachedGitResolution = {
+          key: resolutionKey,
+          binPath: resolveSafeExecutable("git", env, excludedDirs)
+        };
+      }
+      if (this.cachedGitResolution.binPath === null) {
+        const missingGitError = Object.assign(new Error("Unable to locate a system git executable outside the repository."), { code: "ENOENT" });
+        Log.debug("Process Error:", this.sanitizeConsoleOutput(missingGitError.message));
+        if (missingGitError.stack) {
+          Log.debug("Process Error Stack:", this.sanitizeConsoleOutput(missingGitError.stack));
+        }
+        process.stderr.write(this.sanitizeConsoleOutput(missingGitError.message));
+        return {
+          pid: 0,
+          output: ["", "", ""],
+          stdout: "",
+          stderr: "",
+          status: null,
+          signal: null,
+          error: missingGitError
+        };
+      }
+      gitExecutable = this.cachedGitResolution.binPath;
+    }
+    const result = spawnSync(gitExecutable, args, {
       cwd: this.baseDir,
       stdio: "pipe",
       ...options,
+      env,
       encoding: "utf8"
     });
     Log.debug(`Status: ${result.status}, Error: ${!!result.error}, Signal: ${result.signal}`);

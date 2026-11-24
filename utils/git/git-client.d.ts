@@ -18,6 +18,7 @@ export declare class GitClient {
         github: GithubConfig;
     };
     readonly gitBinPath: string;
+    private cachedGitResolution;
     constructor(config: {
         github: GithubConfig;
     }, baseDir?: string);

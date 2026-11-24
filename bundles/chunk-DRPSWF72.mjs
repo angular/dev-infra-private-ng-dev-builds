@@ -6,6 +6,7 @@ import {
   __commonJS,
   __esm,
   __export,
+  __require,
   __toESM
 } from "./chunk-RZTNU4LP.mjs";
 
@@ -30,6 +31,230 @@ var require_get_caller_file = __commonJS({
         return stack[position] ? stack[position].getFileName() : void 0;
       }
     };
+  }
+});
+
+// node_modules/.aspect_rules_js/isexe@4.0.0/node_modules/isexe/dist/commonjs/index.min.js
+var require_index_min = __commonJS({
+  "node_modules/.aspect_rules_js/isexe@4.0.0/node_modules/isexe/dist/commonjs/index.min.js"(exports) {
+    "use strict";
+    var a = (t, e) => () => (e || t((e = { exports: {} }).exports, e), e.exports);
+    var _ = a((i) => {
+      "use strict";
+      Object.defineProperty(i, "__esModule", { value: true });
+      i.sync = i.isexe = void 0;
+      var M = __require("node:fs"), x = __require("node:fs/promises"), q = async (t, e = {}) => {
+        let { ignoreErrors: r = false } = e;
+        try {
+          return d(await (0, x.stat)(t), e);
+        } catch (s) {
+          let n = s;
+          if (r || n.code === "EACCES")
+            return false;
+          throw n;
+        }
+      };
+      i.isexe = q;
+      var m = (t, e = {}) => {
+        let { ignoreErrors: r = false } = e;
+        try {
+          return d((0, M.statSync)(t), e);
+        } catch (s) {
+          let n = s;
+          if (r || n.code === "EACCES")
+            return false;
+          throw n;
+        }
+      };
+      i.sync = m;
+      var d = (t, e) => t.isFile() && A(t, e), A = (t, e) => {
+        let r = e.uid ?? process.getuid?.(), s = e.groups ?? process.getgroups?.() ?? [], n = e.gid ?? process.getgid?.() ?? s[0];
+        if (r === void 0 || n === void 0)
+          throw new Error("cannot get uid or gid");
+        let u = /* @__PURE__ */ new Set([n, ...s]), c = t.mode, S = t.uid, P = t.gid, f = parseInt("100", 8), l = parseInt("010", 8), j = parseInt("001", 8), C = f | l;
+        return !!(c & j || c & l && u.has(P) || c & f && S === r || c & C && r === 0);
+      };
+    });
+    var g = a((o) => {
+      "use strict";
+      Object.defineProperty(o, "__esModule", { value: true });
+      o.sync = o.isexe = void 0;
+      var T = __require("node:fs"), I = __require("node:fs/promises"), D = __require("node:path"), F = async (t, e = {}) => {
+        let { ignoreErrors: r = false } = e;
+        try {
+          return y(await (0, I.stat)(t), t, e);
+        } catch (s) {
+          let n = s;
+          if (r || n.code === "EACCES")
+            return false;
+          throw n;
+        }
+      };
+      o.isexe = F;
+      var L = (t, e = {}) => {
+        let { ignoreErrors: r = false } = e;
+        try {
+          return y((0, T.statSync)(t), t, e);
+        } catch (s) {
+          let n = s;
+          if (r || n.code === "EACCES")
+            return false;
+          throw n;
+        }
+      };
+      o.sync = L;
+      var B = (t, e) => {
+        let { pathExt: r = process.env.PATHEXT || "" } = e, s = r.split(D.delimiter);
+        if (s.indexOf("") !== -1)
+          return true;
+        for (let n of s) {
+          let u = n.toLowerCase(), c = t.substring(t.length - u.length).toLowerCase();
+          if (u && c === u)
+            return true;
+        }
+        return false;
+      }, y = (t, e, r) => t.isFile() && B(e, r);
+    });
+    var p = a((h) => {
+      "use strict";
+      Object.defineProperty(h, "__esModule", { value: true });
+    });
+    var v = exports && exports.__createBinding || (Object.create ? function(t, e, r, s) {
+      s === void 0 && (s = r);
+      var n = Object.getOwnPropertyDescriptor(e, r);
+      (!n || ("get" in n ? !e.__esModule : n.writable || n.configurable)) && (n = { enumerable: true, get: function() {
+        return e[r];
+      } }), Object.defineProperty(t, s, n);
+    } : function(t, e, r, s) {
+      s === void 0 && (s = r), t[s] = e[r];
+    });
+    var G = exports && exports.__setModuleDefault || (Object.create ? function(t, e) {
+      Object.defineProperty(t, "default", { enumerable: true, value: e });
+    } : function(t, e) {
+      t.default = e;
+    });
+    var w = exports && exports.__importStar || /* @__PURE__ */ function() {
+      var t = function(e) {
+        return t = Object.getOwnPropertyNames || function(r) {
+          var s = [];
+          for (var n in r)
+            Object.prototype.hasOwnProperty.call(r, n) && (s[s.length] = n);
+          return s;
+        }, t(e);
+      };
+      return function(e) {
+        if (e && e.__esModule)
+          return e;
+        var r = {};
+        if (e != null)
+          for (var s = t(e), n = 0; n < s.length; n++)
+            s[n] !== "default" && v(r, e, s[n]);
+        return G(r, e), r;
+      };
+    }();
+    var X = exports && exports.__exportStar || function(t, e) {
+      for (var r in t)
+        r !== "default" && !Object.prototype.hasOwnProperty.call(e, r) && v(e, t, r);
+    };
+    Object.defineProperty(exports, "__esModule", { value: true });
+    exports.sync = exports.isexe = exports.posix = exports.win32 = void 0;
+    var E = w(_());
+    exports.posix = E;
+    var O = w(g());
+    exports.win32 = O;
+    X(p(), exports);
+    var H = process.env._ISEXE_TEST_PLATFORM_ || process.platform;
+    var b = H === "win32" ? O : E;
+    exports.isexe = b.isexe;
+    exports.sync = b.sync;
+  }
+});
+
+// node_modules/.aspect_rules_js/which@7.0.0/node_modules/which/lib/index.js
+var require_lib = __commonJS({
+  "node_modules/.aspect_rules_js/which@7.0.0/node_modules/which/lib/index.js"(exports, module) {
+    var { isexe, sync: isexeSync } = require_index_min();
+    var { join: join4, delimiter, sep, posix } = __require("path");
+    var isWindows = process.platform === "win32";
+    var rSlash = new RegExp(`[${posix.sep}${sep === posix.sep ? "" : sep}]`.replace(/(\\)/g, "\\$1"));
+    var rRel = new RegExp(`^\\.${rSlash.source}`);
+    var getNotFoundError = (cmd) => Object.assign(new Error(`not found: ${cmd}`), { code: "ENOENT" });
+    var getPathInfo = (cmd, {
+      path: optPath = process.env.PATH,
+      pathExt: optPathExt = process.env.PATHEXT,
+      delimiter: optDelimiter = delimiter
+    }) => {
+      const pathEnv = cmd.match(rSlash) ? [""] : [
+        // windows always checks the cwd first
+        ...isWindows ? [process.cwd()] : [],
+        ...(optPath || /* istanbul ignore next: very unusual */
+        "").split(optDelimiter)
+      ];
+      if (isWindows) {
+        const pathExtExe = optPathExt || [".EXE", ".CMD", ".BAT", ".COM"].join(optDelimiter);
+        const pathExt = pathExtExe.split(optDelimiter).flatMap((item) => [item, item.toLowerCase()]);
+        if (cmd.includes(".") && pathExt[0] !== "") {
+          pathExt.unshift("");
+        }
+        return { pathEnv, pathExt, pathExtExe };
+      }
+      return { pathEnv, pathExt: [""] };
+    };
+    var getPathPart = (raw, cmd) => {
+      const pathPart = /^".*"$/.test(raw) ? raw.slice(1, -1) : raw;
+      const prefix = !pathPart && rRel.test(cmd) ? cmd.slice(0, 2) : "";
+      return prefix + join4(pathPart, cmd);
+    };
+    var which2 = async (cmd, opt = {}) => {
+      const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
+      const found = [];
+      for (const envPart of pathEnv) {
+        const p = getPathPart(envPart, cmd);
+        for (const ext of pathExt) {
+          const withExt = p + ext;
+          const is = await isexe(withExt, { pathExt: pathExtExe, ignoreErrors: true });
+          if (is) {
+            if (!opt.all) {
+              return withExt;
+            }
+            found.push(withExt);
+          }
+        }
+      }
+      if (opt.all && found.length) {
+        return found;
+      }
+      if (opt.nothrow) {
+        return null;
+      }
+      throw getNotFoundError(cmd);
+    };
+    var whichSync = (cmd, opt = {}) => {
+      const { pathEnv, pathExt, pathExtExe } = getPathInfo(cmd, opt);
+      const found = [];
+      for (const pathEnvPart of pathEnv) {
+        const p = getPathPart(pathEnvPart, cmd);
+        for (const ext of pathExt) {
+          const withExt = p + ext;
+          const is = isexeSync(withExt, { pathExt: pathExtExe, ignoreErrors: true });
+          if (is) {
+            if (!opt.all) {
+              return withExt;
+            }
+            found.push(withExt);
+          }
+        }
+      }
+      if (opt.all && found.length) {
+        return found;
+      }
+      if (opt.nothrow) {
+        return null;
+      }
+      throw getNotFoundError(cmd);
+    };
+    module.exports = which2;
+    which2.sync = whichSync;
   }
 });
 
@@ -1945,11 +2170,11 @@ var parser = new YargsParser({
   format,
   normalize,
   resolve: resolve2,
-  require: (path) => {
+  require: (path2) => {
     if (typeof require2 !== "undefined") {
-      return require2(path);
-    } else if (path.match(/\.json$/)) {
-      return JSON.parse(readFileSync(path, "utf8"));
+      return require2(path2);
+    } else if (path2.match(/\.json$/)) {
+      return JSON.parse(readFileSync(path2, "utf8"));
     } else {
       throw Error("only .json config files are supported in ESM");
     }
@@ -5724,6 +5949,190 @@ async function runParserWithCompletedFunctions(applyConfiguration) {
   }
 }
 
+// ng-dev/utils/environment.js
+var import_which = __toESM(require_lib());
+import fs from "fs";
+import path from "path";
+import { fileURLToPath as fileURLToPath2 } from "url";
+function getEmptyPathSentinel(platform = process.platform) {
+  return platform === "win32" ? "C:\\__ng_dev_empty_path__" : "/__ng_dev_empty_path__";
+}
+function findEnclosingGitRepoRoot(startDir, pathImpl = path, existsFn = fs.existsSync) {
+  let current = pathImpl.resolve(startDir);
+  const { root } = pathImpl.parse(current);
+  while (true) {
+    if (existsFn(pathImpl.join(current, ".git"))) {
+      return current;
+    }
+    if (current === root) {
+      return null;
+    }
+    const parent = pathImpl.dirname(current);
+    if (parent === current) {
+      return null;
+    }
+    current = parent;
+  }
+}
+function getExcludedDirsForCwd(cwd, processCwd = process.cwd(), pathImpl = path, existsFn = fs.existsSync) {
+  const excluded = /* @__PURE__ */ new Set();
+  const resolvedExplicitCwd = cwd instanceof URL ? fileURLToPath2(cwd) : typeof cwd === "string" ? cwd : void 0;
+  const addForDir = (dir, includeBareDirWhenOutsideRepo) => {
+    const resolvedDir = pathImpl.resolve(dir);
+    const repoRoot = findEnclosingGitRepoRoot(resolvedDir, pathImpl, existsFn);
+    if (repoRoot !== null) {
+      excluded.add(repoRoot);
+      excluded.add(resolvedDir);
+      return;
+    }
+    if (includeBareDirWhenOutsideRepo) {
+      excluded.add(resolvedDir);
+    }
+    let current = resolvedDir;
+    const { root } = pathImpl.parse(current);
+    while (true) {
+      excluded.add(pathImpl.join(current, "node_modules"));
+      if (current === root) {
+        break;
+      }
+      const parent = pathImpl.dirname(current);
+      if (parent === current) {
+        break;
+      }
+      current = parent;
+    }
+  };
+  addForDir(processCwd, false);
+  if (resolvedExplicitCwd !== void 0) {
+    addForDir(resolvedExplicitCwd, true);
+  }
+  return Array.from(excluded);
+}
+function resolvePathWithExistingAncestor(targetPath, pathImpl = path, realpathFn = fs.realpathSync.native) {
+  const resolved = pathImpl.resolve(targetPath);
+  const { root } = pathImpl.parse(resolved);
+  const trailingSegments = [];
+  let current = resolved;
+  while (true) {
+    try {
+      const realCurrent = realpathFn(current);
+      return trailingSegments.length > 0 ? pathImpl.join(realCurrent, ...trailingSegments) : realCurrent;
+    } catch {
+      if (current === root) {
+        return resolved;
+      }
+      const parent = pathImpl.dirname(current);
+      if (parent === current) {
+        return resolved;
+      }
+      trailingSegments.unshift(pathImpl.basename(current));
+      current = parent;
+    }
+  }
+}
+function normalizePathComparisonValue(value, platform) {
+  return platform === "win32" || platform === "darwin" ? value.normalize("NFC").toLowerCase() : value;
+}
+function resolveComparisonRoots(rootDir, pathImpl, platform, realpathFn) {
+  const logicalRoot = normalizePathComparisonValue(pathImpl.resolve(rootDir), platform);
+  const canonicalRoot = normalizePathComparisonValue(resolvePathWithExistingAncestor(rootDir, pathImpl, realpathFn), platform);
+  return Array.from(/* @__PURE__ */ new Set([logicalRoot, canonicalRoot])).filter((root) => root !== normalizePathComparisonValue(pathImpl.parse(root).root, platform));
+}
+function isAbsoluteSearchPathSegment(segment, platform) {
+  if (platform === "win32") {
+    return /^[a-zA-Z]:[\\/]/.test(segment) || segment.startsWith("\\\\");
+  }
+  return path.posix.isAbsolute(segment);
+}
+function isPathInsideDirectory(candidatePath, rootDir, platform = process.platform, realpathFn = fs.realpathSync.native) {
+  const pathImpl = platform === "win32" ? path.win32 : path.posix;
+  const roots = resolveComparisonRoots(rootDir, pathImpl, platform, realpathFn);
+  if (roots.length === 0) {
+    return false;
+  }
+  const logicalCandidate = normalizePathComparisonValue(pathImpl.resolve(candidatePath), platform);
+  const canonicalCandidate = normalizePathComparisonValue(resolvePathWithExistingAncestor(candidatePath, pathImpl, realpathFn), platform);
+  const candidates = [logicalCandidate, canonicalCandidate];
+  return roots.some((root) => candidates.some((candidate) => candidate === root || candidate.startsWith(`${root}${pathImpl.sep}`)));
+}
+function sanitizePathString(pathValue, excludedDirs, platform = process.platform, realpathFn = fs.realpathSync.native) {
+  const pathImpl = platform === "win32" ? path.win32 : path.posix;
+  const excludedRootList = excludedDirs.flatMap((dir) => resolveComparisonRoots(dir, pathImpl, platform, realpathFn));
+  const keptSegments = [];
+  for (const rawSegment of pathValue.split(pathImpl.delimiter)) {
+    const segment = platform === "win32" ? rawSegment.replace(/"/g, "") : rawSegment;
+    if (segment.trim() === "") {
+      continue;
+    }
+    if (!isAbsoluteSearchPathSegment(segment, platform)) {
+      continue;
+    }
+    if (excludedRootList.length > 0) {
+      const logicalCandidate = normalizePathComparisonValue(pathImpl.resolve(segment), platform);
+      const canonicalCandidate = normalizePathComparisonValue(resolvePathWithExistingAncestor(segment, pathImpl, realpathFn), platform);
+      const candidates = [logicalCandidate, canonicalCandidate];
+      const isExcluded = excludedRootList.some((root) => candidates.some((candidate) => candidate === root || candidate.startsWith(`${root}${pathImpl.sep}`)));
+      if (isExcluded) {
+        continue;
+      }
+    }
+    keptSegments.push(segment);
+  }
+  return keptSegments.join(pathImpl.delimiter);
+}
+function sanitizeEnvironmentPath(env3, excludedDirs, platform = process.platform, realpathFn = fs.realpathSync.native) {
+  const sanitizedEnv = { ...env3 };
+  sanitizeProcessEnvironmentPath(excludedDirs, sanitizedEnv, platform, realpathFn);
+  return sanitizedEnv;
+}
+function sanitizeProcessEnvironmentPath(excludedDirs, targetEnv = process.env, platform = process.platform, realpathFn = fs.realpathSync.native) {
+  if (platform === "win32") {
+    targetEnv["NoDefaultCurrentDirectoryInExePath"] = "1";
+  }
+  const emptySentinel = getEmptyPathSentinel(platform);
+  let foundPathKey = false;
+  for (const key of Object.keys(targetEnv)) {
+    if (/^path$/i.test(key) && typeof targetEnv[key] === "string") {
+      foundPathKey = true;
+      const sanitized = sanitizePathString(targetEnv[key], excludedDirs, platform, realpathFn);
+      targetEnv[key] = sanitized || emptySentinel;
+    }
+  }
+  if (!foundPathKey) {
+    targetEnv["PATH"] = emptySentinel;
+  }
+}
+function getPathFromEnvironment(env3, platform = process.platform) {
+  if (platform !== "win32") {
+    return typeof env3["PATH"] === "string" ? env3["PATH"] : "";
+  }
+  const keys = Object.keys(env3);
+  for (let i = keys.length - 1; i >= 0; i--) {
+    const key = keys[i];
+    if (/^path$/i.test(key) && typeof env3[key] === "string") {
+      return env3[key];
+    }
+  }
+  return "";
+}
+function resolveSafeExecutable(command2, env3, excludedDirs, platform = process.platform, realpathFn = fs.realpathSync.native) {
+  const sanitizedEnv = sanitizeEnvironmentPath(env3, excludedDirs, platform, realpathFn);
+  const sanitizedPath = getPathFromEnvironment(sanitizedEnv, platform);
+  if (!sanitizedPath || sanitizedPath === getEmptyPathSentinel(platform)) {
+    return null;
+  }
+  const candidates = import_which.default.sync(command2, {
+    path: sanitizedPath,
+    nothrow: true,
+    all: true
+  });
+  if (candidates === null) {
+    return null;
+  }
+  const safeCandidate = candidates.find((candidate) => !excludedDirs.some((dir) => isPathInsideDirectory(candidate, dir, platform, realpathFn)));
+  return safeCandidate ?? null;
+}
+
 // ng-dev/utils/logging.js
 import { styleText } from "util";
 import { createWriteStream, copyFileSync, lstatSync } from "fs";
@@ -5737,14 +6146,15 @@ var ChildProcess = class {
   static spawnInteractive(command2, args, options = {}) {
     return new Promise((resolve5, reject) => {
       const commandText = `${command2} ${args.join(" ")}`;
+      const env3 = sanitizeEnvironmentPath(options.env ?? process.env, getExcludedDirsForCwd(options.cwd));
       Log.debug(`Executing command: ${sanitize(commandText)}`);
-      const childProcess = _spawn(command2, args, { ...options, stdio: "inherit" });
+      const childProcess = _spawn(command2, args, { ...options, env: env3, stdio: "inherit" });
       childProcess.on("close", (status) => status === 0 ? resolve5() : reject(status));
     });
   }
   static spawnSync(command2, args, options = {}) {
     const commandText = `${command2} ${args.join(" ")}`;
-    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
+    const env3 = getEnvironmentForNonInteractiveCommand(options.env, options.cwd);
     Log.debug(`Executing command: ${sanitize(commandText)}`);
     const { status: exitCode, signal, stdout, stderr } = _spawnSync(command2, args, { ...options, env: env3, encoding: "utf8", stdio: "pipe" });
     const status = statusFromExitCodeAndSignal(exitCode, signal);
@@ -5755,20 +6165,21 @@ var ChildProcess = class {
   }
   static spawn(command2, args, options = {}) {
     const commandText = `${command2} ${args.join(" ")}`;
-    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
+    const env3 = getEnvironmentForNonInteractiveCommand(options.env, options.cwd);
     return processAsyncCmd(commandText, options, _spawn(command2, args, { ...options, env: env3, stdio: "pipe" }));
   }
   static exec(command2, options = {}) {
-    const env3 = getEnvironmentForNonInteractiveCommand(options.env);
+    const env3 = getEnvironmentForNonInteractiveCommand(options.env, options.cwd);
     return processAsyncCmd(command2, options, _exec(command2, { ...options, env: env3 }));
   }
 };
 function statusFromExitCodeAndSignal(exitCode, signal) {
   return exitCode ?? signal ?? -1;
 }
-function getEnvironmentForNonInteractiveCommand(userProvidedEnv) {
+function getEnvironmentForNonInteractiveCommand(userProvidedEnv, cwd) {
   const forceColorValue = supports_color_default.stdout !== false ? supports_color_default.stdout.level.toString() : void 0;
-  return { FORCE_COLOR: forceColorValue, ...userProvidedEnv ?? process.env };
+  const sanitizedEnv = sanitizeEnvironmentPath(userProvidedEnv ?? process.env, getExcludedDirsForCwd(cwd));
+  return { FORCE_COLOR: forceColorValue, ...sanitizedEnv };
 }
 function processAsyncCmd(command2, options, childProcess) {
   return new Promise((resolve5, reject) => {
@@ -6055,6 +6466,12 @@ export {
   runParserWithCompletedFunctions,
   supports_color_exports,
   init_supports_color,
+  require_lib,
+  getExcludedDirsForCwd,
+  sanitizeEnvironmentPath,
+  sanitizeProcessEnvironmentPath,
+  getPathFromEnvironment,
+  resolveSafeExecutable,
   ChildProcess,
   determineRepoBaseDirFromCwd,
   LogLevel,

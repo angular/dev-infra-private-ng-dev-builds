@@ -1,0 +1,11 @@
+import path from 'path';
+export declare function getEmptyPathSentinel(platform?: NodeJS.Platform): string;
+export declare function findEnclosingGitRepoRoot(startDir: string, pathImpl?: path.PlatformPath, existsFn?: (p: string) => boolean): string | null;
+export declare function getExcludedDirsForCwd(cwd?: string | URL, processCwd?: string, pathImpl?: path.PlatformPath, existsFn?: (p: string) => boolean): string[];
+export declare function resolvePathWithExistingAncestor(targetPath: string, pathImpl?: path.PlatformPath, realpathFn?: (p: string) => string): string;
+export declare function isPathInsideDirectory(candidatePath: string, rootDir: string, platform?: NodeJS.Platform, realpathFn?: (p: string) => string): boolean;
+export declare function sanitizePathString(pathValue: string, excludedDirs: readonly string[], platform?: NodeJS.Platform, realpathFn?: (p: string) => string): string;
+export declare function sanitizeEnvironmentPath(env: NodeJS.ProcessEnv, excludedDirs: readonly string[], platform?: NodeJS.Platform, realpathFn?: (p: string) => string): NodeJS.ProcessEnv;
+export declare function sanitizeProcessEnvironmentPath(excludedDirs: readonly string[], targetEnv?: NodeJS.ProcessEnv, platform?: NodeJS.Platform, realpathFn?: (p: string) => string): void;
+export declare function getPathFromEnvironment(env: NodeJS.ProcessEnv, platform?: NodeJS.Platform): string;
+export declare function resolveSafeExecutable(command: string, env: NodeJS.ProcessEnv, excludedDirs: readonly string[], platform?: NodeJS.Platform, realpathFn?: (p: string) => string): string | null;
